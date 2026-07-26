@@ -1,0 +1,5013 @@
+{
+  "schema_version": "1.0",
+  "report_id": "historie_universal_coverage_v1",
+  "subject_id": "historie",
+  "status": "INCOMPLETE",
+  "completion_definition": {
+    "freeze_is_not_completeness": true,
+    "fixed_counts_are_not_sufficient": true,
+    "all_five_axes_required": true,
+    "incidental_mentions_do_not_count_as_coverage": true,
+    "dedicated_emne_or_domain_required_for_core_cells": true,
+    "current_expected_state": "INCOMPLETE_UNTIL_PROVEN",
+    "enforcement": "Audit exits non-zero for malformed or stale reports. Use --require-complete only when all required cells and production checks are genuinely satisfied."
+  },
+  "source_fingerprints": {
+    "data/fag/historie/historie_universal_coverage_contract_v1.json": "1c1b51ed6b145f080b624f8af6f815ce38388cb086f4d264f946de024574c14b",
+    "data/fag/historie/historie_v5_contract.json": "2c28b286d116c46b168280a8d441c5962894516cdc2ec770bdf671dee777ce64",
+    "data/fag/historie/emner_historie_canonical_v4_5.json": "eba1f65eb0340f999108f81d503864234f1e1572fa7b2b744d0b4c881f1b37a9",
+    "data/fag/historie/historiepensum_canonical_v4_5.json": "6c83ae729a290013e87c73d0c2a4a6c9370b6f0bb2c32a524d5b1480a0facf54",
+    "data/fag/historie/methods_historie_canonical_v4_5.json": "2ec7f7adfc76757fa9a8b69dd93a4c34e65b3a92482ca46da5f013388703800c",
+    "data/fag/historie/concepts_historie_canonical_v5_5.json": "38da17817f7c84b0d7df6ec07cea5864d54667be150991989a85887bcad50b9e",
+    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "acfde2f22b8aef5878051be60f3c671ec96d19cf1107afd982c6c1909495137c",
+    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "864fdb04eea41229c12eecd1e672e6cd3ca269b6f32a94dc3afba98541f826a6",
+    "reports/historie-v5/historie-v5-5-readiness.json": "361bc281e4959ef2795f8d7c7cb0f4cc99d16f49d877f21244739e53f27a519c"
+  },
+  "inventory": {
+    "domains": 20,
+    "emner": 200,
+    "methods": 87,
+    "concepts": 826,
+    "theories": 200
+  },
+  "legacy_internal_readiness": {
+    "status": "FREEZE_READY",
+    "total_domains": 20,
+    "covered_domains": 20,
+    "all_domains_coverage_complete": true,
+    "false_complete_conflict": true,
+    "interpretation": "The legacy readiness report verifies the selected V5.5 inventory. It does not independently establish universal subject coverage."
+  },
+  "summary": {
+    "total_cells": 59,
+    "covered_cells": 37,
+    "partial_cells": 9,
+    "missing_cells": 13,
+    "production_passes": 5,
+    "production_gaps": 6
+  },
+  "axes": {
+    "time": {
+      "id": "time",
+      "label": "Tid",
+      "requirement": "Fra forhistorie til samtid uten store kronologiske hull.",
+      "status": "INCOMPLETE",
+      "counts": {
+        "covered": 6,
+        "partial": 3,
+        "missing": 5
+      },
+      "cells": [
+        {
+          "id": "forhistorie_arkeologi",
+          "label": "Forhistorie og arkeologi",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Opprett et universelt domene eller en tydelig emnegruppe for forhistorie, arkeologisk metode og materiell kildeanalyse."
+        },
+        {
+          "id": "steinalder",
+          "label": "Steinalder",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 1,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Legg til et dedikert steinalderemne med kronologi, teknologi, bosetning, subsistens og arkeologiske kilder."
+        },
+        {
+          "id": "bronsealder",
+          "label": "Bronsealder",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 1,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Legg til et dedikert bronsealderemne med materiell kultur, utveksling, ritualer og landskapsbruk."
+        },
+        {
+          "id": "jernalder_vikingtid",
+          "label": "Jernalder og vikingtid",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Etabler separate emner for jernalderens samfunnsendringer og vikingtidens lokale, nordiske og globale forbindelser."
+        },
+        {
+          "id": "middelalder",
+          "label": "Middelalder",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 10,
+            "supporting_emner": 17,
+            "distinct_areas": 3
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_kilder_arkiv_spor",
+            "his_middelalder_kirke_kongemakt"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kirke_kloster_middelalder",
+              "title": "Kirke, kloster og middelaldermakt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt"
+              ]
+            },
+            {
+              "emne_id": "em_his_kongemakt_kirke_konflikt",
+              "title": "Kongemakt, kirke og konflikt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_oslo",
+              "title": "Middelalderens Oslo",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kristning_og_religios_omforming",
+              "title": "Lov, ting og jurisdiksjon",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+              "title": "Jord, eiendom og patronasje",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+              "title": "Handel, håndverk og bydannelse",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+              "title": "Bondehushold, demografi og dagligliv",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+              "title": "Svartedauden og senmiddelalderens omforming",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "middelalder",
+                "kirke og kongemakt",
+                "svartedauden"
+              ]
+            }
+          ],
+          "gap_action": "Utvid middelalderdekningen dersom den mangler sosial, økonomisk, religiøs eller nordisk bredde."
+        },
+        {
+          "id": "tidlig_nytid_1500_1700",
+          "label": "Tidlig nytid 1500–1700-tallet",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 10,
+            "supporting_emner": 18,
+            "distinct_areas": 2
+          },
+          "distinct_area_ids": [
+            "his_1814_statsdannelse",
+            "his_religion_reformasjon_livssyn"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_religion_reformasjon_forkristne_religioner_og_kristning",
+              "title": "Førkristne religioner og kristning",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_reformasjon_og_konfesjonalisering",
+              "title": "Reformasjon og konfesjonalisering",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon",
+                "konfesjonalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_statskirke_disiplin_og_religios_orden",
+              "title": "Statskirke, disiplin og religiøs orden",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse",
+              "title": "Pietisme, vekkelse og lekmannsbevegelse",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter",
+              "title": "Dissentere, trosfrihet og minoriteter",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_sekularisering_og_livssynspluralisme",
+              "title": "Sekularisering og livssynspluralisme",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
+              "title": "Religion, kjønn og hverdagsliv",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
+              "title": "Religion, politikk og offentlighet",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "reformasjon"
+              ]
+            }
+          ],
+          "gap_action": "Opprett en sammenhengende tidlig-nytidlig emnegruppe mellom middelalderen og 1814."
+        },
+        {
+          "id": "revolusjon_statsdannelse_1700_1850",
+          "label": "Revolusjoner og statsdannelse 1700–1850",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 10,
+            "supporting_emner": 18,
+            "distinct_areas": 4
+          },
+          "distinct_area_ids": [
+            "his_makt_stat_institusjoner",
+            "his_middelalder_kirke_kongemakt",
+            "his_1814_statsdannelse",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_1814_grunnlov_statsdannelse",
+              "title": "1814, Grunnloven og statsdannelse",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            },
+            {
+              "emne_id": "em_his_embetsstat_demokratisering",
+              "title": "Embetsstat og demokratisering",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            },
+            {
+              "emne_id": "em_his_nasjonal_identitet_fortellinger",
+              "title": "Nasjonal identitet og historiske fortellinger",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
+              "title": "Embetsstat og kommunalt selvstyre",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_statsdannelse_kiel_1814_og_geopolitisk_brudd",
+              "title": "Stemmerett, partier og parlamentarisme",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_statsdannelse_suverenitet_grunnlov_og_representasjon",
+              "title": "Nasjon, språk, skole og institusjoner",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+              "title": "Union, selvstendighet og 1905",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+              "title": "Eksklusjon, fornorskning og statsborgerskap",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "1814",
+                "grunnlov",
+                "statsdannelse"
+              ]
+            }
+          ],
+          "gap_action": "Koble norsk statsdannelse tydeligere til atlantiske, europeiske og nordiske revolusjonsforløp."
+        },
+        {
+          "id": "industrialisering_1800",
+          "label": "Industrialisering og 1800-tallet",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 2,
+            "supporting_emner": 11,
+            "distinct_areas": 4
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_industri_arbeid_sosialhistorie",
+            "his_byhistorie_stedsendring",
+            "his_miljo_klima_landskap"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_modernisering_1800",
+              "title": "1800-tallets modernisering og ulike endringstempo",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "1800-tall",
+                "modernisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
+              "title": "Avindustrialisering, ombruk og industriarv",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "industrialisering",
+                "industrialiser"
+              ]
+            },
+            {
+              "emne_id": "em_his_industriby_1900",
+              "title": "Industriby og arbeid rundt 1900",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "industrialisering",
+                "industrialiser"
+              ]
+            },
+            {
+              "emne_id": "em_his_fabrikk_arbeidsorganisering",
+              "title": "Fabrikk og arbeidsorganisering",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "industrialisering",
+                "industrialiser"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+              "title": "Arbeidsmiljø, risiko og helse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "industrialisering",
+                "industrialiser"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_arbeidsdeling_lonn",
+              "title": "Kjønn, arbeidsdeling og lønn",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "industrialisering",
+                "industrialiser"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidsvandring_rekruttering",
+              "title": "Arbeidsvandring og rekruttering",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "industrialisering",
+                "industrialiser"
+              ]
+            },
+            {
+              "emne_id": "em_his_byutvidelse_gentrifisering",
+              "title": "Byutvidelse, grenser og innlemmelse",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "urbanisering"
+              ]
+            }
+          ],
+          "gap_action": "Sikre sammenheng mellom teknologi, arbeid, urbanisering, klasse, migrasjon og politisk mobilisering."
+        },
+        {
+          "id": "imperialisme_1870_1914",
+          "label": "Imperialisme og kolonial ekspansjon 1870–1914",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 1,
+            "supporting_emner": 10,
+            "distinct_areas": 1
+          },
+          "distinct_area_ids": [
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+              "title": "Imperier, kolonialisme og makt",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier",
+                "kolonialisme"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+              "title": "Slaveri, råvarer og globale verdikjeder",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier",
+                "kolonialisme"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+              "title": "Misjon, kunnskap og kulturelle møter",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier",
+                "kolonialisme"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+              "title": "Migrasjon, diaspora og transnasjonale nettverk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+              "title": "Globale kriger og internasjonale organisasjoner",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier",
+                "kolonialisme"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+              "title": "Avkolonisering og utviklingspolitikk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier",
+                "kolonialisme"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+              "title": "Norge i imperiale og koloniale forbindelser",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+              "title": "Globalisering, avhengighet og sammenvevd historie",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "imperier"
+              ]
+            }
+          ],
+          "gap_action": "Etabler eksplisitt kronologisk dekning av høyimperialisme, kolonial ekspansjon og antikolonial motstand før 1914."
+        },
+        {
+          "id": "forste_verdenskrig_1914_1918",
+          "label": "Første verdenskrig 1914–1918",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 9,
+            "distinct_areas": 1
+          },
+          "distinct_area_ids": [
+            "his_krig_okkupasjon_motstand"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_fangenskap_kontroll",
+              "title": "Fangenskap, kontroll og overvåkning",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_okkupasjon_motstand",
+              "title": "Okkupasjon og motstand",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
+              "title": "Okkupasjon, samarbeid, tilpasning og motstand",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
+              "title": "Propaganda, sensur og informasjonskontroll",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+              "title": "Fangenskap, vold og forfølgelse",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+              "title": "Folkerett, rettsoppgjør og overgangsrettferdighet",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+              "title": "Krigsminne, veteraner og ettervirkninger",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+              "title": "Motstand, samarbeid, tilpasning og gråsoner",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "total krig"
+              ]
+            }
+          ],
+          "gap_action": "Etabler dedikerte emner for første verdenskrig og krigens norske, europeiske og globale konsekvenser."
+        },
+        {
+          "id": "mellomkrigstiden",
+          "label": "Mellomkrigstiden 1918–1939",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Legg til et eget mellomkrigsemne med demokrati, autoritære bevegelser, økonomisk krise og sosial omforming."
+        },
+        {
+          "id": "andre_verdenskrig_okkupasjon",
+          "label": "Andre verdenskrig, okkupasjon og folkemord",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 11,
+            "supporting_emner": 16,
+            "distinct_areas": 2
+          },
+          "distinct_area_ids": [
+            "his_krig_okkupasjon_motstand",
+            "his_migrasjon_minoritet_tilhorighet"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_fangenskap_kontroll",
+              "title": "Fangenskap, kontroll og overvåkning",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            },
+            {
+              "emne_id": "em_his_okkupasjon_motstand",
+              "title": "Okkupasjon og motstand",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            },
+            {
+              "emne_id": "em_his_rettsoppgjor_etterkrig",
+              "title": "Rettsoppgjør og etterkrig",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
+              "title": "Okkupasjon, samarbeid, tilpasning og motstand",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
+              "title": "Propaganda, sensur og informasjonskontroll",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+              "title": "Fangenskap, vold og forfølgelse",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+              "title": "Folkerett, rettsoppgjør og overgangsrettferdighet",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+              "title": "Krigsminne, veteraner og ettervirkninger",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "okkupasjon",
+                "motstand"
+              ]
+            }
+          ],
+          "gap_action": "Sikre at krig, okkupasjon, samarbeid, motstand, forfølgelse og etteroppgjør behandles som ulike spørsmål."
+        },
+        {
+          "id": "kald_krig_1945_1991",
+          "label": "Den kalde krigen 1945–1991",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 1,
+            "supporting_emner": 1,
+            "distinct_areas": 1
+          },
+          "distinct_area_ids": [
+            "his_krig_okkupasjon_motstand"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+              "title": "Kald krig, beredskap og sikkerhetsstat",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "kald krig"
+              ]
+            }
+          ],
+          "gap_action": "Opprett en emnegruppe for den kalde krigen, avkolonisering, velferdsstat, sikkerhetspolitikk og globale konflikter etter 1945."
+        },
+        {
+          "id": "samtid_etter_1990",
+          "label": "Samtidshistorie etter 1990",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 4,
+            "supporting_emner": 33,
+            "distinct_areas": 5
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_minne_kulturarv_historiebruk",
+            "his_katastrofer_brudd_ulykker",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_samtidshistorie_brudd",
+              "title": "Samtidshistorie, erfaring og åpne framtider",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "samtidshistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_terror_samtidshistorie",
+              "title": "Terror og samtidshistorie",
+              "area_id": "his_katastrofer_brudd_ulykker",
+              "area_label": "Katastrofer, branner, ulykker og historiske brudd",
+              "anchors": [
+                "samtidshistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
+              "title": "Digitalisering og datamakt",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "digitalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+              "title": "Globalisering, avhengighet og sammenvevd historie",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "globalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_hendelse_prosess_tidsforlop",
+              "title": "Hendelse, prosess og tidsforløp",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "22. juli"
+              ]
+            },
+            {
+              "emne_id": "em_his_samtid_ettertid_fortelling",
+              "title": "Samtid, ettertid og historisk fortelling",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "22. juli"
+              ]
+            },
+            {
+              "emne_id": "em_his_kulturminner_bevaring",
+              "title": "Kulturminner, utvelgelse og bevaring",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "22. juli"
+              ]
+            },
+            {
+              "emne_id": "em_his_restaurering_autentisitet",
+              "title": "Restaurering, rekonstruksjon og autentisitet",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "22. juli"
+              ]
+            }
+          ],
+          "gap_action": "Etabler tydelige samtidshistoriske emner med avgrenset kronologi, kilder, digitalisering, globalisering og politiske brudd."
+        }
+      ]
+    },
+    "theme": {
+      "id": "theme",
+      "label": "Tema",
+      "requirement": "Historiefagets sentrale samfunns-, kultur- og materialfelt må være eksplisitt dekket.",
+      "status": "INCOMPLETE",
+      "counts": {
+        "covered": 19,
+        "partial": 1,
+        "missing": 3
+      },
+      "cells": [
+        {
+          "id": "politikk_stat_rett",
+          "label": "Politikk, stat og rett",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 41,
+            "supporting_emner": 200,
+            "distinct_areas": 20
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_kilder_arkiv_spor",
+            "his_makt_stat_institusjoner",
+            "his_middelalder_kirke_kongemakt",
+            "his_1814_statsdannelse",
+            "his_industri_arbeid_sosialhistorie",
+            "his_krig_okkupasjon_motstand",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_byhistorie_stedsendring",
+            "his_katastrofer_brudd_ulykker",
+            "his_kjonn_familie_livslop",
+            "his_okonomi_handel_materielle_systemer",
+            "his_religion_reformasjon_livssyn",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_stat_institusjoner",
+              "title": "Stat og institusjoner",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_embetsstat_forvaltning",
+              "title": "Embetsstat og forvaltning",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon",
+                "forvaltning"
+              ]
+            },
+            {
+              "emne_id": "em_his_styring_krise_kontinuitet",
+              "title": "Styring, krise og kontinuitet",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_rett_politi_fengsel",
+              "title": "Rett, domstol og rettsstat",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon",
+                "rettsstat"
+              ]
+            },
+            {
+              "emne_id": "em_his_kontroll_overvakning",
+              "title": "Kontroll og overvåkning",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_rettsoppgjor",
+              "title": "Rettsoppgjør",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_beslutningskjeder_kompetanse_ansvar",
+              "title": "Beslutningskjeder, kompetanse og ansvar",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_statlig_kapasitet_skatt_infrastruktur",
+              "title": "Statlig kapasitet, skatt og infrastruktur",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            }
+          ],
+          "gap_action": "Utvid politisk og institusjonell historie der rett, forvaltning og maktutøvelse mangler."
+        },
+        {
+          "id": "okonomi_handel",
+          "label": "Økonomi, handel og materielle systemer",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 15,
+            "supporting_emner": 40,
+            "distinct_areas": 7
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_industri_arbeid_sosialhistorie",
+            "his_byhistorie_stedsendring",
+            "his_kjonn_familie_livslop",
+            "his_okonomi_handel_materielle_systemer",
+            "his_samisk_urfolkshistorie",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+              "title": "Handel, håndverk og bydannelse",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "handel"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+              "title": "Samiske kontaktsoner, handel og statsgrenser i middelalderen",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "handel"
+              ]
+            },
+            {
+              "emne_id": "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi",
+              "title": "Eiendom, boligregimer og tomtemarkeder",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "marked"
+              ]
+            },
+            {
+              "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
+              "title": "Kommunal styring og urban politisk økonomi",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "økonomi"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
+              "title": "Markeder og markedsintegrasjon",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "økonomi",
+                "handel",
+                "marked",
+                "materielle systemer"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+              "title": "Handel, sjøfart og kommersielle nettverk",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "økonomi",
+                "handel",
+                "materielle systemer"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
+              "title": "Penger, kreditt, bank og finans",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "økonomi",
+                "handel",
+                "penger",
+                "materielle systemer"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_eiendom_kapital_og_akkumulering",
+              "title": "Eiendom, kapital og akkumulering",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "økonomi",
+                "handel",
+                "kapital",
+                "materielle systemer"
+              ]
+            }
+          ],
+          "gap_action": "Sikre økonomisk historie på tvers av perioder, skalaer og aktørgrupper."
+        },
+        {
+          "id": "arbeid_industri",
+          "label": "Arbeid, klasse og industri",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 22,
+            "supporting_emner": 80,
+            "distinct_areas": 13
+          },
+          "distinct_area_ids": [
+            "his_kilder_arkiv_spor",
+            "his_makt_stat_institusjoner",
+            "his_industri_arbeid_sosialhistorie",
+            "his_krig_okkupasjon_motstand",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_byhistorie_stedsendring",
+            "his_kjonn_familie_livslop",
+            "his_okonomi_handel_materielle_systemer",
+            "his_samisk_urfolkshistorie",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_industriby_1900",
+              "title": "Industriby og arbeid rundt 1900",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "industri"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeiderbevegelse_folkedannelse",
+              "title": "Arbeiderbevegelse og folkedannelse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "arbeider",
+                "industri"
+              ]
+            },
+            {
+              "emne_id": "em_his_sosialhistorie_hverdagsliv",
+              "title": "Sosialhistorie og hverdagsliv",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "industri"
+              ]
+            },
+            {
+              "emne_id": "em_his_industri_produksjon_energi",
+              "title": "Industriell produksjon, energi og infrastruktur",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "industri"
+              ]
+            },
+            {
+              "emne_id": "em_his_fabrikk_arbeidsorganisering",
+              "title": "Fabrikk og arbeidsorganisering",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "industri"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidstid_lonn_ferdighet",
+              "title": "Arbeidstid, lønn og ferdighet",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "industri"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+              "title": "Arbeidsmiljø, risiko og helse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "industri"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_arbeidsdeling_lonn",
+              "title": "Kjønn, arbeidsdeling og lønn",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeid",
+                "industri"
+              ]
+            }
+          ],
+          "gap_action": "Sikre arbeidshistorie før, under og etter industrialiseringen."
+        },
+        {
+          "id": "jordbruk_bygd",
+          "label": "Jordbruk, mat og bygdehistorie",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 2,
+            "supporting_emner": 8,
+            "distinct_areas": 3
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_1814_statsdannelse",
+            "his_okonomi_handel_materielle_systemer"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+              "title": "Bondehushold, demografi og dagligliv",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "bonde"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+              "title": "Jordbruk, fiske og ressursøkonomi",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "jordbruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kristning_og_religios_omforming",
+              "title": "Lov, ting og jurisdiksjon",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "gård"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+              "title": "Jord, eiendom og patronasje",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "gård"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+              "title": "Handel, håndverk og bydannelse",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "gård"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_grunnlov_statsdannelse",
+              "title": "1814, Grunnloven og statsdannelse",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "gård"
+              ]
+            },
+            {
+              "emne_id": "em_his_embetsstat_demokratisering",
+              "title": "Embetsstat og demokratisering",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "gård"
+              ]
+            },
+            {
+              "emne_id": "em_his_nasjonal_identitet_fortellinger",
+              "title": "Nasjonal identitet og historiske fortellinger",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "gård"
+              ]
+            }
+          ],
+          "gap_action": "Opprett et tydelig felt for jordbruk, bygdesamfunn, ressursbruk, eiendom og matforsyning."
+        },
+        {
+          "id": "sjofart_maritim",
+          "label": "Sjøfart og maritim historie",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 1,
+            "supporting_emner": 24,
+            "distinct_areas": 3
+          },
+          "distinct_area_ids": [
+            "his_okonomi_handel_materielle_systemer",
+            "his_miljo_klima_landskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+              "title": "Handel, sjøfart og kommersielle nettverk",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
+              "title": "Markeder og markedsintegrasjon",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart",
+                "havn"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
+              "title": "Penger, kreditt, bank og finans",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+              "title": "Jordbruk, fiske og ressursøkonomi",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+              "title": "Skatt, offentlig økonomi og infrastruktur",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_forbruk_priser_og_levestandard",
+              "title": "Forbruk, priser og levestandard",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart",
+                "havn"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+              "title": "Kriser, konjunkturer og global arbeidsdeling",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart",
+                "havn"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+              "title": "Teknologi, produktivitet og materielle standarder",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart",
+                "havn"
+              ]
+            }
+          ],
+          "gap_action": "Etabler maritim historie som kobler handel, arbeid, teknologi, imperier og kystsamfunn."
+        },
+        {
+          "id": "sosial_velferd_hverdagsliv",
+          "label": "Sosialhistorie, velferd og hverdagsliv",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 22,
+            "supporting_emner": 56,
+            "distinct_areas": 6
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_industri_arbeid_sosialhistorie",
+            "his_krig_okkupasjon_motstand",
+            "his_velferd_rett_hverdagsliv",
+            "his_kjonn_familie_livslop",
+            "his_religion_reformasjon_livssyn"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_industriby_1900",
+              "title": "Industriby og arbeid rundt 1900",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeiderbevegelse_folkedannelse",
+              "title": "Arbeiderbevegelse og folkedannelse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_sosialhistorie_hverdagsliv",
+              "title": "Sosialhistorie og hverdagsliv",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie",
+                "hverdagsliv"
+              ]
+            },
+            {
+              "emne_id": "em_his_industri_produksjon_energi",
+              "title": "Industriell produksjon, energi og infrastruktur",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_fabrikk_arbeidsorganisering",
+              "title": "Fabrikk og arbeidsorganisering",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidstid_lonn_ferdighet",
+              "title": "Arbeidstid, lønn og ferdighet",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+              "title": "Arbeidsmiljø, risiko og helse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_arbeidsdeling_lonn",
+              "title": "Kjønn, arbeidsdeling og lønn",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "sosialhistorie"
+              ]
+            }
+          ],
+          "gap_action": "Utvid sosialhistorien med levekår, omsorg, forbruk, bolig og hverdagspraksis."
+        },
+        {
+          "id": "helse_medisin_demografi",
+          "label": "Helse, sykdom, medisin og demografi",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 6,
+            "supporting_emner": 34,
+            "distinct_areas": 6
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_industri_arbeid_sosialhistorie",
+            "his_velferd_rett_hverdagsliv",
+            "his_kjonn_familie_livslop",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+              "title": "Bondehushold, demografi og dagligliv",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "demografi"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+              "title": "Arbeidsmiljø, risiko og helse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "helse"
+              ]
+            },
+            {
+              "emne_id": "em_his_helse_omsorg_institusjoner",
+              "title": "Helse, epidemi og profesjonalisering",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "helse",
+                "epidemi"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+              "title": "Kropp, reproduksjon og medisinsk makt",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "medisin"
+              ]
+            },
+            {
+              "emne_id": "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
+              "title": "Urban natur, helse og miljøulikhet",
+              "area_id": "his_miljo_klima_landskap",
+              "area_label": "Miljø-, klima- og landskapshistorie",
+              "anchors": [
+                "helse"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+              "title": "Medisin, helsevitenskap og befolkning",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "helse",
+                "medisin",
+                "befolkning"
+              ]
+            },
+            {
+              "emne_id": "em_his_kirke_kloster_middelalder",
+              "title": "Kirke, kloster og middelaldermakt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "demografi"
+              ]
+            },
+            {
+              "emne_id": "em_his_kongemakt_kirke_konflikt",
+              "title": "Kongemakt, kirke og konflikt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "demografi"
+              ]
+            }
+          ],
+          "gap_action": "Opprett dedikerte emner for sykdom, helsevesen, medisinsk kunnskap, befolkningsendring og kroppshistorie."
+        },
+        {
+          "id": "utdanning_barndom",
+          "label": "Utdanning, skole og barndom",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 6,
+            "supporting_emner": 35,
+            "distinct_areas": 8
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_1814_statsdannelse",
+            "his_industri_arbeid_sosialhistorie",
+            "his_velferd_rett_hverdagsliv",
+            "his_kjonn_familie_livslop",
+            "his_samisk_urfolkshistorie",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_1814_statsdannelse_suverenitet_grunnlov_og_representasjon",
+              "title": "Nasjon, språk, skole og institusjoner",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "skole"
+              ]
+            },
+            {
+              "emne_id": "em_his_skole_folkedannelse",
+              "title": "Skole, folkedannelse og medborgerskap",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "skole"
+              ]
+            },
+            {
+              "emne_id": "em_his_barndom_familie_livslop",
+              "title": "Barndom, familie og livsløp",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "barndom",
+                "barn"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+              "title": "Barndom, ungdom, alderdom og livsløp",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "barndom",
+                "barn"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+              "title": "Fornorskning, skole og språk",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "skole"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+              "title": "Kunnskapsinstitusjoner og ekspertise",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "kunnskapsinstitusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_modernisering_1800",
+              "title": "1800-tallets modernisering og ulike endringstempo",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "skole"
+              ]
+            },
+            {
+              "emne_id": "em_his_anakronisme_historiske_begreper",
+              "title": "Anakronisme og historiske begreper",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "skole"
+              ]
+            }
+          ],
+          "gap_action": "Etabler utdannings- og barndomshistorie som eget, langsiktig samfunnsfelt."
+        },
+        {
+          "id": "kriminalitet_straff_politi",
+          "label": "Kriminalitet, straff og rettshåndhevelse",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 12,
+            "supporting_emner": 66,
+            "distinct_areas": 14
+          },
+          "distinct_area_ids": [
+            "his_kilder_arkiv_spor",
+            "his_makt_stat_institusjoner",
+            "his_1814_statsdannelse",
+            "his_industri_arbeid_sosialhistorie",
+            "his_krig_okkupasjon_motstand",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_byhistorie_stedsendring",
+            "his_kjonn_familie_livslop",
+            "his_religion_reformasjon_livssyn",
+            "his_samisk_urfolkshistorie",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_rett_politi_fengsel",
+              "title": "Rett, domstol og rettsstat",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "domstol"
+              ]
+            },
+            {
+              "emne_id": "em_his_politi_straff_institusjonshverdag",
+              "title": "Politi, straff og institusjonshverdag",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "straff",
+                "politi"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+              "title": "Kommunalt selvstyre, lokal forvaltning og politisk deltakelse",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "politi"
+              ]
+            },
+            {
+              "emne_id": "em_his_1814_statsdannelse_union_selvstendighet_og_1905",
+              "title": "1905, unionsoppløsning og ny utenrikspolitisk orientering",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "politi"
+              ]
+            },
+            {
+              "emne_id": "em_his_boligpolitikk_materiell_velferd",
+              "title": "Boligpolitikk og materiell velferd",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "politi"
+              ]
+            },
+            {
+              "emne_id": "em_his_minoritetshistorie",
+              "title": "Minoritetspolitikk og minoritetshistorie",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "politi"
+              ]
+            },
+            {
+              "emne_id": "em_his_stedsnavn_navnepolitikk",
+              "title": "Stedsnavn, navnepolitikk og offentlig minne",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "politi"
+              ]
+            },
+            {
+              "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
+              "title": "Kommunal styring og urban politisk økonomi",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "politi"
+              ]
+            }
+          ],
+          "gap_action": "Opprett emner for kriminalitet, strafferegimer, politi, domstoler og sosial kontroll."
+        },
+        {
+          "id": "kjonn_familie_seksualitet",
+          "label": "Kjønn, familie, seksualitet og livsløp",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 16,
+            "supporting_emner": 48,
+            "distinct_areas": 7
+          },
+          "distinct_area_ids": [
+            "his_industri_arbeid_sosialhistorie",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_kjonn_familie_livslop",
+            "his_religion_reformasjon_livssyn",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kjonn_arbeidsdeling_lonn",
+              "title": "Kjønn, arbeidsdeling og lønn",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_barndom_familie_livslop",
+              "title": "Barndom, familie og livsløp",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "familie",
+                "livsløp"
+              ]
+            },
+            {
+              "emne_id": "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+              "title": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "kjønn",
+                "reproduksjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_familie_transnasjonale_band",
+              "title": "Familie og transnasjonale bånd",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "familie"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_kjonn_som_historisk_kategori",
+              "title": "Kjønn som historisk kategori",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn",
+                "familie",
+                "seksualitet",
+                "livsløp"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_familie_hushold_og_slektskap",
+              "title": "Familie, hushold og slektskap",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn",
+                "familie",
+                "seksualitet",
+                "livsløp"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_ekteskap_arv_og_eiendom",
+              "title": "Ekteskap, arv og eiendom",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn",
+                "familie",
+                "seksualitet",
+                "livsløp",
+                "ekteskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_seksualitet_regulering_og_identitet",
+              "title": "Seksualitet, regulering og identitet",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn",
+                "familie",
+                "seksualitet",
+                "livsløp"
+              ]
+            }
+          ],
+          "gap_action": "Sikre kjønnede aktører, familieformer og seksualitet i flere perioder og samfunnslag."
+        },
+        {
+          "id": "migrasjon_minoritet",
+          "label": "Migrasjon, minoriteter og tilhørighet",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 13,
+            "supporting_emner": 30,
+            "distinct_areas": 5
+          },
+          "distinct_area_ids": [
+            "his_industri_arbeid_sosialhistorie",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_religion_reformasjon_livssyn",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_migrasjon_mangfold",
+              "title": "Migrasjon, mobilitet og mangfold",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_minoritetshistorie",
+              "title": "Minoritetspolitikk og minoritetshistorie",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_tilhorighet_ekskludering",
+              "title": "Tilhørighet, identitet og ekskludering",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_ankomst_bosetting_bolig",
+              "title": "Ankomst, bosetting og bolig",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeid_nettverk_naring",
+              "title": "Arbeid, nettverk og migrasjon",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_statsborgerskap_status_rettigheter",
+              "title": "Statsborgerskap, status og rettigheter",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_sprak_religion_institusjoner",
+              "title": "Språk, religion og minoritetsinstitusjoner",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_familie_transnasjonale_band",
+              "title": "Familie og transnasjonale bånd",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "migrasjon",
+                "minoritet",
+                "tilhørighet"
+              ]
+            }
+          ],
+          "gap_action": "Sikre migrasjon og minoritetshistorie både lokalt, nasjonalt og transnasjonalt."
+        },
+        {
+          "id": "samisk_urfolk",
+          "label": "Samisk historie og urfolkshistorie",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 11,
+            "supporting_emner": 11,
+            "distinct_areas": 2
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_samisk_urfolkshistorie"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+              "title": "Samiske kontaktsoner, handel og statsgrenser i middelalderen",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "samisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+              "title": "Samiske samfunn, siida og næringsformer",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+              "title": "Kontaktsoner, handel og statsgrenser",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+              "title": "Misjon, kristning og kunnskapsmakt",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+              "title": "Jord, ressursrett og kolonisering",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+              "title": "Fornorskning, skole og språk",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+              "title": "Raseforskning og vitenskapelig klassifikasjon",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+              "title": "Organisering, Alta og rettighetskamp",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            }
+          ],
+          "gap_action": "Sikre samisk og urfolkshistorie på tvers av perioder, regioner og kildeformer."
+        },
+        {
+          "id": "religion_livssyn",
+          "label": "Religion, kirke og livssyn",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 22,
+            "supporting_emner": 52,
+            "distinct_areas": 9
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_kilder_arkiv_spor",
+            "his_middelalder_kirke_kongemakt",
+            "his_1814_statsdannelse",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_kjonn_familie_livslop",
+            "his_religion_reformasjon_livssyn",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kirke_kloster_middelalder",
+              "title": "Kirke, kloster og middelaldermakt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            },
+            {
+              "emne_id": "em_his_kongemakt_kirke_konflikt",
+              "title": "Kongemakt, kirke og konflikt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_oslo",
+              "title": "Middelalderens Oslo",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kristning_og_religios_omforming",
+              "title": "Lov, ting og jurisdiksjon",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+              "title": "Jord, eiendom og patronasje",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+              "title": "Handel, håndverk og bydannelse",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+              "title": "Bondehushold, demografi og dagligliv",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+              "title": "Svartedauden og senmiddelalderens omforming",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirke"
+              ]
+            }
+          ],
+          "gap_action": "Sikre religiøs praksis, institusjoner, trosmangfold og sekularisering over tid."
+        },
+        {
+          "id": "kulturhistorie",
+          "label": "Kulturhistorie",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Etabler eksplisitt kulturhistorisk dekning av praksiser, symboler, materialitet og hverdagskultur."
+        },
+        {
+          "id": "idehistorie",
+          "label": "Idé- og intellektuell historie",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Etabler dedikerte emner for idé-, begreps- og intellektuell historie."
+        },
+        {
+          "id": "kunsthistorie",
+          "label": "Kunsthistorie og visuell kultur",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Etabler kunsthistorie og visuell kultur som historiske felt, ikke bare som enkeltcase i andre fag."
+        },
+        {
+          "id": "medie_presse_offentlighet",
+          "label": "Medie-, presse- og offentlighetshistorie",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 13,
+            "supporting_emner": 27,
+            "distinct_areas": 8
+          },
+          "distinct_area_ids": [
+            "his_industri_arbeid_sosialhistorie",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_kjonn_familie_livslop",
+            "his_religion_reformasjon_livssyn",
+            "his_samisk_urfolkshistorie",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_organisering_motstand_offentlighet",
+              "title": "Organisering, motstand og offentlighet",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "offentlighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
+              "title": "Religion, politikk og offentlighet",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "offentlighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet",
+              "title": "Livssyn, sekularitet og offentlighet",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "offentlighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
+              "title": "Presse, offentlighet og politisk kommunikasjon",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "offentlighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+              "title": "Foreninger, partier og organisasjonssamfunn",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "offentlighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+              "title": "Protest, kollektiv handling og repertoarer",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "offentlighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+              "title": "Arbeider-, kvinne- og avholdsbevegelser",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "offentlighet"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
+              "title": "Lekmanns-, språk- og motkulturelle bevegelser",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "offentlighet"
+              ]
+            }
+          ],
+          "gap_action": "Sikre presse, journalistikk, kringkasting, offentlighet og digitale medier som historiske forløp."
+        },
+        {
+          "id": "vitenskap_teknologi_kunnskap",
+          "label": "Vitenskap, teknologi og kunnskap",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 15,
+            "supporting_emner": 51,
+            "distinct_areas": 9
+          },
+          "distinct_area_ids": [
+            "his_makt_stat_institusjoner",
+            "his_industri_arbeid_sosialhistorie",
+            "his_minne_kulturarv_historiebruk",
+            "his_katastrofer_brudd_ulykker",
+            "his_okonomi_handel_materielle_systemer",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_katastrofer_brudd_katastrofe_som_sosial_prosess",
+              "title": "Teknologi, systemulykker og normalulykker",
+              "area_id": "his_katastrofer_brudd_ulykker",
+              "area_label": "Katastrofer, branner, ulykker og historiske brudd",
+              "anchors": [
+                "teknologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+              "title": "Teknologi, produktivitet og materielle standarder",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "teknologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+              "title": "Misjon, kristning og kunnskapsmakt",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "kunnskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+              "title": "Raseforskning og vitenskapelig klassifikasjon",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "vitenskap",
+                "forskning"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+              "title": "Kunnskapsinstitusjoner og ekspertise",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "vitenskap",
+                "teknologi",
+                "kunnskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+              "title": "Profesjoner, standardisering og autoritet",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "vitenskap",
+                "teknologi",
+                "kunnskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+              "title": "Måling, statistikk, kart og klassifikasjon",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "vitenskap",
+                "teknologi",
+                "kunnskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+              "title": "Teknologi, infrastruktur og samfunn",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "vitenskap",
+                "teknologi",
+                "kunnskap"
+              ]
+            }
+          ],
+          "gap_action": "Sikre kunnskapsproduksjon, teknologi og ekspertmakt i flere historiske perioder."
+        },
+        {
+          "id": "miljo_klima_landskap",
+          "label": "Miljø, klima og landskap",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 14,
+            "supporting_emner": 33,
+            "distinct_areas": 9
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_industri_arbeid_sosialhistorie",
+            "his_byhistorie_stedsendring",
+            "his_katastrofer_brudd_ulykker",
+            "his_religion_reformasjon_livssyn",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+              "title": "Arbeidsmiljø, risiko og helse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "miljø"
+              ]
+            },
+            {
+              "emne_id": "em_his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+              "title": "Langsomme katastrofer og miljøskade",
+              "area_id": "his_katastrofer_brudd_ulykker",
+              "area_label": "Katastrofer, branner, ulykker og historiske brudd",
+              "anchors": [
+                "miljø"
+              ]
+            },
+            {
+              "emne_id": "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+              "title": "Langsomme katastrofer, miljøskade og ulik eksponering",
+              "area_id": "his_katastrofer_brudd_ulykker",
+              "area_label": "Katastrofer, branner, ulykker og historiske brudd",
+              "anchors": [
+                "miljø"
+              ]
+            },
+            {
+              "emne_id": "em_his_miljo_klima_klima_og_historisk_endring",
+              "title": "Klima og historisk endring",
+              "area_id": "his_miljo_klima_landskap",
+              "area_label": "Miljø-, klima- og landskapshistorie",
+              "anchors": [
+                "landskapshistorie",
+                "miljø",
+                "klima",
+                "landskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_miljo_klima_landskap_som_historisk_prosess",
+              "title": "Landskap som historisk prosess",
+              "area_id": "his_miljo_klima_landskap",
+              "area_label": "Miljø-, klima- og landskapshistorie",
+              "anchors": [
+                "landskapshistorie",
+                "miljø",
+                "klima",
+                "landskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_miljo_klima_energi_og_energiregimer",
+              "title": "Energi og energiregimer",
+              "area_id": "his_miljo_klima_landskap",
+              "area_label": "Miljø-, klima- og landskapshistorie",
+              "anchors": [
+                "landskapshistorie",
+                "miljø",
+                "klima",
+                "landskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_miljo_klima_skog_vann_og_naturressurser",
+              "title": "Skog, vann og naturressurser",
+              "area_id": "his_miljo_klima_landskap",
+              "area_label": "Miljø-, klima- og landskapshistorie",
+              "anchors": [
+                "landskapshistorie",
+                "miljø",
+                "klima",
+                "naturressurs",
+                "landskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_miljo_klima_forurensning_og_urban_miljohistorie",
+              "title": "Forurensning og urban miljøhistorie",
+              "area_id": "his_miljo_klima_landskap",
+              "area_label": "Miljø-, klima- og landskapshistorie",
+              "anchors": [
+                "miljøhistorie",
+                "landskapshistorie",
+                "miljø",
+                "klima",
+                "landskap"
+              ]
+            }
+          ],
+          "gap_action": "Sikre miljø- og klimahistorie med både naturprosesser, samfunnsvalg og kildeusikkerhet."
+        },
+        {
+          "id": "krig_vold_konflikt",
+          "label": "Krig, vold og konflikt",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 17,
+            "supporting_emner": 50,
+            "distinct_areas": 11
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_krig_okkupasjon_motstand",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_byhistorie_stedsendring",
+            "his_katastrofer_brudd_ulykker",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kongemakt_kirke_konflikt",
+              "title": "Kongemakt, kirke og konflikt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "konflikt"
+              ]
+            },
+            {
+              "emne_id": "em_his_fangenskap_kontroll",
+              "title": "Fangenskap, kontroll og overvåkning",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "krig",
+                "okkupasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_okkupasjon_motstand",
+              "title": "Okkupasjon og motstand",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "krig",
+                "okkupasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_rettsoppgjor_etterkrig",
+              "title": "Rettsoppgjør og etterkrig",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "krig",
+                "okkupasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
+              "title": "Okkupasjon, samarbeid, tilpasning og motstand",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "krig",
+                "okkupasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
+              "title": "Propaganda, sensur og informasjonskontroll",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "krig",
+                "okkupasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+              "title": "Fangenskap, vold og forfølgelse",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "krig",
+                "vold",
+                "okkupasjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+              "title": "Folkerett, rettsoppgjør og overgangsrettferdighet",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "krig",
+                "okkupasjon"
+              ]
+            }
+          ],
+          "gap_action": "Utvid krigs- og voldshistorie utover én konflikt og synliggjør sivile, kjønnede og globale erfaringer."
+        },
+        {
+          "id": "minne_kulturarv_historiebruk",
+          "label": "Minne, kulturarv og historiebruk",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 14,
+            "supporting_emner": 60,
+            "distinct_areas": 10
+          },
+          "distinct_area_ids": [
+            "his_kilder_arkiv_spor",
+            "his_industri_arbeid_sosialhistorie",
+            "his_krig_okkupasjon_motstand",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_katastrofer_brudd_ulykker",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+              "title": "Krigsminne, veteraner og ettervirkninger",
+              "area_id": "his_krig_okkupasjon_motstand",
+              "area_label": "Krig, okkupasjon og motstand",
+              "anchors": [
+                "minne"
+              ]
+            },
+            {
+              "emne_id": "em_his_kulturminner_bevaring",
+              "title": "Kulturminner, utvelgelse og bevaring",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "minne",
+                "kulturarv",
+                "historiebruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_restaurering_autentisitet",
+              "title": "Restaurering, rekonstruksjon og autentisitet",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "minne",
+                "kulturarv",
+                "historiebruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_museum_samling_kanon",
+              "title": "Museum, samling og historisk kanon",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "minne",
+                "kulturarv",
+                "historiebruk",
+                "museum"
+              ]
+            },
+            {
+              "emne_id": "em_his_minnesteder_historiebruk",
+              "title": "Minnesteder, ritual og offentlig historiebruk",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "minne",
+                "kulturarv",
+                "historiebruk",
+                "minnested"
+              ]
+            },
+            {
+              "emne_id": "em_his_monumenter_kontrovers",
+              "title": "Monumenter, symbolsk makt og kontrovers",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "minne",
+                "kulturarv",
+                "historiebruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_kontrovers_fjerning_omtolking",
+              "title": "Kulturarvskonflikt, fjerning og omtolking",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "minne",
+                "kulturarv",
+                "historiebruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_jubileum_seremoni_historiebruk",
+              "title": "Jubileer, seremonier og historiske fortellinger",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "minne",
+                "kulturarv",
+                "historiebruk"
+              ]
+            }
+          ],
+          "gap_action": "Sikre kritisk analyse av minnepolitikk, museer, monumenter og offentlig historie."
+        },
+        {
+          "id": "by_sted_arkitektur",
+          "label": "By-, steds- og arkitekturhistorie",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 13,
+            "supporting_emner": 21,
+            "distinct_areas": 4
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_byhistorie_stedsendring",
+            "his_katastrofer_brudd_ulykker",
+            "his_miljo_klima_landskap"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_historiske_lag_i_byrom",
+              "title": "Historiske lag i byrom",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "byrom"
+              ]
+            },
+            {
+              "emne_id": "em_his_byutvidelse_gentrifisering",
+              "title": "Byutvidelse, grenser og innlemmelse",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "byhistorie",
+                "stedsendring"
+              ]
+            },
+            {
+              "emne_id": "em_his_riving_ombruk_bevaring",
+              "title": "Riving, ombruk og bevaring",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "byhistorie",
+                "stedsendring"
+              ]
+            },
+            {
+              "emne_id": "em_his_sanering_byfornyelse",
+              "title": "Sanering, byfornyelse og fortrengning",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "byhistorie",
+                "stedsendring"
+              ]
+            },
+            {
+              "emne_id": "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi",
+              "title": "Eiendom, boligregimer og tomtemarkeder",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "byhistorie",
+                "stedsendring"
+              ]
+            },
+            {
+              "emne_id": "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse",
+              "title": "Klasse, segregasjon og offentlige rom",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "byhistorie",
+                "stedsendring"
+              ]
+            },
+            {
+              "emne_id": "em_his_byhistorie_stedsendring_infrastruktur_mobilitet_og_tekniske_systemer",
+              "title": "Sanering, byfornyelse og modernisme",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "byhistorie",
+                "stedsendring"
+              ]
+            },
+            {
+              "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
+              "title": "Gentrifisering, ombruk og bevaring",
+              "area_id": "his_byhistorie_stedsendring",
+              "area_label": "Byhistorie og stedsendring",
+              "anchors": [
+                "byhistorie",
+                "stedsendring"
+              ]
+            }
+          ],
+          "gap_action": "Sikre at stedshistorie knyttes til eiendom, planlegging, sosial ulikhet og materiell endring."
+        },
+        {
+          "id": "global_kolonial_transnasjonal",
+          "label": "Global, kolonial og transnasjonal historie",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 3,
+            "minimum_supporting_emner": 5,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 12,
+            "supporting_emner": 16,
+            "distinct_areas": 3
+          },
+          "distinct_area_ids": [
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_religion_reformasjon_livssyn",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_familie_transnasjonale_band",
+              "title": "Familie og transnasjonale bånd",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+              "title": "Religion, migrasjon og transnasjonale nettverk",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+              "title": "Imperier, kolonialisme og makt",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "kolonial",
+                "kolonialisme",
+                "transnasjonal",
+                "imperier"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+              "title": "Slaveri, råvarer og globale verdikjeder",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "kolonial",
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+              "title": "Misjon, kunnskap og kulturelle møter",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "kolonial",
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+              "title": "Migrasjon, diaspora og transnasjonale nettverk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "kolonial",
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+              "title": "Globale kriger og internasjonale organisasjoner",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "kolonial",
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+              "title": "Avkolonisering og utviklingspolitikk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "kolonial",
+                "transnasjonal",
+                "avkolonisering"
+              ]
+            }
+          ],
+          "gap_action": "Utvid globale og koloniale forløp med konkrete regioner, aktører, forbindelser og alternative perspektiver."
+        }
+      ]
+    },
+    "geography": {
+      "id": "geography",
+      "label": "Geografi",
+      "requirement": "Lokal, nasjonal, nordisk, europeisk og global historie må kunne realiseres uten at fagmodellen reduseres til Oslo-caser.",
+      "status": "INCOMPLETE",
+      "counts": {
+        "covered": 2,
+        "partial": 2,
+        "missing": 5
+      },
+      "cells": [
+        {
+          "id": "oslo_akershus",
+          "label": "Oslo og Akershus",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 6,
+            "minimum_distinct_areas": 2
+          },
+          "counts": {
+            "dedicated_emner": 1,
+            "supporting_emner": 136,
+            "distinct_areas": 18
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_kilder_arkiv_spor",
+            "his_makt_stat_institusjoner",
+            "his_middelalder_kirke_kongemakt",
+            "his_1814_statsdannelse",
+            "his_krig_okkupasjon_motstand",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_katastrofer_brudd_ulykker",
+            "his_kjonn_familie_livslop",
+            "his_okonomi_handel_materielle_systemer",
+            "his_religion_reformasjon_livssyn",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_oslo",
+              "title": "Middelalderens Oslo",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "oslo"
+              ]
+            },
+            {
+              "emne_id": "em_his_tid_periodisering_epoker",
+              "title": "Tid, periodisering og epoker",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "oslo",
+                "eidsvoll"
+              ]
+            },
+            {
+              "emne_id": "em_his_brudd_kontinuitet",
+              "title": "Brudd og kontinuitet",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "akershus",
+                "eidsvoll"
+              ]
+            },
+            {
+              "emne_id": "em_his_historiske_lag_i_byrom",
+              "title": "Historiske lag i byrom",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "oslo",
+                "akershus"
+              ]
+            },
+            {
+              "emne_id": "em_his_lang_varighet_strukturer",
+              "title": "Lang varighet og historiske strukturer",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "oslo",
+                "akershus"
+              ]
+            },
+            {
+              "emne_id": "em_his_hendelse_prosess_tidsforlop",
+              "title": "Hendelse, prosess og tidsforløp",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "akershus",
+                "eidsvoll"
+              ]
+            },
+            {
+              "emne_id": "em_his_modernisering_1800",
+              "title": "1800-tallets modernisering og ulike endringstempo",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "oslo"
+              ]
+            },
+            {
+              "emne_id": "em_his_samtidshistorie_brudd",
+              "title": "Samtidshistorie, erfaring og åpne framtider",
+              "area_id": "his_tid_periodisering",
+              "area_label": "Historisk tid og periodisering",
+              "anchors": [
+                "oslo",
+                "eidsvoll"
+              ]
+            }
+          ],
+          "gap_action": "Behold sterk lokal dekning, men skill den ut som geografisk profil fremfor universell fagdefinisjon."
+        },
+        {
+          "id": "norge",
+          "label": "Norge",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 3,
+            "minimum_supporting_emner": 8,
+            "minimum_distinct_areas": 3
+          },
+          "counts": {
+            "dedicated_emner": 12,
+            "supporting_emner": 43,
+            "distinct_areas": 8
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_1814_statsdannelse",
+            "his_krig_okkupasjon_motstand",
+            "his_okonomi_handel_materielle_systemer",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+              "title": "Eksklusjon, fornorskning og statsborgerskap",
+              "area_id": "his_1814_statsdannelse",
+              "area_label": "1814, grunnlov og statsdannelse",
+              "anchors": [
+                "norsk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+              "title": "Fornorskning, skole og språk",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "norsk"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+              "title": "Imperier, kolonialisme og makt",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "nasjonal historie"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+              "title": "Slaveri, råvarer og globale verdikjeder",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "nasjonal historie"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+              "title": "Misjon, kunnskap og kulturelle møter",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "nasjonal historie"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+              "title": "Migrasjon, diaspora og transnasjonale nettverk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "nasjonal historie"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+              "title": "Globale kriger og internasjonale organisasjoner",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "nasjonal historie"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+              "title": "Avkolonisering og utviklingspolitikk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "nasjonal historie"
+              ]
+            }
+          ],
+          "gap_action": "Sikre nasjonale forløp uten å gjøre Norge til skjult standard for universelle fagobjekter."
+        },
+        {
+          "id": "norden",
+          "label": "Norden",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 2
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Utvid komparativ og sammenvevd nordisk historie."
+        },
+        {
+          "id": "europa",
+          "label": "Europa",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 5,
+            "minimum_distinct_areas": 2
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Sikre europeiske forbindelser uten å la Europa representere hele verden."
+        },
+        {
+          "id": "global_transnasjonal",
+          "label": "Global og transnasjonal sammenheng",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 3,
+            "minimum_supporting_emner": 6,
+            "minimum_distinct_areas": 2
+          },
+          "counts": {
+            "dedicated_emner": 15,
+            "supporting_emner": 27,
+            "distinct_areas": 5
+          },
+          "distinct_area_ids": [
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_okonomi_handel_materielle_systemer",
+            "his_religion_reformasjon_livssyn",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_familie_transnasjonale_band",
+              "title": "Familie og transnasjonale bånd",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+              "title": "Kriser, konjunkturer og global arbeidsdeling",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "global"
+              ]
+            },
+            {
+              "emne_id": "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
+              "title": "Global arbeidsdeling, råvarer og avhengighet",
+              "area_id": "his_okonomi_handel_materielle_systemer",
+              "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "global"
+              ]
+            },
+            {
+              "emne_id": "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+              "title": "Religion, migrasjon og transnasjonale nettverk",
+              "area_id": "his_religion_reformasjon_livssyn",
+              "area_label": "Religion, reformasjon og livssyn",
+              "anchors": [
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+              "title": "Imperier, kolonialisme og makt",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "global",
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+              "title": "Slaveri, råvarer og globale verdikjeder",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "global",
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+              "title": "Misjon, kunnskap og kulturelle møter",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "global",
+                "transnasjonal"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+              "title": "Migrasjon, diaspora og transnasjonale nettverk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "global",
+                "transnasjonal"
+              ]
+            }
+          ],
+          "gap_action": "Koble lokale og nasjonale forløp til dokumenterte globale nettverk og maktforhold."
+        },
+        {
+          "id": "afrika",
+          "label": "Afrika",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Legg inn konkrete afrikanske forløp som mer enn kolonial bakgrunn for europeisk historie."
+        },
+        {
+          "id": "asia",
+          "label": "Asia",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 5,
+            "distinct_areas": 1
+          },
+          "distinct_area_ids": [
+            "his_migrasjon_minoritet_tilhorighet"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_tilhorighet_ekskludering",
+              "title": "Tilhørighet, identitet og ekskludering",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "asia"
+              ]
+            },
+            {
+              "emne_id": "em_his_ankomst_bosetting_bolig",
+              "title": "Ankomst, bosetting og bolig",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "asia"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeid_nettverk_naring",
+              "title": "Arbeid, nettverk og migrasjon",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "asia"
+              ]
+            },
+            {
+              "emne_id": "em_his_statsborgerskap_status_rettigheter",
+              "title": "Statsborgerskap, status og rettigheter",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "asia"
+              ]
+            },
+            {
+              "emne_id": "em_his_diskriminering_rasisme_ekskludering",
+              "title": "Diskriminering, rasisme og ekskludering",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "asia"
+              ]
+            }
+          ],
+          "gap_action": "Legg inn konkrete asiatiske forløp, forbindelser og aktørperspektiver."
+        },
+        {
+          "id": "amerika",
+          "label": "Amerika",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Legg inn nord-, latinamerikanske og karibiske forløp utover enkeltreferanser."
+        },
+        {
+          "id": "midtosten",
+          "label": "Midtøsten og Nord-Afrika",
+          "status": "MISSING",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 0,
+            "distinct_areas": 0
+          },
+          "distinct_area_ids": [],
+          "sample_matches": [],
+          "gap_action": "Legg inn konkrete midtøstlige og nordafrikanske forløp med egne aktører og kilder."
+        }
+      ]
+    },
+    "actors": {
+      "id": "actors",
+      "label": "Aktører",
+      "requirement": "Historien må dekke både institusjonelle makthavere og grupper som ofte forsvinner i kildene.",
+      "status": "INCOMPLETE",
+      "counts": {
+        "covered": 10,
+        "partial": 3,
+        "missing": 0
+      },
+      "cells": [
+        {
+          "id": "stat_makthavere",
+          "label": "Stat, eliter og institusjoner",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 5,
+            "minimum_distinct_areas": 2
+          },
+          "counts": {
+            "dedicated_emner": 42,
+            "supporting_emner": 200,
+            "distinct_areas": 20
+          },
+          "distinct_area_ids": [
+            "his_tid_periodisering",
+            "his_kilder_arkiv_spor",
+            "his_makt_stat_institusjoner",
+            "his_middelalder_kirke_kongemakt",
+            "his_1814_statsdannelse",
+            "his_industri_arbeid_sosialhistorie",
+            "his_krig_okkupasjon_motstand",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_minne_kulturarv_historiebruk",
+            "his_byhistorie_stedsendring",
+            "his_katastrofer_brudd_ulykker",
+            "his_kjonn_familie_livslop",
+            "his_okonomi_handel_materielle_systemer",
+            "his_religion_reformasjon_livssyn",
+            "his_samisk_urfolkshistorie",
+            "his_miljo_klima_landskap",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_stat_institusjoner",
+              "title": "Stat og institusjoner",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_embetsstat_forvaltning",
+              "title": "Embetsstat og forvaltning",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_styring_krise_kontinuitet",
+              "title": "Styring, krise og kontinuitet",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_rett_politi_fengsel",
+              "title": "Rett, domstol og rettsstat",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_kontroll_overvakning",
+              "title": "Kontroll og overvåkning",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_rettsoppgjor",
+              "title": "Rettsoppgjør",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_beslutningskjeder_kompetanse_ansvar",
+              "title": "Beslutningskjeder, kompetanse og ansvar",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            },
+            {
+              "emne_id": "em_his_statlig_kapasitet_skatt_infrastruktur",
+              "title": "Statlig kapasitet, skatt og infrastruktur",
+              "area_id": "his_makt_stat_institusjoner",
+              "area_label": "Makt, stat og institusjoner",
+              "anchors": [
+                "stat",
+                "institusjon"
+              ]
+            }
+          ],
+          "gap_action": "Behold maktaktører, men balanser dem mot andre aktørgrupper."
+        },
+        {
+          "id": "arbeidere",
+          "label": "Arbeidere og arbeidsfolk",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 2,
+            "supporting_emner": 37,
+            "distinct_areas": 6
+          },
+          "distinct_area_ids": [
+            "his_kilder_arkiv_spor",
+            "his_industri_arbeid_sosialhistorie",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_kjonn_familie_livslop",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_arbeiderbevegelse_folkedannelse",
+              "title": "Arbeiderbevegelse og folkedannelse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+              "title": "Arbeider-, kvinne- og avholdsbevegelser",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_kilder_taushet_blindsoner",
+              "title": "Kilder, taushet og blindsoner",
+              "area_id": "his_kilder_arkiv_spor",
+              "area_label": "Kilder, arkiv og spor",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_taushet_og_manglende_kilder",
+              "title": "Taushet og manglende kilder",
+              "area_id": "his_kilder_arkiv_spor",
+              "area_label": "Kilder, arkiv og spor",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_dokument_autentisitet",
+              "title": "Dokumentform og autentisitet",
+              "area_id": "his_kilder_arkiv_spor",
+              "area_label": "Kilder, arkiv og spor",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_skrift_hand_lesning",
+              "title": "Historisk skrift og håndlesning",
+              "area_id": "his_kilder_arkiv_spor",
+              "area_label": "Kilder, arkiv og spor",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_industriby_1900",
+              "title": "Industriby og arbeid rundt 1900",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_sosialhistorie_hverdagsliv",
+              "title": "Sosialhistorie og hverdagsliv",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeider"
+              ]
+            }
+          ],
+          "gap_action": "Sikre arbeidere som handlende aktører, ikke bare som konsekvensmottakere."
+        },
+        {
+          "id": "kvinner_kjonnede_aktorer",
+          "label": "Kvinner og kjønnede aktører",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 2
+          },
+          "counts": {
+            "dedicated_emner": 15,
+            "supporting_emner": 30,
+            "distinct_areas": 6
+          },
+          "distinct_area_ids": [
+            "his_industri_arbeid_sosialhistorie",
+            "his_velferd_rett_hverdagsliv",
+            "his_kjonn_familie_livslop",
+            "his_religion_reformasjon_livssyn",
+            "his_vitenskap_teknologi_kunnskap",
+            "his_offentlighet_mobilisering_bevegelser"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kjonn_arbeidsdeling_lonn",
+              "title": "Kjønn, arbeidsdeling og lønn",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+              "title": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_kjonn_som_historisk_kategori",
+              "title": "Kjønn som historisk kategori",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_familie_hushold_og_slektskap",
+              "title": "Familie, hushold og slektskap",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_ekteskap_arv_og_eiendom",
+              "title": "Ekteskap, arv og eiendom",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_seksualitet_regulering_og_identitet",
+              "title": "Seksualitet, regulering og identitet",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+              "title": "Kropp, reproduksjon og medisinsk makt",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
+              "title": "Maskuliniteter, femininiteter og arbeid",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "kjønn"
+              ]
+            }
+          ],
+          "gap_action": "Integrer kvinner og kjønnede erfaringer i flere perioder og temaer."
+        },
+        {
+          "id": "barn_ungdom",
+          "label": "Barn og ungdom",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 2,
+            "supporting_emner": 4,
+            "distinct_areas": 2
+          },
+          "distinct_area_ids": [
+            "his_velferd_rett_hverdagsliv",
+            "his_kjonn_familie_livslop"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_barndom_familie_livslop",
+              "title": "Barndom, familie og livsløp",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "barn",
+                "barndom"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+              "title": "Barndom, ungdom, alderdom og livsløp",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "barn",
+                "barndom",
+                "ungdom"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_familie_hushold_og_slektskap",
+              "title": "Familie, hushold og slektskap",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "barn",
+                "barndom"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
+              "title": "Omsorg, sosial reproduksjon og ulønnet arbeid",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "barn",
+                "barndom"
+              ]
+            }
+          ],
+          "gap_action": "Opprett eller utvid barndoms- og ungdomshistorie med egne kilder og institusjoner."
+        },
+        {
+          "id": "familier_hushold",
+          "label": "Familier og hushold",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 14,
+            "supporting_emner": 43,
+            "distinct_areas": 7
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_industri_arbeid_sosialhistorie",
+            "his_velferd_rett_hverdagsliv",
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_kjonn_familie_livslop",
+            "his_religion_reformasjon_livssyn",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+              "title": "Bondehushold, demografi og dagligliv",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "hushold"
+              ]
+            },
+            {
+              "emne_id": "em_his_barndom_familie_livslop",
+              "title": "Barndom, familie og livsløp",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "familie"
+              ]
+            },
+            {
+              "emne_id": "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+              "title": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "omsorgsarbeid"
+              ]
+            },
+            {
+              "emne_id": "em_his_familie_transnasjonale_band",
+              "title": "Familie og transnasjonale bånd",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "familie"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_kjonn_som_historisk_kategori",
+              "title": "Kjønn som historisk kategori",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "familie"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_familie_hushold_og_slektskap",
+              "title": "Familie, hushold og slektskap",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "familie",
+                "hushold",
+                "slekt"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_ekteskap_arv_og_eiendom",
+              "title": "Ekteskap, arv og eiendom",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "familie",
+                "ekteskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_kjonn_familie_seksualitet_regulering_og_identitet",
+              "title": "Seksualitet, regulering og identitet",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
+              "anchors": [
+                "familie"
+              ]
+            }
+          ],
+          "gap_action": "Sikre hushold, slektskap og omsorg som historiske enheter."
+        },
+        {
+          "id": "migranter_minoriteter",
+          "label": "Migranter og minoriteter",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 4,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 12,
+            "supporting_emner": 23,
+            "distinct_areas": 3
+          },
+          "distinct_area_ids": [
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_religion_reformasjon_livssyn",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_migrasjon_mangfold",
+              "title": "Migrasjon, mobilitet og mangfold",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            },
+            {
+              "emne_id": "em_his_minoritetshistorie",
+              "title": "Minoritetspolitikk og minoritetshistorie",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            },
+            {
+              "emne_id": "em_his_tilhorighet_ekskludering",
+              "title": "Tilhørighet, identitet og ekskludering",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            },
+            {
+              "emne_id": "em_his_ankomst_bosetting_bolig",
+              "title": "Ankomst, bosetting og bolig",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeid_nettverk_naring",
+              "title": "Arbeid, nettverk og migrasjon",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            },
+            {
+              "emne_id": "em_his_statsborgerskap_status_rettigheter",
+              "title": "Statsborgerskap, status og rettigheter",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            },
+            {
+              "emne_id": "em_his_sprak_religion_institusjoner",
+              "title": "Språk, religion og minoritetsinstitusjoner",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            },
+            {
+              "emne_id": "em_his_familie_transnasjonale_band",
+              "title": "Familie og transnasjonale bånd",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "minoritet"
+              ]
+            }
+          ],
+          "gap_action": "Sikre migranter og minoriteter som aktører med egne strategier og kilder."
+        },
+        {
+          "id": "samer_urfolk",
+          "label": "Samer og andre urfolk",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 2,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 11,
+            "supporting_emner": 11,
+            "distinct_areas": 2
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_samisk_urfolkshistorie"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+              "title": "Samiske kontaktsoner, handel og statsgrenser i middelalderen",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "samisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+              "title": "Samiske samfunn, siida og næringsformer",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+              "title": "Kontaktsoner, handel og statsgrenser",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+              "title": "Misjon, kristning og kunnskapsmakt",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+              "title": "Jord, ressursrett og kolonisering",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+              "title": "Fornorskning, skole og språk",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+              "title": "Raseforskning og vitenskapelig klassifikasjon",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            },
+            {
+              "emne_id": "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+              "title": "Organisering, Alta og rettighetskamp",
+              "area_id": "his_samisk_urfolkshistorie",
+              "area_label": "Samisk og urfolkshistorie",
+              "anchors": [
+                "samisk",
+                "urfolk"
+              ]
+            }
+          ],
+          "gap_action": "Sikre urfolksperspektiver uten å avgrense dem til fornorskingspolitikk alene."
+        },
+        {
+          "id": "slaver_koloniserte",
+          "label": "Slavegjorte og koloniserte grupper",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 1,
+            "supporting_emner": 10,
+            "distinct_areas": 1
+          },
+          "distinct_area_ids": [
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+              "title": "Slaveri, råvarer og globale verdikjeder",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+              "title": "Imperier, kolonialisme og makt",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+              "title": "Misjon, kunnskap og kulturelle møter",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+              "title": "Migrasjon, diaspora og transnasjonale nettverk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+              "title": "Globale kriger og internasjonale organisasjoner",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+              "title": "Avkolonisering og utviklingspolitikk",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+              "title": "Norge i imperiale og koloniale forbindelser",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+              "title": "Globalisering, avhengighet og sammenvevd historie",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "slaveri"
+              ]
+            }
+          ],
+          "gap_action": "Synliggjør slavegjorte og koloniserte aktørers erfaringer, motstand og kunnskapsproduksjon."
+        },
+        {
+          "id": "bonder_landsbygd",
+          "label": "Bønder, fiskere og bygdesamfunn",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 1,
+            "supporting_emner": 1,
+            "distinct_areas": 1
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+              "title": "Bondehushold, demografi og dagligliv",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "bonde"
+              ]
+            }
+          ],
+          "gap_action": "Sikre rurale aktører og primærnæringer i flere tidsperioder."
+        },
+        {
+          "id": "religiøse_fellesskap",
+          "label": "Religiøse fellesskap",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 17,
+            "distinct_areas": 2
+          },
+          "distinct_area_ids": [
+            "his_middelalder_kirke_kongemakt",
+            "his_religion_reformasjon_livssyn"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kirke_kloster_middelalder",
+              "title": "Kirke, kloster og middelaldermakt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            },
+            {
+              "emne_id": "em_his_kongemakt_kirke_konflikt",
+              "title": "Kongemakt, kirke og konflikt",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_oslo",
+              "title": "Middelalderens Oslo",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kristning_og_religios_omforming",
+              "title": "Lov, ting og jurisdiksjon",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+              "title": "Jord, eiendom og patronasje",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+              "title": "Handel, håndverk og bydannelse",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+              "title": "Bondehushold, demografi og dagligliv",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            },
+            {
+              "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+              "title": "Svartedauden og senmiddelalderens omforming",
+              "area_id": "his_middelalder_kirke_kongemakt",
+              "area_label": "Middelalder, kirke og kongemakt",
+              "anchors": [
+                "kirkelig"
+              ]
+            }
+          ],
+          "gap_action": "Sikre religiøse fellesskap som aktører, ikke bare religion som institusjon."
+        },
+        {
+          "id": "eksperter_kunnskapsarbeidere",
+          "label": "Eksperter og kunnskapsarbeidere",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 1,
+            "supporting_emner": 11,
+            "distinct_areas": 2
+          },
+          "distinct_area_ids": [
+            "his_vitenskap_teknologi_kunnskap",
+            "his_global_kolonial_transnasjonal"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+              "title": "Kunnskapsinstitusjoner og ekspertise",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+              "title": "Profesjoner, standardisering og autoritet",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+              "title": "Måling, statistikk, kart og klassifikasjon",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+              "title": "Teknologi, infrastruktur og samfunn",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+              "title": "Medisin, helsevitenskap og befolkning",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
+              "title": "Kommunikasjon, medier og informasjonsregimer",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
+              "title": "Digitalisering og datamakt",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+              "title": "Vitenskap, stat, industri og ekskludering",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "ekspert"
+              ]
+            }
+          ],
+          "gap_action": "Sikre ekspertise, profesjoner og kunnskapsmakt som historiske aktørfelt."
+        },
+        {
+          "id": "fattige_marginaliserte",
+          "label": "Fattige og sosialt marginaliserte",
+          "status": "PARTIAL",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 3,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 0,
+            "supporting_emner": 3,
+            "distinct_areas": 1
+          },
+          "distinct_area_ids": [
+            "his_migrasjon_minoritet_tilhorighet"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_tilhorighet_ekskludering",
+              "title": "Tilhørighet, identitet og ekskludering",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "utenforskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_sprak_religion_institusjoner",
+              "title": "Språk, religion og minoritetsinstitusjoner",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "utenforskap"
+              ]
+            },
+            {
+              "emne_id": "em_his_organisering_motstand_offentlighet",
+              "title": "Organisering, motstand og offentlighet",
+              "area_id": "his_migrasjon_minoritet_tilhorighet",
+              "area_label": "Migrasjon, minoritet og tilhørighet",
+              "anchors": [
+                "utenforskap"
+              ]
+            }
+          ],
+          "gap_action": "Legg til tydelige aktørperspektiver for fattige og andre sosialt marginaliserte grupper."
+        },
+        {
+          "id": "funksjonshemmede",
+          "label": "Funksjonshemmede og funksjonshemmingshistorie",
+          "status": "COVERED",
+          "thresholds": {
+            "minimum_dedicated_emner": 1,
+            "minimum_supporting_emner": 2,
+            "minimum_distinct_areas": 1
+          },
+          "counts": {
+            "dedicated_emner": 2,
+            "supporting_emner": 18,
+            "distinct_areas": 4
+          },
+          "distinct_area_ids": [
+            "his_kilder_arkiv_spor",
+            "his_velferd_rett_hverdagsliv",
+            "his_minne_kulturarv_historiebruk",
+            "his_vitenskap_teknologi_kunnskap"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kilder_taushet_blindsoner",
+              "title": "Kilder, taushet og blindsoner",
+              "area_id": "his_kilder_arkiv_spor",
+              "area_label": "Kilder, arkiv og spor",
+              "anchors": [
+                "blind"
+              ]
+            },
+            {
+              "emne_id": "em_his_institusjonalisering_avinstitusjonalisering",
+              "title": "Institusjonalisering og avinstitusjonalisering",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "institusjonalisering",
+                "avinstitusjonalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_barndom_familie_livslop",
+              "title": "Barndom, familie og livsløp",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "institusjonalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_sosialforsikring_pensjon_universalisme",
+              "title": "Sosialforsikring, pensjon og universalisme",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "institusjonalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_boligpolitikk_materiell_velferd",
+              "title": "Boligpolitikk og materiell velferd",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "institusjonalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+              "title": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "institusjonalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_bruker_tjeneste_forvaltning",
+              "title": "Bruker, tjeneste og forvaltning",
+              "area_id": "his_velferd_rett_hverdagsliv",
+              "area_label": "Velferd, rett og hverdagsliv",
+              "anchors": [
+                "institusjonalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_fravaer_taushet_motminne",
+              "title": "Fravær, taushet og motminne",
+              "area_id": "his_minne_kulturarv_historiebruk",
+              "area_label": "Minne, kulturarv og historiebruk",
+              "anchors": [
+                "blind"
+              ]
+            }
+          ],
+          "gap_action": "Etabler funksjonshemmingshistorie med egne aktører, institusjoner, rettighetskamper og kilder."
+        }
+      ]
+    }
+  },
+  "production": {
+    "status": "INCOMPLETE",
+    "counts": {
+      "passed": 5,
+      "gaps": 6
+    },
+    "checks": [
+      {
+        "id": "method_linkage",
+        "label": "Metodekobling i emner",
+        "type": "emne_any_array_ratio",
+        "status": "PASS",
+        "measured": {
+          "qualifying": 200,
+          "total": 200,
+          "ratio": 1
+        },
+        "threshold": {
+          "minimum_items": 2,
+          "minimum_ratio": 0.95
+        },
+        "gap_action": "Koble hvert emne til minst to relevante historiske metoder."
+      },
+      {
+        "id": "source_requirement_policy",
+        "label": "Krav om ekstern påstandsbase",
+        "type": "emne_boolean_any_ratio",
+        "status": "PASS",
+        "measured": {
+          "qualifying": 200,
+          "total": 200,
+          "ratio": 1
+        },
+        "threshold": {
+          "expected": true,
+          "minimum_ratio": 0.95
+        },
+        "gap_action": "Krev ekstern kilde og konkret claim-basis for alle emner som kan produsere innhold."
+      },
+      {
+        "id": "chronology_and_temporal_scope",
+        "label": "Kronologi og tidsavgrensning",
+        "type": "emne_boolean_all_ratio",
+        "status": "PASS",
+        "measured": {
+          "qualifying": 200,
+          "total": 200,
+          "ratio": 1
+        },
+        "threshold": {
+          "expected": true,
+          "minimum_ratio": 0.75
+        },
+        "gap_action": "Gjør kronologi og eksplisitt tidsavgrensning obligatorisk der historiske påstander produseres."
+      },
+      {
+        "id": "historiographical_conflict",
+        "label": "Alternative fortolkninger og faglig konflikt",
+        "type": "emne_any_array_ratio",
+        "status": "PASS",
+        "measured": {
+          "qualifying": 200,
+          "total": 200,
+          "ratio": 1
+        },
+        "threshold": {
+          "minimum_items": 2,
+          "minimum_ratio": 0.95
+        },
+        "gap_action": "Krev minst to alternative fortolkningslinjer eller dokumenterte faglige konflikter per emne."
+      },
+      {
+        "id": "case_depth",
+        "label": "Minstekrav til konkrete cases",
+        "type": "emne_any_array_ratio",
+        "status": "PASS",
+        "measured": {
+          "qualifying": 200,
+          "total": 200,
+          "ratio": 1
+        },
+        "threshold": {
+          "minimum_items": 4,
+          "minimum_ratio": 0.95
+        },
+        "gap_action": "Koble emner til et representativt utvalg konkrete cases."
+      },
+      {
+        "id": "geographic_profile_separation",
+        "label": "Geografiske profiler er skilt fra universelle emner",
+        "type": "forbidden_emne_field_ratio",
+        "status": "GAP",
+        "measured": {
+          "violating": 200,
+          "total": 200,
+          "ratio": 1
+        },
+        "threshold": {
+          "maximum_ratio": 0
+        },
+        "gap_action": "Flytt Oslo-spesifikke casefelt ut av universelle fagobjekter og inn i manifeststyrte geografiske profiler."
+      },
+      {
+        "id": "generic_case_linkage",
+        "label": "Geografinøytrale casekoblinger",
+        "type": "emne_any_array_ratio",
+        "status": "GAP",
+        "measured": {
+          "qualifying": 0,
+          "total": 200,
+          "ratio": 0
+        },
+        "threshold": {
+          "minimum_items": 4,
+          "minimum_ratio": 0.95
+        },
+        "gap_action": "Erstatt lokale casefelt med universelle case-ID-er og separate geografiske profiler."
+      },
+      {
+        "id": "claim_registry",
+        "label": "Canonical claim-register",
+        "type": "candidate_file_exists",
+        "status": "GAP",
+        "measured": {
+          "existing_paths": [],
+          "checked_paths": [
+            "data/fag/historie/claims_historie_canonical_v1.json",
+            "data/fag/historie/claims/manifest.json",
+            "data/history/claims/manifest.json"
+          ]
+        },
+        "threshold": {},
+        "gap_action": "Opprett et canonical claim-register med omfang, kildekobling, usikkerhet og alternative fortolkninger."
+      },
+      {
+        "id": "source_registry",
+        "label": "Canonical kilderegister",
+        "type": "candidate_file_exists",
+        "status": "GAP",
+        "measured": {
+          "existing_paths": [],
+          "checked_paths": [
+            "data/fag/historie/sources_historie_canonical_v1.json",
+            "data/fag/historie/sources/manifest.json",
+            "data/history/sources/manifest.json"
+          ]
+        },
+        "threshold": {},
+        "gap_action": "Opprett et canonical kilderegister med type, proveniens, datering, avsender, begrensning og kvalitet."
+      },
+      {
+        "id": "place_evidence_registry",
+        "label": "Sted–emne–claim-evidens",
+        "type": "candidate_file_exists",
+        "status": "GAP",
+        "measured": {
+          "existing_paths": [],
+          "checked_paths": [
+            "data/fag/historie/place_evidence_historie_v1.json",
+            "data/fag/historie/place-evidence/manifest.json",
+            "data/history/place-evidence/manifest.json"
+          ]
+        },
+        "threshold": {},
+        "gap_action": "Opprett eksplisitte sted–emne–claim–kildekoblinger i et separat geografisk evidenslag."
+      },
+      {
+        "id": "theory_evidence_readiness",
+        "label": "Teoriobjekter med dokumentert evidensgrunnlag",
+        "type": "theory_boolean_ratio",
+        "status": "GAP",
+        "measured": {
+          "qualifying": 0,
+          "total": 200,
+          "ratio": 0
+        },
+        "threshold": {
+          "expected": true,
+          "minimum_ratio": 1
+        },
+        "gap_action": "Gjør teoriobjekter evidence-ready først når claims, kilder, alternative fortolkninger og casekoblinger er validert."
+      }
+    ]
+  }
+}
