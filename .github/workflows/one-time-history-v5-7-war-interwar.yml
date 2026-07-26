@@ -1,0 +1,159 @@
+name: One-time History V5.7 war and interwar expansion
+
+on:
+  push:
+    branches:
+      - agent/history-v5-7-war-interwar
+    paths:
+      - '.github/history-v5-7-war-interwar-runner.part-*'
+      - '.github/workflows/one-time-history-v5-7-war-interwar.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-v5-7-war-interwar
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Reassemble reviewed V5.7 expansion
+        shell: bash
+        run: |
+          set -o pipefail
+          cat .github/history-v5-7-war-interwar-runner.part-* > /tmp/history-v5-7-war-interwar.b64
+          printf '%s  %s\n' \
+            '5ade9bacd4bf0007c1aa570616dcad968b308682720e4ca5214d006e81273269' \
+            '/tmp/history-v5-7-war-interwar.b64' | sha256sum --check
+          base64 -d /tmp/history-v5-7-war-interwar.b64 \
+            | gunzip > /tmp/apply-history-v5-7-war-interwar.mjs
+          node --check /tmp/apply-history-v5-7-war-interwar.mjs
+
+      - name: Apply World War I and interwar domain
+        shell: bash
+        run: |
+          mkdir -p reports/historie-v5 reports/historie-universal-coverage
+          node /tmp/apply-history-v5-7-war-interwar.mjs 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-war-interwar-apply.log
+
+      - name: Validate new domain
+        shell: bash
+        run: |
+          node tools/validate-historie-forste-verdenskrig-mellomkrig.mjs 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-war-interwar-domain-validation.log
+
+      - name: Rebuild History quiz contexts
+        shell: bash
+        run: |
+          node scripts/build-quiz-production-context.mjs 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quiz-context-rebuild.log
+          npm run audit:quiz-production-context 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quiz-production-context-audit.log
+          npm run audit:quiz-progression 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quiz-progression-audit.log
+          npm run audit:quiz-theory-binding 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quiz-theory-binding-audit.log
+          npm run test:quiz-content-audit 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quiz-content-test.log
+          npm run test:quiz-production 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quiz-production-test.log
+
+      - name: Write and verify V5.7 quality freeze
+        shell: bash
+        run: |
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze \
+            --reason='V5.7 adds universal First World War and interwar coverage, including culture, ideas, visual history and cross-regional perspectives.' 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quality-freeze-write.log
+          node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-quality-freeze-verify.log
+
+      - name: Materialize universal coverage
+        shell: bash
+        run: |
+          node tools/audit-historie-universal-coverage.mjs 2>&1 \
+            | tee reports/historie-universal-coverage/audit-command.log
+          node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
+            | tee -a reports/historie-universal-coverage/audit-command.log
+
+      - name: Verify intended coverage gains
+        shell: bash
+        run: |
+          node - <<'NODE' 2>&1 | tee reports/historie-v5/historie-v5-7-coverage-target-check.log
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('reports/historie-universal-coverage/historie-universal-coverage.json'));
+          const required = {
+            time: ['imperialisme_1870_1914', 'forste_verdenskrig_1914_1918', 'mellomkrigstiden'],
+            theme: ['kulturhistorie', 'idehistorie', 'kunsthistorie'],
+            geography: ['norden', 'europa', 'afrika', 'asia', 'amerika', 'midtosten']
+          };
+          const result = {};
+          for (const [axis, ids] of Object.entries(required)) {
+            const cells = new Map(report.axes[axis].cells.map(cell => [cell.id, cell]));
+            result[axis] = {};
+            for (const id of ids) {
+              const cell = cells.get(id);
+              result[axis][id] = cell?.status || 'MISSING_FROM_REPORT';
+              if (cell?.status !== 'COVERED') process.exitCode = 1;
+            }
+          }
+          console.log(JSON.stringify({status: report.status, summary: report.summary, required: result}, null, 2));
+          NODE
+
+      - name: Verify active inventory
+        shell: bash
+        run: |
+          node - <<'NODE' 2>&1 | tee reports/historie-v5/historie-v5-7-inventory-check.log
+          const fs = require('fs');
+          const h = 'data/fag/historie/';
+          const p = JSON.parse(fs.readFileSync(h+'historiepensum_canonical_v4_5.json'));
+          const e = JSON.parse(fs.readFileSync(h+'emner_historie_canonical_v4_5.json'));
+          const m = JSON.parse(fs.readFileSync(h+'emnemapping_historie_canonical_v4_5.json'));
+          const c = JSON.parse(fs.readFileSync(h+'concepts_historie_canonical_v5_5.json'));
+          const t = JSON.parse(fs.readFileSync(h+'theory_objects_historie_canonical_v5_5.json'));
+          const methods = JSON.parse(fs.readFileSync(h+'methods_historie_canonical_v4_5.json')).methods;
+          const expected = {domains:22, emner:220, mappings:220, concepts:926, theories:220, methods:98};
+          const actual = {domains:p.domains.length, emner:e.length, mappings:m.length, concepts:c.length, theories:t.length, methods:methods.length};
+          console.log(JSON.stringify({expected, actual}, null, 2));
+          for (const key of Object.keys(expected)) if (actual[key] !== expected[key]) process.exitCode = 1;
+          NODE
+
+      - name: Publish validated V5.7 data
+        shell: bash
+        run: |
+          set -o pipefail
+          rm -f .github/history-v5-7-war-interwar-runner.part-*
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git status --short 2>&1 \
+            | tee reports/historie-v5/historie-v5-7-war-interwar-git-status.log
+          git add -A
+          git reset -- .github/workflows/one-time-history-v5-7-war-interwar.yml
+          git commit -m 'Utvid Historie V5.7 med første verdenskrig og mellomkrigstiden'
+          git push origin HEAD:agent/history-v5-7-war-interwar 2>&1 \
+            | tee /tmp/historie-v5-7-publish.log
+
+      - name: Upload V5.7 diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-v5-7-war-interwar-diagnostics
+          path: |
+            reports/historie-v5/**
+            reports/historie-universal-coverage/**
+            /tmp/historie-v5-7-publish.log
+          if-no-files-found: warn
