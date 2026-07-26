@@ -36,7 +36,9 @@ jobs:
           git merge --no-edit origin/main
 
       - name: Apply verified profiles and place corrections
-        run: python scripts/one-time-enrich-oslo-radhus-political-people.py
+        run: |
+          python scripts/one-time-enrich-oslo-radhus-political-people.py
+          python scripts/one-time-correct-haakon-eidsvolls-link.py
 
       - name: Validate focused profiles and popup rendering
         run: |
@@ -44,6 +46,7 @@ jobs:
           node --test \
             tests/person-popup-v2.test.js \
             tests/oslo-radhus-political-people-profiles.test.js
+          node tests/oslo-politikk-remaining-people-expansion.test.js
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
@@ -71,12 +74,14 @@ jobs:
       - name: Verify browser build remains synchronized
         run: npm run build:web:check
 
-      - name: Remove script and generated side effects after validation
+      - name: Remove scripts and generated side effects after validation
         shell: bash
         run: |
           set -euo pipefail
           git checkout origin/main -- js/core/categories.js
-          git rm scripts/one-time-enrich-oslo-radhus-political-people.py
+          git rm \
+            scripts/one-time-enrich-oslo-radhus-political-people.py \
+            scripts/one-time-correct-haakon-eidsvolls-link.py
           git restore --staged --worktree reports 2>/dev/null || true
           git clean -fd reports 2>/dev/null || true
           rm -f people-check.log
