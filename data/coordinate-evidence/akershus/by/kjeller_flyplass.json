@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kjeller_flyplass",
+  "placeFile": "data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_official_enkj_aerodrome_reference_point_retain_coordinate",
+  "currentCoordinate": {
+    "lat": 59.96944,
+    "lon": 11.03889,
+    "r": 360,
+    "coordStatus": "verified",
+    "coordSource": "Avinor AIP Norway ENKJ – aerodrome reference point 595810N 0110220E; Luftfartstilsynet; Kjeller Aero Senter",
+    "coordType": "official_enkj_aerodrome_reference_point",
+    "coordRole": "aerodrome_reference_point",
+    "sourceObjectId": "avinor-aip:ENKJ:ARP:595810N:0110220E",
+    "coordNote": "The canonical point is the official ENKJ aerodrome reference point. The radius is central display context and does not represent the full runway, airfield or heritage environment."
+  },
+  "previousCoordinate": {
+    "lat": 59.96944,
+    "lon": 11.03889,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 0.5,
+    "reasonReplaced": "The rounded coordinate was retained because it is effectively identical to the current official Avinor AIP aerodrome reference point. Only the missing source and representation contract was replaced."
+  },
+  "identity": {
+    "currentName": "Kjeller flyplass",
+    "resolvedIdentity": "ENKJ Kjeller aerodrome and its historic aviation, defence, maintenance and technology environment, represented by the official aerodrome reference point rather than a runway endpoint or heritage-area centroid.",
+    "identityStatus": "resolved",
+    "identityProblem": "The name may refer to the operational aerodrome, the 1,357-metre runway, multiple hangar and workshop environments or the wider historic culture landscape. The official ARP is the stable canonical point, while all wider extents require separate geometry or contextual treatment.",
+    "locatorTypeCandidate": "aerodrome",
+    "requiresSplit": false,
+    "splitReason": "One canonical aerodrome record can use the official ARP and describe the wider operational and historical landscape without pretending that a 360-metre radius contains the whole site."
+  },
+  "requiredEvidence": [
+    "current official aerodrome reference point",
+    "current civil-aviation operator cross-check",
+    "runway dimension and operational identity",
+    "heritage significance and scope context",
+    "explicit radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "avinor_aip",
+      "sourceName": "Avinor AIP Norway – ENKJ",
+      "sourceUrl": "https://aim-prod.avinor.no/no/AIP/View/Index/154/2026-06-11-AIRAC/html/eAIP/EN-AD-2.ENKJ-en-GB.html",
+      "sourceObjectId": "avinor-aip:ENKJ:ARP:595810N:0110220E",
+      "sourceQuality": "current_official_aerodrome_reference_point",
+      "finding": "The current AIP publishes ENKJ ARP as 595810N 0110220E, equal to approximately 59.9694444444, 11.0388888889. This is approximately 0.5 metres from the rounded canonical point.",
+      "canVerifyCoordinate": true,
+      "reason": "The ARP is the authoritative stable reference point for the named aerodrome."
+    },
+    {
+      "sourceProvider": "civil_aviation_authority",
+      "sourceName": "Luftfartstilsynet – List of aerodromes",
+      "sourceUrl": "https://www.luftfartstilsynet.no/en/aviation-market/flyplass/landing-sites/list-of-aerodromes/",
+      "sourceObjectId": "luftfartstilsynet:ENKJ",
+      "sourceQuality": "current_official_aerodrome_and_operator_cross_check",
+      "finding": "The authority lists ENKJ Kjeller airport with Kjeller Aero Senter AS as operator.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms current aerodrome identity and operator; Avinor AIP remains the coordinate source."
+    },
+    {
+      "sourceProvider": "airport_operator",
+      "sourceName": "Kjeller Aero Senter – Airport Information",
+      "sourceUrl": "https://kjellerflyplass.no/?page_id=16",
+      "sourceObjectId": "kjeller-aero-senter:ENKJ",
+      "sourceQuality": "operator_coordinate_and_runway_cross_check",
+      "finding": "The operator publishes position 59°58.2′N, 011°02.3′E and runway 12/30 as 1,357 by 30 metres.",
+      "canVerifyCoordinate": false,
+      "reason": "Corroborates the aerodrome location and demonstrates why the 360-metre radius cannot represent the full runway."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – Kjeller flyplass heritage process",
+      "sourceUrl": "https://www.riksantikvaren.no/melding-om-justert-omfang-i-fredningssaken-for-kjeller-flyplass/",
+      "sourceObjectId": "riksantikvaren:kjeller-flyplass-process",
+      "sourceQuality": "official_historical_culture_environment_context",
+      "finding": "Riksantikvaren describes Kjeller as a valuable aviation, technology, defence and security-policy culture environment where development can be followed from 1912 onward. The page is marked concluded.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as historical and spatial-scope context, not as proof of a final current protection polygon or decision."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q3356156 – Kjeller Airport",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q3356156",
+      "sourceObjectId": "wikidata:Q3356156",
+      "sourceQuality": "independent_aerodrome_entity_cross_check",
+      "finding": "The entity publishes 59.9693055556, 11.0361111111, approximately 155.3 metres west of the official ARP.",
+      "canVerifyCoordinate": false,
+      "reason": "A secondary entity point is not preferred over the current official Avinor AIP ARP."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Kjeller flyplass point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:kjeller_flyplass",
+      "sourceQuality": "correct_rounded_official_arp",
+      "finding": "The legacy coordinate 59.96944, 11.03889 was already the rounded official aerodrome reference point but lacked source and role metadata.",
+      "canVerifyCoordinate": false,
+      "reason": "Retained after verification against the current AIP."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "avinor_aip",
+      "address": {
+        "street": "Småflyhavna",
+        "postcode": "2007",
+        "city": "Kjeller",
+        "country": "NO"
+      },
+      "sourceUrl": "https://aim-prod.avinor.no/no/AIP/View/Index/154/2026-06-11-AIRAC/html/eAIP/EN-AD-2.ENKJ-en-GB.html",
+      "sourceObjectId": "avinor-aip:ENKJ:operator-address",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "avinor_aip",
+      "sourceObjectId": "avinor-aip:ENKJ:ARP:595810N:0110220E",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q3356156",
+      "canApplyToPlace": false,
+      "rejectionReason": "Secondary entity coordinate approximately 155 metres from the current official ARP."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "airport_operator",
+      "sourceObjectId": "ENKJ:runway-12-30",
+      "geometryType": "Runway",
+      "geometryRole": "operational_runway_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren:kjeller-flyplass-process",
+      "geometryType": "heritage_scope_not_applied",
+      "geometryRole": "historical_and_planning_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "kjeller_enkj_arp",
+      "name": "Kjeller flyplass – ENKJ Aerodrome Reference Point",
+      "lat": 59.96944,
+      "lon": 11.03889,
+      "r": 180,
+      "type": "aerodrome_reference_point",
+      "sourceProvider": "avinor_aip",
+      "sourceObjectId": "avinor-aip:ENKJ:ARP:595810N:0110220E",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:kjeller_flyplass",
+      "lat": 59.96944,
+      "lon": 11.03889,
+      "coordRole": "correct_rounded_official_arp",
+      "distanceFromAppliedM": 0.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "avinor_aip",
+      "sourceObjectId": "avinor-aip:ENKJ:ARP:595810N:0110220E",
+      "lat": 59.96944444444445,
+      "lon": 11.03888888888889,
+      "coordRole": "aerodrome_reference_point",
+      "distanceFromCurrentRoundedM": 0.5,
+      "canApplyToPlace": true,
+      "appliedAsRoundedCoordinate": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q3356156",
+      "lat": 59.96930555555556,
+      "lon": 11.03611111111111,
+      "coordRole": "secondary_airport_entity_point",
+      "distanceFromAppliedM": 155.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-kjeller-flyplass-source-probe/source-summary.json",
+      "description": "Persisted current AIP ARP, operator and authority cross-checks, runway scale, heritage context and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Retained the rounded official ENKJ ARP and 360-metre radius. Continue with Tanum and the remaining Akershus manifest only where unresolved."
+  },
+  "notes": [
+    "The coordinate correction is approximately 0.5 metres and is intentionally not materialized as extra decimal precision in canonical.",
+    "The official ARP is preferred over secondary entity points.",
+    "The 360-metre radius cannot represent the 1,357-metre runway or full airfield.",
+    "The Riksantikvaren page is used as culture-environment context and not as a claim of a current final protection decision."
+  ]
+}
