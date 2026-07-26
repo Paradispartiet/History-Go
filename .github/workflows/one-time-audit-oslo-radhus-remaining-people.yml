@@ -52,7 +52,6 @@ jobs:
                   if not refs:
                       continue
                   paragraphs = [p for p in str(person.get('popupDesc') or '').split('\n\n') if p.strip()]
-                  missing = []
                   checks = {
                       'birth_date': bool(person.get('birth_date')),
                       'death_date': bool(person.get('death_date')),
@@ -73,6 +72,7 @@ jobs:
                       'missing': missing,
                       'missing_count': len(missing),
                       'image': person.get('image') or '',
+                      'person': person,
                   })
 
           rows.sort(key=lambda row: (-row['missing_count'], row.get('name') or ''))
