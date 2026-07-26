@@ -122,7 +122,6 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
 
           changed = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
           expected = {
-              ".github/workflows/one-time-register-people-of-places-governance.yml",
               "docs/README.md",
               "docs/documentation_registry.json",
               "reports/documentation-governance/inventory.json",
@@ -140,4 +139,4 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           git commit -m "Registrer canonical People of Places-governance"
           git push origin HEAD:main
 
-# Trigger canonical People of Places registration.
+# Retry canonical People of Places registration with corrected scope check.
