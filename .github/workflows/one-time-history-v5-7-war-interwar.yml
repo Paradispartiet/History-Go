@@ -1,13 +1,12 @@
 name: One-time History V5.7 war and interwar expansion
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/history-v5-7-war-interwar
+      - main
     paths:
       - '.github/history-v5-7-war-interwar-runner.part-*'
       - '.github/workflows/one-time-history-v5-7-war-interwar.yml'
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -32,10 +31,12 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Reassemble reviewed V5.7 expansion
+      - name: Materialize and validate V5.7
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
+          mkdir -p reports/historie-v5 reports/historie-universal-coverage
+
           cat .github/history-v5-7-war-interwar-runner.part-* > /tmp/history-v5-7-war-interwar.b64
           printf '%s  %s\n' \
             '5ade9bacd4bf0007c1aa570616dcad968b308682720e4ca5214d006e81273269' \
@@ -44,22 +45,11 @@ jobs:
             | gunzip > /tmp/apply-history-v5-7-war-interwar.mjs
           node --check /tmp/apply-history-v5-7-war-interwar.mjs
 
-      - name: Apply World War I and interwar domain
-        shell: bash
-        run: |
-          mkdir -p reports/historie-v5 reports/historie-universal-coverage
           node /tmp/apply-history-v5-7-war-interwar.mjs 2>&1 \
             | tee reports/historie-v5/historie-v5-7-war-interwar-apply.log
-
-      - name: Validate new domain
-        shell: bash
-        run: |
           node tools/validate-historie-forste-verdenskrig-mellomkrig.mjs 2>&1 \
             | tee reports/historie-v5/historie-v5-7-war-interwar-domain-validation.log
 
-      - name: Rebuild History quiz contexts
-        shell: bash
-        run: |
           node scripts/build-quiz-production-context.mjs 2>&1 \
             | tee reports/historie-v5/historie-v5-7-quiz-context-rebuild.log
           npm run audit:quiz-production-context 2>&1 \
@@ -73,26 +63,17 @@ jobs:
           npm run test:quiz-production 2>&1 \
             | tee reports/historie-v5/historie-v5-7-quiz-production-test.log
 
-      - name: Write and verify V5.7 quality freeze
-        shell: bash
-        run: |
           node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze \
             --reason='V5.7 adds universal First World War and interwar coverage, including culture, ideas, visual history and cross-regional perspectives.' 2>&1 \
             | tee reports/historie-v5/historie-v5-7-quality-freeze-write.log
           node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
             | tee reports/historie-v5/historie-v5-7-quality-freeze-verify.log
 
-      - name: Materialize universal coverage
-        shell: bash
-        run: |
           node tools/audit-historie-universal-coverage.mjs 2>&1 \
             | tee reports/historie-universal-coverage/audit-command.log
           node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
             | tee -a reports/historie-universal-coverage/audit-command.log
 
-      - name: Verify intended coverage gains
-        shell: bash
-        run: |
           node - <<'NODE' 2>&1 | tee reports/historie-v5/historie-v5-7-coverage-target-check.log
           const fs = require('fs');
           const report = JSON.parse(fs.readFileSync('reports/historie-universal-coverage/historie-universal-coverage.json'));
@@ -114,9 +95,6 @@ jobs:
           console.log(JSON.stringify({status: report.status, summary: report.summary, required: result}, null, 2));
           NODE
 
-      - name: Verify active inventory
-        shell: bash
-        run: |
           node - <<'NODE' 2>&1 | tee reports/historie-v5/historie-v5-7-inventory-check.log
           const fs = require('fs');
           const h = 'data/fag/historie/';
@@ -135,7 +113,7 @@ jobs:
       - name: Publish validated V5.7 data
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
           rm -f .github/history-v5-7-war-interwar-runner.part-*
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
