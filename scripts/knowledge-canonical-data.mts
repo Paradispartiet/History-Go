@@ -157,6 +157,7 @@ function manifestFiles(manifest: JsonObject): string[] {
   return unique([
     ...(Array.isArray(manifest.files) ? manifest.files : []),
     ...(Array.isArray(manifest.sets) ? manifest.sets.map((entry: unknown) => isObject(entry) ? entry.file : '') : []),
+    ...(Array.isArray(manifest.subjectPackages) ? manifest.subjectPackages.map((entry: unknown) => isObject(entry) ? entry.file : '') : []),
   ]);
 }
 async function readJson<T = unknown>(filePath: string): Promise<T> {

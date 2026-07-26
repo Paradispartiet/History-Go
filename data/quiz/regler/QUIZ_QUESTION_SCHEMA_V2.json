@@ -19,9 +19,23 @@
     "source"
   ],
   "target_fields": {
-    "place_question": ["placeId", "targetId"],
-    "person_question": ["personId", "targetId"],
-    "nature_question": ["natureId", "targetId"]
+    "place_question": [
+      "placeId",
+      "targetId"
+    ],
+    "person_question": [
+      "personId",
+      "targetId"
+    ],
+    "nature_question": [
+      "natureId",
+      "targetId"
+    ],
+    "subject_area_question": [
+      "targetId",
+      "question_scope",
+      "emne_id"
+    ]
   },
   "question_type_values": [
     "fact",
@@ -89,5 +103,16 @@
     "category_profiles": "data/fag/fag_manifest.json",
     "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
     "registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json"
-  }
+  },
+  "subject_area_required_fields": [
+    "primary_knowledge_unit_id",
+    "knowledge_unit_ids",
+    "concept_ids",
+    "term_ids",
+    "learning_objective_id",
+    "evidence_type",
+    "knowledge_payload",
+    "feedback_basis"
+  ],
+  "subject_area_rule": "Subject-area questions use question_scope=subject_area and are validated by QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json; they are not place visits."
 }

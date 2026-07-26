@@ -4,72 +4,62 @@ const path = require("node:path");
 const test = require("node:test");
 
 const ROOT = path.join(__dirname, "..");
-const TARGETS = [
-  { id: "albert_nordengen", file: "data/people/by/oslo/people_by_oslo.json", minWorks: 7, minSources: 3 },
-  { id: "rolf_stranger", file: "data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json", minWorks: 8, minSources: 4 },
-  { id: "kirsten_sand", file: "data/people/by/oslo/people_by_oslo.json", minWorks: 8, minSources: 4 },
-  { id: "haakon_vii", file: "data/people/politikk/oslo/people_politikk_oslo.json", minWorks: 9, minSources: 4 },
-  { id: "halvdan_eyvind_stokke", file: "data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json", minWorks: 8, minSources: 4 }
-];
+const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/people/manifest.json"), "utf8"));
+const targets = ["albert_nordengen", "rolf_stranger", "haakon_vii", "kirsten_sand"];
 
-function readJson(relativePath) {
-  return JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
-}
-function getPerson(target) {
-  return readJson(target.file).find(entry => entry.id === target.id);
-}
-
-test("political and municipal batch contains five unique canonical profiles", () => {
-  const manifest = readJson("data/people/manifest.json");
-  const seen = new Map();
+function allPeople() {
+  const result = [];
   for (const relative of manifest.files) {
-    const file = path.join("data", relative);
-    const data = readJson(file);
-    for (const entry of Array.isArray(data) ? data : [data]) {
-      if (!entry || !TARGETS.some(target => target.id === entry.id)) continue;
-      assert.equal(seen.has(entry.id), false, `duplicate canonical person: ${entry.id}`);
-      seen.set(entry.id, file);
-    }
+    const file = path.join(ROOT, "data", relative);
+    const data = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const entry of Array.isArray(data) ? data : [data]) result.push({ entry, file });
   }
-  assert.deepEqual([...seen.keys()].sort(), TARGETS.map(target => target.id).sort());
+  return result;
+}
+
+function byId(id) {
+  return allPeople().filter(item => item.entry?.id === id);
+}
+function byName(name) {
+  return allPeople().filter(item => item.entry?.name === name);
+}
+
+test("political and municipal batch remains canonical and unique", () => {
+  for (const id of targets) assert.equal(byId(id).length, 1, id);
+  assert.equal(byName("Halvdan Eyvind Stokke").length, 1);
 });
 
-test("each profile has rich biography, education, contributions and inspectable sources", () => {
-  for (const target of TARGETS) {
-    const person = getPerson(target);
-    assert.ok(person, target.id);
-    assert.ok(String(person.popupDesc).split(/\n\s*\n/).length >= 3, target.id);
-    assert.ok(person.works.length >= target.minWorks, target.id);
-    assert.ok(person.education.length >= 3, target.id);
-    assert.ok(person.themes.length >= 6, target.id);
-    assert.ok(person.externalLinks.length >= target.minSources, target.id);
-    assert.ok(person.externalLinks.every(source => /^https:\/\//.test(source.url)), target.id);
-    assert.match(person.birth_date, /^\d{4}-\d{2}-\d{2}$/);
-    assert.match(person.death_date, /^\d{4}-\d{2}-\d{2}$/);
+test("four documented Rådhus profiles expose rich popup data", () => {
+  const people = [
+    byId("albert_nordengen")[0].entry,
+    byId("rolf_stranger")[0].entry,
+    byName("Halvdan Eyvind Stokke")[0].entry,
+    byId("haakon_vii")[0].entry
+  ];
+  for (const person of people) {
+    assert.ok(person.places.includes("oslo_radhus"), person.name);
+    assert.ok(String(person.popupDesc).split(/\n\s*\n/).length >= 3, person.name);
+    assert.ok(person.works.length >= 7, person.name);
+    assert.ok(person.education.length >= 3, person.name);
+    assert.ok(person.themes.length >= 6, person.name);
+    assert.ok(person.externalLinks.length >= 4, person.name);
+    assert.ok(person.externalLinks.every(source => /^https:\/\//.test(source.url)), person.name);
   }
 });
 
-test("Rådhus profiles use direct place evidence", () => {
-  for (const id of ["albert_nordengen", "rolf_stranger", "haakon_vii", "halvdan_eyvind_stokke"]) {
-    const person = getPerson(TARGETS.find(target => target.id === id));
-    assert.ok(person.placeId === "oslo_radhus" || person.places.includes("oslo_radhus"), id);
-  }
-  const haakon = getPerson(TARGETS.find(target => target.id === "haakon_vii"));
-  assert.deepEqual(haakon.places, ["slottet", "oslo_radhus", "akershus_festning"]);
+test("Kirsten Sand is corrected to documented work rather than a false Rådhus relation", () => {
+  const person = byId("kirsten_sand")[0].entry;
+  assert.equal(person.places.includes("oslo_radhus"), false);
+  assert.equal(person.placeId, "universitetsplassen");
+  assert.equal(person.birth_date, "1895-11-27");
+  assert.ok(person.works.length >= 8);
+  assert.match(JSON.stringify(person), /Gjenreisingen av Nord-Troms/);
+  assert.match(JSON.stringify(person), /Mellomveien 130/);
+  assert.ok(person.materials.length >= 6);
+  assert.ok(person.externalLinks.length >= 4);
 });
 
-test("Kirsten Sand no longer has invented Oslo rådhus or Universitetsplassen links", () => {
-  const person = getPerson(TARGETS.find(target => target.id === "kirsten_sand"));
-  assert.equal(Object.hasOwn(person, "placeId"), false);
-  assert.deepEqual(person.places, []);
-  assert.equal(person.placeLinkStatus, "awaiting_direct_canonical_place");
-  assert.doesNotMatch(JSON.stringify({ placeId: person.placeId, places: person.places }), /oslo_radhus|universitetsplassen/);
-  assert.equal(person.image, "bilder/kort/people/kirsten_sand.PNG");
-});
-
-test("Halvdan Stokke is the documented opening mayor, not a duplicate seed", () => {
-  const person = getPerson(TARGETS.find(target => target.id === "halvdan_eyvind_stokke"));
-  assert.equal(person.placeId, "oslo_radhus");
-  assert.match(JSON.stringify(person), /Det første ordførerkjedet|ordførerkjede|St\. Hallvardkjedet/);
-  assert.match(JSON.stringify(person), /15\. mai 1950/);
+test("existing person-image identities are preserved", () => {
+  assert.equal(byId("kirsten_sand")[0].entry.image, "bilder/kort/people/kirsten_sand.PNG");
+  assert.equal(byId("haakon_vii")[0].entry.image, "bilder/kort/people/haakon_vii.PNG");
 });

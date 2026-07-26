@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tertitten_urskog_holandsbanen",
+  "placeFile": "data/places/by/akershus/tertitten_urskog_holandsbanen/tertitten_urskog_holandsbanen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_museum_point_retain_coordinate",
+  "currentCoordinate": {
+    "lat": 59.98628,
+    "lon": 11.24367,
+    "r": 260,
+    "coordStatus": "verified",
+    "coordSource": "OpenStreetMap node 6593405621 – Urskog-Hølandsbanen; MiA Tertitten; Sørumsand station cross-check",
+    "coordType": "named_museum_railway_site_point",
+    "coordRole": "museum_railway_visitor_anchor",
+    "sourceObjectId": "osm-node:6593405621",
+    "coordNote": "The existing point exactly matches the named Urskog-Hølandsbanen museum object and represents the Sørumsand visitor, station and workshop environment."
+  },
+  "previousCoordinate": {
+    "lat": 59.98628,
+    "lon": 11.24367,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 0,
+    "reasonReplaced": "The coordinate was retained; only the missing source, object-role and route-scope contract was replaced."
+  },
+  "identity": {
+    "currentName": "Tertitten / Urskog-Hølandsbanen",
+    "resolvedIdentity": "The Urskog-Hølandsbanen museum railway visitor and operating environment at Sørumsand, including station, workshop, rolling stock and departure tracks, distinct from the ordinary mainline station and the full historical route.",
+    "identityStatus": "resolved",
+    "identityProblem": "The name can refer to the museum site, the operational museum station, the current 3.6-kilometre route or the former 57-kilometre railway. The canonical point must represent the visitor and operating site rather than the entire line.",
+    "locatorTypeCandidate": "museum_railway",
+    "requiresSplit": false,
+    "splitReason": "The museum site is a coherent destination. The route remains line context and does not require one oversized point radius."
+  },
+  "requiredEvidence": [
+    "stable named museum object",
+    "official visitor address and destination identity",
+    "official historical and operational route scope",
+    "ordinary Sørumsand station cross-check",
+    "explicit distinction between museum site and railway line"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "museum",
+      "sourceName": "MiA Tertitten – Om oss",
+      "sourceUrl": "https://mia.no/tertitten/om",
+      "sourceObjectId": "mia:tertitten-om",
+      "sourceQuality": "official_museum_identity_and_operational_scope",
+      "finding": "MiA identifies Tertitten as the narrow-gauge Urskog-Hølandsbanen museum railway at Sørumsand, with preserved steam locomotives, carriages, track, buildings and workshop functions.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves the present museum destination but does not itself publish a coordinate object."
+    },
+    {
+      "sourceProvider": "museum",
+      "sourceName": "MiA Tertitten – Finn oss",
+      "sourceUrl": "https://mia.no/tertitten/finn-oss",
+      "sourceObjectId": "mia:tertitten-sorumsandvegen-70",
+      "sourceQuality": "official_visitor_address",
+      "finding": "MiA lists Sørumsandvegen 70, 1920 Sørumsand as the visitor address.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the visitor destination and locality without replacing the named museum map object."
+    },
+    {
+      "sourceProvider": "museum",
+      "sourceName": "MiA Tertitten – Historien",
+      "sourceUrl": "https://mia.no/tertitten/historien",
+      "sourceObjectId": "mia:tertitten-historien",
+      "sourceQuality": "official_route_history_and_current_length",
+      "finding": "The original 750-mm railway connected Sørumsand and Skulerud and remained in goods and passenger service until 1960. Today 3.6 kilometres are operated as museum railway.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines route scope and prevents the museum marker from being misread as the full line."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593405621 – Urskog-Hølandsbanen",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405621",
+      "sourceObjectId": "osm-node:6593405621",
+      "sourceQuality": "exact_named_museum_point",
+      "finding": "The tourism=museum point is at 59.98628, 11.24367 and exactly matches the legacy coordinate.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the museum destination described by MiA."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5148364154 – Urskog-Hølandsbanen (Tertitten)",
+      "sourceUrl": "https://www.openstreetmap.org/node/5148364154",
+      "sourceObjectId": "osm-node:5148364154",
+      "sourceQuality": "named_museum_station_component",
+      "finding": "A separate railway-station object represents the operational museum-station function inside the same site.",
+      "canVerifyCoordinate": false,
+      "reason": "Component context only; the broader museum point remains the canonical destination anchor."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 3088222509 – Sørumsand",
+      "sourceUrl": "https://www.openstreetmap.org/node/3088222509",
+      "sourceObjectId": "osm-node:3088222509",
+      "sourceQuality": "ordinary_mainline_station_cross_check",
+      "finding": "The ordinary railway stop at 59.98588, 11.24104 lies approximately 152.9 metres west of the museum point.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the historical interchange context but is not the Tertitten museum anchor."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Tertitten point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:tertitten_urskog_holandsbanen",
+      "sourceQuality": "correct_but_uncontracted_museum_point",
+      "finding": "The legacy coordinate was already exactly correct but lacked a stable source and route-scope contract.",
+      "canVerifyCoordinate": false,
+      "reason": "Retained after being tied to the named museum object."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "museum",
+      "address": {
+        "street": "Sørumsandvegen",
+        "number": "70",
+        "postcode": "1920",
+        "city": "Sørumsand",
+        "country": "NO"
+      },
+      "sourceUrl": "https://mia.no/tertitten/finn-oss",
+      "sourceObjectId": "mia:tertitten-sorumsandvegen-70",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405621",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5148364154",
+      "canApplyToPlace": false,
+      "rejectionReason": "Operational station component inside the broader museum destination."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:3088222509",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ordinary Kongsvingerbanen station rather than the museum railway."
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "tertitten_museumsomrade",
+      "name": "Urskog-Hølandsbanen – museumsområdet på Sørumsand",
+      "lat": 59.98628,
+      "lon": 11.24367,
+      "r": 150,
+      "type": "museum_railway_visitor_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405621",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:tertitten_urskog_holandsbanen",
+      "lat": 59.98628,
+      "lon": 11.24367,
+      "coordRole": "correct_but_uncontracted_museum_point",
+      "distanceFromAppliedM": 0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405621",
+      "lat": 59.98628,
+      "lon": 11.24367,
+      "coordRole": "museum_railway_visitor_anchor",
+      "distanceFromPreviousM": 0,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:3088222509",
+      "lat": 59.98588,
+      "lon": 11.24104,
+      "coordRole": "ordinary_station_interchange_cross_check",
+      "distanceFromAppliedM": 152.9,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-tertitten-source-probe/source-summary.json",
+      "description": "Persisted museum identity, official address, route scope, named map objects and interchange distance."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Retained the exact named museum point and 260-metre radius. Continue with Kjeller flyplass."
+  },
+  "notes": [
+    "The coordinate correction is 0 metres.",
+    "The marker represents the museum and operating environment, not the full railway line.",
+    "The ordinary Sørumsand station is nearby context and remains a separate transport object.",
+    "The 260-metre radius is not a route, safety or legal protection polygon."
+  ]
+}
