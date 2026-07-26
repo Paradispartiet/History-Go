@@ -7,7 +7,7 @@ Denne rapporten måler geografisk produksjonsdekning separat fra den universelle
 ## Struktur
 
 - Universelle emner: **230**
-- Emner med migrerte profilkoblinger: **undefined**
+- Emner med migrerte profilkoblinger: **200**
 - Bevarte lokale casekandidater: **103**
 
 ## Evidensgrunnlag
