@@ -43,3 +43,20 @@ run('historie-v5-5-quiz-context.log','npm',['run','quiz:context']);
 run('historie-v5-5-quiz-context-audit.log','npm',['run','audit:quiz-production-context']);
 run('historie-v5-5-quiz-theory-audit.log','npm',['run','audit:quiz-theory-binding']);
 const restore=spawnSync('git',['checkout','--','data/places/places_index.json','data/quiz/production_context/by/deichman_bjorvika.json'],{cwd:root,encoding:'utf8'});if(restore.status!==0)throw new Error(restore.stderr||'Failed to restore generated place files');
+
+fs.rmSync(path.join(root,'scripts','coordinate-branch-job.mjs'),{force:true});
+fs.rmSync(path.join(root,'scripts','history-v5-5-quality-materialization.mjs'),{force:true});
+fs.rmSync(path.join(root,'scripts','.coordinate-branch-job-complete'),{force:true});
+const branch=process.env.GITHUB_HEAD_REF||process.env.GITHUB_REF_NAME||'agent/history-v5-5-global-quality-uplift';
+const git=(name,args)=>{const r=spawnSync('git',args,{cwd:root,encoding:'utf8'});fs.writeFileSync(path.join(reportDir,name),`$ git ${args.join(' ')}\n${r.stdout||''}${r.stderr||''}`);if(r.status!==0)throw new Error(`git ${args.join(' ')} failed with ${r.status}`);};
+git('historie-v5-5-quality-git-config-name.log',['config','user.name','github-actions[bot]']);
+git('historie-v5-5-quality-git-config-email.log',['config','user.email','41898282+github-actions[bot]@users.noreply.github.com']);
+git('historie-v5-5-quality-git-add.log',['add','-A']);
+const staged=spawnSync('git',['diff','--cached','--quiet'],{cwd:root});
+if(staged.status===1){
+ git('historie-v5-5-quality-git-commit.log',['commit','-m','Materialiser permanent Historie V5.5-kvalitetsfrys']);
+ git('historie-v5-5-quality-git-pull.log',['pull','--rebase','origin',branch]);
+ git('historie-v5-5-quality-git-push.log',['push','origin',`HEAD:${branch}`]);
+}else if(staged.status!==0){
+ throw new Error(`git diff --cached --quiet failed with ${staged.status}`);
+}
