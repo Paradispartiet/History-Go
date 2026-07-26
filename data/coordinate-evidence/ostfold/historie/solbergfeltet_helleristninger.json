@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "solbergfeltet_helleristninger",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/solbergfeltet_helleristninger.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_clustered_rock_art_field_anchor",
+  "currentCoordinate": {
+    "lat": 59.20584,
+    "lon": 11.15508,
+    "r": 260,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "OpenStreetMap node 2934340171 – Solbergfeltet; Sarpsborg kommune; Kulturminne-ID 40892; Wikidata Q13659216",
+    "coordType": "named_clustered_rock_art_field_point",
+    "coordRole": "rock_art_field_anchor",
+    "sourceObjectId": "osm-node:2934340171",
+    "coordNote": "The marker follows the clustered Solberg rock-art field and accessible viewing area, not Solbergtårnet or one individual carved panel."
+  },
+  "previousCoordinate": {
+    "lat": 59.2417,
+    "lon": 11.2209,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 5470.3,
+    "reasonReplaced": "The legacy point lay approximately 5.47 kilometres northeast of the rock-carving field."
+  },
+  "identity": {
+    "currentName": "Solbergfeltet helleristninger",
+    "resolvedIdentity": "The closely grouped Bronze Age rock-carving panels at Solberg beside Oldtidsveien, distinct from Solbergtårnet and the wider route landscape.",
+    "identityStatus": "resolved",
+    "identityProblem": "Sources describe two or three small subfields. The canonical record should represent the clustered field and visitor area without inventing a centroid for every panel.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The subfields form one coherent named archaeological destination."
+  },
+  "requiredEvidence": [
+    "stable named archaeological-site point",
+    "official municipal field description",
+    "regional rock-art context",
+    "heritage identity",
+    "independent physical cross-check",
+    "explicit separation from Solbergtårnet",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 2934340171 – Solbergfeltet",
+      "sourceUrl": "https://www.openstreetmap.org/node/2934340171",
+      "sourceObjectId": "osm-node:2934340171",
+      "sourceQuality": "named_archaeological_site_point",
+      "finding": "The named archaeological-site point is at 59.20584, 11.15508 and represents Solbergfeltet.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named field."
+    },
+    {
+      "sourceProvider": "sarpsborg_kommune",
+      "sourceName": "Sarpsborg kommune – Opplev Sarpsborg",
+      "sourceUrl": "https://www.sarpsborg.com/byen-og-kommunen/opplev-sarpsborg",
+      "sourceObjectId": "sarpsborg-kommune:solbergfeltet",
+      "sourceQuality": "official_field_identity_and_accessibility",
+      "finding": "The municipality describes two richly decorated fields, around sixty figures near the road, an unusual tree motif and accessibility for visitors with reduced mobility.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms identity, field structure and visitor context."
+    },
+    {
+      "sourceProvider": "ostfold_fylkeskommune",
+      "sourceName": "Østfold fylkeskommune – Helleristninger",
+      "sourceUrl": "https://ofk.no/tjenester/kulturminner/opplev-kulturarven/helleristninger/helleristninger.187126.aspx",
+      "sourceObjectId": "ostfold-fylkeskommune:rock-art",
+      "sourceQuality": "official_regional_archaeological_context",
+      "finding": "The county documents the Bronze Age and landscape context of agricultural rock carvings and Østfold's dense concentration of fields.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides authoritative archaeological interpretation context."
+    },
+    {
+      "sourceProvider": "riksantikvaren_cross_check",
+      "sourceName": "Kulturminne ID 40892 – Solberg Nedre II",
+      "sourceUrl": "https://www.kulturminnesok.no/minne/?queryString=https://data.kulturminne.no/askeladden/lokalitet/40892",
+      "sourceObjectId": "riksantikvaren-kulturminne:40892",
+      "sourceQuality": "heritage_identity_cross_check",
+      "finding": "Heritage photographic documentation identifies Solberg Nedre II as monument number 40892.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms a principal component of the clustered field."
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceName": "Solberg rock-carving photographs",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Solberg_rock_carvings_in_%C3%98stfold",
+      "sourceObjectId": "commons:solberg-rock-carvings",
+      "sourceQuality": "geotagged_physical_cross_check",
+      "finding": "Geotagged field photographs at 59.206, 11.155167 are approximately 18.5 metres from the applied point.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent physical location cross-check."
+    },
+    {
+      "sourceProvider": "visitor_infrastructure",
+      "sourceName": "Solbergtårnet",
+      "sourceUrl": "https://www.sarpsborg.com/byen-og-kommunen/opplev-sarpsborg",
+      "sourceObjectId": "visitor-infrastructure:solbergtarnet",
+      "sourceQuality": "separate_nearby_interpretation_site",
+      "finding": "The tower and rest area are roughly 800 metres northeast and interpret the wider Oldtidsveien landscape.",
+      "canVerifyCoordinate": false,
+      "reason": "Explicitly excluded from the rock-art coordinate."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Solbergfeltet point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:solbergfeltet_helleristninger",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 5,470.3 metres northeast of the field.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent Solbergfeltet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2934340171",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q13659216",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity cross-check; the named archaeological-site node is the applied point."
+    },
+    {
+      "sourceProvider": "visitor_infrastructure",
+      "sourceObjectId": "solbergtarnet",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate tower and rest-area interpretation site."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:40892",
+      "geometryType": "archaeological_field_geometry_not_captured",
+      "geometryRole": "legal_and_panel_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "solbergfeltet_named_rock_art_cluster",
+      "name": "Solbergfeltet rock-art cluster",
+      "lat": 59.20584,
+      "lon": 11.15508,
+      "r": 100,
+      "type": "rock_art_field_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2934340171",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:solbergfeltet_helleristninger",
+      "lat": 59.2417,
+      "lon": 11.2209,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 5470.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2934340171",
+      "lat": 59.20584,
+      "lon": 11.15508,
+      "coordRole": "rock_art_field_anchor",
+      "distanceFromPreviousM": 5470.3,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceObjectId": "commons:solberg-rock-carvings",
+      "lat": 59.206,
+      "lon": 11.155167,
+      "coordRole": "physical_photo_cross_check",
+      "distanceFromAppliedM": 18.5,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-solbergfeltet-source-probe/source-summary.json",
+      "description": "Persisted field point, official descriptions, heritage identity, physical cross-check, Solbergtårnet exclusion and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Solbergfeltet archaeological-site point and retained the 260-metre radius. Continue with Hunnfeltet gravfelt."
+  },
+  "notes": [
+    "The coordinate moves approximately 5.47 kilometres.",
+    "The marker represents the clustered field rather than one carved panel.",
+    "Solbergtårnet is separate visitor infrastructure.",
+    "The radius is not an archaeological or legal protection polygon."
+  ]
+}
