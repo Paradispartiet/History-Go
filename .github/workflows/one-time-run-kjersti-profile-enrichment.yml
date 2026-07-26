@@ -1,0 +1,86 @@
+name: One-time run Kjersti profile enrichment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-time-run-kjersti-profile-enrichment.yml
+
+permissions:
+  contents: write
+
+jobs:
+  enrich-and-clean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize profile branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/kjersti-people-profile
+          git checkout -B agent/kjersti-people-profile origin/agent/kjersti-people-profile
+          git merge --no-edit origin/main
+
+      - name: Apply verified Kjersti enrichment
+        run: python scripts/one-time-enrich-kjersti-people-profile.py
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild people-derived Civication index
+        run: npm run civication:history-people:build
+
+      - name: Validate people data and popup rendering
+        run: |
+          node --check js/ui/person-popup-v2.js
+          node --test tests/person-popup-v2.test.js
+          bash scripts/check-people.sh
+          npm run build:web:check
+
+      - name: Commit profile enrichment to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git restore --staged --worktree reports 2>/dev/null || true
+          git clean -fd reports 2>/dev/null || true
+          git rm \
+            .github/workflows/one-time-enrich-kjersti-people-profile.yml \
+            .github/workflows/one-time-run-kjersti-profile-enrichment.yml \
+            scripts/one-time-enrich-kjersti-people-profile.py
+          git add -A
+          git status --short
+          git commit -m "Enrich Kjersti Wexelsen Goksøyr profile"
+          git push origin HEAD:agent/kjersti-people-profile
+
+      - name: Remove one-time runner from main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+          git rm .github/workflows/one-time-run-kjersti-profile-enrichment.yml
+          git commit -m "Remove one-time Kjersti profile runner"
+          git push origin HEAD:main
+
+      - name: Synchronize final main cleanup into profile branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main agent/kjersti-people-profile
+          git checkout -B agent/kjersti-people-profile origin/agent/kjersti-people-profile
+          git merge --no-edit origin/main
+          git push origin HEAD:agent/kjersti-people-profile
