@@ -1,0 +1,100 @@
+name: One-time Oslo popup batch 9 writer
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-09-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Batch 9 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-09-ten
+          fetch-depth: 0
+
+      - name: Apply isolated desc and popupDesc patches
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const patchDir = '.github/oslo-popup-batch-09-patches';
+          const patchFiles = fs.readdirSync(patchDir).filter((name) => name.endsWith('.json')).sort();
+          const places = patchFiles.flatMap((name) => JSON.parse(fs.readFileSync(path.join(patchDir, name), 'utf8')).places);
+          if (places.length !== 10) throw new Error(`Expected 10 places, found ${places.length}`);
+
+          const touched = [];
+          for (const item of places) {
+            const raw = fs.readFileSync(item.path, 'utf8');
+            const before = JSON.parse(raw);
+            const after = JSON.parse(raw);
+            after.desc = item.desc;
+            after.popupDesc = item.popupDesc;
+
+            const beforeOther = structuredClone(before);
+            const afterOther = structuredClone(after);
+            delete beforeOther.desc;
+            delete beforeOther.popupDesc;
+            delete afterOther.desc;
+            delete afterOther.popupDesc;
+            if (JSON.stringify(beforeOther) !== JSON.stringify(afterOther)) {
+              throw new Error(`Unexpected non-text change in ${item.path}`);
+            }
+
+            const descWords = item.desc.trim().split(/\s+/u).length;
+            const popupWords = item.popupDesc.trim().split(/\s+/u).length;
+            const paragraphs = item.popupDesc.split(/\n\n+/u).filter((part) => part.trim()).length;
+            if (descWords !== item.descWords || popupWords !== item.popupWords || paragraphs !== item.paragraphs) {
+              throw new Error(`Count mismatch for ${item.id}: ${descWords}/${popupWords}/${paragraphs}`);
+            }
+            if (descWords < 40 || descWords > 80 || popupWords < 300 || paragraphs < 3) {
+              throw new Error(`Canonical description limits failed for ${item.id}`);
+            }
+
+            fs.writeFileSync(item.path, JSON.stringify(after, null, 2) + '\n');
+            touched.push(item.path);
+          }
+
+          const protocolPath = 'reports/place-description-revision-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          protocol = protocol
+            .replace('- Ferdig før denne batchen: **68 steder**', '- Ferdig før denne batchen: **78 steder**')
+            .replace('- Ferdig etter merge av denne batchen: **78 steder**', '- Ferdig etter merge av denne batchen: **88 steder**')
+            .replace('- Gjenstår etter merge: **12 steder**', '- Gjenstår etter merge: **2 steder**');
+
+          const pr = process.env.PR_NUMBER;
+          const rows = places.map((item) => `| ${item.nr} | ${item.title} | \`${item.id}\` | ${item.descWords} | ${item.popupWords} | ${item.paragraphs} | #${pr} |`).join('\n');
+          if (!protocol.includes('| 79 |')) protocol = protocol.replace('\n## Gjenstående Oslo-kø', `\n${rows}\n\n## Gjenstående Oslo-kø`);
+
+          const remaining = `## Gjenstående Oslo-kø\n\n1. St. Hallvard kirke og kloster (\`st_hallvard_kirke_kloster\`)\n2. Gamle rådhus (\`gamle_radhus\`)\n\n`;
+          protocol = protocol.replace(/## Gjenstående Oslo-kø[\s\S]*?(?=## Oppdagede metadataavvik)/u, remaining);
+
+          const batch8 = `| Oslo V4 batch 8 | 10 | #4147 |`;
+          const batch9 = `| Oslo V4 batch 9 | 10 | #${pr} |`;
+          if (!protocol.includes('| Oslo V4 batch 9 |')) protocol = protocol.replace(batch8, `${batch8}\n${batch9}`);
+          fs.writeFileSync(protocolPath, protocol);
+          touched.push(protocolPath);
+
+          fs.writeFileSync('/tmp/oslo-popup-batch-09-files.txt', touched.join('\n') + '\n');
+          console.log(JSON.stringify({ status: 'patched', places: places.map(({ id, descWords, popupWords, paragraphs }) => ({ id, descWords, popupWords, paragraphs })), protocol: { total: 90, done: 88, remaining: 2 } }, null, 2));
+          NODE
+
+          git diff --check
+          while IFS= read -r file; do git add -- "$file"; done < /tmp/oslo-popup-batch-09-files.txt
+          test "$(git diff --cached --name-only | wc -l)" -eq 11
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Revider ti siste før Oslo-sluttbatchen"
+          git push origin HEAD:agent/oslo-popup-v4-batch-09-ten
