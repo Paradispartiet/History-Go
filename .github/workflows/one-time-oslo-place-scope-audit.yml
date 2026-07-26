@@ -1,0 +1,112 @@
+name: One-time Oslo place scope audit
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-place-scope-audit-trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-desc-scope-audit-v2
+          fetch-depth: 0
+
+      - name: Audit complete Oslo place scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/oslo-place-scope-audit
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const ROOT = process.cwd();
+          const manifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
+          const protocol = fs.readFileSync('reports/place-description-revision-protocol.md', 'utf8');
+          const wc = (v) => String(v || '').trim() ? String(v).trim().split(/\s+/u).length : 0;
+          const pc = (v) => String(v || '').trim() ? String(v).split(/\n\n+/u).filter((x) => x.trim()).length : 0;
+          const norm = (v) => String(v || '').trim().toLowerCase().replace(/ø/g,'o').replace(/å/g,'a').replace(/æ/g,'ae');
+          const osloValue = (v) => ['oslo','oslo kommune','0301'].includes(norm(v));
+          const osloPath = (v) => {
+            const p = String(v).replace(/\\/g,'/').toLowerCase();
+            return /(^|\/)oslo(\/|$)/u.test(p) || /(^|[\/_-])oslo([\/_.-]|$)/u.test(p);
+          };
+          const repoPath = (p) => p.startsWith('data/') ? p : `data/${p}`;
+
+          function walk(dir, out=[]) {
+            for (const e of fs.readdirSync(dir,{withFileTypes:true})) {
+              const full = path.join(dir,e.name);
+              if (e.isDirectory()) walk(full,out);
+              else if (e.isFile() && e.name.endsWith('.json')) out.push(path.relative(ROOT,full).replace(/\\/g,'/'));
+            }
+            return out;
+          }
+
+          function extract(v,file,out,ancestry=[]) {
+            if (Array.isArray(v)) return v.forEach((x,i)=>extract(x,file,out,ancestry.concat(i)));
+            if (!v || typeof v !== 'object') return;
+            const hasPlaceShape = typeof v.id === 'string' && v.id.trim() && Number.isFinite(Number(v.lat)) && Number.isFinite(Number(v.lon)) && (typeof v.name === 'string' || typeof v.title === 'string');
+            if (hasPlaceShape) {
+              const a = v.address && typeof v.address === 'object' ? v.address : {};
+              const explicitOslo = [v.city,v.municipality,v.kommune,v.region,v.county,a.city,a.municipality,a.kommune,a.poststed].some(osloValue);
+              out.push({id:v.id.trim(),name:String(v.name||v.title||v.id),category:String(v.category||''),file,ancestry,lat:Number(v.lat),lon:Number(v.lon),pathOslo:osloPath(file),explicitOslo,descWords:wc(v.desc),popupWords:wc(v.popupDesc),paragraphs:pc(v.popupDesc)});
+              return;
+            }
+            for (const [k,x] of Object.entries(v)) extract(x,file,out,ancestry.concat(k));
+          }
+
+          const manifestEntries = Array.isArray(manifest.files) ? manifest.files : [];
+          const manifestPaths = manifestEntries.map(repoPath);
+          const manifestSet = new Set(manifestPaths);
+          const manifestRecords = [];
+          const readErrors = [];
+          for (const file of manifestPaths) {
+            try { extract(JSON.parse(fs.readFileSync(file,'utf8')),file,manifestRecords); }
+            catch (e) { readErrors.push({file,error:e.message}); }
+          }
+
+          const protocolIds = new Set();
+          for (const m of protocol.matchAll(/^\|\s*\d+\s*\|.*?\|\s*`([^`]+)`\s*\|/gmu)) protocolIds.add(m[1]);
+          const activeRaw = manifestRecords.filter((r)=>r.pathOslo||r.explicitOslo);
+          const byId = new Map();
+          for (const r of activeRaw) { if(!byId.has(r.id)) byId.set(r.id,[]); byId.get(r.id).push(r); }
+          const activeIds = [...byId.keys()].sort();
+          const additionalIds = activeIds.filter((id)=>!protocolIds.has(id));
+          const additional = additionalIds.map((id)=>{
+            const records=byId.get(id); const preferred=records.find((r)=>r.pathOslo)||records[0];
+            return {...preferred,sourceFiles:records.map((r)=>r.file)};
+          }).sort((a,b)=>a.file.localeCompare(b.file)||a.id.localeCompare(b.id));
+          const duplicates=[...byId.entries()].filter(([,rs])=>rs.length>1).map(([id,rs])=>({id,files:rs.map((r)=>r.file)}));
+          const allJson=walk('data/places');
+          const osloFiles=allJson.filter(osloPath).sort();
+          const unmanifested=osloFiles.filter((f)=>!manifestSet.has(f));
+          const failing=additional.filter((r)=>r.descWords<40||r.descWords>80||r.popupWords<300||r.paragraphs<3);
+          const passing=additional.filter((r)=>!failing.includes(r));
+          const groups={};
+          for(const r of additional){const d=r.file.split('/')[2]||'unknown';(groups[d]??=[]).push(r);}
+          const result={generatedAt:new Date().toISOString(),manifest:{entries:manifestEntries.length,records:manifestRecords.length,readErrors},protocol:{ids:protocolIds.size},activeOslo:{rawRecords:activeRaw.length,uniqueIds:activeIds.length,duplicateIds:duplicates},comparison:{alreadyInProtocol:activeIds.filter((id)=>protocolIds.has(id)).length,additionalActiveOsloIds:additional.length,protocolIdsMissingFromActive:[...protocolIds].filter((id)=>!byId.has(id)).sort()},quality:{additionalPassingCanonical:passing.length,additionalNeedingRevision:failing.length},filesystem:{allPlaceJsonFiles:allJson.length,osloPathJsonFiles:osloFiles.length,unmanifestedOsloPathFiles:unmanifested},groups,additional};
+          fs.writeFileSync('/tmp/oslo-place-scope-audit/audit.json',JSON.stringify(result,null,2)+'\n');
+          const lines=['# Full Oslo place scope audit','',`- Manifest entries: **${manifestEntries.length}**`,`- Unique active Oslo place IDs: **${activeIds.length}**`,`- IDs in current protocol: **${protocolIds.size}**`,`- Additional active Oslo IDs outside protocol: **${additional.length}**`,`- Additional IDs already passing canonical text limits: **${passing.length}**`,`- Additional IDs needing revision: **${failing.length}**`,`- Oslo-path JSON files outside manifest: **${unmanifested.length}**`,'','## Additional active Oslo places','','| Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |','|---|---|---|---:|---:|---:|---|---|'];
+          for(const r of additional){const d=r.file.split('/')[2]||'unknown';const ok=r.descWords>=40&&r.descWords<=80&&r.popupWords>=300&&r.paragraphs>=3;lines.push(`| ${d} | ${r.name.replace(/\|/g,'\\|')} | \`${r.id}\` | ${r.descWords} | ${r.popupWords} | ${r.paragraphs} | \`${r.file}\` | ${ok?'passes':'needs revision'} |`);}
+          lines.push('','## Unmanifested Oslo-path JSON files','');
+          if(unmanifested.length) unmanifested.forEach((f)=>lines.push(`- \`${f}\``)); else lines.push('None.');
+          lines.push('','## Duplicate active Oslo IDs','');
+          if(duplicates.length) duplicates.forEach((x)=>lines.push(`- \`${x.id}\`: ${x.files.map((f)=>`\`${f}\``).join(', ')}`)); else lines.push('None.');
+          fs.writeFileSync('/tmp/oslo-place-scope-audit/audit.md',lines.join('\n')+'\n');
+          console.log(JSON.stringify({manifestEntries:manifestEntries.length,activeOsloUniqueIds:activeIds.length,protocolIds:protocolIds.size,additionalActiveOsloIds:additional.length,additionalNeedingRevision:failing.length,additionalPassingCanonical:passing.length,unmanifestedOsloPathFiles:unmanifested.length,duplicateActiveOsloIds:duplicates.length},null,2));
+          NODE
+
+      - name: Upload Oslo scope audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-place-scope-audit
+          path: /tmp/oslo-place-scope-audit/
+          if-no-files-found: error
