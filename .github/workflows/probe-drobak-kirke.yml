@@ -1,0 +1,135 @@
+name: Probe Drøbak kirke source objects
+
+on:
+  push:
+    branches:
+      - agent/akershus-drobak-kirke-production
+    paths:
+      - .github/workflows/probe-drobak-kirke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-drobak-kirke-production
+          fetch-depth: 0
+
+      - name: Fetch church geometry and address variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/akershus-coordinate-drobak-kirke-source-probe
+
+          python - <<'PY'
+          import json, math, urllib.parse, urllib.request, xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-drobak-kirke-source-probe')
+          legacy = (59.66389, 10.62949)
+          ua = {'User-Agent': 'History-Go-coordinate-audit/1.0 (github.com/Paradispartiet/History-Go)'}
+
+          def fetch(url):
+              req = urllib.request.Request(url, headers=ua)
+              with urllib.request.urlopen(req, timeout=60) as response:
+                  return response.read()
+
+          def save(name, data):
+              (out / name).write_bytes(data)
+
+          def hav(a, b):
+              lat1, lon1 = map(math.radians, a); lat2, lon2 = map(math.radians, b)
+              h = math.sin((lat2-lat1)/2)**2 + math.cos(lat1)*math.cos(lat2)*math.sin((lon2-lon1)/2)**2
+              return 2*6371000*math.asin(math.sqrt(h))
+
+          def centroid(coords):
+              pts = coords[:] + ([] if coords and coords[0] == coords[-1] else [coords[0]])
+              area2 = cx = cy = 0.0
+              for (lat1,lon1),(lat2,lon2) in zip(pts,pts[1:]):
+                  cross = lon1*lat2-lon2*lat1
+                  area2 += cross; cx += (lon1+lon2)*cross; cy += (lat1+lat2)*cross
+              if abs(area2) < 1e-15:
+                  return (sum(x for x,_ in coords)/len(coords), sum(y for _,y in coords)/len(coords))
+              return (cy/(3*area2), cx/(3*area2))
+
+          nom_url = 'https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode({
+              'q':'Drøbak kirke, Frogn, Norway','format':'jsonv2','addressdetails':1,
+              'extratags':1,'namedetails':1,'polygon_geojson':1,'limit':10})
+          nom_raw = fetch(nom_url); save('nominatim-drobak-kirke.json', nom_raw)
+          nom = json.loads(nom_raw)
+          named = next((x for x in nom if x.get('name','').casefold() == 'drøbak kirke'), nom[0] if nom else None)
+          if not named: raise SystemExit('No named Drøbak kirke result')
+          osm_type, osm_id = named['osm_type'], str(named['osm_id'])
+          object_url = f'https://api.openstreetmap.org/api/0.6/{osm_type}/{osm_id}' + ('/full' if osm_type == 'way' else '')
+          object_raw = fetch(object_url); save(f'osm-{osm_type}-{osm_id}-full.xml', object_raw)
+          root = ET.fromstring(object_raw)
+          if osm_type == 'way':
+              nodes = {n.attrib['id']:(float(n.attrib['lat']),float(n.attrib['lon'])) for n in root.findall('node')}
+              way = root.find('way'); refs=[nd.attrib['ref'] for nd in way.findall('nd') if nd.attrib['ref'] in nodes]
+              coords=[nodes[r] for r in refs]; point=centroid(coords)
+              tags={t.attrib['k']:t.attrib['v'] for t in way.findall('tag')}
+              object_summary={'type':'way','id':osm_id,'lat':point[0],'lon':point[1],'node_count':len(coords),'tags':tags}
+          else:
+              node=root.find('node'); point=(float(node.attrib['lat']),float(node.attrib['lon']))
+              tags={t.attrib['k']:t.attrib['v'] for t in node.findall('tag')}
+              object_summary={'type':'node','id':osm_id,'lat':point[0],'lon':point[1],'tags':tags}
+
+          address_results=[]
+          for slug, query in [('kirkegata-18','Kirkegata 18 Drøbak'),('kirkegaten-18','Kirkegaten 18 Drøbak')]:
+              url='https://ws.geonorge.no/adresser/v1/sok?' + urllib.parse.urlencode({'sok':query,'kommunenummer':'3214','treffPerSide':50})
+              raw=fetch(url); save(f'geonorge-{slug}-drobak.json',raw)
+              data=json.loads(raw)
+              address_results.append({'query':query,'data':data})
+
+          bbox=(point[1]-0.006,point[0]-0.005,point[1]+0.006,point[0]+0.005)
+          map_raw=fetch('https://api.openstreetmap.org/api/0.6/map?bbox='+','.join(f'{v:.7f}' for v in bbox))
+          save('osm-drobak-kirke-bbox.xml',map_raw)
+          map_root=ET.fromstring(map_raw)
+          map_nodes={n.attrib['id']:(float(n.attrib['lat']),float(n.attrib['lon'])) for n in map_root.findall('node')}
+          relevant=[]
+          for n in map_root.findall('node'):
+              tags={t.attrib['k']:t.attrib['v'] for t in n.findall('tag')}; p=(float(n.attrib['lat']),float(n.attrib['lon']))
+              d=hav(point,p)
+              if d<=350 and tags and (tags.get('name') or tags.get('historic') or tags.get('amenity') or tags.get('addr:housenumber')):
+                  relevant.append({'type':'node','id':n.attrib['id'],'lat':p[0],'lon':p[1],'distance_to_church_m':round(d,1),'tags':tags})
+          for way in map_root.findall('way'):
+              tags={t.attrib['k']:t.attrib['v'] for t in way.findall('tag')}
+              refs=[nd.attrib['ref'] for nd in way.findall('nd') if nd.attrib['ref'] in map_nodes]
+              coords=[map_nodes[r] for r in refs]
+              if not coords: continue
+              p=centroid(coords); d=hav(point,p)
+              if d<=350 and (tags.get('name') or tags.get('building') or tags.get('historic') or tags.get('amenity')):
+                  relevant.append({'type':'way','id':way.attrib['id'],'lat':p[0],'lon':p[1],'distance_to_church_m':round(d,1),'node_count':len(coords),'tags':tags})
+
+          lines=[
+              'named_result='+json.dumps(named,ensure_ascii=False,sort_keys=True),
+              'object_summary='+json.dumps(object_summary,ensure_ascii=False,sort_keys=True),
+              f'church_distance_from_legacy_m={hav(legacy,point):.1f}',
+          ]
+          for result in address_results:
+              data=result['data']; exact=[]
+              for a in data.get('adresser',[]):
+                  if a.get('nummer')==18:
+                      p=a.get('representasjonspunkt') or {}; ap=(float(p['lat']),float(p['lon']))
+                      exact.append({'data':a,'distance_to_church_m':round(hav(point,ap),1),'distance_from_legacy_m':round(hav(legacy,ap),1)})
+              lines.append(f'ADDRESS_QUERY {result["query"]} total={data.get("metadata",{}).get("totaltAntallTreff",0)} exact={len(exact)} results='+json.dumps(exact,ensure_ascii=False,sort_keys=True))
+          lines.append('bbox_relevant='+json.dumps(sorted(relevant,key=lambda x:x['distance_to_church_m']),ensure_ascii=False,sort_keys=True))
+          (out/'source-summary.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/probe-drobak-kirke.yml
+          git add reports/akershus-coordinate-drobak-kirke-source-probe
+          git commit -m "Materialize Drøbak kirke coordinate sources"
+          git push origin HEAD:agent/akershus-drobak-kirke-production
