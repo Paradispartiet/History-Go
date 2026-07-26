@@ -27,6 +27,8 @@ jobs:
       - name: Synchronize latest main
         shell: bash
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git merge --no-edit origin/main
 
@@ -118,8 +120,6 @@ jobs:
       - name: Commit final target branch
         shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Konsolider dokumentasjonen for Historiske ruter"
           git push origin HEAD:agent/documentation-governance-phase-20-historical-routes
