@@ -150,6 +150,18 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 
 Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Universell fagdekning og geografisk produksjonsdekning er separate mål.
 
+#### Historie V5.7, heldekning og kvalitetsfrys
+
+1. [`../data/fag/historie/historie_v5_contract.json`](../data/fag/historie/historie_v5_contract.json) — aktiv maskinkontrakt for Historie V5.7 og forventede kvalitetsmål
+2. [`HISTORY_UNIVERSAL_COVERAGE.md`](./HISTORY_UNIVERSAL_COVERAGE.md) — canonical menneskelesbar eier av universell Historie-dekning og operativ auditinngang
+3. [`../data/fag/historie/historie_universal_coverage_contract_v1.json`](../data/fag/historie/historie_universal_coverage_contract_v1.json) — maskinlesbar heldekningskontrakt
+4. [`../reports/historie-universal-coverage/historie-universal-coverage.json`](../reports/historie-universal-coverage/historie-universal-coverage.json) — materialisert status for universell heldekning
+5. [`../data/fag/historie/historie_v5_7_freeze_manifest.json`](../data/fag/historie/historie_v5_7_freeze_manifest.json) — aktivt frysemanifest for V5.7
+6. [`../reports/historie-v5/historie-v5-7-quality-depth.json`](../reports/historie-v5/historie-v5-7-quality-depth.json) — materialisert aktiv V5.7-kvalitetsaudit
+7. [`HISTORY_V5_5_FREEZE.md`](./HISTORY_V5_5_FREEZE.md) — historisk V5.5-kvalitetsbaseline; V5.6 er også historisk og ingen av dem eier aktiv modell
+
+V5.7 er den aktive universelle Historie-modellen og har grønn kvalitetsfrys. Universell heldekning er et separat mål og kan fortsatt være `INCOMPLETE`. V5.5- og V5.6-baselinene bevarer historisk sporbarhet, men kan ikke overstyre V5.7-kontrakten, heldekningspolicyen, V5.7-manifestet eller aktive rapporter.
+
 Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere kombinerte quiz-/lærings-/observations-/popup-README-en ligger i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
 ### AHA-lokal kvalitetsstatus
@@ -299,6 +311,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt
 - `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode
 - Historiske ruter-planen skilt fra implementert runtimeguide og byte-identisk pre-consolidation-arkiv
+- Historie V5.7, universell heldekning, V5.5/V5.6-baselines og aktiv kvalitetsfrys gitt tydelig autoritetsrekkefølge
 
 ### Neste
 
