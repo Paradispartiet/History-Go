@@ -2,7 +2,7 @@
 
 Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgradert etter den nye standarden i `PLACE_DESCRIPTION_CANONICAL.md`.
 
-Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifest.json`, ikke bare fra den opprinnelige mappen `data/places/by/oslo/places/`. Den gamle køen på 58 steder var derfor en delmengde, ikke hele Oslo.
+Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på tvers av fagmapper og filstrukturer. Den tidligere listen på 90 steder var en delkø, ikke hele Oslo.
 
 ## Bindende ferdigkrav
 
@@ -12,13 +12,12 @@ Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifes
 - Teksten skal være stedsspesifikk, faktabåret og kildegrunnlaget skal være inspiserbart.
 - Bare steder som er ferdig skrevet, validert og merget på `main` telles i den publiserte totalen.
 
-## Oslo-status etter denne PR-en
+## Oslo-status etter full scope-audit
 
-- Totalt i den aktive Oslo-køen: **90 steder**
-- Ferdig før denne batchen: **88 steder**
-- Denne batchen: **2 steder**
-- Ferdig etter merge av denne batchen: **90 steder**
-- Gjenstår etter merge: **0 steder**
+- Totalt aktive Oslo-steder: **512 steder**
+- Ferdige etter den tidligere 90-steders delkøen: **90 steder**
+- Gjenstår: **422 steder**
+- Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
 
@@ -120,7 +119,23 @@ Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifes
 
 ## Gjenstående Oslo-kø
 
-Ingen. Alle 90 aktive Oslo-steder er ferdige etter merge av denne PR-en.
+Det gjenstår **422 aktive Oslo-steder** utenfor den tidligere 90-steders delkøen. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+
+- natur: **74**
+- historie: **67**
+- naeringsliv: **47**
+- kunst: **40**
+- subkultur: **38**
+- sport: **29**
+- by: **28**
+- scenekunst: **24**
+- litteratur: **21**
+- vitenskap: **21**
+- politikk: **18**
+- media: **7**
+- musikk: **5**
+- film_tv: **2**
+- psykologi: **1**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -145,6 +160,7 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 7 | 10 | #4137 – første batch etter utvidelse til alle 90 aktive Oslo-steder |
 | Oslo V4 batch 8 | 10 | #4147 |
 | Oslo V4 batch 9 | 10 | #4149 |
-| Oslo V4 batch 10 | 2 | #4150 – fullfører alle 90 aktive Oslo-steder |
+| Oslo V4 batch 10 | 2 | #4150 – fullførte den tidligere 90-steders delkøen |
+| Oslo scope-audit V2 | 0 | #4156 – korrigerte aktiv Oslo-total til 512 steder; 422 gjenstår |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
