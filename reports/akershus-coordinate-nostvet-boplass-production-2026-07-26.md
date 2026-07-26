@@ -124,7 +124,7 @@ The information board is a useful physical visitor cross-check but is subordinat
 
 The radius is reduced from `220 m` to `120 m`.
 
-The official locality geometry extends at most approximately `87.2 m` from its published centre. The public information board lies approximately `43.9 m` from the same centre.
+The official locality geometry extends at most approximately `87.2 m` from its published centre. The public information board lies approximately `43.9 m` from the same centre. This leaves an approximately `32.8 m` gameplay buffer beyond the farthest recorded locality vertex.
 
 A 120-metre gameplay radius therefore covers:
 
