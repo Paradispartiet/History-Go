@@ -1,0 +1,138 @@
+name: One-time Oslo popup batch 11 writer
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-11-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Batch 11 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-11-by-ten
+          fetch-depth: 0
+
+      - name: Apply isolated desc and popupDesc patches
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const paths = {
+            frognerparken: 'data/places/by/oslo/frognerparken.json',
+            grorudparken: 'data/places/by/oslo/grorudparken.json',
+            kampen_park: 'data/places/by/oslo/kampen_park.json',
+            kirsebarlunden: 'data/places/by/oslo/kirsebarlunden.json',
+            egertorget: 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/egertorget.json',
+            grev_wedels_plass: 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json',
+            stortorget: 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json',
+            wessels_plass: 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json',
+            ostbanestasjonen: 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_04/ostbanestasjonen.json',
+            schiollgarden_prinsens_gate_26: 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02/schiollgarden_prinsens_gate_26.json'
+          };
+          const names = {
+            frognerparken: 'Frognerparken',
+            grorudparken: 'Grorudparken',
+            kampen_park: 'Kampen park',
+            kirsebarlunden: 'Kirsebærlunden',
+            egertorget: 'Egertorget',
+            grev_wedels_plass: 'Grev Wedels plass',
+            stortorget: 'Stortorget',
+            wessels_plass: 'Wessels plass',
+            ostbanestasjonen: 'Østbanestasjonen',
+            schiollgarden_prinsens_gate_26: 'Schiøllgården'
+          };
+          const patches = [
+            ...JSON.parse(fs.readFileSync('reports/oslo-popup-batch-11-part1.json', 'utf8')).places,
+            ...JSON.parse(fs.readFileSync('reports/oslo-popup-batch-11-part2.json', 'utf8')).places
+          ];
+          if (patches.length !== 10) throw new Error(`Expected 10 patches, got ${patches.length}`);
+          const wordCount = (value) => String(value).trim().split(/\s+/u).filter(Boolean).length;
+          const paragraphCount = (value) => String(value).split(/\n\n+/u).filter((part) => part.trim()).length;
+          const rows = [];
+          for (const [index, patch] of patches.entries()) {
+            const file = paths[patch.id];
+            if (!file) throw new Error(`Unknown place id ${patch.id}`);
+            const before = JSON.parse(fs.readFileSync(file, 'utf8'));
+            if (before.id !== patch.id) throw new Error(`ID mismatch in ${file}`);
+            const beforeComparable = structuredClone(before);
+            delete beforeComparable.desc;
+            delete beforeComparable.popupDesc;
+            const after = structuredClone(before);
+            after.desc = patch.desc;
+            after.popupDesc = patch.popupDesc;
+            const afterComparable = structuredClone(after);
+            delete afterComparable.desc;
+            delete afterComparable.popupDesc;
+            if (JSON.stringify(beforeComparable) !== JSON.stringify(afterComparable)) {
+              throw new Error(`Non-text fields changed for ${patch.id}`);
+            }
+            const descWords = wordCount(after.desc);
+            const popupWords = wordCount(after.popupDesc);
+            const paragraphs = paragraphCount(after.popupDesc);
+            if (descWords < 40 || descWords > 80) throw new Error(`${patch.id} desc words ${descWords}`);
+            if (popupWords < 300 || popupWords > 600) throw new Error(`${patch.id} popup words ${popupWords}`);
+            if (paragraphs !== 6) throw new Error(`${patch.id} paragraphs ${paragraphs}`);
+            fs.writeFileSync(file, `${JSON.stringify(after, null, 2)}\n`);
+            rows.push(`| ${91 + index} | ${names[patch.id]} | \`${patch.id}\` | ${descWords} | ${popupWords} | ${paragraphs} | #${process.env.PR_NUMBER} |`);
+          }
+
+          const auditToolPath = 'tools/audit-oslo-place-description-scope.mjs';
+          let auditTool = fs.readFileSync(auditToolPath, 'utf8');
+          auditTool = auditTool.replace('Ferdige etter den tidligere 90-steders delkøen', 'Ferdige etter alle mergede revisjonsbatcher');
+          fs.writeFileSync(auditToolPath, auditTool);
+
+          const protocolPath = 'reports/place-description-revision-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          if (!protocol.includes('| 91 | Frognerparken |')) {
+            protocol = protocol.replace('\n## Gjenstående Oslo-kø', `\n${rows.join('\n')}\n\n## Gjenstående Oslo-kø`);
+          }
+          const batchRow = `| Oslo V4 batch 11 | 10 | #${process.env.PR_NUMBER} – første produksjonsbatch fra full 512-steders scope |`;
+          if (!protocol.includes('| Oslo V4 batch 11 |')) {
+            protocol = protocol.replace(/(\| Oslo scope-audit V2 \|[^\n]+\|)/u, `$1\n${batchRow}`);
+          }
+          fs.writeFileSync(protocolPath, protocol);
+          NODE
+
+          node tools/audit-oslo-place-description-scope.mjs --write
+
+          node <<'NODE'
+          const fs = require('fs');
+          const audit = JSON.parse(fs.readFileSync('reports/oslo-place-description-scope-audit-2026-07-26.json', 'utf8'));
+          if (audit.activeOslo.uniqueIds !== 512) throw new Error(`Active Oslo total ${audit.activeOslo.uniqueIds}`);
+          if (audit.protocol.ids !== 100) throw new Error(`Protocol IDs ${audit.protocol.ids}`);
+          if (audit.comparison.additionalActiveOsloIds !== 412) throw new Error(`Remaining ${audit.comparison.additionalActiveOsloIds}`);
+          if (audit.quality.additionalNeedingRevision !== 412) throw new Error(`Needing revision ${audit.quality.additionalNeedingRevision}`);
+          NODE
+
+          git diff --check
+          git add \
+            data/places/by/oslo/frognerparken.json \
+            data/places/by/oslo/grorudparken.json \
+            data/places/by/oslo/kampen_park.json \
+            data/places/by/oslo/kirsebarlunden.json \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/egertorget.json \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_04/ostbanestasjonen.json \
+            data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02/schiollgarden_prinsens_gate_26.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.md \
+            reports/place-description-revision-protocol.md \
+            tools/audit-oslo-place-description-scope.mjs
+          test "$(git diff --cached --name-only | wc -l)" -eq 14
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Revise ten more Oslo place descriptions"
+          git push origin HEAD:agent/oslo-popup-v4-batch-11-by-ten
