@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fredrikstad_festning_gamlebyen",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/fredrikstad_festning_gamlebyen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_shared_fortress_and_old_town_heritage_anchor",
+  "currentCoordinate": {
+    "lat": 59.2034,
+    "lon": 10.9542,
+    "r": 420,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q5499573 – Fredrikstad festning; Kulturminne-ID 116956; Forsvarsbygg; Wikidata Q11971499 – Gamlebyen",
+    "coordType": "heritage_entity_coordinate_for_fortress_and_old_town",
+    "coordRole": "fortified_city_area_anchor",
+    "sourceObjectId": "wikidata:Q5499573;riksantikvaren-kulturminne:116956",
+    "coordNote": "The fortress and the old town share one coherent fortified-city anchor; the wider Glomma defence system remains separate context."
+  },
+  "previousCoordinate": {
+    "lat": 59.20444,
+    "lon": 10.95583,
+    "r": 420,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 148.3,
+    "reasonReplaced": "The legacy point lay approximately 148.3 metres northeast of the shared fortress and old-town heritage anchor."
+  },
+  "identity": {
+    "currentName": "Fredrikstad festning / Gamlebyen",
+    "resolvedIdentity": "The complete fortified town: defensive works and the living civilian settlement inside the ramparts, distinct from one information sign or the wider Glomma defence system.",
+    "identityStatus": "resolved",
+    "identityProblem": "The name combines the fortress as a complete defensive and urban complex with Gamlebyen as the civilian settlement inside it. Nearby information points and separate forts must not replace the shared fortified-city identity.",
+    "locatorTypeCandidate": "fortified_city",
+    "requiresSplit": false,
+    "splitReason": "Official and reference sources describe the fortress and Gamlebyen as two aspects of one coherent fortified city."
+  },
+  "requiredEvidence": [
+    "stable fortress heritage entity",
+    "independent old-town entity cross-check",
+    "official fortified-city identity",
+    "source defining fortress versus old-town scope",
+    "explicit rejection of information points",
+    "explicit separation from the wider defence system",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q5499573 – Fredrikstad Fortress",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q5499573",
+      "sourceObjectId": "wikidata:Q5499573",
+      "sourceQuality": "fortress_entity_coordinate_with_heritage_id",
+      "finding": "The fortress entity publishes 59.2034, 10.9542 and links Kulturminne ID 116956.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named fortress and heritage object."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q11971499 – Gamlebyen",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q11971499",
+      "sourceObjectId": "wikidata:Q11971499",
+      "sourceQuality": "independent_old_town_settlement_coordinate",
+      "finding": "The old-town entity publishes 59.20345, 10.9542, only approximately 5.6 metres from the applied fortress point.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the shared fortified-city anchor."
+    },
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – Fredrikstad festning",
+      "sourceUrl": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/fredrikstad-festning",
+      "sourceObjectId": "forsvarsbygg:fredrikstad-festning",
+      "sourceQuality": "official_fortified_city_identity",
+      "finding": "Forsvarsbygg identifies the site as Norway's only preserved fortified town, with civilian and military life integrated inside a complete bastion system.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms canonical identity and spatial concept."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Fredrikstad festning",
+      "sourceUrl": "https://snl.no/Fredrikstad_festning",
+      "sourceObjectId": "snl:fredrikstad-festning",
+      "sourceQuality": "scope_definition_fortress_and_old_town",
+      "finding": "The source defines the fortress as the complete defensive works and town fabric, while Gamlebyen is the civilian settlement inside the ramparts.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves why one shared anchor is appropriate."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "Fredrikstad information points",
+      "sourceUrl": "https://www.openstreetmap.org/",
+      "sourceObjectId": "osm-nodes:829118267,829117408",
+      "sourceQuality": "wrong_object_class_control",
+      "finding": "The same-name Fredrikstad Festning and Festningsbyen Fredrikstad points are information objects, not the fortified city itself.",
+      "canVerifyCoordinate": false,
+      "reason": "Explicitly rejected as canonical."
+    },
+    {
+      "sourceProvider": "fredrikstad_kommune",
+      "sourceName": "Fredrikstad kommune – Historien om Fredrikstad",
+      "sourceUrl": "https://www.fredrikstad.kommune.no/tjenester/politikk-og-administrasjon/ordfoereren/historien-om-fredrikstad/",
+      "sourceObjectId": "fredrikstad-kommune:defence-system",
+      "sourceQuality": "official_wider_defence_system_context",
+      "finding": "The wider defence system included Gamlebyen, Kongsten fort, Isegran, Huth and Akerøya.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that those separate sites must not be collapsed into the fortified-city point."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Fredrikstad fortified-city point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:fredrikstad_festning_gamlebyen",
+      "sourceQuality": "nearby_uncontracted_point",
+      "finding": "The legacy point lies approximately 148.3 metres northeast of the applied anchor.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced to use the identified fortress heritage entity."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q5499573",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q11971499",
+      "canApplyToPlace": false,
+      "rejectionReason": "Independent old-town cross-check only; fortress heritage entity is the applied coordinate source."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:829118267",
+      "canApplyToPlace": false,
+      "rejectionReason": "Tourism information sign."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:829117408",
+      "canApplyToPlace": false,
+      "rejectionReason": "Information point rather than the fortified city."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:116956",
+      "geometryType": "protected_fortified_city_not_captured",
+      "geometryRole": "legal_heritage_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "fredrikstad_fortified_city_core",
+      "name": "Fredrikstad fortress and old town core",
+      "lat": 59.2034,
+      "lon": 10.9542,
+      "r": 200,
+      "type": "fortified_city_area_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q5499573;riksantikvaren-kulturminne:116956",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:fredrikstad_festning_gamlebyen",
+      "lat": 59.20444,
+      "lon": 10.95583,
+      "coordRole": "nearby_uncontracted_point",
+      "distanceFromAppliedM": 148.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q5499573",
+      "lat": 59.2034,
+      "lon": 10.9542,
+      "coordRole": "fortified_city_area_anchor",
+      "distanceFromPreviousM": 148.3,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q11971499",
+      "lat": 59.20345,
+      "lon": 10.9542,
+      "coordRole": "old_town_cross_check",
+      "distanceFromAppliedM": 5.6,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-fredrikstad-festning-gamlebyen-source-probe/source-summary.json",
+      "description": "Persisted fortress and old-town entity coordinates, official identity, scope definition, false-candidate controls and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the shared fortified-city anchor and retained the 420-metre radius. Continue with Borgarsyssel museum / Olavsbyen."
+  },
+  "notes": [
+    "The coordinate moves approximately 148.3 metres.",
+    "The fortress and Gamlebyen entities agree within approximately 5.6 metres.",
+    "Information points and separate outer forts are explicitly excluded.",
+    "The radius is not the legal protection polygon or complete defence system."
+  ]
+}
