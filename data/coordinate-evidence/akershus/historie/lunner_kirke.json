@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "lunner_kirke",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch4/lunner_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_point",
+  "currentCoordinate": {
+    "lat": 60.30747,
+    "lon": 10.55713,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 557779765 – Lunner kirke; Lunner kirkelige fellesråd; Kulturminne-ID 84342",
+    "coordType": "named_medieval_church_building_point",
+    "coordRole": "building_anchor",
+    "sourceObjectId": "osm-way:557779765",
+    "coordNote": "The canonical marker follows the named medieval church building; the radius covers the churchyard and immediate pilgrimage landscape without representing a legal or route polygon."
+  },
+  "previousCoordinate": {
+    "lat": 60.2939,
+    "lon": 10.5866,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 2216.5,
+    "reasonReplaced": "The legacy point lay approximately 2.22 kilometres southeast of the named church building."
+  },
+  "identity": {
+    "currentName": "Lunner kirke",
+    "resolvedIdentity": "The medieval stone church at Kjørkevegen 125, later expanded with timber cross arms, distinct from Lunner kirkestue and nearby similarly named infrastructure.",
+    "identityStatus": "resolved",
+    "identityProblem": "The legacy point did not represent the church. Nearby separate objects include Lunner kirkestue and an electrical substation with a similar name.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The canonical record represents one coherent church building and its immediate churchyard context."
+  },
+  "requiredEvidence": [
+    "stable named church-building object",
+    "official visitor address",
+    "official church history",
+    "heritage identity cross-check",
+    "explicit rejection of nearby separate objects",
+    "radius limitation separating churchyard context from pilgrimage-route geometry"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 557779765 – Lunner kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/557779765",
+      "sourceObjectId": "osm-way:557779765",
+      "sourceQuality": "exact_named_church_building",
+      "finding": "The named church polygon is represented at approximately 60.30747, 10.55713 and is linked to Wikidata Q6514433.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named church building."
+    },
+    {
+      "sourceProvider": "church",
+      "sourceName": "Lunner kirkelige fellesråd – Våre kirker",
+      "sourceUrl": "https://www.kirken.lunner.no/Artikler/Artikkeldetaljer/ArticleId/110/Vare-kirker",
+      "sourceObjectId": "lunner-kirkelige-fellesrad:lunner-kirke",
+      "sourceQuality": "official_identity_and_visitor_address",
+      "finding": "The local church authority lists Lunner kirke at Kjørkevegen 125, 2730 Lunner.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms identity and access while the building object supplies the coordinate."
+    },
+    {
+      "sourceProvider": "church",
+      "sourceName": "Lunner kirkelige fellesråd – Lunner kirke historie",
+      "sourceUrl": "https://www.kirken.lunner.no/Portals/0/D_Filer/Lunner%20kirke%20historie.pdf",
+      "sourceObjectId": "lunner-kirkelige-fellesrad:lunner-kirke-historie",
+      "sourceQuality": "official_building_history",
+      "finding": "The church contains a small medieval stone church, probably from the middle of the twelfth century, later expanded in timber into a cross church.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the historical building identity."
+    },
+    {
+      "sourceProvider": "riksantikvaren_cross_check",
+      "sourceName": "Kulturminne ID 84342 – Lunner kirke",
+      "sourceUrl": "https://www.kulturminnesok.no/minne/?queryString=https://data.kulturminne.no/askeladden/lokalitet/84342",
+      "sourceObjectId": "riksantikvaren-kulturminne:84342",
+      "sourceQuality": "heritage_identity_cross_check",
+      "finding": "Kulturminne ID 84342 identifies Lunner kirke as the historic church object.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as independent heritage identity confirmation."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "Nearby separate objects",
+      "sourceUrl": "https://www.openstreetmap.org/",
+      "sourceObjectId": "osm-nodes:5379128398,10992715759",
+      "sourceQuality": "false_or_separate_candidate_control",
+      "finding": "Lunner kirkestue is a separate building, while the similarly named node 10992715759 is an electrical substation.",
+      "canVerifyCoordinate": false,
+      "reason": "Neither object can replace the medieval church anchor."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Lunner kirke point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:lunner_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate 60.2939, 10.5866 lies approximately 2,216.5 metres southeast of the church.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the church or churchyard."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "church",
+      "address": {
+        "street": "Kjørkevegen",
+        "number": "125",
+        "postcode": "2730",
+        "city": "Lunner",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.kirken.lunner.no/Artikler/Artikkeldetaljer/ArticleId/110/Vare-kirker",
+      "sourceObjectId": "lunner-kirkelige-fellesrad:lunner-kirke",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557779765",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:5379128398",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate kirkestue building."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:10992715759",
+      "canApplyToPlace": false,
+      "rejectionReason": "Electrical substation with a similar name."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557779765",
+      "geometryType": "Polygon",
+      "geometryRole": "named_medieval_church_building",
+      "canApplyToPlace": true,
+      "applied": true,
+      "rawGeometryCaptured": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "lunner_kirke_medieval_building",
+      "name": "Lunner kirke – middelalderbygningen",
+      "lat": 60.30747,
+      "lon": 10.55713,
+      "r": 90,
+      "type": "building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557779765",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:lunner_kirke",
+      "lat": 60.2939,
+      "lon": 10.5866,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 2216.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:557779765",
+      "lat": 60.30747,
+      "lon": 10.55713,
+      "coordRole": "building_anchor",
+      "distanceFromPreviousM": 2216.5,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-lunner-kirke-source-probe/source-summary.json",
+      "description": "Persisted building, address, history, heritage, false-candidate and distance findings."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Lunner kirke building point and retained the 260-metre radius. Continue with Nesodden kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 2.22 kilometres to the named church building.",
+    "The radius covers the immediate churchyard and pilgrimage context but not the pilgrimage route itself.",
+    "Nearby kirkestue and electrical substation objects are explicitly excluded."
+  ]
+}
