@@ -241,7 +241,7 @@ if (WRITE) {
   const scopeParagraph = 'Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på tvers av fagmapper og filstrukturer. Den tidligere listen på 90 steder var en delkø, ikke hele Oslo.';
   protocol = protocol.replace(/^Oslo-omfanget skal telles[^\n]*$/mu, scopeParagraph);
 
-  const statusBlock = `## Oslo-status etter full scope-audit\n\n- Totalt aktive Oslo-steder: **${activeIds.length} steder**\n- Ferdige etter den tidligere 90-steders delkøen: **${protocolIds.size} steder**\n- Gjenstår: **${additional.length} steder**\n- Full restkø og ordtelling: \`${REPORT_MD}\`\n`;
+  const statusBlock = `## Oslo-status etter full scope-audit\n\n- Totalt aktive Oslo-steder: **${activeIds.length} steder**\n- Ferdige etter alle mergede revisjonsbatcher: **${protocolIds.size} steder**\n- Gjenstår: **${additional.length} steder**\n- Full restkø og ordtelling: \`${REPORT_MD}\`\n`;
   protocol = protocol.replace(/## Oslo-status etter denne PR-en[\s\S]*?(?=## Ferdige steder)/u, `${statusBlock}\n`);
 
   const remainingLines = Object.entries(groupCounts)

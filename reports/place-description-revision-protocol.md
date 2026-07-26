@@ -117,9 +117,20 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 89 | St. Hallvard kirke og kloster | `st_hallvard_kirke_kloster` | 52 | 301 | 6 | #4150 |
 | 90 | Gamle rådhus | `gamle_radhus` | 50 | 300 | 6 | #4150 |
 
+| 91 | Frognerparken | `frognerparken` | 44 | 302 | 6 | #4167 |
+| 92 | Grorudparken | `grorudparken` | 45 | 313 | 6 | #4167 |
+| 93 | Kampen park | `kampen_park` | 45 | 311 | 6 | #4167 |
+| 94 | Kirsebærlunden | `kirsebarlunden` | 40 | 303 | 6 | #4167 |
+| 95 | Egertorget | `egertorget` | 43 | 301 | 6 | #4167 |
+| 96 | Grev Wedels plass | `grev_wedels_plass` | 42 | 302 | 6 | #4167 |
+| 97 | Stortorget | `stortorget` | 43 | 302 | 6 | #4167 |
+| 98 | Wessels plass | `wessels_plass` | 44 | 312 | 6 | #4167 |
+| 99 | Østbanestasjonen | `ostbanestasjonen` | 41 | 329 | 6 | #4167 |
+| 100 | Schiøllgården | `schiollgarden_prinsens_gate_26` | 42 | 309 | 6 | #4167 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **422 aktive Oslo-steder** utenfor den tidligere 90-steders delkøen. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **412 aktive Oslo-steder** utenfor den tidligere 90-steders delkøen. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - historie: **67**
@@ -127,10 +138,10 @@ Det gjenstår **422 aktive Oslo-steder** utenfor den tidligere 90-steders delkø
 - kunst: **40**
 - subkultur: **38**
 - sport: **29**
-- by: **28**
 - scenekunst: **24**
 - litteratur: **21**
 - vitenskap: **21**
+- by: **18**
 - politikk: **18**
 - media: **7**
 - musikk: **5**
@@ -162,5 +173,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 9 | 10 | #4149 |
 | Oslo V4 batch 10 | 2 | #4150 – fullførte den tidligere 90-steders delkøen |
 | Oslo scope-audit V2 | 0 | #4156 – korrigerte aktiv Oslo-total til 512 steder; 422 gjenstår |
+| Oslo V4 batch 11 | 10 | #4167 – første produksjonsbatch fra full 512-steders scope |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.

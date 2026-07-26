@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **90**
-- Additional active Oslo IDs outside the protocol: **422**
+- IDs in the current revision protocol: **100**
+- Additional active Oslo IDs outside the protocol: **412**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **422**
+- Additional IDs needing revision: **412**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -20,10 +20,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | kunst | 40 |
 | subkultur | 38 |
 | sport | 29 |
-| by | 28 |
 | scenekunst | 24 |
 | litteratur | 21 |
 | vitenskap | 21 |
+| by | 18 |
 | politikk | 18 |
 | media | 7 |
 | musikk | 5 |
@@ -34,16 +34,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| by | Frognerparken | `frognerparken` | 18 | 89 | 2 | `data/places/by/oslo/frognerparken.json` | needs revision |
-| by | Grorudparken | `grorudparken` | 18 | 53 | 1 | `data/places/by/oslo/grorudparken.json` | needs revision |
-| by | Kampen park | `kampen_park` | 21 | 80 | 2 | `data/places/by/oslo/kampen_park.json` | needs revision |
-| by | Kirsebærlunden | `kirsebarlunden` | 20 | 91 | 2 | `data/places/by/oslo/kirsebarlunden.json` | needs revision |
-| by | Egertorget | `egertorget` | 22 | 97 | 2 | `data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/egertorget.json` | needs revision |
-| by | Grev Wedels plass | `grev_wedels_plass` | 20 | 111 | 2 | `data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json` | needs revision |
-| by | Stortorget | `stortorget` | 19 | 94 | 2 | `data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json` | needs revision |
-| by | Wessels plass | `wessels_plass` | 18 | 95 | 2 | `data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/wessels_plass.json` | needs revision |
-| by | Østbanestasjonen | `ostbanestasjonen` | 19 | 102 | 2 | `data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_04/ostbanestasjonen.json` | needs revision |
-| by | Schiøllgården | `schiollgarden_prinsens_gate_26` | 24 | 133 | 2 | `data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02/schiollgarden_prinsens_gate_26.json` | needs revision |
 | by | Akrobaten gangbro | `akrobaten_gangbro` | 45 | 166 | 3 | `data/places/by/oslo/places/akrobaten_gangbro.json` | needs revision |
 | by | Fagerborg kirke | `fagerborg_kirke` | 31 | 121 | 2 | `data/places/by/oslo/places/fagerborg_kirke.json` | needs revision |
 | by | Frogner kirke | `frogner_kirke` | 38 | 130 | 2 | `data/places/by/oslo/places/frogner_kirke.json` | needs revision |
