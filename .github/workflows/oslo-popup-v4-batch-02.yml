@@ -1,0 +1,66 @@
+name: Apply Oslo popupDesc V4 batch 02
+
+on:
+  push:
+    branches:
+      - agent/oslo-popup-v4-batch-02-ten-protocol
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-02-ten-protocol
+          fetch-depth: 0
+
+      - name: Apply ten revisions and protocol
+        shell: bash
+        run: |
+          cat .tmp/oslo-popup-v4-batch-02/payload-*.txt | base64 -d | gunzip > /tmp/apply-oslo.js
+          node /tmp/apply-oslo.js
+
+      - name: Verify and remove temporary files
+        shell: bash
+        run: |
+          rm -rf .tmp/oslo-popup-v4-batch-02
+          rm .github/workflows/oslo-popup-v4-batch-02.yml
+          node -e "for (const f of process.argv.slice(1)) JSON.parse(require('fs').readFileSync(f, 'utf8'))" \
+            data/places/by/oslo/places/gronland_basarene.json \
+            data/places/by/oslo/places/karl_johan.json \
+            data/places/by/oslo/places/radhusplassen.json \
+            data/places/by/oslo/places/tigeren.json \
+            data/places/by/oslo/places/toyen_torg.json \
+            data/places/by/oslo/places/oslo_s.json \
+            data/places/by/oslo/places/jernbanetorget.json \
+            data/places/by/oslo/places/aker_brygge.json \
+            data/places/by/oslo/places/vulkan_energisentral.json \
+            data/places/by/oslo/places/oslo_bussterminal.json
+          git diff --check
+          git status --short
+
+      - name: Commit production files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A \
+            data/places/by/oslo/places/gronland_basarene.json \
+            data/places/by/oslo/places/karl_johan.json \
+            data/places/by/oslo/places/radhusplassen.json \
+            data/places/by/oslo/places/tigeren.json \
+            data/places/by/oslo/places/toyen_torg.json \
+            data/places/by/oslo/places/oslo_s.json \
+            data/places/by/oslo/places/jernbanetorget.json \
+            data/places/by/oslo/places/aker_brygge.json \
+            data/places/by/oslo/places/vulkan_energisentral.json \
+            data/places/by/oslo/places/oslo_bussterminal.json \
+            reports/place-description-revision-protocol.md \
+            .github/workflows/oslo-popup-v4-batch-02.yml \
+            .tmp/oslo-popup-v4-batch-02
+          git commit -m "Revider neste ti Oslo-steder og start protokoll"
+          git push origin HEAD:agent/oslo-popup-v4-batch-02-ten-protocol
