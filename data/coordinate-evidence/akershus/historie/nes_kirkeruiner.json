@@ -2,75 +2,307 @@
   "schemaVersion": "1.0",
   "placeId": "nes_kirkeruiner",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/nes_kirkeruiner.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_ruin_geometry_source",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_ruin_individual_80265_1_polygon_centroid",
   "currentCoordinate": {
+    "lat": 60.14900935187079,
+    "lon": 11.456782263453258,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Riksantikvaren/Kulturminnesøk – Nes kirkeruin, enkeltminne 80265-1",
+    "coordType": "official_medieval_church_ruin_polygon_centroid",
+    "coordRole": "display_marker",
+    "sourceObjectId": "kulturminnesok:80265-1",
+    "coordNote": "Canonical følger selve ruinmuren, ikke den navngitte vegadressen eller den bredere kirkestedslokaliteten. Riksantikvaren- og OSM-centroidene skiller bare 4,1 meter."
+  },
+  "previousCoordinate": {
     "lat": 60.14899,
     "lon": 11.45676,
     "r": 220,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 2.5,
+    "reasonReplaced": "Legacy-punktet lå allerede ved ruinmurene, men manglet kildekontrakt. Radiusen var betydelig større enn nødvendig for ruin- og kirkestedskomplekset."
   },
   "identity": {
     "currentName": "Nes kirkeruiner",
-    "resolvedIdentity": "Nes kirkeruin at the confluence of Glomma and Vorma, accessed via Ullershovvegen 8",
+    "resolvedIdentity": "Riksantikvaren-enkeltminne 80265-1, ruinmurene etter middelalderkirken på odden mellom Glomma og Vorma",
     "identityStatus": "resolved",
-    "identityProblem": "The published address may describe access through Ullershov rather than the semantic centre of the ruin complex.",
+    "identityProblem": "Navnet brukes om selve ruinmurene, den bredere kirkestedslokaliteten, kirkegårds- og gravmiljøet og besøksadressen. Canonical skal representere ruinmurene fysisk, mens radiusen dekker det nærmeste kirkestedskomplekset.",
     "locatorTypeCandidate": "ruin",
     "requiresSplit": false,
-    "splitReason": "The record represents the coherent church-ruin complex."
+    "splitReason": "Ruinmurene og det nære kirkestedet formidles som ett sted. De øvrige 13 enkeltminnene i lokaliteten er kontekst og trenger ikke egne canonical steder i denne posten."
   },
   "requiredEvidence": [
-    "exact Geonorge address object for Ullershovvegen 8",
-    "named ruin geometry or official heritage object",
-    "representation policy choosing ruin geometry over road-access proxy"
+    "exact named ruin individual geometry",
+    "broader official church-site locality geometry",
+    "raw named OSM wall geometry and deterministic centroid",
+    "current exact named address object",
+    "explicit policy choosing ruin geometry over address and parking proxies",
+    "radius justification covering the wider locality without claiming a protection polygon"
   ],
   "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren OGC API – Nes kirkeruin 80265-1",
+      "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner",
+      "sourceObjectId": "riksantikvaren-enkeltminne:80265-1",
+      "sourceQuality": "official_named_ruin_wall_geometry",
+      "finding": "Enkeltminne 80265-1 er navngitt Nes kirkeruin, kategorisert som ruin og automatisk fredet. MultiPolygon-geometrien har 17 koordinatpunkter, polygoncentroid 60.14900935187079, 11.456782263453258 og maksimal utstrekning omtrent 19,1 meter fra centroiden.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir den eksakte fysiske ruinmuren canonical skal representere."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren OGC API – Nes kirkested locality 80265",
+      "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner",
+      "sourceObjectId": "riksantikvaren-lokalitet:80265",
+      "sourceQuality": "official_broader_medieval_church_site_geometry_and_history",
+      "finding": "Lokalitet 80265 omfatter 14 enkeltminner, har offisielt senter 60.14917722724928, 11.456568155405392 og maksimal geometrisk utstrekning omtrent 84,6 meter fra senteret. Registreringen dokumenterer kirkestedets romanske utgangspunkt, middelalderutvidelser, korskirke fra 1697, brann i 1854, rasfare og ny kirke i 1859–1860.",
+      "canVerifyCoordinate": true,
+      "reason": "Begrunner radiusen og den historiske identiteten, men lokalitetssenteret erstatter ikke ruinmurens mer presise displaymarkør."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 134163878 – Nes kirkeruiner",
+      "sourceUrl": "https://www.openstreetmap.org/way/134163878",
+      "sourceObjectId": "osm-way:134163878",
+      "sourceQuality": "named_physical_ruin_wall_polygon",
+      "finding": "Way 134163878 er navngitt Nes kirkeruiner og tagget historic=ruins og barrier=wall. Den lukkede 22-nodepolygonen har centroid 60.14904632694334, 11.456784132261165 og maksimal vertexavstand omtrent 19,3 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir en uavhengig fysisk vegggeometri bare 4,1 meter fra Riksantikvarens ruincentroid."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Nes Kirkeruin, Ullershovvegen 160",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3228:6260:160",
+      "sourceQuality": "official_named_visitor_address_object",
+      "finding": "Kartverket returnerer et navngitt objekt «Nes Kirkeruin, Ullershovvegen 160», postnummer 2160, matrikkel 3228-83/8 og representasjonspunkt 60.14918881792084, 11.457801927739348. Punktet ligger omtrent 59,9 meter fra ruincentroiden.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter dagens besøksadresse og eiendomsidentitet, men avstanden viser at adressepunktet ikke skal brukes som ruinens displaymarkør."
+    },
     {
       "sourceProvider": "museum",
       "sourceName": "MiA / Nes samlinger – Finn oss",
       "sourceUrl": "https://mia.no/nes/finn-oss",
       "sourceObjectId": "mia-nes:nes-kirkeruin:ullershovvegen-8",
-      "sourceQuality": "official_visitor_address_and_identity",
-      "finding": "MiA lists Nes kirkeruin at Ullershovvegen 8, 2160 Vormsund and describes access restrictions on the road to the ruin.",
+      "sourceQuality": "official_visitor_identity_with_legacy_address_reference",
+      "finding": "MiA identifiserer Nes kirkeruin og oppgir Ullershovvegen 8. Kartverkets oppdaterte register viser at dette er matrikkelens bruksnummer, mens dagens navngitte vegadresse er Ullershovvegen 160.",
       "canVerifyCoordinate": false,
-      "reason": "The address resolves visitor access, but not yet an exact address point or the ruin's physical geometry."
+      "reason": "Bekrefter institusjons- og besøksidentiteten, men den eldre adresseformen må ikke tolkes som husnummer eller ruincentroid."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Nominatim – Nes kirkeruiner",
+      "sourceUrl": "https://www.openstreetmap.org/way/134163878",
+      "sourceObjectId": "nominatim:osm-way-134163878",
+      "sourceQuality": "named_ruin_object_point_cross_check",
+      "finding": "Nominatim løser den samme ruinwayen til 60.1490283, 11.4567969, omtrent 2,3 meter fra Riksantikvarens ruincentroid.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter objektidentiteten, men brukes ikke foran rå ruin- og kulturminnegeometri."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap parking and information objects",
+      "sourceUrl": "https://www.openstreetmap.org/way/134163876",
+      "sourceObjectId": "osm-way:134163876;information-nodes:4812148680,10148318024",
+      "sourceQuality": "visitor_access_and_interpretation_cross_check",
+      "finding": "Parkeringsplassen ligger omtrent 77 meter fra legacy-punktet, og informasjonstavlene omtrent 93–96 meter unna. Objektene ligger innenfor 120-meters gameplay-radius, men er ikke ruinmarkører.",
+      "canVerifyCoordinate": false,
+      "reason": "Begrunner besøksdekningen og avviser adkomstobjekter som canonical."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Nes kirkeruiner point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:nes_kirkeruiner",
+      "sourceQuality": "near_correct_uncontracted_ruin_point",
+      "finding": "Legacy-koordinaten 60.14899, 11.45676 ligger omtrent 2,5 meter fra Riksantikvarens ruincentroid og hadde radius 220 meter uten kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes med den deterministiske ruincentroiden og en mer presis radius."
     }
   ],
   "addressCandidates": [
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_address",
       "address": {
         "street": "Ullershovvegen",
-        "number": "8",
+        "number": "160",
         "postcode": "2160",
         "city": "Vormsund",
         "country": "NO"
       },
-      "sourceUrl": "https://mia.no/nes/finn-oss",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3228:6260:160",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:80265-1",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:80265",
+      "canApplyToPlace": false,
+      "rejectionReason": "Broader 14-object church-site locality; retained for context and radius rather than the physical wall display marker."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:134163878",
+      "canApplyToPlace": false,
+      "rejectionReason": "Excellent independent physical geometry, but Riksantikvaren provides the authoritative protected ruin identity."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3228:6260:160",
+      "canApplyToPlace": false,
+      "rejectionReason": "Named visitor address approximately 59.9 metres from the ruin walls."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nes_kirkeruiner",
       "canApplyToPlace": false
     }
   ],
-  "sourceObjectCandidates": [],
-  "geometryCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:80265-1",
+      "geometryType": "MultiPolygon",
+      "geometryRole": "named_medieval_church_ruin_walls",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:80265",
+      "geometryType": "MultiPolygon",
+      "geometryRole": "broader_church_site_and_grave_complex",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:134163878",
+      "geometryType": "Polygon",
+      "geometryRole": "named_physical_ruin_wall_cross_check",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "nes_kirkeruin_80265_1",
+      "name": "Nes kirkeruin – Askeladden 80265-1",
+      "lat": 60.14900935187079,
+      "lon": 11.456782263453258,
+      "r": 90,
+      "type": "unlock_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:80265-1",
+      "canApplyToPlace": true
+    }
+  ],
   "coordinateCandidates": [
     {
       "sourceProvider": "legacy_dataset",
       "sourceObjectId": "legacy:nes_kirkeruiner",
       "lat": 60.14899,
       "lon": 11.45676,
-      "coordRole": "unverified_ruin_anchor",
+      "coordRole": "near_correct_uncontracted_ruin_point",
+      "distanceFromAppliedM": 2.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:80265-1",
+      "lat": 60.14900935187079,
+      "lon": 11.456782263453258,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 2.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:134163878",
+      "lat": 60.14904632694334,
+      "lon": 11.456784132261165,
+      "coordRole": "physical_ruin_wall_centroid_cross_check",
+      "distanceFromAppliedM": 4.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-way-134163878",
+      "lat": 60.1490283,
+      "lon": 11.4567969,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 2.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:80265",
+      "lat": 60.14917722724928,
+      "lon": 11.456568155405392,
+      "coordRole": "broader_church_site_center",
+      "distanceFromAppliedM": 22.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3228:6260:160",
+      "lat": 60.14918881792084,
+      "lon": 11.457801927739348,
+      "coordRole": "visitor_address_cross_check",
+      "distanceFromAppliedM": 59.9,
       "canApplyToPlace": false
     }
   ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-nes-kirkeruiner-source-probe/riksantikvaren-enkeltminner-exact-80265-1.json",
+      "description": "Exact Riksantikvaren individual monument 80265-1 ruin-wall geometry and metadata."
+    },
+    {
+      "path": "reports/akershus-coordinate-nes-kirkeruiner-source-probe/riksantikvaren-lokaliteter-exact-80265.json",
+      "description": "Exact broader Riksantikvaren church-site locality 80265 geometry and history."
+    },
+    {
+      "path": "reports/akershus-coordinate-nes-kirkeruiner-source-probe/osm-way-134163878-full.xml",
+      "description": "Raw OpenStreetMap full-node geometry for the named ruin-wall way."
+    },
+    {
+      "path": "reports/akershus-coordinate-nes-kirkeruiner-source-probe/geonorge-nes-kirkeruin-ullershovvegen-160.json",
+      "description": "Exact Kartverket named address object for Nes Kirkeruin."
+    },
+    {
+      "path": "reports/akershus-coordinate-nes-kirkeruiner-source-probe/nominatim-nes-kirkeruiner.json",
+      "description": "Raw Nominatim result for the named ruin way."
+    },
+    {
+      "path": "reports/akershus-coordinate-nes-kirkeruiner-source-probe/osm-nes-kirkeruiner-bbox.xml",
+      "description": "Raw local OSM extract covering ruin walls, graves, parking, interpretation objects and clock tower."
+    },
+    {
+      "path": "reports/akershus-coordinate-nes-kirkeruiner-source-probe/exact-summary.txt",
+      "description": "Deterministic ruin-centroid, locality-extent, address-distance and OSM cross-check summary."
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Official address is known, but exact address-object and ruin geometry are not captured.",
-    "nextAction": "Run address-first lookup for Ullershovvegen 8, then compare it with a named ruin geometry before selecting the display marker."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the Riksantikvaren 80265-1 ruin-wall centroid and current Ullershovvegen 160 address. Continue with Blaker skanse."
   },
   "notes": [
-    "Do not automatically treat a farm-gate or road-access address as the centre of the medieval ruin."
+    "The address is a valid named visitor address but remains approximately 59.9 metres from the ruin walls.",
+    "The broader locality contains 14 individual monuments and informs the radius, while the ruin individual supplies the display marker.",
+    "A 120-metre radius safely covers the broader locality even under the conservative 84.6 + 22.1 metre extent bound, leaving at least 13.3 metres of buffer.",
+    "The radius is not a legal protection, security-zone, property, graveyard or erosion-risk polygon.",
+    "The coordinate correction is approximately 2.5 metres and the radius decreases from 220 to 120 metres."
   ]
 }
