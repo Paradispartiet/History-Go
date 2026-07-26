@@ -1,11 +1,6 @@
 name: One-time inspect okonomi emne revision
 
 on:
-  push:
-    branches:
-      - agent/okonomi-naeringsliv-emne-revision-stage
-    paths:
-      - '.github/workflows/one-time-inspect-okonomi-emne-revision.yml'
   pull_request:
     branches:
       - main
@@ -33,14 +28,30 @@ jobs:
       - name: Decode and inspect package
         shell: bash
         run: |
-          set -euo pipefail
+          set +e
+          set -uo pipefail
           mkdir -p /tmp/okonomi-revision .tmp/okonomi-revision
-          cat .tmp/okonomi-revision/part-* > /tmp/okonomi-revision.b64
-          base64 --decode /tmp/okonomi-revision.b64 > /tmp/okonomi-revision.tgz
+          cat .tmp/okonomi-revision/part-[0-9][0-9] > /tmp/okonomi-revision.b64
+          base64 --decode /tmp/okonomi-revision.b64 > /tmp/okonomi-revision.tgz 2> .tmp/okonomi-revision/base64-error.txt
+          base64_status=$?
           sha256sum /tmp/okonomi-revision.b64 /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/checksums.txt
-          tar -tzf /tmp/okonomi-revision.tgz | sort > .tmp/okonomi-revision/archive-manifest.txt
-          tar -xzf /tmp/okonomi-revision.tgz -C /tmp/okonomi-revision
+          wc -c .tmp/okonomi-revision/part-[0-9][0-9] /tmp/okonomi-revision.b64 /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/sizes.txt
+          tar -tzf /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/archive-manifest.txt 2> .tmp/okonomi-revision/tar-list-error.txt
+          tar_list_status=$?
+          tar -xzf /tmp/okonomi-revision.tgz -C /tmp/okonomi-revision 2> .tmp/okonomi-revision/tar-extract-error.txt
+          extract_status=$?
           find /tmp/okonomi-revision -type f -printf '%P\n' | sort > .tmp/okonomi-revision/extracted-files.txt
+          {
+            echo "base64_status=$base64_status"
+            echo "tar_list_status=$tar_list_status"
+            echo "extract_status=$extract_status"
+            echo "part_count=$(find .tmp/okonomi-revision -maxdepth 1 -type f -name 'part-[0-9][0-9]' | wc -l)"
+          } > .tmp/okonomi-revision/diagnostics.txt
+          cat .tmp/okonomi-revision/diagnostics.txt
+          cat .tmp/okonomi-revision/base64-error.txt
+          cat .tmp/okonomi-revision/tar-list-error.txt
+          cat .tmp/okonomi-revision/tar-extract-error.txt
+          exit 0
 
       - name: Commit inspection result
         shell: bash
@@ -48,6 +59,13 @@ jobs:
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .tmp/okonomi-revision/checksums.txt .tmp/okonomi-revision/archive-manifest.txt .tmp/okonomi-revision/extracted-files.txt
-          git commit -m 'TEMP: inspiser økonomiemnerevisjonspakke'
+          git add .tmp/okonomi-revision/checksums.txt \
+            .tmp/okonomi-revision/sizes.txt \
+            .tmp/okonomi-revision/diagnostics.txt \
+            .tmp/okonomi-revision/base64-error.txt \
+            .tmp/okonomi-revision/tar-list-error.txt \
+            .tmp/okonomi-revision/tar-extract-error.txt \
+            .tmp/okonomi-revision/archive-manifest.txt \
+            .tmp/okonomi-revision/extracted-files.txt
+          git commit -m 'TEMP: diagnostiser økonomiemnerevisjonspakke'
           git push origin HEAD:agent/okonomi-naeringsliv-emne-revision-stage
