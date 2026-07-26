@@ -1,6 +1,13 @@
-# People of Places – metode og kvalitetsstandard
+# People of Places — metode og kvalitetsstandard
 
-Denne filen er den autoritative arbeidsmetoden for å knytte personer til steder i History Go.
+Status: **canonical redaksjonell metode for person–sted-koblinger**  
+People-manifest: [`../data/people/manifest.json`](../data/people/manifest.json)  
+Data-/manifestkontrakt: [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md)  
+Audit: [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts)  
+Blokkerende gate: [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts)  
+Sist kontrollert: **2026-07-26**
+
+Dette dokumentet eier den redaksjonelle arbeidsmetoden for å knytte personer til konkrete History GO-steder. Canonical people-filer eier dataene, manifestet eier aktiveringen, auditene eier maskinkontrollen, og Civication-builderen eier den avledede History People-indeksen.
 
 ## Formål
 
@@ -8,11 +15,26 @@ People of Places skal bygge et relevant persongalleri rundt hvert sted. Arbeidet
 
 Hver kobling skal hjelpe brukeren å forstå hvem som skapte, bygget, drev, brukte, bodde på, arbeidet ved, opptrådte på, forsket ved, organiserte rundt eller på annen måte formet det konkrete stedet.
 
-## Hovedregel
+## Målregel og faktisk CI-gate
 
-Alle canonical steder som omfattes av gjeldende dekningsgate skal ha minst én gyldig People-kobling. Natursteder kan føres i en separat gate når prosjektet bestemmer det.
+### Canonical redaksjonell målregel
 
-Dekning er underordnet relevans. En svak personkobling skal ikke brukes for å lukke et hull.
+Alle canonical steder som omfattes av en vedtatt People of Places-dekningsrunde skal ha minst ett relevant personanker. Natursteder eller andre særgrupper kan føres i egne dekningsrunder når dette er eksplisitt besluttet.
+
+Dekning er underordnet relevans. En svak personkobling skal aldri brukes bare for å lukke et hull.
+
+### Dagens maskinhåndheving
+
+`npm run audit:people-of-places` bygger statusrapporten og blokkerer per nå:
+
+- dupliserte people-ID-er;
+- ugyldige place-referanser;
+- personer uten gyldig primæranker;
+- personer med tomt `places`-array.
+
+Auditen rapporterer også schemaavvik, svake `places`-strukturer, manglende bilder, geografisk filstruktur og anbefalt neste batch.
+
+Dagens gate beregner ikke full place-for-place-dekning og kan ikke avgjøre om en kobling er historisk relevant eller kildebelagt. Full dekningsstatus og relevans må derfor dokumenteres i batchen til en egen coverage-gate er implementert.
 
 ## Prioritering av personer
 
@@ -50,21 +72,23 @@ Før ny record opprettes skal det søkes etter:
 - fullt navn;
 - navnevarianter og alternative skrivemåter;
 - forekomster i både aggregate-filer og enkeltfiler;
-- eksisterende `placeId` og `places`;
+- eksisterende `placeId`, `source_place_id` og `places`;
 - unlistede eller eldre People-filer som kan inneholde en record som må migreres i stedet for dupliseres.
 
 ## Primæranker og sekundære steder
 
-`placeId` er personens primære anker og skal uttrykke den sterkeste eller mest etablerte canonical stedstilknytningen i datasettet.
+For standard people-schema er `placeId` personens primære anker og skal uttrykke den sterkeste eller mest etablerte canonical stedstilknytningen i datasettet.
+
+Enkelte eksisterende datasett bruker særskilte schemaer, særlig `source_place_id` i næringsliv og `collectionGroup` for filantroper. Disse skal ikke normaliseres lokalt uten en eksplisitt schema-/migreringsendring. Auditen kjenner disse avvikene og rapporterer uventet blanding.
 
 Når en eksisterende person gjenbrukes:
 
-- behold korrekt eksisterende `placeId`;
-- legg det nye stedet til i `places`;
+- behold korrekt eksisterende primæranker;
+- legg det nye stedet til i `places` der standard-schemaet bruker dette feltet;
 - oppdater beskrivelse, tags og kilder bare når den nye koblingen trenger dokumentasjon;
 - ikke flytt primærankeret uten en egen faglig vurdering.
 
-Når en ny person opprettes for et sted, skal det aktuelle stedet normalt være både `placeId` og første verdi i `places`.
+Når en ny standard-record opprettes for et sted, skal det aktuelle stedet normalt være både `placeId` og første verdi i `places`.
 
 ## Dokumentasjonskrav
 
@@ -88,19 +112,21 @@ Kildene skal så langt som mulig prioriteres slik:
 
 Kildene skal underbygge selve stedskoblingen, ikke bare personens generelle biografi.
 
+Når people-schemaet har `source_urls`, skal disse lagre kildene. Dersom et aktivt legacy-schema mangler dette feltet, skal batchen fortsatt dokumentere kildene i PR-/researchmaterialet og ikke finne på et lokalt konkurrerende schema.
+
 ## Kollektive miljøankre
 
 Kollektive miljøankre kan brukes når miljøet faktisk er det historiske subjektet, for eksempel et dokumentert kunstnerkollektiv, en organisert scene, et aktivistmiljø eller et publikumsmiljø som har formet stedet.
 
 De skal ikke brukes som en bekvem erstatning når en navngitt grunnlegger, skaper, leder eller annen sentral person kan dokumenteres.
 
-Før et kollektiv opprettes skal det derfor undersøkes om stedet kan representeres bedre av én eller flere faktiske personer.
+Før et kollektiv opprettes skal det undersøkes om stedet kan representeres bedre av én eller flere faktiske personer.
 
 ## Ugyldige eller svake koblinger
 
 Følgende skal ikke brukes alene:
 
-- generell Oslo-tilknytning;
+- generell Oslo- eller bytilknytning;
 - generell tilknytning til samme kategori eller bransje;
 - at personen har vært gjest, kunde eller tilfeldig besøkende;
 - én enkelt opptreden uten særskilt historisk betydning;
@@ -111,7 +137,7 @@ Følgende skal ikke brukes alene:
 
 ## Antall personer per sted
 
-Ett relevant personanker er minimum, ikke nødvendigvis sluttpunktet.
+Ett relevant personanker er minimum i en vedtatt dekningsrunde, ikke nødvendigvis sluttpunktet.
 
 Et sted bør få flere personer når de representerer forskjellige og vesentlige roller, for eksempel:
 
@@ -126,32 +152,41 @@ Det skal ikke legges til mange personer bare for volum. Hver record må bestå s
 ## Arbeidsflyt per sted
 
 1. Les canonical place-recorden og fastslå hva stedet faktisk representerer.
-2. Auditér eksisterende People-data, manifest og navnevarianter.
+2. Auditér eksisterende manifest-loadede People-data, aktuelle legacyfiler og navnevarianter.
 3. Finn mulige personer etter prioriteringsrekkefølgen ovenfor.
 4. Dokumenter den konkrete stedstilknytningen med autoritative kilder.
 5. Avvis kandidater som bare har løs eller generell tilknytning.
 6. Bestem om personen skal gjenbrukes, migreres eller opprettes som ny canonical record.
-7. Kontroller `id`, `name`, `placeId`, `places`, `category`, `year`, beskrivelser, tags og `source_urls`.
+7. Kontroller relevante schemafelt, normalt `id`, `name`, `placeId`, `places`, `category`, `year`, beskrivelser, tags og `source_urls`.
 8. Oppdater People-manifestet bare for nye eller migrerte canonical filer.
-9. Bygg Civication People-indeksen på nytt.
-10. Regenerer relevante deknings- og kvalitetsrapporter.
+9. Bygg Civication History People-indeksen på nytt.
+10. Regenerer deknings- og kvalitetsrapportene.
 11. Kjør People-gaten og øvrige relevante repository-kontroller.
 12. Merge bare når data, indeks, rapporter og CI er konsistente.
 
+Aktive kommandoer:
+
+```bash
+npm run audit:people-of-places
+npm run civication:history-people:build
+npm run civication:history-people:check
+npm run tools:check
+```
+
 ## Minimumskrav til en People-record
 
-En ny eller vesentlig endret record skal ha:
+En ny eller vesentlig endret standard-record skal ha:
 
 - unik og stabil `id`;
-- korrekt navn og initialer;
+- korrekt navn og initialer når feltet brukes;
 - presis `desc`;
 - relevante og normaliserte tags;
-- riktig `placeId`;
-- korrekt `category`;
+- gyldig primæranker;
+- korrekt `category` eller gjeldende collection-schema;
 - et faglig forsvarlig `year` når år brukes;
 - en `popupDesc` som forklarer den konkrete stedskoblingen;
-- `places` med alle dokumenterte canonical steder;
-- `source_urls` som dokumenterer stedskoblingen;
+- `places` med dokumenterte canonical steder når schemaet bruker feltet;
+- `source_urls` når schemaet har feltet;
 - `verifiedAt` når gjeldende produksjonsstandard krever det.
 
 Beskrivelsen skal ikke overdrive personens rolle eller gjøre en sekundær tilknytning til en primær.
@@ -167,7 +202,8 @@ Hver batch skal dokumentere:
 - hvilke kandidater som ble avvist og hvorfor, når dette er relevant;
 - at duplikatsøk er gjennomført;
 - at alle place-referanser er gyldige;
-- at runtime-indeksen er regenerert;
+- at primærankere og `places` er konsistente med gjeldende schema;
+- at runtime-/Civication-indeksen er regenerert når berørt;
 - at dekningsrapporten viser forventet endring;
 - at People-validering og øvrige relevante kontroller passerer.
 
@@ -188,11 +224,13 @@ En batch skal ikke merges med midlertidige materialiseringsfiler, feillogger ell
 ### Avvisning
 
 - En kjent komiker skal ikke knyttes til en humorscene bare fordi personen har opptrådt der.
-- En politiker skal ikke knyttes til et strøk bare fordi vedkommende bodde i Oslo.
+- En politiker skal ikke knyttes til et strøk bare fordi vedkommende bodde i samme by.
 - En forfatter skal ikke knyttes til et bibliotek uten dokumentert arbeid, arrangement, samling, minnespor eller annen særskilt tilknytning.
 
 ## Vedlikehold
 
-Metoden skal oppdateres når datamodellen, manifeststrukturen, valideringsscript eller dekningspolicy endres.
+Metoden skal oppdateres når datamodellen, manifeststrukturen, valideringsscript, Civication-indexbygger eller dekningspolicy endres.
 
 Endringer som svekker relevanskravet, tillater generiske koblinger eller senker dokumentasjonskravet skal behandles som en eksplisitt metodeendring, ikke som en lokal batchavgjørelse.
+
+Dersom full place-for-place coverage blir CI-håndhevet senere, skal både denne metoden, auditrapportens schema og `check-people-of-places-gate.mts` oppdateres i samme PR.
