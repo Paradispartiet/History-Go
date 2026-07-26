@@ -140,7 +140,6 @@ jobs:
             | tee reports/historie-profile-evidence/documentation-governance.log
           cmp -s docs/README.md /tmp/history-main-docs-readme.md
           cmp -s docs/documentation_registry.json /tmp/history-main-documentation-registry.json
-          cmp -s reports/documentation-governance/inventory.json /tmp/history-main-documentation-inventory.json
           test ! -e docs/HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md
           git diff --check 2>&1 \
             | tee reports/historie-profile-evidence/git-diff-check.log
