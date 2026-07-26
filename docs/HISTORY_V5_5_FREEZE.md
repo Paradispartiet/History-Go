@@ -1,6 +1,6 @@
 # Historie V5.5 — historisk kvalitetsbaseline
 
-Status: **historical** — reproduserbar baseline, ikke aktiv fag-, deknings- eller kvalitetskontrakt.  
+Status: **historical** — reproduserbar baseline, ikke aktiv fag-, deknings- eller kvalitetskontrakt.
 Sist kontrollert: **2026-07-26**
 
 ## Autoritetsgrense
