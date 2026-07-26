@@ -118,7 +118,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f .github/history-v5-8-cold-war-runner.part-*
-          rm -f .github/workflows/one-time-history-v5-8-cold-war.yml
+          git restore --source=HEAD -- .github/workflows/history-v5-5-quality-freeze.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git status --short 2>&1 \
