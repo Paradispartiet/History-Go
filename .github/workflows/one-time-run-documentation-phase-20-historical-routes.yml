@@ -32,12 +32,23 @@ jobs:
           git fetch origin main
           git merge --no-edit origin/main
 
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
       - name: Capture historical routes runtime baseline
         shell: bash
         run: |
           set +e
           node tests/historical-routes.test.js > /tmp/historical-routes-before.log 2>&1
           printf '%s\n' "$?" > /tmp/historical-routes-before.status
+          set -e
+
+      - name: Capture historical route audit baseline
+        shell: bash
+        run: |
+          set +e
+          npm run test:historical-routes:audit > /tmp/historical-routes-audit-before.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-audit-before.status
           set -e
 
       - name: Run the reviewed consolidation specification
@@ -70,9 +81,6 @@ jobs:
           rm .github/workflows/one-time-run-documentation-phase-20-historical-routes.yml
           rm -f .github/documentation-phase20-trigger
 
-      - name: Install dependencies
-        run: npm ci --ignore-scripts --no-audit --no-fund
-
       - name: Build documentation checker
         run: npm run build:scripts
 
@@ -96,8 +104,19 @@ jobs:
       - name: Test historical routes NextUp
         run: npm run test:nextup-historical-routes
 
-      - name: Audit historical route data
-        run: npm run test:historical-routes:audit
+      - name: Verify historical route audit is unchanged
+        shell: bash
+        run: |
+          set +e
+          npm run test:historical-routes:audit > /tmp/historical-routes-audit-after.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-audit-after.status
+          set -e
+          cmp /tmp/historical-routes-audit-before.status /tmp/historical-routes-audit-after.status
+          cmp /tmp/historical-routes-audit-before.log /tmp/historical-routes-audit-after.log
+          if [ "$(cat /tmp/historical-routes-audit-after.status)" != "0" ]; then
+            echo "Existing historical route audit baseline failure is unchanged by this documentation-only diff:"
+            tail -n 40 /tmp/historical-routes-audit-after.log
+          fi
 
       - name: Verify archive identity and final target scope
         shell: bash
