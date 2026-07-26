@@ -1,0 +1,79 @@
+name: One-time clean people popup system
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/people-popup-system-clean-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  clean-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize production branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/people-popup-system-and-readiness-audit
+          git checkout -B agent/people-popup-system-and-readiness-audit origin/agent/people-popup-system-and-readiness-audit
+          git merge --no-edit origin/main
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild and validate readiness reports against synchronized main
+        run: |
+          npm run build:tools
+          node dist/tools/audit-people-popup-readiness.mjs
+          node dist/tools/audit-people-popup-readiness.mjs --check
+          node --test tests/person-popup-v2.test.js tests/people-popup-system-contract.test.mjs
+
+      - name: Validate people and documentation before cleanup
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/check-people.sh
+          npm run build:scripts
+          mkdir -p reports/documentation-governance
+          node dist/scripts/check-documentation-governance.mjs
+
+      - name: Restore unrelated generated reports from main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout origin/main -- \
+            reports/documentation-governance/inventory.json \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
+          git restore --staged --worktree reports/documentation-governance/audit.log 2>/dev/null || true
+          git clean -fd reports/documentation-governance 2>/dev/null || true
+
+      - name: Commit clean system diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          git commit -m "Clean people popup audit production diff"
+          git push origin HEAD:agent/people-popup-system-and-readiness-audit
