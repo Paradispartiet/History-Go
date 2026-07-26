@@ -1,0 +1,105 @@
+name: One-time People of Places governance registration
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-time-register-people-of-places-governance.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out target branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/documentation-governance-phase-22-people-of-places
+          fetch-depth: 0
+
+      - name: Synchronize current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Apply final wording
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("docs/README.md")
+          text = path.read_text(encoding="utf-8")
+          old = "Dagens CI håndhever people-dataintegritet, men beregner ikke full place-for-place-dekning; dekningsmål må derfor dokumenteres i batchen."
+          new = "Dagens CI håndhever people-dataintegritet, men beregner ikke full place-for-place-dekning eller historisk relevans; dekningsmål må derfor dokumenteres i batchen."
+          if old in text:
+              text = text.replace(old, new, 1)
+          if new not in text:
+              raise SystemExit("Fant ikke forventet People of Places-avgrensning")
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Remove one-time files
+        shell: bash
+        run: |
+          rm -f .github/people-of-places-governance-trigger.txt
+          rm -f .github/workflows/one-time-register-people-of-places-governance.yml
+
+      - name: Validate governance
+        shell: bash
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build:scripts
+          node dist/scripts/check-documentation-governance.mjs
+
+      - name: Reset generated build output
+        shell: bash
+        run: |
+          git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
+          git clean -fd -- dist
+
+      - name: Verify final scope
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import subprocess
+
+          readme = Path("docs/README.md").read_text(encoding="utf-8")
+          assert "full place-for-place-dekning eller historisk relevans" in readme
+
+          registry = json.loads(Path("docs/documentation_registry.json").read_text(encoding="utf-8"))
+          entry = next(item for item in registry["documents"] if item["path"] == "docs/people-of-places-method.md")
+          assert entry["status"] == "canonical"
+          assert entry["owns"] == ["people_of_places_method"]
+
+          inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
+          assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
+
+          changed = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
+          allowed = {
+              ".github/workflows/one-time-register-people-of-places-governance.yml",
+              "docs/README.md",
+              "docs/documentation_registry.json",
+              "reports/documentation-governance/inventory.json",
+          }
+          assert changed <= allowed, (changed, allowed)
+          assert ".github/workflows/one-time-register-people-of-places-governance.yml" in changed
+          assert "docs/README.md" in changed
+          assert "reports/documentation-governance/inventory.json" in changed
+          PY
+
+      - name: Commit target branch
+        shell: bash
+        run: |
+          git add -A
+          git commit -m "Fullfør canonical People of Places-governance"
+          git push origin HEAD:agent/documentation-governance-phase-22-people-of-places
