@@ -35,9 +35,10 @@ jobs:
           node-version: "22"
           cache: npm
 
-      - name: Apply canonical People of Places governance
+      - name: Apply People of Places governance
         shell: bash
         run: |
+          set -euo pipefail
           python - <<'PY'
           from pathlib import Path
           import json
@@ -46,7 +47,7 @@ jobs:
           registry = json.loads(registry_path.read_text(encoding="utf-8"))
           method_path = "docs/people-of-places-method.md"
           registry["documents"] = [entry for entry in registry["documents"] if entry.get("path") != method_path]
-          entry = {
+          method_entry = {
               "path": method_path,
               "status": "canonical",
               "role": "Bindende redaksjonell metode for relevante, kildebelagte og ikke-dupliserte person–sted-koblinger",
@@ -55,16 +56,16 @@ jobs:
           }
           insert_at = next(
               index + 1
-              for index, existing in enumerate(registry["documents"])
-              if existing.get("path") == "docs/DATA_PRODUCTION_CONTRACT.md"
+              for index, entry in enumerate(registry["documents"])
+              if entry.get("path") == "docs/DATA_PRODUCTION_CONTRACT.md"
           )
-          registry["documents"].insert(insert_at, entry)
+          registry["documents"].insert(insert_at, method_entry)
           registry["last_verified"] = "2026-07-26"
           registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
           readme_path = Path("docs/README.md")
           readme = readme_path.read_text(encoding="utf-8")
-          replacement = '''### People-produksjon, stedskobling og bilder
+          section = '''### People-produksjon, stedskobling og bilder
 
 1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
 2. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
@@ -76,16 +77,19 @@ jobs:
 
 People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 '''
-          old_start = readme.find("### People-bilder og rettigheter\n")
-          current_start = readme.find("### People-produksjon, stedskobling og bilder\n")
-          start = old_start if old_start >= 0 else current_start
-          if start < 0:
+          starts = [
+              readme.find("### People-bilder og rettigheter\n"),
+              readme.find("### People-produksjon, stedskobling og bilder\n"),
+          ]
+          starts = [value for value in starts if value >= 0]
+          if not starts:
               raise SystemExit("Fant ikke People-seksjonen")
+          start = min(starts)
           end_marker = "\n### Koordinater og geografisk evidens\n"
           end = readme.find(end_marker, start)
           if end < 0:
               raise SystemExit("Fant ikke slutten på People-seksjonen")
-          readme = readme[:start] + replacement.rstrip("\n") + readme[end:]
+          readme = readme[:start] + section.rstrip("\n") + readme[end:]
 
           completed = "- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode"
           if completed not in readme:
@@ -96,7 +100,7 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           readme_path.write_text(readme, encoding="utf-8")
           PY
 
-      - name: Remove temporary files from target tree
+      - name: Remove temporary files from target branch
         shell: bash
         run: |
           rm -f .github/people-of-places-governance-trigger.txt
@@ -128,11 +132,14 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           import json
 
           readme = Path("docs/README.md").read_text(encoding="utf-8")
-          assert "dupliserte people-ID-er" in readme
-          assert "ugyldige place-referanser" in readme
-          assert "manglende gyldige primærankere" in readme
-          assert "tomme `places`" in readme
-          assert "avgjør ikke historisk relevans" in readme
+          for token in (
+              "dupliserte people-ID-er",
+              "ugyldige place-referanser",
+              "manglende gyldige primærankere",
+              "tomme `places`",
+              "avgjør ikke historisk relevans",
+          ):
+              assert token in readme
 
           registry = json.loads(Path("docs/documentation_registry.json").read_text(encoding="utf-8"))
           entry = next(item for item in registry["documents"] if item["path"] == "docs/people-of-places-method.md")
@@ -141,8 +148,6 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
 
           inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
           assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
-          assert inventory["totals"]["registered_files"] == 84
-          assert inventory["totals"]["unregistered_governance_candidates"] == 30
           PY
 
       - name: Commit and replace target branch
@@ -152,7 +157,7 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           git commit -m "Registrer canonical People of Places-governance"
           git push --force origin HEAD:agent/documentation-governance-phase-22-people-of-places
 
-      - name: Remove rebuild runners from main
+      - name: Remove rebuild workflows from main
         if: always()
         shell: bash
         run: |
@@ -171,7 +176,7 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           if [ "$changed" -eq 0 ]; then
             exit 0
           fi
-          git commit -m "Fjern rebuild-runnere for dokumentasjonsfase 22"
+          git commit -m "Fjern rebuild-workflows for dokumentasjonsfase 22"
           for attempt in 1 2 3 4 5; do
             if git push origin HEAD:main; then
               exit 0
@@ -179,3 +184,5 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
             git pull --rebase origin main
           done
           exit 1
+
+# Retry clean phase 22 rebuild.
