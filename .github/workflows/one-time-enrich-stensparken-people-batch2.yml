@@ -1,0 +1,76 @@
+name: One-time enrich Stensparken people batch 2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/stensparken-people-batch2-enrichment-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  enrich-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out Stensparken batch 2 branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --depth=1 origin agent/stensparken-people-profiles-batch2
+          git checkout -B agent/stensparken-people-profiles-batch2 FETCH_HEAD
+
+      - name: Apply verified profile enrichment
+        run: python scripts/one-time-enrich-stensparken-people-profiles-batch2.py
+
+      - name: Validate popup syntax and focused regressions
+        run: |
+          node --check js/ui/person-popup-v2.js
+          node --test \
+            tests/person-popup-v2.test.js \
+            tests/stensparken-people-profiles.test.js \
+            tests/stensparken-people-profiles-batch2.test.js
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild people-derived Civication index
+        run: npm run civication:history-people:build
+
+      - name: Validate Civication people index
+        run: npm run civication:history-people:check
+
+      - name: Run complete people validation
+        run: bash scripts/check-people.sh
+
+      - name: Run complete places validation
+        run: bash scripts/check-places.sh
+
+      - name: Verify browser build remains synchronized
+        run: npm run build:web:check
+
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git restore --staged --worktree reports 2>/dev/null || true
+          git clean -fd reports 2>/dev/null || true
+          git rm scripts/one-time-enrich-stensparken-people-profiles-batch2.py
+          git add -A
+          git status --short
+          git commit -m "Enrich Stensparken people profiles batch 2"
+          git push origin HEAD:agent/stensparken-people-profiles-batch2
