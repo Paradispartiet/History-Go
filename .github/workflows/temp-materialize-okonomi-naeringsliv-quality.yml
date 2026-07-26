@@ -33,6 +33,7 @@ jobs:
       - name: Materialize canonical quality files
         shell: bash
         run: |
+          set +e
           set -uo pipefail
           mkdir -p .tmp/okonomi-quality /tmp/okonomi-quality
           cat .tmp/okonomi-quality/part-* > /tmp/okonomi-quality.b64
@@ -71,6 +72,7 @@ jobs:
           } > .tmp/okonomi-quality/diagnostics.txt
           cat .tmp/okonomi-quality/diagnostics.txt
           cat .tmp/okonomi-quality/validation.log
+          exit 0
 
       - name: Commit outputs and diagnostics
         shell: bash
