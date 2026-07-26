@@ -13,36 +13,36 @@
     "enforcement": "Audit exits non-zero for malformed or stale reports. Use --require-complete only when all required cells and production checks are genuinely satisfied."
   },
   "source_fingerprints": {
-    "data/fag/historie/historie_universal_coverage_contract_v1.json": "fddc0740f60a65cace7ab5cb33df909d007f2dd6adb8c1986c0aa02dad46d00f",
-    "data/fag/historie/historie_v5_contract.json": "83da873cc3e60c2b40bbb603340f3f3db1d01e2d3164d88ebdfe3ee298fa7892",
-    "data/fag/historie/emner_historie_canonical_v4_5.json": "139b700343480939658bd9ee4e53f3591d7a6b1353f5fe54161b585496a3930a",
-    "data/fag/historie/historiepensum_canonical_v4_5.json": "f028c49ca7da30c1dab91ae9e219c708e7187b96ea152d7cd220b508a1ac41e5",
-    "data/fag/historie/methods_historie_canonical_v4_5.json": "dd8822b3d2756bd131788c823c4c5a4d513e77a53cd0712177b83b2e6b52b186",
-    "data/fag/historie/concepts_historie_canonical_v5_5.json": "9ac3896d2b5e25c5c846397b4adab55ce8f09a10003bf39bd4dd2186e3de2884",
-    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "54788ec2a866d829c5d4584a6ed7691363352ccdae3e731638c1ac84b1cad4c5",
-    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "b31aa0f3eeeefa892c64c024f0b8632a7da7871a3d88856ce7264cc4f3f86795",
-    "reports/historie-v5/historie-v5-6-readiness.json": "358c820eb0f856f480d59adb408cc7efce3f9105fdf9c40eb32de10687415aa4"
+    "data/fag/historie/historie_universal_coverage_contract_v1.json": "24d6769b9ac2ae2811fa2e92d6417d5ec31f862cd663082eef98520b50c3abd5",
+    "data/fag/historie/historie_v5_contract.json": "e3e44b2b01bbb13217e99ad401cec1f7ca5a0af3033472354055e4cd7f2497f5",
+    "data/fag/historie/emner_historie_canonical_v4_5.json": "692bff5c48b69aac506ee7bd22937793572773a8c5d7c0bea395735e11f0f3f2",
+    "data/fag/historie/historiepensum_canonical_v4_5.json": "23c5909ac2dc1e78378e1e257b8a7816ad27fd06f531238dc07c842ab2e0d246",
+    "data/fag/historie/methods_historie_canonical_v4_5.json": "bc44eeaceca90a078162eda77831dc724f401c70f2202b9ffb9eeb4004de5b8c",
+    "data/fag/historie/concepts_historie_canonical_v5_5.json": "ec5c595e469285d4902e2828c9a44d21d4a506d5bf1c1ef2070b1c1255a192cd",
+    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "c2ce99159cf6b3f185095aacd10737b0b0dbef9f7a35b93d8989d6868fe84965",
+    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "760041fa21964a12dd34c5af66d263fd99d51dd12a8343d2fd1526a1c2b65fab",
+    "reports/historie-v5/historie-v5-7-readiness.json": "ddd3531862a7af9631aa96bc2544b8f6ac9d7c4a445a96ffc93368ade2802e41"
   },
   "inventory": {
-    "domains": 21,
-    "emner": 210,
-    "methods": 91,
-    "concepts": 876,
-    "theories": 210
+    "domains": 22,
+    "emner": 220,
+    "methods": 98,
+    "concepts": 926,
+    "theories": 220
   },
   "legacy_internal_readiness": {
     "status": "FREEZE_READY",
-    "total_domains": 21,
-    "covered_domains": 21,
+    "total_domains": 22,
+    "covered_domains": 22,
     "all_domains_coverage_complete": false,
     "false_complete_conflict": false,
     "interpretation": "The legacy readiness report verifies the selected V5.5 inventory. It does not independently establish universal subject coverage."
   },
   "summary": {
     "total_cells": 59,
-    "covered_cells": 41,
-    "partial_cells": 10,
-    "missing_cells": 8,
+    "covered_cells": 54,
+    "partial_cells": 5,
+    "missing_cells": 0,
     "production_passes": 5,
     "production_gaps": 6
   },
@@ -53,9 +53,9 @@
       "requirement": "Fra forhistorie til samtid uten store kronologiske hull.",
       "status": "INCOMPLETE",
       "counts": {
-        "covered": 10,
-        "partial": 3,
-        "missing": 1
+        "covered": 13,
+        "partial": 1,
+        "missing": 0
       },
       "cells": [
         {
@@ -480,16 +480,17 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 11,
-            "supporting_emner": 19,
-            "distinct_areas": 5
+            "dedicated_emner": 12,
+            "supporting_emner": 21,
+            "distinct_areas": 6
           },
           "distinct_area_ids": [
             "his_makt_stat_institusjoner",
             "his_middelalder_kirke_kongemakt",
             "his_1814_statsdannelse",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -594,14 +595,15 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 11,
-            "distinct_areas": 4
+            "supporting_emner": 12,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
             "his_industri_arbeid_sosialhistorie",
             "his_byhistorie_stedsendring",
-            "his_miljo_klima_landskap"
+            "his_miljo_klima_landskap",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -689,19 +691,20 @@
         {
           "id": "imperialisme_1870_1914",
           "label": "Imperialisme og kolonial ekspansjon 1870–1914",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 2,
             "minimum_supporting_emner": 3,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 1,
-            "supporting_emner": 10,
-            "distinct_areas": 1
+            "dedicated_emner": 2,
+            "supporting_emner": 12,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -712,6 +715,15 @@
               "anchors": [
                 "imperier",
                 "kolonialisme"
+              ]
+            },
+            {
+              "emne_id": "em_his_imperialisme_allianser_krigsutbrudd",
+              "title": "Imperialisme, alliansesystemer og krigsutbruddet i 1914",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "imperialisme"
               ]
             },
             {
@@ -771,15 +783,6 @@
               "anchors": [
                 "imperier"
               ]
-            },
-            {
-              "emne_id": "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
-              "title": "Globalisering, avhengighet og sammenvevd historie",
-              "area_id": "his_global_kolonial_transnasjonal",
-              "area_label": "Global, kolonial og transnasjonal historie",
-              "anchors": [
-                "imperier"
-              ]
             }
           ],
           "gap_action": "Etabler eksplisitt kronologisk dekning av høyimperialisme, kolonial ekspansjon og antikolonial motstand før 1914."
@@ -787,91 +790,100 @@
         {
           "id": "forste_verdenskrig_1914_1918",
           "label": "Første verdenskrig 1914–1918",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 9,
-            "distinct_areas": 1
+            "dedicated_emner": 10,
+            "supporting_emner": 20,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
-            "his_krig_okkupasjon_motstand"
+            "his_krig_okkupasjon_motstand",
+            "his_global_kolonial_transnasjonal",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
-              "emne_id": "em_his_fangenskap_kontroll",
-              "title": "Fangenskap, kontroll og overvåkning",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
+              "emne_id": "em_his_imperialisme_allianser_krigsutbrudd",
+              "title": "Imperialisme, alliansesystemer og krigsutbruddet i 1914",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
+                "første verdenskrig",
+                "1914"
+              ]
+            },
+            {
+              "emne_id": "em_his_fronter_total_krig_teknologi",
+              "title": "Fronter, skyttergravskrig og total krig 1914–1918",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "første verdenskrig",
+                "1914",
+                "1918",
+                "skyttergrav",
                 "total krig"
               ]
             },
             {
-              "emne_id": "em_his_okkupasjon_motstand",
-              "title": "Okkupasjon og motstand",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
+              "emne_id": "em_his_sivilsamfunn_krigsokonomi_hverdagsliv",
+              "title": "Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
-                "total krig"
+                "første verdenskrig"
               ]
             },
             {
-              "emne_id": "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
-              "title": "Okkupasjon, samarbeid, tilpasning og motstand",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
+              "emne_id": "em_his_global_kolonial_verdenskrig",
+              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
-                "total krig"
+                "første verdenskrig"
               ]
             },
             {
-              "emne_id": "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
-              "title": "Propaganda, sensur og informasjonskontroll",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
+              "emne_id": "em_his_norge_norden_noytralitet_sjofart",
+              "title": "Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
-                "total krig"
+                "første verdenskrig",
+                "1914",
+                "1918"
               ]
             },
             {
-              "emne_id": "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
-              "title": "Fangenskap, vold og forfølgelse",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
+              "emne_id": "em_his_revolusjon_imperieopplosning_fredsoppgjor",
+              "title": "Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
-                "total krig"
+                "første verdenskrig"
               ]
             },
             {
-              "emne_id": "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
-              "title": "Folkerett, rettsoppgjør og overgangsrettferdighet",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
+              "emne_id": "em_his_demokrati_massepolitikk_sosial_konflikt",
+              "title": "Demokrati, massepolitikk og sosial konflikt i Europa og Norden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
-                "total krig"
+                "første verdenskrig"
               ]
             },
             {
-              "emne_id": "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
-              "title": "Krigsminne, veteraner og ettervirkninger",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
+              "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+              "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
-                "total krig"
-              ]
-            },
-            {
-              "emne_id": "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
-              "title": "Motstand, samarbeid, tilpasning og gråsoner",
-              "area_id": "his_krig_okkupasjon_motstand",
-              "area_label": "Krig, okkupasjon og motstand",
-              "anchors": [
-                "total krig"
+                "første verdenskrig"
               ]
             }
           ],
@@ -880,19 +892,98 @@
         {
           "id": "mellomkrigstiden",
           "label": "Mellomkrigstiden 1918–1939",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 10,
+            "supporting_emner": 12,
+            "distinct_areas": 3
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_imperialisme_allianser_krigsutbrudd",
+              "title": "Imperialisme, alliansesystemer og krigsutbruddet i 1914",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig"
+              ]
+            },
+            {
+              "emne_id": "em_his_fronter_total_krig_teknologi",
+              "title": "Fronter, skyttergravskrig og total krig 1914–1918",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig"
+              ]
+            },
+            {
+              "emne_id": "em_his_sivilsamfunn_krigsokonomi_hverdagsliv",
+              "title": "Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_verdenskrig",
+              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig"
+              ]
+            },
+            {
+              "emne_id": "em_his_norge_norden_noytralitet_sjofart",
+              "title": "Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig"
+              ]
+            },
+            {
+              "emne_id": "em_his_revolusjon_imperieopplosning_fredsoppgjor",
+              "title": "Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig"
+              ]
+            },
+            {
+              "emne_id": "em_his_demokrati_massepolitikk_sosial_konflikt",
+              "title": "Demokrati, massepolitikk og sosial konflikt i Europa og Norden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig"
+              ]
+            },
+            {
+              "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+              "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "mellomkrig",
+                "fascisme",
+                "nazisme"
+              ]
+            }
+          ],
           "gap_action": "Legg til et eget mellomkrigsemne med demokrati, autoritære bevegelser, økonomisk krise og sosial omforming."
         },
         {
@@ -906,12 +997,13 @@
           },
           "counts": {
             "dedicated_emner": 11,
-            "supporting_emner": 16,
-            "distinct_areas": 2
+            "supporting_emner": 17,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_krig_okkupasjon_motstand",
-            "his_migrasjon_minoritet_tilhorighet"
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1130,11 +1222,11 @@
       "id": "theme",
       "label": "Tema",
       "requirement": "Historiefagets sentrale samfunns-, kultur- og materialfelt må være eksplisitt dekket.",
-      "status": "INCOMPLETE",
+      "status": "COMPLETE",
       "counts": {
-        "covered": 19,
-        "partial": 1,
-        "missing": 3
+        "covered": 23,
+        "partial": 0,
+        "missing": 0
       },
       "cells": [
         {
@@ -1147,9 +1239,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 42,
-            "supporting_emner": 205,
-            "distinct_areas": 21
+            "dedicated_emner": 45,
+            "supporting_emner": 215,
+            "distinct_areas": 22
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -1172,7 +1264,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1270,9 +1363,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 16,
-            "supporting_emner": 44,
-            "distinct_areas": 8
+            "dedicated_emner": 18,
+            "supporting_emner": 48,
+            "distinct_areas": 9
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1282,7 +1375,8 @@
             "his_okonomi_handel_materielle_systemer",
             "his_samisk_urfolkshistorie",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1381,9 +1475,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 22,
-            "supporting_emner": 83,
-            "distinct_areas": 14
+            "dedicated_emner": 23,
+            "supporting_emner": 90,
+            "distinct_areas": 15
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -1399,7 +1493,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1497,14 +1592,15 @@
           },
           "counts": {
             "dedicated_emner": 4,
-            "supporting_emner": 11,
-            "distinct_areas": 4
+            "supporting_emner": 12,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
             "his_1814_statsdannelse",
             "his_okonomi_handel_materielle_systemer",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1585,22 +1681,23 @@
         {
           "id": "sjofart_maritim",
           "label": "Sjøfart og maritim historie",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 2,
             "minimum_supporting_emner": 3,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 1,
-            "supporting_emner": 26,
-            "distinct_areas": 4
+            "dedicated_emner": 2,
+            "supporting_emner": 28,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_okonomi_handel_materielle_systemer",
             "his_miljo_klima_landskap",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1608,6 +1705,15 @@
               "title": "Handel, sjøfart og kommersielle nettverk",
               "area_id": "his_okonomi_handel_materielle_systemer",
               "area_label": "Økonomi, handel og materielle systemer",
+              "anchors": [
+                "sjøfart"
+              ]
+            },
+            {
+              "emne_id": "em_his_norge_norden_noytralitet_sjofart",
+              "title": "Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
                 "sjøfart"
               ]
@@ -1668,16 +1774,6 @@
                 "sjøfart",
                 "havn"
               ]
-            },
-            {
-              "emne_id": "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
-              "title": "Teknologi, produktivitet og materielle standarder",
-              "area_id": "his_okonomi_handel_materielle_systemer",
-              "area_label": "Økonomi, handel og materielle systemer",
-              "anchors": [
-                "sjøfart",
-                "havn"
-              ]
             }
           ],
           "gap_action": "Etabler maritim historie som kobler handel, arbeid, teknologi, imperier og kystsamfunn."
@@ -1692,9 +1788,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 22,
-            "supporting_emner": 56,
-            "distinct_areas": 6
+            "dedicated_emner": 23,
+            "supporting_emner": 58,
+            "distinct_areas": 7
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1702,7 +1798,8 @@
             "his_krig_okkupasjon_motstand",
             "his_velferd_rett_hverdagsliv",
             "his_kjonn_familie_livslop",
-            "his_religion_reformasjon_livssyn"
+            "his_religion_reformasjon_livssyn",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1792,8 +1889,8 @@
           },
           "counts": {
             "dedicated_emner": 7,
-            "supporting_emner": 37,
-            "distinct_areas": 7
+            "supporting_emner": 38,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1802,7 +1899,8 @@
             "his_kjonn_familie_livslop",
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -1996,9 +2094,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 12,
-            "supporting_emner": 69,
-            "distinct_areas": 15
+            "dedicated_emner": 15,
+            "supporting_emner": 78,
+            "distinct_areas": 16
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -2015,7 +2113,8 @@
             "his_samisk_urfolkshistorie",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -2105,8 +2204,8 @@
           },
           "counts": {
             "dedicated_emner": 16,
-            "supporting_emner": 51,
-            "distinct_areas": 8
+            "supporting_emner": 53,
+            "distinct_areas": 9
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -2116,7 +2215,8 @@
             "his_religion_reformasjon_livssyn",
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -2220,8 +2320,8 @@
           },
           "counts": {
             "dedicated_emner": 13,
-            "supporting_emner": 33,
-            "distinct_areas": 6
+            "supporting_emner": 35,
+            "distinct_areas": 7
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -2229,7 +2329,8 @@
             "his_minne_kulturarv_historiebruk",
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -2436,8 +2537,8 @@
           },
           "counts": {
             "dedicated_emner": 23,
-            "supporting_emner": 54,
-            "distinct_areas": 10
+            "supporting_emner": 55,
+            "distinct_areas": 11
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -2449,7 +2550,8 @@
             "his_kjonn_familie_livslop",
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -2530,55 +2632,135 @@
         {
           "id": "kulturhistorie",
           "label": "Kulturhistorie",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 1,
+            "supporting_emner": 3,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kultur_modernisme_kunst_visuell_politikk",
+              "title": "Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "kulturhistorie"
+              ]
+            },
+            {
+              "emne_id": "em_his_sivilsamfunn_krigsokonomi_hverdagsliv",
+              "title": "Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "kulturell praksis",
+                "hverdagskultur"
+              ]
+            },
+            {
+              "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+              "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "kulturhistorie"
+              ]
+            }
+          ],
           "gap_action": "Etabler eksplisitt kulturhistorisk dekning av praksiser, symboler, materialitet og hverdagskultur."
         },
         {
           "id": "idehistorie",
           "label": "Idé- og intellektuell historie",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 1,
+            "supporting_emner": 2,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+              "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "idéhistorie",
+                "idehistorie",
+                "ideologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_kultur_modernisme_kunst_visuell_politikk",
+              "title": "Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "idéhistorie",
+                "idehistorie",
+                "intellektuell historie",
+                "ideologi"
+              ]
+            }
+          ],
           "gap_action": "Etabler dedikerte emner for idé-, begreps- og intellektuell historie."
         },
         {
           "id": "kunsthistorie",
           "label": "Kunsthistorie og visuell kultur",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 1,
+            "supporting_emner": 2,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_kultur_modernisme_kunst_visuell_politikk",
+              "title": "Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "kunsthistorie",
+                "visuell kultur"
+              ]
+            },
+            {
+              "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+              "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "visuell kultur",
+                "estetikk"
+              ]
+            }
+          ],
           "gap_action": "Etabler kunsthistorie og visuell kultur som historiske felt, ikke bare som enkeltcase i andre fag."
         },
         {
@@ -2592,8 +2774,8 @@
           },
           "counts": {
             "dedicated_emner": 13,
-            "supporting_emner": 27,
-            "distinct_areas": 8
+            "supporting_emner": 29,
+            "distinct_areas": 9
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -2603,7 +2785,8 @@
             "his_samisk_urfolkshistorie",
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -2692,8 +2875,8 @@
           },
           "counts": {
             "dedicated_emner": 16,
-            "supporting_emner": 59,
-            "distinct_areas": 10
+            "supporting_emner": 61,
+            "distinct_areas": 11
           },
           "distinct_area_ids": [
             "his_makt_stat_institusjoner",
@@ -2705,7 +2888,8 @@
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -2803,8 +2987,8 @@
           },
           "counts": {
             "dedicated_emner": 16,
-            "supporting_emner": 38,
-            "distinct_areas": 10
+            "supporting_emner": 39,
+            "distinct_areas": 11
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -2816,7 +3000,8 @@
             "his_miljo_klima_landskap",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -2921,9 +3106,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 18,
-            "supporting_emner": 52,
-            "distinct_areas": 12
+            "dedicated_emner": 28,
+            "supporting_emner": 63,
+            "distinct_areas": 13
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -2937,7 +3122,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -3254,14 +3440,15 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 12,
-            "supporting_emner": 16,
-            "distinct_areas": 3
+            "dedicated_emner": 13,
+            "supporting_emner": 19,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
             "his_religion_reformasjon_livssyn",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -3356,9 +3543,9 @@
       "requirement": "Lokal, nasjonal, nordisk, europeisk og global historie må kunne realiseres uten at fagmodellen reduseres til Oslo-caser.",
       "status": "INCOMPLETE",
       "counts": {
-        "covered": 2,
-        "partial": 3,
-        "missing": 4
+        "covered": 8,
+        "partial": 1,
+        "missing": 0
       },
       "cells": [
         {
@@ -3487,9 +3674,9 @@
             "minimum_distinct_areas": 3
           },
           "counts": {
-            "dedicated_emner": 12,
-            "supporting_emner": 43,
-            "distinct_areas": 8
+            "dedicated_emner": 13,
+            "supporting_emner": 45,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -3499,7 +3686,9 @@
             "his_samisk_urfolkshistorie",
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -3580,37 +3769,165 @@
         {
           "id": "norden",
           "label": "Norden",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 2,
             "minimum_supporting_emner": 4,
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 2,
+            "supporting_emner": 4,
+            "distinct_areas": 3
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_norge_norden_noytralitet_sjofart",
+              "title": "Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "norden",
+                "nordisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_demokrati_massepolitikk_sosial_konflikt",
+              "title": "Demokrati, massepolitikk og sosial konflikt i Europa og Norden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "norden"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+              "title": "Globale kriger og internasjonale organisasjoner",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "norden",
+                "nordisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+              "title": "Arbeider-, kvinne- og avholdsbevegelser",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "norden",
+                "nordisk",
+                "danmark",
+                "sverige",
+                "finland"
+              ]
+            }
+          ],
           "gap_action": "Utvid komparativ og sammenvevd nordisk historie."
         },
         {
           "id": "europa",
           "label": "Europa",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 2,
             "minimum_supporting_emner": 5,
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 3,
+            "supporting_emner": 9,
+            "distinct_areas": 3
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_global_kolonial_transnasjonal",
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_demokrati_massepolitikk_sosial_konflikt",
+              "title": "Demokrati, massepolitikk og sosial konflikt i Europa og Norden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "europa"
+              ]
+            },
+            {
+              "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+              "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "europa"
+              ]
+            },
+            {
+              "emne_id": "em_his_store_depresjonen_arbeidsloshet_politikk",
+              "title": "Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "europa"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+              "title": "Globale kriger og internasjonale organisasjoner",
+              "area_id": "his_global_kolonial_transnasjonal",
+              "area_label": "Global, kolonial og transnasjonal historie",
+              "anchors": [
+                "europa",
+                "europeisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+              "title": "Arbeider-, kvinne- og avholdsbevegelser",
+              "area_id": "his_offentlighet_mobilisering_bevegelser",
+              "area_label": "Offentlighet, mobilisering og sosiale bevegelser",
+              "anchors": [
+                "europa",
+                "europeisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_imperialisme_allianser_krigsutbrudd",
+              "title": "Imperialisme, alliansesystemer og krigsutbruddet i 1914",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "europa",
+                "europeisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_fronter_total_krig_teknologi",
+              "title": "Fronter, skyttergravskrig og total krig 1914–1918",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "europa",
+                "europeisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_verdenskrig",
+              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "europeisk"
+              ]
+            }
+          ],
           "gap_action": "Sikre europeiske forbindelser uten å la Europa representere hele verden."
         },
         {
@@ -3623,9 +3940,9 @@
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 15,
-            "supporting_emner": 29,
-            "distinct_areas": 6
+            "dedicated_emner": 16,
+            "supporting_emner": 32,
+            "distinct_areas": 7
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
@@ -3633,7 +3950,8 @@
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -3718,26 +4036,45 @@
         {
           "id": "afrika",
           "label": "Afrika",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 1,
-            "distinct_areas": 1
+            "dedicated_emner": 1,
+            "supporting_emner": 3,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
+            {
+              "emne_id": "em_his_global_kolonial_verdenskrig",
+              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "afrika"
+              ]
+            },
             {
               "emne_id": "em_his_menneskelig_utvikling_mobilitet",
               "title": "Menneskelig utvikling, mobilitet og jeger-sanker-samfunn",
               "area_id": "his_forhistorie_arkeologi",
               "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "afrika"
+              ]
+            },
+            {
+              "emne_id": "em_his_imperialisme_allianser_krigsutbrudd",
+              "title": "Imperialisme, alliansesystemer og krigsutbruddet i 1914",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
                 "afrika"
               ]
@@ -3748,21 +4085,31 @@
         {
           "id": "asia",
           "label": "Asia",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 5,
-            "distinct_areas": 1
+            "dedicated_emner": 1,
+            "supporting_emner": 7,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_migrasjon_minoritet_tilhorighet"
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
+            {
+              "emne_id": "em_his_global_kolonial_verdenskrig",
+              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "asia"
+              ]
+            },
             {
               "emne_id": "em_his_tilhorighet_ekskludering",
               "title": "Tilhørighet, identitet og ekskludering",
@@ -3807,6 +4154,15 @@
               "anchors": [
                 "asia"
               ]
+            },
+            {
+              "emne_id": "em_his_revolusjon_imperieopplosning_fredsoppgjor",
+              "title": "Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "asia"
+              ]
             }
           ],
           "gap_action": "Legg inn konkrete asiatiske forløp, forbindelser og aktørperspektiver."
@@ -3814,37 +4170,80 @@
         {
           "id": "amerika",
           "label": "Amerika",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 1,
+            "supporting_emner": 2,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_store_depresjonen_arbeidsloshet_politikk",
+              "title": "Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "usa"
+              ]
+            },
+            {
+              "emne_id": "em_his_global_kolonial_verdenskrig",
+              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "amerika"
+              ]
+            }
+          ],
           "gap_action": "Legg inn nord-, latinamerikanske og karibiske forløp utover enkeltreferanser."
         },
         {
           "id": "midtosten",
           "label": "Midtøsten og Nord-Afrika",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 1,
+            "supporting_emner": 2,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forste_verdenskrig_mellomkrig"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_global_kolonial_verdenskrig",
+              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "midtøsten"
+              ]
+            },
+            {
+              "emne_id": "em_his_revolusjon_imperieopplosning_fredsoppgjor",
+              "title": "Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "osmansk",
+                "palestina"
+              ]
+            }
+          ],
           "gap_action": "Legg inn konkrete midtøstlige og nordafrikanske forløp med egne aktører og kilder."
         }
       ]
@@ -3871,8 +4270,8 @@
           },
           "counts": {
             "dedicated_emner": 43,
-            "supporting_emner": 205,
-            "distinct_areas": 21
+            "supporting_emner": 215,
+            "distinct_areas": 22
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -3895,7 +4294,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -3992,8 +4392,8 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 37,
-            "distinct_areas": 6
+            "supporting_emner": 38,
+            "distinct_areas": 7
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -4001,7 +4401,8 @@
             "his_velferd_rett_hverdagsliv",
             "his_migrasjon_minoritet_tilhorighet",
             "his_kjonn_familie_livslop",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -4090,8 +4491,8 @@
           },
           "counts": {
             "dedicated_emner": 15,
-            "supporting_emner": 33,
-            "distinct_areas": 7
+            "supporting_emner": 35,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -4100,7 +4501,8 @@
             "his_religion_reformasjon_livssyn",
             "his_vitenskap_teknologi_kunnskap",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -4271,8 +4673,8 @@
           },
           "counts": {
             "dedicated_emner": 14,
-            "supporting_emner": 47,
-            "distinct_areas": 8
+            "supporting_emner": 50,
+            "distinct_areas": 9
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -4282,7 +4684,8 @@
             "his_kjonn_familie_livslop",
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -4374,14 +4777,15 @@
           },
           "counts": {
             "dedicated_emner": 12,
-            "supporting_emner": 24,
-            "distinct_areas": 4
+            "supporting_emner": 26,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -4572,12 +4976,13 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 11,
-            "distinct_areas": 2
+            "supporting_emner": 12,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_global_kolonial_transnasjonal",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_forste_verdenskrig_mellomkrig"
           ],
           "sample_matches": [
             {
@@ -5034,8 +5439,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 210,
-          "total": 210,
+          "qualifying": 220,
+          "total": 220,
           "ratio": 1
         },
         "threshold": {
@@ -5050,8 +5455,8 @@
         "type": "emne_boolean_any_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 210,
-          "total": 210,
+          "qualifying": 220,
+          "total": 220,
           "ratio": 1
         },
         "threshold": {
@@ -5066,8 +5471,8 @@
         "type": "emne_boolean_all_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 210,
-          "total": 210,
+          "qualifying": 220,
+          "total": 220,
           "ratio": 1
         },
         "threshold": {
@@ -5082,8 +5487,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 210,
-          "total": 210,
+          "qualifying": 220,
+          "total": 220,
           "ratio": 1
         },
         "threshold": {
@@ -5098,8 +5503,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 210,
-          "total": 210,
+          "qualifying": 220,
+          "total": 220,
           "ratio": 1
         },
         "threshold": {
@@ -5115,8 +5520,8 @@
         "status": "GAP",
         "measured": {
           "violating": 200,
-          "total": 210,
-          "ratio": 0.952
+          "total": 220,
+          "ratio": 0.909
         },
         "threshold": {
           "maximum_ratio": 0
@@ -5129,9 +5534,9 @@
         "type": "emne_any_array_ratio",
         "status": "GAP",
         "measured": {
-          "qualifying": 10,
-          "total": 210,
-          "ratio": 0.048
+          "qualifying": 20,
+          "total": 220,
+          "ratio": 0.091
         },
         "threshold": {
           "minimum_items": 4,
@@ -5194,7 +5599,7 @@
         "status": "GAP",
         "measured": {
           "qualifying": 0,
-          "total": 210,
+          "total": 220,
           "ratio": 0
         },
         "threshold": {
