@@ -33,30 +33,32 @@ jobs:
           set -uo pipefail
           mkdir -p .tmp/okonomi-revision
           sed -i '/quality\["canonical_files"\]\["datasets"\]/d' .tmp/okonomi-revision/repair_and_run.py
-          python - <<'PY'
+          patch_status=0
+          python - <<'PY' || patch_status=$?
           from pathlib import Path
-          path = Path('.tmp/okonomi-revision/repair_and_run.py')
+          path = Path('.tmp/okonomi-revision/revise_okonomi.py')
           text = path.read_text(encoding='utf-8')
           old = 'theories=["historisk_institusjonalisme_og_stiavhengighet","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]'
           new = 'theories=["historisk_institusjonalisme_og_stiavhengighet","institusjonelle_regler_og_insentiver","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]'
           if old not in text:
-              raise SystemExit('Explicit institutional-theory patch anchor missing')
+              raise SystemExit('Explicit institutional-theory patch anchor missing in recovered source')
           path.write_text(text.replace(old, new, 1), encoding='utf-8')
           PY
           python .tmp/okonomi-revision/repair_and_run.py > .tmp/okonomi-revision/revision.log 2>&1
           revision_status=$?
           framework_status=99
           individual_status=99
-          if [ "$revision_status" -eq 0 ]; then
+          if [ "$patch_status" -eq 0 ] && [ "$revision_status" -eq 0 ]; then
             node tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs > .tmp/okonomi-revision/framework-validation.log 2>&1
             framework_status=$?
             node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs > .tmp/okonomi-revision/individual-validation.log 2>&1
             individual_status=$?
           else
-            echo 'Framework validator not run because materialization failed.' > .tmp/okonomi-revision/framework-validation.log
-            echo 'Individual validator not run because materialization failed.' > .tmp/okonomi-revision/individual-validation.log
+            echo 'Framework validator not run because source patch or materialization failed.' > .tmp/okonomi-revision/framework-validation.log
+            echo 'Individual validator not run because source patch or materialization failed.' > .tmp/okonomi-revision/individual-validation.log
           fi
           {
+            echo "patch_status=$patch_status"
             echo "revision_status=$revision_status"
             echo "framework_status=$framework_status"
             echo "individual_status=$individual_status"
