@@ -57,6 +57,16 @@ Historisk snapshot som ikke skal brukes som nåstatus:
 
 - `docs/IMPLEMENTATION_STATUS.md` — avgrenset snapshot for Social, Civication Home og Spotmeeting
 
+### Historiske ruter
+
+1. [`README_HistoryGo_Historiske_Ruter.md`](./README_HistoryGo_Historiske_Ruter.md) — operational runtimeguide og ærlig implementasjonsgrense
+2. [`../data/routes/historical/schema_historical_route.json`](../data/routes/historical/schema_historical_route.json) — canonical route- og chapter-schema
+3. [`../data/routes/historical/manifest.json`](../data/routes/historical/manifest.json) — aktiverte route-filer
+4. [`../js/historical-routes.js`](../js/historical-routes.js) — online-spiller og progress store
+5. [`../tools/audit-historical-routes.mts`](../tools/audit-historical-routes.mts) — manifest-, ID- og place-referanseaudit
+
+Online-reisen, lokal progresjon, events og NextUp-handoff er implementert. Fysisk GPS-samling, faktisk badge-/pointstildeling og interaktive quiz-/valgporter er foreløpig ikke implementert selv om dataene er forberedt for fysisk modus.
+
 ### Domener, data og innholdsproduksjon
 
 1. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) — bindende kategoribeslutninger
@@ -273,6 +283,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - `HG_TEST_MODE.md` synkronisert med runtime og registrert som canonical skjult utviklermoduskontrakt
 - `PROFILE_PROGRESS_READER_RUNTIME.md` synkronisert og registrert som operational read-only runtime-guide
 - `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt
+- Historiske ruter-planen skilt fra implementert runtimeguide og byte-identisk pre-consolidation-arkiv
 
 ### Neste
 
