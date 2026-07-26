@@ -124,7 +124,7 @@ test("renders all structured profile sections when the person has rich data", as
   assert.equal(quizButton.hidden, false);
 });
 
-test("renders Kjersti from canonical data without inventing missing works or images", async () => {
+test("renders the enriched Kjersti profile without requiring a portrait", async () => {
   const { window, captured } = createHarness({ hasQuiz: true });
   const people = JSON.parse(fs.readFileSync(
     path.join(__dirname, "..", "data", "people", "kunst", "oslo", "people_kunst_oslo.json"),
@@ -137,13 +137,17 @@ test("renders Kjersti from canonical data without inventing missing works or ima
   await new Promise(resolve => setImmediate(resolve));
 
   assert.match(captured.html, /Kjersti Wexelsen Goksøyr/);
-  assert.match(captured.html, /Offentlig kunst \/ skulptur/);
-  assert.match(captured.html, /1991/);
+  assert.match(captured.html, /Billedhugger \/ offentlig kunst/);
+  assert.match(captured.html, /15\. desember 1945/);
+  assert.match(captured.html, /Nittedal/);
   assert.match(captured.html, /Om personen/);
+  assert.match(captured.html, /Verk og bidrag/);
+  assert.match(captured.html, /Sigrid Undset-monumentet/);
+  assert.match(captured.html, /Utdanning/);
+  assert.match(captured.html, /Materialer/);
   assert.match(captured.html, /Stensparken/);
-  assert.match(captured.html, /Temaer/);
+  assert.match(captured.html, /Kilder og videre lesning/);
   assert.match(captured.html, /Portrett ikke registrert/);
-  assert.doesNotMatch(captured.html, /Verk og bidrag/);
   assert.doesNotMatch(captured.html, /Ingen registrerte verk/);
 });
 
