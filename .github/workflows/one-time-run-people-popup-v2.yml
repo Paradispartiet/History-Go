@@ -1,0 +1,84 @@
+name: One-time run people popup V2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-time-run-people-popup-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  implement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out target branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/people-popup-v2
+          fetch-depth: 0
+
+      - name: Synchronize latest main
+        run: |
+          git fetch origin main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-edit origin/main
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Apply people popup integration
+        run: python scripts/one-time-people-popup-v2.py
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate runtime, people data and documentation
+        run: |
+          node --check js/ui/person-popup-v2.js
+          node --test tests/person-popup-v2.test.js
+          bash scripts/check-people.sh
+          npm run build:scripts
+          node dist/scripts/check-documentation-governance.mjs
+          npm run build:web:check
+
+      - name: Commit target branch
+        run: |
+          git restore --staged --worktree reports 2>/dev/null || true
+          git clean -fd reports/documentation-governance 2>/dev/null || true
+          git rm \
+            .github/workflows/one-time-people-popup-v2.yml \
+            scripts/one-time-people-popup-v2.py
+          git add \
+            index.html \
+            js/app.js \
+            js/ui/person-popup-v2.js \
+            css/person-popup-v2.css \
+            data/people/kunst/oslo/people_kunst_oslo.json \
+            docs/PEOPLE_POPUP_SYSTEM.md \
+            docs/README.md \
+            docs/documentation_registry.json \
+            tests/person-popup-v2.test.js
+          git commit -m "Upgrade people popup and enrich Kjersti Wexelsen Goksøyr"
+          git push origin HEAD:agent/people-popup-v2
+
+      - name: Remove runner from main
+        if: always()
+        run: |
+          git fetch origin main
+          git switch -C main origin/main
+          git rm .github/workflows/one-time-run-people-popup-v2.yml
+          git commit -m "Remove one-time people popup runner"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+          done
+          exit 1
