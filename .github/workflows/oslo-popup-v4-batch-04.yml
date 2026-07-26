@@ -26,24 +26,36 @@ jobs:
           mkdir repo
           git clone --quiet --depth 1 --branch agent/oslo-popup-v4-batch-04-ten-protocol "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" repo
           cd repo
-          cat .tmp/oslo-popup-v4-batch-04/payload-*.txt > /tmp/payload.b64
-          base64 -d /tmp/payload.b64 > /tmp/payload.gz
-          gzip -t /tmp/payload.gz
-          gunzip -c /tmp/payload.gz > /tmp/apply-oslo.js
-          node /tmp/apply-oslo.js
+          shopt -s nullglob
+          payloads=(.tmp/oslo-popup-v4-batch-04/data/*.json)
+          if [ "${#payloads[@]}" -ne 10 ] || [ ! -f .tmp/oslo-popup-v4-batch-04/protocol.md ]; then
+            echo "Venter på komplett payload: ${#payloads[@]}/10"
+            exit 0
+          fi
+          node <<'NODE'
+          const fs = require('fs');
+          const dir = '.tmp/oslo-popup-v4-batch-04/data';
+          const files = fs.readdirSync(dir).filter((name) => name.endsWith('.json')).sort();
+          const countWords = (s) => (s.match(/[A-Za-zÀ-ÖØ-öø-ÿ0-9]+(?:[–-][A-Za-zÀ-ÖØ-öø-ÿ0-9]+)*/g) || []).length;
+          if (files.length !== 10) throw new Error(`Expected 10 payloads, got ${files.length}`);
+          for (const name of files) {
+            const payload = JSON.parse(fs.readFileSync(`${dir}/${name}`, 'utf8'));
+            let src = fs.readFileSync(payload.path, 'utf8');
+            const before = src;
+            src = src.replace(/^  "desc": .*,$/m, `  "desc": ${JSON.stringify(payload.desc)},`);
+            src = src.replace(/^  "popupDesc": .*,$/m, `  "popupDesc": ${JSON.stringify(payload.popupDesc)},`);
+            if (src === before) throw new Error(`No change for ${payload.path}`);
+            if (countWords(payload.desc) < 40 || countWords(payload.desc) > 80) throw new Error(`Invalid desc count for ${payload.path}`);
+            if (countWords(payload.popupDesc) < 300) throw new Error(`Invalid popupDesc count for ${payload.path}`);
+            if (payload.popupDesc.split('\n\n').length < 3) throw new Error(`Too few paragraphs for ${payload.path}`);
+            JSON.parse(src);
+            fs.writeFileSync(payload.path, src);
+            console.log(`${payload.path}: ${countWords(payload.desc)} / ${countWords(payload.popupDesc)} / ${payload.popupDesc.split('\n\n').length}`);
+          }
+          fs.copyFileSync('.tmp/oslo-popup-v4-batch-04/protocol.md', 'reports/place-description-revision-protocol.md');
+          NODE
           rm -rf .tmp/oslo-popup-v4-batch-04
           rm .github/workflows/oslo-popup-v4-batch-04.yml
-          node -e "for (const f of process.argv.slice(1)) JSON.parse(require('fs').readFileSync(f, 'utf8'))" \
-            data/places/by/oslo/places/kampen_kirke.json \
-            data/places/by/oslo/places/ullevål_hageby.json \
-            data/places/by/oslo/places/romsaås.json \
-            data/places/by/oslo/places/grunerlokka_helgesens_tm.json \
-            data/places/by/oslo/places/spikersuppa.json \
-            data/places/by/oslo/places/bankplassen.json \
-            data/places/by/oslo/places/christiania_torv.json \
-            data/places/by/oslo/places/botsparken.json \
-            data/places/by/oslo/places/slottsparken.json \
-            data/places/by/oslo/places/tjuvholmen.json
           git diff --check
           git status --short
           git config user.name "github-actions[bot]"
