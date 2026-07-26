@@ -65,14 +65,20 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts --no-audit --no-fund
 
-      - name: Validate documentation and historical routes
-        shell: bash
-        run: |
-          npm run build:scripts
-          node dist/scripts/check-documentation-governance.mjs
-          npm run test:historical-routes
-          npm run test:nextup-historical-routes
-          npm run test:historical-routes:audit
+      - name: Build documentation checker
+        run: npm run build:scripts
+
+      - name: Validate documentation governance
+        run: node dist/scripts/check-documentation-governance.mjs
+
+      - name: Test historical routes runtime
+        run: npm run test:historical-routes
+
+      - name: Test historical routes NextUp
+        run: npm run test:nextup-historical-routes
+
+      - name: Audit historical route data
+        run: npm run test:historical-routes:audit
 
       - name: Verify archive identity and final target scope
         shell: bash
