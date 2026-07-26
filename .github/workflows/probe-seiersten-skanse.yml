@@ -1,0 +1,98 @@
+name: Probe Seiersten skanse source objects
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.head_ref == 'agent/akershus-seiersten-skanse-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch and persist Seiersten objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/akershus-coordinate-seiersten-skanse-source-probe'
+          mkdir -p "$out"
+
+          for id in 6463616338 1763395772 1793750671; do
+            curl --fail --location --retry 4 --retry-delay 3 \
+              -A 'History-Go coordinate verification/1.0' \
+              "https://api.openstreetmap.org/api/0.6/node/${id}" \
+              | tee "$out/osm-node-${id}.xml" >/dev/null
+          done
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://nominatim.openstreetmap.org/lookup?osm_ids=N6463616338,N1763395772,N1793750671&format=jsonv2' \
+            | tee "$out/nominatim-seiersten-objects.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://api.openstreetmap.org/api/0.6/map?bbox=10.6385,59.6718,10.6425,59.6735' \
+            | tee "$out/osm-seiersten-bbox.xml" >/dev/null
+
+          python - <<'PY' | tee "$out/source-summary.txt"
+          import json
+          import math
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-seiersten-skanse-source-probe')
+          legacy = (59.6719, 10.6471)
+
+          def hav(a, b):
+              R = 6371000.0
+              p1, p2 = map(math.radians, (a[0], b[0]))
+              dp = math.radians(b[0] - a[0])
+              dl = math.radians(b[1] - a[1])
+              h = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2 * R * math.asin(math.sqrt(h))
+
+          for node_id in ('6463616338', '1763395772', '1793750671'):
+              root = ET.parse(out / f'osm-node-{node_id}.xml').getroot()
+              node = root.find('node')
+              lat = float(node.attrib['lat'])
+              lon = float(node.attrib['lon'])
+              tags = {t.attrib['k']: t.attrib['v'] for t in node.findall('tag')}
+              print(f'NODE {node_id} lat={lat:.12f} lon={lon:.12f} distance_from_legacy_m={hav(legacy, (lat, lon)):.1f} tags=' + json.dumps(tags, ensure_ascii=False, sort_keys=True))
+
+          nom = json.loads((out / 'nominatim-seiersten-objects.json').read_text())
+          print('nominatim=' + json.dumps(nom, ensure_ascii=False, sort_keys=True))
+
+          bbox = ET.parse(out / 'osm-seiersten-bbox.xml').getroot()
+          tagged = []
+          for elem in list(bbox):
+              tags = {t.attrib['k']: t.attrib['v'] for t in elem.findall('tag')}
+              name = tags.get('name', '')
+              if name or tags.get('military') or tags.get('historic') or tags.get('landuse') == 'military':
+                  tagged.append({
+                      'type': elem.tag,
+                      'id': elem.attrib.get('id'),
+                      'lat': elem.attrib.get('lat'),
+                      'lon': elem.attrib.get('lon'),
+                      'tags': tags,
+                  })
+          print('bbox_tagged=' + json.dumps(tagged, ensure_ascii=False, sort_keys=True))
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/probe-seiersten-skanse.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/akershus-coordinate-seiersten-skanse-source-probe .github/workflows/probe-seiersten-skanse.yml
+          git commit -m 'Persist Seiersten skanse coordinate source evidence'
+          git push origin HEAD:${{ github.head_ref }}
