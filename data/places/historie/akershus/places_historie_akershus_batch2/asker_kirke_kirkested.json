@@ -2,8 +2,41 @@
   "id": "asker_kirke_kirkested",
   "name": "Asker kirke / gamle kirkested",
   "lat": 59.84333,
-  "lon": 10.43664,
+  "lon": 10.4367,
   "r": 220,
+  "locatorType": "historic_site",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "asker-menighet:asker-kirkested",
+  "address": {
+    "street": "Kirkelia",
+    "number": "7",
+    "postcode": "1384",
+    "city": "Asker",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "historical_anchor",
+  "coordType": "same_site_medieval_church_anchor",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Asker menighet – Asker kirkested; OpenStreetMap way 506440682 – Asker kirke",
+  "coordSourceId": "asker-menighet:asker-kirkested",
+  "coordSourceUrl": "https://www.kirken.no/nb-NO/fellesrad/askerfellesrad/menigheter/askerkirke/virksomhetsomrader/Om%20kirkebygget/asker%20kirkested/",
+  "coordVerifiedAt": "2026-07-25",
+  "coordChangeReason": "Markøren flyttes om lag 3,4 meter til den navngitte kirkebygningen som fysisk anker for det dokumenterte middelalderstedet på samme tomt.",
+  "coordNote": "Asker menighet dokumenterer at dagens Asker kirke er bygget på samme sted som middelalderkirken fra 1100-tallet som brant i 1878, og at kirkebygget er midtpunkt i det større Asker kirkested. OpenStreetMap way 506440682 representerer dagens kirkebygg ved 59.84333, 10.43670 og brukes som fysisk historical_anchor for den dokumenterte kontinuiteten på samme sted. Kirkelia 7 er kirkens adresse; Askertun i Kirkelia 3 er et separat menighets- og kontorbygg og brukes ikke som kartanker. Radius 220 meter beholdes for å dekke kirkegården og det nære lagdelte kirkestedet uten å hevde at hele området er geometrisk avgrenset av ett punkt.",
+  "anchors": [
+    {
+      "id": "asker_kirke_current_building_same_site",
+      "name": "Dagens Asker kirke – fysisk anker for middelalderstedet",
+      "lat": 59.84333,
+      "lon": 10.4367,
+      "r": 80,
+      "type": "historical_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:506440682",
+      "note": "Dagens kirke står dokumentert på samme sted som middelalderkirken og fungerer derfor som fysisk anker for det historiske kirkestedet."
+    }
+  ],
   "category": "historie",
   "fylke": "akershus",
   "kommune": "Asker",
@@ -51,5 +84,35 @@
       "haslum_kirke"
     ],
     "notes": "Skal spørres som lagdelt kirkested der bygget og stedet har ulik alder."
-  }
+  },
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Asker menighet – Asker kirkested",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/askerfellesrad/menigheter/askerkirke/virksomhetsomrader/Om%20kirkebygget/asker%20kirkested/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-25"
+    },
+    {
+      "type": "official",
+      "label": "Asker menighet – Den nye kirken",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/askerfellesrad/menigheter/askerkirke/virksomhetsomrader/Om%20kirkebygget/den%20nye%20kirken/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-25"
+    },
+    {
+      "type": "official",
+      "label": "Gravplassmyndigheten i Asker – Asker kirkegård",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/askerfellesrad/menigheter/Gravferdsavdelingen/Gravplassene/asker/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-25"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Asker kirke",
+      "url": "https://www.openstreetmap.org/way/506440682",
+      "lang": "nb",
+      "verifiedAt": "2026-07-25"
+    }
+  ]
 }

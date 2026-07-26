@@ -1,0 +1,51 @@
+$ npm run test:quiz-production
+
+> history-go@0.0.0 test:quiz-production
+> node --test tests/quiz-production-pipeline.test.mjs
+
+TAP version 13
+# Subtest: builds the full by production context through the manifest
+ok 1 - builds the full by production context through the manifest
+  ---
+  duration_ms: 208.189768
+  type: 'test'
+  ...
+# Subtest: builds the full history production context through domain-based curriculum
+ok 2 - builds the full history production context through domain-based curriculum
+  ---
+  duration_ms: 269.813202
+  type: 'test'
+  ...
+# Subtest: isolates each history target in the manifest proof
+ok 3 - isolates each history target in the manifest proof
+  ---
+  duration_ms: 254.667517
+  type: 'test'
+  ...
+# Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+  ---
+  duration_ms: 256.650633
+  type: 'test'
+  ...
+# Subtest: builds the Høyland grave-mound context before quiz writing
+ok 5 - builds the Høyland grave-mound context before quiz writing
+  ---
+  duration_ms: 252.84265
+  type: 'test'
+  ...
+# Subtest: passes production-context, progression and theory-binding audits
+ok 6 - passes production-context, progression and theory-binding audits
+  ---
+  duration_ms: 1654.639795
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2982.88712

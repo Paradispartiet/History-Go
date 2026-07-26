@@ -1,27 +1,24 @@
 # History Go – canonical regler for `desc` og `popupDesc`
 
 Status: aktiv og bindende  
-Versjon: 3.0 – fakta først, innholdsrikt  
+Versjon: 4.0 – fakta først, fullverdige popupartikler  
 Maskinlesbar mal: `data/places/regler/place_description_templates_v1.json`
 
 ## 1. Hovedregel
 
-`desc` og `popupDesc` er spillerens hovedintroduksjon til stedet. De skal først og fremst gi **fakta, kunnskap og underholdende, dokumenterte detaljer**.
+`desc` og `popupDesc` er spillerens hovedintroduksjon til stedet. De skal gi **fakta, kunnskap og underholdende, dokumenterte detaljer** om akkurat dette stedet.
 
-De skal ikke være læringsmål, kategoriforklaringer eller korte analyser av hva stedet «viser». Spilleren skal lære reelle ting om akkurat dette stedet: hva det er, hvem som er knyttet til det, hva som hendte, når det skjedde, hvordan det ble brukt, og hva som er spesielt eller overraskende.
+De skal ikke være læringsmål, kategoriforklaringer eller korte analyser av hva stedet «viser». Spilleren skal lære reelle ting: hva stedet er, hvem som er knyttet til det, hva som hendte, når det skjedde, hvordan stedet fungerte, hvordan det forandret seg, og hva som er spesielt eller overraskende.
 
-God stedstekst svarer på flere av disse spørsmålene:
+Arbeidsrekkefølgen er alltid:
 
-- Hva er dette?
-- Når ble det laget, åpnet, brukt eller endret?
-- Hvem bygde, drev, oppdaget, skrev, spilte eller handlet her?
-- Hva skjedde her?
-- Hvordan så det ut, fungerte det eller ble det brukt?
-- Hva er spesielt, uventet, dramatisk eller lett å huske?
+> kilder → interessante og viktige fakta → prioritering → sammenhengende tekst
 
-## 2. Informasjonshierarkiet
+Ikke:
 
-### Førstelinje: `desc`
+> kategori → obligatorisk tema → konstruert tekst
+
+## 2. `desc`
 
 `desc` er et konsentrert, faktabasert hovedsammendrag. Det er ikke bare en teaser.
 
@@ -38,8 +35,6 @@ Normal målramme:
 3. hvem eller hva som er sentralt;
 4. hva som gjør stedet spesielt.
 
-Faktaene skal henge naturlig sammen. Et sted med svakt kildegrunnlag skal ikke fylles med tomtekst for å nå normalrammen.
-
 `desc` skal ikke begynne med analyse. Unngå åpninger som:
 
 - «Stedet viser hvordan …»
@@ -48,90 +43,55 @@ Faktaene skal henge naturlig sammen. Et sted med svakt kildegrunnlag skal ikke f
 - «Stedet gjør det mulig å forstå …»
 - «Stedet spiller en viktig rolle i …»
 
-### Andrelinje: `popupDesc`
+## 3. `popupDesc`
 
-`popupDesc` er en selvstendig og innholdsrik miniatyrartikkel. Spilleren skal få reell kunnskap selv om Mer info aldri åpnes.
+`popupDesc` er en **fullverdig, selvstendig stedartikkel**. Spilleren skal få et rikt kunnskapsinnhold selv om Mer info aldri åpnes.
 
-Normal målramme:
+### Bindende lengderegel
 
-- **160–320 ord**
-- normalt **6–14 setninger**
-- ved særlig innholdsrike og godt dokumenterte steder kan teksten gå opp mot **400 ord**
-- normalt minst **åtte konkrete fakta eller opplysninger** når kildegrunnlaget tillater det
+- `popupDesc` skal være **minst 300 ord**.
+- **300–600 ord** er normal målramme.
+- Teksten kan være lengre enn 600 ord når kildene og stedet gir nok godt stoff.
+- Det finnes ingen automatisk hard maksimumsgrense.
+- En tekst under 300 ord er **ikke ferdig** og skal flagges av auditen.
+- Lengden skal aldri oppnås gjennom gjentakelse, tom analyse, generelle påstander eller løs oppramsing.
 
-`popupDesc` kan utdype:
+Normal struktur:
 
-- sentrale årstall og hendelser;
-- personer, grupper og institusjoner;
-- funksjon og faktisk bruk;
-- arkitektur, materialer, mål og tekniske løsninger;
-- verk, produkter, arter, instrumenter, ruter eller resultater;
-- endringer, branner, flyttinger, konflikter, restaureringer eller konkurser;
-- én eller flere overraskende, dramatiske eller minneverdige detaljer.
+- minst **tre avsnitt**;
+- normalt **12–30 setninger**;
+- normalt minst **tolv konkrete fakta eller opplysninger**;
+- minst **to tredeler av opplysningene skal være nye** sammenlignet med `desc`.
 
-`popupDesc` skal ha sammenheng, men trenger ikke følge en fast fortellermal. Den skal tilføre vesentlig ny informasjon og ikke bare utvide `desc` med synonymer.
+`popupDesc` skal normalt dekke flere av disse innholdslagene:
 
-Som arbeidsregel bør minst **to tredeler av opplysningene i `popupDesc` være nye** sammenlignet med `desc`.
+1. **Grunnfakta:** hva stedet er, hvor det ligger og hvilket tidsrom som er sentralt.
+2. **Opprinnelse:** etablering, byggeprosess, grunnlegger, arkitekt, plan, naturprosess eller første dokumenterte bruk.
+3. **Aktører:** navngitte personer, grupper, bedrifter, institusjoner, lag, kunstnere, forskere eller arter.
+4. **Faktisk bruk:** hva som ble produsert, fremført, handlet, besluttet, oppdaget, dyrket, transportert eller gjort her.
+5. **Hendelser og endringer:** brann, konflikt, ombygging, flytting, konkurs, kamp, rekord, restaurering, vern eller funksjonsskifte.
+6. **Fysiske detaljer:** materiale, mål, form, teknikk, maskin, instrument, rute, landskap, habitat eller observerbart spor.
+7. **Minneverdig detalj:** noe uventet, dramatisk, morsomt, sjeldent eller lett å huske.
+8. **Avslutning:** dagens faktiske bruk, hva som er bevart, hva som forsvant, eller et konkret siste tidslag.
 
-### Utfyllende lag: Mer info og People-popup
+Dette er en researchsjekkliste, ikke en fast fortellermal. Stoffet skal organiseres rundt det som faktisk er viktigst ved stedet.
 
-Mer info er riktig sted for:
+## 4. Innhold før analyse
 
-- større historisk og faglig sammenheng;
-- lange årsaks- og konsekvensforklaringer;
-- konflikter, konkurrerende tolkninger og teori;
-- forbindelser til andre steder, personer og emner;
-- omfattende kronologi og videre lesning;
-- hva stoffet betyr eller kan lære oss i dag.
+Prioriter:
 
-People-popup er riktig sted for:
+- egennavn;
+- årstall og tydelige tidsrom;
+- hendelser og handlinger;
+- bygninger, verk, produkter, arter og gjenstander;
+- materialer, mål og tekniske løsninger;
+- konkrete funksjoner og bruk;
+- endringer, konflikter og resultater;
+- overraskende, dokumenterte detaljer.
 
-- biografi;
-- personens arbeid, verk og rolle ved stedet;
-- nettverk, samarbeid og konflikter;
-- etterliv, innflytelse og forbindelse til i dag.
+Kategori, epoke, identitet, «betydning», «rolle», «transformasjon» og andre abstrakte etiketter teller ikke som fakta alene.
 
-Disse tingene kan stå i `desc` eller `popupDesc` når de selv er sentrale fakta om stedet. De skal ikke være obligatorisk førstelinjeinformasjon eller standardavslutning.
-
-## 3. Research før formulering
-
-Kildene skal bestemme innholdet. Arbeidsrekkefølgen er:
-
-> kilder → viktigste og mest interessante fakta → prioritering → tekst
-
-Ikke:
-
-> kategori → obligatorisk tema → konstruert tekst
-
-Kategorien kan hjelpe redaktøren med å lete etter relevante opplysninger, men skal ikke bestemme setningsrekkefølge, moral eller konklusjon.
-
-Før skriving skal redaktøren identifisere:
-
-1. stedets viktigste grunnfakta;
-2. den mest interessante dokumenterte hendelsen eller detaljen;
-3. hvilke personer, verk, produkter, arter eller institusjoner som faktisk hører til;
-4. hva dette stedet har som et lignende nabosted ikke har;
-5. hvilke fakta som egner seg til normale quizspørsmål.
-
-## 4. Fakta som teller
-
-Konkrete fakta kan være:
-
-- navngitt person, gruppe eller institusjon;
-- årstall eller avgrenset tidsrom;
-- hva stedet var eller er brukt til;
-- hendelse, vedtak, produksjon, forestilling, kamp eller oppdagelse;
-- arkitekt, kunstner, forsker, eier, utøver eller grunnlegger;
-- materiale, mål, form, art, instrument, maskin eller produkt;
-- verk, vare, rute, rekord eller resultat;
-- konkret skade, brann, flytting, restaurering eller ombygging;
-- uventet, morsom eller dramatisk dokumentert detalj.
-
-Kategori, epoke, underbadge, identitet, «betydning» og andre abstrakte etiketter teller ikke som fakta alene.
-
-## 5. Hver setning skal gjøre arbeid
-
-Hver setning skal helst tilføre minst én ny opplysning. Setninger som bare hevder at et sted er viktig, sentralt eller betydningsfullt, skal normalt erstattes med det som faktisk gjør stedet viktig.
+Hver setning skal helst tilføre minst én ny opplysning. Setninger som bare hevder at et sted er viktig, sentralt eller betydningsfullt, skal erstattes med det som faktisk gjør stedet viktig.
 
 Svakt:
 
@@ -141,85 +101,79 @@ Sterkere:
 
 > Tollvesenet brukte bygningen fram til 1958. Senere flyttet politiet inn, før kommunen overtok lokalene.
 
-Ord som `identitet`, `samfunnsutvikling`, `transformasjon`, `møteplass`, `knutepunkt`, `betydning` og `rolle` gir lite innhold uten navn, handlinger, datoer eller resultater.
+## 5. Sammenheng uten fortellertvang
 
-## 6. Prioriter fakta etter interesse
+En lang tekst skal ikke være en katalog. Faktaene bør ordnes gjennom en tydelig kronologi, en virksomhet, et bygg, en hendelse, en person, et verk, et anlegg eller en naturprosess.
 
-Teksten trenger ikke begynne med byggeåret. Åpne med det mest interessante faktumet når det gir en bedre inngang.
+God sammenheng kan skapes ved å:
 
-Mulige åpninger:
+- følge stedet gjennom flere tidslag;
+- vise hvordan en funksjon ble erstattet av en annen;
+- følge en navngitt virksomhet eller institusjon;
+- knytte aktører til konkrete handlinger;
+- forklare hvordan fysiske spor ble til;
+- bruke kontraster mellom før og nå når de er faktiske og relevante.
 
-- en dramatisk hendelse;
-- en uventet tidligere bruk;
-- en kjent person;
-- et spesielt materiale eller byggverk;
-- et slående mål, antall eller rekord;
-- en brann, konkurs, flytting eller feil;
-- et kjent verk, produkt, funn eller oppfinnelse.
+Det er ikke et krav at alle næringslivstekster handler om arbeidsvilkår, alle vitenskapstekster forklarer metode, alle bytekster analyserer bevegelse eller alle politiske tekster ender i maktteori.
 
-Åpningen skal være sann, konkret og relevant – ikke oppkonstruert.
-
-## 7. Underholdning uten oppdiktning
+## 6. Underholdning uten oppdiktning
 
 Underholdning skal komme fra virkeligheten og kildene.
 
 Bruk gjerne:
 
-- kontraster;
 - presise tall og størrelser;
 - merkelige eller uventede hendelser;
 - konkrete menneskelige valg;
 - rekorder, feil, konflikter og tilfeldigheter;
+- dramatiske funksjonsskifter;
 - detaljer som er lette å huske.
 
-Ikke dikt opp dialog, tanker, publikumss reaksjoner, vær, lyder eller stemning dersom kildene ikke støtter det.
+Ikke dikt opp dialog, tanker, publikumsreaksjoner, vær, lyder eller stemning dersom kildene ikke støtter det.
 
-## 8. Sammenheng uten fortellertvang
+## 7. Rollefordeling mot Mer info og People-popup
 
-Mange fakta er ikke nok dersom teksten blir en løs katalog. Opplysningene bør organiseres rundt det som faktisk er viktigst ved stedet, for eksempel:
+`popupDesc` skal være rik og selvstendig, men Mer info kan fortsatt romme:
 
-- en hendelse;
-- et bygg eller anlegg;
-- en virksomhet;
-- en person eller gruppe;
-- et verk eller en produksjon;
-- en naturtype, art eller geologisk prosess.
+- enda større historisk og faglig sammenheng;
+- full kronologi;
+- lange årsaks- og konsekvensforklaringer;
+- konkurrerende tolkninger og teori;
+- forbindelser til andre steder og emner;
+- kildeapparat og videre lesning.
 
-Det er ikke et krav at alle næringslivstekster handler om arbeidsvilkår, alle vitenskapstekster forklarer metode, alle bytekster analyserer bevegelse eller alle politiske tekster ender i maktteori.
+People-popup er riktig sted for en full biografi, personens samlede verk, nettverk, konflikter, etterliv og forbindelser utenfor det aktuelle stedet.
 
-## 9. Kategoriene velger relevante fakta
+Dette skal ikke brukes som begrunnelse for å gjøre `popupDesc` kort. De viktigste stedsspesifikke personopplysningene, hendelsene og sammenhengene skal fortsatt stå i `popupDesc`.
+
+## 8. Kategoriene velger relevante fakta
 
 Kategorimalene er researchhjelp, ikke fortellermotorer.
 
-Eksempler:
-
-- `by`: bygg, arkitekt, byggeår, funksjon, materiale, mål, transportløsning, ombygging eller kjent hendelse;
-- `historie`: hendelse, dato, aktør, handling, gjenstand og rest;
+- `by`: bygg, arkitekt, byggeår, funksjon, materiale, mål, transportløsning, ombygging og kjent hendelse;
+- `historie`: hendelse, dato, aktør, handling, gjenstand og bevarte spor;
 - `kunst`: verk, kunstner, år, materiale, størrelse, teknikk og plassering;
-- `naeringsliv`: bedrift, grunnlegger, produkt, etableringsår, produksjon, marked og konkret omstilling;
-- `vitenskap`: forsker, institusjon, spørsmål, instrument, metode, funn og anvendelse;
-- `natur`: navngitte arter, naturtype, geologi, sesong, atferd og observerbare kjennetegn.
+- `litteratur`: forfatter, verk, stedstilknytning, arbeidsperiode, utgivelse og episode;
+- `musikk`: artist, konsert, innspilling, scene, instrument, teknologi og publikumshendelse;
+- `naeringsliv`: bedrift, grunnlegger, produkt, etableringsår, produksjon, marked og omstilling;
+- `natur`: arter, naturtype, geologi, habitat, sesong, atferd og observerbare kjennetegn;
+- `politikk`: institusjon, beslutning, møte, aksjon, aktører, konflikt og resultat;
+- `sport`: lag, utøver, kamp, turnering, rekord, resultat, arena og rivalisering;
+- `vitenskap`: forsker, institusjon, spørsmål, instrument, metode, funn og anvendelse.
 
 Det mest interessante og best dokumenterte ved stedet skal komme først.
 
-## 10. Ingen obligatorisk kobling til i dag
+## 9. Ingen generisk kobling til i dag
 
-`popupDesc` trenger ikke forklare hvorfor stedet er relevant nå. En kobling til vår tid tas bare med når den er en vesentlig del av stedets faktiske historie eller nåværende funksjon.
+`popupDesc` trenger ikke avsluttes med hvorfor stedet er relevant nå. En kobling til vår tid tas bare med når den er en vesentlig del av stedets faktiske historie eller nåværende funksjon.
 
-Unngå generelle avslutninger som:
+Unngå avslutninger som:
 
 > Stedet minner oss om at disse spørsmålene fortsatt er aktuelle i dag.
 
-Teksten kan heller avsluttes med:
+Avslutt heller med dagens faktiske bruk, hva som er bevart, hva som forsvant, et konkret resultat eller en siste minneverdig detalj.
 
-- en siste hendelse;
-- dagens faktiske bruk;
-- hva som er bevart;
-- hva som forsvant;
-- et konkret resultat;
-- en overraskende detalj.
-
-## 11. Forbudt redaksjonelt språk i brukerteksten
+## 10. Forbudt redaksjonelt språk
 
 Følgende hører aldri hjemme i `desc` eller `popupDesc`:
 
@@ -230,45 +184,35 @@ Følgende hører aldri hjemme i `desc` eller `popupDesc`:
 - instruksjoner til produsenten eller spilleren;
 - påstander om hva spilleren «skal forstå».
 
-## 12. Variasjon
-
-Variasjon skal komme fra stedets forskjellige fakta, ikke fra mekanisk bytte av fortellermal.
+## 11. Variasjon
 
 - Ikke bruk samme åpning på alle stedene.
 - Ikke avslutt alle popuptekster med en generell konklusjon.
 - Ingen tekst skal kunne flyttes til et annet sted ved bare å bytte egennavnet.
-- Hvert sted skal ha minst én opplysning som ikke passer på et lignende nabosted.
+- Hvert sted skal inneholde flere opplysninger som ikke passer på et lignende nabosted.
+- Lange popuptekster skal variere mellom kronologi, hendelser, aktører, fysisk beskrivelse og minneverdige detaljer.
 
-## 13. Kilde- og sannhetsregel
+## 12. Kilde- og sannhetsregel
 
-- Alle faktiske påstander skal støttes av stedets inspectable kilder eller annet godkjent kildegrunnlag i oppføringen.
-- Ved svak kildebase skal teksten være kort og presis.
-- Ingen tekst skal fylles ut bare for å nå normalrammen.
-- Ikke fyll manglende kunnskap med generelle setninger om identitet, samfunn, systemer eller utvikling.
-- Koordinat- og produksjonsnotater skal ligge i sine egne felt.
+- Alle faktiske påstander skal støttes av inspectable kilder eller annet godkjent kildegrunnlag i oppføringen.
+- Et svakt kildegrunnlag betyr at mer research må gjøres før stedet kan regnes som ferdig.
+- Manglende kunnskap skal ikke erstattes med generelle setninger om identitet, samfunn, systemer eller utvikling.
+- Koordinat- og produksjonsnotater skal ligge i egne felt.
+- Ingen tekst skal fylles til 300 ord med gjentakelse eller spekulasjon.
 
-## 14. Lengder er normalrammer, ikke sannhetsdommer
-
-Ordgrensene er redaksjonelle målrammer:
-
-- En kortere tekst kan godkjennes når kildegrunnlaget er begrenset, men presist.
-- En `popupDesc` mellom 320 og 400 ord kan godkjennes når stedet har nok godt stoff og teksten fortsatt er stram.
-- Tekster over 400 ord bør normalt flytte fordypning til Mer info.
-- Lengde skal aldri oppnås gjennom gjentakelse, tom analyse eller oppramsing.
-
-## 15. Ferdigkriterium per sted
+## 13. Ferdigkriterium per sted
 
 Et sted er ferdig når:
 
 1. `desc` gir et innholdsrikt og konsentrert faktasammendrag;
-2. `popupDesc` fungerer som en selvstendig miniatyrartikkel;
-3. `popupDesc` tilfører vesentlig ny informasjon;
-4. spilleren lærer flere konkrete ting;
-5. teksten inneholder navn, hendelser, årstall, funksjoner eller særegne detaljer der kildene gir dem;
-6. minst én opplysning er unik eller spesielt minneverdig for stedet;
-7. flere normale quizspørsmål kan lages direkte fra teksten;
-8. kategorien hjelper faktavalget uten å dominere språket;
-9. teksten er interessant uten oppdiktning;
-10. redaksjonell, pedagogisk og teknisk metatekst er holdt utenfor;
-11. alle faktiske påstander er kildebelagte;
-12. større analyse og generell kobling til i dag er overlatt til Mer info eller People-popup når den ikke er nødvendig i førstelinjen.
+2. `popupDesc` er minst 300 ord;
+3. `popupDesc` fungerer som en selvstendig stedartikkel;
+4. teksten har minst tre avsnitt og en tydelig indre struktur;
+5. `popupDesc` tilfører vesentlig ny informasjon;
+6. spilleren lærer mange konkrete ting;
+7. teksten inneholder navn, hendelser, årstall, funksjoner og særegne detaljer der kildene gir dem;
+8. minst én detalj er spesielt minneverdig for stedet;
+9. flere normale quizspørsmål kan lages direkte fra teksten;
+10. teksten er interessant uten oppdiktning;
+11. redaksjonell, pedagogisk og teknisk metatekst er holdt utenfor;
+12. alle faktiske påstander er kildebelagte.

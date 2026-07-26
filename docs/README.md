@@ -14,7 +14,7 @@ Dette dokumentet svarer på tre spørsmål:
 
 > Én sannhet per ansvarsområde.
 
-Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av source-data, manifester, loadere og validering. Dokumentasjonen styrer arkitektur, arbeidsmåte og kontrakter; CI må håndheve de reglene som ikke kan overlates til tekst alene.
+Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av source-data, manifester, loadere og validering. Dokumentasjonen styrer arkitektur, arbeidsmåte og kontrakter; CI må håndheve reglene som ikke kan overlates til tekst alene.
 
 ## Leserekkefølge
 
@@ -30,12 +30,12 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 
 1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — overordnet runtime-eierskap og kjernegrenser
 2. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive API-, storage-, privacy- og UI-kontrakter for subsystemene
-3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
+3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — runtime-flyt og modulkjeder
 4. [`APP_STRUCTURE_INDEX.md`](./APP_STRUCTURE_INDEX.md) — canonical entry-, boot-, router-, MapView- og sidegrensekontrakt for `index.html`
 5. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
 6. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. `APP_STRUCTURE_INDEX.md` eier bare index-appens interne struktur. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
+`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. `APP_STRUCTURE_INDEX.md` eier bare index-appens interne struktur. Den tidligere pre-split-filen er bevart i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
 
 ### Produkt og ferdigstillelse
 
@@ -72,9 +72,22 @@ Aktive domenebeslutninger:
 - `populaerkultur`/`popkultur` er ikke toppkategori; eventuelle aliaser er bare legacy-kompatibilitet.
 - `sosial_laering` er et non-place badge.
 
-Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal da korrigeres; det skal ikke opprettes lokale aliaslister eller parallelle kategorier.
+Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korrigeres; det skal ikke opprettes lokale aliaslister eller parallelle kategorier.
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
+
+### Koordinater og geografisk evidens
+
+1. [`coordinates/README.md`](./coordinates/README.md) — canonical dokumentasjonskart og leserekkefølge
+2. [`coordinates/coordinate-source-contract-v1.md`](./coordinates/coordinate-source-contract-v1.md) — bindende felter, kildekrav, statuser og trust-regler
+3. [`coordinate-finder.md`](./coordinate-finder.md) — operativ research-, kontroll- og kart-QA-arbeidsflyt
+4. [`coordinates/coordinate-evidence-files-v1.md`](./coordinates/coordinate-evidence-files-v1.md) — bindende evidenskrav før endring og `verified*`
+5. [`coordinates/coordinate-control-protocol.md`](./coordinates/coordinate-control-protocol.md) — løpende kontroll-ledger for fullførte batcher
+6. [`coordinates/address-first-coordinate-policy.md`](./coordinates/address-first-coordinate-policy.md) — compatibility-peker for address-first-løypen
+
+Coordinate Source Contract v1 eier coordinate-semantikken. `coordinate-finder.md` eier arbeidsmåten, evidenskontrakten eier pre-change-sporbarheten, og kontrollprotokollen dokumenterer hva som faktisk er fullført. `address-first-coordinate-policy.md` kan ikke overstyre disse kildene.
+
+Produksjonens sannhet ligger i canonical place JSON, aktive manifests, generert places-index og validatorene. Relevante porter er `places:coords:evidence:audit`, `places:coords:quality`, `places:coords:intake`, `places:index:check` og `test:coordinate-source-contract`; full kjede inngår i `tools:check`.
 
 ### Knowledge og personlig minne
 
@@ -86,7 +99,7 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 6. [`../js/knowledgeQuizMemory.ts`](../js/knowledgeQuizMemory.ts) — quiz-bundles og synkronisering til V2
 7. [`../README/knowledgeREADME.md`](../README/knowledgeREADME.md) — compatibility-pointer fra eldre README-lenker
 
-De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People/Places/Relations-modellene er bevart byte-identisk under `reports/archive/2026-07/knowledge/`. De er historikk, ikke aktive kontrakter.
+De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People/Places/Relations-modellene er bevart under `reports/archive/2026-07/knowledge/`. De er historikk, ikke aktive kontrakter.
 
 ### Fag, emner og quiz
 
@@ -98,16 +111,67 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 6. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
 7. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
 
-Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere 913-linjers quiz-/lærings-/observations-/popup-README-en er bevart byte-identisk i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
+Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere kombinerte quiz-/lærings-/observations-/popup-README-en ligger i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
 ### AHA-lokal kvalitetsstatus
 
-- [`AHA_QUALITY_STATUS_SURFACE_V1.md`](./AHA_QUALITY_STATUS_SURFACE_V1.md) — operativ, dokumentasjonsdefinert målkontrakt for en lokal og read-only kvalitetsstatus
+- [`AHA_QUALITY_STATUS_SURFACE_V1.md`](./AHA_QUALITY_STATUS_SURFACE_V1.md) — operativ, dokumentasjonsdefinert målkontrakt for lokal og read-only kvalitetsstatus
 - [`QUALITY_GATES.md`](./QUALITY_GATES.md) — compatibility-pointer til AHA-kontrakten
 
 Disse dokumentene gjelder kvaliteten på én aktuell AHA-samtale eller analyse. De er ikke generelle kvalitetsporter for History GO, Civication, quiz, data eller repository-CI.
 
-AHA-statusmodellen er dokumentasjons-only i V1. Den starter ikke runtime, sync, EchoNet, permanent minne eller backendskriving. Generelle kontroller eies av de konkrete data-, runtime-, utviklings- og workflowkontraktene.
+### Social Meet / HG Social
+
+#### 1. Aktiv status og runtime
+
+1. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive lokale Social-signaler, read-models og subsystemgrenser
+2. [`../backend/README.md`](../backend/README.md) — gjeldende FastAPI/PostgreSQL-implementasjonskart og rolloutstatus
+3. [`HG_SOCIAL_MEET_FASTAPI_CLIENT.md`](./HG_SOCIAL_MEET_FASTAPI_CLIENT.md) — typed browsergrense og adaptermigrering
+4. [`HG_SOCIAL_BACKEND_CONTRACT.md`](./HG_SOCIAL_BACKEND_CONTRACT.md) — compatibility-inngang til hele backenddokumentasjonen
+
+Sju servereide slices er implementert: identity/public profile, participant safety/export/deletion, moderation/appeals, abuse controls, durable Spotmeeting invites, candidate discovery og retention/observability. Migrerte production-operasjoner går gjennom typed FastAPI-klient når backend er eksplisitt konfigurert.
+
+Implementert kode betyr ikke automatisk bred produksjonsaktivering. Discovery, invite writes og destructive retention er fail-closed bak egne deployment-, database-, cohort- og operations-gates.
+
+#### 2. Produkt og privacy
+
+1. [`HG_SOCIAL_README.md`](./HG_SOCIAL_README.md) — operativ produktoversikt og terminologi
+2. [`HG_SOCIAL_PRIVACY_RULES.md`](./HG_SOCIAL_PRIVACY_RULES.md) — canonical privacy-policy
+3. [`HG_SPOTMEETING.md`](./HG_SPOTMEETING.md) — canonical Spotmeeting-produkt og lifecycle
+4. [`HG_SOCIAL_ARCHITECTURE.md`](./HG_SOCIAL_ARCHITECTURE.md) — operativ produkt-/målarkitektur
+5. [`HG_SOCIAL_QA.md`](./HG_SOCIAL_QA.md) — QA og privacy guards
+6. [`HG_SOCIAL_DEMO_MODE.md`](./HG_SOCIAL_DEMO_MODE.md) — lokal TEST_MODE/demo
+
+#### 3. Kravkontrakter
+
+- [`HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`](./HG_SOCIAL_MEET_IDENTITY_CONTRACT.md)
+- [`HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`](./HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md)
+- [`HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`](./HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md)
+
+Kravinnholdet er fortsatt aktivt. Filenes opprinnelige statusavsnitt er tidsbundne og delvis eldre enn implementasjonen, derfor er dokumentene transitional til statusdelene er synkronisert eller skilt fra kravteksten. Gjeldende implementasjonsstatus ligger i backendinngangen og slice-dokumentene.
+
+#### 4. Implementerte slices
+
+- [`HG_SOCIAL_MEET_MODERATION_BACKEND.md`](./HG_SOCIAL_MEET_MODERATION_BACKEND.md)
+- [`HG_SOCIAL_MEET_ABUSE_CONTROLS.md`](./HG_SOCIAL_MEET_ABUSE_CONTROLS.md)
+- [`HG_SPOTMEETING_INVITE_BACKEND.md`](./HG_SPOTMEETING_INVITE_BACKEND.md)
+- [`HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`](./HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md)
+- [`HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md`](./HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md)
+
+Identity- og participant-safety-slicene dokumenteres samlet i `backend/README.md` og i migrasjonene `002_social_meet_identity_profiles.sql` og `003_social_meet_safety.sql`.
+
+`HG_SOCIAL_MODERATION.md` er bare guide til den eldre lokale/localStorage-kompatibilitetsmodulen. Den eier ikke servermoderasjon.
+
+#### 5. Historiske overgangsdokumenter
+
+- `HG_SOCIAL_MEET_BACKEND_ROADMAP.md` — roadmap-snapshot fra før implementasjonsslicene landet
+- `social-meet-backend.md` — tidlig Supabase-foundation og direkte adapterfase før FastAPI-strangleren
+
+De kan brukes som historikk, men skal ikke overstyre dagens backendinngang, runtimekode eller implementasjonsdokumenter.
+
+#### Permanente grenser
+
+Social Meet skal fortsatt ikke bruke GPS, live location, nearby/distance, presence/last-seen, followers/feed, offentlig visit history, passiv tracking eller fri chat. TEST_MODE/demo skal forbli atskilt fra ekte profiler og servereid state.
 
 ### Civication
 
@@ -116,7 +180,7 @@ AHA-statusmodellen er dokumentasjons-only i V1. Den starter ikke runtime, sync, 
 - [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt og aktiv dagflyt
 - [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — bindende subsystemkontrakter
 
-Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Genererte role-pack- og FWG-statusfiler har nå én registrert output-path hver. Nye Civication-dokumenter skal plasseres under riktig kontrakt eller som tidsbundne rapporter, ikke som nye parallelle hoved-READMEs.
+Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Genererte role-pack- og FWG-statusfiler har én registrert output-path hver.
 
 ### Rapporter og audits
 
@@ -130,9 +194,9 @@ Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatlogge
 | Status | Betydning |
 |---|---|
 | `canonical` | Normativ kilde for ett avgrenset område |
-| `operational` | Aktiv inngang, arbeidsinstruks eller compatibility-pointer som peker til canonical kilder |
-| `transitional` | Aktiv, men med kjent konsoliderings- eller legacygjeld |
-| `historical` | Snapshot, rapport eller journal; ikke nåstatus |
+| `operational` | Aktiv inngang, implementasjonsstatus eller arbeidsinstruks uten parallell sannhet |
+| `transitional` | Aktiv krav-/måltekst eller runtime med kjent status-, implementasjons- eller migreringsgjeld |
+| `historical` | Snapshot, rapport, roadmap eller journal; ikke nåstatus |
 | `local` | Gjelder bare subsystemet eller datamappen den ligger ved |
 
 Maskinlesbar status ligger i [`documentation_registry.json`](./documentation_registry.json).
@@ -161,16 +225,7 @@ Workflowen `Documentation governance` validerer:
 - at inngangsdokumentenes lokale lenker ikke er brutte,
 - at denne indeksen omtaler alle canonical og transitional dokumenter.
 
-Workflowen bygger også et inventar som viser:
-
-- totalt antall dokumentlignende filer,
-- fordeling mellom rot, `README/`, `docs/`, `reports/` og lokale subsystemer,
-- uregistrerte globale dokumentkandidater,
-- mistenkelige og extensionløse filnavn,
-- grupper med overlappende basenames,
-- aktive dokumenter som lenker til registrerte historiske snapshots.
-
-Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation-governance-audit`.
+Workflowen bygger også et inventar som viser totalt antall dokumentlignende filer, uregistrerte globale kandidater, mistenkelige navn, overlappende basenames og aktive lenker til historiske snapshots.
 
 ## Konsolideringsstatus
 
@@ -189,16 +244,19 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - Civication-dokumentasjonen samlet under én inngang; chatlogg og jobbmodellduplikater fjernet
 - genererte Civication role-pack- og FWG-statusfiler redusert til én output-path hver
 - foreldet `badge_refs`-regel og biologispesifikk emnearkitektur fjernet fra aktiv dokumentflate
-- gammel quiz-README erstattet med compatibility-pointer; canonical produksjonsprosedyre, template-register og manifests er eksplisitt prioritert
+- gammel quiz-README erstattet med compatibility-pointer
 - daterte TypeScript- og AHA-statusfiler flyttet til `reports/archive/2026-07/`
 - `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
-- `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
-- domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten: filosofi er selvstendig, og populærkultur er ikke toppkategori
+- `APP_STRUCTURE_INDEX.md` synkronisert og registrert som canonical index-appkontrakt
+- domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten
 - parallelle Knowledge-, ontology- og knaggemodeller samlet under én canonical arkitektur og maskinpolicy
-- `QUALITY_GATES.md` redusert til AHA-kompatibilitetspeker; AHA-statusmodellen er eksplisitt lokal og dokumentasjons-only
+- `QUALITY_GATES.md` redusert til AHA-kompatibilitetspeker
+- gamle relations-, oppgave- og badge-/merke-READMEs arkivert
+- Social-dokumentasjonen delt i canonical produkt/privacy, aktive backend-slices, transitional kravtekster og historiske overgangsdokumenter
+- koordinatdokumentasjonen samlet under én source-kontrakt, én evidenskontrakt, én arbeidsflyt og én kontrollprotokoll
 
 ### Neste
 
-- klassifiser Social-kontraktene og lag én autoritativ Social-leserekkefølge
+- synkroniser de tidsbundne statusavsnittene i de tre Social Meet-kravkontraktene uten å endre kravinnholdet
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
-- konsolider gamle relations-, oppgave- og badge-/merke-dokumenter mot aktive data- og runtimekontrakter
+- klassifiser øvrige aktive subsystemguider uten å gjøre målarkitektur til nåstatus

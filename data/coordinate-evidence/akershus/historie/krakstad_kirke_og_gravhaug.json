@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "krakstad_kirke_og_gravhaug",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch3/krakstad_kirke_og_gravhaug.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_church_anchor_for_documented_burial_landscape",
+  "currentCoordinate": {
+    "lat": 59.67658,
+    "lon": 10.88091,
+    "r": 260,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Ski Historielag – Kråkstad kirkested og gravfelt; OpenStreetMap way 137123341 – Kråkstad kirke",
+    "coordType": "documented_medieval_church_and_iron_age_burial_landscape_anchor",
+    "coordRole": "historical_anchor",
+    "sourceObjectId": "ski-historielag:krakstad-kirke-og-gravfelt",
+    "coordNote": "The named medieval church is the physical anchor for the documented church, burial-mound and ancient-route landscape; no unsupported separate mound coordinate is asserted."
+  },
+  "previousCoordinate": {
+    "lat": 59.6833,
+    "lon": 10.8833,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 759.2,
+    "reasonReplaced": "The legacy point lay northeast of the church and could not be tied to the church building, burial mounds, churchyard or a stable historical source object."
+  },
+  "identity": {
+    "currentName": "Kråkstad kirke og gravhaug",
+    "resolvedIdentity": "Kråkstad medieval church and the immediately associated Iron Age burial-mound landscape at Prestegårdsalléen 2, 1408 Kråkstad",
+    "identityStatus": "resolved",
+    "identityProblem": "The burial landscape is historically well documented, but the largest mound does not have a sufficiently stable separate open-map object for a defensible secondary coordinate.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The medieval church, churchyard, nearby burial mounds, ancient route and parsonage landscape form one coherent layered historical destination."
+  },
+  "requiredEvidence": [
+    "stable named church-building geometry",
+    "official church address and history",
+    "documented Iron Age burial mounds at the church site",
+    "official or authoritative statement about the major burial mound",
+    "explicit decision not to invent a secondary mound coordinate"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 137123341 – Kråkstad kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/137123341",
+      "sourceObjectId": "osm-way:137123341",
+      "sourceQuality": "exact_named_medieval_church_geometry",
+      "finding": "The stable named way directly represents Kråkstad church at approximately 59.67658, 10.88091.",
+      "canVerifyCoordinate": true,
+      "reason": "The standing church is the stable physical component shared by the documented medieval and Iron Age landscape interpretation."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kråkstad menighet – Contact information",
+      "sourceUrl": "https://www.kirken.no/nn-NO/fellesrad/nordre-follo/menigheter/kr%C3%A5kstad/om%20oss/kontaktinformasjon/",
+      "sourceObjectId": "krakstad-menighet:address:prestegardsalleen-2",
+      "sourceQuality": "official_church_address",
+      "finding": "Kråkstad menighet lists Prestegårdsalléen 2, 1408 Kråkstad as the visitor address for Kråkstad church.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the authoritative active-site address and church identity cross-check."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Kråkstad menighet – Church history",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/nordre-follo/menigheter/kr%C3%A5kstad/om%20oss/kirken/",
+      "sourceObjectId": "krakstad-menighet:medieval-church-history",
+      "sourceQuality": "official_medieval_building_history",
+      "finding": "The official parish history dates the late-Romanesque stone church to 1150–1200 and documents the medieval nave and chancel, the 1801 fire and the 1882 tower.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes the medieval church identity represented by the physical anchor."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ski Historielag – Kultsteder",
+      "sourceUrl": "https://www.ski-historielag.no/ski/Kultsteder",
+      "sourceObjectId": "ski-historielag:krakstad-kirke-og-gravfelt",
+      "sourceQuality": "detailed_local_church_and_burial_landscape_history",
+      "finding": "Ski Historielag documents Iron Age burial mounds at Kråkstad church, a Viking-age axe find near one mound west of the church and the wider pattern of medieval churches placed close to pre-Christian burial fields.",
+      "canVerifyCoordinate": true,
+      "reason": "Establishes that the canonical destination is a layered church-and-burial landscape rather than the building alone."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Nordre Follo",
+      "sourceUrl": "https://snl.no/Nordre_Follo",
+      "sourceObjectId": "snl:nordre-follo-krakstad-largest-burial-mound",
+      "sourceQuality": "authoritative_regional_context",
+      "finding": "SNL states that the burial mound by Kråkstad church is the largest in Follo and identifies the medieval churches and Iron Age mounds as major cultural-history features in the municipality.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the importance of the burial-mound component, but does not publish a separate precise mound geometry."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Kulturminnesøk / Askeladden – Kråkstad kirkested",
+      "sourceUrl": "https://www.kulturminnesok.no/minne?queryString=https://data.kulturminne.no/askeladden/lokalitet/84847",
+      "sourceObjectId": "kulturminne:84847",
+      "sourceQuality": "official_church_site_heritage_identity",
+      "finding": "Cultural heritage ID 84847 identifies Kråkstad church site and the protected medieval church.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the stable official church-site identity, not as a substitute for a separate burial-mound object."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Kråkstad parsonage and ancient landscape",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Kr%C3%A5kstad_presteg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:krakstad-prestegard-ancient-route-mounds",
+      "sourceQuality": "independent_landscape_scope_cross_check",
+      "finding": "The parsonage is described beside the church in a landscape with multiple burial mounds and an ancient route between the parsonage and church site.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the coherent 260-metre landscape representation and the no-split decision."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Prestegårdsalléen",
+        "number": "2",
+        "postcode": "1408",
+        "city": "Kråkstad",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.kirken.no/nn-NO/fellesrad/nordre-follo/menigheter/kr%C3%A5kstad/om%20oss/kontaktinformasjon/",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Birkelunden",
+        "number": "4",
+        "postcode": "1423",
+        "city": "Ski",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/nordre-follo/kontakt/adresser/",
+      "canApplyToPlace": false,
+      "reasonRejected": "This is the shared church administration and Ski new church location, not Kråkstad church."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ski-historielag:krakstad-kirke-og-gravfelt",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:137123341",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminne:84847",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:137123341",
+      "geometryType": "Polygon",
+      "geometryRole": "physical_anchor_for_layered_church_and_burial_landscape",
+      "canApplyToPlace": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "krakstad_medieval_church_landscape_anchor",
+      "name": "Kråkstad church – physical anchor for the church and burial-mound landscape",
+      "lat": 59.67658,
+      "lon": 10.88091,
+      "r": 90,
+      "type": "historical_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:137123341",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:krakstad_kirke_og_gravhaug",
+      "lat": 59.6833,
+      "lon": 10.8833,
+      "coordRole": "unresolved_krakstad_scale_point",
+      "distanceFromAppliedM": 759.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:137123341",
+      "lat": 59.67658,
+      "lon": 10.88091,
+      "coordRole": "historical_anchor",
+      "distanceFromPreviousM": 759.2,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "unresolvedComponents": [
+    {
+      "component": "Follos largest burial mound at Kråkstad church",
+      "status": "historically_verified_without_separate_coordinate",
+      "reason": "The mound is consistently documented at the church site, but the available open map data does not expose a stable, specific object identity suitable for a secondary anchor."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named medieval church as the physical historical anchor for the documented Iron Age burial landscape. Continue with Son ladested."
+  },
+  "notes": [
+    "The canonical record remains a combined church-and-burial-landscape place rather than being reduced to the building.",
+    "No unsupported secondary coordinate was created for the largest mound.",
+    "The 260-metre radius covers the church, churchyard and nearby documented mounds at gameplay scale, not an exact archaeological polygon.",
+    "The legacy point was approximately 759.2 metres from the church anchor.",
+    "The nearby parsonage and ancient route support landscape interpretation but are not the canonical marker."
+  ]
+}

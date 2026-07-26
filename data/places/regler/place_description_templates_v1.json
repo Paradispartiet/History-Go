@@ -1,16 +1,16 @@
 {
-  "schema": "history_go_place_description_templates_v3",
-  "version": "3.0.0",
-  "status": "canonical_fact_first_content_rich",
-  "purpose": "Sikre at desc og popupDesc gir konkrete, kildebelagte, innholdsrike og underholdende fakta. Utfyllende analyse og generelle koblinger til i dag hører primært i Mer info og People-popup.",
+  "schema": "history_go_place_description_templates_v4",
+  "version": "4.0.0",
+  "status": "canonical_fact_first_full_popup_articles",
+  "purpose": "Sikre at desc er et konsentrert faktasammendrag og at popupDesc er en fullverdig, kildebelagt stedartikkel på minst 300 ord.",
   "categoryAliases": {
     "popkultur": "populaerkultur"
   },
   "informationHierarchy": {
-    "desc": "Innholdsrikt hovedsammendrag: hva stedet er, når, hvem, hva som skjedde, og hva som gjør det spesielt.",
-    "popupDesc": "Selvstendig miniatyrartikkel med flere fakta, hendelser, bruk, personer og minneverdige detaljer.",
-    "merInfo": "Større kontekst, årsaker, konsekvenser, faglig analyse, tolkninger, forbindelser, omfattende kronologi og kobling til i dag.",
-    "peoplePopup": "Biografi, personens rolle, verk, nettverk, konflikter, etterliv og forbindelse til i dag."
+    "desc": "Konsentrert faktasammendrag: hva stedet er, når, hvem, hva som skjedde, og hva som gjør det spesielt.",
+    "popupDesc": "Fullverdig, selvstendig stedartikkel med rik kronologi, aktører, bruk, fysiske detaljer, endringer og minneverdige dokumenterte fakta.",
+    "merInfo": "Ytterligere fordypning, full kronologi, lange årsaksforklaringer, tolkninger, forbindelser, kildeapparat og videre lesning.",
+    "peoplePopup": "Full biografi, samlet verk, nettverk, konflikter og etterliv utenfor den aktuelle stedstilknytningen."
   },
   "global": {
     "desc": {
@@ -22,15 +22,27 @@
       "mustDifferFromPopupDesc": true
     },
     "popupDesc": {
-      "targetWords": [160, 320],
-      "targetSentences": [6, 14],
-      "exceptionalMaximumWords": 400,
-      "rangeType": "soft_normal_range",
-      "job": "Gi en selvstendig, innholdsrik miniatyrartikkel med reell kunnskap og dokumenterte, minneverdige detaljer.",
-      "minimumConcreteFacts": 8,
+      "minimumWords": 300,
+      "recommendedWords": [300, 600],
+      "hardMaximumWords": null,
+      "targetSentences": [12, 30],
+      "minimumParagraphs": 3,
+      "rangeType": "hard_minimum_open_upper_range",
+      "job": "Gi en fullverdig, selvstendig stedartikkel med omfattende, kildebelagt og minneverdig kunnskap.",
+      "minimumConcreteFacts": 12,
       "minimumNewInformationShare": 0.6667,
       "mustAddNewInformation": true
     },
+    "popupContentLayers": [
+      "grunnfakta og sentralt tidsrom",
+      "opprinnelse, etablering eller første dokumenterte bruk",
+      "navngitte aktører, virksomheter, institusjoner eller arter",
+      "faktisk bruk, produksjon, aktivitet eller funksjon",
+      "hendelser, konflikter, resultater og funksjonsskifter",
+      "fysiske detaljer, materialer, mål, teknikk, landskap eller observerbare spor",
+      "minst én overraskende, dramatisk eller særlig minneverdig dokumentert detalj",
+      "dagens faktiske bruk, bevarte spor eller det som forsvant"
+    ],
     "factTypes": [
       "navngitt person, gruppe eller institusjon",
       "årstall eller tydelig tidsrom",
@@ -43,30 +55,30 @@
       "overraskende, morsom, dramatisk eller minneverdig dokumentert detalj"
     ],
     "researchOrder": [
-      "Les og vurder kildene før teksten planlegges.",
-      "Finn stedets viktigste grunnfakta.",
-      "Finn den mest interessante dokumenterte hendelsen eller detaljen.",
-      "Finn hva stedet har som lignende steder ikke har.",
-      "Prioriter fakta etter relevans og interesse.",
-      "Skriv teksten uten å presse den inn i en kategorifortelling."
+      "Les og vurder inspectable kilder før teksten planlegges.",
+      "Finn stedets viktigste grunnfakta og sentrale tidslag.",
+      "Finn navngitte aktører, institusjoner, verk, produkter, arter og hendelser.",
+      "Finn fysiske detaljer og det stedet har som lignende steder ikke har.",
+      "Finn nok dokumentert stoff til minst 300 ord uten fylltekst.",
+      "Organiser fakta i en sammenhengende artikkel med minst tre avsnitt."
     ],
     "writingRules": [
       "Start direkte med et interessant faktum. Ikke innled med hva stedet symboliserer, viser eller kan lære oss.",
       "Bruk egennavn, årstall, handlinger, funksjoner, gjenstander og resultater når de finnes i kildene.",
       "Prioriter det særegne ved akkurat dette stedet framfor kategoridefinisjoner.",
       "Hver setning skal helst tilføre minst én ny opplysning.",
-      "Underholdning skal komme fra gode fakta, overraskelser, kontraster og presise detaljer, ikke oppdiktet stemning.",
-      "Organiser fakta rundt det viktigste ved stedet; unngå både løs oppramsing og fast fortellertvang.",
-      "Tolkning kan brukes kort når den er nødvendig for å forstå et faktum, men skal ikke dominere.",
-      "Ikke press alle steder inn i fortellinger om samfunn, identitet, system, arbeid, metode, hverdagsbruk, bevegelse eller dagens betydning.",
-      "Ikke fyll tekst for å nå normalrammen; ved svak kildebase skal teksten være kortere og presis.",
-      "En popupDesc mellom 320 og 400 ord krever nok godt stoff og stram redigering."
+      "Underholdning skal komme fra fakta, overraskelser, kontraster og presise detaljer, ikke oppdiktet stemning.",
+      "Organiser fakta gjennom kronologi, virksomhet, hendelse, bygg, person, verk eller naturprosess.",
+      "Tolkning kan brukes når den forklarer et konkret faktum, men skal ikke erstatte kunnskapsinnhold.",
+      "Ikke press alle steder inn i fortellinger om samfunn, identitet, system, arbeid, metode, bevegelse eller dagens betydning.",
+      "En popupDesc under 300 ord er uferdig.",
+      "Manglende stoff skal løses med mer research, ikke gjentakelse, generell analyse eller spekulasjon.",
+      "PopupDesc kan være lengre enn 600 ord når kildene og stedet forsvarer det; det finnes ingen automatisk hard maksimumsgrense."
     ],
     "notFirstLineContent": [
       "læringsmål eller hva spilleren bør forstå",
       "hvilken kategori eller quizvinkel stedet bør ha",
       "generelle koblinger til vår tid",
-      "lange forklaringer av samfunnssystemer eller teori",
       "redaksjonell begrunnelse for hvorfor stedet er med",
       "koordinatstatus, kildearbeid, validering eller interne produksjonsnotater"
     ],
@@ -102,19 +114,21 @@
         "Ikke bruk samme setningsform på alle stedene.",
         "Ikke avslutt hver popupDesc med en generell læresetning eller kobling til i dag.",
         "Ingen tekst skal kunne flyttes til et annet sted ved bare å bytte egennavnet.",
-        "Hvert sted skal ha minst ett faktum som ikke passer på et lignende nabosted."
+        "Hvert sted skal inneholde flere fakta som ikke passer på et lignende nabosted.",
+        "Lange popuptekster skal variere mellom kronologi, aktører, hendelser, fysisk beskrivelse og minneverdige detaljer."
       ]
     },
     "reviewQuestions": [
-      "Lærer spilleren flere konkrete ting?",
-      "Finnes det navn, hendelser, årstall, funksjoner eller særegne detaljer?",
-      "Inneholder teksten minst én opplysning som ikke passer på et annet lignende sted?",
+      "Er popupDesc minst 300 ord?",
+      "Har popupDesc minst tre avsnitt og tydelig indre struktur?",
+      "Lærer spilleren mange konkrete ting?",
+      "Finnes det navn, hendelser, årstall, funksjoner, fysiske spor og særegne detaljer?",
+      "Inneholder teksten flere opplysninger som ikke passer på et annet lignende sted?",
       "Kan flere normale quizspørsmål lages direkte fra teksten?",
       "Tilfører popupDesc vesentlig mer enn desc?",
       "Er minst to tredeler av opplysningene i popupDesc nye?",
-      "Er teksten interessant uten generiske fagkonklusjoner?",
-      "Er alle faktiske påstander kildebelagte?",
-      "Er generell analyse og kobling til i dag holdt utenfor førstelinjen når den ikke er nødvendig?"
+      "Er teksten interessant uten generiske fagkonklusjoner eller fylltekst?",
+      "Er alle faktiske påstander kildebelagte?"
     ]
   },
   "categories": {

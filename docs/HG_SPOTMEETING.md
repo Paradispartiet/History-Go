@@ -1,16 +1,27 @@
-# HG Spotmeeting v1
+# HG Spotmeeting
 
-HG Spotmeeting is the product name for voluntary, privacy-safe meeting requests around History Go knowledge. A spotmeeting is not dating, not social media, not a live-location feature, and not chat.
+Status: **canonical produkt- og lifecycle-kontrakt**  
+Sist kontrollert: **2026-07-25**
+
+HG Spotmeeting er produktnavnet for frivillige, privacy-safe møteforespørsler rundt History GO-kunnskap. Spotmeeting er ikke et separat sosialt produkt; det er den konkrete invite-flowen inne i Social Meet.
 
 ## Definition
 
-A spotmeeting is a manual request to meet around a History Go place, route, quiz, observation, circle, or topic. Matching is based on knowledge, interests, completed learning, routes, observations, and shared concepts — never where someone is right now.
+En spotmeeting er en manuelt startet forespørsel om å møtes rundt et History GO-sted, en rute, quiz, observasjon, sirkel eller et tema. Candidate discovery og matchforklaringer skal bygge på eksplisitte, grove kunnskaps- og interessesignaler, aldri på hvor noen befinner seg nå.
 
 ## Allowed contexts
 
-Every spotmeeting context must include `contextType`, `contextId`, `title`, `reason`, and `sourceSurface`.
+Alle contexts må inneholde:
 
-Allowed context types:
+```text
+contextType
+contextId
+title
+reason
+sourceSurface
+```
+
+Tillatte `contextType`-verdier:
 
 - `place`
 - `quiz`
@@ -21,53 +32,81 @@ Allowed context types:
 
 ## Lifecycle
 
-1. User manually opens a spotmeeting surface.
-2. History Go suggests knowledge/activity matches for the selected context.
-3. User sends one preset message.
-4. Recipient can accept or decline.
-5. Sender can cancel.
-6. Either side can block or report according to social moderation rules.
-7. A completed spotmeeting can be marked completed once. Completion does not farm trust or alter existing scoring.
+1. Brukeren åpner Spotmeeting manuelt.
+2. Systemet validerer context og privacy-felter.
+3. Discovery kan foreslå kvalifiserte profiler når FastAPI og rollout-gatene er aktivert, eller seedede demo-profiler i eksplisitt TEST_MODE.
+4. Brukeren velger én servereid preset-melding.
+5. En invite opprettes som `pending` gjennom den autoritative datagrensen.
+6. Mottakeren kan godta eller avslå.
+7. Avsenderen kan avbryte.
+8. Enten deltaker kan avbryte en akseptert invite etter policy.
+9. En akseptert invite kan markeres `completed` én gang; gjentatt completion er idempotent.
+10. Block, moderation restriction, expiry, cooldown eller annen safety-state skal stoppe handlingen når policyen krever det.
+
+Serverens lifecycle omfatter også tekniske/safety-stater som `expired`, `reported` og `blocked`. Produktets primære deltakerstater er:
+
+```text
+pending
+accepted
+declined
+cancelled
+completed
+```
 
 ## Privacy rules
 
-Spotmeeting must always be:
+Spotmeeting skal alltid være:
 
-- manually initiated;
-- knowledge/activity based;
-- tied to a place, topic, route, quiz, observation, or circle;
-- preset-message only;
+- manuelt initiert;
+- knowledge/activity-based;
+- context-bound;
+- preset-only;
 - cancellable;
-- blockable/reportable;
-- private by default.
+- block-/report-aware;
+- privat og participant-scoped.
 
-Spotmeeting must never expose or use GPS, live location, last seen, nearby users, distance to person, followers, public feed, free chat, public visit history, or passive tracking.
+Spotmeeting skal aldri bruke eller eksponere GPS, live location, last seen, nearby users, distance-to-person, followers/feed, offentlig visit history, passive tracking eller fri chat.
 
-## Demo vs production
+## Implemented boundaries
 
-`window.HG_Spotmeeting` exists in production, but production invite discovery returns `backend_not_enabled` until a real privacy-reviewed backend exists. In `HG_TEST_MODE`, the module can read seeded HG Social demo candidates. Demo data remains local and must not be inserted into `PEOPLE` or production profile/social storage.
+History GO har implementert:
 
-## Backend requirements
+- FastAPI/PostgreSQL identity og eksplisitt public-profile opt-in;
+- participant block/report, export og deletion;
+- moderation queue, restrictions og appeals;
+- abuse controls, rate limits, duplicate suppression og cooldowns;
+- durable server-owned invite creation, lifecycle, inbox og sync;
+- privacy-safe candidate discovery;
+- typed FastAPI client og browser-adapter;
+- retention, holds og privacy-safe observability.
 
-A future backend must implement the same privacy contract before real discovery is enabled:
+Aktiv implementasjonsoversikt ligger i [`../backend/README.md`](../backend/README.md).
 
-- authenticated current-user identity;
-- explicit opt-in public profile/read model;
-- context-bound invite API;
-- preset message IDs only;
-- cancellation, accept, decline, block, and report endpoints;
-- retention/deletion policy;
-- no live location, nearby-user, follower/feed, or chat primitives.
+## Production rollout
 
+Implementert kode er ikke det samme som automatisk bred aktivering.
 
-## Related server-side safety contracts
+Uten eksplisitt FastAPI-konfigurasjon eller når rollout-gatene er av, skal produksjonsflaten feile lukket med en backend-disabled/unavailable-tilstand. Candidate discovery krever både deployment-kill-switch og privat server-/database-rollout. Invite writes og destructive retention har egne eksplisitte gates.
 
-Production Spotmeeting discovery remains disabled until the server-side identity, invite, and block/report/moderation contracts are implemented and verified:
+Et discovery-resultat er bare et advisory snapshot. Invite creation skal alltid revalidere gjeldende identity, consent, block, moderation, abuse, cooldown, rate-limit og duplicate-state før insert.
 
-- `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`
-- `docs/HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`
-- `docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`
+## TEST_MODE
+
+`HG_TEST_MODE` beholder en tydelig lokal/demo-flow for QA. Demo-profiler og demo-invites skal ikke skrives til `PEOPLE`, ekte profilstate eller servereid Social Meet-state. Produksjonsfeil skal ikke falle tilbake til fake invites eller demo-candidates.
+
+## Server-side requirements
+
+Kravene eies av:
+
+- [`HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`](./HG_SOCIAL_MEET_IDENTITY_CONTRACT.md)
+- [`HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`](./HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md)
+- [`HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`](./HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md)
+
+Gjeldende implementasjonsstatus leses fra:
+
+- [`HG_SOCIAL_BACKEND_CONTRACT.md`](./HG_SOCIAL_BACKEND_CONTRACT.md)
+- [`../backend/README.md`](../backend/README.md)
 
 ## Non-goals
 
-HG Spotmeeting does not implement dating, free chat, public feeds, follower graphs, live presence, GPS discovery, distance ranking, or backend calls in v1.
+Spotmeeting innfører ikke datingmekanikk, åpne meldinger, public feeds, follower graphs, presence maps, location ranking eller automatisk kontakt.

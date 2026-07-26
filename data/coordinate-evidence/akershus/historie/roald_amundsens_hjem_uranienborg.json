@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "roald_amundsens_hjem_uranienborg",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch3/roald_amundsens_hjem_uranienborg.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.78616,
+    "lon": 10.73388,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 171658078 – Roald Amundsens hjem Uranienborg",
+    "coordType": "named_historic_house_building_point",
+    "coordNote": "OpenStreetMap way 171658078 er den stabile navngitte bygningsgeometrien for Roald Amundsens hjem Uranienborg. Canonical punkt 59.78616, 10.73388 ligger om lag 1,5 meter fra den strukturerte bygningskoordinaten 59.7861694, 10.7338611 og beholdes som display_marker for hovedhuset. MiA oppgir Roald Amundsens vei 192, 1420 Svartskog som besøksadresse og dokumenterer at huset ble bygget rundt 1865, kjøpt av Amundsen i 1908 og står slik han etterlot det i 1928. Eiendommen omfatter også uthus, badehus, ishus, lysthus, vaktbolig og brygge; radius 260 meter beholdes for det nære Uranienborg-miljøet, men selve kartmarkøren representerer hovedhuset. Bålerud brygge, Rødsten og Amundsens barndomsmiljø i Uranienborgveien i Oslo er separate steder og brukes ikke som koordinatanker."
+  },
+  "previousCoordinate": {
+    "lat": 59.78616,
+    "lon": 10.73388,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 0.0,
+    "reasonRetained": "The legacy coordinate already lies at the named main house and is approximately 1.5 metres from the structured building coordinate."
+  },
+  "identity": {
+    "currentName": "Roald Amundsens hjem Uranienborg",
+    "resolvedIdentity": "Roald Amundsen's preserved historic house Uranienborg at Roald Amundsens vei 192, 1420 Svartskog",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The canonical record is centred on the preserved main house while the radius includes the coherent immediate property environment."
+  },
+  "requiredEvidence": [
+    "stable named building geometry",
+    "official visitor address",
+    "official history connecting the building to Amundsen's residence and work",
+    "explicit distinction between the main-house marker and the wider property",
+    "wrong-object exclusions"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 171658078 – Roald Amundsens hjem Uranienborg",
+      "sourceUrl": "https://www.openstreetmap.org/way/171658078",
+      "sourceObjectId": "osm-way:171658078",
+      "sourceQuality": "exact_named_historic_house_geometry",
+      "finding": "The stable named way represents the preserved Uranienborg main house. The canonical point lies at the building and approximately 1.5 metres from the structured coordinate 59.7861694, 10.7338611.",
+      "canVerifyCoordinate": true,
+      "reason": "The record is centred on the physical historic house, so the named building geometry is the appropriate display-marker source."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "MiA – Find Roald Amundsen's House",
+      "sourceUrl": "https://mia.no/roaldamundsen/finn",
+      "sourceObjectId": "mia-roald-amundsen:address:roald-amundsens-vei-192",
+      "sourceQuality": "official_visitor_address",
+      "finding": "MiA lists Roald Amundsens vei 192, 1420 Svartskog as the museum's visitor address and distinguishes the house from Bålerud pier.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the authoritative active-site address and wrong-object cross-check."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA – About Roald Amundsen's House",
+      "sourceUrl": "https://mia.no/roaldamundsen/om_oss",
+      "sourceObjectId": "mia-roald-amundsen:uranienborg-official-identity",
+      "sourceQuality": "official_house_identity_and_preservation_status",
+      "finding": "MiA identifies Uranienborg as Amundsen's preserved home at Svartskog, built around 1865, bought by Amundsen in 1908 and retained with original interiors and objects from 1928.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes the exact historical-house identity represented by the named geometry."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA – Uranienborg's history",
+      "sourceUrl": "https://amundsen.mia.no/resource/uranienborgs-historie/",
+      "sourceObjectId": "mia-roald-amundsen:uranienborg-property-history",
+      "sourceQuality": "official_property_scope_and_use_history",
+      "finding": "MiA documents the main house, outbuilding, bathhouse, icehouse, gazebo, guard house, smaller structures and pier, as well as expedition planning and storage at Uranienborg.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the retained 260-metre radius while preserving the main house as the display marker."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Wikidata – Roald Amundsen's house in Uranienborg",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q12008560",
+      "sourceObjectId": "wikidata:Q12008560;osm-way:171658078",
+      "sourceQuality": "structured_identifier_cross_check",
+      "finding": "The structured record connects the historic house museum to OSM way 171658078 and coordinate 59.7861694, 10.7338611.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as an identifier and coordinate cross-check, not as the primary geometry source."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Explicit wrong-object exclusions",
+      "sourceUrl": "https://mia.no/roaldamundsen/finn",
+      "sourceObjectId": "exclusion:balerud-brygge-rodsten-uranienborgveien-oslo",
+      "sourceQuality": "wrong_object_exclusion",
+      "finding": "Bålerud pier is the nearby parking and arrival point, Rødsten is a separate neighbouring house, and Uranienborgveien in Oslo refers to Amundsen's childhood environment rather than this museum.",
+      "canVerifyCoordinate": false,
+      "reason": "Prevents nearby access points, neighbouring property and the Oslo name association from replacing the historic-house coordinate."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Roald Amundsens vei",
+        "number": "192",
+        "postcode": "1420",
+        "city": "Svartskog",
+        "country": "NO"
+      },
+      "sourceUrl": "https://mia.no/roaldamundsen/finn",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:171658078",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q12008560",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:171658078",
+      "geometryType": "Polygon",
+      "geometryRole": "historic_main_house",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:roald_amundsens_hjem_uranienborg",
+      "lat": 59.78616,
+      "lon": 10.73388,
+      "coordRole": "unverified_building_point",
+      "distanceFromStructuredBuildingCoordinateM": 1.5,
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:171658078",
+      "lat": 59.78616,
+      "lon": 10.73388,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 0.0,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Retained the building-aligned canonical point and applied the full named-geometry source contract. Continue with Stunner boplass."
+  },
+  "notes": [
+    "This is a source-contract upgrade, not a coordinate correction.",
+    "The canonical marker represents the preserved main house, while the radius covers the immediate multi-structure property environment.",
+    "Bålerud pier is an arrival point and is not the museum coordinate.",
+    "Rødsten and Amundsen's Uranienborgveien childhood association are separate identities.",
+    "No nearest-result or generic Svartskog locality point was promoted to verified."
+  ]
+}

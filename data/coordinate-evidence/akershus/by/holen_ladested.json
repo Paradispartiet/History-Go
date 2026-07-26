@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "holen_ladested",
+  "placeFile": "data/places/by/akershus/holen_ladested/holen_ladested.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_torg_anchor_for_historic_ladested_river_and_bridge_environment",
+  "currentCoordinate": {
+    "lat": 59.5395561,
+    "lon": 10.7419569,
+    "r": 300,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Vestby kommune – Hølen historisk kulturmiljø; Lokalhistoriewiki – Hølen torg",
+    "coordType": "documented_historic_ladested_torg_and_river_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "vestby-kommune:holen-historisk-kulturmiljo",
+    "coordNote": "The published Hølen torv point anchors the officially documented historic centre, river, sawmill, street and bridge environment; it is not an exact conservation polygon or a viaduct-only point."
+  },
+  "previousCoordinate": {
+    "lat": 59.53984,
+    "lon": 10.73919,
+    "r": 300,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 159.1,
+    "reasonReplaced": "The legacy point lay west of the municipal historic core and lacked a stable identity linking it to the square, the central streets, Såna or the ladested environment."
+  },
+  "identity": {
+    "currentName": "Hølen ladested",
+    "resolvedIdentity": "The historic inland ladested and customs, sawmill, river, street and bridge environment centred on Hølen torv and Såna",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The square, Store and Lille Strandgate, Såna, the former sawmill economy and the successive bridge systems form one coherent historic urban and transport environment."
+  },
+  "requiredEvidence": [
+    "official ladested, customs and sawmill history",
+    "official identification of the most valuable historic-centre subareas",
+    "published physical square coordinate",
+    "independent river, timber and town-history cross-check",
+    "explicit distinction from the viaduct alone and the generic modern village point"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Vestby kommune – Hølen",
+      "sourceUrl": "https://www.vestby.kommune.no/om-vestby/holen",
+      "sourceObjectId": "vestby-kommune:holen-historisk-kulturmiljo",
+      "sourceQuality": "official_ladested_customs_sawmill_and_bridge_identity",
+      "finding": "Vestby municipality identifies Hølen as a strategically located historic ladested and customs place from the mid-1660s, with multiple export-oriented sawmills along Såna and a notable sequence of historic bridges.",
+      "canVerifyCoordinate": true,
+      "reason": "Establishes the combined historic identity represented by the square and river-area anchor."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Vestby kommune – Preservation and cultural heritage",
+      "sourceUrl": "https://www.vestby.kommune.no/tjenester/plan-bygg-og-eiendom/byggesak/skal-du-bygge-rive-eller-endre/bevaring-og-kulturminner",
+      "sourceObjectId": "vestby-kommune:holen-torg-store-lille-strandgate",
+      "sourceQuality": "official_historic_center_scope",
+      "finding": "The municipality identifies the area around the square, upper Store Strandgate and the junction of Lille and Store Strandgate as especially valuable coherent historic urban environments and rates Hølen's cultural-history value as very high.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly supports using the square as an area anchor for the core rather than a generic settlement point."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Hølen",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/H%C3%B8len",
+      "sourceObjectId": "lokalhistoriewiki:holen-torg",
+      "sourceQuality": "published_square_coordinate_and_detailed_ladested_history",
+      "finding": "Lokalhistoriewiki publishes 59.5395561, 10.7419569 for Hølen torv and documents the customs rights, timber trade, river transport, sawmills and relationship with Son harbour.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides the physical square anchor and an independent historical explanation of why the river-centre environment became a ladested."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Store Strandgate",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Store_Strandgate_(Vestby)",
+      "sourceObjectId": "lokalhistoriewiki:store-strandgate-holen",
+      "sourceQuality": "historic_street_and_river_alignment_cross_check",
+      "finding": "Store Strandgate follows the northern bank of Såna through the historic centre and represents an old through-route; Lille Strandgate runs on the opposite bank.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the retained area radius and street-and-river interpretation."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Hølen",
+      "sourceUrl": "https://snl.no/H%C3%B8len",
+      "sourceObjectId": "snl:holen-ladested-river-bridges",
+      "sourceQuality": "independent_ladested_and_transport_history",
+      "finding": "SNL independently documents Hølen as a former ladested, timber-trading place and river settlement with several stone-arch bridges over Såna.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides an authoritative independent identity and transport-history cross-check."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Vestby kommune – Smaalensbanen and Hølen viaduct",
+      "sourceUrl": "https://www.vestby.kommune.no/tjenester/friluftsliv-natur-og-miljo/smaalensbanen/fra-nedlagt-jernbanetrase-til-turvei-og-friluftslivsomrade",
+      "sourceObjectId": "vestby-kommune:holenviadukten-1879-transport-layer",
+      "sourceQuality": "official_later_transport_layer",
+      "finding": "The municipality documents the 1879 Hølen viaduct, its railway use until 1996 and its later conversion into the Smaalensbanen walking and cycling route.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the later transport layer but does not justify moving the canonical ladested marker to the viaduct alone."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Hølen point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:holen_ladested",
+      "sourceQuality": "unresolved_western_settlement_point",
+      "finding": "The previous coordinate 59.53984, 10.73919 lies approximately 159.1 metres west of the published square point and lacks a source contract.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it cannot be tied specifically to the official historic-centre subareas."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "vestby-kommune:holen-historisk-kulturmiljo",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:holen-torg",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:holen_ladested",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "holen_torg_historic_center",
+      "name": "Hølen torv – physical anchor for the ladested and river landscape",
+      "lat": 59.5395561,
+      "lon": 10.7419569,
+      "r": 80,
+      "type": "area_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:holen-torg",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:holen_ladested",
+      "lat": 59.53984,
+      "lon": 10.73919,
+      "coordRole": "unresolved_western_settlement_point",
+      "distanceFromAppliedM": 159.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:holen-torg",
+      "lat": 59.5395561,
+      "lon": 10.7419569,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 159.1,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Hølen torv as the physical anchor for the officially documented historic ladested, river, street and bridge environment. Continue with the next active manifest record."
+  },
+  "notes": [
+    "The canonical record represents the combined ladested, sawmill, river, street and transport landscape.",
+    "The viaduct is an important later layer but is not the sole or canonical place identity.",
+    "The area anchor is not an exact conservation-zone centroid or polygon.",
+    "The 300-metre radius covers the square, central Strandgate sections, Såna and the nearest bridge sequence at gameplay scale.",
+    "The coordinate correction is approximately 159.1 metres."
+  ]
+}
