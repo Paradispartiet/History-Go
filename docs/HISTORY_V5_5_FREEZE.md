@@ -8,6 +8,18 @@ Frysemanifestet `data/fag/historie/historie_v5_5_freeze_manifest.json` inneholde
 
 V5.5 er den kuraterte faglige basen. V6 skal legge til kilde-, claim- og stedsevidens i egne kontrakter og skal ikke stille endre V5.5-objektene.
 
+## Materialisert kvalitetsløft
+
+Den globale dybdeauditen avdekket restgjeld som den tidligere V5.5-validatoren ikke målte. Før frysen ble følgende reparert i canonical-dataene:
+
+- 544 manglende begrepsfelt for indikatorer og kildekrav;
+- 70 teoriobjekter som manglet en tredje, eksplisitt avgrensning;
+- én semantisk relasjon til et ikke-eksisterende begrep.
+
+Etter reparasjonen har alle 826 begreper minst to indikatorer og to kildekrav, alle 200 teorier minst tre begrensninger, og relasjonsintegriteten er uten ukjente mål. Dybdeauditen har status `PASSED`, og frysemanifestet har status `FROZEN`.
+
+Leksikalske ankervarsler er informative, ikke blokkerende: de brukes som manuell kontrolliste for definisjoner der bøyning, sammensatte ord eller en bevisst faglig parafrase gjør at label-tokenet ikke gjentas ordrett. De skal ikke masseendres automatisk, fordi ordrett repetisjon i seg selv ikke dokumenterer bedre faglig kvalitet.
+
 ## Permanent kvalitetsport
 
 `tools/audit-historie-v5-5-quality-depth.mjs` kontrollerer blant annet:
