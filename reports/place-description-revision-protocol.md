@@ -82,16 +82,16 @@ Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifes
 | 56 | Skøyen | `skoyen` | 48 | 303 | 6 | #4124 |
 | 57 | Trikkelinje 17/18 | `trikk_17_18` | 49 | 301 | 6 | #4124 |
 | 58 | St. Hanshaugen park | `st_hanshaugen_park` | 53 | 311 | 7 | #4124 |
-| 59 | Saga kino | `saga_kino` | 48 | 337 | 6 | #TBD |
-| 60 | Klingenberg kino | `klingenberg_kino` | 45 | 336 | 6 | #TBD |
-| 61 | Gimle kino | `gimle_kino` | 51 | 320 | 6 | #TBD |
-| 62 | Vika kino | `vika_kino` | 50 | 310 | 6 | #TBD |
-| 63 | Hartvig Nissens skole (SKAM) | `hartvig_nissens_skole_skam` | 45 | 331 | 6 | #TBD |
-| 64 | Middelalderparken | `middelalder_oslo` | 43 | 308 | 6 | #TBD |
-| 65 | Gamlebyen gravlund | `gamlebyen_gravlund` | 44 | 302 | 6 | #TBD |
-| 66 | Akershus festning | `akershus_festning` | 48 | 306 | 6 | #TBD |
-| 67 | Hovedøya kloster | `hovedoya_kloster` | 44 | 301 | 6 | #TBD |
-| 68 | Villa Grande | `villa_grande` | 48 | 325 | 6 | #TBD |
+| 59 | Saga kino | `saga_kino` | 48 | 337 | 6 | #4137 |
+| 60 | Klingenberg kino | `klingenberg_kino` | 45 | 336 | 6 | #4137 |
+| 61 | Gimle kino | `gimle_kino` | 51 | 320 | 6 | #4137 |
+| 62 | Vika kino | `vika_kino` | 50 | 310 | 6 | #4137 |
+| 63 | Hartvig Nissens skole (SKAM) | `hartvig_nissens_skole_skam` | 45 | 331 | 6 | #4137 |
+| 64 | Middelalderparken | `middelalder_oslo` | 43 | 308 | 6 | #4137 |
+| 65 | Gamlebyen gravlund | `gamlebyen_gravlund` | 44 | 302 | 6 | #4137 |
+| 66 | Akershus festning | `akershus_festning` | 48 | 306 | 6 | #4137 |
+| 67 | Hovedøya kloster | `hovedoya_kloster` | 44 | 301 | 6 | #4137 |
+| 68 | Villa Grande | `villa_grande` | 48 | 325 | 6 | #4137 |
 
 ## Gjenstående Oslo-kø
 
@@ -138,6 +138,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 4 | 10 | #4069 |
 | Oslo V4 batch 5 | 10 | #4101 |
 | Oslo V4 batch 6 | 6 | #4124 – fullførte den opprinnelige 58-steders delkøen |
-| Oslo V4 batch 7 | 10 | #TBD – første batch etter utvidelse til alle 90 aktive Oslo-steder |
+| Oslo V4 batch 7 | 10 | #4137 – første batch etter utvidelse til alle 90 aktive Oslo-steder |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
