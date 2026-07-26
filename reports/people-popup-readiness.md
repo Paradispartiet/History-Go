@@ -4,35 +4,35 @@ Status: **generert produksjonsrapport**
 
 Rapporten rangerer manifest-lastede canonical personer etter hvor mye av `docs/PEOPLE_POPUP_SYSTEM.md` de kan fylle. Den måler datakompletthet, ikke personens historiske betydning eller person–sted-relevans.
 
-Source fingerprint: `93a50358c8402d88247c255cda5f7c6e0831fa625e8c498b74fcf78fb2a03c4e`
+Source fingerprint: `e1d316d7693034997cba38588d661f40261d1a97a04f1cedb9f5e17f262d655b`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1370 |
-| Complete | 18 |
+| Personer | 1369 |
+| Complete | 22 |
 | Strong | 0 |
-| Partial | 1023 |
+| Partial | 1018 |
 | Sparse | 329 |
 | Ødelagte bildereferanser | 306 |
-| Eksplisitt initialfallback | 998 |
+| Eksplisitt initialfallback | 997 |
 | Implisitt initialfallback | 23 |
-| Gjennomsnittspoeng | 41.5 |
+| Gjennomsnittspoeng | 41.6 |
 
 ## Feltdekning
 
 | Kontraktdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 33 | 2.4 % |
-| popupDesc | 27 | 2 % |
-| lifeData | 18 | 1.3 % |
-| contributions | 18 | 1.3 % |
-| education | 18 | 1.3 % |
-| practiceProfile | 1200 | 87.6 % |
-| placeGrounding | 1370 | 100 % |
-| sources | 271 | 19.8 % |
-| imageContract | 1064 | 77.7 % |
+| identity | 37 | 2.7 % |
+| popupDesc | 31 | 2.3 % |
+| lifeData | 22 | 1.6 % |
+| contributions | 22 | 1.6 % |
+| education | 22 | 1.6 % |
+| practiceProfile | 1199 | 87.6 % |
+| placeGrounding | 1369 | 100 % |
+| sources | 274 | 20 % |
+| imageContract | 1063 | 77.6 % |
 
 ## Kategorier
 
@@ -40,12 +40,12 @@ Source fingerprint: `93a50358c8402d88247c255cda5f7c6e0831fa625e8c498b74fcf78fb2a
 |---|---:|---:|---:|---:|---:|---:|
 | sport | 323 | 0 | 0 | 297 | 26 | 41.3 |
 | historie | 216 | 1 | 0 | 118 | 97 | 39.9 |
-| litteratur | 173 | 1 | 0 | 143 | 29 | 41.4 |
+| litteratur | 172 | 4 | 0 | 139 | 29 | 42.4 |
 | musikk | 123 | 0 | 0 | 100 | 23 | 41.1 |
 | politikk | 106 | 3 | 0 | 83 | 20 | 43.8 |
 | naeringsliv | 81 | 0 | 0 | 62 | 19 | 40 |
 | kunst | 73 | 7 | 0 | 59 | 7 | 52.2 |
-| by | 61 | 6 | 0 | 45 | 10 | 50.6 |
+| by | 61 | 7 | 0 | 44 | 10 | 51.5 |
 | subkultur | 57 | 0 | 0 | 35 | 22 | 36.7 |
 | scenekunst | 47 | 0 | 0 | 42 | 5 | 43.5 |
 | vitenskap | 34 | 0 | 0 | 14 | 20 | 33.4 |
@@ -58,7 +58,7 @@ Source fingerprint: `93a50358c8402d88247c255cda5f7c6e0831fa625e8c498b74fcf78fb2a
 
 | Primærsted | Ufullstendige | Sparse | Partial | Strong | Snitt | Første profiler |
 |---|---:|---:|---:|---:|---:|---|
-| nationaltheatret | 118 | 0 | 118 | 0 | 42.2 | Henrik Bull (42), Agnes Mowinckel (42), Alfred Maurstad (42), Anders Mordal (42), Andrine Sæther (42) |
+| nationaltheatret | 113 | 0 | 113 | 0 | 42.2 | Agnes Mowinckel (42), Alfred Maurstad (42), Anders Mordal (42), Andrine Sæther (42), Anne Krigsvoll (42) |
 | holmenkollen_nasjonalanlegg | 109 | 4 | 105 | 0 | 40.4 | Kjetil André Aamodt (27), Lasse Kjus (27), Marit Bjørgen (27), Therese Johaug (27), Andreas Felder (40) |
 | bislett_stadion | 76 | 7 | 69 | 0 | 41.1 | Andreas Thorkildsen (27), Ingrid Kristiansen (27), Jakob Ingebrigtsen (27), Karsten Warholm (27), Trine Hattestad (27) |
 | det_norske_teatret | 72 | 0 | 72 | 0 | 42 | Agnes Mowinckel (42), Alfred Maurstad (42), Amund Rydland (42), Ane Dahl Torp (42), Anton Heiberg (42) |
