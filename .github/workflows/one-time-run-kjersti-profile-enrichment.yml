@@ -14,16 +14,13 @@ jobs:
   enrich-profile-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository history
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - name: Check out profile branch
         shell: bash
@@ -31,25 +28,26 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin agent/kjersti-people-profile
-          git checkout -B agent/kjersti-people-profile origin/agent/kjersti-people-profile
+          git fetch --depth=1 origin agent/kjersti-people-profile
+          git checkout -B agent/kjersti-people-profile FETCH_HEAD
 
       - name: Apply verified Kjersti enrichment
         run: python scripts/one-time-enrich-kjersti-people-profile.py
+
+      - name: Validate people popup syntax
+        run: node --check js/ui/person-popup-v2.js
+
+      - name: Validate people popup rendering
+        run: node --test tests/person-popup-v2.test.js
+
+      - name: Validate canonical Kjersti fields
+        run: node -e "const fs=require('fs'); const people=JSON.parse(fs.readFileSync('data/people/kunst/oslo/people_kunst_oslo.json','utf8')); const p=people.find(x=>x.id==='kjersti_wexelsen_goksoyr'); if(!p||p.works?.length!==6||p.birth_date!=='1945-12-15'||p.active_place!=='Nittedal') process.exit(1);"
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
       - name: Rebuild people-derived Civication index
         run: npm run civication:history-people:build
-
-      - name: Validate people popup runtime and rendering
-        run: |
-          node --check js/ui/person-popup-v2.js
-          node --test tests/person-popup-v2.test.js
-
-      - name: Validate canonical Kjersti fields
-        run: node -e "const fs=require('fs'); const people=JSON.parse(fs.readFileSync('data/people/kunst/oslo/people_kunst_oslo.json','utf8')); const p=people.find(x=>x.id==='kjersti_wexelsen_goksoyr'); if(!p||p.works?.length!==6||p.birth_date!=='1945-12-15'||p.active_place!=='Nittedal') process.exit(1);"
 
       - name: Validate Civication history people index sync
         run: npm run civication:history-people:check
