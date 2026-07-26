@@ -1,4 +1,4 @@
-name: One-time Oslo popup batch 5 quiz audit
+name: One-time Oslo popup batch 5 quiz context rebuild
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  audit:
+  rebuild:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -25,23 +25,17 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Capture quiz production audits
-        shell: bash
+      - name: Rebuild Deichman Bjørvika quiz context
         run: |
-          set +e
-          mkdir -p reports/oslo-popup-batch5-quiz-audit
-          npm run audit:quiz-production-context > reports/oslo-popup-batch5-quiz-audit/context.log 2>&1
-          echo "$?" > reports/oslo-popup-batch5-quiz-audit/context.exit
-          npm run audit:quiz-progression > reports/oslo-popup-batch5-quiz-audit/progression.log 2>&1
-          echo "$?" > reports/oslo-popup-batch5-quiz-audit/progression.exit
-          npm run audit:quiz-theory-binding > reports/oslo-popup-batch5-quiz-audit/theory.log 2>&1
-          echo "$?" > reports/oslo-popup-batch5-quiz-audit/theory.exit
-          cat reports/oslo-popup-batch5-quiz-audit/*.exit
-          exit 0
+          npm run quiz:context -- \
+            --category by \
+            --target deichman_bjorvika \
+            --output data/quiz/production_context/by/deichman_bjorvika.json
+          npm run audit:quiz-production-context
 
-      - name: Upload audit reports
+      - name: Upload rebuilt context
         uses: actions/upload-artifact@v4
         with:
-          name: oslo-popup-batch5-quiz-audit-${{ github.run_id }}
-          path: reports/oslo-popup-batch5-quiz-audit/
+          name: deichman-bjorvika-quiz-context-${{ github.run_id }}
+          path: data/quiz/production_context/by/deichman_bjorvika.json
           if-no-files-found: error
