@@ -3,7 +3,7 @@
 > node scripts/audit-quiz-production-context.mjs
 
 {
-  "status": "failed",
+  "status": "passed",
   "categoriesWithQuizProduction": 3,
   "quizFilesChecked": 8,
   "checked": [
@@ -56,30 +56,5 @@
       "questions": 35
     }
   ],
-  "failures": [
-    {
-      "file": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
-      "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
-    },
-    {
-      "file": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
-      "reason": "resolverbevis er utdatert for supersetQuizMal"
-    },
-    {
-      "file": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
-      "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
-    },
-    {
-      "file": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
-      "reason": "resolverbevis er utdatert for supersetQuizMal"
-    },
-    {
-      "file": "data/quiz/production_context/naeringsliv/havnelageret.json",
-      "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
-    },
-    {
-      "file": "data/quiz/production_context/naeringsliv/havnelageret.json",
-      "reason": "resolverbevis er utdatert for supersetQuizMal"
-    }
-  ]
+  "failures": []
 }
