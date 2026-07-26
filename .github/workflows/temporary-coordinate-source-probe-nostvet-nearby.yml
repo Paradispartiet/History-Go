@@ -1,0 +1,160 @@
+name: Temporary compact Nøstvet nearby extraction
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-nostvet-boplass-production
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Extract nearby Askeladden candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT='reports/akershus-coordinate-nostvet-source-probe'
+          mkdir -p "$OUT"
+
+          python - <<'PY'
+          import json
+          import math
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-nostvet-source-probe')
+          legacy = (59.75109, 10.7996)
+
+          def distance_m(a, b):
+              lat1, lon1 = map(math.radians, a)
+              lat2, lon2 = map(math.radians, b)
+              dlat = lat2 - lat1
+              dlon = lon2 - lon1
+              h = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+              return 6371000 * 2 * math.asin(math.sqrt(h))
+
+          def flatten_pairs(coords):
+              if not isinstance(coords, list):
+                  return []
+              if len(coords) >= 2 and all(isinstance(v, (int, float)) for v in coords[:2]):
+                  return [(float(coords[0]), float(coords[1]))]
+              pairs = []
+              for item in coords:
+                  pairs.extend(flatten_pairs(item))
+              return pairs
+
+          def ring_centroid(ring):
+              if len(ring) < 4:
+                  return None
+              pts = list(ring)
+              if pts[0] != pts[-1]:
+                  pts.append(pts[0])
+              twice_area = cx = cy = 0.0
+              for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                  cross = x1 * y2 - x2 * y1
+                  twice_area += cross
+                  cx += (x1 + x2) * cross
+                  cy += (y1 + y2) * cross
+              if abs(twice_area) < 1e-15:
+                  return None
+              return cx / (3 * twice_area), cy / (3 * twice_area)
+
+          def geometry_point(feature):
+              props = feature.get('properties') or {}
+              center = props.get('senterpunkt')
+              if isinstance(center, dict) and center.get('type') == 'Point':
+                  coords = center.get('coordinates') or []
+                  if len(coords) >= 2:
+                      return float(coords[0]), float(coords[1]), 'official_senterpunkt'
+              geometry = feature.get('geometry') or {}
+              kind = geometry.get('type')
+              coords = geometry.get('coordinates')
+              if kind == 'Point' and coords:
+                  return float(coords[0]), float(coords[1]), 'geometry_point'
+              if kind == 'Polygon' and coords and coords[0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0]])
+                  if point:
+                      return point[0], point[1], 'polygon_centroid'
+              if kind == 'MultiPolygon' and coords and coords[0] and coords[0][0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0][0]])
+                  if point:
+                      return point[0], point[1], 'multipolygon_first_centroid'
+              pairs = flatten_pairs(coords)
+              if not pairs:
+                  return None
+              return sum(x for x, _ in pairs) / len(pairs), sum(y for _, y in pairs) / len(pairs), 'vertex_mean'
+
+          candidates = []
+          for collection in ('lokaliteter', 'enkeltminner'):
+              path = out / f'riksantikvaren-ogc-{collection}-kommune-3218.json'
+              data = json.loads(path.read_text())
+              for feature in data.get('features', []):
+                  point = geometry_point(feature)
+                  if not point:
+                      continue
+                  lon, lat, method = point
+                  distance = distance_m(legacy, (lat, lon))
+                  if distance > 2000:
+                      continue
+                  props = feature.get('properties') or {}
+                  candidates.append({
+                      'collection': collection,
+                      'feature_id': feature.get('id'),
+                      'lat': lat,
+                      'lon': lon,
+                      'point_method': method,
+                      'distance_from_legacy_m': round(distance, 1),
+                      'geometry_type': (feature.get('geometry') or {}).get('type'),
+                      'navn': props.get('navn'),
+                      'informasjon': props.get('informasjon'),
+                      'kulturminneId': props.get('kulturminneId'),
+                      'lokalitetId': props.get('lokalitetId'),
+                      'lokalitetsart': props.get('lokalitetsart'),
+                      'enkeltminneart': props.get('enkeltminneart'),
+                      'lokalitetskategori': props.get('lokalitetskategori'),
+                      'enkeltminnekategori': props.get('enkeltminnekategori'),
+                      'datering': props.get('datering'),
+                      'vernetype': props.get('vernetype'),
+                      'opprinneligFunksjon': props.get('opprinneligFunksjon'),
+                      'opphav': props.get('opphav'),
+                      'linkKulturminnesøk': props.get('linkKulturminnesøk'),
+                  })
+
+          candidates.sort(key=lambda row: (row['distance_from_legacy_m'], row['collection'], str(row['feature_id'])))
+          (out / 'riksantikvaren-nearby-candidates.json').write_text(json.dumps(candidates, ensure_ascii=False, indent=2) + '\n')
+
+          with (out / 'nearby-summary.txt').open('w') as handle:
+              handle.write(f'candidate_count={len(candidates)}\n')
+              for row in candidates:
+                  info = ' '.join((row.get('informasjon') or '').split())
+                  handle.write(
+                      f"{row['distance_from_legacy_m']:7.1f}m | {row['collection']:12s} | {row.get('feature_id')} | "
+                      f"name={row.get('navn')!r} | loc_art={row.get('lokalitetsart')} | item_art={row.get('enkeltminneart')} | "
+                      f"dating={row.get('datering')} | vern={row.get('vernetype')} | function={row.get('opprinneligFunksjon')} | "
+                      f"lat={row['lat']:.12f} lon={row['lon']:.12f} | info={info[:700]}\n"
+                  )
+          PY
+
+          rm -f .github/workflows/temporary-coordinate-source-probe-nostvet-nearby.yml
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$OUT" .github/workflows/temporary-coordinate-source-probe-nostvet-nearby.yml
+          if git diff --cached --quiet; then
+            echo 'No nearby-candidate changes.'
+          else
+            git commit -m 'Extract nearby Nøstvet archaeological candidates'
+            git push origin HEAD:agent/akershus-nostvet-boplass-production
+          fi
