@@ -38,8 +38,8 @@ jobs:
         run: |
           cat .github/history-v5-6-prehistory-runner.part-* > /tmp/history-v5-6-prehistory.b64
           printf '%s  %s\n' \
-            '52b17456953fc475a7cee37bf0ad0faa0061a349' \
-            '/tmp/history-v5-6-prehistory.b64' | sha1sum --check
+            '4c5581f15e5accb92d6116b20285b59dc8eabdc8204c36bf8b690a87dbd00f2a' \
+            '/tmp/history-v5-6-prehistory.b64' | sha256sum --check
           base64 -d /tmp/history-v5-6-prehistory.b64 \
             | gunzip > /tmp/apply-history-v5-6-prehistory.mjs
           node --check /tmp/apply-history-v5-6-prehistory.mjs
