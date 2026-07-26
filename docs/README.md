@@ -100,14 +100,17 @@ Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korr
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
-### People-bilder og rettigheter
+### People-produksjon, stedskobling og bilder
 
-1. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt
-2. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
-3. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
-4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
+2. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+3. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+4. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+5. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+6. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+7. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
 
-People-bilder skal komme fra Wikidata/Wikimedia Commons gjennom lisensporten. Runtime leser lokale bildepaths og `imageMeta` fra canonical manifest-loadede people-filer; kandidat- og attribusjonsfilene er arbeids- og sporbarhetsdata, ikke en parallell people-sannhet.
+People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 
 ### Koordinater og geografisk evidens
 
@@ -178,78 +181,17 @@ Implementert kode betyr ikke automatisk bred produksjonsaktivering. Discovery, i
 5. [`HG_SOCIAL_QA.md`](./HG_SOCIAL_QA.md) — QA og privacy guards
 6. [`HG_SOCIAL_DEMO_MODE.md`](./HG_SOCIAL_DEMO_MODE.md) — lokal TEST_MODE/demo
 
-#### 3. Kravkontrakter
+## Oppdateringsregel
 
-- [`HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`](./HG_SOCIAL_MEET_IDENTITY_CONTRACT.md)
-- [`HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`](./HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md)
-- [`HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`](./HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md)
+Når en bindende kontrakt endres:
 
-De tre dokumentene er canonical kravkontrakter. De eier identity-, invite- og safety-kravene, mens gjeldende implementasjons- og rolloutstatus ligger i `backend/README.md` og slice-dokumentene. Implementert kode betyr fortsatt ikke automatisk bred produksjonsaktivering; participant-facing rollout er fail-closed.
+1. oppdater canonical dokument og relevant maskinkontrakt,
+2. oppdater runtime/tester,
+3. oppdater registeret,
+4. regenerer inventory,
+5. flytt erstattede status- og auditfiler til riktig arkivmappe.
 
-#### 4. Implementerte slices
-
-- [`HG_SOCIAL_MEET_MODERATION_BACKEND.md`](./HG_SOCIAL_MEET_MODERATION_BACKEND.md)
-- [`HG_SOCIAL_MEET_ABUSE_CONTROLS.md`](./HG_SOCIAL_MEET_ABUSE_CONTROLS.md)
-- [`HG_SPOTMEETING_INVITE_BACKEND.md`](./HG_SPOTMEETING_INVITE_BACKEND.md)
-- [`HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`](./HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md)
-- [`HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md`](./HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md)
-
-Identity- og participant-safety-slicene dokumenteres samlet i `backend/README.md` og i migrasjonene `002_social_meet_identity_profiles.sql` og `003_social_meet_safety.sql`.
-
-`HG_SOCIAL_MODERATION.md` er bare guide til den eldre lokale/localStorage-kompatibilitetsmodulen. Den eier ikke servermoderasjon.
-
-#### 5. Historiske overgangsdokumenter
-
-- `HG_SOCIAL_MEET_BACKEND_ROADMAP.md` — roadmap-snapshot fra før implementasjonsslicene landet
-- `social-meet-backend.md` — tidlig Supabase-foundation og direkte adapterfase før FastAPI-strangleren
-
-De kan brukes som historikk, men skal ikke overstyre dagens backendinngang, runtimekode eller implementasjonsdokumenter.
-
-#### Permanente grenser
-
-Social Meet skal fortsatt ikke bruke GPS, live location, nearby/distance, presence/last-seen, followers/feed, offentlig visit history, passiv tracking eller fri chat. TEST_MODE/demo skal forbli atskilt fra ekte profiler og servereid state.
-
-### Civication
-
-- [`CIVICATION_README.md`](./CIVICATION_README.md) — operativ inngang til Civication-runtime, data-, rolle-, mail-, debatt- og FWG-dokumentasjon
-- [`CIVICATION_DEBATE_SYSTEM.md`](./CIVICATION_DEBATE_SYSTEM.md) — operativ forklaring av Civications interne konfrontasjonsmotor
-- [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt og aktiv dagflyt
-- [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — bindende subsystemkontrakter
-
-Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Genererte role-pack- og FWG-statusfiler har én registrert output-path hver.
-
-### Rapporter og audits
-
-- [`../reports/README.md`](../reports/README.md) eier rapportreglene.
-- `npm run health:data` regenererer datahelse.
-- `reports/data-health-summary.md` er en commit-bundet snapshot; kontroller alltid `Generated`-datoen.
-- Andre markdown-rapporter i `reports/` er tidsbundne snapshots med mindre de uttrykkelig er registrert som canonical.
-
-## Statusmodell
-
-| Status | Betydning |
-|---|---|
-| `canonical` | Normativ kilde for ett avgrenset område |
-| `operational` | Aktiv inngang, implementasjonsstatus eller arbeidsinstruks uten parallell sannhet |
-| `transitional` | Aktiv krav-/måltekst eller runtime med kjent status-, implementasjons- eller migreringsgjeld |
-| `historical` | Snapshot, rapport, roadmap eller journal; ikke nåstatus |
-| `local` | Gjelder bare subsystemet eller datamappen den ligger ved |
-
-Maskinlesbar status ligger i [`documentation_registry.json`](./documentation_registry.json).
-
-## Når dokumentasjon må oppdateres
-
-Oppdater riktig canonical dokument når en endring berører:
-
-- entrypoint eller modulansvar,
-- runtime-flyt eller event,
-- storage-key eller datakontrakt,
-- språk-, build- eller CI-policy,
-- klient/server/database-eierskap,
-- manifest eller canonical datastruktur,
-- produktavgrensning eller ferdigdefinisjon.
-
-Ikke opprett en ny `README`, `STATUS`, `PLAN`, `AUDIT` eller `FINAL`-fil før dokumentregisteret er kontrollert. Nye tidsbundne funn skal normalt til `reports/`, ikke bli en ny global fasit.
+Når en operational guide endres, må den fortsatt peke til canonical eier og må ikke introdusere parallelle regler.
 
 ## Dokumentasjonskontroll
 
@@ -294,6 +236,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - `HG_TEST_MODE.md` synkronisert med runtime og registrert som canonical skjult utviklermoduskontrakt
 - `PROFILE_PROGRESS_READER_RUNTIME.md` synkronisert og registrert som operational read-only runtime-guide
 - `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt
+- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode
 - Historiske ruter-planen skilt fra implementert runtimeguide og byte-identisk pre-consolidation-arkiv
 
 ### Neste
