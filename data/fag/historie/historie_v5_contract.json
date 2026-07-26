@@ -10,7 +10,13 @@
     "pensum": "historiepensum_canonical_v4_5.json",
     "generator_rules": "quiz_generator_rules_historie_v5_1_source_priority_patch.json",
     "concepts": "concepts_historie_canonical_v5_5.json",
-    "theories": "theory_objects_historie_canonical_v5_5.json"
+    "theories": "theory_objects_historie_canonical_v5_5.json",
+    "case_requirements": "case_requirements_historie_canonical_v1.json",
+    "claims": "claims_historie_canonical_v1.json",
+    "sources": "sources_historie_canonical_v1.json",
+    "place_evidence": "place_evidence_historie_v1.json",
+    "profiles_manifest": "../profiles/manifest.json",
+    "oslo_akershus_profile": "../profiles/historie/oslo_akershus/profile.json"
   },
   "coverage_counts": {
     "domains": 23,
@@ -25,7 +31,10 @@
     "counts_establish_coverage_not_curation": true,
     "generated_objects_cannot_unlock_v6": true,
     "universal_coverage_audit_required": true,
-    "fixed_counts_are_not_completeness": true
+    "fixed_counts_are_not_completeness": true,
+    "geographic_profiles_separate_from_subject_model": true,
+    "canonical_claim_source_evidence_registries_required": true,
+    "concrete_case_realization_uses_profile_mappings": true
   },
   "domain_freeze_contract": {
     "required_status": "complete_revised",
@@ -74,7 +83,7 @@
   },
   "v8_policy": {
     "active_subject_model": true,
-    "current_default": "active_v5_8_subject_model_evidence_layers_still_separate",
+    "current_default": "active_v5_8_subject_model_with_profile_and_evidence_foundation_v1",
     "previous_version": "v5.7",
     "reason": "Adds universal Cold War and postwar-society coverage while closing rural, religious-community and marginalized-actor gaps."
   }

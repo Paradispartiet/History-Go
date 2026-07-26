@@ -154,3 +154,12 @@ V5.8 oppretter **Den kalde krigen og etterkrigssamfunnet 1945–1991** som unive
 
 Domenet bruker sammenlignbare nordiske, europeiske og globale cases og lukker fire dokumenterte dekningsgap uten å redusere auditterskler. Oslo og Akershus forblir et separat geografisk profil- og produksjonsarbeid.
 <!-- V5_8_COLD_WAR:END -->
+
+## Status etter profil- og evidensgrunnlag V1
+
+- Den universelle fagmatrisen har **58 av 58 dekningsceller** dekket.
+- Oslo/Akershus er flyttet fra universell fagcelle til separat geografisk produksjonsprofil.
+- `recommended_oslo_cases` er migrert ut av universelle emner.
+- Alle 230 emner refererer til fire universelle casekrav.
+- Canonical claim-, source- og place-evidence-registre er etablert med Oslo rådhus som validert pilot.
+- Totalstatus er fortsatt `INCOMPLETE` så lenge teoriobjektene ikke har fullt dokumentert evidensgrunnlag.

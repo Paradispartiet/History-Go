@@ -152,3 +152,11 @@ Ikke:
 ```text
 ett komplett fag per land
 ```
+
+## 13. Casekrav, profiler og evidensregistre
+
+Universelle emner kan definere geografinøytrale `case_requirement_ids`. Kravene beskriver hva et konkret case må kunne dokumentere, men er ikke selv lokale cases.
+
+Konkrete cases skal ligge i geografiske profiler. Claims, kilder og stedsevidens skal ligge i canonical registre med stabile ID-er og referanser til universelle emne-ID-er.
+
+Den operative Historie-kontrakten er dokumentert i [HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md](HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md).
