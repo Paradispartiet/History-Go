@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **100 steder**
-- Gjenstår: **412 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **110 steder**
+- Gjenstår: **402 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -128,9 +128,20 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 99 | Østbanestasjonen | `ostbanestasjonen` | 41 | 329 | 6 | #4167 |
 | 100 | Schiøllgården | `schiollgarden_prinsens_gate_26` | 42 | 309 | 6 | #4167 |
 
+| 101 | Akrobaten gangbro | `akrobaten_gangbro` | 42 | 307 | 6 | #4170 |
+| 102 | Fagerborg kirke | `fagerborg_kirke` | 44 | 302 | 6 | #4170 |
+| 103 | Frogner kirke | `frogner_kirke` | 46 | 307 | 6 | #4170 |
+| 104 | Holmenkollen kapell | `holmenkollen_kapell` | 42 | 317 | 6 | #4170 |
+| 105 | Kampen Økologiske Barnebondegård | `kampen_okologiske_barnebondegard` | 46 | 309 | 6 | #4170 |
+| 106 | Lindøya | `lindoya` | 44 | 304 | 6 | #4170 |
+| 107 | Losæter | `losaeter` | 46 | 308 | 6 | #4170 |
+| 108 | Nakholmen | `nakholmen` | 44 | 308 | 6 | #4170 |
+| 109 | Ormøya | `ormoya` | 40 | 303 | 6 | #4170 |
+| 110 | Sukkerbiten badstulandsby | `sukkerbiten_badstulandsby` | 45 | 304 | 6 | #4170 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **412 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **402 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - historie: **67**
@@ -141,8 +152,8 @@ Det gjenstår **412 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - scenekunst: **24**
 - litteratur: **21**
 - vitenskap: **21**
-- by: **18**
 - politikk: **18**
+- by: **8**
 - media: **7**
 - musikk: **5**
 - film_tv: **2**
@@ -174,5 +185,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 10 | 2 | #4150 – fullførte den tidligere 90-steders delkøen |
 | Oslo scope-audit V2 | 0 | #4156 – korrigerte aktiv Oslo-total til 512 steder; 422 gjenstår |
 | Oslo V4 batch 11 | 10 | #4167 – første produksjonsbatch fra full 512-steders scope |
+| Oslo V4 batch 12 | 10 | #4170 – andre produksjonsbatch fra full 512-steders scope |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
