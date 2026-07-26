@@ -1,20 +1,20 @@
 name: One-time run Kjersti profile enrichment
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
-      - .github/workflows/one-time-run-kjersti-profile-enrichment.yml
+      - .github/kjersti-profile-trigger.txt
 
 permissions:
   contents: write
 
 jobs:
-  enrich-and-clean:
+  enrich-profile-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out repository history
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -25,7 +25,7 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Check out profile branch without merging moving main
+      - name: Check out profile branch
         shell: bash
         run: |
           set -euo pipefail
@@ -65,24 +65,3 @@ jobs:
           git status --short
           git commit -m "Enrich Kjersti Wexelsen Goksøyr profile"
           git push origin HEAD:agent/kjersti-people-profile
-
-      - name: Remove one-time runner from main
-        shell: bash
-        run: |
-          set -euo pipefail
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git checkout -B main origin/main
-            if [[ ! -f .github/workflows/one-time-run-kjersti-profile-enrichment.yml ]]; then
-              exit 0
-            fi
-            git rm .github/workflows/one-time-run-kjersti-profile-enrichment.yml
-            git commit -m "Remove one-time Kjersti profile runner"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            sleep $((attempt * 2))
-          done
-          exit 1
-
-# Focused trigger 2026-07-26
