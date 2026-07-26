@@ -1,79 +1,62 @@
-# Historie V5.5 — permanent kvalitetsfrys
+# Historie V5.5 — historisk kvalitetsbaseline
 
-Status: **FROZEN** etter individuell kuratering av 20 domener, 200 emner, 826 begreper og 200 teoriobjekter.
+Status: **historical** — reproduserbar baseline, ikke aktiv fag-, deknings- eller kvalitetskontrakt.
+Sist kontrollert: **2026-07-26**
 
-## Hva som er frosset
+## Autoritetsgrense
 
-Frysemanifestet `data/fag/historie/historie_v5_5_freeze_manifest.json` inneholder SHA-256-fingeravtrykk for kontrakten og alle filene som `historie_v5_contract.json` peker ut som autoritative.
+V5.5 dokumenterer den første permanente kvalitetsfrysen for den kuraterte kjernen på 20 domener, 200 emner, 826 begreper og 200 teoriobjekter. Dokumentet bevarer beslutningen og kontrollmodellen som historisk sporbarhet.
 
-V5.5 er den kuraterte faglige basen. V6 skal legge til kilde-, claim- og stedsevidens i egne kontrakter og skal ikke stille endre V5.5-objektene.
-
-## Hva frysen ikke beviser
-
-`FROZEN`, `FREEZE_READY` og 20/20 interne domener betyr at den valgte V5.5-strukturen er utfylt, individuelt kuratert og beskyttet mot stille regresjon.
-
-Dette er ikke bevis på at hele historiefaget er universelt dekket. De gamle portene sammenligner dataene med et forhåndsvalgt inventar på 20 domener og 200 emner; de tester ikke uavhengig om nødvendige tidsperioder, historiske felt, geografier eller aktørperspektiver mangler.
-
-Universell fagdekning eies derfor av:
+Aktiv autoritet ligger nå i:
 
 ```text
+data/fag/historie/historie_v5_contract.json
+data/fag/historie/historie_v5_8_freeze_manifest.json
+reports/historie-v5/historie-v5-8-quality-depth.json
+docs/HISTORY_UNIVERSAL_COVERAGE.md
 data/fag/historie/historie_universal_coverage_contract_v1.json
-tools/audit-historie-universal-coverage.mjs
 reports/historie-universal-coverage/historie-universal-coverage.json
-reports/historie-universal-coverage/historie-universal-coverage.md
 ```
 
-Så lenge denne auditen har status `INCOMPLETE`, skal V5.5 omtales som en gjennomarbeidet og frosset kjerne — ikke som et bevist komplett historiefag.
+V5.5–V5.7 er historiske, reproduserbare baselines. Den aktive universelle Historie-modellen er V5.8. Dette dokumentet eier derfor ingen aktiv kontrakt og skal ikke brukes til å overstyre V5.8-kontrakten, V5.8-manifestet eller den uavhengige heldekningsauditen.
 
-Dersom heldekningsauditen avdekker et reelt faglig hull, skal det lukkes gjennom en begrunnet og versjonert fagendring. Frysen kan ikke brukes til å blokkere nødvendig faglig utvidelse, men den skal fortsatt hindre ubegrunnede eller skjulte omskrivinger.
+## Historisk fryseomfang
 
-## Materialisert kvalitetsløft
+Frysemanifestet `data/fag/historie/historie_v5_5_freeze_manifest.json` bevarer SHA-256-fingeravtrykk for V5.5-kontrakten og de daværende autoritative filene.
 
-Den globale dybdeauditen avdekket restgjeld som den tidligere V5.5-validatoren ikke målte. Før frysen ble følgende reparert i canonical-dataene:
+V5.5-frysen dokumenterte at den valgte strukturen var utfylt, individuelt kuratert og beskyttet mot stille regresjon. Den beviste ikke at hele historiefaget var universelt dekket.
+
+Den globale dybdeauditen avdekket restgjeld som den tidligere validatoren ikke målte. Før V5.5-frysen ble følgende reparert i canonical-dataene:
 
 - 544 manglende begrepsfelt for indikatorer og kildekrav;
 - 70 teoriobjekter som manglet en tredje, eksplisitt avgrensning;
 - én semantisk relasjon til et ikke-eksisterende begrep.
 
-Etter reparasjonen har alle 826 begreper minst to indikatorer og to kildekrav, alle 200 teorier minst tre begrensninger, og relasjonsintegriteten er uten ukjente mål. Dybdeauditen har status `PASSED`, og frysemanifestet har status `FROZEN`.
+Etter reparasjonen hadde alle 826 begreper minst to indikatorer og to kildekrav, alle 200 teorier minst tre begrensninger, og relasjonsintegriteten var uten ukjente mål. Den daværende dybdeauditen fikk status `PASSED`, og V5.5-manifestet fikk status `FROZEN`.
 
-Leksikalske ankervarsler er informative, ikke blokkerende: de brukes som manuell kontrollliste for definisjoner der bøyning, sammensatte ord eller en bevisst faglig parafrase gjør at label-tokenet ikke gjentas ordrett. De skal ikke masseendres automatisk, fordi ordrett repetisjon i seg selv ikke dokumenterer bedre faglig kvalitet.
+## Hva frysen ikke beviser
 
-## Permanent kvalitetsport
+`FROZEN`, `FREEZE_READY` og fulle interne domenetall viser at et definert inventar er kontrollert. De er ikke en uavhengig måling av nødvendige tidsperioder, historiske felt, geografier, aktørperspektiver eller produksjonslag.
 
-`tools/audit-historie-v5-5-quality-depth.mjs` kontrollerer blant annet:
+Universell fagdekning eies derfor av den canonical heldekningspolicyen, den maskinlesbare dekningskontrakten og den materialiserte dekningsrapporten. Så lenge rapporten har status `INCOMPLETE`, skal heller ikke V5.8 omtales som et bevist komplett historiefag.
 
-- `FREEZE_READY`, 20/20 domener og null registrerte kvalitetsfeil;
-- eksakte dekningsmål for domener, emner, mappings, begreper og teorier;
-- unike og tilstrekkelig spesifikke begrepsdefinisjoner;
-- gyldige semantiske relasjoner uten selvlenker eller ukjente mål;
-- særskilt misbruksvern, indikatorer, kildekrav og proveniens for alle begreper;
-- individuelle teoridefinisjoner, minst tre fagspesifikke begrensninger, metodekobling, tenkersti og source hook;
-- at alle V5.5-teorier fortsatt har `evidence_ready: false`;
-- at autoritative filer fortsatt matcher frysemanifestets SHA-256-fingeravtrykk.
+## Compatibility-navn
 
-GitHub Actions-workflowen `history-v5-5-quality-freeze.yml` kjører porten ved alle relevante pull requests og ved endringer på `main`.
+Følgende paths beholder foreløpig V5.5-navnet av kompatibilitetshensyn:
 
-## Bevisst endringsprosedyre
+```text
+tools/audit-historie-v5-5-quality-depth.mjs
+.github/workflows/history-v5-5-quality-freeze.yml
+```
 
-En autoritativ V5.5-fil kan bare endres når:
+Navnene er historiske. Verktøyet leser aktiv kontrakt, V5.8-readiness, V5.8-manifest og V5.8-rapport, og workflowen heter og kjører **History V5.8 quality freeze**. Path-navnet gjør dem ikke til aktive V5.5-kontrakter.
 
-1. endringen er eksplisitt avgrenset og faglig begrunnet i en egen PR;
-2. permanent V5.5-validator og dybdeaudit er grønne;
-3. Knowledge- og quizkontraktene fortsatt passerer;
-4. frysemanifestet oppdateres bevisst med `--write-freeze` og en konkret `--reason=...`;
-5. PR-en viser hvilke fingeravtrykk og kvalitetsmål som endres.
+## Historisk endringsprosedyre
 
-En manifestoppdatering er ikke en måte å omgå porten på. Verktøyet skriver bare nytt manifest når samtlige innholdskrav er bestått.
+V5.5-frysen etablerte prinsippet om at autoritative fagfiler bare skulle endres gjennom en eksplisitt, faglig begrunnet PR med grønne kvalitetsporter og et bevisst oppdatert frysemanifest.
 
-## Forholdet til V6
+Prinsippet videreføres for aktiv versjon, men den konkrete prosedyren og de aktive fingeravtrykkene eies nå av V5.8-kontrakten, V5.8-auditen og V5.8-manifestet.
 
-V6 kan bruke V5.5 som godkjent faglig input, men dokumenterte claims, kilder, kildekvalitet, alternative fortolkninger og place evidence skal ligge i nye V6-filer. `evidence_ready` skal først endres gjennom V6-kontrakten, ikke ved å omskrive den frosne V5.5-basen.
+## Forholdet til evidenslag
 
-<!-- V5_8_ACTIVE_MODEL:START -->
-## Aktiv modell etter tredje heldekningsreparasjon
-
-V5.5–V5.7 beholdes som historiske, reproduserbare baselines. Den aktive universelle Historie-modellen er **V5.8**, som legger til domenet **Den kalde krigen og etterkrigssamfunnet 1945–1991** med ti emner, femti begreper, ti teoriobjekter og sju nye metoder.
-
-Compatibility-stien `tools/audit-historie-v5-5-quality-depth.mjs` beholdes foreløpig, men validerer aktiv V5.8-kontrakt og V5.8-manifest. Eksakte tellinger beskytter inventaret; universell heldekning avgjøres fortsatt separat av den uavhengige dekningsauditen.
-<!-- V5_8_ACTIVE_MODEL:END -->
+V5-seriens fagobjekter kan brukes som godkjent faglig input, men dokumenterte claims, kilder, kildekvalitet, alternative fortolkninger og place evidence skal ligge i egne evidenskontrakter og produksjonslag. `evidence_ready` skal ikke endres bare fordi et versjonert inventar er frosset.
