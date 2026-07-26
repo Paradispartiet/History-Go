@@ -317,3 +317,4 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
 - klassifiser øvrige aktive subsystemguider uten å gjøre målarkitektur til nåstatus
+- [`HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md`](HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md) — canonical profil-, claim-, kilde- og stedsevidensarkitektur for Historie.

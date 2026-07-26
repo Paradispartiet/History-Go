@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "registry_id": "case_requirements_historie_canonical_v1",
+  "subject_id": "historie",
+  "scope": "universal_case_realization_requirements",
+  "policy": {
+    "concrete_cases_live_in_geographic_profiles": true,
+    "requirements_do_not_assert_local_evidence": true,
+    "all_emner_must_reference_all_core_requirements": true
+  },
+  "requirements": [
+    {
+      "requirement_id": "case_req_his_temporal_sequence",
+      "label": "Avgrenset kronologisk forløp",
+      "purpose": "Profilen skal kunne realisere emnet gjennom minst ett konkret forløp med eksplisitt start, slutt, brudd og kontinuitet.",
+      "minimum_sources": 2,
+      "required_dimensions": [
+        "chronology",
+        "temporal_scope",
+        "change_over_time"
+      ]
+    },
+    {
+      "requirement_id": "case_req_his_actor_conflict",
+      "label": "Aktører, interesser og konflikt",
+      "purpose": "Profilen skal kunne vise minst to historiske aktører eller grupper med ulike interesser, handlingsrom eller maktposisjoner.",
+      "minimum_sources": 2,
+      "required_dimensions": [
+        "actors",
+        "power",
+        "conflict_or_negotiation"
+      ]
+    },
+    {
+      "requirement_id": "case_req_his_source_comparison",
+      "label": "Sammenlignbare kildetyper",
+      "purpose": "Profilen skal kunne knytte emnet til minst to ulike kildetyper slik at proveniens, begrensning og motstridende evidens kan vurderes.",
+      "minimum_sources": 2,
+      "required_dimensions": [
+        "source_type",
+        "provenance",
+        "limitations"
+      ]
+    },
+    {
+      "requirement_id": "case_req_his_comparative_scale",
+      "label": "Sammenligning på tvers av skala",
+      "purpose": "Profilen skal kunne koble et konkret lokalt eller regionalt case til minst én større nasjonal, nordisk, europeisk eller global sammenheng.",
+      "minimum_sources": 2,
+      "required_dimensions": [
+        "local_scale",
+        "wider_scale",
+        "comparison"
+      ]
+    }
+  ]
+}
