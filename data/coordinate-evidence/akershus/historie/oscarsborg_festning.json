@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "oscarsborg_festning",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/oscarsborg_festning.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_core_geometry_and_multi_anchor_policy",
+  "currentCoordinate": {
+    "lat": 59.676,
+    "lon": 10.606,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "coordNote": "Legacy point retained during source audit; no coordinate source contract is present."
+  },
+  "identity": {
+    "currentName": "Oscarsborg festning",
+    "resolvedIdentity": "The dispersed historic fortress destination in Drøbaksundet, with a public visitor core on the Kaholmene and several related historic components.",
+    "identityStatus": "resolved",
+    "identityProblem": "The name can refer to the visitor core, both Kaholmene or a much wider protected historic landscape. These scopes cannot be represented honestly by one unqualified point.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The record may remain one destination if a central core marker and documented secondary anchors are used. Distant components may later justify separate canonical records."
+  },
+  "requiredEvidence": [
+    "raw authoritative or named geometry for the public visitor core",
+    "deterministic point derivation for the central historic area",
+    "raw geometry for the most important secondary components",
+    "explicit policy distinguishing the visitor-core marker from the complete protected landscape",
+    "radius and secondary-anchor justification",
+    "visual QA before any candidate is promoted"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – Oscarsborg festning",
+      "sourceUrl": "https://www.forsvarsbygg.no/no/festningene/finn-din-festning/oscarsborg-festning/",
+      "sourceObjectId": "forsvarsbygg:oscarsborg-festning",
+      "sourceQuality": "official_destination_identity_and_history",
+      "finding": "The official page identifies Oscarsborg as the public fortress destination in Drøbaksundet and documents its national historical significance.",
+      "canVerifyCoordinate": false,
+      "reason": "Identity and history are resolved, but no reusable representation point or core geometry is exposed in the captured material."
+    },
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – landsverneplan for Oscarsborg",
+      "sourceUrl": "https://www.forsvarsbygg.no/no/verneplaner/landsverneplan-for-forsvaret/ostlandet/oscarsborg-festning/",
+      "sourceObjectId": "forsvarsbygg-landsverneplan:oscarsborg",
+      "sourceQuality": "official_component_and_spatial_scope",
+      "finding": "The official establishment spans several islands and mainland positions, while the central visitor and historic elements are concentrated on the Kaholmene.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes the need for a core marker plus secondary anchors and rejects a single-building interpretation."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – fredning av Oscarsborg festning",
+      "sourceUrl": "https://riksantikvaren.no/fredning/oscarsborg-festning/",
+      "sourceObjectId": "riksantikvaren:oscarsborg-festning-fredning",
+      "sourceQuality": "official_legal_protection_scope",
+      "finding": "The protected historic landscape contains more than one hundred objects across islands and mainland areas.",
+      "canVerifyCoordinate": false,
+      "reason": "The legal scope is authoritative context but too broad to use as one gameplay marker or radius."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "Named Oscarsborg point candidates",
+      "sourceUrl": "https://www.openstreetmap.org/",
+      "sourceObjectId": "osm-nodes:6463615980,582909475",
+      "sourceQuality": "generic_named_point_candidates_without_raw_capture",
+      "finding": "Two named point candidates were discovered south of the legacy marker, but their exact physical roles are unresolved.",
+      "canVerifyCoordinate": false,
+      "reason": "Raw source data and a documented relationship to the visitor core are missing."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "Named historic component candidates",
+      "sourceUrl": "https://www.openstreetmap.org/",
+      "sourceObjectId": "osm-ways:528047559,540187471,156619353,513833331,520242521",
+      "sourceQuality": "secondary_component_geometry_candidates_without_raw_capture",
+      "finding": "Several named component objects were discovered. They support a multi-anchor model but do not define the central destination marker.",
+      "canVerifyCoordinate": false,
+      "reason": "Raw geometry and role-specific derivations are still required."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Oscarsborg festning point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:oscarsborg_festning",
+      "sourceQuality": "plausible_uncontracted_core_area_point",
+      "finding": "The legacy point appears spatially plausible for the Kaholmene visitor core but has no stable source identity or derivation.",
+      "canVerifyCoordinate": false,
+      "reason": "Retain temporarily; plausibility alone cannot promote it to verified."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-nodes:6463615980,582909475",
+      "canApplyToPlace": false,
+      "rejectionReason": "Generic named points with unresolved physical roles."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:528047559",
+      "canApplyToPlace": false,
+      "rejectionReason": "Important secondary component, not the complete destination."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:520242521",
+      "canApplyToPlace": false,
+      "rejectionReason": "Distant mainland component outside the island-core radius."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:528047559",
+      "geometryType": "Polygon",
+      "geometryRole": "secondary_anchor_candidate",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:520242521",
+      "geometryType": "Polygon",
+      "geometryRole": "remote_context_or_separate_place_candidate",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:oscarsborg_festning",
+      "lat": 59.676,
+      "lon": 10.606,
+      "coordRole": "unverified_core_area_point",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:6463615980",
+      "lat": 59.67353,
+      "lon": 10.60708,
+      "coordRole": "generic_named_point_candidate",
+      "distanceFromCurrentM": 281.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:582909475",
+      "lat": 59.67346,
+      "lon": 10.60716,
+      "coordRole": "generic_named_point_candidate",
+      "distanceFromCurrentM": 289.8,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-oscarsborg-source-probe/official-source-summary.json",
+      "description": "Persisted official identity, spatial-scope and legal-scope findings."
+    },
+    {
+      "path": "reports/akershus-coordinate-oscarsborg-source-probe/osm-candidate-summary.json",
+      "description": "Persisted OSM-derived discovery candidates and explicit source limitations; not raw geometry."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "The destination scope is resolved, but raw visitor-core geometry and exact secondary-component geometry have not yet been captured.",
+    "nextAction": "Capture raw central-area geometry and the relevant secondary-component objects. Then retain or replace the legacy core point using a documented derivation and add secondary anchors without forcing distant components into the island radius."
+  },
+  "notes": [
+    "No canonical coordinate or radius is changed by this audit.",
+    "No generic named point is promoted merely because it contains the fortress name.",
+    "The protected legal landscape is too broad to use as a single marker or gameplay circle.",
+    "Photo geotags and map-preview points must not be used as production geometry."
+  ]
+}
