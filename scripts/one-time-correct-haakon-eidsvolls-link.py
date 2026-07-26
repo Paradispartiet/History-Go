@@ -24,6 +24,3 @@ new = "  eidsvolls_plass: 12,"
 if governance.count(old) != 1:
     raise SystemExit("Expected one Eidsvolls plass minimum of 13")
 governance_path.write_text(governance.replace(old, new, 1), encoding="utf-8")
-
-profile_test_path = Path("tests/oslo-radhus-political-people-profiles.test.js")
-profile_test = profile_test_path.read_text(encoding="utf-8")n
