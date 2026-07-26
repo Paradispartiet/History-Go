@@ -3,8 +3,8 @@
   "status": "reviewed",
   "categoryId": "naeringsliv",
   "targetId": "havnelageret",
-  "reviewed_at": "2026-07-24",
-  "review_note": "Påstandsbanken bygger på den eksisterende Havnelageret-quizen og de allerede registrerte historie-, eiendoms- og prosjektkildene. Fire meta-/flatquizspørsmål er fjernet, mens de første 14 påstandene er låst til normal quizform uten metode- eller teoribinding.",
+  "reviewed_at": "2026-07-26",
+  "review_note": "Påstandsbanken er kvalitetsløftet etter individuell kuratering av Næringsliv-faget. De første 14 normale spørsmålene og de sju avsluttende fagspørsmålene er beholdt, mens svake detaljfakta i midt- og brofasen er erstattet med kildebelagte spørsmål om årsak, utvikling, konsekvens og virksomhetssammenheng.",
   "profile_hint": "rich",
   "sources": {
     "place_record": {
@@ -274,24 +274,26 @@
       "claim_id": "claim_havnelageret_15",
       "order": 15,
       "planned_phase": "middle",
-      "family": "fact",
-      "statement": "SNL beskriver Bjørvika som den nordøstlige delen av Oslos havneområde, og Langkaia/Havnelageret ligger i dette havneområdet.",
+      "family": "context",
+      "statement": "Beliggenheten ved Bjørvika gjorde at varer kunne flyttes kort mellom kai, lager og byen.",
       "source_ids": [
-        "snl_bjorvika",
-        "entra",
-        "let"
+        "place_record",
+        "oslo_byleksikon",
+        "lokalhistoriewiki",
+        "snl_bjorvika"
       ],
-      "source_origin": "external",
-      "emne_id": "em_naering_teknologi_infrastruktur"
+      "source_origin": "mixed",
+      "emne_id": "em_naering_logistikk_verdikjeder"
     },
     {
       "claim_id": "claim_havnelageret_16",
       "order": 16,
       "planned_phase": "middle",
-      "family": "fact",
-      "statement": "Oslo byleksikon skriver at bygningen ble rekvirert av tyskerne og brukt av den tyske marinen som materiellager, kalt Gerätelager I.",
+      "family": "context",
+      "statement": "Havnelagerets store lagringskapasitet og direkte havnetilknytning gjorde bygningen nyttig som tysk materiellager under krigen.",
       "source_ids": [
-        "oslo_byleksikon"
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
       ],
       "source_origin": "external",
       "emne_id": "em_naering_logistikk_verdikjeder"
@@ -312,23 +314,25 @@
       "claim_id": "claim_havnelageret_18",
       "order": 18,
       "planned_phase": "middle",
-      "family": "fact",
-      "statement": "Oslo byleksikon oppgir arkitekt Espen Eskeland for modernisering og ombygging til kontorer 1982–85.",
+      "family": "context",
+      "statement": "Kontorombyggingen måtte tilpasse store lageretasjer til arbeidsplasser og moderne tekniske krav.",
       "source_ids": [
-        "oslo_byleksikon"
+        "oslo_byleksikon",
+        "entra"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_teknologi_infrastruktur"
+      "emne_id": "em_naering_omstilling_kriser_skift"
     },
     {
       "claim_id": "claim_havnelageret_19",
       "order": 19,
       "planned_phase": "middle",
-      "family": "fact",
-      "statement": "Oslo byleksikon oppgir at Havnelageret ble betydelig oppgradert i 2003.",
+      "family": "context",
+      "statement": "Gjentatte oppgraderinger etter kontorombyggingen har holdt den historiske bygningen konkurransedyktig i kontormarkedet.",
       "source_ids": [
         "oslo_byleksikon",
-        "entra"
+        "entra",
+        "estate"
       ],
       "source_origin": "external",
       "emne_id": "em_naering_omstilling_kriser_skift"
@@ -365,8 +369,8 @@
       "claim_id": "claim_havnelageret_22",
       "order": 22,
       "planned_phase": "bridge",
-      "family": "fact",
-      "statement": "Betonmast beskriver ombygging og rehabilitering av niende og tiende etasje samt tårnet i ellevte etasje.",
+      "family": "context",
+      "statement": "Rehabiliteringen av niende og tiende etasje og tårnet viser at ombruk kan gjennomføres trinnvis i deler av et stort bygg.",
       "source_ids": [
         "betonmast",
         "bygg"
@@ -405,13 +409,13 @@
       "claim_id": "claim_havnelageret_25",
       "order": 25,
       "planned_phase": "bridge",
-      "family": "fact",
-      "statement": "Estate Nyheter skrev i juli 2025 at Entra hadde inngått ny femårig leieavtale på 1 700 m², og at blant annet Dun & Bradstreet Norway og Hurtigruten hadde fornyet avtaler.",
+      "family": "context",
+      "statement": "Nye og fornyede leieavtaler viser at Havnelageret fortsatt konkurrerer aktivt om kontorleietakere.",
       "source_ids": [
         "estate"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_kapital_finans"
+      "emne_id": "em_naering_forbruk_marked"
     },
     {
       "claim_id": "claim_havnelageret_26",
@@ -548,5 +552,15 @@
       "source_origin": "external",
       "emne_id": "em_naering_arbeid_verdiskaping"
     }
-  ]
+  ],
+  "quality_lift": {
+    "version": "naeringsliv_pilot_context_v1",
+    "completed_at": "2026-07-26",
+    "opening_questions_preserved": 14,
+    "family_counts": {
+      "fact": 20,
+      "context": 8,
+      "concept_theory": 7
+    }
+  }
 }
