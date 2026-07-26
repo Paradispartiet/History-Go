@@ -118,6 +118,12 @@ jobs:
             tail -n 40 /tmp/historical-routes-audit-after.log
           fi
 
+      - name: Reset generated build output
+        shell: bash
+        run: |
+          git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
+          git clean -fd -- dist
+
       - name: Verify archive identity and final target scope
         shell: bash
         run: |
