@@ -1,0 +1,65 @@
+name: Probe Frogner church addresses
+
+on:
+  pull_request:
+    types: [synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.head_ref == 'agent/akershus-frogner-gamle-kirke-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch official address objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/akershus-coordinate-frogner-gamle-kirke-source-probe'
+          mkdir -p "$out"
+          for number in 19 21; do
+            curl --fail --location --retry 4 --retry-delay 3 \
+              --get 'https://ws.geonorge.no/adresser/v1/sok' \
+              --data-urlencode "sok=Gamle Kirkeveien ${number} Frogner" \
+              --data-urlencode 'treffPerSide=20' \
+              | tee "$out/geonorge-gamle-kirkeveien-${number}.json" >/dev/null
+          done
+          python - <<'PY' | tee "$out/address-summary.txt"
+          import json, math
+          from pathlib import Path
+          out = Path('reports/akershus-coordinate-frogner-gamle-kirke-source-probe')
+          old = (60.020581663654, 11.104823849509)
+          new = (60.020001105527, 11.105715271970)
+          def hav(a,b):
+              R=6371000.0
+              p1,p2=map(math.radians,(a[0],b[0])); dp=math.radians(b[0]-a[0]); dl=math.radians(b[1]-a[1])
+              h=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2*R*math.asin(math.sqrt(h))
+          for number in (19,21):
+              payload=json.loads((out/f'geonorge-gamle-kirkeveien-{number}.json').read_text())
+              addresses=payload.get('adresser',[]) if isinstance(payload,dict) else []
+              exact=[a for a in addresses if str(a.get('adressetekst','')).lower()==f'gamle kirkeveien {number}']
+              print(f'number={number} total={len(addresses)} exact={len(exact)}')
+              for a in exact:
+                  p=a.get('representasjonspunkt') or {}; point=(float(p['lat']),float(p['lon']))
+                  print('ADDRESS '+json.dumps(a,ensure_ascii=False,sort_keys=True))
+                  print(f'distance_to_old_church_m={hav(point,old):.1f} distance_to_new_church_m={hav(point,new):.1f}')
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/probe-frogner-church-addresses.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/akershus-coordinate-frogner-gamle-kirke-source-probe .github/workflows/probe-frogner-church-addresses.yml
+          git commit -m 'Persist Frogner church address evidence'
+          git push origin HEAD:${{ github.head_ref }}
