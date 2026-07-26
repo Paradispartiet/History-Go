@@ -2,7 +2,7 @@
 
 Status: **canonical data-production contract**
 Owner: History Go data/runtime
-Last verified: 2026-07-25
+Last verified: 2026-07-26
 
 This document defines how new History Go data must be produced, checked and inserted without breaking category logic, place references, people references, badges, progression or generated indexes.
 
@@ -12,6 +12,7 @@ Related contracts:
 
 ```text
 docs/DOMAIN_CONTRACT.md
+docs/SUBJECT_FILE_CONTRACT.md
 docs/DOMAIN_REGISTRY_README.md
 README/SYSTEM_REGISTRY.md
 ```

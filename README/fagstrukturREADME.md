@@ -3,6 +3,8 @@
 Denne README-en beskriver **hvordan fag, kunnskap og læring er strukturert i History GO**, og hvorfor systemet er bygget slik.  
 Den er **epistemisk og normativ**: den forklarer hva som er riktig bruk av strukturene, ikke bare hva som finnes.
 
+Bindende geografisk regel: `docs/SUBJECT_FILE_CONTRACT.md` eier skillet mellom universelle fagfiler og lokale produksjonslag. Fagstruktur skal ikke kopieres per land.
+
 ---
 
 ## Grunntanke
@@ -71,31 +73,30 @@ Kjennetegn:
 
 ## 2. FAGKART (dypt, strukturerende)
 
-**Eksempler:**  
-`fagkart_by_oslo.json`  
-`fagkart_natur_oslo.json`
-
-Dette er **det dype fagkartet** for et fagområde innen et bestemt scope (f.eks. Oslo).
+Fagkartet er den **universelle, dype fagmodellen** for ett fag. Det skal ikke kopieres for hvert land, hver by eller hver region.
 
 Fagkartet:
-- forklarer *hvordan faget henger sammen*
-- definerer begreper, konflikter og sentrale spørsmål
-- gir rammer for videre utvikling
+- forklarer *hvordan faget henger sammen*;
+- definerer fagområder, begreper, konflikter og sentrale spørsmål;
+- kobler teorier, metoder og emner;
+- gir universelle ID-er som geografiske innholdslag kan bruke.
 
 Kjennetegn:
-- `principles`
-- `categories`
-- `topic_hooks`
-- `canon`
-- `scope` / stedlig kontekst (f.eks. Oslo)
-- konflikter, aktører og spørsmål
+- `principles`;
+- `categories`;
+- `topic_hooks`;
+- `canon`;
+- konflikter, aktører og spørsmål.
+
+Eksisterende filer med bynavn eller felt som `scope: oslo_og_omegn` og `recommended_oslo_cases` er compatibility-/profilblanding. Den geografiske informasjonen skal gradvis skilles ut i profiler, mappings, cases, claims, kilder, steder, personer og quizlag. Slike filer er ikke presedens for nye landkopier.
 
 Dette laget er:
-- epistemisk
-- strukturerende
-- normativt
+- epistemisk;
+- strukturerende;
+- normativt;
+- geografisk gjenbrukbart.
 
-👉 **Dette er selve fagkartet.**
+👉 **Dette er selve universelle fagkartet.**
 
 ---
 
@@ -211,6 +212,9 @@ Dette laget:
 ⸻
 
 Låste prinsipper
+	•	Én universell fagmodell per fag; ingen komplette landkopier
+	•	Geografiske profiler og produksjonslag refererer til canonical fag-ID-er
+	•	Universell fagdekning og geografisk produksjonsdekning måles separat
 	•	Fagkart er dype og forklarende
 	•	Fagplan er kort og observerbar
 	•	Emner er mikro-kunnskap
