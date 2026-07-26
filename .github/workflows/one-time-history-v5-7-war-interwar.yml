@@ -43,6 +43,16 @@ jobs:
             '/tmp/history-v5-7-war-interwar.b64' | sha256sum --check
           base64 -d /tmp/history-v5-7-war-interwar.b64 \
             | gunzip > /tmp/apply-history-v5-7-war-interwar.mjs
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/apply-history-v5-7-war-interwar.mjs')
+          text = p.read_text()
+          old = 'Kulturhistorie, modernisme, kunst og visuell politikk i mellomkrigstiden'
+          new = 'Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden'
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected exactly one art-history title, found {text.count(old)}')
+          p.write_text(text.replace(old, new))
+          PY
           node --check /tmp/apply-history-v5-7-war-interwar.mjs
 
           node /tmp/apply-history-v5-7-war-interwar.mjs 2>&1 \
@@ -63,6 +73,12 @@ jobs:
           npm run test:quiz-production 2>&1 \
             | tee reports/historie-v5/historie-v5-7-quiz-production-test.log
 
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/audit-historie-v5-5-quality-depth.mjs')
+          text = p.read_text()
+          p.write_text(text.replace('Historie V5.6 quality depth audit', 'Historie V5.7 quality depth audit'))
+          PY
           node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze \
             --reason='V5.7 adds universal First World War and interwar coverage, including culture, ideas, visual history and cross-regional perspectives.' 2>&1 \
             | tee reports/historie-v5/historie-v5-7-quality-freeze-write.log
