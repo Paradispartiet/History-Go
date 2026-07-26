@@ -1,92 +1,86 @@
-# Naturmapping i History Go
+# Naturmapping i History GO
 
-Dette dokumentet beskriver arbeidsflyten for å koble arter til steder i History Go.
+Status: **operational**
+Sist kontrollert: **2026-07-26**
 
-## Mål
+Dette dokumentet beskriver arbeidsflyten for å koble flora og fauna til eksisterende History GO-steder. Det er en produksjonsguide, ikke en biologisk fasit eller en erstatning for runtimekoden.
 
-History Go skal bruke eksisterende flora- og faunadata i `data/natur` som kandidatbank, og eksterne artsdatabaser som kontrollgrunnlag for hvilke arter som faktisk passer til bestemte steder i Oslo.
+## Autoritetsgrenser
 
-Målet er ikke å råimportere alle artsfunn, men å bygge et kurert stedskart:
+- Canonical place-ID-er og koordinater eies av aktive place-filer og manifester under `data/places/`.
+- Naturarter eies av aktive flora-/faunafiler og deres manifester under `data/natur/`.
+- Place-level naturkoblinger eies av de aktive mappingfilene som lastes av `js/nature_place_map_bridge.js`.
+- Quiz-unlocks eies separat av `data/natur/nature_unlock_map.json` og tilhørende runtime.
+- Denne guiden eier bare arbeidsmåten.
 
-```text
-placeId → flora[] / fauna[] → kildegrunnlag → confidence → visning i PlaceCard/Natur-runding
-```
+Ved konflikt gjelder source-data, manifester, bridge/runtime og validering.
 
-## Hovedfiler
+## Aktiv runtimeflate
+
+`js/nature_place_map_bridge.js` laster og slår sammen disse mappingfilene:
 
 ```text
 data/natur/nature_place_map.json
+data/natur/nature_bird_place_map.json
+data/natur/nature_oslo_expansion_place_map.json
+data/natur/nature_routes_place_map.json
+data/natur/nature_etne_place_map.json
 ```
 
-Aktiv place-level mapping som PlaceCard kan bruke til å vise naturinnhold per sted.
+Ikke legg samme place–art-kobling i flere filer uten en uttrykkelig grunn. Bridge-laget dedupliserer ID-er, men duplisert eierskap gjør kildesporing og vedlikehold vanskeligere.
 
-```text
-data/natur/nature_place_map_candidates.json
-```
+## Kandidatbygger
 
-Generert kandidatfil fra Artskart-scriptet. Denne skal ikke brukes direkte i appen før den er kontrollert.
-
-```text
-data/natur/nature_unlock_map.json
-```
-
-Eksisterende quiz-unlock-map. Denne skal fortsatt brukes til belønning/opplåsing etter quiz.
-
-```text
-js/nature_place_map_bridge.js
-```
-
-Bridge mellom `nature_place_map.json` og PlaceCard/Natur-rundingen.
+Kildefil:
 
 ```text
 tools/build_nature_place_candidates.mts
 ```
 
-Dev-script som henter Artskart-observasjoner per sted og matcher dem mot eksisterende arter i repoet. Kildefilen er TypeScript (`.mts`) og bygges til `dist/tools/build_nature_place_candidates.mjs` via `npm run build:tools` før den kjøres.
-
-## Datakilder
-
-### Artskart / Artsdatabanken
-
-Brukes til konkrete artsfunn. Artskart viser hvor arter er funnet eller observert, og kan søkes geografisk, blant annet med polygon.
-
-Viktig begrensning: Artskart er ikke en fullstendig fasit. Manglende funn betyr ikke at arten ikke finnes, og gamle funn kan gjelde arter som har forsvunnet fra lokaliteten.
-
-### Naturbase / Miljødirektoratet
-
-Brukes som støtte for naturtyper, verneområder og forvaltningsinformasjon.
-
-### Oslo Naturkart
-
-Brukes som lokal kontrollkilde for naturverdier, grøntdrag, restaurerte naturmiljøer og byøkologiske strukturer.
-
-## Arbeidsflyt
-
-1. Kjør kandidatbyggeren lokalt:
+Kjør fra repo-roten:
 
 ```bash
 npm run build:tools && node dist/tools/build_nature_place_candidates.mjs
 ```
 
-2. Scriptet skriver:
+Scriptet:
 
-```text
-data/natur/nature_place_map_candidates.json
-```
+1. leser aktive places fra `data/places/manifest.json`;
+2. leser aktive flora- og faunafiler fra deres manifester;
+3. spør Artskart per prioritert sted;
+4. matcher observasjoner mot arter som allerede finnes i repoet;
+5. skriver kandidater til `data/natur/nature_place_map_candidates.json`.
 
-3. Gå gjennom kandidater sted for sted.
+Kandidatfila er et generert arbeidsartefakt og kan være tom før en lokal kjøring. Den skal aldri lastes direkte i appen eller behandles som godkjent mapping.
 
-4. Flytt bare gode, relevante og pedagogisk nyttige arter inn i:
+## Datakilder
 
-```text
-data/natur/nature_place_map.json
-```
+### Artskart / Artsdatabanken
 
-5. Hold `nature_unlock_map.json` separat. Den styrer quizbelønning, ikke stedets komplette naturprofil.
+Brukes til konkrete registrerte observasjoner. Fravær av funn beviser ikke fravær av arten, og eldre funn kan være utdaterte eller geografisk upresise.
 
-## Confidence-regler
+### Naturbase / Miljødirektoratet
 
-Kandidat-scriptet bruker foreløpig:
+Brukes som støtte for naturtyper, verneområder, forvaltning og sensitivitet.
+
+### Lokale naturkilder
+
+Lokale naturkart, forvaltningsplaner, institusjoner og fagmiljøer kan brukes til å kontrollere habitat, restaurering, grøntdrag og stedsspesifikke naturverdier.
+
+## Kurateringsflyt
+
+1. Kontroller at `placeId` finnes i et aktivt place-manifest og peker til riktig fysisk sted.
+2. Kjør kandidatbyggeren eller gjør dokumentert manuell research.
+3. Kontroller artsidentitet mot aktive flora-/faunadata.
+4. Vurder habitat, avstand, observasjonsdato, koordinatusikkerhet og pedagogisk verdi.
+5. Velg én passende aktiv mappingfil med tydelig geografisk eller funksjonelt ansvar.
+6. Legg bare inn canonical arts-ID-er som runtime kan resolve.
+7. Behold quiz-unlocks separat.
+8. Test bridge-/PlaceCard-visning og relevante dataaudits.
+
+## Confidence
+
+Kandidatbyggerens tekniske sortering bruker foreløpig:
 
 ```text
 high   = minst 5 funn og siste funn fra 2020 eller senere
@@ -94,59 +88,30 @@ medium = minst 2 funn og siste funn fra 2015 eller senere
 low    = svakere grunnlag
 ```
 
-Dette er ikke endelig biologisk vurdering, bare et teknisk sorteringsfilter.
+Dette er bare et prioriteringsfilter. `high` er ikke automatisk redaksjonell godkjenning, og `low` er ikke automatisk biologisk avvisning.
 
-## Kvalitetsregler
+## Kvalitetsgate
 
-Arter bør bare legges inn i aktiv mapping hvis minst ett av disse kriteriene er oppfylt:
+En kobling bør normalt ha flere av disse egenskapene:
 
-- arten har flere nyere funn nær stedet
-- arten er økologisk typisk for stedets habitat
-- arten er pedagogisk nyttig i appen
-- arten finnes allerede i repoets flora/fauna-modell
-- arten kan forklares godt i Wonderkammer/Natur-rundingen
+- nyere eller gjentatte observasjoner med rimelig presisjon;
+- habitat som faktisk passer stedet;
+- canonical arts-ID som allerede finnes i repoet;
+- tydelig pedagogisk eller stedlig relevans;
+- kildegrunnlag som kan forklares og etterprøves;
+- ingen konflikt med skjerming av sensitive arter.
 
 Unngå:
 
-- svært gamle enkeltfunn uten nyere støtte
-- funn med høy koordinatusikkerhet
-- arter som bare er rapportert i nærheten, men ikke passer stedet
-- sensitive arter der presis lokasjon bør skjermes
-- råimport av lange artslister uten pedagogisk verdi
-
-## Prioriterte steder
-
-Første runde bør kjøres på:
-
-```text
-botanisk_hage
-sognsvann
-vigelandsparken
-slottsparken
-ekebergparken
-st_hanshaugen_park
-birkelunden
-stensparken
-botsparken
-sofienbergparken_subkultur
-holmenkollen
-olaf_ryes_plass
-inger_hagerups_plass
-ullevål_hageby
-nydalen
-```
-
-Neste runde bør inkludere flere naturtunge Oslo-steder som Østensjøvannet, Hovedøya, Gressholmen, Bygdøy, Alnaelva, Ljanselva, Mærradalen, Maridalsvannet, Nøklevann og Østmarka når de er riktig representert som `placeId` i `data/places`.
+- råimport av lange artslister;
+- gamle enkeltfunn uten støtte;
+- observasjoner med høy koordinatusikkerhet;
+- arter som bare er registrert i nærheten uten relevant habitat;
+- presis eksponering av sensitive arter eller lokaliteter;
+- UI-filtrering som permanent løsning på dårlige source-data.
 
 ## Viktig arkitekturregel
 
-Ikke legg midlertidig filtrering i UI-koden for å skjule dårlige data. Rett dataene i kildene:
+Rett mappingen i source-dataene. Ikke legg midlertidige artsunntak eller skjulte kvalitetsfiltre i PlaceCard eller andre UI-flater for å kompensere for svak kuratering.
 
-```text
-data/natur/nature_place_map.json
-data/natur/flora/*.json
-data/natur/fauna/*.json
-data/places/*.json
-```
-
-UI skal bare vise det datamodellen sier.
+> Kandidater er research. Aktiv mapping er en eksplisitt redaksjonell beslutning.

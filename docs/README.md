@@ -1,7 +1,7 @@
 # History GO — dokumentasjonskart
 
-Status: **canonical dokumentasjonsinngang**  
-Register: [`documentation_registry.json`](./documentation_registry.json)  
+Status: **canonical dokumentasjonsinngang**
+Register: [`documentation_registry.json`](./documentation_registry.json)
 Sist kontrollert: **2026-07-26**
 
 Dette dokumentet svarer på tre spørsmål:
@@ -34,9 +34,10 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 4. [`APP_STRUCTURE_INDEX.md`](./APP_STRUCTURE_INDEX.md) — canonical entry-, boot-, router-, MapView- og sidegrensekontrakt for `index.html`
 5. [`HG_TEST_MODE.md`](./HG_TEST_MODE.md) — canonical skjult utviklermodus, storage-/aliasgrense og produktsikkerhet
 6. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
-7. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
+7. [`../README/cssREADME.md`](../README/cssREADME.md) — lokal CSS-guide for faktisk lastrekkefølge, cascade og praktisk fileierskap i index-appen
+8. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. `APP_STRUCTURE_INDEX.md` eier bare index-appens interne struktur. `HG_TEST_MODE.md` eier bare utviklermodusens query-, storage-, alias- og sikkerhetsgrense; runtimefilen eier tilstanden, og testmodus kan ikke overstyre server-, database- eller production-gates. Den tidligere pre-split-filen er bevart i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
+`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. `cssREADME.md` er bare en lokal orientering; `index.html` og de faktiske CSS-filene eier lastrekkefølge og selectoratferd. `APP_STRUCTURE_INDEX.md` eier bare index-appens interne struktur. `HG_TEST_MODE.md` eier bare utviklermodusens query-, storage-, alias- og sikkerhetsgrense; runtimefilen eier tilstanden, og testmodus kan ikke overstyre server-, database- eller production-gates. Den tidligere pre-split-filen er bevart i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
 
 ### Produkt og ferdigstillelse
 
@@ -112,6 +113,15 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 
 People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 
+### Naturmapping
+
+1. [`../README/nature_mapping_workflow.md`](../README/nature_mapping_workflow.md) — operativ kurateringsflyt og autoritetsgrenser
+2. [`../js/nature_place_map_bridge.js`](../js/nature_place_map_bridge.js) — aktiv runtime-resolver for place-level naturmapping
+3. aktive `data/natur/nature*_place_map.json` — godkjente place–art-koblinger
+4. [`../tools/build_nature_place_candidates.mts`](../tools/build_nature_place_candidates.mts) — kandidatbygger; output er research, ikke runtime-data
+
+Place-ID-er, artsdata, place-level mapping og quiz-unlocks har separate eiere. Kandidatfila kan være tom og skal aldri lastes direkte i appen. Dårlige koblinger rettes i source-data, ikke skjules med permanente UI-unntak.
+
 ### Koordinater og geografisk evidens
 
 1. [`coordinates/README.md`](./coordinates/README.md) — canonical dokumentasjonskart og leserekkefølge
@@ -141,14 +151,14 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 
 1. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — bindende regel om én universell fagmodell per fag og separate geografiske produksjonslag
 2. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner og pensum
-3. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — fagstruktur
+3. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til fagpakkens lag og manifest-resolverte filer
 4. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) — eneste bindende quizproduksjonsprosedyre
 5. [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) — maskinlesbar autoritetsrekkefølge, globale invariants og kategori-profiler
 6. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver, full fagpakke og aktive `quizProduction.targets`
 7. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
 8. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
 
-Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Universell fagdekning og geografisk produksjonsdekning er separate mål.
+Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Universell fagdekning og geografisk produksjonsdekning er separate mål. `README/byFagplan.md` er nå bare en compatibility-pointer til disse aktive kildene; den tidligere kombinerte teksten er bevart som historisk snapshot under `README/archive/`.
 
 Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere kombinerte quiz-/lærings-/observations-/popup-README-en ligger i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
@@ -312,6 +322,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode
 - Historiske ruter-planen skilt fra implementert runtimeguide og byte-identisk pre-consolidation-arkiv
 - Historie V5.8 er dokumentert som aktiv autoritet; universell heldekning er canonical policy, og V5.5–V5.7 er historiske baselines
+- By-fagplan, fagstruktur, lokal CSS-guide og naturmapping er klassifisert; blandet By-arbeidstekst er flyttet til historisk snapshot
 
 ### Neste
 
