@@ -107,3 +107,30 @@ Når auditen viser et gap:
 ## Mål
 
 V5.5 er en gjennomarbeidet og beskyttet kjerne. Den universelle heldekningsauditen avgjør hva som må legges til før Historie kan regnes som komplett.
+
+<!-- V5_6_PREHISTORY:START -->
+## Første faglige reparasjon: V5.6
+
+Den første utvidelsen etter heldekningsauditen oppretter **Forhistorie og arkeologi** som universelt domene. Domenet dekker:
+
+- arkeologisk kontekst og formasjonsprosesser;
+- datering, stratigrafi, typologi og seriasjon;
+- menneskelig utvikling, mobilitet og jeger-sanker-samfunn;
+- steinalder;
+- neolitisering, jordbruk og bofasthet;
+- bronsealder;
+- jernalder;
+- vikingtid som transregionalt forløp;
+- landskaps- og miljøarkeologi;
+- bioarkeologi, helse, kosthold og demografi.
+
+De nye emnene bruker geografinøytrale `recommended_cases` med representative eksempler fra flere verdensregioner. De oppretter ikke norske eller landvise fagkopier. Oslo-spesifikke compatibility-felt i de eldre 200 emnene er fortsatt et separat produksjons- og migreringsgap.
+<!-- V5_6_PREHISTORY:END -->
+
+<!-- V5_7_WAR_INTERWAR:START -->
+## Andre faglige reparasjon: V5.7
+
+V5.7 oppretter **Første verdenskrig og mellomkrigstiden** som universelt domene med ti emner. Utvidelsen dekker krigsutbruddet i 1914, total og global krig, sivilsamfunn og krigsøkonomi, norsk og nordisk nøytralitet, revolusjoner og fredsoppgjør, demokrati og massepolitikk, autoritære ideologier, den store depresjonen og kultur-, idé- og kunsthistorie i perioden 1914–1939.
+
+Domenet bruker sammenlignbare nordiske, europeiske og globale cases. Eksisterende globalhistorie og offentlighetshistorie er samtidig koblet eksplisitt til nordiske og europeiske mellomkrigsforløp, slik at geografi ikke blir isolert i ett periodedomene.
+<!-- V5_7_WAR_INTERWAR:END -->

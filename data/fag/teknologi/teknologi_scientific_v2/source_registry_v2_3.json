@@ -1,0 +1,3621 @@
+{
+  "schema": "teknologi_source_registry_v2_3",
+  "version": "2.3",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "purpose": "Binder faglige påstander, kunnskapsobjekter, begreper, teknologiske ankre og quizsvar til konkrete kilder og lokatorer.",
+  "governance": {
+    "bibliography_without_claim_binding_is_insufficient": true,
+    "question_specific_locator_required": true,
+    "primary_or_official_source_required_for_mechanism_and_standard_claims": true,
+    "independent_source_required_for_performance_safety_causal_and_contested_claims": true,
+    "source_version_must_be_visible": true,
+    "superseded_standard_must_not_be_presented_as_current_compliance": true
+  },
+  "source_types": [
+    "official_handbook",
+    "scholarly_textbook",
+    "technical_standard",
+    "scholarly_monograph",
+    "official_investigation",
+    "primary_research",
+    "official_research_report",
+    "official_specification",
+    "professional_reference",
+    "official_framework",
+    "official_standard_guidance",
+    "official_web_standard",
+    "scholarly_collection"
+  ],
+  "sources": [
+    {
+      "id": "src_tek_nasa_se_handbook_2016",
+      "type": "official_handbook",
+      "title": "NASA Systems Engineering Handbook",
+      "publisher_or_author": "NASA",
+      "date_or_version": "NASA/SP-2016-6105 Rev2",
+      "locator": "NASA/SP-2016-6105 Rev2, særlig kap. 4–6",
+      "url": "https://www.nasa.gov/reference/systems-engineering-handbook/",
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "normative"
+      ],
+      "area_id": "teknologivitenskap_design",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_designvitenskap",
+          "teori_tek_funksjon_atferd_struktur",
+          "kobj_tek_axiomatisk_design"
+        ],
+        "concept_ids": [
+          "artefakt",
+          "funksjon",
+          "krav",
+          "begrensning",
+          "prototype",
+          "validering",
+          "verifikasjon",
+          "sporbarhet",
+          "designrom",
+          "interessentkonflikt"
+        ],
+        "anchor_ids": [
+          "anchor_tek_batteridrill_kravmatrise",
+          "anchor_tek_vannrenser_feltprototype"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_ulrich_eppinger_2020",
+      "type": "scholarly_textbook",
+      "title": "Product Design and Development",
+      "publisher_or_author": "Karl T. Ulrich, Steven D. Eppinger og Maria C. Yang",
+      "date_or_version": "7. utgave, 2020",
+      "locator": "ISBN 9781260043655, kap. 4–7",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "normative"
+      ],
+      "area_id": "teknologivitenskap_design",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_designvitenskap",
+          "teori_tek_funksjon_atferd_struktur",
+          "kobj_tek_axiomatisk_design"
+        ],
+        "concept_ids": [
+          "artefakt",
+          "funksjon",
+          "krav",
+          "begrensning",
+          "prototype",
+          "validering",
+          "verifikasjon",
+          "sporbarhet",
+          "designrom",
+          "interessentkonflikt"
+        ],
+        "anchor_ids": [
+          "anchor_tek_batteridrill_kravmatrise",
+          "anchor_tek_vannrenser_feltprototype"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_iso_iec_ieee_15288_2015",
+      "type": "technical_standard",
+      "title": "Systems and software engineering — System life cycle processes",
+      "publisher_or_author": "ISO/IEC/IEEE",
+      "date_or_version": "ISO/IEC/IEEE 15288:2015",
+      "locator": "ISO/IEC/IEEE 15288:2015, prosesser for arkitektur, verifikasjon og validering",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "normative"
+      ],
+      "area_id": "systemer_arkitektur_palitelighet",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_systemteknisk_v_modell",
+          "teori_tek_stamp_sikkerhetsmodell",
+          "kobj_tek_palitelighetsblokkdiagram",
+          "kobj_tek_normal_ulykkesteori"
+        ],
+        "concept_ids": [
+          "systemgrense",
+          "grensesnitt",
+          "arkitektur",
+          "palitelighet",
+          "redundans",
+          "sikkerhetsbarriere",
+          "tilgjengelighet_system",
+          "feiltoleranse",
+          "fellesarsaksfeil",
+          "reparerbarhet",
+          "sikkerhetsintegritet",
+          "vedlikeholdsstrategi"
+        ],
+        "anchor_ids": [
+          "anchor_tek_jernbane_sikringsanlegg",
+          "anchor_tek_datasenter_stromkjede"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_leveson_2011",
+      "type": "scholarly_monograph",
+      "title": "Engineering a Safer World",
+      "publisher_or_author": "Nancy G. Leveson",
+      "date_or_version": "2011",
+      "locator": "ISBN 9780262016629, kap. 2–4 og 8",
+      "url": "https://mitpress.mit.edu/9780262533690/engineering-a-safer-world/",
+      "claim_classes": [
+        "mechanistic",
+        "causal",
+        "normative"
+      ],
+      "area_id": "systemer_arkitektur_palitelighet",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_systemteknisk_v_modell",
+          "teori_tek_stamp_sikkerhetsmodell",
+          "kobj_tek_palitelighetsblokkdiagram",
+          "kobj_tek_normal_ulykkesteori"
+        ],
+        "concept_ids": [
+          "systemgrense",
+          "grensesnitt",
+          "arkitektur",
+          "palitelighet",
+          "redundans",
+          "sikkerhetsbarriere",
+          "tilgjengelighet_system",
+          "feiltoleranse",
+          "fellesarsaksfeil",
+          "reparerbarhet",
+          "sikkerhetsintegritet",
+          "vedlikeholdsstrategi"
+        ],
+        "anchor_ids": [
+          "anchor_tek_jernbane_sikringsanlegg",
+          "anchor_tek_datasenter_stromkjede"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_nrc_three_mile_island_1979",
+      "type": "official_investigation",
+      "title": "Report of the President's Commission on the Accident at Three Mile Island",
+      "publisher_or_author": "U.S. President's Commission",
+      "date_or_version": "1979",
+      "locator": "Kemeny Commission Report, tekniske og organisatoriske funn",
+      "url": "https://www.nrc.gov/reading-rm/doc-collections/fact-sheets/3mile-isle",
+      "claim_classes": [
+        "historical",
+        "causal",
+        "safety"
+      ],
+      "area_id": "systemer_arkitektur_palitelighet",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_systemteknisk_v_modell",
+          "teori_tek_stamp_sikkerhetsmodell",
+          "kobj_tek_palitelighetsblokkdiagram",
+          "kobj_tek_normal_ulykkesteori"
+        ],
+        "concept_ids": [
+          "systemgrense",
+          "grensesnitt",
+          "arkitektur",
+          "palitelighet",
+          "redundans",
+          "sikkerhetsbarriere",
+          "tilgjengelighet_system",
+          "feiltoleranse",
+          "fellesarsaksfeil",
+          "reparerbarhet",
+          "sikkerhetsintegritet",
+          "vedlikeholdsstrategi"
+        ],
+        "anchor_ids": [
+          "anchor_tek_jernbane_sikringsanlegg",
+          "anchor_tek_datasenter_stromkjede"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_moran_shapiro_2018",
+      "type": "scholarly_textbook",
+      "title": "Fundamentals of Engineering Thermodynamics",
+      "publisher_or_author": "Michael J. Moran mfl.",
+      "date_or_version": "9. utgave, 2018",
+      "locator": "ISBN 9781119391388, kontrollvolum, energibalanse og kretsprosesser",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance"
+      ],
+      "area_id": "mekanikk_energi_maskiner",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_termodynamisk_kretsprosess",
+          "teori_tek_energiomformingskjede",
+          "kobj_tek_bevaringslover_dimensjonsanalyse"
+        ],
+        "concept_ids": [
+          "kraft",
+          "moment",
+          "arbeid",
+          "effekt",
+          "virkningsgrad",
+          "eksergi",
+          "energi",
+          "entropi",
+          "friksjon",
+          "lasttilfelle"
+        ],
+        "anchor_ids": [
+          "anchor_tek_luft_luft_varmepumpe",
+          "anchor_tek_sykkel_drivverk"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_asme_ptc_19_1_2018",
+      "type": "technical_standard",
+      "title": "Test Uncertainty",
+      "publisher_or_author": "ASME",
+      "date_or_version": "ASME PTC 19.1-2018",
+      "locator": "ASME PTC 19.1-2018, måleusikkerhet og resultatrapportering",
+      "url": null,
+      "claim_classes": [
+        "performance",
+        "predictive"
+      ],
+      "area_id": "mekanikk_energi_maskiner",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_termodynamisk_kretsprosess",
+          "teori_tek_energiomformingskjede",
+          "kobj_tek_bevaringslover_dimensjonsanalyse"
+        ],
+        "concept_ids": [
+          "kraft",
+          "moment",
+          "arbeid",
+          "effekt",
+          "virkningsgrad",
+          "eksergi",
+          "energi",
+          "entropi",
+          "friksjon",
+          "lasttilfelle"
+        ],
+        "anchor_ids": [
+          "anchor_tek_luft_luft_varmepumpe",
+          "anchor_tek_sykkel_drivverk"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_iso_5151_2017",
+      "type": "technical_standard",
+      "title": "Non-ducted air conditioners and heat pumps — Testing and rating for performance",
+      "publisher_or_author": "ISO",
+      "date_or_version": "ISO 5151:2017",
+      "locator": "ISO 5151:2017, prøvingsbetingelser og ytelsesrating",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance"
+      ],
+      "area_id": "mekanikk_energi_maskiner",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_termodynamisk_kretsprosess",
+          "teori_tek_energiomformingskjede",
+          "kobj_tek_bevaringslover_dimensjonsanalyse"
+        ],
+        "concept_ids": [
+          "kraft",
+          "moment",
+          "arbeid",
+          "effekt",
+          "virkningsgrad",
+          "eksergi",
+          "energi",
+          "entropi",
+          "friksjon",
+          "lasttilfelle"
+        ],
+        "anchor_ids": [
+          "anchor_tek_luft_luft_varmepumpe",
+          "anchor_tek_sykkel_drivverk"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_ashby_2017",
+      "type": "scholarly_monograph",
+      "title": "Materials Selection in Mechanical Design",
+      "publisher_or_author": "Michael F. Ashby",
+      "date_or_version": "5. utgave, 2017",
+      "locator": "ISBN 9780081005996, materialindekser og livsløpsavveininger",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "normative"
+      ],
+      "area_id": "materialer_produksjon",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_ashby_materialvalg",
+          "teori_tek_statistisk_prosesskontroll",
+          "kobj_tek_lineaer_elastisk_bruddmekanikk"
+        ],
+        "concept_ids": [
+          "mikrostruktur",
+          "fasthet",
+          "utmattelse",
+          "korrosjon",
+          "toleranse",
+          "prosesskapabilitet",
+          "seighet",
+          "bruddmekanikk",
+          "materialtilstand",
+          "livslopsinventar"
+        ],
+        "anchor_ids": [
+          "anchor_tek_aluminium_panel_med_sprekk",
+          "anchor_tek_sprøytestøpt_deksel"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_astm_e647_2015",
+      "type": "technical_standard",
+      "title": "Standard Test Method for Measurement of Fatigue Crack Growth Rates",
+      "publisher_or_author": "ASTM International",
+      "date_or_version": "ASTM E647-15e1",
+      "locator": "ASTM E647-15e1, sprekkvekstmåling og gyldighetskrav",
+      "url": null,
+      "claim_classes": [
+        "performance",
+        "predictive",
+        "safety"
+      ],
+      "area_id": "materialer_produksjon",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_ashby_materialvalg",
+          "teori_tek_statistisk_prosesskontroll",
+          "kobj_tek_lineaer_elastisk_bruddmekanikk"
+        ],
+        "concept_ids": [
+          "mikrostruktur",
+          "fasthet",
+          "utmattelse",
+          "korrosjon",
+          "toleranse",
+          "prosesskapabilitet",
+          "seighet",
+          "bruddmekanikk",
+          "materialtilstand",
+          "livslopsinventar"
+        ],
+        "anchor_ids": [
+          "anchor_tek_aluminium_panel_med_sprekk",
+          "anchor_tek_sprøytestøpt_deksel"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_iso_22514_2_2017",
+      "type": "technical_standard",
+      "title": "Statistical methods in process management — Capability and performance",
+      "publisher_or_author": "ISO",
+      "date_or_version": "ISO 22514-2:2017",
+      "locator": "ISO 22514-2:2017, prosesskapabilitet og fordelingsantakelser",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance"
+      ],
+      "area_id": "materialer_produksjon",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_ashby_materialvalg",
+          "teori_tek_statistisk_prosesskontroll",
+          "kobj_tek_lineaer_elastisk_bruddmekanikk"
+        ],
+        "concept_ids": [
+          "mikrostruktur",
+          "fasthet",
+          "utmattelse",
+          "korrosjon",
+          "toleranse",
+          "prosesskapabilitet",
+          "seighet",
+          "bruddmekanikk",
+          "materialtilstand",
+          "livslopsinventar"
+        ],
+        "anchor_ids": [
+          "anchor_tek_aluminium_panel_med_sprekk",
+          "anchor_tek_sprøytestøpt_deksel"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_shannon_1948",
+      "type": "primary_research",
+      "title": "A Mathematical Theory of Communication",
+      "publisher_or_author": "Claude E. Shannon",
+      "date_or_version": "1948",
+      "locator": "Bell System Technical Journal 27, s. 379–423 og 623–656; DOI 10.1002/j.1538-7305.1948.tb01338.x",
+      "url": "https://doi.org/10.1002/j.1538-7305.1948.tb01338.x",
+      "claim_classes": [
+        "mechanistic",
+        "predictive"
+      ],
+      "area_id": "elektronikk_signaler_regulering",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_lukket_reguleringssloyfe",
+          "teori_tek_signal_og_informasjonskjede",
+          "kobj_tek_nyquist_shannon_sampling"
+        ],
+        "concept_ids": [
+          "spenning",
+          "strom",
+          "impedans",
+          "signal",
+          "tilbakemelding",
+          "stabilitet",
+          "bandbredde",
+          "signal_stoy_forhold",
+          "sampling",
+          "kalibrering"
+        ],
+        "anchor_ids": [
+          "anchor_tek_lydopptak_adc_kjede",
+          "anchor_tek_romtermostat_feedback"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_ogata_2010",
+      "type": "scholarly_textbook",
+      "title": "Modern Control Engineering",
+      "publisher_or_author": "Katsuhiko Ogata",
+      "date_or_version": "5. utgave, 2010",
+      "locator": "ISBN 9780136156734, feedback, stabilitet og frekvensrespons",
+      "url": null,
+      "claim_classes": [
+        "mechanistic",
+        "predictive",
+        "performance"
+      ],
+      "area_id": "elektronikk_signaler_regulering",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_lukket_reguleringssloyfe",
+          "teori_tek_signal_og_informasjonskjede",
+          "kobj_tek_nyquist_shannon_sampling"
+        ],
+        "concept_ids": [
+          "spenning",
+          "strom",
+          "impedans",
+          "signal",
+          "tilbakemelding",
+          "stabilitet",
+          "bandbredde",
+          "signal_stoy_forhold",
+          "sampling",
+          "kalibrering"
+        ],
+        "anchor_ids": [
+          "anchor_tek_lydopptak_adc_kjede",
+          "anchor_tek_romtermostat_feedback"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_ieee_1057_2017",
+      "type": "technical_standard",
+      "title": "IEEE Standard for Digitizing Waveform Recorders",
+      "publisher_or_author": "IEEE",
+      "date_or_version": "IEEE 1057-2017",
+      "locator": "IEEE 1057-2017, test av sampling, støy og linearitet",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance"
+      ],
+      "area_id": "elektronikk_signaler_regulering",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_lukket_reguleringssloyfe",
+          "teori_tek_signal_og_informasjonskjede",
+          "kobj_tek_nyquist_shannon_sampling"
+        ],
+        "concept_ids": [
+          "spenning",
+          "strom",
+          "impedans",
+          "signal",
+          "tilbakemelding",
+          "stabilitet",
+          "bandbredde",
+          "signal_stoy_forhold",
+          "sampling",
+          "kalibrering"
+        ],
+        "anchor_ids": [
+          "anchor_tek_lydopptak_adc_kjede",
+          "anchor_tek_romtermostat_feedback"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_thrun_2005",
+      "type": "scholarly_monograph",
+      "title": "Probabilistic Robotics",
+      "publisher_or_author": "Sebastian Thrun, Wolfram Burgard og Dieter Fox",
+      "date_or_version": "2005",
+      "locator": "ISBN 9780262201629, kap. 2–8",
+      "url": null,
+      "claim_classes": [
+        "mechanistic",
+        "predictive",
+        "performance"
+      ],
+      "area_id": "robotikk_automatisering",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_sense_plan_act_og_subsumpsjon",
+          "teori_tek_grader_av_automatisering",
+          "kobj_tek_bayesiansk_tilstandsestimering",
+          "kobj_tek_optimal_robust_kontroll"
+        ],
+        "concept_ids": [
+          "aktuator",
+          "frihetsgrad",
+          "lokalisering",
+          "sensorfusjon",
+          "autonominiva",
+          "feilsikker",
+          "tilstandsestimat",
+          "usikkerhetsellipse",
+          "kontrollpolicy",
+          "operasjonelt_designomrade"
+        ],
+        "anchor_ids": [
+          "anchor_tek_lagerrobot_lokalisering",
+          "anchor_tek_samarbeidsrobot_montasje"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_iso_10218_1_2011",
+      "type": "technical_standard",
+      "title": "Robots and robotic devices — Safety requirements for industrial robots — Part 1: Robots",
+      "publisher_or_author": "ISO",
+      "date_or_version": "ISO 10218-1:2011",
+      "locator": "ISO 10218-1:2011; brukes som eksplisitt versjon, ikke som påstand om gjeldende lokal samsvarsvurdering",
+      "url": null,
+      "claim_classes": [
+        "normative",
+        "safety"
+      ],
+      "area_id": "robotikk_automatisering",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_sense_plan_act_og_subsumpsjon",
+          "teori_tek_grader_av_automatisering",
+          "kobj_tek_bayesiansk_tilstandsestimering",
+          "kobj_tek_optimal_robust_kontroll"
+        ],
+        "concept_ids": [
+          "aktuator",
+          "frihetsgrad",
+          "lokalisering",
+          "sensorfusjon",
+          "autonominiva",
+          "feilsikker",
+          "tilstandsestimat",
+          "usikkerhetsellipse",
+          "kontrollpolicy",
+          "operasjonelt_designomrade"
+        ],
+        "anchor_ids": [
+          "anchor_tek_lagerrobot_lokalisering",
+          "anchor_tek_samarbeidsrobot_montasje"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_sheridan_verplank_1978",
+      "type": "official_research_report",
+      "title": "Human and Computer Control of Undersea Teleoperators",
+      "publisher_or_author": "Thomas B. Sheridan og William L. Verplank",
+      "date_or_version": "1978",
+      "locator": "MIT Man-Machine Systems Laboratory report, levels of automation",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "normative"
+      ],
+      "area_id": "robotikk_automatisering",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_sense_plan_act_og_subsumpsjon",
+          "teori_tek_grader_av_automatisering",
+          "kobj_tek_bayesiansk_tilstandsestimering",
+          "kobj_tek_optimal_robust_kontroll"
+        ],
+        "concept_ids": [
+          "aktuator",
+          "frihetsgrad",
+          "lokalisering",
+          "sensorfusjon",
+          "autonominiva",
+          "feilsikker",
+          "tilstandsestimat",
+          "usikkerhetsellipse",
+          "kontrollpolicy",
+          "operasjonelt_designomrade"
+        ],
+        "anchor_ids": [
+          "anchor_tek_lagerrobot_lokalisering",
+          "anchor_tek_samarbeidsrobot_montasje"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_hennessy_patterson_2019",
+      "type": "scholarly_textbook",
+      "title": "Computer Architecture: A Quantitative Approach",
+      "publisher_or_author": "John L. Hennessy og David A. Patterson",
+      "date_or_version": "6. utgave, 2019",
+      "locator": "ISBN 9780128119051, ytelsesmåling, minnehierarki og parallellitet",
+      "url": null,
+      "claim_classes": [
+        "mechanistic",
+        "performance",
+        "predictive"
+      ],
+      "area_id": "datamaskiner_operativsystemer",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_lagret_program_arkitektur",
+          "teori_tek_abstraksjonsstakk_datamaskin",
+          "kobj_tek_amdahls_lov"
+        ],
+        "concept_ids": [
+          "bit",
+          "instruksjon",
+          "prosessor",
+          "minnehierarki",
+          "prosess",
+          "samtidighet",
+          "lokalitet",
+          "cache_miss",
+          "avbrudd",
+          "virtuell_hukommelse"
+        ],
+        "anchor_ids": [
+          "anchor_tek_cache_benchmark",
+          "anchor_tek_virtuell_hukommelse_trace"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_riscv_unpriv_20191213",
+      "type": "official_specification",
+      "title": "The RISC-V Instruction Set Manual, Volume I: Unprivileged ISA",
+      "publisher_or_author": "RISC-V International",
+      "date_or_version": "20191213",
+      "locator": "RISC-V Unprivileged ISA Specification 20191213",
+      "url": "https://riscv.org/technical/specifications/",
+      "claim_classes": [
+        "descriptive",
+        "mechanistic"
+      ],
+      "area_id": "datamaskiner_operativsystemer",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_lagret_program_arkitektur",
+          "teori_tek_abstraksjonsstakk_datamaskin",
+          "kobj_tek_amdahls_lov"
+        ],
+        "concept_ids": [
+          "bit",
+          "instruksjon",
+          "prosessor",
+          "minnehierarki",
+          "prosess",
+          "samtidighet",
+          "lokalitet",
+          "cache_miss",
+          "avbrudd",
+          "virtuell_hukommelse"
+        ],
+        "anchor_ids": [
+          "anchor_tek_cache_benchmark",
+          "anchor_tek_virtuell_hukommelse_trace"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_amdahl_1967",
+      "type": "primary_research",
+      "title": "Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities",
+      "publisher_or_author": "Gene M. Amdahl",
+      "date_or_version": "1967",
+      "locator": "AFIPS Conference Proceedings 30, s. 483–485; DOI 10.1145/1465482.1465560",
+      "url": "https://doi.org/10.1145/1465482.1465560",
+      "claim_classes": [
+        "predictive",
+        "performance"
+      ],
+      "area_id": "datamaskiner_operativsystemer",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_lagret_program_arkitektur",
+          "teori_tek_abstraksjonsstakk_datamaskin",
+          "kobj_tek_amdahls_lov"
+        ],
+        "concept_ids": [
+          "bit",
+          "instruksjon",
+          "prosessor",
+          "minnehierarki",
+          "prosess",
+          "samtidighet",
+          "lokalitet",
+          "cache_miss",
+          "avbrudd",
+          "virtuell_hukommelse"
+        ],
+        "anchor_ids": [
+          "anchor_tek_cache_benchmark",
+          "anchor_tek_virtuell_hukommelse_trace"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_parnas_1972",
+      "type": "primary_research",
+      "title": "On the Criteria To Be Used in Decomposing Systems into Modules",
+      "publisher_or_author": "David L. Parnas",
+      "date_or_version": "1972",
+      "locator": "Communications of the ACM 15(12), s. 1053–1058; DOI 10.1145/361598.361623",
+      "url": "https://doi.org/10.1145/361598.361623",
+      "claim_classes": [
+        "mechanistic",
+        "normative"
+      ],
+      "area_id": "programvareteknikk",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_informasjonsskjuling",
+          "teori_tek_kontinuerlig_programvarelivslop",
+          "kobj_tek_design_by_contract",
+          "kobj_tek_lav_kobling_hoy_kohesjon",
+          "kobj_tek_observabilitet_feedback"
+        ],
+        "concept_ids": [
+          "abstraksjon",
+          "modul",
+          "api",
+          "invariant",
+          "testorakel",
+          "teknisk_gjeld",
+          "kontrakt_programvare",
+          "kobling",
+          "kohesjon",
+          "observabilitet",
+          "idempotens",
+          "bakoverkompatibilitet"
+        ],
+        "anchor_ids": [
+          "anchor_tek_betalingsapi_idempotens",
+          "anchor_tek_mikrotjeneste_hendelse"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_meyer_1997",
+      "type": "scholarly_monograph",
+      "title": "Object-Oriented Software Construction",
+      "publisher_or_author": "Bertrand Meyer",
+      "date_or_version": "2. utgave, 1997",
+      "locator": "ISBN 9780136291558, Design by Contract og invariants",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "normative"
+      ],
+      "area_id": "programvareteknikk",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_informasjonsskjuling",
+          "teori_tek_kontinuerlig_programvarelivslop",
+          "kobj_tek_design_by_contract",
+          "kobj_tek_lav_kobling_hoy_kohesjon",
+          "kobj_tek_observabilitet_feedback"
+        ],
+        "concept_ids": [
+          "abstraksjon",
+          "modul",
+          "api",
+          "invariant",
+          "testorakel",
+          "teknisk_gjeld",
+          "kontrakt_programvare",
+          "kobling",
+          "kohesjon",
+          "observabilitet",
+          "idempotens",
+          "bakoverkompatibilitet"
+        ],
+        "anchor_ids": [
+          "anchor_tek_betalingsapi_idempotens",
+          "anchor_tek_mikrotjeneste_hendelse"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_beyer_sre_2016",
+      "type": "professional_reference",
+      "title": "Site Reliability Engineering",
+      "publisher_or_author": "Betsy Beyer mfl. (red.)",
+      "date_or_version": "2016",
+      "locator": "ISBN 9781491929124, overvåking, hendelser og pålitelighetsmål",
+      "url": "https://sre.google/sre-book/table-of-contents/",
+      "claim_classes": [
+        "mechanistic",
+        "performance",
+        "normative"
+      ],
+      "area_id": "programvareteknikk",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_informasjonsskjuling",
+          "teori_tek_kontinuerlig_programvarelivslop",
+          "kobj_tek_design_by_contract",
+          "kobj_tek_lav_kobling_hoy_kohesjon",
+          "kobj_tek_observabilitet_feedback"
+        ],
+        "concept_ids": [
+          "abstraksjon",
+          "modul",
+          "api",
+          "invariant",
+          "testorakel",
+          "teknisk_gjeld",
+          "kontrakt_programvare",
+          "kobling",
+          "kohesjon",
+          "observabilitet",
+          "idempotens",
+          "bakoverkompatibilitet"
+        ],
+        "anchor_ids": [
+          "anchor_tek_betalingsapi_idempotens",
+          "anchor_tek_mikrotjeneste_hendelse"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_hastie_2009",
+      "type": "scholarly_monograph",
+      "title": "The Elements of Statistical Learning",
+      "publisher_or_author": "Trevor Hastie, Robert Tibshirani og Jerome Friedman",
+      "date_or_version": "2. utgave, 2009",
+      "locator": "ISBN 9780387848570; modellvalg, generalisering og regularisering",
+      "url": "https://hastie.su.domains/ElemStatLearn/",
+      "claim_classes": [
+        "mechanistic",
+        "predictive",
+        "performance"
+      ],
+      "area_id": "algoritmer_data_ai",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_beregningskompleksitet",
+          "teori_tek_statistisk_laering",
+          "kobj_tek_bias_varians",
+          "kobj_tek_bayesiansk_beslutningsteori",
+          "kobj_tek_strukturelle_kausalmodeller",
+          "kobj_tek_distribusjonsskift"
+        ],
+        "concept_ids": [
+          "algoritme",
+          "kompleksitet",
+          "datastruktur",
+          "treningsdata",
+          "generalisering",
+          "modellskjevhet",
+          "valideringsdata",
+          "kalibrering_ai",
+          "distribusjonsskift",
+          "kausal_graf",
+          "tapsfunksjon",
+          "beslutningsterskel",
+          "konfundering",
+          "robusthet_ai"
+        ],
+        "anchor_ids": [
+          "anchor_tek_bildemodell_distribusjonsskift",
+          "anchor_tek_risikomodell_beslutningsterskel"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_pearl_2009",
+      "type": "scholarly_monograph",
+      "title": "Causality",
+      "publisher_or_author": "Judea Pearl",
+      "date_or_version": "2. utgave, 2009",
+      "locator": "ISBN 9780521895606; strukturelle kausalmodeller og identifikasjon",
+      "url": null,
+      "claim_classes": [
+        "causal",
+        "mechanistic"
+      ],
+      "area_id": "algoritmer_data_ai",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_beregningskompleksitet",
+          "teori_tek_statistisk_laering",
+          "kobj_tek_bias_varians",
+          "kobj_tek_bayesiansk_beslutningsteori",
+          "kobj_tek_strukturelle_kausalmodeller",
+          "kobj_tek_distribusjonsskift"
+        ],
+        "concept_ids": [
+          "algoritme",
+          "kompleksitet",
+          "datastruktur",
+          "treningsdata",
+          "generalisering",
+          "modellskjevhet",
+          "valideringsdata",
+          "kalibrering_ai",
+          "distribusjonsskift",
+          "kausal_graf",
+          "tapsfunksjon",
+          "beslutningsterskel",
+          "konfundering",
+          "robusthet_ai"
+        ],
+        "anchor_ids": [
+          "anchor_tek_bildemodell_distribusjonsskift",
+          "anchor_tek_risikomodell_beslutningsterskel"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_nist_ai_rmf_2023",
+      "type": "official_framework",
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "publisher_or_author": "NIST",
+      "date_or_version": "NIST AI 100-1, 2023",
+      "locator": "NIST AI 100-1, særlig Map, Measure, Manage og Govern",
+      "url": "https://doi.org/10.6028/NIST.AI.100-1",
+      "claim_classes": [
+        "normative",
+        "risk",
+        "performance"
+      ],
+      "area_id": "algoritmer_data_ai",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_beregningskompleksitet",
+          "teori_tek_statistisk_laering",
+          "kobj_tek_bias_varians",
+          "kobj_tek_bayesiansk_beslutningsteori",
+          "kobj_tek_strukturelle_kausalmodeller",
+          "kobj_tek_distribusjonsskift"
+        ],
+        "concept_ids": [
+          "algoritme",
+          "kompleksitet",
+          "datastruktur",
+          "treningsdata",
+          "generalisering",
+          "modellskjevhet",
+          "valideringsdata",
+          "kalibrering_ai",
+          "distribusjonsskift",
+          "kausal_graf",
+          "tapsfunksjon",
+          "beslutningsterskel",
+          "konfundering",
+          "robusthet_ai"
+        ],
+        "anchor_ids": [
+          "anchor_tek_bildemodell_distribusjonsskift",
+          "anchor_tek_risikomodell_beslutningsterskel"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_rfc_8200",
+      "type": "official_specification",
+      "title": "Internet Protocol, Version 6 (IPv6) Specification",
+      "publisher_or_author": "IETF / RFC Editor",
+      "date_or_version": "RFC 8200, 2017",
+      "locator": "RFC 8200, pakkeformat og nodebehandling",
+      "url": "https://www.rfc-editor.org/rfc/rfc8200",
+      "claim_classes": [
+        "descriptive",
+        "mechanistic"
+      ],
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_ende_til_ende_prinsippet",
+          "teori_tek_forsvar_i_dybden",
+          "kobj_tek_distribuert_konsensus",
+          "kobj_tek_cap_teoremet",
+          "kobj_tek_cia_trusselmodell",
+          "kobj_tek_nulltillit"
+        ],
+        "concept_ids": [
+          "protokoll",
+          "ruting",
+          "latens",
+          "kryptering",
+          "angrepsflate",
+          "tilgjengelighet",
+          "konsensus",
+          "konsistensmodell",
+          "tillitsgrense",
+          "feildomene",
+          "quorum",
+          "linearisering",
+          "autorisering",
+          "gjenopprettingstid"
+        ],
+        "anchor_ids": [
+          "anchor_tek_replikert_kv_partisjon",
+          "anchor_tek_tls_websesjon"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_rfc_8446",
+      "type": "official_specification",
+      "title": "The Transport Layer Security (TLS) Protocol Version 1.3",
+      "publisher_or_author": "IETF / RFC Editor",
+      "date_or_version": "RFC 8446, 2018",
+      "locator": "RFC 8446, handshake, nøkler og sikkerhetshensyn",
+      "url": "https://www.rfc-editor.org/rfc/rfc8446",
+      "claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "security"
+      ],
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_ende_til_ende_prinsippet",
+          "teori_tek_forsvar_i_dybden",
+          "kobj_tek_distribuert_konsensus",
+          "kobj_tek_cap_teoremet",
+          "kobj_tek_cia_trusselmodell",
+          "kobj_tek_nulltillit"
+        ],
+        "concept_ids": [
+          "protokoll",
+          "ruting",
+          "latens",
+          "kryptering",
+          "angrepsflate",
+          "tilgjengelighet",
+          "konsensus",
+          "konsistensmodell",
+          "tillitsgrense",
+          "feildomene",
+          "quorum",
+          "linearisering",
+          "autorisering",
+          "gjenopprettingstid"
+        ],
+        "anchor_ids": [
+          "anchor_tek_replikert_kv_partisjon",
+          "anchor_tek_tls_websesjon"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_gilbert_lynch_2002",
+      "type": "primary_research",
+      "title": "Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services",
+      "publisher_or_author": "Seth Gilbert og Nancy Lynch",
+      "date_or_version": "2002",
+      "locator": "SIGACT News 33(2), s. 51–59; DOI 10.1145/564585.564601",
+      "url": "https://doi.org/10.1145/564585.564601",
+      "claim_classes": [
+        "predictive",
+        "mechanistic"
+      ],
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_ende_til_ende_prinsippet",
+          "teori_tek_forsvar_i_dybden",
+          "kobj_tek_distribuert_konsensus",
+          "kobj_tek_cap_teoremet",
+          "kobj_tek_cia_trusselmodell",
+          "kobj_tek_nulltillit"
+        ],
+        "concept_ids": [
+          "protokoll",
+          "ruting",
+          "latens",
+          "kryptering",
+          "angrepsflate",
+          "tilgjengelighet",
+          "konsensus",
+          "konsistensmodell",
+          "tillitsgrense",
+          "feildomene",
+          "quorum",
+          "linearisering",
+          "autorisering",
+          "gjenopprettingstid"
+        ],
+        "anchor_ids": [
+          "anchor_tek_replikert_kv_partisjon",
+          "anchor_tek_tls_websesjon"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_nist_sp_800_207",
+      "type": "official_standard_guidance",
+      "title": "Zero Trust Architecture",
+      "publisher_or_author": "NIST",
+      "date_or_version": "NIST SP 800-207, 2020",
+      "locator": "NIST SP 800-207, policy engine, trust algorithm og resource access",
+      "url": "https://doi.org/10.6028/NIST.SP.800-207",
+      "claim_classes": [
+        "normative",
+        "security"
+      ],
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_ende_til_ende_prinsippet",
+          "teori_tek_forsvar_i_dybden",
+          "kobj_tek_distribuert_konsensus",
+          "kobj_tek_cap_teoremet",
+          "kobj_tek_cia_trusselmodell",
+          "kobj_tek_nulltillit"
+        ],
+        "concept_ids": [
+          "protokoll",
+          "ruting",
+          "latens",
+          "kryptering",
+          "angrepsflate",
+          "tilgjengelighet",
+          "konsensus",
+          "konsistensmodell",
+          "tillitsgrense",
+          "feildomene",
+          "quorum",
+          "linearisering",
+          "autorisering",
+          "gjenopprettingstid"
+        ],
+        "anchor_ids": [
+          "anchor_tek_replikert_kv_partisjon",
+          "anchor_tek_tls_websesjon"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_iso_9241_210_2019",
+      "type": "technical_standard",
+      "title": "Ergonomics of human-system interaction — Part 210: Human-centred design for interactive systems",
+      "publisher_or_author": "ISO",
+      "date_or_version": "ISO 9241-210:2019",
+      "locator": "ISO 9241-210:2019, prinsipper og aktiviteter for menneskesentrert design",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "normative"
+      ],
+      "area_id": "menneske_teknologi_hci",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_menneskesentrert_design",
+          "teori_tek_distribuert_kognisjon",
+          "kobj_tek_situert_handling",
+          "kobj_tek_felles_kognitive_systemer"
+        ],
+        "concept_ids": [
+          "brukbarhet",
+          "affordans",
+          "kognitiv_belastning",
+          "tilgjengelighet_hci",
+          "menneskelig_feil",
+          "automasjonsskjevhet",
+          "situasjonsforstaelse",
+          "modusforvirring",
+          "direkte_manipulasjon",
+          "inkluderende_design",
+          "tilbakemeldingssloyfe_hci",
+          "brukskontekst"
+        ],
+        "anchor_ids": [
+          "anchor_tek_infusjonspumpe_grensesnitt",
+          "anchor_tek_billettautomat_tilgjengelighet"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_endsley_1995",
+      "type": "primary_research",
+      "title": "Toward a Theory of Situation Awareness in Dynamic Systems",
+      "publisher_or_author": "Mica R. Endsley",
+      "date_or_version": "1995",
+      "locator": "Human Factors 37(1), s. 32–64; DOI 10.1518/001872095779049543",
+      "url": "https://doi.org/10.1518/001872095779049543",
+      "claim_classes": [
+        "theory",
+        "mechanistic"
+      ],
+      "area_id": "menneske_teknologi_hci",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_menneskesentrert_design",
+          "teori_tek_distribuert_kognisjon",
+          "kobj_tek_situert_handling",
+          "kobj_tek_felles_kognitive_systemer"
+        ],
+        "concept_ids": [
+          "brukbarhet",
+          "affordans",
+          "kognitiv_belastning",
+          "tilgjengelighet_hci",
+          "menneskelig_feil",
+          "automasjonsskjevhet",
+          "situasjonsforstaelse",
+          "modusforvirring",
+          "direkte_manipulasjon",
+          "inkluderende_design",
+          "tilbakemeldingssloyfe_hci",
+          "brukskontekst"
+        ],
+        "anchor_ids": [
+          "anchor_tek_infusjonspumpe_grensesnitt",
+          "anchor_tek_billettautomat_tilgjengelighet"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_wcag_2_2_2023",
+      "type": "official_web_standard",
+      "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+      "publisher_or_author": "W3C",
+      "date_or_version": "W3C Recommendation, 5 October 2023",
+      "locator": "WCAG 2.2, prinsipper og suksesskriterier",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "claim_classes": [
+        "normative",
+        "descriptive"
+      ],
+      "area_id": "menneske_teknologi_hci",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_menneskesentrert_design",
+          "teori_tek_distribuert_kognisjon",
+          "kobj_tek_situert_handling",
+          "kobj_tek_felles_kognitive_systemer"
+        ],
+        "concept_ids": [
+          "brukbarhet",
+          "affordans",
+          "kognitiv_belastning",
+          "tilgjengelighet_hci",
+          "menneskelig_feil",
+          "automasjonsskjevhet",
+          "situasjonsforstaelse",
+          "modusforvirring",
+          "direkte_manipulasjon",
+          "inkluderende_design",
+          "tilbakemeldingssloyfe_hci",
+          "brukskontekst"
+        ],
+        "anchor_ids": [
+          "anchor_tek_infusjonspumpe_grensesnitt",
+          "anchor_tek_billettautomat_tilgjengelighet"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_hughes_1983",
+      "type": "scholarly_monograph",
+      "title": "Networks of Power",
+      "publisher_or_author": "Thomas P. Hughes",
+      "date_or_version": "1983",
+      "locator": "ISBN 9780801828737, store tekniske systemer og momentum",
+      "url": null,
+      "claim_classes": [
+        "historical",
+        "causal"
+      ],
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_store_tekniske_systemer",
+          "teori_tek_sosiotekniske_forestillinger",
+          "kobj_tek_sosial_konstruksjon_teknologi",
+          "kobj_tek_flerniva_omstilling"
+        ],
+        "concept_ids": [
+          "standard",
+          "interoperabilitet",
+          "stiavhengighet",
+          "risiko",
+          "ansvar",
+          "baerekraft",
+          "eksternalitet",
+          "reboundeffekt",
+          "teknologisk_momentum",
+          "rettferdig_omstilling",
+          "livslopsanalyse",
+          "fore_var_prinsippet"
+        ],
+        "anchor_ids": [
+          "anchor_tek_urbant_kraftsystem_utvikling",
+          "anchor_tek_smarttelefon_livslop"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_bijker_hughes_pinch_1987",
+      "type": "scholarly_collection",
+      "title": "The Social Construction of Technological Systems",
+      "publisher_or_author": "Wiebe E. Bijker, Thomas P. Hughes og Trevor Pinch (red.)",
+      "date_or_version": "1987",
+      "locator": "ISBN 9780262521376, særlig innledning og SCOT-kapitler",
+      "url": null,
+      "claim_classes": [
+        "historical",
+        "causal"
+      ],
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_store_tekniske_systemer",
+          "teori_tek_sosiotekniske_forestillinger",
+          "kobj_tek_sosial_konstruksjon_teknologi",
+          "kobj_tek_flerniva_omstilling"
+        ],
+        "concept_ids": [
+          "standard",
+          "interoperabilitet",
+          "stiavhengighet",
+          "risiko",
+          "ansvar",
+          "baerekraft",
+          "eksternalitet",
+          "reboundeffekt",
+          "teknologisk_momentum",
+          "rettferdig_omstilling",
+          "livslopsanalyse",
+          "fore_var_prinsippet"
+        ],
+        "anchor_ids": [
+          "anchor_tek_urbant_kraftsystem_utvikling",
+          "anchor_tek_smarttelefon_livslop"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_geels_2002",
+      "type": "primary_research",
+      "title": "Technological transitions as evolutionary reconfiguration processes",
+      "publisher_or_author": "Frank W. Geels",
+      "date_or_version": "2002",
+      "locator": "Research Policy 31(8–9), s. 1257–1274; DOI 10.1016/S0048-7333(02)00062-8",
+      "url": "https://doi.org/10.1016/S0048-7333(02)00062-8",
+      "claim_classes": [
+        "historical",
+        "causal"
+      ],
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "status": "canonical_reference",
+      "access_note": "Bruk persistent URL eller oppgitt bibliografisk lokator; kontroller versjon ved normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_store_tekniske_systemer",
+          "teori_tek_sosiotekniske_forestillinger",
+          "kobj_tek_sosial_konstruksjon_teknologi",
+          "kobj_tek_flerniva_omstilling"
+        ],
+        "concept_ids": [
+          "standard",
+          "interoperabilitet",
+          "stiavhengighet",
+          "risiko",
+          "ansvar",
+          "baerekraft",
+          "eksternalitet",
+          "reboundeffekt",
+          "teknologisk_momentum",
+          "rettferdig_omstilling",
+          "livslopsanalyse",
+          "fore_var_prinsippet"
+        ],
+        "anchor_ids": [
+          "anchor_tek_urbant_kraftsystem_utvikling",
+          "anchor_tek_smarttelefon_livslop"
+        ]
+      }
+    },
+    {
+      "id": "src_tek_iso_14040_2006",
+      "type": "technical_standard",
+      "title": "Environmental management — Life cycle assessment — Principles and framework",
+      "publisher_or_author": "ISO",
+      "date_or_version": "ISO 14040:2006",
+      "locator": "ISO 14040:2006, mål og omfang, inventar, virkningsvurdering og tolkning",
+      "url": null,
+      "claim_classes": [
+        "descriptive",
+        "normative",
+        "environmental"
+      ],
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "status": "canonical_reference",
+      "access_note": "Bruk oppgitt standardnummer, DOI eller ISBN og kontroller tilgjengelig utgave før normativ bruk.",
+      "supports": {
+        "knowledge_object_ids": [
+          "teori_tek_store_tekniske_systemer",
+          "teori_tek_sosiotekniske_forestillinger",
+          "kobj_tek_sosial_konstruksjon_teknologi",
+          "kobj_tek_flerniva_omstilling"
+        ],
+        "concept_ids": [
+          "standard",
+          "interoperabilitet",
+          "stiavhengighet",
+          "risiko",
+          "ansvar",
+          "baerekraft",
+          "eksternalitet",
+          "reboundeffekt",
+          "teknologisk_momentum",
+          "rettferdig_omstilling",
+          "livslopsanalyse",
+          "fore_var_prinsippet"
+        ],
+        "anchor_ids": [
+          "anchor_tek_urbant_kraftsystem_utvikling",
+          "anchor_tek_smarttelefon_livslop"
+        ]
+      }
+    }
+  ],
+  "area_source_policies": [
+    {
+      "area_id": "teknologivitenskap_design",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "programvareteknikk",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "minimum_independent_sources_per_assessment": 2,
+      "primary_or_official_source_required": true,
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "rule": "Et spørsmål kan ikke arve hele fagområdets bibliografi ukritisk; hvert svar må angi konkrete source_ids og locator eller avsnitt."
+    }
+  ],
+  "knowledge_object_bindings": [
+    {
+      "knowledge_object_id": "teori_tek_designvitenskap",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_funksjon_atferd_struktur",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_axiomatisk_design",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_systemteknisk_v_modell",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_stamp_sikkerhetsmodell",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_palitelighetsblokkdiagram",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_normal_ulykkesteori",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_termodynamisk_kretsprosess",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_energiomformingskjede",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_bevaringslover_dimensjonsanalyse",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_ashby_materialvalg",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_statistisk_prosesskontroll",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_lineaer_elastisk_bruddmekanikk",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_lukket_reguleringssloyfe",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_signal_og_informasjonskjede",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_nyquist_shannon_sampling",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_sense_plan_act_og_subsumpsjon",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_grader_av_automatisering",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_bayesiansk_tilstandsestimering",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_optimal_robust_kontroll",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_lagret_program_arkitektur",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_abstraksjonsstakk_datamaskin",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_amdahls_lov",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_informasjonsskjuling",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_kontinuerlig_programvarelivslop",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_design_by_contract",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_lav_kobling_hoy_kohesjon",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_observabilitet_feedback",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_beregningskompleksitet",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_statistisk_laering",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_bias_varians",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_bayesiansk_beslutningsteori",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_strukturelle_kausalmodeller",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_distribusjonsskift",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_ende_til_ende_prinsippet",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_forsvar_i_dybden",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_distribuert_konsensus",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_cap_teoremet",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_cia_trusselmodell",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_nulltillit",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_menneskesentrert_design",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_distribuert_kognisjon",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_situert_handling",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_felles_kognitive_systemer",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_store_tekniske_systemer",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "teori_tek_sosiotekniske_forestillinger",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_sosial_konstruksjon_teknologi",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    },
+    {
+      "knowledge_object_id": "kobj_tek_flerniva_omstilling",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "binding_scope": "definition_mechanism_assumptions_limitations_and_domain_use",
+      "locator_required_in_question": true
+    }
+  ],
+  "concept_bindings": [
+    {
+      "concept_id": "artefakt",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "funksjon",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "krav",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "begrensning",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "prototype",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "validering",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "verifikasjon",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "sporbarhet",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "designrom",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "interessentkonflikt",
+      "area_id": "teknologivitenskap_design",
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "systemgrense",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "grensesnitt",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "arkitektur",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "palitelighet",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "redundans",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "sikkerhetsbarriere",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tilgjengelighet_system",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "feiltoleranse",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "fellesarsaksfeil",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "reparerbarhet",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "sikkerhetsintegritet",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "vedlikeholdsstrategi",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kraft",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "moment",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "arbeid",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "effekt",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "virkningsgrad",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "eksergi",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "energi",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "entropi",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "friksjon",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "lasttilfelle",
+      "area_id": "mekanikk_energi_maskiner",
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "mikrostruktur",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "fasthet",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "utmattelse",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "korrosjon",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "toleranse",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "prosesskapabilitet",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "seighet",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "bruddmekanikk",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "materialtilstand",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "livslopsinventar",
+      "area_id": "materialer_produksjon",
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "spenning",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "strom",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "impedans",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "signal",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tilbakemelding",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "stabilitet",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "bandbredde",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "signal_stoy_forhold",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "sampling",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kalibrering",
+      "area_id": "elektronikk_signaler_regulering",
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "aktuator",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "frihetsgrad",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "lokalisering",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "sensorfusjon",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "autonominiva",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "feilsikker",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tilstandsestimat",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "usikkerhetsellipse",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kontrollpolicy",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "operasjonelt_designomrade",
+      "area_id": "robotikk_automatisering",
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "bit",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "instruksjon",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "prosessor",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "minnehierarki",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "prosess",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "samtidighet",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "lokalitet",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "cache_miss",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "avbrudd",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "virtuell_hukommelse",
+      "area_id": "datamaskiner_operativsystemer",
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "abstraksjon",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "modul",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "api",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "invariant",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "testorakel",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "teknisk_gjeld",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kontrakt_programvare",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kobling",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kohesjon",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "observabilitet",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "idempotens",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "bakoverkompatibilitet",
+      "area_id": "programvareteknikk",
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "algoritme",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kompleksitet",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "datastruktur",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "treningsdata",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "generalisering",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "modellskjevhet",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "valideringsdata",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kalibrering_ai",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "distribusjonsskift",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kausal_graf",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tapsfunksjon",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "beslutningsterskel",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "konfundering",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "robusthet_ai",
+      "area_id": "algoritmer_data_ai",
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "protokoll",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "ruting",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "latens",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kryptering",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "angrepsflate",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tilgjengelighet",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "konsensus",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "konsistensmodell",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tillitsgrense",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "feildomene",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "quorum",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "linearisering",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "autorisering",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "gjenopprettingstid",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "brukbarhet",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "affordans",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "kognitiv_belastning",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tilgjengelighet_hci",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "menneskelig_feil",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "automasjonsskjevhet",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "situasjonsforstaelse",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "modusforvirring",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "direkte_manipulasjon",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "inkluderende_design",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "tilbakemeldingssloyfe_hci",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "brukskontekst",
+      "area_id": "menneske_teknologi_hci",
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "standard",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "interoperabilitet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "stiavhengighet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "risiko",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "ansvar",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "baerekraft",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "eksternalitet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "reboundeffekt",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "teknologisk_momentum",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "rettferdig_omstilling",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "livslopsanalyse",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    },
+    {
+      "concept_id": "fore_var_prinsippet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987"
+      ],
+      "binding_scope": "definition_distinction_and_domain_context",
+      "locator_required_when_scored": true
+    }
+  ]
+}

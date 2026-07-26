@@ -1,4 +1,4 @@
-name: History V5.5 quality freeze
+name: History V5.7 quality freeze
 
 on:
   pull_request:
@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   quality-freeze:
-    name: History V5.5 depth and freeze
+    name: History V5.7 depth and freeze
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -30,17 +30,17 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
-      - name: Validate permanent V5.5 quality and freeze
+      - name: Validate permanent V5.7 quality and freeze
         run: node tools/audit-historie-v5-5-quality-depth.mjs
 
       - name: Upload quality audit
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: historie-v5-5-quality-depth
+          name: historie-v5-7-quality-depth
           path: |
-            reports/historie-v5/historie-v5-5-quality-depth.json
-            reports/historie-v5/historie-v5-5-quality-depth.md
+            reports/historie-v5/historie-v5-7-quality-depth.json
+            reports/historie-v5/historie-v5-7-quality-depth.md
           if-no-files-found: warn

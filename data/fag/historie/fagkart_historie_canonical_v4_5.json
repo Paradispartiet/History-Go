@@ -1,12 +1,12 @@
 {
   "subject_id": "historie",
   "subject_title": "Historie",
-  "scope": "oslo_og_omegn",
+  "scope": "universal",
   "type": "fagkart",
-  "version": "v5.5-canonical",
-  "updated_at": "2026-07-25",
+  "version": "v5.7-canonical",
+  "updated_at": "2026-07-26",
   "principles": {
-    "locked_categories": true,
+    "locked_categories": false,
     "dev_happens_through": [
       "emner",
       "metoder",
@@ -16,7 +16,7 @@
       "observasjoner",
       "eksterne_kilder"
     ],
-    "no_new_main_categories": true,
+    "no_new_main_categories": false,
     "style": [
       "stedlig historie først",
       "kildekritisk presisjon",
@@ -25,7 +25,9 @@
       "makt, minne og blindsoner synliggjøres",
       "eksterne kilder dominerer faktainnholdet"
     ],
-    "core_rule": "Historie-spørsmål skal starte i dokumenterbare spor, hendelser, kilder eller steder, og bruke teori/metode til å skjerpe tolkningen."
+    "core_rule": "Historie-spørsmål skal starte i dokumenterbare spor, hendelser, kilder, steder eller materielle kontekster. Geografiske cases skal kobles til den universelle fagmodellen, ikke definere egne landfag.",
+    "universal_subject_model": true,
+    "geographic_profiles_are_separate": true
   },
   "categories": [
     {
@@ -26437,6 +26439,2636 @@
       ],
       "canonical_status": "canonical",
       "registry_version": "historiepensum_v5_5",
+      "canonical_file_role": "active"
+    },
+    {
+      "id": "his_forhistorie_arkeologi",
+      "title": "Forhistorie og arkeologi",
+      "tagline": "Menneskelig historie før og uten skrift gjennom materielle, biologiske og miljømessige spor",
+      "definition": "Forhistorie og arkeologi undersøker menneskelig liv før og uten tilstrekkelige skriftlige kilder gjennom materiell kultur, biologiske levninger, landskap, naturvitenskapelig datering og eksplisitt kildekritikk. Domenet krever kontekst, kronologi, alternative tolkninger og etisk kontroll.",
+      "focus": [
+        "arkeologisk kontekst",
+        "forhistorisk kronologi",
+        "steinalder",
+        "neolitisering",
+        "bronsealder",
+        "jernalder",
+        "vikingtid",
+        "landskap",
+        "bioarkeologi"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_arkeologisk_kontekst_formation",
+          "title": "Arkeologiske kilder, kontekst og formasjonsprosesser",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkeologisk_kontekst_formation"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Çatalhöyük",
+            "Joya de Cerén",
+            "Sutton Hoo",
+            "Pompeii"
+          ],
+          "recommended_method_ids": [
+            "met_arkeologisk_kontekstanalyse",
+            "met_stratigrafisk_analyse",
+            "met_sporlesning",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan gjenstander, strukturer, avsetninger og biologiske rester blir til historiske kilder gjennom funnkontekst, lagfølge, bevaringsforhold og senere forstyrrelser. Emnet skiller systematisk mellom fortidig handling, avsetning, nedbrytning, utgravning og moderne dokumentasjon.",
+          "critical_distinctions": [
+            "primær kontekst vs sekundær avsetning",
+            "fortidig handling vs senere forstyrrelse",
+            "funnmengde vs bevaringsskjevhet",
+            "utgravningsdata vs tolkning"
+          ]
+        },
+        {
+          "id": "his_arkeologisk_datering_kronologi",
+          "title": "Arkeologisk datering, stratigrafi og kronologi",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkeologisk_datering_kronologi"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Stonehenge",
+            "Osebergskipet",
+            "Monte Verde",
+            "L'Anse aux Meadows"
+          ],
+          "recommended_method_ids": [
+            "met_stratigrafisk_analyse",
+            "met_typologisk_seriasjon",
+            "met_absolutt_datering",
+            "met_kronologisk_rekonstruksjon"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Bygger tidsrekkefølger ved å kombinere stratigrafi, typologi, seriasjon, naturvitenskapelige dateringer og kalibrerte usikkerhetsintervaller. Emnet undersøker hvordan relative og absolutte metoder støtter eller motsier hverandre, og hvordan kronologier revideres når nye prøver eller kontekster tilkommer.",
+          "critical_distinctions": [
+            "relativ datering vs absolutt datering",
+            "prøvedato vs hendelsesdato",
+            "presisjon vs usikkerhet",
+            "lokal sekvens vs regional kronologi"
+          ]
+        },
+        {
+          "id": "his_menneskelig_utvikling_mobilitet",
+          "title": "Menneskelig utvikling, mobilitet og jeger-sanker-samfunn",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_menneskelig_utvikling_mobilitet"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Olduvai Gorge",
+            "Dmanisi",
+            "Blombos Cave",
+            "Monte Verde"
+          ],
+          "recommended_method_ids": [
+            "met_komparativ_historie",
+            "met_absolutt_datering",
+            "met_bioarkeologisk_analyse",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker menneskelig evolusjon, migrasjoner, tilpasning og sosial organisering gjennom fossiler, redskaper, bosettingsspor, genetikk og paleomiljø. Emnet behandler jeger-sanker-samfunn som historisk varierte og teknologisk kunnskapsrike, ikke som et uforanderlig forstadium.",
+          "critical_distinctions": [
+            "biologisk evolusjon vs kulturell endring",
+            "mobilitet vs fast bosetning",
+            "lokal tilpasning vs langdistansespredning",
+            "materielle spor vs demografisk modell"
+          ]
+        },
+        {
+          "id": "his_steinalder_teknologi_bosetning",
+          "title": "Steinalderens teknologi, bosetning og livsgrunnlag",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_steinalder_teknologi_bosetning"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Star Carr",
+            "Sannai-Maruyama",
+            "Lepenski Vir",
+            "Stunnerboplassen"
+          ],
+          "recommended_method_ids": [
+            "met_typologisk_seriasjon",
+            "met_arkeologisk_kontekstanalyse",
+            "met_sporlesning",
+            "met_langvarighetsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker paleolittiske, mesolittiske og neolittiske samfunn gjennom redskapsteknologi, råstoffnettverk, boliger, ildsteder, matrester, gravskikk og landskapsbruk. Emnet sammenligner regionale kronologier og unngår å gjøre steinalderen til én ensartet global fase.",
+          "critical_distinctions": [
+            "paleolittikum vs mesolittikum vs neolitikum",
+            "mobil leir vs varig bosetning",
+            "lokalt råstoff vs utvekslingsnettverk",
+            "subsistens vs sosial og rituell praksis"
+          ]
+        },
+        {
+          "id": "his_neolitisering_jordbruk_sedentisme",
+          "title": "Neolitisering, jordbruk og bofasthet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_neolitisering_jordbruk_sedentisme"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Jeriko",
+            "Çatalhöyük",
+            "Banpo",
+            "Kuk Swamp"
+          ],
+          "recommended_method_ids": [
+            "met_bioarkeologisk_analyse",
+            "met_komparativ_historie",
+            "met_langvarighetsanalyse",
+            "met_arkeologisk_kontekstanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer overganger til plantedyrking, husdyrhold, bofasthet og nye eiendoms- og slektskapsordninger som langvarige, reversible og regionalt forskjellige prosesser. Emnet kobler domestisering til arbeid, kosthold, sykdom, demografi, landskapsendring og sosial ulikhet.",
+          "critical_distinctions": [
+            "sanking og jakt vs matproduksjon",
+            "mobilitet vs sedentisme",
+            "domestisering vs kontroll av ville ressurser",
+            "overskudd vs arbeids- og sykdomsbelastning"
+          ]
+        },
+        {
+          "id": "his_bronsealder_utveksling_ritual",
+          "title": "Bronsealderens metall, utveksling og ritualer",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_bronsealder_utveksling_ritual"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Uluburun-vraket",
+            "Nebra-himmelskiven",
+            "Tanums helleristninger",
+            "Anyang"
+          ],
+          "recommended_method_ids": [
+            "met_typologisk_seriasjon",
+            "met_absolutt_datering",
+            "met_komparativ_historie",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker bronsealderens metallurgi, langdistansenettverk, bergkunst, gravskikk, ritualdeponering og framvekst av sosial differensiering. Emnet sammenligner regioner med og uten omfattende bronsebruk og skiller tilgang til prestisjegjenstander fra direkte politisk kontroll.",
+          "critical_distinctions": [
+            "råstofftilgang vs lokal produksjon",
+            "utveksling vs politisk kontroll",
+            "ritualdeponering vs økonomisk lagring",
+            "prestisje vs varig institusjonell makt"
+          ]
+        },
+        {
+          "id": "his_jernalder_gard_handverk_makt",
+          "title": "Jernalderens gårder, håndverk og maktlandskap",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_jernalder_gard_handverk_makt"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Hallstatt",
+            "Biskupin",
+            "Jenne-jeno",
+            "Gamla Uppsala"
+          ],
+          "recommended_method_ids": [
+            "met_arkeologisk_kontekstanalyse",
+            "met_typologisk_seriasjon",
+            "met_sporlesning",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer jernproduksjon, gårdsbosetning, gravskikk, håndverk, handel og regionale maktdannelser gjennom lange og ulike jernalderforløp. Emnet undersøker hvordan hushold, spesialister, krigere og ledere organiserte produksjon og territorier uten å gjøre arkeologiske kulturer til entydige etniske grupper.",
+          "critical_distinctions": [
+            "husholdsproduksjon vs spesialisering",
+            "gårdsbosetning vs sentralplass",
+            "gravrepresentasjon vs levd status",
+            "regional stil vs politisk identitet"
+          ]
+        },
+        {
+          "id": "his_vikingtid_mobilitet_handel_makt",
+          "title": "Vikingtidens mobilitet, handel, vold og statsdannelse",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_vikingtid_mobilitet_handel_makt"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Hedeby",
+            "Birka",
+            "Dublin",
+            "L'Anse aux Meadows"
+          ],
+          "recommended_method_ids": [
+            "met_komparativ_historie",
+            "met_absolutt_datering",
+            "met_bioarkeologisk_analyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker vikingtiden som sammenvevde prosesser av sjøfart, handel, plyndring, kolonisering, migrasjon, slaveri, kristning og politisk konsolidering. Emnet bruker arkeologiske, skriftlige, numismatiske og naturvitenskapelige kilder og skiller aktivitet, identitet og senere nasjonal mytologi.",
+          "critical_distinctions": [
+            "handel vs plyndring",
+            "mobilitet vs diaspora og bosetning",
+            "aktivitet som viking vs etnisk identitet",
+            "lokal høvdingmakt vs statsdannelse"
+          ]
+        },
+        {
+          "id": "his_arkeologisk_landskap_miljo",
+          "title": "Arkeologiske landskap, miljø og ressursbruk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkeologisk_landskap_miljo"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Stonehenge–Avebury-landskapet",
+            "Angkor-regionen",
+            "Maya-lavlandet",
+            "Hardangervidda"
+          ],
+          "recommended_method_ids": [
+            "met_stratigrafisk_analyse",
+            "met_bioarkeologisk_analyse",
+            "met_langvarighetsanalyse",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan bosetning, ferdsel, jakt, jordbruk, ritualer og ressursuttak organiseres i landskap over lange tidsrom. Emnet kombinerer romlige analyser, pollen, sedimenter, dyrebein, kartlegging og synlige kulturspor uten å gjøre miljø til en automatisk årsak.",
+          "critical_distinctions": [
+            "sted vs landskapssystem",
+            "miljøendring vs menneskelig valg",
+            "synlige monumenter vs lavintensive aktiviteter",
+            "lokal ressursbruk vs regionale nettverk"
+          ]
+        },
+        {
+          "id": "his_bioarkeologi_helse_demografi",
+          "title": "Bioarkeologi, helse, kosthold og demografi",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_bioarkeologi_helse_demografi"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Ötzi",
+            "Egtvedpiken",
+            "Denisovahulen",
+            "Çatalhöyük-gravene"
+          ],
+          "recommended_method_ids": [
+            "met_bioarkeologisk_analyse",
+            "met_absolutt_datering",
+            "met_kildekritikk",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker menneskelige og animalske levninger, isotoper, paleopatologi, tannhelse, gammelt DNA og gravkontekst for å analysere kosthold, mobilitet, slektskap, sykdom, arbeid og befolkningsforløp. Emnet kombinerer biologiske data med sosial og etisk kildekritikk.",
+          "critical_distinctions": [
+            "biologisk indikator vs sosial erfaring",
+            "individdata vs befolkningsmodell",
+            "lokal oppvekst vs senere mobilitet",
+            "forskningsverdi vs etiske og rettslige krav"
+          ]
+        }
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6"
+    },
+    {
+      "id": "his_forste_verdenskrig_mellomkrig",
+      "title": "Første verdenskrig og mellomkrigstiden",
+      "tagline": "Krig, revolusjon, demokrati, diktatur, økonomi og kultur i verden 1914–1939",
+      "definition": "Første verdenskrig og mellomkrigstiden undersøker årsakene til og erfaringene av verdenskrigen, revolusjoner og fredsoppgjør, demokratisk og autoritær massepolitikk, økonomisk krise og kulturell modernitet i nordiske, europeiske og globale sammenhenger.",
+      "focus": [
+        "første verdenskrig",
+        "total krig",
+        "global og kolonial krig",
+        "nordisk nøytralitet",
+        "revolusjon",
+        "fredsoppgjør",
+        "demokrati",
+        "fascisme og nazisme",
+        "den store depresjonen",
+        "kulturhistorie og visuell politikk"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_imperialisme_allianser_krigsutbrudd",
+          "title": "Imperialisme, alliansesystemer og krigsutbruddet i 1914",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "christopher_clark",
+                "name": "Christopher Clark",
+                "why": "Krisebeslutninger, alliansesystemer og flernasjonale årsaksforløp fram mot 1914",
+                "tier": "core",
+                "works": [
+                  "The Sleepwalkers"
+                ]
+              },
+              {
+                "id": "margaret_macmillan",
+                "name": "Margaret MacMillan",
+                "why": "Krigsutbrudd, fredsoppgjør, diplomati og statsgrenser etter første verdenskrig",
+                "tier": "core",
+                "works": [
+                  "The War That Ended Peace",
+                  "Paris 1919"
+                ]
+              },
+              {
+                "id": "zara_steiner",
+                "name": "Zara Steiner",
+                "why": "Europeisk internasjonal historie, sikkerhetsordener og demokratiets sammenbrudd mellom krigene",
+                "tier": "core",
+                "works": [
+                  "The Lights that Failed",
+                  "The Triumph of the Dark"
+                ]
+              },
+              {
+                "id": "roald_berg",
+                "name": "Roald Berg",
+                "why": "Norsk utenriks-, nøytralitets- og sikkerhetspolitisk historie rundt 1905–1940",
+                "tier": "core",
+                "works": [
+                  "Norge på egen hånd 1905–1920"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_imperialisme_allianser_krigsutbrudd"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "christopher_clark",
+              "margaret_macmillan"
+            ],
+            [
+              "zara_steiner",
+              "roald_berg"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "roald_berg"
+          ],
+          "recommended_cases": [
+            "Sarajevo og Latinerbroen",
+            "Wien og Ballhausplatz",
+            "Berlin og Wilhelmstraße",
+            "St. Petersburg og Vinterpalasset",
+            "London og Whitehall",
+            "Paris og Quai d'Orsay"
+          ],
+          "recommended_method_ids": [
+            "met_krigsarsaksanalyse",
+            "met_hendelsesforlop_analyse",
+            "met_diplomatikk",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan imperial rivalisering, stormaktsstrategier, nasjonalisme, allianseforpliktelser, militære planer og beslutningene under julikrisen sammen skapte et krigsforløp som ikke kan reduseres til én stat, én attentathandling eller én langsiktig årsak.",
+          "critical_distinctions": [
+            "struktur vs beslutning",
+            "avskrekking vs eskalering",
+            "utløsende hendelse vs grunnårsak",
+            "samtidig usikkerhet vs ettertidens skyldfordeling"
+          ]
+        },
+        {
+          "id": "his_fronter_total_krig_teknologi",
+          "title": "Fronter, skyttergravskrig og total krig 1914–1918",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "jay_winter",
+                "name": "Jay Winter",
+                "why": "Krigserfaring, tap, minne, sivilsamfunn og kulturelle følger av første verdenskrig",
+                "tier": "core",
+                "works": [
+                  "Sites of Memory, Sites of Mourning"
+                ]
+              },
+              {
+                "id": "hew_strachan",
+                "name": "Hew Strachan",
+                "why": "Første verdenskrig som militært, politisk, økonomisk og globalt forløp",
+                "tier": "core",
+                "works": [
+                  "The First World War"
+                ]
+              },
+              {
+                "id": "christopher_clark",
+                "name": "Christopher Clark",
+                "why": "Krisebeslutninger, alliansesystemer og flernasjonale årsaksforløp fram mot 1914",
+                "tier": "core",
+                "works": [
+                  "The Sleepwalkers"
+                ]
+              },
+              {
+                "id": "roald_berg",
+                "name": "Roald Berg",
+                "why": "Norsk utenriks-, nøytralitets- og sikkerhetspolitisk historie rundt 1905–1940",
+                "tier": "core",
+                "works": [
+                  "Norge på egen hånd 1905–1920"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_fronter_total_krig_teknologi"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "jay_winter",
+              "hew_strachan"
+            ],
+            [
+              "christopher_clark",
+              "roald_berg"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "roald_berg"
+          ],
+          "recommended_cases": [
+            "Somme",
+            "Verdun",
+            "Ypres",
+            "Gallipoli",
+            "Isonzo-fronten",
+            "Østfronten ved Tannenberg"
+          ],
+          "recommended_method_ids": [
+            "met_total_krig_analyse",
+            "met_hendelsesforlop_analyse",
+            "met_seriell_kildeanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer første verdenskrigs vestlige, østlige, sørlige og maritime fronter gjennom mobilisering, skyttergravssystemer, artilleri, logistikk, massehærer, industriell produksjon og den voksende koblingen mellom militære mål og sivile ressurser.",
+          "critical_distinctions": [
+            "teknologi vs organisasjon",
+            "angrepsplan vs faktisk gjennomføring",
+            "frontlinje vs bakre områder",
+            "militær læring vs institusjonell treghet"
+          ]
+        },
+        {
+          "id": "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+          "title": "Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "susan_grayzel",
+                "name": "Susan Grayzel",
+                "why": "Kjønn, sivilsamfunn, mobilisering og hverdagsliv under total krig",
+                "tier": "core",
+                "works": [
+                  "Women's Identities at War"
+                ]
+              },
+              {
+                "id": "jay_winter",
+                "name": "Jay Winter",
+                "why": "Krigserfaring, tap, minne, sivilsamfunn og kulturelle følger av første verdenskrig",
+                "tier": "core",
+                "works": [
+                  "Sites of Memory, Sites of Mourning"
+                ]
+              },
+              {
+                "id": "hew_strachan",
+                "name": "Hew Strachan",
+                "why": "Første verdenskrig som militært, politisk, økonomisk og globalt forløp",
+                "tier": "core",
+                "works": [
+                  "The First World War"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk sosialhistorie, arbeid, klasse, kildekritikk og sammenlignende historisk metode",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_sivilsamfunn_krigsokonomi_hverdagsliv"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "susan_grayzel",
+              "jay_winter"
+            ],
+            [
+              "hew_strachan",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_cases": [
+            "Berlin under blokaden",
+            "Wien og forsyningskrisen",
+            "Paris og krigsindustrien",
+            "London og rasjoneringen",
+            "Petrograd 1917",
+            "Christiania under dyrtiden"
+          ],
+          "recommended_method_ids": [
+            "met_seriell_kildeanalyse",
+            "met_arbeidsprosessanalyse",
+            "met_for_etter_historisk",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan rasjonering, inflasjon, arbeidskraftmangel, statlig regulering, omsorg, kjønnede arbeidsdelinger, protester og flyktningstrømmer omformet hverdagsliv og sosiale relasjoner under første verdenskrig.",
+          "critical_distinctions": [
+            "regulering vs faktisk tilgang",
+            "nasjonal produksjon vs husholdsøkonomi",
+            "midlertidig mobilisering vs varig endring",
+            "offisiell statistikk vs levd erfaring"
+          ]
+        },
+        {
+          "id": "his_global_kolonial_verdenskrig",
+          "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "santanu_das",
+                "name": "Santanu Das",
+                "why": "Koloniale soldater, litterære kilder, kropp, erfaring og globale krigskulturer",
+                "tier": "core",
+                "works": [
+                  "India, Empire, and First World War Culture"
+                ]
+              },
+              {
+                "id": "david_olusoga",
+                "name": "David Olusoga",
+                "why": "Afrikanske og karibiske aktører, imperier og den globale verdenskrigen",
+                "tier": "core",
+                "works": [
+                  "The World's War"
+                ]
+              },
+              {
+                "id": "hew_strachan",
+                "name": "Hew Strachan",
+                "why": "Første verdenskrig som militært, politisk, økonomisk og globalt forløp",
+                "tier": "core",
+                "works": [
+                  "The First World War"
+                ]
+              },
+              {
+                "id": "roald_berg",
+                "name": "Roald Berg",
+                "why": "Norsk utenriks-, nøytralitets- og sikkerhetspolitisk historie rundt 1905–1940",
+                "tier": "core",
+                "works": [
+                  "Norge på egen hånd 1905–1920"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_global_kolonial_verdenskrig"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "santanu_das",
+              "david_olusoga"
+            ],
+            [
+              "hew_strachan",
+              "roald_berg"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "roald_berg"
+          ],
+          "recommended_cases": [
+            "Tanga-kampanjen",
+            "Gallipoli",
+            "Mesopotamiafronten",
+            "Palestinafronten",
+            "Qingdao",
+            "kolonitropper på Vestfronten"
+          ],
+          "recommended_method_ids": [
+            "met_global_krigsanalyse",
+            "met_transnasjonal_historie",
+            "met_komparativ_historie",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Plasserer første verdenskrig i afrikanske, asiatiske, oseaniske og midtøstlige krigsrom og undersøker kolonitropper, tvangsarbeid, forsyningslinjer, imperiepolitikk, lokale allianser og krigens følger for antikoloniale bevegelser.",
+          "critical_distinctions": [
+            "imperial strategi vs lokal aktørskap",
+            "frivillig tjeneste vs tvang",
+            "europeisk front vs global forsyning",
+            "selvbestemmelse vs mandatstyre"
+          ]
+        },
+        {
+          "id": "his_norge_norden_noytralitet_sjofart",
+          "title": "Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "roald_berg",
+                "name": "Roald Berg",
+                "why": "Norsk utenriks-, nøytralitets- og sikkerhetspolitisk historie rundt 1905–1940",
+                "tier": "core",
+                "works": [
+                  "Norge på egen hånd 1905–1920"
+                ]
+              },
+              {
+                "id": "olav_riste",
+                "name": "Olav Riste",
+                "why": "Norsk nøytralitet, utenrikspolitikk og handlingsrom i europeiske konflikter",
+                "tier": "core",
+                "works": [
+                  "The Neutral Ally"
+                ]
+              },
+              {
+                "id": "hew_strachan",
+                "name": "Hew Strachan",
+                "why": "Første verdenskrig som militært, politisk, økonomisk og globalt forløp",
+                "tier": "core",
+                "works": [
+                  "The First World War"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk sosialhistorie, arbeid, klasse, kildekritikk og sammenlignende historisk metode",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_norge_norden_noytralitet_sjofart"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "roald_berg",
+              "olav_riste"
+            ],
+            [
+              "hew_strachan",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "roald_berg",
+            "olav_riste",
+            "knut_kjeldstadli"
+          ],
+          "recommended_cases": [
+            "Christiania havn",
+            "Bergen havn",
+            "den norske handelsflåten",
+            "Göteborg havn",
+            "København og Øresund",
+            "Stockholm og nordisk diplomati"
+          ],
+          "recommended_method_ids": [
+            "met_noytralitetspolitisk_analyse",
+            "met_seriell_kildeanalyse",
+            "met_komparativ_historie",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan Norge, Sverige og Danmark praktiserte nøytralitet under press fra blokade, ubåtkrig, stormaktsdiplomati, handelsavhengighet og innenrikspolitisk konflikt, med særlig vekt på norsk sjøfart, forsyning og dyrtid.",
+          "critical_distinctions": [
+            "formell nøytralitet vs økonomisk avhengighet",
+            "statlig styring vs marked",
+            "rederinteresse vs sjøfolksrisiko",
+            "nordisk likhet vs nasjonal forskjell"
+          ]
+        },
+        {
+          "id": "his_revolusjon_imperieopplosning_fredsoppgjor",
+          "title": "Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "margaret_macmillan",
+                "name": "Margaret MacMillan",
+                "why": "Krigsutbrudd, fredsoppgjør, diplomati og statsgrenser etter første verdenskrig",
+                "tier": "core",
+                "works": [
+                  "The War That Ended Peace",
+                  "Paris 1919"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Revolusjon, ideologier, økonomisk krise og det korte tjuende århundrets brudd",
+                "tier": "core",
+                "works": [
+                  "Age of Extremes"
+                ]
+              },
+              {
+                "id": "e_h_carr",
+                "name": "E. H. Carr",
+                "why": "Revolusjon, mellomkrigstidens internasjonale orden og kritikk av idealistisk diplomati",
+                "tier": "core",
+                "works": [
+                  "The Twenty Years' Crisis"
+                ]
+              },
+              {
+                "id": "roald_berg",
+                "name": "Roald Berg",
+                "why": "Norsk utenriks-, nøytralitets- og sikkerhetspolitisk historie rundt 1905–1940",
+                "tier": "core",
+                "works": [
+                  "Norge på egen hånd 1905–1920"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_revolusjon_imperieopplosning_fredsoppgjor"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "margaret_macmillan",
+              "eric_hobsbawm"
+            ],
+            [
+              "e_h_carr",
+              "roald_berg"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "roald_berg"
+          ],
+          "recommended_cases": [
+            "Petrograd 1917",
+            "Brest-Litovsk",
+            "Paris-fredskonferansen",
+            "Versailles",
+            "Wien etter Habsburgmonarkiet",
+            "Istanbul og Lausanne"
+          ],
+          "recommended_method_ids": [
+            "met_fredsoppgjorsanalyse",
+            "met_hendelsesforlop_analyse",
+            "met_institusjonshistorisk_analyse",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer revolusjonene fra 1917, borgerkriger, sammenbruddet av russiske, tyske, østerriksk-ungarske og osmanske imperier, nye statsgrenser og fredsoppgjørene som etablerte en ustabil internasjonal orden etter krigen.",
+          "critical_distinctions": [
+            "revolusjon vs statssammenbrudd",
+            "selvbestemmelse vs minoritetsdannelse",
+            "traktattekst vs håndheving",
+            "fred vs fortsatt vold"
+          ]
+        },
+        {
+          "id": "his_demokrati_massepolitikk_sosial_konflikt",
+          "title": "Demokrati, massepolitikk og sosial konflikt i Europa og Norden",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_maier",
+                "name": "Charles S. Maier",
+                "why": "Etterkrigsstabilisering, korporative kompromisser og politisk økonomi i mellomkrigstidens Europa",
+                "tier": "core",
+                "works": [
+                  "Recasting Bourgeois Europe"
+                ]
+              },
+              {
+                "id": "geoff_eley",
+                "name": "Geoff Eley",
+                "why": "Massepolitikk, arbeiderbevegelse, demokratisering og europeisk politisk mobilisering",
+                "tier": "core",
+                "works": [
+                  "Forging Democracy"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk demokrati, reguleringsstat, sosialt kompromiss og politisk økonomi",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk sosialhistorie, arbeid, klasse, kildekritikk og sammenlignende historisk metode",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_demokrati_massepolitikk_sosial_konflikt"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "charles_maier",
+              "geoff_eley"
+            ],
+            [
+              "francis_sejersted",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted",
+            "knut_kjeldstadli"
+          ],
+          "recommended_cases": [
+            "Christiania og Menstad-konflikten",
+            "Stockholm og Saltsjöbaden",
+            "Helsinki etter borgerkrigen",
+            "København og Kanslergadeforliket",
+            "Berlin i Weimarrepublikken",
+            "Wien og Røde Wien"
+          ],
+          "recommended_method_ids": [
+            "met_arbeidskonfliktanalyse",
+            "met_institusjonshistorisk_analyse",
+            "met_komparativ_historie",
+            "met_pressehistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker utvidet stemmerett, partiorganisering, fagbevegelse, generalstreiker, paramilitære miljøer, parlamentariske kriser og nordiske kompromisser som konkurrerende former for massepolitikk etter første verdenskrig.",
+          "critical_distinctions": [
+            "parlamentarisme vs gatepolitikk",
+            "klassekonflikt vs sosialt kompromiss",
+            "formell stemmerett vs faktisk deltakelse",
+            "nordisk konvergens vs nasjonal forskjell"
+          ]
+        },
+        {
+          "id": "his_idehistorie_fascisme_nazisme_kommunisme",
+          "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "robert_paxton",
+                "name": "Robert O. Paxton",
+                "why": "Fascismens praksis, mobilisering, maktovertakelse og regimesamarbeid",
+                "tier": "core",
+                "works": [
+                  "The Anatomy of Fascism"
+                ]
+              },
+              {
+                "id": "george_l_mosse",
+                "name": "George L. Mosse",
+                "why": "Nasjonalisme, massepolitikk, politisk estetikk, krigsminne og fascistisk kultur",
+                "tier": "core",
+                "works": [
+                  "The Nationalization of the Masses"
+                ]
+              },
+              {
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "why": "Totalitær makt, ideologi, terror og statsløshet som analytiske problemer",
+                "tier": "core",
+                "works": [
+                  "The Origins of Totalitarianism"
+                ]
+              },
+              {
+                "id": "hans_fredrik_dahl",
+                "name": "Hans Fredrik Dahl",
+                "why": "Norsk fascisme, Nasjonal Samling, medier og politisk offentlighet",
+                "tier": "core",
+                "works": [
+                  "En fører for fall"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_idehistorie_fascisme_nazisme_kommunisme"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "robert_paxton",
+              "george_l_mosse"
+            ],
+            [
+              "hannah_arendt",
+              "hans_fredrik_dahl"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "hans_fredrik_dahl"
+          ],
+          "recommended_cases": [
+            "Roma og marsjen mot Roma",
+            "München og ølkjellerkuppet",
+            "Nürnberg-partidagene",
+            "Moskva under Stalin",
+            "Berlin 1933",
+            "Oslo og Nasjonal Samling"
+          ],
+          "recommended_method_ids": [
+            "met_ideologihistorisk_analyse",
+            "met_begrepshistorie",
+            "met_propagandaanalyse",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker liberalisme, sosialisme, kommunisme, fascisme og nazisme som historisk språk, organisasjon, massepolitikk og statspraksis, og følger hvordan ideer ble oversatt til propaganda, vold, institusjoner og eksklusjon.",
+          "critical_distinctions": [
+            "ideologi vs praksis",
+            "bevegelse vs regime",
+            "samtykke vs tvang",
+            "sammenligning vs historisk særpreg"
+          ]
+        },
+        {
+          "id": "his_store_depresjonen_arbeidsloshet_politikk",
+          "title": "Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "barry_eichengreen",
+                "name": "Barry Eichengreen",
+                "why": "Gullstandard, internasjonal finans, depresjon og økonomisk-politisk handlingsrom",
+                "tier": "core",
+                "works": [
+                  "Golden Fetters"
+                ]
+              },
+              {
+                "id": "charles_maier",
+                "name": "Charles S. Maier",
+                "why": "Etterkrigsstabilisering, korporative kompromisser og politisk økonomi i mellomkrigstidens Europa",
+                "tier": "core",
+                "works": [
+                  "Recasting Bourgeois Europe"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Revolusjon, ideologier, økonomisk krise og det korte tjuende århundrets brudd",
+                "tier": "core",
+                "works": [
+                  "Age of Extremes"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk demokrati, reguleringsstat, sosialt kompromiss og politisk økonomi",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_store_depresjonen_arbeidsloshet_politikk"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "barry_eichengreen",
+              "charles_maier"
+            ],
+            [
+              "eric_hobsbawm",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted"
+          ],
+          "recommended_cases": [
+            "Wall Street 1929",
+            "Credit-Anstalt i Wien",
+            "Ruhr og tysk arbeidsløshet",
+            "London og gullstandarden",
+            "Oslo og kriseforliket",
+            "Stockholm og svensk krisepolitikk"
+          ],
+          "recommended_method_ids": [
+            "met_okonomisk_kriseanalyse",
+            "met_seriell_kildeanalyse",
+            "met_komparativ_historie",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer finanskrisen fra 1929, bankkriser, gullstandard, deflasjon, internasjonal handel, massearbeidsløshet og ulike statlige svar, og undersøker hvordan økonomisk sammenbrudd påvirket hushold, organisasjoner og politisk legitimitet.",
+          "critical_distinctions": [
+            "finanskrise vs realøkonomi",
+            "internasjonal binding vs nasjonalt handlingsrom",
+            "budsjettortodoksi vs aktiv krisepolitikk",
+            "aggregert statistikk vs sosial erfaring"
+          ]
+        },
+        {
+          "id": "his_kultur_modernisme_kunst_visuell_politikk",
+          "title": "Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "george_l_mosse",
+                "name": "George L. Mosse",
+                "why": "Nasjonalisme, massepolitikk, politisk estetikk, krigsminne og fascistisk kultur",
+                "tier": "core",
+                "works": [
+                  "The Nationalization of the Masses"
+                ]
+              },
+              {
+                "id": "walter_benjamin",
+                "name": "Walter Benjamin",
+                "why": "Massemedier, reproduksjonsteknologi, estetikk og politikk i moderniteten",
+                "tier": "core",
+                "works": [
+                  "The Work of Art in the Age of Mechanical Reproduction"
+                ]
+              },
+              {
+                "id": "peter_burke",
+                "name": "Peter Burke",
+                "why": "Kulturhistorisk metode, representasjon, bilder og historisk kommunikasjon",
+                "tier": "core",
+                "works": [
+                  "What is Cultural History?"
+                ]
+              },
+              {
+                "id": "hans_fredrik_dahl",
+                "name": "Hans Fredrik Dahl",
+                "why": "Norsk fascisme, Nasjonal Samling, medier og politisk offentlighet",
+                "tier": "core",
+                "works": [
+                  "En fører for fall"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kultur_modernisme_kunst_visuell_politikk"
+          ],
+          "best_place_types": [
+            "historical_site",
+            "museum",
+            "arkiv",
+            "minnested",
+            "institusjonsbygg",
+            "kulturmiljo",
+            "havneomrade",
+            "offentlig_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_1914_1939_kronologi_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten kronologi",
+            "Ideologi eller nasjon som totalforklaring",
+            "Teori uten datert kilde og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify dated source and actor",
+            "separate structure from decision",
+            "compare regional variation",
+            "state alternative and limitation"
+          ],
+          "comparison_pairs": [
+            [
+              "george_l_mosse",
+              "walter_benjamin"
+            ],
+            [
+              "peter_burke",
+              "hans_fredrik_dahl"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "hans_fredrik_dahl"
+          ],
+          "recommended_cases": [
+            "Bauhaus i Dessau",
+            "Berlin-film og kino",
+            "Oslo og funksjonalismen",
+            "sovjetisk plakatkunst",
+            "Nürnberg-partidagene",
+            "Paris-utstillingen 1937"
+          ],
+          "recommended_method_ids": [
+            "met_visuell_kildekritikk",
+            "met_propagandaanalyse",
+            "met_pressehistorisk_analyse",
+            "met_begrepshistorie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_7",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_comparative_geography": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker modernisme, avantgarde, film, radio, fotografi, arkitektur, design, massekultur og politisk estetikk som historiske praksiser og institusjoner i mellomkrigstiden, med vekt på produksjon, distribusjon, publikum og sensur.",
+          "critical_distinctions": [
+            "kunstnerisk autonomi vs politisk bruk",
+            "eliteavantgarde vs massekultur",
+            "produksjonsintensjon vs mottakelse",
+            "teknologisk reproduksjon vs unik gjenstand"
+          ]
+        }
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
       "canonical_file_role": "active"
     }
   ]

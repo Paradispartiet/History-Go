@@ -1,0 +1,139 @@
+{
+  "schema": "teknologi_curriculum_quality_v2_1",
+  "version": "2.1",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "progression_model": {
+    "level_1": "Identifisere systemgrense, funksjon, komponenter, mekanismer og grunnleggende måledata.",
+    "level_2": "Anvende fagmetoder, prøve hypoteser, analysere feil og sammenligne løsninger på felles grunnlag.",
+    "level_3": "Integrere teknisk og sosioteknisk evidens, vurdere usikkerhet og begrunne design- eller styringsvalg."
+  },
+  "modules": [
+    {
+      "module_id": "kur_teknologi_01_teknologivitenskap_design",
+      "level": 1,
+      "prerequisite_module_ids": [],
+      "core_question": "Hvordan omformes et dokumentert behov til en testbar og begrunnet teknisk løsning?",
+      "learning_outcomes": ["skille behov, funksjon, krav og begrensning", "formulere en designhypotese", "planlegge en avgrenset prototypetest", "skille verifikasjon fra validering"],
+      "required_evidence": ["krav- eller behovsdokument", "prototype eller designrepresentasjon", "testresultat med kriterier"],
+      "assessment_task": "Rekonstruer designbegrunnelsen for et konkret artefakt og foreslå én test som kan endre designvalget.",
+      "mastery_criteria": ["sporbarhet fra behov til test", "minst ett alternativ", "eksplisitt usikkerhet"]
+    },
+    {
+      "module_id": "kur_teknologi_02_systemer_arkitektur_palitelighet",
+      "level": 1,
+      "prerequisite_module_ids": ["kur_teknologi_01_teknologivitenskap_design"],
+      "core_question": "Hvordan skaper komponenter, grensesnitt og barrierer samlet systematferd og systemrisiko?",
+      "learning_outcomes": ["definere systemgrense", "tegne funksjons- og flytarkitektur", "identifisere feilpropagering", "skille pålitelighet, tilgjengelighet og sikkerhet"],
+      "required_evidence": ["arkitektur eller flytdiagram", "hendelses- eller vedlikeholdsdata", "barriere- eller feilanalyse"],
+      "assessment_task": "Analyser én topphendelse med minst to feilbaner og vurder om barrierene er uavhengige.",
+      "mastery_criteria": ["minst to konkurrerende feilbaner", "fellesfeil vurdert", "gjenværende risiko angitt"]
+    },
+    {
+      "module_id": "kur_teknologi_03_mekanikk_energi_maskiner",
+      "level": 1,
+      "prerequisite_module_ids": ["kur_teknologi_01_teknologivitenskap_design"],
+      "core_question": "Hvordan omformes kraft og energi til nyttig arbeid under faktiske laster og tap?",
+      "learning_outcomes": ["følge kraft- og energiflyt", "beregne arbeid, effekt og virkningsgrad", "identifisere termiske og mekaniske tap", "vurdere relevant lastprofil"],
+      "required_evidence": ["tegning eller mekanismeskisse", "måle- eller driftskurve", "energi- eller lastbalanse"],
+      "assessment_task": "Sammenlign to maskinløsninger for samme funksjon over en dokumentert lastprofil.",
+      "mastery_criteria": ["samme systemgrense", "tap og usikkerhet inkludert", "toppeffekt ikke brukt som eneste mål"]
+    },
+    {
+      "module_id": "kur_teknologi_04_materialer_produksjon",
+      "level": 1,
+      "prerequisite_module_ids": ["kur_teknologi_01_teknologivitenskap_design"],
+      "core_question": "Hvordan kobles materialstruktur og produksjonsprosess til egenskap, kvalitet og levetid?",
+      "learning_outcomes": ["skille styrke, stivhet, seighet og utmatting", "koble mikrostruktur til prosess", "tolke toleranse og prosessvariasjon", "avgrense et livsløp"],
+      "required_evidence": ["materialdata eller standard", "prøve- eller kvalitetsdata", "produksjons- eller livsløpsbeskrivelse"],
+      "assessment_task": "Begrunn material- og prosessvalg for en komponent og analyser én realistisk degraderingsmekanisme.",
+      "mastery_criteria": ["funksjonskrav eksplisitt", "materialtilstand angitt", "alternativ vurdert"]
+    },
+    {
+      "module_id": "kur_teknologi_05_elektronikk_signaler_regulering",
+      "level": 2,
+      "prerequisite_module_ids": ["kur_teknologi_02_systemer_arkitektur_palitelighet", "kur_teknologi_03_mekanikk_energi_maskiner"],
+      "core_question": "Hvordan omformes et fysisk fenomen til et signal og en stabil styringshandling?",
+      "learning_outcomes": ["følge en komplett målekjede", "vurdere sampling, støy og båndbredde", "analysere en reguleringssløyfe", "skille presisjon fra stabilitet"],
+      "required_evidence": ["krets- eller signaldiagram", "målelogg eller responskurve", "kalibrering eller komponentdata"],
+      "assessment_task": "Forklar et reguleringsavvik med minst to hypoteser og angi en test som skiller dem.",
+      "mastery_criteria": ["signal og fenomen holdes adskilt", "forsinkelse og metning vurdert", "stabilitetsmål brukt"]
+    },
+    {
+      "module_id": "kur_teknologi_06_robotikk_automatisering",
+      "level": 2,
+      "prerequisite_module_ids": ["kur_teknologi_02_systemer_arkitektur_palitelighet", "kur_teknologi_05_elektronikk_signaler_regulering"],
+      "core_question": "Hvordan kobles sansning, tilstandsestimering, planlegging og fysisk handling under usikkerhet?",
+      "learning_outcomes": ["beskrive kinematikk og kontrollkjede", "vurdere sensorfusjon og lokalisering", "definere autonominivå per funksjon", "analysere menneskelig overstyring og sikkerhet"],
+      "required_evidence": ["sensor- og aktuatorlogg", "felt- eller benchmarktest", "sikkerhets- eller intervensjonsdata"],
+      "assessment_task": "Vurder et robotoppdrag i to miljøer og begrunn hvilket autonominivå som er forsvarlig.",
+      "mastery_criteria": ["operasjonelt domene definert", "intervensjon og feil inkludert", "simulering ikke generalisert ukritisk"]
+    },
+    {
+      "module_id": "kur_teknologi_07_datamaskiner_operativsystemer",
+      "level": 2,
+      "prerequisite_module_ids": ["kur_teknologi_02_systemer_arkitektur_palitelighet"],
+      "core_question": "Hvordan realiseres beregning og ressursdeling gjennom maskinvare- og operativsystemlag?",
+      "learning_outcomes": ["følge instruksjon og data gjennom minnehierarkiet", "forklare prosess og ressursisolasjon", "analysere samtidighet", "måle flaskehalser på riktig lag"],
+      "required_evidence": ["arkitektur- eller OS-dokumentasjon", "profil eller systemlogg", "arbeidslast og versjonsdata"],
+      "assessment_task": "Forklar en ytelsesflaskehals ved å knytte applikasjon, OS og maskinvare sammen.",
+      "mastery_criteria": ["arbeidslast definert", "minst to lag analysert", "måledata støtter forklaringen"]
+    },
+    {
+      "module_id": "kur_teknologi_08_programvareteknikk",
+      "level": 2,
+      "prerequisite_module_ids": ["kur_teknologi_01_teknologivitenskap_design", "kur_teknologi_07_datamaskiner_operativsystemer"],
+      "core_question": "Hvordan dokumenteres programvarens korrekthet, endringsevne og driftsegenskaper over tid?",
+      "learning_outcomes": ["analysere modul- og API-grenser", "koble risiko til teststrategi", "rekonstruere hendelse fra logger og versjoner", "vurdere teknisk gjeld som framtidig kostnad"],
+      "required_evidence": ["kildekode eller arkitekturbeslutning", "test- og versjonshistorikk", "drifts- eller hendelsesdata"],
+      "assessment_task": "Reproduser eller rekonstruer en programvarefeil og begrunn en rettelse med regresjonstest.",
+      "mastery_criteria": ["årsaks- og rettelseshypotese adskilt", "avhengigheter sporbare", "driftsvirkning vurdert"]
+    },
+    {
+      "module_id": "kur_teknologi_09_algoritmer_data_ai",
+      "level": 2,
+      "prerequisite_module_ids": ["kur_teknologi_07_datamaskiner_operativsystemer", "kur_teknologi_08_programvareteknikk"],
+      "core_question": "Hvordan begrunnes korrekthet, datagrunnlag, generalisering og bruksgrenser for algoritmer og lærende modeller?",
+      "learning_outcomes": ["skille algoritme, program og modell", "analysere kompleksitet", "revidere datasett og representasjon", "evaluere kalibrering, undergrupper og distribusjonsskift"],
+      "required_evidence": ["kode eller algoritmespesifikasjon", "datasettdokumentasjon", "baseline, evalueringsprotokoll og feilanalyse"],
+      "assessment_task": "Gjennomfør en modellkritikk som viser datagrunnlag, baseline, feilfordeling og én bruksgrense.",
+      "mastery_criteria": ["testdata uavhengige", "metrikk knyttet til faktisk feilkostnad", "normativ konklusjon skilt fra ytelsesdata"]
+    },
+    {
+      "module_id": "kur_teknologi_10_nettverk_cybersikkerhet_infrastruktur",
+      "level": 3,
+      "prerequisite_module_ids": ["kur_teknologi_02_systemer_arkitektur_palitelighet", "kur_teknologi_07_datamaskiner_operativsystemer"],
+      "core_question": "Hvordan opprettholdes kommunikasjon, tillit og tilgjengelighet gjennom protokoller og fysisk infrastruktur?",
+      "learning_outcomes": ["spore pakke og protokolltilstand", "utforme trusselmodell", "analysere delvise feil og avhengigheter", "vurdere gjenoppretting og gjenværende risiko"],
+      "required_evidence": ["protokoll eller konfigurasjon", "trafikk- eller hendelseslogg", "trusselmodell eller gransking"],
+      "assessment_task": "Rekonstruer en digital hendelse fra avhengighet til konsekvens og foreslå kontroller med ulike feilmodi.",
+      "mastery_criteria": ["verdier og tillitsgrenser definert", "konfidensialitet, integritet og tilgjengelighet skilt", "gjenoppretting inkludert"]
+    },
+    {
+      "module_id": "kur_teknologi_11_menneske_teknologi_hci",
+      "level": 3,
+      "prerequisite_module_ids": ["kur_teknologi_01_teknologivitenskap_design", "kur_teknologi_02_systemer_arkitektur_palitelighet"],
+      "core_question": "Hvordan fordeles kognitivt arbeid, kontroll og feil mellom mennesker, grensesnitt og organisasjon?",
+      "learning_outcomes": ["analysere oppgave og faktisk arbeidsflyt", "måle brukbarhet", "revidere tilgjengelighet", "forklare menneskelig feil systemisk"],
+      "required_evidence": ["brukerobservasjon eller test", "tilgjengelighetsmåling", "felt-, support- eller hendelsesdata"],
+      "assessment_task": "Sammenlign to grensesnitt for en definert brukergruppe og oppgave, inkludert feilkonsekvens og tilgjengelighet.",
+      "mastery_criteria": ["representativ oppgave", "resultater fordelt på relevante grupper", "personlig smak ikke brukt som hovedbevis"]
+    },
+    {
+      "module_id": "kur_teknologi_12_teknologihistorie_sts_risiko_baerekraft",
+      "level": 3,
+      "prerequisite_module_ids": ["kur_teknologi_02_systemer_arkitektur_palitelighet", "kur_teknologi_04_materialer_produksjon", "kur_teknologi_11_menneske_teknologi_hci"],
+      "core_question": "Hvordan utvikles og styres tekniske systemer når historie, makt, risiko, livsløp og framtidige alternativer virker sammen?",
+      "learning_outcomes": ["rekonstruere et teknologisk forløp uten determinisme", "analysere standard og innelåsing", "vurdere risiko under usikkerhet", "skille faktapåstand fra normativ vekting"],
+      "required_evidence": ["arkiv- eller beslutningskilde", "standard, tilsyn eller risikodata", "livsløps- eller scenarioanalyse"],
+      "assessment_task": "Sammenlign to realistiske teknologiske utviklingsbaner med historiske alternativer, risiko, reversibilitet og fordelingsvirkning.",
+      "mastery_criteria": ["alternativer var faktisk tilgjengelige", "systemgrense og vekting eksplisitt", "usikkerhet kan endre konklusjonen"]
+    }
+  ],
+  "capstone": {
+    "title": "Etterprøvbar teknologianalyse",
+    "task": "Velg ett dokumentert teknisk system og lever en analyse som integrerer minst tre fagområder, én mekanismeforklaring, én testbar feil- eller årsakshypotese, én sammenligning og én sosioteknisk vurdering.",
+    "required_components": ["teknisk anker og versjon", "systemgrense", "påstandsklasser", "minimum tre kildetyper", "måling eller test", "usikkerhetsregister", "alternativ løsning", "konklusjon med gyldighetsområde"],
+    "rubric_weights": {"begrepspresisjon": 15, "mekanisme": 20, "metode_og_evidens": 25, "feil_og_usikkerhet": 15, "sammenligning": 15, "sosioteknisk_begrunnelse": 10}
+  }
+}

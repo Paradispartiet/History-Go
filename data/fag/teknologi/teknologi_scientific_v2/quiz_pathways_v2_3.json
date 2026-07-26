@@ -1,0 +1,3901 @@
+{
+  "schema": "teknologi_quiz_pathways_v2_3",
+  "version": "2.3",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "runtime_activation": {
+    "status": "subject_package_ready",
+    "global_place_manifest_activation": false,
+    "reason": "Forløpene er fagområdeforløp med subject targets, ikke sted- eller person-targets. De skal konsumeres av Teknologi-fagets Knowledge/quizruntime uten å feilregistreres som sted."
+  },
+  "progression_model": {
+    "stages": [
+      "observe",
+      "explain",
+      "evaluate_evidence",
+      "diagnose_failure",
+      "decide_and_justify"
+    ],
+    "rule": "Spilleren går fra konkret observasjon til mekanisme, evidens, feil og begrunnet designbeslutning. Hvert spørsmål har kilde-, anker-, objekt- og begrepsspor."
+  },
+  "pathways": [
+    {
+      "id": "pathway_tek_teknologivitenskap_design",
+      "area_id": "teknologivitenskap_design",
+      "label": "Teknologivitenskap og design",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_teknologivitenskap_design",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_batteridrill_kravmatrise",
+        "anchor_tek_vannrenser_feltprototype"
+      ],
+      "assessment_task_ids": [
+        "task_tek_teknologivitenskap_design_1",
+        "task_tek_teknologivitenskap_design_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_teknologivitenskap_design_q1",
+          "quiz_id": "teknologi_teknologivitenskap_design_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologivitenskap_design",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva er den mest presise systemgrensen for designanalysen?",
+          "options": [
+            "Produktet, energikilden, brukergrensesnittet og de brukssituasjonene kravene gjelder",
+            "Bare produktets ytre skall",
+            "Hele markedet for alle håndverktøy"
+          ],
+          "answer": "Produktet, energikilden, brukergrensesnittet og de brukssituasjonene kravene gjelder",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Designvitenskap, det konkrete ankeret Batteridrill med kravmatrise og prototype og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til drill, batteri, chuck, brukergrensesnitt og definerte brukssituasjoner. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_batteridrill_kravmatrise",
+          "technology_anchor": "Batteridrill med kravmatrise og prototype",
+          "assessment_task_id": "task_tek_teknologivitenskap_design_1",
+          "knowledge_object_id": "teori_tek_designvitenskap",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "teknologivitenskap_design",
+            "source_id": "artefakt",
+            "relation_type": "has_function",
+            "target_id": "funksjon"
+          },
+          "source_ids": [
+            "src_tek_nasa_se_handbook_2016",
+            "src_tek_ulrich_eppinger_2020"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_nasa_se_handbook_2016",
+              "locator": "NASA/SP-2016-6105 Rev2, særlig kap. 4–6"
+            },
+            {
+              "source_id": "src_tek_ulrich_eppinger_2020",
+              "locator": "ISBN 9781260043655, kap. 4–7"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologivitenskap_design",
+            "artifact_and_design_record",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologivitenskap_design_q2",
+          "quiz_id": "teknologi_teknologivitenskap_design_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologivitenskap_design",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva viser best at et funksjonskrav er sporbar?",
+          "options": [
+            "At det kan følges fra behov via designvalg til et målbart testkriterium",
+            "At det står med fet skrift i presentasjonen",
+            "At utvikleren husker hvorfor det ble valgt"
+          ],
+          "answer": "At det kan følges fra behov via designvalg til et målbart testkriterium",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Funksjon–atferd–struktur, det konkrete ankeret Feltprototype for bærbar vannrenser og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til inntak, filtertrinn, pumpe, strømforsyning, bruker og vannkvalitetsmåling. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_vannrenser_feltprototype",
+          "technology_anchor": "Feltprototype for bærbar vannrenser",
+          "assessment_task_id": "task_tek_teknologivitenskap_design_2",
+          "knowledge_object_id": "teori_tek_funksjon_atferd_struktur",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "teknologivitenskap_design",
+            "source_id": "krav",
+            "relation_type": "constrains",
+            "target_id": "designrom"
+          },
+          "source_ids": [
+            "src_tek_nasa_se_handbook_2016",
+            "src_tek_ulrich_eppinger_2020"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_nasa_se_handbook_2016",
+              "locator": "NASA/SP-2016-6105 Rev2, særlig kap. 4–6"
+            },
+            {
+              "source_id": "src_tek_ulrich_eppinger_2020",
+              "locator": "ISBN 9781260043655, kap. 4–7"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologivitenskap_design",
+            "prototype_and_test_protocol",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologivitenskap_design_q3",
+          "quiz_id": "teknologi_teknologivitenskap_design_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologivitenskap_design",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Når er en prototype primært et valideringsverktøy?",
+          "options": [
+            "Når den prøves i representativ bruk for å undersøke om løsningen dekker reelle behov",
+            "Når kildekoden kompilerer",
+            "Når alle tegninger har samme filnavn"
+          ],
+          "answer": "Når den prøves i representativ bruk for å undersøke om løsningen dekker reelle behov",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Aksiomatisk design, det konkrete ankeret Batteridrill med kravmatrise og prototype og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til drill, batteri, chuck, brukergrensesnitt og definerte brukssituasjoner. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_batteridrill_kravmatrise",
+          "technology_anchor": "Batteridrill med kravmatrise og prototype",
+          "assessment_task_id": "task_tek_teknologivitenskap_design_1",
+          "knowledge_object_id": "kobj_tek_axiomatisk_design",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "teknologivitenskap_design",
+            "source_id": "begrensning",
+            "relation_type": "constrains",
+            "target_id": "designrom"
+          },
+          "source_ids": [
+            "src_tek_nasa_se_handbook_2016",
+            "src_tek_ulrich_eppinger_2020"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_nasa_se_handbook_2016",
+              "locator": "NASA/SP-2016-6105 Rev2, særlig kap. 4–6"
+            },
+            {
+              "source_id": "src_tek_ulrich_eppinger_2020",
+              "locator": "ISBN 9781260043655, kap. 4–7"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologivitenskap_design",
+            "artifact_and_design_record",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologivitenskap_design_q4",
+          "quiz_id": "teknologi_teknologivitenskap_design_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologivitenskap_design",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva er en typisk misbruk av aksiomatisk design?",
+          "options": [
+            "Å anta at alle krav kan gjøres uavhengige uten å synliggjøre reelle interessekonflikter",
+            "Å dokumentere koblinger mellom krav og designparametere",
+            "Å sammenligne endringsspredning mellom konsepter"
+          ],
+          "answer": "Å anta at alle krav kan gjøres uavhengige uten å synliggjøre reelle interessekonflikter",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Designvitenskap, det konkrete ankeret Feltprototype for bærbar vannrenser og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til inntak, filtertrinn, pumpe, strømforsyning, bruker og vannkvalitetsmåling. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_vannrenser_feltprototype",
+          "technology_anchor": "Feltprototype for bærbar vannrenser",
+          "assessment_task_id": "task_tek_teknologivitenskap_design_2",
+          "knowledge_object_id": "teori_tek_designvitenskap",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "teknologivitenskap_design",
+            "source_id": "prototype",
+            "relation_type": "implements_partial",
+            "target_id": "artefakt"
+          },
+          "source_ids": [
+            "src_tek_nasa_se_handbook_2016",
+            "src_tek_ulrich_eppinger_2020"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_nasa_se_handbook_2016",
+              "locator": "NASA/SP-2016-6105 Rev2, særlig kap. 4–6"
+            },
+            {
+              "source_id": "src_tek_ulrich_eppinger_2020",
+              "locator": "ISBN 9781260043655, kap. 4–7"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologivitenskap_design",
+            "prototype_and_test_protocol",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologivitenskap_design_q5",
+          "quiz_id": "teknologi_teknologivitenskap_design_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologivitenskap_design",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hvilken evidens styrker et konseptvalg mest?",
+          "options": [
+            "Sammenlignbare prototypetester med samme akseptkriterier og dokumentert usikkerhet",
+            "En leverandørbrosjyre som kaller løsningen best",
+            "En avstemning uten definert brukskontekst"
+          ],
+          "answer": "Sammenlignbare prototypetester med samme akseptkriterier og dokumentert usikkerhet",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Funksjon–atferd–struktur, det konkrete ankeret Batteridrill med kravmatrise og prototype og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til drill, batteri, chuck, brukergrensesnitt og definerte brukssituasjoner. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_batteridrill_kravmatrise",
+          "technology_anchor": "Batteridrill med kravmatrise og prototype",
+          "assessment_task_id": "task_tek_teknologivitenskap_design_1",
+          "knowledge_object_id": "teori_tek_funksjon_atferd_struktur",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "teknologivitenskap_design",
+            "source_id": "verifikasjon",
+            "relation_type": "evaluates",
+            "target_id": "krav"
+          },
+          "source_ids": [
+            "src_tek_nasa_se_handbook_2016",
+            "src_tek_ulrich_eppinger_2020"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_nasa_se_handbook_2016",
+              "locator": "NASA/SP-2016-6105 Rev2, særlig kap. 4–6"
+            },
+            {
+              "source_id": "src_tek_ulrich_eppinger_2020",
+              "locator": "ISBN 9781260043655, kap. 4–7"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "teknologivitenskap_design",
+            "artifact_and_design_record",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_systemer_arkitektur_palitelighet",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Systemer, arkitektur og pålitelighet",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_systemer_arkitektur_palitelighet",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_jernbane_sikringsanlegg",
+        "anchor_tek_datasenter_stromkjede"
+      ],
+      "assessment_task_ids": [
+        "task_tek_systemer_arkitektur_palitelighet_1",
+        "task_tek_systemer_arkitektur_palitelighet_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_systemer_arkitektur_palitelighet_q1",
+          "quiz_id": "teknologi_systemer_arkitektur_palitelighet_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_systemer_arkitektur_palitelighet",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hvorfor er to parallelle komponenter ikke nødvendigvis reell redundans?",
+          "options": [
+            "De kan dele strøm, programvare, miljø eller vedlikeholdsfeil og dermed ha fellesårsaksfeil",
+            "Parallelle komponenter kan aldri svikte",
+            "Redundans gjelder bare mekaniske systemer"
+          ],
+          "answer": "De kan dele strøm, programvare, miljø eller vedlikeholdsfeil og dermed ha fellesårsaksfeil",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Systemteknisk V-modell, det konkrete ankeret Elektronisk sikringsanlegg for jernbane og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til signal-logikk, sporavsnitt, togdeteksjon, operatørgrensesnitt og kommunikasjonslenker. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_jernbane_sikringsanlegg",
+          "technology_anchor": "Elektronisk sikringsanlegg for jernbane",
+          "assessment_task_id": "task_tek_systemer_arkitektur_palitelighet_1",
+          "knowledge_object_id": "teori_tek_systemteknisk_v_modell",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "systemer_arkitektur_palitelighet",
+            "source_id": "systemgrense",
+            "relation_type": "defines_scope_for",
+            "target_id": "arkitektur"
+          },
+          "source_ids": [
+            "src_tek_iso_iec_ieee_15288_2015",
+            "src_tek_leveson_2011"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_iec_ieee_15288_2015",
+              "locator": "ISO/IEC/IEEE 15288:2015, prosesser for arkitektur, verifikasjon og validering"
+            },
+            {
+              "source_id": "src_tek_leveson_2011",
+              "locator": "ISBN 9780262016629, kap. 2–4 og 8"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "systemer_arkitektur_palitelighet",
+            "safety_critical_system",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_systemer_arkitektur_palitelighet_q2",
+          "quiz_id": "teknologi_systemer_arkitektur_palitelighet_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_systemer_arkitektur_palitelighet",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva skiller et pålitelighetsblokkskjema fra fysisk arkitektur?",
+          "options": [
+            "Det viser funksjonslogikk for systemets suksess, ikke nødvendigvis fysisk plassering eller alle grensesnitt",
+            "Det er alltid en nøyaktig plantegning",
+            "Det viser bare kostnader"
+          ],
+          "answer": "Det viser funksjonslogikk for systemets suksess, ikke nødvendigvis fysisk plassering eller alle grensesnitt",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med STAMP, det konkrete ankeret Redundant strømforsyning i datasenter og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til nettilførsel, UPS, generator, koblingsutstyr, kjøling og kritisk IT-last. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_datasenter_stromkjede",
+          "technology_anchor": "Redundant strømforsyning i datasenter",
+          "assessment_task_id": "task_tek_systemer_arkitektur_palitelighet_2",
+          "knowledge_object_id": "teori_tek_stamp_sikkerhetsmodell",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "systemer_arkitektur_palitelighet",
+            "source_id": "grensesnitt",
+            "relation_type": "part_of",
+            "target_id": "arkitektur"
+          },
+          "source_ids": [
+            "src_tek_iso_iec_ieee_15288_2015",
+            "src_tek_leveson_2011"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_iec_ieee_15288_2015",
+              "locator": "ISO/IEC/IEEE 15288:2015, prosesser for arkitektur, verifikasjon og validering"
+            },
+            {
+              "source_id": "src_tek_leveson_2011",
+              "locator": "ISBN 9780262016629, kap. 2–4 og 8"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "systemer_arkitektur_palitelighet",
+            "infrastructure_architecture",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_systemer_arkitektur_palitelighet_q3",
+          "quiz_id": "teknologi_systemer_arkitektur_palitelighet_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_systemer_arkitektur_palitelighet",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva er et STAMP-lignende analysesyn?",
+          "options": [
+            "Ulykker kan oppstå når kontroll og feedback er utilstrekkelig på tvers av tekniske og organisatoriske nivåer",
+            "Alle ulykker skyldes én defekt komponent",
+            "Sikkerhet kan bestemmes uten systemgrense"
+          ],
+          "answer": "Ulykker kan oppstå når kontroll og feedback er utilstrekkelig på tvers av tekniske og organisatoriske nivåer",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Pålitelighetsblokkdiagram, det konkrete ankeret Elektronisk sikringsanlegg for jernbane og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til signal-logikk, sporavsnitt, togdeteksjon, operatørgrensesnitt og kommunikasjonslenker. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_jernbane_sikringsanlegg",
+          "technology_anchor": "Elektronisk sikringsanlegg for jernbane",
+          "assessment_task_id": "task_tek_systemer_arkitektur_palitelighet_1",
+          "knowledge_object_id": "kobj_tek_palitelighetsblokkdiagram",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "systemer_arkitektur_palitelighet",
+            "source_id": "redundans",
+            "relation_type": "mitigates",
+            "target_id": "palitelighet"
+          },
+          "source_ids": [
+            "src_tek_iso_iec_ieee_15288_2015",
+            "src_tek_leveson_2011"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_iec_ieee_15288_2015",
+              "locator": "ISO/IEC/IEEE 15288:2015, prosesser for arkitektur, verifikasjon og validering"
+            },
+            {
+              "source_id": "src_tek_leveson_2011",
+              "locator": "ISBN 9780262016629, kap. 2–4 og 8"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "systemer_arkitektur_palitelighet",
+            "safety_critical_system",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_systemer_arkitektur_palitelighet_q4",
+          "quiz_id": "teknologi_systemer_arkitektur_palitelighet_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_systemer_arkitektur_palitelighet",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva må oppgis før en tilgjengelighetsprosent kan vurderes?",
+          "options": [
+            "Måleperiode, planlagt vedlikehold, feildefinisjon og systemgrense",
+            "Bare prosenttallet",
+            "Produktnavnet"
+          ],
+          "answer": "Måleperiode, planlagt vedlikehold, feildefinisjon og systemgrense",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Normal ulykkesteori, det konkrete ankeret Redundant strømforsyning i datasenter og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til nettilførsel, UPS, generator, koblingsutstyr, kjøling og kritisk IT-last. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_datasenter_stromkjede",
+          "technology_anchor": "Redundant strømforsyning i datasenter",
+          "assessment_task_id": "task_tek_systemer_arkitektur_palitelighet_2",
+          "knowledge_object_id": "kobj_tek_normal_ulykkesteori",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "systemer_arkitektur_palitelighet",
+            "source_id": "sikkerhetsbarriere",
+            "relation_type": "mitigates",
+            "target_id": "risiko"
+          },
+          "source_ids": [
+            "src_tek_iso_iec_ieee_15288_2015",
+            "src_tek_leveson_2011",
+            "src_tek_nrc_three_mile_island_1979"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_iec_ieee_15288_2015",
+              "locator": "ISO/IEC/IEEE 15288:2015, prosesser for arkitektur, verifikasjon og validering"
+            },
+            {
+              "source_id": "src_tek_leveson_2011",
+              "locator": "ISBN 9780262016629, kap. 2–4 og 8"
+            },
+            {
+              "source_id": "src_tek_nrc_three_mile_island_1979",
+              "locator": "Kemeny Commission Report, tekniske og organisatoriske funn"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "systemer_arkitektur_palitelighet",
+            "infrastructure_architecture",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_systemer_arkitektur_palitelighet_q5",
+          "quiz_id": "teknologi_systemer_arkitektur_palitelighet_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_systemer_arkitektur_palitelighet",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hvilken test utfordrer arkitekturen best?",
+          "options": [
+            "Kontrollert bortfall av en antatt uavhengig forsyningsvei mens lastoverføring og felles avhengigheter observeres",
+            "En visuell inspeksjon av logoen",
+            "En test uten registrert starttilstand"
+          ],
+          "answer": "Kontrollert bortfall av en antatt uavhengig forsyningsvei mens lastoverføring og felles avhengigheter observeres",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Systemteknisk V-modell, det konkrete ankeret Elektronisk sikringsanlegg for jernbane og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til signal-logikk, sporavsnitt, togdeteksjon, operatørgrensesnitt og kommunikasjonslenker. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_jernbane_sikringsanlegg",
+          "technology_anchor": "Elektronisk sikringsanlegg for jernbane",
+          "assessment_task_id": "task_tek_systemer_arkitektur_palitelighet_1",
+          "knowledge_object_id": "teori_tek_systemteknisk_v_modell",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "systemer_arkitektur_palitelighet",
+            "source_id": "fellesarsaksfeil",
+            "relation_type": "degrades",
+            "target_id": "redundans"
+          },
+          "source_ids": [
+            "src_tek_iso_iec_ieee_15288_2015",
+            "src_tek_leveson_2011",
+            "src_tek_nrc_three_mile_island_1979"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_iec_ieee_15288_2015",
+              "locator": "ISO/IEC/IEEE 15288:2015, prosesser for arkitektur, verifikasjon og validering"
+            },
+            {
+              "source_id": "src_tek_leveson_2011",
+              "locator": "ISBN 9780262016629, kap. 2–4 og 8"
+            },
+            {
+              "source_id": "src_tek_nrc_three_mile_island_1979",
+              "locator": "Kemeny Commission Report, tekniske og organisatoriske funn"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "systemer_arkitektur_palitelighet",
+            "safety_critical_system",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_mekanikk_energi_maskiner",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Mekanikk, energi og maskiner",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_mekanikk_energi_maskiner",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_luft_luft_varmepumpe",
+        "anchor_tek_sykkel_drivverk"
+      ],
+      "assessment_task_ids": [
+        "task_tek_mekanikk_energi_maskiner_1",
+        "task_tek_mekanikk_energi_maskiner_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_mekanikk_energi_maskiner_q1",
+          "quiz_id": "teknologi_mekanikk_energi_maskiner_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_mekanikk_energi_maskiner",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva må være felles når to varmepumper sammenlignes?",
+          "options": [
+            "Levert funksjon, ute- og innetemperatur, lastpunkt, systemgrense og målemetode",
+            "Bare produktfargen",
+            "Kun nominell kompressorstørrelse"
+          ],
+          "answer": "Levert funksjon, ute- og innetemperatur, lastpunkt, systemgrense og målemetode",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Termodynamisk kretsprosess, det konkrete ankeret Luft-til-luft-varmepumpe og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til fordamper, kompressor, kondensator, ekspansjonsledd, vifter og målt inne-/utemiljø. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_luft_luft_varmepumpe",
+          "technology_anchor": "Luft-til-luft-varmepumpe",
+          "assessment_task_id": "task_tek_mekanikk_energi_maskiner_1",
+          "knowledge_object_id": "teori_tek_termodynamisk_kretsprosess",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "mekanikk_energi_maskiner",
+            "source_id": "kraft",
+            "relation_type": "produces",
+            "target_id": "moment"
+          },
+          "source_ids": [
+            "src_tek_moran_shapiro_2018",
+            "src_tek_asme_ptc_19_1_2018"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_moran_shapiro_2018",
+              "locator": "ISBN 9781119391388, kontrollvolum, energibalanse og kretsprosesser"
+            },
+            {
+              "source_id": "src_tek_asme_ptc_19_1_2018",
+              "locator": "ASME PTC 19.1-2018, måleusikkerhet og resultatrapportering"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "mekanikk_energi_maskiner",
+            "energy_conversion_system",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_mekanikk_energi_maskiner_q2",
+          "quiz_id": "teknologi_mekanikk_energi_maskiner_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_mekanikk_energi_maskiner",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hvorfor kan COP være større enn 1?",
+          "options": [
+            "Systemet flytter varme fra omgivelsene i tillegg til å bruke elektrisk arbeid",
+            "Energi blir skapt",
+            "Måleinstrumentet teller alltid dobbelt"
+          ],
+          "answer": "Systemet flytter varme fra omgivelsene i tillegg til å bruke elektrisk arbeid",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Energiomformingskjede, det konkrete ankeret Sykkeldrivverk med kjede og gir og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til krank, kjede, tannhjul, nav, hjul og syklistens inngående moment. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_sykkel_drivverk",
+          "technology_anchor": "Sykkeldrivverk med kjede og gir",
+          "assessment_task_id": "task_tek_mekanikk_energi_maskiner_2",
+          "knowledge_object_id": "teori_tek_energiomformingskjede",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "mekanikk_energi_maskiner",
+            "source_id": "kraft",
+            "relation_type": "produces",
+            "target_id": "arbeid"
+          },
+          "source_ids": [
+            "src_tek_moran_shapiro_2018",
+            "src_tek_asme_ptc_19_1_2018"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_moran_shapiro_2018",
+              "locator": "ISBN 9781119391388, kontrollvolum, energibalanse og kretsprosesser"
+            },
+            {
+              "source_id": "src_tek_asme_ptc_19_1_2018",
+              "locator": "ASME PTC 19.1-2018, måleusikkerhet og resultatrapportering"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "mekanikk_energi_maskiner",
+            "mechanical_transmission",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_mekanikk_energi_maskiner_q3",
+          "quiz_id": "teknologi_mekanikk_energi_maskiner_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_mekanikk_energi_maskiner",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva avslører en dimensjonskontroll?",
+          "options": [
+            "Om ledd i en ligning har kompatible fysiske dimensjoner",
+            "Om modellen er sosialt akseptert",
+            "Om alle målinger er uten usikkerhet"
+          ],
+          "answer": "Om ledd i en ligning har kompatible fysiske dimensjoner",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Bevaringslover og dimensjonsanalyse, det konkrete ankeret Luft-til-luft-varmepumpe og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til fordamper, kompressor, kondensator, ekspansjonsledd, vifter og målt inne-/utemiljø. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_luft_luft_varmepumpe",
+          "technology_anchor": "Luft-til-luft-varmepumpe",
+          "assessment_task_id": "task_tek_mekanikk_energi_maskiner_1",
+          "knowledge_object_id": "kobj_tek_bevaringslover_dimensjonsanalyse",
+          "knowledge_object_type": "law",
+          "concept_relation": {
+            "area_id": "mekanikk_energi_maskiner",
+            "source_id": "arbeid",
+            "relation_type": "per_time_is",
+            "target_id": "effekt"
+          },
+          "source_ids": [
+            "src_tek_moran_shapiro_2018",
+            "src_tek_asme_ptc_19_1_2018"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_moran_shapiro_2018",
+              "locator": "ISBN 9781119391388, kontrollvolum, energibalanse og kretsprosesser"
+            },
+            {
+              "source_id": "src_tek_asme_ptc_19_1_2018",
+              "locator": "ASME PTC 19.1-2018, måleusikkerhet og resultatrapportering"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "mekanikk_energi_maskiner",
+            "energy_conversion_system",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_mekanikk_energi_maskiner_q4",
+          "quiz_id": "teknologi_mekanikk_energi_maskiner_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_mekanikk_energi_maskiner",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva er mekanisk effekt i et roterende drivverk?",
+          "options": [
+            "Moment multiplisert med vinkelhastighet",
+            "Kraft delt på tid uten bevegelse",
+            "Masse multiplisert med temperatur"
+          ],
+          "answer": "Moment multiplisert med vinkelhastighet",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Termodynamisk kretsprosess, det konkrete ankeret Sykkeldrivverk med kjede og gir og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til krank, kjede, tannhjul, nav, hjul og syklistens inngående moment. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_sykkel_drivverk",
+          "technology_anchor": "Sykkeldrivverk med kjede og gir",
+          "assessment_task_id": "task_tek_mekanikk_energi_maskiner_2",
+          "knowledge_object_id": "teori_tek_termodynamisk_kretsprosess",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "mekanikk_energi_maskiner",
+            "source_id": "energi",
+            "relation_type": "transferred_as",
+            "target_id": "arbeid"
+          },
+          "source_ids": [
+            "src_tek_moran_shapiro_2018",
+            "src_tek_asme_ptc_19_1_2018",
+            "src_tek_iso_5151_2017"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_moran_shapiro_2018",
+              "locator": "ISBN 9781119391388, kontrollvolum, energibalanse og kretsprosesser"
+            },
+            {
+              "source_id": "src_tek_asme_ptc_19_1_2018",
+              "locator": "ASME PTC 19.1-2018, måleusikkerhet og resultatrapportering"
+            },
+            {
+              "source_id": "src_tek_iso_5151_2017",
+              "locator": "ISO 5151:2017, prøvingsbetingelser og ytelsesrating"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "mekanikk_energi_maskiner",
+            "mechanical_transmission",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_mekanikk_energi_maskiner_q5",
+          "quiz_id": "teknologi_mekanikk_energi_maskiner_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_mekanikk_energi_maskiner",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hva er sterkest evidens for virkningsgrad?",
+          "options": [
+            "Samtidige inn- og utmålinger med kalibrerte instrumenter og rapportert usikkerhet",
+            "Et estimat fra produktnavnet",
+            "En enkelt temperatur uten massestrøm eller effekt"
+          ],
+          "answer": "Samtidige inn- og utmålinger med kalibrerte instrumenter og rapportert usikkerhet",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Energiomformingskjede, det konkrete ankeret Luft-til-luft-varmepumpe og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til fordamper, kompressor, kondensator, ekspansjonsledd, vifter og målt inne-/utemiljø. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_luft_luft_varmepumpe",
+          "technology_anchor": "Luft-til-luft-varmepumpe",
+          "assessment_task_id": "task_tek_mekanikk_energi_maskiner_1",
+          "knowledge_object_id": "teori_tek_energiomformingskjede",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "mekanikk_energi_maskiner",
+            "source_id": "virkningsgrad",
+            "relation_type": "measures_relation",
+            "target_id": "energi"
+          },
+          "source_ids": [
+            "src_tek_moran_shapiro_2018",
+            "src_tek_asme_ptc_19_1_2018",
+            "src_tek_iso_5151_2017"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_moran_shapiro_2018",
+              "locator": "ISBN 9781119391388, kontrollvolum, energibalanse og kretsprosesser"
+            },
+            {
+              "source_id": "src_tek_asme_ptc_19_1_2018",
+              "locator": "ASME PTC 19.1-2018, måleusikkerhet og resultatrapportering"
+            },
+            {
+              "source_id": "src_tek_iso_5151_2017",
+              "locator": "ISO 5151:2017, prøvingsbetingelser og ytelsesrating"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "mekanikk_energi_maskiner",
+            "energy_conversion_system",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_materialer_produksjon",
+      "area_id": "materialer_produksjon",
+      "label": "Materialer og produksjon",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_materialer_produksjon",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_aluminium_panel_med_sprekk",
+        "anchor_tek_sprøytestøpt_deksel"
+      ],
+      "assessment_task_ids": [
+        "task_tek_materialer_produksjon_1",
+        "task_tek_materialer_produksjon_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_materialer_produksjon_q1",
+          "quiz_id": "teknologi_materialer_produksjon_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_materialer_produksjon",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hvorfor må prosessstabilitet vurderes før kapabilitet?",
+          "options": [
+            "Kapabilitetsmål er misvisende dersom prosessen endrer nivå eller variasjon over tid",
+            "En ustabil prosess har alltid perfekt kapabilitet",
+            "Toleranser gjør tidsrekkefølge irrelevant"
+          ],
+          "answer": "Kapabilitetsmål er misvisende dersom prosessen endrer nivå eller variasjon over tid",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Ashbys materialvalg, det konkrete ankeret Aluminiumspanel med voksende utmattingssprekk og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til panelgeometri, sprekk, lastsyklus, miljø og inspeksjonsintervall. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_aluminium_panel_med_sprekk",
+          "technology_anchor": "Aluminiumspanel med voksende utmattingssprekk",
+          "assessment_task_id": "task_tek_materialer_produksjon_1",
+          "knowledge_object_id": "teori_tek_ashby_materialvalg",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "materialer_produksjon",
+            "source_id": "mikrostruktur",
+            "relation_type": "influences",
+            "target_id": "fasthet"
+          },
+          "source_ids": [
+            "src_tek_ashby_2017",
+            "src_tek_astm_e647_2015"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_ashby_2017",
+              "locator": "ISBN 9780081005996, materialindekser og livsløpsavveininger"
+            },
+            {
+              "source_id": "src_tek_astm_e647_2015",
+              "locator": "ASTM E647-15e1, sprekkvekstmåling og gyldighetskrav"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "materialer_produksjon",
+            "material_failure_case",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_materialer_produksjon_q2",
+          "quiz_id": "teknologi_materialer_produksjon_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_materialer_produksjon",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva sammenlignes i lineær-elastisk bruddmekanikk?",
+          "options": [
+            "Spenningens intensitet ved sprekkspissen mot materialets bruddseighet innen modellens gyldighetsområde",
+            "Bare materialets masse mot pris",
+            "Overflatefarge mot temperatur"
+          ],
+          "answer": "Spenningens intensitet ved sprekkspissen mot materialets bruddseighet innen modellens gyldighetsområde",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Statistisk prosesskontroll, det konkrete ankeret Sprøytestøpt teknisk deksel og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til materialbatch, verktøy, temperatur, trykk, kjøling og målkrav. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_sprøytestøpt_deksel",
+          "technology_anchor": "Sprøytestøpt teknisk deksel",
+          "assessment_task_id": "task_tek_materialer_produksjon_2",
+          "knowledge_object_id": "teori_tek_statistisk_prosesskontroll",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "materialer_produksjon",
+            "source_id": "mikrostruktur",
+            "relation_type": "influences",
+            "target_id": "seighet"
+          },
+          "source_ids": [
+            "src_tek_ashby_2017",
+            "src_tek_astm_e647_2015"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_ashby_2017",
+              "locator": "ISBN 9780081005996, materialindekser og livsløpsavveininger"
+            },
+            {
+              "source_id": "src_tek_astm_e647_2015",
+              "locator": "ASTM E647-15e1, sprekkvekstmåling og gyldighetskrav"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "materialer_produksjon",
+            "manufacturing_process",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_materialer_produksjon_q3",
+          "quiz_id": "teknologi_materialer_produksjon_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_materialer_produksjon",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva er et moteksempel til god materialseleksjon?",
+          "options": [
+            "Å velge høyest fasthet uten å inkludere masse, produksjon, miljø og bruddmodus",
+            "Å bruke eksplisitte materialindekser",
+            "Å dokumentere begrensninger"
+          ],
+          "answer": "Å velge høyest fasthet uten å inkludere masse, produksjon, miljø og bruddmodus",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Lineær-elastisk bruddmekanikk, det konkrete ankeret Aluminiumspanel med voksende utmattingssprekk og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til panelgeometri, sprekk, lastsyklus, miljø og inspeksjonsintervall. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_aluminium_panel_med_sprekk",
+          "technology_anchor": "Aluminiumspanel med voksende utmattingssprekk",
+          "assessment_task_id": "task_tek_materialer_produksjon_1",
+          "knowledge_object_id": "kobj_tek_lineaer_elastisk_bruddmekanikk",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "materialer_produksjon",
+            "source_id": "materialtilstand",
+            "relation_type": "includes",
+            "target_id": "mikrostruktur"
+          },
+          "source_ids": [
+            "src_tek_ashby_2017",
+            "src_tek_astm_e647_2015"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_ashby_2017",
+              "locator": "ISBN 9780081005996, materialindekser og livsløpsavveininger"
+            },
+            {
+              "source_id": "src_tek_astm_e647_2015",
+              "locator": "ASTM E647-15e1, sprekkvekstmåling og gyldighetskrav"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "materialer_produksjon",
+            "material_failure_case",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_materialer_produksjon_q4",
+          "quiz_id": "teknologi_materialer_produksjon_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_materialer_produksjon",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva kan resirkulert innhold endre i et polymerprodukt?",
+          "options": [
+            "Materialtilstand, variasjon og prosessvindu, som derfor må måles og kvalifiseres",
+            "Bare etikettens farge",
+            "Ingenting under noen betingelser"
+          ],
+          "answer": "Materialtilstand, variasjon og prosessvindu, som derfor må måles og kvalifiseres",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Ashbys materialvalg, det konkrete ankeret Sprøytestøpt teknisk deksel og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til materialbatch, verktøy, temperatur, trykk, kjøling og målkrav. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_sprøytestøpt_deksel",
+          "technology_anchor": "Sprøytestøpt teknisk deksel",
+          "assessment_task_id": "task_tek_materialer_produksjon_2",
+          "knowledge_object_id": "teori_tek_ashby_materialvalg",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "materialer_produksjon",
+            "source_id": "bruddmekanikk",
+            "relation_type": "applies_to",
+            "target_id": "utmattelse"
+          },
+          "source_ids": [
+            "src_tek_ashby_2017",
+            "src_tek_astm_e647_2015",
+            "src_tek_iso_22514_2_2017"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_ashby_2017",
+              "locator": "ISBN 9780081005996, materialindekser og livsløpsavveininger"
+            },
+            {
+              "source_id": "src_tek_astm_e647_2015",
+              "locator": "ASTM E647-15e1, sprekkvekstmåling og gyldighetskrav"
+            },
+            {
+              "source_id": "src_tek_iso_22514_2_2017",
+              "locator": "ISO 22514-2:2017, prosesskapabilitet og fordelingsantakelser"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "materialer_produksjon",
+            "manufacturing_process",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_materialer_produksjon_q5",
+          "quiz_id": "teknologi_materialer_produksjon_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_materialer_produksjon",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hvilken evidens støtter en påstand om lengre levetid?",
+          "options": [
+            "Representative lastdata, sprekk- eller degraderingsmodell, inspeksjonsdata og usikkerhetsanalyse",
+            "En generell garanti uten testbetingelser",
+            "Ett feilfritt prøveemne"
+          ],
+          "answer": "Representative lastdata, sprekk- eller degraderingsmodell, inspeksjonsdata og usikkerhetsanalyse",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Statistisk prosesskontroll, det konkrete ankeret Aluminiumspanel med voksende utmattingssprekk og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til panelgeometri, sprekk, lastsyklus, miljø og inspeksjonsintervall. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_aluminium_panel_med_sprekk",
+          "technology_anchor": "Aluminiumspanel med voksende utmattingssprekk",
+          "assessment_task_id": "task_tek_materialer_produksjon_1",
+          "knowledge_object_id": "teori_tek_statistisk_prosesskontroll",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "materialer_produksjon",
+            "source_id": "bruddmekanikk",
+            "relation_type": "measured_by",
+            "target_id": "seighet"
+          },
+          "source_ids": [
+            "src_tek_ashby_2017",
+            "src_tek_astm_e647_2015",
+            "src_tek_iso_22514_2_2017"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_ashby_2017",
+              "locator": "ISBN 9780081005996, materialindekser og livsløpsavveininger"
+            },
+            {
+              "source_id": "src_tek_astm_e647_2015",
+              "locator": "ASTM E647-15e1, sprekkvekstmåling og gyldighetskrav"
+            },
+            {
+              "source_id": "src_tek_iso_22514_2_2017",
+              "locator": "ISO 22514-2:2017, prosesskapabilitet og fordelingsantakelser"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "materialer_produksjon",
+            "material_failure_case",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_elektronikk_signaler_regulering",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Elektronikk, signaler og regulering",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_elektronikk_signaler_regulering",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_lydopptak_adc_kjede",
+        "anchor_tek_romtermostat_feedback"
+      ],
+      "assessment_task_ids": [
+        "task_tek_elektronikk_signaler_regulering_1",
+        "task_tek_elektronikk_signaler_regulering_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_elektronikk_signaler_regulering_q1",
+          "quiz_id": "teknologi_elektronikk_signaler_regulering_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_elektronikk_signaler_regulering",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hvorfor trengs et antialiasfilter før ADC?",
+          "options": [
+            "For å begrense signalinnhold over det båndet samplingsfrekvensen kan representere",
+            "For å øke alle frekvenser ubegrenset",
+            "For å erstatte klokken"
+          ],
+          "answer": "For å begrense signalinnhold over det båndet samplingsfrekvensen kan representere",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Lukket reguleringssløyfe, det konkrete ankeret Mikrofon–forsterker–ADC-kjede og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til mikrofon, analog front-end, antialiasfilter, ADC, klokke og digital representasjon. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_lydopptak_adc_kjede",
+          "technology_anchor": "Mikrofon–forsterker–ADC-kjede",
+          "assessment_task_id": "task_tek_elektronikk_signaler_regulering_1",
+          "knowledge_object_id": "teori_tek_lukket_reguleringssloyfe",
+          "knowledge_object_type": "architecture_pattern",
+          "concept_relation": {
+            "area_id": "elektronikk_signaler_regulering",
+            "source_id": "spenning",
+            "relation_type": "drives",
+            "target_id": "strom"
+          },
+          "source_ids": [
+            "src_tek_shannon_1948",
+            "src_tek_ogata_2010"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_shannon_1948",
+              "locator": "Bell System Technical Journal 27, s. 379–423 og 623–656; DOI 10.1002/j.1538-7305.1948.tb01338.x"
+            },
+            {
+              "source_id": "src_tek_ogata_2010",
+              "locator": "ISBN 9780136156734, feedback, stabilitet og frekvensrespons"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "elektronikk_signaler_regulering",
+            "signal_chain",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_elektronikk_signaler_regulering_q2",
+          "quiz_id": "teknologi_elektronikk_signaler_regulering_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_elektronikk_signaler_regulering",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva betyr lukket sløyfe i det dokumenterte teknologiske systemet?",
+          "options": [
+            "Målt utgang føres tilbake og påvirker kontrollhandlingen",
+            "Aktuatoren er fysisk lukket i et skap",
+            "Systemet mangler sensor"
+          ],
+          "answer": "Målt utgang føres tilbake og påvirker kontrollhandlingen",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Signal- og informasjonskjede, det konkrete ankeret Romtermostat med lukket reguleringssløyfe og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til temperatursensor, regulator, varmeaktuator, romdynamikk og forstyrrelser. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_romtermostat_feedback",
+          "technology_anchor": "Romtermostat med lukket reguleringssløyfe",
+          "assessment_task_id": "task_tek_elektronikk_signaler_regulering_2",
+          "knowledge_object_id": "teori_tek_signal_og_informasjonskjede",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "elektronikk_signaler_regulering",
+            "source_id": "impedans",
+            "relation_type": "constrains",
+            "target_id": "strom"
+          },
+          "source_ids": [
+            "src_tek_shannon_1948",
+            "src_tek_ogata_2010"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_shannon_1948",
+              "locator": "Bell System Technical Journal 27, s. 379–423 og 623–656; DOI 10.1002/j.1538-7305.1948.tb01338.x"
+            },
+            {
+              "source_id": "src_tek_ogata_2010",
+              "locator": "ISBN 9780136156734, feedback, stabilitet og frekvensrespons"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "elektronikk_signaler_regulering",
+            "feedback_control_system",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_elektronikk_signaler_regulering_q3",
+          "quiz_id": "teknologi_elektronikk_signaler_regulering_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_elektronikk_signaler_regulering",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva er et tegn på utilstrekkelig stabilitetsmargin?",
+          "options": [
+            "Vedvarende eller økende oscillasjon etter en liten forstyrrelse",
+            "Rask og dempet innsvingning",
+            "Lav måleoppløsning alene"
+          ],
+          "answer": "Vedvarende eller økende oscillasjon etter en liten forstyrrelse",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Nyquist–Shannons samplingsteorem, det konkrete ankeret Mikrofon–forsterker–ADC-kjede og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til mikrofon, analog front-end, antialiasfilter, ADC, klokke og digital representasjon. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_lydopptak_adc_kjede",
+          "technology_anchor": "Mikrofon–forsterker–ADC-kjede",
+          "assessment_task_id": "task_tek_elektronikk_signaler_regulering_1",
+          "knowledge_object_id": "kobj_tek_nyquist_shannon_sampling",
+          "knowledge_object_type": "theorem",
+          "concept_relation": {
+            "area_id": "elektronikk_signaler_regulering",
+            "source_id": "signal",
+            "relation_type": "measured_by",
+            "target_id": "signal_stoy_forhold"
+          },
+          "source_ids": [
+            "src_tek_shannon_1948",
+            "src_tek_ogata_2010"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_shannon_1948",
+              "locator": "Bell System Technical Journal 27, s. 379–423 og 623–656; DOI 10.1002/j.1538-7305.1948.tb01338.x"
+            },
+            {
+              "source_id": "src_tek_ogata_2010",
+              "locator": "ISBN 9780136156734, feedback, stabilitet og frekvensrespons"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "elektronikk_signaler_regulering",
+            "signal_chain",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_elektronikk_signaler_regulering_q4",
+          "quiz_id": "teknologi_elektronikk_signaler_regulering_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_elektronikk_signaler_regulering",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva må oppgis sammen med signal/støy-forhold?",
+          "options": [
+            "Målebåndbredde, referansenivå, metode og driftsbetingelser",
+            "Bare enheten volt",
+            "Produktets lanseringsår"
+          ],
+          "answer": "Målebåndbredde, referansenivå, metode og driftsbetingelser",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Lukket reguleringssløyfe, det konkrete ankeret Romtermostat med lukket reguleringssløyfe og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til temperatursensor, regulator, varmeaktuator, romdynamikk og forstyrrelser. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_romtermostat_feedback",
+          "technology_anchor": "Romtermostat med lukket reguleringssløyfe",
+          "assessment_task_id": "task_tek_elektronikk_signaler_regulering_2",
+          "knowledge_object_id": "teori_tek_lukket_reguleringssloyfe",
+          "knowledge_object_type": "architecture_pattern",
+          "concept_relation": {
+            "area_id": "elektronikk_signaler_regulering",
+            "source_id": "bandbredde",
+            "relation_type": "constrains",
+            "target_id": "signal"
+          },
+          "source_ids": [
+            "src_tek_shannon_1948",
+            "src_tek_ogata_2010",
+            "src_tek_ieee_1057_2017"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_shannon_1948",
+              "locator": "Bell System Technical Journal 27, s. 379–423 og 623–656; DOI 10.1002/j.1538-7305.1948.tb01338.x"
+            },
+            {
+              "source_id": "src_tek_ogata_2010",
+              "locator": "ISBN 9780136156734, feedback, stabilitet og frekvensrespons"
+            },
+            {
+              "source_id": "src_tek_ieee_1057_2017",
+              "locator": "IEEE 1057-2017, test av sampling, støy og linearitet"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "elektronikk_signaler_regulering",
+            "feedback_control_system",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_elektronikk_signaler_regulering_q5",
+          "quiz_id": "teknologi_elektronikk_signaler_regulering_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_elektronikk_signaler_regulering",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hvilken påstand følger samplingsteoremet?",
+          "options": [
+            "Ideell rekonstruksjon krever båndbegrensning og sampling over to ganger høyeste frekvenskomponent",
+            "Alle signaler kan rekonstrueres ved hvilken som helst frekvens",
+            "Dobbel sampling fjerner all støy"
+          ],
+          "answer": "Ideell rekonstruksjon krever båndbegrensning og sampling over to ganger høyeste frekvenskomponent",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Signal- og informasjonskjede, det konkrete ankeret Mikrofon–forsterker–ADC-kjede og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til mikrofon, analog front-end, antialiasfilter, ADC, klokke og digital representasjon. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_lydopptak_adc_kjede",
+          "technology_anchor": "Mikrofon–forsterker–ADC-kjede",
+          "assessment_task_id": "task_tek_elektronikk_signaler_regulering_1",
+          "knowledge_object_id": "teori_tek_signal_og_informasjonskjede",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "elektronikk_signaler_regulering",
+            "source_id": "sampling",
+            "relation_type": "represents",
+            "target_id": "signal"
+          },
+          "source_ids": [
+            "src_tek_shannon_1948",
+            "src_tek_ogata_2010",
+            "src_tek_ieee_1057_2017"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_shannon_1948",
+              "locator": "Bell System Technical Journal 27, s. 379–423 og 623–656; DOI 10.1002/j.1538-7305.1948.tb01338.x"
+            },
+            {
+              "source_id": "src_tek_ogata_2010",
+              "locator": "ISBN 9780136156734, feedback, stabilitet og frekvensrespons"
+            },
+            {
+              "source_id": "src_tek_ieee_1057_2017",
+              "locator": "IEEE 1057-2017, test av sampling, støy og linearitet"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "elektronikk_signaler_regulering",
+            "signal_chain",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_robotikk_automatisering",
+      "area_id": "robotikk_automatisering",
+      "label": "Robotikk og automatisering",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_robotikk_automatisering",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_lagerrobot_lokalisering",
+        "anchor_tek_samarbeidsrobot_montasje"
+      ],
+      "assessment_task_ids": [
+        "task_tek_robotikk_automatisering_1",
+        "task_tek_robotikk_automatisering_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_robotikk_automatisering_q1",
+          "quiz_id": "teknologi_robotikk_automatisering_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_robotikk_automatisering",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva uttrykker en usikkerhetsellipse i lokalisering?",
+          "options": [
+            "Retning og størrelse på estimatets posisjonsusikkerhet under modellantakelsene",
+            "Robotens fysiske fotavtrykk alene",
+            "Et garantert område uten feil"
+          ],
+          "answer": "Retning og størrelse på estimatets posisjonsusikkerhet under modellantakelsene",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Sense–plan–act og subsumpsjon, det konkrete ankeret Mobil lagerrobot med lidar og hjulodometri og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til sensorer, tilstandsestimator, kart, planlegger, drivverk og operasjonelt designområde. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_lagerrobot_lokalisering",
+          "technology_anchor": "Mobil lagerrobot med lidar og hjulodometri",
+          "assessment_task_id": "task_tek_robotikk_automatisering_1",
+          "knowledge_object_id": "teori_tek_sense_plan_act_og_subsumpsjon",
+          "knowledge_object_type": "architecture_pattern",
+          "concept_relation": {
+            "area_id": "robotikk_automatisering",
+            "source_id": "aktuator",
+            "relation_type": "implements",
+            "target_id": "kontrollpolicy"
+          },
+          "source_ids": [
+            "src_tek_thrun_2005",
+            "src_tek_iso_10218_1_2011"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_thrun_2005",
+              "locator": "ISBN 9780262201629, kap. 2–8"
+            },
+            {
+              "source_id": "src_tek_iso_10218_1_2011",
+              "locator": "ISO 10218-1:2011; brukes som eksplisitt versjon, ikke som påstand om gjeldende lokal samsvarsvurdering"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "robotikk_automatisering",
+            "autonomous_robot",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_robotikk_automatisering_q2",
+          "quiz_id": "teknologi_robotikk_automatisering_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_robotikk_automatisering",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva er sensorfusjon i det dokumenterte teknologiske systemet?",
+          "options": [
+            "Å kombinere flere målekilder og en modell med eksplisitt usikkerhet",
+            "Å velge den mest optimistiske sensoren",
+            "Å summere råverdier uten kalibrering"
+          ],
+          "answer": "Å kombinere flere målekilder og en modell med eksplisitt usikkerhet",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Grader av automatisering, det konkrete ankeret Samarbeidsrobot i montasjecelle og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til robotarm, verktøy, sikkerhetsfunksjoner, arbeidsstasjon, operatør og produksjonsflyt. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_samarbeidsrobot_montasje",
+          "technology_anchor": "Samarbeidsrobot i montasjecelle",
+          "assessment_task_id": "task_tek_robotikk_automatisering_2",
+          "knowledge_object_id": "teori_tek_grader_av_automatisering",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "robotikk_automatisering",
+            "source_id": "sensorfusjon",
+            "relation_type": "produces",
+            "target_id": "tilstandsestimat"
+          },
+          "source_ids": [
+            "src_tek_thrun_2005",
+            "src_tek_iso_10218_1_2011"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_thrun_2005",
+              "locator": "ISBN 9780262201629, kap. 2–8"
+            },
+            {
+              "source_id": "src_tek_iso_10218_1_2011",
+              "locator": "ISO 10218-1:2011; brukes som eksplisitt versjon, ikke som påstand om gjeldende lokal samsvarsvurdering"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "robotikk_automatisering",
+            "human_robot_system",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_robotikk_automatisering_q3",
+          "quiz_id": "teknologi_robotikk_automatisering_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_robotikk_automatisering",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hvorfor må operasjonelt designområde være eksplisitt?",
+          "options": [
+            "Fordi autonom funksjon og sikkerhet bare er validert for bestemte miljø-, hastighets- og samhandlingsbetingelser",
+            "Fordi roboten ellers ikke trenger programvare",
+            "Fordi det erstatter risikovurdering"
+          ],
+          "answer": "Fordi autonom funksjon og sikkerhet bare er validert for bestemte miljø-, hastighets- og samhandlingsbetingelser",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Bayesiansk tilstandsestimering, det konkrete ankeret Mobil lagerrobot med lidar og hjulodometri og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til sensorer, tilstandsestimator, kart, planlegger, drivverk og operasjonelt designområde. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_lagerrobot_lokalisering",
+          "technology_anchor": "Mobil lagerrobot med lidar og hjulodometri",
+          "assessment_task_id": "task_tek_robotikk_automatisering_1",
+          "knowledge_object_id": "kobj_tek_bayesiansk_tilstandsestimering",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "robotikk_automatisering",
+            "source_id": "lokalisering",
+            "relation_type": "produces",
+            "target_id": "tilstandsestimat"
+          },
+          "source_ids": [
+            "src_tek_thrun_2005",
+            "src_tek_iso_10218_1_2011"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_thrun_2005",
+              "locator": "ISBN 9780262201629, kap. 2–8"
+            },
+            {
+              "source_id": "src_tek_iso_10218_1_2011",
+              "locator": "ISO 10218-1:2011; brukes som eksplisitt versjon, ikke som påstand om gjeldende lokal samsvarsvurdering"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "robotikk_automatisering",
+            "autonomous_robot",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_robotikk_automatisering_q4",
+          "quiz_id": "teknologi_robotikk_automatisering_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_robotikk_automatisering",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva kjennetegner en feilsikker reaksjon?",
+          "options": [
+            "En definert overgang til en tilstand med kontrollert risiko når en relevant feil oppdages",
+            "At systemet alltid fortsetter med full hastighet",
+            "At feilen skjules for operatøren"
+          ],
+          "answer": "En definert overgang til en tilstand med kontrollert risiko når en relevant feil oppdages",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Optimal og robust kontroll, det konkrete ankeret Samarbeidsrobot i montasjecelle og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til robotarm, verktøy, sikkerhetsfunksjoner, arbeidsstasjon, operatør og produksjonsflyt. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_samarbeidsrobot_montasje",
+          "technology_anchor": "Samarbeidsrobot i montasjecelle",
+          "assessment_task_id": "task_tek_robotikk_automatisering_2",
+          "knowledge_object_id": "kobj_tek_optimal_robust_kontroll",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "robotikk_automatisering",
+            "source_id": "usikkerhetsellipse",
+            "relation_type": "represents",
+            "target_id": "tilstandsestimat"
+          },
+          "source_ids": [
+            "src_tek_thrun_2005",
+            "src_tek_iso_10218_1_2011",
+            "src_tek_sheridan_verplank_1978"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_thrun_2005",
+              "locator": "ISBN 9780262201629, kap. 2–8"
+            },
+            {
+              "source_id": "src_tek_iso_10218_1_2011",
+              "locator": "ISO 10218-1:2011; brukes som eksplisitt versjon, ikke som påstand om gjeldende lokal samsvarsvurdering"
+            },
+            {
+              "source_id": "src_tek_sheridan_verplank_1978",
+              "locator": "MIT Man-Machine Systems Laboratory report, levels of automation"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "robotikk_automatisering",
+            "human_robot_system",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_robotikk_automatisering_q5",
+          "quiz_id": "teknologi_robotikk_automatisering_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_robotikk_automatisering",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hva reduserer automasjonsskjevhet best?",
+          "options": [
+            "Tydelig feedback, forståelige begrensninger og oppgaver som krever aktiv kontroll av kritiske data",
+            "Å skjule usikkerhet",
+            "Å kalle systemet intelligent"
+          ],
+          "answer": "Tydelig feedback, forståelige begrensninger og oppgaver som krever aktiv kontroll av kritiske data",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Sense–plan–act og subsumpsjon, det konkrete ankeret Mobil lagerrobot med lidar og hjulodometri og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til sensorer, tilstandsestimator, kart, planlegger, drivverk og operasjonelt designområde. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_lagerrobot_lokalisering",
+          "technology_anchor": "Mobil lagerrobot med lidar og hjulodometri",
+          "assessment_task_id": "task_tek_robotikk_automatisering_1",
+          "knowledge_object_id": "teori_tek_sense_plan_act_og_subsumpsjon",
+          "knowledge_object_type": "architecture_pattern",
+          "concept_relation": {
+            "area_id": "robotikk_automatisering",
+            "source_id": "kontrollpolicy",
+            "relation_type": "depends_on",
+            "target_id": "tilstandsestimat"
+          },
+          "source_ids": [
+            "src_tek_thrun_2005",
+            "src_tek_iso_10218_1_2011",
+            "src_tek_sheridan_verplank_1978"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_thrun_2005",
+              "locator": "ISBN 9780262201629, kap. 2–8"
+            },
+            {
+              "source_id": "src_tek_iso_10218_1_2011",
+              "locator": "ISO 10218-1:2011; brukes som eksplisitt versjon, ikke som påstand om gjeldende lokal samsvarsvurdering"
+            },
+            {
+              "source_id": "src_tek_sheridan_verplank_1978",
+              "locator": "MIT Man-Machine Systems Laboratory report, levels of automation"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "robotikk_automatisering",
+            "autonomous_robot",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_datamaskiner_operativsystemer",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Datamaskiner og operativsystemer",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_datamaskiner_operativsystemer",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_cache_benchmark",
+        "anchor_tek_virtuell_hukommelse_trace"
+      ],
+      "assessment_task_ids": [
+        "task_tek_datamaskiner_operativsystemer_1",
+        "task_tek_datamaskiner_operativsystemer_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_datamaskiner_operativsystemer_q1",
+          "quiz_id": "teknologi_datamaskiner_operativsystemer_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_datamaskiner_operativsystemer",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva gjør minnehierarkiet?",
+          "options": [
+            "Utnytter lokalitet ved å plassere små, raske lag nær prosessoren og større, langsommere lag lenger unna",
+            "Gjør all lagring like rask",
+            "Erstatter instruksjonssettet"
+          ],
+          "answer": "Utnytter lokalitet ved å plassere små, raske lag nær prosessoren og større, langsommere lag lenger unna",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Lagret-program-arkitektur, det konkrete ankeret Prosessorbenchmark med cache-arbeidssett og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til program, kompilatorvalg, prosessor, cachehierarki, minne og måletidsmetode. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_cache_benchmark",
+          "technology_anchor": "Prosessorbenchmark med cache-arbeidssett",
+          "assessment_task_id": "task_tek_datamaskiner_operativsystemer_1",
+          "knowledge_object_id": "teori_tek_lagret_program_arkitektur",
+          "knowledge_object_type": "architecture_pattern",
+          "concept_relation": {
+            "area_id": "datamaskiner_operativsystemer",
+            "source_id": "bit",
+            "relation_type": "encodes",
+            "target_id": "instruksjon"
+          },
+          "source_ids": [
+            "src_tek_hennessy_patterson_2019",
+            "src_tek_riscv_unpriv_20191213"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hennessy_patterson_2019",
+              "locator": "ISBN 9780128119051, ytelsesmåling, minnehierarki og parallellitet"
+            },
+            {
+              "source_id": "src_tek_riscv_unpriv_20191213",
+              "locator": "RISC-V Unprivileged ISA Specification 20191213"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "datamaskiner_operativsystemer",
+            "computer_performance_experiment",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_datamaskiner_operativsystemer_q2",
+          "quiz_id": "teknologi_datamaskiner_operativsystemer_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_datamaskiner_operativsystemer",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva er en cache miss i det dokumenterte teknologiske systemet?",
+          "options": [
+            "En forespørsel der data ikke finnes i det aktuelle cachelaget og må hentes fra et annet lag",
+            "En feil i strømnettet",
+            "En ugyldig brukerkommando"
+          ],
+          "answer": "En forespørsel der data ikke finnes i det aktuelle cachelaget og må hentes fra et annet lag",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Datamaskinens abstraksjonsstakk, det konkrete ankeret Sidefeilspor i virtuelt minnesystem og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til prosessens adresser, sidetabell, TLB, fysisk minne, lagring og scheduler. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_virtuell_hukommelse_trace",
+          "technology_anchor": "Sidefeilspor i virtuelt minnesystem",
+          "assessment_task_id": "task_tek_datamaskiner_operativsystemer_2",
+          "knowledge_object_id": "teori_tek_abstraksjonsstakk_datamaskin",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "datamaskiner_operativsystemer",
+            "source_id": "prosessor",
+            "relation_type": "executes",
+            "target_id": "instruksjon"
+          },
+          "source_ids": [
+            "src_tek_hennessy_patterson_2019",
+            "src_tek_riscv_unpriv_20191213"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hennessy_patterson_2019",
+              "locator": "ISBN 9780128119051, ytelsesmåling, minnehierarki og parallellitet"
+            },
+            {
+              "source_id": "src_tek_riscv_unpriv_20191213",
+              "locator": "RISC-V Unprivileged ISA Specification 20191213"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "datamaskiner_operativsystemer",
+            "operating_system_trace",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_datamaskiner_operativsystemer_q3",
+          "quiz_id": "teknologi_datamaskiner_operativsystemer_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_datamaskiner_operativsystemer",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva sier Amdahls lov i det dokumenterte teknologiske systemet?",
+          "options": [
+            "Den serielle andelen begrenser maksimal hastighetsgevinst når resten parallelliseres",
+            "Flere kjerner gir alltid lineær gevinst",
+            "Minne har ingen betydning for parallellitet"
+          ],
+          "answer": "Den serielle andelen begrenser maksimal hastighetsgevinst når resten parallelliseres",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Amdahls lov, det konkrete ankeret Prosessorbenchmark med cache-arbeidssett og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til program, kompilatorvalg, prosessor, cachehierarki, minne og måletidsmetode. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_cache_benchmark",
+          "technology_anchor": "Prosessorbenchmark med cache-arbeidssett",
+          "assessment_task_id": "task_tek_datamaskiner_operativsystemer_1",
+          "knowledge_object_id": "kobj_tek_amdahls_lov",
+          "knowledge_object_type": "law",
+          "concept_relation": {
+            "area_id": "datamaskiner_operativsystemer",
+            "source_id": "minnehierarki",
+            "relation_type": "exploits",
+            "target_id": "lokalitet"
+          },
+          "source_ids": [
+            "src_tek_hennessy_patterson_2019",
+            "src_tek_riscv_unpriv_20191213"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hennessy_patterson_2019",
+              "locator": "ISBN 9780128119051, ytelsesmåling, minnehierarki og parallellitet"
+            },
+            {
+              "source_id": "src_tek_riscv_unpriv_20191213",
+              "locator": "RISC-V Unprivileged ISA Specification 20191213"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "datamaskiner_operativsystemer",
+            "computer_performance_experiment",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_datamaskiner_operativsystemer_q4",
+          "quiz_id": "teknologi_datamaskiner_operativsystemer_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_datamaskiner_operativsystemer",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva er hovedrollen til virtuelt minne?",
+          "options": [
+            "Å gi prosesser et abstrahert adresserom og kontrollert mapping til fysisk minne og lagring",
+            "Å gjøre programmer uten instruksjoner",
+            "Å fjerne behovet for tilgangskontroll"
+          ],
+          "answer": "Å gi prosesser et abstrahert adresserom og kontrollert mapping til fysisk minne og lagring",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Lagret-program-arkitektur, det konkrete ankeret Sidefeilspor i virtuelt minnesystem og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til prosessens adresser, sidetabell, TLB, fysisk minne, lagring og scheduler. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_virtuell_hukommelse_trace",
+          "technology_anchor": "Sidefeilspor i virtuelt minnesystem",
+          "assessment_task_id": "task_tek_datamaskiner_operativsystemer_2",
+          "knowledge_object_id": "teori_tek_lagret_program_arkitektur",
+          "knowledge_object_type": "architecture_pattern",
+          "concept_relation": {
+            "area_id": "datamaskiner_operativsystemer",
+            "source_id": "cache_miss",
+            "relation_type": "degrades",
+            "target_id": "minnehierarki"
+          },
+          "source_ids": [
+            "src_tek_hennessy_patterson_2019",
+            "src_tek_riscv_unpriv_20191213",
+            "src_tek_amdahl_1967"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hennessy_patterson_2019",
+              "locator": "ISBN 9780128119051, ytelsesmåling, minnehierarki og parallellitet"
+            },
+            {
+              "source_id": "src_tek_riscv_unpriv_20191213",
+              "locator": "RISC-V Unprivileged ISA Specification 20191213"
+            },
+            {
+              "source_id": "src_tek_amdahl_1967",
+              "locator": "AFIPS Conference Proceedings 30, s. 483–485; DOI 10.1145/1465482.1465560"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "datamaskiner_operativsystemer",
+            "operating_system_trace",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_datamaskiner_operativsystemer_q5",
+          "quiz_id": "teknologi_datamaskiner_operativsystemer_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_datamaskiner_operativsystemer",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hvilken benchmarkrapport er mest etterprøvbar?",
+          "options": [
+            "Den oppgir maskinvare, programversjon, kompilator, arbeidssett, repetisjoner og usikkerhet",
+            "Den oppgir bare raskest tid",
+            "Den sammenligner ulike oppgaver som om de var samme funksjon"
+          ],
+          "answer": "Den oppgir maskinvare, programversjon, kompilator, arbeidssett, repetisjoner og usikkerhet",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Datamaskinens abstraksjonsstakk, det konkrete ankeret Prosessorbenchmark med cache-arbeidssett og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til program, kompilatorvalg, prosessor, cachehierarki, minne og måletidsmetode. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_cache_benchmark",
+          "technology_anchor": "Prosessorbenchmark med cache-arbeidssett",
+          "assessment_task_id": "task_tek_datamaskiner_operativsystemer_1",
+          "knowledge_object_id": "teori_tek_abstraksjonsstakk_datamaskin",
+          "knowledge_object_type": "model",
+          "concept_relation": {
+            "area_id": "datamaskiner_operativsystemer",
+            "source_id": "virtuell_hukommelse",
+            "relation_type": "implemented_by",
+            "target_id": "minnehierarki"
+          },
+          "source_ids": [
+            "src_tek_hennessy_patterson_2019",
+            "src_tek_riscv_unpriv_20191213",
+            "src_tek_amdahl_1967"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hennessy_patterson_2019",
+              "locator": "ISBN 9780128119051, ytelsesmåling, minnehierarki og parallellitet"
+            },
+            {
+              "source_id": "src_tek_riscv_unpriv_20191213",
+              "locator": "RISC-V Unprivileged ISA Specification 20191213"
+            },
+            {
+              "source_id": "src_tek_amdahl_1967",
+              "locator": "AFIPS Conference Proceedings 30, s. 483–485; DOI 10.1145/1465482.1465560"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "datamaskiner_operativsystemer",
+            "computer_performance_experiment",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_programvareteknikk",
+      "area_id": "programvareteknikk",
+      "label": "Programvareteknikk",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_programvareteknikk",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_betalingsapi_idempotens",
+        "anchor_tek_mikrotjeneste_hendelse"
+      ],
+      "assessment_task_ids": [
+        "task_tek_programvareteknikk_1",
+        "task_tek_programvareteknikk_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_programvareteknikk_q1",
+          "quiz_id": "teknologi_programvareteknikk_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_programvareteknikk",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva betyr informasjonsskjuling?",
+          "options": [
+            "At en modul skjuler designbeslutninger som sannsynligvis endres, bak et stabilt grensesnitt",
+            "At dokumentasjon slettes",
+            "At all kode legges i én klasse"
+          ],
+          "answer": "At en modul skjuler designbeslutninger som sannsynligvis endres, bak et stabilt grensesnitt",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Informasjonsskjuling, det konkrete ankeret Betalings-API med idempotensnøkkel og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klient, API-gateway, betalingstjeneste, database, kø og ekstern betalingsformidler. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_betalingsapi_idempotens",
+          "technology_anchor": "Betalings-API med idempotensnøkkel",
+          "assessment_task_id": "task_tek_programvareteknikk_1",
+          "knowledge_object_id": "teori_tek_informasjonsskjuling",
+          "knowledge_object_type": "principle",
+          "concept_relation": {
+            "area_id": "programvareteknikk",
+            "source_id": "abstraksjon",
+            "relation_type": "implemented_by",
+            "target_id": "modul"
+          },
+          "source_ids": [
+            "src_tek_parnas_1972",
+            "src_tek_meyer_1997"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_parnas_1972",
+              "locator": "Communications of the ACM 15(12), s. 1053–1058; DOI 10.1145/361598.361623"
+            },
+            {
+              "source_id": "src_tek_meyer_1997",
+              "locator": "ISBN 9780136291558, Design by Contract og invariants"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "programvareteknikk",
+            "software_interface",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_programvareteknikk_q2",
+          "quiz_id": "teknologi_programvareteknikk_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_programvareteknikk",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva gjør en invariant i det dokumenterte teknologiske systemet?",
+          "options": [
+            "Angir en tilstand som skal være sann ved definerte punkter i komponentens livsløp",
+            "Er en tilfeldig kommentar",
+            "Er det samme som en brukerhistorie"
+          ],
+          "answer": "Angir en tilstand som skal være sann ved definerte punkter i komponentens livsløp",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Kontinuerlig programvarelivsløp, det konkrete ankeret Produksjonshendelse i mikrotjenestesystem og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til tjenester, API-er, køer, datalagre, deployversjoner og observabilitetssignaler. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_mikrotjeneste_hendelse",
+          "technology_anchor": "Produksjonshendelse i mikrotjenestesystem",
+          "assessment_task_id": "task_tek_programvareteknikk_2",
+          "knowledge_object_id": "teori_tek_kontinuerlig_programvarelivslop",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "programvareteknikk",
+            "source_id": "api",
+            "relation_type": "exposes",
+            "target_id": "modul"
+          },
+          "source_ids": [
+            "src_tek_parnas_1972",
+            "src_tek_meyer_1997"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_parnas_1972",
+              "locator": "Communications of the ACM 15(12), s. 1053–1058; DOI 10.1145/361598.361623"
+            },
+            {
+              "source_id": "src_tek_meyer_1997",
+              "locator": "ISBN 9780136291558, Design by Contract og invariants"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "programvareteknikk",
+            "software_incident",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_programvareteknikk_q3",
+          "quiz_id": "teknologi_programvareteknikk_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_programvareteknikk",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hvorfor brukes idempotens ved retries?",
+          "options": [
+            "Samme logiske operasjon kan gjentas uten å skape flere tilsvarende sideeffekter",
+            "Alle feil forsvinner automatisk",
+            "Nettverket blir synkront"
+          ],
+          "answer": "Samme logiske operasjon kan gjentas uten å skape flere tilsvarende sideeffekter",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Design by Contract, det konkrete ankeret Betalings-API med idempotensnøkkel og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klient, API-gateway, betalingstjeneste, database, kø og ekstern betalingsformidler. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_betalingsapi_idempotens",
+          "technology_anchor": "Betalings-API med idempotensnøkkel",
+          "assessment_task_id": "task_tek_programvareteknikk_1",
+          "knowledge_object_id": "kobj_tek_design_by_contract",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "programvareteknikk",
+            "source_id": "kontrakt_programvare",
+            "relation_type": "governs",
+            "target_id": "api"
+          },
+          "source_ids": [
+            "src_tek_parnas_1972",
+            "src_tek_meyer_1997"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_parnas_1972",
+              "locator": "Communications of the ACM 15(12), s. 1053–1058; DOI 10.1145/361598.361623"
+            },
+            {
+              "source_id": "src_tek_meyer_1997",
+              "locator": "ISBN 9780136291558, Design by Contract og invariants"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "programvareteknikk",
+            "software_interface",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_programvareteknikk_q4",
+          "quiz_id": "teknologi_programvareteknikk_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_programvareteknikk",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva skiller observabilitet fra et dashboard?",
+          "options": [
+            "Observabilitet er evnen til å forklare intern tilstand fra relevante signaler; et dashboard er bare én presentasjon",
+            "Et dashboard beviser årsak",
+            "Observabilitet krever ingen spørsmål"
+          ],
+          "answer": "Observabilitet er evnen til å forklare intern tilstand fra relevante signaler; et dashboard er bare én presentasjon",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Lav kobling og høy kohesjon, det konkrete ankeret Produksjonshendelse i mikrotjenestesystem og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til tjenester, API-er, køer, datalagre, deployversjoner og observabilitetssignaler. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_mikrotjeneste_hendelse",
+          "technology_anchor": "Produksjonshendelse i mikrotjenestesystem",
+          "assessment_task_id": "task_tek_programvareteknikk_2",
+          "knowledge_object_id": "kobj_tek_lav_kobling_hoy_kohesjon",
+          "knowledge_object_type": "principle",
+          "concept_relation": {
+            "area_id": "programvareteknikk",
+            "source_id": "invariant",
+            "relation_type": "part_of",
+            "target_id": "kontrakt_programvare"
+          },
+          "source_ids": [
+            "src_tek_parnas_1972",
+            "src_tek_meyer_1997",
+            "src_tek_beyer_sre_2016"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_parnas_1972",
+              "locator": "Communications of the ACM 15(12), s. 1053–1058; DOI 10.1145/361598.361623"
+            },
+            {
+              "source_id": "src_tek_meyer_1997",
+              "locator": "ISBN 9780136291558, Design by Contract og invariants"
+            },
+            {
+              "source_id": "src_tek_beyer_sre_2016",
+              "locator": "ISBN 9781491929124, overvåking, hendelser og pålitelighetsmål"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "programvareteknikk",
+            "software_incident",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_programvareteknikk_q5",
+          "quiz_id": "teknologi_programvareteknikk_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_programvareteknikk",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hva er sterkest evidens for at en endring forårsaket hendelsen?",
+          "options": [
+            "Tidsmessig kobling, mekanisme, versjonsspor, reproduksjon eller kontrollert reversering og alternative forklaringer",
+            "At endringen hadde et langt navn",
+            "At feilen oppstod samme måned"
+          ],
+          "answer": "Tidsmessig kobling, mekanisme, versjonsspor, reproduksjon eller kontrollert reversering og alternative forklaringer",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Observabilitet og operativ feedback, det konkrete ankeret Betalings-API med idempotensnøkkel og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klient, API-gateway, betalingstjeneste, database, kø og ekstern betalingsformidler. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_betalingsapi_idempotens",
+          "technology_anchor": "Betalings-API med idempotensnøkkel",
+          "assessment_task_id": "task_tek_programvareteknikk_1",
+          "knowledge_object_id": "kobj_tek_observabilitet_feedback",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "programvareteknikk",
+            "source_id": "testorakel",
+            "relation_type": "evaluates",
+            "target_id": "kontrakt_programvare"
+          },
+          "source_ids": [
+            "src_tek_parnas_1972",
+            "src_tek_meyer_1997",
+            "src_tek_beyer_sre_2016"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_parnas_1972",
+              "locator": "Communications of the ACM 15(12), s. 1053–1058; DOI 10.1145/361598.361623"
+            },
+            {
+              "source_id": "src_tek_meyer_1997",
+              "locator": "ISBN 9780136291558, Design by Contract og invariants"
+            },
+            {
+              "source_id": "src_tek_beyer_sre_2016",
+              "locator": "ISBN 9781491929124, overvåking, hendelser og pålitelighetsmål"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "programvareteknikk",
+            "software_interface",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_algoritmer_data_ai",
+      "area_id": "algoritmer_data_ai",
+      "label": "Algoritmer, data og kunstig intelligens",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_algoritmer_data_ai",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_bildemodell_distribusjonsskift",
+        "anchor_tek_risikomodell_beslutningsterskel"
+      ],
+      "assessment_task_ids": [
+        "task_tek_algoritmer_data_ai_1",
+        "task_tek_algoritmer_data_ai_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_algoritmer_data_ai_q1",
+          "quiz_id": "teknologi_algoritmer_data_ai_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_algoritmer_data_ai",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva er generalisering i det dokumenterte teknologiske systemet?",
+          "options": [
+            "At en modell opprettholder relevant ytelse på nye data fra den definerte målpopulasjonen",
+            "At treningsfeilen er null",
+            "At modellen bruker mange parametere"
+          ],
+          "answer": "At en modell opprettholder relevant ytelse på nye data fra den definerte målpopulasjonen",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Beregningskompleksitet, det konkrete ankeret Bildemodell under sesong- og kameraskift og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til treningsdata, valideringsdata, modell, beslutningsterskel, kamera og bruksmiljø. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_bildemodell_distribusjonsskift",
+          "technology_anchor": "Bildemodell under sesong- og kameraskift",
+          "assessment_task_id": "task_tek_algoritmer_data_ai_1",
+          "knowledge_object_id": "teori_tek_beregningskompleksitet",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "algoritmer_data_ai",
+            "source_id": "algoritme",
+            "relation_type": "implemented_over",
+            "target_id": "datastruktur"
+          },
+          "source_ids": [
+            "src_tek_hastie_2009",
+            "src_tek_pearl_2009"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hastie_2009",
+              "locator": "ISBN 9780387848570; modellvalg, generalisering og regularisering"
+            },
+            {
+              "source_id": "src_tek_pearl_2009",
+              "locator": "ISBN 9780521895606; strukturelle kausalmodeller og identifikasjon"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "algoritmer_data_ai",
+            "machine_learning_evaluation",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_algoritmer_data_ai_q2",
+          "quiz_id": "teknologi_algoritmer_data_ai_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_algoritmer_data_ai",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hvorfor er kalibrering viktig for en risikoscore?",
+          "options": [
+            "En oppgitt sannsynlighet bør samsvare med observerte frekvenser innen relevante grupper og betingelser",
+            "Den gjør alle beslutninger verdinøytrale",
+            "Den erstatter valideringsdata"
+          ],
+          "answer": "En oppgitt sannsynlighet bør samsvare med observerte frekvenser innen relevante grupper og betingelser",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Statistisk læring, det konkrete ankeret Risikomodell med beslutningsterskel og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til inputdata, modell, sannsynlighet, terskel, menneskelig beslutning og konsekvenser. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_risikomodell_beslutningsterskel",
+          "technology_anchor": "Risikomodell med beslutningsterskel",
+          "assessment_task_id": "task_tek_algoritmer_data_ai_2",
+          "knowledge_object_id": "teori_tek_statistisk_laering",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "algoritmer_data_ai",
+            "source_id": "kompleksitet",
+            "relation_type": "measures",
+            "target_id": "algoritme"
+          },
+          "source_ids": [
+            "src_tek_hastie_2009",
+            "src_tek_pearl_2009"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hastie_2009",
+              "locator": "ISBN 9780387848570; modellvalg, generalisering og regularisering"
+            },
+            {
+              "source_id": "src_tek_pearl_2009",
+              "locator": "ISBN 9780521895606; strukturelle kausalmodeller og identifikasjon"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "algoritmer_data_ai",
+            "decision_support_model",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_algoritmer_data_ai_q3",
+          "quiz_id": "teknologi_algoritmer_data_ai_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_algoritmer_data_ai",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva er distribusjonsskift?",
+          "options": [
+            "En relevant endring mellom datafordelingen ved utvikling og ved bruk",
+            "At filene flyttes til en ny mappe",
+            "At modellen får et nytt navn"
+          ],
+          "answer": "En relevant endring mellom datafordelingen ved utvikling og ved bruk",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Bias–varians-dekomponering, det konkrete ankeret Bildemodell under sesong- og kameraskift og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til treningsdata, valideringsdata, modell, beslutningsterskel, kamera og bruksmiljø. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_bildemodell_distribusjonsskift",
+          "technology_anchor": "Bildemodell under sesong- og kameraskift",
+          "assessment_task_id": "task_tek_algoritmer_data_ai_1",
+          "knowledge_object_id": "kobj_tek_bias_varians",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "algoritmer_data_ai",
+            "source_id": "treningsdata",
+            "relation_type": "trains",
+            "target_id": "algoritme"
+          },
+          "source_ids": [
+            "src_tek_hastie_2009",
+            "src_tek_pearl_2009"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hastie_2009",
+              "locator": "ISBN 9780387848570; modellvalg, generalisering og regularisering"
+            },
+            {
+              "source_id": "src_tek_pearl_2009",
+              "locator": "ISBN 9780521895606; strukturelle kausalmodeller og identifikasjon"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "algoritmer_data_ai",
+            "machine_learning_evaluation",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_algoritmer_data_ai_q4",
+          "quiz_id": "teknologi_algoritmer_data_ai_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_algoritmer_data_ai",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva kreves for en kausal påstand fra observasjonsdata?",
+          "options": [
+            "Eksplisitt kausal struktur, identifikasjonsantakelser og analyse av konfundering eller seleksjon",
+            "Høy korrelasjon alene",
+            "Et stort nevralt nettverk"
+          ],
+          "answer": "Eksplisitt kausal struktur, identifikasjonsantakelser og analyse av konfundering eller seleksjon",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Bayesiansk beslutningsteori, det konkrete ankeret Risikomodell med beslutningsterskel og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til inputdata, modell, sannsynlighet, terskel, menneskelig beslutning og konsekvenser. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_risikomodell_beslutningsterskel",
+          "technology_anchor": "Risikomodell med beslutningsterskel",
+          "assessment_task_id": "task_tek_algoritmer_data_ai_2",
+          "knowledge_object_id": "kobj_tek_bayesiansk_beslutningsteori",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "algoritmer_data_ai",
+            "source_id": "valideringsdata",
+            "relation_type": "selects",
+            "target_id": "algoritme"
+          },
+          "source_ids": [
+            "src_tek_hastie_2009",
+            "src_tek_pearl_2009",
+            "src_tek_nist_ai_rmf_2023"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hastie_2009",
+              "locator": "ISBN 9780387848570; modellvalg, generalisering og regularisering"
+            },
+            {
+              "source_id": "src_tek_pearl_2009",
+              "locator": "ISBN 9780521895606; strukturelle kausalmodeller og identifikasjon"
+            },
+            {
+              "source_id": "src_tek_nist_ai_rmf_2023",
+              "locator": "NIST AI 100-1, særlig Map, Measure, Manage og Govern"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "algoritmer_data_ai",
+            "decision_support_model",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_algoritmer_data_ai_q5",
+          "quiz_id": "teknologi_algoritmer_data_ai_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_algoritmer_data_ai",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hva skjuler en tapsfunksjon ofte?",
+          "options": [
+            "Normative prioriteringer mellom ulike feil og konsekvenser",
+            "Bare prosessorhastighet",
+            "At data alltid er representative"
+          ],
+          "answer": "Normative prioriteringer mellom ulike feil og konsekvenser",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Strukturelle kausalmodeller, det konkrete ankeret Bildemodell under sesong- og kameraskift og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til treningsdata, valideringsdata, modell, beslutningsterskel, kamera og bruksmiljø. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_bildemodell_distribusjonsskift",
+          "technology_anchor": "Bildemodell under sesong- og kameraskift",
+          "assessment_task_id": "task_tek_algoritmer_data_ai_1",
+          "knowledge_object_id": "kobj_tek_strukturelle_kausalmodeller",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "algoritmer_data_ai",
+            "source_id": "generalisering",
+            "relation_type": "measured_by",
+            "target_id": "valideringsdata"
+          },
+          "source_ids": [
+            "src_tek_hastie_2009",
+            "src_tek_pearl_2009",
+            "src_tek_nist_ai_rmf_2023"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hastie_2009",
+              "locator": "ISBN 9780387848570; modellvalg, generalisering og regularisering"
+            },
+            {
+              "source_id": "src_tek_pearl_2009",
+              "locator": "ISBN 9780521895606; strukturelle kausalmodeller og identifikasjon"
+            },
+            {
+              "source_id": "src_tek_nist_ai_rmf_2023",
+              "locator": "NIST AI 100-1, særlig Map, Measure, Manage og Govern"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "algoritmer_data_ai",
+            "machine_learning_evaluation",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_nettverk_cybersikkerhet_infrastruktur",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Nettverk, cybersikkerhet og infrastruktur",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_nettverk_cybersikkerhet_infrastruktur",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_replikert_kv_partisjon",
+        "anchor_tek_tls_websesjon"
+      ],
+      "assessment_task_ids": [
+        "task_tek_nettverk_cybersikkerhet_infrastruktur_1",
+        "task_tek_nettverk_cybersikkerhet_infrastruktur_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_nettverk_cybersikkerhet_infrastruktur_q1",
+          "quiz_id": "teknologi_nettverk_cybersikkerhet_infrastruktur_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_nettverk_cybersikkerhet_infrastruktur",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva sier CAP-teoremet presist?",
+          "options": [
+            "Under en faktisk nettverkspartisjon kan ikke alle forespørsler garanteres både lineæriserbart konsistente og tilgjengelige",
+            "Et system kan bare velge to egenskaper for alltid",
+            "Kryptering reduserer tilgjengelighet til null"
+          ],
+          "answer": "Under en faktisk nettverkspartisjon kan ikke alle forespørsler garanteres både lineæriserbart konsistente og tilgjengelige",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Ende-til-ende-prinsippet, det konkrete ankeret Replikert nøkkel–verdi-lager under nettverkspartisjon og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klienter, tre replikaer, konsensusprotokoll, nettverkslenker og persistent logg. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_replikert_kv_partisjon",
+          "technology_anchor": "Replikert nøkkel–verdi-lager under nettverkspartisjon",
+          "assessment_task_id": "task_tek_nettverk_cybersikkerhet_infrastruktur_1",
+          "knowledge_object_id": "teori_tek_ende_til_ende_prinsippet",
+          "knowledge_object_type": "principle",
+          "concept_relation": {
+            "area_id": "nettverk_cybersikkerhet_infrastruktur",
+            "source_id": "protokoll",
+            "relation_type": "governs",
+            "target_id": "ruting"
+          },
+          "source_ids": [
+            "src_tek_rfc_8200",
+            "src_tek_rfc_8446"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_rfc_8200",
+              "locator": "RFC 8200, pakkeformat og nodebehandling"
+            },
+            {
+              "source_id": "src_tek_rfc_8446",
+              "locator": "RFC 8446, handshake, nøkler og sikkerhetshensyn"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "nettverk_cybersikkerhet_infrastruktur",
+            "distributed_system_experiment",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_nettverk_cybersikkerhet_infrastruktur_q2",
+          "quiz_id": "teknologi_nettverk_cybersikkerhet_infrastruktur_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_nettverk_cybersikkerhet_infrastruktur",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva er et quorum i det dokumenterte teknologiske systemet?",
+          "options": [
+            "Et definert antall eller vekt av deltakere som kreves for en beslutning",
+            "En tilfeldig reservekopi",
+            "En nettverkskabel"
+          ],
+          "answer": "Et definert antall eller vekt av deltakere som kreves for en beslutning",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Forsvar i dybden, det konkrete ankeret TLS 1.3-websesjon gjennom omvendt proxy og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klient, DNS-antakelser, proxy, sertifikatkjede, applikasjonstjener og identitetsgrense. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_tls_websesjon",
+          "technology_anchor": "TLS 1.3-websesjon gjennom omvendt proxy",
+          "assessment_task_id": "task_tek_nettverk_cybersikkerhet_infrastruktur_2",
+          "knowledge_object_id": "teori_tek_forsvar_i_dybden",
+          "knowledge_object_type": "principle",
+          "concept_relation": {
+            "area_id": "nettverk_cybersikkerhet_infrastruktur",
+            "source_id": "ruting",
+            "relation_type": "influences",
+            "target_id": "latens"
+          },
+          "source_ids": [
+            "src_tek_rfc_8200",
+            "src_tek_rfc_8446"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_rfc_8200",
+              "locator": "RFC 8200, pakkeformat og nodebehandling"
+            },
+            {
+              "source_id": "src_tek_rfc_8446",
+              "locator": "RFC 8446, handshake, nøkler og sikkerhetshensyn"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "nettverk_cybersikkerhet_infrastruktur",
+            "security_protocol_trace",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_nettverk_cybersikkerhet_infrastruktur_q3",
+          "quiz_id": "teknologi_nettverk_cybersikkerhet_infrastruktur_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_nettverk_cybersikkerhet_infrastruktur",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva gir TLS 1.3 primært i det dokumenterte teknologiske systemet?",
+          "options": [
+            "Konfidensialitet og integritet i transporten samt autentisering etter valgt sertifikat- og identitetsmodell",
+            "Automatisk autorisasjon til alle ressurser",
+            "Beskyttelse mot all skadevare på endepunktet"
+          ],
+          "answer": "Konfidensialitet og integritet i transporten samt autentisering etter valgt sertifikat- og identitetsmodell",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Distribuert konsensus, det konkrete ankeret Replikert nøkkel–verdi-lager under nettverkspartisjon og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klienter, tre replikaer, konsensusprotokoll, nettverkslenker og persistent logg. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_replikert_kv_partisjon",
+          "technology_anchor": "Replikert nøkkel–verdi-lager under nettverkspartisjon",
+          "assessment_task_id": "task_tek_nettverk_cybersikkerhet_infrastruktur_1",
+          "knowledge_object_id": "kobj_tek_distribuert_konsensus",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "nettverk_cybersikkerhet_infrastruktur",
+            "source_id": "kryptering",
+            "relation_type": "mitigates",
+            "target_id": "angrepsflate"
+          },
+          "source_ids": [
+            "src_tek_rfc_8200",
+            "src_tek_rfc_8446"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_rfc_8200",
+              "locator": "RFC 8200, pakkeformat og nodebehandling"
+            },
+            {
+              "source_id": "src_tek_rfc_8446",
+              "locator": "RFC 8446, handshake, nøkler og sikkerhetshensyn"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "nettverk_cybersikkerhet_infrastruktur",
+            "distributed_system_experiment",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_nettverk_cybersikkerhet_infrastruktur_q4",
+          "quiz_id": "teknologi_nettverk_cybersikkerhet_infrastruktur_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_nettverk_cybersikkerhet_infrastruktur",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva betyr zero trust i NIST-arkitekturen?",
+          "options": [
+            "Tilgang avgjøres eksplisitt per ressurs og forespørsel uten å stole automatisk på nettverksplassering",
+            "Ingen komponent kan noen gang stole på kryptografi",
+            "Alle tjenester må være offentlige"
+          ],
+          "answer": "Tilgang avgjøres eksplisitt per ressurs og forespørsel uten å stole automatisk på nettverksplassering",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med CAP-teoremet, det konkrete ankeret TLS 1.3-websesjon gjennom omvendt proxy og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klient, DNS-antakelser, proxy, sertifikatkjede, applikasjonstjener og identitetsgrense. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_tls_websesjon",
+          "technology_anchor": "TLS 1.3-websesjon gjennom omvendt proxy",
+          "assessment_task_id": "task_tek_nettverk_cybersikkerhet_infrastruktur_2",
+          "knowledge_object_id": "kobj_tek_cap_teoremet",
+          "knowledge_object_type": "theorem",
+          "concept_relation": {
+            "area_id": "nettverk_cybersikkerhet_infrastruktur",
+            "source_id": "tillitsgrense",
+            "relation_type": "exposes",
+            "target_id": "angrepsflate"
+          },
+          "source_ids": [
+            "src_tek_rfc_8200",
+            "src_tek_rfc_8446",
+            "src_tek_gilbert_lynch_2002"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_rfc_8200",
+              "locator": "RFC 8200, pakkeformat og nodebehandling"
+            },
+            {
+              "source_id": "src_tek_rfc_8446",
+              "locator": "RFC 8446, handshake, nøkler og sikkerhetshensyn"
+            },
+            {
+              "source_id": "src_tek_gilbert_lynch_2002",
+              "locator": "SIGACT News 33(2), s. 51–59; DOI 10.1145/564585.564601"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "nettverk_cybersikkerhet_infrastruktur",
+            "security_protocol_trace",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_nettverk_cybersikkerhet_infrastruktur_q5",
+          "quiz_id": "teknologi_nettverk_cybersikkerhet_infrastruktur_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_nettverk_cybersikkerhet_infrastruktur",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hva må en sikkerhetspåstand inneholde?",
+          "options": [
+            "Trusselmodell, tillitsgrenser, kontroller, angrepsforutsetninger og rest-risiko",
+            "Bare ordet sikker",
+            "Kun antall brannmurer"
+          ],
+          "answer": "Trusselmodell, tillitsgrenser, kontroller, angrepsforutsetninger og rest-risiko",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med CIA og trusselmodell, det konkrete ankeret Replikert nøkkel–verdi-lager under nettverkspartisjon og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til klienter, tre replikaer, konsensusprotokoll, nettverkslenker og persistent logg. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_replikert_kv_partisjon",
+          "technology_anchor": "Replikert nøkkel–verdi-lager under nettverkspartisjon",
+          "assessment_task_id": "task_tek_nettverk_cybersikkerhet_infrastruktur_1",
+          "knowledge_object_id": "kobj_tek_cia_trusselmodell",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "nettverk_cybersikkerhet_infrastruktur",
+            "source_id": "konsensus",
+            "relation_type": "depends_on",
+            "target_id": "protokoll"
+          },
+          "source_ids": [
+            "src_tek_rfc_8200",
+            "src_tek_rfc_8446",
+            "src_tek_gilbert_lynch_2002"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_rfc_8200",
+              "locator": "RFC 8200, pakkeformat og nodebehandling"
+            },
+            {
+              "source_id": "src_tek_rfc_8446",
+              "locator": "RFC 8446, handshake, nøkler og sikkerhetshensyn"
+            },
+            {
+              "source_id": "src_tek_gilbert_lynch_2002",
+              "locator": "SIGACT News 33(2), s. 51–59; DOI 10.1145/564585.564601"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "nettverk_cybersikkerhet_infrastruktur",
+            "distributed_system_experiment",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_menneske_teknologi_hci",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Menneske–teknologi og HCI",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_menneske_teknologi_hci",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_infusjonspumpe_grensesnitt",
+        "anchor_tek_billettautomat_tilgjengelighet"
+      ],
+      "assessment_task_ids": [
+        "task_tek_menneske_teknologi_hci_1",
+        "task_tek_menneske_teknologi_hci_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_menneske_teknologi_hci_q1",
+          "quiz_id": "teknologi_menneske_teknologi_hci_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_menneske_teknologi_hci",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva er modusforvirring i det dokumenterte teknologiske systemet?",
+          "options": [
+            "At brukerens mentale modell av aktiv systemmodus avviker fra systemets faktiske modus",
+            "At en knapp har feil farge alene",
+            "At systemet har flere språk"
+          ],
+          "answer": "At brukerens mentale modell av aktiv systemmodus avviker fra systemets faktiske modus",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Menneskesentrert design, det konkrete ankeret Infusjonspumpe med modus- og dosegrensesnitt og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til skjerm, inputkontroller, alarmer, dosemodell, kliniker, prosedyre og pasientkontekst. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_infusjonspumpe_grensesnitt",
+          "technology_anchor": "Infusjonspumpe med modus- og dosegrensesnitt",
+          "assessment_task_id": "task_tek_menneske_teknologi_hci_1",
+          "knowledge_object_id": "teori_tek_menneskesentrert_design",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "menneske_teknologi_hci",
+            "source_id": "affordans",
+            "relation_type": "enables",
+            "target_id": "brukbarhet"
+          },
+          "source_ids": [
+            "src_tek_iso_9241_210_2019",
+            "src_tek_endsley_1995"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_9241_210_2019",
+              "locator": "ISO 9241-210:2019, prinsipper og aktiviteter for menneskesentrert design"
+            },
+            {
+              "source_id": "src_tek_endsley_1995",
+              "locator": "Human Factors 37(1), s. 32–64; DOI 10.1518/001872095779049543"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "menneske_teknologi_hci",
+            "safety_critical_interface",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_menneske_teknologi_hci_q2",
+          "quiz_id": "teknologi_menneske_teknologi_hci_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_menneske_teknologi_hci",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva betyr menneskesentrert design?",
+          "options": [
+            "En iterativ prosess basert på eksplisitt brukskontekst, brukerbehov, evaluering og tverrfaglig design",
+            "At brukeren alltid får viljen sin",
+            "At estetikk erstatter sikkerhet"
+          ],
+          "answer": "En iterativ prosess basert på eksplisitt brukskontekst, brukerbehov, evaluering og tverrfaglig design",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Distribuert kognisjon, det konkrete ankeret Billettautomat med universell utforming og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til skjerm, fysisk betjening, betalingsenhet, lyd, plassering, kø og tjenestealternativ. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_billettautomat_tilgjengelighet",
+          "technology_anchor": "Billettautomat med universell utforming",
+          "assessment_task_id": "task_tek_menneske_teknologi_hci_2",
+          "knowledge_object_id": "teori_tek_distribuert_kognisjon",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "menneske_teknologi_hci",
+            "source_id": "kognitiv_belastning",
+            "relation_type": "degrades",
+            "target_id": "brukbarhet"
+          },
+          "source_ids": [
+            "src_tek_iso_9241_210_2019",
+            "src_tek_endsley_1995"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_9241_210_2019",
+              "locator": "ISO 9241-210:2019, prinsipper og aktiviteter for menneskesentrert design"
+            },
+            {
+              "source_id": "src_tek_endsley_1995",
+              "locator": "Human Factors 37(1), s. 32–64; DOI 10.1518/001872095779049543"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "menneske_teknologi_hci",
+            "public_interactive_system",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_menneske_teknologi_hci_q3",
+          "quiz_id": "teknologi_menneske_teknologi_hci_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_menneske_teknologi_hci",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hva er situasjonsforståelse i en dynamisk oppgave?",
+          "options": [
+            "Å oppfatte relevante elementer, forstå betydningen og kunne projisere nær framtidig utvikling",
+            "Å huske alle manualord",
+            "Å se flest mulig indikatorer"
+          ],
+          "answer": "Å oppfatte relevante elementer, forstå betydningen og kunne projisere nær framtidig utvikling",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Situert handling, det konkrete ankeret Infusjonspumpe med modus- og dosegrensesnitt og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til skjerm, inputkontroller, alarmer, dosemodell, kliniker, prosedyre og pasientkontekst. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_infusjonspumpe_grensesnitt",
+          "technology_anchor": "Infusjonspumpe med modus- og dosegrensesnitt",
+          "assessment_task_id": "task_tek_menneske_teknologi_hci_1",
+          "knowledge_object_id": "kobj_tek_situert_handling",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "menneske_teknologi_hci",
+            "source_id": "inkluderende_design",
+            "relation_type": "improves",
+            "target_id": "tilgjengelighet_hci"
+          },
+          "source_ids": [
+            "src_tek_iso_9241_210_2019",
+            "src_tek_endsley_1995"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_9241_210_2019",
+              "locator": "ISO 9241-210:2019, prinsipper og aktiviteter for menneskesentrert design"
+            },
+            {
+              "source_id": "src_tek_endsley_1995",
+              "locator": "Human Factors 37(1), s. 32–64; DOI 10.1518/001872095779049543"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "menneske_teknologi_hci",
+            "safety_critical_interface",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_menneske_teknologi_hci_q4",
+          "quiz_id": "teknologi_menneske_teknologi_hci_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_menneske_teknologi_hci",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hvorfor er standardoppfyllelse ikke alene nok?",
+          "options": [
+            "Faktisk brukskontekst, kombinerte barrierer og oppgaveutfall må også undersøkes",
+            "Standarder har ingen verdi",
+            "Brukertest kan erstatte alle krav"
+          ],
+          "answer": "Faktisk brukskontekst, kombinerte barrierer og oppgaveutfall må også undersøkes",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Felles kognitive systemer, det konkrete ankeret Billettautomat med universell utforming og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til skjerm, fysisk betjening, betalingsenhet, lyd, plassering, kø og tjenestealternativ. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_billettautomat_tilgjengelighet",
+          "technology_anchor": "Billettautomat med universell utforming",
+          "assessment_task_id": "task_tek_menneske_teknologi_hci_2",
+          "knowledge_object_id": "kobj_tek_felles_kognitive_systemer",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "menneske_teknologi_hci",
+            "source_id": "direkte_manipulasjon",
+            "relation_type": "implements",
+            "target_id": "affordans"
+          },
+          "source_ids": [
+            "src_tek_iso_9241_210_2019",
+            "src_tek_endsley_1995",
+            "src_tek_wcag_2_2_2023"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_9241_210_2019",
+              "locator": "ISO 9241-210:2019, prinsipper og aktiviteter for menneskesentrert design"
+            },
+            {
+              "source_id": "src_tek_endsley_1995",
+              "locator": "Human Factors 37(1), s. 32–64; DOI 10.1518/001872095779049543"
+            },
+            {
+              "source_id": "src_tek_wcag_2_2_2023",
+              "locator": "WCAG 2.2, prinsipper og suksesskriterier"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "menneske_teknologi_hci",
+            "public_interactive_system",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_menneske_teknologi_hci_q5",
+          "quiz_id": "teknologi_menneske_teknologi_hci_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_menneske_teknologi_hci",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hva er best evidens for et forbedret grensesnitt?",
+          "options": [
+            "Sammenlignbar oppgavetest med definerte brukere, oppgaver, feil og kontekst samt kvalitativ forklaring",
+            "En designers preferanse",
+            "Et skjermbilde uten bruk"
+          ],
+          "answer": "Sammenlignbar oppgavetest med definerte brukere, oppgaver, feil og kontekst samt kvalitativ forklaring",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Menneskesentrert design, det konkrete ankeret Infusjonspumpe med modus- og dosegrensesnitt og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til skjerm, inputkontroller, alarmer, dosemodell, kliniker, prosedyre og pasientkontekst. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_infusjonspumpe_grensesnitt",
+          "technology_anchor": "Infusjonspumpe med modus- og dosegrensesnitt",
+          "assessment_task_id": "task_tek_menneske_teknologi_hci_1",
+          "knowledge_object_id": "teori_tek_menneskesentrert_design",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "menneske_teknologi_hci",
+            "source_id": "situasjonsforstaelse",
+            "relation_type": "mitigates",
+            "target_id": "menneskelig_feil"
+          },
+          "source_ids": [
+            "src_tek_iso_9241_210_2019",
+            "src_tek_endsley_1995",
+            "src_tek_wcag_2_2_2023"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_iso_9241_210_2019",
+              "locator": "ISO 9241-210:2019, prinsipper og aktiviteter for menneskesentrert design"
+            },
+            {
+              "source_id": "src_tek_endsley_1995",
+              "locator": "Human Factors 37(1), s. 32–64; DOI 10.1518/001872095779049543"
+            },
+            {
+              "source_id": "src_tek_wcag_2_2_2023",
+              "locator": "WCAG 2.2, prinsipper og suksesskriterier"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "menneske_teknologi_hci",
+            "safety_critical_interface",
+            "stage_5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway_tek_teknologihistorie_sts_risiko_baerekraft",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Teknologihistorie, STS, risiko og bærekraft",
+      "status": "canonical_production_ready",
+      "target_kind": "subject_area",
+      "targetId": "subject_teknologi_teknologihistorie_sts_risiko_baerekraft",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "anchor_ids": [
+        "anchor_tek_urbant_kraftsystem_utvikling",
+        "anchor_tek_smarttelefon_livslop"
+      ],
+      "assessment_task_ids": [
+        "task_tek_teknologihistorie_sts_risiko_baerekraft_1",
+        "task_tek_teknologihistorie_sts_risiko_baerekraft_2"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "questions": [
+        {
+          "id": "quiz_tek_teknologihistorie_sts_risiko_baerekraft_q1",
+          "quiz_id": "teknologi_teknologihistorie_sts_risiko_baerekraft_pathway_q1",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologihistorie_sts_risiko_baerekraft",
+          "question_scope": "subject_area",
+          "level": 1,
+          "pathway_stage": "observe",
+          "question": "Hva er stiavhengighet i det dokumenterte teknologiske systemet?",
+          "options": [
+            "At tidligere valg endrer kostnader, kompetanse, standarder og alternativer slik at noen senere spor blir lettere enn andre",
+            "At teknologi aldri kan endres",
+            "At historien alltid følger én plan"
+          ],
+          "answer": "At tidligere valg endrer kostnader, kompetanse, standarder og alternativer slik at noen senere spor blir lettere enn andre",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Store tekniske systemer, det konkrete ankeret Historisk utvikling av urbant kraftsystem og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til produksjon, nett, måling, regulering, selskaper, standarder og bruksmønstre i en definert by og periode. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "descriptive",
+          "anchor_id": "anchor_tek_urbant_kraftsystem_utvikling",
+          "technology_anchor": "Historisk utvikling av urbant kraftsystem",
+          "assessment_task_id": "task_tek_teknologihistorie_sts_risiko_baerekraft_1",
+          "knowledge_object_id": "teori_tek_store_tekniske_systemer",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "teknologihistorie_sts_risiko_baerekraft",
+            "source_id": "standard",
+            "relation_type": "enables",
+            "target_id": "interoperabilitet"
+          },
+          "source_ids": [
+            "src_tek_hughes_1983",
+            "src_tek_bijker_hughes_pinch_1987"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hughes_1983",
+              "locator": "ISBN 9780801828737, store tekniske systemer og momentum"
+            },
+            {
+              "source_id": "src_tek_bijker_hughes_pinch_1987",
+              "locator": "ISBN 9780262521376, særlig innledning og SCOT-kapitler"
+            }
+          ],
+          "analysis_method": "systemavgrensning",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologihistorie_sts_risiko_baerekraft",
+            "large_technical_system_case",
+            "stage_1"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologihistorie_sts_risiko_baerekraft_q2",
+          "quiz_id": "teknologi_teknologihistorie_sts_risiko_baerekraft_pathway_q2",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologihistorie_sts_risiko_baerekraft",
+          "question_scope": "subject_area",
+          "level": 2,
+          "pathway_stage": "explain",
+          "question": "Hva er teknologisk momentum?",
+          "options": [
+            "Gjensidig stabilisering mellom teknisk infrastruktur, organisasjoner, investeringer og bruksmønstre",
+            "Maskiners fysiske moment alene",
+            "At en oppfinner bestemmer all framtid"
+          ],
+          "answer": "Gjensidig stabilisering mellom teknisk infrastruktur, organisasjoner, investeringer og bruksmønstre",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Sosiotekniske forestillinger, det konkrete ankeret Smarttelefonens livsløp og brukseffekter og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til råvarer, komponentproduksjon, transport, bruk, programvarestøtte, reparasjon og sluttbehandling. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 2,
+          "claim_class": "mechanistic",
+          "anchor_id": "anchor_tek_smarttelefon_livslop",
+          "technology_anchor": "Smarttelefonens livsløp og brukseffekter",
+          "assessment_task_id": "task_tek_teknologihistorie_sts_risiko_baerekraft_2",
+          "knowledge_object_id": "teori_tek_sosiotekniske_forestillinger",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "teknologihistorie_sts_risiko_baerekraft",
+            "source_id": "standard",
+            "relation_type": "contributes_to",
+            "target_id": "stiavhengighet"
+          },
+          "source_ids": [
+            "src_tek_hughes_1983",
+            "src_tek_bijker_hughes_pinch_1987"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hughes_1983",
+              "locator": "ISBN 9780801828737, store tekniske systemer og momentum"
+            },
+            {
+              "source_id": "src_tek_bijker_hughes_pinch_1987",
+              "locator": "ISBN 9780262521376, særlig innledning og SCOT-kapitler"
+            }
+          ],
+          "analysis_method": "mekanismeanalyse",
+          "evidence_type": "technical_documentation",
+          "uncertainty": "model_and_boundary",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologihistorie_sts_risiko_baerekraft",
+            "lifecycle_and_transition_case",
+            "stage_2"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologihistorie_sts_risiko_baerekraft_q3",
+          "quiz_id": "teknologi_teknologihistorie_sts_risiko_baerekraft_pathway_q3",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologihistorie_sts_risiko_baerekraft",
+          "question_scope": "subject_area",
+          "level": 3,
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hvorfor trengs en funksjonell enhet i livsløpsanalyse?",
+          "options": [
+            "For å sammenligne systemer som leverer samme definerte funksjon",
+            "For å telle bare produktmasse",
+            "For å unngå systemgrenser"
+          ],
+          "answer": "For å sammenligne systemer som leverer samme definerte funksjon",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Sosial konstruksjon av teknologi, det konkrete ankeret Historisk utvikling av urbant kraftsystem og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til produksjon, nett, måling, regulering, selskaper, standarder og bruksmønstre i en definert by og periode. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "performance",
+          "anchor_id": "anchor_tek_urbant_kraftsystem_utvikling",
+          "technology_anchor": "Historisk utvikling av urbant kraftsystem",
+          "assessment_task_id": "task_tek_teknologihistorie_sts_risiko_baerekraft_1",
+          "knowledge_object_id": "kobj_tek_sosial_konstruksjon_teknologi",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "teknologihistorie_sts_risiko_baerekraft",
+            "source_id": "teknologisk_momentum",
+            "relation_type": "increases",
+            "target_id": "stiavhengighet"
+          },
+          "source_ids": [
+            "src_tek_hughes_1983",
+            "src_tek_bijker_hughes_pinch_1987"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hughes_1983",
+              "locator": "ISBN 9780801828737, store tekniske systemer og momentum"
+            },
+            {
+              "source_id": "src_tek_bijker_hughes_pinch_1987",
+              "locator": "ISBN 9780262521376, særlig innledning og SCOT-kapitler"
+            }
+          ],
+          "analysis_method": "evidensvurdering",
+          "evidence_type": "measurement_or_test",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologihistorie_sts_risiko_baerekraft",
+            "large_technical_system_case",
+            "stage_3"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologihistorie_sts_risiko_baerekraft_q4",
+          "quiz_id": "teknologi_teknologihistorie_sts_risiko_baerekraft_pathway_q4",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologihistorie_sts_risiko_baerekraft",
+          "question_scope": "subject_area",
+          "level": 4,
+          "pathway_stage": "diagnose_failure",
+          "question": "Hva er reboundeffekt i det dokumenterte teknologiske systemet?",
+          "options": [
+            "At effektivisering kan endre pris eller bruk slik at noe av den forventede ressursbesparelsen spises opp",
+            "At alle effektiviseringer øker forbruket likt",
+            "At materialer spretter tilbake fysisk"
+          ],
+          "answer": "At effektivisering kan endre pris eller bruk slik at noe av den forventede ressursbesparelsen spises opp",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Flernivåperspektiv på omstilling, det konkrete ankeret Smarttelefonens livsløp og brukseffekter og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til råvarer, komponentproduksjon, transport, bruk, programvarestøtte, reparasjon og sluttbehandling. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 3,
+          "claim_class": "causal",
+          "anchor_id": "anchor_tek_smarttelefon_livslop",
+          "technology_anchor": "Smarttelefonens livsløp og brukseffekter",
+          "assessment_task_id": "task_tek_teknologihistorie_sts_risiko_baerekraft_2",
+          "knowledge_object_id": "kobj_tek_flerniva_omstilling",
+          "knowledge_object_type": "framework",
+          "concept_relation": {
+            "area_id": "teknologihistorie_sts_risiko_baerekraft",
+            "source_id": "eksternalitet",
+            "relation_type": "increases",
+            "target_id": "risiko"
+          },
+          "source_ids": [
+            "src_tek_hughes_1983",
+            "src_tek_bijker_hughes_pinch_1987",
+            "src_tek_geels_2002"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hughes_1983",
+              "locator": "ISBN 9780801828737, store tekniske systemer og momentum"
+            },
+            {
+              "source_id": "src_tek_bijker_hughes_pinch_1987",
+              "locator": "ISBN 9780262521376, særlig innledning og SCOT-kapitler"
+            },
+            {
+              "source_id": "src_tek_geels_2002",
+              "locator": "Research Policy 31(8–9), s. 1257–1274; DOI 10.1016/S0048-7333(02)00062-8"
+            }
+          ],
+          "analysis_method": "feilmodusanalyse",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "ikke en komparativ påstand",
+          "tags": [
+            "teknologi",
+            "teknologihistorie_sts_risiko_baerekraft",
+            "lifecycle_and_transition_case",
+            "stage_4"
+          ]
+        },
+        {
+          "id": "quiz_tek_teknologihistorie_sts_risiko_baerekraft_q5",
+          "quiz_id": "teknologi_teknologihistorie_sts_risiko_baerekraft_pathway_q5",
+          "categoryId": "teknologi",
+          "targetId": "subject_teknologi_teknologihistorie_sts_risiko_baerekraft",
+          "question_scope": "subject_area",
+          "level": 5,
+          "pathway_stage": "decide_and_justify",
+          "question": "Hva gjør en historisk kausal påstand sterkere?",
+          "options": [
+            "Flere kildetyper, dokumentert mekanisme, tidsrekkefølge og behandling av alternative forklaringer",
+            "Én berømt persons sitat",
+            "En lineær framgangsfortelling uten moteksempler"
+          ],
+          "answer": "Flere kildetyper, dokumentert mekanisme, tidsrekkefølge og behandling av alternative forklaringer",
+          "answerIndex": 0,
+          "knowledge": "Riktig svar må begrunnes med Store tekniske systemer, det konkrete ankeret Historisk utvikling av urbant kraftsystem og minst én eksplisitt begrepsrelasjon.",
+          "explanation": "Ankeret avgrenser analysen til produksjon, nett, måling, regulering, selskaper, standarder og bruksmønstre i en definert by og periode. Svaret er etterprøvbart fordi det peker til en mekanisme eller vurderingsregel og krever dokumenterte driftsbetingelser og usikkerhet.",
+          "difficulty": 4,
+          "claim_class": "normative",
+          "anchor_id": "anchor_tek_urbant_kraftsystem_utvikling",
+          "technology_anchor": "Historisk utvikling av urbant kraftsystem",
+          "assessment_task_id": "task_tek_teknologihistorie_sts_risiko_baerekraft_1",
+          "knowledge_object_id": "teori_tek_store_tekniske_systemer",
+          "knowledge_object_type": "theory",
+          "concept_relation": {
+            "area_id": "teknologihistorie_sts_risiko_baerekraft",
+            "source_id": "reboundeffekt",
+            "relation_type": "degrades",
+            "target_id": "baerekraft"
+          },
+          "source_ids": [
+            "src_tek_hughes_1983",
+            "src_tek_bijker_hughes_pinch_1987",
+            "src_tek_geels_2002"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_tek_hughes_1983",
+              "locator": "ISBN 9780801828737, store tekniske systemer og momentum"
+            },
+            {
+              "source_id": "src_tek_bijker_hughes_pinch_1987",
+              "locator": "ISBN 9780262521376, særlig innledning og SCOT-kapitler"
+            },
+            {
+              "source_id": "src_tek_geels_2002",
+              "locator": "Research Policy 31(8–9), s. 1257–1274; DOI 10.1016/S0048-7333(02)00062-8"
+            }
+          ],
+          "analysis_method": "designavveining",
+          "evidence_type": "triangulated_evidence",
+          "uncertainty": "measurement_model_and_scenario",
+          "comparison_basis": "samme funksjon, systemgrense, driftsbetingelser, metrikk og livsløpsfase",
+          "tags": [
+            "teknologi",
+            "teknologihistorie_sts_risiko_baerekraft",
+            "large_technical_system_case",
+            "stage_5"
+          ]
+        }
+      ]
+    }
+  ]
+}

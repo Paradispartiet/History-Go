@@ -1,11 +1,11 @@
 {
-  "version": "v5.5-canonical",
+  "version": "v5.7-canonical",
   "subject_id": "historie",
   "subject_title": "Historie",
-  "scope": "oslo_og_omegn",
+  "scope": "universal",
   "type": "methods",
   "purpose": "Metodekatalog for historiefaget i History Go, brukt av fagkart, emner, mapping og quizgenerator. Metodene skal sikre at historiske spørsmål starter i kilder, spor, steder, hendelser og dokumenterbar lokalhistorie før teori brukes som tolkningsramme.",
-  "updated_at": "2026-07-25",
+  "updated_at": "2026-07-26",
   "principles": {
     "source_first": true,
     "external_claim_basis_required": true,
@@ -308,57 +308,83 @@
     },
     {
       "method_id": "met_arkeologisk_kontekstanalyse",
-      "title": "Arkeologisk Kontekstanalyse",
-      "short_label": "Arkeologisk Kontekstanalyse",
-      "description": "Arkeologisk Kontekstanalyse undersøker kristning, kongedømme, kirkelig organisasjon, jurisdiksjon, eiendom, handel og demografisk endring gjennom eksplisitt kildegrunnlag, avgrenset tid og sted, sammenlignbare observasjoner og dokumenterte begrensninger.",
+      "title": "Arkeologisk kontekstanalyse",
+      "short_label": "Arkeologisk kontekst",
+      "description": "Undersøker gjenstander, strukturer, avsetninger og biologiske rester gjennom proveniens, romlig relasjon, lagfølge, formasjonsprosesser og dokumenterte begrensninger.",
       "best_for_emne_kinds": [
         "historisk",
-        "analytisk",
+        "arkeologisk",
+        "materiell",
         "stedlig"
       ],
       "data_forms": [
-        "arkivkilde",
-        "kart",
-        "statistikk",
-        "materielt spor",
-        "muntlig kilde",
-        "institusjonsdokument"
+        "funnkontekst",
+        "stratigrafi",
+        "gjenstand",
+        "struktur",
+        "prøve",
+        "utgravningsdokumentasjon"
       ],
       "course_level_fit": [
         "mellomnivå",
         "avansert"
       ],
       "coverage_domains": [
-        "middelalder_kirke_og_kongemakt"
+        "middelalder_kirke_og_kongemakt",
+        "his_forhistorie_arkeologi"
       ],
       "progression_stage": "full_ladder",
       "good_for_place_types": [
-        "historical_site",
-        "institusjonsbygg",
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
         "museum",
-        "arkiv",
-        "kulturmiljo"
+        "landskap"
       ],
       "question_moves": [
-        "identify the source base",
-        "define the historical unit",
-        "trace change or relation",
-        "state limitation and critical distinction"
+        "identify context and provenience",
+        "separate deposition from later disturbance",
+        "connect material relation to a bounded claim",
+        "state formation and preservation limits"
       ],
-      "hook_affinities": [],
-      "recommended_oslo_cases": [
-        "Middelalderbyen Oslo",
-        "Gamle Aker kirke",
-        "Hovedøya kloster",
-        "Akershus festning"
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
       ],
       "canonical_status": "canonical",
-      "registry_version": "historiepensum_v5_5",
+      "registry_version": "historiepensum_v5_6",
       "canonical_file_role": "active",
-      "min_recommended_oslo_cases": 2,
       "case_gate_required": true,
-      "method_use_note": "Brukes når middelalder, kirke og kongemakt krever en dokumentert analyse av kristning, kongedømme, kirkelig organisasjon, jurisdiksjon, eiendom, handel og demografisk endring.",
-      "rotation_note": "Roteres med kildekritikk og minst én supplerende metode."
+      "method_use_note": "Brukes når fortidig aktivitet må skilles fra avsetning, bevaring, forstyrrelse, utgravning og moderne dokumentasjon.",
+      "rotation_note": "Roteres med stratigrafi, datering, typologi, bioarkeologi og kildekritikk etter problemstilling.",
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "min_recommended_cases": 4,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true
     },
     {
       "method_id": "met_arkivlesning",
@@ -5698,6 +5724,949 @@
       "case_gate_required": true,
       "method_use_note": "Brukes når krig, okkupasjon og motstand krever en dokumentert analyse av mobilisering, logistikk, okkupasjonsstyre, sivilsamfunn, vold, motstand, propaganda og rettsoppgjør.",
       "rotation_note": "Roteres med kildekritikk og minst én supplerende metode."
+    },
+    {
+      "method_id": "met_stratigrafisk_analyse",
+      "title": "Stratigrafisk analyse",
+      "short_label": "Stratigrafi",
+      "description": "Dokumenterer lag, kutt, fyll og konstruksjoner som relasjonelle enheter og bygger en kontrollert sekvens før datering og historisk tolkning.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "profiltegning",
+        "plan",
+        "kontekstskjema",
+        "fotogrammetri",
+        "prøveliste",
+        "Harris-matrise"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "define units and interfaces",
+        "establish earlier-later relations",
+        "identify disturbance and residual material",
+        "state uncertainty in the sequence"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes når lagfølge og inngrepsrelasjoner kan dokumenteres; et lag skal ikke automatisk likestilles med én hendelse eller periode.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
+    },
+    {
+      "method_id": "met_typologisk_seriasjon",
+      "title": "Typologi og seriasjon",
+      "short_label": "Typologi/seriasjon",
+      "description": "Klassifiserer gjenstander og assemblager etter dokumenterte egenskaper og tester sannsynlige sekvenser mot kontekst, statistikk og uavhengig datering.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "gjenstandskatalog",
+        "måleserie",
+        "ornamentikk",
+        "produksjonsspor",
+        "funnkombinasjon",
+        "statistisk frekvens"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "define classification criteria",
+        "separate type from identity",
+        "build and test a sequence",
+        "compare regional variation"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes når klassifikasjonskriterier og utvalg er eksplisitte; type skal ikke gjøres til folk, kultur eller kalenderdato uten kontroll.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
+    },
+    {
+      "method_id": "met_absolutt_datering",
+      "title": "Absolutt datering og kalibrering",
+      "short_label": "Absolutt datering",
+      "description": "Vurderer naturvitenskapelige dateringer gjennom prøvemateriale, kontekst, laboratoriemetode, kalibrering, sannsynlighetsintervall og mulige systematiske feilkilder.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "radiokarbonprøve",
+        "dendrokronologi",
+        "termoluminescens",
+        "arkeomagnetisme",
+        "kalibreringskurve",
+        "laboratorierapport"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "link sample to event",
+        "state measured and calibrated result",
+        "identify contamination or reservoir effects",
+        "compare independent dates"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når prøvens forhold til hendelsen er dokumentert og usikkerhetsintervallet beholdes gjennom hele argumentet.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
+    },
+    {
+      "method_id": "met_bioarkeologisk_analyse",
+      "title": "Bioarkeologisk analyse",
+      "short_label": "Bioarkeologi",
+      "description": "Kombinerer osteologi, paleopatologi, isotoper, gammelt DNA og gravkontekst for å undersøke helse, kosthold, mobilitet, slektskap og demografi med etisk kontroll.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "skjelett",
+        "tann",
+        "isotopdata",
+        "DNA-sekvens",
+        "gravkontekst",
+        "prøvetakingsprotokoll"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "define biological indicator",
+        "separate indicator from social identity",
+        "evaluate sample representativity",
+        "state ethical and legal constraints"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes med eksplisitt usikkerhet, prøveskjevhet og etisk vurdering; biologiske klynger skal ikke oversettes direkte til folk eller kultur.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
+    },
+    {
+      "method_id": "met_krigsarsaksanalyse",
+      "title": "Krigsårsaksanalyse",
+      "short_label": "Krigsårsaker",
+      "description": "Rekonstruerer hvordan langsiktige konflikter, institusjonelle bindinger, militære planer, forventninger og daterte beslutninger virker sammen uten å gjøre én faktor eller ett sluttresultat deterministisk.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "politisk",
+        "sosialhistorisk",
+        "globalhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "diplomatisk korrespondanse",
+        "regjeringsprotokoll",
+        "militær plan",
+        "mobiliseringsordre",
+        "avis",
+        "memoar"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forste_verdenskrig_mellomkrig"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "historical_site",
+        "museum",
+        "arkiv",
+        "minnested",
+        "institusjonsbygg",
+        "kulturmiljo",
+        "havneomrade",
+        "offentlig_plass"
+      ],
+      "question_moves": [
+        "separate structure from decision",
+        "identify trigger and decision chain",
+        "compare actors' information",
+        "test inevitability claims"
+      ],
+      "hook_affinities": [
+        "his_imperialisme_allianser_krigsutbrudd",
+        "his_fronter_total_krig_teknologi",
+        "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "his_global_kolonial_verdenskrig",
+        "his_norge_norden_noytralitet_sjofart",
+        "his_revolusjon_imperieopplosning_fredsoppgjor",
+        "his_demokrati_massepolitikk_sosial_konflikt",
+        "his_idehistorie_fascisme_nazisme_kommunisme",
+        "his_store_depresjonen_arbeidsloshet_politikk",
+        "his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "recommended_cases": [
+        "Sarajevo og Latinerbroen",
+        "Wien og Ballhausplatz",
+        "Berlin og Wilhelmstraße",
+        "St. Petersburg og Vinterpalasset",
+        "London og Whitehall",
+        "Paris og Quai d'Orsay",
+        "Somme",
+        "Verdun",
+        "Ypres",
+        "Gallipoli",
+        "Isonzo-fronten",
+        "Østfronten ved Tannenberg",
+        "Berlin under blokaden",
+        "Wien og forsyningskrisen",
+        "Paris og krigsindustrien",
+        "London og rasjoneringen",
+        "Petrograd 1917",
+        "Christiania under dyrtiden"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når krigsårsaker kan dokumenteres gjennom daterte kilder, avgrenset aktør og eksplisitt kontrollgrunnlag.",
+      "rotation_note": "Kombineres med kildekritikk og minst én uavhengig metode; metodenavnet skal ikke være synlig fasit."
+    },
+    {
+      "method_id": "met_total_krig_analyse",
+      "title": "Analyse av total krig",
+      "short_label": "Total krig",
+      "description": "Kobler militære operasjoner til mobilisering av økonomi, administrasjon, arbeidskraft, kommunikasjon og sivilsamfunn og undersøker hvor og for hvem skillet mellom front og bakland ble svekket.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "politisk",
+        "sosialhistorisk",
+        "globalhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "operasjonsrapport",
+        "produksjonsstatistikk",
+        "rasjoneringsdata",
+        "soldatbrev",
+        "kommunal protokoll",
+        "tapstall"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forste_verdenskrig_mellomkrig"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "historical_site",
+        "museum",
+        "arkiv",
+        "minnested",
+        "institusjonsbygg",
+        "kulturmiljo",
+        "havneomrade",
+        "offentlig_plass"
+      ],
+      "question_moves": [
+        "map military and civilian mobilization",
+        "compare front and home front",
+        "trace resource dependencies",
+        "state unequal burdens"
+      ],
+      "hook_affinities": [
+        "his_imperialisme_allianser_krigsutbrudd",
+        "his_fronter_total_krig_teknologi",
+        "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "his_global_kolonial_verdenskrig",
+        "his_norge_norden_noytralitet_sjofart",
+        "his_revolusjon_imperieopplosning_fredsoppgjor",
+        "his_demokrati_massepolitikk_sosial_konflikt",
+        "his_idehistorie_fascisme_nazisme_kommunisme",
+        "his_store_depresjonen_arbeidsloshet_politikk",
+        "his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "recommended_cases": [
+        "Sarajevo og Latinerbroen",
+        "Wien og Ballhausplatz",
+        "Berlin og Wilhelmstraße",
+        "St. Petersburg og Vinterpalasset",
+        "London og Whitehall",
+        "Paris og Quai d'Orsay",
+        "Somme",
+        "Verdun",
+        "Ypres",
+        "Gallipoli",
+        "Isonzo-fronten",
+        "Østfronten ved Tannenberg",
+        "Berlin under blokaden",
+        "Wien og forsyningskrisen",
+        "Paris og krigsindustrien",
+        "London og rasjoneringen",
+        "Petrograd 1917",
+        "Christiania under dyrtiden"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når total krig kan dokumenteres gjennom daterte kilder, avgrenset aktør og eksplisitt kontrollgrunnlag.",
+      "rotation_note": "Kombineres med kildekritikk og minst én uavhengig metode; metodenavnet skal ikke være synlig fasit."
+    },
+    {
+      "method_id": "met_global_krigsanalyse",
+      "title": "Global krigsanalyse",
+      "short_label": "Global krig",
+      "description": "Følger soldater, arbeidere, råvarer, forsyningslinjer, imperiale kommandokjeder og lokale aktører på tvers av fronter og koloniale grenser for å forklare krigens globale virkemåte.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "politisk",
+        "sosialhistorisk",
+        "globalhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "koloniarkiv",
+        "militærrulle",
+        "transportliste",
+        "soldatbrev",
+        "lokal presse",
+        "mandatdokument"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forste_verdenskrig_mellomkrig"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "historical_site",
+        "museum",
+        "arkiv",
+        "minnested",
+        "institusjonsbygg",
+        "kulturmiljo",
+        "havneomrade",
+        "offentlig_plass"
+      ],
+      "question_moves": [
+        "trace people and resources across regions",
+        "separate imperial command from local agency",
+        "compare coercion and recruitment",
+        "test Eurocentric framing"
+      ],
+      "hook_affinities": [
+        "his_imperialisme_allianser_krigsutbrudd",
+        "his_fronter_total_krig_teknologi",
+        "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "his_global_kolonial_verdenskrig",
+        "his_norge_norden_noytralitet_sjofart",
+        "his_revolusjon_imperieopplosning_fredsoppgjor",
+        "his_demokrati_massepolitikk_sosial_konflikt",
+        "his_idehistorie_fascisme_nazisme_kommunisme",
+        "his_store_depresjonen_arbeidsloshet_politikk",
+        "his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "recommended_cases": [
+        "Sarajevo og Latinerbroen",
+        "Wien og Ballhausplatz",
+        "Berlin og Wilhelmstraße",
+        "St. Petersburg og Vinterpalasset",
+        "London og Whitehall",
+        "Paris og Quai d'Orsay",
+        "Somme",
+        "Verdun",
+        "Ypres",
+        "Gallipoli",
+        "Isonzo-fronten",
+        "Østfronten ved Tannenberg",
+        "Berlin under blokaden",
+        "Wien og forsyningskrisen",
+        "Paris og krigsindustrien",
+        "London og rasjoneringen",
+        "Petrograd 1917",
+        "Christiania under dyrtiden"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når global krig kan dokumenteres gjennom daterte kilder, avgrenset aktør og eksplisitt kontrollgrunnlag.",
+      "rotation_note": "Kombineres med kildekritikk og minst én uavhengig metode; metodenavnet skal ikke være synlig fasit."
+    },
+    {
+      "method_id": "met_noytralitetspolitisk_analyse",
+      "title": "Nøytralitetspolitisk analyse",
+      "short_label": "Nøytralitet",
+      "description": "Sammenholder nøytralitetsrett, diplomatiske noter, handelsavtaler, sjøfart, blokade og innenrikspolitiske konsekvenser for å undersøke hvordan formell ikke-deltakelse ble praktisert under press.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "politisk",
+        "sosialhistorisk",
+        "globalhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "diplomatisk note",
+        "traktat",
+        "fraktavtale",
+        "skipsregister",
+        "forlisrapport",
+        "prisstatistikk"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forste_verdenskrig_mellomkrig"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "historical_site",
+        "museum",
+        "arkiv",
+        "minnested",
+        "institusjonsbygg",
+        "kulturmiljo",
+        "havneomrade",
+        "offentlig_plass"
+      ],
+      "question_moves": [
+        "distinguish legal status from practice",
+        "trace external pressure",
+        "connect trade to social consequence",
+        "compare neutral states"
+      ],
+      "hook_affinities": [
+        "his_imperialisme_allianser_krigsutbrudd",
+        "his_fronter_total_krig_teknologi",
+        "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "his_global_kolonial_verdenskrig",
+        "his_norge_norden_noytralitet_sjofart",
+        "his_revolusjon_imperieopplosning_fredsoppgjor",
+        "his_demokrati_massepolitikk_sosial_konflikt",
+        "his_idehistorie_fascisme_nazisme_kommunisme",
+        "his_store_depresjonen_arbeidsloshet_politikk",
+        "his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "recommended_cases": [
+        "Sarajevo og Latinerbroen",
+        "Wien og Ballhausplatz",
+        "Berlin og Wilhelmstraße",
+        "St. Petersburg og Vinterpalasset",
+        "London og Whitehall",
+        "Paris og Quai d'Orsay",
+        "Somme",
+        "Verdun",
+        "Ypres",
+        "Gallipoli",
+        "Isonzo-fronten",
+        "Østfronten ved Tannenberg",
+        "Berlin under blokaden",
+        "Wien og forsyningskrisen",
+        "Paris og krigsindustrien",
+        "London og rasjoneringen",
+        "Petrograd 1917",
+        "Christiania under dyrtiden"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når nøytralitet kan dokumenteres gjennom daterte kilder, avgrenset aktør og eksplisitt kontrollgrunnlag.",
+      "rotation_note": "Kombineres med kildekritikk og minst én uavhengig metode; metodenavnet skal ikke være synlig fasit."
+    },
+    {
+      "method_id": "met_fredsoppgjorsanalyse",
+      "title": "Fredsoppgjørsanalyse",
+      "short_label": "Fredsoppgjør",
+      "description": "Analyserer forhandlingsmandater, traktattekster, kart, folkeavstemninger, minoritetsregler og håndheving for å skille erklærte fredsprinsipper fra faktisk grensedragning og etterkrigsvold.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "politisk",
+        "sosialhistorisk",
+        "globalhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "traktatutkast",
+        "forhandlingsprotokoll",
+        "kart",
+        "folkeavstemningsdata",
+        "minoritetsklage",
+        "diplomatisk arkiv"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forste_verdenskrig_mellomkrig"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "historical_site",
+        "museum",
+        "arkiv",
+        "minnested",
+        "institusjonsbygg",
+        "kulturmiljo",
+        "havneomrade",
+        "offentlig_plass"
+      ],
+      "question_moves": [
+        "identify negotiating authority",
+        "compare principle and boundary",
+        "trace enforcement",
+        "include displaced and minority actors"
+      ],
+      "hook_affinities": [
+        "his_imperialisme_allianser_krigsutbrudd",
+        "his_fronter_total_krig_teknologi",
+        "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "his_global_kolonial_verdenskrig",
+        "his_norge_norden_noytralitet_sjofart",
+        "his_revolusjon_imperieopplosning_fredsoppgjor",
+        "his_demokrati_massepolitikk_sosial_konflikt",
+        "his_idehistorie_fascisme_nazisme_kommunisme",
+        "his_store_depresjonen_arbeidsloshet_politikk",
+        "his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "recommended_cases": [
+        "Sarajevo og Latinerbroen",
+        "Wien og Ballhausplatz",
+        "Berlin og Wilhelmstraße",
+        "St. Petersburg og Vinterpalasset",
+        "London og Whitehall",
+        "Paris og Quai d'Orsay",
+        "Somme",
+        "Verdun",
+        "Ypres",
+        "Gallipoli",
+        "Isonzo-fronten",
+        "Østfronten ved Tannenberg",
+        "Berlin under blokaden",
+        "Wien og forsyningskrisen",
+        "Paris og krigsindustrien",
+        "London og rasjoneringen",
+        "Petrograd 1917",
+        "Christiania under dyrtiden"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når fredsoppgjør kan dokumenteres gjennom daterte kilder, avgrenset aktør og eksplisitt kontrollgrunnlag.",
+      "rotation_note": "Kombineres med kildekritikk og minst én uavhengig metode; metodenavnet skal ikke være synlig fasit."
+    },
+    {
+      "method_id": "met_ideologihistorisk_analyse",
+      "title": "Ideologihistorisk analyse",
+      "short_label": "Ideologihistorie",
+      "description": "Sporer hvordan politiske begreper, programmer, symboler og fiendebilder endrer betydning mellom tekst, organisasjon, mobilisering og statspraksis i avgrensede historiske sammenhenger.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "politisk",
+        "sosialhistorisk",
+        "globalhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "partiprogram",
+        "tale",
+        "pamflett",
+        "organisasjonsprotokoll",
+        "lovtekst",
+        "propagandamateriale"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forste_verdenskrig_mellomkrig"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "historical_site",
+        "museum",
+        "arkiv",
+        "minnested",
+        "institusjonsbygg",
+        "kulturmiljo",
+        "havneomrade",
+        "offentlig_plass"
+      ],
+      "question_moves": [
+        "define contemporary vocabulary",
+        "separate doctrine from practice",
+        "trace organizational translation",
+        "compare mobilization and regime"
+      ],
+      "hook_affinities": [
+        "his_imperialisme_allianser_krigsutbrudd",
+        "his_fronter_total_krig_teknologi",
+        "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "his_global_kolonial_verdenskrig",
+        "his_norge_norden_noytralitet_sjofart",
+        "his_revolusjon_imperieopplosning_fredsoppgjor",
+        "his_demokrati_massepolitikk_sosial_konflikt",
+        "his_idehistorie_fascisme_nazisme_kommunisme",
+        "his_store_depresjonen_arbeidsloshet_politikk",
+        "his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "recommended_cases": [
+        "Sarajevo og Latinerbroen",
+        "Wien og Ballhausplatz",
+        "Berlin og Wilhelmstraße",
+        "St. Petersburg og Vinterpalasset",
+        "London og Whitehall",
+        "Paris og Quai d'Orsay",
+        "Somme",
+        "Verdun",
+        "Ypres",
+        "Gallipoli",
+        "Isonzo-fronten",
+        "Østfronten ved Tannenberg",
+        "Berlin under blokaden",
+        "Wien og forsyningskrisen",
+        "Paris og krigsindustrien",
+        "London og rasjoneringen",
+        "Petrograd 1917",
+        "Christiania under dyrtiden"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når ideologihistorie kan dokumenteres gjennom daterte kilder, avgrenset aktør og eksplisitt kontrollgrunnlag.",
+      "rotation_note": "Kombineres med kildekritikk og minst én uavhengig metode; metodenavnet skal ikke være synlig fasit."
+    },
+    {
+      "method_id": "met_okonomisk_kriseanalyse",
+      "title": "Økonomisk kriseanalyse",
+      "short_label": "Økonomisk krise",
+      "description": "Kobler finans, bankvesen, valuta, handel, produksjon, sysselsetting og husholdsøkonomi gjennom sammenlignbare tidsserier og daterte politiske inngrep uten å gjøre én indikator til hele krisen.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "politisk",
+        "sosialhistorisk",
+        "globalhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "bankbalanse",
+        "prisindeks",
+        "arbeidsledighetsstatistikk",
+        "handelsdata",
+        "budsjett",
+        "husholdsundersøkelse"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forste_verdenskrig_mellomkrig"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "historical_site",
+        "museum",
+        "arkiv",
+        "minnested",
+        "institusjonsbygg",
+        "kulturmiljo",
+        "havneomrade",
+        "offentlig_plass"
+      ],
+      "question_moves": [
+        "connect financial and real economy",
+        "compare policy timing",
+        "disaggregate social effects",
+        "test national explanations globally"
+      ],
+      "hook_affinities": [
+        "his_imperialisme_allianser_krigsutbrudd",
+        "his_fronter_total_krig_teknologi",
+        "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "his_global_kolonial_verdenskrig",
+        "his_norge_norden_noytralitet_sjofart",
+        "his_revolusjon_imperieopplosning_fredsoppgjor",
+        "his_demokrati_massepolitikk_sosial_konflikt",
+        "his_idehistorie_fascisme_nazisme_kommunisme",
+        "his_store_depresjonen_arbeidsloshet_politikk",
+        "his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "recommended_cases": [
+        "Sarajevo og Latinerbroen",
+        "Wien og Ballhausplatz",
+        "Berlin og Wilhelmstraße",
+        "St. Petersburg og Vinterpalasset",
+        "London og Whitehall",
+        "Paris og Quai d'Orsay",
+        "Somme",
+        "Verdun",
+        "Ypres",
+        "Gallipoli",
+        "Isonzo-fronten",
+        "Østfronten ved Tannenberg",
+        "Berlin under blokaden",
+        "Wien og forsyningskrisen",
+        "Paris og krigsindustrien",
+        "London og rasjoneringen",
+        "Petrograd 1917",
+        "Christiania under dyrtiden"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_7",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når økonomisk krise kan dokumenteres gjennom daterte kilder, avgrenset aktør og eksplisitt kontrollgrunnlag.",
+      "rotation_note": "Kombineres med kildekritikk og minst én uavhengig metode; metodenavnet skal ikke være synlig fasit."
     }
   ]
 }

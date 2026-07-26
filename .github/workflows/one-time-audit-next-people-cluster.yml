@@ -1,0 +1,118 @@
+name: One-time audit next people cluster
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/next-people-cluster-audit-trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Rank incomplete people clusters
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from __future__ import annotations
+          import json
+          from collections import defaultdict
+          from pathlib import Path
+
+          manifest = json.loads(Path('data/people/manifest.json').read_text(encoding='utf-8'))
+          clusters = defaultdict(list)
+
+          for relative in manifest['files']:
+              path = Path('data') / relative
+              data = json.loads(path.read_text(encoding='utf-8'))
+              entries = data if isinstance(data, list) else [data]
+              for person in entries:
+                  if not isinstance(person, dict) or not person.get('id'):
+                      continue
+                  place_ids = []
+                  for key in ('placeId', 'place_id', 'place'):
+                      value = person.get(key)
+                      if isinstance(value, str) and value.strip():
+                          place_ids.append(value.strip())
+                  for key in ('places', 'placeIds', 'place_ids'):
+                      value = person.get(key)
+                      if isinstance(value, list):
+                          place_ids.extend(str(item).strip() for item in value if str(item).strip())
+                  place_ids = list(dict.fromkeys(place_ids))
+                  if not place_ids:
+                      continue
+
+                  popup = str(person.get('popupDesc') or person.get('popupdesc') or '')
+                  paragraphs = [part.strip() for part in popup.split('\n\n') if part.strip()]
+                  works = person.get('works') if isinstance(person.get('works'), list) else []
+                  sources = []
+                  for key in ('externalLinks', 'sources', 'source_urls'):
+                      value = person.get(key)
+                      if isinstance(value, list):
+                          sources.extend(value)
+                  education = person.get('education') if isinstance(person.get('education'), list) else []
+                  themes = person.get('themes') if isinstance(person.get('themes'), list) else []
+                  materials = person.get('materials') if isinstance(person.get('materials'), list) else []
+                  birth = person.get('birth_date') or person.get('birthDate') or person.get('birthYear') or person.get('born')
+
+                  missing = []
+                  if len(paragraphs) < 3: missing.append('popupDesc_3_paragraphs')
+                  if len(works) < 4: missing.append('works')
+                  if len(sources) < 3: missing.append('sources')
+                  if not education: missing.append('education')
+                  if len(themes) < 4: missing.append('themes')
+                  if not materials: missing.append('materials')
+                  if not birth: missing.append('birth')
+
+                  if not missing:
+                      continue
+                  record = {
+                      'id': person['id'],
+                      'name': person.get('name') or person.get('title') or person['id'],
+                      'category': person.get('category'),
+                      'file': str(path),
+                      'missing': missing,
+                      'missing_count': len(missing),
+                  }
+                  for place_id in place_ids:
+                      clusters[place_id].append(record)
+
+          ranked = []
+          for place_id, people in clusters.items():
+              unique = {person['id']: person for person in people}
+              rows = list(unique.values())
+              if len(rows) < 3:
+                  continue
+              ranked.append({
+                  'place_id': place_id,
+                  'incomplete_people': len(rows),
+                  'missing_fields_total': sum(row['missing_count'] for row in rows),
+                  'people': sorted(rows, key=lambda row: (-row['missing_count'], row['name'])),
+              })
+
+          ranked.sort(key=lambda item: (-item['incomplete_people'], -item['missing_fields_total'], item['place_id']))
+          report = {
+              'method': 'Ranks places with at least three canonical people missing rich-profile fields. Existing Stensparken profiles are expected to fall out after completion.',
+              'top_clusters': ranked[:30],
+          }
+
+          out = Path('reports/next-people-cluster-audit')
+          out.mkdir(parents=True, exist_ok=True)
+          (out / 'audit.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: next-people-cluster-audit-${{ github.run_id }}
+          path: reports/next-people-cluster-audit/audit.json
+          if-no-files-found: error

@@ -37,7 +37,8 @@ const win = window as RuntimeWindow;
 const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "historie", name: "Historie", icon: "🏛️", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
   { id: "religion", name: "Religion", icon: "🛐", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
-  { id: "vitenskap", name: "Vitenskap & teknologi", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
+  { id: "vitenskap", name: "Vitenskap", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
+  { id: "teknologi", name: "Teknologi", icon: "⚙️", color: "#E07A1F", secondaryColor: "#252A31", scope: "runtime_domain" },
   { id: "filosofi", name: "Filosofi", icon: "Φ", color: "#7A5FD0", secondaryColor: "#3E2E73", scope: "runtime_domain" },
   { id: "kunst", name: "Kunst", icon: "🎨", color: "#0057B8", secondaryColor: "#D71920", scope: "runtime_domain" },
   { id: "scenekunst", name: "Scenekunst", icon: "🎭", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
@@ -48,7 +49,7 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "politikk", name: "Politikk & samfunn", icon: "🏛️", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
   { id: "subkultur", name: "Subkultur", icon: "🧷", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
   { id: "litteratur", name: "Litteratur", icon: "📚", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
-  { id: "naeringsliv", name: "Næringsliv", icon: "🏭", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain" },
+  { id: "naeringsliv", name: "Økonomi og næringsliv", icon: "🏭", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain", aliases: ["Næringsliv", "Næringsliv & industri", "Økonomi", "Økonomi & næringsliv"] },
   { id: "psykologi", name: "Psykologi", icon: "🧠", color: "#06d6a0", scope: "runtime_domain" },
   { id: "film_tv", name: "Film & TV", icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
   { id: "media", name: "Medier", icon: "🗞️", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" },
@@ -60,6 +61,9 @@ const CAT_BY_NAME: Record<string, CategoryDefinition> = Object.create(null);
 for (const category of CATEGORY_LIST) {
   CAT_BY_ID[category.id] = category;
   CAT_BY_NAME[category.name.trim().toLowerCase()] = category;
+  for (const alias of category.aliases || []) {
+    CAT_BY_NAME[alias.trim().toLowerCase()] = category;
+  }
 }
 
 function norm(value: unknown): string {

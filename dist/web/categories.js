@@ -4,7 +4,8 @@
   var CATEGORY_LIST = [
     { id: "historie", name: "Historie", icon: "\u{1F3DB}\uFE0F", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
     { id: "religion", name: "Religion", icon: "\u{1F6D0}", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
-    { id: "vitenskap", name: "Vitenskap & teknologi", icon: "\u{1F52C}", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
+    { id: "vitenskap", name: "Vitenskap", icon: "\u{1F52C}", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
+    { id: "teknologi", name: "Teknologi", icon: "\u2699\uFE0F", color: "#E07A1F", secondaryColor: "#252A31", scope: "runtime_domain" },
     { id: "filosofi", name: "Filosofi", icon: "\u03A6", color: "#7A5FD0", secondaryColor: "#3E2E73", scope: "runtime_domain" },
     { id: "kunst", name: "Kunst", icon: "\u{1F3A8}", color: "#0057B8", secondaryColor: "#D71920", scope: "runtime_domain" },
     { id: "scenekunst", name: "Scenekunst", icon: "\u{1F3AD}", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
@@ -15,7 +16,7 @@
     { id: "politikk", name: "Politikk & samfunn", icon: "\u{1F3DB}\uFE0F", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
     { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
     { id: "litteratur", name: "Litteratur", icon: "\u{1F4DA}", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
-    { id: "naeringsliv", name: "N\xE6ringsliv", icon: "\u{1F3ED}", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain" },
+    { id: "naeringsliv", name: "\xD8konomi og n\xE6ringsliv", icon: "\u{1F3ED}", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain", aliases: ["N\xE6ringsliv", "N\xE6ringsliv & industri", "\xD8konomi", "\xD8konomi & n\xE6ringsliv"] },
     { id: "psykologi", name: "Psykologi", icon: "\u{1F9E0}", color: "#06d6a0", scope: "runtime_domain" },
     { id: "film_tv", name: "Film & TV", icon: "\u{1F39E}\uFE0F", color: "#6c757d", scope: "runtime_domain" },
     { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" }
@@ -25,6 +26,9 @@
   for (const category of CATEGORY_LIST) {
     CAT_BY_ID[category.id] = category;
     CAT_BY_NAME[category.name.trim().toLowerCase()] = category;
+    for (const alias of category.aliases || []) {
+      CAT_BY_NAME[alias.trim().toLowerCase()] = category;
+    }
   }
   function norm(value) {
     return String(value != null ? value : "").trim();

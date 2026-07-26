@@ -1,5 +1,5 @@
 {
-  "version": "v5.5-quality-freeze-contract",
+  "version": "v5.7-quality-freeze-contract",
   "subject_id": "historie",
   "status": "quality_gate_active",
   "authoritative_files": {
@@ -13,14 +13,19 @@
     "theories": "theory_objects_historie_canonical_v5_5.json"
   },
   "coverage_counts": {
-    "domains": 20,
-    "emner": 200,
-    "mappings": 200,
-    "theory_hooks": 200
+    "domains": 22,
+    "emner": 220,
+    "mappings": 220,
+    "theory_hooks": 220,
+    "concepts": 926,
+    "theories": 220,
+    "methods": 98
   },
   "coverage_policy": {
     "counts_establish_coverage_not_curation": true,
-    "generated_objects_cannot_unlock_v6": true
+    "generated_objects_cannot_unlock_v6": true,
+    "universal_coverage_audit_required": true,
+    "fixed_counts_are_not_completeness": true
   },
   "domain_freeze_contract": {
     "required_status": "complete_revised",
@@ -67,8 +72,10 @@
     "two_lane_mapping_required": true,
     "temporal_source_and_distinction_gates_required": true
   },
-  "v6_policy": {
-    "allowed_only_when_quality_freeze_ready": true,
-    "current_default": "blocked_until_quality_gate_passes"
+  "v7_policy": {
+    "active_subject_model": true,
+    "current_default": "active_v5_7_subject_model_evidence_layers_still_separate",
+    "previous_version": "v5.6",
+    "reason": "Adds universal First World War and interwar coverage after the independent completeness audit."
   }
 }

@@ -100,14 +100,17 @@ Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korr
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
-### People-bilder og rettigheter
+### People-produksjon, stedskobling og bilder
 
-1. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt
-2. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
-3. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
-4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
+2. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+3. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+4. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+5. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+6. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+7. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
 
-People-bilder skal komme fra Wikidata/Wikimedia Commons gjennom lisensporten. Runtime leser lokale bildepaths og `imageMeta` fra canonical manifest-loadede people-filer; kandidat- og attribusjonsfilene er arbeids- og sporbarhetsdata, ikke en parallell people-sannhet.
+People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 
 ### Koordinater og geografisk evidens
 
@@ -294,6 +297,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - `HG_TEST_MODE.md` synkronisert med runtime og registrert som canonical skjult utviklermoduskontrakt
 - `PROFILE_PROGRESS_READER_RUNTIME.md` synkronisert og registrert som operational read-only runtime-guide
 - `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt
+- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode
 - Historiske ruter-planen skilt fra implementert runtimeguide og byte-identisk pre-consolidation-arkiv
 
 ### Neste

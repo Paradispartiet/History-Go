@@ -1,0 +1,1499 @@
+{
+  "schema": "teknologi_assessment_tasks_v2_3",
+  "version": "2.3",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "governance": {
+    "task_must_use_real_anchor": true,
+    "deliverable_must_expose_reasoning": true,
+    "evidence_and_uncertainty_are_scored": true,
+    "personal_opinion_is_not_mastery": true
+  },
+  "tasks": [
+    {
+      "id": "task_tek_teknologivitenskap_design_1",
+      "area_id": "teknologivitenskap_design",
+      "title": "Spor krav til test",
+      "anchor_id": "anchor_tek_batteridrill_kravmatrise",
+      "prompt": "Lag en sporbar kjede fra fire interessentbehov til funksjonskrav, designparametere og verifikasjons- eller valideringstest for ankeret.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_designvitenskap",
+        "teori_tek_funksjon_atferd_struktur",
+        "kobj_tek_axiomatisk_design"
+      ],
+      "concept_relation": {
+        "area_id": "teknologivitenskap_design",
+        "source_id": "artefakt",
+        "relation_type": "has_function",
+        "target_id": "funksjon"
+      },
+      "deliverables": [
+        "kravmatrise",
+        "to identifiserte koblinger mellom krav",
+        "testplan med akseptkriterier"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_teknologivitenskap_design_2",
+      "area_id": "teknologivitenskap_design",
+      "title": "Avgrens designrommet",
+      "anchor_id": "anchor_tek_vannrenser_feltprototype",
+      "prompt": "Sammenlign to løsningskonsepter under samme brukskontekst og vis hvordan minst én begrensning og én interessentkonflikt endrer valget.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_funksjon_atferd_struktur",
+        "kobj_tek_axiomatisk_design"
+      ],
+      "concept_relation": {
+        "area_id": "teknologivitenskap_design",
+        "source_id": "krav",
+        "relation_type": "constrains",
+        "target_id": "designrom"
+      },
+      "deliverables": [
+        "felles sammenligningsgrunnlag",
+        "begrunnet konseptvalg",
+        "usikkerhetsnotat"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_systemer_arkitektur_palitelighet_1",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "title": "Bygg pålitelighetsmodell",
+      "anchor_id": "anchor_tek_jernbane_sikringsanlegg",
+      "prompt": "Tegn et pålitelighetsblokkskjema, oppgi avhengighetsantakelser og vis hvilken komponent eller fellesårsaksfeil som dominerer systemrisikoen.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_systemteknisk_v_modell",
+        "teori_tek_stamp_sikkerhetsmodell",
+        "kobj_tek_palitelighetsblokkdiagram"
+      ],
+      "concept_relation": {
+        "area_id": "systemer_arkitektur_palitelighet",
+        "source_id": "systemgrense",
+        "relation_type": "defines_scope_for",
+        "target_id": "arkitektur"
+      },
+      "deliverables": [
+        "blokkskjema",
+        "antakelsesregister",
+        "sensitivitetsanalyse"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_systemer_arkitektur_palitelighet_2",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "title": "Analyser sikkerhetskontroll",
+      "anchor_id": "anchor_tek_datasenter_stromkjede",
+      "prompt": "Definer en uønsket systemtilstand og identifiser kontrollhandlinger, utilstrekkelig feedback og organisatoriske forhold som kan føre dit.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_stamp_sikkerhetsmodell",
+        "kobj_tek_palitelighetsblokkdiagram",
+        "kobj_tek_normal_ulykkesteori"
+      ],
+      "concept_relation": {
+        "area_id": "systemer_arkitektur_palitelighet",
+        "source_id": "grensesnitt",
+        "relation_type": "part_of",
+        "target_id": "arkitektur"
+      },
+      "deliverables": [
+        "kontrollstruktur",
+        "minst tre usikre kontrollhandlinger",
+        "forslag til barriere og målepunkt"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_mekanikk_energi_maskiner_1",
+      "area_id": "mekanikk_energi_maskiner",
+      "title": "Lukk energibalansen",
+      "anchor_id": "anchor_tek_luft_luft_varmepumpe",
+      "prompt": "Definer kontrollvolumet, mål eller estimer alle relevante energistrømmer og rapporter restleddet med usikkerhet.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_termodynamisk_kretsprosess",
+        "teori_tek_energiomformingskjede",
+        "kobj_tek_bevaringslover_dimensjonsanalyse"
+      ],
+      "concept_relation": {
+        "area_id": "mekanikk_energi_maskiner",
+        "source_id": "kraft",
+        "relation_type": "produces",
+        "target_id": "moment"
+      },
+      "deliverables": [
+        "energibalanse",
+        "målekjede",
+        "usikkerhetsbudsjett"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_mekanikk_energi_maskiner_2",
+      "area_id": "mekanikk_energi_maskiner",
+      "title": "Sammenlign ytelse rettferdig",
+      "anchor_id": "anchor_tek_sykkel_drivverk",
+      "prompt": "Sammenlign to driftsmåter ved samme funksjon, last og miljøbetingelser, og forklar hvorfor maksimal virkningsgrad ikke alene avgjør bruksverdi.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_energiomformingskjede",
+        "kobj_tek_bevaringslover_dimensjonsanalyse"
+      ],
+      "concept_relation": {
+        "area_id": "mekanikk_energi_maskiner",
+        "source_id": "kraft",
+        "relation_type": "produces",
+        "target_id": "arbeid"
+      },
+      "deliverables": [
+        "felles testbetingelser",
+        "ytelseskurve",
+        "begrunnet avveining"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_materialer_produksjon_1",
+      "area_id": "materialer_produksjon",
+      "title": "Fastsett inspeksjonsgrense",
+      "anchor_id": "anchor_tek_aluminium_panel_med_sprekk",
+      "prompt": "Bruk en eksplisitt bruddmekanisk modell til å begrunne kritisk sprekkstørrelse og et inspeksjonsintervall, inkludert modell- og måleusikkerhet.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_ashby_materialvalg",
+        "teori_tek_statistisk_prosesskontroll",
+        "kobj_tek_lineaer_elastisk_bruddmekanikk"
+      ],
+      "concept_relation": {
+        "area_id": "materialer_produksjon",
+        "source_id": "mikrostruktur",
+        "relation_type": "influences",
+        "target_id": "fasthet"
+      },
+      "deliverables": [
+        "gyldighetskontroll",
+        "kritisk størrelse",
+        "sikkerhetsmargin og inspeksjonsplan"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_materialer_produksjon_2",
+      "area_id": "materialer_produksjon",
+      "title": "Skil stabilitet fra kapabilitet",
+      "anchor_id": "anchor_tek_sprøytestøpt_deksel",
+      "prompt": "Analyser produksjonsdata i riktig rekkefølge: først prosessstabilitet, deretter kapabilitet mot toleranser og til slutt mulige mekanismer for avvik.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_statistisk_prosesskontroll",
+        "kobj_tek_lineaer_elastisk_bruddmekanikk"
+      ],
+      "concept_relation": {
+        "area_id": "materialer_produksjon",
+        "source_id": "mikrostruktur",
+        "relation_type": "influences",
+        "target_id": "seighet"
+      },
+      "deliverables": [
+        "kontrolldiagram",
+        "kapabilitetsmål med antakelser",
+        "årsaksplan"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_elektronikk_signaler_regulering_1",
+      "area_id": "elektronikk_signaler_regulering",
+      "title": "Dokumenter signalkjeden",
+      "anchor_id": "anchor_tek_lydopptak_adc_kjede",
+      "prompt": "Tegn signalkjeden, oppgi båndbredde og samplingsvalg, og identifiser hvor støy, aliasing og metning kan oppstå.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_lukket_reguleringssloyfe",
+        "teori_tek_signal_og_informasjonskjede",
+        "kobj_tek_nyquist_shannon_sampling"
+      ],
+      "concept_relation": {
+        "area_id": "elektronikk_signaler_regulering",
+        "source_id": "spenning",
+        "relation_type": "drives",
+        "target_id": "strom"
+      },
+      "deliverables": [
+        "blokkskjema",
+        "måleplan",
+        "antialiasbegrunnelse"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_elektronikk_signaler_regulering_2",
+      "area_id": "elektronikk_signaler_regulering",
+      "title": "Tolk en reguleringsrespons",
+      "anchor_id": "anchor_tek_romtermostat_feedback",
+      "prompt": "Bruk en målt sprangrespons til å vurdere stabilitet, oversving og innsvingstid, og foreslå én endring med forventet bivirkning.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_signal_og_informasjonskjede",
+        "kobj_tek_nyquist_shannon_sampling"
+      ],
+      "concept_relation": {
+        "area_id": "elektronikk_signaler_regulering",
+        "source_id": "impedans",
+        "relation_type": "constrains",
+        "target_id": "strom"
+      },
+      "deliverables": [
+        "responsplot",
+        "målverdier",
+        "begrunnet regulatorendring"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_robotikk_automatisering_1",
+      "area_id": "robotikk_automatisering",
+      "title": "Vurder lokaliseringens usikkerhet",
+      "anchor_id": "anchor_tek_lagerrobot_lokalisering",
+      "prompt": "Analyser hvordan odometri og lidar kombineres, vis hva innovasjon og kovarians sier, og definer en sikker reaksjon ved voksende usikkerhet.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_sense_plan_act_og_subsumpsjon",
+        "teori_tek_grader_av_automatisering",
+        "kobj_tek_bayesiansk_tilstandsestimering"
+      ],
+      "concept_relation": {
+        "area_id": "robotikk_automatisering",
+        "source_id": "aktuator",
+        "relation_type": "implements",
+        "target_id": "kontrollpolicy"
+      },
+      "deliverables": [
+        "estimatorlogikk",
+        "usikkerhetsvisualisering",
+        "degradert driftsmodus"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_robotikk_automatisering_2",
+      "area_id": "robotikk_automatisering",
+      "title": "Fordel kontroll mellom menneske og robot",
+      "anchor_id": "anchor_tek_samarbeidsrobot_montasje",
+      "prompt": "Definer automatiseringsnivå per deloppgave og vis hvordan operatøren opprettholder situasjonsforståelse, overstyring og sikker gjenoppretting.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_grader_av_automatisering",
+        "kobj_tek_bayesiansk_tilstandsestimering",
+        "kobj_tek_optimal_robust_kontroll"
+      ],
+      "concept_relation": {
+        "area_id": "robotikk_automatisering",
+        "source_id": "sensorfusjon",
+        "relation_type": "produces",
+        "target_id": "tilstandsestimat"
+      },
+      "deliverables": [
+        "oppgavefordeling",
+        "modus- og feedbackdesign",
+        "risikokontroll"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_datamaskiner_operativsystemer_1",
+      "area_id": "datamaskiner_operativsystemer",
+      "title": "Forklar ytelsesknekket",
+      "anchor_id": "anchor_tek_cache_benchmark",
+      "prompt": "Koble arbeidssettstørrelse til cache miss-rate, minnetrafikk og kjøretid, og skill mekanismeforklaring fra ren korrelasjon.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_lagret_program_arkitektur",
+        "teori_tek_abstraksjonsstakk_datamaskin",
+        "kobj_tek_amdahls_lov"
+      ],
+      "concept_relation": {
+        "area_id": "datamaskiner_operativsystemer",
+        "source_id": "bit",
+        "relation_type": "encodes",
+        "target_id": "instruksjon"
+      },
+      "deliverables": [
+        "måleserie",
+        "arkitekturforklaring",
+        "alternative forklaringer"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_datamaskiner_operativsystemer_2",
+      "area_id": "datamaskiner_operativsystemer",
+      "title": "Diagnostiser minnepress",
+      "anchor_id": "anchor_tek_virtuell_hukommelse_trace",
+      "prompt": "Bruk spor av sidefeil, I/O og scheduleraktivitet til å avgjøre om systemet thrash-er, og foreslå tiltak med avveininger.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_abstraksjonsstakk_datamaskin",
+        "kobj_tek_amdahls_lov"
+      ],
+      "concept_relation": {
+        "area_id": "datamaskiner_operativsystemer",
+        "source_id": "prosessor",
+        "relation_type": "executes",
+        "target_id": "instruksjon"
+      },
+      "deliverables": [
+        "tidslinje",
+        "diagnosekriterier",
+        "tiltak og bivirkning"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_programvareteknikk_1",
+      "area_id": "programvareteknikk",
+      "title": "Spesifiser API-kontrakten",
+      "anchor_id": "anchor_tek_betalingsapi_idempotens",
+      "prompt": "Definer pre-betingelser, post-betingelser, invariant og idempotenssemantikk for betalingsoperasjonen, inkludert feil og retry.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_informasjonsskjuling",
+        "teori_tek_kontinuerlig_programvarelivslop",
+        "kobj_tek_design_by_contract"
+      ],
+      "concept_relation": {
+        "area_id": "programvareteknikk",
+        "source_id": "abstraksjon",
+        "relation_type": "implemented_by",
+        "target_id": "modul"
+      },
+      "deliverables": [
+        "kontrakt",
+        "tilstandsdiagram",
+        "kontrakttester"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_programvareteknikk_2",
+      "area_id": "programvareteknikk",
+      "title": "Rekonstruer hendelsen",
+      "anchor_id": "anchor_tek_mikrotjeneste_hendelse",
+      "prompt": "Koble deploy, spor, logger og metrikker til en tidslinje og skill observerte fakta fra hypotese om årsak.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_kontinuerlig_programvarelivslop",
+        "kobj_tek_design_by_contract",
+        "kobj_tek_lav_kobling_hoy_kohesjon"
+      ],
+      "concept_relation": {
+        "area_id": "programvareteknikk",
+        "source_id": "api",
+        "relation_type": "exposes",
+        "target_id": "modul"
+      },
+      "deliverables": [
+        "hendelsestidslinje",
+        "hypoteser med evidens",
+        "permanent korrigering og regressjonstest"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_algoritmer_data_ai_1",
+      "area_id": "algoritmer_data_ai",
+      "title": "Test robusthet under skift",
+      "anchor_id": "anchor_tek_bildemodell_distribusjonsskift",
+      "prompt": "Definer utviklings- og bruksfordeling, mål ytelse og kalibrering per relevant gruppe, og foreslå en reaksjon når driftsgrensen overskrides.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_beregningskompleksitet",
+        "teori_tek_statistisk_laering",
+        "kobj_tek_bias_varians"
+      ],
+      "concept_relation": {
+        "area_id": "algoritmer_data_ai",
+        "source_id": "algoritme",
+        "relation_type": "implemented_over",
+        "target_id": "datastruktur"
+      },
+      "deliverables": [
+        "skiftstaksonomi",
+        "stratifisert evaluering",
+        "operasjonell overvåkingsregel"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_algoritmer_data_ai_2",
+      "area_id": "algoritmer_data_ai",
+      "title": "Gjør terskelen etterprøvbar",
+      "anchor_id": "anchor_tek_risikomodell_beslutningsterskel",
+      "prompt": "Vis hvordan tapsfunksjon, kalibrering og ressursbegrensning bestemmer en beslutningsterskel, og dokumenter hvem som eier det normative valget.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_statistisk_laering",
+        "kobj_tek_bias_varians",
+        "kobj_tek_bayesiansk_beslutningsteori"
+      ],
+      "concept_relation": {
+        "area_id": "algoritmer_data_ai",
+        "source_id": "kompleksitet",
+        "relation_type": "measures",
+        "target_id": "algoritme"
+      },
+      "deliverables": [
+        "beslutningskurve",
+        "åpen tapsmatrise",
+        "ansvars- og overstyringsregel"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_nettverk_cybersikkerhet_infrastruktur_1",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "title": "Test partisjonsatferd",
+      "anchor_id": "anchor_tek_replikert_kv_partisjon",
+      "prompt": "Induser en dokumentert nettverkspartisjon og vis hvilke operasjoner som blokkeres, avvises eller godtas under systemets konsistens- og tilgjengelighetsløfte.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_ende_til_ende_prinsippet",
+        "teori_tek_forsvar_i_dybden",
+        "kobj_tek_distribuert_konsensus"
+      ],
+      "concept_relation": {
+        "area_id": "nettverk_cybersikkerhet_infrastruktur",
+        "source_id": "protokoll",
+        "relation_type": "governs",
+        "target_id": "ruting"
+      },
+      "deliverables": [
+        "feilmodell",
+        "hendelseslogg",
+        "presis CAP-tolkning"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_nettverk_cybersikkerhet_infrastruktur_2",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "title": "Bygg trusselmodell for sesjonen",
+      "anchor_id": "anchor_tek_tls_websesjon",
+      "prompt": "Kartlegg aktiva, tillitsgrenser, angriperforutsetninger og sikkerhetskontroller fra navneoppslag til applikasjonsautorisasjon.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_forsvar_i_dybden",
+        "kobj_tek_distribuert_konsensus",
+        "kobj_tek_cap_teoremet"
+      ],
+      "concept_relation": {
+        "area_id": "nettverk_cybersikkerhet_infrastruktur",
+        "source_id": "ruting",
+        "relation_type": "influences",
+        "target_id": "latens"
+      },
+      "deliverables": [
+        "dataflytdiagram",
+        "trusler og kontroller",
+        "rest-risiko"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_menneske_teknologi_hci_1",
+      "area_id": "menneske_teknologi_hci",
+      "title": "Test kritisk oppgave i kontekst",
+      "anchor_id": "anchor_tek_infusjonspumpe_grensesnitt",
+      "prompt": "Gjennomfør en strukturert brukstest av en kritisk oppgave, registrer feilmekanismer og skill mellom individuell feil og systemskapt feilmulighet.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_menneskesentrert_design",
+        "teori_tek_distribuert_kognisjon",
+        "kobj_tek_situert_handling"
+      ],
+      "concept_relation": {
+        "area_id": "menneske_teknologi_hci",
+        "source_id": "affordans",
+        "relation_type": "enables",
+        "target_id": "brukbarhet"
+      },
+      "deliverables": [
+        "oppgaveanalyse",
+        "observasjonsprotokoll",
+        "designendring koblet til funn"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_menneske_teknologi_hci_2",
+      "area_id": "menneske_teknologi_hci",
+      "title": "Revider tilgjengelighet multimodalt",
+      "anchor_id": "anchor_tek_billettautomat_tilgjengelighet",
+      "prompt": "Vurder syn, hørsel, motorikk, kognisjon og situasjonskontekst, og dokumenter både standardkrav og faktisk oppgaveytelse.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_distribuert_kognisjon",
+        "kobj_tek_situert_handling",
+        "kobj_tek_felles_kognitive_systemer"
+      ],
+      "concept_relation": {
+        "area_id": "menneske_teknologi_hci",
+        "source_id": "kognitiv_belastning",
+        "relation_type": "degrades",
+        "target_id": "brukbarhet"
+      },
+      "deliverables": [
+        "barrierekart",
+        "standardkobling",
+        "prioritert redesign"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_teknologihistorie_sts_risiko_baerekraft_1",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "title": "Forklar stiavhengighet uten determinisme",
+      "anchor_id": "anchor_tek_urbant_kraftsystem_utvikling",
+      "prompt": "Bygg en dokumentert tidslinje som viser tekniske, økonomiske og institusjonelle valg, alternative spor og mekanismene som gjorde senere endring kostbar.",
+      "claim_classes": [
+        "mechanistic",
+        "performance"
+      ],
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_store_tekniske_systemer",
+        "teori_tek_sosiotekniske_forestillinger",
+        "kobj_tek_sosial_konstruksjon_teknologi"
+      ],
+      "concept_relation": {
+        "area_id": "teknologihistorie_sts_risiko_baerekraft",
+        "source_id": "standard",
+        "relation_type": "enables",
+        "target_id": "interoperabilitet"
+      },
+      "deliverables": [
+        "kildesatt tidslinje",
+        "mekanismekart",
+        "reelt kontrafaktisk alternativ"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    },
+    {
+      "id": "task_tek_teknologihistorie_sts_risiko_baerekraft_2",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "title": "Gjennomfør avgrenset livsløpssammenligning",
+      "anchor_id": "anchor_tek_smarttelefon_livslop",
+      "prompt": "Definer funksjonell enhet og systemgrense, sammenlign levetidsforlengelse med utskifting, og vis sensitivitets- og reboundforutsetninger.",
+      "claim_classes": [
+        "causal",
+        "normative"
+      ],
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_sosiotekniske_forestillinger",
+        "kobj_tek_sosial_konstruksjon_teknologi",
+        "kobj_tek_flerniva_omstilling"
+      ],
+      "concept_relation": {
+        "area_id": "teknologihistorie_sts_risiko_baerekraft",
+        "source_id": "standard",
+        "relation_type": "contributes_to",
+        "target_id": "stiavhengighet"
+      },
+      "deliverables": [
+        "mål og omfang",
+        "inventartabell",
+        "sensitivitetsanalyse og fordelingsnotat"
+      ],
+      "evidence_requirements": {
+        "minimum_sources": 2,
+        "primary_or_official_source_required": true,
+        "measured_or_inspected_evidence_required": true,
+        "source_locator_per_claim_required": true,
+        "uncertainty_register_required": true
+      },
+      "rubric": [
+        {
+          "criterion": "systemgrense_og_anker",
+          "points": 20
+        },
+        {
+          "criterion": "korrekt_kunnskapsobjektbruk",
+          "points": 20
+        },
+        {
+          "criterion": "evidens_og_kildesporbarhet",
+          "points": 25
+        },
+        {
+          "criterion": "usikkerhet_og_alternativer",
+          "points": 20
+        },
+        {
+          "criterion": "presis_begrepsrelasjon",
+          "points": 15
+        }
+      ],
+      "mastery_threshold": 70
+    }
+  ]
+}
