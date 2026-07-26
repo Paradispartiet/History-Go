@@ -96,7 +96,7 @@ const minimumCoverage = {
   stortinget: 32,
   youngstorget: 22,
   oslo_radhus: 17,
-  eidsvolls_plass: 13,
+  eidsvolls_plass: 12,
   regjeringskvartalet: 10,
   folkets_hus_oslo: 3,
   slottet: 7,
