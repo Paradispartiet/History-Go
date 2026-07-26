@@ -242,13 +242,13 @@ if (WRITE) {
   protocol = protocol.replace(/^Oslo-omfanget skal telles[^\n]*$/mu, scopeParagraph);
 
   const statusBlock = `## Oslo-status etter full scope-audit\n\n- Totalt aktive Oslo-steder: **${activeIds.length} steder**\n- Ferdige etter alle mergede revisjonsbatcher: **${protocolIds.size} steder**\n- Gjenstår: **${additional.length} steder**\n- Full restkø og ordtelling: \`${REPORT_MD}\`\n`;
-  protocol = protocol.replace(/## Oslo-status etter denne PR-en[\s\S]*?(?=## Ferdige steder)/u, `${statusBlock}\n`);
+  protocol = protocol.replace(/## Oslo-status etter (?:denne PR-en|full scope-audit)[\s\S]*?(?=## Ferdige steder)/u, `${statusBlock}\n`);
 
   const remainingLines = Object.entries(groupCounts)
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .map(([domain, count]) => `- ${domain}: **${count}**`)
     .join('\n');
-  const remainingBlock = `## Gjenstående Oslo-kø\n\nDet gjenstår **${additional.length} aktive Oslo-steder** utenfor den tidligere 90-steders delkøen. Den autoritative, filspesifikke køen ligger i \`${REPORT_MD}\`.\n\n${remainingLines}\n\n`;
+  const remainingBlock = `## Gjenstående Oslo-kø\n\nDet gjenstår **${additional.length} aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i \`${REPORT_MD}\`.\n\n${remainingLines}\n\n`;
   protocol = protocol.replace(/## Gjenstående Oslo-kø[\s\S]*?(?=## Oppdagede metadataavvik)/u, remainingBlock);
   protocol = protocol.replace(
     '| Oslo V4 batch 10 | 2 | #4150 – fullfører alle 90 aktive Oslo-steder |',

@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter den tidligere 90-steders delkøen: **90 steder**
-- Gjenstår: **422 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **100 steder**
+- Gjenstår: **412 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -130,7 +130,7 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 
 ## Gjenstående Oslo-kø
 
-Det gjenstår **412 aktive Oslo-steder** utenfor den tidligere 90-steders delkøen. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **412 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - historie: **67**
