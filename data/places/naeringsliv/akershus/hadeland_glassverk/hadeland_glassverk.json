@@ -1,9 +1,42 @@
 {
   "id": "hadeland_glassverk",
   "name": "Hadeland Glassverk",
-  "lat": 60.23813,
-  "lon": 10.39785,
+  "lat": 60.23765,
+  "lon": 10.39719,
   "r": 360,
+  "locatorType": "industrial_site",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:559688012",
+  "address": {
+    "street": "Glassverksveien",
+    "number": "9",
+    "postcode": "3520",
+    "city": "Jevnaker",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "named_point",
+  "coordRole": "industrial_visitor_complex_anchor",
+  "coordType": "named_glassworks_institution_point",
+  "coordStatus": "verified",
+  "coordSource": "OpenStreetMap node 559688012 – Hadeland Glassverk; Hadeland Glassverk official visitor and history pages",
+  "coordSourceId": "osm-node:559688012",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/559688012",
+  "coordVerifiedAt": "2026-07-26",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 64,6 meter til det stabile navngitte glassverks- og besøksobjektet inne i det sentrale anlegget.",
+  "coordNote": "OpenStreetMap node 559688012 er det stabile navngitte objektet for Hadeland Glassverk ved 60.23765, 10.39719 og brukes som canonical anker for den samlede industri-, produksjons-, museums- og besøksinstitusjonen. Hadeland Glassverks offisielle sider oppgir Glassverksveien 9, 3520 Jevnaker som besøksadresse, dokumenterer grunnleggelsen i 1762 og beskriver Glasshytta som hjertet i den levende produksjonen. Ingen stabil separat bygningsgeometri for Glasshytta er fanget i kildegrunnlaget, så det konstrueres ikke en antatt produksjonscentroid. Den navngitte parkflaten OpenStreetMap way 693083889 ligger omtrent 82,5 meter fra anvendt punkt og brukes som områdekontroll, men representerer ikke alene glassverket eller produksjonsmiljøet. Legacy-punktet 60.23813, 10.39785 lå omtrent 64,6 meter nordøst for det navngitte institusjonsankeret og erstattes. Radius 360 meter beholdes for det sentrale produksjons-, museums-, park- og besøksmiljøet, men er ikke en eiendomsgrense, fredningspolygon, eksakt industrianleggsgeometri eller påstand om at én butikk eller park representerer hele verket.",
+  "anchors": [
+    {
+      "id": "hadeland_glassverk_named_complex",
+      "name": "Hadeland Glassverk – navngitt verks- og besøksanker",
+      "lat": 60.23765,
+      "lon": 10.39719,
+      "r": 150,
+      "type": "industrial_visitor_complex_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:559688012",
+      "note": "Stabilt navngitt punkt for den samlede glassverksinstitusjonen; Glasshytta er produksjonskjerne i formidlingen, men får ikke en konstruert separat koordinat uten stabil geometri."
+    }
+  ],
   "category": "naeringsliv",
   "fylke": "akershus",
   "kommune": "Jevnaker",
@@ -14,42 +47,90 @@
     "industri",
     "glassverk",
     "håndverk",
-    "design"
+    "design",
+    "levende_produksjon",
+    "randsfjorden"
   ],
   "desc": "Norsk glassverk grunnlagt i 1762 ved Randsfjorden på Jevnaker. Hadeland Glassverk gjør industrihistorie, håndverk, design og levende produksjon synlig i samme kulturmiljø.",
-  "popupDesc": "Hadeland Glassverk er et av de viktigste industristedene i Akershus etter at Jevnaker ble del av fylket. Glassverket ble grunnlagt i 1762 ved sørenden av Randsfjorden, på grunn under gården Mo, og produksjonen startet i 1765. I begynnelsen laget verket flasker, apotekerglass og husholdningsglass, før produksjonen senere utviklet seg mot bruksglass, krystall, kunstglass og norsk design. Stedet bør brukes i History Go som inngang til industrihistorie, håndverkskunnskap, materialforståelse, designhistorie og kontinuitet i produksjon.",
+  "popupDesc": "Hadeland Glassverk ble grunnlagt i 1762 ved sørenden av Randsfjorden, på grunn under gården Mo, og produksjonen startet i 1765. I begynnelsen laget verket flasker, apotekerglass og husholdningsglass. Senere ble bruksglass, krystall, kunstglass og norsk design stadig viktigere. Den offisielle historiske vandringen beskriver Glasshytta som hjertet i virksomheten, der glassblåsing, sliping og polering gjør håndverkskunnskapen synlig som arbeid, ikke bare som ferdige produkter.\n\nStedet er samtidig et sammensatt verks- og besøksmiljø med produksjon, museum, park, servering og handel. I History Go skal markøren derfor representere den samlede glassverksinstitusjonen og det sentrale anlegget, ikke én butikk, parkflaten alene eller en antatt centroid for Glasshytta. Radiusen favner den nære produksjons-, museums- og besøkskjernen, men er ikke en eksakt avgrensning av hele virksomheten eller kulturmiljøet.",
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Hadeland Glassverk – åpningstider og besøk",
+      "url": "https://www.hadeland.com/pages/apningstider-for-hadeland-glassverk",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "official",
+      "label": "Hadeland Glassverk – historien",
+      "url": "https://www.hadeland.com/pages/historien-om-hadeland-glassverk-levende-norsk-design-siden-1762",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "official",
+      "label": "Hadeland Glassverk – historisk vandring",
+      "url": "https://www.hadeland.com/historisk-vandring",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Hadeland Glassverk",
+      "url": "https://www.openstreetmap.org/node/559688012",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "reference",
+      "label": "Wikidata – Hadeland Glassverk",
+      "url": "https://www.wikidata.org/wiki/Q2194066",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    }
+  ],
   "quiz_profile": {
     "place_type": "industrianlegg",
     "subtype": "glassverk_i_kontinuerlig_drift",
     "signature_features": [
       "grunnlagt i 1762 ved Randsfjorden",
-      "glassblåsing og håndverksproduksjon",
+      "Glasshytta som levende produksjonskjerne",
+      "glassblåsing, sliping og polering",
       "kobler industrihistorie, design og levende kulturarv"
     ],
     "primary_angles": [
       "historie",
       "industri",
       "håndverk",
-      "design"
+      "design",
+      "arbeid",
+      "materialkunnskap"
     ],
     "question_families": [
       "industrihistorie",
       "materiale",
       "håndverk",
-      "før_etter"
+      "arbeidsprosess",
+      "før_etter",
+      "designhistorie"
     ],
     "avoid_angles": [
       "bare_turistattraksjon",
-      "generisk_butikksted"
+      "generisk_butikksted",
+      "park_som_hele_glassverket",
+      "antatt_glasshyttekoordinat_uten_geometri"
     ],
     "must_include": [
       "grunnleggelsen i 1762",
-      "glassverkets rolle som håndverks- og industrimiljø"
+      "glassverkets rolle som håndverks- og industrimiljø",
+      "Glasshytta som produksjonskjerne",
+      "skillet mellom institusjonsankeret og park- eller butikkobjekter"
     ],
     "contrast_targets": [
       "hurdal_verk_glassverk",
       "kistefos_traesliperi"
     ],
-    "notes": "Skal spørres som levende industri- og håndverkshistorie, ikke som handelsdestinasjon."
+    "notes": "Skal spørres som levende industri- og håndverkshistorie. Canonical følger den navngitte glassverksinstitusjonen; Glasshytta er produksjonskjernen i innholdet, mens parken bare er områdekontroll."
   }
 }
