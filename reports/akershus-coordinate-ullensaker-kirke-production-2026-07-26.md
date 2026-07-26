@@ -7,12 +7,12 @@ Date: 2026-07-26
 `ullensaker_kirke_kirkested` has been moved from an incorrect western point to the deterministic centroid of the named Romeriksdomen building geometry.
 
 - Previous coordinate: `60.0798, 11.1406`
-- Applied coordinate: `60.085121315305, 11.166063609858`
-- Displacement: approximately `1,415.3 m`
+- Applied coordinate: `60.083857437355, 11.164727670111`
+- Displacement: approximately `1,412.1 m`
 - Applied geometry: OpenStreetMap way `259926133`
-- National building reference: `15332638`
+- National building reference: `151220150`
 - Official address: `Kjerkevegen 25, 2040 Kløfta`
-- Kartverket identity: municipality `3209`, farm/use number `175/10`, address code `10387`
+- Kartverket identity: municipality `3209`, farm/use number `29/1115`, address code `6608`
 - Coordinate status: `verified_geometry`
 - Coordinate role: `display_marker`
 - Radius: `280 m`
@@ -40,28 +40,28 @@ OpenStreetMap way `259926133` is:
 - named `Ullensaker kirke`;
 - tagged `building=church`;
 - tagged `start_date=1958`;
-- linked to national building reference `15332638`;
-- linked to Wikidata `Q8732093`;
-- represented by a 32-node closed polygon.
+- linked to national building reference `151220150`;
+- linked to Wikidata `Q8732384`;
+- represented by a 23-node closed polygon including the repeated closing node.
 
 The deterministic polygon centroid is:
 
-- Latitude: `60.085121315305`
-- Longitude: `11.166063609858`
+- Latitude: `60.083857437355`
+- Longitude: `11.164727670111`
 
-Nominatim independently resolves the same way at `60.0850818, 11.1660679`, approximately `4.4 m` from the calculated centroid.
+Nominatim independently resolves the same way at `60.0838422, 11.1647448`, approximately `1.9 m` from the calculated centroid.
 
 ## Official address
 
 Kartverket returned exactly one object for Kjerkevegen 25:
 
 - Municipality: `3209 Ullensaker`
-- Farm/use number: `175/10`
-- Address code: `10387`
+- Farm/use number: `29/1115`
+- Address code: `6608`
 - Postal code: `2040`
-- Representation point: `60.0850172523784, 11.166487851574327`
+- Representation point: `60.08387343447055, 11.164631691491484`
 
-The official address point lies approximately `26.4 m` from the applied church centroid.
+The official address point lies approximately `5.6 m` from the applied church centroid.
 
 ## Church-site chronology
 
@@ -92,7 +92,7 @@ This name history is part of the place narrative but does not establish an exact
 
 ## Legacy-point assessment
 
-The previous coordinate `60.0798, 11.1406` lies approximately `1,415.3 m` west of the current church centroid.
+The previous coordinate `60.0798, 11.1406` lies approximately `1,412.1 m` west of the current church centroid.
 
 It cannot be tied to:
 
