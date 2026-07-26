@@ -1,8 +1,8 @@
 {
-  "version": "v5.5-canonical",
+  "version": "v5.6-canonical",
   "subject_id": "historie",
   "subject_title": "Historie",
-  "scope": "oslo_og_omegn",
+  "scope": "universal",
   "domains": [
     {
       "domain_id": "his_tid_periodisering",
@@ -1795,6 +1795,102 @@
         "industri_arbeid_sosialhistorie": "Arbeiderbevegelsen hører hit når organisasjon og kollektiv handling bærer spørsmålet; arbeidsprosess og livsvilkår hører til arbeidshistorie.",
         "religion_reformasjon_livssyn": "Lekmanns- og avholdsbevegelser hører hit når mobilisering og offentlighet er hovedkjeden; lære og religiøs praksis hører til religion."
       }
+    },
+    {
+      "domain_id": "his_forhistorie_arkeologi",
+      "label": "Forhistorie og arkeologi",
+      "tagline": "Menneskelig historie før og uten skrift gjennom materielle, biologiske og miljømessige spor",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_steinalder_teknologi_bosetning",
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_vikingtid_mobilitet_handel_makt",
+        "em_his_arkeologisk_landskap_miljo",
+        "em_his_bioarkeologi_helse_demografi"
+      ],
+      "hook_ids": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "method_ids": [
+        "met_arkeologisk_kontekstanalyse",
+        "met_stratigrafisk_analyse",
+        "met_typologisk_seriasjon",
+        "met_absolutt_datering",
+        "met_bioarkeologisk_analyse",
+        "met_sporlesning",
+        "met_kildekritikk",
+        "met_kronologisk_rekonstruksjon",
+        "met_komparativ_historie",
+        "met_langvarighetsanalyse"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_thinker_ids": [
+        "v_gordon_childe",
+        "lewis_binford",
+        "ian_hodder",
+        "bjornar_olsen"
+      ],
+      "norwegian_thinker_ids": [
+        "bjornar_olsen"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "chronology_required": true,
+      "temporal_claim_required": true,
+      "temporal_scope_required": true,
+      "uncertainty_note_required": true,
+      "critical_distinction_required": true,
+      "source_limitation_required": true,
+      "domain_chain": [
+        "navngitt arkeologisk lokalitet, prøve eller materiell kontekst",
+        "proveniens, stratigrafi og formasjonsprosess",
+        "relativ og/eller absolutt datering med usikkerhet",
+        "avgrenset aktørgruppe, hushold, nettverk eller befolkning",
+        "materiell, biologisk eller miljømessig indikator",
+        "kontrollmetode eller sammenlignbar kontekst",
+        "alternativ tolkning",
+        "kilde-, utvalgs- og bevaringsbegrensning",
+        "etisk og rettslig vurdering der menneskelige levninger eller urfolksmateriale inngår"
+      ],
+      "boundary_rules": {
+        "kilder_arkiv_spor": "Materielle kilders proveniens og kildekritikk deles med kildefeltet; forhistorisk kronologi, samfunn og arkeologiske formasjonsprosesser eies her.",
+        "middelalder_kirke_kongemakt": "Overgangen til middelalder behandles her når arkeologisk kronologi og materiell kultur er hovedgrunnlag; institusjonell kirke- og kongemakt behandles i middelalderdomenet.",
+        "miljo_klima_landskap": "Paleomiljø og menneskelig ressursbruk behandles her når arkeologisk dokumentasjon bærer analysen; nyere miljøpolitikk og dokumenterte landskapsregimer behandles i miljøhistorie.",
+        "samisk_urfolkshistorie": "Forhistoriske og arkeologiske spor kan inngå her, men urfolksidentitet, rettigheter, kolonisering og kunnskapssystemer skal ikke reduseres til arkeologisk klassifikasjon."
+      }
     }
   ],
   "canonical_registry_version": "historiepensum_v5_5",
@@ -1816,5 +1912,5 @@
     "history_emne_prefix_required": "em_his_",
     "migration_note": "Historiske steder og personer skal bruke em_his_* fra denne pakken. Em_by_* kan brukes som inspirasjon i byfaget, men ikke som faglig emne-ID i places_historie eller people_historie."
   },
-  "updated_at": "2026-07-25"
+  "updated_at": "2026-07-26"
 }

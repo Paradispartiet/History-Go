@@ -13,36 +13,36 @@
     "enforcement": "Audit exits non-zero for malformed or stale reports. Use --require-complete only when all required cells and production checks are genuinely satisfied."
   },
   "source_fingerprints": {
-    "data/fag/historie/historie_universal_coverage_contract_v1.json": "1c1b51ed6b145f080b624f8af6f815ce38388cb086f4d264f946de024574c14b",
-    "data/fag/historie/historie_v5_contract.json": "2c28b286d116c46b168280a8d441c5962894516cdc2ec770bdf671dee777ce64",
-    "data/fag/historie/emner_historie_canonical_v4_5.json": "eba1f65eb0340f999108f81d503864234f1e1572fa7b2b744d0b4c881f1b37a9",
-    "data/fag/historie/historiepensum_canonical_v4_5.json": "6c83ae729a290013e87c73d0c2a4a6c9370b6f0bb2c32a524d5b1480a0facf54",
-    "data/fag/historie/methods_historie_canonical_v4_5.json": "2ec7f7adfc76757fa9a8b69dd93a4c34e65b3a92482ca46da5f013388703800c",
-    "data/fag/historie/concepts_historie_canonical_v5_5.json": "38da17817f7c84b0d7df6ec07cea5864d54667be150991989a85887bcad50b9e",
-    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "acfde2f22b8aef5878051be60f3c671ec96d19cf1107afd982c6c1909495137c",
-    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "864fdb04eea41229c12eecd1e672e6cd3ca269b6f32a94dc3afba98541f826a6",
-    "reports/historie-v5/historie-v5-5-readiness.json": "361bc281e4959ef2795f8d7c7cb0f4cc99d16f49d877f21244739e53f27a519c"
+    "data/fag/historie/historie_universal_coverage_contract_v1.json": "fddc0740f60a65cace7ab5cb33df909d007f2dd6adb8c1986c0aa02dad46d00f",
+    "data/fag/historie/historie_v5_contract.json": "83da873cc3e60c2b40bbb603340f3f3db1d01e2d3164d88ebdfe3ee298fa7892",
+    "data/fag/historie/emner_historie_canonical_v4_5.json": "139b700343480939658bd9ee4e53f3591d7a6b1353f5fe54161b585496a3930a",
+    "data/fag/historie/historiepensum_canonical_v4_5.json": "f028c49ca7da30c1dab91ae9e219c708e7187b96ea152d7cd220b508a1ac41e5",
+    "data/fag/historie/methods_historie_canonical_v4_5.json": "dd8822b3d2756bd131788c823c4c5a4d513e77a53cd0712177b83b2e6b52b186",
+    "data/fag/historie/concepts_historie_canonical_v5_5.json": "9ac3896d2b5e25c5c846397b4adab55ce8f09a10003bf39bd4dd2186e3de2884",
+    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "54788ec2a866d829c5d4584a6ed7691363352ccdae3e731638c1ac84b1cad4c5",
+    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "b31aa0f3eeeefa892c64c024f0b8632a7da7871a3d88856ce7264cc4f3f86795",
+    "reports/historie-v5/historie-v5-6-readiness.json": "358c820eb0f856f480d59adb408cc7efce3f9105fdf9c40eb32de10687415aa4"
   },
   "inventory": {
-    "domains": 20,
-    "emner": 200,
-    "methods": 87,
-    "concepts": 826,
-    "theories": 200
+    "domains": 21,
+    "emner": 210,
+    "methods": 91,
+    "concepts": 876,
+    "theories": 210
   },
   "legacy_internal_readiness": {
     "status": "FREEZE_READY",
-    "total_domains": 20,
-    "covered_domains": 20,
-    "all_domains_coverage_complete": true,
-    "false_complete_conflict": true,
+    "total_domains": 21,
+    "covered_domains": 21,
+    "all_domains_coverage_complete": false,
+    "false_complete_conflict": false,
     "interpretation": "The legacy readiness report verifies the selected V5.5 inventory. It does not independently establish universal subject coverage."
   },
   "summary": {
     "total_cells": 59,
-    "covered_cells": 37,
-    "partial_cells": 9,
-    "missing_cells": 13,
+    "covered_cells": 41,
+    "partial_cells": 10,
+    "missing_cells": 8,
     "production_passes": 5,
     "production_gaps": 6
   },
@@ -53,81 +53,221 @@
       "requirement": "Fra forhistorie til samtid uten store kronologiske hull.",
       "status": "INCOMPLETE",
       "counts": {
-        "covered": 6,
+        "covered": 10,
         "partial": 3,
-        "missing": 5
+        "missing": 1
       },
       "cells": [
         {
           "id": "forhistorie_arkeologi",
           "label": "Forhistorie og arkeologi",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 10,
+            "supporting_emner": 10,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forhistorie_arkeologi"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_arkeologisk_kontekst_formation",
+              "title": "Arkeologiske kilder, kontekst og formasjonsprosesser",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi",
+                "arkeologisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_arkeologisk_datering_kronologi",
+              "title": "Arkeologisk datering, stratigrafi og kronologi",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi",
+                "arkeologisk"
+              ]
+            },
+            {
+              "emne_id": "em_his_menneskelig_utvikling_mobilitet",
+              "title": "Menneskelig utvikling, mobilitet og jeger-sanker-samfunn",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_steinalder_teknologi_bosetning",
+              "title": "Steinalderens teknologi, bosetning og livsgrunnlag",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_neolitisering_jordbruk_sedentisme",
+              "title": "Neolitisering, jordbruk og bofasthet",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_bronsealder_utveksling_ritual",
+              "title": "Bronsealderens metall, utveksling og ritualer",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_jernalder_gard_handverk_makt",
+              "title": "Jernalderens gårder, håndverk og maktlandskap",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_vikingtid_mobilitet_handel_makt",
+              "title": "Vikingtidens mobilitet, handel, vold og statsdannelse",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "forhistorie",
+                "arkeologi"
+              ]
+            }
+          ],
           "gap_action": "Opprett et universelt domene eller en tydelig emnegruppe for forhistorie, arkeologisk metode og materiell kildeanalyse."
         },
         {
           "id": "steinalder",
           "label": "Steinalder",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 1,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 2,
+            "supporting_emner": 2,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forhistorie_arkeologi"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_steinalder_teknologi_bosetning",
+              "title": "Steinalderens teknologi, bosetning og livsgrunnlag",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "steinalder"
+              ]
+            },
+            {
+              "emne_id": "em_his_neolitisering_jordbruk_sedentisme",
+              "title": "Neolitisering, jordbruk og bofasthet",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "neolit"
+              ]
+            }
+          ],
           "gap_action": "Legg til et dedikert steinalderemne med kronologi, teknologi, bosetning, subsistens og arkeologiske kilder."
         },
         {
           "id": "bronsealder",
           "label": "Bronsealder",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 1,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 1,
+            "supporting_emner": 1,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forhistorie_arkeologi"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_bronsealder_utveksling_ritual",
+              "title": "Bronsealderens metall, utveksling og ritualer",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "bronsealder",
+                "bronse"
+              ]
+            }
+          ],
           "gap_action": "Legg til et dedikert bronsealderemne med materiell kultur, utveksling, ritualer og landskapsbruk."
         },
         {
           "id": "jernalder_vikingtid",
           "label": "Jernalder og vikingtid",
-          "status": "MISSING",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 2,
             "minimum_supporting_emner": 2,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "dedicated_emner": 2,
+            "supporting_emner": 2,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forhistorie_arkeologi"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_jernalder_gard_handverk_makt",
+              "title": "Jernalderens gårder, håndverk og maktlandskap",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "jernalder"
+              ]
+            },
+            {
+              "emne_id": "em_his_vikingtid_mobilitet_handel_makt",
+              "title": "Vikingtidens mobilitet, handel, vold og statsdannelse",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "vikingtid"
+              ]
+            }
+          ],
           "gap_action": "Etabler separate emner for jernalderens samfunnsendringer og vikingtidens lokale, nordiske og globale forbindelser."
         },
         {
@@ -141,13 +281,14 @@
           },
           "counts": {
             "dedicated_emner": 10,
-            "supporting_emner": 17,
-            "distinct_areas": 3
+            "supporting_emner": 19,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
             "his_kilder_arkiv_spor",
-            "his_middelalder_kirke_kongemakt"
+            "his_middelalder_kirke_kongemakt",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -339,15 +480,16 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 10,
-            "supporting_emner": 18,
-            "distinct_areas": 4
+            "dedicated_emner": 11,
+            "supporting_emner": 19,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_makt_stat_institusjoner",
             "his_middelalder_kirke_kongemakt",
             "his_1814_statsdannelse",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1005,9 +1147,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 41,
-            "supporting_emner": 200,
-            "distinct_areas": 20
+            "dedicated_emner": 42,
+            "supporting_emner": 205,
+            "distinct_areas": 21
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -1029,7 +1171,8 @@
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1127,9 +1270,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 15,
-            "supporting_emner": 40,
-            "distinct_areas": 7
+            "dedicated_emner": 16,
+            "supporting_emner": 44,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1138,7 +1281,8 @@
             "his_kjonn_familie_livslop",
             "his_okonomi_handel_materielle_systemer",
             "his_samisk_urfolkshistorie",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1238,8 +1382,8 @@
           },
           "counts": {
             "dedicated_emner": 22,
-            "supporting_emner": 80,
-            "distinct_areas": 13
+            "supporting_emner": 83,
+            "distinct_areas": 14
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -1254,7 +1398,8 @@
             "his_samisk_urfolkshistorie",
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1351,14 +1496,15 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 2,
-            "supporting_emner": 8,
-            "distinct_areas": 3
+            "dedicated_emner": 4,
+            "supporting_emner": 11,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
             "his_1814_statsdannelse",
-            "his_okonomi_handel_materielle_systemer"
+            "his_okonomi_handel_materielle_systemer",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1377,6 +1523,24 @@
               "area_label": "Økonomi, handel og materielle systemer",
               "anchors": [
                 "jordbruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_neolitisering_jordbruk_sedentisme",
+              "title": "Neolitisering, jordbruk og bofasthet",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "jordbruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_jernalder_gard_handverk_makt",
+              "title": "Jernalderens gårder, håndverk og maktlandskap",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "gård"
               ]
             },
             {
@@ -1414,24 +1578,6 @@
               "anchors": [
                 "gård"
               ]
-            },
-            {
-              "emne_id": "em_his_embetsstat_demokratisering",
-              "title": "Embetsstat og demokratisering",
-              "area_id": "his_1814_statsdannelse",
-              "area_label": "1814, grunnlov og statsdannelse",
-              "anchors": [
-                "gård"
-              ]
-            },
-            {
-              "emne_id": "em_his_nasjonal_identitet_fortellinger",
-              "title": "Nasjonal identitet og historiske fortellinger",
-              "area_id": "his_1814_statsdannelse",
-              "area_label": "1814, grunnlov og statsdannelse",
-              "anchors": [
-                "gård"
-              ]
             }
           ],
           "gap_action": "Opprett et tydelig felt for jordbruk, bygdesamfunn, ressursbruk, eiendom og matforsyning."
@@ -1447,13 +1593,14 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 24,
-            "distinct_areas": 3
+            "supporting_emner": 26,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_okonomi_handel_materielle_systemer",
             "his_miljo_klima_landskap",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1644,9 +1791,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 6,
-            "supporting_emner": 34,
-            "distinct_areas": 6
+            "dedicated_emner": 7,
+            "supporting_emner": 37,
+            "distinct_areas": 7
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1654,7 +1801,8 @@
             "his_velferd_rett_hverdagsliv",
             "his_kjonn_familie_livslop",
             "his_miljo_klima_landskap",
-            "his_vitenskap_teknologi_kunnskap"
+            "his_vitenskap_teknologi_kunnskap",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1715,17 +1863,18 @@
               ]
             },
             {
-              "emne_id": "em_his_kirke_kloster_middelalder",
-              "title": "Kirke, kloster og middelaldermakt",
-              "area_id": "his_middelalder_kirke_kongemakt",
-              "area_label": "Middelalder, kirke og kongemakt",
+              "emne_id": "em_his_bioarkeologi_helse_demografi",
+              "title": "Bioarkeologi, helse, kosthold og demografi",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
               "anchors": [
+                "helse",
                 "demografi"
               ]
             },
             {
-              "emne_id": "em_his_kongemakt_kirke_konflikt",
-              "title": "Kongemakt, kirke og konflikt",
+              "emne_id": "em_his_kirke_kloster_middelalder",
+              "title": "Kirke, kloster og middelaldermakt",
               "area_id": "his_middelalder_kirke_kongemakt",
               "area_label": "Middelalder, kirke og kongemakt",
               "anchors": [
@@ -1848,8 +1997,8 @@
           },
           "counts": {
             "dedicated_emner": 12,
-            "supporting_emner": 66,
-            "distinct_areas": 14
+            "supporting_emner": 69,
+            "distinct_areas": 15
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -1865,7 +2014,8 @@
             "his_religion_reformasjon_livssyn",
             "his_samisk_urfolkshistorie",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -1955,8 +2105,8 @@
           },
           "counts": {
             "dedicated_emner": 16,
-            "supporting_emner": 48,
-            "distinct_areas": 7
+            "supporting_emner": 51,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -1965,7 +2115,8 @@
             "his_kjonn_familie_livslop",
             "his_religion_reformasjon_livssyn",
             "his_vitenskap_teknologi_kunnskap",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -2069,15 +2220,16 @@
           },
           "counts": {
             "dedicated_emner": 13,
-            "supporting_emner": 30,
-            "distinct_areas": 5
+            "supporting_emner": 33,
+            "distinct_areas": 6
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
             "his_migrasjon_minoritet_tilhorighet",
             "his_minne_kulturarv_historiebruk",
             "his_religion_reformasjon_livssyn",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -2182,12 +2334,13 @@
           },
           "counts": {
             "dedicated_emner": 11,
-            "supporting_emner": 11,
-            "distinct_areas": 2
+            "supporting_emner": 12,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
-            "his_samisk_urfolkshistorie"
+            "his_samisk_urfolkshistorie",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -2282,9 +2435,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 22,
-            "supporting_emner": 52,
-            "distinct_areas": 9
+            "dedicated_emner": 23,
+            "supporting_emner": 54,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -2295,7 +2448,8 @@
             "his_minne_kulturarv_historiebruk",
             "his_kjonn_familie_livslop",
             "his_religion_reformasjon_livssyn",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -2537,9 +2691,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 15,
-            "supporting_emner": 51,
-            "distinct_areas": 9
+            "dedicated_emner": 16,
+            "supporting_emner": 59,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
             "his_makt_stat_institusjoner",
@@ -2550,7 +2704,8 @@
             "his_samisk_urfolkshistorie",
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -2647,9 +2802,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 14,
-            "supporting_emner": 33,
-            "distinct_areas": 9
+            "dedicated_emner": 16,
+            "supporting_emner": 38,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -2660,7 +2815,8 @@
             "his_samisk_urfolkshistorie",
             "his_miljo_klima_landskap",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -2765,9 +2921,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 17,
-            "supporting_emner": 50,
-            "distinct_areas": 11
+            "dedicated_emner": 18,
+            "supporting_emner": 52,
+            "distinct_areas": 12
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -2780,7 +2936,8 @@
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -3200,8 +3357,8 @@
       "status": "INCOMPLETE",
       "counts": {
         "covered": 2,
-        "partial": 2,
-        "missing": 5
+        "partial": 3,
+        "missing": 4
       },
       "cells": [
         {
@@ -3467,15 +3624,16 @@
           },
           "counts": {
             "dedicated_emner": 15,
-            "supporting_emner": 27,
-            "distinct_areas": 5
+            "supporting_emner": 29,
+            "distinct_areas": 6
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
             "his_okonomi_handel_materielle_systemer",
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -3560,7 +3718,7 @@
         {
           "id": "afrika",
           "label": "Afrika",
-          "status": "MISSING",
+          "status": "PARTIAL",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 2,
@@ -3568,11 +3726,23 @@
           },
           "counts": {
             "dedicated_emner": 0,
-            "supporting_emner": 0,
-            "distinct_areas": 0
+            "supporting_emner": 1,
+            "distinct_areas": 1
           },
-          "distinct_area_ids": [],
-          "sample_matches": [],
+          "distinct_area_ids": [
+            "his_forhistorie_arkeologi"
+          ],
+          "sample_matches": [
+            {
+              "emne_id": "em_his_menneskelig_utvikling_mobilitet",
+              "title": "Menneskelig utvikling, mobilitet og jeger-sanker-samfunn",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "afrika"
+              ]
+            }
+          ],
           "gap_action": "Legg inn konkrete afrikanske forløp som mer enn kolonial bakgrunn for europeisk historie."
         },
         {
@@ -3700,9 +3870,9 @@
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 42,
-            "supporting_emner": 200,
-            "distinct_areas": 20
+            "dedicated_emner": 43,
+            "supporting_emner": 205,
+            "distinct_areas": 21
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -3724,7 +3894,8 @@
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -3919,8 +4090,8 @@
           },
           "counts": {
             "dedicated_emner": 15,
-            "supporting_emner": 30,
-            "distinct_areas": 6
+            "supporting_emner": 33,
+            "distinct_areas": 7
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -3928,7 +4099,8 @@
             "his_kjonn_familie_livslop",
             "his_religion_reformasjon_livssyn",
             "his_vitenskap_teknologi_kunnskap",
-            "his_offentlighet_mobilisering_bevegelser"
+            "his_offentlighet_mobilisering_bevegelser",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -4017,12 +4189,13 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 4,
-            "distinct_areas": 2
+            "supporting_emner": 6,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_velferd_rett_hverdagsliv",
-            "his_kjonn_familie_livslop"
+            "his_kjonn_familie_livslop",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -4065,6 +4238,24 @@
                 "barn",
                 "barndom"
               ]
+            },
+            {
+              "emne_id": "em_his_vikingtid_mobilitet_handel_makt",
+              "title": "Vikingtidens mobilitet, handel, vold og statsdannelse",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "unge"
+              ]
+            },
+            {
+              "emne_id": "em_his_bioarkeologi_helse_demografi",
+              "title": "Bioarkeologi, helse, kosthold og demografi",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "oppvekst"
+              ]
             }
           ],
           "gap_action": "Opprett eller utvid barndoms- og ungdomshistorie med egne kilder og institusjoner."
@@ -4080,8 +4271,8 @@
           },
           "counts": {
             "dedicated_emner": 14,
-            "supporting_emner": 43,
-            "distinct_areas": 7
+            "supporting_emner": 47,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -4090,7 +4281,8 @@
             "his_migrasjon_minoritet_tilhorighet",
             "his_kjonn_familie_livslop",
             "his_religion_reformasjon_livssyn",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -4182,13 +4374,14 @@
           },
           "counts": {
             "dedicated_emner": 12,
-            "supporting_emner": 23,
-            "distinct_areas": 3
+            "supporting_emner": 24,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
             "his_religion_reformasjon_livssyn",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -4277,12 +4470,13 @@
           },
           "counts": {
             "dedicated_emner": 11,
-            "supporting_emner": 11,
-            "distinct_areas": 2
+            "supporting_emner": 12,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
-            "his_samisk_urfolkshistorie"
+            "his_samisk_urfolkshistorie",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -4378,11 +4572,12 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 10,
-            "distinct_areas": 1
+            "supporting_emner": 11,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_forhistorie_arkeologi"
           ],
           "sample_matches": [
             {
@@ -4839,8 +5034,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 200,
-          "total": 200,
+          "qualifying": 210,
+          "total": 210,
           "ratio": 1
         },
         "threshold": {
@@ -4855,8 +5050,8 @@
         "type": "emne_boolean_any_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 200,
-          "total": 200,
+          "qualifying": 210,
+          "total": 210,
           "ratio": 1
         },
         "threshold": {
@@ -4871,8 +5066,8 @@
         "type": "emne_boolean_all_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 200,
-          "total": 200,
+          "qualifying": 210,
+          "total": 210,
           "ratio": 1
         },
         "threshold": {
@@ -4887,8 +5082,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 200,
-          "total": 200,
+          "qualifying": 210,
+          "total": 210,
           "ratio": 1
         },
         "threshold": {
@@ -4903,8 +5098,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 200,
-          "total": 200,
+          "qualifying": 210,
+          "total": 210,
           "ratio": 1
         },
         "threshold": {
@@ -4920,8 +5115,8 @@
         "status": "GAP",
         "measured": {
           "violating": 200,
-          "total": 200,
-          "ratio": 1
+          "total": 210,
+          "ratio": 0.952
         },
         "threshold": {
           "maximum_ratio": 0
@@ -4934,9 +5129,9 @@
         "type": "emne_any_array_ratio",
         "status": "GAP",
         "measured": {
-          "qualifying": 0,
-          "total": 200,
-          "ratio": 0
+          "qualifying": 10,
+          "total": 210,
+          "ratio": 0.048
         },
         "threshold": {
           "minimum_items": 4,
@@ -4999,7 +5194,7 @@
         "status": "GAP",
         "measured": {
           "qualifying": 0,
-          "total": 200,
+          "total": 210,
           "ratio": 0
         },
         "threshold": {

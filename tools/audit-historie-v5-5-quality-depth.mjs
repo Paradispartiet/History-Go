@@ -7,13 +7,13 @@ const root = process.cwd();
 const historyDir = path.join(root, 'data/fag/historie');
 const reportDir = path.join(root, 'reports/historie-v5');
 const contractPath = path.join(historyDir, 'historie_v5_contract.json');
-const readinessPath = path.join(reportDir, 'historie-v5-5-readiness.json');
-const manifestPath = path.join(historyDir, 'historie_v5_5_freeze_manifest.json');
-const jsonReportPath = path.join(reportDir, 'historie-v5-5-quality-depth.json');
-const markdownReportPath = path.join(reportDir, 'historie-v5-5-quality-depth.md');
+const readinessPath = path.join(reportDir, 'historie-v5-6-readiness.json');
+const manifestPath = path.join(historyDir, 'historie_v5_6_freeze_manifest.json');
+const jsonReportPath = path.join(reportDir, 'historie-v5-6-quality-depth.json');
+const markdownReportPath = path.join(reportDir, 'historie-v5-6-quality-depth.md');
 const writeFreeze = process.argv.includes('--write-freeze');
 const reasonArg = process.argv.find((arg) => arg.startsWith('--reason='));
-const freezeReason = reasonArg ? reasonArg.slice('--reason='.length) : 'Initial permanent V5.5 quality freeze after 20/20 individual curation.';
+const freezeReason = reasonArg ? reasonArg.slice('--reason='.length) : 'V5.6 quality freeze after adding the universal prehistory and archaeology domain.';
 const A = (value) => Array.isArray(value) ? value : [];
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const writeJson = (file, value) => fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`);
@@ -43,10 +43,16 @@ const fail = (code, id, detail) => errors.push({ code, id, detail });
 const warn = (code, id, detail) => warnings.push({ code, id, detail });
 
 if (readiness.status !== 'FREEZE_READY') fail('readiness_status', 'global', `Expected FREEZE_READY, got ${readiness.status}`);
-if (readiness.v6_allowed !== true) fail('v6_gate_closed', 'global', 'v6_allowed must be true after the V5.5 freeze.');
-for (const [key, expected] of Object.entries({ domains:20, emner:200, mappings:200, concepts:826, theories:200 })) {
-  const actual = key === 'domains' ? A(pensum.domains).length : key === 'emner' ? emner.length : key === 'mappings' ? mappings.length : key === 'concepts' ? concepts.length : theories.length;
-  if (actual !== expected) fail('coverage_count', key, `${actual} != ${expected}`);
+if (readiness.v6_allowed !== true) fail('v6_gate_closed', 'global', 'v6_allowed must be true after the V5.6 freeze.');
+for (const [key, expected] of Object.entries(contract.coverage_counts || {})) {
+  const actual = key === 'domains' ? A(pensum.domains).length
+    : key === 'emner' ? emner.length
+    : key === 'mappings' ? mappings.length
+    : key === 'concepts' ? concepts.length
+    : key === 'theories' || key === 'theory_hooks' ? theories.length
+    : key === 'methods' ? methods.length
+    : null;
+  if (actual != null && actual !== expected) fail('coverage_count', key, `${actual} != ${expected}`);
 }
 if (readiness.quality_issue_totals?.concepts !== 0 || readiness.quality_issue_totals?.theories !== 0 || readiness.quality_issue_totals?.emner !== 0 || readiness.quality_issue_totals?.domains_not_freeze_ready !== 0) {
   fail('readiness_issues', 'global', JSON.stringify(readiness.quality_issue_totals));
@@ -117,7 +123,7 @@ for (const theory of theories) {
   if (!A(theory.method_links).length) fail('theory_methods', id, 'Missing method links.');
   if (!A(theory.thinker_ids).length) fail('theory_thinkers', id, 'Missing thinker path.');
   if (!theory.source_hook_id) fail('theory_hook', id, 'Missing source hook.');
-  if (theory.evidence_ready !== false) fail('theory_evidence_state', id, 'V5.5 theory must remain evidence_ready=false.');
+  if (theory.evidence_ready !== false) fail('theory_evidence_state', id, 'V5.6 theory must remain evidence_ready=false.');
 }
 
 const emneIds = new Set(emner.map((item) => item.emne_id));
@@ -143,7 +149,7 @@ if (!writeFreeze) {
     for (const [file, digest] of Object.entries(manifest.files || {})) {
       const absolute = path.join(root, file);
       if (!fs.existsSync(absolute)) fail('freeze_file_missing', file, 'Frozen file is missing.');
-      else if (sha256(absolute) !== digest) fail('freeze_hash_mismatch', file, 'Canonical V5.5 file changed without refreshing the freeze manifest.');
+      else if (sha256(absolute) !== digest) fail('freeze_hash_mismatch', file, 'Canonical V5.6 file changed without refreshing the freeze manifest.');
     }
     for (const file of Object.keys(fileHashes)) if (!manifest.files?.[file]) fail('freeze_file_untracked', file, 'Authoritative file is not tracked by the freeze manifest.');
   }
@@ -168,14 +174,14 @@ if (writeFreeze && errors.length === 0) {
   manifest = {
     schema_version: '1.0',
     subject_id: 'historie',
-    version: 'v5.5',
+    version: 'v5.6',
     status: 'FROZEN',
     frozen_at: new Date().toISOString(),
     reason: freezeReason,
     readiness: { status:readiness.status, v6_allowed:readiness.v6_allowed, quality_issue_totals:readiness.quality_issue_totals },
     counts: metrics.counts,
     files: fileHashes,
-    update_policy: 'Any mutation of an authoritative V5.5 file requires a reviewed PR, a green depth audit, and an intentionally refreshed manifest with an explicit reason.'
+    update_policy: 'Any mutation of an authoritative V5.6 file requires a reviewed PR, a green depth audit, and an intentionally refreshed manifest with an explicit reason.'
   };
   writeJson(manifestPath, manifest);
 }
@@ -183,7 +189,7 @@ if (writeFreeze && errors.length === 0) {
 const report = {
   schema_version: '1.0',
   subject_id: 'historie',
-  version: 'v5.5',
+  version: 'v5.6',
   generated_at: new Date().toISOString(),
   status: errors.length ? 'FAILED' : 'PASSED',
   freeze_mode: writeFreeze ? 'write' : 'verify',
@@ -194,7 +200,7 @@ const report = {
 };
 writeJson(jsonReportPath, report);
 const lines = [
-  '# Historie V5.5 quality depth audit','',
+  '# Historie V5.6 quality depth audit','',
   `- Status: **${report.status}**`,
   `- Mode: \`${report.freeze_mode}\``,
   `- Domains: ${metrics.counts.domains}/20`,
@@ -216,9 +222,9 @@ const lines = [
   ...(warnings.length ? warnings.map((item)=>`- \`${item.code}\` — \`${item.id}\`: ${item.detail}`) : ['None.']),'',
   '## Freeze policy','',
   manifest ? `Manifest: \`${path.relative(root, manifestPath)}\`, frozen ${manifest.frozen_at}.` : 'No freeze manifest loaded.',
-  'Authoritative V5.5 files may only change through an explicit manifest refresh after a green depth audit.'
+  'Authoritative V5.6 files may only change through an explicit manifest refresh after a green depth audit.'
 ];
 fs.writeFileSync(markdownReportPath, `${lines.join('\n')}\n`);
-console.log(`Historie V5.5 quality depth audit: ${report.status}`);
+console.log(`Historie V5.6 quality depth audit: ${report.status}`);
 console.log(`Concepts ${metrics.counts.concepts}, theories ${metrics.counts.theories}, errors ${errors.length}, warnings ${warnings.length}`);
 if (errors.length) process.exit(1);
