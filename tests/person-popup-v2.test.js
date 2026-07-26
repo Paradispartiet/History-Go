@@ -223,6 +223,29 @@ test("renders the Oslo rådhus core people as rich profiles", async () => {
   }
 });
 
+test("renders the Rådhus political batch and the corrected Kirsten Sand profile", async () => {
+  const targets = [
+    ["data/people/by/oslo/people_by_oslo.json", "albert_nordengen", /Oslo rådhus|Rådhusplassen/],
+    ["data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json", "rolf_stranger", /Oslo rådhus/],
+    ["data/people/politikk/oslo/people_politikk_oslo.json", "haakon_vii", /Oslo rådhus/],
+    ["data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json", "halvdan_eyvind_stokke", /Oslo rådhus/],
+    ["data/people/by/oslo/people_by_oslo.json", "kirsten_sand", /Gjenreisingen av Nord-Troms/]
+  ];
+  for (const [relativePath, personId, expected] of targets) {
+    const { window, captured } = createHarness({ hasQuiz: true });
+    const people = JSON.parse(fs.readFileSync(path.join(__dirname, "..", relativePath), "utf8"));
+    const person = people.find(item => item.id === personId);
+    assert.ok(person, personId);
+    window.showPersonPopup(person);
+    await new Promise(resolve => setImmediate(resolve));
+    assert.match(captured.html, new RegExp(person.name));
+    assert.match(captured.html, /Verk og bidrag/);
+    assert.match(captured.html, expected);
+    assert.match(captured.html, /Kilder og videre lesning/);
+    assert.doesNotMatch(captured.html, /Ingen registrerte verk/);
+  }
+});
+
 test("removes quiz action and empty sections when data is absent", async () => {
   const { window, captured, quizButton } = createHarness({ hasQuiz: false });
 
