@@ -1,7 +1,7 @@
 # Historie — universell heldekning
 
 Status: **canonical dekningspolicy og operativ auditinngang**  
-Eier: `history_universal_coverage`  
+Eier: `history_universal_coverage`
 Sist kontrollert: **2026-07-26**
 
 ## Beslutning
