@@ -1,0 +1,54 @@
+name: Temporary phase 24 documentation inventory
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-docgov-phase24-inventory
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.ref == 'agent/tmp-docgov-phase24-trigger'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact target branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/documentation-governance-phase-24-history-v5-7
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build script tooling
+        run: npm run build:scripts
+
+      - name: Regenerate documentation inventory
+        run: node dist/scripts/check-documentation-governance.mjs
+
+      - name: Validate History universal coverage
+        run: node tools/audit-historie-universal-coverage.mjs --check
+
+      - name: Validate active History quality depth
+        run: node tools/audit-historie-v5-5-quality-depth.mjs
+
+      - name: Verify and commit only the inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          changed="$(git diff --name-only)"
+          if [ "$changed" != "reports/documentation-governance/inventory.json" ]; then
+            printf 'Unexpected tracked changes:\n%s\n' "$changed" >&2
+            exit 1
+          fi
+          git add reports/documentation-governance/inventory.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Regenerer dokumentasjonsgovernance-inventar"
+          git push origin HEAD:refs/heads/agent/documentation-governance-phase-24-history-v5-7
