@@ -1,0 +1,54 @@
+name: One-time materialize history universal coverage
+
+on:
+  pull_request:
+    paths:
+      - '.github/history-universal-coverage-materialize-trigger'
+      - '.github/workflows/one-time-materialize-history-universal-coverage.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'agent/history-universal-coverage-audit'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out triggering branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Materialize and save audit output
+        shell: bash
+        run: |
+          mkdir -p reports/historie-universal-coverage
+          node tools/audit-historie-universal-coverage.mjs \
+            | tee reports/historie-universal-coverage/audit-command.log
+
+      - name: Verify materialized reports
+        run: node tools/audit-historie-universal-coverage.mjs --check
+
+      - name: Publish reports and remove one-time job
+        shell: bash
+        run: |
+          rm .github/workflows/one-time-materialize-history-universal-coverage.yml
+          rm .github/history-universal-coverage-materialize-trigger
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            reports/historie-universal-coverage/historie-universal-coverage.json \
+            reports/historie-universal-coverage/historie-universal-coverage.md \
+            reports/historie-universal-coverage/audit-command.log \
+            .github/workflows/one-time-materialize-history-universal-coverage.yml \
+            .github/history-universal-coverage-materialize-trigger
+          git commit -m 'Materialiser universell historiedekningsrapport'
+          git pull --rebase origin "${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
+          git push origin "HEAD:${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
