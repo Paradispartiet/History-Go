@@ -1,0 +1,113 @@
+name: Probe Feiring ironworks source objects
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.head_ref == 'agent/akershus-feiring-jernverk-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch ironworks objects and nearby ruin geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/akershus-coordinate-feiring-jernverk-source-probe'
+          mkdir -p "$out"
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://api.openstreetmap.org/api/0.6/node/6593405635' \
+            | tee "$out/osm-node-6593405635.xml" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://nominatim.openstreetmap.org/lookup?osm_ids=N6593405635&format=jsonv2&addressdetails=1&extratags=1&namedetails=1' \
+            | tee "$out/nominatim-feiring-jernverk.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://api.openstreetmap.org/api/0.6/map?bbox=11.1585,60.5365,11.1665,60.5430' \
+            | tee "$out/osm-feiring-jernverk-bbox.xml" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --get 'https://ws.geonorge.no/adresser/v1/sok' \
+            --data-urlencode 'sok=Jernverksvegen 50 Feiring' \
+            --data-urlencode 'treffPerSide=20' \
+            | tee "$out/geonorge-jernverksvegen-50.json" >/dev/null
+
+          python - <<'PY' | tee "$out/source-summary.txt"
+          import json
+          import math
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          out=Path('reports/akershus-coordinate-feiring-jernverk-source-probe')
+          legacy=(60.5194,11.1514)
+          museum=(60.5395079,11.1628132)
+
+          def hav(a,b):
+              R=6371000.0; p1,p2=map(math.radians,(a[0],b[0])); dp=math.radians(b[0]-a[0]); dl=math.radians(b[1]-a[1]); h=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2; return 2*R*math.asin(math.sqrt(h))
+
+          root=ET.parse(out/'osm-node-6593405635.xml').getroot(); node=root.find('node')
+          tags={t.attrib['k']:t.attrib['v'] for t in node.findall('tag')}
+          print(f'museum_lat={museum[0]:.12f}')
+          print(f'museum_lon={museum[1]:.12f}')
+          print(f'museum_distance_from_legacy_m={hav(legacy,museum):.1f}')
+          print('museum_tags='+json.dumps(tags,ensure_ascii=False,sort_keys=True))
+
+          nom=json.loads((out/'nominatim-feiring-jernverk.json').read_text())
+          print('nominatim='+json.dumps(nom,ensure_ascii=False,sort_keys=True))
+
+          geo=json.loads((out/'geonorge-jernverksvegen-50.json').read_text())
+          addresses=geo.get('adresser',[]) if isinstance(geo,dict) else []
+          exact=[a for a in addresses if str(a.get('adressetekst','')).lower()=='jernverksvegen 50']
+          print(f'address_total={len(addresses)} exact={len(exact)}')
+          for a in exact:
+              p=a.get('representasjonspunkt') or {}; point=(float(p['lat']),float(p['lon']))
+              print('ADDRESS '+json.dumps(a,ensure_ascii=False,sort_keys=True))
+              print(f'address_distance_to_museum_m={hav(point,museum):.1f} address_distance_from_legacy_m={hav(legacy,point):.1f}')
+
+          site=ET.parse(out/'osm-feiring-jernverk-bbox.xml').getroot()
+          nodes={n.attrib['id']:(float(n.attrib['lat']),float(n.attrib['lon'])) for n in site.findall('node')}
+          rows=[]
+          for elem in list(site):
+              etags={t.attrib['k']:t.attrib['v'] for t in elem.findall('tag')}
+              hay=' '.join(str(v) for v in etags.values()).lower()
+              relevant=any(k in hay for k in ('feiring','jernverk','iron','masovn','blast','ruin','works','museum','atthald')) or etags.get('historic') or etags.get('ruins')=='yes'
+              if not relevant: continue
+              row={'type':elem.tag,'id':elem.attrib.get('id'),'tags':etags}
+              if elem.tag=='node':
+                  row['lat']=float(elem.attrib['lat']); row['lon']=float(elem.attrib['lon'])
+              elif elem.tag=='way':
+                  pts=[nodes[nd.attrib['ref']] for nd in elem.findall('nd') if nd.attrib['ref'] in nodes]
+                  if len(pts)>=3:
+                      row['lat']=sum(p[0] for p in pts)/len(pts); row['lon']=sum(p[1] for p in pts)/len(pts)
+              if 'lat' in row:
+                  row['distance_to_museum_m']=round(hav((row['lat'],row['lon']),museum),1)
+                  row['distance_from_legacy_m']=round(hav((row['lat'],row['lon']),legacy),1)
+              rows.append(row)
+          rows.sort(key=lambda r:r.get('distance_to_museum_m',999999))
+          print('bbox_relevant='+json.dumps(rows,ensure_ascii=False,sort_keys=True))
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/probe-feiring-jernverk.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/akershus-coordinate-feiring-jernverk-source-probe .github/workflows/probe-feiring-jernverk.yml
+          git commit -m 'Persist Feiring ironworks coordinate source evidence'
+          git push origin HEAD:${{ github.head_ref }}
