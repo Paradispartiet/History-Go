@@ -1,14 +1,10 @@
 name: Temporary coordinate documentation repair runner
 
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
+  push:
     branches:
       - main
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - reopened
@@ -19,9 +15,12 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: temporary-coordinate-documentation-repair-runner
+  cancel-in-progress: false
+
 jobs:
   repair:
-    if: github.event.pull_request.head.ref == 'agent/fix-coordinate-doc-governance-review'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repair branch
@@ -30,47 +29,33 @@ jobs:
           ref: agent/fix-coordinate-doc-governance-review
           fetch-depth: 0
 
-      - name: Apply review fixes
+      - name: Apply remaining review fix
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
 
-          registry_path = Path("docs/documentation_registry.json")
-          registry = registry_path.read_text(encoding="utf-8")
+          registry = Path("docs/documentation_registry.json").read_text(encoding="utf-8")
           profile_path = '"path": "docs/PROFILE_PROGRESS_READER_RUNTIME.md"'
-          if registry.count(profile_path) != 0:
-              raise SystemExit(f"Expected missing profile reader entry, found {registry.count(profile_path)}")
-
-          anchor = '''    {
-                "path": "docs/DATA_PRODUCTION_CONTRACT.md",'''
-          profile_entry = '''    {
-                "path": "docs/PROFILE_PROGRESS_READER_RUNTIME.md",
-                "status": "operational",
-                "role": "Aktiv read-only runtimeguide for HGProfileProgressReader og eksisterende progresjonskilder",
-                "owns": [
-                  "profile_progress_reader_runtime"
-                ],
-                "last_verified": "2026-07-25"
-              },
-'''
-          if registry.count(anchor) != 1:
-              raise SystemExit("Expected one DATA_PRODUCTION_CONTRACT registry anchor")
-          registry_path.write_text(registry.replace(anchor, profile_entry + anchor, 1), encoding="utf-8")
+          if registry.count(profile_path) != 1:
+              raise SystemExit(f"Expected exactly one profile reader registry entry, found {registry.count(profile_path)}")
 
           package_path = Path("package.json")
           package = package_path.read_text(encoding="utf-8")
           tools_line = package.split('"tools:check":', 1)[1].split('\n', 1)[0]
-          if "npm run places:coords:evidence:audit" in tools_line:
-              raise SystemExit("Evidence audit is already present in tools:check")
-          anchor = "node tests/coordinate-source-contract-anchor-trust.test.mjs && npm run audit:places-split-manifest-sync"
-          replacement = "node tests/coordinate-source-contract-anchor-trust.test.mjs && npm run places:coords:evidence:audit && npm run audit:places-split-manifest-sync"
-          if package.count(anchor) != 1:
-              raise SystemExit("Expected one tools:check coordinate anchor")
-          package_path.write_text(package.replace(anchor, replacement, 1), encoding="utf-8")
+          evidence_command = "npm run places:coords:evidence:audit"
+          if evidence_command not in tools_line:
+              anchor = "node tests/coordinate-source-contract-anchor-trust.test.mjs && npm run audit:places-split-manifest-sync"
+              replacement = "node tests/coordinate-source-contract-anchor-trust.test.mjs && npm run places:coords:evidence:audit && npm run audit:places-split-manifest-sync"
+              if package.count(anchor) != 1:
+                  raise SystemExit("Expected one tools:check coordinate anchor")
+              package = package.replace(anchor, replacement, 1)
+              package_path.write_text(package, encoding="utf-8")
+          elif tools_line.count(evidence_command) != 1:
+              raise SystemExit("Evidence audit occurs more than once in tools:check")
           PY
 
-      - name: Validate registry and JSON
+      - name: Validate JSON and ownership
         shell: bash
         run: |
           python - <<'PY'
@@ -107,12 +92,18 @@ jobs:
           npm run test:coordinate-source-contract
           npm run places:coords:evidence:audit
 
-      - name: Commit repair
+      - name: Commit final repair
         shell: bash
         run: |
-          test "$(git diff --name-only | sort | tr '\n' ' ')" = "docs/documentation_registry.json package.json "
+          rm -f .github/workflows/temporary-coordinate-documentation-repair-runner.yml
+          rm -f .github/coordinate-repair-trigger.txt
+          if git diff --quiet; then
+            echo "Repair branch already contains the final result."
+            exit 0
+          fi
+          test "$(git diff --name-only | sort | tr '\n' ' ')" = ".github/workflows/temporary-coordinate-documentation-repair-runner.yml package.json "
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/documentation_registry.json package.json
-          git commit -m "Fix coordinate documentation governance review findings"
+          git add package.json .github/workflows/temporary-coordinate-documentation-repair-runner.yml
+          git commit -m "Add coordinate evidence audit to tools check"
           git push origin HEAD:agent/fix-coordinate-doc-governance-review
