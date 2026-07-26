@@ -1,0 +1,55 @@
+name: One-time sync History profile evidence with main
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/one-time-sync-history-profile-evidence.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out profile branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-profile-evidence-foundation-v1
+          fetch-depth: 0
+
+      - name: Merge current main conservatively
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-profile-evidence
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main 2>&1 \
+            | tee reports/historie-profile-evidence/main-sync-fetch.log
+          if ! git merge --no-commit --no-ff origin/main 2>&1 \
+            | tee reports/historie-profile-evidence/main-sync-merge.log; then
+            git status --short 2>&1 \
+              | tee reports/historie-profile-evidence/main-sync-conflicts.log
+            git merge --abort || true
+            exit 1
+          fi
+          git status --short 2>&1 \
+            | tee reports/historie-profile-evidence/main-sync-status.log
+          git add reports/historie-profile-evidence/main-sync-*.log
+          git commit -m 'Synkroniser Historie profilgrunnlag med main'
+          git push origin HEAD:agent/history-profile-evidence-foundation-v1 2>&1 \
+            | tee /tmp/history-profile-evidence-main-sync-publish.log
+
+      - name: Upload sync diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-profile-evidence-main-sync
+          path: |
+            reports/historie-profile-evidence/main-sync-*.log
+            /tmp/history-profile-evidence-main-sync-publish.log
+          if-no-files-found: warn
