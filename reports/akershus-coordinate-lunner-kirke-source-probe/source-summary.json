@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "lunner_kirke",
+  "capturedAt": "2026-07-26",
+  "legacyCoordinate": {
+    "lat": 60.2939,
+    "lon": 10.5866,
+    "r": 260
+  },
+  "appliedObject": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:557779765",
+    "sourceUrl": "https://www.openstreetmap.org/way/557779765",
+    "name": "Lunner kirke",
+    "lat": 60.30747,
+    "lon": 10.55713,
+    "objectClass": "building=church; amenity=place_of_worship",
+    "wikidataId": "Q6514433",
+    "finding": "The named building polygon directly represents Lunner kirke and provides a stable building-level anchor."
+  },
+  "officialVisitorContext": {
+    "sourceProvider": "church",
+    "sourceName": "Lunner kirkelige fellesråd – Våre kirker",
+    "sourceUrl": "https://www.kirken.lunner.no/Artikler/Artikkeldetaljer/ArticleId/110/Vare-kirker",
+    "address": "Kjørkevegen 125, 2730 Lunner",
+    "finding": "The local church authority identifies Lunner kirke and publishes the current visitor address."
+  },
+  "officialHistory": {
+    "sourceProvider": "church",
+    "sourceName": "Lunner kirkelige fellesråd – Lunner kirke historie",
+    "sourceUrl": "https://www.kirken.lunner.no/Portals/0/D_Filer/Lunner%20kirke%20historie.pdf",
+    "finding": "The church contains a small medieval stone church, probably from the middle of the twelfth century, expanded in timber into a cross church in the 1780s."
+  },
+  "heritageIdentity": {
+    "sourceProvider": "riksantikvaren_cross_check",
+    "sourceObjectId": "riksantikvaren-kulturminne:84342",
+    "finding": "Kulturminne ID 84342 independently identifies Lunner kirke as the protected historic church object."
+  },
+  "pilgrimageContext": {
+    "sourceProvider": "church",
+    "sourceName": "Olsok på Hadeland 2026",
+    "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/gran/oppslagstavle/olsok%2020252/",
+    "finding": "The current church programme uses Lunner kirke as the starting point for a pilgrimage walk toward Granavollen, confirming the site's living pilgrimage-route context."
+  },
+  "falseOrSeparateObjects": [
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:5379128398",
+      "name": "Lunner kirkestue",
+      "lat": 60.30727,
+      "lon": 10.55845,
+      "finding": "The kirkestue is a separate nearby building and is not the medieval church anchor."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:10992715759",
+      "name": "Luner Kirke K 30.240",
+      "objectClass": "power=substation",
+      "finding": "The similarly named electrical substation is explicitly rejected as a church coordinate candidate."
+    }
+  ],
+  "distanceAnalysis": {
+    "legacyToAppliedM": 2216.5,
+    "finding": "The legacy coordinate lies approximately 2.22 kilometres southeast of the named church building and must be replaced."
+  },
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateChangeRequired": true,
+    "appliedCoordinate": {
+      "lat": 60.30747,
+      "lon": 10.55713,
+      "r": 260
+    },
+    "coordStatus": "verified_geometry",
+    "coordRole": "building_anchor",
+    "representationLimit": "The point represents Lunner kirke itself. The retained 260-metre radius covers the churchyard and immediate medieval and pilgrimage landscape but is not a legal protection, property or route polygon."
+  }
+}
