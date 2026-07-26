@@ -1,0 +1,71 @@
+name: One-time Stensparken place popup system
+
+on:
+  push:
+    branches:
+      - agent/stensparken-place-popup-system
+    paths:
+      - .github/workflows/one-time-stensparken-place-popup-system.yml
+
+permissions:
+  contents: write
+
+jobs:
+  implement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out popup branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/stensparken-place-popup-system
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Apply structured place popup patch
+        run: python scripts/one-time-stensparken-place-popup-system.py
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild derived place index
+        run: npm run places:index:build
+
+      - name: Validate popup, places and documentation
+        run: |
+          node --check js/ui/place-popup-v2.js
+          node --test tests/place-popup-v2.test.js tests/place-popup-type-sections.test.js
+          npm run places:index:check
+          npm run health:places
+          npm run build:scripts
+          node dist/scripts/check-documentation-governance.mjs
+          npm run build:web:check
+
+      - name: Commit implementation and remove one-time files
+        run: |
+          git rm \
+            .github/workflows/one-time-stensparken-place-popup-system.yml \
+            scripts/one-time-stensparken-place-popup-system.py \
+            scripts/one-time-place-popup-sections.js.txt \
+            scripts/one-time-place-popup-sections.css.txt
+
+          git add \
+            js/ui/place-popup-v2.js \
+            css/place-popup-v2.css \
+            data/places/by/oslo/places/stensparken.json \
+            data/places/places_index.json \
+            docs/PLACE_POPUP_SYSTEM.md \
+            docs/PLACE_STANDARD.md \
+            docs/README.md \
+            docs/documentation_registry.json \
+            tests/place-popup-type-sections.test.js
+
+          git status --short
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Expand place popup type profiles"
+          git push origin HEAD:agent/stensparken-place-popup-system
