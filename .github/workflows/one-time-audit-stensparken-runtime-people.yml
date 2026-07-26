@@ -1,0 +1,89 @@
+name: One-time audit Stensparken runtime people
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/stensparken-runtime-people-audit-trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build runtime reachability audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/stensparken-runtime-people-audit
+          {
+            echo '=== Runtime definitions and call sites ==='
+            rg -n -C 8 'getPeopleForPlace|linkPeopleToPlaces|HG_REL_INDEX|ensureRelationsIndex' js tests || true
+            echo
+            echo '=== Canonical Stensparken profiles ==='
+            node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const manifest = JSON.parse(fs.readFileSync('data/people/manifest.json', 'utf8'));
+          const targetIds = [
+            'kjersti_wexelsen_goksoyr',
+            'sigrid_undset',
+            'harald_aars',
+            'per_barclay',
+            'hagbarth_schytte_berg',
+            'jo_visdal',
+            'miksa_roth',
+            'lars_utne',
+            'jens_bjelke'
+          ];
+          const found = [];
+          for (const relative of manifest.files) {
+            const file = path.join('data', relative);
+            const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const entries = Array.isArray(data) ? data : [data];
+            for (const person of entries) {
+              if (!targetIds.includes(person?.id)) continue;
+              found.push({
+                id: person.id,
+                file,
+                placeId: person.placeId || null,
+                places: Array.isArray(person.places) ? person.places : [],
+                hasStensparken: person.placeId === 'stensparken' || (person.places || []).includes('stensparken')
+              });
+            }
+          }
+          console.log(JSON.stringify(found, null, 2));
+          const ids = new Set(found.map(item => item.id));
+          for (const id of targetIds) {
+            if (!ids.has(id)) {
+              console.error(`Missing canonical profile: ${id}`);
+              process.exitCode = 1;
+            }
+          }
+          if (found.some(item => !item.hasStensparken)) {
+            console.error('At least one profile lacks Stensparken linkage');
+            process.exitCode = 1;
+          }
+          NODE
+            echo
+            echo '=== Stensparken relation seeds ==='
+            node <<'NODE'
+          const fs = require('fs');
+          const place = JSON.parse(fs.readFileSync('data/places/by/oslo/places/stensparken.json', 'utf8'));
+          console.log(JSON.stringify(place.people_relations_seed || [], null, 2));
+          NODE
+          } > reports/stensparken-runtime-people-audit/audit.txt 2>&1
+          cat reports/stensparken-runtime-people-audit/audit.txt
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: stensparken-runtime-people-audit-${{ github.run_id }}
+          path: reports/stensparken-runtime-people-audit/audit.txt
+          if-no-files-found: error
