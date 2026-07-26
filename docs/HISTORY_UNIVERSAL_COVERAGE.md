@@ -134,3 +134,11 @@ V5.7 oppretter **Første verdenskrig og mellomkrigstiden** som universelt domene
 
 Domenet bruker sammenlignbare nordiske, europeiske og globale cases. Eksisterende globalhistorie og offentlighetshistorie er samtidig koblet eksplisitt til nordiske og europeiske mellomkrigsforløp, slik at geografi ikke blir isolert i ett periodedomene.
 <!-- V5_7_WAR_INTERWAR:END -->
+
+<!-- V5_8_COLD_WAR:START -->
+## Tredje faglige reparasjon: V5.8
+
+V5.8 oppretter **Den kalde krigen og etterkrigssamfunnet 1945–1991** som universelt domene med ti emner. Utvidelsen dekker supermakter og blokker, atomvåpen, globale stedfortrederkriger, avkolonisering og alliansefrihet, Europas deling og 1989, Norge og Norden, velferdsstat og planlegging, bønder og fiskere, religiøse fellesskap samt fattige og sosialt marginaliserte.
+
+Domenet bruker sammenlignbare nordiske, europeiske og globale cases og lukker fire dokumenterte dekningsgap uten å redusere auditterskler. Oslo og Akershus forblir et separat geografisk profil- og produksjonsarbeid.
+<!-- V5_8_COLD_WAR:END -->

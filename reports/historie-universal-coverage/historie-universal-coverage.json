@@ -13,35 +13,35 @@
     "enforcement": "Audit exits non-zero for malformed or stale reports. Use --require-complete only when all required cells and production checks are genuinely satisfied."
   },
   "source_fingerprints": {
-    "data/fag/historie/historie_universal_coverage_contract_v1.json": "24d6769b9ac2ae2811fa2e92d6417d5ec31f862cd663082eef98520b50c3abd5",
-    "data/fag/historie/historie_v5_contract.json": "e3e44b2b01bbb13217e99ad401cec1f7ca5a0af3033472354055e4cd7f2497f5",
-    "data/fag/historie/emner_historie_canonical_v4_5.json": "692bff5c48b69aac506ee7bd22937793572773a8c5d7c0bea395735e11f0f3f2",
-    "data/fag/historie/historiepensum_canonical_v4_5.json": "23c5909ac2dc1e78378e1e257b8a7816ad27fd06f531238dc07c842ab2e0d246",
-    "data/fag/historie/methods_historie_canonical_v4_5.json": "bc44eeaceca90a078162eda77831dc724f401c70f2202b9ffb9eeb4004de5b8c",
-    "data/fag/historie/concepts_historie_canonical_v5_5.json": "ec5c595e469285d4902e2828c9a44d21d4a506d5bf1c1ef2070b1c1255a192cd",
-    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "c2ce99159cf6b3f185095aacd10737b0b0dbef9f7a35b93d8989d6868fe84965",
-    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "760041fa21964a12dd34c5af66d263fd99d51dd12a8343d2fd1526a1c2b65fab",
-    "reports/historie-v5/historie-v5-7-readiness.json": "ddd3531862a7af9631aa96bc2544b8f6ac9d7c4a445a96ffc93368ade2802e41"
+    "data/fag/historie/historie_universal_coverage_contract_v1.json": "599dc01edaec4f50ab001e24f074516694a2807a0de26541b3007d7c4c2066b5",
+    "data/fag/historie/historie_v5_contract.json": "13db441d8e8a6d6407fa92ec5c7dbb2285baea3bb992754d2b98cf7308241ceb",
+    "data/fag/historie/emner_historie_canonical_v4_5.json": "c3932eb743bfb94ab45516adf4895d42682241fc8e30716cd38bb81d3a812239",
+    "data/fag/historie/historiepensum_canonical_v4_5.json": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+    "data/fag/historie/methods_historie_canonical_v4_5.json": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+    "data/fag/historie/concepts_historie_canonical_v5_5.json": "446285172c50f7e5bfedfb07982570a322523ff8320f04f6a216fae2df96d011",
+    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "564c1b315400c2d0b1767d20fcff39f945cc518dd9f07a66c0ee5f90d46648db",
+    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+    "reports/historie-v5/historie-v5-8-readiness.json": "2fe183d81fd9b7cef03473f092ca41bcfaa41aab14a38f6b909d04b1d9b191c5"
   },
   "inventory": {
-    "domains": 22,
-    "emner": 220,
-    "methods": 98,
-    "concepts": 926,
-    "theories": 220
+    "domains": 23,
+    "emner": 230,
+    "methods": 105,
+    "concepts": 976,
+    "theories": 230
   },
   "legacy_internal_readiness": {
     "status": "FREEZE_READY",
-    "total_domains": 22,
-    "covered_domains": 22,
+    "total_domains": 23,
+    "covered_domains": 23,
     "all_domains_coverage_complete": false,
     "false_complete_conflict": false,
     "interpretation": "The legacy readiness report verifies the selected V5.5 inventory. It does not independently establish universal subject coverage."
   },
   "summary": {
     "total_cells": 59,
-    "covered_cells": 54,
-    "partial_cells": 5,
+    "covered_cells": 58,
+    "partial_cells": 1,
     "missing_cells": 0,
     "production_passes": 5,
     "production_gaps": 6
@@ -51,10 +51,10 @@
       "id": "time",
       "label": "Tid",
       "requirement": "Fra forhistorie til samtid uten store kronologiske hull.",
-      "status": "INCOMPLETE",
+      "status": "COMPLETE",
       "counts": {
-        "covered": 13,
-        "partial": 1,
+        "covered": 14,
+        "partial": 0,
         "missing": 0
       },
       "cells": [
@@ -480,9 +480,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 12,
-            "supporting_emner": 21,
-            "distinct_areas": 6
+            "dedicated_emner": 13,
+            "supporting_emner": 25,
+            "distinct_areas": 7
           },
           "distinct_area_ids": [
             "his_makt_stat_institusjoner",
@@ -490,7 +490,8 @@
             "his_1814_statsdannelse",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -594,16 +595,17 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 2,
-            "supporting_emner": 12,
-            "distinct_areas": 5
+            "dedicated_emner": 3,
+            "supporting_emner": 14,
+            "distinct_areas": 6
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
             "his_industri_arbeid_sosialhistorie",
             "his_byhistorie_stedsendring",
             "his_miljo_klima_landskap",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -624,6 +626,15 @@
               "anchors": [
                 "industrialisering",
                 "industrialiser"
+              ]
+            },
+            {
+              "emne_id": "em_his_bonder_fiskere_bygdesamfunn_modernisering",
+              "title": "Bønder, fiskere og bygdesamfunn i den kalde krigens modernisering",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "modernisering"
               ]
             },
             {
@@ -675,15 +686,6 @@
                 "industrialisering",
                 "industrialiser"
               ]
-            },
-            {
-              "emne_id": "em_his_byutvidelse_gentrifisering",
-              "title": "Byutvidelse, grenser og innlemmelse",
-              "area_id": "his_byhistorie_stedsendring",
-              "area_label": "Byhistorie og stedsendring",
-              "anchors": [
-                "urbanisering"
-              ]
             }
           ],
           "gap_action": "Sikre sammenheng mellom teknologi, arbeid, urbanisering, klasse, migrasjon og politisk mobilisering."
@@ -699,12 +701,13 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 12,
-            "distinct_areas": 2
+            "supporting_emner": 13,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_global_kolonial_transnasjonal",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -996,14 +999,15 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 11,
-            "supporting_emner": 17,
-            "distinct_areas": 3
+            "dedicated_emner": 21,
+            "supporting_emner": 27,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_krig_okkupasjon_motstand",
             "his_migrasjon_minoritet_tilhorighet",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1092,19 +1096,20 @@
         {
           "id": "kald_krig_1945_1991",
           "label": "Den kalde krigen 1945–1991",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 2,
             "minimum_supporting_emner": 3,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 1,
-            "supporting_emner": 1,
-            "distinct_areas": 1
+            "dedicated_emner": 11,
+            "supporting_emner": 11,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_krig_okkupasjon_motstand"
+            "his_krig_okkupasjon_motstand",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1114,6 +1119,85 @@
               "area_label": "Krig, okkupasjon og motstand",
               "anchors": [
                 "kald krig"
+              ]
+            },
+            {
+              "emne_id": "em_his_kald_krig_supermakter_allianser",
+              "title": "Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "kald krig",
+                "1945–1991",
+                "1945-1991"
+              ]
+            },
+            {
+              "emne_id": "em_his_atomvapen_avskrekking_opprustning",
+              "title": "Atomvåpen, avskrekking og rustningskappløp under den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "kald krig",
+                "1945–1991",
+                "1945-1991",
+                "atomvåpen"
+              ]
+            },
+            {
+              "emne_id": "em_his_stedfortrederkriger_globale_konflikter",
+              "title": "Stedfortrederkriger og globale konflikter i den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "kald krig",
+                "1945–1991",
+                "1945-1991"
+              ]
+            },
+            {
+              "emne_id": "em_his_avkolonisering_alliansefrihet_utvikling",
+              "title": "Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "kald krig",
+                "1945–1991",
+                "1945-1991"
+              ]
+            },
+            {
+              "emne_id": "em_his_delt_europa_ostblokk_1989",
+              "title": "Et delt Europa: østblokk, vestlig integrasjon og revolusjonene i 1989",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "kald krig",
+                "1945–1991",
+                "1945-1991"
+              ]
+            },
+            {
+              "emne_id": "em_his_norge_norden_nato_noytralitet",
+              "title": "Norge og Norden i den kalde krigen: NATO, nøytralitet og sikkerhetsstat",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "kald krig",
+                "1945–1991",
+                "1945-1991",
+                "nato"
+              ]
+            },
+            {
+              "emne_id": "em_his_velferdsstat_planlegging_forbruk",
+              "title": "Velferdsstat, planlegging og forbrukersamfunn etter 1945",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "kald krig",
+                "1945–1991",
+                "1945-1991"
               ]
             }
           ],
@@ -1239,9 +1323,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 45,
-            "supporting_emner": 215,
-            "distinct_areas": 22
+            "dedicated_emner": 47,
+            "supporting_emner": 224,
+            "distinct_areas": 23
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -1265,7 +1349,8 @@
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1364,8 +1449,8 @@
           },
           "counts": {
             "dedicated_emner": 18,
-            "supporting_emner": 48,
-            "distinct_areas": 9
+            "supporting_emner": 55,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1376,7 +1461,8 @@
             "his_samisk_urfolkshistorie",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1476,8 +1562,8 @@
           },
           "counts": {
             "dedicated_emner": 23,
-            "supporting_emner": 90,
-            "distinct_areas": 15
+            "supporting_emner": 97,
+            "distinct_areas": 16
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -1494,7 +1580,8 @@
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1592,15 +1679,16 @@
           },
           "counts": {
             "dedicated_emner": 4,
-            "supporting_emner": 12,
-            "distinct_areas": 5
+            "supporting_emner": 13,
+            "distinct_areas": 6
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
             "his_1814_statsdannelse",
             "his_okonomi_handel_materielle_systemer",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1689,15 +1777,16 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 28,
-            "distinct_areas": 5
+            "supporting_emner": 29,
+            "distinct_areas": 6
           },
           "distinct_area_ids": [
             "his_okonomi_handel_materielle_systemer",
             "his_miljo_klima_landskap",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1788,9 +1877,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 23,
-            "supporting_emner": 58,
-            "distinct_areas": 7
+            "dedicated_emner": 25,
+            "supporting_emner": 62,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1799,7 +1888,8 @@
             "his_velferd_rett_hverdagsliv",
             "his_kjonn_familie_livslop",
             "his_religion_reformasjon_livssyn",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1889,8 +1979,8 @@
           },
           "counts": {
             "dedicated_emner": 7,
-            "supporting_emner": 38,
-            "distinct_areas": 8
+            "supporting_emner": 39,
+            "distinct_areas": 9
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -1900,7 +1990,8 @@
             "his_miljo_klima_landskap",
             "his_vitenskap_teknologi_kunnskap",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -1993,8 +2084,8 @@
           },
           "counts": {
             "dedicated_emner": 6,
-            "supporting_emner": 35,
-            "distinct_areas": 8
+            "supporting_emner": 37,
+            "distinct_areas": 9
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -2004,7 +2095,8 @@
             "his_kjonn_familie_livslop",
             "his_samisk_urfolkshistorie",
             "his_vitenskap_teknologi_kunnskap",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -2095,8 +2187,8 @@
           },
           "counts": {
             "dedicated_emner": 15,
-            "supporting_emner": 78,
-            "distinct_areas": 16
+            "supporting_emner": 88,
+            "distinct_areas": 17
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -2114,7 +2206,8 @@
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -2204,8 +2297,8 @@
           },
           "counts": {
             "dedicated_emner": 16,
-            "supporting_emner": 53,
-            "distinct_areas": 9
+            "supporting_emner": 54,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -2216,7 +2309,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -2320,8 +2414,8 @@
           },
           "counts": {
             "dedicated_emner": 13,
-            "supporting_emner": 35,
-            "distinct_areas": 7
+            "supporting_emner": 36,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -2330,7 +2424,8 @@
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -2537,8 +2632,8 @@
           },
           "counts": {
             "dedicated_emner": 23,
-            "supporting_emner": 55,
-            "distinct_areas": 11
+            "supporting_emner": 56,
+            "distinct_areas": 12
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -2551,7 +2646,8 @@
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -2689,11 +2785,12 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 2,
-            "distinct_areas": 1
+            "supporting_emner": 5,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -2716,6 +2813,33 @@
                 "idéhistorie",
                 "idehistorie",
                 "intellektuell historie",
+                "ideologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_kald_krig_supermakter_allianser",
+              "title": "Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "ideologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_stedfortrederkriger_globale_konflikter",
+              "title": "Stedfortrederkriger og globale konflikter i den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "ideologi"
+              ]
+            },
+            {
+              "emne_id": "em_his_religiose_fellesskap_fred_antikommunisme",
+              "title": "Religiøse fellesskap, menigheter og fredsmobilisering under den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
                 "ideologi"
               ]
             }
@@ -2875,8 +2999,8 @@
           },
           "counts": {
             "dedicated_emner": 16,
-            "supporting_emner": 61,
-            "distinct_areas": 11
+            "supporting_emner": 64,
+            "distinct_areas": 12
           },
           "distinct_area_ids": [
             "his_makt_stat_institusjoner",
@@ -2889,7 +3013,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -2987,8 +3112,8 @@
           },
           "counts": {
             "dedicated_emner": 16,
-            "supporting_emner": 39,
-            "distinct_areas": 11
+            "supporting_emner": 42,
+            "distinct_areas": 12
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -3001,7 +3126,8 @@
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -3106,9 +3232,9 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 28,
-            "supporting_emner": 63,
-            "distinct_areas": 13
+            "dedicated_emner": 38,
+            "supporting_emner": 73,
+            "distinct_areas": 14
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -3123,7 +3249,8 @@
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -3338,14 +3465,15 @@
           },
           "counts": {
             "dedicated_emner": 13,
-            "supporting_emner": 21,
-            "distinct_areas": 4
+            "supporting_emner": 22,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
             "his_byhistorie_stedsendring",
             "his_katastrofer_brudd_ulykker",
-            "his_miljo_klima_landskap"
+            "his_miljo_klima_landskap",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -3440,15 +3568,16 @@
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 13,
-            "supporting_emner": 19,
-            "distinct_areas": 4
+            "dedicated_emner": 14,
+            "supporting_emner": 23,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -3674,9 +3803,9 @@
             "minimum_distinct_areas": 3
           },
           "counts": {
-            "dedicated_emner": 13,
-            "supporting_emner": 45,
-            "distinct_areas": 10
+            "dedicated_emner": 14,
+            "supporting_emner": 46,
+            "distinct_areas": 11
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -3688,7 +3817,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -3776,14 +3906,15 @@
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 2,
-            "supporting_emner": 4,
-            "distinct_areas": 3
+            "dedicated_emner": 3,
+            "supporting_emner": 5,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -3801,6 +3932,15 @@
               "title": "Demokrati, massepolitikk og sosial konflikt i Europa og Norden",
               "area_id": "his_forste_verdenskrig_mellomkrig",
               "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "norden"
+              ]
+            },
+            {
+              "emne_id": "em_his_norge_norden_nato_noytralitet",
+              "title": "Norge og Norden i den kalde krigen: NATO, nøytralitet og sikkerhetsstat",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
               "anchors": [
                 "norden"
               ]
@@ -3841,14 +3981,15 @@
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 3,
-            "supporting_emner": 9,
-            "distinct_areas": 3
+            "dedicated_emner": 4,
+            "supporting_emner": 10,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -3874,6 +4015,15 @@
               "title": "Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk",
               "area_id": "his_forste_verdenskrig_mellomkrig",
               "area_label": "Første verdenskrig og mellomkrigstiden",
+              "anchors": [
+                "europa"
+              ]
+            },
+            {
+              "emne_id": "em_his_delt_europa_ostblokk_1989",
+              "title": "Et delt Europa: østblokk, vestlig integrasjon og revolusjonene i 1989",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
               "anchors": [
                 "europa"
               ]
@@ -3917,15 +4067,6 @@
                 "europa",
                 "europeisk"
               ]
-            },
-            {
-              "emne_id": "em_his_global_kolonial_verdenskrig",
-              "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
-              "area_id": "his_forste_verdenskrig_mellomkrig",
-              "area_label": "Første verdenskrig og mellomkrigstiden",
-              "anchors": [
-                "europeisk"
-              ]
             }
           ],
           "gap_action": "Sikre europeiske forbindelser uten å la Europa representere hele verden."
@@ -3940,9 +4081,9 @@
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 16,
-            "supporting_emner": 32,
-            "distinct_areas": 7
+            "dedicated_emner": 17,
+            "supporting_emner": 35,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
@@ -3951,7 +4092,8 @@
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4044,12 +4186,13 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 3,
-            "distinct_areas": 2
+            "supporting_emner": 5,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4078,6 +4221,24 @@
               "anchors": [
                 "afrika"
               ]
+            },
+            {
+              "emne_id": "em_his_stedfortrederkriger_globale_konflikter",
+              "title": "Stedfortrederkriger og globale konflikter i den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "afrika"
+              ]
+            },
+            {
+              "emne_id": "em_his_avkolonisering_alliansefrihet_utvikling",
+              "title": "Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "afrika"
+              ]
             }
           ],
           "gap_action": "Legg inn konkrete afrikanske forløp som mer enn kolonial bakgrunn for europeisk historie."
@@ -4093,12 +4254,13 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 7,
-            "distinct_areas": 2
+            "supporting_emner": 9,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_migrasjon_minoritet_tilhorighet",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4163,6 +4325,15 @@
               "anchors": [
                 "asia"
               ]
+            },
+            {
+              "emne_id": "em_his_stedfortrederkriger_globale_konflikter",
+              "title": "Stedfortrederkriger og globale konflikter i den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "asia"
+              ]
             }
           ],
           "gap_action": "Legg inn konkrete asiatiske forløp, forbindelser og aktørperspektiver."
@@ -4178,11 +4349,12 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 2,
-            "distinct_areas": 1
+            "supporting_emner": 4,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4202,6 +4374,27 @@
               "anchors": [
                 "amerika"
               ]
+            },
+            {
+              "emne_id": "em_his_kald_krig_supermakter_allianser",
+              "title": "Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "amerika",
+                "amerikansk",
+                "usa"
+              ]
+            },
+            {
+              "emne_id": "em_his_stedfortrederkriger_globale_konflikter",
+              "title": "Stedfortrederkriger og globale konflikter i den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "amerika",
+                "latin-amerika"
+              ]
             }
           ],
           "gap_action": "Legg inn nord-, latinamerikanske og karibiske forløp utover enkeltreferanser."
@@ -4217,11 +4410,12 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 2,
-            "distinct_areas": 1
+            "supporting_emner": 3,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4242,6 +4436,15 @@
                 "osmansk",
                 "palestina"
               ]
+            },
+            {
+              "emne_id": "em_his_avkolonisering_alliansefrihet_utvikling",
+              "title": "Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "midtøsten"
+              ]
             }
           ],
           "gap_action": "Legg inn konkrete midtøstlige og nordafrikanske forløp med egne aktører og kilder."
@@ -4252,10 +4455,10 @@
       "id": "actors",
       "label": "Aktører",
       "requirement": "Historien må dekke både institusjonelle makthavere og grupper som ofte forsvinner i kildene.",
-      "status": "INCOMPLETE",
+      "status": "COMPLETE",
       "counts": {
-        "covered": 10,
-        "partial": 3,
+        "covered": 13,
+        "partial": 0,
         "missing": 0
       },
       "cells": [
@@ -4269,9 +4472,9 @@
             "minimum_distinct_areas": 2
           },
           "counts": {
-            "dedicated_emner": 43,
-            "supporting_emner": 215,
-            "distinct_areas": 22
+            "dedicated_emner": 45,
+            "supporting_emner": 224,
+            "distinct_areas": 23
           },
           "distinct_area_ids": [
             "his_tid_periodisering",
@@ -4295,7 +4498,8 @@
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4491,8 +4695,8 @@
           },
           "counts": {
             "dedicated_emner": 15,
-            "supporting_emner": 35,
-            "distinct_areas": 8
+            "supporting_emner": 36,
+            "distinct_areas": 9
           },
           "distinct_area_ids": [
             "his_industri_arbeid_sosialhistorie",
@@ -4502,7 +4706,8 @@
             "his_vitenskap_teknologi_kunnskap",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4591,13 +4796,14 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 6,
-            "distinct_areas": 3
+            "supporting_emner": 7,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_velferd_rett_hverdagsliv",
             "his_kjonn_familie_livslop",
-            "his_forhistorie_arkeologi"
+            "his_forhistorie_arkeologi",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4658,6 +4864,15 @@
               "anchors": [
                 "oppvekst"
               ]
+            },
+            {
+              "emne_id": "em_his_norge_norden_nato_noytralitet",
+              "title": "Norge og Norden i den kalde krigen: NATO, nøytralitet og sikkerhetsstat",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "unge"
+              ]
             }
           ],
           "gap_action": "Opprett eller utvid barndoms- og ungdomshistorie med egne kilder og institusjoner."
@@ -4673,8 +4888,8 @@
           },
           "counts": {
             "dedicated_emner": 14,
-            "supporting_emner": 50,
-            "distinct_areas": 9
+            "supporting_emner": 53,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
@@ -4685,7 +4900,8 @@
             "his_religion_reformasjon_livssyn",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -4976,13 +5192,14 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 12,
-            "distinct_areas": 3
+            "supporting_emner": 13,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
-            "his_forste_verdenskrig_mellomkrig"
+            "his_forste_verdenskrig_mellomkrig",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -5063,19 +5280,20 @@
         {
           "id": "bonder_landsbygd",
           "label": "Bønder, fiskere og bygdesamfunn",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 3,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 1,
-            "supporting_emner": 1,
-            "distinct_areas": 1
+            "dedicated_emner": 2,
+            "supporting_emner": 4,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_middelalder_kirke_kongemakt"
+            "his_middelalder_kirke_kongemakt",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -5086,6 +5304,39 @@
               "anchors": [
                 "bonde"
               ]
+            },
+            {
+              "emne_id": "em_his_bonder_fiskere_bygdesamfunn_modernisering",
+              "title": "Bønder, fiskere og bygdesamfunn i den kalde krigens modernisering",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "bønder",
+                "fisker",
+                "bygdesamfunn"
+              ]
+            },
+            {
+              "emne_id": "em_his_avkolonisering_alliansefrihet_utvikling",
+              "title": "Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "bønder",
+                "fisker",
+                "bygdesamfunn"
+              ]
+            },
+            {
+              "emne_id": "em_his_velferdsstat_planlegging_forbruk",
+              "title": "Velferdsstat, planlegging og forbrukersamfunn etter 1945",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "bønder",
+                "fisker",
+                "bygdesamfunn"
+              ]
             }
           ],
           "gap_action": "Sikre rurale aktører og primærnæringer i flere tidsperioder."
@@ -5093,22 +5344,33 @@
         {
           "id": "religiøse_fellesskap",
           "label": "Religiøse fellesskap",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 3,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 17,
-            "distinct_areas": 2
+            "dedicated_emner": 1,
+            "supporting_emner": 18,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
-            "his_religion_reformasjon_livssyn"
+            "his_religion_reformasjon_livssyn",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
+            {
+              "emne_id": "em_his_religiose_fellesskap_fred_antikommunisme",
+              "title": "Religiøse fellesskap, menigheter og fredsmobilisering under den kalde krigen",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "menighet",
+                "religiøse fellesskap"
+              ]
+            },
             {
               "emne_id": "em_his_kirke_kloster_middelalder",
               "title": "Kirke, kloster og middelaldermakt",
@@ -5171,15 +5433,6 @@
               "anchors": [
                 "kirkelig"
               ]
-            },
-            {
-              "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-              "title": "Svartedauden og senmiddelalderens omforming",
-              "area_id": "his_middelalder_kirke_kongemakt",
-              "area_label": "Middelalder, kirke og kongemakt",
-              "anchors": [
-                "kirkelig"
-              ]
             }
           ],
           "gap_action": "Sikre religiøse fellesskap som aktører, ikke bare religion som institusjon."
@@ -5195,12 +5448,13 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 11,
-            "distinct_areas": 2
+            "supporting_emner": 12,
+            "distinct_areas": 3
           },
           "distinct_area_ids": [
             "his_vitenskap_teknologi_kunnskap",
-            "his_global_kolonial_transnasjonal"
+            "his_global_kolonial_transnasjonal",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -5281,21 +5535,34 @@
         {
           "id": "fattige_marginaliserte",
           "label": "Fattige og sosialt marginaliserte",
-          "status": "PARTIAL",
+          "status": "COVERED",
           "thresholds": {
             "minimum_dedicated_emner": 1,
             "minimum_supporting_emner": 3,
             "minimum_distinct_areas": 1
           },
           "counts": {
-            "dedicated_emner": 0,
-            "supporting_emner": 3,
-            "distinct_areas": 1
+            "dedicated_emner": 1,
+            "supporting_emner": 5,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_migrasjon_minoritet_tilhorighet"
+            "his_migrasjon_minoritet_tilhorighet",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
+            {
+              "emne_id": "em_his_fattige_marginaliserte_velferdseksklusjon",
+              "title": "Fattige, hjemløse og sosialt marginaliserte i etterkrigstidens velferdssamfunn",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "marginalisert",
+                "fattige",
+                "fattigdom",
+                "hjemløs"
+              ]
+            },
             {
               "emne_id": "em_his_tilhorighet_ekskludering",
               "title": "Tilhørighet, identitet og ekskludering",
@@ -5322,6 +5589,15 @@
               "anchors": [
                 "utenforskap"
               ]
+            },
+            {
+              "emne_id": "em_his_velferdsstat_planlegging_forbruk",
+              "title": "Velferdsstat, planlegging og forbrukersamfunn etter 1945",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
+              "anchors": [
+                "fattigdom"
+              ]
             }
           ],
           "gap_action": "Legg til tydelige aktørperspektiver for fattige og andre sosialt marginaliserte grupper."
@@ -5337,14 +5613,15 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 18,
-            "distinct_areas": 4
+            "supporting_emner": 19,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
             "his_velferd_rett_hverdagsliv",
             "his_minne_kulturarv_historiebruk",
-            "his_vitenskap_teknologi_kunnskap"
+            "his_vitenskap_teknologi_kunnskap",
+            "his_kald_krig_etterkrig"
           ],
           "sample_matches": [
             {
@@ -5439,8 +5716,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 220,
-          "total": 220,
+          "qualifying": 230,
+          "total": 230,
           "ratio": 1
         },
         "threshold": {
@@ -5455,8 +5732,8 @@
         "type": "emne_boolean_any_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 220,
-          "total": 220,
+          "qualifying": 230,
+          "total": 230,
           "ratio": 1
         },
         "threshold": {
@@ -5471,8 +5748,8 @@
         "type": "emne_boolean_all_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 220,
-          "total": 220,
+          "qualifying": 230,
+          "total": 230,
           "ratio": 1
         },
         "threshold": {
@@ -5487,8 +5764,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 220,
-          "total": 220,
+          "qualifying": 230,
+          "total": 230,
           "ratio": 1
         },
         "threshold": {
@@ -5503,8 +5780,8 @@
         "type": "emne_any_array_ratio",
         "status": "PASS",
         "measured": {
-          "qualifying": 220,
-          "total": 220,
+          "qualifying": 230,
+          "total": 230,
           "ratio": 1
         },
         "threshold": {
@@ -5520,8 +5797,8 @@
         "status": "GAP",
         "measured": {
           "violating": 200,
-          "total": 220,
-          "ratio": 0.909
+          "total": 230,
+          "ratio": 0.87
         },
         "threshold": {
           "maximum_ratio": 0
@@ -5534,9 +5811,9 @@
         "type": "emne_any_array_ratio",
         "status": "GAP",
         "measured": {
-          "qualifying": 20,
-          "total": 220,
-          "ratio": 0.091
+          "qualifying": 30,
+          "total": 230,
+          "ratio": 0.13
         },
         "threshold": {
           "minimum_items": 4,
@@ -5599,7 +5876,7 @@
         "status": "GAP",
         "measured": {
           "qualifying": 0,
-          "total": 220,
+          "total": 230,
           "ratio": 0
         },
         "threshold": {
