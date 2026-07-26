@@ -1,0 +1,245 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "aurskog_holand_bygdetun",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch5/aurskog_holand_bygdetun.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_multi_building_museum_area_anchor",
+  "currentCoordinate": {
+    "lat": 59.7230815,
+    "lon": 11.452415,
+    "r": 300,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "OpenStreetMap node 6593405629 – Aurskog-Høland bygdetun; MiA – Finn oss; Kartverket adressepunkt Tønnebergveien 9",
+    "coordType": "named_multi_building_museum_tun_area_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "osm-node:6593405629",
+    "coordNote": "OpenStreetMap node 6593405629 er navngitt Aurskog-Høland bygdetun og ligger på 59.7230815, 11.452415. Det materialiserte kartutsnittet viser en tett samling av minst ni eldre, hovedsakelig civic-merkede bygninger innen 70 meter, men ingen av bygningene er navngitt sikkert nok til å velges som hovedhus. MiA oppgir Tønnebergveien 9, 1970 Hemnes som besøksadresse. Kartverkets adresse-API returnerer ett eksakt objekt for Tønnebergveien 9 med representasjonspunkt 59.72358315309172, 11.451705365686111, matrikkel 3226-120/1 og adressekode 7060, omtrent 68,5 meter fra museumspunktet. Museumspunktet brukes derfor som area_anchor for hele tunet, ikke som påstått centroid for Kinnestadbygningen, Falletstua eller et annet enkeltbygg. Kommunen dokumenterer institusjonen som etablert i 1964, mens MiAs bygningshistorie dokumenterer at Falletstua ble reist på Hemnes og Søndre Høland bygdetun åpnet med denne som grunnstein allerede i 1956. Radius 300 meter dekker museumsområdet og nærmeste adkomst på gameplay-nivå, men er ikke en eiendoms-, bygnings-, verne- eller museumsgrense."
+  },
+  "previousCoordinate": {
+    "lat": 59.7194,
+    "lon": 11.4598,
+    "r": 300,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 582.2,
+    "reasonReplaced": "Legacy-punktet lå sørøst for museumstunet og kunne ikke knyttes til museumspunktet, Tønnebergveien 9 eller tunbygningene."
+  },
+  "identity": {
+    "currentName": "Aurskog-Høland bygdetun",
+    "resolvedIdentity": "Det samlede flerbygnings museumstunet på Hemnes, med dagens institusjon fra 1964 og museumsrøtter på stedet fra 1956",
+    "identityStatus": "resolved",
+    "identityProblem": "Tunet består av mange flyttede bygninger uten entydig navngitt hovedbygning i kartdataene. Ett bygg kan derfor ikke representere hele stedet.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Bygningene, samlingene og uteområdet utgjør ett samlet museumstun; enkeltbygninger kan formidles som innhold uten separate canonical steder."
+  },
+  "requiredEvidence": [
+    "navngitt museumspunkt",
+    "offisiell besøksadresse",
+    "lokalt kartutsnitt med tunbygninger",
+    "dokumentert institusjonshistorie",
+    "dokumentert bygnings- og samlingshistorie",
+    "eksplisitt fravær av sikkert navngitt hovedbygg"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593405629 – Aurskog-Høland bygdetun",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405629",
+      "sourceObjectId": "osm-node:6593405629",
+      "sourceQuality": "named_museum_site_point",
+      "finding": "Node 6593405629 er navngitt Aurskog-Høland bygdetun, tagget tourism=museum og ligger på 59.7230815, 11.452415.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir det stabile navngitte punktet midt i flerbygningsanlegget."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Tønnebergveien 9",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3226:7060:9",
+      "sourceQuality": "official_museum_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt objekt for Tønnebergveien 9: kommunenummer 3226, gårds- og bruksnummer 120/1, adressekode 7060, postnummer 1970 og representasjonspunkt 59.72358315309172, 11.451705365686111.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter MiAs besøksadresse og at museumspunktet ligger i riktig tun."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA – Finn oss",
+      "sourceUrl": "https://mia.no/ahbygdetun/finn-oss",
+      "sourceObjectId": "mia-ahbygdetun:tonnebergveien-9",
+      "sourceQuality": "official_current_visitor_address",
+      "finding": "MiA oppgir Tønnebergveien 9, 1970 Hemnes som bygdetunets adresse.",
+      "canVerifyCoordinate": true,
+      "reason": "Knytter den nåværende museumsidentiteten til den offisielle adressen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA – Om oss og bygningene",
+      "sourceUrl": "https://mia.no/ahbygdetun/om-oss",
+      "sourceObjectId": "mia-ahbygdetun:multi-building-tun",
+      "sourceQuality": "official_site_and_collection_description",
+      "finding": "MiA beskriver et flerbygnings tun med hus fra hele kommunen og rundt 300 års bygningshistorie, blant annet husmannsstuer, bryggerhus, låve, fjøs, stall og Kinnestadbygningen.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår at canonical skal representere hele museumstunet, ikke ett bygg."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA – Falletstua",
+      "sourceUrl": "https://mia.no/ahbygdetun/fallet",
+      "sourceObjectId": "mia-ahbygdetun:falletstua",
+      "sourceQuality": "official_early_museum_and_collection_history",
+      "finding": "MiA dokumenterer August Kroghs kjøp og lokale bevaringsarbeid, gaven til kommunen og at Falletstua ble satt opp på Hemnes i 1956 som grunnstein for Søndre Høland bygdetun.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir den tidlige museumshistorien og forklarer forskjellen mellom 1956-røttene og institusjonsåret 1964."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Aurskog-Høland kommune – En tidsreise gjennom 300 år",
+      "sourceUrl": "https://www.aurskog-holand.kommune.no/nyheter2/feiring-pa-bygdetunet/",
+      "sourceObjectId": "aurskog-holand-kommune:bygdetun-1964",
+      "sourceQuality": "official_institution_establishment_history",
+      "finding": "Kommunen oppgir at bygdetunet ble etablert i 1964 og har røtter i fanejunker August Kroghs samlinger.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger institusjonsåret og kulturvernsidentiteten."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Materialized Aurskog-Høland bygdetun map extract",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405629",
+      "sourceObjectId": "osm-bbox:aurskog-holand-bygdetun-2026-07-26",
+      "sourceQuality": "multi_building_site_geometry_and_negative_name_evidence",
+      "finding": "Kartutsnittet viser minst ni eldre tunbygg innen 70 meter fra museumspunktet. Byggene har bygningsreferanser, men mangler sikre navn som identifiserer Kinnestadbygningen, Falletstua eller et annet hovedbygg.",
+      "canVerifyCoordinate": true,
+      "reason": "Begrunner museumspunktet som area_anchor og avviser en vilkårlig bygningscentroid."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Aurskog-Høland bygdetun point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:aurskog_holand_bygdetun",
+      "sourceQuality": "incorrect_southeastern_point",
+      "finding": "Forrige koordinat 59.7194, 11.4598 ligger omtrent 582,2 meter sørøst for museumspunktet.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes fordi den ligger utenfor det dokumenterte museumstunet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Tønnebergveien",
+        "number": "9",
+        "postcode": "1970",
+        "city": "Hemnes",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3226:7060:9",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405629",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3226:7060:9",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:aurskog_holand_bygdetun",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405629",
+      "geometryType": "Point",
+      "geometryRole": "named_multi_building_museum_area_anchor",
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "aurskog_holand_bygdetun_tunet",
+      "name": "Aurskog-Høland bygdetun – museumstunet",
+      "lat": 59.7230815,
+      "lon": 11.452415,
+      "r": 110,
+      "type": "unlock_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405629",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:aurskog_holand_bygdetun",
+      "lat": 59.7194,
+      "lon": 11.4598,
+      "coordRole": "incorrect_southeastern_point",
+      "distanceFromAppliedM": 582.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405629",
+      "lat": 59.7230815,
+      "lon": 11.452415,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 582.2,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3226:7060:9",
+      "lat": 59.72358315309172,
+      "lon": 11.451705365686111,
+      "coordRole": "official_address_cross_check",
+      "distanceFromAppliedM": 68.5,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-aurskog-holand-bygdetun-source-probe/osm-node-6593405629.xml",
+      "description": "Raw OpenStreetMap museum node."
+    },
+    {
+      "path": "reports/akershus-coordinate-aurskog-holand-bygdetun-source-probe/nominatim-aurskog-holand-bygdetun.json",
+      "description": "Raw Nominatim museum lookup."
+    },
+    {
+      "path": "reports/akershus-coordinate-aurskog-holand-bygdetun-source-probe/geonorge-tonnebergveien-9-hemnes.json",
+      "description": "Raw Kartverket address result."
+    },
+    {
+      "path": "reports/akershus-coordinate-aurskog-holand-bygdetun-source-probe/osm-aurskog-holand-bygdetun-bbox.xml",
+      "description": "Raw local OSM map extract with tun buildings."
+    },
+    {
+      "path": "reports/akershus-coordinate-aurskog-holand-bygdetun-source-probe/source-summary.txt",
+      "description": "Deterministic museum, address, building and legacy-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named museum point as the area anchor for the full multi-building tun. Continue with the next active Akershus batch-5 record."
+  },
+  "notes": [
+    "The named museum point represents the full tun and not one selected building.",
+    "Tønnebergveien 9 is the official visitor address but its representation point is not used as the site centroid.",
+    "The 300-metre radius is not an ownership, museum, heritage or building polygon.",
+    "The coordinate correction is approximately 582.2 metres."
+  ]
+}

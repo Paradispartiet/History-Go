@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "subject_id": "historie",
+  "version": "v5.5",
+  "status": "FROZEN",
+  "frozen_at": "2026-07-26T06:05:51.617Z",
+  "reason": "Completed all 20 V5.5 domains and repaired missing concept indicators, source requirements, theory limitations and relation integrity before permanent freeze.",
+  "readiness": {
+    "status": "FREEZE_READY",
+    "v6_allowed": true,
+    "quality_issue_totals": {
+      "concepts": 0,
+      "theories": 0,
+      "emner": 0,
+      "domains_not_freeze_ready": 0
+    }
+  },
+  "counts": {
+    "domains": 20,
+    "emner": 200,
+    "mappings": 200,
+    "methods": 87,
+    "concepts": 826,
+    "theories": 200
+  },
+  "files": {
+    "data/fag/historie/historie_v5_contract.json": "2c28b286d116c46b168280a8d441c5962894516cdc2ec770bdf671dee777ce64",
+    "data/fag/historie/fagkart_historie_canonical_v4_5.json": "864fdb04eea41229c12eecd1e672e6cd3ca269b6f32a94dc3afba98541f826a6",
+    "data/fag/historie/methods_historie_canonical_v4_5.json": "2ec7f7adfc76757fa9a8b69dd93a4c34e65b3a92482ca46da5f013388703800c",
+    "data/fag/historie/emner_historie_canonical_v4_5.json": "eba1f65eb0340f999108f81d503864234f1e1572fa7b2b744d0b4c881f1b37a9",
+    "data/fag/historie/emnemapping_historie_canonical_v4_5.json": "f15a994c49e2c3488e228b8cad3f96fa8eb69fa4c04f27a21dfe36f7360126ca",
+    "data/fag/historie/historiepensum_canonical_v4_5.json": "6c83ae729a290013e87c73d0c2a4a6c9370b6f0bb2c32a524d5b1480a0facf54",
+    "data/fag/historie/quiz_generator_rules_historie_v5_1_source_priority_patch.json": "18754d9836d48ccac7e1a5359b3b6f3a4376af9f09ec457ba6f6bad7bce3733e",
+    "data/fag/historie/concepts_historie_canonical_v5_5.json": "38da17817f7c84b0d7df6ec07cea5864d54667be150991989a85887bcad50b9e",
+    "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "acfde2f22b8aef5878051be60f3c671ec96d19cf1107afd982c6c1909495137c"
+  },
+  "update_policy": "Any mutation of an authoritative V5.5 file requires a reviewed PR, a green depth audit, and an intentionally refreshed manifest with an explicit reason."
+}
