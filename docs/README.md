@@ -2,7 +2,7 @@
 
 Status: **canonical dokumentasjonsinngang**  
 Register: [`documentation_registry.json`](./documentation_registry.json)  
-Sist kontrollert: **2026-07-25**
+Sist kontrollert: **2026-07-26**
 
 Dette dokumentet svarer på tre spørsmål:
 
@@ -46,6 +46,7 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 4. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — operativ mål-/adaptermodell for samlet progresjonslesing; erstatter ikke runtime-lagring
 5. [`PROFILE_PROGRESS_READER_RUNTIME.md`](./PROFILE_PROGRESS_READER_RUNTIME.md) — implementert read-only helper for eksisterende progresjonskilder
 6. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
+7. [`PLACE_POPUP_SYSTEM.md`](./PLACE_POPUP_SYSTEM.md) — canonical presentasjons- og stedstypekontrakt for den rike stedspopupen
 
 Compatibility-filer som bare videresender eldre lenker:
 
