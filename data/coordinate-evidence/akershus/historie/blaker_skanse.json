@@ -2,30 +2,45 @@
   "schemaVersion": "1.0",
   "placeId": "blaker_skanse",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/blaker_skanse.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_fortification_geometry_source",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_fortification_site_polygon_centroid",
   "currentCoordinate": {
+    "lat": 60.00480674815603,
+    "lon": 11.307093580848898,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 555936228 – Blaker skanse; Lillestrøm kommune; Riksantikvaren fredede bygninger 235846-2, 235846-3 og 235846-4",
+    "coordType": "named_historic_fortification_site_polygon_centroid",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "osm-way:555936228",
+    "coordNote": "Canonical følger centroiden i den navngitte skansepolygonen. Adressen og de tre fredede bygningene bekrefter identiteten og den sentrale plasseringen, men ingen enkeltbygning representerer hele anlegget."
+  },
+  "previousCoordinate": {
     "lat": 60.00361,
     "lon": 11.30611,
     "r": 240,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 143.9,
+    "reasonReplaced": "Legacy-punktet lå sørvest i anlegget og manglet kildekontrakt, objektidentitet og dokumentert representasjonspolitikk."
   },
   "identity": {
     "currentName": "Blaker skanse",
-    "resolvedIdentity": "Blaker skanse, the historic fortification and cultural site at Skanseveien 43 in Blaker",
+    "resolvedIdentity": "Det samlede historiske skanse- og bygningsmiljøet ved Glomma, med voller, åpne anleggsflater og fredede militærbygninger",
     "identityStatus": "resolved",
-    "identityProblem": "The official address identifies the site, while the record semantically represents the wider star-fort landscape rather than one building.",
-    "locatorTypeCandidate": "fortification",
+    "identityProblem": "Navnet brukes om hele skansen, kultur- og arrangementsstedet, bygningsmiljøet og en separat fotballbane. Canonical skal representere det samlede forsvarsanlegget, ikke Skanseveien 43, Kommandantboligen eller fotballbanen alene.",
+    "locatorTypeCandidate": "historic_site",
     "requiresSplit": false,
-    "splitReason": "The skanse is one coherent historic defence site even though it contains multiple structures."
+    "splitReason": "Voller, parkområde og militærbygninger utgjør ett sammenhengende historisk anlegg. Enkeltbygningene kan formidles som deler av stedet uten egne canonical poster her."
   },
   "requiredEvidence": [
-    "exact Geonorge address object for Skanseveien 43",
-    "named fortification boundary or official site geometry",
-    "representation policy for a multi-building star-fort site"
+    "offisiell identifikasjon og besøksadresse for Blaker skanse",
+    "rå geometri for en navngitt skanse- eller anleggsflate",
+    "deterministisk polygoncentroid og utstrekning",
+    "uavhengig kontroll mot fredede militærbygninger",
+    "eksplisitt avvisning av fotballbanen og én enkelt bygning som canonical",
+    "radiusbegrunnelse uten å fremstille gameplay-sirkelen som juridisk avgrensning"
   ],
   "evidence": [
     {
@@ -33,44 +48,289 @@
       "sourceName": "Lillestrøm kommune – Blaker skanse",
       "sourceUrl": "https://www.lillestrom.kommune.no/kultur-fritid-og-friluftsliv/tur-og-friluftsliv/finn-parker/blaker-skanse/",
       "sourceObjectId": "lillestrom-kommune:blaker-skanse",
-      "sourceQuality": "official_identity_and_address",
-      "finding": "Lillestrøm kommune lists Blaker skanse at Skanseveien 43, Blaker.",
+      "sourceQuality": "official_site_identity_and_visitor_address",
+      "finding": "Kommunen identifiserer Blaker skanse som ett historisk kultur- og besøkssted og oppgir Skanseveien 43 i Blaker.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår hvilken samlet fysisk identitet den navngitte geometrien skal representere."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 555936228 – Blaker skanse",
+      "sourceUrl": "https://www.openstreetmap.org/way/555936228",
+      "sourceObjectId": "osm-way:555936228",
+      "sourceQuality": "named_full_site_polygon_geometry",
+      "finding": "Way 555936228 er navngitt Blaker skanse og har en lukket 50-nodepolygon. Deterministisk polygoncentroid er 60.00480674815603, 11.307093580848898; maksimal vertexavstand er omtrent 222,3 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir en reproduserbar area_anchor for hele anlegget i stedet for et tilfeldig enkeltbygg eller adressepunkt."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Skanseveien 43",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18175:43",
+      "sourceQuality": "official_address_identity_cross_check_unverified_placement",
+      "finding": "Kartverket returnerer ett objekt for Skanseveien 43, 1925 Blaker, matrikkel 3205-318/3 og representasjonspunkt 60.00487275932726, 11.305801586453896. Punktet ligger omtrent 72,2 meter fra polygoncentroiden og er merket stedfestingverifisert=false.",
       "canVerifyCoordinate": false,
-      "reason": "The page gives a stable address but no coordinate object or site boundary."
+      "reason": "Bekrefter besøksadressen og eiendomsidentiteten, men er ikke presist nok eller riktig i rolle til å representere hele skansen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren – Kommandantboligen",
+      "sourceUrl": "https://kulturminnesok.no/ra/lokalitet/235846",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-2",
+      "sourceQuality": "official_protected_building_point_and_history",
+      "finding": "Kommandantboligen er registrert ved 60.00486129259215, 11.305830655028492, omtrent 70,5 meter fra anvendt centroid. Den opprinnelige bygningen fra 1811–1814 brant i 1973 og ble gjenoppført i 1976–1977 med kopiert ytre form og moderne konstruksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter et sentralt tidslag og ligger nær adressepunktet, men bygningen alene representerer ikke hele skansen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren – Krutthuset",
+      "sourceUrl": "https://kulturminnesok.no/ra/lokalitet/235846",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-3",
+      "sourceQuality": "official_protected_building_point_and_history",
+      "finding": "Krutthuset er registrert ved 60.00536400351639, 11.307047327178173, omtrent 62,0 meter fra anvendt centroid. Steinbygningen ble reist i perioden 1740–1759 for oppbevaring av krutt og regnes som en av anleggets eldste bygninger.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker at områdeankeret ligger sentralt i den militære bygningskjernen, men krutthuset er bare ett delobjekt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren – Artilleri- og magasinbygningen",
+      "sourceUrl": "https://kulturminnesok.no/ra/lokalitet/235846",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-4",
+      "sourceQuality": "official_protected_building_point_and_history",
+      "finding": "Artilleri- og magasinbygningen er registrert ved 60.00544880301114, 11.306438251384696, omtrent 80,2 meter fra anvendt centroid. De sammenbygde fløyene ble oppført omkring 1740–1750 for proviant og artilleri og senere ombygd til undervisning.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter militærfunksjon, ombruk og den nordlige bygningskjernen uten å bli brukt som falskt anleggssentrum."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Nominatim – Blaker skanse",
+      "sourceUrl": "https://www.openstreetmap.org/way/555936228",
+      "sourceObjectId": "nominatim:osm-way-555936228",
+      "sourceQuality": "named_object_identity_cross_check",
+      "finding": "Nominatim løser den samme navngitte wayen til 60.0047429, 11.3077651, omtrent 38,0 meter fra den deterministiske polygoncentroiden.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter objektidentiteten, men søkeresultatpunktet brukes ikke foran rå polygongeometri."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 1224855213 – Blaker Skanse pitch",
+      "sourceUrl": "https://www.openstreetmap.org/way/1224855213",
+      "sourceObjectId": "osm-way:1224855213",
+      "sourceQuality": "same_name_false_canonical_candidate",
+      "finding": "Objektet er en gresslagt fotballbane eid av Statsbygg og ligger nær legacy-punktet. Navnelikheten gjør det til en tydelig feil kandidat for et historisk skanseanker.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises fordi objektrollen er idrettsbane, ikke det samlede forsvarsanlegget."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Blaker skanse point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:blaker_skanse",
+      "sourceQuality": "uncontracted_southwestern_site_point",
+      "finding": "Legacy-koordinaten 60.00361, 11.30611 lå omtrent 143,9 meter sørvest for polygoncentroiden og hadde radius 240 meter uten coordinate source contract.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes med en deterministisk area_anchor, mens radiusen beholdes."
     }
   ],
   "addressCandidates": [
     {
-      "sourceProvider": "municipality",
+      "sourceProvider": "official_address",
       "address": {
         "street": "Skanseveien",
         "number": "43",
-        "postcode": null,
+        "postcode": "1925",
         "city": "Blaker",
         "country": "NO"
       },
-      "sourceUrl": "https://www.lillestrom.kommune.no/kultur-fritid-og-friluftsliv/tur-og-friluftsliv/finn-parker/blaker-skanse/",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18175:43",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:555936228",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18175:43",
+      "canApplyToPlace": false,
+      "rejectionReason": "Official address identity, but the point is unverified and represents the address/building area rather than the whole skanse."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-2",
+      "canApplyToPlace": false,
+      "rejectionReason": "Kommandantboligen is one protected building, not the full fortification."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-3",
+      "canApplyToPlace": false,
+      "rejectionReason": "Krutthuset is one protected building, not the full fortification."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-4",
+      "canApplyToPlace": false,
+      "rejectionReason": "Artilleri- og magasinbygningen is one protected building, not the full fortification."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1224855213",
+      "canApplyToPlace": false,
+      "rejectionReason": "Soccer pitch with a similar name; wrong object class."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:555936228",
+      "geometryType": "Polygon",
+      "geometryRole": "named_full_fortification_and_park_site",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1224855213",
+      "geometryType": "Polygon",
+      "geometryRole": "soccer_pitch_inside_site",
       "canApplyToPlace": false
     }
   ],
-  "sourceObjectCandidates": [],
-  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "blaker_skanse_site_polygon",
+      "name": "Blaker skanse – navngitt anleggsområde",
+      "lat": 60.00480674815603,
+      "lon": 11.307093580848898,
+      "r": 140,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:555936228",
+      "canApplyToPlace": true
+    }
+  ],
   "coordinateCandidates": [
     {
       "sourceProvider": "legacy_dataset",
       "sourceObjectId": "legacy:blaker_skanse",
       "lat": 60.00361,
       "lon": 11.30611,
-      "coordRole": "unverified_site_anchor",
+      "coordRole": "uncontracted_southwestern_site_point",
+      "distanceFromAppliedM": 143.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:555936228",
+      "lat": 60.00480674815603,
+      "lon": 11.307093580848898,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 143.9,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18175:43",
+      "lat": 60.00487275932726,
+      "lon": 11.305801586453896,
+      "coordRole": "visitor_address_cross_check",
+      "distanceFromAppliedM": 72.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-2",
+      "lat": 60.00486129259215,
+      "lon": 11.305830655028492,
+      "coordRole": "protected_commandant_building_cross_check",
+      "distanceFromAppliedM": 70.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-3",
+      "lat": 60.00536400351639,
+      "lon": 11.307047327178173,
+      "coordRole": "protected_powder_house_cross_check",
+      "distanceFromAppliedM": 62.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-fredet-bygning:235846-4",
+      "lat": 60.00544880301114,
+      "lon": 11.306438251384696,
+      "coordRole": "protected_artillery_store_cross_check",
+      "distanceFromAppliedM": 80.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-way-555936228",
+      "lat": 60.0047429,
+      "lon": 11.3077651,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 38.0,
       "canApplyToPlace": false
     }
   ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/geonorge-skanseveien-43.json",
+      "description": "Kartverkets rå adresseobjekt for Skanseveien 43."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/osm-way-555936228-full.xml",
+      "description": "Rå full-nodegeometri for den navngitte Blaker skanse-polygonen."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/osm-blaker-skanse-bbox.xml",
+      "description": "Lokalt OSM-uttrekk med bygninger, adresser, fotballbane og skansegeometri."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/nominatim-blaker-skanse.json",
+      "description": "Rå Nominatim-resultater for skansepolygonen og den separate fotballbanen."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/riksantikvaren-freda-bygning-exact-1877018.json",
+      "description": "Eksakt Riksantikvaren-objekt for Kommandantboligen 235846-2."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/riksantikvaren-freda-bygning-exact-1877181.json",
+      "description": "Eksakt Riksantikvaren-objekt for Krutthuset 235846-3."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/riksantikvaren-freda-bygning-exact-1876987.json",
+      "description": "Eksakt Riksantikvaren-objekt for Artilleri- og magasinbygningen 235846-4."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/source-summary.txt",
+      "description": "Deterministisk oppsummering av avstander, OSM-objekter og adressekandidater."
+    },
+    {
+      "path": "reports/akershus-coordinate-blaker-skanse-source-probe/protected-summary.txt",
+      "description": "Oppsummering av de tre fredede bygningene og deres avstand til legacy, adresse og skanseområde."
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Neither an exact official address point nor the fortification boundary has been captured.",
-    "nextAction": "Resolve Skanseveien 43 through Geonorge and compare it with a named fortification geometry before choosing the display marker."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the deterministic centroid of named OSM way 555936228 as the area anchor; retain radius 240 metres and continue with the next Akershus coordinate candidate."
   },
   "notes": [
-    "Do not reduce the full skanse to Artilleribygget or another single building without an explicit scope decision."
+    "The polygon centroid represents the full named site; it is not claimed as the centre of a legal protection area or regulation plan.",
+    "Skanseveien 43 is a valid visitor address but is marked stedfestingverifisert=false and lies near Kommandantboligen rather than at the site centroid.",
+    "The three Riksantikvaren building points independently confirm the military building core within 62.0–80.2 metres of the applied anchor.",
+    "The named soccer pitch is explicitly rejected as a false canonical candidate.",
+    "Radius 240 metres covers the maximum polygon vertex distance of approximately 222.3 metres, leaving about 17.7 metres of gameplay margin."
   ]
 }

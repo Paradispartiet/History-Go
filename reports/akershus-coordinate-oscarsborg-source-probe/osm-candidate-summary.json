@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "oscarsborg_festning",
+  "capturedAt": "2026-07-26",
+  "sourceStatus": "discovery_candidates_only",
+  "sourceLimitation": "The object identifiers and displayed coordinates were discovered through an OSM-derived index. Raw OpenStreetMap node/way geometry has not yet been persisted, so none of these candidates can verify a canonical coordinate in this probe.",
+  "legacyCoordinate": {
+    "lat": 59.676,
+    "lon": 10.606,
+    "r": 360
+  },
+  "candidates": [
+    {
+      "name": "Oscarsborg Fortress",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:6463615980",
+      "tags": {
+        "landuse": "military",
+        "wikidata": "Q2033069"
+      },
+      "lat": 59.67353,
+      "lon": 10.60708,
+      "distanceFromLegacyM": 281.3,
+      "candidateRole": "generic_fortress_poi",
+      "canVerifyCoordinate": false,
+      "rejectionReason": "Generic POI near the southern batteries; not documented as the visitor-core or main-fort anchor."
+    },
+    {
+      "name": "Oscarsborg festning",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:582909475",
+      "tags": {
+        "historic": "castle"
+      },
+      "lat": 59.67346,
+      "lon": 10.60716,
+      "distanceFromLegacyM": 289.8,
+      "candidateRole": "generic_castle_poi",
+      "canVerifyCoordinate": false,
+      "rejectionReason": "A point object does not resolve whether it represents Hovedfortet, the southern battery cluster or the full fortress system."
+    },
+    {
+      "name": "Hovedbatteriet",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:528047559",
+      "tags": {
+        "building": "bunker",
+        "landuse": "military",
+        "military": "bunker"
+      },
+      "lat": 59.67301,
+      "lon": 10.6079,
+      "distanceFromLegacyM": 349.2,
+      "candidateRole": "decisive_9_april_battery_anchor",
+      "canVerifyCoordinate": false,
+      "nextAction": "Persist raw way geometry and derive a deterministic building or interior point."
+    },
+    {
+      "name": "Søndre batteri",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:540187471",
+      "lat": 59.67241,
+      "lon": 10.60799,
+      "distanceFromLegacyM": 414.5,
+      "candidateRole": "southern_battery_context",
+      "canVerifyCoordinate": false
+    },
+    {
+      "name": "Østre strandbatteri",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:156619353",
+      "lat": 59.67373,
+      "lon": 10.60906,
+      "distanceFromLegacyM": 305.3,
+      "candidateRole": "shore_battery_context",
+      "canVerifyCoordinate": false
+    },
+    {
+      "name": "Vestre strandbatteri",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:513833331",
+      "lat": 59.67302,
+      "lon": 10.60545,
+      "distanceFromLegacyM": 332.8,
+      "candidateRole": "shore_battery_context",
+      "canVerifyCoordinate": false
+    },
+    {
+      "name": "Nordre Oscarsborg",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:6463616350",
+      "lat": 59.67759,
+      "lon": 10.60679,
+      "distanceFromLegacyM": 182.3,
+      "candidateRole": "northern_island_area_context",
+      "canVerifyCoordinate": false
+    },
+    {
+      "name": "Torpedobatteriet sight-tower cluster",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-nodes:13369113787,13369113788,13369113789",
+      "lat": 59.67728,
+      "lon": 10.6078,
+      "distanceFromLegacyM": 174.6,
+      "candidateRole": "decisive_9_april_torpedo_anchor_candidate",
+      "canVerifyCoordinate": false,
+      "nextAction": "Resolve the torpedo-battery building or protected-object geometry rather than using sight towers as a proxy."
+    },
+    {
+      "name": "Kopåsbatteriet",
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-way:520242521",
+      "lat": 59.67235,
+      "lon": 10.62329,
+      "distanceFromLegacyM": 1052.2,
+      "candidateRole": "mainland_9_april_battery_context",
+      "canVerifyCoordinate": false,
+      "representationNote": "Too far from the island core for the current 360 m radius; should remain a secondary contextual anchor or become a separate canonical place."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "No raw central-fort polygon, official representation point or complete multi-anchor geometry has been captured.",
+    "nextAction": "Persist raw geometry for Hovedfortet/Hovedbatteriet and the Torpedobatteriet, then choose a visitor-core area anchor and explicit secondary anchors. Do not promote either generic OSM point or a photo geotag."
+  }
+}
