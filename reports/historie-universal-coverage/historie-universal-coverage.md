@@ -8,18 +8,18 @@ Denne rapporten tester om den universelle historiefagmodellen dekker selve faget
 
 - Universell heldekning: **INCOMPLETE**
 - Aktiv intern readiness: **FREEZE_READY**
-- Interne domenetall: **22/22** markert komplette internt
-- Dekningsceller: **54 dekket**, **5 delvis**, **0 mangler**
+- Interne domenetall: **23/23** markert komplette internt
+- Dekningsceller: **58 dekket**, **1 delvis**, **0 mangler**
 - Produksjonskrav: **5 bestått**, **6 åpne gap**
 
 ## Akseoversikt
 
 | Akse | Status | Dekket | Delvis | Mangler |
 |---|---:|---:|---:|---:|
-| Tid | ❌ INCOMPLETE | 13 | 1 | 0 |
+| Tid | ❌ COMPLETE | 14 | 0 | 0 |
 | Tema | ❌ COMPLETE | 23 | 0 | 0 |
 | Geografi | ❌ INCOMPLETE | 8 | 1 | 0 |
-| Aktører | ❌ INCOMPLETE | 10 | 3 | 0 |
+| Aktører | ❌ COMPLETE | 13 | 0 | 0 |
 | Historiefaglig produksjon | ❌ INCOMPLETE | 5 | – | 6 |
 
 ## Tid
@@ -34,13 +34,13 @@ Fra forhistorie til samtid uten store kronologiske hull.
 | Jernalder og vikingtid | ✅ COVERED | 2/2 | 2/2 | 1/1 | Jernalderens gårder, håndverk og maktlandskap; Vikingtidens mobilitet, handel, vold og statsdannelse |
 | Middelalder | ✅ COVERED | 10/2 | 19/3 | 4/1 | Kirke, kloster og middelaldermakt; Kongemakt, kirke og konflikt; Middelalderens Oslo; Lov, ting og jurisdiksjon |
 | Tidlig nytid 1500–1700-tallet | ✅ COVERED | 10/2 | 18/3 | 2/1 | Førkristne religioner og kristning; Reformasjon og konfesjonalisering; Statskirke, disiplin og religiøs orden; Pietisme, vekkelse og lekmannsbevegelse |
-| Revolusjoner og statsdannelse 1700–1850 | ✅ COVERED | 12/2 | 21/3 | 6/1 | 1814, Grunnloven og statsdannelse; Embetsstat og demokratisering; Nasjonal identitet og historiske fortellinger; Embetsstat og kommunalt selvstyre |
-| Industrialisering og 1800-tallet | ✅ COVERED | 2/2 | 12/3 | 5/1 | 1800-tallets modernisering og ulike endringstempo; Avindustrialisering, ombruk og industriarv; Industriby og arbeid rundt 1900; Fabrikk og arbeidsorganisering |
-| Imperialisme og kolonial ekspansjon 1870–1914 | ✅ COVERED | 2/2 | 12/3 | 2/1 | Imperier, kolonialisme og makt; Imperialisme, alliansesystemer og krigsutbruddet i 1914; Slaveri, råvarer og globale verdikjeder; Misjon, kunnskap og kulturelle møter |
+| Revolusjoner og statsdannelse 1700–1850 | ✅ COVERED | 13/2 | 25/3 | 7/1 | 1814, Grunnloven og statsdannelse; Embetsstat og demokratisering; Nasjonal identitet og historiske fortellinger; Embetsstat og kommunalt selvstyre |
+| Industrialisering og 1800-tallet | ✅ COVERED | 3/2 | 14/3 | 6/1 | 1800-tallets modernisering og ulike endringstempo; Avindustrialisering, ombruk og industriarv; Bønder, fiskere og bygdesamfunn i den kalde krigens modernisering; Industriby og arbeid rundt 1900 |
+| Imperialisme og kolonial ekspansjon 1870–1914 | ✅ COVERED | 2/2 | 13/3 | 3/1 | Imperier, kolonialisme og makt; Imperialisme, alliansesystemer og krigsutbruddet i 1914; Slaveri, råvarer og globale verdikjeder; Misjon, kunnskap og kulturelle møter |
 | Første verdenskrig 1914–1918 | ✅ COVERED | 10/1 | 20/2 | 3/1 | Imperialisme, alliansesystemer og krigsutbruddet i 1914; Fronter, skyttergravskrig og total krig 1914–1918; Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig; Global og kolonial verdenskrig i Afrika, Asia og Midtøsten |
 | Mellomkrigstiden 1918–1939 | ✅ COVERED | 10/1 | 12/2 | 3/1 | Imperialisme, alliansesystemer og krigsutbruddet i 1914; Fronter, skyttergravskrig og total krig 1914–1918; Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig; Global og kolonial verdenskrig i Afrika, Asia og Midtøsten |
-| Andre verdenskrig, okkupasjon og folkemord | ✅ COVERED | 11/2 | 17/3 | 3/1 | Fangenskap, kontroll og overvåkning; Okkupasjon og motstand; Rettsoppgjør og etterkrig; Okkupasjon, samarbeid, tilpasning og motstand |
-| Den kalde krigen 1945–1991 | ⚠️ PARTIAL | 1/2 | 1/3 | 1/1 | Kald krig, beredskap og sikkerhetsstat |
+| Andre verdenskrig, okkupasjon og folkemord | ✅ COVERED | 21/2 | 27/3 | 4/1 | Fangenskap, kontroll og overvåkning; Okkupasjon og motstand; Rettsoppgjør og etterkrig; Okkupasjon, samarbeid, tilpasning og motstand |
+| Den kalde krigen 1945–1991 | ✅ COVERED | 11/2 | 11/3 | 2/1 | Kald krig, beredskap og sikkerhetsstat; Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer; Atomvåpen, avskrekking og rustningskappløp under den kalde krigen; Stedfortrederkriger og globale konflikter i den kalde krigen |
 | Samtidshistorie etter 1990 | ✅ COVERED | 4/2 | 33/3 | 5/1 | Samtidshistorie, erfaring og åpne framtider; Terror og samtidshistorie; Digitalisering og datamakt; Globalisering, avhengighet og sammenvevd historie |
 
 ## Tema
@@ -49,29 +49,29 @@ Historiefagets sentrale samfunns-, kultur- og materialfelt må være eksplisitt 
 
 | Dekningscelle | Status | Dedikerte emner | Støttende emner | Områder | Eksempler |
 |---|---:|---:|---:|---:|---|
-| Politikk, stat og rett | ✅ COVERED | 45/2 | 215/4 | 22/1 | Stat og institusjoner; Embetsstat og forvaltning; Styring, krise og kontinuitet; Rett, domstol og rettsstat |
-| Økonomi, handel og materielle systemer | ✅ COVERED | 18/2 | 48/4 | 9/1 | Handel, håndverk og bydannelse; Samiske kontaktsoner, handel og statsgrenser i middelalderen; Eiendom, boligregimer og tomtemarkeder; Kommunal styring og urban politisk økonomi |
-| Arbeid, klasse og industri | ✅ COVERED | 23/2 | 90/4 | 15/1 | Industriby og arbeid rundt 1900; Arbeiderbevegelse og folkedannelse; Sosialhistorie og hverdagsliv; Industriell produksjon, energi og infrastruktur |
-| Jordbruk, mat og bygdehistorie | ✅ COVERED | 4/2 | 12/3 | 5/1 | Bondehushold, demografi og dagligliv; Jordbruk, fiske og ressursøkonomi; Neolitisering, jordbruk og bofasthet; Jernalderens gårder, håndverk og maktlandskap |
-| Sjøfart og maritim historie | ✅ COVERED | 2/2 | 28/3 | 5/1 | Handel, sjøfart og kommersielle nettverk; Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918; Markeder og markedsintegrasjon; Penger, kreditt, bank og finans |
-| Sosialhistorie, velferd og hverdagsliv | ✅ COVERED | 23/2 | 58/4 | 7/1 | Industriby og arbeid rundt 1900; Arbeiderbevegelse og folkedannelse; Sosialhistorie og hverdagsliv; Industriell produksjon, energi og infrastruktur |
-| Helse, sykdom, medisin og demografi | ✅ COVERED | 7/2 | 38/3 | 8/1 | Bondehushold, demografi og dagligliv; Arbeidsmiljø, risiko og helse; Helse, epidemi og profesjonalisering; Kropp, reproduksjon og medisinsk makt |
-| Utdanning, skole og barndom | ✅ COVERED | 6/2 | 35/3 | 8/1 | Nasjon, språk, skole og institusjoner; Skole, folkedannelse og medborgerskap; Barndom, familie og livsløp; Barndom, ungdom, alderdom og livsløp |
-| Kriminalitet, straff og rettshåndhevelse | ✅ COVERED | 15/2 | 78/3 | 16/1 | Rett, domstol og rettsstat; Politi, straff og institusjonshverdag; Kommunalt selvstyre, lokal forvaltning og politisk deltakelse; 1905, unionsoppløsning og ny utenrikspolitisk orientering |
-| Kjønn, familie, seksualitet og livsløp | ✅ COVERED | 16/2 | 53/4 | 9/1 | Kjønn, arbeidsdeling og lønn; Barndom, familie og livsløp; Omsorgsarbeid, kjønn og sosial reproduksjon; Familie og transnasjonale bånd |
-| Migrasjon, minoriteter og tilhørighet | ✅ COVERED | 13/2 | 35/4 | 7/1 | Migrasjon, mobilitet og mangfold; Minoritetspolitikk og minoritetshistorie; Tilhørighet, identitet og ekskludering; Ankomst, bosetting og bolig |
+| Politikk, stat og rett | ✅ COVERED | 47/2 | 224/4 | 23/1 | Stat og institusjoner; Embetsstat og forvaltning; Styring, krise og kontinuitet; Rett, domstol og rettsstat |
+| Økonomi, handel og materielle systemer | ✅ COVERED | 18/2 | 55/4 | 10/1 | Handel, håndverk og bydannelse; Samiske kontaktsoner, handel og statsgrenser i middelalderen; Eiendom, boligregimer og tomtemarkeder; Kommunal styring og urban politisk økonomi |
+| Arbeid, klasse og industri | ✅ COVERED | 23/2 | 97/4 | 16/1 | Industriby og arbeid rundt 1900; Arbeiderbevegelse og folkedannelse; Sosialhistorie og hverdagsliv; Industriell produksjon, energi og infrastruktur |
+| Jordbruk, mat og bygdehistorie | ✅ COVERED | 4/2 | 13/3 | 6/1 | Bondehushold, demografi og dagligliv; Jordbruk, fiske og ressursøkonomi; Neolitisering, jordbruk og bofasthet; Jernalderens gårder, håndverk og maktlandskap |
+| Sjøfart og maritim historie | ✅ COVERED | 2/2 | 29/3 | 6/1 | Handel, sjøfart og kommersielle nettverk; Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918; Markeder og markedsintegrasjon; Penger, kreditt, bank og finans |
+| Sosialhistorie, velferd og hverdagsliv | ✅ COVERED | 25/2 | 62/4 | 8/1 | Industriby og arbeid rundt 1900; Arbeiderbevegelse og folkedannelse; Sosialhistorie og hverdagsliv; Industriell produksjon, energi og infrastruktur |
+| Helse, sykdom, medisin og demografi | ✅ COVERED | 7/2 | 39/3 | 9/1 | Bondehushold, demografi og dagligliv; Arbeidsmiljø, risiko og helse; Helse, epidemi og profesjonalisering; Kropp, reproduksjon og medisinsk makt |
+| Utdanning, skole og barndom | ✅ COVERED | 6/2 | 37/3 | 9/1 | Nasjon, språk, skole og institusjoner; Skole, folkedannelse og medborgerskap; Barndom, familie og livsløp; Barndom, ungdom, alderdom og livsløp |
+| Kriminalitet, straff og rettshåndhevelse | ✅ COVERED | 15/2 | 88/3 | 17/1 | Rett, domstol og rettsstat; Politi, straff og institusjonshverdag; Kommunalt selvstyre, lokal forvaltning og politisk deltakelse; 1905, unionsoppløsning og ny utenrikspolitisk orientering |
+| Kjønn, familie, seksualitet og livsløp | ✅ COVERED | 16/2 | 54/4 | 10/1 | Kjønn, arbeidsdeling og lønn; Barndom, familie og livsløp; Omsorgsarbeid, kjønn og sosial reproduksjon; Familie og transnasjonale bånd |
+| Migrasjon, minoriteter og tilhørighet | ✅ COVERED | 13/2 | 36/4 | 8/1 | Migrasjon, mobilitet og mangfold; Minoritetspolitikk og minoritetshistorie; Tilhørighet, identitet og ekskludering; Ankomst, bosetting og bolig |
 | Samisk historie og urfolkshistorie | ✅ COVERED | 11/2 | 12/3 | 3/1 | Samiske kontaktsoner, handel og statsgrenser i middelalderen; Samiske samfunn, siida og næringsformer; Kontaktsoner, handel og statsgrenser; Misjon, kristning og kunnskapsmakt |
-| Religion, kirke og livssyn | ✅ COVERED | 23/2 | 55/4 | 11/1 | Kirke, kloster og middelaldermakt; Kongemakt, kirke og konflikt; Middelalderens Oslo; Lov, ting og jurisdiksjon |
+| Religion, kirke og livssyn | ✅ COVERED | 23/2 | 56/4 | 12/1 | Kirke, kloster og middelaldermakt; Kongemakt, kirke og konflikt; Middelalderens Oslo; Lov, ting og jurisdiksjon |
 | Kulturhistorie | ✅ COVERED | 1/1 | 3/2 | 1/1 | Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden; Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig; Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa |
-| Idé- og intellektuell historie | ✅ COVERED | 1/1 | 2/2 | 1/1 | Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa; Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden |
+| Idé- og intellektuell historie | ✅ COVERED | 1/1 | 5/2 | 2/1 | Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa; Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden; Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer; Stedfortrederkriger og globale konflikter i den kalde krigen |
 | Kunsthistorie og visuell kultur | ✅ COVERED | 1/1 | 2/2 | 1/1 | Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden; Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa |
 | Medie-, presse- og offentlighetshistorie | ✅ COVERED | 13/2 | 29/3 | 9/1 | Organisering, motstand og offentlighet; Religion, politikk og offentlighet; Livssyn, sekularitet og offentlighet; Presse, offentlighet og politisk kommunikasjon |
-| Vitenskap, teknologi og kunnskap | ✅ COVERED | 16/2 | 61/4 | 11/1 | Teknologi, systemulykker og normalulykker; Teknologi, produktivitet og materielle standarder; Misjon, kristning og kunnskapsmakt; Raseforskning og vitenskapelig klassifikasjon |
-| Miljø, klima og landskap | ✅ COVERED | 16/2 | 39/4 | 11/1 | Arbeidsmiljø, risiko og helse; Langsomme katastrofer og miljøskade; Langsomme katastrofer, miljøskade og ulik eksponering; Klima og historisk endring |
-| Krig, vold og konflikt | ✅ COVERED | 28/2 | 63/4 | 13/1 | Kongemakt, kirke og konflikt; Fangenskap, kontroll og overvåkning; Okkupasjon og motstand; Rettsoppgjør og etterkrig |
+| Vitenskap, teknologi og kunnskap | ✅ COVERED | 16/2 | 64/4 | 12/1 | Teknologi, systemulykker og normalulykker; Teknologi, produktivitet og materielle standarder; Misjon, kristning og kunnskapsmakt; Raseforskning og vitenskapelig klassifikasjon |
+| Miljø, klima og landskap | ✅ COVERED | 16/2 | 42/4 | 12/1 | Arbeidsmiljø, risiko og helse; Langsomme katastrofer og miljøskade; Langsomme katastrofer, miljøskade og ulik eksponering; Klima og historisk endring |
+| Krig, vold og konflikt | ✅ COVERED | 38/2 | 73/4 | 14/1 | Kongemakt, kirke og konflikt; Fangenskap, kontroll og overvåkning; Okkupasjon og motstand; Rettsoppgjør og etterkrig |
 | Minne, kulturarv og historiebruk | ✅ COVERED | 14/2 | 60/4 | 10/1 | Krigsminne, veteraner og ettervirkninger; Kulturminner, utvelgelse og bevaring; Restaurering, rekonstruksjon og autentisitet; Museum, samling og historisk kanon |
-| By-, steds- og arkitekturhistorie | ✅ COVERED | 13/2 | 21/4 | 4/1 | Historiske lag i byrom; Byutvidelse, grenser og innlemmelse; Riving, ombruk og bevaring; Sanering, byfornyelse og fortrengning |
-| Global, kolonial og transnasjonal historie | ✅ COVERED | 13/3 | 19/5 | 4/1 | Familie og transnasjonale bånd; Religion, migrasjon og transnasjonale nettverk; Imperier, kolonialisme og makt; Slaveri, råvarer og globale verdikjeder |
+| By-, steds- og arkitekturhistorie | ✅ COVERED | 13/2 | 22/4 | 5/1 | Historiske lag i byrom; Byutvidelse, grenser og innlemmelse; Riving, ombruk og bevaring; Sanering, byfornyelse og fortrengning |
+| Global, kolonial og transnasjonal historie | ✅ COVERED | 14/3 | 23/5 | 5/1 | Familie og transnasjonale bånd; Religion, migrasjon og transnasjonale nettverk; Imperier, kolonialisme og makt; Slaveri, råvarer og globale verdikjeder |
 
 ## Geografi
 
@@ -80,14 +80,14 @@ Lokal, nasjonal, nordisk, europeisk og global historie må kunne realiseres uten
 | Dekningscelle | Status | Dedikerte emner | Støttende emner | Områder | Eksempler |
 |---|---:|---:|---:|---:|---|
 | Oslo og Akershus | ⚠️ PARTIAL | 1/2 | 136/6 | 18/2 | Middelalderens Oslo; Tid, periodisering og epoker; Brudd og kontinuitet; Historiske lag i byrom |
-| Norge | ✅ COVERED | 13/3 | 45/8 | 10/3 | Eksklusjon, fornorskning og statsborgerskap; Fornorskning, skole og språk; Imperier, kolonialisme og makt; Slaveri, råvarer og globale verdikjeder |
-| Norden | ✅ COVERED | 2/2 | 4/4 | 3/2 | Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918; Demokrati, massepolitikk og sosial konflikt i Europa og Norden; Globale kriger og internasjonale organisasjoner; Arbeider-, kvinne- og avholdsbevegelser |
-| Europa | ✅ COVERED | 3/2 | 9/5 | 3/2 | Demokrati, massepolitikk og sosial konflikt i Europa og Norden; Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa; Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk; Globale kriger og internasjonale organisasjoner |
-| Global og transnasjonal sammenheng | ✅ COVERED | 16/3 | 32/6 | 7/2 | Familie og transnasjonale bånd; Kriser, konjunkturer og global arbeidsdeling; Global arbeidsdeling, råvarer og avhengighet; Religion, migrasjon og transnasjonale nettverk |
-| Afrika | ✅ COVERED | 1/1 | 3/2 | 2/1 | Global og kolonial verdenskrig i Afrika, Asia og Midtøsten; Menneskelig utvikling, mobilitet og jeger-sanker-samfunn; Imperialisme, alliansesystemer og krigsutbruddet i 1914 |
-| Asia | ✅ COVERED | 1/1 | 7/2 | 2/1 | Global og kolonial verdenskrig i Afrika, Asia og Midtøsten; Tilhørighet, identitet og ekskludering; Ankomst, bosetting og bolig; Arbeid, nettverk og migrasjon |
-| Amerika | ✅ COVERED | 1/1 | 2/2 | 1/1 | Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk; Global og kolonial verdenskrig i Afrika, Asia og Midtøsten |
-| Midtøsten og Nord-Afrika | ✅ COVERED | 1/1 | 2/2 | 1/1 | Global og kolonial verdenskrig i Afrika, Asia og Midtøsten; Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923 |
+| Norge | ✅ COVERED | 14/3 | 46/8 | 11/3 | Eksklusjon, fornorskning og statsborgerskap; Fornorskning, skole og språk; Imperier, kolonialisme og makt; Slaveri, råvarer og globale verdikjeder |
+| Norden | ✅ COVERED | 3/2 | 5/4 | 4/2 | Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918; Demokrati, massepolitikk og sosial konflikt i Europa og Norden; Norge og Norden i den kalde krigen: NATO, nøytralitet og sikkerhetsstat; Globale kriger og internasjonale organisasjoner |
+| Europa | ✅ COVERED | 4/2 | 10/5 | 4/2 | Demokrati, massepolitikk og sosial konflikt i Europa og Norden; Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa; Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk; Et delt Europa: østblokk, vestlig integrasjon og revolusjonene i 1989 |
+| Global og transnasjonal sammenheng | ✅ COVERED | 17/3 | 35/6 | 8/2 | Familie og transnasjonale bånd; Kriser, konjunkturer og global arbeidsdeling; Global arbeidsdeling, råvarer og avhengighet; Religion, migrasjon og transnasjonale nettverk |
+| Afrika | ✅ COVERED | 1/1 | 5/2 | 3/1 | Global og kolonial verdenskrig i Afrika, Asia og Midtøsten; Menneskelig utvikling, mobilitet og jeger-sanker-samfunn; Imperialisme, alliansesystemer og krigsutbruddet i 1914; Stedfortrederkriger og globale konflikter i den kalde krigen |
+| Asia | ✅ COVERED | 1/1 | 9/2 | 3/1 | Global og kolonial verdenskrig i Afrika, Asia og Midtøsten; Tilhørighet, identitet og ekskludering; Ankomst, bosetting og bolig; Arbeid, nettverk og migrasjon |
+| Amerika | ✅ COVERED | 1/1 | 4/2 | 2/1 | Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk; Global og kolonial verdenskrig i Afrika, Asia og Midtøsten; Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer; Stedfortrederkriger og globale konflikter i den kalde krigen |
+| Midtøsten og Nord-Afrika | ✅ COVERED | 1/1 | 3/2 | 2/1 | Global og kolonial verdenskrig i Afrika, Asia og Midtøsten; Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923; Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991 |
 
 ## Aktører
 
@@ -95,43 +95,39 @@ Historien må dekke både institusjonelle makthavere og grupper som ofte forsvin
 
 | Dekningscelle | Status | Dedikerte emner | Støttende emner | Områder | Eksempler |
 |---|---:|---:|---:|---:|---|
-| Stat, eliter og institusjoner | ✅ COVERED | 43/2 | 215/5 | 22/2 | Stat og institusjoner; Embetsstat og forvaltning; Styring, krise og kontinuitet; Rett, domstol og rettsstat |
+| Stat, eliter og institusjoner | ✅ COVERED | 45/2 | 224/5 | 23/2 | Stat og institusjoner; Embetsstat og forvaltning; Styring, krise og kontinuitet; Rett, domstol og rettsstat |
 | Arbeidere og arbeidsfolk | ✅ COVERED | 2/2 | 38/4 | 7/1 | Arbeiderbevegelse og folkedannelse; Arbeider-, kvinne- og avholdsbevegelser; Kilder, taushet og blindsoner; Taushet og manglende kilder |
-| Kvinner og kjønnede aktører | ✅ COVERED | 15/2 | 35/4 | 8/2 | Kjønn, arbeidsdeling og lønn; Omsorgsarbeid, kjønn og sosial reproduksjon; Kjønn som historisk kategori; Familie, hushold og slektskap |
-| Barn og ungdom | ✅ COVERED | 2/1 | 6/3 | 3/1 | Barndom, familie og livsløp; Barndom, ungdom, alderdom og livsløp; Familie, hushold og slektskap; Omsorg, sosial reproduksjon og ulønnet arbeid |
-| Familier og hushold | ✅ COVERED | 14/1 | 50/3 | 9/1 | Bondehushold, demografi og dagligliv; Barndom, familie og livsløp; Omsorgsarbeid, kjønn og sosial reproduksjon; Familie og transnasjonale bånd |
+| Kvinner og kjønnede aktører | ✅ COVERED | 15/2 | 36/4 | 9/2 | Kjønn, arbeidsdeling og lønn; Omsorgsarbeid, kjønn og sosial reproduksjon; Kjønn som historisk kategori; Familie, hushold og slektskap |
+| Barn og ungdom | ✅ COVERED | 2/1 | 7/3 | 4/1 | Barndom, familie og livsløp; Barndom, ungdom, alderdom og livsløp; Familie, hushold og slektskap; Omsorg, sosial reproduksjon og ulønnet arbeid |
+| Familier og hushold | ✅ COVERED | 14/1 | 53/3 | 10/1 | Bondehushold, demografi og dagligliv; Barndom, familie og livsløp; Omsorgsarbeid, kjønn og sosial reproduksjon; Familie og transnasjonale bånd |
 | Migranter og minoriteter | ✅ COVERED | 12/2 | 26/4 | 5/1 | Migrasjon, mobilitet og mangfold; Minoritetspolitikk og minoritetshistorie; Tilhørighet, identitet og ekskludering; Ankomst, bosetting og bolig |
 | Samer og andre urfolk | ✅ COVERED | 11/2 | 12/3 | 3/1 | Samiske kontaktsoner, handel og statsgrenser i middelalderen; Samiske samfunn, siida og næringsformer; Kontaktsoner, handel og statsgrenser; Misjon, kristning og kunnskapsmakt |
-| Slavegjorte og koloniserte grupper | ✅ COVERED | 1/1 | 12/3 | 3/1 | Slaveri, råvarer og globale verdikjeder; Imperier, kolonialisme og makt; Misjon, kunnskap og kulturelle møter; Migrasjon, diaspora og transnasjonale nettverk |
-| Bønder, fiskere og bygdesamfunn | ⚠️ PARTIAL | 1/1 | 1/3 | 1/1 | Bondehushold, demografi og dagligliv |
-| Religiøse fellesskap | ⚠️ PARTIAL | 0/1 | 17/3 | 2/1 | Kirke, kloster og middelaldermakt; Kongemakt, kirke og konflikt; Middelalderens Oslo; Lov, ting og jurisdiksjon |
-| Eksperter og kunnskapsarbeidere | ✅ COVERED | 1/1 | 11/3 | 2/1 | Kunnskapsinstitusjoner og ekspertise; Profesjoner, standardisering og autoritet; Måling, statistikk, kart og klassifikasjon; Teknologi, infrastruktur og samfunn |
-| Fattige og sosialt marginaliserte | ⚠️ PARTIAL | 0/1 | 3/3 | 1/1 | Tilhørighet, identitet og ekskludering; Språk, religion og minoritetsinstitusjoner; Organisering, motstand og offentlighet |
-| Funksjonshemmede og funksjonshemmingshistorie | ✅ COVERED | 2/1 | 18/2 | 4/1 | Kilder, taushet og blindsoner; Institusjonalisering og avinstitusjonalisering; Barndom, familie og livsløp; Sosialforsikring, pensjon og universalisme |
+| Slavegjorte og koloniserte grupper | ✅ COVERED | 1/1 | 13/3 | 4/1 | Slaveri, råvarer og globale verdikjeder; Imperier, kolonialisme og makt; Misjon, kunnskap og kulturelle møter; Migrasjon, diaspora og transnasjonale nettverk |
+| Bønder, fiskere og bygdesamfunn | ✅ COVERED | 2/1 | 4/3 | 2/1 | Bondehushold, demografi og dagligliv; Bønder, fiskere og bygdesamfunn i den kalde krigens modernisering; Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991; Velferdsstat, planlegging og forbrukersamfunn etter 1945 |
+| Religiøse fellesskap | ✅ COVERED | 1/1 | 18/3 | 3/1 | Religiøse fellesskap, menigheter og fredsmobilisering under den kalde krigen; Kirke, kloster og middelaldermakt; Kongemakt, kirke og konflikt; Middelalderens Oslo |
+| Eksperter og kunnskapsarbeidere | ✅ COVERED | 1/1 | 12/3 | 3/1 | Kunnskapsinstitusjoner og ekspertise; Profesjoner, standardisering og autoritet; Måling, statistikk, kart og klassifikasjon; Teknologi, infrastruktur og samfunn |
+| Fattige og sosialt marginaliserte | ✅ COVERED | 1/1 | 5/3 | 2/1 | Fattige, hjemløse og sosialt marginaliserte i etterkrigstidens velferdssamfunn; Tilhørighet, identitet og ekskludering; Språk, religion og minoritetsinstitusjoner; Organisering, motstand og offentlighet |
+| Funksjonshemmede og funksjonshemmingshistorie | ✅ COVERED | 2/1 | 19/2 | 5/1 | Kilder, taushet og blindsoner; Institusjonalisering og avinstitusjonalisering; Barndom, familie og livsløp; Sosialforsikring, pensjon og universalisme |
 
 ## Historiefaglig produksjon
 
 | Krav | Status | Måling |
 |---|---:|---|
-| Metodekobling i emner | ✅ PASS | 100 % (220/220) |
-| Krav om ekstern påstandsbase | ✅ PASS | 100 % (220/220) |
-| Kronologi og tidsavgrensning | ✅ PASS | 100 % (220/220) |
-| Alternative fortolkninger og faglig konflikt | ✅ PASS | 100 % (220/220) |
-| Minstekrav til konkrete cases | ✅ PASS | 100 % (220/220) |
-| Geografiske profiler er skilt fra universelle emner | ❌ GAP | 91 % (200/220) |
-| Geografinøytrale casekoblinger | ❌ GAP | 9 % (20/220) |
+| Metodekobling i emner | ✅ PASS | 100 % (230/230) |
+| Krav om ekstern påstandsbase | ✅ PASS | 100 % (230/230) |
+| Kronologi og tidsavgrensning | ✅ PASS | 100 % (230/230) |
+| Alternative fortolkninger og faglig konflikt | ✅ PASS | 100 % (230/230) |
+| Minstekrav til konkrete cases | ✅ PASS | 100 % (230/230) |
+| Geografiske profiler er skilt fra universelle emner | ❌ GAP | 87 % (200/230) |
+| Geografinøytrale casekoblinger | ❌ GAP | 13 % (30/230) |
 | Canonical claim-register | ❌ GAP | Ingen av kandidatfilene finnes |
 | Canonical kilderegister | ❌ GAP | Ingen av kandidatfilene finnes |
 | Sted–emne–claim-evidens | ❌ GAP | Ingen av kandidatfilene finnes |
-| Teoriobjekter med dokumentert evidensgrunnlag | ❌ GAP | 0 % (0/220) |
+| Teoriobjekter med dokumentert evidensgrunnlag | ❌ GAP | 0 % (0/230) |
 
 ## Prioriterte faglige gap
 
-- **Aktører — Bønder, fiskere og bygdesamfunn (PARTIAL):** Sikre rurale aktører og primærnæringer i flere tidsperioder.
-- **Tid — Den kalde krigen 1945–1991 (PARTIAL):** Opprett en emnegruppe for den kalde krigen, avkolonisering, velferdsstat, sikkerhetspolitikk og globale konflikter etter 1945.
-- **Aktører — Fattige og sosialt marginaliserte (PARTIAL):** Legg til tydelige aktørperspektiver for fattige og andre sosialt marginaliserte grupper.
 - **Geografi — Oslo og Akershus (PARTIAL):** Behold sterk lokal dekning, men skill den ut som geografisk profil fremfor universell fagdefinisjon.
-- **Aktører — Religiøse fellesskap (PARTIAL):** Sikre religiøse fellesskap som aktører, ikke bare religion som institusjon.
 - **Produksjon — Geografiske profiler er skilt fra universelle emner:** Flytt Oslo-spesifikke casefelt ut av universelle fagobjekter og inn i manifeststyrte geografiske profiler.
 - **Produksjon — Geografinøytrale casekoblinger:** Erstatt lokale casefelt med universelle case-ID-er og separate geografiske profiler.
 - **Produksjon — Canonical claim-register:** Opprett et canonical claim-register med omfang, kildekobling, usikkerhet og alternative fortolkninger.

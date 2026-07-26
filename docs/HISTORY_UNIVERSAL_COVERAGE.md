@@ -1,16 +1,28 @@
 # Historie — universell heldekning
 
 Status: **canonical dekningspolicy og operativ auditinngang**  
-Eier: History GO fagdata  
+Eier: `history_universal_coverage`
 Sist kontrollert: **2026-07-26**
 
 ## Beslutning
 
-Historie V5.5 skal ikke omtales som et komplett historiefag bare fordi den eksisterende strukturen har 20/20 domener, 200/200 emner eller status `FREEZE_READY`.
+Historie skal ikke omtales som et komplett historiefag bare fordi en versjon har eksakte domenetall, full intern readiness eller status `FROZEN`.
 
-Disse tallene viser at en forhåndsvalgt modell er fylt ut og kvalitetskontrollert. De beviser ikke at modellen inneholder alle nødvendige tidsperioder, temafelt, geografiske nivåer, aktørperspektiver eller produksjonsgrunnlag.
+Disse signalene viser at et versjonert inventar er fylt ut, kvalitetskontrollert og beskyttet. De beviser ikke at modellen inneholder alle nødvendige tidsperioder, temafelt, geografiske nivåer, aktørperspektiver eller produksjonsgrunnlag.
 
 Frysing beskytter en versjon. Frysing er ikke en dekningsmåling.
+
+## Autoritetsgrense
+
+Følgende kilder har hvert sitt avgrensede ansvar:
+
+1. `data/fag/historie/historie_v5_contract.json` eier aktiv fagversjon og versjonsspesifikke kvalitetsmål. Aktiv modell er V5.8.
+2. Dette dokumentet eier den menneskelesbare policyen for universell Historie-dekning.
+3. `data/fag/historie/historie_universal_coverage_contract_v1.json` og rapportene under `reports/historie-universal-coverage/` eier maskinell dekningsstatus.
+4. `data/fag/historie/historie_v5_8_freeze_manifest.json` og `reports/historie-v5/historie-v5-8-quality-depth.json` eier aktiv kvalitets- og fryseverifikasjon.
+5. `docs/HISTORY_V5_5_FREEZE.md` er en historisk baseline og eier ingen aktiv kontrakt.
+
+V5.5–V5.7 skal behandles som reproduserbare baselines. De kan forklare utviklingen fram til V5.8, men kan ikke overstyre aktiv kontrakt, aktivt manifest eller den uavhengige heldekningsauditen.
 
 ## Bindende målestokk
 
@@ -32,7 +44,7 @@ Den maskinlesbare referansen ligger i:
 data/fag/historie/historie_universal_coverage_contract_v1.json
 ```
 
-Kontrakten er uavhengig av de eksisterende 20 domenene. Nye dekningsceller skal begrunnes ut fra historiefagets innhold, ikke ut fra hva dagens filer tilfeldigvis allerede inneholder.
+Kontrakten er uavhengig av versjonsspesifikke domenetall. Nye dekningsceller skal begrunnes ut fra historiefagets innhold, ikke ut fra hva aktive filer tilfeldigvis allerede inneholder.
 
 ## Permanent audit
 
@@ -102,11 +114,11 @@ Når auditen viser et gap:
 3. Utvid geografiske profiler og evidenslag når fagobjektet finnes, men lokale cases eller kilder mangler.
 4. Ikke reduser terskelen eller legg til svake ankere bare for å få grønn status.
 5. Oppdater kontrakt, rapport og relevant dokumentasjon i samme PR.
-6. Dersom autoritative V5.5-filer må endres, bruk den bevisste endringsprosedyren og opprett en ny fagversjon eller oppdater frysemanifestet med eksplisitt begrunnelse.
+6. Dersom autoritative filer for aktiv V5.8 må endres, bruk den bevisste endringsprosedyren og opprett en ny fagversjon eller oppdater aktivt frysemanifest med eksplisitt begrunnelse.
 
 ## Mål
 
-V5.5 er en gjennomarbeidet og beskyttet kjerne. Den universelle heldekningsauditen avgjør hva som må legges til før Historie kan regnes som komplett.
+V5.5–V5.7 er historiske, reproduserbare baselines. V5.8 er den aktive universelle Historie-modellen. Heldekningsauditen avgjør hva som fortsatt må legges til før Historie kan regnes som komplett.
 
 <!-- V5_6_PREHISTORY:START -->
 ## Første faglige reparasjon: V5.6
@@ -134,3 +146,11 @@ V5.7 oppretter **Første verdenskrig og mellomkrigstiden** som universelt domene
 
 Domenet bruker sammenlignbare nordiske, europeiske og globale cases. Eksisterende globalhistorie og offentlighetshistorie er samtidig koblet eksplisitt til nordiske og europeiske mellomkrigsforløp, slik at geografi ikke blir isolert i ett periodedomene.
 <!-- V5_7_WAR_INTERWAR:END -->
+
+<!-- V5_8_COLD_WAR:START -->
+## Tredje faglige reparasjon: V5.8
+
+V5.8 oppretter **Den kalde krigen og etterkrigssamfunnet 1945–1991** som universelt domene med ti emner. Utvidelsen dekker supermakter og blokker, atomvåpen, globale stedfortrederkriger, avkolonisering og alliansefrihet, Europas deling og 1989, Norge og Norden, velferdsstat og planlegging, bønder og fiskere, religiøse fellesskap samt fattige og sosialt marginaliserte.
+
+Domenet bruker sammenlignbare nordiske, europeiske og globale cases og lukker fire dokumenterte dekningsgap uten å redusere auditterskler. Oslo og Akershus forblir et separat geografisk profil- og produksjonsarbeid.
+<!-- V5_8_COLD_WAR:END -->

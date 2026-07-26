@@ -152,6 +152,18 @@ Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappin
 
 Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere kombinerte quiz-/lærings-/observations-/popup-README-en ligger i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
+### Historie V5.8, heldekning og kvalitetsfrys
+
+1. [`../data/fag/historie/historie_v5_contract.json`](../data/fag/historie/historie_v5_contract.json) — aktiv V5.8-fagmodell og versjonsspesifikke kvalitetsmål
+2. [`HISTORY_UNIVERSAL_COVERAGE.md`](./HISTORY_UNIVERSAL_COVERAGE.md) — canonical menneskelesbar policy og operativ auditinngang for universell Historie-dekning
+3. [`../data/fag/historie/historie_universal_coverage_contract_v1.json`](../data/fag/historie/historie_universal_coverage_contract_v1.json) — maskinlesbar dekningskontrakt
+4. [`../reports/historie-universal-coverage/historie-universal-coverage.json`](../reports/historie-universal-coverage/historie-universal-coverage.json) — materialisert dekningsstatus
+5. [`../data/fag/historie/historie_v5_8_freeze_manifest.json`](../data/fag/historie/historie_v5_8_freeze_manifest.json) — aktivt V5.8-frysemanifest
+6. [`../reports/historie-v5/historie-v5-8-quality-depth.json`](../reports/historie-v5/historie-v5-8-quality-depth.json) — materialisert V5.8-kvalitetsstatus
+7. [`HISTORY_V5_5_FREEZE.md`](./HISTORY_V5_5_FREEZE.md) — historisk V5.5-baseline og forklaring av compatibility-navn
+
+V5.8 er aktiv fagmodell. V5.5–V5.7 er historiske, reproduserbare baselines. En grønn kvalitetsfrys beskytter et versjonert inventar, men er ikke det samme som universell `COMPLETE`; den uavhengige heldekningsrapporten er fortsatt autoritativ for hva som gjenstår.
+
 ### AHA-lokal kvalitetsstatus
 
 - [`AHA_QUALITY_STATUS_SURFACE_V1.md`](./AHA_QUALITY_STATUS_SURFACE_V1.md) — operativ, dokumentasjonsdefinert målkontrakt for lokal og read-only kvalitetsstatus
@@ -299,6 +311,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt
 - `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode
 - Historiske ruter-planen skilt fra implementert runtimeguide og byte-identisk pre-consolidation-arkiv
+- Historie V5.8 er dokumentert som aktiv autoritet; universell heldekning er canonical policy, og V5.5–V5.7 er historiske baselines
 
 ### Neste
 
