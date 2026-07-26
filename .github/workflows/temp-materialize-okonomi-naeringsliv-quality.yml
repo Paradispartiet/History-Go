@@ -6,6 +6,15 @@ on:
       - agent/okonomi-naeringsliv-universitetskvalitet-v2
     paths:
       - '.github/workflows/temp-materialize-okonomi-naeringsliv-quality.yml'
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - '.github/workflows/temp-materialize-okonomi-naeringsliv-quality.yml'
 
 permissions:
   contents: write
