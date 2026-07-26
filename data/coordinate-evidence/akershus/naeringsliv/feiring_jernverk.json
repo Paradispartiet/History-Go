@@ -1,0 +1,271 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "feiring_jernverk",
+  "placeFile": "data/places/naeringsliv/akershus/feiring_jernverk/feiring_jernverk.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_museum_anchor_for_feiring_ironworks_ruin_area",
+  "currentCoordinate": {
+    "lat": 60.5395079,
+    "lon": 11.1628132,
+    "r": 360,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "MiA Eidsvoll museum – Feiring jernverk; OpenStreetMap node 6593405635",
+    "coordType": "named_ironworks_museum_and_ruin_area_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "osm-node:6593405635;wikidata:Q11968641",
+    "coordNote": "OpenStreetMap node 6593405635 er det navngitte museumspunktet Feiring jernverk, koblet til Wikidata Q11968641, på 60.5395079, 11.1628132. Kartverkets adresse-API returnerer ett eksakt, stedfestingsverifisert objekt for Jernverksvegen 50 med representasjonspunkt 60.53947819994073, 11.163730500320105, matrikkel 3240-248/36 og adressekode 10372, omtrent 50,3 meter øst for museumspunktet. MiA dokumenterer jernverket som anlagt i 1798 og drevet 1806–1818 som del av Eidsvoll Verk under Carsten Anker, med en av Norges best bevarte masovner og ruiner etter kølhus, bakerovn, forvalterbolig og kontorbygning. SNL beskriver hovedanlegget som et komplett jernverk med 25 bevarte bygningselementer og Atthaldsdammen. OSM har ikke et eget navngitt masovn- eller ruinpolygon i den materialiserte boksen; museumspunktet brukes derfor som area_anchor for hele hovedanlegget og hevdes ikke å være den eksakte geometriske centroiden i masovnen, alle hustuftene eller den historiske industrieiendommen. Carsten Ankers lysthus ligger omtrent 310 meter nordøst og er et separat besøkssted. Legacy-punktet 60.5194, 11.1514 lå omtrent 2 321,4 meter sørvest for det faktiske jernverket. Radius 360 meter dekker masovnen, ruinfeltet, nærmeste dam- og elvelandskap og de sentrale anleggssporene, men er ikke en kulturminne-, eiendoms- eller industripolygon."
+  },
+  "previousCoordinate": {
+    "lat": 60.5194,
+    "lon": 11.1514,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 2321.4,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,3 kilometer sørvest for det dokumenterte jernverks- og ruinområdet og kunne ikke knyttes til museumspunktet, Jernverksvegen 50, masovnen eller hovedanlegget."
+  },
+  "identity": {
+    "currentName": "Feiring jernverk",
+    "resolvedIdentity": "Hovedanlegget og ruinområdet etter Feiring jernverk ved Jernverksvegen 50, med den bevarte masovnen og øvrige anleggselementer som ett sammenhengende industrimiljø",
+    "identityStatus": "resolved",
+    "identityProblem": "Den åpne kartboksen har et navngitt museumspunkt, men ikke et eget navngitt masovn- eller ruinpolygon. Museumspunktet må derfor brukes som et dokumentert områdeanker uten falsk påstand om eksakt masovncentroid.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Masovnen, dammene, ruinene og de øvrige 25 anleggselementene utgjør ett hovedanlegg. Carsten Ankers lysthus og St. Pauls gruve er separate besøkssteder og skal ikke trekkes inn som alternative canonical koordinater."
+  },
+  "requiredEvidence": [
+    "navngitt museumspunkt i hovedanlegget",
+    "offisielt stedfestingsverifisert adressepunkt",
+    "offisiell driftstid og eierskap",
+    "dokumentert masovn og ruinmiljø",
+    "dokumentert skille fra Carsten Ankers lysthus og St. Pauls gruve",
+    "eksplisitt mangel på masovnpolygon",
+    "eksplisitt avvisning av legacy-punktet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593405635 – Feiring jernverk",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405635",
+      "sourceObjectId": "osm-node:6593405635;wikidata:Q11968641",
+      "sourceQuality": "named_museum_point_in_main_ironworks_area",
+      "finding": "Node 6593405635 er navngitt Feiring jernverk, tagget tourism=museum og koblet til Wikidata Q11968641 på 60.5395079, 11.1628132.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir et stabilt navngitt fysisk punkt i det dokumenterte hovedanlegget."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Jernverksvegen 50",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3240:10372:50",
+      "sourceQuality": "official_verified_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt, stedfestingsverifisert objekt for Jernverksvegen 50: kommunenummer 3240, gårds- og bruksnummer 248/36, adressekode 10372, postnummer 2093 og representasjonspunkt 60.53947819994073, 11.163730500320105. Punktet ligger 50,3 meter fra museumspunktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at det navngitte museumspunktet ligger i det offisielle Feiring jernverk-anlegget."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA Eidsvoll museum – Feiring jernverk",
+      "sourceUrl": "https://mia.no/eidsvoll/feiringjernverk",
+      "sourceObjectId": "mia-eidsvoll:feiring-jernverk",
+      "sourceQuality": "official_museum_identity_history_and_ruin_description",
+      "finding": "MiA dokumenterer at Feiring jernverk ble anlagt i 1798 og drevet 1806–1818 som del av Eidsvoll Verk under Carsten Anker. På det meste levde 168 personer i industrisamfunnet, og området har en av Norges best bevarte masovner samt ruiner etter kølhus, bakerovn, forvalterbolig og kontorbygning.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår den historiske identiteten og at museumspunktet representerer et omfattende hovedanlegg og ruinmiljø."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA Eidsvoll museum – Finn oss",
+      "sourceUrl": "https://mia.no/eidsvoll/finn",
+      "sourceObjectId": "mia-eidsvoll:feiring-jernverk-directions",
+      "sourceQuality": "official_access_and_separate_site_guidance",
+      "finding": "MiA beskriver to adkomster til Feiring jernverk med parkering og 15–20 minutters gange, og skiller uttrykkelig St. Pauls gruve fra jernverket. Carsten Ankers lysthus har også egen besøksbeskrivelse.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger at jernverket er et eget skoglig ruinområde og at gruven og lysthuset ikke skal brukes som canonical punkt."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Eidsvoll kommune – Opplev Eidsvoll",
+      "sourceUrl": "https://www.eidsvoll.kommune.no/tjenester/Kultur-idrett-og-fritid/opplev-eidsvoll/",
+      "sourceObjectId": "eidsvoll-kommune:feiring-jernverk",
+      "sourceQuality": "official_municipal_attraction_and_masovn_identity",
+      "finding": "Eidsvoll kommune beskriver jernverket som i drift 1806–1818 og fremhever den bevarte masovnen og ruinområdet, 15 minutters gange fra fylkesvei 33.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir en kommunal kryssjekk av hovedanleggets identitet og adkomst."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Feiring jernverk",
+      "sourceUrl": "https://snl.no/Feiring_jernverk",
+      "sourceObjectId": "snl:feiring-jernverk",
+      "sourceQuality": "authoritative_complete_ironworks_and_elements_description",
+      "finding": "SNL beskriver Feiring som et komplett råjerns- og støpejernsanlegg med masovn, dammer, pukkverk, røsteovner, kullhus, verksteder, kontor, mølle og sagbruk. Ved hovedanlegget finnes 25 bygningselementer, blant annet Atthaldsdammen.",
+      "canVerifyCoordinate": true,
+      "reason": "Underbygger områdeanker og radius for et sammensatt industrimiljø fremfor ett punktobjekt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Feiring Jernverks venner – Om jernverket",
+      "sourceUrl": "https://www.jernverket.info/about/",
+      "sourceObjectId": "feiring-jernverks-venner:about",
+      "sourceQuality": "local_masovn_river_and_worker_history",
+      "finding": "Venneforeningen beskriver masovnen ved Torgundrudelva som en av landets best bevarte og et naturlig blikkfang i ruinområdet, med 168 mennesker i det historiske industrisamfunnet.",
+      "canVerifyCoordinate": true,
+      "reason": "Knytter det navngitte hovedanlegget til masovnen og elvelandskapet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593405637 – Carsten Ankers lysthus",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405637",
+      "sourceObjectId": "osm-node:6593405637",
+      "sourceQuality": "separate_nearby_museum_object",
+      "finding": "Carsten Ankers lysthus ligger på 60.5417769, 11.1661017, omtrent 309,8 meter fra Feiring jernverk-punktet, og er et eget navngitt museumspunkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises som canonical og dokumenterer objektskillet innenfor det bredere Carsten Anker-landskapet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Feiring ironworks point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:feiring_jernverk",
+      "sourceQuality": "incorrect_southwestern_point",
+      "finding": "Forrige koordinat 60.5194, 11.1514 ligger omtrent 2 321,4 meter sørvest for det navngitte jernverkspunktet og manglet kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes fordi den ikke representerer hovedanlegget, masovnen eller ruinfeltet fysisk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Jernverksvegen",
+        "number": "50",
+        "postcode": "2093",
+        "city": "Feiring",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3240:10372:50",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405635;wikidata:Q11968641",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3240:10372:50",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405637",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:feiring_jernverk",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "feiring_jernverk_main_ruin_area",
+      "name": "Feiring jernverk – main ironworks and ruin area",
+      "lat": 60.5395079,
+      "lon": 11.1628132,
+      "r": 120,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405635;wikidata:Q11968641",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:feiring_jernverk",
+      "lat": 60.5194,
+      "lon": 11.1514,
+      "coordRole": "incorrect_southwestern_point",
+      "distanceFromAppliedM": 2321.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405635;wikidata:Q11968641",
+      "lat": 60.5395079,
+      "lon": 11.1628132,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 2321.4,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3240:10372:50",
+      "lat": 60.53947819994073,
+      "lon": 11.163730500320105,
+      "coordRole": "official_address_cross_check",
+      "distanceFromAppliedM": 50.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-node-6593405635",
+      "lat": 60.5395113,
+      "lon": 11.1628063,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 0.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405637",
+      "lat": 60.5417769,
+      "lon": 11.1661017,
+      "coordRole": "separate_carsten_anker_pavilion_rejected",
+      "distanceFromAppliedM": 309.8,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-feiring-jernverk-source-probe/osm-node-6593405635.xml",
+      "description": "Raw OSM named museum node for Feiring jernverk."
+    },
+    {
+      "path": "reports/akershus-coordinate-feiring-jernverk-source-probe/nominatim-feiring-jernverk.json",
+      "description": "Raw Nominatim lookup for the named museum point."
+    },
+    {
+      "path": "reports/akershus-coordinate-feiring-jernverk-source-probe/osm-feiring-jernverk-bbox.xml",
+      "description": "Raw local OSM map extract around the ironworks, address and pavilion."
+    },
+    {
+      "path": "reports/akershus-coordinate-feiring-jernverk-source-probe/geonorge-jernverksvegen-50.json",
+      "description": "Raw Kartverket Address API result for Jernverksvegen 50."
+    },
+    {
+      "path": "reports/akershus-coordinate-feiring-jernverk-source-probe/source-summary.txt",
+      "description": "Deterministic museum, address, nearby-object and legacy-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named museum point as an area anchor for the officially documented Feiring ironworks and ruin complex. Continue with Gardermoen military camp / Tunet, the next Akershus batch-5 record."
+  },
+  "notes": [
+    "No separately named masovn or ruin polygon was present in the materialized OSM box, so the named museum point is used without claiming false structure precision.",
+    "Jernverksvegen 50 is an official verified address point 50.3 metres east of the area anchor.",
+    "Carsten Ankers lysthus is a separate museum object approximately 310 metres northeast.",
+    "The 360-metre radius covers the main ruin, masovn, dam and river environment at gameplay scale but is not a property, heritage or industrial polygon.",
+    "The coordinate correction is approximately 2,321.4 metres."
+  ]
+}
