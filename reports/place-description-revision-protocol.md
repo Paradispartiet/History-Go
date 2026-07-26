@@ -15,10 +15,10 @@ Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifes
 ## Oslo-status etter denne PR-en
 
 - Totalt i den aktive Oslo-køen: **90 steder**
-- Ferdig før denne batchen: **78 steder**
-- Denne batchen: **10 steder**
-- Ferdig etter merge av denne batchen: **88 steder**
-- Gjenstår etter merge: **2 steder**
+- Ferdig før denne batchen: **88 steder**
+- Denne batchen: **2 steder**
+- Ferdig etter merge av denne batchen: **90 steder**
+- Gjenstår etter merge: **0 steder**
 
 ## Ferdige steder etter denne PR-en
 
@@ -115,10 +115,12 @@ Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifes
 | 87 | Kjærlighetskarusellen | `kjaerlighetskarusellen` | 53 | 300 | 6 | #4149 |
 | 88 | Villa Stenersen | `villa_stenersen` | 55 | 317 | 6 | #4149 |
 
+| 89 | St. Hallvard kirke og kloster | `st_hallvard_kirke_kloster` | 52 | 301 | 6 | #4150 |
+| 90 | Gamle rådhus | `gamle_radhus` | 50 | 300 | 6 | #4150 |
+
 ## Gjenstående Oslo-kø
 
-1. St. Hallvard kirke og kloster (`st_hallvard_kirke_kloster`)
-2. Gamle rådhus (`gamle_radhus`)
+Ingen. Alle 90 aktive Oslo-steder er ferdige etter merge av denne PR-en.
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -143,5 +145,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 7 | 10 | #4137 – første batch etter utvidelse til alle 90 aktive Oslo-steder |
 | Oslo V4 batch 8 | 10 | #4147 |
 | Oslo V4 batch 9 | 10 | #4149 |
+| Oslo V4 batch 10 | 2 | #4150 – fullfører alle 90 aktive Oslo-steder |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
