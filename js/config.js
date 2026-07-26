@@ -70,3 +70,31 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     load();
   }
 })();
+
+// People-popup V2 is a presentation override. The runtime may load early because
+// it polls until popup-utils has installed the legacy popup functions. Styling is
+// appended only after the document is parsed, so it comes after popups.css and
+// popup-polish.css and can reliably own the V2 layout.
+(function loadPersonPopupV2Runtime() {
+  function ensureStyle() {
+    if (document.querySelector('link[data-hg-person-popup-v2-style="1"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "css/person-popup-v2.css";
+    link.dataset.hgPersonPopupV2Style = "1";
+    document.head.appendChild(link);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ensureStyle, { once: true });
+  } else {
+    ensureStyle();
+  }
+
+  if (document.querySelector('script[data-hg-person-popup-v2-runtime="1"]')) return;
+  const script = document.createElement("script");
+  script.src = "js/ui/person-popup-v2.js";
+  script.async = false;
+  script.dataset.hgPersonPopupV2Runtime = "1";
+  document.head.appendChild(script);
+})();
