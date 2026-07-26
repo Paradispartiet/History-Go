@@ -117,7 +117,7 @@ data/fag/fag_manifest.json
 
 Manifestet skal peke til én canonical fagpakke per `subjectId`. Geografiske profiler registreres som profiler, mappings eller produksjonsmål, ikke som konkurrerende hovedpakker.
 
-Runtime, quizproduksjon og Knowledge skal bruke canonical fag-ID-er uavhengig av geografi.
+Runtime, quizproduksjon og Knowledge skal bruke canonical fag-ID-er uavhengig av geografi. En geografisk profil kan avgrense eller prioritere lokalt innhold, men kan ikke overstyre canonical fagobjekters definisjoner eller identitet.
 
 ## 10. Produksjonsregel
 
