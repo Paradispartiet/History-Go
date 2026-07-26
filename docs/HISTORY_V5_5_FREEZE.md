@@ -70,12 +70,10 @@ En manifestoppdatering er ikke en måte å omgå porten på. Verktøyet skriver 
 
 V6 kan bruke V5.5 som godkjent faglig input, men dokumenterte claims, kilder, kildekvalitet, alternative fortolkninger og place evidence skal ligge i nye V6-filer. `evidence_ready` skal først endres gjennom V6-kontrakten, ikke ved å omskrive den frosne V5.5-basen.
 
-<!-- V5_6_ACTIVE_MODEL:START -->
-## Aktiv modell etter heldekningsauditen
+<!-- V5_7_ACTIVE_MODEL:START -->
+## Aktiv modell etter andre heldekningsreparasjon
 
-V5.5 er nå en historisk og reproduserbar kvalitetsbaseline. Den aktive universelle Historie-modellen er **V5.6**, som legger til domenet **Forhistorie og arkeologi** med ti emner, femti begreper, ti teoriobjekter og fem arkeologiske kjernemetoder.
+V5.5 og V5.6 beholdes som historiske, reproduserbare baselines. Den aktive universelle Historie-modellen er **V5.7**, som legger til domenet **Første verdenskrig og mellomkrigstiden** med ti emner, femti begreper, ti teoriobjekter og sju nye metoder.
 
-Frysen er ikke et forbud mot faglig utvidelse. Når heldekningsauditen dokumenterer et reelt hull, skal modellen få ny versjon, kontrakten få nye forventede tall, og et nytt manifest skrives etter grønn kvalitetskontroll.
-
-Compatibility-stien `tools/audit-historie-v5-5-quality-depth.mjs` beholdes foreløpig, men validerer nå aktiv V5.6-kontrakt og V5.6-manifest. Forventede objekttall leses fra kontrakten og er ikke lenger hardkodet i validatoren.
-<!-- V5_6_ACTIVE_MODEL:END -->
+Compatibility-stien `tools/audit-historie-v5-5-quality-depth.mjs` beholdes foreløpig, men validerer aktiv V5.7-kontrakt og V5.7-manifest. Eksakte tellinger beskytter inventaret; universell heldekning avgjøres fortsatt separat av den uavhengige dekningsauditen.
+<!-- V5_7_ACTIVE_MODEL:END -->
