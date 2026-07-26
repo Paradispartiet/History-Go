@@ -1,0 +1,243 @@
+name: Temporary Blaker protected-site source probe
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-blaker-skanse-production
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Materialize protected-building and culture-environment sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT='reports/akershus-coordinate-blaker-skanse-source-probe'
+          mkdir -p "$OUT"
+          UA='History-Go coordinate research (Paradispartiet/History-Go)'
+          BUILDINGS='https://api.ra.no/KulturminnerFredaBygninger'
+          ENVIRONMENTS='https://api.ra.no/KulturminnerKulturmiljoer'
+
+          curl --fail --silent --show-error --location --user-agent "$UA" \
+            "$BUILDINGS/collections?f=json" \
+            | tee "$OUT/riksantikvaren-freda-bygninger-collections.json" >/dev/null
+
+          curl --fail --silent --show-error --location --user-agent "$UA" \
+            "$ENVIRONMENTS/collections?f=json" \
+            | tee "$OUT/riksantikvaren-kulturmiljoer-collections.json" >/dev/null
+
+          python - <<'PY' | tee "$OUT/riksantikvaren-target-collections.txt" >/dev/null
+          import json
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-blaker-skanse-source-probe')
+          sources = [
+              ('freda-bygninger', 'https://api.ra.no/KulturminnerFredaBygninger', out / 'riksantikvaren-freda-bygninger-collections.json'),
+              ('kulturmiljoer', 'https://api.ra.no/KulturminnerKulturmiljoer', out / 'riksantikvaren-kulturmiljoer-collections.json'),
+          ]
+          for label, base, path in sources:
+              data = json.loads(path.read_text())
+              for collection in data.get('collections', []):
+                  collection_id = collection.get('id')
+                  if collection_id:
+                      print(f'{label}|{base}|{collection_id}')
+          PY
+
+          while IFS='|' read -r LABEL BASE COLLECTION; do
+            [ -n "$COLLECTION" ] || continue
+            SAFE=$(printf '%s' "$COLLECTION" | tr ':/' '__' | tr -cd '[:alnum:]_.-')
+
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get "$BASE/collections/$COLLECTION/items" \
+              --data-urlencode 'bbox=11.298,59.998,11.315,60.010' \
+              --data 'limit=1000' --data 'f=json' \
+              | tee "$OUT/riksantikvaren-${LABEL}-${SAFE}-bbox.json" >/dev/null
+
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get "$BASE/collections/$COLLECTION/items" \
+              --data-urlencode 'navn=Blaker skanse' \
+              --data 'limit=1000' --data 'f=json' \
+              | tee "$OUT/riksantikvaren-${LABEL}-${SAFE}-navn-blaker-skanse.json" >/dev/null || true
+
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get "$BASE/collections/$COLLECTION/items" \
+              --data-urlencode 'navn=Blaker' \
+              --data 'limit=1000' --data 'f=json' \
+              | tee "$OUT/riksantikvaren-${LABEL}-${SAFE}-navn-blaker.json" >/dev/null || true
+          done < "$OUT/riksantikvaren-target-collections.txt"
+
+          python - <<'PY' | tee "$OUT/protected-summary.txt" >/dev/null
+          import json
+          import math
+          import unicodedata
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-blaker-skanse-source-probe')
+          legacy = (60.00361, 11.30611)
+          address = (60.00487275932726, 11.305801586453896)
+          park_hint = (60.00480645308311, 11.307093525256699)
+
+          def distance_m(a, b):
+              lat1, lon1 = map(math.radians, a)
+              lat2, lon2 = map(math.radians, b)
+              dlat = lat2 - lat1
+              dlon = lon2 - lon1
+              h = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+              return 6371000 * 2 * math.asin(math.sqrt(h))
+
+          def norm(value):
+              return unicodedata.normalize('NFKD', str(value)).encode('ascii', 'ignore').decode().lower()
+
+          def flatten_pairs(coords):
+              if not isinstance(coords, list):
+                  return []
+              if len(coords) >= 2 and all(isinstance(v, (int, float)) for v in coords[:2]):
+                  return [(float(coords[0]), float(coords[1]))]
+              result = []
+              for item in coords:
+                  result.extend(flatten_pairs(item))
+              return result
+
+          def ring_centroid(points):
+              if len(points) < 4:
+                  return None
+              pts = list(points)
+              if pts[0] != pts[-1]:
+                  pts.append(pts[0])
+              twice_area = cx = cy = 0.0
+              for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                  cross = x1 * y2 - x2 * y1
+                  twice_area += cross
+                  cx += (x1 + x2) * cross
+                  cy += (y1 + y2) * cross
+              if abs(twice_area) < 1e-15:
+                  return None
+              return cx / (3 * twice_area), cy / (3 * twice_area)
+
+          def feature_center(feature):
+              props = feature.get('properties') or {}
+              for key in ('senterpunkt', 'representasjonspunkt'):
+                  center = props.get(key)
+                  if isinstance(center, dict) and center.get('type') == 'Point':
+                      coords = center.get('coordinates') or []
+                      if len(coords) >= 2:
+                          return float(coords[1]), float(coords[0]), f'official_{key}'
+              geometry = feature.get('geometry') or {}
+              kind = geometry.get('type')
+              coords = geometry.get('coordinates')
+              if kind == 'Point' and coords:
+                  return float(coords[1]), float(coords[0]), 'geometry_point'
+              if kind == 'Polygon' and coords and coords[0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0]])
+                  if point:
+                      return point[1], point[0], 'polygon_centroid'
+              if kind == 'MultiPolygon' and coords and coords[0] and coords[0][0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0][0]])
+                  if point:
+                      return point[1], point[0], 'multipolygon_first_centroid'
+              pairs = flatten_pairs(coords)
+              if not pairs:
+                  return None
+              return sum(p[1] for p in pairs) / len(pairs), sum(p[0] for p in pairs) / len(pairs), 'vertex_mean'
+
+          candidates = {}
+          for path in sorted(out.glob('riksantikvaren-*-bbox.json')) + sorted(out.glob('riksantikvaren-*-navn-*.json')):
+              try:
+                  data = json.loads(path.read_text())
+              except Exception as exc:
+                  print(f'PARSE_ERROR {path.name}: {exc}')
+                  continue
+              features = data.get('features', []) if isinstance(data, dict) else []
+              print(f'FILE {path.name} numberMatched={data.get("numberMatched")} numberReturned={data.get("numberReturned", len(features))}')
+              for feature in features:
+                  props = feature.get('properties') or {}
+                  joined = norm(' '.join(str(v) for v in props.values() if v is not None))
+                  center = feature_center(feature)
+                  if not center:
+                      continue
+                  lat, lon, method = center
+                  point = (lat, lon)
+                  near = distance_m(legacy, point) <= 2000
+                  named = 'blaker' in joined or 'skanse' in joined
+                  if not (near or named):
+                      continue
+                  key = (path.name.split('-bbox')[0].split('-navn')[0], str(feature.get('id')))
+                  row = {
+                      'source_file': path.name,
+                      'feature_id': feature.get('id'),
+                      'geometry_type': (feature.get('geometry') or {}).get('type'),
+                      'lat': lat,
+                      'lon': lon,
+                      'point_method': method,
+                      'distance_from_legacy_m': round(distance_m(legacy, point), 1),
+                      'distance_to_address_m': round(distance_m(address, point), 1),
+                      'distance_to_park_hint_m': round(distance_m(park_hint, point), 1),
+                      'properties': props,
+                  }
+                  candidates[key] = row
+
+          rows = list(candidates.values())
+          rows.sort(key=lambda row: (row['distance_from_legacy_m'], str(row['feature_id'])))
+          print(f'CANDIDATE_COUNT={len(rows)}')
+          for row in rows:
+              print('RA_CANDIDATE ' + json.dumps(row, ensure_ascii=False, sort_keys=True))
+              props_text = norm(' '.join(str(v) for v in row['properties'].values() if v is not None))
+              if 'blaker' in props_text or 'skanse' in props_text:
+                  safe = str(row['feature_id']).replace('/', '_').replace(':', '_')
+                  source_path = out / row['source_file']
+                  source_data = json.loads(source_path.read_text())
+                  matches = [feature for feature in source_data.get('features', []) if str(feature.get('id')) == str(row['feature_id'])]
+                  if len(matches) == 1:
+                      label = 'kulturmiljo' if 'kulturmiljoer' in row['source_file'] else 'freda-bygning'
+                      (out / f'riksantikvaren-{label}-exact-{safe}.json').write_text(json.dumps(matches[0], ensure_ascii=False, indent=2) + '\n')
+
+          # Compute the current OSM park polygon directly from the persisted raw geometry.
+          raw_path = out / 'osm-way-555936228-full.xml'
+          if raw_path.exists():
+              root = ET.parse(raw_path).getroot()
+              nodes = {node.attrib['id']: (float(node.attrib['lat']), float(node.attrib['lon'])) for node in root.findall('node')}
+              way = next((way for way in root.findall('way') if way.attrib.get('id') == '555936228'), None)
+              if way is not None:
+                  refs = [nd.attrib['ref'] for nd in way.findall('nd')]
+                  points = [nodes[ref] for ref in refs if ref in nodes]
+                  centroid_xy = ring_centroid([(lon, lat) for lat, lon in points])
+                  if centroid_xy:
+                      center = (centroid_xy[1], centroid_xy[0])
+                      distances = [distance_m(center, point) for point in points]
+                      tags = {tag.attrib['k']: tag.attrib['v'] for tag in way.findall('tag')}
+                      print('OSM_PARK ' + json.dumps({
+                          'way_id': '555936228', 'lat': center[0], 'lon': center[1],
+                          'node_count': len(points),
+                          'max_vertex_distance_m': round(max(distances), 1),
+                          'distance_from_legacy_m': round(distance_m(legacy, center), 1),
+                          'distance_to_address_m': round(distance_m(address, center), 1),
+                          'tags': tags,
+                      }, ensure_ascii=False, sort_keys=True))
+          PY
+
+          rm -f .github/workflows/temporary-coordinate-source-probe-blaker-protected.yml
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$OUT" .github/workflows/temporary-coordinate-source-probe-blaker-protected.yml
+          if git diff --cached --quiet; then
+            echo 'No protected-site changes.'
+          else
+            git commit -m 'Materialize Blaker protected-site sources'
+            git push origin HEAD:agent/akershus-blaker-skanse-production
+          fi
