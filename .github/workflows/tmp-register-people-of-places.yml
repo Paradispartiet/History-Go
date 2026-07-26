@@ -1,0 +1,92 @@
+name: Temporary People of Places documentation registration
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Register canonical People of Places method
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          def replace_exact(path: str, old: str, new: str) -> None:
+              file = Path(path)
+              text = file.read_text(encoding="utf-8")
+              if old not in text:
+                  raise SystemExit(f"Expected block not found in {path}: {old[:120]!r}")
+              file.write_text(text.replace(old, new, 1), encoding="utf-8")
+
+          registry_path = Path("docs/documentation_registry.json")
+          registry = json.loads(registry_path.read_text(encoding="utf-8"))
+          path = "docs/people-of-places-method.md"
+          if any(entry.get("path") == path for entry in registry["documents"]):
+              raise SystemExit(f"Registry entry already exists: {path}")
+          entry = {
+              "path": path,
+              "status": "canonical",
+              "role": "Bindende redaksjonell metode for relevante, kildebelagte og ikke-dupliserte person–sted-koblinger",
+              "owns": ["people_of_places_method"],
+              "last_verified": "2026-07-26",
+          }
+          insert_at = None
+          for index, existing in enumerate(registry["documents"]):
+              if existing.get("path") == "docs/DATA_PRODUCTION_CONTRACT.md":
+                  insert_at = index + 1
+                  break
+          if insert_at is None:
+              raise SystemExit("DATA_PRODUCTION_CONTRACT registry anchor missing")
+          registry["documents"].insert(insert_at, entry)
+          registry["last_verified"] = "2026-07-26"
+          registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          old_section = """### People-bilder og rettigheter
+
+1. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt
+2. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+3. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+
+People-bilder skal komme fra Wikidata/Wikimedia Commons gjennom lisensporten. Runtime leser lokale bildepaths og `imageMeta` fra canonical manifest-loadede people-filer; kandidat- og attribusjonsfilene er arbeids- og sporbarhetsdata, ikke en parallell people-sannhet.
+"""
+          new_section = """### People-produksjon, stedskobling og bilder
+
+1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
+2. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+3. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+4. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+5. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+6. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+7. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+
+People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI håndhever people-dataintegritet, men beregner ikke full place-for-place-dekning; dekningsmål må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
+"""
+          replace_exact("docs/README.md", old_section, new_section)
+          replace_exact(
+              "docs/README.md",
+              "- `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt",
+              "- `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt\n- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode",
+          )
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/README.md docs/documentation_registry.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Register canonical People of Places method"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
