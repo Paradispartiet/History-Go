@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "frogner_gamle_kirke",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch5/frogner_gamle_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor_separate_from_1925_church",
+  "currentCoordinate": {
+    "lat": 60.020581663654,
+    "lon": 11.104823849509,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 558572036 – Frogner gamle kirke; Kartverket adressepunkt Gamle Kirkeveien 19",
+    "coordType": "named_medieval_church_building_point",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:558572036;building-ref:150263921",
+    "coordNote": "OpenStreetMap way 558572036 er den navngitte bygningsgeometrien for Frogner gamle kirke, merket building=church, heritage=yes og start_date=1180, med bygningsnummer 150263921 og Wikidata Q7590357. Den deterministisk beregnede polygoncentroiden er 60.020581663654, 11.104823849509. Kartverkets adresse-API returnerer ett eksakt objekt for Gamle Kirkeveien 19 med representasjonspunkt 60.02059555351358, 11.104967237227159, matrikkel 3205-274/18 og adressekode 18027, bare 8,1 meter fra kirkebyggets centroid. Den separate Frogner kirke fra 1925 er OSM-way 558572035 ved Gamle Kirkeveien 21 og ligger 81,4 meter sørøst; den avvises som canonical for denne posten. Lillestrøm kommune og Frogner menighet dokumenterer middelalderkirken fra omkring 1180, brannen i 1918 og restaureringsfasene frem til 1977. Canonical markør representerer selve den gamle steinkirken. Radius 220 meter dekker den sammenhengende kirkegården, den nye kirken som senere historisk lag, den nærmeste Pilegrimsleden og Frogner-gårdenes kirkestedslandskap, men er ikke en kirkegårds-, eiendoms- eller fredningspolygon."
+  },
+  "previousCoordinate": {
+    "lat": 60.0247,
+    "lon": 11.1035,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 463.8,
+    "reasonReplaced": "Legacy-punktet lå nord i Frogner tettsted, utenfor det faktiske kirkestedet, og kunne ikke knyttes til middelalderkirken, den nye kirken eller en navngitt kirkegårdsgeometri."
+  },
+  "identity": {
+    "currentName": "Frogner gamle kirke",
+    "resolvedIdentity": "Den stående middelalderske steinkirken ved Gamle Kirkeveien 19, skilt fra Frogner kirke fra 1925 ved Gamle Kirkeveien 21",
+    "identityStatus": "resolved",
+    "identityProblem": "To kirker står på samme kirkested. Den gamle steinkirken og den nye trekirken har separate navngitte geometrier, adresser, bygningsnumre og Wikidata-identiteter og må ikke blandes.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Denne place-posten gjelder bare middelalderkirken. Den nye kirken inngår som senere historisk kontekst innen radiusen, men er ikke samme canonical objekt."
+  },
+  "requiredEvidence": [
+    "navngitt middelalderkirkegeometri",
+    "navngitt separat 1925-kirkegeometri",
+    "offisielle adressepunkter for begge bygg",
+    "offisiell middelalder-, brann- og restaureringshistorie",
+    "dokumentert avstand mellom kirkene",
+    "eksplisitt avvisning av tettstedspunktet og den nye kirken"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 558572036 – Frogner gamle kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/558572036",
+      "sourceObjectId": "osm-way:558572036;building-ref:150263921",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "Way 558572036 er navngitt Frogner gamle kirke, tagget building=church, heritage=yes og start_date=1180, med bygningsnummer 150263921 og Wikidata Q7590357. Den beregnede polygoncentroiden er 60.020581663654, 11.104823849509.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir den navngitte og reproduserbare bygningsgeometrien som canonical display_marker."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Gamle Kirkeveien 19",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18027:19",
+      "sourceQuality": "official_old_church_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt objekt for Gamle Kirkeveien 19: kommunenummer 3205, gårds- og bruksnummer 274/18, adressekode 18027, postnummer 2016 og representasjonspunkt 60.02059555351358, 11.104967237227159. Punktet ligger 8,1 meter fra middelalderkirkens centroid.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter riktig husnummer og fysisk identitet for den gamle kirken."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 558572035 – Frogner kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/558572035",
+      "sourceObjectId": "osm-way:558572035;building-ref:150262828",
+      "sourceQuality": "named_separate_1925_church_geometry",
+      "finding": "Way 558572035 er navngitt Frogner kirke, tagget start_date=1925 og har bygningsnummer 150262828 og Wikidata Q7590463. Centroiden er 60.020001105527, 11.105715271970, 81,4 meter fra den gamle kirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises som canonical for denne posten og dokumenterer det nødvendige objektskillet."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Gamle Kirkeveien 21",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18027:21",
+      "sourceQuality": "official_new_church_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt objekt for Gamle Kirkeveien 21 med representasjonspunkt 60.020008126728285, 11.105755353009377. Punktet ligger 2,4 meter fra den nye kirken og 82,1 meter fra middelalderkirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter at nummer 21 tilhører den nye kirken og ikke skal brukes i canonical-adressen til Frogner gamle kirke."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Lillestrøm kommune – Frogner gamle kirke",
+      "sourceUrl": "https://www.lillestrom.kommune.no/kultur-fritid-og-friluftsliv/tro-livssyn-og-vielse/finn-kirker-og-kirkegarder/frogner-gamle-kirke/",
+      "sourceObjectId": "lillestrom-kommune:frogner-gamle-kirke",
+      "sourceQuality": "official_church_date_fire_and_restoration_summary",
+      "finding": "Kommunen beskriver Frogner gamle kirke som en steinlangkirke fra ca. 1180, med brann i 1918, murreparasjon i 1936, gulv og tak i 1948 og restaurering ferdigstilt i 1977.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår at den anvendte gamle-kirkegeometrien representerer den dokumenterte middelalder- og restaureringshistorien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Frogner menighet – Om kirken",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/lillestr%C3%B8m/menigheter/frogner-menighet/om%20oss/om%20kirken/",
+      "sourceObjectId": "frogner-menighet:gamle-kirke",
+      "sourceQuality": "official_parish_building_description_and_pilgrim_context",
+      "finding": "Menigheten beskriver den gamle kirken som en fredet liten middelaldersk steinkirke fra slutten av 1100-tallet eller omkring 1200, med brann- og restaureringshistorie, middelalderske ombyggingsspor og beliggenhet ved Pilegrimsleden.",
+      "canVerifyCoordinate": true,
+      "reason": "Knytter den navngitte bygningsgeometrien til middelalderkirken og det nære ferdselslandskapet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Norges Kirker – Frogner gamle kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Frogner_gamle_kirke",
+      "sourceObjectId": "norges-kirker:frogner-gamle-kirke",
+      "sourceQuality": "scholarly_building_fire_rune_and_site_history",
+      "finding": "Norges Kirker dokumenterer middelalderbygningen, brannen i 1918, reparasjonene, runeinnskriften og at den nye kirken ble reist sør for den gamle på det sammenhengende kirkestedet.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir dypt historisk og arkitektonisk grunnlag for representasjonen og objektskillet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Frogner menighet – Historieverket om brannen i 1918",
+      "sourceUrl": "https://www.kirken.no/nn-NO/fellesrad/lillestr%C3%B8m/menigheter/frogner-menighet/oppslagstavle/historieverket/",
+      "sourceObjectId": "frogner-menighet:brannen-1918",
+      "sourceQuality": "detailed_local_fire_history",
+      "finding": "Menigheten dokumenterer kirkebrannen sankthansaften 1918 og hvordan middelalderkirken ble ødelagt mens omkringliggende gårdsbygninger ble reddet.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger brannhistorien, men brukes ikke som geometri-kilde."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Frogner old church point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:frogner_gamle_kirke",
+      "sourceQuality": "incorrect_northern_village_point",
+      "finding": "Forrige koordinat 60.0247, 11.1035 ligger omtrent 463,8 meter nord for middelalderkirkens centroid og manglet kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes fordi den ikke ligger ved det fysiske kirkestedet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Gamle Kirkeveien",
+        "number": "19",
+        "postcode": "2016",
+        "city": "Frogner",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18027:19",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Gamle Kirkeveien",
+        "number": "21",
+        "postcode": "2016",
+        "city": "Frogner",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18027:21",
+      "canApplyToPlace": false,
+      "rejectionReason": "Official address for the separate Frogner church built in 1925."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558572036;building-ref:150263921",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18027:19",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558572035;building-ref:150262828",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:frogner_gamle_kirke",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558572036",
+      "geometryType": "Polygon",
+      "geometryRole": "named_medieval_church_building",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558572035",
+      "geometryType": "Polygon",
+      "geometryRole": "separate_new_church_building",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "frogner_gamle_kirke_building",
+      "name": "Frogner gamle kirke – medieval stone church",
+      "lat": 60.020581663654,
+      "lon": 11.104823849509,
+      "r": 70,
+      "type": "unlock_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558572036;building-ref:150263921",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:frogner_gamle_kirke",
+      "lat": 60.0247,
+      "lon": 11.1035,
+      "coordRole": "incorrect_northern_village_point",
+      "distanceFromAppliedM": 463.8,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558572036;building-ref:150263921",
+      "lat": 60.020581663654,
+      "lon": 11.104823849509,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 463.8,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18027:19",
+      "lat": 60.02059555351358,
+      "lon": 11.104967237227159,
+      "coordRole": "official_old_church_address_cross_check",
+      "distanceFromAppliedM": 8.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558572035;building-ref:150262828",
+      "lat": 60.020001105527,
+      "lon": 11.10571527197,
+      "coordRole": "separate_1925_church_rejected",
+      "distanceFromAppliedM": 81.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18027:21",
+      "lat": 60.020008126728285,
+      "lon": 11.105755353009377,
+      "coordRole": "new_church_address_rejected",
+      "distanceFromAppliedM": 82.1,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/osm-way-558572036-full.xml",
+      "description": "Raw OpenStreetMap full geometry for Frogner gamle kirke."
+    },
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/osm-way-558572035-full.xml",
+      "description": "Raw OpenStreetMap full geometry for the separate Frogner church from 1925."
+    },
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/nominatim-frogner-churches.json",
+      "description": "Raw Nominatim lookup and polygon results for both churches."
+    },
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/osm-frogner-church-site-bbox.xml",
+      "description": "Raw local OSM map extract for the shared church site and cemetery."
+    },
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/geonorge-gamle-kirkeveien-19.json",
+      "description": "Raw Kartverket Address API result for the old church address."
+    },
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/geonorge-gamle-kirkeveien-21.json",
+      "description": "Raw Kartverket Address API result for the new church address."
+    },
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/source-summary.txt",
+      "description": "Deterministic geometry, church-separation and legacy-distance summary."
+    },
+    {
+      "path": "reports/akershus-coordinate-frogner-gamle-kirke-source-probe/address-summary.txt",
+      "description": "Deterministic official-address and church-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named medieval church-building centroid and official number 19 address. Continue with Sørum kirke, the next Akershus batch-5 record."
+  },
+  "notes": [
+    "Frogner gamle kirke and Frogner kirke are separate buildings 81.4 metres apart with separate address numbers, building references and Wikidata identities.",
+    "The canonical marker represents the medieval church; the new church remains contextual within the wider radius.",
+    "The 220-metre radius covers the shared church-site landscape and nearby pilgrimage route at gameplay scale but is not a cemetery, property or protection polygon.",
+    "The coordinate correction is approximately 463.8 metres."
+  ]
+}
