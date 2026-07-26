@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "borgarsyssel_museum_olavsbyen",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/borgarsyssel_museum_olavsbyen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_museum_and_ruin_park_area_anchor",
+  "currentCoordinate": {
+    "lat": 59.27874,
+    "lon": 11.12367,
+    "r": 360,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 703151095 – Borgarsyssel Museum; Østfoldmuseene; Wikidata Q4945018; SSR 83087",
+    "coordType": "named_museum_and_ruin_park_area_representative_point",
+    "coordRole": "museum_and_ruin_park_area_anchor",
+    "sourceObjectId": "osm-way:703151095",
+    "coordNote": "The marker represents the museum, St. Nikolas church ruins and immediate Olavsbyen interpretation complex, not the full medieval city Borg."
+  },
+  "previousCoordinate": {
+    "lat": 59.2831,
+    "lon": 11.1119,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 825.8,
+    "reasonReplaced": "The legacy point lay approximately 825.8 metres northwest of the named museum and ruin-park area."
+  },
+  "identity": {
+    "currentName": "Borgarsyssel Museum / Olavsbyen Sarpsborg",
+    "resolvedIdentity": "The Borgarsyssel Museum open-air museum and immediate St. Nikolas ruin-park interpretation complex, used as the physical gateway to the wider medieval city Borg and Olav tradition.",
+    "identityStatus": "resolved",
+    "identityProblem": "The record combines a present museum destination with the wider and partly lost medieval city. A physical anchor can represent the museum and ruins but not an invented centre for the whole city or landslide area.",
+    "locatorTypeCandidate": "institutional_area",
+    "requiresSplit": false,
+    "splitReason": "The museum and ruin park form one coherent visitor and interpretation complex. The medieval city remains wider historical context."
+  },
+  "requiredEvidence": [
+    "stable named museum-area object",
+    "official visitor address",
+    "official museum and ruin-park scope",
+    "independent museum coordinate cross-check",
+    "explicit separation from the full medieval city and landslide scar",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 703151095 – Borgarsyssel Museum",
+      "sourceUrl": "https://www.openstreetmap.org/way/703151095",
+      "sourceObjectId": "osm-way:703151095",
+      "sourceQuality": "named_museum_area_with_entity_links",
+      "finding": "The named museum area has a representative point at 59.27874, 11.12367 and is linked to Wikidata Q4945018 and SSR place-name number 83087.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the museum and immediate outdoor complex."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Borgarsyssel Museum – Om museet",
+      "sourceUrl": "https://ostfoldmuseene.no/borgarsyssel/om",
+      "sourceObjectId": "ostfoldmuseene:borgarsyssel-om",
+      "sourceQuality": "official_museum_ruin_and_medieval_context",
+      "finding": "The official museum describes an open-air museum with 25 buildings, Olavs hall, a tower, St. Nikolas church ruins and interpretation of the medieval city Borg.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines identity and scope."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Borgarsyssel Museum – Kontakt",
+      "sourceUrl": "https://ostfoldmuseene.no/borgarsyssel/kontakt",
+      "sourceObjectId": "ostfoldmuseene:gamlebygata-8",
+      "sourceQuality": "official_visitor_address",
+      "finding": "The official visitor and postal address is Gamlebygata 8, 1721 Sarpsborg.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current destination."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Borgarsyssel Museum",
+      "sourceUrl": "https://lokalhistoriewiki.no/Borgarsyssel_Museum",
+      "sourceObjectId": "lokalhistoriewiki:borgarsyssel-museum",
+      "sourceQuality": "independent_museum_coordinate_cross_check",
+      "finding": "The published coordinate 59.27879, 11.12404 lies approximately 21.7 metres from the applied point.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent location cross-check."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Borgarsyssel medieval landscape description",
+      "sourceUrl": "https://ostfoldmuseene.no/borgarsyssel/om",
+      "sourceObjectId": "ostfoldmuseene:borg-medieval-landscape",
+      "sourceQuality": "scope_separation_control",
+      "finding": "The official description distinguishes the museum and church ruins from the 1702 landslide scar where much of the medieval city lay.",
+      "canVerifyCoordinate": false,
+      "reason": "Prevents the museum point from being misrepresented as the full medieval-city geometry."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Borgarsyssel point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:borgarsyssel_museum_olavsbyen",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy point lies approximately 825.8 metres northwest of the museum area.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the museum, ruins or immediate Olavsbyen complex."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "address": {
+        "street": "Gamlebygata",
+        "number": "8",
+        "postcode": "1721",
+        "city": "Sarpsborg",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ostfoldmuseene.no/borgarsyssel/kontakt",
+      "sourceObjectId": "ostfoldmuseene:gamlebygata-8",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:703151095",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4945018",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and identity cross-check; the named OSM area is the applied geometry source."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:703151095",
+      "geometryType": "Polygon",
+      "geometryRole": "named_museum_and_ruin_park_area",
+      "canApplyToPlace": true,
+      "applied": true,
+      "rawGeometryCaptured": false
+    },
+    {
+      "sourceProvider": "historical_context",
+      "sourceObjectId": "medieval-borg-and-1702-landslide",
+      "geometryType": "wider_historical_landscape_not_captured",
+      "geometryRole": "medieval_city_and_landslide_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "borgarsyssel_museum_ruinpark",
+      "name": "Borgarsyssel Museum and ruin park",
+      "lat": 59.27874,
+      "lon": 11.12367,
+      "r": 160,
+      "type": "museum_and_ruin_park_area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:703151095",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:borgarsyssel_museum_olavsbyen",
+      "lat": 59.2831,
+      "lon": 11.1119,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 825.8,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:703151095",
+      "lat": 59.27874,
+      "lon": 11.12367,
+      "coordRole": "museum_and_ruin_park_area_anchor",
+      "distanceFromPreviousM": 825.8,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:borgarsyssel-museum",
+      "lat": 59.27879,
+      "lon": 11.12404,
+      "coordRole": "independent_museum_cross_check",
+      "distanceFromAppliedM": 21.7,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-borgarsyssel-olavsbyen-source-probe/source-summary.json",
+      "description": "Persisted museum-area object, official address and scope, independent cross-check and medieval-landscape limitation."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named museum and ruin-park area anchor and retained the 360-metre radius. Continue with Solbergfeltet helleristninger."
+  },
+  "notes": [
+    "The coordinate moves approximately 825.8 metres.",
+    "The museum and ruin park are the physical anchor for the Olavsbyen story.",
+    "The marker does not claim the full medieval city or landslide geometry.",
+    "The radius is not a museum, archaeological or landslide boundary."
+  ]
+}
