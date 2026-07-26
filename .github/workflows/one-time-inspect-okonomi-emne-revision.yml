@@ -36,13 +36,45 @@ jobs:
           patch_status=0
           python - <<'PY' || patch_status=$?
           from pathlib import Path
-          path = Path('.tmp/okonomi-revision/revise_okonomi.py')
-          text = path.read_text(encoding='utf-8')
-          old = 'theories=["historisk_institusjonalisme_og_stiavhengighet","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]'
-          new = 'theories=["historisk_institusjonalisme_og_stiavhengighet","institusjonelle_regler_og_insentiver","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]'
-          if old not in text:
-              raise SystemExit('Explicit institutional-theory patch anchor missing in recovered source')
-          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          def apply(path_name, replacements):
+              path = Path(path_name)
+              text = path.read_text(encoding='utf-8')
+              for label, old, new in replacements:
+                  if old not in text:
+                      raise SystemExit(f'Explicit patch anchor missing: {label}')
+                  text = text.replace(old, new, 1)
+              path.write_text(text, encoding='utf-8')
+
+          apply('.tmp/okonomi-revision/revise_okonomi.py', [
+              (
+                  'institutional theory for restructuring',
+                  'theories=["historisk_institusjonalisme_og_stiavhengighet","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]',
+                  'theories=["historisk_institusjonalisme_og_stiavhengighet","institusjonelle_regler_og_insentiver","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]',
+              ),
+              (
+                  'sustainability measures',
+                  'measures=["ekstern_kostnad","materialintensitet","absolutte_utslipp"]',
+                  'measures=["ekstern_kostnad","materialintensitet","karbonintensitet","sekundaerandel","absolutte_utslipp"]',
+              ),
+              (
+                  'property financialisation measure',
+                  'measures=["leiebelastning","tomteverdiandel","investeringsandel"]',
+                  'measures=["leiebelastning","tomteverdiandel","investeringsandel","finansinntektsandel"]',
+              ),
+              (
+                  'industrial real wage series',
+                  'measures=["arbeidsproduktivitet_makro","investeringsandel","energiintensitet"]',
+                  'measures=["arbeidsproduktivitet_makro","investeringsandel","energiintensitet","reallonn_langserie"]',
+              ),
+          ])
+          apply('.tmp/okonomi-revision/repair_and_run.py', [
+              (
+                  'valuation operating margin',
+                  'measures=["roic","kontantkonvertering","npv"]',
+                  'measures=["roic","driftsmargin","kontantkonvertering","npv"]',
+              ),
+          ])
           PY
           python .tmp/okonomi-revision/repair_and_run.py > .tmp/okonomi-revision/revision.log 2>&1
           revision_status=$?
