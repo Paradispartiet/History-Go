@@ -18,7 +18,7 @@ jobs:
       - name: Check out profile branch
         uses: actions/checkout@v4
         with:
-          ref: agent/history-profile-evidence-foundation-v1
+          ref: agent/history-profile-evidence-foundation-v1-final
           fetch-depth: 0
 
       - name: Merge current main conservatively
@@ -41,7 +41,7 @@ jobs:
             | tee reports/historie-profile-evidence/main-sync-status.log
           git add reports/historie-profile-evidence/main-sync-*.log
           git commit -m 'Synkroniser Historie profilgrunnlag med main'
-          git push origin HEAD:agent/history-profile-evidence-foundation-v1 2>&1 \
+          git push origin HEAD:agent/history-profile-evidence-foundation-v1-final 2>&1 \
             | tee /tmp/history-profile-evidence-main-sync-publish.log
 
       - name: Upload sync diagnostics
