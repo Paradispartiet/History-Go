@@ -246,6 +246,32 @@ test("renders the Rådhus political batch and the corrected Kirsten Sand profile
   }
 });
 
+test("renders the Rådhus political and municipal profiles with contributions and sources", async () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data/people/manifest.json"), "utf8"));
+  const all = [];
+  for (const relative of manifest.files) {
+    const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", relative), "utf8"));
+    all.push(...(Array.isArray(data) ? data : [data]));
+  }
+  const people = [
+    all.find(item => item.id === "albert_nordengen"),
+    all.find(item => item.id === "rolf_stranger"),
+    all.find(item => item.name === "Halvdan Eyvind Stokke"),
+    all.find(item => item.id === "haakon_vii"),
+    all.find(item => item.id === "kirsten_sand")
+  ];
+  for (const person of people) {
+    assert.ok(person, "missing profile");
+    const { window, captured } = createHarness({ hasQuiz: true });
+    window.showPersonPopup(person);
+    await new Promise(resolve => setImmediate(resolve));
+    assert.match(captured.html, new RegExp(person.name));
+    assert.match(captured.html, /Verk og bidrag/);
+    assert.match(captured.html, /Kilder og videre lesning/);
+    assert.doesNotMatch(captured.html, /Ingen registrerte verk/);
+  }
+});
+
 test("removes quiz action and empty sections when data is absent", async () => {
   const { window, captured, quizButton } = createHarness({ hasQuiz: false });
 
