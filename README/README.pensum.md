@@ -4,6 +4,8 @@ Dette dokumentet beskriver forholdet mellom fagstruktur, Knowledge, læringsevid
 
 For den kanoniske definisjonen av brukerens personlige Knowledge gjelder også `README/knowledgeREADME.md`.
 
+Den bindende regelen for fagfilenes geografiske ansvar ligger i `docs/SUBJECT_FILE_CONTRACT.md`: én universell fagmodell per fag, med separate geografiske profiler, cases, claims, kilder, steder, personer og quizlag.
+
 ---
 
 ## Grunnprinsipp
@@ -82,6 +84,21 @@ Manifestet peker per `subjectId` til aktive filer for blant annet:
 - `supersetQuizMal`
 
 Runtime skal bruke manifestet først og kan beholde fallback-paths der det er nødvendig for bakoverkompatibilitet.
+
+### Universell fagpakke og geografiske produksjonslag
+
+Fagkart, emner, begreper, teorier og metoder skal være universelle for faget. Det skal ikke opprettes ett komplett fagsett per land, by eller region.
+
+Geografisk innhold skal kobles til de universelle fag-ID-ene gjennom profiler, mappings, lokale cases, dokumenterte claims, kilder, steder, personer og quizproduksjon.
+
+Derfor må dekning måles separat som:
+
+- **universell fagdekning** — om faget dekker nødvendige områder, emner, begreper, teorier og metoder;
+- **geografisk produksjonsdekning** — om et område har nok cases, kilder, claims, steder, personer og quizer til å realisere faget.
+
+Mange lokale cases beviser ikke at fagmodellen er heldekkende. Manglende lokalt innhold skal heller ikke løses ved å kopiere hele fagpakken.
+
+Se den bindende kontrakten i `docs/SUBJECT_FILE_CONTRACT.md`.
 
 ---
 

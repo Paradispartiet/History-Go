@@ -1,0 +1,171 @@
+name: One-time run documentation phase 20 historical routes
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-time-run-documentation-phase-20-historical-routes.yml
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    if: github.event_name == 'push' || github.event.pull_request.head.ref == 'agent/documentation-governance-phase-20-historical-routes'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out target branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/documentation-governance-phase-20-historical-routes
+          fetch-depth: 0
+
+      - name: Synchronize latest main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Capture historical routes runtime baseline
+        shell: bash
+        run: |
+          set +e
+          node tests/historical-routes.test.js > /tmp/historical-routes-before.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-before.status
+          set -e
+
+      - name: Capture historical route audit baseline
+        shell: bash
+        run: |
+          set +e
+          npm run test:historical-routes:audit > /tmp/historical-routes-audit-before.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-audit-before.status
+          set -e
+
+      - name: Run the reviewed consolidation specification
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          source = Path('.github/workflows/temporary-documentation-phase-20-historical-routes.yml')
+          lines = source.read_text(encoding='utf-8').splitlines()
+          marker = "          python - <<'PY'"
+          end = "          PY"
+          start_index = lines.index(marker) + 1
+          end_index = lines.index(end, start_index)
+          script_lines = []
+          for line in lines[start_index:end_index]:
+              if line.startswith('          '):
+                  line = line[10:]
+              script_lines.append(line)
+          Path('/tmp/consolidate_historical_routes_docs.py').write_text(
+              '\n'.join(script_lines) + '\n', encoding='utf-8'
+          )
+          PY
+          python /tmp/consolidate_historical_routes_docs.py
+
+      - name: Remove temporary files from target branch
+        shell: bash
+        run: |
+          rm .github/workflows/temporary-documentation-phase-20-historical-routes.yml
+          rm .github/workflows/one-time-run-documentation-phase-20-historical-routes.yml
+          rm -f .github/documentation-phase20-trigger
+
+      - name: Build documentation checker
+        run: npm run build:scripts
+
+      - name: Validate documentation governance
+        run: node dist/scripts/check-documentation-governance.mjs
+
+      - name: Verify historical routes runtime is unchanged
+        shell: bash
+        run: |
+          set +e
+          node tests/historical-routes.test.js > /tmp/historical-routes-after.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-after.status
+          set -e
+          cmp /tmp/historical-routes-before.status /tmp/historical-routes-after.status
+          cmp /tmp/historical-routes-before.log /tmp/historical-routes-after.log
+          if [ "$(cat /tmp/historical-routes-after.status)" != "0" ]; then
+            echo "Existing historical-routes.test.js baseline failure is unchanged by this documentation-only diff:"
+            tail -n 30 /tmp/historical-routes-after.log
+          fi
+
+      - name: Test historical routes NextUp
+        run: npm run test:nextup-historical-routes
+
+      - name: Verify historical route audit is unchanged
+        shell: bash
+        run: |
+          set +e
+          npm run test:historical-routes:audit > /tmp/historical-routes-audit-after.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-audit-after.status
+          set -e
+          cmp /tmp/historical-routes-audit-before.status /tmp/historical-routes-audit-after.status
+          cmp /tmp/historical-routes-audit-before.log /tmp/historical-routes-audit-after.log
+          if [ "$(cat /tmp/historical-routes-audit-after.status)" != "0" ]; then
+            echo "Existing historical route audit baseline failure is unchanged by this documentation-only diff:"
+            tail -n 40 /tmp/historical-routes-audit-after.log
+          fi
+
+      - name: Reset generated build output
+        shell: bash
+        run: |
+          git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
+          git clean -fd -- dist
+
+      - name: Verify archive identity and registry ownership
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import subprocess
+
+          active = Path('docs/README_HistoryGo_Historiske_Ruter.md')
+          archive = Path('reports/archive/2026-07/historical-routes/README_HistoryGo_Historiske_Ruter_PRE_CONSOLIDATION_2026-07-26.md')
+          registry = json.loads(Path('docs/documentation_registry.json').read_text(encoding='utf-8'))
+          entries = {entry['path']: entry for entry in registry['documents']}
+
+          assert entries[str(active)]['status'] == 'operational'
+          assert entries[str(active)]['owns'] == ['historical_routes_runtime_guide']
+          schema = entries['data/routes/historical/schema_historical_route.json']
+          assert schema['status'] == 'canonical'
+          assert schema['owns'] == ['historical_routes_data_schema']
+          assert entries[str(archive)]['status'] == 'historical'
+          assert 'v0.6 — Nextup-kobling' not in active.read_text(encoding='utf-8')
+          assert 'Første byggefase: v0.1' in archive.read_text(encoding='utf-8')
+
+          original_blob = subprocess.check_output([
+              'git', 'show', 'HEAD^1:docs/README_HistoryGo_Historiske_Ruter.md'
+          ])
+          assert hashlib.sha256(original_blob).hexdigest() == hashlib.sha256(archive.read_bytes()).hexdigest()
+          PY
+
+      - name: Commit final target branch
+        shell: bash
+        run: |
+          git add -A
+          git commit -m "Konsolider dokumentasjonen for Historiske ruter"
+          git push origin HEAD:agent/documentation-governance-phase-20-historical-routes
+
+      - name: Remove one-time runner from main
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+          rm .github/workflows/one-time-run-documentation-phase-20-historical-routes.yml
+          git add .github/workflows/one-time-run-documentation-phase-20-historical-routes.yml
+          git commit -m "Fjern engangsrunner for dokumentasjonsfase 20"
+          git push origin HEAD:main
