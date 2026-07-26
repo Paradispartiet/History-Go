@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "grini_fangeleir",
+  "placeFile": "data/places/historie/akershus/grini_fangeleir.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_georeferenced_historical_camp_geometry",
+  "currentCoordinate": {
+    "lat": 59.9565,
+    "lon": 10.5909,
+    "r": 240,
+    "coordStatus": "needs_manual_map_check",
+    "coordSource": "Legacy point retained pending georeferenced wartime camp geometry; MiA Grinimuseet history and visitor sources; Wikidata Q637411 candidate",
+    "coordType": "provisional_historical_camp_area",
+    "coordRole": "provisional_area_anchor",
+    "sourceObjectId": "legacy:grini_fangeleir",
+    "coordNote": "The current point remains provisional because the wartime prison building, parade ground and expanded barracks camp have not been tied to a captured georeferenced geometry."
+  },
+  "identity": {
+    "currentName": "Grini fangeleir",
+    "resolvedIdentity": "The wartime detention-camp compound built around the original Ila prison building and expanded into a large barracks camp, distinct from the current museum visitor point.",
+    "identityStatus": "resolved",
+    "identityProblem": "The historical camp was a broad compound. Today's museum is in an authentic moved barrack just outside the original camp location, while current public map points disagree and do not document which camp feature they represent.",
+    "locatorTypeCandidate": "historic_camp_area",
+    "requiresSplit": false,
+    "splitReason": "One historical camp record can use a documented area anchor plus a separate museum visitor anchor."
+  },
+  "requiredEvidence": [
+    "georeferenced authoritative wartime camp plan",
+    "current-ground identification of the main prison building and parade-ground core",
+    "documented extent of the expanded barracks camp",
+    "surviving original element cross-checks",
+    "separate visitor anchor for the current museum",
+    "radius decision based on the historical area rather than the museum address"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "museum",
+      "sourceName": "Grinimuseet – Om Grini fangeleir",
+      "sourceUrl": "https://mia.no/grinimuseet/om-grini-fangeleir",
+      "sourceObjectId": "mia:grini-fangeleir-history",
+      "sourceQuality": "official_museum_history_and_camp_structure",
+      "finding": "MiA documents that the camp began in the unfinished Ila prison and expanded from 1942 into a barracks camp of more than thirty buildings, including workshops and sick wards.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves historical identity and spatial complexity but does not publish a reusable georeferenced camp polygon."
+    },
+    {
+      "sourceProvider": "museum",
+      "sourceName": "Grinimuseet – visitor information",
+      "sourceUrl": "https://mia.no/grinimuseet/velkommen-til-grinimuseet",
+      "sourceObjectId": "mia:grinimuseet-jossingveien-31",
+      "sourceQuality": "official_current_visitor_address",
+      "finding": "The museum is at Jøssingveien 31. MiA states that the authentic prisoner barrack used by the museum stands just outside the original camp location.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides a valid visitor anchor but explicitly cannot define the historical camp centre."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5446566958 – Grinimuseet",
+      "sourceUrl": "https://www.openstreetmap.org/node/5446566958",
+      "sourceObjectId": "osm-node:5446566958",
+      "sourceQuality": "named_current_museum_point",
+      "finding": "The current museum point is approximately 59.95579, 10.58470, 354.1 metres west of the legacy marker.",
+      "canVerifyCoordinate": false,
+      "reason": "Useful as a future visitor anchor, not as the historical camp marker."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q637411 – Grini detention camp",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q637411",
+      "sourceObjectId": "wikidata:Q637411",
+      "sourceQuality": "historical_entity_point_without_coordinate_reference",
+      "finding": "Wikidata publishes approximately 59.9534333333, 10.5825472222. This is 576.7 metres from the legacy marker and 288.2 metres from the museum point, but the coordinate statement has no cited derivation.",
+      "canVerifyCoordinate": false,
+      "reason": "A historical entity candidate without source or feature-role evidence cannot replace the marker."
+    },
+    {
+      "sourceProvider": "local_history",
+      "sourceName": "Bærumhistorie – historical Grini camp plan and current comparison map",
+      "sourceUrl": "https://barumhistorie.no/Eiksmarka%20web/Grini%20fangeleir.html",
+      "sourceObjectId": "baerumhistorie:grini-camp-plan",
+      "sourceQuality": "historical_scope_visual_context_not_georeferenced",
+      "finding": "The camp plan depicts the main building, parade ground, numerous barracks, workshops, farms and perimeter functions. A current comparison map confirms that the site cannot be reduced to the present museum building.",
+      "canVerifyCoordinate": false,
+      "reason": "Useful visual scope evidence, but the plan has not been georeferenced and cannot produce a deterministic point."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "OSM node 6465581140 – Grini farm/locality false candidate",
+      "sourceUrl": "https://www.openstreetmap.org/node/6465581140",
+      "sourceObjectId": "osm-node:6465581140",
+      "sourceQuality": "same_entity_link_wrong_object_class_and_location",
+      "finding": "An OSM-derived index links the detention-camp entity to a farm/locality point at approximately 59.9495, 10.62951, well east of the documented Ila/Grini site.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because the object class and physical location are inconsistent with the camp and museum area."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Grini fangeleir point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:grini_fangeleir",
+      "sourceQuality": "uncontracted_provisional_area_point",
+      "finding": "The current coordinate 59.9565, 10.5909 has no documented relationship to a specific historical camp feature or derived area centre.",
+      "canVerifyCoordinate": false,
+      "reason": "Retained only to avoid an unjustified move before historical geometry is available."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "museum",
+      "address": {
+        "street": "Jøssingveien",
+        "number": "31",
+        "postcode": "1359",
+        "city": "Eiksmarka",
+        "country": "NO"
+      },
+      "sourceUrl": "https://mia.no/grinimuseet/velkommen-til-grinimuseet",
+      "sourceObjectId": "mia:grinimuseet-jossingveien-31",
+      "canApplyToPlace": false,
+      "rejectionReason": "Valid museum visitor address, but the authentic barrack stands outside the original camp site."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:grini_fangeleir",
+      "canApplyToPlace": false,
+      "rejectionReason": "No source or feature-role contract."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5446566958",
+      "canApplyToPlace": false,
+      "rejectionReason": "Current museum visitor point outside the original camp location."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q637411",
+      "canApplyToPlace": false,
+      "rejectionReason": "Unreferenced entity coordinate with no documented derivation from the camp plan."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:6465581140",
+      "canApplyToPlace": false,
+      "rejectionReason": "Wrong farm/locality object and wrong location."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "local_history",
+      "sourceObjectId": "baerumhistorie:grini-camp-plan",
+      "geometryType": "historical_plan_image",
+      "geometryRole": "camp_extent_georeferencing_candidate",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:grini_fangeleir",
+      "lat": 59.9565,
+      "lon": 10.5909,
+      "coordRole": "provisional_area_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5446566958",
+      "lat": 59.95579,
+      "lon": 10.5847,
+      "coordRole": "museum_visitor_anchor_candidate",
+      "distanceFromCurrentM": 354.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q637411",
+      "lat": 59.95343333333334,
+      "lon": 10.582547222222223,
+      "coordRole": "unreferenced_historical_entity_candidate",
+      "distanceFromCurrentM": 576.7,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-grini-fangeleir-source-probe/source-summary.json",
+      "description": "Persisted museum history, museum point, historical entity candidate, rejected farm candidate and georeferencing requirement."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "No authoritative or georeferenced historical camp geometry ties the main prison building, parade ground and expanded barracks compound to a deterministic area anchor.",
+    "nextAction": "Georeference the wartime camp plan against the present Ila site, select a historical camp core anchor, define a justified radius and add the museum as a separate visitor anchor."
+  },
+  "notes": [
+    "No coordinate or radius is changed by this audit.",
+    "The museum address is valid for visits but not for the historical camp marker.",
+    "The Wikidata point is retained only as a candidate because its coordinate statement has no source reference.",
+    "The farm/locality point is explicitly rejected.",
+    "The current 240-metre circle must not be interpreted as the camp boundary."
+  ]
+}
