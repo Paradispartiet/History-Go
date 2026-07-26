@@ -2,6 +2,8 @@
 
 Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgradert etter den nye standarden i `PLACE_DESCRIPTION_CANONICAL.md`.
 
+Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifest.json`, ikke bare fra den opprinnelige mappen `data/places/by/oslo/places/`. Den gamle køen på 58 steder var derfor en delmengde, ikke hele Oslo.
+
 ## Bindende ferdigkrav
 
 - `desc`: normalt 40–80 ord.
@@ -12,11 +14,11 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 
 ## Oslo-status etter denne PR-en
 
-- Totalt i Oslo-køen: **58 steder**
-- Ferdig før denne batchen: **52 steder**
-- Denne batchen: **6 steder**
-- Ferdig etter merge av denne batchen: **58 steder**
-- Gjenstår etter merge: **0 steder**
+- Totalt i den aktive Oslo-køen: **90 steder**
+- Ferdig før denne batchen: **58 steder**
+- Denne batchen: **10 steder**
+- Ferdig etter merge av denne batchen: **68 steder**
+- Gjenstår etter merge: **22 steder**
 
 ## Ferdige steder etter denne PR-en
 
@@ -80,10 +82,49 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | 56 | Skøyen | `skoyen` | 48 | 303 | 6 | #4124 |
 | 57 | Trikkelinje 17/18 | `trikk_17_18` | 49 | 301 | 6 | #4124 |
 | 58 | St. Hanshaugen park | `st_hanshaugen_park` | 53 | 311 | 7 | #4124 |
+| 59 | Saga kino | `saga_kino` | 48 | 337 | 6 | #4137 |
+| 60 | Klingenberg kino | `klingenberg_kino` | 45 | 336 | 6 | #4137 |
+| 61 | Gimle kino | `gimle_kino` | 51 | 320 | 6 | #4137 |
+| 62 | Vika kino | `vika_kino` | 50 | 310 | 6 | #4137 |
+| 63 | Hartvig Nissens skole (SKAM) | `hartvig_nissens_skole_skam` | 45 | 331 | 6 | #4137 |
+| 64 | Middelalderparken | `middelalder_oslo` | 43 | 308 | 6 | #4137 |
+| 65 | Gamlebyen gravlund | `gamlebyen_gravlund` | 44 | 302 | 6 | #4137 |
+| 66 | Akershus festning | `akershus_festning` | 48 | 306 | 6 | #4137 |
+| 67 | Hovedøya kloster | `hovedoya_kloster` | 44 | 301 | 6 | #4137 |
+| 68 | Villa Grande | `villa_grande` | 48 | 325 | 6 | #4137 |
 
 ## Gjenstående Oslo-kø
 
-Ingen. Oslo-køen på 58 steder er fullført etter den nye standarden.
+1. Gamle Aker kirke (`gamle_aker_kirke`)
+2. Vår Frelsers gravlund (`var_frelsers_gravlund`)
+3. Bogstad gård (`bogstad_gard`)
+4. Møllergata 19 (`mollergata_19`)
+5. Sagene skole (`sagene_skole`)
+6. Oslo domkirke (`oslo_domkirke`)
+7. Damstredet og Telthusbakken (`damstredet_telthusbakken`)
+8. Gamle trikkestallen (`gamle_trikkestallen`)
+9. Slottet (`slottet`)
+10. Sofienberg kirke (`sofienberg_kirke`)
+11. Trefoldighetskirken (`trefoldighetskirken`)
+12. Nonneseter kloster (`nonneseter_kloster`)
+13. Oslo ladegård (`oslo_ladegard`)
+14. Galgeberg (`galgeberg`)
+15. Oslo Hospital (`oslo_hospital`)
+16. Botsfengselet (`botsfengselet`)
+17. Prinds Christian Augusts Minde (`prinds_christian_augusts_minde`)
+18. Peststøtten / Krist kirkegård (`peststotten_krist_kirkegard`)
+19. Kjærlighetskarusellen (`kjaerlighetskarusellen`)
+20. Villa Stenersen (`villa_stenersen`)
+21. St. Hallvard kirke og kloster (`st_hallvard_kirke_kloster`)
+22. Gamle rådhus (`gamle_radhus`)
+
+## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
+
+- `saga_kino.year` står som 1989, mens kinoen åpnet i 1934 og ble bygget om til kinosenter i 1981.
+- `vika_kino.year` står som 1981, mens dagens kino i Ruseløkkveien 14 åpnet i 1997.
+- `klingenberg_kino.category` står som `sport` selv om filens emner og innhold gjelder film- og kinokultur.
+
+Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke blandes skjult inn i desc/popupDesc-revisjonen.
 
 ## Batchlogg
 
@@ -96,6 +137,7 @@ Ingen. Oslo-køen på 58 steder er fullført etter den nye standarden.
 | Oslo V4 batch 3 | 10 | Merget i #4043 |
 | Oslo V4 batch 4 | 10 | #4069 |
 | Oslo V4 batch 5 | 10 | #4101 |
-| Oslo V4 batch 6 | 6 | #4124 – avslutter Oslo-køen |
+| Oslo V4 batch 6 | 6 | #4124 – fullførte den opprinnelige 58-steders delkøen |
+| Oslo V4 batch 7 | 10 | #4137 – første batch etter utvidelse til alle 90 aktive Oslo-steder |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
