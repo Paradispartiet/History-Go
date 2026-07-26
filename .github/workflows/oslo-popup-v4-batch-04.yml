@@ -22,6 +22,21 @@ jobs:
           ref: agent/oslo-popup-v4-batch-04-ten-protocol
           fetch-depth: 1
           show-progress: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .tmp/oslo-popup-v4-batch-04
+            .github/workflows/oslo-popup-v4-batch-04.yml
+            data/places/by/oslo/places/kampen_kirke.json
+            data/places/by/oslo/places/ullevål_hageby.json
+            data/places/by/oslo/places/romsaås.json
+            data/places/by/oslo/places/grunerlokka_helgesens_tm.json
+            data/places/by/oslo/places/spikersuppa.json
+            data/places/by/oslo/places/bankplassen.json
+            data/places/by/oslo/places/christiania_torv.json
+            data/places/by/oslo/places/botsparken.json
+            data/places/by/oslo/places/slottsparken.json
+            data/places/by/oslo/places/tjuvholmen.json
+            reports/place-description-revision-protocol.md
 
       - name: Apply ten description revisions and protocol
         shell: bash
