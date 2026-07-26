@@ -92,6 +92,16 @@ jobs:
           for (const key of Object.keys(expected)) if (actual[key] !== expected[key]) process.exitCode = 1;
           NODE
 
+      - name: Upload V5.6 diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-v5-6-prehistory-diagnostics
+          path: |
+            reports/historie-v5/**
+            reports/historie-universal-coverage/**
+          if-no-files-found: warn
+
       - name: Remove one-time inputs and publish
         shell: bash
         run: |
