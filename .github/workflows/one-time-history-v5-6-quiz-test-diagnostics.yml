@@ -1,9 +1,9 @@
 name: One-time History V5.6 quiz test diagnostics
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/history-v5-6-prehistory-archaeology
+      - main
     paths:
       - '.github/workflows/one-time-history-v5-6-quiz-test-diagnostics.yml'
 
