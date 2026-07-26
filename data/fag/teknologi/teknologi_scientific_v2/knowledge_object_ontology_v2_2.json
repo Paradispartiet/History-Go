@@ -1,0 +1,1057 @@
+{
+  "schema": "teknologi_knowledge_object_ontology_v2_2",
+  "version": "2.2",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "purpose": "Skiller teori, modell, prinsipp, rammeverk, lov, teorem og arkitekturmønster slik at fagobjekter brukes med korrekt epistemisk rolle.",
+  "object_types": [
+    {
+      "id": "theory",
+      "definition": "Forklarer generelle sammenhenger eller mekanismer og kan utfordres av evidens."
+    },
+    {
+      "id": "model",
+      "definition": "En avgrenset representasjon brukt til beskrivelse, beregning eller prediksjon."
+    },
+    {
+      "id": "principle",
+      "definition": "En normativ eller analytisk designregel som styrer valg under bestemte betingelser."
+    },
+    {
+      "id": "framework",
+      "definition": "Et strukturert sett begreper og analysetrinn uten én samlet prediktiv lov."
+    },
+    {
+      "id": "law",
+      "definition": "En generalisert relasjon eller bevaringsregel med eksplisitt gyldighetsområde."
+    },
+    {
+      "id": "theorem",
+      "definition": "En logisk eller matematisk konsekvens av angitte forutsetninger."
+    },
+    {
+      "id": "architecture_pattern",
+      "definition": "En gjenkjennelig organisering av komponenter, ansvar og informasjonsflyt."
+    }
+  ],
+  "governance": {
+    "type_must_be_explicit": true,
+    "name_without_logic_is_not_theory_use": true,
+    "assumptions_and_limitations_required": true,
+    "legacy_ids_are_stable": true,
+    "advanced_areas_may_have_greater_depth": true
+  },
+  "legacy_classification": [
+    {
+      "id": "teori_tek_designvitenskap",
+      "area_id": "teknologivitenskap_design",
+      "label": "Designvitenskap",
+      "object_type": "framework",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Organiserer begreper og analysetrinn uten én samlet prediktiv lov.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_funksjon_atferd_struktur",
+      "area_id": "teknologivitenskap_design",
+      "label": "Funksjon–atferd–struktur",
+      "object_type": "model",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Representerer et avgrenset system eller forløp og er ikke en generell teori om all teknologi.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_systemteknisk_v_modell",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Systemteknisk V-modell",
+      "object_type": "model",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Representerer et avgrenset system eller forløp og er ikke en generell teori om all teknologi.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_stamp_sikkerhetsmodell",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "STAMP",
+      "object_type": "model",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Representerer et avgrenset system eller forløp og er ikke en generell teori om all teknologi.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_termodynamisk_kretsprosess",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Termodynamisk kretsprosess",
+      "object_type": "model",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Representerer et avgrenset system eller forløp og er ikke en generell teori om all teknologi.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_energiomformingskjede",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Energiomformingskjede",
+      "object_type": "model",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Representerer et avgrenset system eller forløp og er ikke en generell teori om all teknologi.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_ashby_materialvalg",
+      "area_id": "materialer_produksjon",
+      "label": "Ashbys materialvalg",
+      "object_type": "framework",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Organiserer begreper og analysetrinn uten én samlet prediktiv lov.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_statistisk_prosesskontroll",
+      "area_id": "materialer_produksjon",
+      "label": "Statistisk prosesskontroll",
+      "object_type": "framework",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Organiserer begreper og analysetrinn uten én samlet prediktiv lov.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_lukket_reguleringssloyfe",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Lukket reguleringssløyfe",
+      "object_type": "architecture_pattern",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Beskriver en gjenkjennelig organisering av komponenter og informasjonsflyt.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_signal_og_informasjonskjede",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Signal- og informasjonskjede",
+      "object_type": "model",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Representerer et avgrenset system eller forløp og er ikke en generell teori om all teknologi.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_sense_plan_act_og_subsumpsjon",
+      "area_id": "robotikk_automatisering",
+      "label": "Sense–plan–act og subsumpsjon",
+      "object_type": "architecture_pattern",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Beskriver en gjenkjennelig organisering av komponenter og informasjonsflyt.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_grader_av_automatisering",
+      "area_id": "robotikk_automatisering",
+      "label": "Grader av automatisering",
+      "object_type": "framework",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Organiserer begreper og analysetrinn uten én samlet prediktiv lov.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_lagret_program_arkitektur",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Lagret-program-arkitektur",
+      "object_type": "architecture_pattern",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Beskriver en gjenkjennelig organisering av komponenter og informasjonsflyt.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_abstraksjonsstakk_datamaskin",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Datamaskinens abstraksjonsstakk",
+      "object_type": "model",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Representerer et avgrenset system eller forløp og er ikke en generell teori om all teknologi.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_informasjonsskjuling",
+      "area_id": "programvareteknikk",
+      "label": "Informasjonsskjuling",
+      "object_type": "principle",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Styrer design eller analyse under betingelser, men predikerer ikke alene systematferd.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_kontinuerlig_programvarelivslop",
+      "area_id": "programvareteknikk",
+      "label": "Kontinuerlig programvarelivsløp",
+      "object_type": "framework",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Organiserer begreper og analysetrinn uten én samlet prediktiv lov.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_beregningskompleksitet",
+      "area_id": "algoritmer_data_ai",
+      "label": "Beregningskompleksitet",
+      "object_type": "theory",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Forklarer generaliserbare sammenhenger og må brukes gjennom antakelser, mekanisme og evidens.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_statistisk_laering",
+      "area_id": "algoritmer_data_ai",
+      "label": "Statistisk læring",
+      "object_type": "theory",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Forklarer generaliserbare sammenhenger og må brukes gjennom antakelser, mekanisme og evidens.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_ende_til_ende_prinsippet",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Ende-til-ende-prinsippet",
+      "object_type": "principle",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Styrer design eller analyse under betingelser, men predikerer ikke alene systematferd.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_forsvar_i_dybden",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Forsvar i dybden",
+      "object_type": "principle",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Styrer design eller analyse under betingelser, men predikerer ikke alene systematferd.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_menneskesentrert_design",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Menneskesentrert design",
+      "object_type": "framework",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Organiserer begreper og analysetrinn uten én samlet prediktiv lov.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_distribuert_kognisjon",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Distribuert kognisjon",
+      "object_type": "theory",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Forklarer generaliserbare sammenhenger og må brukes gjennom antakelser, mekanisme og evidens.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_store_tekniske_systemer",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Store tekniske systemer",
+      "object_type": "theory",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Forklarer generaliserbare sammenhenger og må brukes gjennom antakelser, mekanisme og evidens.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    },
+    {
+      "id": "teori_tek_sosiotekniske_forestillinger",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Sosiotekniske forestillinger",
+      "object_type": "theory",
+      "status": "reclassified_legacy_object",
+      "classification_rationale": "Forklarer generaliserbare sammenhenger og må brukes gjennom antakelser, mekanisme og evidens.",
+      "rule": "Objektet beholder eksisterende ID, men skal omtales med denne objekttypen i produksjon og vurdering."
+    }
+  ],
+  "extensions": [
+    {
+      "id": "kobj_tek_axiomatisk_design",
+      "area_id": "teknologivitenskap_design",
+      "label": "Aksiomatisk design",
+      "object_type": "framework",
+      "scope": "Systematisk kobling mellom funksjonskrav og designparametere i komplekse tekniske løsninger.",
+      "core_claim": "Et godt design søker uavhengige funksjonskrav og lav informasjonsmengde i løsningen.",
+      "assumptions": [
+        "Funksjonskrav kan uttrykkes separat fra løsningsparametere.",
+        "Koblinger mellom krav og designvalg kan analyseres eksplisitt."
+      ],
+      "observable_indicators": [
+        "designmatrise mellom krav og parametere",
+        "endringsspredning når ett krav justeres"
+      ],
+      "limitations": [
+        "Reelle interessentkonflikter kan ikke alltid reduseres til uavhengige krav.",
+        "Kvalitative verdier krever supplerende analyse."
+      ],
+      "misuse_risks": [
+        "å anta at alle krav kan gjøres uavhengige",
+        "å bruke lav informasjonsmengde som eneste designmål"
+      ],
+      "concept_ids": [
+        "krav",
+        "designrom",
+        "sporbarhet",
+        "interessentkonflikt"
+      ]
+    },
+    {
+      "id": "kobj_tek_palitelighetsblokkdiagram",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Pålitelighetsblokkdiagram",
+      "object_type": "model",
+      "scope": "Modellering av hvordan serie-, parallell- og reservekonfigurasjoner påvirker systemfunksjon.",
+      "core_claim": "Systemets pålitelighet kan beregnes fra komponentstruktur og eksplisitte antakelser om feilavhengighet.",
+      "assumptions": [
+        "Funksjonslogikken kan representeres som blokker.",
+        "Komponentfeil og avhengigheter kan estimeres."
+      ],
+      "observable_indicators": [
+        "beregnet systempålitelighet",
+        "sensitivitet for enkeltkomponenter og redundans"
+      ],
+      "limitations": [
+        "Fellesårsaksfeil og reparasjon krever utvidelser.",
+        "Komplekse dynamiske feilforløp kan skjules."
+      ],
+      "misuse_risks": [
+        "å anta uavhengige feil uten begrunnelse",
+        "å behandle blokkdiagrammet som fysisk arkitektur"
+      ],
+      "concept_ids": [
+        "palitelighet",
+        "redundans",
+        "tilgjengelighet_system",
+        "fellesarsaksfeil"
+      ]
+    },
+    {
+      "id": "kobj_tek_normal_ulykkesteori",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Normal ulykkesteori",
+      "object_type": "theory",
+      "scope": "Ulykkesrisiko i systemer med høy interaktiv kompleksitet og tett kobling.",
+      "core_claim": "I enkelte komplekse og tett koblede systemer vil uventede kombinasjoner av feil være vanskelige å eliminere fullstendig.",
+      "assumptions": [
+        "Systemet har flere skjulte eller ikke-lineære interaksjoner.",
+        "Tidsmessig eller prosessmessig kobling begrenser gjenoppretting."
+      ],
+      "observable_indicators": [
+        "uventede interaksjoner mellom ellers håndterbare feil",
+        "liten tid eller fleksibilitet til å isolere avvik"
+      ],
+      "limitations": [
+        "Teorien predikerer ikke konkret ulykkesfrekvens.",
+        "Organisatorisk læring og redesign kan endre koblingene."
+      ],
+      "misuse_risks": [
+        "å bruke teorien som argument mot alle sikkerhetstiltak",
+        "å kalle enhver komplisert hendelse uunngåelig"
+      ],
+      "concept_ids": [
+        "systemgrense",
+        "fellesarsaksfeil",
+        "sikkerhetsbarriere",
+        "feiltoleranse"
+      ]
+    },
+    {
+      "id": "kobj_tek_bevaringslover_dimensjonsanalyse",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Bevaringslover og dimensjonsanalyse",
+      "object_type": "law",
+      "scope": "Analyse av mekaniske og termiske systemer gjennom masse-, energi- og momentbalanser og dimensjonskonsistens.",
+      "core_claim": "Gyldige modeller må respektere relevante bevaringslover og ha konsistente dimensjoner.",
+      "assumptions": [
+        "Systemgrense og strømmer kan defineres.",
+        "Relevante lagrings- og transportledd er inkludert."
+      ],
+      "observable_indicators": [
+        "lukket masse- og energibalanse",
+        "dimensjonsløse grupper eller konsistente enheter"
+      ],
+      "limitations": [
+        "Bevaringslover angir ikke alene materiallov eller dynamisk respons.",
+        "Måleusikkerhet kan skjule små ubalanser."
+      ],
+      "misuse_risks": [
+        "å tolke numerisk balanse som full modellvalidering",
+        "å overse energikvalitet og entropiproduksjon"
+      ],
+      "concept_ids": [
+        "energi",
+        "arbeid",
+        "kraft",
+        "lasttilfelle"
+      ]
+    },
+    {
+      "id": "kobj_tek_lineaer_elastisk_bruddmekanikk",
+      "area_id": "materialer_produksjon",
+      "label": "Lineær-elastisk bruddmekanikk",
+      "object_type": "theory",
+      "scope": "Sprekkvekst og kritisk brudd i materialer som kan behandles tilnærmet lineær-elastisk.",
+      "core_claim": "Spenningstilstanden nær en sprekkspiss kan beskrives med en intensitetsfaktor som sammenlignes med materialets bruddseighet.",
+      "assumptions": [
+        "Plastisk sone er liten relativt til geometri og sprekk.",
+        "Sprekkgeometri og belastning kan estimeres."
+      ],
+      "observable_indicators": [
+        "spenningsintensitetsfaktor",
+        "kritisk sprekkstørrelse og bruddseighet"
+      ],
+      "limitations": [
+        "Store plastiske deformasjoner krever andre modeller.",
+        "Restspenninger og miljøeffekter må behandles særskilt."
+      ],
+      "misuse_risks": [
+        "å bruke teorien uten å kontrollere gyldighetsområdet",
+        "å anta at alle overflatedefekter er like kritiske"
+      ],
+      "concept_ids": [
+        "bruddmekanikk",
+        "seighet",
+        "fasthet",
+        "utmattelse"
+      ]
+    },
+    {
+      "id": "kobj_tek_nyquist_shannon_sampling",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Nyquist–Shannons samplingsteorem",
+      "object_type": "theorem",
+      "scope": "Rekonstruksjon av båndbegrensede signaler fra diskrete prøver.",
+      "core_claim": "Et ideelt båndbegrenset signal kan rekonstrueres når samplingsfrekvensen overstiger to ganger høyeste signalbåndbredde.",
+      "assumptions": [
+        "Signalet er tilstrekkelig båndbegrenset.",
+        "Samplingstidspunktene og rekonstruksjonsmodellen er kjent."
+      ],
+      "observable_indicators": [
+        "alias-komponenter ved utilstrekkelig sampling",
+        "rekonstruksjonsfeil som funksjon av samplingsfrekvens"
+      ],
+      "limitations": [
+        "Praktiske filtre er ikke ideelle.",
+        "Støy, jitter og kvantisering inngår ikke i grunnteoremet."
+      ],
+      "misuse_risks": [
+        "å velge nøyaktig dobbel frekvens uten filtermargin",
+        "å bruke teoremet på ikke-båndbegrensede signaler uten antialiasering"
+      ],
+      "concept_ids": [
+        "sampling",
+        "bandbredde",
+        "signal",
+        "signal_stoy_forhold"
+      ]
+    },
+    {
+      "id": "kobj_tek_bayesiansk_tilstandsestimering",
+      "area_id": "robotikk_automatisering",
+      "label": "Bayesiansk tilstandsestimering",
+      "object_type": "framework",
+      "scope": "Estimering av skjult systemtilstand fra dynamisk modell, tidligere sannsynlighet og usikre målinger.",
+      "core_claim": "Tilstandsestimatet oppdateres ved å kombinere prediksjon og måleevidens med eksplisitt usikkerhet.",
+      "assumptions": [
+        "Dynamikk og målemodell kan representeres probabilistisk.",
+        "Usikkerhet kan kvantifiseres eller tilnærmes."
+      ],
+      "observable_indicators": [
+        "posterior tilstandsfordeling",
+        "innovasjon og kovariansutvikling"
+      ],
+      "limitations": [
+        "Feil modell eller ikke-representativ støy gir misvisende sikkerhet.",
+        "Multimodale fordelinger kan kreve mer avanserte metoder."
+      ],
+      "misuse_risks": [
+        "å rapportere punktestimat uten usikkerhet",
+        "å anta normalfordelt støy av bekvemmelighet"
+      ],
+      "concept_ids": [
+        "tilstandsestimat",
+        "sensorfusjon",
+        "lokalisering",
+        "usikkerhetsellipse"
+      ]
+    },
+    {
+      "id": "kobj_tek_optimal_robust_kontroll",
+      "area_id": "robotikk_automatisering",
+      "label": "Optimal og robust kontroll",
+      "object_type": "theory",
+      "scope": "Valg av kontrollhandlinger som balanserer ytelse, innsats og usikkerhet innen eksplisitte begrensninger.",
+      "core_claim": "En kontrollpolicy kan utledes fra en kostnadsfunksjon og modell, men må vurderes mot modellfeil og operasjonelle grenser.",
+      "assumptions": [
+        "Mål og begrensninger kan uttrykkes matematisk.",
+        "Relevant dynamikk kan modelleres innen designområdet."
+      ],
+      "observable_indicators": [
+        "kostnadsverdi og stabilitetsmargin",
+        "ytelse ved parameter- og forstyrrelsesvariasjon"
+      ],
+      "limitations": [
+        "Feil kostnadsfunksjon kan optimalisere feil mål.",
+        "Store modellbrudd kan gjøre optimal løsning utrygg."
+      ],
+      "misuse_risks": [
+        "å kalle numerisk minimum et godt design uten kravdrøfting",
+        "å teste bare nominell modell"
+      ],
+      "concept_ids": [
+        "kontrollpolicy",
+        "stabilitet",
+        "aktuator",
+        "operasjonelt_designomrade"
+      ]
+    },
+    {
+      "id": "kobj_tek_amdahls_lov",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Amdahls lov",
+      "object_type": "law",
+      "scope": "Øvre grense for total hastighetsforbedring når bare en del av en arbeidsmengde akselereres.",
+      "core_claim": "Den ikke-akselererte delen setter en asymptotisk grense for samlet speedup.",
+      "assumptions": [
+        "Arbeidsmengden og den serielle andelen er definert.",
+        "Ressursøkning endrer ikke selve problemstørrelsen."
+      ],
+      "observable_indicators": [
+        "avtakende marginal speedup",
+        "dominerende tid i ikke-parallell del"
+      ],
+      "limitations": [
+        "Skalerte problemstørrelser beskrives bedre av andre modeller.",
+        "Kommunikasjon og minnehierarki kan gi ekstra kostnader."
+      ],
+      "misuse_risks": [
+        "å behandle seriell andel som konstant i alle skalaer",
+        "å ignorere cache- og synkroniseringskostnader"
+      ],
+      "concept_ids": [
+        "prosessor",
+        "samtidighet",
+        "lokalitet",
+        "cache_miss"
+      ]
+    },
+    {
+      "id": "kobj_tek_design_by_contract",
+      "area_id": "programvareteknikk",
+      "label": "Design by Contract",
+      "object_type": "framework",
+      "scope": "Programvarekomponenter med eksplisitte pre-betingelser, post-betingelser og invariants.",
+      "core_claim": "Tydelige kontrakter gjør ansvar, gyldige tilstander og feilplassering mer etterprøvbart.",
+      "assumptions": [
+        "Komponentgrenser og gyldige tilstander kan uttrykkes.",
+        "Kontrakter kan testes, håndheves eller granskes."
+      ],
+      "observable_indicators": [
+        "eksplisitte pre- og postbetingelser",
+        "feil som lokaliseres til kontraktbrudd"
+      ],
+      "limitations": [
+        "Eksterne effekter og tidskrav kan være vanskelige å uttrykke.",
+        "For rigide kontrakter kan hemme evolusjon."
+      ],
+      "misuse_risks": [
+        "å bruke assertions som erstatning for domeneforståelse",
+        "å anta at kontrakter eliminerer integrasjonsfeil"
+      ],
+      "concept_ids": [
+        "kontrakt_programvare",
+        "invariant",
+        "api",
+        "testorakel"
+      ]
+    },
+    {
+      "id": "kobj_tek_lav_kobling_hoy_kohesjon",
+      "area_id": "programvareteknikk",
+      "label": "Lav kobling og høy kohesjon",
+      "object_type": "principle",
+      "scope": "Modulær struktur der ansvar samles og avhengigheter mellom moduler begrenses.",
+      "core_claim": "Endringskostnad og forståelsesbyrde reduseres når moduler har tydelig ansvar og få skjulte avhengigheter.",
+      "assumptions": [
+        "Endringsmønstre og ansvar kan observeres.",
+        "Grensesnitt kan stabiliseres uten å skjule nødvendige data."
+      ],
+      "observable_indicators": [
+        "begrenset endringsspredning",
+        "moduler med sammenhengende ansvar"
+      ],
+      "limitations": [
+        "Ytelse og transaksjoner kan kreve kryssende avhengigheter.",
+        "For fin oppdeling kan øke koordinering."
+      ],
+      "misuse_risks": [
+        "å bruke antall moduler som kvalitetsmål",
+        "å forveksle lav kobling med ingen kommunikasjon"
+      ],
+      "concept_ids": [
+        "kobling",
+        "kohesjon",
+        "modul",
+        "abstraksjon"
+      ]
+    },
+    {
+      "id": "kobj_tek_observabilitet_feedback",
+      "area_id": "programvareteknikk",
+      "label": "Observabilitet og operativ feedback",
+      "object_type": "framework",
+      "scope": "Programvare som forstås og forbedres gjennom strukturerte driftsdata, hendelser og tilbakekobling til utvikling.",
+      "core_claim": "Systematisk observabilitet gjør feil, ytelse og bruksmønstre synlige og muliggjør raskere læring.",
+      "assumptions": [
+        "Signalene kan knyttes til konkrete versjoner og hendelser.",
+        "Målingene er representative og personvernmessig forsvarlige."
+      ],
+      "observable_indicators": [
+        "korrelerte logger, metrikker og spor",
+        "kortere tid fra avvik til forklaring"
+      ],
+      "limitations": [
+        "Mange signaler uten modell kan øke støy.",
+        "Observabilitet oppdager ikke nødvendigvis ukjente blinde flekker."
+      ],
+      "misuse_risks": [
+        "å samle data uten spørsmål eller ansvar",
+        "å behandle dashboard som årsaksforklaring"
+      ],
+      "concept_ids": [
+        "observabilitet",
+        "teknisk_gjeld",
+        "prosess",
+        "api"
+      ]
+    },
+    {
+      "id": "kobj_tek_bias_varians",
+      "area_id": "algoritmer_data_ai",
+      "label": "Bias–varians-dekomponering",
+      "object_type": "theory",
+      "scope": "Analyse av generaliseringsfeil som følge av systematisk modellfeil og følsomhet for treningsutvalg.",
+      "core_claim": "Forventet prediksjonsfeil kan forstås som bidrag fra bias, varians og irreduktibel støy under bestemte antakelser.",
+      "assumptions": [
+        "Tap og datagenererende prosess er definert.",
+        "Modellen kan vurderes over hypotetiske treningsutvalg."
+      ],
+      "observable_indicators": [
+        "læringskurver",
+        "stabilitet mellom treningsutvalg og modellkompleksitet"
+      ],
+      "limitations": [
+        "Dekomponeringen avhenger av tapsfunksjon og problemtype.",
+        "Sosial skjevhet reduseres ikke til statistisk bias."
+      ],
+      "misuse_risks": [
+        "å bruke høy varians som forklaring uten resampling",
+        "å likestille bias i dekomponeringen med diskriminering"
+      ],
+      "concept_ids": [
+        "generalisering",
+        "modellskjevhet",
+        "treningsdata",
+        "valideringsdata"
+      ]
+    },
+    {
+      "id": "kobj_tek_bayesiansk_beslutningsteori",
+      "area_id": "algoritmer_data_ai",
+      "label": "Bayesiansk beslutningsteori",
+      "object_type": "theory",
+      "scope": "Beslutninger under usikkerhet der sannsynligheter kombineres med tap eller nytte.",
+      "core_claim": "En optimal beslutningsregel minimerer forventet tap gitt modell, evidens og konsekvensstruktur.",
+      "assumptions": [
+        "Relevante utfall og tap kan spesifiseres.",
+        "Prediktive sannsynligheter er tilstrekkelig kalibrerte."
+      ],
+      "observable_indicators": [
+        "forventet tap per terskel",
+        "beslutningskurver og kalibrering"
+      ],
+      "limitations": [
+        "Tap uttrykker normative valg og kan være omstridt.",
+        "Modellfeil og distribusjonsskift kan dominere den beregnede optimaliteten."
+      ],
+      "misuse_risks": [
+        "å skjule verdiprioriteringer i en tapsfunksjon",
+        "å bruke ukalibrerte sannsynligheter som risiko"
+      ],
+      "concept_ids": [
+        "kalibrering_ai",
+        "generalisering",
+        "risiko",
+        "ansvar"
+      ]
+    },
+    {
+      "id": "kobj_tek_strukturelle_kausalmodeller",
+      "area_id": "algoritmer_data_ai",
+      "label": "Strukturelle kausalmodeller",
+      "object_type": "theory",
+      "scope": "Analyse av intervensjoner og kontrafaktiske spørsmål gjennom rettede grafer og strukturelle ligninger.",
+      "core_claim": "Kausale effekter kan identifiseres når grafstruktur, datagrunnlag og identifikasjonsantakelser er eksplisitte.",
+      "assumptions": [
+        "Kausal retning og relevante variabler kan begrunnes.",
+        "Konfundering og seleksjon håndteres gjennom design eller antakelser."
+      ],
+      "observable_indicators": [
+        "identifiserbar intervensjonseffekt",
+        "sensitivitetsanalyse for skjult konfundering"
+      ],
+      "limitations": [
+        "Grafen kan være feil eller ufullstendig.",
+        "Observasjonsdata identifiserer ikke automatisk kausal retning."
+      ],
+      "misuse_risks": [
+        "å tegne piler uten faglig begrunnelse",
+        "å omtale korrelasjon som intervensjonseffekt"
+      ],
+      "concept_ids": [
+        "kausal_graf",
+        "treningsdata",
+        "modellskjevhet",
+        "ansvar"
+      ]
+    },
+    {
+      "id": "kobj_tek_distribusjonsskift",
+      "area_id": "algoritmer_data_ai",
+      "label": "Teori om distribusjonsskift",
+      "object_type": "framework",
+      "scope": "Modellatferd når input-, mål- eller beslutningsfordeling endres mellom utvikling og bruk.",
+      "core_claim": "Ytelse og kalibrering må vurderes under eksplisitte typer skift og innen et definert operasjonelt domene.",
+      "assumptions": [
+        "Utviklings- og bruksfordeling kan sammenlignes.",
+        "Relevante undergrupper og tidsvinduer er identifisert."
+      ],
+      "observable_indicators": [
+        "endret feilmønster og kalibrering",
+        "drift i kovariater, mål eller beslutningspolicy"
+      ],
+      "limitations": [
+        "Noen skift oppdages først etter skade eller utfall.",
+        "Statistisk forskjell betyr ikke alltid operasjonell relevans."
+      ],
+      "misuse_risks": [
+        "å bruke én driftsscore som full sikkerhetskontroll",
+        "å oppdatere modellen uten å analysere årsaken til skiftet"
+      ],
+      "concept_ids": [
+        "distribusjonsskift",
+        "generalisering",
+        "kalibrering_ai",
+        "operasjonelt_designomrade"
+      ]
+    },
+    {
+      "id": "kobj_tek_distribuert_konsensus",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Distribuert konsensus",
+      "object_type": "theory",
+      "scope": "Enighet om logg eller verdi mellom noder under nettverksforsinkelse og avgrensede feiltyper.",
+      "core_claim": "Sikkerhet og fremdrift krever eksplisitte quorum-, timing- og feilantakelser.",
+      "assumptions": [
+        "Feilmodellen er definert.",
+        "Noder kan utveksle autentiserte meldinger etter protokollens forutsetninger."
+      ],
+      "observable_indicators": [
+        "committed loggposisjon",
+        "ledervalg, quorum og avvik ved partisjon"
+      ],
+      "limitations": [
+        "Byzantinske og krasjfeil krever ulike protokoller.",
+        "Konsensus løser ikke applikasjonssemantikk."
+      ],
+      "misuse_risks": [
+        "å anta at replikaer automatisk gir konsensus",
+        "å ignorere nettverkspartisjoner og klokkeantakelser"
+      ],
+      "concept_ids": [
+        "konsensus",
+        "latens",
+        "feildomene",
+        "konsistensmodell"
+      ]
+    },
+    {
+      "id": "kobj_tek_cap_teoremet",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "CAP-teoremet",
+      "object_type": "theorem",
+      "scope": "Konsistens og tilgjengelighet i distribuerte datalagre under nettverkspartisjon.",
+      "core_claim": "Når en partisjon faktisk oppstår, kan et system ikke samtidig garantere både lineæriserbar konsistens og tilgjengelig respons for alle forespørsler.",
+      "assumptions": [
+        "Partisjon betyr tapt eller vilkårlig forsinket kommunikasjon.",
+        "Konsistens og tilgjengelighet brukes i teoremets presise betydning."
+      ],
+      "observable_indicators": [
+        "blokkerte eller avviste operasjoner under partisjon",
+        "divergerende svar når tilgjengelighet prioriteres"
+      ],
+      "limitations": [
+        "Teoremet beskriver ikke normaldrift uten partisjon.",
+        "Andre konsistensmodeller og latenstoleranser krever egne analyser."
+      ],
+      "misuse_risks": [
+        "å presentere CAP som et permanent valg mellom tre bokstaver",
+        "å bruke vanlig treghet som synonym for partisjon"
+      ],
+      "concept_ids": [
+        "konsistensmodell",
+        "tilgjengelighet",
+        "feildomene",
+        "latens"
+      ]
+    },
+    {
+      "id": "kobj_tek_cia_trusselmodell",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "CIA og trusselmodell",
+      "object_type": "framework",
+      "scope": "Systematisk sikkerhetsanalyse av konfidensialitet, integritet og tilgjengelighet mot definerte aktører og angrepsflater.",
+      "core_claim": "Sikkerhetskontroller må knyttes til konkrete verdier, trusler, tillitsgrenser og gjenværende risiko.",
+      "assumptions": [
+        "Verdier og angriperkapasiteter kan beskrives.",
+        "Systemgrense og dataflyt er kjent nok til analyse."
+      ],
+      "observable_indicators": [
+        "trussel–kontroll-sporbarhet",
+        "rest-risiko per tillitsgrense"
+      ],
+      "limitations": [
+        "Nye trusler og leverandørkjeder kan bryte modellen.",
+        "CIA dekker ikke alene personvern, sikkerhet eller misbruk."
+      ],
+      "misuse_risks": [
+        "å bruke sjekkliste uten angripermodell",
+        "å anta at kryptering dekker alle tre sikkerhetsmål"
+      ],
+      "concept_ids": [
+        "tillitsgrense",
+        "angrepsflate",
+        "kryptering",
+        "tilgjengelighet"
+      ]
+    },
+    {
+      "id": "kobj_tek_nulltillit",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Nulltillit",
+      "object_type": "principle",
+      "scope": "Tilgangsarkitektur der ingen forespørsel får varig tillit bare på grunn av nettverksplassering.",
+      "core_claim": "Identitet, enhet, kontekst og autorisasjon må verifiseres eksplisitt og kontinuerlig ved tilgang til ressurser.",
+      "assumptions": [
+        "Identitets- og policyinfrastruktur er tilgjengelig og sikret.",
+        "Ressurser og tilgangsbeslutninger kan segmenteres."
+      ],
+      "observable_indicators": [
+        "ressursnær autorisasjon",
+        "kortlivede legitimasjoner og kontinuerlig policyvurdering"
+      ],
+      "limitations": [
+        "Identitetsplattformen blir kritisk avhengighet.",
+        "Prinsippet eliminerer ikke kompromitterte endepunkter."
+      ],
+      "misuse_risks": [
+        "å merke vanlig VPN som nulltillit",
+        "å samle omfattende telemetri uten personvernkontroll"
+      ],
+      "concept_ids": [
+        "tillitsgrense",
+        "protokoll",
+        "kryptering",
+        "angrepsflate"
+      ]
+    },
+    {
+      "id": "kobj_tek_situert_handling",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Situert handling",
+      "object_type": "theory",
+      "scope": "Menneskelig handling som formes løpende av lokale forhold, artefakter og sosial koordinering.",
+      "core_claim": "Faktisk praksis kan ikke fullt ut avledes fra forhåndsdefinerte planer eller prosedyrer.",
+      "assumptions": [
+        "Arbeid observeres i relevant kontekst.",
+        "Brukere kan tilpasse handlinger til lokale forhold."
+      ],
+      "observable_indicators": [
+        "avvik mellom prosedyre og effektiv praksis",
+        "improvisasjon ved uforutsette hendelser"
+      ],
+      "limitations": [
+        "Teorien gir ikke alene konkrete grensesnittregler.",
+        "Observasjon kan være kontekstavhengig og ressurskrevende."
+      ],
+      "misuse_risks": [
+        "å avvise all planlegging som irrelevant",
+        "å romantisere uformelle omveier som alltid gode"
+      ],
+      "concept_ids": [
+        "situasjonsforstaelse",
+        "menneskelig_feil",
+        "brukbarhet",
+        "modusforvirring"
+      ]
+    },
+    {
+      "id": "kobj_tek_felles_kognitive_systemer",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Felles kognitive systemer",
+      "object_type": "framework",
+      "scope": "Mennesker og automatisering som ett koordinert system for observasjon, beslutning og handling.",
+      "core_claim": "Ytelse og feil må analyseres på systemnivå, ikke fordeles mekanisk mellom menneske og maskin.",
+      "assumptions": [
+        "Arbeidsdelingen og informasjonsflyten kan kartlegges.",
+        "Menneskelig tilpasning og automasjonens grenser observeres."
+      ],
+      "observable_indicators": [
+        "koordinering ved avvik",
+        "overganger mellom automatisk og manuell kontroll"
+      ],
+      "limitations": [
+        "Systemgrensen kan være omstridt.",
+        "Individuelle ferdigheter og organisatoriske forhold varierer."
+      ],
+      "misuse_risks": [
+        "å skjule ansvar bak begrepet system",
+        "å redusere mennesket til reservekomponent"
+      ],
+      "concept_ids": [
+        "situasjonsforstaelse",
+        "automasjonsskjevhet",
+        "kognitiv_belastning",
+        "direkte_manipulasjon"
+      ]
+    },
+    {
+      "id": "kobj_tek_sosial_konstruksjon_teknologi",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Sosial konstruksjon av teknologi",
+      "object_type": "theory",
+      "scope": "Hvordan relevante sosiale grupper fortolker problemer og stabiliserer tekniske løsninger.",
+      "core_claim": "Teknologisk form bestemmes ikke bare av fysisk effektivitet, men også av konflikt, fortolkning og sosial lukking.",
+      "assumptions": [
+        "Relevante grupper og alternative løsninger kan dokumenteres historisk.",
+        "Tekniske egenskaper og sosiale fortolkninger analyseres sammen."
+      ],
+      "observable_indicators": [
+        "konkurrerende problemdefinisjoner",
+        "stabilisering av én løsning gjennom institusjoner og praksis"
+      ],
+      "limitations": [
+        "Materielle begrensninger kan undervurderes hvis analysen blir rent diskursiv.",
+        "Avgrensning av relevante grupper kan være vanskelig."
+      ],
+      "misuse_risks": [
+        "å hevde at fysikk ikke betyr noe",
+        "å forklare ethvert utfall med generell kultur"
+      ],
+      "concept_ids": [
+        "standard",
+        "stiavhengighet",
+        "ansvar",
+        "teknologisk_momentum"
+      ]
+    },
+    {
+      "id": "kobj_tek_flerniva_omstilling",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Flernivåperspektiv på omstilling",
+      "object_type": "framework",
+      "scope": "Langsiktige overganger mellom nisjer, etablerte sosiotekniske regimer og bredere landskapsendringer.",
+      "core_claim": "Omstilling skjer gjennom samspill mellom eksperimenter, regimepress og strukturelle endringer over tid.",
+      "assumptions": [
+        "Nisje, regime og landskap kan brukes som analytiske nivåer.",
+        "Tekniske, politiske og økonomiske prosesser kan spores historisk."
+      ],
+      "observable_indicators": [
+        "nisjer som skalerer når regimet svekkes",
+        "endring i standarder, investeringer og brukerpraksis"
+      ],
+      "limitations": [
+        "Nivåene er heuristikker, ikke faste ontologiske enheter.",
+        "Makt og konflikt kan kreve mer eksplisitte teorier."
+      ],
+      "misuse_risks": [
+        "å fremstille omstilling som automatisk trinnstige",
+        "å ignorere tapere, fordelingsvirkninger og tilbakefall"
+      ],
+      "concept_ids": [
+        "rettferdig_omstilling",
+        "baerekraft",
+        "teknologisk_momentum",
+        "reboundeffekt"
+      ]
+    }
+  ],
+  "coverage": {
+    "legacy_objects": 24,
+    "extension_objects": 24,
+    "total_objects": 48,
+    "per_area": {
+      "teknologivitenskap_design": {
+        "legacy": 2,
+        "extensions": 1,
+        "total": 3
+      },
+      "systemer_arkitektur_palitelighet": {
+        "legacy": 2,
+        "extensions": 2,
+        "total": 4
+      },
+      "mekanikk_energi_maskiner": {
+        "legacy": 2,
+        "extensions": 1,
+        "total": 3
+      },
+      "materialer_produksjon": {
+        "legacy": 2,
+        "extensions": 1,
+        "total": 3
+      },
+      "elektronikk_signaler_regulering": {
+        "legacy": 2,
+        "extensions": 1,
+        "total": 3
+      },
+      "robotikk_automatisering": {
+        "legacy": 2,
+        "extensions": 2,
+        "total": 4
+      },
+      "datamaskiner_operativsystemer": {
+        "legacy": 2,
+        "extensions": 1,
+        "total": 3
+      },
+      "programvareteknikk": {
+        "legacy": 2,
+        "extensions": 3,
+        "total": 5
+      },
+      "algoritmer_data_ai": {
+        "legacy": 2,
+        "extensions": 4,
+        "total": 6
+      },
+      "nettverk_cybersikkerhet_infrastruktur": {
+        "legacy": 2,
+        "extensions": 4,
+        "total": 6
+      },
+      "menneske_teknologi_hci": {
+        "legacy": 2,
+        "extensions": 2,
+        "total": 4
+      },
+      "teknologihistorie_sts_risiko_baerekraft": {
+        "legacy": 2,
+        "extensions": 2,
+        "total": 4
+      }
+    },
+    "advanced_area_minimums": {
+      "programvareteknikk": 5,
+      "algoritmer_data_ai": 6,
+      "nettverk_cybersikkerhet_infrastruktur": 6,
+      "teknologihistorie_sts_risiko_baerekraft": 4
+    }
+  }
+}

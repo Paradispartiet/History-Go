@@ -1,0 +1,40 @@
+name: Technology scientific quality
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/teknologi/**'
+      - 'tools/validate-teknologi-quality-v2_1.mjs'
+      - 'tools/validate-teknologi-ontology-v2_2.mjs'
+      - 'reports/teknologi-*.md'
+      - '.github/workflows/teknologi-scientific-quality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-quality:
+    name: Technology V2.1 and V2.2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: Validate scientific quality V2.1
+        run: node tools/validate-teknologi-quality-v2_1.mjs
+
+      - name: Validate ontology depth V2.2
+        run: node tools/validate-teknologi-ontology-v2_2.mjs
+
+      - name: Upload scientific quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: teknologi-scientific-quality-reports
+          path: |
+            reports/teknologi-scientific-quality-validation.json
+            reports/teknologi-ontology-depth-validation.json
+          if-no-files-found: error

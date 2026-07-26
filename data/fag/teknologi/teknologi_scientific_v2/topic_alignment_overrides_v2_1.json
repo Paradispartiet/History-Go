@@ -1,0 +1,114 @@
+{
+  "schema": "teknologi_topic_alignment_overrides_v2_1",
+  "version": "2.1",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "rule": "Disse presiseringene har forrang foran eldre topic-koblinger der V2-grunnfilen bruker en nærliggende, men faglig svak metode- eller teorikobling.",
+  "overrides": [
+    {
+      "topic_id": "em_tek_mekanikk_kraft_bevegelse",
+      "reason": "Grunnleggende mekanikk skal ikke primært forankres i termodynamisk kretsprosess.",
+      "preferred_theory_ids": ["teori_tek_energiomformingskjede"],
+      "preferred_method_ids": ["met_tek_mekanisme_og_lastanalyse"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_utmattelse_brudd_korrosjon",
+      "reason": "Brudd og degradering undersøkes primært gjennom material- og levetidsanalyse, ikke statistisk prosesskontroll alene.",
+      "preferred_theory_ids": ["teori_tek_ashby_materialvalg"],
+      "preferred_method_ids": ["met_tek_brudd_og_levetidsanalyse"],
+      "claim_classes": ["mechanistic", "causal"]
+    },
+    {
+      "topic_id": "em_tek_produksjonsprosesser_toleranser_kvalitet",
+      "reason": "Produksjonsvariasjon og toleranser krever statistisk prosesskontroll som primær teori.",
+      "preferred_theory_ids": ["teori_tek_statistisk_prosesskontroll"],
+      "preferred_method_ids": ["met_tek_materialvalg_etter_egenskaper", "met_tek_livslopsanalyse"],
+      "claim_classes": ["performance", "causal"]
+    },
+    {
+      "topic_id": "em_tek_regulering_tilbakemelding_stabilitet",
+      "reason": "Regulering og stabilitet skal analyseres direkte gjennom lukket reguleringssløyfe.",
+      "preferred_theory_ids": ["teori_tek_lukket_reguleringssloyfe"],
+      "preferred_method_ids": ["met_tek_reguleringssloyfeanalyse"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_robotpersepsjon_lokalisering",
+      "reason": "Persepsjon og lokalisering er mekanismen i sansning–planlegging–handling, ikke primært en teori om automatiseringsgrad.",
+      "preferred_theory_ids": ["teori_tek_sense_plan_act_og_subsumpsjon"],
+      "preferred_method_ids": ["met_tek_robotytelse_og_benchmarking"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_operativsystemer_prosesser_ressurser",
+      "reason": "Operativsystemets ressursforvaltning analyseres best gjennom abstraksjonsstakken.",
+      "preferred_theory_ids": ["teori_tek_abstraksjonsstakk_datamaskin"],
+      "preferred_method_ids": ["met_tek_arkitektur_og_instruksjonssporing", "met_tek_samtidighetsanalyse"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_modularitet_arkitektur_api",
+      "reason": "Modularitet og API-grenser forankres i informasjonsskjuling før livsløpsmodellen.",
+      "preferred_theory_ids": ["teori_tek_informasjonsskjuling"],
+      "preferred_method_ids": ["met_tek_kode_og_arkitekturanalyse"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_maskinlaering_trening_generalisering",
+      "reason": "Trening og generalisering hører direkte til statistisk læring, ikke beregningskompleksitet.",
+      "preferred_theory_ids": ["teori_tek_statistisk_laering"],
+      "preferred_method_ids": ["met_tek_datasett_og_representasjonsanalyse", "met_tek_modell_og_feilanalyse"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_ai_evaluering_styring_ansvar",
+      "reason": "AI-evaluering må bruke modell- og feilanalyse, undergrupper, kalibrering og bruksgrenser.",
+      "preferred_theory_ids": ["teori_tek_statistisk_laering"],
+      "preferred_method_ids": ["met_tek_datasett_og_representasjonsanalyse", "met_tek_modell_og_feilanalyse"],
+      "claim_classes": ["performance", "normative"]
+    },
+    {
+      "topic_id": "em_tek_distribuerte_systemer_sky",
+      "reason": "Distribuerte systemer analyseres først som ende-til-ende- og systemarkitektur; forsvar i dybden gjelder særskilt sikkerhetslaget.",
+      "preferred_theory_ids": ["teori_tek_ende_til_ende_prinsippet"],
+      "preferred_method_ids": ["met_tek_protokoll_og_pakkesporing", "met_tek_robusthets_og_hendelsesanalyse"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_kryptografi_identitet_tilgang",
+      "reason": "Identitet og tilgang skal analyseres mot trusselmodell og forsvar i dybden.",
+      "preferred_theory_ids": ["teori_tek_forsvar_i_dybden"],
+      "preferred_method_ids": ["met_tek_trusselmodellering", "met_tek_robusthets_og_hendelsesanalyse"],
+      "claim_classes": ["mechanistic", "performance"]
+    },
+    {
+      "topic_id": "em_tek_interaksjonsdesign_og_brukbarhet",
+      "reason": "Interaksjonsdesign og brukbarhet forankres i menneskesentrert design; distribuert kognisjon brukes når systemet omfatter flere aktører og representasjoner.",
+      "preferred_theory_ids": ["teori_tek_menneskesentrert_design"],
+      "preferred_method_ids": ["met_tek_brukbarhetstesting"],
+      "claim_classes": ["performance", "mechanistic"]
+    },
+    {
+      "topic_id": "em_tek_standarder_infrastruktur_interoperabilitet",
+      "reason": "Standarder og interoperabilitet skal analyseres historisk og systemisk, ikke bare gjennom framtidsforestillinger.",
+      "preferred_theory_ids": ["teori_tek_store_tekniske_systemer"],
+      "preferred_method_ids": ["met_tek_teknologihistorisk_sporanalyse", "met_tek_sosioteknisk_maktanalyse"],
+      "claim_classes": ["historical", "mechanistic"]
+    },
+    {
+      "topic_id": "em_tek_teknologi_makt_etikk_ansvar",
+      "reason": "Makt og ansvar krever sosioteknisk analyse og eksplisitt skille mellom beskrivende og normative påstander.",
+      "preferred_theory_ids": ["teori_tek_sosiotekniske_forestillinger", "teori_tek_store_tekniske_systemer"],
+      "preferred_method_ids": ["met_tek_sosioteknisk_maktanalyse", "met_tek_risiko_og_baerekraftsanalyse"],
+      "claim_classes": ["historical", "normative"]
+    },
+    {
+      "topic_id": "em_tek_risiko_baerekraft_omstilling",
+      "reason": "Risiko og bærekraft må kobles direkte til scenario, livsløp, usikkerhet og fordelingsvirkning.",
+      "preferred_theory_ids": ["teori_tek_sosiotekniske_forestillinger", "teori_tek_store_tekniske_systemer"],
+      "preferred_method_ids": ["met_tek_risiko_og_baerekraftsanalyse", "met_tek_teknologihistorisk_sporanalyse"],
+      "claim_classes": ["predictive", "normative"]
+    }
+  ]
+}
