@@ -34,6 +34,18 @@
     document.body.appendChild(script);
   }
 
+  function loadRoundContentGuard() {
+    if (global.HGPlaceCardRoundContentGuard) return;
+    if (global.__HG_PLACE_CARD_ROUND_CONTENT_GUARD_REQUESTED__) return;
+    if (document.querySelector('script[src="js/ui/place-card-round-content-guard.js"]')) return;
+
+    global.__HG_PLACE_CARD_ROUND_CONTENT_GUARD_REQUESTED__ = true;
+    const script = document.createElement("script");
+    script.src = "js/ui/place-card-round-content-guard.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
   function statusLabel(summary) {
     if (summary?.status === "completed") return "Fullført";
     if (summary?.quizCompleted) return "Quiz fullført";
@@ -141,6 +153,7 @@
   }
 
   loadPlacePopupV2();
+  loadRoundContentGuard();
 
   if (!install()) {
     let attempts = 0;
