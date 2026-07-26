@@ -1,0 +1,66 @@
+name: Probe Sørum Church address variants
+
+on:
+  pull_request:
+    types: [synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.head_ref == 'agent/akershus-sorum-kirke-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch official address variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/akershus-coordinate-sorum-kirke-source-probe'
+          mkdir -p "$out"
+          for street in Bingenvegen Bingenveien; do
+            slug=$(printf '%s' "$street" | tr '[:upper:]' '[:lower:]')
+            curl --fail --location --retry 4 --retry-delay 3 \
+              --get 'https://ws.geonorge.no/adresser/v1/sok' \
+              --data-urlencode "sok=${street} 23" \
+              --data-urlencode 'kommunenummer=3205' \
+              --data-urlencode 'treffPerSide=50' \
+              | tee "$out/geonorge-${slug}-23.json" >/dev/null
+          done
+          python - <<'PY' | tee "$out/address-summary.txt"
+          import json, math
+          from pathlib import Path
+          out=Path('reports/akershus-coordinate-sorum-kirke-source-probe')
+          church=(60.006675264823,11.234479236208)
+          def hav(a,b):
+              R=6371000.0; p1,p2=map(math.radians,(a[0],b[0])); dp=math.radians(b[0]-a[0]); dl=math.radians(b[1]-a[1]); h=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2; return 2*R*math.asin(math.sqrt(h))
+          seen=set()
+          for slug in ('bingenvegen','bingenveien'):
+              payload=json.loads((out/f'geonorge-{slug}-23.json').read_text())
+              addresses=payload.get('adresser',[]) if isinstance(payload,dict) else []
+              print(f'query={slug} total={len(addresses)}')
+              for a in addresses:
+                  key=(a.get('kommunenummer'),a.get('adressekode'),a.get('nummer'),a.get('bokstav'))
+                  if a.get('nummer')!=23 or key in seen: continue
+                  seen.add(key)
+                  p=a.get('representasjonspunkt') or {}; point=(float(p['lat']),float(p['lon']))
+                  print('ADDRESS '+json.dumps(a,ensure_ascii=False,sort_keys=True))
+                  print(f'distance_to_church_m={hav(point,church):.1f}')
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/probe-sorum-address-variants.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/akershus-coordinate-sorum-kirke-source-probe .github/workflows/probe-sorum-address-variants.yml
+          git commit -m 'Persist Sørum Church address-variant evidence'
+          git push origin HEAD:${{ github.head_ref }}
