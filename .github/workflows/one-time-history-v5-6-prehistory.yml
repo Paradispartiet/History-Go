@@ -47,8 +47,8 @@ jobs:
           p = Path('/tmp/apply-history-v5-6-prehistory.mjs')
           text = p.read_text()
           expected = text.count('con_his_${')
-          if expected != 4:
-              raise SystemExit(f'Expected four generated concept-id expressions, found {expected}')
+          if expected != 5:
+              raise SystemExit(f'Expected five generated concept-id expressions, found {expected}')
           p.write_text(text.replace('con_his_${', 'con_his_pre_${'))
           PY
           node --check /tmp/apply-history-v5-6-prehistory.mjs
