@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - .github/phase22-main-trigger.txt
+      - .github/phase22-clean-trigger.txt
 
 permissions:
   contents: write
@@ -20,14 +20,14 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Reset target branch to latest main
+      - name: Reset clean target branch to latest main
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git switch -C agent/documentation-governance-phase-22-people-of-places origin/main
+          git switch -C agent/documentation-governance-phase-22-people-of-places-clean origin/main
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -102,10 +102,11 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           readme_path.write_text(readme, encoding="utf-8")
           PY
 
-      - name: Remove temporary workflow files
+      - name: Remove temporary files
         shell: bash
         run: |
           rm -f .github/phase22-main-trigger.txt
+          rm -f .github/phase22-clean-trigger.txt
           rm -f .github/rebuild-phase22-trigger.txt
           rm -f .github/people-of-places-governance-trigger.txt
           rm -f .github/workflows/one-time-register-people-of-places-governance.yml
@@ -150,6 +151,7 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           changed = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
           expected = {
               ".github/phase22-main-trigger.txt",
+              ".github/phase22-clean-trigger.txt",
               ".github/workflows/one-time-register-people-of-places-governance.yml",
               ".github/workflows/one-time-rebuild-phase22.yml",
               "docs/README.md",
@@ -159,9 +161,9 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           assert changed == expected, (changed, expected)
           PY
 
-      - name: Commit and force-update target branch
+      - name: Commit and force-update clean target branch
         shell: bash
         run: |
           git add -A
           git commit -m "Registrer canonical People of Places-governance"
-          git push --force origin HEAD:agent/documentation-governance-phase-22-people-of-places
+          git push --force origin HEAD:agent/documentation-governance-phase-22-people-of-places-clean
