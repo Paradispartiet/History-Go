@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "oscarsborg_festning",
+  "capturedAt": "2026-07-26",
+  "purpose": "Persist the official identity and scope findings needed before choosing a canonical coordinate model.",
+  "sources": [
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – Oscarsborg festning",
+      "sourceUrl": "https://www.forsvarsbygg.no/no/festningene/finn-din-festning/oscarsborg-festning/",
+      "sourceObjectId": "forsvarsbygg:oscarsborg-festning",
+      "finding": "Forsvarsbygg presents Oscarsborg as a public fortress and cultural destination in Drøbaksundet, built from the mid-nineteenth century and nationally associated with the sinking of Blücher on 9 April 1940.",
+      "coordinateUse": "identity_only",
+      "canVerifyCoordinate": false
+    },
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – landsverneplan for Oscarsborg",
+      "sourceUrl": "https://www.forsvarsbygg.no/no/verneplaner/landsverneplan-for-forsvaret/ostlandet/oscarsborg-festning/",
+      "sourceObjectId": "forsvarsbygg-landsverneplan:oscarsborg",
+      "finding": "The official establishment is dispersed across Søndre and Nordre Kaholmen, Bergholmen, Håøya, Hallangsodden and mainland positions. Søndre Kaholmen contains the oldest central elements and the main fort and batteries, while Nordre Kaholmen includes the torpedo battery.",
+      "coordinateUse": "scope_and_multi_anchor_policy",
+      "canVerifyCoordinate": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – fredning av Oscarsborg festning",
+      "sourceUrl": "https://riksantikvaren.no/fredning/oscarsborg-festning/",
+      "sourceObjectId": "riksantikvaren:oscarsborg-festning-fredning",
+      "finding": "The protected military landscape covers more than one hundred objects across the Kaholmene and several islands and mainland batteries. The legal protected scope is therefore much broader than one useful gameplay marker.",
+      "coordinateUse": "reject_single_legal_area_centroid",
+      "canVerifyCoordinate": false
+    },
+    {
+      "sourceProvider": "lovdata",
+      "sourceName": "Lovdata – forskrift om fredning av Oscarsborg festning",
+      "sourceUrl": "https://lovdata.no/dokument/LF/forskrift/2014-04-09-492",
+      "sourceObjectId": "lovdata:forskrift-2014-04-09-492",
+      "finding": "The regulation confirms that Oscarsborg is a formally protected defence landscape with multiple components rather than a single building object.",
+      "coordinateUse": "legal_scope_context",
+      "canVerifyCoordinate": false
+    }
+  ],
+  "scopeDecision": {
+    "resolvedIdentity": "Oscarsborg as a dispersed historic defence system, with the public visitor core on the Kaholmene and functionally important batteries on both islands and mainland.",
+    "singleBuildingModelRejected": true,
+    "singleLegalAreaCentroidRejected": true,
+    "requiredRepresentation": "A central visitor/core area anchor plus documented secondary anchors for the decisive 9 April defence functions, unless authoritative geometry supports a narrower canonical identity.",
+    "blockedReason": "The official sources resolve historical and spatial scope but do not expose a directly reusable central-fort geometry or official representation point in the captured material."
+  }
+}
