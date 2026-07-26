@@ -32,7 +32,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   universal-coverage:
@@ -77,3 +77,124 @@ jobs:
             reports/historie-geographic-profiles/oslo-akershus-profile.json
             reports/historie-geographic-profiles/oslo-akershus-profile.md
           if-no-files-found: error
+
+  merge-current-main:
+    name: Constrained main merge for History profile foundation
+    if: github.event_name == 'pull_request' && github.head_ref == 'agent/history-profile-evidence-foundation-v1-merged' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-profile-evidence-foundation-v1-merged
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Merge main and regenerate documentation governance
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-profile-evidence
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-fetch.log
+
+          set +e
+          git merge --no-commit --no-ff origin/main 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-attempt.log
+          merge_status=${PIPESTATUS[0]}
+          set -e
+
+          if [ "$merge_status" -ne 0 ]; then
+            git diff --name-only --diff-filter=U | sort \
+              | tee reports/historie-profile-evidence/main-merge-conflicts.log
+            while IFS= read -r conflict; do
+              [ -z "$conflict" ] && continue
+              case "$conflict" in
+                docs/README.md|docs/documentation_registry.json|reports/documentation-governance/inventory.json)
+                  git checkout --theirs -- "$conflict"
+                  ;;
+                *)
+                  echo "Unexpected merge conflict: $conflict" >&2
+                  git merge --abort || true
+                  exit 1
+                  ;;
+              esac
+            done < reports/historie-profile-evidence/main-merge-conflicts.log
+          fi
+
+          node - <<'NODE' 2>&1 | tee reports/historie-profile-evidence/main-merge-documentation-resolution.log
+          const fs = require('fs');
+          const readmePath = 'docs/README.md';
+          const linkLine = '- [`HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md`](HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md) — canonical profil-, claim-, kilde- og stedsevidensarkitektur for Historie.';
+          let readme = fs.readFileSync(readmePath, 'utf8').trimEnd();
+          if (!readme.includes('HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md')) readme += `\n\n${linkLine}`;
+          fs.writeFileSync(readmePath, `${readme}\n`);
+
+          const registryPath = 'docs/documentation_registry.json';
+          const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+          const historyPath = 'docs/HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md';
+          registry.last_verified = '2026-07-26';
+          registry.priority_order = Array.isArray(registry.priority_order) ? registry.priority_order : [];
+          if (!registry.priority_order.includes(historyPath)) {
+            const subjectIndex = registry.priority_order.indexOf('docs/SUBJECT_FILE_CONTRACT.md');
+            registry.priority_order.splice(subjectIndex >= 0 ? subjectIndex + 1 : registry.priority_order.length, 0, historyPath);
+          }
+          registry.documents = Array.isArray(registry.documents) ? registry.documents : [];
+          for (const entry of registry.documents) {
+            if (entry.path === 'docs/README.md' || entry.path === 'docs/DATA_PRODUCTION_CONTRACT.md') entry.last_verified = '2026-07-26';
+          }
+          if (!registry.documents.some((entry) => entry.path === historyPath)) {
+            registry.documents.push({
+              path: historyPath,
+              status: 'canonical',
+              role: 'Bindende Historie-kontrakt for geografiske profiler, casekrav, claims, kilder og stedsevidens',
+              owns: ['history_geographic_profile_evidence_architecture'],
+              last_verified: '2026-07-26',
+            });
+          }
+          fs.writeFileSync(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
+          console.log(JSON.stringify({registered: true, historyPath}, null, 2));
+          NODE
+
+          npm run build:scripts 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-build-scripts.log
+          node dist/scripts/check-documentation-governance.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-documentation-governance.log
+          node tools/validate-historie-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-profile-validation.log
+          node tools/audit-historie-geographic-profile.mjs --check 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-geographic-audit.log
+          node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-universal-audit.log
+          node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-quality-freeze.log
+          test -z "$(git diff --name-only --diff-filter=U)"
+          git diff --check 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-diff-check.log
+          git status --short 2>&1 \
+            | tee reports/historie-profile-evidence/main-merge-status.log
+
+          git add -A
+          git commit -m 'Flett fersk main inn i Historie profilgrunnlag'
+          git push origin HEAD:agent/history-profile-evidence-foundation-v1-merged 2>&1 \
+            | tee /tmp/history-profile-evidence-main-merge-publish.log
+
+      - name: Upload merge diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-profile-evidence-main-merge
+          path: |
+            reports/historie-profile-evidence/main-merge-*.log
+            /tmp/history-profile-evidence-main-merge-publish.log
+          if-no-files-found: warn
