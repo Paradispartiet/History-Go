@@ -1,0 +1,301 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "raelingen_bygdetun",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch4/raelingen_bygdetun.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_kirkevegen_20_area_anchor_for_sondre_fjerdingby_bygdetun",
+  "currentCoordinate": {
+    "lat": 59.92032136910839,
+    "lon": 11.081489629785487,
+    "r": 240,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Rælingen kommune – Søndre Fjerdingby gård; Kartverket adressepunkt Kirkevegen 20",
+    "coordType": "documented_sondre_fjerdingby_tun_address_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "raelingen-kommune:nkdb-object-400058-sondre-fjerdingby-gard",
+    "coordNote": "Rælingen kommunes objektoppføring for Søndre Fjerdingby gård identifiserer Rælingen bygdetun på Kirkevegen 20 og dokumenterer hovedbygningen fra 1814, bua fra 1850-årene, eldre hustufter under hovedhuset og tunets rolle ved kongevei, kirkebakke, tingsted og arrest. Rælingen historielag og Visit Greater Oslo oppgir samme museumsadresse. Kartverkets adresse-API returnerer ett eksakt objekt for Kirkevegen 20 med representasjonspunkt 59.92032136910839, 11.081489629785487, matrikkel 3224-99/36 og adressekode 13708. Det navngitte OSM-museumspunktet ligger 19,5 meter fra adressepunktet, mens et eget historisk gårdspunkt ligger i samme tun. Adressepunktet brukes som fysisk area_anchor for hele bygdetunet og den historiske Søndre Fjerdingby-gården; det hevdes ikke å være geometrisk sentrum i hovedhuset eller alle museumsbygningene. Bjørnholthagan 6 står i kommunesidens generelle kontaktfooter, men objektoppføringen, historielaget, reiselivskildene, Kartverket og de navngitte kartobjektene plasserer selve bygdetunet på Kirkevegen 20. Legacy-punktet 59.9261, 11.0608 lå omtrent 1 319,9 meter vest for det offisielle museumsankeret. Radius 240 meter dekker tunbygningene, tuntreet, den nærmeste kongeveien, kirkebakken og kulturlandskapet mot Rælingen kirke, men er ikke en eksakt eiendoms- eller kulturmiljøpolygon."
+  },
+  "previousCoordinate": {
+    "lat": 59.9261,
+    "lon": 11.0608,
+    "r": 240,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 1319.9,
+    "reasonReplaced": "Legacy-punktet lå i et boligområde vest for det dokumenterte bygdetunet og kunne ikke knyttes til Søndre Fjerdingby gård, Kirkevegen 20 eller de navngitte museumspunktene."
+  },
+  "identity": {
+    "currentName": "Rælingen bygdetun",
+    "resolvedIdentity": "Det historiske gårds- og museumsområdet på Søndre Fjerdingby ved Kirkevegen 20, med hovedbygningen fra 1814, bua, øvrige tunbygninger, kongevei-, kirke-, ting- og arresthistorie",
+    "identityStatus": "resolved",
+    "identityProblem": "Kommunesidens generelle kontaktfooter oppgir Bjørnholthagan 6, mens selve kulturminneobjektet, historielaget, reiselivskildene, Kartverket og kartobjektene plasserer bygdetunet på Kirkevegen 20. Hovedhusets OSM-way er ikke sikkert navngitt, så et offisielt områdeanker er riktigere enn en konstruert hovedhuscentroid.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Hovedhuset, bua, landhandelen, øvrige museumsbygninger, tuntreet og det nærmeste kongevei- og kirkebakkelandskapet utgjør ett sammenhengende bygdetun."
+  },
+  "requiredEvidence": [
+    "offisiell objektadresse for Søndre Fjerdingby gård",
+    "offisielt Kartverket-adressepunkt",
+    "navngitt museumspunkt på samme tun",
+    "dokumentert hovedhus, bu og eldre bygningsspor",
+    "dokumentert kongevei-, kirke-, ting- og arresthistorie",
+    "eksplisitt løsning av konflikten med Bjørnholthagan 6",
+    "eksplisitt skille mellom områdeanker og hovedhuscentroid"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Rælingen kommune – Søndre Fjerdingby gård",
+      "sourceUrl": "https://ralingen.kunstrom.no/object/400058/S%C3%B8ndre_Fjerdingby_g%C3%A5rd",
+      "sourceObjectId": "raelingen-kommune:nkdb-object-400058-sondre-fjerdingby-gard",
+      "sourceQuality": "official_object_identity_address_and_history",
+      "finding": "Kommunens objektoppføring identifiserer Søndre Fjerdingby gård som Rælingen bygdetun, oppgir Kirkevegen 20 som objektadresse og dokumenterer hovedhuset fra 1814, bua fra 1850-årene, eldre husrester, kongeveien, kirkebakken, tingstua og arresten.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår både den historiske stedsidentiteten og hvilken adresse som gjelder selve kulturminneobjektet."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Kirkevegen 20",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13708:20",
+      "sourceQuality": "official_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt objekt for Kirkevegen 20: kommunenummer 3224, gårds- og bruksnummer 99/36, adressekode 13708, postnummer 2008 og representasjonspunkt 59.92032136910839, 11.081489629785487.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir det anvendte offisielle fysiske area_anchor-punktet for museumsområdet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Rælingen historielag – Rælingen bygdetun",
+      "sourceUrl": "https://www.ralingen-historielag.no/",
+      "sourceObjectId": "raelingen-historielag:bygdetun-kirkevegen-20",
+      "sourceQuality": "current_operator_address_and_activity_identity",
+      "finding": "Historielaget oppgir både post- og besøksadresse Kirkevegen 20 og dokumenterer løpende aktivitet i Nistua og på bygdetunet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at Kirkevegen 20 er dagens besøksadresse for det aktive bygdetunet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Rælingen historielag – Hovedhuset",
+      "sourceUrl": "https://www.ralingen-historielag.no/Hovedhuset/",
+      "sourceObjectId": "raelingen-historielag:hovedhuset",
+      "sourceQuality": "detailed_main_house_history",
+      "finding": "Historielaget beskriver hovedhuset som en midtkammersbygning og dokumenterer interiør, bruk og endringer etter at gården ble bygdetun.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger hovedhusets rolle, men publiserer ikke en egen sikker bygningskoordinat."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Visit Greater Oslo – Rælingen bygdetun",
+      "sourceUrl": "https://visitgreateroslo.com/no/attraksjon/raelingen-bygdetun",
+      "sourceObjectId": "visit-greater-oslo:raelingen-bygdetun-kirkevegen-20",
+      "sourceQuality": "regional_visitor_address_and_site_cross_check",
+      "finding": "Reiselivskilden oppgir Kirkevegen 20 og beskriver hovedbygningen fra 1814 på den opprinnelige Søndre Fjerdingby-gården, i kulturlandskapet ved Rælingen kirke og Øyeren-deltaet.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir en uavhengig besøksadresse- og stedsidentitetskryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593405625 – Rælingen bygdetun museum",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405625",
+      "sourceObjectId": "osm-node:6593405625",
+      "sourceQuality": "named_museum_poi_cross_check",
+      "finding": "Det navngitte museumspunktet ligger på 59.9203765, 11.0818226, omtrent 19,5 meter fra det offisielle adressepunktet og 1 333,2 meter fra legacy-punktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at Kartverkets adressepunkt ligger i det faktiske navngitte museumsområdet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1926783972 – Rælingen bygdetun historic farm",
+      "sourceUrl": "https://www.openstreetmap.org/node/1926783972",
+      "sourceObjectId": "osm-node:1926783972",
+      "sourceQuality": "named_historic_farm_cross_check",
+      "finding": "Det historiske gårdspunktet Rælingen bygdetun ligger på 59.9203956, 11.0817869, omtrent 18,5 meter fra det offisielle adressepunktet.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker gårdsidentiteten, men det offisielle adressepunktet er sterkere som anvendt anker."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Bjørnholthagan 6",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13721:6",
+      "sourceQuality": "municipal_contact_address_not_museum_site",
+      "finding": "Kartverket plasserer Bjørnholthagan 6 på 59.92552329117391, 11.06599729500623, omtrent 1 039,2 meter fra Kirkevegen 20. Adressen forekommer i kommunesidens generelle kontaktfooter, ikke som adressen til objektet Søndre Fjerdingby gård.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises som canonical fordi den representerer kommunal kontaktinformasjon og ikke selve bygdetunet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Rælingen bygdetun point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:raelingen_bygdetun",
+      "sourceQuality": "incorrect_residential_area_point",
+      "finding": "Forrige koordinat 59.9261, 11.0608 ligger omtrent 1 319,9 meter vest for Kirkevegen 20 og manglet kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes fordi den ikke ligger ved det dokumenterte gårds- og museumsområdet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Kirkevegen",
+        "number": "20",
+        "postcode": "2008",
+        "city": "Fjerdingby",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13708:20",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Bjørnholthagan",
+        "number": "6",
+        "postcode": "2008",
+        "city": "Fjerdingby",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13721:6",
+      "canApplyToPlace": false,
+      "rejectionReason": "General municipal contact address rather than the object and operator address for Rælingen bygdetun."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "raelingen-kommune:nkdb-object-400058-sondre-fjerdingby-gard",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13708:20",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405625",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:raelingen_bygdetun",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "raelingen_bygdetun_kirkevegen_20",
+      "name": "Rælingen bygdetun – Kirkevegen 20",
+      "lat": 59.92032136910839,
+      "lon": 11.081489629785487,
+      "r": 90,
+      "type": "area_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13708:20",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:raelingen_bygdetun",
+      "lat": 59.9261,
+      "lon": 11.0608,
+      "coordRole": "incorrect_residential_area_point",
+      "distanceFromAppliedM": 1319.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13708:20",
+      "lat": 59.92032136910839,
+      "lon": 11.081489629785487,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 1319.9,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405625",
+      "lat": 59.9203765,
+      "lon": 11.0818226,
+      "coordRole": "named_museum_poi_cross_check",
+      "distanceFromAppliedM": 19.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1926783972",
+      "lat": 59.9203956,
+      "lon": 11.0817869,
+      "coordRole": "named_historic_farm_cross_check",
+      "distanceFromAppliedM": 18.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3224:13721:6",
+      "lat": 59.92552329117391,
+      "lon": 11.06599729500623,
+      "coordRole": "municipal_contact_address_rejected",
+      "distanceFromAppliedM": 1039.2,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/geonorge-kirkevegen-20.json",
+      "description": "Raw Kartverket Address API result for Kirkevegen 20."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/geonorge-bjornholthagan-6.json",
+      "description": "Raw Kartverket Address API result for the rejected municipal contact address."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/nominatim-raelingen-bygdetun.json",
+      "description": "Raw Nominatim named-object search results."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/osm-node-1926783972.xml",
+      "description": "Raw OSM historic-farm node."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/osm-node-6593405625.xml",
+      "description": "Raw OSM museum node."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/osm-node-2311812289.xml",
+      "description": "Raw OSM information-board node."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/osm-actual-raelingen-bygdetun-bbox.xml",
+      "description": "Raw OSM map extract around the actual Kirkevegen 20 tun."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/source-summary.txt",
+      "description": "Deterministic address, object and legacy-distance summary."
+    },
+    {
+      "path": "reports/akershus-coordinate-raelingen-bygdetun-source-probe/building-summary.txt",
+      "description": "Deterministic nearby-building and address-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Kartverket's Kirkevegen 20 point as the physical area anchor for the officially documented Søndre Fjerdingby farm and Rælingen bygdetun. Continue with Losby gods, the next Akershus batch-4 record after confirming batch order."
+  },
+  "notes": [
+    "Kirkevegen 20 is the object, operator and visitor address for the museum; Bjørnholthagan 6 is a general municipal contact address.",
+    "The address point is an area anchor for the whole tun and is not claimed to be the centroid of the 1814 main house.",
+    "Named museum and historic-farm OSM points lie within 20 metres of the applied point.",
+    "The 240-metre radius covers the tun, nearest route and church-site landscape at gameplay scale but is not a cadastral or heritage polygon.",
+    "The coordinate correction is approximately 1,319.9 metres."
+  ]
+}
