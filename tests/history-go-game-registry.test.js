@@ -20,6 +20,7 @@ const expectedGameIds = [
   "hgFootballManager",
   "hgFilmProducer",
   "hgArtSchool",
+  "hgChildrenLiteratureGame",
   "hgWritingAcademy"
 ];
 
@@ -32,7 +33,7 @@ assert.match(
 assert.deepStrictEqual(
   registry.games.map((game) => game.gameId),
   expectedGameIds,
-  "registry exposes the four independent learning games in the expected order"
+  "registry exposes the five independent learning games in the expected order"
 );
 
 for (const game of registry.games) {
@@ -107,6 +108,7 @@ assert.doesNotMatch(source + profileHtml, /My Rating|Date Added|Date Read|Privat
   assert.match(grid.innerHTML, /HG Football Manager/, "Football Manager title rendered");
   assert.match(grid.innerHTML, /HG Film Producer/, "Film Producer title rendered");
   assert.match(grid.innerHTML, /Kunstskolen/, "Kunstskolen title rendered");
+  assert.match(grid.innerHTML, /Barnebokakademiet/, "Barnebokakademiet title rendered");
   assert.match(grid.innerHTML, /Skrivekunstakademiet/, "Skrivekunstakademiet title rendered");
   assert.match(grid.innerHTML, /target="_blank" rel="noopener noreferrer"/, "external game links are opened safely");
   assert.doesNotMatch(grid.innerHTML, /My Rating|Date Added|Date Read|Private Notes/, "rendered cards do not leak private Goodreads fields");
