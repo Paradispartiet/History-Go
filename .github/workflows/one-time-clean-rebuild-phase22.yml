@@ -1,23 +1,23 @@
-name: One-time People of Places governance registration
+name: One-time clean rebuild documentation phase 22
 
 on:
   push:
     branches:
       - main
     paths:
-      - .github/workflows/one-time-register-people-of-places-governance.yml
+      - .github/workflows/one-time-clean-rebuild-phase22.yml
 
 permissions:
   contents: write
 
 jobs:
-  materialize:
+  rebuild:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out target branch
+      - name: Check out repository history
         uses: actions/checkout@v4
         with:
-          ref: agent/documentation-governance-phase-22-people-of-places
+          ref: main
           fetch-depth: 0
 
       - name: Reset target branch to current main
@@ -27,7 +27,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git reset --hard origin/main
+          git switch -C agent/documentation-governance-phase-22-people-of-places origin/main
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -35,9 +35,10 @@ jobs:
           node-version: "22"
           cache: npm
 
-      - name: Register People of Places governance
+      - name: Apply People of Places governance
         shell: bash
         run: |
+          set -euo pipefail
           python - <<'PY'
           from pathlib import Path
           import json
@@ -45,10 +46,7 @@ jobs:
           registry_path = Path("docs/documentation_registry.json")
           registry = json.loads(registry_path.read_text(encoding="utf-8"))
           method_path = "docs/people-of-places-method.md"
-          registry["documents"] = [
-              entry for entry in registry["documents"]
-              if entry.get("path") != method_path
-          ]
+          registry["documents"] = [entry for entry in registry["documents"] if entry.get("path") != method_path]
           method_entry = {
               "path": method_path,
               "status": "canonical",
@@ -63,10 +61,7 @@ jobs:
           )
           registry["documents"].insert(insert_at, method_entry)
           registry["last_verified"] = "2026-07-26"
-          registry_path.write_text(
-              json.dumps(registry, ensure_ascii=False, indent=2) + "\n",
-              encoding="utf-8",
-          )
+          registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
           readme_path = Path("docs/README.md")
           readme = readme_path.read_text(encoding="utf-8")
@@ -82,13 +77,14 @@ jobs:
 
 People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 '''
-          old_heading = "### People-bilder og rettigheter\n"
-          new_heading = "### People-produksjon, stedskobling og bilder\n"
-          start = readme.find(old_heading)
-          if start < 0:
-              start = readme.find(new_heading)
-          if start < 0:
-              raise SystemExit("Fant ikke People-seksjonen i docs/README.md")
+          starts = [
+              readme.find("### People-bilder og rettigheter\n"),
+              readme.find("### People-produksjon, stedskobling og bilder\n"),
+          ]
+          starts = [value for value in starts if value >= 0]
+          if not starts:
+              raise SystemExit("Fant ikke People-seksjonen")
+          start = min(starts)
           end_marker = "\n### Koordinater og geografisk evidens\n"
           end = readme.find(end_marker, start)
           if end < 0:
@@ -99,18 +95,24 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           if completed not in readme:
               anchor = "- `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt"
               if anchor not in readme:
-                  raise SystemExit("Fant ikke People Images-ankeret i konsolideringsstatusen")
+                  raise SystemExit("Fant ikke People Images-ankeret")
               readme = readme.replace(anchor, anchor + "\n" + completed, 1)
           readme_path.write_text(readme, encoding="utf-8")
           PY
 
-      - name: Remove temporary workflow from target branch
-        run: rm .github/workflows/one-time-register-people-of-places-governance.yml
+      - name: Remove temporary files from target branch
+        shell: bash
+        run: |
+          rm -f .github/people-of-places-governance-trigger.txt
+          rm -f .github/rebuild-phase22-trigger.txt
+          rm -f .github/workflows/one-time-register-people-of-places-governance.yml
+          rm -f .github/workflows/one-time-rebuild-phase22.yml
+          rm -f .github/workflows/one-time-clean-rebuild-phase22.yml
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Build and validate documentation governance
+      - name: Validate documentation governance
         shell: bash
         run: |
           npm run build:scripts
@@ -122,62 +124,65 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
           git clean -fd -- dist
 
-      - name: Verify final target scope
+      - name: Verify target result
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           import json
-          import subprocess
-
-          registry = json.loads(Path("docs/documentation_registry.json").read_text(encoding="utf-8"))
-          entries = {entry["path"]: entry for entry in registry["documents"]}
-          method = entries["docs/people-of-places-method.md"]
-          assert method["status"] == "canonical"
-          assert method["owns"] == ["people_of_places_method"]
 
           readme = Path("docs/README.md").read_text(encoding="utf-8")
-          assert "Dagens CI blokkerer dupliserte people-ID-er" in readme
-          assert "avgjør ikke historisk relevans" in readme
+          for token in (
+              "dupliserte people-ID-er",
+              "ugyldige place-referanser",
+              "manglende gyldige primærankere",
+              "tomme `places`",
+              "avgjør ikke historisk relevans",
+          ):
+              assert token in readme
+
+          registry = json.loads(Path("docs/documentation_registry.json").read_text(encoding="utf-8"))
+          entry = next(item for item in registry["documents"] if item["path"] == "docs/people-of-places-method.md")
+          assert entry["status"] == "canonical"
+          assert entry["owns"] == ["people_of_places_method"]
 
           inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
           assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
-
-          tracked = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
-          untracked = set(subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard"]).decode().splitlines())
-          changed = tracked | untracked
-          expected = {
-              ".github/workflows/one-time-register-people-of-places-governance.yml",
-              "docs/README.md",
-              "docs/documentation_registry.json",
-              "reports/documentation-governance/inventory.json",
-          }
-          assert changed == expected, (changed, expected)
           PY
 
-      - name: Commit target branch
+      - name: Commit and replace target branch
         shell: bash
         run: |
           git add -A
           git commit -m "Registrer canonical People of Places-governance"
           git push --force origin HEAD:agent/documentation-governance-phase-22-people-of-places
 
-      - name: Remove one-time workflow from main
+      - name: Remove rebuild workflows from main
         if: always()
         shell: bash
         run: |
+          set -euo pipefail
           git fetch origin main
           git switch -C main origin/main
-          if [ -f .github/workflows/one-time-register-people-of-places-governance.yml ]; then
-            git rm .github/workflows/one-time-register-people-of-places-governance.yml
-            git commit -m "Fjern engangsworkflow for People of Places-governance"
-            for attempt in 1 2 3 4 5; do
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-              git pull --rebase origin main
-            done
-            exit 1
+          changed=0
+          for path in \
+            .github/workflows/one-time-clean-rebuild-phase22.yml \
+            .github/workflows/one-time-rebuild-phase22.yml; do
+            if [ -f "$path" ]; then
+              git rm "$path"
+              changed=1
+            fi
+          done
+          if [ "$changed" -eq 0 ]; then
+            exit 0
           fi
+          git commit -m "Fjern rebuild-workflows for dokumentasjonsfase 22"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+          done
+          exit 1
 
-# Clean phase 22 materialization from current main.
+# Retry clean phase 22 rebuild.

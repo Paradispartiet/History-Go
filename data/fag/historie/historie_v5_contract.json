@@ -1,5 +1,5 @@
 {
-  "version": "v5.5-quality-freeze-contract",
+  "version": "v5.6-quality-freeze-contract",
   "subject_id": "historie",
   "status": "quality_gate_active",
   "authoritative_files": {
@@ -13,14 +13,19 @@
     "theories": "theory_objects_historie_canonical_v5_5.json"
   },
   "coverage_counts": {
-    "domains": 20,
-    "emner": 200,
-    "mappings": 200,
-    "theory_hooks": 200
+    "domains": 21,
+    "emner": 210,
+    "mappings": 210,
+    "theory_hooks": 210,
+    "concepts": 876,
+    "theories": 210,
+    "methods": 91
   },
   "coverage_policy": {
     "counts_establish_coverage_not_curation": true,
-    "generated_objects_cannot_unlock_v6": true
+    "generated_objects_cannot_unlock_v6": true,
+    "universal_coverage_audit_required": true,
+    "fixed_counts_are_not_completeness": true
   },
   "domain_freeze_contract": {
     "required_status": "complete_revised",
@@ -69,6 +74,6 @@
   },
   "v6_policy": {
     "allowed_only_when_quality_freeze_ready": true,
-    "current_default": "blocked_until_quality_gate_passes"
+    "current_default": "active_v5_6_subject_model_evidence_layers_still_separate"
   }
 }

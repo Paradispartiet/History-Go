@@ -212,13 +212,13 @@ function renderMarkdown(report) {
   lines.push('');
   lines.push(`Status: **${report.status}**`);
   lines.push('');
-  lines.push('Denne rapporten tester om den universelle historiefagmodellen dekker selve faget. Den tester ikke bare om den eksisterende V5.5-listen er fylt ut. Frysing, eksakte objekttall og 20/20 interne domener er derfor registrert som intern strukturstatus, ikke som bevis på heldekning.');
+  lines.push('Denne rapporten tester om den universelle historiefagmodellen dekker selve faget. Den tester ikke bare om den aktive faglisten er fylt ut. Frysing og eksakte objekttall er derfor registrert som intern strukturstatus, ikke som bevis på heldekning.');
   lines.push('');
   lines.push('## Hovedresultat');
   lines.push('');
   lines.push(`- Universell heldekning: **${report.status}**`);
-  lines.push(`- V5.5 intern readiness: **${report.legacy_internal_readiness.status || 'ukjent'}**`);
-  lines.push(`- Gamle domenetall: **${report.legacy_internal_readiness.covered_domains}/${report.legacy_internal_readiness.total_domains}** markert komplette internt`);
+  lines.push(`- Aktiv intern readiness: **${report.legacy_internal_readiness.status || 'ukjent'}**`);
+  lines.push(`- Interne domenetall: **${report.legacy_internal_readiness.covered_domains}/${report.legacy_internal_readiness.total_domains}** markert komplette internt`);
   lines.push(`- Dekningsceller: **${report.summary.covered_cells} dekket**, **${report.summary.partial_cells} delvis**, **${report.summary.missing_cells} mangler**`);
   lines.push(`- Produksjonskrav: **${report.summary.production_passes} bestått**, **${report.summary.production_gaps} åpne gap**`);
   if (report.legacy_internal_readiness.false_complete_conflict) {
