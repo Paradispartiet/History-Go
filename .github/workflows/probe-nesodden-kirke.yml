@@ -1,0 +1,112 @@
+name: Probe Nesodden Church source objects
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.head_ref == 'agent/akershus-nesodden-kirke-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch and persist church geometry and address
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/akershus-coordinate-nesodden-kirke-source-probe'
+          mkdir -p "$out"
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://api.openstreetmap.org/api/0.6/way/299949532/full' \
+            | tee "$out/osm-way-299949532-full.xml" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://nominatim.openstreetmap.org/lookup?osm_ids=W299949532&format=jsonv2' \
+            | tee "$out/nominatim-way-299949532.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --get 'https://ws.geonorge.no/adresser/v1/sok' \
+            --data-urlencode 'sok=Presteskjærveien 13 Nesodden' \
+            --data-urlencode 'treffPerSide=20' \
+            | tee "$out/geonorge-presteskjaerveien-13.json" >/dev/null
+
+          python - <<'PY' | tee "$out/source-summary.txt"
+          import json
+          import math
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-nesodden-kirke-source-probe')
+          root = ET.parse(out / 'osm-way-299949532-full.xml').getroot()
+          nodes = {n.attrib['id']: (float(n.attrib['lat']), float(n.attrib['lon'])) for n in root.findall('node')}
+          way = next(w for w in root.findall('way') if w.attrib['id'] == '299949532')
+          refs = [nd.attrib['ref'] for nd in way.findall('nd')]
+          pts = [nodes[r] for r in refs if r in nodes]
+          tags = {t.attrib['k']: t.attrib['v'] for t in way.findall('tag')}
+          if len(pts) < 3:
+              raise SystemExit('Way 299949532 has insufficient geometry')
+
+          ring = [(lon, lat) for lat, lon in pts]
+          if ring[0] != ring[-1]:
+              ring.append(ring[0])
+          area2 = cx = cy = 0.0
+          for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+              cross = x1 * y2 - x2 * y1
+              area2 += cross
+              cx += (x1 + x2) * cross
+              cy += (y1 + y2) * cross
+          if abs(area2) < 1e-15:
+              lat = sum(p[0] for p in pts) / len(pts)
+              lon = sum(p[1] for p in pts) / len(pts)
+          else:
+              lon = cx / (3 * area2)
+              lat = cy / (3 * area2)
+
+          legacy = (59.80521, 10.69346)
+          def hav(a, b):
+              R = 6371000.0
+              p1, p2 = map(math.radians, (a[0], b[0]))
+              dp = math.radians(b[0] - a[0])
+              dl = math.radians(b[1] - a[1])
+              h = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2 * R * math.asin(math.sqrt(h))
+
+          nom = json.loads((out / 'nominatim-way-299949532.json').read_text())
+          geo = json.loads((out / 'geonorge-presteskjaerveien-13.json').read_text())
+          addresses = geo.get('adresser', []) if isinstance(geo, dict) else []
+          exact = [a for a in addresses if str(a.get('adressetekst', '')).lower() == 'presteskjærveien 13']
+
+          print('osm_way=299949532')
+          print(f'node_count={len(pts)}')
+          print(f'centroid_lat={lat:.12f}')
+          print(f'centroid_lon={lon:.12f}')
+          print(f'distance_from_legacy_m={hav(legacy, (lat, lon)):.1f}')
+          print('tags=' + json.dumps(tags, ensure_ascii=False, sort_keys=True))
+          print('nominatim=' + json.dumps(nom, ensure_ascii=False, sort_keys=True))
+          print(f'address_total={len(addresses)}')
+          print(f'address_exact={len(exact)}')
+          for item in exact:
+              print('ADDRESS ' + json.dumps(item, ensure_ascii=False, sort_keys=True))
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/probe-nesodden-kirke.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/akershus-coordinate-nesodden-kirke-source-probe .github/workflows/probe-nesodden-kirke.yml
+          git commit -m 'Persist Nesodden Church coordinate source evidence'
+          git push origin HEAD:${{ github.head_ref }}
