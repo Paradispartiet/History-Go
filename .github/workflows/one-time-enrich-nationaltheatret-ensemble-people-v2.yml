@@ -41,10 +41,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Build tools and scripts
-        run: |
-          npm run tools:build
-          npm run scripts:build
+      - name: Build tools
+        run: npm run tools:build
+
+      - name: Build scripts
+        run: npm run scripts:build
 
       - name: Regenerate people-popup readiness reports
         run: |
