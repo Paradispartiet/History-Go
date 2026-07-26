@@ -78,6 +78,15 @@ Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korr
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
+### People-bilder og rettigheter
+
+1. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt
+2. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+3. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+
+People-bilder skal komme fra Wikidata/Wikimedia Commons gjennom lisensporten. Runtime leser lokale bildepaths og `imageMeta` fra canonical manifest-loadede people-filer; kandidat- og attribusjonsfilene er arbeids- og sporbarhetsdata, ikke en parallell people-sannhet.
+
 ### Koordinater og geografisk evidens
 
 1. [`coordinates/README.md`](./coordinates/README.md) — canonical dokumentasjonskart og leserekkefølge
@@ -259,6 +268,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - Social Meet-kravkontraktenes statusavsnitt synkronisert med FastAPI-implementasjonen og løftet fra transitional til canonical
 - `HG_TEST_MODE.md` synkronisert med runtime og registrert som canonical skjult utviklermoduskontrakt
 - `PROFILE_PROGRESS_READER_RUNTIME.md` synkronisert og registrert som operational read-only runtime-guide
+- `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt
 
 ### Neste
 

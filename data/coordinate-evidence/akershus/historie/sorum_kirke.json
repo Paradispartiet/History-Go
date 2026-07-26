@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "sorum_kirke",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch5/sorum_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor_with_1814_election_context",
+  "currentCoordinate": {
+    "lat": 60.006675264823,
+    "lon": 11.234479236208,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 531229103 – Sørum kirke; Kartverket adressepunkt Bingenveien 23",
+    "coordType": "named_medieval_church_building_point",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:531229103;building-ref:150291933",
+    "coordNote": "OpenStreetMap way 531229103 er den navngitte bygningsgeometrien for Sørum kirke, merket building=church, heritage=yes og start_date=1166, med bygningsnummer 150291933 og Wikidata Q8732053. Den deterministisk beregnede polygoncentroiden er 60.006675264823, 11.234479236208. Kartverkets adresse-API returnerer ett eksakt objekt for Bingenveien 23 med representasjonspunkt 60.00661887200286, 11.234544136751357, matrikkel 3205-235/2 og adressekode 18196, bare 7,2 meter fra kirkebyggets centroid. Sørum menighet og Lillestrøm kommune dokumenterer den fredede steinkirken fra siste halvdel av 1100-tallet, viet Peter og Paulus, og istandsettingen i 1931. Store norske leksikon dokumenterer at første runde av valgene til riksforsamlingen i 1814 ble gjennomført her, og et informasjonspunkt merket Valgkirke står ved kirken. Canonical markør representerer selve middelalderkirken; valgkirkeinformasjonen, krigsminnesmerket, kirkegården og Sørum/Sudreim-gårdslandskapet inngår som historiske lag innen radiusen, men brukes ikke som alternative hovedkoordinater. Legacy-punktet 59.9866, 11.2391 lå omtrent 2 247 meter sør for kirken. Radius 220 meter er et gameplay-område og ikke en kirkegårds-, eiendoms- eller fredningspolygon."
+  },
+  "previousCoordinate": {
+    "lat": 59.9866,
+    "lon": 11.2391,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 2247.0,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,25 kilometer sør for det dokumenterte kirkestedet og kunne ikke knyttes til Sørum kirke, Bingenveien 23, valgkirkestedet eller det historiske Sørum/Sudreim-miljøet."
+  },
+  "identity": {
+    "currentName": "Sørum kirke",
+    "resolvedIdentity": "Den fredede middelalderske steinkirken ved Bingenveien 23, med Sørum/Sudreim-maktlandskapet og valgkirkehistorien fra 1814 som kontekst",
+    "identityStatus": "resolved",
+    "identityProblem": "Sørum-navnet finnes flere steder i Norge, og legacy-punktet lå ikke ved kirken. Canonical må knyttes til den navngitte Romerike-kirken og ikke til et generisk Sørum-sted eller informasjonspunktet Valgkirke.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Kirkebygningen, kirkegården, valgkirkeinformasjonen og det nære Sørum/Sudreim-landskapet utgjør ett kirkested med selve middelalderkirken som tydelig fysisk hovedobjekt."
+  },
+  "requiredEvidence": [
+    "navngitt middelalderkirkegeometri",
+    "offisielt adressepunkt for Bingenveien 23",
+    "offisiell middelalderdatering og byggbeskrivelse",
+    "dokumentert istandsetting i 1931",
+    "dokumentert valgkirkehistorie fra 1814",
+    "eksplisitt skille mellom kirkebygningen og informasjonspunktet Valgkirke",
+    "eksplisitt avvisning av legacy-punktet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 531229103 – Sørum kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/531229103",
+      "sourceObjectId": "osm-way:531229103;building-ref:150291933",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "Way 531229103 er navngitt Sørum kirke, tagget building=church, heritage=yes og start_date=1166, med bygningsnummer 150291933 og Wikidata Q8732053. Geometrien har 15 noder og beregnet polygoncentroid 60.006675264823, 11.234479236208.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir den navngitte og reproduserbare bygningsgeometrien som canonical display_marker."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Bingenveien 23",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18196:23",
+      "sourceQuality": "official_church_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt objekt for Bingenveien 23: kommunenummer 3205, gårds- og bruksnummer 235/2, adressekode 18196, postnummer 1923 og representasjonspunkt 60.00661887200286, 11.234544136751357. Punktet ligger 7,2 meter fra kirkebygningscentroiden.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter den offisielle skrivemåten, husnummeret og den fysiske kirkeidentiteten."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Sørum menighet – Om kirken",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/lillestr%C3%B8m/menigheter/s%C3%B8rum-menighet/om%20oss/om%20kirken/",
+      "sourceObjectId": "sorum-menighet:om-kirken",
+      "sourceQuality": "official_parish_medieval_building_description",
+      "finding": "Menigheten beskriver Sørum kirke som en fredet middelaldersk steinlangkirke fra siste halvdel av 1100-tallet, tradisjonelt oppført i 1166, med kor, sakristi, nordvegg uten vinduer og istandsetting under Domenico Erdmann i 1931.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår at den navngitte geometrien representerer den dokumenterte middelalderkirken."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Lillestrøm kommune – Sørum kirke",
+      "sourceUrl": "https://www.lillestrom.kommune.no/kultur-fritid-og-friluftsliv/tro-livssyn-og-vielse/finn-kirker-og-kirkegarder/sorum-kirke/",
+      "sourceObjectId": "lillestrom-kommune:sorum-kirke",
+      "sourceQuality": "official_dedication_and_anniversary_identity",
+      "finding": "Kommunen dokumenterer at Sørum kirke ble viet Peter og Paulus på St. Blasius-dagen og at 850-årsjubileet ble markert i 2016.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker kirkens historiske identitet, men publiserer ikke egen koordinat."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Sørum menighet – Kontaktinformasjon",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/lillestr%C3%B8m/menigheter/s%C3%B8rum-menighet/om%20oss/kontaktinformasjon/",
+      "sourceObjectId": "sorum-menighet:bingenvegen-23",
+      "sourceQuality": "official_visitor_address_cross_check",
+      "finding": "Menigheten oppgir kirken på Bingenvegen 23, 1923 Sørum. Kartverket bruker den offisielle adressenavnsformen Bingenveien.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker besøkshusnummeret og forklarer skrivemåtevarianten."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Sørum kirke",
+      "sourceUrl": "https://snl.no/S%C3%B8rum_kirke",
+      "sourceObjectId": "snl:sorum-kirke-lillestrom",
+      "sourceQuality": "authoritative_medieval_church_and_restoration_history",
+      "finding": "SNL beskriver Sørum kirke i Lillestrøm som en steinkirke fra siste halvdel av 1100-tallet, restaurert under Domenico Erdmann i 1931.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir en uavhengig autoritativ identitets- og dateringskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Lillestrøm",
+      "sourceUrl": "https://snl.no/Lillestr%C3%B8m",
+      "sourceObjectId": "snl:lillestrom-sudreim-valgkirke",
+      "sourceQuality": "authoritative_sudreim_and_1814_election_context",
+      "finding": "SNL knytter Sørum til Suðrheimr/Sudreimsætten og dokumenterer at første runde av valgene til riksforsamlingen i 1814 ble gjennomført i Sørum kirke.",
+      "canVerifyCoordinate": true,
+      "reason": "Underbygger kirkestedets lokale makt- og nasjonale valghistorie."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5156910446 – Valgkirke information board",
+      "sourceUrl": "https://www.openstreetmap.org/node/5156910446",
+      "sourceObjectId": "osm-node:5156910446",
+      "sourceQuality": "nearby_1814_information_board_not_site_anchor",
+      "finding": "Informasjonspunktet Valgkirke ligger på 60.0065786, 11.2344085 rett ved kirkebygningen og er tagget tourism=information og information=board.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter at valgkirkehistorien formidles på stedet, men avvises som canonical fordi det er en informasjonstavle."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5156909194 – memorial",
+      "sourceUrl": "https://www.openstreetmap.org/node/5156909194",
+      "sourceObjectId": "osm-node:5156909194",
+      "sourceQuality": "nearby_memorial_context",
+      "finding": "Et krigsminnesmerke ligger på 60.0064814, 11.2349613 ved kirkestedet.",
+      "canVerifyCoordinate": false,
+      "reason": "Beholdes som senere historisk lag, men er ikke kirkens hovedpunkt."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Sørum Church point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:sorum_kirke",
+      "sourceQuality": "incorrect_southern_point",
+      "finding": "Forrige koordinat 59.9866, 11.2391 ligger omtrent 2 247 meter sør for kirkebygningscentroiden og manglet kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes fordi den ikke representerer Sørum kirke eller kirkestedet fysisk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Bingenveien",
+        "number": "23",
+        "postcode": "1923",
+        "city": "Sørum",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18196:23",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:531229103;building-ref:150291933",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18196:23",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5156910446",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:sorum_kirke",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:531229103",
+      "geometryType": "Polygon",
+      "geometryRole": "named_medieval_church_building",
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "sorum_kirke_building",
+      "name": "Sørum kirke – medieval stone church",
+      "lat": 60.006675264823,
+      "lon": 11.234479236208,
+      "r": 75,
+      "type": "unlock_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:531229103;building-ref:150291933",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:sorum_kirke",
+      "lat": 59.9866,
+      "lon": 11.2391,
+      "coordRole": "incorrect_southern_point",
+      "distanceFromAppliedM": 2247.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:531229103;building-ref:150291933",
+      "lat": 60.006675264823,
+      "lon": 11.234479236208,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 2247.0,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3205:18196:23",
+      "lat": 60.00661887200286,
+      "lon": 11.234544136751357,
+      "coordRole": "official_address_cross_check",
+      "distanceFromAppliedM": 7.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5156910446",
+      "lat": 60.0065786,
+      "lon": 11.2344085,
+      "coordRole": "valgkirke_information_board_context",
+      "distanceFromAppliedM": 11.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5156909194",
+      "lat": 60.0064814,
+      "lon": 11.2349613,
+      "coordRole": "war_memorial_context",
+      "distanceFromAppliedM": 34.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-sorum-kirke-source-probe/osm-way-531229103-full.xml",
+      "description": "Raw OpenStreetMap full geometry for Sørum kirke."
+    },
+    {
+      "path": "reports/akershus-coordinate-sorum-kirke-source-probe/nominatim-sorum-kirke.json",
+      "description": "Raw Nominatim lookup and polygon result for the church."
+    },
+    {
+      "path": "reports/akershus-coordinate-sorum-kirke-source-probe/osm-sorum-church-site-bbox.xml",
+      "description": "Raw local OSM map extract containing the church, cemetery, Valgkirke board, memorial and nearby Sørum farm identities."
+    },
+    {
+      "path": "reports/akershus-coordinate-sorum-kirke-source-probe/geonorge-bingenvegen-23.json",
+      "description": "Raw unsuccessful Kartverket search using the parish spelling variant."
+    },
+    {
+      "path": "reports/akershus-coordinate-sorum-kirke-source-probe/geonorge-bingenveien-23.json",
+      "description": "Raw Kartverket result for the official address spelling."
+    },
+    {
+      "path": "reports/akershus-coordinate-sorum-kirke-source-probe/source-summary.txt",
+      "description": "Deterministic geometry, legacy-distance and site-object summary."
+    },
+    {
+      "path": "reports/akershus-coordinate-sorum-kirke-source-probe/address-summary.txt",
+      "description": "Deterministic address-variant and church-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named medieval church-building centroid and official Bingenveien 23 address. Continue with Feiring jernverk, the next Akershus batch-5 record."
+  },
+  "notes": [
+    "The church building is the canonical marker; the Valgkirke information board and war memorial are contextual objects.",
+    "Kartverket's official address spelling is Bingenveien, while the parish page displays Bingenvegen.",
+    "The 220-metre radius covers the cemetery and immediate Sørum/Sudreim church-site landscape at gameplay scale but is not a cemetery, cadastral or protection polygon.",
+    "The coordinate correction is approximately 2,247.0 metres."
+  ]
+}

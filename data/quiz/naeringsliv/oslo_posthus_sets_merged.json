@@ -63,7 +63,8 @@
     ],
     "works": [],
     "source_review_status": "reviewed",
-    "theory_start_phase": "final"
+    "theory_start_phase": "final",
+    "quality_lift": "naeringsliv_pilot_context_v1"
   },
   "sets": [
     {
@@ -499,24 +500,24 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Når sluttet bygningen å være hovedterminal for Oslo postdistrikt?",
+          "question": "Hva viser det at hovedterminalen sluttet i 1975, mens andre postfunksjoner fortsatte til 2004?",
           "options": [
-            "1975",
-            "2004",
-            "1924"
+            "Logistikkfunksjonen ble flyttet før alle postrelaterte tjenester forsvant",
+            "All postrelatert virksomhet ble flyttet samtidig i 1975",
+            "Terminaldriften fortsatte uendret helt til 2004"
           ],
-          "answer": "1975",
+          "answer": "Logistikkfunksjonen ble flyttet før alle postrelaterte tjenester forsvant",
           "answerIndex": 0,
-          "knowledge": "Oslo byleksikon og Lokalhistoriewiki oppgir at bygningen var hovedterminal for Oslo postdistrikt til 1975.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "knowledge": "Terminaldriften, publikumstjenestene og administrasjonen ble ikke avviklet samtidig. Det viser at en virksomhet kan omstilles trinnvis.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
             "oslo_byleksikon",
             "lokalhistoriewiki"
           ],
           "source_origin": "external",
-          "claim_basis": "Oslo byleksikon og Lokalhistoriewiki oppgir at bygningen var hovedterminal for Oslo postdistrikt til 1975.",
+          "claim_basis": "Hovedterminalfunksjonen sluttet i 1975, mens postkontor, direktorat og museum fortsatte til 2004, så omstillingen skjedde trinnvis.",
           "claim_id": "claim_oslo_posthus_16"
         },
         {
@@ -553,24 +554,24 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Når tok perioden med Sentrum postkontor, Postdirektoratet og Postmuseet slutt?",
+          "question": "Hva slags omstilling skjedde etter at hovedterminalperioden var over?",
           "options": [
-            "1975",
-            "1999",
-            "2004"
+            "Fra tung terminaldrift til postkontor, administrasjon og museum",
+            "Fra publikumstjenester til større sorterings- og terminaldrift",
+            "Fra postadministrasjon til ren lager- og transportvirksomhet"
           ],
-          "answer": "2004",
-          "answerIndex": 2,
-          "knowledge": "Sentrum postkontor, Postdirektoratet og Postmuseet holdt til i bygningen fram til 2004.",
-          "difficulty": 1,
-          "question_type": "fact",
-          "emne_id": "em_naering_omstilling_kriser_skift",
+          "answer": "Fra tung terminaldrift til postkontor, administrasjon og museum",
+          "answerIndex": 0,
+          "knowledge": "Bygningen beholdt postfaglige funksjoner, men arbeidsinnholdet dreide bort fra den store vare- og sorteringsstrømmen mot tjenester, ledelse og formidling.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_arbeid_verdiskaping",
           "source": [
             "oslo_byleksikon",
             "lokalhistoriewiki"
           ],
           "source_origin": "external",
-          "claim_basis": "Sentrum postkontor, Postdirektoratet og Postmuseet holdt til i bygningen fram til 2004.",
+          "claim_basis": "Etter hovedterminalperioden gikk bygningen fra tung terminaldrift til postkontor, administrasjon og museum.",
           "claim_id": "claim_oslo_posthus_18"
         },
         {
@@ -580,23 +581,24 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva sto på tomta før Hovedpostkontoret ble bygd?",
+          "question": "Hva viser Postverkets overgang fra dampskip til jernbane om virksomheten?",
           "options": [
-            "En bygård fra 1640",
-            "Et vannkraftverk",
-            "En skoleskipskai"
+            "Den tok i bruk nye transportnett for å få posten raskere og lengre",
+            "Den beholdt samme transportmodell uavhengig av ny infrastruktur",
+            "Den konsentrerte all transport om lokale budruter i sentrum"
           ],
-          "answer": "En bygård fra 1640",
+          "answer": "Den tok i bruk nye transportnett for å få posten raskere og lengre",
           "answerIndex": 0,
-          "knowledge": "Lokalhistoriewiki skriver at huset som sto på tomta var fra 1640 og en av Christianias eldste bygårder.",
-          "difficulty": 1,
-          "question_type": "fact",
-          "emne_id": "em_naering_omstilling_kriser_skift",
+          "knowledge": "Postverket koblet tjenesten til tidens nye infrastruktur. Dampskip og jernbane utvidet rekkevidden og reduserte transporttiden.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_logistikk_verdikjeder",
           "source": [
-            "lokalhistoriewiki"
+            "postmuseet",
+            "posten_bring"
           ],
           "source_origin": "external",
-          "claim_basis": "Lokalhistoriewiki skriver at huset som sto på tomta var fra 1640 og en av Christianias eldste bygårder.",
+          "claim_basis": "Postverkets bruk av dampskip fra 1827 og jernbane fra 1854 viser at virksomheten tok i bruk nye transportnett for å øke hastighet og rekkevidde.",
           "claim_id": "claim_oslo_posthus_19"
         },
         {
@@ -606,23 +608,25 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilken institusjon hadde tidligere holdt til i den gamle bygården på tomta?",
+          "question": "Hvorfor var det effektivt å samle sortering, ekspedisjon og administrasjon i ett hovedpostkontor?",
           "options": [
-            "Norges Bank",
-            "Christiania katedralskole",
-            "Bane NOR"
+            "Poststrømmer, publikumstjenester og ledelse kunne koordineres på samme sted",
+            "Hvert ledd kunne drives uavhengig på forskjellige steder",
+            "Samlingen reduserte behovet for kontakt mellom publikum og postdrift"
           ],
-          "answer": "Christiania katedralskole",
-          "answerIndex": 1,
-          "knowledge": "Lokalhistoriewiki skriver at den gamle bygården blant annet hadde huset Christiania katedralskole.",
-          "difficulty": 1,
-          "question_type": "fact",
-          "emne_id": "em_naering_teknologi_infrastruktur",
+          "answer": "Poststrømmer, publikumstjenester og ledelse kunne koordineres på samme sted",
+          "answerIndex": 0,
+          "knowledge": "Samlingen reduserte avstanden mellom operative og administrative ledd og gjorde hovedpostkontoret til et organisatorisk knutepunkt.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_logistikk_verdikjeder",
           "source": [
-            "lokalhistoriewiki"
+            "oslo_byleksikon",
+            "lokalhistoriewiki",
+            "linstow"
           ],
           "source_origin": "external",
-          "claim_basis": "Lokalhistoriewiki skriver at den gamle bygården blant annet hadde huset Christiania katedralskole.",
+          "claim_basis": "Et samlet hovedpostkontor gjorde det mulig å koordinere sortering, ekspedisjon, publikumstjenester og administrasjon på samme sted.",
           "claim_id": "claim_oslo_posthus_20"
         },
         {
@@ -632,24 +636,25 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilken historisk gjenstand er støpt inn i veggen på Tollbugata-siden?",
+          "question": "Hvorfor var plasseringen i Kvadraturen viktig for et hovedpostkontor?",
           "options": [
-            "Et gammelt frimerke fra 1855",
-            "En jernbaneskinne fra Hovedbanen",
-            "En kanonkule fra svenskenes beleiring av Akershus i 1716"
+            "Det lå sentralt mellom byens virksomheter, publikum og transportforbindelser",
+            "Det lå nær havna, men langt fra byens kunder og virksomheter",
+            "Plasseringen var først og fremst valgt for framtidig boligbygging"
           ],
-          "answer": "En kanonkule fra svenskenes beleiring av Akershus i 1716",
-          "answerIndex": 2,
-          "knowledge": "Oslo byleksikon beskriver at en kanonkule fra svenskenes beleiring av Akershus i 1716 er støpt inn i veggen på Tollbugata-siden.",
-          "difficulty": 1,
-          "question_type": "fact",
-          "emne_id": "em_naering_omstilling_kriser_skift",
+          "answer": "Det lå sentralt mellom byens virksomheter, publikum og transportforbindelser",
+          "answerIndex": 0,
+          "knowledge": "Et hovedpostkontor var både terminal, arbeidsplass og publikumstjeneste. Den sentrale plasseringen gjorde flere ledd i postnettverket tilgjengelige.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_teknologi_infrastruktur",
           "source": [
+            "place_record",
             "oslo_byleksikon",
             "lokalhistoriewiki"
           ],
-          "source_origin": "external",
-          "claim_basis": "Oslo byleksikon beskriver at en kanonkule fra svenskenes beleiring av Akershus i 1716 er støpt inn i veggen på Tollbugata-siden.",
+          "source_origin": "mixed",
+          "claim_basis": "Plasseringen i Kvadraturen var viktig fordi hovedpostkontoret lå sentralt mellom byens virksomheter, publikum og transportforbindelser.",
           "claim_id": "claim_oslo_posthus_21"
         }
       ]
@@ -746,24 +751,24 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilke deler av bygget fremhever Linstow som verneverdige?",
+          "question": "Hvordan påvirket verneverdiene ombyggingen av Posthallen?",
           "options": [
-            "Fasadene, postekspedisjonshallen og trappeløpene",
-            "Bare garasjen og taktekkingen",
-            "Bare moderne balkonger"
+            "Ny bruk måtte tilpasses fasader, hall og trappeløp som skulle bevares",
+            "Ny bruk kunne planlegges uten hensyn til historiske rom",
+            "Vernet begrenset ombyggingen til bare utvendig vedlikehold"
           ],
-          "answer": "Fasadene, postekspedisjonshallen og trappeløpene",
+          "answer": "Ny bruk måtte tilpasses fasader, hall og trappeløp som skulle bevares",
           "answerIndex": 0,
-          "knowledge": "Linstow skriver at fasadene, postekspedisjonshallen og trappeløp har stor verneverdig verdi.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "knowledge": "Vernet la føringer på prosjektet. Utvikleren måtte skape boliger og næring uten å miste de viktigste historiske rommene og bygningsdelene.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
             "linstow",
             "kritt"
           ],
           "source_origin": "external",
-          "claim_basis": "Linstow skriver at fasadene, postekspedisjonshallen og trappeløp har stor verneverdig verdi.",
+          "claim_basis": "Verneverdiene gjorde at ny bruk måtte tilpasses fasadene, postekspedisjonshallen og trappeløpene som skulle bevares.",
           "claim_id": "claim_oslo_posthus_25"
         },
         {
@@ -799,23 +804,23 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvor mye betalte Linstow for Posthuskvartalet i 1999?",
+          "question": "Hva viser kjøpesummen på 275 millioner kroner om Posthuskvartalet?",
           "options": [
-            "27,5 millioner kroner",
-            "2,75 milliarder kroner",
-            "275 millioner kroner"
+            "Kvartalet ble behandlet som et stort kapital- og utviklingsobjekt",
+            "Kjøpet var først og fremst en mindre driftsutgift for ett postkontor",
+            "Summen viste at eiendommen ikke var planlagt for videre utvikling"
           ],
-          "answer": "275 millioner kroner",
-          "answerIndex": 2,
-          "knowledge": "Linstow kjøpte Posthuskvartalet fra Posten Norge i 1999 for 275 millioner kroner.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "answer": "Kvartalet ble behandlet som et stort kapital- og utviklingsobjekt",
+          "answerIndex": 0,
+          "knowledge": "Kjøpesummen viser at omstillingen også var en kapitalbeslutning: ny bruk måtte forsvare investering, risiko og forventet avkastning.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_kapital_finans",
           "source": [
             "linstow"
           ],
           "source_origin": "external",
-          "claim_basis": "Linstow kjøpte Posthuskvartalet fra Posten Norge i 1999 for 275 millioner kroner.",
+          "claim_basis": "Kjøpesummen på 275 millioner kroner viser at Posthuskvartalet ble behandlet som et stort kapital- og utviklingsobjekt.",
           "claim_id": "claim_oslo_posthus_27"
         },
         {
@@ -825,23 +830,23 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilke eiendommer bestod Posthuskvartalet av ifølge Linstow?",
+          "question": "Hvorfor var det viktig at kjøpet omfattet tre eiendommer i samme kvartal?",
           "options": [
-            "Dronningens gate 15, Tollbugata 17 og Kirkegata 20",
-            "Bankplassen 3, Bankplassen 4 og Myntgata 2",
-            "Dyvekes vei 2, Loenga og Alnabru"
+            "Det gjorde det mulig å planlegge ombruk og ny næring som ett samlet prosjekt",
+            "Hver eiendom måtte utvikles helt uavhengig av de andre",
+            "Kjøpet begrenset prosjektet til å bevare eksisterende bruk uendret"
           ],
-          "answer": "Dronningens gate 15, Tollbugata 17 og Kirkegata 20",
+          "answer": "Det gjorde det mulig å planlegge ombruk og ny næring som ett samlet prosjekt",
           "answerIndex": 0,
-          "knowledge": "Linstow beskriver Posthuskvartalet som Dronningens gate 15, Tollbugata 17 og Kirkegata 20.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "knowledge": "Samlet kontroll over Dronningens gate 15, Tollbugata 17 og Kirkegata 20 ga utvikleren større handlingsrom til å koordinere boliger, næring og fellesfunksjoner.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_kapital_finans",
           "source": [
             "linstow"
           ],
           "source_origin": "external",
-          "claim_basis": "Linstow beskriver Posthuskvartalet som Dronningens gate 15, Tollbugata 17 og Kirkegata 20.",
+          "claim_basis": "Kjøpet av tre eiendommer i samme kvartal gjorde det mulig å planlegge ombruk og ny næring som ett samlet prosjekt.",
           "claim_id": "claim_oslo_posthus_28"
         }
       ]

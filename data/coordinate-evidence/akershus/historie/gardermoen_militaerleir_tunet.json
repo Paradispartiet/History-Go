@@ -1,0 +1,280 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "gardermoen_militaerleir_tunet",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch5/gardermoen_militaerleir_tunet.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_museum_anchor_for_tunet_and_lilleplassen",
+  "currentCoordinate": {
+    "lat": 60.1911316,
+    "lon": 11.0698695,
+    "r": 420,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "MiA Ullensaker museum – Tunet på Sør-Gardermoen; OpenStreetMap node 6593405620",
+    "coordType": "named_ullensaker_museum_tunet_and_lilleplassen_area_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "osm-node:6593405620",
+    "coordNote": "OpenStreetMap node 6593405620 er det navngitte museumspunktet Ullensaker museum på 60.1911316, 11.0698695 og ligger midt i Tunet på Sør-Gardermoen. En navngitt museumsbygning, OSM-way 652142158 med bygningsnummer 15353090 og Wikidata Q19393789, ligger om lag 29,9 meter vest for punktet. MiA dokumenterer at Tunet ligger ved Lilleplassen, anlagt i 1740 som en av Norges eldste ekserserplasser, og at åtte verneverdige bygninger fra den tidligere Sør-Gardermoen militærleiren er flyttet hit. Fordi place-identiteten omfatter hele tunet, Lilleplassen og den flyttede bygningssamlingen, brukes museumspunktet som area_anchor fremfor centroiden i én enkelt bygning. MiA oppgir Tunvegen, 2060 Gardermoen, men publiserer ikke ett entydig husnummer for hele tunet; Kartverket har flere separate Tunvegen-adresser knyttet til bygningene. Canonical får derfor ikke et konstruert husnummer. Forsvarets flysamling, hotellene og Oslo lufthavn er separate anlegg og brukes ikke som hovedkoordinater. Legacy-punktet 60.1986, 11.0782 lå omtrent 949,5 meter nordøst for Tunet. Radius 420 meter dekker museumsbygningene, Lilleplassen og de nærmeste militære og sivile historielagene, men er ikke en ekserserplass-, militærleir-, flyplass- eller eiendomspolygon."
+  },
+  "previousCoordinate": {
+    "lat": 60.1986,
+    "lon": 11.0782,
+    "r": 420,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 949.5,
+    "reasonReplaced": "Legacy-punktet lå nordøst for Tunet og kunne ikke knyttes til det navngitte Ullensaker museum-punktet, Lilleplassen eller den flyttede bygningssamlingen."
+  },
+  "identity": {
+    "currentName": "Gardermoen militærleir / Tunet",
+    "resolvedIdentity": "Tunet på Sør-Gardermoen ved Lilleplassen, med Ullensaker museums samling av flyttede militære og sivile bygninger som fysisk anker for Gardermoens lange ekserserplass- og militærleirhistorie",
+    "identityStatus": "resolved",
+    "identityProblem": "Place-identiteten gjelder et tun og historisk område, ikke én museumsbygning. MiA publiserer heller ikke ett husnummer for hele tunet, og flere separate Tunvegen-adresser finnes i Kartverket.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Lilleplassen og den flyttede samlingen av militære og sivile leirbygninger utgjør ett sammenhengende museumstun. Forsvarets flysamling, Trandumskogen og Oslo lufthavn er separate steder."
+  },
+  "requiredEvidence": [
+    "navngitt museumspunkt på Tunet",
+    "offisiell dokumentasjon av Lilleplassen fra 1740",
+    "offisiell dokumentasjon av de flyttede bygningene",
+    "dokumentert militærhistorie og avvikling ved flyplassutbyggingen",
+    "dokumentert sivilt og romani-historisk lag",
+    "eksplisitt vurdering av museumsbygning kontra områdeanker",
+    "eksplisitt avvisning av konstruert husnummer og separate flyplassobjekter"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593405620 – Ullensaker museum",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405620",
+      "sourceObjectId": "osm-node:6593405620",
+      "sourceQuality": "named_history_museum_point_at_tunet",
+      "finding": "Node 6593405620 er navngitt Ullensaker museum, tagget tourism=museum og museum=history, og ligger på 60.1911316, 11.0698695 midt i Tunet ved Lilleplassen.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir et stabilt, navngitt fysisk områdeanker for hele museumstunet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 652142158 – Ullensaker museum building",
+      "sourceUrl": "https://www.openstreetmap.org/way/652142158",
+      "sourceObjectId": "osm-way:652142158;building-ref:15353090;wikidata:Q19393789",
+      "sourceQuality": "named_museum_building_cross_check",
+      "finding": "En navngitt civic museumsbygning med bygningsnummer 15353090 og Wikidata Q19393789 ligger omtrent 29,9 meter vest for museumspunktet.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter museumskjernen, men avvises som canonical fordi stedet omfatter hele Tunet og ikke én bygning."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA Ullensaker museum – Bygningene på Tunet",
+      "sourceUrl": "https://mia.no/ullensaker/bygningene",
+      "sourceObjectId": "mia-ullensaker:tunet-bygningene",
+      "sourceQuality": "official_tunet_lilleplassen_and_building_collection_identity",
+      "finding": "MiA dokumenterer at Tunet ligger ved Lilleplassen, anlagt i 1740, og består av Kornmagasinet, Depot 148, Telthuset, Østerrikegata 13, Ballonghuset, Rawindhuset, Posthuset og Furua, flyttet fra andre steder på Gardermoen.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår at canonical skal representere den samlede bygnings- og ekserserplassidentiteten."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA Ullensaker museum – Museets samlinger",
+      "sourceUrl": "https://mia.no/ullensaker/samlingene",
+      "sourceObjectId": "mia-ullensaker:samlingene-tunet",
+      "sourceQuality": "official_eight_protected_buildings_identity",
+      "finding": "MiA opplyser at åtte verneverdige bygninger står på Tunet og at samtlige er flyttet hit fra den tidligere Sør-Gardermoen militærleiren.",
+      "canVerifyCoordinate": true,
+      "reason": "Underbygger områdeanker fremfor enkeltbygning."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA Ullensaker museum – En særdeles skiøn excerserplads",
+      "sourceUrl": "https://mia.no/ullensaker/militar",
+      "sourceObjectId": "mia-ullensaker:militaerutstilling",
+      "sourceQuality": "official_military_camp_history",
+      "finding": "MiA dokumenterer at Gardermoen på 1850-tallet var hovedleir for hele Østlandet og landets største militærleir, og formidler leirlivet fra 1700 til 1920 i Telthuset.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir militærhistorisk innhold til det fysisk avgrensede Tunet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA Ullensaker museum – Furua, et romanihjem",
+      "sourceUrl": "https://mia.no/ullensaker/furua",
+      "sourceObjectId": "mia-ullensaker:furua-romani",
+      "sourceQuality": "official_civilian_and_romani_history",
+      "finding": "MiA dokumenterer Furua som vinterbolig for en romanifamilie, flyttet fra det nåværende flyplassområdet til Tunet i 1998, og forklarer det sivile livet som vokste fram rundt militærleiren.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger at canonical-identiteten omfatter både militære og sivile historielag."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Gardermoens militære historie",
+      "sourceUrl": "https://snl.no/Gardermoen_-_milit%C3%A6r_historie",
+      "sourceObjectId": "snl:gardermoen-militaer-historie",
+      "sourceQuality": "authoritative_long_term_military_history",
+      "finding": "SNL dokumenterer ekserserplassen fra 1740, kavaleriet, infanteriet og artilleriet, Gardermoen som landets største ekserserplass ved andre verdenskrigs utbrudd og nedbyggingen etter hovedflyplassvedtaket i 1992.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir en autoritativ uavhengig kronologisk kryssjekk."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Tunvegen addresses",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3209:12705:tunvegen",
+      "sourceQuality": "multiple_building_addresses_not_single_museum_address",
+      "finding": "Kartverket returnerer flere separate Tunvegen-adresser innenfor museumsområdet. Tunvegen 9 ligger 22,5 meter, Tunvegen 17 23,6 meter og Tunvegen 11 27,8 meter fra museumspunktet, mens MiA bare publiserer Tunvegen uten husnummer.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer hvorfor canonical ikke skal gis et vilkårlig husnummer for hele tunet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 125496552 – Forsvarets flysamling Gardermoen",
+      "sourceUrl": "https://www.openstreetmap.org/way/125496552",
+      "sourceObjectId": "osm-way:125496552",
+      "sourceQuality": "separate_aerospace_museum_object",
+      "finding": "Forsvarets flysamling ligger omtrent 227,4 meter sør for Ullensaker museum og er et eget navngitt luftfartsmuseum.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises som canonical og dokumenterer objektskillet mellom Tunet og flysamlingen."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Gardermoen military camp point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:gardermoen_militaerleir_tunet",
+      "sourceQuality": "incorrect_northeastern_airport_area_point",
+      "finding": "Forrige koordinat 60.1986, 11.0782 ligger omtrent 949,5 meter nordøst for det navngitte Ullensaker museum-punktet og manglet kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes fordi den ikke representerer Tunet, Lilleplassen eller museumsbygningene fysisk."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405620",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "mia-ullensaker:tunet-bygningene",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:652142158;building-ref:15353090;wikidata:Q19393789",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125496552",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:gardermoen_militaerleir_tunet",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "ullensaker_museum_tunet",
+      "name": "Ullensaker museum – Tunet på Sør-Gardermoen",
+      "lat": 60.1911316,
+      "lon": 11.0698695,
+      "r": 120,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405620",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:gardermoen_militaerleir_tunet",
+      "lat": 60.1986,
+      "lon": 11.0782,
+      "coordRole": "incorrect_northeastern_airport_area_point",
+      "distanceFromAppliedM": 949.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405620",
+      "lat": 60.1911316,
+      "lon": 11.0698695,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 949.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-node-6593405620",
+      "lat": 60.191131,
+      "lon": 11.069869,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 0.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:652142158;building-ref:15353090;wikidata:Q19393789",
+      "lat": 60.19108138,
+      "lon": 11.06933874,
+      "coordRole": "named_museum_building_cross_check",
+      "distanceFromAppliedM": 29.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125496552",
+      "lat": 60.18909357075472,
+      "lon": 11.070204764150944,
+      "coordRole": "separate_aerospace_museum_rejected",
+      "distanceFromAppliedM": 227.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-gardermoen-tunet-source-probe/osm-node-6593405620.xml",
+      "description": "Raw OSM named museum node for Ullensaker museum."
+    },
+    {
+      "path": "reports/akershus-coordinate-gardermoen-tunet-source-probe/nominatim-ullensaker-museum.json",
+      "description": "Raw Nominatim lookup for the museum point."
+    },
+    {
+      "path": "reports/akershus-coordinate-gardermoen-tunet-source-probe/osm-gardermoen-tunet-bbox.xml",
+      "description": "Raw local OSM map extract containing the museum buildings, Tunet objects, fly collection and surrounding airport-area features."
+    },
+    {
+      "path": "reports/akershus-coordinate-gardermoen-tunet-source-probe/geonorge-tunvegen-gardermoen.json",
+      "description": "Raw Kartverket search containing the multiple Tunvegen building addresses around Tunet."
+    },
+    {
+      "path": "reports/akershus-coordinate-gardermoen-tunet-source-probe/geonorge-tunvegen-1-gardermoen.json",
+      "description": "Raw Kartverket search for Tunvegen 1."
+    },
+    {
+      "path": "reports/akershus-coordinate-gardermoen-tunet-source-probe/geonorge-tunvegen-2-gardermoen.json",
+      "description": "Raw Kartverket search for Tunvegen 2 and nearby address results."
+    },
+    {
+      "path": "reports/akershus-coordinate-gardermoen-tunet-source-probe/source-summary.txt",
+      "description": "Deterministic museum, address, building-object and legacy-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Ullensaker museum point as the area anchor for Tunet and Lilleplassen. Continue with Ullensaker kirke / Ullinhof kirkested, the next Akershus batch-5 record."
+  },
+  "notes": [
+    "The museum point represents the whole Tunet and Lilleplassen context rather than one selected building.",
+    "MiA publishes Tunvegen without a house number, while Kartverket records multiple separate building addresses; no synthetic top-level address is added.",
+    "Forsvarets flysamling, the hotels and Oslo Airport are separate objects and are not canonical for this place.",
+    "The 420-metre radius covers the museum tun and immediate military/civilian context at gameplay scale but is not a military-camp, airport, property or heritage polygon.",
+    "The coordinate correction is approximately 949.5 metres."
+  ]
+}
