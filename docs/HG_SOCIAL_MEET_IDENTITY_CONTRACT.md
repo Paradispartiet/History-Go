@@ -1,11 +1,13 @@
 # HG Social Meet identity contract
 
-Date: 2026-06-30  
-Status: Contract only. No backend implementation, runtime behavior, Civication behavior, GPS/live-location discovery, followers/feed, free chat, or passive tracking is introduced by this document.
+Original contract date: 2026-06-30  
+Status: **canonical requirements contract.** The identity and opt-in public-profile backend slice is implemented server-side. Participant-facing production rollout remains fail-closed behind explicit configuration and safety gates.  
+Implementation status: [`../backend/README.md`](../backend/README.md) owns current implementation and rollout status. This document owns the stable identity, consent, visibility, export, deletion, retention and forbidden-field requirements.  
+Last verified: **2026-07-26**
 
 ## 1. Purpose
 
-Production Spotmeeting discovery cannot exist until Social Meet has a minimal, stable identity layer and an explicit opt-in public profile contract. Current Spotmeeting behavior is local/demo-only: invite discovery is disabled in production until a privacy-reviewed backend exists, and demo candidates must remain separate from production people/profile storage.
+Production Spotmeeting discovery requires a minimal, stable identity layer and an explicit opt-in public profile contract. The server-side identity/public-profile slice now exists, while participant-facing production discovery remains disabled unless the documented rollout, privacy and safety gates are explicitly enabled. Local/demo candidates remain separate from production identity and profile storage.
 
 Identity is required before backend Spotmeeting because the backend must be able to:
 
@@ -217,7 +219,7 @@ Report rules:
 
 ## 11. Backend API contract sketch
 
-This is a contract sketch only. It does not require current implementation.
+This section defines the required API boundary. Concrete implemented routes and rollout status are documented in `backend/README.md`; this contract does not duplicate implementation details.
 
 ### Current user
 

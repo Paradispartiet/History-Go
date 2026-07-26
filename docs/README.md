@@ -148,7 +148,7 @@ Implementert kode betyr ikke automatisk bred produksjonsaktivering. Discovery, i
 - [`HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`](./HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md)
 - [`HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`](./HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md)
 
-Kravinnholdet er fortsatt aktivt. Filenes opprinnelige statusavsnitt er tidsbundne og delvis eldre enn implementasjonen, derfor er dokumentene transitional til statusdelene er synkronisert eller skilt fra kravteksten. Gjeldende implementasjonsstatus ligger i backendinngangen og slice-dokumentene.
+De tre dokumentene er canonical kravkontrakter. De eier identity-, invite- og safety-kravene, mens gjeldende implementasjons- og rolloutstatus ligger i `backend/README.md` og slice-dokumentene. Implementert kode betyr fortsatt ikke automatisk bred produksjonsaktivering; participant-facing rollout er fail-closed.
 
 #### 4. Implementerte slices
 
@@ -254,9 +254,9 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - gamle relations-, oppgave- og badge-/merke-READMEs arkivert
 - Social-dokumentasjonen delt i canonical produkt/privacy, aktive backend-slices, transitional kravtekster og historiske overgangsdokumenter
 - koordinatdokumentasjonen samlet under én source-kontrakt, én evidenskontrakt, én arbeidsflyt og én kontrollprotokoll
+- Social Meet-kravkontraktenes statusavsnitt synkronisert med FastAPI-implementasjonen og løftet fra transitional til canonical
 
 ### Neste
 
-- synkroniser de tidsbundne statusavsnittene i de tre Social Meet-kravkontraktene uten å endre kravinnholdet
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
 - klassifiser øvrige aktive subsystemguider uten å gjøre målarkitektur til nåstatus

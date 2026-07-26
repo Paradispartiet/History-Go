@@ -1,11 +1,13 @@
 # HG Social Meet invite backend contract
 
-Date: 2026-06-30  
-Status: Backend persistence and safety contract only. No backend implementation, runtime behavior, Civication behavior, GPS/live-location discovery, nearby discovery, followers/feed, free chat, or passive tracking is introduced by this document.
+Original contract date: 2026-06-30  
+Status: **canonical requirements contract.** Durable server-owned invite persistence, lifecycle, inbox and sync are implemented behind the FastAPI/PostgreSQL boundary. Participant-facing production rollout remains fail-closed behind explicit configuration and safety gates.  
+Implementation status: [`../backend/README.md`](../backend/README.md) and [`HG_SPOTMEETING_INVITE_BACKEND.md`](./HG_SPOTMEETING_INVITE_BACKEND.md) own current implementation and rollout status. This document owns the invite persistence, authorization, lifecycle, privacy and failure requirements.  
+Last verified: **2026-07-26**
 
 ## 1. Purpose
 
-Production Spotmeeting requires server-side invite persistence before real people can safely send or receive invites. The current client layer is local/demo-only, so it cannot provide durable delivery, cross-device state, server-side block/report enforcement, retention, export, moderation, or abuse prevention.
+Production Spotmeeting requires server-side invite persistence before real people can safely send or receive invites. Durable server-owned invite persistence, lifecycle, inbox and cross-device sync are now implemented. Participant-facing production use remains fail-closed behind explicit rollout and safety gates; the local/demo layer remains isolated for TEST_MODE and QA.
 
 This contract defines the minimum backend invite model and API shape required after Social Meet identity and opt-in public profiles exist. It is intentionally limited to context-bound, preset-message Spotmeeting invites.
 
@@ -241,7 +243,7 @@ Private operational metadata such as IP address or device risk signals may exist
 
 ## 15. Backend API sketch
 
-This sketch names endpoints and payload shapes only. It does not require current implementation.
+This section defines the required endpoint and payload shape. Concrete implementation and rollout status are documented in `backend/README.md` and `HG_SPOTMEETING_INVITE_BACKEND.md`. Current FastAPI routes use the `/api/v1` prefix.
 
 ### `GET /social-meet/spotmeeting/presets`
 

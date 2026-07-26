@@ -1,11 +1,15 @@
 # HG Social Meet block/report and moderation contract
 
-Date: 2026-06-30  
-Status: Documentation/API contract only. No backend implementation, runtime behavior, Civication behavior, GPS/live-location discovery, nearby discovery, followers/feed, free chat, public visit history, or passive tracking is introduced by this document.
+Original contract date: 2026-06-30  
+Status: **canonical requirements contract.** Server-side participant safety, moderation/appeals and retention/observability slices are implemented. Participant-facing production rollout remains fail-closed behind explicit rollout, moderation-capacity and operations gates.  
+Implementation status: [`../backend/README.md`](../backend/README.md), [`HG_SOCIAL_MEET_MODERATION_BACKEND.md`](./HG_SOCIAL_MEET_MODERATION_BACKEND.md) and [`HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md`](./HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md) own current implementation status. This document owns the block, report, moderation, deletion, export, retention and safety-audit requirements.  
+Last verified: **2026-07-26**
 
 ## 1. Purpose
 
-Production Spotmeeting discovery must not be enabled until Social Meet has server-side block, report, moderation, retention, deletion, export, abuse-prevention, and audit contracts. Client-only blocking is useful for demos, but it cannot protect a real recipient across devices, cached candidate suggestions, inbox fan-out, notifications, or backend lifecycle transitions.
+Production Spotmeeting discovery requires server-side block, report, moderation, retention, deletion, export, abuse-prevention and audit enforcement. Client-only blocking remains useful for demos, but it is not a production safety boundary.
+
+The server-side participant-safety, moderation/appeals and retention/observability slices are implemented. Production discovery remains fail-closed until rollout gates, moderation capacity and operational procedures are explicitly enabled.
 
 This contract extends the Social Meet identity and invite backend contracts with the minimum safety layer required before real people can appear in production discovery.
 
