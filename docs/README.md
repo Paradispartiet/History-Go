@@ -44,7 +44,8 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 2. [`HISTORY_GO_PRODUCT_MAP.md`](./HISTORY_GO_PRODUCT_MAP.md) — canonical produktkart og prioritet
 3. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical ferdigmodell; aktiv nivåregel er Bronse → Sølv → Gull
 4. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — operativ mål-/adaptermodell for samlet progresjonslesing; erstatter ikke runtime-lagring
-5. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
+5. [`PROFILE_PROGRESS_READER_RUNTIME.md`](./PROFILE_PROGRESS_READER_RUNTIME.md) — implementert read-only helper for eksisterende progresjonskilder
+6. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
 
 Compatibility-filer som bare videresender eldre lenker:
 
@@ -257,6 +258,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - koordinatdokumentasjonen samlet under én source-kontrakt, én evidenskontrakt, én arbeidsflyt og én kontrollprotokoll
 - Social Meet-kravkontraktenes statusavsnitt synkronisert med FastAPI-implementasjonen og løftet fra transitional til canonical
 - `HG_TEST_MODE.md` synkronisert med runtime og registrert som canonical skjult utviklermoduskontrakt
+- `PROFILE_PROGRESS_READER_RUNTIME.md` synkronisert og registrert som operational read-only runtime-guide
 
 ### Neste
 

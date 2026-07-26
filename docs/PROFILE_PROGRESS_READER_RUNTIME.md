@@ -1,16 +1,18 @@
 # History GO — Profile Progress Reader runtime
 
 Status: **operational read-only runtime-guide**  
-Kodeeier: `js/progress/profileProgressReader.js`  
-Sist kontrollert: **2026-07-25**
+Kodeeier: [`../js/progress/profileProgressReader.js`](../js/progress/profileProgressReader.js)  
+Entrypoint: [`../index.html`](../index.html)  
+Mål-/adaptermodell: [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md)  
+Sist kontrollert: **2026-07-26**
 
-`HGProfileProgressReader` gjør eksisterende progresjonslesing tilgjengelig for index-flater som PlaceCard, Nearby og ruter.
+`HGProfileProgressReader` gjør eksisterende progresjonslesing tilgjengelig for index-flater som PlaceCard, Nearby og ruter. `index.html` laster helperen før modul-entryen `js/app.js`.
 
 Den er:
 
 - en faktisk runtime-helper;
 - read-only;
-- en avgrenset implementert del av mål-/adaptermodellen i [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md).
+- en avgrenset implementert del av mål-/adaptermodellen i `PROGRESSION_MODEL.md`.
 
 Den er ikke:
 
@@ -98,7 +100,7 @@ Den bredere status- og datamodellen i `PROGRESSION_MODEL.md` er fortsatt en mål
 
 ## Profile summary
 
-`getProfileProgressSummary()` samler nå:
+`getProfileProgressSummary()` samler:
 
 - besøkte place-id-er og antall;
 - collected people-id-er og antall;
@@ -119,6 +121,10 @@ Den bredere status- og datamodellen i `PROGRESSION_MODEL.md` er fortsatt en mål
 - å erstatte `HGLearningLog`;
 - å erstatte `profile.js`;
 - å hevde at hele `PROGRESSION_MODEL.md` er implementert.
+
+## Ownership rule
+
+`PROFILE_PROGRESS_READER_RUNTIME.md` eier bare dokumentasjonen av den implementerte read-only helperen. `PROGRESSION_MODEL.md` eier mål-/adaptermodellen, eksisterende storage-eiere eier sine data, og runtimekoden eier den faktiske API-flaten.
 
 ## Change rule
 
