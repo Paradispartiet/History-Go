@@ -1,0 +1,125 @@
+name: Probe Rælingen bygdetun source objects
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.head_ref == 'agent/akershus-raelingen-bygdetun-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch and persist museum objects and address candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/akershus-coordinate-raelingen-bygdetun-source-probe'
+          mkdir -p "$out"
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --get 'https://ws.geonorge.no/adresser/v1/sok' \
+            --data-urlencode 'sok=Kirkevegen 20 Rælingen' \
+            --data-urlencode 'treffPerSide=20' \
+            | tee "$out/geonorge-kirkevegen-20.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --get 'https://ws.geonorge.no/adresser/v1/sok' \
+            --data-urlencode 'sok=Bjørnholthagan 6 Rælingen' \
+            --data-urlencode 'treffPerSide=20' \
+            | tee "$out/geonorge-bjornholthagan-6.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            --get 'https://nominatim.openstreetmap.org/search' \
+            --data-urlencode 'q=Rælingen bygdetun, Rælingen, Norway' \
+            --data-urlencode 'format=jsonv2' \
+            --data-urlencode 'addressdetails=1' \
+            --data-urlencode 'extratags=1' \
+            --data-urlencode 'namedetails=1' \
+            --data-urlencode 'polygon_geojson=1' \
+            --data-urlencode 'limit=10' \
+            | tee "$out/nominatim-raelingen-bygdetun.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://api.openstreetmap.org/api/0.6/map?bbox=11.0570,59.9235,11.0645,59.9285' \
+            | tee "$out/osm-raelingen-bygdetun-bbox.xml" >/dev/null
+
+          python - <<'PY' | tee "$out/source-summary.txt"
+          import json
+          import math
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-raelingen-bygdetun-source-probe')
+          legacy = (59.9261, 11.0608)
+
+          def hav(a, b):
+              R = 6371000.0
+              p1, p2 = map(math.radians, (a[0], b[0]))
+              dp = math.radians(b[0] - a[0])
+              dl = math.radians(b[1] - a[1])
+              h = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2 * R * math.asin(math.sqrt(h))
+
+          for filename, exact_text in (
+              ('geonorge-kirkevegen-20.json', 'kirkevegen 20'),
+              ('geonorge-bjornholthagan-6.json', 'bjørnholthagan 6'),
+          ):
+              payload = json.loads((out / filename).read_text())
+              addresses = payload.get('adresser', []) if isinstance(payload, dict) else []
+              exact = [a for a in addresses if str(a.get('adressetekst', '')).lower() == exact_text]
+              print(f'{filename}:address_total={len(addresses)} exact={len(exact)}')
+              for item in exact:
+                  point = item.get('representasjonspunkt') or {}
+                  lat = float(point['lat'])
+                  lon = float(point['lon'])
+                  print(f'ADDRESS {item.get("adressetekst")} lat={lat:.12f} lon={lon:.12f} distance_from_legacy_m={hav(legacy, (lat, lon)):.1f} data=' + json.dumps(item, ensure_ascii=False, sort_keys=True))
+
+          nom = json.loads((out / 'nominatim-raelingen-bygdetun.json').read_text())
+          print('nominatim=' + json.dumps(nom, ensure_ascii=False, sort_keys=True))
+          for item in nom:
+              lat, lon = float(item['lat']), float(item['lon'])
+              print(f'NOMINATIM osm_type={item.get("osm_type")} osm_id={item.get("osm_id")} lat={lat:.12f} lon={lon:.12f} distance_from_legacy_m={hav(legacy, (lat, lon)):.1f} name={item.get("name")} type={item.get("type")}')
+
+          root = ET.parse(out / 'osm-raelingen-bygdetun-bbox.xml').getroot()
+          nodes = {n.attrib['id']: (float(n.attrib['lat']), float(n.attrib['lon'])) for n in root.findall('node')}
+          tagged = []
+          for elem in list(root):
+              tags = {t.attrib['k']: t.attrib['v'] for t in elem.findall('tag')}
+              hay = ' '.join(str(v) for v in tags.values()).lower()
+              if any(k in hay for k in ('bygdetun', 'museum', 'fjerdingby')) or tags.get('tourism') == 'museum':
+                  row = {'type': elem.tag, 'id': elem.attrib.get('id'), 'tags': tags}
+                  if elem.tag == 'node':
+                      row['lat'] = float(elem.attrib['lat'])
+                      row['lon'] = float(elem.attrib['lon'])
+                      row['distance_from_legacy_m'] = round(hav(legacy, (row['lat'], row['lon'])), 1)
+                  elif elem.tag == 'way':
+                      pts = [nodes[nd.attrib['ref']] for nd in elem.findall('nd') if nd.attrib['ref'] in nodes]
+                      if pts:
+                          row['lat'] = sum(p[0] for p in pts) / len(pts)
+                          row['lon'] = sum(p[1] for p in pts) / len(pts)
+                          row['distance_from_legacy_m'] = round(hav(legacy, (row['lat'], row['lon'])), 1)
+                  tagged.append(row)
+          print('bbox_tagged=' + json.dumps(tagged, ensure_ascii=False, sort_keys=True))
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/probe-raelingen-bygdetun.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/akershus-coordinate-raelingen-bygdetun-source-probe .github/workflows/probe-raelingen-bygdetun.yml
+          git commit -m 'Persist Rælingen bygdetun coordinate source evidence'
+          git push origin HEAD:${{ github.head_ref }}
