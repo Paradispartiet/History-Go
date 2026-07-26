@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "status": "canonical_output_contract",
+  "purpose": "Teknisk kontrakt for universelle fagområdeforløp som leverer vurdering og Knowledge uten å registreres som sted eller person.",
+  "package_kind": "subject_pathway",
+  "required_top_fields": [
+    "schema",
+    "version",
+    "status",
+    "package_kind",
+    "categoryId",
+    "subject_id",
+    "targetId",
+    "sources",
+    "production_context",
+    "sets"
+  ],
+  "set_contract": {
+    "required_fields": [
+      "set_id",
+      "title",
+      "level",
+      "order",
+      "phase",
+      "target_kind",
+      "targetId",
+      "area_id",
+      "sequence",
+      "questions"
+    ],
+    "phase": "subject_pathway",
+    "target_kind": "subject_area",
+    "questions_per_set": 5,
+    "required_sequence": [
+      "observe",
+      "explain",
+      "evaluate_evidence",
+      "diagnose_failure",
+      "decide_and_justify"
+    ]
+  },
+  "question_contract": {
+    "base_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "required_fields": [
+      "id",
+      "quiz_id",
+      "categoryId",
+      "targetId",
+      "question_scope",
+      "question",
+      "options",
+      "answer",
+      "answerIndex",
+      "knowledge",
+      "difficulty",
+      "question_type",
+      "emne_id",
+      "source",
+      "primary_knowledge_unit_id",
+      "knowledge_unit_ids",
+      "concept_ids",
+      "term_ids",
+      "learning_objective_id",
+      "evidence_type",
+      "knowledge_payload",
+      "feedback_basis"
+    ],
+    "question_scope": "subject_area"
+  },
+  "separation_rule": "Normalåpningen 2 x 7 gjelder sted-, person- og naturquizer. Et subject pathway er et femtrinns vurderingsforløp og valideres av egen kontrakt."
+}
