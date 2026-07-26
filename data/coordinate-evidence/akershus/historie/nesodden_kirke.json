@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nesodden_kirke",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch4/nesodden_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.805182948086,
+    "lon": 10.693807598202,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 299949532 – Nesodden kirke; Kartverket adressepunkt Presteskjærveien 13",
+    "coordType": "named_medieval_church_building_point",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:299949532",
+    "coordNote": "OpenStreetMap way 299949532 er den navngitte bygningsgeometrien for Nesodden kirke, merket building=church, amenity=place_of_worship, heritage=yes og start_date=1175, med bygningsnummer 149437207 og Wikidata Q7593553. Den deterministisk beregnede polygoncentroiden er 59.805182948086, 10.693807598202. Kartverkets adresse-API returnerer ett eksakt objekt for Presteskjærveien 13 med representasjonspunkt 59.80516223390065, 10.69379338056053, matrikkel 3212-11/106 og adressekode 2500. Nesodden kirkelige fellesråd dokumenterer kirken som en kalksteinskirke bygget mellom 1136 og 1180, med middelaldersk døpefont, og Nesodden kommune bekrefter besøksadressen. Canonical markør representerer selve kirkebygningen; radius 220 meter dekker kirkegården, prestegården og det nære historiske ferdsels- og kulturlandskapet, men er ikke en automatisk frednings- eller eiendomspolygon. Kirkevika, fjordferdselen og Kirkekrysset inngår i stedets historiske fortelling, men brukes ikke som alternative hovedkoordinater."
+  },
+  "previousCoordinate": {
+    "lat": 59.80521,
+    "lon": 10.69346,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 19.7,
+    "reasonReplaced": "Legacy-punktet lå nær kirken, men uten navngitt bygningsgeometri, adresseidentitet eller verifiserbar kildekontrakt."
+  },
+  "identity": {
+    "currentName": "Nesodden kirke",
+    "resolvedIdentity": "Den stående middelalderske kalksteinskirken ved Presteskjærveien 13 og det nære kirkestedet med kirkegård, prestegård og historisk fjordferdsel",
+    "identityStatus": "resolved",
+    "identityProblem": "Kirkebygningen må være canonical markør, mens Kirkevika, Kirkekrysset, kirkegården og prestegården er landskapskontekst og ikke alternative hovedpunkter.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Kirken og det nære kirkestedet utgjør én sammenhengende middelalder- og ferdselshistorisk identitet, med kirkebygningen som tydelig fysisk hovedobjekt."
+  },
+  "requiredEvidence": [
+    "navngitt kirkebygningsgeometri",
+    "offisiell besøksadresse",
+    "offisielt adressepunkt",
+    "dokumentert middelalderdatering og byggemateriale",
+    "dokumentert forbindelse til kirkegård, prestegård og fjordferdsel",
+    "eksplisitt skille mellom bygningsmarkør og landskapsradius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 299949532 – Nesodden kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/299949532",
+      "sourceObjectId": "osm-way:299949532;building-ref:149437207",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "Way 299949532 er navngitt Nesodden kirke og tagget building=church, amenity=place_of_worship, heritage=yes og start_date=1175. Geometrien har 17 noder og beregnet polygoncentroid 59.805182948086, 10.693807598202.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir den stabile navngitte bygningsgeometrien som canonical display_marker."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Presteskjærveien 13",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "kartverket-address:3212:11/106:2500:13",
+      "sourceQuality": "official_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt adresseobjekt for Presteskjærveien 13: kommunenummer 3212, gårds- og bruksnummer 11/106, adressekode 2500, postnummer 1459 og representasjonspunkt 59.80516223390065, 10.69379338056053.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at kirkebygningsgeometrien ligger på den offisielle besøksadressen og gir en uavhengig fysisk kryssjekk."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Nesodden kommune – kirker og kirkegårder",
+      "sourceUrl": "https://www.nesodden.kommune.no/om-kommunen/kirker-og-kirkegarder/",
+      "sourceObjectId": "nesodden-kommune:nesodden-kirke-presteskjaerveien-13",
+      "sourceQuality": "official_municipal_church_and_address_identity",
+      "finding": "Nesodden kommune lister Nesodden kirke og kirkegård og oppgir Presteskjærveien 13 som kirkens adresse.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter den kommunale steds- og adresseidentiteten, men publiserer ikke egen koordinat."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Nesodden kirkelige fellesråd – kirkene våre",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/Nesodden-Kirkelige-Fellesrad/om-oss/kirkene-vare/",
+      "sourceObjectId": "nesodden-kirkelige-fellesraad:nesodden-kirke",
+      "sourceQuality": "official_church_history_and_building_identity",
+      "finding": "Fellesrådet beskriver Nesodden kirke som en kalksteinskirke bygget mellom 1136 og 1180, med middelaldersk døpefont, og oppgir Presteskjærveien 13 som adresse.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår at den navngitte geometrien representerer den stående middelalderkirken og ikke et generisk kirkested."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Skiforeningen – Nesodden kirke",
+      "sourceUrl": "https://www.skiforeningen.no/utimarka/omrader/nesoddmarka/steder/nesodden-kirke/",
+      "sourceObjectId": "skiforeningen:nesodden-kirke-kirkevika",
+      "sourceQuality": "published_fjord_and_route_landscape_context",
+      "finding": "Skiforeningen dokumenterer kirken som bygdas eldste hus, kirkegården og det vernede kulturlandskapet, utsynet mot Bunnefjorden og den historiske ferdselen via Kirkevika.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger landskapsradiusen og historiefortellingen, men kirkebygningen forblir hovedkoordinat."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Nominatim lookup – OpenStreetMap way 299949532",
+      "sourceUrl": "https://nominatim.openstreetmap.org/lookup?osm_ids=W299949532&format=jsonv2",
+      "sourceObjectId": "nominatim:osm-way-299949532",
+      "sourceQuality": "independent_named_object_point_cross_check",
+      "finding": "Nominatim returnerer way 299949532 som Nesodden kirke, type place_of_worship, med representasjonspunkt 59.8051661, 10.6938118 og adressekontekst Presteskjærveien, Kirkeåsen, Torvik, Nesodden.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker navn, objekttype og plassering; canonical bruker beregnet polygoncentroid."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Wikimedia Commons / Wikidata – Nesodden kirke",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Nesodden_kirke",
+      "sourceObjectId": "wikidata:Q7593553;kulturminne:85123",
+      "sourceQuality": "structured_identifier_cross_check",
+      "finding": "Den strukturerte oppføringen knytter Nesodden kirke til Wikidata Q7593553, Kulturminne-ID 85123 og OpenStreetMap way 299949532.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker identifikatorene, men brukes ikke som primær historisk eller geometrisk kilde."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Nesodden Church point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:nesodden_kirke",
+      "sourceQuality": "nearby_uncontracted_church_point",
+      "finding": "Forrige koordinat 59.80521, 10.69346 ligger omtrent 19,7 meter fra kirkebyggets centroid og hadde ingen kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes av den navngitte bygningsgeometrien for å gi presis og etterprøvbar identitet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Presteskjærveien",
+        "number": "13",
+        "postcode": "1459",
+        "city": "Nesodden",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "kartverket-address:3212:11/106:2500:13",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:299949532;building-ref:149437207",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3212:11/106:2500:13",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nesodden_kirke",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:299949532",
+      "geometryType": "Polygon",
+      "geometryRole": "named_medieval_church_building",
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "nesodden_kirke_building",
+      "name": "Nesodden kirke – medieval church building",
+      "lat": 59.805182948086,
+      "lon": 10.693807598202,
+      "r": 70,
+      "type": "unlock_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:299949532;building-ref:149437207",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nesodden_kirke",
+      "lat": 59.80521,
+      "lon": 10.69346,
+      "coordRole": "nearby_uncontracted_church_point",
+      "distanceFromAppliedM": 19.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:299949532;building-ref:149437207",
+      "lat": 59.805182948086,
+      "lon": 10.693807598202,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 19.7,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3212:11/106:2500:13",
+      "lat": 59.80516223390065,
+      "lon": 10.69379338056053,
+      "coordRole": "official_address_cross_check",
+      "distanceFromAppliedM": 2.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-way-299949532",
+      "lat": 59.8051661,
+      "lon": 10.6938118,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 1.9,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-nesodden-kirke-source-probe/osm-way-299949532-full.xml",
+      "description": "Raw OpenStreetMap full geometry for way 299949532."
+    },
+    {
+      "path": "reports/akershus-coordinate-nesodden-kirke-source-probe/nominatim-way-299949532.json",
+      "description": "Raw Nominatim lookup result for way 299949532."
+    },
+    {
+      "path": "reports/akershus-coordinate-nesodden-kirke-source-probe/geonorge-presteskjaerveien-13.json",
+      "description": "Raw Kartverket Address API result for Presteskjærveien 13."
+    },
+    {
+      "path": "reports/akershus-coordinate-nesodden-kirke-source-probe/source-summary.txt",
+      "description": "Deterministic geometry, centroid, address and distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named medieval church-building centroid as the canonical display marker. Continue with Seiersten skanse, the next Akershus batch-4 record."
+  },
+  "notes": [
+    "The church building is the canonical marker; Kirkevika, Kirkekrysset, the cemetery and parsonage remain contextual landscape elements.",
+    "The 220-metre radius supports the immediate church-site and route landscape at gameplay scale.",
+    "The radius is not an automatic-protection, cadastral or heritage polygon.",
+    "The coordinate correction is approximately 19.7 metres."
+  ]
+}
