@@ -6,12 +6,23 @@ on:
       - agent/okonomi-naeringsliv-emne-revision-stage
     paths:
       - '.github/workflows/one-time-inspect-okonomi-emne-revision.yml'
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - '.github/workflows/one-time-inspect-okonomi-emne-revision.yml'
+      - '.tmp/okonomi-revision/**'
 
 permissions:
   contents: write
 
 jobs:
   inspect:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
