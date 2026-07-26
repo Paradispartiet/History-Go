@@ -1,18 +1,17 @@
 name: One-time rebuild documentation phase 22
 
 on:
-  pull_request_target:
+  push:
     branches:
       - main
     paths:
-      - .github/rebuild-phase22-trigger.txt
+      - .github/phase22-main-trigger.txt
 
 permissions:
   contents: write
 
 jobs:
   rebuild:
-    if: github.event.pull_request.head.ref == 'agent/documentation-governance-phase-22-people-of-places' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Check out latest main
@@ -106,6 +105,9 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
       - name: Remove temporary workflow files
         shell: bash
         run: |
+          rm -f .github/phase22-main-trigger.txt
+          rm -f .github/rebuild-phase22-trigger.txt
+          rm -f .github/people-of-places-governance-trigger.txt
           rm -f .github/workflows/one-time-register-people-of-places-governance.yml
           rm -f .github/workflows/one-time-rebuild-phase22.yml
 
@@ -147,6 +149,7 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
 
           changed = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
           expected = {
+              ".github/phase22-main-trigger.txt",
               ".github/workflows/one-time-register-people-of-places-governance.yml",
               ".github/workflows/one-time-rebuild-phase22.yml",
               "docs/README.md",
