@@ -5,7 +5,7 @@ Sist kontrollert: **2026-07-26**
 
 Visual Design Codes er et metadata- og resolverlag for visuell identitet på tvers av places, people, artikler, stories, leksikon og lesespor. Systemet beskriver hva en entitet skal oppfattes som visuelt; rendererne bestemmer hvordan den faktisk tegnes.
 
-Den tidligere kombinerte arkitekturteksten og batchjournalen er bevart byte-for-byte i `reports/archive/2026-07/visual-design-codes/VISUAL_DESIGN_CODES_PRE_CONSOLIDATION_2026-07-26.md`. Arkivet er historisk og eier ingen aktiv regel.
+Den tidligere kombinerte arkitekturteksten og batchjournalen er bevart som et innholdsbevarende pre-consolidation-snapshot i `reports/archive/2026-07/visual-design-codes/VISUAL_DESIGN_CODES_PRE_CONSOLIDATION_2026-07-26.md`. Arkivet er historisk og eier ingen aktiv regel.
 
 ## Autoritetsrekkefølge
 
