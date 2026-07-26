@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T19:43:01.156Z
+Generert: 2026-07-26T03:02:16.875Z
 
 ## Oppsummering
 - Aktive filer validert: **1444**
 - Antall steder validert: **1444**
 - Harde feil: **0**
 - Varsler: **602**
-- Coordinate review candidates: **746** signaler fordelt på **644** steder
+- Coordinate review candidates: **745** signaler fordelt på **643** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1502,8 +1502,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json#eidsvoll_verk_andelva: lineært sted uten anchors
 - data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json#eidsvoll_verk_andelva: stort område uten coordNote/coordStatus
 - data/places/by/akershus/tertitten_urskog_holandsbanen/tertitten_urskog_holandsbanen.json#tertitten_urskog_holandsbanen: stort område uten coordNote/coordStatus
-- data/places/naeringsliv/akershus/hurdal_verk_glassverk/hurdal_verk_glassverk.json#hurdal_verk_glassverk: stort område uten coordNote/coordStatus
-- data/places/naeringsliv/akershus/hakadal_verk/hakadal_verk.json#hakadal_verk: stort område uten coordNote/coordStatus
+- data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json#tanum_kirke: coordStatus=verified uten coordPrecisionM
+- data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json#skedsmo_kirke: coordStatus=verified uten coordPrecisionM
 - data/places/historie/akershus/places_historie_akershus_batch5/aurskog_holand_bygdetun.json#aurskog_holand_bygdetun: stort område uten coordNote/coordStatus
 - data/places/historie/akershus/places_historie_akershus_batch5/nannestad_bygdemuseum.json#nannestad_bygdemuseum: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/ostfold/places_historie_ostfold_batch2/hoytorp_fort.json#hoytorp_fort: stort område uten coordNote/coordStatus
@@ -2072,22 +2072,22 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 746 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 745 signaler fordelt på 643 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 324 |
+| coordStatus=verified uten coordPrecisionM | 326 |
 | lineært sted uten anchors | 82 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 65 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 64 |
 | lav koordinatpresisjon (<4 desimaler) | 70 |
-| park/stort område uten anchors eller coordNote | 126 |
+| park/stort område uten anchors eller coordNote | 124 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 3 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 10 |
 
-### coordStatus=verified uten coordPrecisionM (324)
+### coordStatus=verified uten coordPrecisionM (326)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -2118,6 +2118,8 @@ Totalt 746 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | villa_stenersen | Villa Stenersen | historie | data/places/historie/oslo/places_historie_added_batch_01/villa_stenersen.json | 59.939226276070805 | 10.698765324399833 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | st_hallvard_kirke_kloster | St. Hallvard kirke og kloster | historie | data/places/historie/oslo/places_historie_added_batch_01/st_hallvard_kirke_kloster.json | 59.91294052851478 | 10.769571694450226 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_radhus | Gamle rådhus | by | data/places/by/oslo/gamle_radhus/gamle_radhus.json | 59.909847408217715 | 10.740149053425348 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| tanum_kirke | Tanum kirke | historie | data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json | 59.89562 | 10.47931 | 220 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| skedsmo_kirke | Skedsmo kirke | historie | data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json | 59.99381 | 11.04531 | 220 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | proysenhuset_rudshogda | Prøysenhuset – Rudshøgda | litteratur | data/places/litteratur/innlandet/proysenhuset_rudshogda.json | 60.912182010287836 | 10.791215743205731 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nationaltheatret | Nationaltheatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json | 59.91456789100917 | 10.733617256734934 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | det_norske_teatret | Det Norske Teatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json | 59.91521126103172 | 10.738641190958791 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -2503,14 +2505,13 @@ Totalt 746 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | galleri_schaeffers_gate_5 | Galleri Schaeffers Gate 5 | kunst | data/places/kunst/oslo/places_kunst/galleri_schaeffers_gate_5.json | 59.92127390279403 | 10.762304822006952 | 50 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | religion | data/places/religion/europe/portugal/lisbon/lisbon_santo_antonio_festival.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (65)
+### stasjon/park/gate/torg/elv uten coordinate metadata (64)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | nostvet_boplass | Nøstvet-boplassen | historie | data/places/historie/akershus/places_historie_akershus_batch1/nostvet_boplass.json | 59.75109 | 10.7996 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | naeringsliv | data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json | 60.3297 | 11.2575 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | kjeller_flyplass | Kjeller flyplass | by | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | 59.96944 | 11.03889 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| stunner_boplass | Stunner steinalderboplass | historie | data/places/historie/akershus/places_historie_akershus_batch3/stunner_boplass.json | 59.74657 | 10.91747 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | by | data/places/by/ostfold/kornsjo_grensestasjon/kornsjo_grensestasjon.json | 59.0974 | 11.6682 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | momarken_markedsplass | Momarken markedsplass | historie | data/places/historie/ostfold/places_historie_ostfold_batch6/momarken_markedsplass.json | 59.5584 | 11.3229 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | veien_kulturminnepark | Veien Kulturminnepark | historie | data/places/historie/buskerud/places_historie_buskerud_batch1/veien_kulturminnepark.json | 60.1842 | 10.2504 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
@@ -2648,15 +2649,13 @@ Totalt 746 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_feira_do_livro | Feira do Livro de Lisboa | litteratur | data/places/litteratur/europe/portugal/lisbon/lisbon_feira_do_livro.json | 38.727 | -9.1542 | 350 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### park/stort område uten anchors eller coordNote (126)
+### park/stort område uten anchors eller coordNote (124)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | trandumskogen | Trandumskogen | historie | data/places/historie/akershus/places_historie_akershus_batch1/trandumskogen.json | 60.2189 | 11.1177 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | naeringsliv | data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json | 60.3297 | 11.2575 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | tertitten_urskog_holandsbanen | Tertitten / Urskog-Hølandsbanen | by | data/places/by/akershus/tertitten_urskog_holandsbanen/tertitten_urskog_holandsbanen.json | 59.98628 | 11.24367 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
-| hurdal_verk_glassverk | Hurdal Verk / Hurdal Glassverk | naeringsliv | data/places/naeringsliv/akershus/hurdal_verk_glassverk/hurdal_verk_glassverk.json | 60.45029 | 11.04809 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
-| hakadal_verk | Hakadal Verk | naeringsliv | data/places/naeringsliv/akershus/hakadal_verk/hakadal_verk.json | 60.12083 | 10.82278 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | aurskog_holand_bygdetun | Aurskog-Høland bygdetun | historie | data/places/historie/akershus/places_historie_akershus_batch5/aurskog_holand_bygdetun.json | 59.7194 | 11.4598 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | hoytorp_fort | Høytorp fort | historie | data/places/historie/ostfold/places_historie_ostfold_batch2/hoytorp_fort.json | 59.5536 | 11.3317 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | tistedalen_saugbrugsforeningen | Tistedalen / Saugbrugsforeningen | naeringsliv | data/places/naeringsliv/ostfold/tistedalen_saugbrugsforeningen/tistedalen_saugbrugsforeningen.json | 59.1242 | 11.4492 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |

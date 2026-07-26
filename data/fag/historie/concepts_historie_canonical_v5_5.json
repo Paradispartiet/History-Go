@@ -65,9 +65,9 @@
   },
   {
     "concept_id": "con_his_1900",
-    "label": "1900",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «1900» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "omkring 1900 som industrihistorisk tidsreferanse",
+    "definition": "«Omkring 1900» er en kronologisk referanse for sammenligning av industrialisering, elektrifisering, organisering og arbeiderliv; årstallet er verken en skarp periodegrense eller en selvstendig årsak.",
+    "concept_type": "chronological_reference",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -77,12 +77,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «1900» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeiderbolig",
+      "con_his_arbeidsmiljo",
+      "con_his_bygningsombruk_vs_kontinuitet_i_arbeid"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_husholdsinntekt_vs_individuell_lonn"
+    ],
+    "common_misuse": [
+      "Å bruke 1900 som presis vending eller forklaring uten å dokumentere ulike lokale, bransjevise og sosiale tidsforløp."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "anlegg eller system knyttet til «omkring 1900 som industrihistorisk tidsreferanse»",
+      "energi, råvarer, teknologi, kapital og logistikk",
+      "produksjonsvolum, arbeidsstyrke og romlig virkning"
+    ],
+    "source_requirements": [
+      "bedriftsarkiv, tekniske tegninger, regnskap og produksjonsdata",
+      "arbeider-, leverandør-, myndighets- og lokalsamfunnskilder"
+    ]
   },
   {
     "concept_id": "con_his_1905",
@@ -762,8 +777,8 @@
   {
     "concept_id": "con_his_arbeiderbolig",
     "label": "arbeiderbolig",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeiderbolig» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeiderbolig» avgrenser en side ved arbeidernes sosiale liv som må undersøkes i sammenheng med hushold, inntekt, bolig, omsorg, kjønn, generasjon, nærmiljø og arbeidsforhold.",
+    "concept_type": "working_class_social_history_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -773,18 +788,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeiderbolig» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
+      "con_his_arbeidsorganisering",
+      "con_his_energikilde_vs_full_arsaksforklaring"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_husholdsrolle_vs_arbeidsmarkedsdeltakelse"
+    ],
+    "common_misuse": [
+      "Å omtale «arbeiderbolig» som én ensartet klasseerfaring uten variasjon mellom hushold, fag, kjønn, alder, migrasjon og periode."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "husholds- eller boligforhold knyttet til «arbeiderbolig»",
+      "inntekt, omsorg, standard og nærmiljø",
+      "variasjon mellom familier og arbeidsgrupper"
+    ],
+    "source_requirements": [
+      "folketellinger, boligtilsyn, leiekontrakter og kommunearkiv",
+      "livshistorier, husholdsregnskap, foto og lokale foreningskilder"
+    ]
   },
   {
     "concept_id": "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
     "label": "arbeiderbydel vs ensartet klassemiljø",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeiderbydel vs ensartet klassemiljø» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «arbeiderbydel» og «ensartet klassemiljø» krever separate mål og kilder, slik at dokumentasjon av arbeiderbydel ikke automatisk brukes som bevis for ensartet klassemiljø.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -794,18 +824,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeiderbydel vs ensartet klassemiljø» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeiderliv",
+      "con_his_arbeidsprosess",
+      "con_his_estetisk_industriarv_vs_sosialt_tap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_industrialisering"
+    ],
+    "common_misuse": [
+      "Å bruke arbeiderbydel som direkte dokumentasjon på ensartet klassemiljø uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «arbeiderbydel vs ensartet klassemiljø»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_arbeiderliv",
     "label": "arbeiderliv",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeiderliv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeiderliv» avgrenser en side ved arbeidernes sosiale liv som må undersøkes i sammenheng med hushold, inntekt, bolig, omsorg, kjønn, generasjon, nærmiljø og arbeidsforhold.",
+    "concept_type": "working_class_social_history_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -816,18 +861,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeiderliv» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsdag_vs_betalte_timer",
+      "con_his_arbeidsrelasjon",
+      "con_his_fabrikk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_industriarv"
+    ],
+    "common_misuse": [
+      "Å omtale «arbeiderliv» som én ensartet klasseerfaring uten variasjon mellom hushold, fag, kjønn, alder, migrasjon og periode."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "husholds- eller boligforhold knyttet til «arbeiderliv»",
+      "inntekt, omsorg, standard og nærmiljø",
+      "variasjon mellom familier og arbeidsgrupper"
+    ],
+    "source_requirements": [
+      "folketellinger, boligtilsyn, leiekontrakter og kommunearkiv",
+      "livshistorier, husholdsregnskap, foto og lokale foreningskilder"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsdag_vs_betalte_timer",
     "label": "arbeidsdag vs betalte timer",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidsdag vs betalte timer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «arbeidsdag» og «betalte timer» krever separate mål og kilder, slik at dokumentasjon av arbeidsdag ikke automatisk brukes som bevis for betalte timer.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -839,12 +899,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsdag vs betalte timer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsdisiplin",
+      "con_his_arbeidstid",
+      "con_his_fabrikkbygning_vs_virksomhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_industriby"
+    ],
+    "common_misuse": [
+      "Å bruke arbeidsdag som direkte dokumentasjon på betalte timer uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «arbeidsdag vs betalte timer»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsdeling",
@@ -890,8 +965,8 @@
   {
     "concept_id": "con_his_arbeidsdisiplin",
     "label": "arbeidsdisiplin",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidsdisiplin» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidsdisiplin» brukes om en konkret arbeidspraksis eller relasjon og må rekonstrueres gjennom oppgaver, redskaper, materialer, tempo, kontroll, samarbeid, regelverk og faktisk utførelse.",
+    "concept_type": "labor_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -904,18 +979,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsdisiplin» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidskraft",
+      "con_his_arbeidsvandring",
+      "con_his_fabrikknedleggelse_vs_bred_avindustrialisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_industriell"
+    ],
+    "common_misuse": [
+      "Å beskrive «arbeidsdisiplin» bare fra ledelsens reglement, organisasjonskart eller sluttprodukt uten arbeidernes praksis, ferdighet og avbrudd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret arbeidspraksis knyttet til «arbeidsdisiplin»",
+      "oppgaver, redskaper, tempo og kontroll",
+      "forskjell mellom regel, plan og utført arbeid"
+    ],
+    "source_requirements": [
+      "arbeidsreglement, produksjonsjournaler, tidsstudier og bedriftsarkiv",
+      "arbeiderberetninger, foto og fagforeningsmateriale"
+    ]
   },
   {
     "concept_id": "con_his_arbeidskraft",
     "label": "arbeidskraft",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidskraft» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidskraft» brukes om arbeidstilknyttet mobilitet eller rekruttering og må dokumenteres gjennom opprinnelsessted, arbeidsforhold, nettverk, bolig, hushold, varighet og videre flytting.",
+    "concept_type": "labor_mobility_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -925,12 +1015,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidskraft» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsmiljo",
+      "con_his_avindustrialisering",
+      "con_his_fagorganisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_industriomrade_vs_homogen_arbeiderbefolkning"
+    ],
+    "common_misuse": [
+      "Å utlede motiv, varig bosetting eller stabil arbeidstilknytning fra én registrering av «arbeidskraft»."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rekrutterings- eller flyttemønster knyttet til «arbeidskraft»",
+      "arbeidsgiver, yrke, bosted og varighet",
+      "nettverk, hushold og videre mobilitet"
+    ],
+    "source_requirements": [
+      "ansettelseslister, folketellinger, flytteprotokoller og bedriftsarkiv",
+      "brev, intervjuer og husholdskilder som viser motiv og forløp"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsmigrasjon",
@@ -1010,8 +1115,8 @@
   {
     "concept_id": "con_his_arbeidsmiljo",
     "label": "arbeidsmiljø",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidsmiljø» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidsmiljø» analyseres som et konkret arbeidsmiljøforhold der farekilde, eksponering, varighet, berørt gruppe, registreringspraksis og dokumentert helsevirkning må holdes fra hverandre.",
+    "concept_type": "occupational_health_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1023,18 +1128,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsmiljø» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsorganisering",
+      "con_his_bakgrunnsarsak_vs_streikeutlosende_hendelse",
+      "con_his_farekilde_vs_dokumentert_helseeffekt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_klasseformasjon"
+    ],
+    "common_misuse": [
+      "Å hevde at «arbeidsmiljø» ga en bestemt skade eller sykdom uten dokumentert eksponering, tidsforløp, diagnose og kontrollgrunnlag."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret fare eller belastning knyttet til «arbeidsmiljø»",
+      "eksponering, varighet og berørt arbeidsgruppe",
+      "registrert skade, sykdom, fravær eller tiltak"
+    ],
+    "source_requirements": [
+      "tilsyn, ulykkesprotokoller, journaler og tekniske rapporter",
+      "arbeiderberetninger, fagforeningsmateriale og kontrollkilder"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsorganisering",
     "label": "arbeidsorganisering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidsorganisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidsorganisering» brukes om en konkret arbeidspraksis eller relasjon og må rekonstrueres gjennom oppgaver, redskaper, materialer, tempo, kontroll, samarbeid, regelverk og faktisk utførelse.",
+    "concept_type": "labor_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1044,18 +1164,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsorganisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsprosess",
+      "con_his_berort_gruppe",
+      "con_his_ferdighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_krav_vs_oppnadd_resultat"
+    ],
+    "common_misuse": [
+      "Å beskrive «arbeidsorganisering» bare fra ledelsens reglement, organisasjonskart eller sluttprodukt uten arbeidernes praksis, ferdighet og avbrudd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret arbeidspraksis knyttet til «arbeidsorganisering»",
+      "oppgaver, redskaper, tempo og kontroll",
+      "forskjell mellom regel, plan og utført arbeid"
+    ],
+    "source_requirements": [
+      "arbeidsreglement, produksjonsjournaler, tidsstudier og bedriftsarkiv",
+      "arbeiderberetninger, foto og fagforeningsmateriale"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsprosess",
     "label": "arbeidsprosess",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidsprosess» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidsprosess» brukes om en konkret arbeidspraksis eller relasjon og må rekonstrueres gjennom oppgaver, redskaper, materialer, tempo, kontroll, samarbeid, regelverk og faktisk utførelse.",
+    "concept_type": "labor_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1074,18 +1209,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsprosess» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsrelasjon",
+      "con_his_bevaring_vs_arbeidsminne",
+      "con_his_fodested_vs_flyttemotiv"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_lederuttalelse_vs_grasroterfaring"
+    ],
+    "common_misuse": [
+      "Å beskrive «arbeidsprosess» bare fra ledelsens reglement, organisasjonskart eller sluttprodukt uten arbeidernes praksis, ferdighet og avbrudd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret arbeidspraksis knyttet til «arbeidsprosess»",
+      "oppgaver, redskaper, tempo og kontroll",
+      "forskjell mellom regel, plan og utført arbeid"
+    ],
+    "source_requirements": [
+      "arbeidsreglement, produksjonsjournaler, tidsstudier og bedriftsarkiv",
+      "arbeiderberetninger, foto og fagforeningsmateriale"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsrelasjon",
     "label": "arbeidsrelasjon",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidsrelasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidsrelasjon» brukes om en konkret arbeidspraksis eller relasjon og må rekonstrueres gjennom oppgaver, redskaper, materialer, tempo, kontroll, samarbeid, regelverk og faktisk utførelse.",
+    "concept_type": "labor_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1104,18 +1254,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsrelasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidstid",
+      "con_his_boligreform_vs_levd_boligforhold",
+      "con_his_formell_regel_vs_arbeidspraksis"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_leseferdighet_vs_politisk_deltakelse"
+    ],
+    "common_misuse": [
+      "Å beskrive «arbeidsrelasjon» bare fra ledelsens reglement, organisasjonskart eller sluttprodukt uten arbeidernes praksis, ferdighet og avbrudd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret arbeidspraksis knyttet til «arbeidsrelasjon»",
+      "oppgaver, redskaper, tempo og kontroll",
+      "forskjell mellom regel, plan og utført arbeid"
+    ],
+    "source_requirements": [
+      "arbeidsreglement, produksjonsjournaler, tidsstudier og bedriftsarkiv",
+      "arbeiderberetninger, foto og fagforeningsmateriale"
+    ]
   },
   {
     "concept_id": "con_his_arbeidstid",
     "label": "arbeidstid",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidstid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidstid» er en historisk målbar side ved arbeid som må spesifiseres med betalingsform, tidsgrunnlag, yrke, oppgave, ferdighet, kjønn, alder og spredning før sammenligning.",
+    "concept_type": "labor_compensation_skill_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1127,18 +1292,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidstid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsvandring",
+      "con_his_boligtype_vs_faktisk_trangboddhet",
+      "con_his_gjennomsnitt_vs_lonnsspredning"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_livsvilkar"
+    ],
+    "common_misuse": [
+      "Å bruke ett gjennomsnitt, en yrkestittel eller en oppgitt sats som full beskrivelse av «arbeidstid» uten faktisk tid, oppgaver, trekk og variasjon."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "målt lønn, tid eller ferdighet knyttet til «arbeidstid»",
+      "betalingsform, oppgave og kvalifikasjon",
+      "spredning, ubetalt tid, trekk og realverdi"
+    ],
+    "source_requirements": [
+      "lønningslister, tariff, arbeidsreglement, tidsstudier og personalarkiv",
+      "pris-, husholds-, yrkes- og arbeiderkilder"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsvandring",
     "label": "arbeidsvandring",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeidsvandring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«arbeidsvandring» brukes om arbeidstilknyttet mobilitet eller rekruttering og må dokumenteres gjennom opprinnelsessted, arbeidsforhold, nettverk, bolig, hushold, varighet og videre flytting.",
+    "concept_type": "labor_mobility_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1152,12 +1332,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsvandring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_avindustrialisering",
+      "con_his_bygningsombruk_vs_kontinuitet_i_arbeid",
+      "con_his_husholdsinntekt_vs_individuell_lonn"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_lonn"
+    ],
+    "common_misuse": [
+      "Å utlede motiv, varig bosetting eller stabil arbeidstilknytning fra én registrering av «arbeidsvandring»."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rekrutterings- eller flyttemønster knyttet til «arbeidsvandring»",
+      "arbeidsgiver, yrke, bosted og varighet",
+      "nettverk, hushold og videre mobilitet"
+    ],
+    "source_requirements": [
+      "ansettelseslister, folketellinger, flytteprotokoller og bedriftsarkiv",
+      "brev, intervjuer og husholdskilder som viser motiv og forløp"
+    ]
   },
   {
     "concept_id": "con_his_aristokrati",
@@ -1612,8 +1807,8 @@
   {
     "concept_id": "con_his_avindustrialisering",
     "label": "avindustrialisering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «avindustrialisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«avindustrialisering» analyseres som et forløp fra produksjons- og sysselsettingsendring til eiendom, ombruk, bevaring og sosial omstilling, med skille mellom bygninger, arbeid, ferdigheter og minner.",
+    "concept_type": "deindustrialization_heritage_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1626,12 +1821,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «avindustrialisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bakgrunnsarsak_vs_streikeutlosende_hendelse",
+      "con_his_energikilde_vs_full_arsaksforklaring",
+      "con_his_husholdsrolle_vs_arbeidsmarkedsdeltakelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_lonnet_vs_ulonnet_arbeid"
+    ],
+    "common_misuse": [
+      "Å bruke en nedlagt fabrikk eller bevart bygning som tilstrekkelig dokumentasjon på «avindustrialisering» uten bransjeutvikling, arbeidsplasser, eierskap og lokalsamfunn."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "produksjonsendring eller ombruk knyttet til «avindustrialisering»",
+      "arbeidsplasser, eierskap og nye funksjoner",
+      "bevarte spor, minner og fordelingsvirkninger"
+    ],
+    "source_requirements": [
+      "bedrifts-, sysselsettings-, eiendoms-, plan- og ombruksarkiv",
+      "arbeider-, lokalsamfunns- og kulturminnekilder før og etter endringen"
+    ]
   },
   {
     "concept_id": "con_his_avinstitusjonalisering",
@@ -1748,8 +1958,8 @@
   {
     "concept_id": "con_his_bakgrunnsarsak_vs_streikeutlosende_hendelse",
     "label": "bakgrunnsårsak vs streikeutløsende hendelse",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «bakgrunnsårsak vs streikeutløsende hendelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «bakgrunnsårsak» og «streikeutløsende hendelse» krever separate mål og kilder, slik at dokumentasjon av bakgrunnsårsak ikke automatisk brukes som bevis for streikeutløsende hendelse.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -1759,12 +1969,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bakgrunnsårsak vs streikeutløsende hendelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_berort_gruppe",
+      "con_his_estetisk_industriarv_vs_sosialt_tap",
+      "con_his_industrialisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_lonnsgap_vs_yrkessegregering"
+    ],
+    "common_misuse": [
+      "Å bruke bakgrunnsårsak som direkte dokumentasjon på streikeutløsende hendelse uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «bakgrunnsårsak vs streikeutløsende hendelse»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_bank",
@@ -2052,8 +2277,8 @@
   {
     "concept_id": "con_his_berort_gruppe",
     "label": "berørt gruppe",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «berørt gruppe» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«berørt gruppe» brukes om arbeidstilknyttet mobilitet eller rekruttering og må dokumenteres gjennom opprinnelsessted, arbeidsforhold, nettverk, bolig, hushold, varighet og videre flytting.",
+    "concept_type": "labor_mobility_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -2072,12 +2297,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «berørt gruppe» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bevaring_vs_arbeidsminne",
+      "con_his_fabrikk",
+      "con_his_industriarv"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_maskin_vs_arbeidsorganisering"
+    ],
+    "common_misuse": [
+      "Å utlede motiv, varig bosetting eller stabil arbeidstilknytning fra én registrering av «berørt gruppe»."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rekrutterings- eller flyttemønster knyttet til «berørt gruppe»",
+      "arbeidsgiver, yrke, bosted og varighet",
+      "nettverk, hushold og videre mobilitet"
+    ],
+    "source_requirements": [
+      "ansettelseslister, folketellinger, flytteprotokoller og bedriftsarkiv",
+      "brev, intervjuer og husholdskilder som viser motiv og forløp"
+    ]
   },
   {
     "concept_id": "con_his_beslutningskjeder",
@@ -2244,8 +2484,8 @@
   {
     "concept_id": "con_his_bevaring_vs_arbeidsminne",
     "label": "bevaring vs arbeidsminne",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «bevaring vs arbeidsminne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «bevaring» og «arbeidsminne» krever separate mål og kilder, slik at dokumentasjon av bevaring ikke automatisk brukes som bevis for arbeidsminne.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -2256,12 +2496,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bevaring vs arbeidsminne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_boligreform_vs_levd_boligforhold",
+      "con_his_fabrikkbygning_vs_virksomhet",
+      "con_his_industriby"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_medlemskap_vs_bred_arbeiderstotte"
+    ],
+    "common_misuse": [
+      "Å bruke bevaring som direkte dokumentasjon på arbeidsminne uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «bevaring vs arbeidsminne»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_bevegelser",
@@ -2545,8 +2800,8 @@
   {
     "concept_id": "con_his_boligreform_vs_levd_boligforhold",
     "label": "boligreform vs levd boligforhold",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «boligreform vs levd boligforhold» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «boligreform» og «levd boligforhold» krever separate mål og kilder, slik at dokumentasjon av boligreform ikke automatisk brukes som bevis for levd boligforhold.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -2557,12 +2812,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «boligreform vs levd boligforhold» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_boligtype_vs_faktisk_trangboddhet",
+      "con_his_fabrikknedleggelse_vs_bred_avindustrialisering",
+      "con_his_industriell"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_mobilitet_vs_tilhorighet"
+    ],
+    "common_misuse": [
+      "Å bruke boligreform som direkte dokumentasjon på levd boligforhold uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «boligreform vs levd boligforhold»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_boligregimer",
@@ -2641,8 +2911,8 @@
   {
     "concept_id": "con_his_boligtype_vs_faktisk_trangboddhet",
     "label": "boligtype vs faktisk trangboddhet",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «boligtype vs faktisk trangboddhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «boligtype» og «faktisk trangboddhet» krever separate mål og kilder, slik at dokumentasjon av boligtype ikke automatisk brukes som bevis for faktisk trangboddhet.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -2653,12 +2923,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «boligtype vs faktisk trangboddhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bygningsombruk_vs_kontinuitet_i_arbeid",
+      "con_his_fagorganisering",
+      "con_his_industriomrade_vs_homogen_arbeiderbefolkning"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_nominell_lonn_vs_reallonn"
+    ],
+    "common_misuse": [
+      "Å bruke boligtype som direkte dokumentasjon på faktisk trangboddhet uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «boligtype vs faktisk trangboddhet»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_bondehushold",
@@ -3223,8 +3508,8 @@
   {
     "concept_id": "con_his_bygningsombruk_vs_kontinuitet_i_arbeid",
     "label": "bygningsombruk vs kontinuitet i arbeid",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «bygningsombruk vs kontinuitet i arbeid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «bygningsombruk» og «kontinuitet i arbeid» krever separate mål og kilder, slik at dokumentasjon av bygningsombruk ikke automatisk brukes som bevis for kontinuitet i arbeid.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -3235,12 +3520,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bygningsombruk vs kontinuitet i arbeid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_energikilde_vs_full_arsaksforklaring",
+      "con_his_farekilde_vs_dokumentert_helseeffekt",
+      "con_his_klasseformasjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_partiorganisasjon_vs_bredere_foreningsliv"
+    ],
+    "common_misuse": [
+      "Å bruke bygningsombruk som direkte dokumentasjon på kontinuitet i arbeid uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «bygningsombruk vs kontinuitet i arbeid»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_bygningsrester",
@@ -5107,8 +5407,8 @@
   {
     "concept_id": "con_his_energikilde_vs_full_arsaksforklaring",
     "label": "energikilde vs full årsaksforklaring",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «energikilde vs full årsaksforklaring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «energikilde» og «full årsaksforklaring» krever separate mål og kilder, slik at dokumentasjon av energikilde ikke automatisk brukes som bevis for full årsaksforklaring.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -5120,12 +5420,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «energikilde vs full årsaksforklaring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_estetisk_industriarv_vs_sosialt_tap",
+      "con_his_ferdighet",
+      "con_his_krav_vs_oppnadd_resultat"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_produksjon"
+    ],
+    "common_misuse": [
+      "Å bruke energikilde som direkte dokumentasjon på full årsaksforklaring uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «energikilde vs full årsaksforklaring»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_energiregime",
@@ -5439,8 +5754,8 @@
   {
     "concept_id": "con_his_estetisk_industriarv_vs_sosialt_tap",
     "label": "estetisk industriarv vs sosialt tap",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «estetisk industriarv vs sosialt tap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «estetisk industriarv» og «sosialt tap» krever separate mål og kilder, slik at dokumentasjon av estetisk industriarv ikke automatisk brukes som bevis for sosialt tap.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -5450,12 +5765,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «estetisk industriarv vs sosialt tap» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fabrikk",
+      "con_his_fodested_vs_flyttemotiv",
+      "con_his_lederuttalelse_vs_grasroterfaring"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_produksjonsvekst_vs_bedre_livsvilkar"
+    ],
+    "common_misuse": [
+      "Å bruke estetisk industriarv som direkte dokumentasjon på sosialt tap uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «estetisk industriarv vs sosialt tap»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_etnisk_konsentrasjon_vs_segregasjon",
@@ -5755,8 +6085,8 @@
   {
     "concept_id": "con_his_fabrikk",
     "label": "fabrikk",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «fabrikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«fabrikk» avgrenser et industrielt produksjonssystem der anlegg, energi, råvarer, teknologi, kapital, logistikk, arbeidsstyrke og ledelse må analyseres samlet og tidsbestemt.",
+    "concept_type": "industrial_system_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -5766,18 +6096,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fabrikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fabrikkbygning_vs_virksomhet",
+      "con_his_formell_regel_vs_arbeidspraksis",
+      "con_his_leseferdighet_vs_politisk_deltakelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_produktivitet_vs_arbeidsintensitet"
+    ],
+    "common_misuse": [
+      "Å bruke bygningen, maskinen eller foretaksnavnet «fabrikk» som direkte bevis for produksjon, arbeidsorganisering og økonomisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "anlegg eller system knyttet til «fabrikk»",
+      "energi, råvarer, teknologi, kapital og logistikk",
+      "produksjonsvolum, arbeidsstyrke og romlig virkning"
+    ],
+    "source_requirements": [
+      "bedriftsarkiv, tekniske tegninger, regnskap og produksjonsdata",
+      "arbeider-, leverandør-, myndighets- og lokalsamfunnskilder"
+    ]
   },
   {
     "concept_id": "con_his_fabrikkbygning_vs_virksomhet",
     "label": "fabrikkbygning vs virksomhet",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «fabrikkbygning vs virksomhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «fabrikkbygning» og «virksomhet» krever separate mål og kilder, slik at dokumentasjon av fabrikkbygning ikke automatisk brukes som bevis for virksomhet.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -5789,18 +6134,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fabrikkbygning vs virksomhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fabrikknedleggelse_vs_bred_avindustrialisering",
+      "con_his_gjennomsnitt_vs_lonnsspredning",
+      "con_his_livsvilkar"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_regel_vs_handheving"
+    ],
+    "common_misuse": [
+      "Å bruke fabrikkbygning som direkte dokumentasjon på virksomhet uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «fabrikkbygning vs virksomhet»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_fabrikknedleggelse_vs_bred_avindustrialisering",
     "label": "fabrikknedleggelse vs bred avindustrialisering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «fabrikknedleggelse vs bred avindustrialisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «fabrikknedleggelse» og «bred avindustrialisering» krever separate mål og kilder, slik at dokumentasjon av fabrikknedleggelse ikke automatisk brukes som bevis for bred avindustrialisering.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -5811,18 +6171,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fabrikknedleggelse vs bred avindustrialisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fagorganisering",
+      "con_his_husholdsinntekt_vs_individuell_lonn",
+      "con_his_lonn"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_registrert_ansatt_vs_samlet_arbeidsstyrke"
+    ],
+    "common_misuse": [
+      "Å bruke fabrikknedleggelse som direkte dokumentasjon på bred avindustrialisering uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «fabrikknedleggelse vs bred avindustrialisering»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_fagorganisering",
     "label": "fagorganisering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «fagorganisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«fagorganisering» betegner en organisert arbeidslivspraksis som må rekonstrueres fra medlemskap, krav, beslutninger, mobilisering, arbeidsgiverrespons, myndighetsinngrep og faktisk resultat.",
+    "concept_type": "labor_collective_action_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -5836,12 +6211,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fagorganisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_farekilde_vs_dokumentert_helseeffekt",
+      "con_his_husholdsrolle_vs_arbeidsmarkedsdeltakelse",
+      "con_his_lonnet_vs_ulonnet_arbeid"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_registrert_skade_vs_faktisk_skade"
+    ],
+    "common_misuse": [
+      "Å la en lederuttalelse eller formell beslutning stå som full dokumentasjon av «fagorganisering» uten grasrot, motstand, deltakelse og gjennomføring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "organisasjon eller konflikt knyttet til «fagorganisering»",
+      "medlemskap, krav og beslutningsstruktur",
+      "respons, avtale og praktisert resultat"
+    ],
+    "source_requirements": [
+      "fagforeningsprotokoller, tariff-, streike- og forhandlingsarkiv",
+      "bedrifts-, presse-, politi- og grasrotkilder"
+    ]
   },
   {
     "concept_id": "con_his_familie",
@@ -6148,8 +6538,8 @@
   {
     "concept_id": "con_his_farekilde_vs_dokumentert_helseeffekt",
     "label": "farekilde vs dokumentert helseeffekt",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «farekilde vs dokumentert helseeffekt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «farekilde» og «dokumentert helseeffekt» krever separate mål og kilder, slik at dokumentasjon av farekilde ikke automatisk brukes som bevis for dokumentert helseeffekt.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -6159,12 +6549,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «farekilde vs dokumentert helseeffekt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ferdighet",
+      "con_his_industrialisering",
+      "con_his_lonnsgap_vs_yrkessegregering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_rekruttering"
+    ],
+    "common_misuse": [
+      "Å bruke farekilde som direkte dokumentasjon på dokumentert helseeffekt uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «farekilde vs dokumentert helseeffekt»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_fattiglov",
@@ -6421,8 +6826,8 @@
   {
     "concept_id": "con_his_ferdighet",
     "label": "ferdighet",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «ferdighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«ferdighet» er en historisk målbar side ved arbeid som må spesifiseres med betalingsform, tidsgrunnlag, yrke, oppgave, ferdighet, kjønn, alder og spredning før sammenligning.",
+    "concept_type": "labor_compensation_skill_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -6432,12 +6837,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ferdighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fodested_vs_flyttemotiv",
+      "con_his_industriarv",
+      "con_his_maskin_vs_arbeidsorganisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_rekruttering_vs_varig_bosetting"
+    ],
+    "common_misuse": [
+      "Å bruke ett gjennomsnitt, en yrkestittel eller en oppgitt sats som full beskrivelse av «ferdighet» uten faktisk tid, oppgaver, trekk og variasjon."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "målt lønn, tid eller ferdighet knyttet til «ferdighet»",
+      "betalingsform, oppgave og kvalifikasjon",
+      "spredning, ubetalt tid, trekk og realverdi"
+    ],
+    "source_requirements": [
+      "lønningslister, tariff, arbeidsreglement, tidsstudier og personalarkiv",
+      "pris-, husholds-, yrkes- og arbeiderkilder"
+    ]
   },
   {
     "concept_id": "con_his_finans",
@@ -6660,8 +7080,8 @@
   {
     "concept_id": "con_his_fodested_vs_flyttemotiv",
     "label": "fødested vs flyttemotiv",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «fødested vs flyttemotiv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «fødested» og «flyttemotiv» krever separate mål og kilder, slik at dokumentasjon av fødested ikke automatisk brukes som bevis for flyttemotiv.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -6671,12 +7091,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fødested vs flyttemotiv» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_formell_regel_vs_arbeidspraksis",
+      "con_his_industriby",
+      "con_his_medlemskap_vs_bred_arbeiderstotte"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_risiko"
+    ],
+    "common_misuse": [
+      "Å bruke fødested som direkte dokumentasjon på flyttemotiv uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «fødested vs flyttemotiv»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_folkedannelse",
@@ -7241,8 +7676,8 @@
   {
     "concept_id": "con_his_formell_regel_vs_arbeidspraksis",
     "label": "formell regel vs arbeidspraksis",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «formell regel vs arbeidspraksis» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «formell regel» og «arbeidspraksis» krever separate mål og kilder, slik at dokumentasjon av formell regel ikke automatisk brukes som bevis for arbeidspraksis.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -7255,12 +7690,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «formell regel vs arbeidspraksis» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gjennomsnitt_vs_lonnsspredning",
+      "con_his_industriell",
+      "con_his_mobilitet_vs_tilhorighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_rundt"
+    ],
+    "common_misuse": [
+      "Å bruke formell regel som direkte dokumentasjon på arbeidspraksis uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «formell regel vs arbeidspraksis»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_formell_rettighet_vs_reell_tilgang",
@@ -8112,8 +8562,8 @@
   {
     "concept_id": "con_his_gjennomsnitt_vs_lonnsspredning",
     "label": "gjennomsnitt vs lønnsspredning",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «gjennomsnitt vs lønnsspredning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «gjennomsnitt» og «lønnsspredning» krever separate mål og kilder, slik at dokumentasjon av gjennomsnitt ikke automatisk brukes som bevis for lønnsspredning.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -8123,12 +8573,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gjennomsnitt vs lønnsspredning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_husholdsinntekt_vs_individuell_lonn",
+      "con_his_industriomrade_vs_homogen_arbeiderbefolkning",
+      "con_his_nominell_lonn_vs_reallonn"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhistorie"
+    ],
+    "common_misuse": [
+      "Å bruke gjennomsnitt som direkte dokumentasjon på lønnsspredning uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «gjennomsnitt vs lønnsspredning»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_gjenoppbygging",
@@ -9088,8 +9553,8 @@
   {
     "concept_id": "con_his_husholdsinntekt_vs_individuell_lonn",
     "label": "husholdsinntekt vs individuell lønn",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «husholdsinntekt vs individuell lønn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «husholdsinntekt» og «individuell lønn» krever separate mål og kilder, slik at dokumentasjon av husholdsinntekt ikke automatisk brukes som bevis for individuell lønn.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -9100,18 +9565,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «husholdsinntekt vs individuell lønn» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_husholdsrolle_vs_arbeidsmarkedsdeltakelse",
+      "con_his_klasseformasjon",
+      "con_his_partiorganisasjon_vs_bredere_foreningsliv"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_stillingstittel_vs_faktisk_oppgave"
+    ],
+    "common_misuse": [
+      "Å bruke husholdsinntekt som direkte dokumentasjon på individuell lønn uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «husholdsinntekt vs individuell lønn»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_husholdsrolle_vs_arbeidsmarkedsdeltakelse",
     "label": "husholdsrolle vs arbeidsmarkedsdeltakelse",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «husholdsrolle vs arbeidsmarkedsdeltakelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «husholdsrolle» og «arbeidsmarkedsdeltakelse» krever separate mål og kilder, slik at dokumentasjon av husholdsrolle ikke automatisk brukes som bevis for arbeidsmarkedsdeltakelse.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -9121,12 +9601,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «husholdsrolle vs arbeidsmarkedsdeltakelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_industrialisering",
+      "con_his_krav_vs_oppnadd_resultat",
+      "con_his_produksjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_streik"
+    ],
+    "common_misuse": [
+      "Å bruke husholdsrolle som direkte dokumentasjon på arbeidsmarkedsdeltakelse uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «husholdsrolle vs arbeidsmarkedsdeltakelse»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_hvem",
@@ -9605,8 +10100,8 @@
   {
     "concept_id": "con_his_industrialisering",
     "label": "industrialisering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «industrialisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«industrialisering» avgrenser et industrielt produksjonssystem der anlegg, energi, råvarer, teknologi, kapital, logistikk, arbeidsstyrke og ledelse må analyseres samlet og tidsbestemt.",
+    "concept_type": "industrial_system_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -9618,18 +10113,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «industrialisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_industriarv",
+      "con_his_lederuttalelse_vs_grasroterfaring",
+      "con_his_produksjonsvekst_vs_bedre_livsvilkar"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ulykke_vs_kronisk_eksponering"
+    ],
+    "common_misuse": [
+      "Å bruke bygningen, maskinen eller foretaksnavnet «industrialisering» som direkte bevis for produksjon, arbeidsorganisering og økonomisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "anlegg eller system knyttet til «industrialisering»",
+      "energi, råvarer, teknologi, kapital og logistikk",
+      "produksjonsvolum, arbeidsstyrke og romlig virkning"
+    ],
+    "source_requirements": [
+      "bedriftsarkiv, tekniske tegninger, regnskap og produksjonsdata",
+      "arbeider-, leverandør-, myndighets- og lokalsamfunnskilder"
+    ]
   },
   {
     "concept_id": "con_his_industriarv",
     "label": "industriarv",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «industriarv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«industriarv» analyseres som et forløp fra produksjons- og sysselsettingsendring til eiendom, ombruk, bevaring og sosial omstilling, med skille mellom bygninger, arbeid, ferdigheter og minner.",
+    "concept_type": "deindustrialization_heritage_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -9639,18 +10149,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «industriarv» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_industriby",
+      "con_his_leseferdighet_vs_politisk_deltakelse",
+      "con_his_produktivitet_vs_arbeidsintensitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_utdanningsinstitusjon_vs_arbeiderstyrt_offentlighet"
+    ],
+    "common_misuse": [
+      "Å bruke en nedlagt fabrikk eller bevart bygning som tilstrekkelig dokumentasjon på «industriarv» uten bransjeutvikling, arbeidsplasser, eierskap og lokalsamfunn."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "produksjonsendring eller ombruk knyttet til «industriarv»",
+      "arbeidsplasser, eierskap og nye funksjoner",
+      "bevarte spor, minner og fordelingsvirkninger"
+    ],
+    "source_requirements": [
+      "bedrifts-, sysselsettings-, eiendoms-, plan- og ombruksarkiv",
+      "arbeider-, lokalsamfunns- og kulturminnekilder før og etter endringen"
+    ]
   },
   {
     "concept_id": "con_his_industriby",
     "label": "industriby",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «industriby» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«industriby» avgrenser et industrielt produksjonssystem der anlegg, energi, råvarer, teknologi, kapital, logistikk, arbeidsstyrke og ledelse må analyseres samlet og tidsbestemt.",
+    "concept_type": "industrial_system_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -9661,18 +10186,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «industriby» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_industriell",
+      "con_his_livsvilkar",
+      "con_his_regel_vs_handheving"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_yrkestittel_vs_faktisk_arbeid"
+    ],
+    "common_misuse": [
+      "Å bruke bygningen, maskinen eller foretaksnavnet «industriby» som direkte bevis for produksjon, arbeidsorganisering og økonomisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "anlegg eller system knyttet til «industriby»",
+      "energi, råvarer, teknologi, kapital og logistikk",
+      "produksjonsvolum, arbeidsstyrke og romlig virkning"
+    ],
+    "source_requirements": [
+      "bedriftsarkiv, tekniske tegninger, regnskap og produksjonsdata",
+      "arbeider-, leverandør-, myndighets- og lokalsamfunnskilder"
+    ]
   },
   {
     "concept_id": "con_his_industriell",
     "label": "industriell",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «industriell» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«industriell» avgrenser et industrielt produksjonssystem der anlegg, energi, råvarer, teknologi, kapital, logistikk, arbeidsstyrke og ledelse må analyseres samlet og tidsbestemt.",
+    "concept_type": "industrial_system_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -9682,18 +10222,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «industriell» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_industriomrade_vs_homogen_arbeiderbefolkning",
+      "con_his_lonn",
+      "con_his_registrert_ansatt_vs_samlet_arbeidsstyrke"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_yrkestittel_vs_faktisk_ferdighet"
+    ],
+    "common_misuse": [
+      "Å bruke bygningen, maskinen eller foretaksnavnet «industriell» som direkte bevis for produksjon, arbeidsorganisering og økonomisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "anlegg eller system knyttet til «industriell»",
+      "energi, råvarer, teknologi, kapital og logistikk",
+      "produksjonsvolum, arbeidsstyrke og romlig virkning"
+    ],
+    "source_requirements": [
+      "bedriftsarkiv, tekniske tegninger, regnskap og produksjonsdata",
+      "arbeider-, leverandør-, myndighets- og lokalsamfunnskilder"
+    ]
   },
   {
     "concept_id": "con_his_industriomrade_vs_homogen_arbeiderbefolkning",
     "label": "industriområde vs homogen arbeiderbefolkning",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «industriområde vs homogen arbeiderbefolkning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «industriområde» og «homogen arbeiderbefolkning» krever separate mål og kilder, slik at dokumentasjon av industriområde ikke automatisk brukes som bevis for homogen arbeiderbefolkning.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -9704,12 +10259,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «industriområde vs homogen arbeiderbefolkning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_klasseformasjon",
+      "con_his_lonnet_vs_ulonnet_arbeid",
+      "con_his_registrert_skade_vs_faktisk_skade"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_1900"
+    ],
+    "common_misuse": [
+      "Å bruke industriområde som direkte dokumentasjon på homogen arbeiderbefolkning uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «industriområde vs homogen arbeiderbefolkning»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_informasjonskontroll",
@@ -11963,8 +12533,8 @@
   {
     "concept_id": "con_his_klasseformasjon",
     "label": "klasseformasjon",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «klasseformasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«klasseformasjon» avgrenser en side ved arbeidernes sosiale liv som må undersøkes i sammenheng med hushold, inntekt, bolig, omsorg, kjønn, generasjon, nærmiljø og arbeidsforhold.",
+    "concept_type": "working_class_social_history_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -11976,12 +12546,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «klasseformasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_krav_vs_oppnadd_resultat",
+      "con_his_lonnsgap_vs_yrkessegregering",
+      "con_his_rekruttering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeiderbolig"
+    ],
+    "common_misuse": [
+      "Å omtale «klasseformasjon» som én ensartet klasseerfaring uten variasjon mellom hushold, fag, kjønn, alder, migrasjon og periode."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "husholds- eller boligforhold knyttet til «klasseformasjon»",
+      "inntekt, omsorg, standard og nærmiljø",
+      "variasjon mellom familier og arbeidsgrupper"
+    ],
+    "source_requirements": [
+      "folketellinger, boligtilsyn, leiekontrakter og kommunearkiv",
+      "livshistorier, husholdsregnskap, foto og lokale foreningskilder"
+    ]
   },
   {
     "concept_id": "con_his_klassifikasjon",
@@ -13433,8 +14018,8 @@
   {
     "concept_id": "con_his_krav_vs_oppnadd_resultat",
     "label": "krav vs oppnådd resultat",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «krav vs oppnådd resultat» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «krav» og «oppnådd resultat» krever separate mål og kilder, slik at dokumentasjon av krav ikke automatisk brukes som bevis for oppnådd resultat.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -13444,12 +14029,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «krav vs oppnådd resultat» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_lederuttalelse_vs_grasroterfaring",
+      "con_his_maskin_vs_arbeidsorganisering",
+      "con_his_rekruttering_vs_varig_bosetting"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeiderbydel_vs_ensartet_klassemiljo"
+    ],
+    "common_misuse": [
+      "Å bruke krav som direkte dokumentasjon på oppnådd resultat uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «krav vs oppnådd resultat»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_kreditt",
@@ -14659,8 +15259,8 @@
   {
     "concept_id": "con_his_lederuttalelse_vs_grasroterfaring",
     "label": "lederuttalelse vs grasroterfaring",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «lederuttalelse vs grasroterfaring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «lederuttalelse» og «grasroterfaring» krever separate mål og kilder, slik at dokumentasjon av lederuttalelse ikke automatisk brukes som bevis for grasroterfaring.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -14670,12 +15270,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lederuttalelse vs grasroterfaring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_leseferdighet_vs_politisk_deltakelse",
+      "con_his_medlemskap_vs_bred_arbeiderstotte",
+      "con_his_risiko"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeiderliv"
+    ],
+    "common_misuse": [
+      "Å bruke lederuttalelse som direkte dokumentasjon på grasroterfaring uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «lederuttalelse vs grasroterfaring»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_legitimitet",
@@ -14819,8 +15434,8 @@
   {
     "concept_id": "con_his_leseferdighet_vs_politisk_deltakelse",
     "label": "leseferdighet vs politisk deltakelse",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «leseferdighet vs politisk deltakelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «leseferdighet» og «politisk deltakelse» krever separate mål og kilder, slik at dokumentasjon av leseferdighet ikke automatisk brukes som bevis for politisk deltakelse.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -14830,12 +15445,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «leseferdighet vs politisk deltakelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_livsvilkar",
+      "con_his_mobilitet_vs_tilhorighet",
+      "con_his_rundt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsdag_vs_betalte_timer"
+    ],
+    "common_misuse": [
+      "Å bruke leseferdighet som direkte dokumentasjon på politisk deltakelse uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «leseferdighet vs politisk deltakelse»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_levd_religion",
@@ -15107,8 +15737,8 @@
   {
     "concept_id": "con_his_livsvilkar",
     "label": "livsvilkår",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «livsvilkår» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«livsvilkår» avgrenser en side ved arbeidernes sosiale liv som må undersøkes i sammenheng med hushold, inntekt, bolig, omsorg, kjønn, generasjon, nærmiljø og arbeidsforhold.",
+    "concept_type": "working_class_social_history_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -15127,12 +15757,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «livsvilkår» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_lonn",
+      "con_his_nominell_lonn_vs_reallonn",
+      "con_his_sosialhistorie"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsdisiplin"
+    ],
+    "common_misuse": [
+      "Å omtale «livsvilkår» som én ensartet klasseerfaring uten variasjon mellom hushold, fag, kjønn, alder, migrasjon og periode."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "husholds- eller boligforhold knyttet til «livsvilkår»",
+      "inntekt, omsorg, standard og nærmiljø",
+      "variasjon mellom familier og arbeidsgrupper"
+    ],
+    "source_requirements": [
+      "folketellinger, boligtilsyn, leiekontrakter og kommunearkiv",
+      "livshistorier, husholdsregnskap, foto og lokale foreningskilder"
+    ]
   },
   {
     "concept_id": "con_his_lokal",
@@ -15173,8 +15818,8 @@
   {
     "concept_id": "con_his_lonn",
     "label": "lønn",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «lønn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«lønn» er en historisk målbar side ved arbeid som må spesifiseres med betalingsform, tidsgrunnlag, yrke, oppgave, ferdighet, kjønn, alder og spredning før sammenligning.",
+    "concept_type": "labor_compensation_skill_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -15189,18 +15834,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lønn» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_lonnet_vs_ulonnet_arbeid",
+      "con_his_partiorganisasjon_vs_bredere_foreningsliv",
+      "con_his_stillingstittel_vs_faktisk_oppgave"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidskraft"
+    ],
+    "common_misuse": [
+      "Å bruke ett gjennomsnitt, en yrkestittel eller en oppgitt sats som full beskrivelse av «lønn» uten faktisk tid, oppgaver, trekk og variasjon."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "målt lønn, tid eller ferdighet knyttet til «lønn»",
+      "betalingsform, oppgave og kvalifikasjon",
+      "spredning, ubetalt tid, trekk og realverdi"
+    ],
+    "source_requirements": [
+      "lønningslister, tariff, arbeidsreglement, tidsstudier og personalarkiv",
+      "pris-, husholds-, yrkes- og arbeiderkilder"
+    ]
   },
   {
     "concept_id": "con_his_lonnet_vs_ulonnet_arbeid",
     "label": "lønnet vs ulønnet arbeid",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «lønnet vs ulønnet arbeid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «lønnet» og «ulønnet arbeid» krever separate mål og kilder, slik at dokumentasjon av lønnet ikke automatisk brukes som bevis for ulønnet arbeid.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -15211,18 +15871,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lønnet vs ulønnet arbeid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_lonnsgap_vs_yrkessegregering",
+      "con_his_produksjon",
+      "con_his_streik"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsmiljo"
+    ],
+    "common_misuse": [
+      "Å bruke lønnet som direkte dokumentasjon på ulønnet arbeid uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «lønnet vs ulønnet arbeid»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_lonnsgap_vs_yrkessegregering",
     "label": "lønnsgap vs yrkessegregering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «lønnsgap vs yrkessegregering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «lønnsgap» og «yrkessegregering» krever separate mål og kilder, slik at dokumentasjon av lønnsgap ikke automatisk brukes som bevis for yrkessegregering.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -15233,12 +15908,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lønnsgap vs yrkessegregering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_maskin_vs_arbeidsorganisering",
+      "con_his_produksjonsvekst_vs_bedre_livsvilkar",
+      "con_his_ulykke_vs_kronisk_eksponering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsorganisering"
+    ],
+    "common_misuse": [
+      "Å bruke lønnsgap som direkte dokumentasjon på yrkessegregering uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «lønnsgap vs yrkessegregering»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_lover",
@@ -15663,8 +16353,8 @@
   {
     "concept_id": "con_his_maskin_vs_arbeidsorganisering",
     "label": "maskin vs arbeidsorganisering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «maskin vs arbeidsorganisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «maskin» og «arbeidsorganisering» krever separate mål og kilder, slik at dokumentasjon av maskin ikke automatisk brukes som bevis for arbeidsorganisering.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -15677,12 +16367,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «maskin vs arbeidsorganisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_medlemskap_vs_bred_arbeiderstotte",
+      "con_his_produktivitet_vs_arbeidsintensitet",
+      "con_his_utdanningsinstitusjon_vs_arbeiderstyrt_offentlighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsprosess"
+    ],
+    "common_misuse": [
+      "Å bruke maskin som direkte dokumentasjon på arbeidsorganisering uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «maskin vs arbeidsorganisering»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_maskulinitet",
@@ -16097,8 +16802,8 @@
   {
     "concept_id": "con_his_medlemskap_vs_bred_arbeiderstotte",
     "label": "medlemskap vs bred arbeiderstøtte",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «medlemskap vs bred arbeiderstøtte» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «medlemskap» og «bred arbeiderstøtte» krever separate mål og kilder, slik at dokumentasjon av medlemskap ikke automatisk brukes som bevis for bred arbeiderstøtte.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -16108,12 +16813,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «medlemskap vs bred arbeiderstøtte» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_mobilitet_vs_tilhorighet",
+      "con_his_regel_vs_handheving",
+      "con_his_yrkestittel_vs_faktisk_arbeid"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsrelasjon"
+    ],
+    "common_misuse": [
+      "Å bruke medlemskap som direkte dokumentasjon på bred arbeiderstøtte uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «medlemskap vs bred arbeiderstøtte»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_mellom",
@@ -17216,8 +17936,8 @@
   {
     "concept_id": "con_his_mobilitet_vs_tilhorighet",
     "label": "mobilitet vs tilhørighet",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «mobilitet vs tilhørighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «mobilitet» og «tilhørighet» krever separate mål og kilder, slik at dokumentasjon av mobilitet ikke automatisk brukes som bevis for tilhørighet.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -17227,12 +17947,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «mobilitet vs tilhørighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_nominell_lonn_vs_reallonn",
+      "con_his_registrert_ansatt_vs_samlet_arbeidsstyrke",
+      "con_his_yrkestittel_vs_faktisk_ferdighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidstid"
+    ],
+    "common_misuse": [
+      "Å bruke mobilitet som direkte dokumentasjon på tilhørighet uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «mobilitet vs tilhørighet»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_modernisering",
@@ -18316,8 +19051,8 @@
   {
     "concept_id": "con_his_nominell_lonn_vs_reallonn",
     "label": "nominell lønn vs reallønn",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «nominell lønn vs reallønn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «nominell lønn» og «reallønn» krever separate mål og kilder, slik at dokumentasjon av nominell lønn ikke automatisk brukes som bevis for reallønn.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -18329,12 +19064,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «nominell lønn vs reallønn» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_partiorganisasjon_vs_bredere_foreningsliv",
+      "con_his_registrert_skade_vs_faktisk_skade",
+      "con_his_1900"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsvandring"
+    ],
+    "common_misuse": [
+      "Å bruke nominell lønn som direkte dokumentasjon på reallønn uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «nominell lønn vs reallønn»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_norge",
@@ -19933,8 +20683,8 @@
   {
     "concept_id": "con_his_partiorganisasjon_vs_bredere_foreningsliv",
     "label": "partiorganisasjon vs bredere foreningsliv",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «partiorganisasjon vs bredere foreningsliv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «partiorganisasjon» og «bredere foreningsliv» krever separate mål og kilder, slik at dokumentasjon av partiorganisasjon ikke automatisk brukes som bevis for bredere foreningsliv.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -19944,12 +20694,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «partiorganisasjon vs bredere foreningsliv» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_produksjon",
+      "con_his_rekruttering",
+      "con_his_arbeiderbolig"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_avindustrialisering"
+    ],
+    "common_misuse": [
+      "Å bruke partiorganisasjon som direkte dokumentasjon på bredere foreningsliv uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «partiorganisasjon vs bredere foreningsliv»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_pasient",
@@ -20913,8 +21678,8 @@
   {
     "concept_id": "con_his_produksjon",
     "label": "produksjon",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «produksjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«produksjon» avgrenser et industrielt produksjonssystem der anlegg, energi, råvarer, teknologi, kapital, logistikk, arbeidsstyrke og ledelse må analyseres samlet og tidsbestemt.",
+    "concept_type": "industrial_system_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -20925,12 +21690,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «produksjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_produksjonsvekst_vs_bedre_livsvilkar",
+      "con_his_rekruttering_vs_varig_bosetting",
+      "con_his_arbeiderbydel_vs_ensartet_klassemiljo"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bakgrunnsarsak_vs_streikeutlosende_hendelse"
+    ],
+    "common_misuse": [
+      "Å bruke bygningen, maskinen eller foretaksnavnet «produksjon» som direkte bevis for produksjon, arbeidsorganisering og økonomisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "anlegg eller system knyttet til «produksjon»",
+      "energi, råvarer, teknologi, kapital og logistikk",
+      "produksjonsvolum, arbeidsstyrke og romlig virkning"
+    ],
+    "source_requirements": [
+      "bedriftsarkiv, tekniske tegninger, regnskap og produksjonsdata",
+      "arbeider-, leverandør-, myndighets- og lokalsamfunnskilder"
+    ]
   },
   {
     "concept_id": "con_his_produksjonskontekst",
@@ -20976,8 +21756,8 @@
   {
     "concept_id": "con_his_produksjonsvekst_vs_bedre_livsvilkar",
     "label": "produksjonsvekst vs bedre livsvilkår",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «produksjonsvekst vs bedre livsvilkår» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «produksjonsvekst» og «bedre livsvilkår» krever separate mål og kilder, slik at dokumentasjon av produksjonsvekst ikke automatisk brukes som bevis for bedre livsvilkår.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -20989,12 +21769,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «produksjonsvekst vs bedre livsvilkår» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_produktivitet_vs_arbeidsintensitet",
+      "con_his_risiko",
+      "con_his_arbeiderliv"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_berort_gruppe"
+    ],
+    "common_misuse": [
+      "Å bruke produksjonsvekst som direkte dokumentasjon på bedre livsvilkår uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «produksjonsvekst vs bedre livsvilkår»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_produktivitet",
@@ -21037,8 +21832,8 @@
   {
     "concept_id": "con_his_produktivitet_vs_arbeidsintensitet",
     "label": "produktivitet vs arbeidsintensitet",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «produktivitet vs arbeidsintensitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «produktivitet» og «arbeidsintensitet» krever separate mål og kilder, slik at dokumentasjon av produktivitet ikke automatisk brukes som bevis for arbeidsintensitet.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -21048,12 +21843,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «produktivitet vs arbeidsintensitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_regel_vs_handheving",
+      "con_his_rundt",
+      "con_his_arbeidsdag_vs_betalte_timer"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bevaring_vs_arbeidsminne"
+    ],
+    "common_misuse": [
+      "Å bruke produktivitet som direkte dokumentasjon på arbeidsintensitet uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «produktivitet vs arbeidsintensitet»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_profesjon",
@@ -21693,8 +22503,8 @@
   {
     "concept_id": "con_his_regel_vs_handheving",
     "label": "regel vs håndheving",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «regel vs håndheving» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «regel» og «håndheving» krever separate mål og kilder, slik at dokumentasjon av regel ikke automatisk brukes som bevis for håndheving.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -21704,12 +22514,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «regel vs håndheving» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_registrert_ansatt_vs_samlet_arbeidsstyrke",
+      "con_his_sosialhistorie",
+      "con_his_arbeidsdisiplin"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_boligreform_vs_levd_boligforhold"
+    ],
+    "common_misuse": [
+      "Å bruke regel som direkte dokumentasjon på håndheving uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «regel vs håndheving»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_regelgrunnlag",
@@ -21867,8 +22692,8 @@
   {
     "concept_id": "con_his_registrert_ansatt_vs_samlet_arbeidsstyrke",
     "label": "registrert ansatt vs samlet arbeidsstyrke",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «registrert ansatt vs samlet arbeidsstyrke» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «registrert ansatt» og «samlet arbeidsstyrke» krever separate mål og kilder, slik at dokumentasjon av registrert ansatt ikke automatisk brukes som bevis for samlet arbeidsstyrke.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -21878,18 +22703,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «registrert ansatt vs samlet arbeidsstyrke» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_registrert_skade_vs_faktisk_skade",
+      "con_his_stillingstittel_vs_faktisk_oppgave",
+      "con_his_arbeidskraft"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_boligtype_vs_faktisk_trangboddhet"
+    ],
+    "common_misuse": [
+      "Å bruke registrert ansatt som direkte dokumentasjon på samlet arbeidsstyrke uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «registrert ansatt vs samlet arbeidsstyrke»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_registrert_skade_vs_faktisk_skade",
     "label": "registrert skade vs faktisk skade",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «registrert skade vs faktisk skade» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «registrert skade» og «faktisk skade» krever separate mål og kilder, slik at dokumentasjon av registrert skade ikke automatisk brukes som bevis for faktisk skade.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -21899,12 +22739,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «registrert skade vs faktisk skade» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rekruttering",
+      "con_his_streik",
+      "con_his_arbeidsmiljo"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bygningsombruk_vs_kontinuitet_i_arbeid"
+    ],
+    "common_misuse": [
+      "Å bruke registrert skade som direkte dokumentasjon på faktisk skade uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «registrert skade vs faktisk skade»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_regler",
@@ -22084,8 +22939,8 @@
   {
     "concept_id": "con_his_rekruttering",
     "label": "rekruttering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «rekruttering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«rekruttering» brukes om arbeidstilknyttet mobilitet eller rekruttering og må dokumenteres gjennom opprinnelsessted, arbeidsforhold, nettverk, bolig, hushold, varighet og videre flytting.",
+    "concept_type": "labor_mobility_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -22095,18 +22950,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rekruttering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rekruttering_vs_varig_bosetting",
+      "con_his_ulykke_vs_kronisk_eksponering",
+      "con_his_arbeidsorganisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_energikilde_vs_full_arsaksforklaring"
+    ],
+    "common_misuse": [
+      "Å utlede motiv, varig bosetting eller stabil arbeidstilknytning fra én registrering av «rekruttering»."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rekrutterings- eller flyttemønster knyttet til «rekruttering»",
+      "arbeidsgiver, yrke, bosted og varighet",
+      "nettverk, hushold og videre mobilitet"
+    ],
+    "source_requirements": [
+      "ansettelseslister, folketellinger, flytteprotokoller og bedriftsarkiv",
+      "brev, intervjuer og husholdskilder som viser motiv og forløp"
+    ]
   },
   {
     "concept_id": "con_his_rekruttering_vs_varig_bosetting",
     "label": "rekruttering vs varig bosetting",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «rekruttering vs varig bosetting» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «rekruttering» og «varig bosetting» krever separate mål og kilder, slik at dokumentasjon av rekruttering ikke automatisk brukes som bevis for varig bosetting.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -22116,12 +22986,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rekruttering vs varig bosetting» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_risiko",
+      "con_his_utdanningsinstitusjon_vs_arbeiderstyrt_offentlighet",
+      "con_his_arbeidsprosess"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_estetisk_industriarv_vs_sosialt_tap"
+    ],
+    "common_misuse": [
+      "Å bruke rekruttering som direkte dokumentasjon på varig bosetting uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «rekruttering vs varig bosetting»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_religion",
@@ -22901,8 +23786,8 @@
   {
     "concept_id": "con_his_risiko",
     "label": "risiko",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «risiko» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«risiko» analyseres som et konkret arbeidsmiljøforhold der farekilde, eksponering, varighet, berørt gruppe, registreringspraksis og dokumentert helsevirkning må holdes fra hverandre.",
+    "concept_type": "occupational_health_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -22912,12 +23797,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «risiko» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rundt",
+      "con_his_yrkestittel_vs_faktisk_arbeid",
+      "con_his_arbeidsrelasjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fabrikk"
+    ],
+    "common_misuse": [
+      "Å hevde at «risiko» ga en bestemt skade eller sykdom uten dokumentert eksponering, tidsforløp, diagnose og kontrollgrunnlag."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret fare eller belastning knyttet til «risiko»",
+      "eksponering, varighet og berørt arbeidsgruppe",
+      "registrert skade, sykdom, fravær eller tiltak"
+    ],
+    "source_requirements": [
+      "tilsyn, ulykkesprotokoller, journaler og tekniske rapporter",
+      "arbeiderberetninger, fagforeningsmateriale og kontrollkilder"
+    ]
   },
   {
     "concept_id": "con_his_ritual",
@@ -23060,8 +23960,8 @@
   {
     "concept_id": "con_his_rundt",
     "label": "rundt",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «rundt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«rundt» brukes om en konkret arbeidspraksis eller relasjon og må rekonstrueres gjennom oppgaver, redskaper, materialer, tempo, kontroll, samarbeid, regelverk og faktisk utførelse.",
+    "concept_type": "labor_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -23071,12 +23971,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rundt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sosialhistorie",
+      "con_his_yrkestittel_vs_faktisk_ferdighet",
+      "con_his_arbeidstid"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fabrikkbygning_vs_virksomhet"
+    ],
+    "common_misuse": [
+      "Å beskrive «rundt» bare fra ledelsens reglement, organisasjonskart eller sluttprodukt uten arbeidernes praksis, ferdighet og avbrudd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret arbeidspraksis knyttet til «rundt»",
+      "oppgaver, redskaper, tempo og kontroll",
+      "forskjell mellom regel, plan og utført arbeid"
+    ],
+    "source_requirements": [
+      "arbeidsreglement, produksjonsjournaler, tidsstudier og bedriftsarkiv",
+      "arbeiderberetninger, foto og fagforeningsmateriale"
+    ]
   },
   {
     "concept_id": "con_his_saksbehandling",
@@ -25136,8 +26051,8 @@
   {
     "concept_id": "con_his_sosialhistorie",
     "label": "sosialhistorie",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «sosialhistorie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«sosialhistorie» brukes om en konkret arbeidspraksis eller relasjon og må rekonstrueres gjennom oppgaver, redskaper, materialer, tempo, kontroll, samarbeid, regelverk og faktisk utførelse.",
+    "concept_type": "labor_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -25147,12 +26062,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sosialhistorie» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_stillingstittel_vs_faktisk_oppgave",
+      "con_his_1900",
+      "con_his_arbeidsvandring"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fabrikknedleggelse_vs_bred_avindustrialisering"
+    ],
+    "common_misuse": [
+      "Å beskrive «sosialhistorie» bare fra ledelsens reglement, organisasjonskart eller sluttprodukt uten arbeidernes praksis, ferdighet og avbrudd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret arbeidspraksis knyttet til «sosialhistorie»",
+      "oppgaver, redskaper, tempo og kontroll",
+      "forskjell mellom regel, plan og utført arbeid"
+    ],
+    "source_requirements": [
+      "arbeidsreglement, produksjonsjournaler, tidsstudier og bedriftsarkiv",
+      "arbeiderberetninger, foto og fagforeningsmateriale"
+    ]
   },
   {
     "concept_id": "con_his_sosialhjelp",
@@ -26059,8 +26989,8 @@
   {
     "concept_id": "con_his_stillingstittel_vs_faktisk_oppgave",
     "label": "stillingstittel vs faktisk oppgave",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «stillingstittel vs faktisk oppgave» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «stillingstittel» og «faktisk oppgave» krever separate mål og kilder, slik at dokumentasjon av stillingstittel ikke automatisk brukes som bevis for faktisk oppgave.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -26073,12 +27003,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «stillingstittel vs faktisk oppgave» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_streik",
+      "con_his_arbeiderbolig",
+      "con_his_avindustrialisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fagorganisering"
+    ],
+    "common_misuse": [
+      "Å bruke stillingstittel som direkte dokumentasjon på faktisk oppgave uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «stillingstittel vs faktisk oppgave»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_straff",
@@ -26125,8 +27070,8 @@
   {
     "concept_id": "con_his_streik",
     "label": "streik",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «streik» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«streik» betegner en organisert arbeidslivspraksis som må rekonstrueres fra medlemskap, krav, beslutninger, mobilisering, arbeidsgiverrespons, myndighetsinngrep og faktisk resultat.",
+    "concept_type": "labor_collective_action_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -26141,12 +27086,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «streik» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ulykke_vs_kronisk_eksponering",
+      "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
+      "con_his_bakgrunnsarsak_vs_streikeutlosende_hendelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_farekilde_vs_dokumentert_helseeffekt"
+    ],
+    "common_misuse": [
+      "Å la en lederuttalelse eller formell beslutning stå som full dokumentasjon av «streik» uten grasrot, motstand, deltakelse og gjennomføring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "organisasjon eller konflikt knyttet til «streik»",
+      "medlemskap, krav og beslutningsstruktur",
+      "respons, avtale og praktisert resultat"
+    ],
+    "source_requirements": [
+      "fagforeningsprotokoller, tariff-, streike- og forhandlingsarkiv",
+      "bedrifts-, presse-, politi- og grasrotkilder"
+    ]
   },
   {
     "concept_id": "con_his_strukturer",
@@ -27961,8 +28921,8 @@
   {
     "concept_id": "con_his_ulykke_vs_kronisk_eksponering",
     "label": "ulykke vs kronisk eksponering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «ulykke vs kronisk eksponering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «ulykke» og «kronisk eksponering» krever separate mål og kilder, slik at dokumentasjon av ulykke ikke automatisk brukes som bevis for kronisk eksponering.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -27972,12 +28932,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ulykke vs kronisk eksponering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_utdanningsinstitusjon_vs_arbeiderstyrt_offentlighet",
+      "con_his_arbeiderliv",
+      "con_his_berort_gruppe"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ferdighet"
+    ],
+    "common_misuse": [
+      "Å bruke ulykke som direkte dokumentasjon på kronisk eksponering uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «ulykke vs kronisk eksponering»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_ulykker",
@@ -28501,8 +29476,8 @@
   {
     "concept_id": "con_his_utdanningsinstitusjon_vs_arbeiderstyrt_offentlighet",
     "label": "utdanningsinstitusjon vs arbeiderstyrt offentlighet",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «utdanningsinstitusjon vs arbeiderstyrt offentlighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «utdanningsinstitusjon» og «arbeiderstyrt offentlighet» krever separate mål og kilder, slik at dokumentasjon av utdanningsinstitusjon ikke automatisk brukes som bevis for arbeiderstyrt offentlighet.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -28512,12 +29487,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «utdanningsinstitusjon vs arbeiderstyrt offentlighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_yrkestittel_vs_faktisk_arbeid",
+      "con_his_arbeidsdag_vs_betalte_timer",
+      "con_his_bevaring_vs_arbeidsminne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fodested_vs_flyttemotiv"
+    ],
+    "common_misuse": [
+      "Å bruke utdanningsinstitusjon som direkte dokumentasjon på arbeiderstyrt offentlighet uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «utdanningsinstitusjon vs arbeiderstyrt offentlighet»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_utelatelse",
@@ -29396,8 +30386,8 @@
   {
     "concept_id": "con_his_yrkestittel_vs_faktisk_arbeid",
     "label": "yrkestittel vs faktisk arbeid",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «yrkestittel vs faktisk arbeid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «yrkestittel» og «faktisk arbeid» krever separate mål og kilder, slik at dokumentasjon av yrkestittel ikke automatisk brukes som bevis for faktisk arbeid.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -29408,18 +30398,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «yrkestittel vs faktisk arbeid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_yrkestittel_vs_faktisk_ferdighet",
+      "con_his_arbeidsdisiplin",
+      "con_his_boligreform_vs_levd_boligforhold"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_formell_regel_vs_arbeidspraksis"
+    ],
+    "common_misuse": [
+      "Å bruke yrkestittel som direkte dokumentasjon på faktisk arbeid uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «yrkestittel vs faktisk arbeid»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_yrkestittel_vs_faktisk_ferdighet",
     "label": "yrkestittel vs faktisk ferdighet",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «yrkestittel vs faktisk ferdighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skillet mellom «yrkestittel» og «faktisk ferdighet» krever separate mål og kilder, slik at dokumentasjon av yrkestittel ikke automatisk brukes som bevis for faktisk ferdighet.",
+    "concept_type": "historical_analytical_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie"
@@ -29431,12 +30436,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «yrkestittel vs faktisk ferdighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_1900",
+      "con_his_arbeidskraft",
+      "con_his_boligtype_vs_faktisk_trangboddhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gjennomsnitt_vs_lonnsspredning"
+    ],
+    "common_misuse": [
+      "Å bruke yrkestittel som direkte dokumentasjon på faktisk ferdighet uten å kontrollere praksis, fordeling, tid og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "separate kilder for begge ledd i «yrkestittel vs faktisk ferdighet»",
+      "dokumentert avvik mellom kategori og praksis",
+      "variasjon etter bedrift, yrke, kjønn, sted og periode"
+    ],
+    "source_requirements": [
+      "sammenlignbare bedrifts-, fagforenings-, husholds- og myndighetskilder",
+      "arbeider- og lokalsamfunnskilder som viser faktisk erfaring og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_ytelse",

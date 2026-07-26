@@ -1,8 +1,39 @@
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node tools/validate-historie-v5.mjs --write
 {
+  "version": "v5.5-quality-freeze-contract",
+  "subject_id": "historie",
+  "status": "FREEZE_READY",
+  "v6_allowed": true,
   "generated_at": "2026-07-26T03:01:49.100Z",
-  "concepts": [],
-  "theories": [],
-  "emner": [],
+  "coverage_counts": {
+    "domains": 20,
+    "emner": 200,
+    "mappings": 200,
+    "methods": 87,
+    "concepts": 826,
+    "theories": 200
+  },
+  "quality_issue_totals": {
+    "concepts": 0,
+    "theories": 0,
+    "emner": 0,
+    "domains_not_freeze_ready": 0
+  },
+  "global_gates": {
+    "structural_integrity": true,
+    "coverage_counts_match": true,
+    "generator_counts_match_production": true,
+    "all_domains_coverage_complete": true,
+    "concept_registry_curated": true,
+    "theory_registry_curated": true,
+    "emner_individually_curated": true,
+    "all_domains_freeze_ready": true
+  },
+  "quality": {
+    "concept_issue_counts": {},
+    "theory_issue_counts": {},
+    "emne_issue_counts": {}
+  },
   "domains": [
     {
       "domain_id": "his_tid_periodisering",
@@ -244,5 +275,10 @@
       },
       "issues": []
     }
-  ]
+  ],
+  "samples": {
+    "concepts": [],
+    "theories": [],
+    "emner": []
+  }
 }
