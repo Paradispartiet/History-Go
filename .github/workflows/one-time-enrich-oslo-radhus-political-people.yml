@@ -55,7 +55,18 @@ jobs:
         run: npm run civication:history-people:check
 
       - name: Run complete people validation
-        run: bash scripts/check-people.sh
+        shell: bash
+        run: |
+          set -o pipefail
+          bash scripts/check-people.sh 2>&1 | tee people-check.log
+
+      - name: Upload people validation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-radhus-political-people-check-${{ github.run_id }}
+          path: people-check.log
+          if-no-files-found: warn
 
       - name: Verify browser build remains synchronized
         run: npm run build:web:check
@@ -68,6 +79,7 @@ jobs:
           git rm scripts/one-time-enrich-oslo-radhus-political-people.py
           git restore --staged --worktree reports 2>/dev/null || true
           git clean -fd reports 2>/dev/null || true
+          rm -f people-check.log
 
       - name: Commit clean production diff
         shell: bash
