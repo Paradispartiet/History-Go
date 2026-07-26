@@ -1,0 +1,65 @@
+name: Apply Oslo popupDesc V4 batch 03
+
+on:
+  push:
+    branches:
+      - agent/oslo-popup-v4-batch-03-ten-protocol
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-03-ten-protocol
+          fetch-depth: 0
+
+      - name: Apply ten description revisions and protocol
+        shell: bash
+        run: |
+          cat .tmp/oslo-popup-v4-batch-03/payload-*.txt | base64 -d | gunzip > /tmp/apply-oslo-batch-03.js
+          node /tmp/apply-oslo-batch-03.js
+
+      - name: Verify scope and remove temporary files
+        shell: bash
+        run: |
+          rm -rf .tmp/oslo-popup-v4-batch-03
+          rm .github/workflows/oslo-popup-v4-batch-03.yml
+          node -e "for (const f of process.argv.slice(1)) JSON.parse(require('fs').readFileSync(f, 'utf8'))" \
+            data/places/by/oslo/places/helsfyr.json \
+            data/places/by/oslo/places/bogstadveien.json \
+            data/places/by/oslo/places/markveien.json \
+            data/places/by/oslo/places/gronlandsleiret.json \
+            data/places/by/oslo/places/majorstuen_krysset.json \
+            data/places/by/oslo/places/rodelokka.json \
+            data/places/by/oslo/places/vaalerenga.json \
+            data/places/by/oslo/places/vinderen.json \
+            data/places/by/oslo/places/ullern.json \
+            data/places/by/oslo/places/gronland_kirke.json
+          git diff --check
+
+      - name: Commit production files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A \
+            data/places/by/oslo/places/helsfyr.json \
+            data/places/by/oslo/places/bogstadveien.json \
+            data/places/by/oslo/places/markveien.json \
+            data/places/by/oslo/places/gronlandsleiret.json \
+            data/places/by/oslo/places/majorstuen_krysset.json \
+            data/places/by/oslo/places/rodelokka.json \
+            data/places/by/oslo/places/vaalerenga.json \
+            data/places/by/oslo/places/vinderen.json \
+            data/places/by/oslo/places/ullern.json \
+            data/places/by/oslo/places/gronland_kirke.json \
+            reports/place-description-revision-protocol.md \
+            .github/workflows/oslo-popup-v4-batch-03.yml \
+            .tmp/oslo-popup-v4-batch-03
+          git commit -m "Revider tredje gruppe på ti Oslo-steder"
+          git push origin HEAD:agent/oslo-popup-v4-batch-03-ten-protocol
