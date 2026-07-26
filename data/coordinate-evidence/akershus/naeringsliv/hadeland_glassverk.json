@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hadeland_glassverk",
+  "placeFile": "data/places/naeringsliv/akershus/hadeland_glassverk/hadeland_glassverk.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_glassworks_institution_point",
+  "currentCoordinate": {
+    "lat": 60.23765,
+    "lon": 10.39719,
+    "r": 360,
+    "coordStatus": "verified",
+    "coordSource": "OpenStreetMap node 559688012 – Hadeland Glassverk; Hadeland Glassverk official visitor and history pages",
+    "coordType": "named_glassworks_institution_point",
+    "coordRole": "industrial_visitor_complex_anchor",
+    "sourceObjectId": "osm-node:559688012",
+    "coordNote": "The canonical marker follows the stable named glassworks institution point within the central production and visitor complex. The retained radius includes the nearby park and core facilities without representing a legal or property boundary."
+  },
+  "previousCoordinate": {
+    "lat": 60.23813,
+    "lon": 10.39785,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 64.6,
+    "reasonReplaced": "The legacy point was close to the site but lacked a stable source-object role and lay approximately 64.6 metres northeast of the named Hadeland Glassverk institution point."
+  },
+  "identity": {
+    "currentName": "Hadeland Glassverk",
+    "resolvedIdentity": "The living glassworks institution and central production, museum and visitor complex at Jevnaker, distinct from one retail building, the public park alone or an assumed Glasshytta building centroid.",
+    "identityStatus": "resolved",
+    "identityProblem": "The site contains production, museum, park, shops, dining and visitor functions. Glasshytta is the functional production core, but no stable separate building geometry was captured. A park object alone is too narrow and a guessed workshop centroid would be unsupported.",
+    "locatorTypeCandidate": "industrial_site",
+    "requiresSplit": false,
+    "splitReason": "One canonical institutional point can represent the coherent central complex while production-core and park objects remain contextual components."
+  },
+  "requiredEvidence": [
+    "stable named glassworks institution object",
+    "official visitor address",
+    "official industrial and historical identity",
+    "production-core context without invented geometry",
+    "area cross-check",
+    "explicit radius and representation limits"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 559688012 – Hadeland Glassverk",
+      "sourceUrl": "https://www.openstreetmap.org/node/559688012",
+      "sourceObjectId": "osm-node:559688012",
+      "sourceQuality": "exact_named_glassworks_institution_point",
+      "finding": "The named Hadeland Glassverk object is at 60.23765, 10.39719 inside the central production and visitor complex, approximately 64.6 metres from the legacy point.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named institution rather than one shop, park feature or assumed workshop centroid."
+    },
+    {
+      "sourceProvider": "glassworks",
+      "sourceName": "Hadeland Glassverk – opening hours and visitor information",
+      "sourceUrl": "https://www.hadeland.com/pages/apningstider-for-hadeland-glassverk",
+      "sourceObjectId": "hadeland-glassverk:glassverksveien-9",
+      "sourceQuality": "official_visitor_identity_and_address",
+      "finding": "The official visitor page lists Glassverksveien 9, 3520 Jevnaker and describes a combined visitor environment with glassblowing, museum, activities, dining and shops.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the institution and visitor destination while the named map object supplies the coordinate."
+    },
+    {
+      "sourceProvider": "glassworks",
+      "sourceName": "Hadeland Glassverk – history",
+      "sourceUrl": "https://www.hadeland.com/pages/historien-om-hadeland-glassverk-levende-norsk-design-siden-1762",
+      "sourceObjectId": "hadeland-glassverk:history-1762",
+      "sourceQuality": "official_industrial_history",
+      "finding": "The official history identifies the glassworks as founded in 1762 at Jevnaker and documents its development from bottles and household glass to design and art glass.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms historical and industrial identity."
+    },
+    {
+      "sourceProvider": "glassworks",
+      "sourceName": "Hadeland Glassverk – historical walk",
+      "sourceUrl": "https://www.hadeland.com/historisk-vandring",
+      "sourceObjectId": "hadeland-glassverk:historical-walk",
+      "sourceQuality": "official_production_core_context",
+      "finding": "The official site describes Glasshytta as the heart of the operation and documents living glass production, glassblowing, grinding and polishing.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the production core but does not provide captured stable building geometry suitable for an independent coordinate."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 693083889 – Hadeland Glassverk park",
+      "sourceUrl": "https://www.openstreetmap.org/way/693083889",
+      "sourceObjectId": "osm-way:693083889",
+      "sourceQuality": "named_public_area_cross_check",
+      "finding": "The named park object has a representative point near 60.23826, 10.39634, approximately 82.5 metres from the applied institution point.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the broader public complex but cannot represent the industrial institution or production environment alone."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q2194066 – Hadeland Glassverk",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q2194066",
+      "sourceObjectId": "wikidata:Q2194066",
+      "sourceQuality": "independent_entity_cross_check",
+      "finding": "Wikidata independently identifies Hadeland Glassverk as a glassworks and company founded in 1762 at Jevnaker.",
+      "canVerifyCoordinate": false,
+      "reason": "Used for identity cross-check; its coordinate is too coarse for production use."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Hadeland Glassverk point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:hadeland_glassverk",
+      "sourceQuality": "nearby_but_uncontracted_point",
+      "finding": "The legacy coordinate 60.23813, 10.39785 lies approximately 64.6 metres northeast of the named institution point.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced to establish a stable named source object and explicit role."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "glassworks",
+      "address": {
+        "street": "Glassverksveien",
+        "number": "9",
+        "postcode": "3520",
+        "city": "Jevnaker",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.hadeland.com/pages/apningstider-for-hadeland-glassverk",
+      "sourceObjectId": "hadeland-glassverk:glassverksveien-9",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:559688012",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:693083889",
+      "canApplyToPlace": false,
+      "rejectionReason": "Named park area only; it does not represent the full glassworks institution or production environment."
+    },
+    {
+      "sourceProvider": "glassworks",
+      "sourceObjectId": "hadeland-glassverk:glasshytta",
+      "canApplyToPlace": false,
+      "rejectionReason": "Functional production core without captured stable building geometry; no coordinate is invented."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q2194066",
+      "canApplyToPlace": false,
+      "rejectionReason": "Independent identity cross-check with insufficient coordinate precision for production."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:693083889",
+      "geometryType": "Polygon",
+      "geometryRole": "public_park_area_cross_check",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hadeland_glassverk_named_complex",
+      "name": "Hadeland Glassverk – named works and visitor complex",
+      "lat": 60.23765,
+      "lon": 10.39719,
+      "r": 150,
+      "type": "industrial_visitor_complex_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:559688012",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hadeland_glassverk",
+      "lat": 60.23813,
+      "lon": 10.39785,
+      "coordRole": "nearby_but_uncontracted_point",
+      "distanceFromAppliedM": 64.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:559688012",
+      "lat": 60.23765,
+      "lon": 10.39719,
+      "coordRole": "industrial_visitor_complex_anchor",
+      "distanceFromPreviousM": 64.6,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:693083889",
+      "lat": 60.23826,
+      "lon": 10.39634,
+      "coordRole": "public_park_area_cross_check",
+      "distanceFromAppliedM": 82.5,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-hadeland-glassverk-source-probe/source-summary.json",
+      "description": "Persisted institution point, official visitor and history sources, production-core context, park cross-check and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the stable named glassworks institution point and retained the 360-metre radius. Continue with Kistefos Træsliberi."
+  },
+  "notes": [
+    "The coordinate moves approximately 64.6 metres to the named institution point.",
+    "Glasshytta remains the documented production core but receives no invented coordinate without stable captured geometry.",
+    "The park object is an area cross-check, not the canonical identity.",
+    "The 360-metre radius is not a property, heritage or exact industrial-site polygon."
+  ]
+}
