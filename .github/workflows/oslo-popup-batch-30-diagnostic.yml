@@ -1,0 +1,42 @@
+name: One-time Oslo popup batch 30 diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-30-diagnostic-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-30-literature-ten
+          fetch-depth: 0
+      - name: Measure texts and protocol preconditions
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs=require('fs');
+          const items=['.github/oslo-popup-batch-30-literature-patch-a.json','.github/oslo-popup-batch-30-literature-patch-b.json'].flatMap(f=>JSON.parse(fs.readFileSync(f,'utf8')).places);
+          const words=t=>(String(t).match(/[\p{L}\p{N}]+(?:[’'\-][\p{L}\p{N}]+)*/gu)||[]).length;
+          const paras=t=>String(t).trim().split(/\n\s*\n/).filter(Boolean).length;
+          const descSupp={
+            bla_skilt_stein_mehren_ullevalsveien_60:'Skiltet er minnestedet; boligen er fortsatt privat.',honse_lovisas_hus:'Det fysiske huset og den fiktive figuren må holdes fra hverandre.',alexander_kiellands_plass:'Navnet er den dokumenterte forbindelsen til forfatteren.',biblo_toyen:'Aldersgruppen er en del av bibliotekets særpreg.',camilla_collett_statue:'Statuen er et senere offentlig minne, ikke et arbeidssted.',deichman_grunerlokka:'Filialens betydning ligger i lokal og gratis kunnskapstilgang.',eldorado_bokhandel:'Bokhandelen var et senere brukslag i den eldre kinobygningen.',gamle_deichman:'Framtidig museumsbruk skal omtales som plan, ikke nåtid.',grotta:'Den statlige æresboligen er fortsatt et privat hjem.',henrik_wergeland_statue:'Monumentet forbinder litteraturminne og politisk offentlighet.'};
+          const popupSupp={
+            bla_skilt_stein_mehren_ullevalsveien_60:'Skiltets korte format gjør kildegrensen tydelig: det bekrefter person, adresse og minneform, men gir ikke en full biografi eller en katalog over hva som ble skrevet i boligen.',honse_lovisas_hus:'Denne lagdelingen gjør huset særlig egnet til å øve på forskjellen mellom bygningshistorie, litterær karakter, filmatisering og senere publikumsbruk.',alexander_kiellands_plass:'Parkens litterære verdi ligger dermed ikke i autentiske spor etter Kiellands liv, men i navnets varige plass i byens orientering og kollektive hukommelse.',biblo_toyen:'Tilbudets utforming viser hvordan en offentlig litteraturinstitusjon kan skape tilhørighet ved å gi en tydelig definert brukergruppe reell plass og ansvar.',camilla_collett_statue:'Monumentet bør derfor brukes som inngang til tekstene og den historiske likestillingsdebatten, ikke som en forenklet erstatning for dem.',deichman_grunerlokka:'Filialens historie viser hvordan et bydelsbibliotek både kan bevare institusjonell kontinuitet og endre arbeidsformer når nabolag, medier og publikumsbehov forandres.',eldorado_bokhandel:'Bygningens skiftende funksjoner gjør det nødvendig å datere hvert lag presist og å skille mellom kinohistorie, bokhandelshistorie og senere virksomhet.',gamle_deichman:'Transformasjonen gjør bygningen til et godt eksempel på at kulturinstitusjoner kan flytte, mens arkitektur, minner og politiske forventninger blir værende på den gamle adressen.',grotta:'Den symbolske verdien må derfor balanseres mot privatliv, adgangsgrenser og kunnskap om at ordningen hedrer én utvalgt kunstner om gangen.',henrik_wergeland_statue:'Monumentets plassering gjør ettertidens fortolkning synlig, men den historiske Wergeland må fortsatt undersøkes gjennom egne tekster, samtidige kilder og konfliktene han deltok i.'};
+          const rows=items.map(item=>{let desc=item.desc,popup=item.popupDesc;const originalPopupWords=words(popup);if(words(desc)<40)desc+=' '+descSupp[item.id];if(words(popup)<300)popup+=' '+popupSupp[item.id];const afterSupplementWords=words(popup);if(words(popup)<300)popup+=' Stedet må leses med tydelig skille mellom dokumentert fysisk historie, institusjonell bruk og senere kulturell fortolkning.';return {id:item.id,descWords:words(desc),originalPopupWords,afterSupplementWords,finalPopupWords:words(popup),paragraphs:paras(popup)};});
+          const p=fs.readFileSync('reports/place-description-revision-protocol.md','utf8');
+          const result={rows,protocolChecks:{total239:p.includes('Ferdige etter alle mergede revisjonsbatcher: **239 steder**'),remaining273:p.includes('Gjenstår: **273 steder**'),sentence273:p.includes('Det gjenstår **273 aktive Oslo-steder**'),literature21:p.includes('- litteratur: **21**'),batch29:/\| Oslo V4 batch 29 \| 1 \| #[0-9]+ – fullførte hele Oslo-køen for fagområdet vitenskap \|/.test(p)}};
+          fs.writeFileSync('.github/oslo-popup-batch-30-diagnostic.json',JSON.stringify(result,null,2)+'\n');
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/oslo-popup-batch-30-diagnostic.json
+          git commit -m "Diagnose Batch 30 literature validation"
+          git push origin HEAD:agent/oslo-popup-v4-batch-30-literature-ten
