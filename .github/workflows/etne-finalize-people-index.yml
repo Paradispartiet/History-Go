@@ -1,0 +1,65 @@
+name: Etne final people and quality validation
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    if: github.head_ref == 'agent/etne-all-rounds-quality-audit-uplift'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/etne-all-rounds-quality-audit-uplift
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate Civication people index
+        run: npm run civication:history-people:build
+
+      - name: Run final Etne and People validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/etne-religion-round-content.test.js
+          node tools/audit-etne-non-nature-round-quality.mjs
+          bash scripts/check-people.sh
+          node tests/place-card-rounds-runtime-audit.test.js
+          node tests/etne-city-batch1-round-content.test.js
+          node tests/etne-literature-batch1-round-content.test.js
+
+      - name: Publish generated index and refreshed audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/Civication/historyPeople_index.json reports/etne-non-nature-quality-audit/report.json reports/etne-non-nature-quality-audit/report.md
+          if git diff --cached --quiet; then
+            echo 'Generated index and audit already current.'
+            exit 0
+          fi
+          git diff --cached --check
+          git commit -m 'Sync Civication people index for Etne religion'
+          git push origin HEAD:agent/etne-all-rounds-quality-audit-uplift
