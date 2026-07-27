@@ -2,7 +2,7 @@
   "schema_version": 1,
   "registry_status": "canonical",
   "owner": "history-go-documentation",
-  "last_verified": "2026-07-26",
+  "last_verified": "2026-07-27",
   "status_definitions": {
     "canonical": "Normativ kilde for et avgrenset ansvarsområde. Kan blokkere endringer og skal holdes oppdatert.",
     "operational": "Aktiv inngang, implementasjonsstatus eller arbeidsinstruks uten å opprette en parallell sannhet.",
@@ -958,6 +958,18 @@
         "stories_data_governance"
       ],
       "last_verified": "2026-07-26"
+    },
+    {
+      "path": "reports/stories/STORIES_COVERAGE_SNAPSHOT_2026-07-27.md",
+      "status": "historical",
+      "role": "Commit-bundet Stories-coverage-snapshot med aktive place-, people-, storyfil- og storytall per canonical kategori",
+      "owns": [],
+      "superseded_by": [
+        "data/stories/stories_manifest.json",
+        "docs/STORIES_DATA_GOVERNANCE.md",
+        "tools/check_stories_integrity.mts"
+      ],
+      "historical_reason": "Tidsbundet beregning på commit 9f69a1310f882c10d707008480227d27b44565ea; må regenereres når aktive story-, place- eller people-data flytter seg."
     },
     {
       "path": "reports/archive/2026-07/stories/STORIES_BATCH_4_RESEARCH_NOTES_2026-07-26.md",
