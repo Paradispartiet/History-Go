@@ -1,29 +1,46 @@
 {
-  "schema_version": "1.0",
-  "report_id": "historie_geographic_profile_oslo_akershus_v1",
+  "schema_version": "2.0",
+  "report_id": "historie_geographic_profile_oslo_akershus_v2",
   "profile_id": "profile_historie_no_oslo_akershus",
   "subject_id": "historie",
   "geography_id": "geo_no_oslo_akershus",
-  "status": "INCOMPLETE",
+  "status": "COMPLETE",
+  "completion_scope": "minimum_representative_evidence_foundation",
   "structural_foundation": {
     "status": "PASS",
     "total_subject_emner": 230,
     "mapped_emner": 200,
+    "unique_mapped_emner": 200,
     "mapped_ratio": 0.87,
     "preserved_case_candidates": 103
   },
   "evidence_foundation": {
     "status": "PASS",
-    "claims": 4,
-    "sources": 4,
-    "evidence_links": 4,
-    "verified_cases": 1,
-    "claims_with_multiple_sources": 2
+    "claims": 22,
+    "sources": 22,
+    "evidence_links": 22,
+    "verified_cases": 10,
+    "cases_with_two_evidence_links": 10,
+    "claims_with_multiple_sources": 13,
+    "minimum_verified_cases": 10,
+    "minimum_evidence_links": 20
   },
-  "open_gaps": [
-    "Ikke alle universelle emner har en Oslo/Akershus-casekandidat.",
-    "Færre enn ti profilcaser har validert claim–source–evidence-kjede.",
-    "Evidensregisteret er fortsatt en pilot og dekker ikke et bredt utvalg steder og perioder.",
-    "Legacy-casekandidater må normaliseres mot canonical place- og person-ID-er før de kan regnes som produksjonsklare."
+  "verified_case_ids": [
+    "case_his_22_juli_senteret",
+    "case_his_akerselva",
+    "case_his_akershus_festning",
+    "case_his_bispelokket",
+    "case_his_eidsvollsbygningen",
+    "case_his_folkets_hus",
+    "case_his_gamle_deichman_pa_hammersborg",
+    "case_his_hl_senteret_villa_grande",
+    "case_his_hovedoya_kloster",
+    "case_his_oslo_radhus"
+  ],
+  "open_gaps": [],
+  "production_backlog": [
+    "30 universelle emner mangler fortsatt en Oslo/Akershus-casekandidat.",
+    "93 bevarte profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.",
+    "Videre produksjon skal normalisere legacy-kandidater mot canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon."
   ]
 }

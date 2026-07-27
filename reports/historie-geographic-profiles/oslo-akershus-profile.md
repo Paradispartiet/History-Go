@@ -1,25 +1,45 @@
 # Historie — geografisk produksjonsprofil for Oslo og Akershus
 
-Status: **INCOMPLETE**
+Status: **COMPLETE**
 
-Denne rapporten måler geografisk produksjonsdekning separat fra den universelle fagmodellen.
+Fullføringsomfang: **minimum_representative_evidence_foundation**
+
+Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmodellen. `COMPLETE` betyr at minimumsgrunnlaget for representativ, auditerbar produksjon er nådd; det betyr ikke at alle lokale cases er ferdig produsert.
 
 ## Struktur
 
 - Universelle emner: **230**
-- Emner med migrerte profilkoblinger: **200**
+- Unike emner med profilkoblinger: **200**
+- Migrerte mappingrecords: **200**
 - Bevarte lokale casekandidater: **103**
 
 ## Evidensgrunnlag
 
-- Claims: **4**
-- Kilder: **4**
-- Sted–emne–claim–kildekoblinger: **4**
-- Validerte pilotcaser: **1**
+- Claims: **22**
+- Kilder: **22**
+- Sted–emne–claim–kildekoblinger: **22**
+- Validerte caser: **10**
+- Validerte caser med minst to evidenskoblinger: **10**
 
-## Åpne gap
+## Validerte caser
 
-- Ikke alle universelle emner har en Oslo/Akershus-casekandidat.
-- Færre enn ti profilcaser har validert claim–source–evidence-kjede.
-- Evidensregisteret er fortsatt en pilot og dekker ikke et bredt utvalg steder og perioder.
-- Legacy-casekandidater må normaliseres mot canonical place- og person-ID-er før de kan regnes som produksjonsklare.
+- `case_his_22_juli_senteret`
+- `case_his_akerselva`
+- `case_his_akershus_festning`
+- `case_his_bispelokket`
+- `case_his_eidsvollsbygningen`
+- `case_his_folkets_hus`
+- `case_his_gamle_deichman_pa_hammersborg`
+- `case_his_hl_senteret_villa_grande`
+- `case_his_hovedoya_kloster`
+- `case_his_oslo_radhus`
+
+## Åpne terskelgap
+
+Ingen åpne terskelgap.
+
+## Videre produksjonskø
+
+- 30 universelle emner mangler fortsatt en Oslo/Akershus-casekandidat.
+- 93 bevarte profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
+- Videre produksjon skal normalisere legacy-kandidater mot canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon.

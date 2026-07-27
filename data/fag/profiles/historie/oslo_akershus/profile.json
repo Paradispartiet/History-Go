@@ -3,7 +3,7 @@
   "profile_id": "profile_historie_no_oslo_akershus",
   "subject_id": "historie",
   "canonical_subject_version": "v5.8",
-  "status": "active_foundation",
+  "status": "active_production_profile",
   "geography": {
     "geography_id": "geo_no_oslo_akershus",
     "type": "regional_profile",
@@ -19,11 +19,12 @@
   },
   "contract": {
     "universal_subject_contract": "docs/SUBJECT_FILE_CONTRACT.md",
-    "architecture_contract": "docs/HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md",
+    "architecture_contract": "docs/SUBJECT_FILE_CONTRACT.md#13-casekrav-profiler-og-evidensregistre",
     "case_requirements_file": "data/fag/historie/case_requirements_historie_canonical_v1.json",
     "claims_file": "data/fag/historie/claims_historie_canonical_v1.json",
     "sources_file": "data/fag/historie/sources_historie_canonical_v1.json",
-    "place_evidence_file": "data/fag/historie/place_evidence_historie_v1.json"
+    "place_evidence_file": "data/fag/historie/place_evidence_historie_v1.json",
+    "data_production_contract": "docs/DATA_PRODUCTION_CONTRACT.md#historie-profil-og-evidenslag"
   },
   "migration_summary": {
     "source_field": "recommended_oslo_cases",
@@ -31,18 +32,22 @@
     "migrated_links": 1041,
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
-    "migration_date": "2026-07-26"
+    "migration_date": "2026-07-26",
+    "validated_cases": 10,
+    "unverified_case_candidates": 93
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 103,
-    "claims_total": 4,
-    "sources_total": 4,
-    "evidence_links_total": 4,
-    "status": "INCOMPLETE",
-    "interpretation": "Profilstrukturen er etablert og legacy-kandidater er bevart, men bare pilotcaset Oslo rådhus har validert claim–source–evidence-kjede."
+    "claims_total": 22,
+    "sources_total": 22,
+    "evidence_links_total": 22,
+    "status": "COMPLETE",
+    "interpretation": "Profilen har nå et representativt minimumsgrunnlag med minst ti canonical place-koblede caser og minst to evidenslenker per validert case. Resterende kandidater er en eksplisitt produksjonskø, ikke et skjult terskelgap.",
+    "verified_cases_total": 10,
+    "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
     {
@@ -50,9 +55,11 @@
       "label": "22. juli-senteret",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "22_juli_senteret"
+      ],
       "emne_ids": [
         "em_his_branner_ulykker_brudd",
         "em_his_digital_kulturarv_formidling",
@@ -75,10 +82,22 @@
         "em_his_stedsnavn_navnepolitikk",
         "em_his_terror_samtidshistorie"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -135,9 +154,11 @@
       "label": "Akerselva",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "akerselva"
+      ],
       "emne_ids": [
         "em_his_arbeid_nettverk_naring",
         "em_his_arbeidsmiljo_risiko_helse",
@@ -164,10 +185,22 @@
         "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
         "em_his_terror_samtidshistorie"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -175,9 +208,11 @@
       "label": "Akershus festning",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "akershus_festning"
+      ],
       "emne_ids": [
         "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
         "em_his_1814_statsdannelse_kiel_1814_og_geopolitisk_brudd",
@@ -227,10 +262,22 @@
         "em_his_taushet_og_manglende_kilder",
         "em_his_visuelle_kilder_fotografi"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -344,9 +391,11 @@
       "label": "Bispelokket",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "bispelokket"
+      ],
       "emne_ids": [
         "em_his_brudd_kontinuitet",
         "em_his_hendelse_prosess_tidsforlop",
@@ -354,10 +403,22 @@
         "em_his_modernisering_1800",
         "em_his_samtidshistorie_brudd"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -636,9 +697,11 @@
       "label": "Eidsvollsbygningen",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "eidsvollsbygningen"
+      ],
       "emne_ids": [
         "em_his_1814_grunnlov_statsdannelse",
         "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
@@ -666,10 +729,22 @@
         "em_his_stedsnavn_navnepolitikk",
         "em_his_tid_periodisering_epoker"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -719,9 +794,11 @@
       "label": "Folkets Hus",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "folkets_hus_oslo"
+      ],
       "emne_ids": [
         "em_his_arbeiderbevegelse_folkedannelse",
         "em_his_offentlighet_mobilisering_borgerrettighetskamp_antirasisme_og_solidaritetsbevegelser",
@@ -731,10 +808,22 @@
         "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
         "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -819,9 +908,11 @@
       "label": "Gamle Deichman på Hammersborg",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "gamle_deichman"
+      ],
       "emne_ids": [
         "em_his_arkiv_og_dokumentasjon",
         "em_his_kildekritikk_arkiv_spor",
@@ -832,10 +923,22 @@
         "em_his_sprak_religion_institusjoner",
         "em_his_visuelle_kilder_fotografi"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -1029,9 +1132,11 @@
       "label": "HL-senteret / Villa Grande",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "villa_grande"
+      ],
       "emne_ids": [
         "em_his_digital_kulturarv_formidling",
         "em_his_fravaer_taushet_motminne",
@@ -1044,10 +1149,22 @@
         "em_his_restaurering_autentisitet",
         "em_his_stedsnavn_navnepolitikk"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -1055,9 +1172,11 @@
       "label": "Hovedøya kloster",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "hovedoya_kloster"
+      ],
       "emne_ids": [
         "em_his_kirke_kloster_middelalder",
         "em_his_kongemakt_kirke_konflikt",
@@ -1076,10 +1195,22 @@
         "em_his_skrift_hand_lesning",
         "em_his_spor_materialitet"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_oslo_akershus_evidence_batch_v2",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -6588,5 +6719,9 @@
       "evidence_status": "requires_case_level_claim_source_validation",
       "provenance": "recommended_oslo_cases"
     }
+  ],
+  "last_updated": "2026-07-27",
+  "evidence_batches": [
+    "history_oslo_akershus_evidence_batch_v2"
   ]
 }
