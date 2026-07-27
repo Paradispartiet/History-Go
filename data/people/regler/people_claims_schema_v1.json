@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "history-go://data/people/regler/people_claims_schema_v1.json",
+  "title": "History GO People claims v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "person_id",
+    "profile_file",
+    "identity",
+    "claims",
+    "field_claim_map",
+    "sentence_claim_map",
+    "completion"
+  ],
+  "properties": {
+    "schema": {
+      "const": "history_go_people_claims_v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "person_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_file": {
+      "type": "string",
+      "pattern": "^data/people/.+\\.json$"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_identity",
+        "identity_status"
+      ],
+      "properties": {
+        "canonical_identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_variants": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "not": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "identity_status": {
+          "enum": [
+            "verified",
+            "identity_unresolved",
+            "metadata_correction_required"
+          ]
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "id",
+          "claim",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "source_conflict",
+              "rejected",
+              "insufficient_support"
+            ]
+          },
+          "source_url": {
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "source_location": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "enum": [
+              "primary",
+              "official_register",
+              "archive",
+              "institutional",
+              "recognized_reference",
+              "research",
+              "editorial",
+              "other_cross_checked"
+            ]
+          },
+          "temporal_status": {
+            "enum": [
+              "historical",
+              "current",
+              "planned",
+              "unknown"
+            ]
+          },
+          "verified_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "freshness_required_days": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "evidence_level": {
+            "enum": [
+              "direct",
+              "explicit",
+              "qualified"
+            ]
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "url",
+                "value"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "pattern": "^https?://"
+                },
+                "value": {}
+              }
+            }
+          },
+          "publication_decision": {
+            "enum": [
+              "omit",
+              "publish_common_secure_part",
+              "publish_with_qualification",
+              "prefer_primary_source",
+              "unresolved_blocking"
+            ]
+          }
+        }
+      }
+    },
+    "field_claim_map": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    },
+    "sentence_claim_map": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "desc",
+        "popupDesc"
+      ],
+      "properties": {
+        "desc": {
+          "$ref": "#/$defs/sentenceMappings"
+        },
+        "popupDesc": {
+          "$ref": "#/$defs/sentenceMappings"
+        }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "completed_under",
+        "fact_review",
+        "editorial_review",
+        "source_verified_at",
+        "validator_version",
+        "current_status"
+      ],
+      "properties": {
+        "completed_under": {
+          "const": "people_profile_v1.0"
+        },
+        "claims_verified": {
+          "type": "string",
+          "pattern": "^\\d+/\\d+$"
+        },
+        "fact_review": {
+          "enum": [
+            "passed",
+            "failed",
+            "pending"
+          ]
+        },
+        "editorial_review": {
+          "enum": [
+            "passed",
+            "failed",
+            "pending"
+          ]
+        },
+        "source_verified_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "validator_version": {
+          "const": "1.0.0"
+        },
+        "current_status": {
+          "enum": [
+            "ready_people_v1",
+            "needs_research",
+            "source_conflict",
+            "identity_unresolved",
+            "blocked_insufficient_sources",
+            "metadata_correction_required",
+            "current_status_stale",
+            "legacy_unreviewed"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sentenceMappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sentence",
+          "claim_ids"
+        ],
+        "properties": {
+          "sentence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

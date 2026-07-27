@@ -20,6 +20,7 @@ test('canonical factuality contract forbids invention and guessing', () => {
 
 test('all active people and data contracts defer to factuality contract', () => {
   for (const relative of [
+    'docs/PEOPLE_PROFILE_CANONICAL.md',
     'docs/PEOPLE_POPUP_SYSTEM.md',
     'docs/people-of-places-method.md',
     'docs/DATA_PRODUCTION_CONTRACT.md',
@@ -28,15 +29,17 @@ test('all active people and data contracts defer to factuality contract', () => 
     assert.match(read(relative), /FACTUALITY_CONTRACT\.md/);
   }
   const people = read('docs/PEOPLE_POPUP_SYSTEM.md');
-  assert.match(people, /complete.*betyr ikke.*source_verified/is);
-  assert.match(people, /En språkmodell er aldri en faktakilde/i);
-  assert.match(people, /påstand-for-påstand/i);
+  assert.match(people, /presentasjonsstatusene[\s\S]*complete[\s\S]*strong[\s\S]*partial[\s\S]*sparse/i);
+  assert.match(people, /Profiler uten v1-claims er `legacy_unreviewed`/i);
+  const production = read('docs/PEOPLE_PROFILE_CANONICAL.md');
+  assert.match(production, /En språkmodell er aldri en faktakilde/i);
+  assert.match(production, /påstand-for-påstand/i);
 });
 
 test('documentation map preserves exact ordered lists', () => {
   const docs = read('docs/README.md');
   assert.match(docs, /### Dagens runtime og arbeidsflyt[\s\S]*?1\. .*SYSTEM_REGISTRY\.md[\s\S]*?2\. .*SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS\.md[\s\S]*?3\. .*SYSTEM_MAP\.md/);
-  assert.match(docs, /### People-produksjon, stedskobling og bilder[\s\S]*?1\. .*FACTUALITY_CONTRACT\.md[\s\S]*?2\. .*people-of-places-method\.md[\s\S]*?3\. .*PEOPLE_POPUP_SYSTEM\.md[\s\S]*?11\. .*people-images\.test\.mjs/);
+  assert.match(docs, /### People-produksjon, stedskobling og bilder[\s\S]*?1\. .*FACTUALITY_CONTRACT\.md[\s\S]*?2\. .*PEOPLE_PROFILE_CANONICAL\.md[\s\S]*?3\. .*people_profile_templates_v1\.json[\s\S]*?4\. .*people_claims_schema_v1\.json[\s\S]*?5\. .*audit-people-profile-canonical\.mjs[\s\S]*?6\. .*people-of-places-method\.md[\s\S]*?7\. .*PEOPLE_POPUP_SYSTEM\.md[\s\S]*?15\. .*people-images\.test\.mjs/);
   assert.doesNotMatch(docs, /### Dagens runtime og arbeidsflyt[\s\S]*?10\. .*SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS\.md/);
 });
 

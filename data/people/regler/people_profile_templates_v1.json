@@ -1,0 +1,190 @@
+{
+  "schema": "history_go_people_profile_templates_v1",
+  "version": "1.0.0",
+  "status": "canonical_claim_first_people_production",
+  "owner": "person_profile_production_contract",
+  "documentation": "docs/PEOPLE_PROFILE_CANONICAL.md",
+  "claimsSchema": "data/people/regler/people_claims_schema_v1.json",
+  "principles": [
+    "Inspectable sources before prose",
+    "Every published factual field maps to claims",
+    "Every desc and popupDesc sentence maps to claims",
+    "Missing data remains missing",
+    "No fixed fullness requirements",
+    "Fact review and editorial review are separate",
+    "Readiness is presentation coverage, not truth status"
+  ],
+  "productionStatuses": [
+    "ready_people_v1",
+    "needs_research",
+    "source_conflict",
+    "identity_unresolved",
+    "blocked_insufficient_sources",
+    "metadata_correction_required",
+    "current_status_stale",
+    "legacy_unreviewed"
+  ],
+  "identityStatuses": [
+    "verified",
+    "identity_unresolved",
+    "metadata_correction_required"
+  ],
+  "claimStatuses": [
+    "verified",
+    "source_conflict",
+    "rejected",
+    "insufficient_support"
+  ],
+  "publicationDecisions": [
+    "omit",
+    "publish_common_secure_part",
+    "publish_with_qualification",
+    "prefer_primary_source",
+    "unresolved_blocking"
+  ],
+  "sourceTypes": [
+    "primary",
+    "official_register",
+    "archive",
+    "institutional",
+    "recognized_reference",
+    "research",
+    "editorial",
+    "other_cross_checked"
+  ],
+  "evidenceLevels": [
+    "direct",
+    "explicit",
+    "qualified"
+  ],
+  "temporalStatuses": [
+    "historical",
+    "current",
+    "planned",
+    "unknown"
+  ],
+  "fieldSemantics": {
+    "education": {
+      "allowEmpty": true,
+      "allowed": [
+        "formal education",
+        "documented apprenticeship or pupil training",
+        "documented private instruction",
+        "study travel explicitly described as training"
+      ],
+      "forbidden": [
+        "debut",
+        "employment",
+        "ensemble work",
+        "work experience",
+        "audition",
+        "role reading before employment",
+        "career development"
+      ]
+    },
+    "works": {
+      "minimumCount": null,
+      "requiredWhenPresent": [
+        "title",
+        "role or material",
+        "year or date when documented",
+        "place when documented",
+        "summary"
+      ],
+      "rule": "Institutional employment is not evidence for participation in a specific production."
+    },
+    "places": {
+      "minimumCount": null,
+      "rule": "Every place link needs a direct documented biographical connection and field claim mapping."
+    },
+    "materialsThemesTags": {
+      "minimumCount": null,
+      "rule": "Editorial classifications must be grounded in documented practice and never create new biography."
+    }
+  },
+  "strongClaimTerms": [
+    "første",
+    "eneste",
+    "yngste",
+    "eldste",
+    "største",
+    "viktigste",
+    "ledende",
+    "fremste",
+    "sentral",
+    "bærende",
+    "særlig kjent for",
+    "hovedverk",
+    "glansrolle",
+    "gjennombrudd",
+    "legendarisk",
+    "banebrytende",
+    "revolusjonerte",
+    "endret for alltid",
+    "førte til",
+    "på grunn av",
+    "dermed",
+    "var årsaken til"
+  ],
+  "currentClaimTerms": [
+    "er ansatt",
+    "arbeider ved",
+    "leder",
+    "bor",
+    "spiller nå",
+    "er teatersjef"
+  ],
+  "freshness": {
+    "defaultCurrentClaimDays": 180
+  },
+  "requiredMappings": {
+    "fields": [
+      "identity and names",
+      "life dates and places when published",
+      "roles, employment and offices",
+      "education entries",
+      "works fields",
+      "placeId and every places entry",
+      "current statements",
+      "quotes, awards, records and causal claims"
+    ],
+    "surfaces": [
+      "desc",
+      "popupDesc"
+    ]
+  },
+  "reviewGates": {
+    "factReview": [
+      "identity",
+      "dates",
+      "education",
+      "roles and employment",
+      "works and production dates",
+      "institutions and places",
+      "current status",
+      "claim coverage",
+      "source conflicts",
+      "source quality"
+    ],
+    "editorialReview": [
+      "clarity",
+      "flow",
+      "repetition",
+      "generic formulations",
+      "unsupported evaluations",
+      "batch variation",
+      "no new facts"
+    ]
+  },
+  "quizQualityIndicator": {
+    "targetDirectQuestions": 8,
+    "minimumNormalQuestions": 5,
+    "hardRequirement": false
+  },
+  "readinessPolicy": {
+    "countBasedRewardsForbidden": true,
+    "missingEducationIsError": false,
+    "textLengthAloneProvesQuality": false,
+    "legacyWithoutClaimsStatus": "legacy_unreviewed"
+  }
+}

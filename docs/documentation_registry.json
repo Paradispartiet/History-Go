@@ -22,6 +22,7 @@
     "docs/SUBJECT_FILE_CONTRACT.md",
     "docs/HISTORY_UNIVERSAL_COVERAGE.md",
     "docs/PLACE_POPUP_SYSTEM.md",
+    "docs/PEOPLE_PROFILE_CANONICAL.md",
     "docs/PEOPLE_POPUP_SYSTEM.md",
     "docs/coordinates/README.md",
     "docs/coordinates/coordinate-source-contract-v1.md",
@@ -533,14 +534,26 @@
       "last_verified": "2026-07-26"
     },
     {
+      "path": "docs/PEOPLE_PROFILE_CANONICAL.md",
+      "status": "canonical",
+      "role": "Bindende claim-first produksjons-, review-, feltsemantikk- og ferdigstatuskontrakt for canonical People-profiler",
+      "owns": [
+        "person_profile_production_contract",
+        "person_profile_claim_contract",
+        "person_profile_review_contract",
+        "person_profile_completion_contract"
+      ],
+      "last_verified": "2026-07-27"
+    },
+    {
       "path": "docs/PEOPLE_POPUP_SYSTEM.md",
       "status": "canonical",
-      "role": "Presentasjons-, felt-, handling-, fallback- og persontypekontrakt for people-popup V2",
+      "role": "Bindende runtime-, presentasjons-, handling- og fallbackkontrakt for people-popup V2",
       "owns": [
         "person_popup_presentation_contract",
-        "person_popup_field_contract",
-        "person_popup_type_profiles",
-        "person_popup_readiness_model"
+        "person_popup_runtime_field_rendering",
+        "person_popup_actions",
+        "person_popup_fallback_contract"
       ],
       "last_verified": "2026-07-27"
     },

@@ -4,6 +4,15 @@ import path from 'path';
 
 type JsonRecord = Record<string, unknown>;
 type ReadinessStatus = 'complete' | 'strong' | 'partial' | 'sparse';
+type ProductionStatus =
+  | 'ready_people_v1'
+  | 'needs_research'
+  | 'source_conflict'
+  | 'identity_unresolved'
+  | 'blocked_insufficient_sources'
+  | 'metadata_correction_required'
+  | 'current_status_stale'
+  | 'legacy_unreviewed';
 type ImageState = 'valid_image' | 'broken_image' | 'explicit_fallback' | 'implicit_fallback';
 
 type PersonReadiness = {
@@ -17,6 +26,9 @@ type PersonReadiness = {
   score: number;
   priority: number;
   status: ReadinessStatus;
+  productionStatus: ProductionStatus;
+  profileStandard: string;
+  claimsFile: string;
   paragraphCount: number;
   popupLength: number;
   contributionCount: number;
@@ -36,6 +48,8 @@ type CategorySummary = {
   strong: number;
   partial: number;
   sparse: number;
+  readyPeopleV1: number;
+  legacyUnreviewed: number;
   averageScore: number;
 };
 
@@ -46,7 +60,13 @@ type PlaceCluster = {
   partial: number;
   strong: number;
   averageScore: number;
-  people: Array<{ id: string; name: string; score: number; status: ReadinessStatus }>;
+  people: Array<{
+    id: string;
+    name: string;
+    score: number;
+    status: ReadinessStatus;
+    productionStatus: ProductionStatus;
+  }>;
 };
 
 const root = process.cwd();
@@ -54,6 +74,17 @@ const manifestPath = path.join(root, 'data/people/manifest.json');
 const reportJsonPath = path.join(root, 'reports/people-popup-readiness.json');
 const reportMdPath = path.join(root, 'reports/people-popup-readiness.md');
 const checkOnly = process.argv.includes('--check');
+
+const productionStatuses = new Set<ProductionStatus>([
+  'ready_people_v1',
+  'needs_research',
+  'source_conflict',
+  'identity_unresolved',
+  'blocked_insufficient_sources',
+  'metadata_correction_required',
+  'current_status_stale',
+  'legacy_unreviewed',
+]);
 
 function readText(filePath: string): string {
   return fs.readFileSync(filePath, 'utf8');
@@ -84,9 +115,15 @@ function array(value: unknown): unknown[] {
 }
 
 function records(value: unknown): JsonRecord[] {
-  if (Array.isArray(value)) return value.filter((item): item is JsonRecord => !!item && typeof item === 'object' && !Array.isArray(item));
+  if (Array.isArray(value)) {
+    return value.filter((item): item is JsonRecord => !!item && typeof item === 'object' && !Array.isArray(item));
+  }
   if (value && typeof value === 'object') return [value as JsonRecord];
   return [];
+}
+
+function hasOwn(record: JsonRecord, field: string): boolean {
+  return Object.prototype.hasOwnProperty.call(record, field);
 }
 
 function uniqueStrings(values: unknown[]): string[] {
@@ -119,13 +156,20 @@ function stringValues(...values: unknown[]): string[] {
   }
   return uniqueStrings(out.map((item) => {
     if (typeof item === 'string' || typeof item === 'number') return item;
-    const record = asRecord(item);
-    return firstText(record.title, record.name, record.label, record.role, record.field, record.id);
+    const itemRecord = asRecord(item);
+    return firstText(itemRecord.title, itemRecord.name, itemRecord.label, itemRecord.role, itemRecord.field, itemRecord.id);
   }));
 }
 
 function contributionValues(person: JsonRecord): string[] {
-  return stringValues(person.works, person.notable_works, person.notableWorks, person.achievements, person.contributions, person.publications);
+  return stringValues(
+    person.works,
+    person.notable_works,
+    person.notableWorks,
+    person.achievements,
+    person.contributions,
+    person.publications,
+  );
 }
 
 function educationValues(person: JsonRecord): string[] {
@@ -178,9 +222,9 @@ function sourceEntries(person: JsonRecord): Array<{ label: string; url: string }
       entries.push({ label: raw, url: /^https?:\/\//i.test(raw) ? raw : '' });
       return;
     }
-    const record = asRecord(value);
-    const url = firstText(record.url, record.href);
-    const label = firstText(record.label, record.title, record.name, url);
+    const item = asRecord(value);
+    const url = firstText(item.url, item.href);
+    const label = firstText(item.label, item.title, item.name, url);
     if (label || url) entries.push({ label, url });
   };
   array(person.externalLinks).forEach(push);
@@ -223,9 +267,9 @@ function imageState(person: JsonRecord): { state: ImageState; imagePath: string 
   const valid = candidates.find(imageExists);
   if (valid) return { state: 'valid_image', imagePath: valid };
   if (candidates.length) return { state: 'broken_image', imagePath: candidates[0] };
-  const hasExplicitField = ['image', 'portrait', 'portraitImage', 'imageCard', 'cardImage', 'photo', 'frontImage']
-    .some((field) => Object.prototype.hasOwnProperty.call(person, field));
-  return { state: hasExplicitField ? 'explicit_fallback' : 'implicit_fallback', imagePath: '' };
+  const explicit = ['image', 'portrait', 'portraitImage', 'imageCard', 'cardImage', 'photo', 'frontImage']
+    .some((field) => hasOwn(person, field));
+  return { state: explicit ? 'explicit_fallback' : 'implicit_fallback', imagePath: '' };
 }
 
 function statusFor(score: number): ReadinessStatus {
@@ -235,42 +279,13 @@ function statusFor(score: number): ReadinessStatus {
   return 'sparse';
 }
 
-function narrativeScore(value: string, paragraphs: number): number {
-  if (!value) return 0;
-  if (value.length >= 350 && paragraphs >= 3) return 25;
-  if (value.length >= 220 && paragraphs >= 2) return 20;
-  if (value.length >= 140) return 15;
-  if (value.length >= 70) return 9;
-  return 4;
+function productionStatusFor(person: JsonRecord): ProductionStatus {
+  const candidate = text(person.profileStatus) as ProductionStatus;
+  return productionStatuses.has(candidate) ? candidate : 'legacy_unreviewed';
 }
 
-function contributionScore(count: number): number {
-  if (count >= 5) return 20;
-  if (count >= 3) return 16;
-  if (count >= 1) return 9;
-  return 0;
-}
-
-function educationScore(count: number): number {
-  if (count >= 3) return 10;
-  if (count >= 2) return 8;
-  if (count >= 1) return 5;
-  return 0;
-}
-
-function practiceScore(count: number): number {
-  if (count >= 8) return 10;
-  if (count >= 5) return 8;
-  if (count >= 3) return 6;
-  if (count >= 1) return 3;
-  return 0;
-}
-
-function sourceScore(count: number): number {
-  if (count >= 4) return 15;
-  if (count >= 2) return 10;
-  if (count >= 1) return 5;
-  return 0;
+function explicitField(person: JsonRecord, fields: string[]): boolean {
+  return fields.some((field) => hasOwn(person, field));
 }
 
 function readinessFor(person: JsonRecord, sourceFile: string): PersonReadiness {
@@ -278,8 +293,9 @@ function readinessFor(person: JsonRecord, sourceFile: string): PersonReadiness {
   const name = firstText(person.name, person.title, id);
   const category = inferCategory(person, sourceFile);
   const kind = firstText(person.kindLabel, person.occupation, person.profession, person.role, person.kind);
-  const explicitPopup = firstText(person.popupDesc, person.popupdesc);
-  const narrative = firstText(explicitPopup, person.wiki, person.description, person.desc, person.summary);
+  const desc = firstText(person.desc, person.summary);
+  const popup = firstText(person.popupDesc, person.popupdesc);
+  const narrative = popup || desc;
   const paragraphs = paragraphCount(narrative);
   const contributions = contributionValues(person);
   const education = educationValues(person);
@@ -287,51 +303,96 @@ function readinessFor(person: JsonRecord, sourceFile: string): PersonReadiness {
   const places = placeValues(person);
   const anchor = primaryPlace(person);
   const sources = sourceEntries(person);
-  const birth = firstText(person.birth_date, person.birthDate, asRecord(person.born).date, asRecord(person.born).year, person.birthYear, typeof person.born === 'string' || typeof person.born === 'number' ? person.born : '');
-  const death = firstText(person.death_date, person.deathDate, asRecord(person.died).date, asRecord(person.died).year, person.deathYear, typeof person.died === 'string' || typeof person.died === 'number' ? person.died : '');
+  const birth = firstText(
+    person.birth_date,
+    person.birthDate,
+    asRecord(person.born).date,
+    asRecord(person.born).year,
+    person.birthYear,
+    typeof person.born === 'string' || typeof person.born === 'number' ? person.born : '',
+  );
+  const death = firstText(
+    person.death_date,
+    person.deathDate,
+    asRecord(person.died).date,
+    asRecord(person.died).year,
+    person.deathYear,
+    typeof person.died === 'string' || typeof person.died === 'number' ? person.died : '',
+  );
   const birthPlace = firstText(person.birth_place, person.birthPlace, asRecord(person.born).place);
   const activePlace = firstText(person.active_place, person.activePlace, person.virkested, person.base);
   const image = imageState(person);
+  const productionStatus = productionStatusFor(person);
+  const profileStandard = text(person.profileStandard);
+  const claimsFile = text(person.claimsFile);
 
-  const identity = (id ? 4 : 0) + (name ? 4 : 0) + (category !== 'unknown' ? 1 : 0) + (kind ? 1 : 0);
-  const life = (birth ? 4 : 0) + (birthPlace ? 3 : 0) + (activePlace || death ? 3 : 0);
-  const grounding = (anchor ? 5 : 0) + (anchor && places.includes(anchor) ? 5 : places.length ? 3 : 0);
-  let score = identity
-    + narrativeScore(narrative, paragraphs)
-    + life
-    + contributionScore(contributions.length)
-    + educationScore(education.length)
-    + practiceScore(practice.length)
-    + grounding
-    + sourceScore(sources.length);
-  if (image.state === 'broken_image') score = Math.max(0, score - 10);
+  const identityCovered = !!id && !!name && category !== 'unknown' && !!kind;
+  const popupCovered = !!popup;
+  const lifeCovered = !!birth && !!(birthPlace || activePlace || death);
+  const contributionsDeclared = explicitField(person, [
+    'works',
+    'notable_works',
+    'notableWorks',
+    'achievements',
+    'contributions',
+    'publications',
+  ]);
+  const educationDeclared = explicitField(person, ['education', 'utdanning', 'training']);
+  const practiceDeclared = explicitField(person, [
+    'themes',
+    'topics',
+    'materials',
+    'materialer',
+    'media',
+    'material',
+    'fields',
+    'disciplines',
+    'genres',
+    'instruments',
+    'techniques',
+    'roles',
+    'tags',
+  ]);
+  const placeGrounded = !!anchor && places.includes(anchor);
+  const sourcesCovered = sources.length > 0;
+  const imageCovered = image.state !== 'broken_image';
+  const standardized = profileStandard === 'people_profile_v1.0' && !!claimsFile;
+
+  let score = 0;
+  score += identityCovered ? 20 : (id && name ? 12 : id || name ? 6 : 0);
+  score += desc ? 5 : 0;
+  score += popupCovered ? 20 : 0;
+  score += lifeCovered ? 10 : birth || birthPlace || activePlace || death ? 5 : 0;
+  score += contributionsDeclared ? 10 : 0;
+  score += educationDeclared ? 5 : 0;
+  score += practiceDeclared ? 5 : 0;
+  score += placeGrounded ? 15 : anchor || places.length ? 7 : 0;
+  score += sourcesCovered ? 10 : 0;
+  score += imageCovered ? 5 : 0;
   score = Math.min(100, score);
 
   const issues: string[] = [];
   if (!kind) issues.push('missing_role_label');
-  if (!explicitPopup) issues.push('missing_popup_desc');
-  else {
-    if (explicitPopup.length < 220) issues.push('short_popup_desc');
-    if (paragraphCount(explicitPopup) < 2) issues.push('single_paragraph_popup_desc');
-  }
+  if (!popup) issues.push('missing_popup_desc');
   if (!birth) issues.push('missing_birth_data');
-  if (!contributions.length) issues.push('missing_contributions');
-  if (!education.length) issues.push('missing_education_or_training');
-  if (practice.length < 3) issues.push('thin_practice_profile');
+  if (!contributionsDeclared) issues.push('missing_contributions_field');
   if (!anchor) issues.push('missing_primary_place');
   if (!places.length) issues.push('missing_places');
   else if (anchor && !places.includes(anchor)) issues.push('places_missing_primary_anchor');
-  if (!sources.length) issues.push('missing_sources');
-  else if (sources.length < 2) issues.push('single_source_only');
+  if (!sourcesCovered) issues.push('missing_sources');
   if (image.state === 'broken_image') issues.push('broken_image_reference');
   if (image.state === 'implicit_fallback') issues.push('implicit_image_fallback');
+  if (!standardized) issues.push('legacy_unreviewed');
 
-  const priority = Math.min(200,
+  const priority = Math.min(
+    200,
     (100 - score)
-    + (issues.includes('missing_popup_desc') ? 18 : 0)
-    + (issues.includes('missing_sources') ? 14 : 0)
-    + (issues.includes('missing_contributions') ? 12 : 0)
-    + (image.state === 'broken_image' ? 20 : 0));
+      + (issues.includes('missing_popup_desc') ? 18 : 0)
+      + (issues.includes('missing_sources') ? 14 : 0)
+      + (issues.includes('missing_contributions_field') ? 10 : 0)
+      + (image.state === 'broken_image' ? 20 : 0)
+      + (productionStatus === 'legacy_unreviewed' ? 5 : 0),
+  );
 
   return {
     id,
@@ -344,6 +405,9 @@ function readinessFor(person: JsonRecord, sourceFile: string): PersonReadiness {
     score,
     priority,
     status: statusFor(score),
+    productionStatus,
+    profileStandard,
+    claimsFile,
     paragraphCount: paragraphs,
     popupLength: narrative.length,
     contributionCount: contributions.length,
@@ -353,15 +417,16 @@ function readinessFor(person: JsonRecord, sourceFile: string): PersonReadiness {
     imageState: image.state,
     imagePath: image.imagePath,
     coverage: {
-      identity: identity === 10,
-      popupDesc: !!explicitPopup && explicitPopup.length >= 220 && paragraphCount(explicitPopup) >= 2,
-      lifeData: !!birth && !!(birthPlace || activePlace || death),
-      contributions: contributions.length >= 3,
-      education: education.length >= 1,
-      practiceProfile: practice.length >= 3,
-      placeGrounding: !!anchor && places.includes(anchor),
-      sources: sources.length >= 2,
-      imageContract: image.state !== 'broken_image',
+      identity: identityCovered,
+      popupDesc: popupCovered,
+      lifeData: lifeCovered,
+      contributionsDeclared,
+      educationDeclared,
+      practiceDeclared,
+      placeGrounding: placeGrounded,
+      sources: sourcesCovered,
+      imageContract: imageCovered,
+      profileStandard: standardized,
     },
     issues,
   };
@@ -384,13 +449,15 @@ function summarizeCategories(people: PersonReadiness[]): CategorySummary[] {
     strong: rows.filter((row) => row.status === 'strong').length,
     partial: rows.filter((row) => row.status === 'partial').length,
     sparse: rows.filter((row) => row.status === 'sparse').length,
+    readyPeopleV1: rows.filter((row) => row.productionStatus === 'ready_people_v1').length,
+    legacyUnreviewed: rows.filter((row) => row.productionStatus === 'legacy_unreviewed').length,
     averageScore: round(rows.reduce((sum, row) => sum + row.score, 0) / Math.max(rows.length, 1)),
   })).sort((a, b) => b.total - a.total || a.category.localeCompare(b.category, 'nb'));
 }
 
 function summarizePlaces(people: PersonReadiness[]): PlaceCluster[] {
   const map = new Map<string, PersonReadiness[]>();
-  for (const person of people.filter((row) => row.status !== 'complete')) {
+  for (const person of people.filter((row) => row.status !== 'complete' || row.productionStatus !== 'ready_people_v1')) {
     const key = person.primaryPlace || '(uten primærsted)';
     if (!map.has(key)) map.set(key, []);
     map.get(key)?.push(person);
@@ -406,8 +473,17 @@ function summarizePlaces(people: PersonReadiness[]): PlaceCluster[] {
       .slice()
       .sort((a, b) => b.priority - a.priority || a.name.localeCompare(b.name, 'nb'))
       .slice(0, 12)
-      .map((row) => ({ id: row.id, name: row.name, score: row.score, status: row.status })),
-  })).sort((a, b) => b.totalIncomplete - a.totalIncomplete || a.averageScore - b.averageScore || a.placeId.localeCompare(b.placeId, 'nb'));
+      .map((row) => ({
+        id: row.id,
+        name: row.name,
+        score: row.score,
+        status: row.status,
+        productionStatus: row.productionStatus,
+      })),
+  })).sort((a, b) =>
+    b.totalIncomplete - a.totalIncomplete
+      || a.averageScore - b.averageScore
+      || a.placeId.localeCompare(b.placeId, 'nb'));
 }
 
 function markdownEscape(value: unknown): string {
@@ -424,9 +500,11 @@ function markdownReport(report: JsonRecord): string {
   const lines: string[] = [];
   lines.push('# People-popup readiness');
   lines.push('');
-  lines.push('Status: **generert produksjonsrapport**');
+  lines.push('Status: **generert presentasjonsrapport**');
   lines.push('');
-  lines.push('Rapporten rangerer manifest-lastede canonical personer etter hvor mye av `docs/PEOPLE_POPUP_SYSTEM.md` de kan fylle. Den måler datakompletthet, ikke personens historiske betydning eller person–sted-relevans.');
+  lines.push('Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. Den måler ikke faktaverifikasjon, historisk betydning eller hvor mange oppføringer en profil har.');
+  lines.push('');
+  lines.push('People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.');
   lines.push('');
   lines.push(`Source fingerprint: \`${markdownEscape(report.sourceFingerprint)}\``);
   lines.push('');
@@ -435,10 +513,12 @@ function markdownReport(report: JsonRecord): string {
   lines.push('| Måling | Antall |');
   lines.push('|---|---:|');
   lines.push(`| Personer | ${summary.totalPeople ?? 0} |`);
-  lines.push(`| Complete | ${summary.complete ?? 0} |`);
-  lines.push(`| Strong | ${summary.strong ?? 0} |`);
-  lines.push(`| Partial | ${summary.partial ?? 0} |`);
-  lines.push(`| Sparse | ${summary.sparse ?? 0} |`);
+  lines.push(`| Presentasjon complete | ${summary.complete ?? 0} |`);
+  lines.push(`| Presentasjon strong | ${summary.strong ?? 0} |`);
+  lines.push(`| Presentasjon partial | ${summary.partial ?? 0} |`);
+  lines.push(`| Presentasjon sparse | ${summary.sparse ?? 0} |`);
+  lines.push(`| People Profile v1 ready | ${summary.readyPeopleV1 ?? 0} |`);
+  lines.push(`| Legacy uten v1-claims | ${summary.legacyUnreviewed ?? 0} |`);
   lines.push(`| Ødelagte bildereferanser | ${summary.brokenImages ?? 0} |`);
   lines.push(`| Eksplisitt initialfallback | ${summary.explicitFallbacks ?? 0} |`);
   lines.push(`| Implisitt initialfallback | ${summary.implicitFallbacks ?? 0} |`);
@@ -446,7 +526,7 @@ function markdownReport(report: JsonRecord): string {
   lines.push('');
   lines.push('## Feltdekning');
   lines.push('');
-  lines.push('| Kontraktdel | Dekket | Andel |');
+  lines.push('| Presentasjonsdel | Dekket | Andel |');
   lines.push('|---|---:|---:|');
   for (const [key, raw] of Object.entries(coverage)) {
     const item = asRecord(raw);
@@ -455,38 +535,40 @@ function markdownReport(report: JsonRecord): string {
   lines.push('');
   lines.push('## Kategorier');
   lines.push('');
-  lines.push('| Kategori | Totalt | Complete | Strong | Partial | Sparse | Snitt |');
-  lines.push('|---|---:|---:|---:|---:|---:|---:|');
+  lines.push('| Kategori | Totalt | Complete | Strong | Partial | Sparse | v1 ready | Legacy | Snitt |');
+  lines.push('|---|---:|---:|---:|---:|---:|---:|---:|---:|');
   for (const row of categories) {
-    lines.push(`| ${markdownEscape(row.category)} | ${row.total} | ${row.complete} | ${row.strong} | ${row.partial} | ${row.sparse} | ${row.averageScore} |`);
+    lines.push(`| ${markdownEscape(row.category)} | ${row.total} | ${row.complete} | ${row.strong} | ${row.partial} | ${row.sparse} | ${row.readyPeopleV1} | ${row.legacyUnreviewed} | ${row.averageScore} |`);
   }
   lines.push('');
   lines.push('## Stedsklynger med mest gjenstående arbeid');
   lines.push('');
-  lines.push('| Primærsted | Ufullstendige | Sparse | Partial | Strong | Snitt | Første profiler |');
+  lines.push('| Primærsted | Uferdige/legacy | Sparse | Partial | Strong | Snitt | Første profiler |');
   lines.push('|---|---:|---:|---:|---:|---:|---|');
   for (const cluster of clusters.slice(0, 50)) {
-    const names = cluster.people.slice(0, 5).map((person) => `${person.name} (${person.score})`).join(', ');
+    const names = cluster.people.slice(0, 5)
+      .map((person) => `${person.name} (${person.score}; ${person.productionStatus})`)
+      .join(', ');
     lines.push(`| ${markdownEscape(cluster.placeId)} | ${cluster.totalIncomplete} | ${cluster.sparse} | ${cluster.partial} | ${cluster.strong} | ${cluster.averageScore} | ${markdownEscape(names)} |`);
   }
   lines.push('');
   lines.push('## Prioritert arbeidsliste');
   lines.push('');
-  lines.push('| Prioritet | Person | Kategori | Primærsted | Score | Status | Mangler | Fil |');
-  lines.push('|---:|---|---|---|---:|---|---|---|');
+  lines.push('| Prioritet | Person | Kategori | Primærsted | Score | Presentasjon | Produksjon | Mangler | Fil |');
+  lines.push('|---:|---|---|---|---:|---|---|---|---|');
   for (const person of priorities.slice(0, 150)) {
-    lines.push(`| ${person.priority} | ${markdownEscape(person.name || person.id)} | ${markdownEscape(person.category)} | ${markdownEscape(person.primaryPlace || '—')} | ${person.score} | ${person.status} | ${markdownEscape(person.issues.join(', '))} | \`${markdownEscape(person.sourceFile)}\` |`);
+    lines.push(`| ${person.priority} | ${markdownEscape(person.name || person.id)} | ${markdownEscape(person.category)} | ${markdownEscape(person.primaryPlace || '—')} | ${person.score} | ${person.status} | ${person.productionStatus} | ${markdownEscape(person.issues.join(', '))} | \`${markdownEscape(person.sourceFile)}\` |`);
   }
   lines.push('');
   lines.push('## Tolkning');
   lines.push('');
-  lines.push('- `complete` betyr 85–100 poeng.');
-  lines.push('- `strong` betyr 65–84 poeng.');
-  lines.push('- `partial` betyr 40–64 poeng.');
-  lines.push('- `sparse` betyr 0–39 poeng.');
-  lines.push('- Manglende formell utdanning er en produksjonsindikator, ikke automatisk en faktafeil. Feltet skal utelates når det ikke er relevant eller dokumentert.');
-  lines.push('- Bilde er ikke påkrevd. Initialfallback er en gyldig sluttstatus; ødelagte bildereferanser er ikke gyldige.');
-  lines.push('- Relevans og kildegate for person–sted-koblinger eies av `docs/people-of-places-method.md`.');
+  lines.push('- `complete`, `strong`, `partial` og `sparse` beskriver bare presentasjonsdekning.');
+  lines.push('- Poengsummen øker ikke med antall utdanningspunkter, verk, temaer eller kilder.');
+  lines.push('- Tom `education` er en gyldig, ferdig tilstand når kildene ikke dokumenterer utdanning.');
+  lines.push('- Tekstlengde alene gir ikke høyere score.');
+  lines.push('- `ready_people_v1` krever separat claims-fil og bestått People Profile Canonical-validator.');
+  lines.push('- Profiler uten v1-claims er `legacy_unreviewed`.');
+  lines.push('- Bilde er ikke påkrevd. Initialfallback er gyldig; ødelagte bildereferanser er ikke gyldige.');
   lines.push('');
   lines.push('Regenerer med `npm run audit:people-popup-readiness`.');
   lines.push('');
@@ -526,7 +608,18 @@ for (const sourceFile of sourceFiles) {
 people.sort((a, b) => b.priority - a.priority || a.score - b.score || a.name.localeCompare(b.name, 'nb'));
 const categories = summarizeCategories(people);
 const placeClusters = summarizePlaces(people);
-const coverageKeys = ['identity', 'popupDesc', 'lifeData', 'contributions', 'education', 'practiceProfile', 'placeGrounding', 'sources', 'imageContract'];
+const coverageKeys = [
+  'identity',
+  'popupDesc',
+  'lifeData',
+  'contributionsDeclared',
+  'educationDeclared',
+  'practiceDeclared',
+  'placeGrounding',
+  'sources',
+  'imageContract',
+  'profileStandard',
+];
 const fieldCoverage = Object.fromEntries(coverageKeys.map((key) => {
   const count = people.filter((person) => person.coverage[key] === true).length;
   return [key, { count, percent: round((count / Math.max(people.length, 1)) * 100) }];
@@ -538,6 +631,8 @@ const summary = {
   strong: people.filter((person) => person.status === 'strong').length,
   partial: people.filter((person) => person.status === 'partial').length,
   sparse: people.filter((person) => person.status === 'sparse').length,
+  readyPeopleV1: people.filter((person) => person.productionStatus === 'ready_people_v1').length,
+  legacyUnreviewed: people.filter((person) => person.productionStatus === 'legacy_unreviewed').length,
   brokenImages: people.filter((person) => person.imageState === 'broken_image').length,
   explicitFallbacks: people.filter((person) => person.imageState === 'explicit_fallback').length,
   implicitFallbacks: people.filter((person) => person.imageState === 'implicit_fallback').length,
@@ -545,11 +640,18 @@ const summary = {
 };
 
 const report: JsonRecord = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   contract: 'docs/PEOPLE_POPUP_SYSTEM.md',
+  productionContract: 'docs/PEOPLE_PROFILE_CANONICAL.md',
   generatedBy: 'tools/audit-people-popup-readiness.mts',
   sourceFingerprint: fingerprint.digest('hex'),
   thresholds: { complete: 85, strong: 65, partial: 40, sparse: 0 },
+  policy: {
+    countBasedRewards: false,
+    missingEducationIsError: false,
+    textLengthAloneProvesQuality: false,
+    legacyWithoutClaimsStatus: 'legacy_unreviewed',
+  },
   summary,
   fieldCoverage,
   categories,
@@ -563,6 +665,10 @@ writeOrCheck(reportJsonPath, jsonContent);
 writeOrCheck(reportMdPath, mdContent);
 
 if (process.exitCode !== 1) {
-  console.log(`People-popup readiness: ${summary.totalPeople} personer, ${summary.complete} complete, ${summary.strong} strong, ${summary.partial} partial, ${summary.sparse} sparse.`);
+  console.log(
+    `People-popup readiness: ${summary.totalPeople} personer, ${summary.complete} complete, `
+      + `${summary.strong} strong, ${summary.partial} partial, ${summary.sparse} sparse; `
+      + `${summary.readyPeopleV1} ready_people_v1, ${summary.legacyUnreviewed} legacy_unreviewed.`,
+  );
   console.log(`Rapporter: ${repoPath(reportJsonPath)}, ${repoPath(reportMdPath)}`);
 }
