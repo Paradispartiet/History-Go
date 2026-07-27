@@ -34,6 +34,18 @@
     document.body.appendChild(script);
   }
 
+  function loadPlaceLearningSurface() {
+    if (global.__HG_PLACE_LEARNING_SURFACE_SCRIPT_REQUESTED__) return;
+    if (global.HGPlaceLearningSurface) return;
+    if (document.querySelector('script[src="js/ui/place-learning-surface.js"]')) return;
+
+    global.__HG_PLACE_LEARNING_SURFACE_SCRIPT_REQUESTED__ = true;
+    const script = document.createElement("script");
+    script.src = "js/ui/place-learning-surface.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
   function loadRoundContentGuard() {
     if (global.HGPlaceCardRoundContentGuard) return;
     if (global.__HG_PLACE_CARD_ROUND_CONTENT_GUARD_REQUESTED__) return;
@@ -153,6 +165,7 @@
   }
 
   loadPlacePopupV2();
+  loadPlaceLearningSurface();
   loadRoundContentGuard();
 
   if (!install()) {
