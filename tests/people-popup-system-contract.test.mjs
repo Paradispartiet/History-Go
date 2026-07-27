@@ -13,6 +13,9 @@ test('canonical people popup documentation owns the active presentation contract
   assert.match(docs, /js\/ui\/person-popup-v2\.js/);
   assert.match(docs, /css\/person-popup-v2\.css/);
   assert.match(docs, /tools\/audit-people-popup-readiness\.mts/);
+  assert.match(docs, /FACTUALITY_CONTRACT\.md/);
+  assert.match(docs, /En språkmodell er aldri en faktakilde/i);
+  assert.match(docs, /complete.*betyr ikke.*source_verified/is);
   assert.match(docs, /Quizknappen skal aldri være en fullbredde gul bannerknapp/);
   assert.match(docs, /skjule tomme seksjoner helt/i);
   assert.match(docs, /initialfallback/i);

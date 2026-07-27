@@ -2,7 +2,7 @@
 
 Status: **canonical dokumentasjonsinngang**
 Register: [`documentation_registry.json`](./documentation_registry.json)
-Sist kontrollert: **2026-07-26**
+Sist kontrollert: **2026-07-27**
 
 Dette dokumentet svarer på tre spørsmål:
 
@@ -13,6 +13,8 @@ Dette dokumentet svarer på tre spørsmål:
 ## Grunnregel
 
 > Én sannhet per ansvarsområde.
+
+[`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) gjelder alle brukerrettede fakta: ingen opplysning skal diktes, gjettes eller fylles inn for å skape completeness. Manglende eller uavklart informasjon skal utelates.
 
 Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av source-data, manifester, loadere og validering. Dokumentasjonen styrer arkitektur, arbeidsmåte og kontrakter; CI må håndheve reglene som ikke kan overlates til tekst alene.
 
@@ -109,13 +111,14 @@ DesignCodes er metadata, ikke geometri eller bilder. Registeret eier gyldige kod
 
 ### Domener, data og innholdsproduksjon
 
-1. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) — bindende kategoribeslutninger
-2. [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — maskinlesbar sannhetskilde for runtime- og fagkategorier
-3. [`DOMAIN_REGISTRY_README.md`](./DOMAIN_REGISTRY_README.md) — operativ bruk av DomainRegistry og eksplisitte legacy-aliasgrenser
-4. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — aktiv dataproduksjonskontrakt
-5. relevante manifests under `data/**/manifest.json`
-6. lokale README-filer ved datasettet
-7. relevante audits og CI-gates
+1. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — overordnet canonical regel for sannhet, kildeverifikasjon, usikkerhet og forbud mot gjetting
+2. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) — bindende kategoribeslutninger
+3. [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — maskinlesbar sannhetskilde for runtime- og fagkategorier
+4. [`DOMAIN_REGISTRY_README.md`](./DOMAIN_REGISTRY_README.md) — operativ bruk av DomainRegistry og eksplisitte legacy-aliasgrenser
+5. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — aktiv dataproduksjonskontrakt
+6. relevante manifests under `data/**/manifest.json`
+7. lokale README-filer ved datasettet
+8. relevante audits og CI-gates
 
 `npm run audit:categories` håndhever samsvar mellom maskinkontrakten, fagmanifestet, quizprofilregisteret, badgeindeksen, DomainRegistry, kategori-UI og place-policyen.
 
@@ -140,18 +143,19 @@ En story er aktiv først når filen er manifestregistrert og `npm run check:stor
 
 ### People-produksjon, stedskobling og bilder
 
-1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
-2. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical presentasjons-, felt-, fallback- og persontypekontrakt
-3. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
-4. [`../tools/audit-people-popup-readiness.mts`](../tools/audit-people-popup-readiness.mts) — rangerer alle manifest-lastede profiler etter popup-readiness og skriver regenererbare rapporter
-5. [`../reports/people-popup-readiness.md`](../reports/people-popup-readiness.md) — prioritert arbeidsliste etter kategori og stedsklynge
-6. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
-7. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
-8. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
-9. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
-10. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+1. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — bindende regel om at ingen personopplysning eller stedskobling kan gjettes eller fylles for completeness
+2. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
+3. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical presentasjons-, felt-, fallback- og persontypekontrakt
+4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+5. [`../tools/audit-people-popup-readiness.mts`](../tools/audit-people-popup-readiness.mts) — rangerer alle manifest-lastede profiler etter popup-readiness og skriver regenererbare rapporter
+6. [`../reports/people-popup-readiness.md`](../reports/people-popup-readiness.md) — prioritert arbeidsliste etter kategori og stedsklynge
+7. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+8. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+9. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+10. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+11. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
 
-People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
+Faktisitetskontrakten står over alle lokale people-regler. Readiness, schema og grønne tester er ikke sannhetsbevis; hver brukerrettet påstand og person–sted-kobling må støttes av kilder som faktisk er lest. People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 
 ### Naturmapping
 
@@ -312,6 +316,7 @@ Oppdater riktig canonical dokument når en endring berører:
 - språk-, build- eller CI-policy,
 - klient/server/database-eierskap,
 - manifest eller canonical datastruktur,
+- faktisitets-, kilde-, usikkerhets- eller verifikasjonskrav,
 - produktavgrensning eller ferdigdefinisjon.
 
 Ikke opprett en ny `README`, `STATUS`, `PLAN`, `AUDIT` eller `FINAL`-fil før dokumentregisteret er kontrollert. Nye tidsbundne funn skal normalt til `reports/`, ikke bli en ny global fasit.
@@ -333,6 +338,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 ### Gjennomført
 
 - canonical dokumentregister og dokumentasjonsgate
+- overordnet canonical faktisitetskontrakt med permanent test- og tools-gate
 - `DOCS.md` redusert til inngang
 - gamle politikk-aggregate-paths fjernet fra dataproduksjonskontrakten
 - `IMPLEMENTATION_STATUS` merket som historisk snapshot

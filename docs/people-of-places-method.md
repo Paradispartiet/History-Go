@@ -3,11 +3,20 @@
 Status: **canonical redaksjonell metode for person–sted-koblinger**  
 People-manifest: [`../data/people/manifest.json`](../data/people/manifest.json)  
 Data-/manifestkontrakt: [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md)  
+Faktisitetskontrakt: [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md)  
 Audit: [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts)  
 Blokkerende gate: [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts)  
-Sist kontrollert: **2026-07-26**
+Sist kontrollert: **2026-07-27**
 
 Dette dokumentet eier den redaksjonelle arbeidsmetoden for å knytte personer til konkrete History GO-steder. Canonical people-filer eier dataene, manifestet eier aktiveringen, auditene eier maskinkontrollen, og Civication-builderen eier den avledede History People-indeksen.
+
+## Bindende faktisitetsgate
+
+Denne metoden er underlagt [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md). En person–sted-kobling skal aldri opprettes fordi den virker sannsynlig, fordi personen arbeidet i samme bransje, eller fordi koblingen gir bedre dekning.
+
+Hver kobling må ha en inspectable kilde som dokumenterer den konkrete forbindelsen. Kilden skal leses og må faktisk støtte rollen, perioden, hendelsen, verket eller oppholdet som dataene uttrykker. En generell personbiografi uten omtale av stedet er ikke tilstrekkelig. En språkmodell, tidligere History GO-tekst eller kandidatrapport er ikke en faktakilde.
+
+Hvis forbindelsen ikke kan verifiseres, skal kandidaten avvises eller feltet utelates.
 
 ## Formål
 
@@ -110,7 +119,7 @@ Kildene skal så langt som mulig prioriteres slik:
 4. Etablerte redaksjonelle medier.
 5. Andre kilder bare når de kan kontrolleres mot mer autoritativ dokumentasjon.
 
-Kildene skal underbygge selve stedskoblingen, ikke bare personens generelle biografi.
+Kildene skal underbygge selve stedskoblingen, ikke bare personens generelle biografi. Kildeantall er ikke nok: batchen skal dokumentere hvilken kilde som støtter hvilken forbindelse, rolle, periode eller hendelse.
 
 Når people-schemaet har `source_urls`, skal disse lagre kildene. Dersom et aktivt legacy-schema mangler dette feltet, skal batchen fortsatt dokumentere kildene i PR-/researchmaterialet og ikke finne på et lokalt konkurrerende schema.
 
@@ -154,7 +163,7 @@ Det skal ikke legges til mange personer bare for volum. Hver record må bestå s
 1. Les canonical place-recorden og fastslå hva stedet faktisk representerer.
 2. Auditér eksisterende manifest-loadede People-data, aktuelle legacyfiler og navnevarianter.
 3. Finn mulige personer etter prioriteringsrekkefølgen ovenfor.
-4. Dokumenter den konkrete stedstilknytningen med autoritative kilder.
+4. Åpne og les autoritative kilder, og dokumenter den konkrete stedstilknytningen påstand for påstand.
 5. Avvis kandidater som bare har løs eller generell tilknytning.
 6. Bestem om personen skal gjenbrukes, migreres eller opprettes som ny canonical record.
 7. Kontroller relevante schemafelt, normalt `id`, `name`, `placeId`, `places`, `category`, `year`, beskrivelser, tags og `source_urls`.
@@ -201,6 +210,10 @@ Hver batch skal dokumentere:
 - hvilke legacy-records som migreres;
 - hvilke kandidater som ble avvist og hvorfor, når dette er relevant;
 - at duplikatsøk er gjennomført;
+- hvilke inspectable kilder som faktisk er lest;
+- hvilke navn, datoer, roller, verk, perioder og stedskoblinger hver kilde støtter;
+- hvilke detaljer som ble utelatt eller avvist fordi de ikke kunne verifiseres;
+- at ingen felt er fylt for å øke dekning, readiness eller profilens visuelle fylde;
 - at alle place-referanser er gyldige;
 - at primærankere og `places` er konsistente med gjeldende schema;
 - at runtime-/Civication-indeksen er regenerert når berørt;
@@ -231,6 +244,6 @@ En batch skal ikke merges med midlertidige materialiseringsfiler, feillogger ell
 
 Metoden skal oppdateres når datamodellen, manifeststrukturen, valideringsscript, Civication-indexbygger eller dekningspolicy endres.
 
-Endringer som svekker relevanskravet, tillater generiske koblinger eller senker dokumentasjonskravet skal behandles som en eksplisitt metodeendring, ikke som en lokal batchavgjørelse.
+Endringer som svekker relevanskravet, tillater generiske koblinger eller senker dokumentasjonskravet skal behandles som en eksplisitt metodeendring, ikke som en lokal batchavgjørelse. Ingen lokal metodeendring kan overstyre `FACTUALITY_CONTRACT.md`.
 
 Dersom full place-for-place coverage blir CI-håndhevet senere, skal både denne metoden, auditrapportens schema og `check-people-of-places-gate.mts` oppdateres i samme PR.
