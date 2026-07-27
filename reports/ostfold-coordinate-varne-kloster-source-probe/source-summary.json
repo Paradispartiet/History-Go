@@ -1,0 +1,99 @@
+{
+  "placeId": "varne_kloster",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.3609,
+    "lon": 10.7269,
+    "r": 300
+  },
+  "appliedCoordinate": {
+    "lat": 59.39354,
+    "lon": 10.67424,
+    "r": 300,
+    "displacementM": 4697.8
+  },
+  "identityDecision": "Use the named Værne Kloster farmyard and manor core as the physical anchor for the former royal estate, Knights Hospitaller monastery and hospital, and later manor and active farm.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:124839227",
+    "name": "Værne Kloster",
+    "tags": [
+      "landuse=farmyard",
+      "place=farm"
+    ],
+    "linkedIdentifiers": [
+      "wikidata:Q4994287",
+      "riksantikvaren-kulturminne:9570"
+    ],
+    "lat": 59.39354,
+    "lon": 10.67424
+  },
+  "historicalScope": {
+    "source": "Store norske leksikon; Lokalhistoriewiki; Moss byleksikon",
+    "finding": "Værne developed from a royal estate into Norway's only Knights Hospitaller monastery and hospital and later a large manor and working farm. Some monastery remains survive, while the estate and protected agricultural landscape extend far beyond the yard.",
+    "yearDecision": {
+      "storedYear": 1190,
+      "status": "approximate_1190s_anchor",
+      "reason": "Store norske leksikon places the foundation in the 1190s, while local-history sources preserve wider uncertainty. The numeric year is not treated as exact."
+    }
+  },
+  "crossChecks": [
+    {
+      "provider": "wikidata",
+      "sourceObjectId": "wikidata:Q4994287",
+      "finding": "Links OSM way 124839227 and Kulturminne ID 9570; entity coordinate lies approximately 109.4 metres west of the applied farmyard point."
+    },
+    {
+      "provider": "lokalhistoriewiki_and_brreg",
+      "finding": "Both identify the current site at Klosterveien 91, 1570 Dilling; Lokalhistoriewiki gives gnr. 189/bnr. 1."
+    },
+    {
+      "provider": "lovdata",
+      "finding": "The protected landscape covers approximately 5,473 decares and must not be inferred from the gameplay circle."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:varne_kloster",
+      "lat": 59.3609,
+      "lon": 10.7269,
+      "distanceFromAppliedM": 4697.8,
+      "reason": "Remote point southeast of the named site without a source-object identity."
+    },
+    {
+      "sourceObjectId": "osm-node:6241620634",
+      "reason": "Valid farm-locality cross-check, but the named farmyard polygon gives the stronger physical core."
+    },
+    {
+      "sourceObjectId": "vaerne-kloster-bus-stop",
+      "reason": "Access infrastructure approximately 250 metres southwest of the historical core."
+    },
+    {
+      "sourceObjectId": "single-monastery-wall-fragment",
+      "reason": "One archaeological fragment would reduce a combined monastery, hospital, manor and estate record to one component."
+    },
+    {
+      "sourceObjectId": "vaerne-kloster-landscape-protection-area",
+      "reason": "A 5,473-decare legal and ecological landscape extent is not a point-coordinate substitute."
+    },
+    {
+      "sourceObjectId": "historical-estate-centroid",
+      "reason": "The estate changed over time and no invented historical centroid or boundary is applied."
+    }
+  ],
+  "accessDecision": {
+    "status": "active_private_farm",
+    "rule": "The coordinate identifies the site but does not imply public access to the farmyard, buildings or monastery remains. Tasks must use lawful public viewpoints and roads."
+  },
+  "radiusDecision": {
+    "retainedM": 300,
+    "covers": "The manor house, named farmyard and immediate monastery-core environment for gameplay.",
+    "doesNotRepresent": [
+      "the exact buildings or monastery-remain geometry",
+      "the current property or historical estate boundary",
+      "the landscape-protection polygon",
+      "the full agricultural and monastery landscape"
+    ]
+  },
+  "nextManifestPlace": "onsoy_kirke"
+}
