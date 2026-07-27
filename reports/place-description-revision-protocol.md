@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **120 steder**
-- Gjenstår: **392 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **130 steder**
+- Gjenstår: **382 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -151,12 +151,23 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 119 | Cinemateket i Oslo | `cinemateket_oslo` | 44 | 305 | 6 | #4174 |
 | 120 | Colosseum kino | `colosseum_kino` | 42 | 308 | 6 | #4174 |
 
+| 121 | Hallvardskirken i middelalder-Oslo | `hallvardskirken_oslo` | 42 | 304 | 6 | #4180 |
+| 122 | Frammuseet | `frammuseet` | 45 | 305 | 6 | #4180 |
+| 123 | Gol stavkirke – Bygdøy | `gol_stavkirke_bygdoy` | 42 | 308 | 6 | #4180 |
+| 124 | Kon-Tiki Museet | `kon_tiki_museet` | 46 | 309 | 6 | #4180 |
+| 125 | Forsvarsmuseet | `forsvarsmuseet` | 46 | 301 | 6 | #4180 |
+| 126 | Nordisk Bibelmuseum | `nordisk_bibelmuseum` | 45 | 301 | 6 | #4180 |
+| 127 | Norges Hjemmefrontmuseum | `norges_hjemmefrontmuseum` | 41 | 301 | 6 | #4180 |
+| 128 | Blått skilt: Enerhaugens Samfund | `bla_skilt_enerhaugen_samfund_smedgata_34` | 45 | 306 | 6 | #4180 |
+| 129 | Blått skilt: Helverschous løkke | `bla_skilt_helverschous_lokke_munkedamsveien_35` | 46 | 300 | 6 | #4180 |
+| 130 | Magistratgården | `magistratgarden` | 45 | 307 | 6 | #4180 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **392 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **382 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
-- historie: **67**
+- historie: **57**
 - naeringsliv: **47**
 - kunst: **40**
 - subkultur: **38**

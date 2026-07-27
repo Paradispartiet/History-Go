@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **120**
-- Additional active Oslo IDs outside the protocol: **392**
+- IDs in the current revision protocol: **130**
+- Additional active Oslo IDs outside the protocol: **382**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **392**
+- Additional IDs needing revision: **382**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -15,7 +15,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | Domain | Remaining |
 |---|---:|
 | natur | 74 |
-| historie | 67 |
+| historie | 57 |
 | naeringsliv | 47 |
 | kunst | 40 |
 | subkultur | 38 |
@@ -32,16 +32,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| historie | Hallvardskirken i middelalder-Oslo | `hallvardskirken_oslo` | 13 | 22 | 1 | `data/places/historie/norge/places_historie_norge_for_1500_batch2/hallvardskirken_oslo.json` | needs revision |
-| historie | Frammuseet | `frammuseet` | 15 | 110 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05/frammuseet.json` | needs revision |
-| historie | Gol stavkirke – Bygdøy | `gol_stavkirke_bygdoy` | 18 | 121 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05/gol_stavkirke_bygdoy.json` | needs revision |
-| historie | Kon-Tiki Museet | `kon_tiki_museet` | 18 | 113 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05/kon_tiki_museet.json` | needs revision |
-| historie | Forsvarsmuseet | `forsvarsmuseet` | 17 | 87 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json` | needs revision |
-| historie | Nordisk Bibelmuseum | `nordisk_bibelmuseum` | 16 | 117 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/nordisk_bibelmuseum.json` | needs revision |
-| historie | Norges Hjemmefrontmuseum | `norges_hjemmefrontmuseum` | 14 | 94 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/norges_hjemmefrontmuseum.json` | needs revision |
-| historie | Blått skilt: Enerhaugens Samfund | `bla_skilt_enerhaugen_samfund_smedgata_34` | 19 | 119 | 2 | `data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01/bla_skilt_enerhaugen_samfund_smedgata_34.json` | needs revision |
-| historie | Blått skilt: Helverschous løkke | `bla_skilt_helverschous_lokke_munkedamsveien_35` | 14 | 99 | 2 | `data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01/bla_skilt_helverschous_lokke_munkedamsveien_35.json` | needs revision |
-| historie | Magistratgården | `magistratgarden` | 16 | 118 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02/magistratgarden.json` | needs revision |
 | historie | Rådmannsgården og Anatomibygget | `radmannsgarden_og_anatomibygget` | 38 | 269 | 4 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02/radmannsgarden_og_anatomibygget.json` | needs revision |
 | historie | Hauges Minde | `hauges_minde` | 32 | 202 | 3 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03/hauges_minde.json` | needs revision |
 | historie | Slurpen | `slurpen_lakkegata` | 19 | 155 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03/slurpen_lakkegata.json` | needs revision |
