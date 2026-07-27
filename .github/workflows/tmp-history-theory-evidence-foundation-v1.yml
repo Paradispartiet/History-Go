@@ -1,0 +1,62 @@
+name: Materialize History theory evidence foundation V1
+
+on:
+  push:
+    branches:
+      - agent/history-theory-evidence-foundation-v1
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: history-theory-evidence-foundation-v1
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.ref == 'refs/heads/agent/history-theory-evidence-foundation-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-theory-evidence-foundation-v1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Materialize and validate theory evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/foundation-v1-validation
+          node tools/tmp-materialize-history-theory-evidence-foundation-v1.mjs \
+            | tee reports/historie-theory-evidence/foundation-v1-validation/materializer.log
+          node tools/validate-historie-theory-evidence.mjs --check \
+            | tee reports/historie-theory-evidence/foundation-v1-validation/validator.log
+          node tools/audit-historie-universal-coverage.mjs --check \
+            | tee reports/historie-theory-evidence/foundation-v1-validation/universal-coverage.log
+          node tools/audit-historie-v5-5-quality-depth.mjs \
+            | tee reports/historie-theory-evidence/foundation-v1-validation/quality-freeze.log
+          git diff --check \
+            | tee reports/historie-theory-evidence/foundation-v1-validation/git-diff-check.log
+          git status --short \
+            | tee reports/historie-theory-evidence/foundation-v1-validation/git-status.log
+
+      - name: Publish clean production result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No materialized changes to publish.'
+            exit 0
+          fi
+          git commit -m 'Establish History theory evidence foundation V1'
+          git push origin HEAD:agent/history-theory-evidence-foundation-v1
