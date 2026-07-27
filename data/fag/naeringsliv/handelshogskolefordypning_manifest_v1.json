@@ -1,0 +1,132 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_professional_depth_manifest",
+  "type": "business_school_depth_manifest",
+  "subject_id": "naeringsliv",
+  "display_name": "Økonomi og næringsliv – individuelt profesjonsfaglig fordypningslag",
+  "updated_at": "2026-07-27",
+  "module_count": 25,
+  "track_count": 5,
+  "principle": "Profesjonsmodulene skal vurderes som egne fag. Generiske progresjonstekster, modellnavn eller dekningskoblinger er ikke tilstrekkelig dokumentasjon på faglig dybde.",
+  "depth_contract": {
+    "canonical_works_per_module_min": 4,
+    "research_questions_per_module_min": 3,
+    "analysis_steps_per_module_min": 6,
+    "worked_case_inputs_min": 5,
+    "worked_case_operations_min": 4,
+    "worked_case_outputs_min": 4,
+    "worked_case_validation_checks_min": 3,
+    "advanced_techniques_min": 3,
+    "failure_modes_min": 4,
+    "cross_module_links_min": 2,
+    "professional_ethics_guards_min": 2,
+    "progression_levels": [
+      "introductory",
+      "intermediate",
+      "advanced"
+    ],
+    "money_locale": "nb-NO",
+    "money_currency": "NOK",
+    "individual_text_required": true,
+    "primary_source_refresh_required": true
+  },
+  "track_files": [
+    {
+      "track_id": "regnskap_revisjon_okonomistyring",
+      "file": "handelshogskolefordypning_regnskap_v1.json",
+      "profile_count": 5
+    },
+    {
+      "track_id": "markedsforing_og_strategi",
+      "file": "handelshogskolefordypning_markedsstrategi_v1.json",
+      "profile_count": 5
+    },
+    {
+      "track_id": "kvantitative_metoder_business_analytics",
+      "file": "handelshogskolefordypning_analyse_v1.json",
+      "profile_count": 5
+    },
+    {
+      "track_id": "forretningsjus_skatt_regulering",
+      "file": "handelshogskolefordypning_jus_v1.json",
+      "profile_count": 5
+    },
+    {
+      "track_id": "internasjonal_virksomhet_operations_prosjekt",
+      "file": "handelshogskolefordypning_internasjonal_operations_v1.json",
+      "profile_count": 5
+    }
+  ],
+  "external_benchmark": {
+    "reviewed_at": "2026-07-27",
+    "sources": [
+      {
+        "institution": "BI",
+        "document": "Bachelor i økonomi og administrasjon – studieplan høst 2026",
+        "url": "https://www.bi.no/studier-og-kurs/bachelorstudier/okonomi-og-administrasjon/",
+        "used_for": [
+          "matematikk",
+          "statistikk",
+          "finansregnskap",
+          "forretningsjus",
+          "markedsføring",
+          "strategi",
+          "finansiell styring"
+        ]
+      },
+      {
+        "institution": "NHH",
+        "document": "Emner i bachelorstudiet i økonomi og administrasjon",
+        "url": "https://www.nhh.no/studier/bachelor-i-okonomi-og-administrasjon/emneoversikt-bachelor/",
+        "used_for": [
+          "bedriftsøkonomi",
+          "matematikk",
+          "statistikk",
+          "databehandling",
+          "empiriske metoder",
+          "rettslære",
+          "markedsføring",
+          "strategi",
+          "internasjonal handel"
+        ]
+      },
+      {
+        "institution": "NHH",
+        "document": "Emner i masterstudiet i regnskap og revisjon 2026",
+        "url": "https://www.nhh.no/studier/master-i-regnskap-og-revisjon/1-arig-mrr-sivilokonom/emneoversikt-ettarig-mrr/",
+        "used_for": [
+          "finansregnskap",
+          "internkontroll",
+          "revisjon",
+          "foretaksrett",
+          "skatte- og avgiftsrett",
+          "bærekraftsrapportering"
+        ]
+      }
+    ]
+  },
+  "current_authority_review": {
+    "reviewed_at": "2026-07-27",
+    "accounting": [
+      "bokføringsloven og bokføringsforskriften",
+      "regnskapsloven og god regnskapsskikk",
+      "IFRS Accounting Standards Required 2026 der relevante"
+    ],
+    "law_and_regulation": [
+      "avtaleloven og kjøpslovgivningen",
+      "aksjeloven og allmennaksjeloven",
+      "arbeidsmiljøloven",
+      "personopplysningsloven og GDPR",
+      "skatteloven, merverdiavgiftsloven og skatteforvaltningsloven",
+      "konkurranseloven og EØS-konkurransereglene",
+      "åpenhetsloven",
+      "regnskapslovens regler om bærekraftsrapportering og gjeldende overgangsregler"
+    ],
+    "volatility_guard": "Satser, beløpsgrenser, virkeområder, rapporteringsfrister og gjeldende rett skal verifiseres mot offisiell primærkilde før produksjon."
+  },
+  "enforcement": {
+    "validator": "tools/validate-okonomi-naeringsliv-profesjonsfordypning.mjs",
+    "category_audit": "scripts/audit-category-governance.mjs",
+    "failure_policy": "Manglende profil, duplisert progresjon, tynt case, svakt verkgrunnlag, foreldet rettsgrunnlag eller manglende etterprøvbarhet skal stoppe kategori-auditen."
+  }
+}
