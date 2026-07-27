@@ -42,3 +42,5 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Totalt: **32 av 230** teoriobjekter (**13,9 %**).
 - Universell status: **INCOMPLETE**.
 - Produksjonsavhengigheter: `reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v1.md`.
+
+<!-- review-check retrigger -->
