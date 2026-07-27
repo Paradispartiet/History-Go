@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **199**
-- Additional active Oslo IDs outside the protocol: **313**
+- IDs in the current revision protocol: **200**
+- Additional active Oslo IDs outside the protocol: **312**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **313**
+- Additional IDs needing revision: **312**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -23,7 +23,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | 21 |
 | vitenskap | 21 |
 | politikk | 18 |
-| psykologi | 1 |
 
 ## Additional active Oslo places
 
@@ -229,7 +228,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | politikk | Y-blokka – historisk sted | `y_blokka` | 18 | 45 | 1 | `data/places/politikk/oslo/places_politikk/y_blokka.json` | needs revision |
 | politikk | Youngstorget | `youngstorget` | 12 | 62 | 1 | `data/places/politikk/oslo/places_politikk/youngstorget.json` | needs revision |
 | politikk | Slottsplassen | `slottsplassen` | 9 | 73 | 1 | `data/places/politikk/oslo/slottsplassen.json` | needs revision |
-| psykologi | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 25 | 46 | 1 | `data/places/psykologi/oslo/places_psykologi/psykologisk_institutt_uio.json` | needs revision |
 | scenekunst | Blått skilt: Aud Schønemann | `bla_skilt_aud_schonemann_vetlandsveien_69d` | 18 | 85 | 2 | `data/places/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d.json` | needs revision |
 | scenekunst | Chateau Neuf | `chateau_neuf` | 10 | 57 | 1 | `data/places/scenekunst/oslo/chateau_neuf.json` | needs revision |
 | scenekunst | Dramatikkens hus | `dramatikkens_hus` | 17 | 66 | 1 | `data/places/scenekunst/oslo/dramatikkens_hus/dramatikkens_hus.json` | needs revision |
