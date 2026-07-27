@@ -6,14 +6,6 @@ const outDir = path.join(root, 'reports/historie-theory-evidence/medieval-social
 fs.mkdirSync(outDir, { recursive: true });
 const readJson = (p) => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 
-const theoryFile = 'data/fag/historie/theory_objects_historie_canonical_v5_5.json';
-const emneFile = 'data/fag/historie/emner_historie_canonical_v4_5.json';
-const profileFile = 'data/fag/profiles/historie/oslo_akershus/profile.json';
-const claimsFile = 'data/fag/historie/claims_historie_canonical_v1.json';
-const sourcesFile = 'data/fag/historie/sources_historie_canonical_v1.json';
-const evidenceFile = 'data/fag/historie/place_evidence_historie_v1.json';
-const theoryEvidenceFile = 'data/fag/historie/theory_evidence_historie_canonical_v1.json';
-
 const targetTheoryIds = [
   'theory_his_middelalder_kirke_bondehushold_demografi_og_dagligliv',
   'theory_his_middelalder_kirke_jord_eiendom_og_patronasje',
@@ -22,7 +14,6 @@ const targetTheoryIds = [
   'theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming',
   'theory_his_middelalder_kirke_handel_handverk_og_bydannelse'
 ];
-
 const groups = {
   household_demography: ['hushold', 'dagligliv', 'befolkning', 'demografi', 'grav', 'kosthold', 'skjelett', 'barn', 'familie'],
   land_patronage: ['jordegods', 'eiendom', 'patronasje', 'gavebrev', 'landskyld', 'jordebok', 'klostergods', 'bispegods'],
@@ -32,7 +23,6 @@ const groups = {
   trade_craft_urbanization: ['handel', 'håndverk', 'bydannelse', 'havn', 'import', 'eksport', 'verksted', 'marked', 'brygge', 'kaupang'],
   medieval_general: ['middelalder', 'kloster', 'kirke', 'bispegård', 'kongsgård', 'oslo ladegård', 'hovedøya', 'mariakirken', 'clemenskirken']
 };
-
 function walk(dir) {
   const result = [];
   if (!fs.existsSync(dir)) return result;
@@ -49,31 +39,25 @@ function arrayFrom(doc, keys) {
   for (const key of keys) if (Array.isArray(doc?.[key])) return doc[key];
   return [];
 }
-function idOf(x) { return x?.theory_id ?? x?.emne_id ?? x?.case_id ?? x?.claim_id ?? x?.source_id ?? x?.id ?? null; }
-function textOf(x) { return JSON.stringify(x).toLowerCase(); }
-function matchedGroups(text) {
-  return Object.entries(groups).filter(([, terms]) => terms.some((t) => text.includes(t))).map(([g]) => g);
-}
+const idOf = (x) => x?.theory_id ?? x?.emne_id ?? x?.case_id ?? x?.claim_id ?? x?.source_id ?? x?.id ?? null;
+const textOf = (x) => JSON.stringify(x).toLowerCase();
+const matchedGroups = (text) => Object.entries(groups).filter(([, terms]) => terms.some((t) => text.includes(t))).map(([g]) => g);
 
-const theories = arrayFrom(readJson(theoryFile), ['theories', 'objects', 'entries']);
-const emner = arrayFrom(readJson(emneFile), ['emner', 'entries', 'objects']);
-const profile = readJson(profileFile);
+const theories = arrayFrom(readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json'), ['theories', 'objects', 'entries']);
+const emner = arrayFrom(readJson('data/fag/historie/emner_historie_canonical_v4_5.json'), ['emner', 'entries', 'objects']);
+const profile = readJson('data/fag/profiles/historie/oslo_akershus/profile.json');
 const cases = arrayFrom(profile, ['cases']);
-const claims = arrayFrom(readJson(claimsFile), ['claims', 'entries']);
-const sources = arrayFrom(readJson(sourcesFile), ['sources', 'entries']);
-const evidence = arrayFrom(readJson(evidenceFile), ['evidence_links', 'entries']);
-const theoryEntries = arrayFrom(readJson(theoryEvidenceFile), ['entries']);
+const claims = arrayFrom(readJson('data/fag/historie/claims_historie_canonical_v1.json'), ['claims', 'entries']);
+const sources = arrayFrom(readJson('data/fag/historie/sources_historie_canonical_v1.json'), ['sources', 'entries']);
+const evidence = arrayFrom(readJson('data/fag/historie/place_evidence_historie_v1.json'), ['evidence_links', 'entries']);
+const theoryEntries = arrayFrom(readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json'), ['entries']);
 const readyIds = new Set(theoryEntries.map((e) => e.theory_id));
 
 const targetTheories = theories.filter((t) => targetTheoryIds.includes(idOf(t)));
 const targetScopeIds = [...new Set(targetTheories.flatMap((t) => t.explanatory_scope ?? []))];
 const targetEmner = emner.filter((e) => targetScopeIds.includes(idOf(e)) || matchedGroups(textOf(e)).length >= 2);
 const targetEmneIds = [...new Set(targetEmner.map(idOf).filter(Boolean))];
-
-const candidateCases = cases.filter((c) => {
-  const text = textOf(c);
-  return (c.emne_ids ?? []).some((id) => targetEmneIds.includes(id)) || matchedGroups(text).length >= 2;
-}).map((c) => ({
+const candidateCases = cases.filter((c) => (c.emne_ids ?? []).some((id) => targetEmneIds.includes(id)) || matchedGroups(textOf(c)).length >= 2).map((c) => ({
   case_id: c.case_id,
   label: c.label,
   status: c.status,
@@ -82,8 +66,7 @@ const candidateCases = cases.filter((c) => {
   emne_ids: c.emne_ids ?? [],
   matched_groups: matchedGroups(textOf(c))
 }));
-
-const candidateClaims = claims.filter((c) => matchedGroups(textOf(c)).length >= 1).map((c) => ({
+const candidateClaims = claims.filter((c) => matchedGroups(textOf(c)).length).map((c) => ({
   claim_id: c.claim_id,
   claim_type: c.claim_type,
   place_ids: c.scope?.place_ids ?? c.place_ids ?? [],
@@ -92,7 +75,7 @@ const candidateClaims = claims.filter((c) => matchedGroups(textOf(c)).length >= 
   source_ids: c.source_ids ?? [],
   matched_groups: matchedGroups(textOf(c))
 }));
-const candidateSources = sources.filter((s) => matchedGroups(textOf(s)).length >= 1).map((s) => ({
+const candidateSources = sources.filter((s) => matchedGroups(textOf(s)).length).map((s) => ({
   source_id: s.source_id,
   title: s.title,
   publisher: s.publisher,
@@ -101,10 +84,9 @@ const candidateSources = sources.filter((s) => matchedGroups(textOf(s)).length >
   matched_groups: matchedGroups(textOf(s))
 }));
 
-const scanRoots = ['data/places', 'data/leksikon', 'data/fag/historie', 'docs'];
 const repoSignals = [];
 const canonicalPlaces = [];
-for (const base of scanRoots) {
+for (const base of ['data/places', 'data/leksikon', 'data/fag/historie', 'docs']) {
   for (const file of walk(path.join(root, base))) {
     let content;
     try { content = fs.readFileSync(file, 'utf8'); } catch { continue; }
@@ -129,14 +111,13 @@ for (const base of scanRoots) {
     }
   }
 }
-
 const candidateCaseIds = new Set(candidateCases.map((c) => c.case_id));
 const audit = {
   status: 'AUDIT_COMPLETE',
   target_theories: targetTheoryIds.map((id) => ({ theory_id: id, found: targetTheories.some((t) => idOf(t) === id), evidence_ready: readyIds.has(id) })),
   target_scope_ids: targetScopeIds,
-  target_emner: targetEmners = targetEmnerIds = targetEmnerIds,
-  target_emne_records: targetEmners = targetEmners,
+  target_emne_ids: targetEmneIds,
+  target_emne_records: targetEmner,
   candidate_cases: candidateCases,
   candidate_claims: candidateClaims,
   candidate_sources: candidateSources,
@@ -145,12 +126,6 @@ const audit = {
   repository_signals: repoSignals,
   production_rule: 'Each theory requires source-type-specific claims, at least two cases and places, explicit provenance, temporal anchors, alternative interpretations and limitations. Ruin existence, founding dates or generic medieval labels are insufficient.'
 };
-
-// Correct accidental helper assignments above before writing.
-audit.target_emners = targetEmneIds;
-audit.target_emne_records = targetEmner;
-delete audit.target_emner;
-
 fs.writeFileSync(path.join(outDir, 'audit.json'), JSON.stringify(audit, null, 2) + '\n');
 const md = [
   '# Historie medieval social, economic and legal audit V1', '',
@@ -166,7 +141,7 @@ const md = [
   '', '## Candidate cases',
   ...candidateCases.map((c) => `- ${c.case_id} — ${c.label ?? ''} — ${c.evidence_status ?? c.status ?? ''} — ${(c.place_ids ?? []).join(', ') || 'no place'}`),
   '', '## Canonical places',
-  ...canonicalPlaces.slice(0, 100).map((p) => `- ${p.place_id} — ${p.name} — ${p.file} — ${p.matched_groups.join(', ')}`),
+  ...canonicalPlaces.slice(0, 120).map((p) => `- ${p.place_id} — ${p.name} — ${p.file} — ${p.matched_groups.join(', ')}`),
   '', '## Production rule', audit.production_rule, ''
 ].join('\n');
 fs.writeFileSync(path.join(outDir, 'audit.md'), md);
