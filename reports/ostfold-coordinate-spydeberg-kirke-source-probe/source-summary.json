@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "spydeberg_kirke",
+  "generatedAt": "2026-07-27",
+  "purpose": "Persist source findings used to verify the Spydeberg church coordinate, standing-building chronology, medieval predecessor and separation from the rectory's 1814 identity.",
+  "legacyCoordinate": {
+    "lat": 59.6171,
+    "lon": 11.0872,
+    "assessment": "Undocumented point approximately 2664.3 metres north-north-east of the church."
+  },
+  "appliedCoordinate": {
+    "lat": 59.59503,
+    "lon": 11.06876,
+    "role": "standing_1844_church_building_anchor",
+    "sourceObjectId": "osm-way:753561392",
+    "distanceFromLegacyM": 2664.3
+  },
+  "identityResolution": {
+    "canonicalEntity": "Spydeberg kirke",
+    "entityType": "standing classical stone church from 1844 on a medieval church site",
+    "wikidata": "Q6494789",
+    "kulturminneId": "85532",
+    "address": "Heliveien 235, 1820 Spydeberg",
+    "osmWay": "753561392"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/way/753561392",
+      "objectId": "osm-way:753561392",
+      "supports": [
+        "named church-building geometry",
+        "representative coordinate"
+      ]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6494789",
+      "objectId": "wikidata:Q6494789",
+      "supports": [
+        "independent church entity",
+        "coordinate",
+        "Kulturminne ID 85532",
+        "OSM way 753561392"
+      ]
+    },
+    {
+      "provider": "Riksantikvaren / Kulturminnesøk",
+      "url": "https://www.kulturminnesok.no/kart/?id=85532",
+      "objectId": "kulturminne:85532",
+      "supports": [
+        "Spydeberg church heritage identity",
+        "church-site context"
+      ]
+    },
+    {
+      "provider": "Norges Kirker",
+      "url": "https://norgeskirker.no/wiki/Spydeberg_kirke",
+      "objectId": "norges-kirker:spydeberg-kirke",
+      "supports": [
+        "medieval stone predecessor",
+        "1841 fire and demolition",
+        "reuse of medieval masonry",
+        "1844 classical stone church",
+        "churchyard and grave-chapel context"
+      ]
+    },
+    {
+      "provider": "Lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/wiki/Spydeberg_kirke",
+      "objectId": "lokalhistoriewiki:spydeberg-kirke",
+      "supports": [
+        "coordinate 59.59503, 11.06876",
+        "building year 1844",
+        "architect Johan Fredrich Lühr",
+        "stone construction",
+        "approximately 230 seats",
+        "medieval font and historic bells"
+      ]
+    },
+    {
+      "provider": "Den norske kirke",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/indreostfold/menigheter/spydeberg/kirkenev%C3%A5re/spydeberg/",
+      "objectId": "kirken:spydeberg-kirke",
+      "supports": [
+        "current church identity",
+        "1844 chronology",
+        "active worship use",
+        "address Heliveien 235"
+      ]
+    },
+    {
+      "provider": "History Go canonical",
+      "objectId": "place:spydeberg_prestegard_1814",
+      "supports": [
+        "separate rectory identity",
+        "rectory coordinate 59.59067, 11.07696",
+        "approximately 669-metre church-to-rectory separation",
+        "separate 1814 historical profile"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "circa 1200",
+      "event": "A medieval stone church stood on the site and was dedicated to Saint Margaret.",
+      "certainty": "approximate"
+    },
+    {
+      "date": "1841-10-21",
+      "event": "Lightning caused the fire that destroyed the predecessor church.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1844",
+      "event": "The standing classical stone church was completed and consecrated.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1922",
+      "event": "The separate grave chapel was built beside the churchyard.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "Year 1844 belongs to the standing building, not the beginning of the church site.",
+    "The medieval church is a lost predecessor and must not be described as the standing building.",
+    "Reused stone, the medieval font and historic bells preserve material continuity without making the current church medieval.",
+    "The canonical point represents the church building, not the entire churchyard.",
+    "Spydeberg rectory is a separate History Go place; Christian Frederik's 1814 meeting belongs primarily there.",
+    "Services, funerals and cemetery use take priority over gameplay."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "59.59503, 11.06876",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "trogstad_kirke"
+  }
+}

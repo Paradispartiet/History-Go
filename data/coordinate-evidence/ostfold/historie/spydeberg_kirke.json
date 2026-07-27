@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "spydeberg_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch6/spydeberg_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_1844_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.59503,
+    "lon": 11.06876,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 753561392; Wikidata Q6494789; Kulturminne 85532; Norges Kirker; Lokalhistoriewiki; Den norske kirke",
+    "coordType": "church_building_representative_point",
+    "coordRole": "standing_1844_church_building_anchor",
+    "sourceObjectId": "osm-way:753561392;wikidata:Q6494789;kulturminne:85532"
+  },
+  "previousCoordinate": {
+    "lat": 59.6171,
+    "lon": 11.0872,
+    "r": 240,
+    "distanceToAppliedCoordinateM": 2664.3,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,66 kilometer nord-nordøst for Spydeberg kirke og identifiserte verken kirkebygningen eller kirkestedet."
+  },
+  "identity": {
+    "resolvedIdentity": "Spydeberg kirke, den stående klassisistiske steinkirken fra 1844 på middelalderkirkestedet ved Heliveien 235.",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-data omtalte stedet som en middelalderkirke og 1814-landskap, men den stående bygningen er fra 1844 og prestegården er et separat canonical-sted.",
+    "locatorTypeCandidate": "historic_church_building",
+    "requiresSplit": false,
+    "splitReason": "Den stående kirken og middelalderkirkestedet kan modelleres sammen som bygningsanker med historiske lag. Prestegården finnes allerede som separat canonical-sted."
+  },
+  "requiredEvidence": [
+    "named standing church-building geometry",
+    "independent church entity",
+    "heritage identifier",
+    "official address and current use",
+    "1844 building chronology",
+    "1841 destruction of predecessor",
+    "medieval material and inventory continuity",
+    "church-versus-rectory separation",
+    "active-use and cemetery limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 753561392 – Spydeberg kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/753561392",
+      "sourceObjectId": "osm-way:753561392",
+      "sourceQuality": "named_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 59.59503, 11.06876.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for den stående kirken."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Spydeberg kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6494789",
+      "sourceObjectId": "wikidata:Q6494789",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Q6494789 identifiserer Spydeberg kirke og kobler kirken til OSM-way 753561392 og Kulturminne 85532.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets-, identifier- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Kulturminne 85532 – Spydeberg kirke",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=85532",
+      "sourceObjectId": "kulturminne:85532",
+      "sourceQuality": "authoritative_heritage_identity",
+      "finding": "Kulturminne-ID 85532 identifiserer Spydeberg kirke og kirkestedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offentlig kulturminneidentitet og kulturmiljøkontroll."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Spydeberg kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Spydeberg_kirke",
+      "sourceObjectId": "norges-kirker:spydeberg-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Dokumenterer middelalderkirken, brannen i 1841, gjenbruk av stein og den nye klassisistiske gråsteinskirken innviet i 1844.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter bygningsidentitet, tidslag og materialkontinuitet."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Spydeberg kirke",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Spydeberg_kirke",
+      "sourceObjectId": "lokalhistoriewiki:spydeberg-kirke",
+      "sourceQuality": "independent_building_chronology_and_coordinate",
+      "finding": "Oppgir byggeår 1844, arkitekt Johan Fredrich Lühr, steinmateriale, 230 plasser og koordinat 59.59503, 11.06876.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig koordinat- og kronologikontroll."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Den norske kirke – Spydeberg kirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/indreostfold/menigheter/spydeberg/kirkenev%C3%A5re/spydeberg/",
+      "sourceObjectId": "kirken:spydeberg-kirke",
+      "sourceQuality": "official_current_identity_and_use",
+      "finding": "Bekrefter at dagens kirke er fra 1844 og at den er i aktiv gudstjenestebruk. Kontaktoversikten oppgir Heliveien 235 som besøksadresse.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell nåtids-, adresse- og brukskontroll."
+    },
+    {
+      "sourceProvider": "history_go_canonical",
+      "sourceName": "Spydeberg prestegård canonical",
+      "sourceObjectId": "place:spydeberg_prestegard_1814",
+      "sourceQuality": "separate_nearby_place_control",
+      "finding": "Prestegården ligger ved 59.59067, 11.07696, omtrent 669 meter sørøst for kirken, og har en separat 1814-profil.",
+      "canVerifyCoordinate": false,
+      "reason": "Forhindrer duplisering av Christian Frederiks møte og prestegårdsidentiteten."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Spydeberg church point",
+      "sourceObjectId": "legacy:spydeberg_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 2664,3 meter nord-nordøst for kirkebygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer kirken eller kirkestedet."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:753561392",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6494789",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende entitetskontroll; OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "history_go_canonical",
+      "sourceObjectId": "place:spydeberg_prestegard_1814",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separat nabosted med egen identitet og 1814-hendelse."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:spydeberg_kirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger 2,66 kilometer fra kirken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "spydeberg_1844_church",
+      "name": "Spydeberg kirke",
+      "lat": 59.59503,
+      "lon": 11.06876,
+      "r": 105,
+      "type": "standing_1844_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:753561392;wikidata:Q6494789;kulturminne:85532",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "spydeberg_medieval_kirkested",
+      "name": "Spydeberg middelalderkirkested",
+      "lat": 59.59503,
+      "lon": 11.06876,
+      "r": 175,
+      "type": "lost_predecessor_and_churchyard_context",
+      "sourceProvider": "norges_kirker_riksantikvaren",
+      "sourceObjectId": "kulturminne:85532",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "spydeberg_rectory",
+      "name": "Spydeberg prestegård",
+      "lat": 59.59067,
+      "lon": 11.07696,
+      "r": 260,
+      "type": "separate_rectory_and_1814_place",
+      "sourceProvider": "history_go_canonical",
+      "sourceObjectId": "place:spydeberg_prestegard_1814",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:spydeberg_kirke",
+      "lat": 59.6171,
+      "lon": 11.0872,
+      "distanceFromAppliedM": 2664.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata_lokalhistoriewiki",
+      "sourceObjectId": "osm-way:753561392;wikidata:Q6494789",
+      "lat": 59.59503,
+      "lon": 11.06876,
+      "distanceFromPreviousM": 2664.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-spydeberg-kirke-source-probe/source-summary.json",
+      "description": "Vedvarende kildekontroll for bygningsgeometri, kirkested, 1841-brann, 1844-bygning, eldre inventar, aktiv bruk og skillet mot prestegården."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den stående 1844-kirken som canonical, modellerte middelalderkirken som tapt forgjenger og skilte prestegårdens 1814-profil tydelig. Fortsett med trogstad_kirke."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 2,66 kilometer sør-sørvest.",
+    "Den stående klassisistiske kirken fra 1844 er canonical-objektet.",
+    "Middelalderkirken brant i 1841 og er ikke en stående bygning.",
+    "Stein og inventar fra middelalderkirken inngår som material- og gjenstandslag.",
+    "Prestegården er et separat History Go-sted omtrent 669 meter sørøst for kirken.",
+    "Radiusen er ikke en bygnings-, kirkegårds-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+  ]
+}
