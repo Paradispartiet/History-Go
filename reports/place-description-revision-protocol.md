@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **187 steder**
-- Gjenstår: **325 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **194 steder**
+- Gjenstår: **318 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -225,9 +225,17 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 186 | The Viking Planet Oslo | `viking_planet_oslo` | 45 | 315 | 6 | #4225 |
 | 187 | Vikingtidsmuseet | `vikingtidsmuseet` | 46 | 303 | 6 | #4225 |
 
+| 188 | Frognerstranda | `frognerstranda` | 43 | 305 | 6 | #4253 |
+| 189 | Grand Hotel | `grand_hotel` | 45 | 300 | 6 | #4253 |
+| 190 | Aftenposten – Akersgata 51 | `aftenposten_akersgata` | 41 | 309 | 6 | #4253 |
+| 191 | Dagbladet – Akersgata 49 | `dagbladet_akersgata` | 41 | 300 | 6 | #4253 |
+| 192 | Klassekampen-redaksjonen | `klassekampen_redaksjon` | 45 | 301 | 6 | #4253 |
+| 193 | NRK-huset på Marienlyst | `nrk_huset_marienlyst` | 42 | 300 | 6 | #4253 |
+| 194 | VG-huset | `vg_huset` | 42 | 312 | 6 | #4253 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **325 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **318 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -238,7 +246,6 @@ Det gjenstår **325 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - litteratur: **21**
 - vitenskap: **21**
 - politikk: **18**
-- media: **7**
 - musikk: **5**
 - psykologi: **1**
 
@@ -280,5 +287,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 19 | 10 | #4204 – femte produksjonsbatch fra historiekøen |
 | Oslo V4 batch 20 | 10 | #4212 – sjette produksjonsbatch fra historiekøen |
 | Oslo V4 batch 21 | 7 | #4225 – fullførte hele Oslo-køen for fagområdet historie |
+| Oslo V4 batch 22 | 7 | #4253 – fullførte hele Oslo-køen for fagområdet media |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
