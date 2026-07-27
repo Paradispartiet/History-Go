@@ -55,6 +55,15 @@ jobs:
           fi
           tail -n 20 stories-integrity.log
 
+      - name: Upload integrity diagnostic
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stories-integrity-diagnostic
+          path: stories-integrity.log
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Validate governance metrics contract
         run: node --test tests/stories-governance-metrics.test.mjs
 
