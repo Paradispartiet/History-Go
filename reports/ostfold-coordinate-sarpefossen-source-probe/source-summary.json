@@ -1,0 +1,114 @@
+{
+  "placeId": "sarpsfossen",
+  "generatedAt": "2026-07-27",
+  "decision": "Apply Kartverket SSR 447090 as the canonical waterfall coordinate and keep the public viewpoint as a separate safe visit anchor.",
+  "canonical": {
+    "name": "Sarpefossen",
+    "lat": 59.27634,
+    "lon": 11.13123,
+    "r": 360,
+    "sourceProvider": "kartverket_ssr",
+    "sourceObjectId": "ssr:447090",
+    "coordRole": "waterfall_feature_anchor"
+  },
+  "previous": {
+    "name": "Sarpsfossen",
+    "lat": 59.2836,
+    "lon": 11.1123,
+    "distanceToCanonicalM": 1344.6,
+    "status": "rejected_remote_legacy_point"
+  },
+  "identityFindings": [
+    "Kartverket lists Sarpefossen as the approved and prioritised main spelling for place-name object 447090.",
+    "Sarpsfossen and Sarpen are established alternative names and remain searchable context terms.",
+    "The canonical object is the waterfall in Glomma, not the adjacent industrial complex, one power station, a bridge or a viewpoint."
+  ],
+  "historicalFindings": [
+    "Sarpsborg municipality states that the river broke through the Raet moraine approximately 4,000 years ago.",
+    "The year 1016 refers to Olav Haraldsson's foundation of Borg beside the waterfall according to the saga tradition, not to the waterfall's geological age.",
+    "The waterfall powered medieval mills, sawmills from the sixteenth century and later industrial and hydroelectric development.",
+    "Store norske leksikon documents a 20.5-metre utilised head and three power stations associated with the waterfall."
+  ],
+  "visitAnchor": {
+    "name": "Sarpefossen utsiktsplatå",
+    "lat": 59.27538,
+    "lon": 11.13016,
+    "distanceFromCanonicalM": 122.8,
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:314142011;geonames:8585752",
+    "role": "public_waterfall_viewpoint_anchor",
+    "appliedAsCanonical": false
+  },
+  "sources": [
+    {
+      "provider": "kartverket_ssr",
+      "title": "Kartverket – Sarpefossen",
+      "url": "https://stadnamn.kartverket.no/fakta/447090",
+      "objectId": "ssr:447090",
+      "supports": [
+        "prioritised official name",
+        "waterfall object type",
+        "official coordinate"
+      ]
+    },
+    {
+      "provider": "sarpsborg_kommune",
+      "title": "Sarpsborg kommune – Sarpsfossen",
+      "url": "https://www.sarpsborg.com/byen-og-kommunen/opplev-sarpsborg/sarpsfossen/",
+      "objectId": "sarpsborg:waterfall-history",
+      "supports": [
+        "formation through the Raet",
+        "Borg foundation in 1016",
+        "mills, sawmills, industry and power history"
+      ]
+    },
+    {
+      "provider": "snl",
+      "title": "Store norske leksikon – Sarpefossen",
+      "url": "https://snl.no/Sarpefossen",
+      "objectId": "snl:sarpefossen",
+      "supports": [
+        "alternative names",
+        "bridges and power landscape",
+        "20.5-metre head",
+        "three power stations",
+        "1016 historical context"
+      ]
+    },
+    {
+      "provider": "osm",
+      "title": "OpenStreetMap – Sarpefossen utsiktspunkt",
+      "url": "https://www.openstreetmap.org/way/314142011",
+      "objectId": "osm-way:314142011",
+      "supports": [
+        "named public viewpoint geometry",
+        "safe observation anchor"
+      ]
+    }
+  ],
+  "rejectedAlternatives": [
+    {
+      "candidate": "legacy point 59.2836, 11.1123",
+      "reason": "Remote from the official waterfall object and unsupported by a source-object contract."
+    },
+    {
+      "candidate": "Sarpefossen viewpoint",
+      "reason": "Appropriate for safe visits but represents the observation platform rather than the natural feature."
+    },
+    {
+      "candidate": "Borregaard industrial area",
+      "reason": "Separate active industrial entity with its own canonical place."
+    },
+    {
+      "candidate": "Hafslund, Sarp or Borregaard power stations",
+      "reason": "Separate technical installations that exploit the waterfall."
+    }
+  ],
+  "representationLimits": [
+    "The marker identifies the waterfall feature; it is not a safe physical stop in the river.",
+    "The viewpoint is the recommended gameplay and observation anchor.",
+    "The radius is not a watercourse, fall, flood, power-station, safety, bridge or property boundary.",
+    "No task may require entering the river channel, technical infrastructure or restricted areas."
+  ],
+  "nextManifestEntry": "spydeberg_prestegard_1814"
+}
