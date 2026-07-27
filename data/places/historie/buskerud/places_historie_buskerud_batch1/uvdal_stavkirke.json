@@ -1,14 +1,26 @@
 {
   "id": "uvdal_stavkirke",
   "name": "Uvdal stavkirke",
-  "lat": 60.2677,
-  "lon": 8.5986,
+  "lat": 60.26514,
+  "lon": 8.83478,
   "r": 260,
+  "locatorType": "medieval_stave_church_building",
+  "sourceProvider": "openstreetmap",
+  "sourceObjectId": "osm-way:220941602",
+  "geocodeAccuracy": "named_stave_church_building_geometry",
+  "coordRole": "medieval_stave_church_building_anchor",
+  "coordType": "building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 220941602; Wikidata Q1398030; Fortidsminneforeningen; Nore og Uvdal bygdetun; Lokalhistoriewiki",
+  "coordSourceId": "osm-way:220941602;wikidata:Q1398030",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/220941602",
+  "coordVerifiedAt": "2026-07-28",
   "category": "historie",
   "fylke": "buskerud",
   "kommune": "Nore og Uvdal",
-  "year": 1190,
-  "period": "Stavkirke, bygdetun og interiørhistorie",
+  "year": 1168,
+  "yearMeaning": "Året det undersøkte konstruksjonstømmeret ble felt; kirken ble reist kort tid etter, og 1168 er derfor et dendrokronologisk anker snarere enn en dokumentert innvielsesdato.",
+  "period": "Middelalderstavkirke med omfattende interiør- og ombyggingslag",
   "tags": [
     "historie",
     "stavkirke",
@@ -18,13 +30,104 @@
   ],
   "desc": "Stavkirke fra slutten av 1100-tallet, flyttet inn i Uvdal bygdetun som kulturminne. Uvdal stavkirke er særlig viktig for sine mange interiør- og dekorlag fra middelalder til etterreformatorisk tid.",
   "popupDesc": "Uvdal stavkirke er sannsynligvis fra slutten av 1100-tallet og står i dag på Uvdal bygdetun. Den er et godt eksempel på hvordan en stavkirke ikke bare er middelalder: benker, galleri, rosemaling, ombygginger og interiørfortellinger viser hvordan bygda brukte og endret kirkerommet gjennom mange århundrer. I History Go bør stedet brukes til kirkebygg, lokal bruk, bevaring, flytting, interiørhistorie og forholdet mellom museum og opprinnelig funksjon.",
+  "accessContext": {
+    "siteType": "protected_museum_stave_church_with_seasonal_worship_inside_open_air_museum_environment",
+    "publicAccess": "Kirken eies av Fortidsminneforeningen og besøkes gjennom sesongdriften som samordnes med Nore og Uvdal bygdetun. Billett, åpningstider, guidet adgang og enkelte gudstjenester styrer innvendig tilgang.",
+    "visitorAddress": "Kirkebygda 111, 3632 Uvdal",
+    "limitations": [
+      "Ikke berør portal, bemalte vegger og himlinger, inventar, arkeologiske funnområder eller andre sårbare flater.",
+      "Følg vertskapets regler for grupper, fotografering, gudstjenester og ferdsel mellom bygdetunets historiske bygninger.",
+      "Gameplay-radiusen er ikke en kirke-, bygdetun-, prestegårds-, kirkegårds-, museums-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "medieval_stave_church_core",
+      "date": "shortly_after_1168",
+      "status": "surviving_medieval_core",
+      "note": "Konstruksjonstømmeret er årringsdatert til 1168 og ser ut til å ha vært brukt før det var helt tørt."
+    },
+    {
+      "type": "medieval_west_portal",
+      "date": "13th_century",
+      "status": "surviving_medieval_component",
+      "note": "Vestportalen med Gunnar i ormegården tilhører en middelaldersk utvidelsesfase."
+    },
+    {
+      "type": "post_reformation_expansions",
+      "date": "17th_to_19th_centuries",
+      "status": "surviving_later_building_layers",
+      "note": "Kirken fikk gjentatte utvidelser og ombygginger som formet dagens korspregede og romslige kirkerom."
+    },
+    {
+      "type": "painted_interior",
+      "date": "mid_17th_to_19th_centuries",
+      "status": "surviving_decorative_layers",
+      "note": "Renessanse-, barokk- og senere dekor dekker store deler av skip, kor og himlinger."
+    },
+    {
+      "type": "archaeological_excavation",
+      "date": "1978",
+      "status": "documented_research_layer",
+      "note": "Fundamentsikring førte til utgravninger med middelaldergraver, gravklær og uvanlig godt bevarte tekstiler."
+    },
+    {
+      "type": "preservation_ownership",
+      "date": "1901",
+      "status": "current_ownership_and_preservation_layer",
+      "note": "Fortidsminneforeningen overtok kirken etter at den nyere Uvdal kirke hadde erstattet den som ordinær soknekirke."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "nore_og_uvdal_bygdetun",
+      "name": "Nore og Uvdal bygdetun",
+      "relation": "surrounding_open_air_museum_on_old_rectory_ground",
+      "canonical": false,
+      "note": "Bygdetunet ble etablert på den gamle prestegårdens grunn ved stavkirken; kirken ble ikke flyttet inn som en ordinær tilflyttet museumsbygning."
+    },
+    {
+      "id": "uvdal_old_churchyard",
+      "name": "Uvdal gamle kirkegård",
+      "relation": "surrounding_historic_cemetery",
+      "canonical": false,
+      "note": "Kirkegården og gravminnene er et større seremoni- og minnelandskap enn bygningsankeret."
+    },
+    {
+      "id": "uvdal_church_1893",
+      "name": "Uvdal kirke",
+      "relation": "separate_newer_parish_church",
+      "canonical": false,
+      "note": "Dragestilkirken i dalbunnen ble innviet i 1893 og må ikke forveksles med stavkirken i Kirkebygda."
+    },
+    {
+      "id": "uvdal_visitor_reception",
+      "name": "Skolestua kafé og billettsalg",
+      "relation": "shared_visitor_reception_component",
+      "canonical": false,
+      "note": "Billettsalg og kafé er praktiske bygdetunfunksjoner, ikke stavkirkens canonical-geometri."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "uvdal_stave_church",
+      "name": "Uvdal stavkirke",
+      "lat": 60.26514,
+      "lon": 8.83478,
+      "r": 95,
+      "type": "medieval_stave_church_building_anchor",
+      "sourceProvider": "openstreetmap_wikidata",
+      "sourceObjectId": "osm-way:220941602;wikidata:Q1398030",
+      "canApplyToPlace": true
+    }
+  ],
   "quiz_profile": {
     "place_type": "stavkirke",
-    "subtype": "stavkirke_med_rike_interiorlag",
+    "subtype": "middelalderstavkirke_med_rike_interior_og_arkeologilag",
     "signature_features": [
-      "sannsynligvis fra slutten av 1100-tallet",
-      "står i dag på Uvdal bygdetun",
-      "rike interiør-, dekor- og ombyggingslag"
+      "tømmer felt i 1168 og oppføring kort tid etter",
+      "Gunnar i ormegården på middelalderportalen",
+      "fargesterke interiørlag og middelaldergraver undersøkt i 1978"
     ],
     "primary_angles": [
       "historie",
@@ -35,21 +138,23 @@
     "question_families": [
       "stavkirke",
       "interiørhistorie",
-      "museum_og_flytting",
+      "arkeologi_under_kirkegulvet",
       "tidslag"
     ],
     "avoid_angles": [
       "generisk_stavkirke",
-      "bare_bygdetun"
+      "bare_bygdetun",
+      "påstand_om_at_kirken_ble_flyttet_til_bygdetunet",
+      "forveksling_med_uvdal_kirke_1893"
     ],
     "must_include": [
-      "slutten av 1100-tallet",
-      "Uvdal bygdetun og de mange interiørlagene"
+      "1168 som dendrokronologisk anker",
+      "de mange interiør-, ombyggings- og arkeologilagene"
     ],
     "contrast_targets": [
       "nore_stavkirke",
       "flesberg_stavkirke"
     ],
-    "notes": "Skal spørres som stavkirke og bevaringsobjekt med rik bruks- og interiørhistorie."
+    "notes": "Skal spørres som bevart stavkirke på sitt historiske kirkested i et senere bygdetunmiljø. Full retting av beskrivelsens flyttepåstand krever separat 4.2-produksjon."
   }
 }
