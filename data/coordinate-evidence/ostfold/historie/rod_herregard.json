@@ -1,0 +1,245 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rod_herregard",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/rod_herregard.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_protected_manor_main_building_geometry_anchor",
+  "currentCoordinate": {
+    "lat": 59.12269,
+    "lon": 11.36845,
+    "r": 320,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "OpenStreetMap way 4481504 – Rød Herregård; Wikidata Q14556917; Kulturminne ID 86040; Store norske leksikon – Rød; Østfoldmuseene – Rød herregård",
+    "coordType": "protected_manor_house_building_centroid",
+    "coordRole": "manor_house_main_building_anchor",
+    "sourceObjectId": "osm-way:4481504;wikidata:Q14556917;riksantikvaren-kulturminne:86040",
+    "coordNote": "The canonical marker follows the main-building geometry of the protected manor, not a museum point, farm locality or full estate extent."
+  },
+  "previousCoordinate": {
+    "lat": 59.1261,
+    "lon": 11.3769,
+    "r": 320,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 613.4,
+    "reasonReplaced": "The legacy point lay approximately 613.4 metres northeast of the manor complex and had no identifiable source object."
+  },
+  "identity": {
+    "currentName": "Rød Herregård",
+    "resolvedIdentity": "The protected manor-house main building and immediate museum complex west of central Halden, identified by OSM way 4481504, Wikidata Q14556917 and Kulturminne ID 86040.",
+    "identityStatus": "resolved",
+    "identityProblem": "The name can refer to the main house, museum, park, farm or much wider forest estate. The History Go record needs one stable physical anchor without claiming that a point or radius represents all associated land and collections.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The main house, museum collections, yard and gardens form one coherent visitor destination. The wider forest estate and nearby facilities remain contextual rather than separate canonical records here."
+  },
+  "requiredEvidence": [
+    "protected manor building geometry",
+    "heritage and Wikidata identity linkage",
+    "authoritative architectural and ownership history",
+    "official museum and visitor role",
+    "explicit rejection of museum and farm locality points",
+    "radius and estate limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 4481504 – Rød Herregård",
+      "sourceUrl": "https://www.openstreetmap.org/way/4481504",
+      "sourceObjectId": "osm-way:4481504",
+      "sourceQuality": "named_main_building_geometry_linked_to_wikidata",
+      "finding": "The mapped civic-building geometry has centroid 59.12269, 11.36845 and is linked to Wikidata Q14556917.",
+      "canVerifyCoordinate": true,
+      "reason": "It directly represents the manor's physical main building rather than a visitor node or broad locality."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q14556917 – Rød herregård",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q14556917",
+      "sourceObjectId": "wikidata:Q14556917",
+      "sourceQuality": "heritage_entity_identity_cross_check",
+      "finding": "The entity identifies the manor as cultural property, manor house and museum, gives Kulturminne ID 86040 and OSM way 4481504, and places it approximately nine metres from the applied building centroid.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that the building geometry, heritage identity and museum identity refer to the same manor."
+    },
+    {
+      "sourceProvider": "riksantikvaren_cross_check",
+      "sourceName": "Kulturminne ID 86040 – Rød herregård",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=86040",
+      "sourceObjectId": "riksantikvaren-kulturminne:86040",
+      "sourceQuality": "official_protected_heritage_identity",
+      "finding": "The national heritage identifier is attached to the Rød manor entity and its protected-building identity.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the protected cultural-property identity while the mapped building geometry supplies the applied point."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Rød, storgård i Halden kommune",
+      "sourceUrl": "https://snl.no/R%C3%B8d_-_storg%C3%A5rd_i_Halden_kommune",
+      "sourceObjectId": "snl:rod-storgard-halden",
+      "sourceQuality": "authoritative_architectural_ownership_and_scope_context",
+      "finding": "SNL describes a seventeenth-century building with a 1733 addition as the core of the protected main house, later altered in 1862 and enlarged in 1875. It also distinguishes the house-and-park foundation from the much larger forest estate.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the historical identity and prevents the coordinate or gameplay radius from being treated as the entire estate."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Rød Herregård",
+      "sourceUrl": "https://ostfoldmuseene.no/rod",
+      "sourceObjectId": "ostfoldmuseene:rod-herregard",
+      "sourceQuality": "official_museum_and_visitor_identity",
+      "finding": "The museum presents Rød as a historic manor complex with house, collections, gardens and more than three centuries of history; the official visitor address is Herregårdsveien 10, Halden.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the contemporary public destination and the combined manor-and-museum role."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "OpenStreetMap node 27470219 – Rød herregård museum",
+      "sourceUrl": "https://www.openstreetmap.org/node/27470219",
+      "sourceObjectId": "osm-node:27470219",
+      "sourceQuality": "visitor_point_wrong_object_class_control",
+      "finding": "The museum point lies at approximately 59.12286, 11.36893, around 34 metres northeast of the main-building centroid.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected as canonical because it represents the museum POI rather than the building geometry itself."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Rød Herregård point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:rod_herregard",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 613.4 metres northeast of the protected main-building geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the manor complex."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "address": "Herregårdsveien 10, 1771 Halden",
+      "addressRole": "official_visitor_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Confirms access and identity, while the main-building geometry is the more direct coordinate source."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4481504",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q14556917",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and heritage cross-check; the linked OSM building geometry supplies the applied centroid."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:27470219",
+      "canApplyToPlace": false,
+      "rejectionReason": "Museum visitor point rather than main-building geometry."
+    },
+    {
+      "sourceProvider": "geonames_control",
+      "sourceObjectId": "geonames:9486413",
+      "canApplyToPlace": false,
+      "rejectionReason": "Broad farm point and less precise than the protected building object."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4481504",
+      "geometryType": "main_building_polygon",
+      "geometryRole": "protected_manor_house_geometry",
+      "canApplyToPlace": true,
+      "appliedAsCentroid": true
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:86040",
+      "geometryType": "legal_heritage_geometry_not_captured",
+      "geometryRole": "protection_scope_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "estate_context",
+      "sourceObjectId": "rod-wider-estate",
+      "geometryType": "large_forest_and_property_extent_not_captured",
+      "geometryRole": "historical_estate_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "rod_herregard_hovedbygning",
+      "name": "Rød Herregård – hovedbygningen",
+      "lat": 59.12269,
+      "lon": 11.36845,
+      "r": 100,
+      "type": "manor_house_main_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4481504;wikidata:Q14556917;riksantikvaren-kulturminne:86040",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rod_herregard",
+      "lat": 59.1261,
+      "lon": 11.3769,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 613.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4481504",
+      "lat": 59.12269,
+      "lon": 11.36845,
+      "coordRole": "manor_house_main_building_anchor",
+      "distanceFromPreviousM": 613.4,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q14556917",
+      "lat": 59.1226111111,
+      "lon": 11.3685,
+      "coordRole": "heritage_entity_coordinate_cross_check",
+      "distanceFromAppliedM": 9.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:27470219",
+      "lat": 59.12286,
+      "lon": 11.36893,
+      "coordRole": "museum_visitor_point",
+      "distanceFromAppliedM": 33.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-rod-herregard-source-probe/source-summary.json",
+      "description": "Persisted main-building geometry, heritage linkage, museum role, false-candidate controls and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the protected Rød Herregård main-building centroid and retained the 320-metre gameplay radius. Continue with gjellestadskipet_jellhaugen in batch 2."
+  },
+  "notes": [
+    "The coordinate moves approximately 613.4 metres southwest.",
+    "The marker represents the protected main building as the anchor for the wider museum and garden complex.",
+    "The museum POI, farm point and large estate are not the canonical coordinate.",
+    "The radius is not a legal protection, property, forest-estate, park or archaeological boundary."
+  ]
+}
