@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **194**
-- Additional active Oslo IDs outside the protocol: **318**
+- IDs in the current revision protocol: **199**
+- Additional active Oslo IDs outside the protocol: **313**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **318**
+- Additional IDs needing revision: **313**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -23,7 +23,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | 21 |
 | vitenskap | 21 |
 | politikk | 18 |
-| musikk | 5 |
 | psykologi | 1 |
 
 ## Additional active Oslo places
@@ -91,11 +90,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | Ruth Maier-minnesmerke | `ruth_maier_minne` | 23 | 44 | 1 | `data/places/litteratur/oslo/places_litteratur/ruth_maier_minne.json` | needs revision |
 | litteratur | Sigrid Undset-statuen | `sigrid_undset_statue` | 19 | 47 | 1 | `data/places/litteratur/oslo/places_litteratur/sigrid_undset_statue.json` | needs revision |
 | litteratur | Tronsmo Bokhandel | `tronsmo_bokhandel` | 13 | 13 | 1 | `data/places/litteratur/oslo/places_litteratur/tronsmo_bokhandel.json` | needs revision |
-| musikk | Blå | `blaa` | 13 | 64 | 1 | `data/places/musikk/oslo/places_musikk/blaa.json` | needs revision |
-| musikk | John Dee | `john_dee` | 10 | 58 | 1 | `data/places/musikk/oslo/places_musikk/john_dee.json` | needs revision |
-| musikk | Rockefeller Music Hall | `rockefeller` | 12 | 63 | 1 | `data/places/musikk/oslo/places_musikk/rockefeller.json` | needs revision |
-| musikk | SALT | `salt` | 12 | 58 | 1 | `data/places/musikk/oslo/places_musikk/salt.json` | needs revision |
-| musikk | Sentrum Scene | `sentrum_scene` | 14 | 60 | 1 | `data/places/musikk/oslo/places_musikk/sentrum_scene.json` | needs revision |
 | naeringsliv | FLOP Museum | `flop_museum` | 21 | 133 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07/flop_museum.json` | needs revision |
 | naeringsliv | Tøyen trafo | `toyen_trafo` | 14 | 126 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json` | needs revision |
 | naeringsliv | Etterstadgata 6 | `etterstadgata_6` | 14 | 121 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_05/etterstadgata_6.json` | needs revision |
