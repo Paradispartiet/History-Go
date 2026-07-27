@@ -176,4 +176,7 @@ node tests/oslo-politikk-remaining-people-expansion.test.js
 echo "== Oslo politics final People expansion =="
 node tests/oslo-politikk-final-people-expansion.test.js
 
+echo "== Nationaltheatret People factuality batch 6 v1 =="
+node --test tests/nationaltheatret-factuality-audit-people-batch-6-v1.test.mjs
+
 echo "== People check complete =="
