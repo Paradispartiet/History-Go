@@ -1,13 +1,45 @@
 {
   "id": "hafslund_hovedgard",
   "name": "Hafslund hovedgård",
-  "lat": 59.2709,
-  "lon": 11.1267,
+  "lat": 59.27361111111111,
+  "lon": 11.136111111111111,
   "r": 320,
+  "locatorType": "manor_house",
+  "sourceProvider": "wikidata",
+  "sourceObjectId": "wikidata:Q17779704;riksantikvaren-kulturminne:86075",
+  "address": {
+    "street": "Statsminister Torps vei",
+    "number": "2",
+    "postcode": "1738",
+    "city": "Borgenhaugen",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "manor_house_anchor",
+  "coordType": "heritage_entity_coordinate_for_manor_house",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Wikidata Q17779704 – Hafslund Manor; Kulturminne-ID 86075; Hafslund Hovedgård; Lokalhistoriewiki",
+  "coordSourceId": "wikidata:Q17779704;riksantikvaren-kulturminne:86075",
+  "coordSourceUrl": "https://www.wikidata.org/wiki/Q17779704",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 613,8 meter nordøst til herregårdsentitetens koordinat ved hovedbygningen.",
+  "coordNote": "Wikidata Q17779704 identifiserer Hafslund hovedgård som herregård og hovedbygning ved 59.27361111111111, 11.136111111111111 og kobler stedet til kulturminne-ID 86075. Punktet ligger omtrent 15,4 meter fra et geotagget fotografi av hovedbygningen og 34,7 meter fra Lokalhistoriewikis koordinat. OSMs gårds- og lokalitetspunkter ligger henholdsvis rundt 181 meter vest og representerer navneområdet, ikke hovedhuset. Radius 320 meter dekker hovedbygningen, parken, nærmeste driftsbygninger og det historiske gårdsanlegget som gameplayområde, men er ikke frednings-, eiendoms-, gods- eller kraftlandskapsgrense.",
+  "anchors": [
+    {
+      "id": "hafslund_manor_house",
+      "name": "Hafslund hovedbygning",
+      "lat": 59.27361111111111,
+      "lon": 11.136111111111111,
+      "r": 100,
+      "type": "manor_house_anchor",
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q17779704;riksantikvaren-kulturminne:86075"
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Sarpsborg",
-  "year": 1761,
+  "year": 1762,
   "period": "Herregård, sagbruk og kraftlandskap",
   "tags": [
     "historie",
@@ -16,15 +48,29 @@
     "skogbruk",
     "kraft"
   ],
-  "desc": "Herregård ved Sarpsborg med røtter i eldre gårdshistorie og hovedbygning fra 1761. Hafslund binder sammen godseierskap, skog, foss, industri og senere kraftutbygging.",
-  "popupDesc": "Hafslund hovedgård ligger i et av Østfolds mest ressurssterke landskap, nær Sarpsfossen og gamle ferdselslinjer. Gården er kjent i kildene fra middelalderen, og dagens hovedbygning ble reist i 1761 etter en brann i 1757. Hafslund er knyttet til eiere, sagbruk, skogressurser, industri og senere kraftutbygging. I History Go bør stedet brukes til å vise hvordan herregård, naturressurser og modernisering kan henge sammen over mange hundre år.",
+  "desc": "Fredet herregårdsanlegg ved Sarpsfossen med hovedbygning gjenreist i 1762. Hafslund binder sammen adelsgods, jord- og skogbruk, sagdrift, skipsfart og senere kraftproduksjon.",
+  "popupDesc": "Hafslund hovedgård ligger ved Sarpsfossen i et landskap som har vært brukt gjennom flere tusen år. Gårdsnavnet er kjent fra middelalderen, og Hafslund utviklet seg til et betydelig adelsgods med jordbruk, skog, sagbruk og skipsfart. Etter en brann på 1750-tallet ble dagens senbarokke hovedbygning reist og sto ferdig i 1762. Godset ble senere utgangspunkt for industriselskapet Hafslund, etablert i 1898 da kraften fra Sarpsfossen ble tatt i bruk til elektrisitetsproduksjon. History Go-posten forankres ved hovedbygningen og nærmeste herregårdsanlegg; Sarpsfossen, kraftverket og det større gods- og industrilandskapet er viktige historiske sammenhenger, men ikke del av selve koordinatgeometrien.",
+  "externalLinks": [
+    {
+      "label": "Hafslund – hovedgården",
+      "url": "https://www.hafslund.no/no/produkter-og-tjenester/hafslund-hovedgard"
+    },
+    {
+      "label": "Hafslund Hovedgård – historie",
+      "url": "https://hafslundhovedgaard.no/historien-om-hafslund-hovedgard/"
+    },
+    {
+      "label": "Wikidata – Hafslund Manor",
+      "url": "https://www.wikidata.org/wiki/Q17779704"
+    }
+  ],
   "quiz_profile": {
     "place_type": "herregard_og_ressurslandskap",
-    "subtype": "hovedgard_ved_foss_og_industriakse",
+    "subtype": "fredet_hovedgard_ved_foss_og_industriakse",
     "signature_features": [
-      "hovedbygning fra 1761",
-      "eldre gårds- og eiendomshistorie",
-      "kobling til Sarpsfossen, skog, industri og kraft"
+      "senbarokk hovedbygning ferdig i 1762",
+      "middelaldersk gårdshistorie og senere adelsgods",
+      "kobling til Sarpsfossen, sagbruk, trelast og kraftindustri"
     ],
     "primary_angles": [
       "historie",
@@ -40,16 +86,18 @@
     ],
     "avoid_angles": [
       "generisk_herregård",
-      "bare_selskapshus"
+      "bare_selskapshus",
+      "forveksling_med_kraftverket_eller_hafslund_konsernet"
     ],
     "must_include": [
-      "hovedbygningen fra 1761",
-      "koblingen mellom Hafslund, Sarpsfossen og ressursøkonomi"
+      "hovedbygningen fra 1762",
+      "koblingen mellom Hafslund, Sarpsfossen og ressursøkonomi",
+      "skillet mellom herregårdsankeret og det større kraftlandskapet"
     ],
     "contrast_targets": [
       "rod_herregard",
       "moss_jernverk_konventionsgarden"
     ],
-    "notes": "Skal spørres som ressurs- og eiendomshistorie, ikke bare som vakker hovedgård."
+    "notes": "Skal spørres som fredet hovedgård og historisk ressursknutepunkt, ikke som et generelt Hafslund-selskapssted eller som hele Sarpsfossen."
   }
 }
