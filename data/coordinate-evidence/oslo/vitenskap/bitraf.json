@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bitraf",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/bitraf.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.92035190289846,
+    "lon": 10.752792129992647,
+    "r": 70,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisielt Kartverket/Geonorge-adressepunkt for Brenneriveien 9 brukes som byggpunkt. Bitrafs egne sider bekrefter besøksadressen og inngangen. Radius 70 meter dekker den aktuelle bygningsdelen uten å gjøre hele Vulkan-området til samme sted."
+  },
+  "identity": {
+    "currentName": "Bitraf",
+    "resolvedIdentity": "Bitraf, Brenneriveien 9, 0182 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell adresse",
+    "dokumentert teknologisk identitet",
+    "avgrenset kartanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Brenneriveien 9",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Brenneriveien&nummer=9&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-address-v1:0301:bitraf:59.92035190,10.75279213",
+      "sourceQuality": "official_address",
+      "finding": "Offisielt adressepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical byggpunkt under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Bitraf – hvor er Bitraf?",
+      "sourceUrl": "https://bitraf.no/hvor-er-bitraf/",
+      "sourceObjectId": "source:bitraf:bitraf-hvor-er-bitraf-",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Bitraf – makerspace og utstyr",
+      "sourceUrl": "https://bitraf.no/",
+      "sourceObjectId": "source:bitraf:bitraf-makerspace-og-utstyr",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Brenneriveien 9, 0182 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:bitraf:59.92035190,10.75279213",
+      "lat": 59.92035190289846,
+      "lon": 10.752792129992647,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:bitraf:59.92035190,10.75279213",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:bitraf:59.92035190,10.75279213",
+      "lat": 59.92035190289846,
+      "lon": 10.752792129992647,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinaten er anvendt i canonical place-fil."
+  },
+  "notes": [
+    "Offisielt Kartverket/Geonorge-adressepunkt for Brenneriveien 9 brukes som byggpunkt. Bitrafs egne sider bekrefter besøksadressen og inngangen. Radius 70 meter dekker den aktuelle bygningsdelen uten å gjøre hele Vulkan-området til samme sted."
+  ]
+}
