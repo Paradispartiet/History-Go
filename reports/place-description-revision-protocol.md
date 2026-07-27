@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **249 steder**
-- Gjenstår: **263 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **259 steder**
+- Gjenstår: **253 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -305,9 +305,21 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 248 | Grotten | `grotta` | 43 | 304 | 6 | #4310 |
 | 249 | Henrik Wergeland-statuen | `henrik_wergeland_statue` | 40 | 307 | 6 | #4310 |
 
+
+| 250 | IBSEN Museum & Teater | `ibsen_museum_teater` | 46 | 307 | 6 | #4321 |
+| 251 | Sitatgaten – Ibsen-sitatene | `ibsen_quotes` | 46 | 314 | 6 | #4321 |
+| 252 | Inger Hagerups plass | `inger_hagerups_plass` | 41 | 322 | 6 | #4321 |
+| 253 | Kulturkirken Jakob | `kulturkirken_jakob_litteratur` | 41 | 307 | 6 | #4321 |
+| 254 | Litteraturhuset | `litteraturhuset` | 41 | 312 | 6 | #4321 |
+| 255 | Nasjonalbiblioteket | `nasjonalbiblioteket` | 45 | 303 | 6 | #4321 |
+| 256 | Norli Universitetsgata | `norli_universitetsgata` | 42 | 303 | 6 | #4321 |
+| 257 | Oskar Braaten-bysten | `oscar_braaten_statuen` | 43 | 306 | 6 | #4321 |
+| 258 | Ruth Maier-minnesmerke | `ruth_maier_minne` | 42 | 305 | 6 | #4321 |
+| 259 | Sigrid Undset-statuen | `sigrid_undset_statue` | 44 | 308 | 6 | #4321 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **263 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **253 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -315,7 +327,7 @@ Det gjenstår **263 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - subkultur: **38**
 - sport: **29**
 - scenekunst: **24**
-- litteratur: **11**
+- litteratur: **1**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -368,5 +380,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 28 | 10 | #4298 – andre produksjonsbatch fra vitenskapskøen |
 | Oslo V4 batch 29 | 1 | #4302 – fullførte hele Oslo-køen for fagområdet vitenskap |
 | Oslo V4 batch 30 | 10 | #4310 – første produksjonsbatch fra litteraturkøen |
+| Oslo V4 batch 31 | 10 | #4321 – andre produksjonsbatch fra litteraturkøen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
