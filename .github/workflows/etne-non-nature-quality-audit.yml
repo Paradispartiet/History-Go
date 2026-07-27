@@ -29,20 +29,27 @@ jobs:
       - name: Run deterministic Etne audit
         shell: bash
         run: |
-          set -euo pipefail
+          set -uo pipefail
           git fetch origin main
           export AUDIT_GENERATED_AT="$(git show -s --format=%cI origin/main)"
-          node tools/audit-etne-non-nature-round-quality.mjs
           mkdir -p reports/etne-non-nature-quality-audit
-          sed -i 's/[[:space:]]\+$//' reports/etne-non-nature-quality-audit/report.md
+          set +e
+          node tools/audit-etne-non-nature-round-quality.mjs \
+            > reports/etne-non-nature-quality-audit/audit.log 2>&1
+          STATUS=$?
+          set -e
+          printf '%s\n' "${STATUS}" > reports/etne-non-nature-quality-audit/audit-exit-code.txt
+          if [ -f reports/etne-non-nature-quality-audit/report.md ]; then
+            sed -i 's/[[:space:]]\+$//' reports/etne-non-nature-quality-audit/report.md
+          fi
 
-      - name: Publish audit report
+      - name: Publish audit report and diagnostics
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/etne-non-nature-quality-audit/report.json reports/etne-non-nature-quality-audit/report.md
+          git add reports/etne-non-nature-quality-audit
           if git diff --cached --quiet; then
             echo 'Audit report already current.'
             exit 0
