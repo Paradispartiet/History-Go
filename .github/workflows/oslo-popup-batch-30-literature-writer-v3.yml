@@ -1,0 +1,43 @@
+name: One-time Oslo popup batch 30 literature writer v3
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-30-trigger-v3.txt
+
+permissions:
+  contents: write
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-30-literature-ten
+          fetch-depth: 0
+      - name: Materialize Batch 30
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          node .github/oslo-popup-batch-30-materialize.mjs
+          node tools/audit-oslo-place-description-scope.mjs --write
+          node <<'NODE'
+          const fs=require('fs');
+          const p=fs.readFileSync('reports/place-description-revision-protocol.md','utf8');
+          const a=fs.readFileSync('reports/oslo-place-description-scope-audit-2026-07-26.md','utf8');
+          if(!p.includes('Ferdige etter alle mergede revisjonsbatcher: **249 steder**'))throw new Error('protocol total');
+          if(!p.includes('Gjenstår: **263 steder**'))throw new Error('protocol remaining');
+          if(!p.includes('- litteratur: **11**'))throw new Error('protocol literature');
+          if(!a.includes('IDs in the current revision protocol: **249**'))throw new Error('audit total');
+          if(!a.includes('Additional active Oslo IDs outside the protocol: **263**'))throw new Error('audit remaining');
+          if(!a.includes('| litteratur | 11 |'))throw new Error('audit literature');
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01/bla_skilt_stein_mehren_ullevalsveien_60.json data/places/litteratur/oslo/places_litteratur_oslo_kultureiendommer_batch_05/honse_lovisas_hus.json data/places/litteratur/oslo/places_litteratur/alexander_kiellands_plass.json data/places/litteratur/oslo/places_litteratur/biblo_toyen.json data/places/litteratur/oslo/places_litteratur/camilla_collett_statue.json data/places/litteratur/oslo/places_litteratur/deichman_grunerlokka.json data/places/litteratur/oslo/places_litteratur/eldorado_bokhandel.json data/places/litteratur/oslo/places_litteratur/gamle_deichman.json data/places/litteratur/oslo/places_litteratur/grotta.json data/places/litteratur/oslo/places_litteratur/henrik_wergeland_statue.json reports/oslo-place-description-scope-audit-2026-07-26.json reports/oslo-place-description-scope-audit-2026-07-26.md reports/place-description-revision-protocol.md
+          git commit -m "Revise first Oslo literature descriptions"
+          git push origin HEAD:agent/oslo-popup-v4-batch-30-literature-ten
