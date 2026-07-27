@@ -47,6 +47,18 @@ jobs:
           echo 'eeaf917e3804b1d9c8a34fd5f09ef2762a91c6cd3ed7499ded9c6df6e07588fc  /tmp/materialize-naeringsliv-oslo-batch-02.py.gz.b64' | sha256sum -c -
           base64 --decode "$ENCODED" | gzip -dc > "$MATERIALIZER"
           echo 'd6e20646555d9cc3233f4a5f9a534b76f765f4e5dc63db8c8e691795d45ff242  /tmp/materialize-naeringsliv-oslo-batch-02.py' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('/tmp/materialize-naeringsliv-oslo-batch-02.py')
+          source = path.read_text(encoding='utf-8')
+          old = 'phases = {1: "opening", 2: "opening", 3: "middle", 4: "bridge", 5: "final"}'
+          new = 'phases = {1: "opening", 2: "middle", 3: "middle", 4: "bridge", 5: "final"}'
+          if source.count(old) != 1:
+              raise SystemExit('Forventet nøyaktig én gammel faseplan')
+          path.write_text(source.replace(old, new), encoding='utf-8')
+          PY
+          echo 'e7b83d6ad26c9ca7fabbfc99a737a11f76025f17c5876bb174f97d3fe198ad14  /tmp/materialize-naeringsliv-oslo-batch-02.py' | sha256sum -c -
           python -m py_compile "$MATERIALIZER"
 
           git fetch origin main
