@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tune_kirke_kirkested",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch5/tune_kirke_kirkested.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_current_church_building_anchor_with_medieval_and_runestone_layers",
+  "currentCoordinate": {
+    "lat": 59.29219,
+    "lon": 11.08331,
+    "r": 300,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 93608238; Wikidata Q6495605; Kulturminne 85685; Church of Norway; Norges Kirker",
+    "coordType": "church_building_representative_point",
+    "coordRole": "current_church_building_anchor",
+    "sourceObjectId": "osm-way:93608238;wikidata:Q6495605;kulturminne:85685"
+  },
+  "previousCoordinate": {
+    "lat": 59.2867,
+    "lon": 11.0305,
+    "r": 300,
+    "distanceToAppliedCoordinateM": 3060.3,
+    "reasonReplaced": "Legacy-punktet lå omtrent 3,06 km vest for Tune kirke og identifiserte ikke kirkestedet."
+  },
+  "identity": {
+    "resolvedIdentity": "Tune's continuous church site, physically anchored to the standing stone church consecrated in 1910 and historically layered with the medieval church, the 1865 church and the Tune runestone find context.",
+    "identityStatus": "resolved",
+    "identityProblem": "Tune kirke can refer to the standing 1910 building, the medieval church site, the demolished 1865 church, the medieval cemetery, the Tune runestone find context or the wider Tune power landscape. Canonical must use a standing physical object while preserving the older layers.",
+    "locatorTypeCandidate": "current_church_and_medieval_kirkested",
+    "requiresSplit": false,
+    "splitReason": "The successive churches and cemetery are layers of one continuous kirkested. The original Tune runestone is now in Oslo and is represented only as find context."
+  },
+  "requiredEvidence": [
+    "named church-building geometry",
+    "independent church entity and address",
+    "heritage identifier",
+    "1080 church-site documentation",
+    "1863 demolition and 1865 replacement",
+    "1908 fire and 1910 consecration",
+    "Tune runestone find and current-location distinction",
+    "pilgrim-route context",
+    "cemetery and ceremony limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 93608238 – Tune kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/93608238",
+      "sourceObjectId": "osm-way:93608238",
+      "sourceQuality": "named_church_building_geometry",
+      "finding": "The named church-building geometry has representative point 59.29219, 11.08331.",
+      "canVerifyCoordinate": true,
+      "reason": "It directly represents the standing church building and aligns with Wikidata and Church of Norway records."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Tune kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6495605",
+      "sourceObjectId": "wikidata:Q6495605",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Q6495605 identifies Tune church at 59.29219, 11.08331 with inception 1910, address Tuneveien 43, Church of Norway building ID 1039, Kulturminne ID 85685 and OSM way 93608238.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides a matching independent entity point and identifiers."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Church of Norway – Tune kirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/sarpsborg/menigheter/sarpsborg-vest/om%20oss/om%20kirkene/tune%20kirke/",
+      "sourceObjectId": "church-of-norway:tune-kirke",
+      "sourceQuality": "official_current_church_and_site_history",
+      "finding": "Documents the 1080 mention, medieval cemetery, demolition in 1863, the 1865 church, the 1908 fire, consecration on 30 December 1910 and address Tuneveien 43.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes the continuous kirkested and current-building chronology."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Tune kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Tune_kirke",
+      "sourceObjectId": "norges-kirker:tune-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Describes Tune as a medieval county church in Vingulmork, the expanded cemetery and the Tune runestone formerly in the cemetery wall.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the medieval, cemetery and runestone layers."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Tunesteinen",
+      "sourceUrl": "https://snl.no/Tunesteinen",
+      "sourceObjectId": "snl:tunesteinen",
+      "sourceQuality": "authoritative_runestone_history",
+      "finding": "The Tune runestone stood in the churchyard wall when documented in 1627 and is now held by the Museum of Cultural History in Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Prevents the original stone from being falsely represented as still standing at Tune church."
+    },
+    {
+      "sourceProvider": "sarpsborg_municipality",
+      "sourceName": "Sarpsborg municipality – Tunesteinen",
+      "sourceUrl": "https://www.sarpsborg.com/byen-og-kommunen/om-sarpsborg/",
+      "sourceObjectId": "sarpsborg:tunesteinen",
+      "sourceQuality": "local_authority_find_and_transfer_history",
+      "finding": "The stone was documented in the churchyard wall in 1627 and transported to Christiania in the nineteenth century.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks the find context and removal from the site."
+    },
+    {
+      "sourceProvider": "pilegrimsleden",
+      "sourceName": "Pilegrimsleden – Tune kirke",
+      "sourceUrl": "https://www.pilegrimsleden.no/interessepunkter/tune-kirke",
+      "sourceObjectId": "pilegrimsleden:tune-kirke",
+      "sourceQuality": "official_pilgrim_route_context",
+      "finding": "Tune church is an interest point along Borgleden in the older power landscape on the ra ridge.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the pilgrimage and landscape context without changing the church anchor."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Tune church point",
+      "sourceObjectId": "legacy:tune_kirke_kirkested",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy point lies approximately 3,060.3 metres west of the church.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it identifies no church or kirkested object."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:93608238",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6495605",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Matching independent entity control; OSM supplies the direct building geometry."
+    },
+    {
+      "sourceProvider": "historical_site_layer",
+      "sourceObjectId": "medieval-tune-church-site",
+      "canApplyToPlace": false,
+      "rejectionReason": "The medieval church is demolished and is represented as a historical layer at the same site."
+    },
+    {
+      "sourceProvider": "museum_object",
+      "sourceObjectId": "tunesteinen-original",
+      "canApplyToPlace": false,
+      "rejectionReason": "The original runestone is in the Museum of Cultural History in Oslo, not at Tune church."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "tune_church_building",
+      "name": "Tune kirke",
+      "lat": 59.29219,
+      "lon": 11.08331,
+      "r": 100,
+      "type": "current_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:93608238;wikidata:Q6495605;kulturminne:85685",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "tune_medieval_kirkested",
+      "name": "Tune medieval kirkested and cemetery",
+      "lat": 59.29219,
+      "lon": 11.08331,
+      "r": 170,
+      "type": "medieval_church_site_and_cemetery_layer",
+      "sourceProvider": "church_of_norway_and_norges_kirker",
+      "sourceObjectId": "kulturminne:85685;norges-kirker:tune-kirke",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "tunesteinen_find_context",
+      "name": "Tune runestone find context",
+      "lat": 59.29219,
+      "lon": 11.08331,
+      "r": 180,
+      "type": "runestone_find_context_layer",
+      "sourceProvider": "snl_and_sarpsborg_municipality",
+      "sourceObjectId": "snl:tunesteinen;find-context:tune-churchyard-wall",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:tune_kirke_kirkested",
+      "lat": 59.2867,
+      "lon": 11.0305,
+      "distanceFromAppliedM": 3060.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:93608238;wikidata:Q6495605",
+      "lat": 59.29219,
+      "lon": 11.08331,
+      "distanceFromPreviousM": 3060.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-tune-kirke-source-probe/source-summary.json",
+      "description": "Persisted building geometry, church entity, continuous kirkested chronology, runestone find context, current museum location and cemetery limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the standing Tune church geometry, changed the canonical year to the documented 1080 kirkested mention and separated the current church, demolished predecessors and runestone find context. Continue with idd_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 3.06 kilometres east-northeast.",
+    "Year 1080 describes the documented kirkested, not the standing 1910 building.",
+    "The current church is the physical anchor; earlier churches are historical layers.",
+    "The original Tune runestone is in Oslo and is not represented as standing at the church.",
+    "The radius is not a building, cemetery, heritage, property, memorial, ceremony or access boundary."
+  ]
+}
