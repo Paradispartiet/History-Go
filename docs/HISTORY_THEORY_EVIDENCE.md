@@ -28,8 +28,15 @@ Et teoriobjekt kan registreres som `evidence_ready` i piloten bare når det har:
 
 `evidence_ready` betyr at teoriobjektet har et kontrollerbart evidensgrunnlag som består den gjeldende kontrakten. Det betyr ikke at teorien er bevist, universelt gyldig eller uttømmende dokumentert. Teorier brukes til å organisere og prøve fortolkninger; de er ikke historiske fakta i seg selv.
 
-Første batch er en `multi_case_geographic_pilot` i Oslo/Akershus. Hvert objekt står derfor samtidig med `universalization_status: provisional_not_universal`. Senere batcher må utvide periode-, geografi-, aktør- og kildetypebredden uten å senke tersklene.
+Batchene er `multi_case_geographic_pilot` i Oslo/Akershus. Hvert objekt står derfor samtidig med `universalization_status: provisional_not_universal`. Senere batcher må utvide periode-, geografi-, aktør- og kildetypebredden uten å senke tersklene.
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Piloten etablerer kontrakten og de første ti objektene. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Batch 1 etablerte kontrakten med ti objekter; batch 2 tilfører tolv og bringer produksjonen til 22 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+
+## Produksjonsstatus
+
+- Batch 1: **10** kvalifiserende teoriobjekter.
+- Batch 2: **12** nye kvalifiserende teoriobjekter.
+- Totalt: **22 av 230** teoriobjekter (**9,6 %**).
+- Universell status: **INCOMPLETE**.
