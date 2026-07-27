@@ -1,0 +1,69 @@
+name: One-time diagnose professional depth v2
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - '.github/workflows/one-time-diagnose-prof-depth-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/okonomi-naeringsliv-profesjonsfordypning
+          fetch-depth: 0
+
+      - name: Run depth diagnostics
+        shell: bash
+        run: |
+          set +e
+          set -uo pipefail
+          mkdir -p .tmp/prof-depth/diagnose-v2
+          cat .tmp/prof-depth/pkg-* | base64 --decode > /tmp/prof-depth.tar.gz
+          decode_status=$?
+          tar -xzf /tmp/prof-depth.tar.gz -C . > .tmp/prof-depth/diagnose-v2/extract.log 2>&1
+          extract_status=$?
+          if [ "$extract_status" -eq 0 ]; then
+            python .tmp/prof-depth/patch_multinasjonale.py > .tmp/prof-depth/diagnose-v2/patch.log 2>&1
+            patch_status=$?
+            node tools/validate-okonomi-naeringsliv-profesjonsfordypning.mjs > .tmp/prof-depth/diagnose-v2/depth.log 2>&1
+            depth_status=$?
+            node scripts/audit-category-governance.mjs > .tmp/prof-depth/diagnose-v2/governance.log 2>&1
+            governance_status=$?
+          else
+            patch_status=99
+            depth_status=99
+            governance_status=99
+          fi
+          {
+            echo "decode_status=$decode_status"
+            echo "extract_status=$extract_status"
+            echo "patch_status=$patch_status"
+            echo "depth_status=$depth_status"
+            echo "governance_status=$governance_status"
+          } > .tmp/prof-depth/diagnose-v2/status.txt
+          cat .tmp/prof-depth/diagnose-v2/status.txt
+          cat .tmp/prof-depth/diagnose-v2/depth.log 2>/dev/null || true
+          exit 0
+
+      - name: Commit diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .tmp/prof-depth/diagnose-v2
+          git diff --cached --quiet && exit 0
+          git commit -m 'TEMP: diagnose profesjonsfordypning v2'
+          git push origin HEAD:agent/okonomi-naeringsliv-profesjonsfordypning
