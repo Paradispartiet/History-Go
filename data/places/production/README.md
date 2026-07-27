@@ -12,6 +12,10 @@ Hver pakke skal følge:
 
 Pakken skal ikke lastes av brukergrensesnittet. Den dokumenterer identitetsport, claims, setning–claim-dekning, teksthash, metadata-snapshot, faktareview, redaksjonell review, quiz-readiness og versjonert ferdigstatus.
 
+## Lengde
+
+Ordtall er redaksjonell veiledning, ikke en validatorport. Rundt 300–1200 ord er et mulig orienteringsrom for mange `popupDesc`, men stofftilgang, stedets kompleksitet, identitetsavgrensning og inspectable kilder bestemmer faktisk lengde.
+
 Produksjonsstatuser:
 
 - `ready_v4_2`
@@ -21,14 +25,16 @@ Produksjonsstatuser:
 - `blocked_insufficient_sources`
 - `metadata_correction_required`
 
-Kjør full kontroll:
+Kjør full kontroll med gjeldende policy:
 
 ```bash
-node scripts/validate-place-description-production-v4_2.mjs --all
+node scripts/validate-place-description-production-v4_2_policy.mjs --all
 ```
 
 Kjør PR-port mot base og head:
 
 ```bash
-node scripts/validate-place-description-production-v4_2.mjs --changed --base <base-sha> --head <head-sha>
+node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base <base-sha> --head <head-sha>
 ```
+
+Den underliggende validatoren beholder alle claim-, kilde-, review-, struktur-, quiz-, metadata-, likhets- og scope-porter. Policy-laget gjør bare rene ordtallsfunn ikke-blokkerende.

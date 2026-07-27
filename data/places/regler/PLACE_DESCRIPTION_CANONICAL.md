@@ -1,7 +1,7 @@
 # History Go – canonical regler for `desc` og `popupDesc`
 
 Status: aktiv og bindende  
-Versjon: 4.2 – claim-first produksjon, setningssporbarhet og versjonert ferdigstatus  
+Versjon: 4.2.1 – claim-first produksjon, setningssporbarhet, stoffstyrt lengde og versjonert ferdigstatus  
 Maskinlesbar kontrakt: `data/places/regler/place_description_templates_v1.json`  
 Produksjonspakke-schema: `data/places/regler/place_description_production_v4_2.schema.json`
 
@@ -85,29 +85,13 @@ Setningskoblingen skal bruke setningsnummer og claim-ID-er. Teksthashen gjør at
 
 Superlativer, enerpåstander, årsaksforklaringer og rangeringer krever eksplisitt kildebevis.
 
-Følgende ord og konstruksjoner skal behandles som sterke påstander når de brukes faktuelt:
+Ord og konstruksjoner som `første`, `eldste`, `største`, `eneste`, `viktigste`, `avgjørende`, `førte til`, `på grunn av`, `derfor` og `dermed` skal behandles som sterke påstander når de brukes faktuelt.
 
-- første;
-- eldste;
-- største;
-- minste;
-- eneste;
-- viktigste;
-- ledende;
-- særlig kjent for;
-- avgjørende;
-- førte til;
-- på grunn av;
-- derfor;
-- dermed;
-- revolusjonerte;
-- endret for alltid.
-
-Det tilknyttede claimet skal være merket som en sterk påstand og ha `evidenceMode: "explicit"`. Generell kontekst, rimelig slutning eller flere indirekte kilder er ikke nok.
+Det tilknyttede claimet skal være merket `claimKind: "strong"`, ha `evidenceMode: "explicit"` og minst to uavhengige inspectable kilder. Generell kontekst eller rimelig slutning er ikke nok.
 
 ## 6. Tidsstatus for nåtidsopplysninger
 
-Påstander om dagens situasjon skal merkes med `temporalStatus: "current"` og ha en fersk `verifiedAt`.
+Påstander om dagens situasjon skal merkes med `temporalStatus: "current"` og ha en fersk `verifiedAt`. Planlagte forhold skal merkes `planned`.
 
 Dette gjelder blant annet formuleringer som:
 
@@ -136,56 +120,72 @@ Minimumskrav:
 - minst én primær, offentlig eller institusjonell kilde for stedets grunnidentitet;
 - minst én konkret kilde for hvert sentrale tidslag;
 - to uavhengige kilder for omstridte, overraskende eller sterke påstander;
-- direkte underside, dokument, katalogpost eller arkivpost når det finnes, ikke bare en generell forside;
+- direkte underside, dokument, katalogpost eller arkivpost når det finnes;
 - kilden må støtte den konkrete påstanden, ikke bare omtale stedet;
 - `sourceLocation` skal vise hvor i kilden støtten finnes.
 
-Tillatte kildetyper og krav er definert maskinelt. En søkemotor-snutt, løs forside eller uinspiserbar referanse kan ikke alene gi status `verified`.
+En søkemotor-snutt, løs forside eller uinspiserbar referanse kan ikke alene gi status `verified`.
 
 ## 8. `desc`
 
 `desc` er et konsentrert, faktabasert hovedsammendrag.
 
-Normal målramme:
+Veiledende målramme:
 
-- 40–80 ord;
-- normalt 2–4 setninger;
+- ofte 40–80 ord;
+- ofte 2–4 setninger;
 - normalt minst fire konkrete fakta når kildegrunnlaget tillater det.
 
-`desc` bør vanligvis fortelle hva stedet er, når det ble etablert eller tatt i bruk, hvem eller hva som er sentralt, og hva som skjedde eller gjør stedet særpreget.
+Dette er redaksjonell veiledning, ikke en hard ordport. `desc` skal være så kort som mulig uten å miste stedets identitet, viktigste tidslag og særpreg.
 
-Unngå åpninger som:
+Unngå åpninger som «Stedet viser hvordan …», «Stedet symboliserer …» og «Stedet gjør det mulig å forstå …».
 
-- «Stedet viser hvordan …»;
-- «Stedet symboliserer …»;
-- «Stedet knytter … sammen»;
-- «Stedet gjør det mulig å forstå …»;
-- «Stedet spiller en viktig rolle i …».
-
-## 9. `popupDesc`: organisk struktur, ikke seksavsnittsmal
+## 9. `popupDesc`: stoffstyrt stedartikkel
 
 `popupDesc` er en fullverdig, selvstendig stedartikkel.
 
-Normal ramme:
+### Ingen hard ordgrense
 
-- minst 300 ord når kildene faktisk gir nok stoff;
-- normalt 300–600 ord;
-- minst tre avsnitt;
-- normalt 12–30 setninger;
-- normalt minst tolv konkrete fakta;
-- minst to tredeler av opplysningene skal være nye sammenlignet med `desc`.
+Det finnes ingen fast nedre eller øvre ordgrense for `popupDesc`.
 
-Det finnes ingen fast seksavsnittsmal.
+Rundt **300–1200 ord** er et redaksjonelt orienteringsrom for mange steder, ikke en ferdigport:
 
-Avsnittstallet skal bestemmes av stoffets naturlige struktur. En tekst kan ha tre avsnitt når historien er konsentrert, fem når den følger tydelige tidslag, eller sju når stedet har mange dokumenterte funksjonsskifter.
+- en liten oppføring med begrenset, men godt dokumentert stoff kan være kortere;
+- et historisk komplekst sted med mange kildebelagte tidslag kan og bør være lengre;
+- et sted med rik historie skal ikke presses ned mot et standardmål;
+- en lang tekst skal ikke forkortes bare for å passe et tall;
+- en kort tekst skal ikke fylles ut bare for å nå et tall.
+
+Bindende regel:
+
+> Stofftilgang, stedets kompleksitet, identitetsavgrensningen og kvaliteten på inspectable kilder skal bestemme lengden.
+
+Validatoren skal ikke godkjenne eller avvise en tekst på grunnlag av ordtall alene. Den skal kontrollere substans, claim-dekning, kildekvalitet, struktur, quiz-readiness, tidsstatus, metadata og tekstlikhet.
+
+### Organisk struktur
+
+Det finnes ingen fast seksavsnittsmal. Avsnittstallet skal bestemmes av stoffets naturlige struktur.
+
+En tekst kan ha tre avsnitt når historien er konsentrert, fem når den følger tydelige tidslag, eller flere når stedet har mange dokumenterte funksjonsskifter. Minst tre avsnitt er fortsatt normal forventning for en fullverdig artikkel, men avsnittene må ha reell funksjon.
+
+Teksten skal normalt:
+
+- ha en klar åpning som identifiserer stedet;
+- dekke de viktigste dokumenterte tidslagene;
+- gi navn, datoer, handlinger, fysiske detaljer og bruk;
+- prioritere eldre og nyere historie etter kildenes og stedets faktiske tyngde;
+- inneholde vesentlig ny informasjon sammenlignet med `desc`;
+- gi nok direkte fakta til normale quizspørsmål.
 
 Lengden skal aldri oppnås gjennom gjentakelse, generell analyse, oppramsing uten sammenheng eller interne produksjonsforklaringer.
 
-## 10. Ordtall overstyrer aldri faktagrunnlaget
+## 10. Stoffgrunnlaget overstyrer ordtall
 
-Dersom inspectable kilder ikke gir nok stoff til 300 gode ord, skal stedet ikke fylles ut for å nå minimumslengden.
+Når kildene gir lite, skal teksten være kort og presis. Når kildene gir mye, skal den få nødvendig plass.
 
-Bruk en av disse produksjonsstatusene:
+Produksjonen skal stoppes eller merkes når stoffet ikke kan dokumenteres, ikke når teksten avviker fra et veiledende ordintervall.
+
+Tillatte produksjonsstatuser:
 
 - `ready_v4_2`;
 - `needs_research`;
@@ -200,32 +200,20 @@ Bare `ready_v4_2` kan registreres som ferdig under standard 4.2.
 
 ### Faktareview
 
-Kontrollerer bare:
-
-- navn;
-- datoer og tidsrom;
-- roller;
-- årsaker og konsekvenser;
-- sitater;
-- tall og mål;
-- nåtidsstatus;
-- claim-dekning;
-- kildekvalitet;
-- metadata–tekst-konsistens.
+Kontrollerer navn, datoer, tidsrom, roller, årsaker, konsekvenser, sitater, tall, nåtidsstatus, claim-dekning, kildekvalitet og metadata–tekst-konsistens.
 
 Ingen språklig forbedring skal gjøres i denne fasen.
 
 ### Redaksjonell review
 
-Kontrollerer:
+Kontrollerer flyt, gjentakelser, variasjon, klarhet, interesse, unødvendig fagspråk, kronologisk balanse og generiske åpninger og avslutninger.
 
-- flyt;
-- gjentakelser;
-- variasjon;
-- klarhet;
-- interesse;
-- unødvendig fagspråk;
-- generiske åpninger og avslutninger.
+Redaksjonell review skal også spørre:
+
+- Har et rikt sted fått nok plass?
+- Er eldre historie fortrengt av nyere hendelser uten kildegrunn?
+- Er teksten lang fordi stoffet krever det, eller fordi den gjentar seg?
+- Er teksten kort fordi kildene er begrensede, eller fordi researchen stoppet for tidlig?
 
 Bindende regel:
 
@@ -233,31 +221,13 @@ Bindende regel:
 
 ## 12. Normal-quiz-test
 
-En ferdig `popupDesc` skal gi minst åtte direkte faktaspørsmål med entydig fasit.
-
-Spørsmålene skal samlet dekke minst fire av disse typene:
-
-- hvem;
-- når;
-- hva;
-- hvor;
-- hvilket verk eller objekt;
-- hva skjedde;
-- hva ble bygget, produsert eller endret.
-
-Minst fem spørsmål skal være helt normale kunnskapsspørsmål, ikke analyse-, metode- eller begrepsspørsmål.
+En ferdig `popupDesc` skal gi minst åtte direkte faktaspørsmål med entydig fasit. Minst fem skal være helt normale kunnskapsspørsmål, og spørsmålene skal samlet dekke minst fire typer som hvem, når, hva, hvor, hvilket verk eller objekt, hva skjedde og hva ble bygget eller endret.
 
 Quiz-readiness lagres i produksjonspakken og valideres før `ready_v4_2`.
 
 ## 13. Likhetskontroll mellom tekster
 
-Batchporten skal kontrollere:
-
-- like åpninger;
-- like avslutninger;
-- gjenbrukte hele setninger;
-- høy tekstlikhet mellom steder;
-- generiske avsnitt som kan flyttes mellom steder.
+Batchporten skal kontrollere like åpninger, like avslutninger, gjenbrukte hele setninger, høy tekstlikhet og generiske avsnitt som kan flyttes mellom steder.
 
 Ingen hel setning på mer enn åtte ord skal gjenbrukes mellom to stedsartikler, med mindre det er en nødvendig offisiell tittel, et egennavn eller en fast kildeformulering som er eksplisitt unntatt.
 
@@ -265,116 +235,46 @@ Ingen tekst skal kunne flyttes til et annet sted ved bare å bytte egennavnet.
 
 ## 14. Metadata–tekst-konsistens
 
-Før merge skal teksten og produksjonspakken kontrolleres mot:
+Før merge skal teksten og produksjonspakken kontrolleres mot `name`, `year`, `period`, `category`, adresse, koordinatidentitet, `externalLinks`, virksomhetens status og place-type.
 
-- `name`;
-- `year`;
-- `period`;
-- `category`;
-- adresse;
-- koordinatidentitet;
-- `externalLinks`;
-- virksomhetens status;
-- place-type.
-
-Dersom metadata er feil, skal status være `metadata_correction_required`. Tekstproduksjonen skal stoppe til rettingen er eksplisitt utført.
-
-Riktig tekst kan ikke brukes til å skjule feil metadata i samme objekt.
+Dersom metadata er feil, skal status være `metadata_correction_required`. Riktig tekst kan ikke brukes til å skjule feil metadata.
 
 ## 15. Forbudt brukerrettet metatekst
 
 Følgende hører aldri hjemme i `desc` eller `popupDesc`:
 
-- «History Go kan bruke stedet til …»;
-- «I History Go …»;
-- spillerinstruksjoner som «Se hvordan …» eller «Husk at …»;
-- hva spilleren skal, bør eller kan forstå;
+- hva History Go kan bruke stedet til;
+- spillerinstruksjoner;
 - kategori, quizvinkel eller pedagogisk funksjon;
 - kartpunkt, områdeanker, markøridentitet eller representasjonslogikk;
 - koordinatstatus, geometri, kildeinnhenting, validering eller auditstatus;
-- canonical-ID-er, interne felt eller produsentinstruksjoner;
-- begrunnelser for hvorfor ett datasettobjekt holdes adskilt fra et annet.
+- canonical-ID-er og interne felt;
+- begrunnelser for datasettavgrensning.
 
-Slike opplysninger skal ligge i produksjonspakken, koordinatdokumentasjonen eller andre interne felt.
+## 16. PR-isolasjon
 
-## 16. Innhold før analyse
+En PR som endrer `desc` eller `popupDesc` skal:
 
-Prioriter:
+- endre den tilhørende 4.2-produksjonspakken;
+- ikke blande inn regelendringer;
+- ikke blande inn koordinatendringer;
+- ikke blande inn genererte indekser;
+- bestå changed-description-porten mot låst base og head.
 
-- egennavn;
-- årstall og tydelige tidsrom;
-- hendelser og handlinger;
-- bygninger, verk, produkter, arter og gjenstander;
-- materialer, mål og tekniske løsninger;
-- konkrete funksjoner og bruk;
-- endringer, konflikter og resultater;
-- overraskende, dokumenterte detaljer.
+Regelendringer, UI-endringer, fagverk og stedsinnhold skal derfor normalt ligge i separate PR-er.
 
-Abstrakte ord som «betydning», «spenning», «rolle», «identitet», «åpenhet», «sikkerhet», «transformasjon» og «samfunn» er ikke fakta alene.
+## 17. Ferdigdefinisjon
 
-Underholdning skal komme fra virkeligheten og kildene, ikke oppdiktet dialog, tanker, publikumsreaksjoner, vær, lyder eller stemning.
+Et sted er `current` under 4.2 bare når:
 
-## 17. PR-isolasjon og indeksvern
+- identiteten er løst;
+- alle tekstsetninger er claim-dekket;
+- alle claims er inspectable og verifiserte;
+- teksthashene stemmer;
+- tidsavhengige claims er ferske;
+- faktareview og redaksjonell review er bestått;
+- quiz-readiness er bestått;
+- metadata-, likhets- og PR-scope-portene er grønne;
+- `completedUnder` er `4.2` og `currentStatus` er `current`.
 
-En stedsbeskrivelses-PR skal ikke inneholde urelaterte koordinat-, metadata-, regel- eller indeksendringer.
-
-Bindende porter:
-
-1. Regelendringer og stedsinnhold skal normalt ligge i separate PR-er.
-2. Beskrivelsesendringer og koordinatendringer skal ikke blandes.
-3. En generert indeks skal bare endres når en canonical kildefil i samme PR krever det.
-4. Dersom regenerering endrer andre steder, skal PR-en stoppe.
-5. En endret `desc` eller `popupDesc` skal ha en endret 4.2-produksjonspakke for samme `place_id`.
-6. En produksjonspakke må peke på den faktiske canonical place-filen.
-
-CI-porten bruker git-diffen til å håndheve dette for nye og reviderte beskrivelser.
-
-## 18. Versjonert ferdigstatus
-
-«Ferdig» er alltid knyttet til en standardversjon.
-
-En 4.2-registrering skal minst lagre:
-
-- `completedUnder: "4.2"`;
-- `currentStatus: "current"`;
-- `sourceVerifiedAt`;
-- antall verifiserte claims;
-- `factualReview: "passed"`;
-- `editorialReview: "passed"`;
-- `validatorVersion`.
-
-Steder som tidligere var ferdige under 4.0 eller 4.1, skal ikke automatisk regnes som 4.2-ferdige. De får:
-
-- `completedUnder: "4.0"` eller `"4.1"`;
-- `currentStatus: "requires_4_2_review"`.
-
-## 19. Ferdigkriterium under 4.2
-
-Et sted er ferdig når:
-
-1. identiteten er løst;
-2. metadata er konsistente;
-3. alle faktiske bestanddeler finnes i verifiserte claims;
-4. hver setning er koblet til claims;
-5. teksthashen samsvarer med kontrollert tekst;
-6. sterke og tidsavhengige påstander har særskilt bevis;
-7. `desc` er konsentrert og faktabasert;
-8. `popupDesc` er rik uten fylltekst;
-9. faktareview er bestått;
-10. redaksjonell review er bestått uten nye fakta;
-11. normal-quiz-testen er bestått;
-12. likhetskontrollen er bestått;
-13. PR-scope og indeksvern er bestått;
-14. ferdigstatusen er registrert som `completedUnder: "4.2"`;
-15. 4.2-validatoren passerer uten feil.
-
-## 20. Migrering
-
-Den eldre globale auditten kan fortsatt brukes til å finne korte, generiske eller manglende tekster. Den avgjør ikke 4.2-ferdigstatus.
-
-4.2 innføres fremoverrettet:
-
-- nye beskrivelser må følge 4.2;
-- reviderte beskrivelser må følge 4.2;
-- eldre ferdige steder beholder historisk status, men markeres `requires_4_2_review`;
-- utilstrekkelig dokumentasjon gir blokkert status, ikke fylltekst.
+Ordtall er ikke en del av ferdigdefinisjonen.

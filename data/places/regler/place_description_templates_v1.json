@@ -1,8 +1,9 @@
 {
   "schema": "history_go_place_description_templates_v4_2",
   "version": "4.2.0",
-  "status": "canonical_claim_first_sentence_traceable",
-  "purpose": "Sikre identitetsavklaring, claim-first research, full setningssporbarhet, separate reviews og versjonert ferdigstatus for desc og popupDesc.",
+  "policyRevision": "4.2.1-source-led-length",
+  "status": "canonical_claim_first_sentence_traceable_source_led_length",
+  "purpose": "Sikre identitetsavklaring, claim-first research, full setningssporbarhet, separate reviews, stoffstyrt lengde og versjonert ferdigstatus for desc og popupDesc.",
   "canonicalDocument": "data/places/regler/PLACE_DESCRIPTION_CANONICAL.md",
   "productionSchema": "data/places/regler/place_description_production_v4_2.schema.json",
   "productionDirectory": "data/places/production",
@@ -11,28 +12,49 @@
   },
   "informationHierarchy": {
     "desc": "Konsentrert faktasammendrag: hva stedet er, når, hvem, hva som skjedde, og hva som gjør det spesielt.",
-    "popupDesc": "Fullverdig, selvstendig stedartikkel med dokumentert kronologi, aktører, bruk, fysiske detaljer, endringer og minneverdige fakta.",
+    "popupDesc": "Fullverdig, selvstendig stedartikkel med dokumentert kronologi, aktører, bruk, fysiske detaljer, endringer og minneverdige fakta. Lengden bestemmes av dokumentert stoff.",
     "merInfo": "Ytterligere fordypning, konkurrerende tolkninger, forbindelser, kildeapparat og videre lesning.",
     "peoplePopup": "Full biografi og forbindelser utenfor den aktuelle stedstilknytningen.",
     "productionPacket": "Internt claim-register, identitetsport, setningsdekning, reviews, quiz-readiness og ferdigstatus. Skal aldri gjengis i brukerinnholdet."
   },
   "global": {
     "desc": {
-      "targetWords": [40, 80],
-      "targetSentences": [2, 4],
-      "rangeType": "soft_normal_range",
+      "guidanceWords": [40, 80],
+      "guidanceSentences": [2, 4],
+      "wordCountIsValidationGate": false,
+      "rangeType": "editorial_guidance_only",
       "minimumConcreteFacts": 4,
       "mustDifferFromPopupDesc": true
     },
     "popupDesc": {
-      "minimumWords": 300,
-      "recommendedWords": [300, 600],
-      "hardMaximumWords": null,
-      "targetSentences": [12, 30],
+      "minimumWords": null,
+      "guidanceWords": [300, 1200],
+      "maximumWords": null,
+      "wordCountIsValidationGate": false,
+      "guidanceSentences": [12, 60],
       "minimumParagraphs": 3,
       "fixedParagraphCount": null,
       "paragraphRule": "organic_structure_from_documented_material",
-      "rangeType": "hard_minimum_when_sources_are_sufficient",
+      "rangeType": "editorial_guidance_only_source_led",
+      "lengthDecisionRule": "source_availability_place_complexity_identity_scope_and_documented_time_layers",
+      "shorterThanGuidanceAllowedWhen": [
+        "limited_but_sufficient_documented_material",
+        "narrow_place_identity",
+        "high_information_density_without_omission"
+      ],
+      "longerThanGuidanceAllowedWhen": [
+        "many_documented_time_layers",
+        "multiple_function_changes",
+        "complex_institutional_or_social_history",
+        "source_material_supports_additional_non_repetitive_facts"
+      ],
+      "neverLengthenWith": [
+        "repetition",
+        "generic_analysis",
+        "portable_paragraphs",
+        "uncited_context",
+        "production_meta_text"
+      ],
       "minimumConcreteFacts": 12,
       "minimumNewInformationShare": 0.6667,
       "mustAddNewInformation": true,
@@ -168,7 +190,9 @@
           "interest",
           "unnecessary_jargon",
           "generic_openings",
-          "generic_endings"
+          "generic_endings",
+          "historical_balance",
+          "source_led_length"
         ],
         "mayIntroduceNewFacts": false
       }
@@ -236,7 +260,8 @@
         "factualReview",
         "editorialReview",
         "validatorVersion"
-      ]
+      ],
+      "wordCountIsCompletionCriterion": false
     },
     "antiFormula": {
       "doNotUseAsDefaultOpenings": [
