@@ -1,0 +1,86 @@
+{
+  "placeId": "rygge_kirke",
+  "researchedAt": "2026-07-27",
+  "coordinateDecision": "named_protected_medieval_church_building_polygon_representative_point",
+  "legacyCoordinate": {
+    "lat": 59.3811,
+    "lon": 10.7211,
+    "distanceToAppliedM": 179.7
+  },
+  "appliedCoordinate": {
+    "lat": 59.37966,
+    "lon": 10.72254,
+    "radiusM": 260,
+    "sourceObjectId": "osm-way:370049162"
+  },
+  "primarySourceObject": {
+    "provider": "openstreetmap",
+    "objectId": "osm-way:370049162",
+    "name": "Rygge kirke",
+    "linkedIdentifiers": [
+      "wikidata:Q6494456",
+      "riksantikvaren-kulturminne:85325",
+      "church-of-norway-building:280"
+    ]
+  },
+  "sources": [
+    {
+      "provider": "openstreetmap",
+      "url": "https://www.openstreetmap.org/way/370049162",
+      "finding": "Named Lutheran church-building polygon at 59.37966, 10.72254."
+    },
+    {
+      "provider": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6494456",
+      "finding": "Church entity linked to OSM way 370049162, Kulturminne ID 85325 and Church of Norway building ID 280; entity coordinate is approximately 4.4 m from the applied building point."
+    },
+    {
+      "provider": "store_norske_leksikon",
+      "url": "https://snl.no/Rygge_kirke",
+      "finding": "Authoritative source dates the automatically protected church to around 1170 and describes it as a particularly well-preserved medieval stone church."
+    },
+    {
+      "provider": "pilegrimsleden",
+      "url": "https://www.pilegrimsleden.no/interessepunkter/rygge-kirke",
+      "finding": "Official route source places the church directly on Borgleden and documents its ashlar masonry, medieval inventory and likely pilgrim role."
+    },
+    {
+      "provider": "church_of_norway",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/Kirkenimoss/V%C3%A5re%20menigheter/rygge-og-ekholt-menigheter/om-fellesradet/kontaktinformasjon/",
+      "finding": "The current building directory lists Rygge church at Kirkeveien 280 and separately lists Rygge chapel at Kirkeveien 275."
+    }
+  ],
+  "crossChecks": [
+    {
+      "candidate": "wikidata:Q6494456",
+      "lat": 59.3796944444,
+      "lon": 10.7225,
+      "distanceToAppliedM": 4.4,
+      "role": "independent_church_entity_coordinate"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "legacy:rygge_kirke",
+      "reason": "Approximately 179.7 metres northwest of the church building and not tied to a source object."
+    },
+    {
+      "candidate": "wikidata:Q137900388",
+      "reason": "Rygge chapel is a separate building across Kirkeveien."
+    },
+    {
+      "candidate": "churchyard centroid",
+      "reason": "The named church-building polygon is the more precise physical anchor."
+    },
+    {
+      "candidate": "Borgleden route geometry",
+      "reason": "The pilgrimage route is historical context, not the coordinate identity of the church."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the named medieval church building.",
+    "The churchyard and immediate church-site landscape remain associated context.",
+    "The 260 m radius is not a building, cemetery, legal protection, property or pilgrimage-route boundary."
+  ],
+  "nextManifestEntry": "hvaler_kirke"
+}
