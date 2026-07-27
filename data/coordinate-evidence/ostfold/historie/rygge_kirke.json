@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rygge_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch2/rygge_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.3796575,
+    "lon": 10.722536,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 370049162 – Rygge kirke; Wikidata Q6494456; Kulturminne-ID 85325; Den norske kirke",
+    "coordType": "named_medieval_church_building_polygon_representative_point",
+    "coordRole": "church_building_anchor",
+    "sourceObjectId": "osm-way:370049162",
+    "coordNote": "The canonical marker follows the named church building; the churchyard, chapel and broader church site remain associated context."
+  },
+  "previousCoordinate": {
+    "lat": 59.3811,
+    "lon": 10.7211,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 179.8,
+    "reasonReplaced": "The legacy point lay approximately 179.8 metres northwest of Rygge church and had no identifiable church source object."
+  },
+  "identity": {
+    "currentName": "Rygge kirke",
+    "resolvedIdentity": "The named medieval stone church at Kirkeveien 280, distinct from the broader Rygge locality, the churchyard and the separate Rygge chapel.",
+    "identityStatus": "resolved",
+    "identityProblem": "The church forms part of a larger churchyard environment and published sources vary in their precise twelfth-century dating. The coordinate decision can be resolved independently without claiming one exact construction year.",
+    "locatorTypeCandidate": "church",
+    "requiresSplit": false,
+    "splitReason": "The medieval church is one coherent canonical destination. The chapel and churchyard remain associated but separately identifiable components."
+  },
+  "requiredEvidence": [
+    "named church-building polygon",
+    "church entity and heritage identifier",
+    "official current address",
+    "scholarly building and churchyard context",
+    "independent physical coordinate cross-check",
+    "explicit separation from chapel and locality objects",
+    "chronology-conflict note",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 370049162 – Rygge kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/370049162",
+      "sourceObjectId": "osm-way:370049162",
+      "sourceQuality": "named_church_building_polygon",
+      "finding": "The named church-building polygon has a representative point at 59.3796575, 10.722536 and is linked to Wikidata Q6494456.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named church building rather than the locality, churchyard or chapel."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q6494456 – Rygge Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6494456",
+      "sourceObjectId": "wikidata:Q6494456",
+      "sourceQuality": "church_entity_heritage_and_registry_cross_check",
+      "finding": "The entity links OSM way 370049162, Kulturminne ID 85325 and Church of Norway building ID 280. Its coordinate is approximately 4.6 metres from the applied point.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent entity, registry and location cross-check."
+    },
+    {
+      "sourceProvider": "den_norske_kirke",
+      "sourceName": "Rygge and Ekholt congregations – building list",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/Kirkenimoss/V%C3%A5re%20menigheter/rygge-og-ekholt-menigheter/om-fellesradet/kontaktinformasjon/",
+      "sourceObjectId": "kirken:rygge-kirke-address",
+      "sourceQuality": "official_current_building_address",
+      "finding": "The official building list gives Kirkeveien 280, 1580 Rygge as the church address.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms current destination and address."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Rygge kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Rygge_kirke",
+      "sourceObjectId": "norges-kirker:rygge-kirke",
+      "sourceQuality": "scholarly_building_and_site_history",
+      "finding": "The survey identifies Rygge as one of Østfold's largest, richest and best-preserved medieval stone churches and documents the churchyard and later building history.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the building and site identity while avoiding an unsupported exact construction date."
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceName": "Commons category – Rygge kirke",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Rygge_kirke",
+      "sourceObjectId": "commons:rygge-kirke-category",
+      "sourceQuality": "independent_physical_church_cross_check",
+      "finding": "The category map coordinate 59.3796917, 10.7224528 lies approximately 6.1 metres from the applied building point.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent physical-location cross-check."
+    },
+    {
+      "sourceProvider": "source_conflict_control",
+      "sourceName": "Twelfth-century chronology variation",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/Kirkenimoss/V%C3%A5re%20menigheter/rygge-og-ekholt-menigheter/om-fellesradet/",
+      "sourceObjectId": "chronology-control:rygge-church",
+      "sourceQuality": "documented_source_variation",
+      "finding": "Public and registry sources use differing approximate dates within the twelfth century, including around 1140 and 1170.",
+      "canVerifyCoordinate": false,
+      "reason": "The coordinate package does not resolve or amplify this chronology disagreement."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Rygge church point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:rygge_kirke",
+      "sourceQuality": "nearby_uncontracted_point",
+      "finding": "The legacy coordinate lies approximately 179.8 metres northwest of the church building.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced to use the named building source object."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "den_norske_kirke",
+      "address": {
+        "street": "Kirkeveien",
+        "number": "280",
+        "postcode": "1580",
+        "city": "Rygge",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/Kirkenimoss/V%C3%A5re%20menigheter/rygge-og-ekholt-menigheter/om-fellesradet/kontaktinformasjon/",
+      "sourceObjectId": "kirken:rygge-kirke-address",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:370049162",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6494456",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and registry cross-check; the linked building polygon is the applied geometry source."
+    },
+    {
+      "sourceProvider": "locality",
+      "sourceObjectId": "rygge-locality-or-former-municipality",
+      "canApplyToPlace": false,
+      "rejectionReason": "Broader place identity rather than the church building."
+    },
+    {
+      "sourceProvider": "separate_building",
+      "sourceObjectId": "rygge-kapell",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate chapel on the churchyard."
+    },
+    {
+      "sourceProvider": "churchyard_context",
+      "sourceObjectId": "rygge-churchyard",
+      "canApplyToPlace": false,
+      "rejectionReason": "Associated site context; the named medieval church building is the canonical source."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:370049162",
+      "geometryType": "Polygon",
+      "geometryRole": "named_medieval_church_building",
+      "canApplyToPlace": true,
+      "applied": true,
+      "rawGeometryCaptured": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:85325",
+      "geometryType": "protected_church_site_not_captured",
+      "geometryRole": "legal_heritage_scope_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "churchyard_context",
+      "sourceObjectId": "rygge-churchyard",
+      "geometryType": "associated_churchyard_extent_not_captured",
+      "geometryRole": "visitor_and_historical_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "rygge_medieval_church",
+      "name": "Rygge church",
+      "lat": 59.3796575,
+      "lon": 10.722536,
+      "r": 100,
+      "type": "church_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:370049162",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rygge_kirke",
+      "lat": 59.3811,
+      "lon": 10.7211,
+      "coordRole": "nearby_uncontracted_point",
+      "distanceFromAppliedM": 179.8,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:370049162",
+      "lat": 59.3796575,
+      "lon": 10.722536,
+      "coordRole": "church_building_anchor",
+      "distanceFromPreviousM": 179.8,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6494456",
+      "lat": 59.379694444444446,
+      "lon": 10.7225,
+      "coordRole": "independent_church_entity_cross_check",
+      "distanceFromAppliedM": 4.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceObjectId": "commons:rygge-kirke-category",
+      "lat": 59.379691666666666,
+      "lon": 10.722452777777779,
+      "coordRole": "independent_physical_church_cross_check",
+      "distanceFromAppliedM": 6.1,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-rygge-kirke-source-probe/source-summary.json",
+      "description": "Persisted church-building anchor, entity and address controls, chronology-source variation, chapel separation and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Rygge church building anchor and retained the 260-metre gameplay radius. Continue with Hvaler kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 179.8 metres southeast.",
+    "The named church-building polygon is the applied source object.",
+    "Wikidata and Commons independently agree within seven metres.",
+    "The chapel and churchyard remain associated but separate objects.",
+    "The coordinate package does not resolve the varying twelfth-century dates.",
+    "The radius is not a building, cemetery, archaeological, protection or property boundary."
+  ]
+}

@@ -1,9 +1,41 @@
 {
   "id": "rygge_kirke",
   "name": "Rygge kirke",
-  "lat": 59.3811,
-  "lon": 10.7211,
+  "lat": 59.3796575,
+  "lon": 10.722536,
   "r": 260,
+  "locatorType": "church",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:370049162",
+  "address": {
+    "street": "Kirkeveien",
+    "number": "280",
+    "postcode": "1580",
+    "city": "Rygge",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "building_representative_point",
+  "coordRole": "church_building_anchor",
+  "coordType": "named_medieval_church_building_polygon_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 370049162 – Rygge kirke; Wikidata Q6494456; Kulturminne-ID 85325; Den norske kirke",
+  "coordSourceId": "osm-way:370049162",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/370049162",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 179,8 meter sørøst til representasjonspunktet for Rygge kirkes navngitte bygningspolygon.",
+  "coordNote": "OSM way 370049162 er den navngitte kirkebygningen Rygge kirke og er koblet til Wikidata Q6494456 og kulturminne-ID 85325. Bygningsankeret ligger omtrent 4,6 meter fra Wikidata-koordinaten og 6,1 meter fra Commons-kategoriens kartpunkt. Den norske kirke oppgir besøksadressen Kirkeveien 280. Kildene varierer i presis datering innen 1100-tallet; koordinatverifikasjonen endrer derfor ikke det eksisterende year-feltet eller gjør bygningsdateringen mer presis. Canonical representerer kirkebygningen og det nærmeste kirkestedet. Radius 260 meter dekker kirken, kirkegården og nærmeste kulturmiljø som gameplayområde, men er ikke bygnings-, kirkegårds-, frednings-, eiendoms- eller arkeologisk grense.",
+  "anchors": [
+    {
+      "id": "rygge_medieval_church",
+      "name": "Rygge kirke",
+      "lat": 59.3796575,
+      "lon": 10.722536,
+      "r": 100,
+      "type": "church_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:370049162"
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Moss",
@@ -18,6 +50,20 @@
   ],
   "desc": "En av Østfolds største og best bevarte middelalderkirker, bygget i andre halvdel av 1100-tallet. Rygge kirke ligger ved Borgleden og er kjent for sine rødlige steinvegger og rike utsmykning.",
   "popupDesc": "Rygge kirke er en av de mest markante middelalderkirkene i Østfold. Den ble bygget i andre halvdel av 1100-tallet og ligger langs Borgleden, pilegrimsleden gjennom Østfold. Kirken skiller seg ut gjennom fint tilhugde kvadersteiner og rike arkitektoniske detaljer, og har vært tolket som et prestisjeprosjekt. I History Go bør stedet brukes til middelalderens byggteknikk, pilegrim, prestisje, landskap og forbindelsen mellom lokal kirke og større europeiske impulser.",
+  "externalLinks": [
+    {
+      "label": "Den norske kirke – Rygge kirke",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/Kirkenimoss/V%C3%A5re%20menigheter/rygge-og-ekholt-menigheter/om-fellesradet/kontaktinformasjon/"
+    },
+    {
+      "label": "Norges Kirker – Rygge kirke",
+      "url": "https://norgeskirker.no/wiki/Rygge_kirke"
+    },
+    {
+      "label": "Wikidata – Rygge Church",
+      "url": "https://www.wikidata.org/wiki/Q6494456"
+    }
+  ],
   "quiz_profile": {
     "place_type": "kirke",
     "subtype": "prestisjefylt_middelalderkirke_langs_pilegrimsled",
@@ -40,7 +86,8 @@
     ],
     "avoid_angles": [
       "generisk_kirke",
-      "bare_konsertsted"
+      "bare_konsertsted",
+      "overpresis_omstridt_byggedatering"
     ],
     "must_include": [
       "Borgleden",
@@ -50,6 +97,6 @@
       "eidsberg_kirke",
       "hvaler_kirke"
     ],
-    "notes": "Skal spørres som pilegrims- og middelalderarkitektur, ikke bare som lokalkirke."
+    "notes": "Skal spørres som pilegrims- og middelalderarkitektur, ikke bare som lokalkirke. Kirkebygningen er coordinate anchor; kirkegården er assosiert kulturmiljø."
   }
 }

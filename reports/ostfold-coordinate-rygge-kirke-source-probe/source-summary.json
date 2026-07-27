@@ -1,0 +1,94 @@
+{
+  "placeId": "rygge_kirke",
+  "researchedAt": "2026-07-27",
+  "coordinateDecision": "named_medieval_church_building_polygon_representative_point",
+  "legacyCoordinate": {
+    "lat": 59.3811,
+    "lon": 10.7211,
+    "distanceToAppliedM": 179.8
+  },
+  "appliedCoordinate": {
+    "lat": 59.3796575,
+    "lon": 10.722536,
+    "radiusM": 260,
+    "sourceObjectId": "osm-way:370049162"
+  },
+  "sources": [
+    {
+      "provider": "openstreetmap",
+      "name": "Rygge kirke",
+      "url": "https://www.openstreetmap.org/way/370049162",
+      "objectId": "osm-way:370049162",
+      "finding": "Named church-building polygon linked to Wikidata Q6494456."
+    },
+    {
+      "provider": "wikidata",
+      "name": "Rygge Church Q6494456",
+      "url": "https://www.wikidata.org/wiki/Q6494456",
+      "finding": "Church entity linked to OSM way 370049162, Kulturminne ID 85325 and Church of Norway building ID 280; entity coordinate is approximately 4.6 m from the applied point."
+    },
+    {
+      "provider": "den_norske_kirke",
+      "name": "Rygge og Ekholt menigheter – building list",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/Kirkenimoss/V%C3%A5re%20menigheter/rygge-og-ekholt-menigheter/om-fellesradet/kontaktinformasjon/",
+      "finding": "Official building list gives the visitor address Kirkeveien 280, 1580 Rygge."
+    },
+    {
+      "provider": "norges_kirker",
+      "name": "Rygge kirke",
+      "url": "https://norgeskirker.no/wiki/Rygge_kirke",
+      "finding": "Scholarly building survey identifies Rygge as one of Østfold's largest, richest and best-preserved medieval stone churches and documents the churchyard setting and later building history."
+    },
+    {
+      "provider": "wikimedia_commons",
+      "name": "Rygge kirke category",
+      "url": "https://commons.wikimedia.org/wiki/Category:Rygge_kirke",
+      "finding": "The category map coordinate 59.3796917, 10.7224528 is approximately 6.1 m from the applied building anchor and confirms the physical location."
+    }
+  ],
+  "chronologyNote": {
+    "finding": "Public and registry sources vary in their precise dating within the twelfth century, including approximately 1140 and 1170. This coordinate package does not resolve that editorial chronology conflict and does not change the existing year field.",
+    "coordinateImpact": "none"
+  },
+  "crossChecks": [
+    {
+      "candidate": "wikidata:Q6494456",
+      "lat": 59.379694444444446,
+      "lon": 10.7225,
+      "distanceToAppliedM": 4.6,
+      "role": "independent_church_entity_coordinate"
+    },
+    {
+      "candidate": "commons:rygge-kirke-category",
+      "lat": 59.379691666666666,
+      "lon": 10.722452777777779,
+      "distanceToAppliedM": 6.1,
+      "role": "independent_physical_church_cross_check"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "Rygge locality or former municipality point",
+      "reason": "Broader place identity rather than the church building."
+    },
+    {
+      "candidate": "Rygge kapell",
+      "reason": "Separate modern chapel on the churchyard."
+    },
+    {
+      "candidate": "churchyard centroid",
+      "reason": "Associated context, but less precise than the named church-building polygon."
+    },
+    {
+      "candidate": "legacy coordinate",
+      "reason": "Approximately 179.8 m northwest of the identified church building and not tied to a source object."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the named medieval church building.",
+    "The churchyard, chapel and immediate church-site landscape are associated context inside the gameplay radius.",
+    "The 260 m radius is not a building, cemetery, archaeological-locality, legal protection or property boundary.",
+    "The coordinate verification does not settle the varying published twelfth-century construction dates."
+  ],
+  "nextManifestEntry": "hvaler_kirke"
+}
