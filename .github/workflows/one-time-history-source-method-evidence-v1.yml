@@ -1,0 +1,120 @@
+name: One-time History source-method evidence V1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-source-method-evidence-v1-trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/history-source-method-evidence-v1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Decode and run materializer
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/source-method-v1-validation
+          base64 -d .github/history-source-method-evidence-v1-materializer.b64 | gzip -d > /tmp/materialize-history-source-method-evidence-v1.mjs
+          node --check /tmp/materialize-history-source-method-evidence-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/materializer-syntax.log
+          node /tmp/materialize-history-source-method-evidence-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/materializer.log
+
+      - name: Validate and regenerate reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/validate-historie-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/profile-validator-syntax.log
+          node tools/validate-historie-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/profile-validator.log
+          node tools/audit-historie-geographic-profile.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/geographic-profile.log
+          node tools/audit-historie-geographic-profile.mjs --check 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/geographic-profile-check.log
+          node --check tools/validate-historie-theory-evidence.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/theory-validator-syntax.log
+          node tools/validate-historie-theory-evidence.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/theory-validator.log
+          node tools/validate-historie-theory-evidence.mjs --check 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/theory-validator-check.log
+          node tools/audit-historie-universal-coverage.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/universal-coverage.log
+          node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/universal-coverage-check.log
+
+      - name: Refresh and verify V5.8 freeze
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze \
+            --reason="Reviewed source-method families V1 adds canonical source-specific claims, sources, place evidence and profile scope without mutating frozen universal concepts or theory objects." 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/quality-freeze-refresh.log
+          node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/quality-freeze-verify.log
+          git restore -- reports/historie-v5/historie-v5-8-quality-depth.json reports/historie-v5/historie-v5-8-quality-depth.md 2>/dev/null || true
+
+      - name: Verify clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/git-diff-check.log
+          git status --short \
+            | tee reports/historie-theory-evidence/source-method-v1-validation/git-status.log
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-source-method-evidence-v1-diagnostics
+          path: |
+            reports/historie-theory-evidence/source-method-v1-validation
+            reports/historie-theory-evidence/history-theory-evidence-foundation-v1.json
+            reports/historie-theory-evidence/history-theory-evidence-foundation-v1.md
+            reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v5.json
+            reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v5.md
+            reports/historie-geographic-profiles/oslo-akershus-profile.json
+            reports/historie-geographic-profiles/oslo-akershus-profile.md
+            reports/historie-profile-evidence/history-profile-evidence-foundation.json
+            reports/historie-profile-evidence/history-profile-evidence-foundation.md
+            reports/historie-universal-coverage/historie-universal-coverage.json
+            reports/historie-universal-coverage/historie-universal-coverage.md
+          if-no-files-found: error
+
+      - name: Remove one-time transport files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/history-source-method-evidence-v1-materializer.b64
+          rm -f .github/workflows/one-time-history-source-method-evidence-v1.yml
+          rm -f .github/history-source-method-evidence-v1-trigger.txt
+
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git add -f reports/historie-theory-evidence/source-method-v1-validation
+          git add -f reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v5.json
+          git add -f reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v5.md
+          git commit -m "Build History source-method evidence V1"
+          git push origin HEAD:agent/history-source-method-evidence-v1
