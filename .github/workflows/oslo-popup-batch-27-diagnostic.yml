@@ -1,0 +1,53 @@
+name: One-time Oslo popup batch 27 diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-27-trigger-diagnostic.txt
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-27-science-ten
+          fetch-depth: 0
+      - name: Write diagnostic
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const patches=['.github/oslo-popup-batch-27-science-patch-a.json','.github/oslo-popup-batch-27-science-patch-b.json'].flatMap(p=>JSON.parse(fs.readFileSync(p,'utf8')).places);
+          const supplements={
+            nobelinstituttet:' Instituttets plass i kunnskapssystemet blir særlig tydelig når man følger et dokument fra mottatt nominasjon via registrering og utredning til senere arkivering. Hvert ledd har egne regler for tilgang, habilitet og kildebruk. Det gjør huset til et godt eksempel på hvordan vurderinger med stor offentlig betydning krever stille, langsiktig arbeid som sjelden er synlig under den årlige seremonien.',
+            observatoriet:' Sammenlignet med dagens satellittnavigasjon virker instrumentene langsomme, men grunnproblemet er det samme: et måleresultat trenger et referansesystem. Når klokker, kart og posisjoner skal stemme over store avstander, må observasjoner kobles til felles standarder. Observatoriet gjør denne infrastrukturen fysisk og viser hvorfor presisjon er en kollektiv ordning, ikke bare egenskapen til ett instrument.',
+            folkeobservatoriet_holmenkollen:' Folkeopplysningsideen var derfor mer enn å la publikum se gjennom en kikkert. Den handlet om å bygge en ramme rundt observasjonen: forklare hva som var synlig, skille planet fra stjerne og vise hvordan instrumentet endret blikket. Bygget minner om at vitenskapelig tilgjengelighet krever både teknisk oppfinnsomhet, pedagogisk arbeid og praktiske løsninger for publikum.',
+            abelhaugen:' Monumentet kan dessuten sammenlignes med universitetets bygninger og undervisningssteder. Der produseres og prøves matematisk kunnskap; her blir en ferdig historisk fortelling presentert i bronse og stein. Forskjellen gjør Abelhaugen velegnet til å spørre hvordan forskning, biografi og nasjonal identitet blandes når et samfunn velger hvem som skal få en permanent plass i byrommet.',
+            arkitektur_og_designhogskolen:' Campus gjør også kunnskapens kollektive side synlig. Et prosjekt utvikles gjennom veiledning, verkstedkompetanse, kritikk fra medstudenter og møter med brukere eller oppdragsgivere. Når forslag stilles ut, kan premissene diskuteres offentlig. Det gir en annen form for etterprøving enn laboratoriets gjentakelse, men krever fortsatt dokumentasjon av metode, materialvalg, alternativer og konsekvenser.',
+            bi_nydalen:' Campus gir dermed en anledning til å undersøke forskjellen mellom beskrivende og normative påstander. Data kan vise hvordan en organisasjon fungerer eller hvordan et marked har utviklet seg, men de bestemmer ikke alene hva ledere eller myndigheter bør gjøre. Anbefalinger bygger også på mål, verdier og risikovurderinger, og bør derfor vise tydelig hvor forskningen slutter og beslutningen begynner.',
+            botanisk_hage:' Den levende samlingen gjør dessuten tid til en del av forskningsmaterialet. Frø spirer, planter blomstrer og individer eldes over mange sesonger. Slike forløp kan ikke alltid erstattes av fotografier eller tørkede eksemplarer. Samtidig må dyrkingsforholdene dokumenteres, fordi varme, vanning og jord kan forme planten annerledes enn i dens naturlige voksested.',
+            forskningsparken:' Parken synliggjør også at ulike typer kunnskap har ulike tidshorisonter. En programvareprototype kan testes raskt, mens medisinsk teknologi kan kreve laboratorieforsøk, regulatorisk vurdering og kliniske studier over flere år. Samme bygning rommer derfor både raske utviklingsløp og langsom dokumentasjon, og brukeren bør spørre hvilken type bevis en virksomhet faktisk trenger før løsningen tas i bruk.',
+            gamlebyen_skole:' Skolens plass i vitenskapskategorien handler derfor ikke om at barneskolen er et forskningsinstitutt. Den viser hvordan grunnleggende lese-, regne- og undersøkelsesferdigheter bygges før spesialisert kunnskapsarbeid begynner. Bibliotek, klasserom og praktiske fag er deler av denne infrastrukturen. Den lange historien gjør det mulig å sammenligne hvordan forventninger til elever, lærere og offentlig utdanning har endret seg.',
+            klimahuset:' Klimahuset gjør også forholdet mellom global kunnskap og lokal handling synlig. Målinger fra mange steder og lange tidsserier danner grunnlaget for klimaforskningen, mens bygget viser enkelte valg som kan gjennomføres på én tomt. Besøkeren må derfor skille mellom tiltakets dokumenterte virkning, dets symbolske verdi og spørsmålet om løsningen kan skaleres til andre bygg og samfunn.'
+          };
+          const fallback=' Stedet bør derfor leses gjennom dokumenterte metoder, tydelige avgrensninger og spørsmål om hvordan kunnskapen kan kontrolleres av andre.';
+          const words=t=>(String(t).match(/[\p{L}\p{N}]+(?:[’'\-][\p{L}\p{N}]+)*/gu)||[]).length;
+          const paragraphs=t=>String(t).trim().split(/\n\s*\n/).filter(Boolean).length;
+          const rows=patches.map(x=>{let p=x.popupDesc;const originalPopupWords=words(p);if(words(p)<300)p+=supplements[x.id];const afterSupplementWords=words(p);if(words(p)<300)p+=fallback;return {id:x.id,descWords:words(x.desc),originalPopupWords,afterSupplementWords,finalPopupWords:words(p),paragraphs:paragraphs(p)};});
+          const protocol=fs.readFileSync('reports/place-description-revision-protocol.md','utf8');
+          const out={pr:process.env.PR_NUMBER,rows,protocolChecks:{total218:protocol.includes('Ferdige etter alle mergede revisjonsbatcher: **218 steder**'),remaining294:protocol.includes('Gjenstår: **294 steder**'),sentence294:protocol.includes('Det gjenstår **294 aktive Oslo-steder**'),science21:protocol.includes('- vitenskap: **21**'),batch26:/\| Oslo V4 batch 26 \| 8 \| #[0-9]+ – fullførte hele Oslo-køen for fagområdet politikk \|/.test(protocol)}};
+          fs.writeFileSync('.github/oslo-popup-batch-27-diagnostic.json',JSON.stringify(out,null,2)+'\n');
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/oslo-popup-batch-27-diagnostic.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record science batch diagnostics"
+          git push origin HEAD:agent/oslo-popup-v4-batch-27-science-ten
