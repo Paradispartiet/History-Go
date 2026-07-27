@@ -1,0 +1,88 @@
+{
+  "placeId": "gjellestadskipet_jellhaugen",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.1517,
+    "lon": 11.2962,
+    "r": 360
+  },
+  "appliedCoordinate": {
+    "lat": 59.14857,
+    "lon": 11.25038,
+    "r": 360,
+    "displacementM": 2635.7
+  },
+  "identityDecision": "Use the named Gjellestad ship-grave archaeological point as the primary anchor and the surviving Jellhaugen mound geometry as a secondary anchor in the same landscape record.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-node:5985030252",
+    "name": "Viking ship and settlements remains",
+    "tags": [
+      "historic=archaeological_site"
+    ],
+    "lat": 59.14857,
+    "lon": 11.25038
+  },
+  "secondarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:891998939",
+    "name": "Jellhaugen",
+    "linkedIdentifiers": [
+      "wikidata:Q19376190",
+      "riksantikvaren-kulturminne:42959"
+    ],
+    "lat": 59.14704,
+    "lon": 11.25114,
+    "distanceFromPrimaryM": 175.6
+  },
+  "archaeologicalScope": {
+    "source": "NIKU – Gjellestadskipet",
+    "finding": "Georadar identified the ship grave in 2018 together with multiple burial mounds and Iron Age buildings. The approximately 20-metre imprint lay just below the topsoil and was excavated in 2020–2021.",
+    "landscapeDistinction": "Store norske leksikon identifies Jellhaugen as the large surviving mound and the ship grave as one of the destroyed mounds in the surrounding cemetery."
+  },
+  "crossChecks": [
+    {
+      "provider": "snl",
+      "source": "Jellhaugen",
+      "finding": "The surviving mound is approximately 85 by 70 metres and up to nine metres high; it is a separate monument from the Gjellestad ship grave."
+    },
+    {
+      "provider": "halden_kommune",
+      "source": "Viktige sensorer i Gjellestadskipet",
+      "finding": "The fragile ship remains are still located at the findspot and are monitored with temperature and moisture sensors."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:gjellestadskipet_jellhaugen",
+      "lat": 59.1517,
+      "lon": 11.2962,
+      "distanceFromAppliedM": 2635.7,
+      "reason": "Remote uncontracted point east of both archaeological anchors."
+    },
+    {
+      "sourceObjectId": "osm-way:891998939",
+      "name": "Jellhaugen",
+      "reason": "Valid secondary anchor, but not the mound that contained the Gjellestad ship."
+    },
+    {
+      "sourceObjectId": "gjellestad-farm-centroid",
+      "reason": "A broad farm or locality point does not identify either archaeological monument."
+    },
+    {
+      "sourceObjectId": "full-gjellestad-central-place-landscape",
+      "reason": "The full burial, settlement and ritual landscape has no captured verified canonical geometry in this production."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 360,
+    "covers": "The ship grave, Jellhaugen and the immediate connecting part of Viksletta for gameplay.",
+    "doesNotRepresent": [
+      "the full archaeological central-place landscape",
+      "a legal protection or security zone",
+      "a proposed World Heritage boundary",
+      "a property or farm boundary"
+    ]
+  },
+  "nextManifestPlace": "hoytorp_fort"
+}
