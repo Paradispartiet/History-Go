@@ -2,7 +2,7 @@
 
 Status: **canonical data-production contract**
 Owner: History Go data/runtime
-Last verified: 2026-07-26
+Last verified: 2026-07-27
 
 This document defines how new History Go data must be produced, checked and inserted without breaking category logic, place references, people references, badges, progression or generated indexes.
 
@@ -11,11 +11,20 @@ This file is a documentation contract. Runtime source of truth remains the actua
 Related contracts:
 
 ```text
+docs/FACTUALITY_CONTRACT.md
 docs/DOMAIN_CONTRACT.md
 docs/SUBJECT_FILE_CONTRACT.md
 docs/DOMAIN_REGISTRY_README.md
 README/SYSTEM_REGISTRY.md
 ```
+
+## 0. Factuality and source verification
+
+All user-facing data production is governed by [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md). Never invent, guess, interpolate or silently complete missing facts. A language model, an existing History GO description or a generated candidate report is not a factual source.
+
+Every published factual claim must be traceable to an inspectable source that actually supports the claim. Missing information must remain missing. When sources conflict and the conflict cannot be resolved, omit the field or describe the uncertainty only when the uncertainty itself is sourced and relevant.
+
+Schema validity, field coverage, readiness scores, green CI and `verifiedAt` do not prove factual correctness. Content production must stop when source coverage is insufficient.
 
 ## 1. One place ID, one canonical place object
 
@@ -291,7 +300,10 @@ Before merging data changes:
 5. All quiz `placeId` / `personId` targets must point to existing data.
 6. All `underbadge_ids` must exist in the relevant `data/badges/<category>.json`.
 7. `data/places/places_index.json` must be regenerated from source, never manually edited.
-8. Any progression-changing code must dispatch:
+8. Each new or materially changed user-facing factual claim must be checked against the source used for it.
+9. Batch material must identify which sources support names, dates, roles, works, results, events and place links.
+10. Unverified details must be omitted, not filled for completeness.
+11. Any progression-changing code must dispatch:
 
 ```js
 window.dispatchEvent(new Event("updateProfile"));
@@ -305,7 +317,7 @@ Do not solve data problems by adding runtime filters, hardcoded exceptions or te
 
 If data is wrong, fix the relevant JSON source file or schema contract.
 
-Minimal, source-first data work is preferred over broad refactors.
+Minimal, source-first data work is preferred over broad refactors. Source-first means that the source is opened and read before the claim is written; it does not mean merely attaching a plausible URL afterward.
 
 ### Rundingsregel for minneskilt og plaketter
 
