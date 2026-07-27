@@ -1,0 +1,84 @@
+{
+  "placeId": "hoytorp_fort",
+  "researchedAt": "2026-07-27",
+  "coordinateDecision": "named_historic_land_fort_area_representative_point",
+  "legacyCoordinate": {
+    "lat": 59.5536,
+    "lon": 11.3317,
+    "distanceToAppliedM": 1082.0
+  },
+  "appliedCoordinate": {
+    "lat": 59.56228,
+    "lon": 11.34038,
+    "radiusM": 420,
+    "sourceObjectId": "osm-way:35952117"
+  },
+  "sources": [
+    {
+      "provider": "openstreetmap",
+      "name": "Høytorp fort",
+      "url": "https://www.openstreetmap.org/way/35952117",
+      "objectId": "osm-way:35952117",
+      "finding": "Named historic military-area object with representative point at 59.56228, 11.34038."
+    },
+    {
+      "provider": "forsvarsbygg",
+      "name": "Høytorp fort",
+      "url": "https://www.forsvarsbygg.no/no/verneplaner/landsverneplan-for-forsvaret/ostlandet/hoytorp-fort/",
+      "objectId": "forsvarsbygg-establishment:012501",
+      "finding": "Official military-estate history identifies establishment 012501 as a land fort, the main fortress in Fossumstrøket and part of the Glomma Line."
+    },
+    {
+      "provider": "indre_ostfold_kommune_fortene",
+      "name": "Høytorp fort",
+      "url": "https://www.fortene.no/hoytorp-fort/",
+      "finding": "Official current site interpretation documents construction in 1912–1918, battles in April 1940, protection in 2001, municipal ownership from 2003, 426 dekar and 41 buildings."
+    },
+    {
+      "provider": "foreningen_hoytorp_fort",
+      "name": "Høytorp Fort",
+      "url": "https://www.hoytorpfort.org/no/",
+      "finding": "The site association documents the central mountain complex, turret guns, museum, restoration work, guided visits and current use as cultural monument and recreation area."
+    },
+    {
+      "provider": "foreningen_hoytorp_fort",
+      "name": "Omvisning",
+      "url": "https://www.hoytorpfort.org/no/omvisning",
+      "finding": "The guided route passes through the central mountain complex, turret, highest viewpoint and fortress museum and is approximately 1.2 km long, about 0.5 km underground."
+    }
+  ],
+  "crossChecks": [
+    {
+      "candidate": "osm-node:987933937",
+      "lat": 59.56328,
+      "lon": 11.34129,
+      "distanceToAppliedM": 122.4,
+      "role": "same_name_tourism_information_point"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "osm-node:987933937",
+      "reason": "Same-name tourism-information point rather than the fort area."
+    },
+    {
+      "candidate": "Reduiten",
+      "reason": "Important central component and viewpoint, but only one part of the multi-part fort."
+    },
+    {
+      "candidate": "fortress museum or artillery museum",
+      "reason": "Visitor institutions within the fort, not substitutes for the whole historic installation."
+    },
+    {
+      "candidate": "legacy coordinate",
+      "reason": "Approximately 1,082 metres southwest of the named fort area and not tied to an identifiable fort object."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the named main fort area rather than one building, gun position, museum or information point.",
+    "The 420 m gameplay radius covers the central fort and important visitor elements but not the complete 426-decare site.",
+    "The radius is not a legal protection, property, building or complete fortification boundary.",
+    "Trøgstad fort, bridge galleries and other Fossumstrøket components remain separate sites."
+  ],
+  "nextManifestEntry": "basmo_festning"
+}

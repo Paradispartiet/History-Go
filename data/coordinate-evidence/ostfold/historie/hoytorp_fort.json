@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hoytorp_fort",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch2/hoytorp_fort.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_main_land_fort_area_anchor",
+  "currentCoordinate": {
+    "lat": 59.56228,
+    "lon": 11.34038,
+    "r": 420,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 35952117 – Høytorp fort; Forsvarsbygg establishment 012501; Fortene; Foreningen Høytorp Fort",
+    "coordType": "named_historic_land_fort_area_representative_point",
+    "coordRole": "fort_area_anchor",
+    "sourceObjectId": "osm-way:35952117",
+    "coordNote": "The canonical marker follows the named Høytorp fort area; individual buildings, museums, Reduiten and information points remain internal components."
+  },
+  "previousCoordinate": {
+    "lat": 59.5536,
+    "lon": 11.3317,
+    "r": 420,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 1082.0,
+    "reasonReplaced": "The legacy point lay approximately 1,082 metres southwest of the named fort area and had no identifiable source object."
+  },
+  "identity": {
+    "currentName": "Høytorp fort",
+    "resolvedIdentity": "The multi-part Høytorp land fort and former military installation northeast of Mysen, including its central mountain complex, defensive works, camp buildings and present museum and recreation functions, distinct from one information point or the full Fossumstrøket fortress system.",
+    "identityStatus": "resolved",
+    "identityProblem": "Høytorp is a large 426-decare complex with 41 buildings and several fortification components. A precise marker must represent the named area without reducing it to one building or claiming the complete legal or property geometry.",
+    "locatorTypeCandidate": "fortress",
+    "requiresSplit": false,
+    "splitReason": "The central fortification, camp and visitor functions form one coherent Høytorp fort destination. Trøgstad fort and the Glomma bridge galleries remain separate sites."
+  },
+  "requiredEvidence": [
+    "stable named fort-area object",
+    "official military-estate identity",
+    "official current area and building scope",
+    "official historical and visitor interpretation",
+    "explicit rejection of same-name information point",
+    "explicit separation from one internal component and the wider fortress system",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 35952117 – Høytorp fort",
+      "sourceUrl": "https://www.openstreetmap.org/way/35952117",
+      "sourceObjectId": "osm-way:35952117",
+      "sourceQuality": "named_historic_military_area",
+      "finding": "The named historic military-area object has a representative point at 59.56228, 11.34038 and represents the fort complex.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named fort area rather than one building, sign or museum."
+    },
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – Høytorp fort",
+      "sourceUrl": "https://www.forsvarsbygg.no/no/verneplaner/landsverneplan-for-forsvaret/ostlandet/hoytorp-fort/",
+      "sourceObjectId": "forsvarsbygg-establishment:012501",
+      "sourceQuality": "official_military_establishment_identity_and_operational_context",
+      "finding": "Forsvarsbygg identifies establishment 012501 as a former land fort, the main fortress in Fossumstrøket and part of the Glomma Line built after 1905.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the canonical military identity and relationship to the wider defence system."
+    },
+    {
+      "sourceProvider": "indre_ostfold_kommune_fortene",
+      "sourceName": "Fortene – Høytorp fort",
+      "sourceUrl": "https://www.fortene.no/hoytorp-fort/",
+      "sourceObjectId": "fortene:hoytorp-fort",
+      "sourceQuality": "official_current_site_history_area_and_building_scope",
+      "finding": "The official current site describes construction in 1912–1918, fighting from 9 to 14 April 1940, protection in 2001, municipal ownership from 2003, a 426-decare area and 41 buildings.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the scale and prevents the gameplay radius from being mistaken for the complete site."
+    },
+    {
+      "sourceProvider": "foreningen_hoytorp_fort",
+      "sourceName": "Foreningen Høytorp Fort",
+      "sourceUrl": "https://www.hoytorpfort.org/no/",
+      "sourceObjectId": "hoytorpfort-association:site-interpretation",
+      "sourceQuality": "official_association_historical_and_visitor_interpretation",
+      "finding": "The association documents the central mountain complex, tower guns, museum, restoration work and present use as a cultural monument and recreation area.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms internal components and current visitor role."
+    },
+    {
+      "sourceProvider": "foreningen_hoytorp_fort",
+      "sourceName": "Høytorp fort guided route",
+      "sourceUrl": "https://www.hoytorpfort.org/no/omvisning",
+      "sourceObjectId": "hoytorpfort-association:guided-route",
+      "sourceQuality": "visitor_route_and_central_complex_scope",
+      "finding": "The guided route covers the central mountain complex, tower gun, highest viewpoint and fortress museum and is approximately 1.2 kilometres long, around 0.5 kilometres underground.",
+      "canVerifyCoordinate": false,
+      "reason": "Shows that the destination is a multi-part complex rather than one point object."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "OpenStreetMap node 987933937 – Høytorp fort",
+      "sourceUrl": "https://www.openstreetmap.org/node/987933937",
+      "sourceObjectId": "osm-node:987933937",
+      "sourceQuality": "same_name_wrong_object_class",
+      "finding": "The same-name tourism-information point at 59.56328, 11.34129 lies approximately 122.4 metres northeast of the applied area anchor.",
+      "canVerifyCoordinate": false,
+      "reason": "Explicitly rejected because it represents information infrastructure rather than the fort."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Høytorp point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:hoytorp_fort",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 1,082 metres southwest of the named fort area.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the fort complex."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35952117",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:987933937",
+      "canApplyToPlace": false,
+      "rejectionReason": "Same-name tourism-information point."
+    },
+    {
+      "sourceProvider": "internal_component",
+      "sourceObjectId": "reduiten-hoytorp",
+      "canApplyToPlace": false,
+      "rejectionReason": "Important central fortification component, but not the whole fort."
+    },
+    {
+      "sourceProvider": "visitor_institution",
+      "sourceObjectId": "hoytorp-fortress-museum",
+      "canApplyToPlace": false,
+      "rejectionReason": "Museum within the complex rather than the fort itself."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35952117",
+      "geometryType": "Polygon",
+      "geometryRole": "named_main_fort_area",
+      "canApplyToPlace": true,
+      "applied": true,
+      "rawGeometryCaptured": false
+    },
+    {
+      "sourceProvider": "heritage_context",
+      "sourceObjectId": "hoytorp-protected-complex",
+      "geometryType": "protected_fort_complex_not_captured",
+      "geometryRole": "legal_heritage_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hoytorp_main_fort_area",
+      "name": "Høytorp main fort area",
+      "lat": 59.56228,
+      "lon": 11.34038,
+      "r": 180,
+      "type": "fort_area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35952117",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hoytorp_fort",
+      "lat": 59.5536,
+      "lon": 11.3317,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 1082.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35952117",
+      "lat": 59.56228,
+      "lon": 11.34038,
+      "coordRole": "fort_area_anchor",
+      "distanceFromPreviousM": 1082.0,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:987933937",
+      "lat": 59.56328,
+      "lon": 11.34129,
+      "coordRole": "information_point",
+      "distanceFromAppliedM": 122.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-hoytorp-fort-source-probe/source-summary.json",
+      "description": "Persisted named area object, official military and current site scope, information-point rejection and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Høytorp fort area anchor and retained the 420-metre gameplay radius. Continue with Basmo festning."
+  },
+  "notes": [
+    "The coordinate moves approximately 1,082 metres northeast.",
+    "The named fort area is the applied source object.",
+    "The information point, Reduiten and museums are internal components rather than canonical substitutes.",
+    "The complete 426-decare site extends beyond the gameplay radius.",
+    "The radius is not a legal, property, building or complete fortification boundary."
+  ]
+}
