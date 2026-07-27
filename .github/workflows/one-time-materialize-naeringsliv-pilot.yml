@@ -46,6 +46,26 @@ jobs:
             python -m py_compile .tmp/naeringsliv-pilot/materialize.py
 
             python .tmp/naeringsliv-pilot/materialize.py
+            python - <<'PY'
+          from pathlib import Path
+          validator = Path("tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs")
+          text = validator.read_text(encoding="utf-8")
+          old = '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
+              if (/krone|NOK|leie|kostnad|investering|driftsresultat|verdi/i.test(moneyText)) {
+                assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
+              }'''
+          new = '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
+              const calculationKeys = Object.keys(q.calculation.inputs || {});
+              const monetaryCalculation = calculationKeys.some((key) => /_nok$/i.test(key))
+                || q.calculation.unit === "NOK"
+                || /krone|NOK/i.test(`${q.question} ${q.knowledge}`);
+              if (monetaryCalculation) {
+                assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
+              }'''
+          if old not in text:
+              raise SystemExit("Fant ikke valutakontrollen i pilotvalidatoren")
+          validator.write_text(text.replace(old, new, 1), encoding="utf-8")
+          PY
 
             npm run places:index:build
             npm run quiz:context -- --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
