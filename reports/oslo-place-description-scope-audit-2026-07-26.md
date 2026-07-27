@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **130**
-- Additional active Oslo IDs outside the protocol: **382**
+- IDs in the current revision protocol: **140**
+- Additional active Oslo IDs outside the protocol: **372**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **382**
+- Additional IDs needing revision: **372**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -15,7 +15,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | Domain | Remaining |
 |---|---:|
 | natur | 74 |
-| historie | 57 |
+| historie | 47 |
 | naeringsliv | 47 |
 | kunst | 40 |
 | subkultur | 38 |
@@ -32,16 +32,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| historie | Rådmannsgården og Anatomibygget | `radmannsgarden_og_anatomibygget` | 38 | 269 | 4 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02/radmannsgarden_og_anatomibygget.json` | needs revision |
-| historie | Hauges Minde | `hauges_minde` | 32 | 202 | 3 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03/hauges_minde.json` | needs revision |
-| historie | Slurpen | `slurpen_lakkegata` | 19 | 155 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03/slurpen_lakkegata.json` | needs revision |
-| historie | Geitmyra gård | `geitmyra_gard` | 22 | 118 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04/geitmyra_gard.json` | needs revision |
-| historie | Grønland politistasjon | `gronland_politistasjon` | 24 | 134 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04/gronland_politistasjon.json` | needs revision |
-| historie | Sagene festivitetshus | `sagene_festivitetshus` | 18 | 134 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05/sagene_festivitetshus.json` | needs revision |
-| historie | Stubljan-paviljongen i Hvervenbukta | `stubljan_paviljongen_hvervenbukta` | 20 | 134 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_07/stubljan_paviljongen_hvervenbukta.json` | needs revision |
-| historie | Trosterudvillaen | `trosterudvillaen` | 18 | 134 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08/trosterudvillaen.json` | needs revision |
-| historie | Lambertseter gård | `lambertseter_gard` | 13 | 81 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/lambertseter_gard.json` | needs revision |
-| historie | Lokomotivverkstedet | `lokomotivverkstedet` | 13 | 70 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/lokomotivverkstedet.json` | needs revision |
 | historie | Nordre Skøyen hovedgård | `nordre_skoyen_hovedgard` | 14 | 93 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/nordre_skoyen_hovedgard.json` | needs revision |
 | historie | Øvre Fossum gård | `ovre_fossum_gard` | 15 | 90 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/ovre_fossum_gard.json` | needs revision |
 | historie | Saxegården | `saxegarden` | 15 | 98 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/saxegarden.json` | needs revision |
