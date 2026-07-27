@@ -91,6 +91,10 @@ for (const validator of [
   {
     name: "Økonomi og næringsliv professional module depth",
     module: "../tools/validate-okonomi-naeringsliv-profesjonsfordypning.mjs"
+  },
+  {
+    name: "Økonomi og næringsliv Oslo professional materialization",
+    module: "../tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs"
   }
 ]) {
   try {
