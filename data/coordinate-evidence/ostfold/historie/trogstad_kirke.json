@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "trogstad_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch6/trogstad_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.63664,
+    "lon": 11.31297,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 229175374; Wikidata Q6495125; Kulturminne 85678; Kartverket SSR 3972; Norges Kirker; Den norske kirke",
+    "coordType": "church_building_representative_point",
+    "coordRole": "medieval_stone_church_building_anchor",
+    "sourceObjectId": "osm-way:229175374;wikidata:Q6495125;kulturminne:85678;ssr:3972"
+  },
+  "previousCoordinate": {
+    "lat": 59.6445,
+    "lon": 11.3171,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 904.3,
+    "reasonReplaced": "Legacy-punktet lå omtrent 904 meter nord-nordøst for Trøgstad kirke og identifiserte ikke kirkebygningen."
+  },
+  "identity": {
+    "resolvedIdentity": "Trøgstad kirke, den stående romanske steinkirken fra omkring 1250 ved Trøgstadveien 1202.",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-punktet lå utenfor kirkestedet, mens teksten var for generell og skilte ikke middelalderkjernen fra 1904-utvidelsen eller nabomuseet.",
+    "locatorTypeCandidate": "medieval_church_building",
+    "requiresSplit": false,
+    "splitReason": "Middelalderkjernen og 1904-utvidelsen inngår i én stående kirke. Kirkegård, kapell, bygdemuseum og prestegård er separate komponenter."
+  },
+  "requiredEvidence": [
+    "named medieval church-building geometry",
+    "independent church entity",
+    "heritage identifier",
+    "official name point and address",
+    "circa-1250 chronology",
+    "1904 extension history",
+    "church-versus-museum separation",
+    "active-use and cemetery limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 229175374 – Trøgstad kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/229175374",
+      "sourceObjectId": "osm-way:229175374",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 59.63664, 11.31297.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for den stående kirkebygningen."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Trøgstad kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6495125",
+      "sourceObjectId": "wikidata:Q6495125",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Q6495125 identifiserer Trøgstad kirke og kobler kirken til middelalderdatering, adresse og kulturminneidentitet.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Kulturminne 85678 – Trøgstad kirke",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=85678",
+      "sourceObjectId": "kulturminne:85678",
+      "sourceQuality": "authoritative_heritage_identity",
+      "finding": "Kulturminne-ID 85678 identifiserer den fredede middelalderkirken og kirkestedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offentlig kulturminneidentitet."
+    },
+    {
+      "sourceProvider": "kartverket_ssr",
+      "sourceName": "Kartverket – Trøgstad kirke",
+      "sourceUrl": "https://stadnamn.kartverket.no/fakta/3972",
+      "sourceObjectId": "ssr:3972",
+      "sourceQuality": "official_place_name_and_coordinate_control",
+      "finding": "Kartverket oppgir vedtatt navn Trøgstad kirke og koordinat 59.63643, 11.31259, tett på bygningsgeometrien.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell navne- og posisjonskontroll."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Trøgstad kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Tr%C3%B8gstad_kirke",
+      "sourceObjectId": "norges-kirker:trogstad-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Dokumenterer den romanske steinkirken, Olavsdedikasjonen, bygningsdelene, sakristiet fra 1697 og den omfattende vestutvidelsen i 1904.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter identitet, bygningskronologi og komponentgrenser."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Den norske kirke – Trøgstad kirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/indreostfold/menigheter/tr%C3%B8gstad/kirkene/tr%C3%B8gstadkirke/",
+      "sourceObjectId": "kirken:trogstad-kirke",
+      "sourceQuality": "official_current_identity_and_chronology",
+      "finding": "Oppgir romansk steinkirke viet til Olav den hellige, antatt innviet omkring 1250, og beskriver kirkens aktive bruk.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell nåtids- og historikkontroll."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Trøgstad church point",
+      "sourceObjectId": "legacy:trogstad_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 904,3 meter nord-nordøst for kirkebygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer kirken."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:229175374",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "kartverket_ssr",
+      "sourceObjectId": "ssr:3972",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Offisiell navnepunktkontroll; OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:trogstad_kirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger 904 meter fra kirken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "trogstad_medieval_church",
+      "name": "Trøgstad kirke",
+      "lat": 59.63664,
+      "lon": 11.31297,
+      "r": 105,
+      "type": "medieval_stone_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:229175374;wikidata:Q6495125;kulturminne:85678",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "trogstad_official_name_point",
+      "name": "Trøgstad kirke – Kartverket",
+      "lat": 59.63643,
+      "lon": 11.31259,
+      "r": 100,
+      "type": "official_named_church_control",
+      "sourceProvider": "kartverket_ssr",
+      "sourceObjectId": "ssr:3972",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:trogstad_kirke",
+      "lat": 59.6445,
+      "lon": 11.3171,
+      "distanceFromAppliedM": 904.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:229175374;wikidata:Q6495125",
+      "lat": 59.63664,
+      "lon": 11.31297,
+      "distanceFromPreviousM": 904.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-trogstad-kirke-source-probe/source-summary.json",
+      "description": "Vedvarende kildekontroll for bygningsgeometri, middelalderdatering, Olavsdedikasjon, 1904-utvidelse, nabomuseum og aktiv bruk."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den stående middelalderkirken som canonical, presiserte cirka 1250 og modellerte 1904 som en stor utvidelse. Fortsett med skiptvet_kirke."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 904 meter sør-sørvest.",
+    "Den stående romanske middelalderkirken er canonical-objektet.",
+    "År 1250 er omtrentlig og ikke en dokumentert eksakt innvielsesdato.",
+    "1904 er en omfattende utvidelse, ikke byggeåret for hele kirken.",
+    "Bygdemuseet, kapellet, kirkegården og prestegården er separate komponenter.",
+    "Radiusen er ikke en bygnings-, kirkegårds-, museums-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+  ]
+}
