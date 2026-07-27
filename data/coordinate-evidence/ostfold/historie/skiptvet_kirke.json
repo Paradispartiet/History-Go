@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "skiptvet_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch6/skiptvet_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.4677,
+    "lon": 11.17448,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 605207574; Wikidata Q6494661; Norges Kirker; Riksantikvaren automatically protected church list; Skiptvet kirkelige fellesråd",
+    "coordType": "church_building_representative_point",
+    "coordRole": "medieval_stone_church_building_anchor",
+    "sourceObjectId": "osm-way:605207574;wikidata:Q6494661"
+  },
+  "previousCoordinate": {
+    "lat": 59.4764,
+    "lon": 11.1709,
+    "r": 240,
+    "distanceToAppliedCoordinateM": 988.3,
+    "reasonReplaced": "Legacy-punktet lå omtrent 988 meter nord-nordvest for Skiptvet kirke og identifiserte ikke kirkebygningen."
+  },
+  "identity": {
+    "resolvedIdentity": "Skiptvet kirke, den stående romanske middelalderkirken på Kirkebakken 3.",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-punktet lå utenfor kirkestedet, og teksten reduserte kirken til et generelt Glomma- og bygdelandskap uten å forklare brann- og bygningslagene.",
+    "locatorTypeCandidate": "medieval_church_building",
+    "requiresSplit": false,
+    "splitReason": "Middelaldermurene og de senere gjenreisningslagene inngår i én stående kirke. Kirkegård, prestegård og gravkapell er separate komponenter."
+  },
+  "requiredEvidence": [
+    "named medieval church-building geometry",
+    "independent church entity",
+    "automatic-protection status",
+    "official address and active use",
+    "approximate medieval chronology",
+    "1762 fire and rebuilding history",
+    "later porch, sacristy and restoration layers",
+    "active-use and cemetery limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 605207574 – Skiptvet kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/605207574",
+      "sourceObjectId": "osm-way:605207574",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 59.46770, 11.17448.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for den stående kirkebygningen."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Skiptvet kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6494661",
+      "sourceObjectId": "wikidata:Q6494661",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Q6494661 identifiserer Skiptvet kirke og kobler entiteten til OSM-way 605207574.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Skiptvet kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Skiptvet_kirke",
+      "sourceObjectId": "norges-kirker:skiptvet-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Dokumenterer den romanske kirken, Mariadedikasjonen, brannen i 1762, bevarte middelaldermurer, vesttårnets fot, 1887-tilbyggene, gravkapellet fra 1936 og restaureringen i 1937.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter bygningsidentitet, kronologi og komponentgrenser."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – kirker med søknadsrett til Kirkebevaringsfondet",
+      "sourceUrl": "https://riksantikvaren.no/kirkebevaringsfondet/kirker-som-har-soknadsrett-til-kirkebevaringsfondet/",
+      "sourceObjectId": "riksantikvaren:auto-protected-church:Skiptvet",
+      "sourceQuality": "authoritative_protection_status",
+      "finding": "Riksantikvaren fører Skiptvet kirke som automatisk fredet.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell kontroll av vernestatus; kilden erstatter ikke bygningsgeometrien."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Skiptvet kirkelige fellesråd og lokal arrangementsportal",
+      "sourceUrl": "https://skiptvet.kirken.no/",
+      "sourceObjectId": "kirken:skiptvet-kirke",
+      "sourceQuality": "official_current_identity_and_use",
+      "finding": "Bekrefter aktiv kirkelig drift. Lokal arrangementsportal oppgir besøksadresse Kirkebakken 3 og gudstjenester og konfirmasjoner i 2026.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell nåtids-, adresse- og brukskontroll."
+    },
+    {
+      "sourceProvider": "store_norske_leksikon",
+      "sourceName": "Store norske leksikon – Skiptvet",
+      "sourceUrl": "https://snl.no/Skiptvet",
+      "sourceObjectId": "snl:Skiptvet",
+      "sourceQuality": "independent_medieval_chronology_control",
+      "finding": "Omtaler Skiptvet kirke som en romansk steinkirke fra 1100-tallet.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter den brede middelalderdateringen og viser hvorfor år 1200 må merkes som omtrentlig."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Skiptvet church point",
+      "sourceObjectId": "legacy:skiptvet_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 988,3 meter nord-nordvest for kirkebygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer kirken."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:605207574",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6494661",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende entitetskontroll; OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:skiptvet_kirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger 988 meter fra kirken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "skiptvet_medieval_church",
+      "name": "Skiptvet kirke",
+      "lat": 59.4677,
+      "lon": 11.17448,
+      "r": 105,
+      "type": "medieval_stone_church_building_anchor",
+      "sourceProvider": "openstreetmap_wikidata",
+      "sourceObjectId": "osm-way:605207574;wikidata:Q6494661",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:skiptvet_kirke",
+      "lat": 59.4764,
+      "lon": 11.1709,
+      "distanceFromAppliedM": 988.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:605207574;wikidata:Q6494661",
+      "lat": 59.4677,
+      "lon": 11.17448,
+      "distanceFromPreviousM": 988.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-skiptvet-kirke-source-probe/source-summary.json",
+      "description": "Vedvarende kildekontroll for bygningsgeometri, middelalderdatering, automatisk fredning, 1762-brann, senere bygningslag og aktiv bruk."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den stående middelalderkirken som canonical, beholdt 1200 som omtrentlig datering og modellerte brann- og restaureringslagene. Fortsett med momarken_markedsplass."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 988 meter sør-sørøst.",
+    "Den stående romanske middelalderkirken er canonical-objektet.",
+    "År 1200 er omtrentlig; kildene plasserer bygningen på 1100-tallet eller omkring 1200.",
+    "Brannen i 1762 førte til omfattende gjenreisning, men middelaldermurer og tårnfot ble bevart.",
+    "Kirkegården, prestegården og gravkapellet er separate komponenter.",
+    "Radiusen er ikke en bygnings-, kirkegårds-, prestegårds-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+  ]
+}
