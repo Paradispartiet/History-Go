@@ -1,0 +1,313 @@
+build-final	Build corrected final branch	﻿2026-07-27T11:14:23.7630715Z ##[group]Run set -euo pipefail
+build-final	Build corrected final branch	2026-07-27T11:14:23.7631111Z ^[[36;1mset -euo pipefail^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7631774Z ^[[36;1mgit show 4234d827f9d852a0bde596d928d689a821408b21:.github/workflows/one-time-build-naeringsliv-pilot-final.yml > /tmp/locked.yml^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7632442Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7632697Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7632952Z ^[[36;1m^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7633283Z ^[[36;1mlines = Path('/tmp/locked.yml').read_text(encoding='utf-8').splitlines()^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7633857Z ^[[36;1mstart = lines.index('      - name: Reconstruct, validate and publish clean final branch')^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7634443Z ^[[36;1mrun = next(i for i in range(start, len(lines)) if lines[i] == '        run: |')^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7635051Z ^[[36;1mbody = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[run + 1:]) + '\n'^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7635498Z ^[[36;1m^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7636600Z ^[[36;1mpackage_loop = 'for part in $(seq -w 0 8); do\n  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"\ndone > /tmp/naeringsliv-pilot.b64\n'^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7638231Z ^[[36;1mpackage_reader = "python -c \"import subprocess,pathlib; c='adf47efbabb88be77cd0413dee695557923a9b97'; p=[subprocess.check_output(['git','show',f'{c}:.tmp/naeringsliv-pilot/pkg-{i:02d}']).strip() for i in range(9)]; pathlib.Path('/tmp/naeringsliv-pilot.b64').write_bytes(b''.join(p))\"\n"^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7639340Z ^[[36;1mif package_loop not in body:^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7639676Z ^[[36;1m    raise SystemExit('Pakkeløkken mangler')^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7640062Z ^[[36;1mbody = body.replace(package_loop, package_reader, 1)^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7640390Z ^[[36;1m^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7640577Z ^[[36;1mcleanup = (^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7641057Z ^[[36;1m    "    binding_fields = ('method_id', 'topic_hook_id', 'thinker_id', 'thinker_name', 'work', 'theory_focus', 'theory_ref')\n"^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7641611Z ^[[36;1m    "    for set_row in sets[2:4]:\n"^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7641945Z ^[[36;1m    "        for question in set_row['questions']:\n"^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7642504Z ^[[36;1m    "            for field in binding_fields:\n"^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7642854Z ^[[36;1m    "                question.pop(field, None)\n\n"^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7643146Z ^[[36;1m)^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7643494Z ^[[36;1mproduction_marker = "    production = quiz.setdefault('production_context', {})\n"^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7643942Z ^[[36;1mif production_marker not in body:^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7644289Z ^[[36;1m    raise SystemExit('Produksjonsmarkøren mangler')^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7644749Z ^[[36;1mbody = body.replace(production_marker, cleanup + production_marker, 1)^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7645398Z ^[[36;1mbody = body.replace("production['method_start_phase'] = 'bridge'", "production['method_start_phase'] = 'final'", 1)^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7646142Z ^[[36;1m^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7646436Z ^[[36;1mPath('/tmp/run-final.sh').write_text(body, encoding='utf-8')^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7646801Z ^[[36;1mPY^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7647013Z ^[[36;1mbash /tmp/run-final.sh^[[0m
+build-final	Build corrected final branch	2026-07-27T11:14:23.7707397Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build-final	Build corrected final branch	2026-07-27T11:14:23.7707772Z ##[endgroup]
+build-final	Build corrected final branch	2026-07-27T11:14:24.0346287Z From https://github.com/Paradispartiet/History-Go
+build-final	Build corrected final branch	2026-07-27T11:14:24.0346871Z  * branch                main       -> FETCH_HEAD
+build-final	Build corrected final branch	2026-07-27T11:14:24.0347441Z  * branch                agent/naeringsliv-pilot-profesjonsmaterialisering -> FETCH_HEAD
+build-final	Build corrected final branch	2026-07-27T11:14:24.0435906Z Preparing worktree (detached HEAD e86fad822)
+build-final	Build corrected final branch	2026-07-27T11:14:25.0710639Z Updating files:  32% (4749/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.0910817Z Updating files:  33% (4850/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1095811Z Updating files:  34% (4996/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1181638Z Updating files:  35% (5143/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1255988Z Updating files:  36% (5290/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1355351Z Updating files:  37% (5437/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1580253Z Updating files:  38% (5584/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1714317Z Updating files:  39% (5731/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1846603Z Updating files:  40% (5878/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.1993342Z Updating files:  41% (6025/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.2363855Z Updating files:  42% (6172/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.2502838Z Updating files:  43% (6319/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.2654844Z Updating files:  44% (6466/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.2732244Z Updating files:  45% (6613/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.2814419Z Updating files:  46% (6760/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.2888866Z Updating files:  47% (6907/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.2957596Z Updating files:  48% (7054/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3028466Z Updating files:  49% (7201/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3098552Z Updating files:  50% (7347/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3166751Z Updating files:  51% (7494/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3237463Z Updating files:  52% (7641/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3308756Z Updating files:  53% (7788/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3386416Z Updating files:  54% (7935/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3455361Z Updating files:  55% (8082/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3524822Z Updating files:  56% (8229/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3602197Z Updating files:  57% (8376/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3671784Z Updating files:  58% (8523/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3755399Z Updating files:  59% (8670/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3823364Z Updating files:  60% (8817/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3900197Z Updating files:  61% (8964/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.3975677Z Updating files:  62% (9111/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4047910Z Updating files:  63% (9258/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4139812Z Updating files:  64% (9405/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4215038Z Updating files:  65% (9552/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4286475Z Updating files:  66% (9699/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4355856Z Updating files:  67% (9845/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4455300Z Updating files:  68% (9992/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4523236Z Updating files:  69% (10139/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4667246Z Updating files:  70% (10286/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4774802Z Updating files:  71% (10433/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.4891505Z Updating files:  72% (10580/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5017028Z Updating files:  73% (10727/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5105778Z Updating files:  74% (10874/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5199744Z Updating files:  75% (11021/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5311633Z Updating files:  76% (11168/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5533457Z Updating files:  77% (11315/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5624560Z Updating files:  78% (11462/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5787306Z Updating files:  79% (11609/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.5925621Z Updating files:  80% (11756/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.6103826Z Updating files:  81% (11903/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.6323157Z Updating files:  82% (12050/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.6587013Z Updating files:  83% (12197/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.6789742Z Updating files:  84% (12343/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.6893850Z Updating files:  85% (12490/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.6971101Z Updating files:  86% (12637/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.7081438Z Updating files:  87% (12784/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.7180886Z Updating files:  88% (12931/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.7253720Z Updating files:  89% (13078/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.7413378Z Updating files:  90% (13225/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.7602482Z Updating files:  91% (13372/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.7914484Z Updating files:  92% (13519/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8019905Z Updating files:  93% (13666/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8115328Z Updating files:  94% (13813/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8188400Z Updating files:  95% (13960/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8289720Z Updating files:  96% (14107/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8387989Z Updating files:  97% (14254/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8479496Z Updating files:  98% (14401/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8586121Z Updating files:  99% (14548/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8587322Z Updating files: 100% (14694/14694)
+build-final	Build corrected final branch	2026-07-27T11:14:25.8588074Z Updating files: 100% (14694/14694), done.
+build-final	Build corrected final branch	2026-07-27T11:14:25.8743193Z HEAD is now at e86fad822 Merge pull request #4253 from Paradispartiet/agent/oslo-popup-v4-batch-22-finish-media
+build-final	Build corrected final branch	2026-07-27T11:14:25.8953121Z Switched to a new branch 'agent/naeringsliv-pilot-profesjonsmaterialisering-final'
+build-final	Build corrected final branch	2026-07-27T11:14:28.7771116Z 
+build-final	Build corrected final branch	2026-07-27T11:14:28.7771873Z added 55 packages, and audited 56 packages in 3s
+build-final	Build corrected final branch	2026-07-27T11:14:28.7772495Z 
+build-final	Build corrected final branch	2026-07-27T11:14:28.7772727Z 13 packages are looking for funding
+build-final	Build corrected final branch	2026-07-27T11:14:28.7773163Z   run `npm fund` for details
+build-final	Build corrected final branch	2026-07-27T11:14:28.7799467Z 
+build-final	Build corrected final branch	2026-07-27T11:14:28.7799735Z 1 high severity vulnerability
+build-final	Build corrected final branch	2026-07-27T11:14:28.7800195Z 
+build-final	Build corrected final branch	2026-07-27T11:14:28.7800716Z To address all issues (including breaking changes), run:
+build-final	Build corrected final branch	2026-07-27T11:14:28.7801514Z   npm audit fix --force
+build-final	Build corrected final branch	2026-07-27T11:14:28.7801743Z 
+build-final	Build corrected final branch	2026-07-27T11:14:28.7801922Z Run `npm audit` for details.
+build-final	Build corrected final branch	2026-07-27T11:14:29.0561200Z 
+build-final	Build corrected final branch	2026-07-27T11:14:29.0562031Z > history-go@0.0.0 places:index:build
+build-final	Build corrected final branch	2026-07-27T11:14:29.0562962Z > npm run build:tools && node dist/tools/build_places_index.mjs
+build-final	Build corrected final branch	2026-07-27T11:14:29.0563436Z 
+build-final	Build corrected final branch	2026-07-27T11:14:29.1551482Z 
+build-final	Build corrected final branch	2026-07-27T11:14:29.1552184Z > history-go@0.0.0 build:tools
+build-final	Build corrected final branch	2026-07-27T11:14:29.1552875Z > tsc -p tsconfig.tools.build.json
+build-final	Build corrected final branch	2026-07-27T11:14:29.1553177Z 
+build-final	Build corrected final branch	2026-07-27T11:14:32.6599899Z Wrote 1431 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 213 category override(s)
+build-final	Build corrected final branch	2026-07-27T11:14:32.7974056Z 
+build-final	Build corrected final branch	2026-07-27T11:14:32.7975037Z > history-go@0.0.0 quiz:context
+build-final	Build corrected final branch	2026-07-27T11:14:32.7977587Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Build corrected final branch	2026-07-27T11:14:32.7979562Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.0472477Z Skrev data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Build corrected final branch	2026-07-27T11:14:33.1667298Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.1667949Z > history-go@0.0.0 quiz:context
+build-final	Build corrected final branch	2026-07-27T11:14:33.1669360Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Build corrected final branch	2026-07-27T11:14:33.1670331Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.3963785Z Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Build corrected final branch	2026-07-27T11:14:33.5076878Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.5077525Z > history-go@0.0.0 quiz:context
+build-final	Build corrected final branch	2026-07-27T11:14:33.5078942Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Build corrected final branch	2026-07-27T11:14:33.5079902Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.7064069Z Skrev data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Build corrected final branch	2026-07-27T11:14:33.7535363Z OK: Næringsliv Oslo professional materialization validates (63 questions, 16 calculations, 3 places).
+build-final	Build corrected final branch	2026-07-27T11:14:33.8531312Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.8531889Z > history-go@0.0.0 places:emner:check
+build-final	Build corrected final branch	2026-07-27T11:14:33.8532784Z > npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+build-final	Build corrected final branch	2026-07-27T11:14:33.8533315Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.9581834Z 
+build-final	Build corrected final branch	2026-07-27T11:14:33.9582503Z > history-go@0.0.0 build:tools
+build-final	Build corrected final branch	2026-07-27T11:14:33.9583114Z > tsc -p tsconfig.tools.build.json
+build-final	Build corrected final branch	2026-07-27T11:14:33.9583433Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.7593234Z === Place emne_id validation ===
+build-final	Build corrected final branch	2026-07-27T11:14:36.7595010Z Active place files: 1444
+build-final	Build corrected final branch	2026-07-27T11:14:36.7595810Z Canonical emne files scanned: 20
+build-final	Build corrected final branch	2026-07-27T11:14:36.7596893Z Canonical emne ids loaded: 1411
+build-final	Build corrected final branch	2026-07-27T11:14:36.7597423Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.7597714Z Missing emne_ids: 0
+build-final	Build corrected final branch	2026-07-27T11:14:36.7597962Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.7598783Z Duplicate emne_ids within same place: 0
+build-final	Build corrected final branch	2026-07-27T11:14:36.7599208Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.7601559Z Duplicate place ids across active files: 0
+build-final	Build corrected final branch	2026-07-27T11:14:36.7602026Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.7602452Z Duplicate place ids within same active file: 0
+build-final	Build corrected final branch	2026-07-27T11:14:36.7602966Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.7603390Z Duplicate canonical emne_ids across canonical files: 0
+build-final	Build corrected final branch	2026-07-27T11:14:36.8670043Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.8670568Z > history-go@0.0.0 places:index:check
+build-final	Build corrected final branch	2026-07-27T11:14:36.8672026Z > npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+build-final	Build corrected final branch	2026-07-27T11:14:36.8673053Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.9640887Z 
+build-final	Build corrected final branch	2026-07-27T11:14:36.9641555Z > history-go@0.0.0 build:tools
+build-final	Build corrected final branch	2026-07-27T11:14:36.9642278Z > tsc -p tsconfig.tools.build.json
+build-final	Build corrected final branch	2026-07-27T11:14:36.9642569Z 
+build-final	Build corrected final branch	2026-07-27T11:14:39.6693752Z OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+build-final	Build corrected final branch	2026-07-27T11:14:40.1355042Z places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+build-final	Build corrected final branch	2026-07-27T11:14:40.2320444Z 
+build-final	Build corrected final branch	2026-07-27T11:14:40.2321166Z > history-go@0.0.0 places:coords:check
+build-final	Build corrected final branch	2026-07-27T11:14:40.2322036Z > node tests/place-coordinate-index-parity.test.js
+build-final	Build corrected final branch	2026-07-27T11:14:40.2322445Z 
+build-final	Build corrected final branch	2026-07-27T11:14:40.3845657Z Place coordinate index parity OK: runtime index coordinate fields match source files.
+build-final	Build corrected final branch	2026-07-27T11:14:40.5055591Z 
+build-final	Build corrected final branch	2026-07-27T11:14:40.5056621Z > history-go@0.0.0 audit:quiz-content
+build-final	Build corrected final branch	2026-07-27T11:14:40.5057386Z > node scripts/audit-quiz-content-quality.mjs
+build-final	Build corrected final branch	2026-07-27T11:14:40.5057766Z 
+build-final	Build corrected final branch	2026-07-27T11:14:40.8986319Z Quizinnholds-audit
+build-final	Build corrected final branch	2026-07-27T11:14:40.8988596Z - filer: 335
+build-final	Build corrected final branch	2026-07-27T11:14:40.8989317Z - spørsmål: 8463
+build-final	Build corrected final branch	2026-07-27T11:14:40.8991285Z - balansebrudd: 254
+build-final	Build corrected final branch	2026-07-27T11:14:40.8992016Z - teori/begrepsspørsmål: 3066
+build-final	Build corrected final branch	2026-07-27T11:14:40.8992443Z - forbudte teorimaler: 277
+build-final	Build corrected final branch	2026-07-27T11:14:40.8992810Z - gjentatte åpninger: 64
+build-final	Build corrected final branch	2026-07-27T11:14:40.8993135Z - mistenkelig svarlengde: 2521
+build-final	Build corrected final branch	2026-07-27T11:14:40.8996712Z - JSON-feil: 0
+build-final	Build corrected final branch	2026-07-27T11:14:40.8996931Z 
+build-final	Build corrected final branch	2026-07-27T11:14:40.8997067Z Verste balansebrudd:
+build-final	Build corrected final branch	2026-07-27T11:14:40.8997734Z - data/quiz/litteratur/deichman_bjorvika_sets.json [deichman_bjorvika]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.8998966Z - data/quiz/litteratur/litteraturhuset_sets.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.8999961Z - data/quiz/litteratur/norli_universitetsgata_sets.json [norli_universitetsgata]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9001185Z - data/quiz/litteratur/tronsmo_bokhandel_sets.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9002404Z - data/quiz/litteratur/wergelandsveien_15_sets.json [wergelandsveien_15]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9004094Z - data/quiz/litteratur/camilla_collett_statue_sets_merged.json [camilla_collett_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9005528Z - data/quiz/litteratur/eldorado_bokhandel_sets_merged.json [eldorado_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9007174Z - data/quiz/litteratur/gamle_deichman.json [gamle_deichman]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9008470Z - data/quiz/litteratur/henrik_wergeland_statue_sets_merged.json [henrik_wergeland_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9009825Z - data/quiz/litteratur/litteraturhuset_sets_merged.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9011113Z - data/quiz/litteratur/nationaltheatret_sets_merged.json [nationaltheatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9012403Z - data/quiz/litteratur/tronsmo_bokhandel_sets_merged.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9013801Z - data/quiz/musikk/Lisboa/lisbon_coliseu_dos_recreios_sets_merged.json [lisbon_coliseu_dos_recreios]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9015263Z - data/quiz/musikk/Lisboa/lisbon_mouraria_fado_sets_merged.json [lisbon_mouraria_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9017058Z - data/quiz/musikk/Lisboa/lisbon_teatro_tivoli_bbva_sets_merged.json [lisbon_teatro_tivoli_bbva]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9018068Z - data/quiz/musikk/Lisboa/museu_fado.json [lisbon_museu_do_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9018813Z - data/quiz/musikk/blaa_sets_merged.json [blaa]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9019617Z - data/quiz/musikk/det_norske_teatret_sets_merged.json [det_norske_teatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9020430Z - data/quiz/musikk/john_dee_sets_merged_REVISED.json [john_dee]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9021462Z - data/quiz/musikk/operaen_musikk_sets_merged.json [operaen]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9022251Z - data/quiz/musikk/parkteatret_sets_merged.json [parkteatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9023026Z - data/quiz/musikk/rockefeller_sets_merged.json [rockefeller]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9023738Z - data/quiz/musikk/salt_sets_merged.json [salt]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9024472Z - data/quiz/musikk/sentrum_scene_sets_merged.json [sentrum_scene]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9025303Z - data/quiz/naeringsliv/akerselva_industri_sets_merged.json [akerselva]: fakta 0, sammenheng 0, teori 1
+build-final	Build corrected final branch	2026-07-27T11:14:40.9025741Z 
+build-final	Build corrected final branch	2026-07-27T11:14:40.9026254Z Mest gjentatte spørsmålsåpninger:
+build-final	Build corrected final branch	2026-07-27T11:14:40.9026800Z - 58 × «hvilken samlet analyse passer best for …» i 58 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9027430Z - 27 × «hva bør spilleren se etter først …» i 27 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9028027Z - 27 × «hva er et godt første observasjonsspørsmal …» i 27 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9028547Z - 23 × «hva er den dypere læringen i …» i 23 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9029049Z - 20 × «hvilken metode passer best for a …» i 13 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9029508Z - 16 × «hva bør holdes ute av trygg …» i 16 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9030004Z - 14 × «hva er den viktigste forskjellen mellom …» i 14 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9030550Z - 14 × «hva er en avansert observasjon ved …» i 14 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9031001Z - 11 × «hva betyr stedlesning …» i 10 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9031451Z - 11 × «hva bør spilleren se etter for …» i 9 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9031922Z - 11 × «hva er den mest presise faglige …» i 9 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9032382Z - 11 × «hva betyr blagrønn struktur …» i 7 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9032796Z - 9 × «hva er en kantsone …» i 5 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9033235Z - 8 × «hva er en avansert observasjon i …» i 8 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9033750Z - 8 × «hva er den beste korte forklaringen …» i 8 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9034192Z - 8 × «hva bør holdes ute av en …» i 8 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9034819Z - 8 × «hva betyr bynatur …» i 5 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9035256Z - 8 × «hva er en kritisk blindside ved …» i 2 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9035695Z - 7 × «hva kan være en konflikt i …» i 7 filer
+build-final	Build corrected final branch	2026-07-27T11:14:40.9036428Z - 7 × «hva er en trygg mate a …» i 7 filer
+build-final	Build corrected final branch	2026-07-27T11:14:42.6404496Z {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6404995Z   "status": "failed",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6405550Z   "categoriesWithQuizProduction": 3,
+build-final	Build corrected final branch	2026-07-27T11:14:42.6406333Z   "quizFilesChecked": 8,
+build-final	Build corrected final branch	2026-07-27T11:14:42.6406847Z   "checked": [
+build-final	Build corrected final branch	2026-07-27T11:14:42.6407357Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6407822Z       "categoryId": "by",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6408286Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6408679Z       "targetId": "deichman_bjorvika",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6408976Z       "questions": 35
+build-final	Build corrected final branch	2026-07-27T11:14:42.6409236Z     },
+build-final	Build corrected final branch	2026-07-27T11:14:42.6409436Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6409678Z       "categoryId": "historie",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6410083Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6410537Z       "targetId": "grindheim_runestein",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6410846Z       "questions": 21
+build-final	Build corrected final branch	2026-07-27T11:14:42.6411080Z     },
+build-final	Build corrected final branch	2026-07-27T11:14:42.6411274Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6411512Z       "categoryId": "historie",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6411908Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6412332Z       "targetId": "grindheim_steinkross",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6412636Z       "questions": 21
+build-final	Build corrected final branch	2026-07-27T11:14:42.6412861Z     },
+build-final	Build corrected final branch	2026-07-27T11:14:42.6413060Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6413291Z       "categoryId": "historie",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6413729Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6414223Z       "targetId": "grindheimsveien_nord_gravfelt",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6414564Z       "questions": 21
+build-final	Build corrected final branch	2026-07-27T11:14:42.6415036Z     },
+build-final	Build corrected final branch	2026-07-27T11:14:42.6415234Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6415467Z       "categoryId": "historie",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6416115Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6416586Z       "targetId": "hoyland_gravhaug_etne",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6416898Z       "questions": 21
+build-final	Build corrected final branch	2026-07-27T11:14:42.6417128Z     },
+build-final	Build corrected final branch	2026-07-27T11:14:42.6417322Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6417564Z       "categoryId": "naeringsliv",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6418022Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6418488Z       "targetId": "telegrafbygningen",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6418792Z       "questions": 35
+build-final	Build corrected final branch	2026-07-27T11:14:42.6419022Z     },
+build-final	Build corrected final branch	2026-07-27T11:14:42.6419219Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6419497Z       "categoryId": "naeringsliv",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6419921Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6420347Z       "targetId": "oslo_posthus",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6420629Z       "questions": 35
+build-final	Build corrected final branch	2026-07-27T11:14:42.6420842Z     },
+build-final	Build corrected final branch	2026-07-27T11:14:42.6421019Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6421246Z       "categoryId": "naeringsliv",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6421611Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6421990Z       "targetId": "havnelageret",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6422240Z       "questions": 35
+build-final	Build corrected final branch	2026-07-27T11:14:42.6422444Z     }
+build-final	Build corrected final branch	2026-07-27T11:14:42.6422619Z   ],
+build-final	Build corrected final branch	2026-07-27T11:14:42.6422803Z   "failures": [
+build-final	Build corrected final branch	2026-07-27T11:14:42.6423009Z     {
+build-final	Build corrected final branch	2026-07-27T11:14:42.6423327Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6424042Z       "reason": "spørsmålet avviker fra claim.method_id",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6424437Z       "questionId": "telegrafbygningen_quiz_22",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6424786Z       "claimId": "claim_telegrafbygningen_22",
+build-final	Build corrected final branch	2026-07-27T11:14:42.6425141Z       "expected": "met_naering_arbeidslivsanalyse"
+build-final	Build corrected final branch	2026-07-27T11:14:42.6425433Z     }
+build-final	Build corrected final branch	2026-07-27T11:14:42.6425615Z   ]
+build-final	Build corrected final branch	2026-07-27T11:14:42.6425793Z }
+build-final	Build corrected final branch	2026-07-27T11:14:42.6642183Z Uventede produksjonskontekstfeil: [{'file': 'data/quiz/naeringsliv/telegrafbygningen_sets_merged.json', 'reason': 'spørsmålet avviker fra claim.method_id', 'questionId': 'telegrafbygningen_quiz_22', 'claimId': 'claim_telegrafbygningen_22', 'expected': 'met_naering_arbeidslivsanalyse'}]
+build-final	Build corrected final branch	2026-07-27T11:14:42.6699654Z ##[error]Process completed with exit code 1.
