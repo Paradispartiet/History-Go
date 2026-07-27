@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hvaler_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch2/hvaler_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_protected_medieval_island_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.03267,
+    "lon": 11.02568,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 543076065 – Hvaler kirke; Wikidata Q6493554; Kulturminne ID 84680; Hvaler menighet; Hvaler kommune; Norges Kirker",
+    "coordType": "named_protected_medieval_church_building_polygon_representative_point",
+    "coordRole": "medieval_island_church_building_anchor",
+    "sourceObjectId": "osm-way:543076065;wikidata:Q6493554;riksantikvaren-kulturminne:84680;church-of-norway-building:444"
+  },
+  "previousCoordinate": {
+    "lat": 59.0375,
+    "lon": 11.0319,
+    "r": 240,
+    "distanceToAppliedCoordinateM": 644.3,
+    "reasonReplaced": "The legacy point lay approximately 644.3 metres northeast of the church building and had no source-object contract."
+  },
+  "identity": {
+    "resolvedIdentity": "The protected medieval stone church at Svanekilveien 11 on Kirkøy, identified by OSM way 543076065, Wikidata Q6493554, Kulturminne ID 84680 and Church of Norway building ID 444.",
+    "identityStatus": "resolved",
+    "identityProblem": "The coordinate must identify the church building rather than the parsonage, cemetery, church office, Skjærhalden or a general Kirkøy or Hvaler locality point. Published sources also vary in the precise dating of the earliest stone church.",
+    "locatorTypeCandidate": "church",
+    "requiresSplit": false,
+    "splitReason": "The medieval church building and immediate maritime church-site environment form one coherent place record. The parsonage, cemetery, Ørekroken and wider island landscape remain associated context."
+  },
+  "requiredEvidence": [
+    "named church-building geometry",
+    "heritage and Church of Norway identifiers",
+    "official building address and current institutional identity",
+    "authoritative medieval and maritime context",
+    "explicit preservation of dating uncertainty",
+    "radius and church-site limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 543076065 – Hvaler kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/543076065",
+      "sourceObjectId": "osm-way:543076065",
+      "sourceQuality": "named_church_building_geometry",
+      "finding": "The mapped church-building polygon has representative point 59.03267, 11.02568 and identifies Hvaler church on Kirkøy.",
+      "canVerifyCoordinate": true,
+      "reason": "It directly represents the physical medieval church building rather than the wider island, parish or visitor infrastructure."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q6493554 – Hvaler Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6493554",
+      "sourceObjectId": "wikidata:Q6493554",
+      "sourceQuality": "church_entity_and_registry_cross_check",
+      "finding": "The entity links Kulturminne ID 84680, Church of Norway building ID 444 and SSR 790650, and identifies the church at Svanekilveien 11 on Kirkøy.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the building identity and registry relationships while the mapped polygon supplies the direct coordinate."
+    },
+    {
+      "sourceProvider": "riksantikvaren_cross_check",
+      "sourceName": "Kulturminne ID 84680 – Hvaler kirke",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=84680",
+      "sourceObjectId": "riksantikvaren-kulturminne:84680",
+      "sourceQuality": "official_protected_heritage_identity",
+      "finding": "The national heritage identifier is attached to Hvaler church as a protected medieval cultural property.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the protected church identity without substituting legal protection geometry for the building point."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Hvaler menighet – Hvaler kirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/hvaler-menighet/om-oss/kirker-og-kirkegarder/hvaler-kirke/",
+      "sourceObjectId": "church-of-norway-building:444",
+      "sourceQuality": "official_current_church_identity_and_address",
+      "finding": "The official church source identifies Hvaler church and the visitor address Svanekilveien 11, 1680 Skjærhalden.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current institutional and visitor identity."
+    },
+    {
+      "sourceProvider": "hvaler_kommune",
+      "sourceName": "Hvaler kommune – Hvaler kirke",
+      "sourceUrl": "https://www.hvaler.kommune.no/innhold/kultur-idrett-og-fritid/kulturminner/hvaler-kirke/",
+      "sourceObjectId": "hvaler-kommune:hvaler-kirke",
+      "sourceQuality": "official_local_history_and_dating_context",
+      "finding": "The municipal source describes the stone church as probably built around 1100 and as one of Norway's oldest stone churches.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the approximate year while preserving uncertainty rather than asserting one exact construction date."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Hvaler kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Hvaler_kirke",
+      "sourceObjectId": "norges-kirker:hvaler-kirke",
+      "sourceQuality": "architectural_and_maritime_church_site_context",
+      "finding": "Norges Kirker identifies Hvaler as the main church of the islands and places the church east of the parsonage near Ørekroken, historically an important harbor during the herring fisheries.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the church-site and maritime context without replacing the building geometry as the coordinate source."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Hvaler church point",
+      "sourceObjectId": "legacy:hvaler_kirke",
+      "sourceQuality": "incorrect_nearby_point",
+      "finding": "The legacy coordinate lies approximately 644.3 metres northeast of the mapped church building.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent Hvaler church or its immediate church-site environment."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "church_of_norway_and_wikidata",
+      "address": "Svanekilveien 11, 1680 Skjærhalden",
+      "addressRole": "official_church_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Confirms identity and access, while the church-building polygon is the more direct coordinate source."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:543076065",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6493554",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and registry cross-check; the mapped building polygon supplies the direct physical anchor."
+    },
+    {
+      "sourceProvider": "nearby_place_control",
+      "sourceObjectId": "hvaler-prestegard",
+      "canApplyToPlace": false,
+      "rejectionReason": "The parsonage is a separate historical property west of the church."
+    },
+    {
+      "sourceProvider": "church_site_control",
+      "sourceObjectId": "hvaler-churchyard-centroid",
+      "canApplyToPlace": false,
+      "rejectionReason": "The named church-building polygon is more precise than a cemetery or churchyard centroid."
+    },
+    {
+      "sourceProvider": "locality_control",
+      "sourceObjectId": "skjaerhalden-or-kirkoy-centroid",
+      "canApplyToPlace": false,
+      "rejectionReason": "A village or island centroid does not identify the church building."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:543076065",
+      "geometryType": "church_building_polygon",
+      "geometryRole": "protected_medieval_island_church_geometry",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "church_site_context",
+      "sourceObjectId": "hvaler-churchyard-and-cemetery",
+      "geometryType": "wider_church_site_geometry_not_applied",
+      "geometryRole": "churchyard_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "maritime_context",
+      "sourceObjectId": "orekroken-harbor-and-kirkoy-landscape",
+      "geometryType": "wider_maritime_cultural_landscape_not_applied",
+      "geometryRole": "island_settlement_and_seafaring_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hvaler_medieval_church",
+      "name": "Hvaler kirke – kirkebygningen",
+      "lat": 59.03267,
+      "lon": 11.02568,
+      "r": 90,
+      "type": "medieval_island_church_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:543076065;wikidata:Q6493554;riksantikvaren-kulturminne:84680;church-of-norway-building:444",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hvaler_kirke",
+      "lat": 59.0375,
+      "lon": 11.0319,
+      "distanceFromAppliedM": 644.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:543076065",
+      "lat": 59.03267,
+      "lon": 11.02568,
+      "distanceFromPreviousM": 644.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-hvaler-kirke-source-probe/source-summary.json",
+      "description": "Persisted church-building geometry, identifiers, dating uncertainty, maritime context, false-candidate controls and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the Hvaler medieval church-building point and retained the 240-metre gameplay radius. Continue with askim_gummivarefabrikk."
+  },
+  "notes": [
+    "The coordinate moves approximately 644.3 metres southwest.",
+    "The marker represents the church building, not the parsonage, cemetery, church office, village or island.",
+    "The approximate year 1100 is retained because published sources vary in the exact dating.",
+    "The radius is not a building, cemetery, legal protection, property, island or maritime-landscape boundary."
+  ]
+}
