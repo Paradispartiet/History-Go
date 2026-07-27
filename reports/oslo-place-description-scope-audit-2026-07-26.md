@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **249**
-- Additional active Oslo IDs outside the protocol: **263**
+- IDs in the current revision protocol: **259**
+- Additional active Oslo IDs outside the protocol: **253**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **263**
+- Additional IDs needing revision: **253**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -20,7 +20,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | subkultur | 38 |
 | sport | 29 |
 | scenekunst | 24 |
-| litteratur | 11 |
+| litteratur | 1 |
 
 ## Additional active Oslo places
 
@@ -66,16 +66,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | kunst | Van Etten | `van_etten` | 21 | 132 | 3 | `data/places/kunst/oslo/places_kunst/van_etten.json` | needs revision |
 | kunst | VI, VII | `vi_vii_gallery` | 39 | 153 | 3 | `data/places/kunst/oslo/places_kunst/vi_vii_gallery.json` | needs revision |
 | kunst | Vigelandmuseet | `vigelandmuseet` | 27 | 110 | 2 | `data/places/kunst/oslo/places_kunst/vigelandmuseet.json` | needs revision |
-| litteratur | IBSEN Museum & Teater | `ibsen_museum_teater` | 39 | 135 | 2 | `data/places/litteratur/oslo/places_litteratur/ibsen_museum_teater.json` | needs revision |
-| litteratur | Sitatgaten – Ibsen-sitatene | `ibsen_quotes` | 14 | 41 | 1 | `data/places/litteratur/oslo/places_litteratur/ibsen_quotes.json` | needs revision |
-| litteratur | Inger Hagerups plass | `inger_hagerups_plass` | 18 | 69 | 1 | `data/places/litteratur/oslo/places_litteratur/inger_hagerups_plass.json` | needs revision |
-| litteratur | Kulturkirken Jakob | `kulturkirken_jakob_litteratur` | 12 | 12 | 1 | `data/places/litteratur/oslo/places_litteratur/kulturkirken_jakob_litteratur.json` | needs revision |
-| litteratur | Litteraturhuset | `litteraturhuset` | 12 | 12 | 1 | `data/places/litteratur/oslo/places_litteratur/litteraturhuset.json` | needs revision |
-| litteratur | Nasjonalbiblioteket | `nasjonalbiblioteket` | 14 | 14 | 1 | `data/places/litteratur/oslo/places_litteratur/nasjonalbiblioteket.json` | needs revision |
-| litteratur | Norli Universitetsgata | `norli_universitetsgata` | 10 | 55 | 1 | `data/places/litteratur/oslo/places_litteratur/norli_universitetsgata.json` | needs revision |
-| litteratur | Oskar Braaten-bysten | `oscar_braaten_statuen` | 23 | 59 | 1 | `data/places/litteratur/oslo/places_litteratur/oscar_braaten_statuen.json` | needs revision |
-| litteratur | Ruth Maier-minnesmerke | `ruth_maier_minne` | 23 | 44 | 1 | `data/places/litteratur/oslo/places_litteratur/ruth_maier_minne.json` | needs revision |
-| litteratur | Sigrid Undset-statuen | `sigrid_undset_statue` | 19 | 47 | 1 | `data/places/litteratur/oslo/places_litteratur/sigrid_undset_statue.json` | needs revision |
 | litteratur | Tronsmo Bokhandel | `tronsmo_bokhandel` | 13 | 13 | 1 | `data/places/litteratur/oslo/places_litteratur/tronsmo_bokhandel.json` | needs revision |
 | naeringsliv | FLOP Museum | `flop_museum` | 21 | 133 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07/flop_museum.json` | needs revision |
 | naeringsliv | Tøyen trafo | `toyen_trafo` | 14 | 126 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json` | needs revision |
