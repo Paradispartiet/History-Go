@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - 'agent/tmp-rkv-reconstruct-20260727'
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -36,5 +39,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/places/politikk/oslo/places_politikk/regjeringskvartalet.json
+          git diff --cached --quiet && exit 0
           git commit -m 'Reconstruct validated Regjeringskvartalet JSON'
           git push origin HEAD:agent/tmp-rkv-reconstruct-20260727
