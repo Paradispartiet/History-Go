@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "sarpsfossen",
+  "placeFile": "data/places/natur/ostfold/sarpsfossen/sarpsfossen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_official_waterfall_feature_anchor",
+  "currentCoordinate": {
+    "lat": 59.27634,
+    "lon": 11.13123,
+    "r": 360,
+    "coordStatus": "verified",
+    "coordSource": "Kartverket SSR 447090 – Sarpefossen; Sarpsborg kommune – Sarpsfossen; Store norske leksikon – Sarpefossen; OpenStreetMap way 314142011 – Sarpefossen utsiktspunkt",
+    "coordType": "official_waterfall_place_name_coordinate",
+    "coordRole": "waterfall_feature_anchor",
+    "sourceObjectId": "ssr:447090"
+  },
+  "previousCoordinate": {
+    "lat": 59.2836,
+    "lon": 11.1123,
+    "r": 360,
+    "distanceToAppliedCoordinateM": 1344.6,
+    "reasonReplaced": "Legacy-punktet lå omtrent 1,34 kilometer vest-nordvest for fossepunktet og hadde ingen navngitt kildeobjektkontrakt."
+  },
+  "identity": {
+    "resolvedIdentity": "Sarpefossen i Glomma, identifisert av Kartverkets Sentralt stadnamnregister som foss med stadnummer 447090.",
+    "identityStatus": "resolved",
+    "identityProblem": "Stedet omtales både som Sarpefossen, Sarpsfossen og Sarpen. Canonical navn og hovedkoordinat må følge prioritert offisiell skrivemåte og navneobjekt, samtidig som et trygt offentlig besøksanker holdes separat fra selve elveløpet.",
+    "locatorTypeCandidate": "waterfall",
+    "requiresSplit": false,
+    "splitReason": "Fossepunktet og utsiktsplatået er to ankere for samme sted: det første identifiserer naturfenomenet, det andre gir trygg offentlig observasjon."
+  },
+  "requiredEvidence": [
+    "offisielt stadnamn og koordinat",
+    "navnevariantkontroll",
+    "natur- og byhistorisk kildekontroll",
+    "sikkert offentlig besøksanker",
+    "separasjon fra kraftverk, broer og industriområde",
+    "sikkerhets- og radiusbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "kartverket_ssr",
+      "sourceName": "Kartverket – Sarpefossen",
+      "sourceUrl": "https://stadnamn.kartverket.no/fakta/447090",
+      "sourceObjectId": "ssr:447090",
+      "sourceQuality": "official_place_name_and_coordinate_register",
+      "finding": "SSR oppgir Sarpefossen som godkjent og prioritert hovednavn, navneobjekttype foss, stadnummer 447090 og koordinat 59.27634, 11.13123.",
+      "canVerifyCoordinate": true,
+      "reason": "Dette er den autoritative navne- og koordinatkilden for selve fossen."
+    },
+    {
+      "sourceProvider": "sarpsborg_kommune",
+      "sourceName": "Sarpsborg kommune – Sarpsfossen",
+      "sourceUrl": "https://www.sarpsborg.com/byen-og-kommunen/opplev-sarpsborg/sarpsfossen/",
+      "sourceObjectId": "sarpsborg:waterfall-history",
+      "sourceQuality": "official_local_authority_history",
+      "finding": "Kommunen beskriver gjennombruddet i Raet for omkring 4000 år siden, Borgs grunnlegging ved fossen i 1016 og senere bruk til møller, sager, industri og kraft.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger stedets historiske lag og lokale navnebruk, men SSR leverer hovedkoordinatet."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Sarpefossen",
+      "sourceUrl": "https://snl.no/Sarpefossen",
+      "sourceObjectId": "snl:sarpefossen",
+      "sourceQuality": "authoritative_geography_and_history_reference",
+      "finding": "SNL beskriver fossen i Glomma, alternative navn, broer, 20,5 meters kraftfall, tre kraftverk og sagatradisjonen om Borg i 1016.",
+      "canVerifyCoordinate": false,
+      "reason": "Krysskontrollerer identitet, navnevarianter, historie og kraftlandskap."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 314142011 – Sarpefossen utsiktspunkt",
+      "sourceUrl": "https://www.openstreetmap.org/way/314142011",
+      "sourceObjectId": "osm-way:314142011;geonames:8585752",
+      "sourceQuality": "named_public_viewpoint_geometry",
+      "finding": "Det navngitte utsiktsplatået har representativt punkt 59.27538, 11.13016, omtrent 122,8 meter sørvest for fossepunktet.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som sikkert besøksanker, ikke som erstatning for fossens offisielle koordinat."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Sarpsfossen point",
+      "sourceObjectId": "legacy:sarpsfossen",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-koordinatet ligger omtrent 1 344,6 meter vest-nordvest for SSR-punktet.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi det ikke identifiserer den navngitte fossen eller et dokumentert besøksanker."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "kartverket_ssr",
+      "sourceObjectId": "ssr:447090",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:314142011",
+      "canApplyToPlace": false,
+      "rejectionReason": "Utsiktsplatået er besøksanker, ikke selve fosseobjektet."
+    },
+    {
+      "sourceProvider": "power_infrastructure_control",
+      "sourceObjectId": "hafslund-sarp-borregaard-power-plants",
+      "canApplyToPlace": false,
+      "rejectionReason": "Kraftverkene er separate tekniske anlegg som utnytter fossen."
+    },
+    {
+      "sourceProvider": "industrial_site_control",
+      "sourceObjectId": "borregaard_sarpsborg_industri",
+      "canApplyToPlace": false,
+      "rejectionReason": "Borregaard er et separat aktivt industriområde vest for fossen."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "kartverket_ssr",
+      "sourceObjectId": "ssr:447090",
+      "geometryType": "official_named_natural_feature_point",
+      "geometryRole": "waterfall_identity_anchor",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:314142011",
+      "geometryType": "public_viewpoint_polygon",
+      "geometryRole": "safe_observation_anchor",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "sarpefossen_feature",
+      "name": "Sarpefossen – fossepunktet",
+      "lat": 59.27634,
+      "lon": 11.13123,
+      "r": 140,
+      "type": "waterfall_feature_anchor",
+      "sourceProvider": "kartverket_ssr",
+      "sourceObjectId": "ssr:447090",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "sarpefossen_viewpoint",
+      "name": "Sarpefossen utsiktsplatå",
+      "lat": 59.27538,
+      "lon": 11.13016,
+      "r": 70,
+      "type": "public_waterfall_viewpoint_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:314142011;geonames:8585752",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:sarpsfossen",
+      "lat": 59.2836,
+      "lon": 11.1123,
+      "distanceFromAppliedM": 1344.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "kartverket_ssr",
+      "sourceObjectId": "ssr:447090",
+      "lat": 59.27634,
+      "lon": 11.13123,
+      "distanceFromPreviousM": 1344.6,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:314142011",
+      "lat": 59.27538,
+      "lon": 11.13016,
+      "distanceFromAppliedM": 122.8,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-sarpefossen-source-probe/source-summary.json",
+      "description": "Persisted SSR identity and coordinate, local and reference history, viewpoint geometry, rejected alternatives and safety limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied SSR 447090 as the waterfall anchor, retained the public viewpoint as a separate safe anchor and continued with the next manifest entry."
+  },
+  "notes": [
+    "Canonical name follows Kartverket: Sarpefossen; Sarpsfossen remains an alternative search and context term.",
+    "The coordinate moves approximately 1 344.6 metres east-southeast.",
+    "Year 1016 identifies the Borg/Sarpsborg foundation layer, not the age of the waterfall.",
+    "Gameplay must remain at lawful public viewpoints and never require access to the river channel, bridges or power infrastructure.",
+    "The 360-metre radius is not a water, fall, flood, power, safety or property boundary."
+  ]
+}
