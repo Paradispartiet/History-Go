@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/place-description-production-v4.2.json",
+  "title": "History Go place description production packet v4.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "validatorVersion",
+    "placeId",
+    "placeFile",
+    "status",
+    "identity",
+    "metadataSnapshot",
+    "textHashes",
+    "claims",
+    "sentenceCoverage",
+    "reviews",
+    "quizReadiness",
+    "completion"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "4.2" },
+    "validatorVersion": { "type": "string", "pattern": "^4\\.2\\.[0-9]+$" },
+    "placeId": { "type": "string", "minLength": 1 },
+    "placeFile": { "type": "string", "pattern": "^data/places/.+\\.json$" },
+    "status": {
+      "enum": [
+        "ready_v4_2",
+        "needs_research",
+        "source_conflict",
+        "identity_unresolved",
+        "blocked_insufficient_sources",
+        "metadata_correction_required"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "represents", "period", "excludes"],
+      "properties": {
+        "status": { "enum": ["resolved", "unresolved"] },
+        "represents": { "type": "string", "minLength": 10 },
+        "period": { "type": "string", "minLength": 1 },
+        "excludes": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "metadataSnapshot": {
+      "type": "object",
+      "required": ["name", "category"],
+      "properties": {
+        "name": { "type": "string" },
+        "year": {},
+        "period": {},
+        "category": { "type": "string" },
+        "address": {},
+        "coordinates": {},
+        "externalLinks": {},
+        "operationStatus": {},
+        "placeType": {}
+      }
+    },
+    "textHashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "desc", "popupDesc"],
+      "properties": {
+        "algorithm": { "const": "sha256" },
+        "desc": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "popupDesc": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "claim", "sourceUrl", "sourceLocation", "sourceType", "verifiedAt", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^claim_[a-zA-Z0-9_-]+$" },
+          "claim": { "type": "string", "minLength": 8 },
+          "sourceUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "sourceLocation": { "type": "string", "minLength": 3 },
+          "sourceType": {
+            "enum": ["primary", "official", "institutional", "archive", "catalogue", "scholarly", "reputable_secondary"]
+          },
+          "verifiedAt": { "type": "string", "format": "date" },
+          "status": { "enum": ["verified", "rejected", "superseded", "needs_research"] },
+          "claimKind": { "enum": ["ordinary", "identity", "strong", "temporal", "disputed"] },
+          "evidenceMode": { "enum": ["explicit", "direct", "corroborated"] },
+          "temporalStatus": { "enum": ["historical", "current", "planned", "superseded"] },
+          "independentSourceUrls": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri", "pattern": "^https://" },
+            "uniqueItems": true
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "sentenceCoverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["desc", "popupDesc"],
+      "properties": {
+        "desc": { "$ref": "#/$defs/coverageArray" },
+        "popupDesc": { "$ref": "#/$defs/coverageArray" }
+      }
+    },
+    "reviews": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["factual", "editorial"],
+      "properties": {
+        "factual": { "$ref": "#/$defs/review" },
+        "editorial": {
+          "allOf": [
+            { "$ref": "#/$defs/review" },
+            {
+              "type": "object",
+              "required": ["introducedNewFacts"],
+              "properties": { "introducedNewFacts": { "const": false } }
+            }
+          ]
+        }
+      }
+    },
+    "quizReadiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questions"],
+      "properties": {
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["question", "answer", "type", "normalKnowledgeQuestion", "claimIds"],
+            "properties": {
+              "question": { "type": "string", "minLength": 5 },
+              "answer": { "type": "string", "minLength": 1 },
+              "type": {
+                "enum": ["hvem", "når", "hva", "hvor", "hvilket_verk_eller_objekt", "hva_skjedde", "hva_ble_bygget_produsert_eller_endret"]
+              },
+              "normalKnowledgeQuestion": { "type": "boolean" },
+              "claimIds": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true }
+            }
+          }
+        }
+      }
+    },
+    "similarityExemptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sentence", "reason"],
+        "properties": {
+          "sentence": { "type": "string" },
+          "reason": { "enum": ["official_title", "necessary_proper_name", "fixed_source_wording"] }
+        }
+      }
+    },
+    "reviewsNotes": { "type": "string" },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "completedUnder",
+        "currentStatus",
+        "sourceVerifiedAt",
+        "claimsVerified",
+        "factualReview",
+        "editorialReview",
+        "validatorVersion"
+      ],
+      "properties": {
+        "completedUnder": { "const": "4.2" },
+        "currentStatus": { "const": "current" },
+        "sourceVerifiedAt": { "type": "string", "format": "date" },
+        "claimsVerified": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["verified", "total"],
+          "properties": {
+            "verified": { "type": "integer", "minimum": 0 },
+            "total": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "factualReview": { "const": "passed" },
+        "editorialReview": { "const": "passed" },
+        "validatorVersion": { "type": "string", "pattern": "^4\\.2\\.[0-9]+$" }
+      }
+    }
+  },
+  "$defs": {
+    "coverageArray": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sentence", "claimIds"],
+        "properties": {
+          "sentence": { "type": "integer", "minimum": 1 },
+          "claimIds": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "reviewedAt", "reviewer"],
+      "properties": {
+        "status": { "enum": ["passed", "failed", "pending"] },
+        "reviewedAt": { "type": "string", "format": "date" },
+        "reviewer": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
