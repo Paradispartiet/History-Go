@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **200 steder**
-- Gjenstår: **312 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **210 steder**
+- Gjenstår: **302 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -244,9 +244,21 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 
 | 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |
 
+
+| 201 | Blått skilt: Christopher Hornsrud | `bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5` | 44 | 311 | 6 | #4269 |
+| 202 | 22. juli-senteret | `22_juli_senteret` | 44 | 310 | 6 | #4269 |
+| 203 | Arbeidersamfunnets plass | `arbeidersamfunnets_plass` | 45 | 305 | 6 | #4269 |
+| 204 | Eidsvolls plass | `eidsvolls_plass` | 44 | 304 | 6 | #4269 |
+| 205 | Folkets Hus i Oslo | `folkets_hus_oslo` | 45 | 302 | 6 | #4269 |
+| 206 | Høyblokka | `hoyblokka` | 43 | 301 | 6 | #4269 |
+| 207 | Høyesteretts hus | `hoyesteretts_hus` | 46 | 303 | 6 | #4269 |
+| 208 | Høyres Hus | `hoyres_hus` | 45 | 306 | 6 | #4269 |
+| 209 | Oslo rådhus | `oslo_radhus` | 42 | 307 | 6 | #4269 |
+| 210 | Politihuset på Grønland | `politihuset_gronland` | 44 | 304 | 6 | #4269 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **312 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **302 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -256,7 +268,7 @@ Det gjenstår **312 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - scenekunst: **24**
 - litteratur: **21**
 - vitenskap: **21**
-- politikk: **18**
+- politikk: **8**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -299,5 +311,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 22 | 7 | #4253 – fullførte hele Oslo-køen for fagområdet media |
 | Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |
 | Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |
+| Oslo V4 batch 25 | 10 | #4269 – første produksjonsbatch fra politikk-køen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
