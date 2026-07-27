@@ -1,9 +1,41 @@
 {
   "id": "moss_jernverk_konventionsgarden",
   "name": "Moss Jernverk / Konventionsgården",
-  "lat": 59.4361,
-  "lon": 10.6667,
+  "lat": 59.43957,
+  "lon": 10.66931,
   "r": 360,
+  "locatorType": "historic_building",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:1118476307",
+  "address": {
+    "street": "Verket",
+    "number": "22",
+    "postcode": "1534",
+    "city": "Moss",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "building_representative_point",
+  "coordRole": "convention_house_anchor",
+  "coordType": "named_historic_administration_building_polygon_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 1118476307 – Konvensjonsgården; Wikidata Q145662; Kulturminne-ID 86061; Brønnøysundregistrene",
+  "coordSourceId": "osm-way:1118476307",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/1118476307",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 413,1 meter nordøst til representasjonspunktet for Konventionsgårdens navngitte bygningspolygon.",
+  "coordNote": "OSM way 1118476307 er den navngitte Konventionsgården, det bevarte administrasjons- og hovedbygget ved Moss Jernverk, og er koblet til Wikidata Q145662 og kulturminne-ID 86061. Bygningsankeret ligger omtrent 20,6 meter fra Wikidata-koordinaten og 20,8 meter fra et geotagget bilde av bygningen. Stiftelsen Konventionsgaarden er registrert på Verket 22. Canonical representerer bygningen som fysisk knutepunkt mellom jernverkshistorien og Mossekonvensjonen i 1814. Arbeiderboligene, Mossefossen, de tidligere produksjonsområdene og det senere Peterson-anlegget er del av det større industri- og bylandskapet, men ikke selve koordinatgeometrien. Radius 360 meter er et gameplayområde og ikke bygnings-, frednings-, eiendoms- eller jernverksgrense.",
+  "anchors": [
+    {
+      "id": "moss_convention_house",
+      "name": "Konventionsgården",
+      "lat": 59.43957,
+      "lon": 10.66931,
+      "r": 100,
+      "type": "convention_house_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1118476307"
+    }
+  ],
   "category": "politikk",
   "fylke": "ostfold",
   "kommune": "Moss",
@@ -16,15 +48,29 @@
     "konvensjonen_i_moss",
     "industri"
   ],
-  "desc": "Historisk jernverksområde i Moss, etablert i 1704. Administrasjonsbygningen Konventionsgården er kjent som stedet der Mossekonvensjonen ble forhandlet i august 1814.",
-  "popupDesc": "Moss Jernverk var et stort industrimiljø og en sentral arbeidsplass i Moss fra 1704. Verket produserte blant annet kanoner, jernvarer og annet støpegods, og eiermiljøene rundt verket var tett knyttet til norsk økonomi og politikk. I 1814 ble administrasjonsbygningen, Konventionsgården, hovedkvarter og forhandlingssted under krigen mot Sverige. Mossekonvensjonen ble forhandlet her i august 1814 og la grunnlaget for våpenhvile, Stortingets videre rolle og unionen med Sverige. Stedet bør derfor spørres som både industrihistorie og konstitusjonell historie.",
+  "desc": "Moss Jernverk ble grunnlagt i 1704. Det bevarte hoved- og administrasjonsbygget Konventionsgården sto ferdig i 1778 og ble stedet der Mossekonvensjonen ble undertegnet 14. august 1814.",
+  "popupDesc": "Moss Jernverk ble grunnlagt ved Mossefossen i 1704 og utviklet seg til et industrisamfunn med masovn, verksteder, arbeiderboliger, skole og andre egne funksjoner. Verket brukte vannkraft, trekull og masovnsteknologi og produserte blant annet kanoner, ovner, redskaper og halvfabrikata. Konventionsgården var jernverkets hoved- og administrasjonsbygning. Bygningsanlegget fikk sin ferdige hovedform i 1778 og ble senere administrasjon for M. Peterson & Søn. I juli og august 1814 brukte Christian Frederik huset som hovedkvarter. Forhandlingene mellom Norge og Sverige førte til Mossekonvensjonen og våpenstillstanden, undertegnet 14. august. Avtalen gjorde det mulig å bevare den norske Grunnloven i en revidert form og åpnet veien for unionen med Sverige. History Go forankrer den kombinerte industri- og politikkposten ved Konventionsgården. Mossefossen, arbeiderboligene og det tidligere produksjonslandskapet er avgjørende for å forstå jernverket, men markøren skal ikke leses som sentrum eller grense for hele verksområdet.",
+  "externalLinks": [
+    {
+      "label": "Store norske leksikon – Moss Jernverk",
+      "url": "https://snl.no/Moss_Jernverk"
+    },
+    {
+      "label": "Verket Moss – områdets historie",
+      "url": "https://www.verketmoss.no/om-verket"
+    },
+    {
+      "label": "Wikidata – Konvensjonsgården",
+      "url": "https://www.wikidata.org/wiki/Q145662"
+    }
+  ],
   "quiz_profile": {
     "place_type": "industri_og_politisk_sted",
     "subtype": "jernverk_og_1814_forhandlingssted",
     "signature_features": [
-      "Moss Jernverk etablert i 1704",
-      "Konventionsgården som forhandlingssted i 1814",
-      "kobler industri, krig, diplomati og statsrett"
+      "Moss Jernverk grunnlagt i 1704",
+      "Konventionsgården som jernverkets hovedbygning og forhandlingssted i 1814",
+      "kobler vannkraft, industri, krig, diplomati og statsrett"
     ],
     "primary_angles": [
       "historie",
@@ -40,16 +86,18 @@
     ],
     "avoid_angles": [
       "bare_industriområde",
-      "bare_1814_uten_jernverk"
+      "bare_1814_uten_jernverk",
+      "forveksling_av_bygningsankeret_med_hele_verksområdet"
     ],
     "must_include": [
       "jernverket fra 1704",
-      "Mossekonvensjonen i august 1814"
+      "Konventionsgården som fysisk hovedanker",
+      "Mossekonvensjonen 14. august 1814"
     ],
     "contrast_targets": [
       "fredriksten_festning",
-      "fredrikstad_festning_gamlebyen"
+      "eidsvollsbygningen"
     ],
-    "notes": "Skal spørres som kobling mellom industrihistorie og 1814-politikk."
+    "notes": "Skal spørres som kobling mellom industrihistorie og 1814-politikk. Årstallet 1704 gjelder jernverkets etablering; Konventionsgårdens ferdige hovedform er fra 1778."
   }
 }

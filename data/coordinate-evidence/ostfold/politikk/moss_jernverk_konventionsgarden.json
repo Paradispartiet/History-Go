@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "moss_jernverk_konventionsgarden",
+  "placeFile": "data/places/politikk/ostfold/moss_jernverk_konventionsgarden/moss_jernverk_konventionsgarden.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_convention_house_building_polygon_anchor",
+  "currentCoordinate": {
+    "lat": 59.43957,
+    "lon": 10.66931,
+    "r": 360,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 1118476307 – Konvensjonsgården; Wikidata Q145662; Kulturminne-ID 86061; Brønnøysundregistrene",
+    "coordType": "named_historic_administration_building_polygon_representative_point",
+    "coordRole": "convention_house_anchor",
+    "sourceObjectId": "osm-way:1118476307",
+    "coordNote": "The canonical marker follows Konventionsgården as the physical anchor joining Moss Ironworks and the Convention of Moss."
+  },
+  "previousCoordinate": {
+    "lat": 59.4361,
+    "lon": 10.6667,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 413.1,
+    "reasonReplaced": "The legacy point lay approximately 413.1 metres southwest of Konventionsgården and had no identifiable source object."
+  },
+  "identity": {
+    "currentName": "Moss Jernverk / Konventionsgården",
+    "resolvedIdentity": "The preserved main and administration building of Moss Ironworks, used as Christian Frederik's headquarters and the signing place of the Convention of Moss in August 1814, distinct from the full ironworks landscape.",
+    "identityStatus": "resolved",
+    "identityProblem": "The record combines a large former industrial community with one surviving building of exceptional political importance. A precise canonical point can follow Konventionsgården, but it cannot represent the geometry of the whole ironworks, waterfall or later Peterson complex.",
+    "locatorTypeCandidate": "historic_building",
+    "requiresSplit": false,
+    "splitReason": "Konventionsgården is the coherent physical anchor for the combined interpretation. Workers' housing, Mossefossen and industrial remains can remain contextual or separate places."
+  },
+  "requiredEvidence": [
+    "named historic building polygon",
+    "entity and heritage identifiers",
+    "authoritative ironworks and 1814 scope",
+    "current official address",
+    "independent building coordinate cross-check",
+    "explicit separation from wider industrial landscape",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 1118476307 – Konvensjonsgården",
+      "sourceUrl": "https://www.openstreetmap.org/way/1118476307",
+      "sourceObjectId": "osm-way:1118476307",
+      "sourceQuality": "named_historic_administration_building_polygon",
+      "finding": "The named historic-house and office-building polygon has a representative point at 59.43957, 10.66931 and is linked to Wikidata Q145662.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the preserved main building and convention site."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q145662 – Konvensjonsgården",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q145662",
+      "sourceObjectId": "wikidata:Q145662",
+      "sourceQuality": "building_heritage_and_address_cross_check",
+      "finding": "The entity links Kulturminne ID 86061, OSM way 1118476307 and address Verket 22. Its coordinate is approximately 20.6 metres from the applied point.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent identity, heritage and location cross-check."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Moss Jernverk",
+      "sourceUrl": "https://snl.no/Moss_Jernverk",
+      "sourceObjectId": "snl:moss-jernverk",
+      "sourceQuality": "authoritative_industrial_and_convention_scope",
+      "finding": "Moss Ironworks was founded in 1704 and operated from 1707 to 1876. Konventionsgården was the preserved main building where the Convention of Moss was signed in 1814.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the combined industrial and political identity."
+    },
+    {
+      "sourceProvider": "verket_moss",
+      "sourceName": "Verket Moss – Om Verket",
+      "sourceUrl": "https://www.verketmoss.no/om-verket",
+      "sourceObjectId": "verket-moss:industrial-history",
+      "sourceQuality": "current_site_interpretation_and_scope_separation",
+      "finding": "The current area interpretation distinguishes Konventionsgården from workers' housing, Mossefossen and the later Peterson industrial complex.",
+      "canVerifyCoordinate": false,
+      "reason": "Prevents one building coordinate from being misrepresented as the whole industrial landscape."
+    },
+    {
+      "sourceProvider": "bronnoysundregistrene",
+      "sourceName": "Stiftelsen Konventionsgaarden",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/936648320",
+      "sourceObjectId": "brreg:936648320",
+      "sourceQuality": "current_foundation_address",
+      "finding": "The registered business address is Verket 22, 1534 Moss.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current address and site identity."
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceName": "Konvensjonsgården photograph",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Konvensjonsg%C3%A5rden.jpg",
+      "sourceObjectId": "commons:konvensjonsgarden-2020",
+      "sourceQuality": "geotagged_building_cross_check",
+      "finding": "The depicted-place coordinate 59.439410, 10.669120 is approximately 20.8 metres from the applied building point.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent physical cross-check."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Moss Ironworks point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:moss_jernverk_konventionsgarden",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 413.1 metres southwest of Konventionsgården.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the building or a documented ironworks anchor."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "bronnoysundregistrene",
+      "address": {
+        "street": "Verket",
+        "number": "22",
+        "postcode": "1534",
+        "city": "Moss",
+        "country": "NO"
+      },
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/936648320",
+      "sourceObjectId": "brreg:936648320",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1118476307",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q145662",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and heritage cross-check; the linked building polygon is the applied geometry source."
+    },
+    {
+      "sourceProvider": "industrial_context",
+      "sourceObjectId": "moss-ironworks-former-area",
+      "canApplyToPlace": false,
+      "rejectionReason": "Wider former production and residential landscape without one captured canonical geometry."
+    },
+    {
+      "sourceProvider": "natural_context",
+      "sourceObjectId": "mossefossen",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate waterfall and power-history site."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1118476307",
+      "geometryType": "Polygon",
+      "geometryRole": "named_convention_house_building",
+      "canApplyToPlace": true,
+      "applied": true,
+      "rawGeometryCaptured": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:86061",
+      "geometryType": "protected_building_geometry_not_captured",
+      "geometryRole": "legal_heritage_scope_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "industrial_context",
+      "sourceObjectId": "moss-ironworks-landscape",
+      "geometryType": "former_industrial_landscape_not_captured",
+      "geometryRole": "ironworks_and_later_factory_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "moss_convention_house",
+      "name": "Konventionsgården",
+      "lat": 59.43957,
+      "lon": 10.66931,
+      "r": 100,
+      "type": "convention_house_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1118476307",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:moss_jernverk_konventionsgarden",
+      "lat": 59.4361,
+      "lon": 10.6667,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 413.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1118476307",
+      "lat": 59.43957,
+      "lon": 10.66931,
+      "coordRole": "convention_house_anchor",
+      "distanceFromPreviousM": 413.1,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q145662",
+      "lat": 59.439388888888885,
+      "lon": 10.669388888888887,
+      "coordRole": "independent_building_entity_cross_check",
+      "distanceFromAppliedM": 20.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceObjectId": "commons:konvensjonsgarden-2020",
+      "lat": 59.439410,
+      "lon": 10.669120,
+      "coordRole": "geotagged_building_cross_check",
+      "distanceFromAppliedM": 20.8,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-moss-konventionsgarden-source-probe/source-summary.json",
+      "description": "Persisted building anchor, heritage and address cross-checks, industrial-scope separation and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Konventionsgården building anchor and retained the 360-metre gameplay radius. Continue with Gjellestadskipet / Jellhaugen."
+  },
+  "notes": [
+    "The coordinate moves approximately 413.1 metres northeast.",
+    "Konventionsgården is the physical anchor for both ironworks and 1814 interpretation.",
+    "The wider ironworks, workers' housing and Mossefossen remain contextual extents.",
+    "The radius is not a building, heritage, property or industrial-landscape boundary."
+  ]
+}
