@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hafslund_hovedgard",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/hafslund_hovedgard.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_heritage_entity_anchor_for_manor_house",
+  "currentCoordinate": {
+    "lat": 59.27361111111111,
+    "lon": 11.136111111111111,
+    "r": 320,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q17779704 – Hafslund Manor; Kulturminne-ID 86075; Hafslund Hovedgård; Lokalhistoriewiki",
+    "coordType": "heritage_entity_coordinate_for_manor_house",
+    "coordRole": "manor_house_anchor",
+    "sourceObjectId": "wikidata:Q17779704;riksantikvaren-kulturminne:86075",
+    "coordNote": "The canonical marker follows the identified manor house and immediate historic complex, not the wider estate or power landscape."
+  },
+  "previousCoordinate": {
+    "lat": 59.2709,
+    "lon": 11.1267,
+    "r": 320,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 613.8,
+    "reasonReplaced": "The legacy point lay approximately 613.8 metres southwest of the identified manor-house anchor."
+  },
+  "identity": {
+    "currentName": "Hafslund hovedgård",
+    "resolvedIdentity": "The protected late-Baroque manor house and immediate historic estate complex beside Sarpsfossen, distinct from Hafslund power station, the modern company and the full former estate.",
+    "identityStatus": "resolved",
+    "identityProblem": "The Hafslund name covers a manor, farm locality, district, company and power facilities. The record must be anchored to the historic manor house while retaining the wider resource landscape as context.",
+    "locatorTypeCandidate": "manor_house",
+    "requiresSplit": false,
+    "splitReason": "The main house, park and immediate outbuildings form one coherent destination. The power station and wider industrial landscape are separate places."
+  },
+  "requiredEvidence": [
+    "stable manor-house entity coordinate",
+    "heritage identifier",
+    "official identity and historical scope",
+    "official visitor address",
+    "independent coordinate cross-check",
+    "explicit rejection of locality and power-station points",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q17779704 – Hafslund Manor",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q17779704",
+      "sourceObjectId": "wikidata:Q17779704",
+      "sourceQuality": "manor_house_entity_coordinate_with_heritage_id",
+      "finding": "The manor entity publishes 59.27361111111111, 11.136111111111111 and links Kulturminne ID 86075 and SSR 1073342.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named manor house and heritage object."
+    },
+    {
+      "sourceProvider": "hafslund",
+      "sourceName": "Hafslund – Hafslund Hovedgård",
+      "sourceUrl": "https://www.hafslund.no/no/produkter-og-tjenester/hafslund-hovedgard",
+      "sourceObjectId": "hafslund:hafslund-hovedgard",
+      "sourceQuality": "official_identity_history_and_current_use",
+      "finding": "The official owner identifies the protected manor, the 1762 main building and the relationship between the estate, Sarpsfossen and the later industrial company.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines identity and historical scope."
+    },
+    {
+      "sourceProvider": "hafslund_hovedgaard",
+      "sourceName": "Hafslund Hovedgård – history and contact",
+      "sourceUrl": "https://hafslundhovedgaard.no/historien-om-hafslund-hovedgard/",
+      "sourceObjectId": "hafslund-hovedgaard:statsminister-torps-vei-2",
+      "sourceQuality": "official_history_and_visitor_address",
+      "finding": "The venue gives the visitor address Statsminister Torps vei 2, 1738 Borgenhaugen and documents the manor's development from estate to present cultural and conference use.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current destination and address."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Hafslund hovedgård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Hafslund_hovedg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:hafslund-hovedgard",
+      "sourceQuality": "independent_manor_coordinate_cross_check",
+      "finding": "The published coordinate 59.273882, 11.136413 lies approximately 34.7 metres from the applied point.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent location and historical cross-check."
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceName": "Hafslund manor photograph",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hafslund_hovedg%C3%A5rd_(manor).jpg",
+      "sourceObjectId": "commons:hafslund-hovedgard-manor",
+      "sourceQuality": "geotagged_building_cross_check",
+      "finding": "The camera location 59.273493, 11.136252 is approximately 15.4 metres from the applied manor coordinate.",
+      "canVerifyCoordinate": false,
+      "reason": "Physical cross-check for the main building."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "Hafslund farm and locality points",
+      "sourceUrl": "https://www.openstreetmap.org/",
+      "sourceObjectId": "osm-nodes:6264816999,7855341813",
+      "sourceQuality": "broader_locality_controls",
+      "finding": "The farm and locality points represent the named area rather than the main house; the farm point is approximately 181 metres west of the applied anchor.",
+      "canVerifyCoordinate": false,
+      "reason": "Explicitly rejected as canonical."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Hafslund point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:hafslund_hovedgard",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 613.8 metres southwest of the manor-house anchor.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the main house."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "hafslund_hovedgaard",
+      "address": {
+        "street": "Statsminister Torps vei",
+        "number": "2",
+        "postcode": "1738",
+        "city": "Borgenhaugen",
+        "country": "NO"
+      },
+      "sourceUrl": "https://hafslundhovedgaard.no/kontakt/",
+      "sourceObjectId": "hafslund-hovedgaard:statsminister-torps-vei-2",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q17779704",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:6264816999",
+      "canApplyToPlace": false,
+      "rejectionReason": "Farm locality point rather than the manor house."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:7855341813",
+      "canApplyToPlace": false,
+      "rejectionReason": "Generic locality point."
+    },
+    {
+      "sourceProvider": "industrial_context",
+      "sourceObjectId": "hafslund-power-station",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate power-generation site."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:86075",
+      "geometryType": "protected_manor_complex_not_captured",
+      "geometryRole": "legal_heritage_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hafslund_manor_house",
+      "name": "Hafslund manor house",
+      "lat": 59.27361111111111,
+      "lon": 11.136111111111111,
+      "r": 100,
+      "type": "manor_house_anchor",
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q17779704;riksantikvaren-kulturminne:86075",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hafslund_hovedgard",
+      "lat": 59.2709,
+      "lon": 11.1267,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 613.8,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q17779704",
+      "lat": 59.27361111111111,
+      "lon": 11.136111111111111,
+      "coordRole": "manor_house_anchor",
+      "distanceFromPreviousM": 613.8,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:hafslund-hovedgard",
+      "lat": 59.273882,
+      "lon": 11.136413,
+      "coordRole": "independent_manor_cross_check",
+      "distanceFromAppliedM": 34.7,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-hafslund-hovedgard-source-probe/source-summary.json",
+      "description": "Persisted manor entity, official history and address, physical cross-checks, false-candidate controls and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the heritage manor-house coordinate and retained the 320-metre gameplay radius. Continue with Rød herregård."
+  },
+  "notes": [
+    "The coordinate moves approximately 613.8 metres northeast.",
+    "The marker represents the manor house and immediate complex.",
+    "Farm/locality points and the power station are explicitly excluded.",
+    "The radius is not a legal, estate, archaeological or power-landscape boundary."
+  ]
+}
