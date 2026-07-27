@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "idd_kirke",
+  "generatedAt": "2026-07-27",
+  "researchStatus": "complete",
+  "resolvedIdentity": "Idd kirke, den stående romanske middelalderkirken på Iddesletta sørøst for Halden.",
+  "coordinateDecision": {
+    "previous": {"lat": 59.0855, "lon": 11.4381},
+    "applied": {
+      "lat": 59.08631,
+      "lon": 11.43481,
+      "sourceObjectId": "osm-way:344603830",
+      "role": "medieval_church_building_anchor"
+    },
+    "distanceM": 208.4,
+    "direction": "north-west",
+    "reason": "Det anvendte punktet er den navngitte kirkebygggeometrien og samsvarer med kirkeentitet, kulturminne-ID og offisiell adresse."
+  },
+  "sources": [
+    {
+      "name": "OpenStreetMap way 344603830 – Idd kirke",
+      "provider": "osm",
+      "url": "https://www.openstreetmap.org/way/344603830",
+      "objectId": "osm-way:344603830",
+      "usedFor": ["building geometry", "canonical coordinate"],
+      "findings": ["Representativt punkt for kirkebygget er 59.08631, 11.43481."]
+    },
+    {
+      "name": "Wikidata – Idd kirke",
+      "provider": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6493646",
+      "objectId": "wikidata:Q6493646",
+      "usedFor": ["entity control", "identifiers", "address"],
+      "findings": [
+        "Samme koordinat som OSM-geometrien.",
+        "Kirkebygg-ID 270, Kulturminne ID 84710 og adresse Iddeveien 107.",
+        "OSM way 344603830 er koblet til entiteten."
+      ]
+    },
+    {
+      "name": "Norges Kirker – Idd kirke",
+      "provider": "norges_kirker",
+      "url": "https://norgeskirker.no/wiki/Idd_kirke",
+      "objectId": "norges-kirker:idd-kirke",
+      "usedFor": ["architecture", "site history", "1904 earthquake"],
+      "findings": [
+        "Idd er en middelaldersk steinkirke på Iddesletta.",
+        "Murene fikk sprekker under jordskjelvet i 1904.",
+        "Kirken ble reparert og sikret i stedet for erstattet."
+      ]
+    },
+    {
+      "name": "Gravplassmyndigheten i Halden – Idd kirke",
+      "provider": "gravplass_authority",
+      "url": "https://www.gravplass.no/nb-NO/Halden/seremonirom/idd%20kirke/",
+      "objectId": "halden-gravplass:idd-kirke",
+      "usedFor": ["current address", "cemetery context", "accessibility"],
+      "findings": [
+        "Kirken ligger ved Idd kirkegård i Iddeveien 107.",
+        "Bygget beskrives som en steinkirke fra 1100-tallet.",
+        "Kilden gir gjeldende informasjon om parkering og tilgjengelighet."
+      ]
+    },
+    {
+      "name": "Visit Halden – Idd kirke",
+      "provider": "visit_halden",
+      "url": "https://www.visitnorway.no/listings/idd-kirke/282311/",
+      "objectId": "visit-halden:idd-kirke",
+      "usedFor": ["inventory"],
+      "findings": [
+        "Kirken har døpefont fra slutten av 1100-tallet.",
+        "To middelalderske krusifikser og en Mikaelfigur er bevart.",
+        "Altertavle og prekestol gir et senere barokklag."
+      ]
+    },
+    {
+      "name": "Pilegrimsleden – Idd kirke",
+      "provider": "pilegrimsleden",
+      "url": "https://www.pilegrimsleden.no/interessepunkter/idd-kirke",
+      "objectId": "pilegrimsleden:idd-kirke",
+      "usedFor": ["Borgleden", "landscape context"],
+      "findings": [
+        "Kirken ligger langs Borgleden og lavt i slettelandskapet.",
+        "Hov-navnet og helleristninger i nærområdet brukes som bred historisk landskapskontekst."
+      ]
+    }
+  ],
+  "yearHandling": {
+    "canonicalYear": 1150,
+    "yearRole": "omtrentlig midtpunkt i byggeperioden på 1100-tallet",
+    "limits": [
+      "1150 er ikke et dokumentert eksakt byggeår.",
+      "Bygget beskrives sikkert som en romansk steinkirke fra 1100-tallet."
+    ]
+  },
+  "interpretationLimits": [
+    "Hov-navnet og helleristningene er bred landskapskontekst og ikke del av kirkebyggets geometri.",
+    "Iddeveien 107 brukes som gjeldende adressekontroll.",
+    "En alternativ ruteoppføring med annet husnummer brukes ikke som canonical adresse."
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "Legacy point 59.0855, 11.4381",
+      "reason": "Omtrent 208 meter sørøst og uten kirkebyggkontrakt."
+    },
+    {
+      "candidate": "Wider Hov and rock-carving landscape",
+      "reason": "Tolkningskontekst, ikke identiteten til kirkebygget."
+    }
+  ],
+  "accessAndSafety": [
+    "Gudstjenester, gravferder og kirkegårdsbruk går foran gameplay.",
+    "Oppgaver skal ikke forstyrre gravminner eller seremonier.",
+    "Innvendig adgang følger gjeldende kirkelige ordninger.",
+    "Radiusen er ikke en bygnings-, kirkegårds-, kulturminne-, eiendoms-, vei-, seremoni- eller adgangsgrense."
+  ],
+  "nextManifestEntry": "hobol_kirke"
+}
