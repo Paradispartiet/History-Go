@@ -1,0 +1,26 @@
+const assert=require('assert'),fs=require('fs'),path=require('path');
+const repo=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(repo,p),'utf8'));
+const runtime=fs.readFileSync(path.join(repo,'js/ui/place-card.js'),'utf8');
+const match=runtime.match(/const CATEGORY_ROUND_PROFILES = Object\.freeze\((\{[\s\S]*?\})\);/);assert(match);
+const profiles=Function(`return (${match[1]});`)();
+const expected=['people','nature','badges','works','civication','brands','før_nå','fortellinger','leksikon'];
+assert.deepStrictEqual(profiles.religion,expected);assert.deepStrictEqual(profiles.psykologi,expected);
+const ids=['etne_kyrkje','frette_kapell','skanevik_kyrkje'];
+const paths={etne_kyrkje:'data/places/religion/vestland/etne/etne_kyrkje/etne_kyrkje.json',frette_kapell:'data/places/religion/vestland/etne/frette_kapell/frette_kapell.json',skanevik_kyrkje:'data/places/religion/vestland/etne/skanevik_kyrkje/skanevik_kyrkje.json'};
+const coords={etne_kyrkje:[59.66966917268966,5.944394800224875,180,2013],frette_kapell:[59.72606849036358,6.162044190674154,180,1959],skanevik_kyrkje:[59.731915140528194,5.939778902454844,180,1900]};
+const people=read('data/people/religion/vestland/etne/people_etne_religion_rounds_batch1.json'),relations=read('data/relations.json'),stories=read('data/stories/stories_etne_religion_rounds_batch1.json'),articles=read('data/leksikon/places/vestland/etne/religion/leksikon_etne_religion_rounds_batch1.json');
+const peopleManifest=read('data/people/manifest.json'),storyManifest=read('data/stories/stories_manifest.json'),lexManifest=read('data/leksikon/manifest.json');
+const badges=new Set(read('data/badges/religion.json').sub);
+assert(peopleManifest.files.includes('people/religion/vestland/etne/people_etne_religion_rounds_batch1.json'));assert(lexManifest.files.includes('data/leksikon/places/vestland/etne/religion/leksikon_etne_religion_rounds_batch1.json'));
+for(const id of ids){const place=read(paths[id]),rel=relations.filter(x=>x.place===id),story=stories.find(x=>x.place_id===id),article=articles.find(x=>x.place_id===id),person=people.find(x=>x.placeId===id);
+ for(const forbidden of ['rounds','rundinger','training_profile','tasks_profile','play'])assert(!Object.hasOwn(place,forbidden),id+' har irrelevant '+forbidden);
+ assert(person&&/kollektivt_trusmiljoanker/.test(person.kind));assert(rel.some(x=>x.person===person.id));assert(story&&story.person_id===person.id);assert(article&&article.links.entry_ids.includes(story.id));
+ assert(storyManifest.files.some(x=>x.category==='religion'&&x.entity_id===id&&x.path==='data/stories/stories_etne_religion_rounds_batch1.json'));
+ const rounds={people:rel,nature:place.nature_profile,badges:place.underbadge_ids,works:place.works,civication:place.civication_store,brands:place.brands,før_nå:place.for_na,fortellinger:[story],leksikon:[article]};assert.deepStrictEqual(Object.keys(rounds),expected);
+ for(const [round,value] of Object.entries(rounds))assert(Array.isArray(value)?value.length>0:Boolean(value&&typeof value==='object'),id+' mangler '+round);
+ assert(place.underbadge_ids.every(x=>badges.has(x)));assert(place.works.length>=4&&place.works.every(x=>x.source_urls.length>=2));assert(place.civication_store.length>=2&&place.civication_store.every(x=>x.physicalObject===true&&x.placeSpecific===true&&x.source_urls.length>=2));
+ assert(place.for_na.before&&place.for_na.now&&place.for_na.change&&place.for_na.sources.length>=2);assert(story.sources.length>=2&&article.sources.length>=2&&article.wikiText.length>=3);assert.deepStrictEqual([place.lat,place.lon,place.r,place.year],coords[id]);}
+assert(/1910/.test(stories.find(x=>x.place_id==='frette_kapell').story)&&/1959/.test(stories.find(x=>x.place_id==='frette_kapell').story));
+assert(/skild|separate/.test(stories.find(x=>x.place_id==='skanevik_kyrkje').story)&&/1900/.test(stories.find(x=>x.place_id==='skanevik_kyrkje').story));
+assert(/2013/.test(stories.find(x=>x.place_id==='etne_kyrkje').story)&&/ikkje ei middelalderkyrkje/.test(stories.find(x=>x.place_id==='etne_kyrkje').story));
+console.log('Etne religion round content OK');
