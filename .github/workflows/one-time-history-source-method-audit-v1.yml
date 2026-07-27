@@ -33,6 +33,10 @@ jobs:
             | tee reports/historie-theory-evidence/source-method-audit-v1/syntax.log
           node tools/audit-history-source-method-families-v1.mjs 2>&1 \
             | tee reports/historie-theory-evidence/source-method-audit-v1/audit.log
+          node --check tools/audit-history-source-method-identifiers-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-audit-v1/identifiers-syntax.log
+          node tools/audit-history-source-method-identifiers-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-audit-v1/identifiers.log
 
       - name: Upload audit
         if: always()
