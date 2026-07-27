@@ -96,6 +96,7 @@ function indexLinkedContent(directory) {
 }
 
 function countUrls(value) {
+  if (typeof value === 'string') return /^https?:\/\//.test(text(value)) ? 1 : 0;
   if (Array.isArray(value)) return value.reduce((sum, entry) => sum + countUrls(entry), 0);
   if (!value || typeof value !== 'object') return 0;
   let count = 0;
@@ -275,9 +276,9 @@ for (const source of activeEtne) {
   const activities = isSport ? asArray(place.training_profile?.exercises) : [];
 
   if (works.length > 0 && works.length < 3) addFinding(findings, 'warning', 'works_depth', 'Works-rundingen har færre enn tre stedsspesifikke spor.', { count: works.length });
-  if (badges.length > 0 && badges.length < 3) addFinding(findings, 'warning', 'badge_depth', 'Badge-rundingen har færre enn tre relevante undermerker.', { count: badges.length });
+  if (badges.length > 0 && badges.length < 3) addFinding(findings, 'advisory', 'badge_depth', 'Badge-rundingen har færre enn tre relevante undermerker.', { count: badges.length });
   if (civication.length > 0 && civication.length < 2) addFinding(findings, 'warning', 'civication_depth', 'Civication-rundingen har bare ett samlingsobjekt.', { count: civication.length });
-  if (brands.length > 0 && brands.length < 2) addFinding(findings, 'warning', 'brand_depth', 'Aktør-rundingen har bare én dokumentert aktør.', { count: brands.length });
+  if (brands.length > 0 && brands.length < 2) addFinding(findings, 'advisory', 'brand_depth', 'Aktør-rundingen har bare én dokumentert aktør.', { count: brands.length });
 
   if (!text(place.for_na?.before) || !text(place.for_na?.now) || !text(place.for_na?.change)) {
     addFinding(findings, 'blocker', 'before_now_contract', 'Før/nå-rundingen mangler before, now eller change.');
