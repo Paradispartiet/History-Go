@@ -29,11 +29,42 @@ jobs:
       - name: Materialize and audit Etne uplift
         shell: bash
         run: |
-          set -euo pipefail
+          set -uo pipefail
           git fetch origin main
-          node tools/materialize-etne-non-nature-quality-uplift.mjs
-          node tools/materialize-etne-religion-rounds.mjs
-          node tests/etne-religion-round-content.test.js
+          mkdir -p reports/etne-non-nature-quality-audit
+          set +e
+          {
+            echo '== base materializer =='
+            node tools/materialize-etne-non-nature-quality-uplift.mjs
+            BASE_STATUS=$?
+            echo "base_status=${BASE_STATUS}"
+            if [ "${BASE_STATUS}" -eq 0 ]; then
+              echo '== religion materializer =='
+              node tools/materialize-etne-religion-rounds.mjs
+              RELIGION_STATUS=$?
+            else
+              RELIGION_STATUS=90
+            fi
+            echo "religion_status=${RELIGION_STATUS}"
+            if [ "${RELIGION_STATUS}" -eq 0 ]; then
+              echo '== religion regression =='
+              node tests/etne-religion-round-content.test.js
+              TEST_STATUS=$?
+            else
+              TEST_STATUS=91
+            fi
+            echo "test_status=${TEST_STATUS}"
+          } > /tmp/religion-materializer.log 2>&1
+          STATUS=${TEST_STATUS:-99}
+          set -e
+          if [ "${STATUS}" -ne 0 ]; then
+            git reset --hard HEAD
+            cp /tmp/religion-materializer.log reports/etne-non-nature-quality-audit/religion-materializer.log
+            printf '%s\n' "${STATUS}" > reports/etne-non-nature-quality-audit/religion-materializer-exit-code.txt
+            exit 0
+          fi
+          cp /tmp/religion-materializer.log reports/etne-non-nature-quality-audit/religion-materializer.log
+          printf '0\n' > reports/etne-non-nature-quality-audit/religion-materializer-exit-code.txt
           export AUDIT_GENERATED_AT="$(git show -s --format=%cI origin/main)"
           node tools/audit-etne-non-nature-round-quality.mjs \
             > reports/etne-non-nature-quality-audit/audit.log 2>&1
