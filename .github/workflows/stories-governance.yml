@@ -1,0 +1,53 @@
+name: Stories governance
+
+on:
+  pull_request:
+    paths:
+      - 'data/stories/**'
+      - 'data/places/manifest.json'
+      - 'tools/check_stories_integrity.mts'
+      - 'tools/report_stories_governance.mts'
+      - 'tests/stories-governance-metrics.test.mjs'
+      - '.github/workflows/stories-governance.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/stories/**'
+      - 'data/places/manifest.json'
+      - 'tools/check_stories_integrity.mts'
+      - 'tools/report_stories_governance.mts'
+      - 'tests/stories-governance-metrics.test.mjs'
+      - '.github/workflows/stories-governance.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  stories-governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build tools
+        run: npm run build:tools
+
+      - name: Validate Stories integrity
+        run: node dist/tools/check_stories_integrity.mjs
+
+      - name: Validate governance metrics contract
+        run: node --test tests/stories-governance-metrics.test.mjs
+
+      - name: Print governance snapshot
+        run: node dist/tools/report_stories_governance.mjs
