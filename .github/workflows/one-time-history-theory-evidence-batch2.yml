@@ -25,6 +25,32 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Refine distinct industrial-city evidence bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          file = Path('tools/materialize-historie-theory-evidence-batch2.mjs')
+          text = file.read_text()
+          old_claims = """      'claim_his_akerselva_industrial_energy_axis',
+                'claim_his_akerselva_environmental_reuse_from_1986',
+                'claim_his_folkets_hus_first_opened_1907',
+                'claim_his_folkets_hus_current_complex_1958_1962',"""
+          new_claims = """      'claim_his_akerselva_industrial_energy_axis',
+                'claim_his_akerselva_environmental_reuse_from_1986',
+                'claim_his_folkets_hus_first_opened_1907',
+                'claim_his_folkets_hus_current_complex_1958_1962',
+                'claim_his_oslo_radhus_pipervika_transformation',"""
+          old_rationale = "Akerselva dokumenterer hvordan vannkraft, fabrikker og verksteder formet Christianias industriby, mens Folkets Hus dokumenterer arbeiderbevegelsens organisatoriske infrastruktur. Miljøpark og ombruk viser hvordan industrilandskapet senere ble omformet, slik at produksjon, arbeidsorganisering og etterindustriell byutvikling kan analyseres samlet."
+          new_rationale = "Akerselva dokumenterer hvordan vannkraft, fabrikker og verksteder formet Christianias industriby, mens Folkets Hus dokumenterer arbeiderbevegelsens organisatoriske infrastruktur. Pipervika-saneringen og senere miljøpark og ombruk viser hvordan produksjons- og hverdagsmiljøer ble fysisk omformet, slik at industri, arbeiderorganisering og byutvikling kan analyseres samlet."
+          if old_claims not in text:
+              raise SystemExit('Expected industriby claim bundle not found')
+          if old_rationale not in text:
+              raise SystemExit('Expected industriby rationale not found')
+          file.write_text(text.replace(old_claims, new_claims, 1).replace(old_rationale, new_rationale, 1))
+          PY
+
       - name: Materialize batch 2
         shell: bash
         run: |
