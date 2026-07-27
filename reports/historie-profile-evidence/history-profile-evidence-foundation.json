@@ -1,6 +1,6 @@
 {
-  "schema_version": "2.0",
-  "report_id": "historie_profile_evidence_foundation_v2",
+  "schema_version": "3.0",
+  "report_id": "historie_profile_evidence_foundation_v3",
   "status": "COMPLETE",
   "completion_scope": "minimum_representative_evidence_foundation",
   "subject_id": "historie",
@@ -11,19 +11,19 @@
     "migrated_links": 1041,
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
-    "validated_cases": 10,
-    "unverified_case_candidates": 93,
-    "migration_date": "2026-07-26"
+    "migration_date": "2026-07-26",
+    "validated_cases": 12,
+    "unverified_case_candidates": 91
   },
   "inventory": {
     "emner": 230,
     "case_requirements": 4,
     "profile_cases": 103,
     "profile_mappings": 200,
-    "claims": 22,
-    "sources": 22,
-    "evidence_links": 22,
-    "verified_cases": 10
+    "claims": 35,
+    "sources": 33,
+    "evidence_links": 35,
+    "verified_cases": 12
   },
   "batch_v2": {
     "batch_id": "history_oslo_akershus_evidence_batch_v2",
@@ -177,6 +177,87 @@
         ]
       }
     ]
+  },
+  "political_chronology_v1": {
+    "phase_id": "history_political_chronology_evidence_v1",
+    "produced_cases": 2,
+    "produced_claims": 13,
+    "produced_sources": 11,
+    "produced_evidence_links": 13,
+    "qualified_theories": 3,
+    "qualified_theory_ids": [
+      "theory_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+      "theory_his_1814_statsdannelse_union_selvstendighet_og_1905",
+      "theory_his_1814_statsdannelse_1905_unionsopplosning_og_ny_utenrikspolitisk_orientering"
+    ],
+    "cases": [
+      {
+        "case_id": "case_his_stortinget",
+        "place_ids": [
+          "stortinget"
+        ],
+        "claim_ids": [
+          "claim_his_stortinget_building_first_used_1866",
+          "claim_his_stortinget_consular_conflict_foreign_service_1905",
+          "claim_his_stortinget_haakon_elected_1905_11_18",
+          "claim_his_stortinget_interparliamentary_peace_conference_1899",
+          "claim_his_stortinget_parliamentarism_breakthrough_1884",
+          "claim_his_stortinget_union_dissolved_1905_06_07",
+          "claim_his_stortinget_union_referendum_1905_08_13",
+          "claim_his_stortinget_universal_male_suffrage_1898",
+          "claim_his_stortinget_women_suffrage_1913_06_11",
+          "claim_his_stortinget_womens_petition_1905"
+        ],
+        "evidence_ids": [
+          "evidence_his_stortinget_01",
+          "evidence_his_stortinget_02",
+          "evidence_his_stortinget_03",
+          "evidence_his_stortinget_04",
+          "evidence_his_stortinget_05",
+          "evidence_his_stortinget_06",
+          "evidence_his_stortinget_07",
+          "evidence_his_stortinget_08",
+          "evidence_his_stortinget_09",
+          "evidence_his_stortinget_10"
+        ],
+        "source_ids": [
+          "src_his_snl_norway_1905_1939",
+          "src_his_snl_parliamentarism",
+          "src_his_snl_stemmerett_history",
+          "src_his_storting_building_history",
+          "src_his_storting_democratic_milestones",
+          "src_his_storting_parliamentarism_history",
+          "src_his_storting_republican_monarchy",
+          "src_his_storting_suffrage_history",
+          "src_his_storting_union_out",
+          "src_his_storting_womens_petition_1905"
+        ]
+      },
+      {
+        "case_id": "case_his_eidsvolls_plass",
+        "place_ids": [
+          "eidsvolls_plass"
+        ],
+        "claim_ids": [
+          "claim_his_eidsvolls_plass_demonstration_arena_postwar",
+          "claim_his_eidsvolls_plass_haakon_oath_crowds_1905_11_27"
+        ],
+        "evidence_ids": [
+          "evidence_his_eidsvolls_plass_01",
+          "evidence_his_eidsvolls_plass_02"
+        ],
+        "source_ids": [
+          "src_his_storting_eidsvolls_plass",
+          "src_his_storting_republican_monarchy"
+        ]
+      }
+    ]
+  },
+  "theory_evidence": {
+    "qualifying_entries": 35,
+    "total_theories": 230,
+    "ratio": 0.152,
+    "universal_status": "INCOMPLETE"
   },
   "expected_universal_coverage_after_audit": {
     "covered_cells": 58,
