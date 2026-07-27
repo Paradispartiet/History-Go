@@ -1,9 +1,44 @@
 {
   "id": "gjellestadskipet_jellhaugen",
   "name": "Gjellestadskipet / Jellhaugen",
-  "lat": 59.1517,
-  "lon": 11.2962,
+  "lat": 59.14857,
+  "lon": 11.25038,
   "r": 360,
+  "locatorType": "historic_site",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:5985030252",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "ship_grave_and_settlement_anchor",
+  "coordType": "named_archaeological_ship_and_settlement_site_point",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "OpenStreetMap node 5985030252 – Viking ship and settlements remains; NIKU – Gjellestadskipet; Østfold fylkeskommune",
+  "coordSourceId": "osm-node:5985030252",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/5985030252",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 2 635,7 meter vest til det navngitte arkeologiske punktet for skipsgraven og bosetningssporene på Viksletta.",
+  "coordNote": "OSM node 5985030252 er et navngitt arkeologisk sted for vikingskipet og bosetningssporene på Viksletta ved Gjellestad. NIKU og Østfold fylkeskommune dokumenterer at skipet ble påvist med georadar i 2018, lå om lag en halv meter under matjorden og inngår i et landskap med gravhauger og bygninger. Jellhaugen ligger omtrent 175,6 meter sør for ankeret og er en sentral del av den kombinerte posten, men er ikke koordinatkilden for skipsgraven. Radius 360 meter dekker skipsgravfeltet, Jellhaugen og deler av det nærmeste arkeologiske landskapet som gameplayområde, men er ikke utgravnings-, georadar-, kulturminne-, verne- eller eiendomsgrense.",
+  "anchors": [
+    {
+      "id": "gjellestad_ship_and_settlement_site",
+      "name": "Gjellestadskipet og bosetningssporene",
+      "lat": 59.14857,
+      "lon": 11.25038,
+      "r": 120,
+      "type": "ship_grave_and_settlement_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5985030252"
+    },
+    {
+      "id": "jellhaugen_mound",
+      "name": "Jellhaugen",
+      "lat": 59.14704,
+      "lon": 11.25114,
+      "r": 100,
+      "type": "monumental_burial_mound_context_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:891998939"
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Halden",
@@ -16,15 +51,29 @@
     "skipsgrav",
     "georadar"
   ],
-  "desc": "Vikingskipsfunn ved Jellhaugen i Halden kommune, påvist med georadar i 2018. Gjellestad viser hvordan moderne teknologi kan avdekke gamle maktlandskap med skip, gravhauger og langhus.",
-  "popupDesc": "Gjellestadskipet ble påvist med georadar ved Jellhaugen i 2018. Undersøkelsene viste spor etter et vikingskip, gravhauger og bygninger fra jernalderen. Stedet er derfor ikke bare et skipsfunn, men et helt maktlandskap der elitegrav, langhus og monumental topografi hører sammen. I History Go bør Gjellestad brukes til vikingtid, arkeologisk metode, digital georadar, gravritualer og hvordan nye funn kan endre forståelsen av et landskap.",
+  "desc": "Vikingskipsgrav på Viksletta ved Jellhaugen, påvist med georadar i 2018 og utgravd i 2020–2021. Gjellestad viser et større maktlandskap med skip, gravhauger, langhus og langvarig bosetning.",
+  "popupDesc": "Gjellestadskipet ble påvist med motorisert georadar på Viksletta ved Jellhaugen i 2018. Radarbildene viste en om lag 20 meter lang skipsform inne i sporet etter en større gravhaug, bare rundt en halv meter under matjorden. Kulturhistorisk museum gravde ut skipsrestene i 2020 og 2021. Bevaringen var svak, men arkeologene fant blant annet treverk fra kjøl og spant, rundt 1300 skipsnagler og tusenvis av gjenstandsfragmenter. Georadarundersøkelsene avdekket samtidig flere gravhauger og bygninger, og senere undersøkelser fant blant annet et nær 60 meter langt hus. Gjellestad skal derfor ikke forstås som bare ett skip, men som et sentralsted og maktlandskap som var brukt gjennom mange århundrer. Jellhaugen er den store synlige gravhaugen sør for skipsfunnet og gjør den monumentale topografien lesbar på stedet. History Go forankrer posten ved skipsgravens og bosetningssporenes arkeologiske punkt, med Jellhaugen som eget sekundæranker innenfor radiusen.",
+  "externalLinks": [
+    {
+      "label": "NIKU – Gjellestadskipet",
+      "url": "https://www.niku.no/prosjekter/gjellestadskipet/"
+    },
+    {
+      "label": "Østfold fylkeskommune – Gjellestadutgravingene",
+      "url": "https://ofk.no/tjenester/kulturminner/opplev-kulturarven/gjellestadskipet/gjellestadutgravingene.187119.aspx"
+    },
+    {
+      "label": "Digital formidling – Gjellestadstory",
+      "url": "https://www.gjellestadstory.no/"
+    }
+  ],
   "quiz_profile": {
     "place_type": "arkeologisk_funnsted",
     "subtype": "vikingskipsgrav_og_jernalderlandskap",
     "signature_features": [
       "vikingskip påvist med georadar i 2018",
-      "ligger ved Jellhaugen i Halden kommune",
-      "del av større jernalderlandskap med gravhauger og langhus"
+      "skipsgraven ligger på Viksletta ved Jellhaugen",
+      "del av større jernalderlandskap med gravhauger, langhus og bosetningsspor"
     ],
     "primary_angles": [
       "historie",
@@ -40,16 +89,18 @@
     ],
     "avoid_angles": [
       "generisk_viking",
-      "bare_skipet_som_gjenstand"
+      "bare_skipet_som_gjenstand",
+      "forveksling_av_jellhaugen_med_selve_skipsgraven"
     ],
     "must_include": [
       "georadarfunnet i 2018",
-      "koblingen mellom skip, gravhauger og jernalderlandskap"
+      "utgravingen i 2020–2021",
+      "koblingen mellom skip, Jellhaugen, gravhauger og bosetningslandskap"
     ],
     "contrast_targets": [
       "tune_skipet_funnsted",
       "hunnfeltet_gravfelt"
     ],
-    "notes": "Skal spørres som moderne arkeologisk funnlandskap, ikke bare som nytt vikingskip."
+    "notes": "Skal spørres som moderne arkeologisk funnlandskap, ikke bare som nytt vikingskip. Skipsgravfeltet er hovedanker; Jellhaugen er synlig sekundæranker."
   }
 }
