@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "report_date": "2026-07-27",
+  "generated_at": "2026-07-27T06:39:40+02:00",
+  "input_commit": "9f69a1310f882c10d707008480227d27b44565ea",
+  "authority": {
+    "stories_manifest": "data/stories/stories_manifest.json",
+    "places_manifest": "data/places/manifest.json",
+    "people_manifest": "data/people/manifest.json",
+    "integrity_command": "npm run check:stories"
+  },
+  "methodology": {
+    "coverage_unit": "unique active place.id with at least one manifest-loaded story primary place_id",
+    "duplicate_story_paths": "manifest paths are deduplicated before story files are loaded",
+    "duplicate_entity_occurrences": "place and people source occurrences are deduplicated by id and reported separately",
+    "multiple_stories_per_place": "a place counts once regardless of primary-linked story count",
+    "secondary_references": "related_places and next_scenes are integrity-checked but do not count as primary coverage"
+  },
+  "totals": {
+    "story_manifest_entries": 176,
+    "unique_story_files": 158,
+    "stories": 251,
+    "unique_story_ids": 251,
+    "place_linked_stories": 251,
+    "person_linked_stories": 98,
+    "active_place_files": 1444,
+    "active_places": 1444,
+    "duplicate_place_source_occurrences": 0,
+    "places_with_story": 236,
+    "places_without_story": 1208,
+    "place_coverage_pct": 16.3,
+    "active_people": 1367,
+    "duplicate_people_source_occurrences": 0,
+    "people_with_primary_story": 95,
+    "people_primary_story_coverage_pct": 6.9,
+    "places_with_multiple_stories": 11
+  },
+  "categories": [
+    {
+      "category": "by",
+      "places": 237,
+      "covered": 25,
+      "uncovered": 212,
+      "coverage_pct": 10.5
+    },
+    {
+      "category": "film_tv",
+      "places": 8,
+      "covered": 7,
+      "uncovered": 1,
+      "coverage_pct": 87.5
+    },
+    {
+      "category": "historie",
+      "places": 517,
+      "covered": 51,
+      "uncovered": 466,
+      "coverage_pct": 9.9
+    },
+    {
+      "category": "kunst",
+      "places": 64,
+      "covered": 13,
+      "uncovered": 51,
+      "coverage_pct": 20.3
+    },
+    {
+      "category": "litteratur",
+      "places": 45,
+      "covered": 10,
+      "uncovered": 35,
+      "coverage_pct": 22.2
+    },
+    {
+      "category": "media",
+      "places": 13,
+      "covered": 9,
+      "uncovered": 4,
+      "coverage_pct": 69.2
+    },
+    {
+      "category": "musikk",
+      "places": 16,
+      "covered": 1,
+      "uncovered": 15,
+      "coverage_pct": 6.3
+    },
+    {
+      "category": "naeringsliv",
+      "places": 150,
+      "covered": 13,
+      "uncovered": 137,
+      "coverage_pct": 8.7
+    },
+    {
+      "category": "natur",
+      "places": 108,
+      "covered": 46,
+      "uncovered": 62,
+      "coverage_pct": 42.6
+    },
+    {
+      "category": "politikk",
+      "places": 39,
+      "covered": 10,
+      "uncovered": 29,
+      "coverage_pct": 25.6
+    },
+    {
+      "category": "psykologi",
+      "places": 3,
+      "covered": 3,
+      "uncovered": 0,
+      "coverage_pct": 100
+    },
+    {
+      "category": "religion",
+      "places": 4,
+      "covered": 1,
+      "uncovered": 3,
+      "coverage_pct": 25
+    },
+    {
+      "category": "scenekunst",
+      "places": 62,
+      "covered": 6,
+      "uncovered": 56,
+      "coverage_pct": 9.7
+    },
+    {
+      "category": "sport",
+      "places": 83,
+      "covered": 26,
+      "uncovered": 57,
+      "coverage_pct": 31.3
+    },
+    {
+      "category": "subkultur",
+      "places": 56,
+      "covered": 4,
+      "uncovered": 52,
+      "coverage_pct": 7.1
+    },
+    {
+      "category": "vitenskap",
+      "places": 39,
+      "covered": 11,
+      "uncovered": 28,
+      "coverage_pct": 28.2
+    }
+  ],
+  "largest_uncovered_category_gaps": [
+    {
+      "category": "historie",
+      "places": 517,
+      "covered": 51,
+      "uncovered": 466,
+      "coverage_pct": 9.9
+    },
+    {
+      "category": "by",
+      "places": 237,
+      "covered": 25,
+      "uncovered": 212,
+      "coverage_pct": 10.5
+    },
+    {
+      "category": "naeringsliv",
+      "places": 150,
+      "covered": 13,
+      "uncovered": 137,
+      "coverage_pct": 8.7
+    },
+    {
+      "category": "natur",
+      "places": 108,
+      "covered": 46,
+      "uncovered": 62,
+      "coverage_pct": 42.6
+    },
+    {
+      "category": "sport",
+      "places": 83,
+      "covered": 26,
+      "uncovered": 57,
+      "coverage_pct": 31.3
+    },
+    {
+      "category": "scenekunst",
+      "places": 62,
+      "covered": 6,
+      "uncovered": 56,
+      "coverage_pct": 9.7
+    },
+    {
+      "category": "subkultur",
+      "places": 56,
+      "covered": 4,
+      "uncovered": 52,
+      "coverage_pct": 7.1
+    },
+    {
+      "category": "kunst",
+      "places": 64,
+      "covered": 13,
+      "uncovered": 51,
+      "coverage_pct": 20.3
+    },
+    {
+      "category": "litteratur",
+      "places": 45,
+      "covered": 10,
+      "uncovered": 35,
+      "coverage_pct": 22.2
+    },
+    {
+      "category": "politikk",
+      "places": 39,
+      "covered": 10,
+      "uncovered": 29,
+      "coverage_pct": 25.6
+    }
+  ],
+  "top_places_by_story_count": [
+    {
+      "place_id": "folketeateret",
+      "name": "Folketeateret",
+      "category": "scenekunst",
+      "story_count": 3
+    },
+    {
+      "place_id": "mollergata_19",
+      "name": "Møllergata 19",
+      "category": "historie",
+      "story_count": 3
+    },
+    {
+      "place_id": "oslo_radhus",
+      "name": "Oslo rådhus",
+      "category": "politikk",
+      "story_count": 3
+    },
+    {
+      "place_id": "regjeringskvartalet",
+      "name": "Regjeringskvartalet",
+      "category": "politikk",
+      "story_count": 3
+    },
+    {
+      "place_id": "barcode",
+      "name": "Barcode",
+      "category": "by",
+      "story_count": 2
+    },
+    {
+      "place_id": "etneelva",
+      "name": "Etneelva",
+      "category": "natur",
+      "story_count": 2
+    },
+    {
+      "place_id": "lisbon_fundacao_calouste_gulbenkian",
+      "name": "Fundação Calouste Gulbenkian",
+      "category": "kunst",
+      "story_count": 2
+    },
+    {
+      "place_id": "lisbon_tram_28",
+      "name": "Tram 28 (Eléctrico 28)",
+      "category": "by",
+      "story_count": 2
+    },
+    {
+      "place_id": "munch_museet",
+      "name": "MUNCH",
+      "category": "kunst",
+      "story_count": 2
+    },
+    {
+      "place_id": "nrk_huset_marienlyst",
+      "name": "NRK-huset på Marienlyst",
+      "category": "media",
+      "story_count": 2
+    },
+    {
+      "place_id": "vaterland_historisk_elvelop",
+      "name": "Vaterland – historisk elveløp",
+      "category": "historie",
+      "story_count": 2
+    },
+    {
+      "place_id": "abc_studio_etne",
+      "name": "ABC Studio",
+      "category": "kunst",
+      "story_count": 1
+    },
+    {
+      "place_id": "aftenposten_akersgata",
+      "name": "Aftenposten – Akersgata 51",
+      "category": "media",
+      "story_count": 1
+    },
+    {
+      "place_id": "akerselva",
+      "name": "Akerselva",
+      "category": "by",
+      "story_count": 1
+    },
+    {
+      "place_id": "akerselva_utlop_bjorvika",
+      "name": "Akerselvas utløp mot fjorden (Bjørvika)",
+      "category": "natur",
+      "story_count": 1
+    },
+    {
+      "place_id": "akershus_festning",
+      "name": "Akershus festning",
+      "category": "historie",
+      "story_count": 1
+    },
+    {
+      "place_id": "akrafjorden",
+      "name": "Åkrafjorden",
+      "category": "natur",
+      "story_count": 1
+    },
+    {
+      "place_id": "alna_bryn",
+      "name": "Alna ved Bryn",
+      "category": "natur",
+      "story_count": 1
+    },
+    {
+      "place_id": "alna_smalvoll",
+      "name": "Alna ved Smalvoll",
+      "category": "natur",
+      "story_count": 1
+    },
+    {
+      "place_id": "alna_utlop_bjorvika",
+      "name": "Alnas historiske utløp ved Vannspeilet",
+      "category": "natur",
+      "story_count": 1
+    }
+  ],
+  "integrity": {
+    "typecheck_tools": "pass",
+    "stories_manifest_regression": "pass",
+    "check_stories": "pass"
+  }
+}
