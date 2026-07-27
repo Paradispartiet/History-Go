@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kornsjo_grensestasjon",
+  "placeFile": "data/places/by/ostfold/kornsjo_grensestasjon/kornsjo_grensestasjon.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_border_station_complex_anchor",
+  "currentCoordinate": {
+    "lat": 58.94167,
+    "lon": 11.65972,
+    "r": 300,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q211527; Bane NOR Kornsjø stasjon; Kulturminne 86054; Jernbane.net; Kornsjø local history",
+    "coordType": "railway_station_entity_representative_point",
+    "coordRole": "historic_border_station_complex_anchor",
+    "sourceObjectId": "wikidata:Q211527;kulturminne:86054;bane-nor:KO"
+  },
+  "previousCoordinate": {
+    "lat": 59.0974,
+    "lon": 11.6682,
+    "r": 300,
+    "distanceToAppliedCoordinateM": 17323.5,
+    "reasonReplaced": "Legacy-punktet lå omtrent 17,32 km nord for Kornsjø og identifiserte ikke stasjonen, tettstedet eller riksgrensen."
+  },
+  "identity": {
+    "resolvedIdentity": "Kornsjø stasjon, det historiske og fredede grensestasjonskomplekset på Østfoldbanen ved Nordre Kornsjø.",
+    "identityStatus": "resolved",
+    "identityProblem": "Kornsjø kan vise til tettstedet, innsjøene, stasjonsbygningen, det lange aktive sporområdet eller selve jernbanegrensen. Canonical skal representere stasjonskomplekset uten å flytte punktet til tettstedssentrum eller grensepunktet.",
+    "locatorTypeCandidate": "railway_station_complex",
+    "requiresSplit": false,
+    "splitReason": "Stasjonsbygningen, tollhistorien og sporområdet er komponenter i samme grensestasjon. Selve jernbanegrensen er separat kontekst omtrent 950 meter sørøst."
+  },
+  "requiredEvidence": [
+    "navngitt stasjonsentitet og koordinat",
+    "Bane NOR-identitet og kilometerposisjon",
+    "fredningsidentitet",
+    "bygningens 1898–1900-kronologi",
+    "grense- og tollfunksjon",
+    "dagens passasjerstatus",
+    "skille mellom stasjon og riksgrense",
+    "spor- og adgangsbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Kornsjø stasjon",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q211527",
+      "sourceObjectId": "wikidata:Q211527",
+      "sourceQuality": "named_station_entity_point",
+      "finding": "Kornsjø stasjon er kartfestet på 58.94167, 11.65972 og har Bane NOR-kode KO, kilometer 169,12 og Kulturminne ID 86054.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte entitetspunkt for grensestasjonen, kontrollert mot Bane NOR og kulturminneidentiteten."
+    },
+    {
+      "sourceProvider": "bane_nor",
+      "sourceName": "Bane NOR – Kornsjø stasjon",
+      "sourceUrl": "https://www.banenor.no/reise-og-trafikk/stasjoner/-k-/kornsjo/",
+      "sourceObjectId": "bane-nor:KO",
+      "sourceQuality": "official_current_infrastructure_status",
+      "finding": "Bane NOR plasserer stasjonen på Østfoldbanen 169,12 km fra Oslo S, viser flere operative spor og oppgir at persontog ikke stopper.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter dagens stasjons- og driftsidentitet samt passasjerstatus."
+    },
+    {
+      "sourceProvider": "kulturminnesok",
+      "sourceName": "Kulturminnesøk – Kornsjø stasjon",
+      "sourceUrl": "https://kulturminnesok.no/minne/?queryString=https%3A%2F%2Fdata.kulturminne.no%2Faskeladden%2Flokalitet%2F86054",
+      "sourceObjectId": "kulturminne:86054",
+      "sourceQuality": "official_heritage_identity",
+      "finding": "Kulturminne ID 86054 identifiserer det fredede Kornsjø stasjonsmiljøet.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir den offisielle fredningsidentiteten."
+    },
+    {
+      "sourceProvider": "jernbane_net",
+      "sourceName": "Jernbane.net – Kornsjø stasjon",
+      "sourceUrl": "https://jernbane.net/bo/subpage.php?s=4&u=2034",
+      "sourceObjectId": "jernbane-net:kornsjo-stasjon",
+      "sourceQuality": "specialist_railway_history",
+      "finding": "Dokumenterer åpning i juli 1879, trebygningen etter Blix, brannen i 1898, Paul Dues murbygning fra 1900, tollfunksjonen, persontrafikkens slutt i 1999 og fredning i 2001.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger bygnings-, drifts- og tollhistorien."
+    },
+    {
+      "sourceProvider": "local_history",
+      "sourceName": "Kornsjø – Kornsjø stasjon",
+      "sourceUrl": "https://www.kornsjo.no/kornsjo-stasjon/",
+      "sourceObjectId": "kornsjo-local:kornsjo-stasjon",
+      "sourceQuality": "local_station_history",
+      "finding": "Dokumenterer trebygningen fra 1879, vedtaket om større bygg, brannen i 1898 og ferdigstillelsen av den nye bygningen i 1900.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker den lokale bygningshistorien."
+    },
+    {
+      "sourceProvider": "wikidata_bane_nor",
+      "sourceName": "Kornsjø border",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q130338241",
+      "sourceObjectId": "wikidata:Q130338241;bane-nor:KOG",
+      "sourceQuality": "international_rail_border_identity",
+      "finding": "Jernbanegrensen ligger på 58.93489, 11.66981, omtrent 950 meter sørøst for stasjonsankeret.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter at stasjonen og selve riksgrensepunktet er separate objekter."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Kornsjø station point",
+      "sourceObjectId": "legacy:kornsjo_grensestasjon",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 17 323,5 meter nord for stasjonen.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises som geografisk feil og uten kildeobjekt."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q211527",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "kulturminnesok",
+      "sourceObjectId": "kulturminne:86054",
+      "canApplyToPlace": false,
+      "rejectionReason": "Sterk fredningsidentitet, men stasjonsentiteten gir det direkte representative punktet."
+    },
+    {
+      "sourceProvider": "wikidata_bane_nor",
+      "sourceObjectId": "wikidata:Q130338241;bane-nor:KOG",
+      "canApplyToPlace": false,
+      "rejectionReason": "Dette er selve jernbanegrensen, ikke Kornsjø stasjon."
+    },
+    {
+      "sourceProvider": "settlement_control",
+      "sourceObjectId": "wikidata:Q3354324;geonames:3149488",
+      "canApplyToPlace": false,
+      "rejectionReason": "Kornsjø tettsted er bredere enn stasjonskomplekset."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "kornsjo_station_complex",
+      "name": "Kornsjø stasjon",
+      "lat": 58.94167,
+      "lon": 11.65972,
+      "r": 145,
+      "type": "historic_border_station_complex_anchor",
+      "sourceProvider": "wikidata_bane_nor",
+      "sourceObjectId": "wikidata:Q211527;bane-nor:KO;kulturminne:86054",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "kornsjo_station_building_control",
+      "name": "Kornsjø stasjonsbygning fra 1900",
+      "lat": 58.94137,
+      "lon": 11.65926,
+      "r": 55,
+      "type": "protected_station_building_control",
+      "sourceProvider": "jernbane_net_visual_control",
+      "sourceObjectId": "kulturminne:86054;jernbane-net:297589",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "kornsjo_rail_border",
+      "name": "Jernbanegrensen Kornsjø",
+      "lat": 58.93489,
+      "lon": 11.66981,
+      "r": 75,
+      "type": "international_rail_border_context_anchor",
+      "sourceProvider": "wikidata_bane_nor",
+      "sourceObjectId": "wikidata:Q130338241;bane-nor:KOG",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:kornsjo_grensestasjon",
+      "lat": 59.0974,
+      "lon": 11.6682,
+      "distanceFromAppliedM": 17323.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q211527",
+      "lat": 58.94167,
+      "lon": 11.65972,
+      "distanceFromPreviousM": 17323.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata_bane_nor",
+      "sourceObjectId": "wikidata:Q130338241;bane-nor:KOG",
+      "lat": 58.93489,
+      "lon": 11.66981,
+      "distanceFromAppliedM": 950.1,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-kornsjo-grensestasjon-source-probe/source-summary.json",
+      "description": "Persisted station entity, Bane NOR status, heritage identity, building chronology, border separation and railway safety limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the Kornsjø station entity point and separated the station complex from the railway border. Continue with tomb_herregard."
+  },
+  "notes": [
+    "The coordinate moves approximately 17.32 kilometres south.",
+    "The station complex is about 950 metres north-west of the railway border point.",
+    "The current building dates from 1900, while year 1879 represents the station opening.",
+    "Passenger trains do not stop, but the railway infrastructure remains operational.",
+    "The radius is not a track, railway, heritage, property, platform, customs or safety boundary."
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kornsjo_grensestasjon",
+  "generatedAt": "2026-07-27",
+  "researchStatus": "complete",
+  "resolvedIdentity": "Kornsjø station, the historic protected border-station complex on the Østfold Line at Nordre Kornsjø.",
+  "coordinateDecision": {
+    "previous": {
+      "lat": 59.0974,
+      "lon": 11.6682
+    },
+    "applied": {
+      "lat": 58.94167,
+      "lon": 11.65972,
+      "sourceObjectId": "wikidata:Q211527",
+      "role": "historic_border_station_complex_anchor"
+    },
+    "distanceM": 17323.5,
+    "direction": "south",
+    "reason": "The legacy coordinate was more than 17 kilometres north of Kornsjø. The applied point is the named station entity and aligns with Bane NOR, heritage and specialist railway sources."
+  },
+  "sources": [
+    {
+      "name": "Wikidata – Kornsjø station",
+      "provider": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q211527",
+      "objectId": "wikidata:Q211527",
+      "usedFor": [
+        "station entity",
+        "canonical coordinate",
+        "Bane NOR code",
+        "heritage identifier"
+      ],
+      "findings": [
+        "Station coordinate 58.94167, 11.65972.",
+        "Bane NOR location code KO and linear position 169.12 km.",
+        "Kulturminne ID 86054.",
+        "Passenger service ended in 1999."
+      ]
+    },
+    {
+      "name": "Bane NOR – Kornsjø station",
+      "provider": "bane_nor",
+      "url": "https://www.banenor.no/reise-og-trafikk/stasjoner/-k-/kornsjo/",
+      "objectId": "bane-nor:KO",
+      "usedFor": [
+        "current infrastructure status",
+        "line and kilometre control",
+        "passenger-service status",
+        "track-complex context"
+      ],
+      "findings": [
+        "Kornsjø station is on the Østfold Line, 169.12 km from Oslo S.",
+        "Passenger trains do not stop.",
+        "The official track table shows several main, passing and additional tracks."
+      ]
+    },
+    {
+      "name": "Kulturminnesøk – Kornsjø station",
+      "provider": "kulturminnesok",
+      "url": "https://kulturminnesok.no/minne/?queryString=https%3A%2F%2Fdata.kulturminne.no%2Faskeladden%2Flokalitet%2F86054",
+      "objectId": "kulturminne:86054",
+      "usedFor": [
+        "protected station identity"
+      ],
+      "findings": [
+        "Heritage locality 86054 identifies Kornsjø station."
+      ]
+    },
+    {
+      "name": "Jernbane.net – Kornsjø station",
+      "provider": "jernbane_net",
+      "url": "https://jernbane.net/bo/subpage.php?s=4&u=2034",
+      "objectId": "jernbane-net:kornsjo-stasjon",
+      "usedFor": [
+        "station chronology",
+        "architects",
+        "customs function",
+        "passenger closure",
+        "protection date"
+      ],
+      "findings": [
+        "The station opened in July 1879.",
+        "The first wooden building followed Peter Andreas Blix type drawings.",
+        "It burned in 1898 and was replaced by a larger masonry station by Paul Due, completed in 1900.",
+        "The larger building also accommodated customs functions.",
+        "All passenger service ended in 1999 and the building was protected in 2001."
+      ]
+    },
+    {
+      "name": "Kornsjø local history – station",
+      "provider": "local_history",
+      "url": "https://www.kornsjo.no/kornsjo-stasjon/",
+      "objectId": "kornsjo-local:kornsjo-stasjon",
+      "usedFor": [
+        "local building chronology",
+        "1898 fire",
+        "1900 completion"
+      ],
+      "findings": [
+        "The original 1879 timber station burned in August 1898.",
+        "The replacement station was completed in 1900 after greater customs-space requirements."
+      ]
+    },
+    {
+      "name": "Wikidata – Kornsjø border",
+      "provider": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q130338241",
+      "objectId": "wikidata:Q130338241;bane-nor:KOG",
+      "usedFor": [
+        "rail-border separation",
+        "border coordinate"
+      ],
+      "findings": [
+        "The rail-border point is at 58.93489, 11.66981.",
+        "It lies approximately 950 metres south-east of Kornsjø station."
+      ]
+    },
+    {
+      "name": "Riksantikvaren – Kornsjø locomotive shed decision",
+      "provider": "riksantikvaren",
+      "url": "https://riksantikvaren.no/content/uploads/2022/07/Kornsjo-stasjon.-Klage-pa-avslag-pa-soknad-om-tilskudd-til-istandsetting-av-lokstall.pdf",
+      "objectId": "riksantikvaren:22-01445-3",
+      "usedFor": [
+        "wider station heritage environment",
+        "separate locomotive-shed condition and ownership context"
+      ],
+      "findings": [
+        "The locomotive shed is a separate technical-industrial heritage component near the station.",
+        "The document distinguishes it from the protected station building and records condition and access concerns."
+      ]
+    }
+  ],
+  "dateHandling": {
+    "canonicalYear": 1879,
+    "dayDateDecision": "Do not encode an exact opening day in canonical narrative because sources vary between 18 and 25 July 1879.",
+    "currentBuildingYear": 1900,
+    "fireYear": 1898,
+    "passengerClosureYear": 1999
+  },
+  "rejectedCandidates": [
+    {
+      "candidate": "Legacy point 59.0974, 11.6682",
+      "reason": "Approximately 17.32 km north and unrelated to Kornsjø station."
+    },
+    {
+      "candidate": "Kornsjø settlement Q3354324 / GeoNames 3149488",
+      "reason": "Represents the settlement rather than the station complex."
+    },
+    {
+      "candidate": "Kornsjø rail border Q130338241",
+      "reason": "The international border point is approximately 950 metres south-east of the station."
+    },
+    {
+      "candidate": "Station-building photo coordinate 58.94137, 11.65926",
+      "reason": "Useful building control but not a verified complete building geometry or station-complex point."
+    },
+    {
+      "candidate": "Locomotive shed",
+      "reason": "Separate technical heritage component and not the identity of the whole station."
+    }
+  ],
+  "accessAndSafety": [
+    "Passenger trains do not stop, but the railway infrastructure remains operational.",
+    "No task may require walking on or crossing tracks outside authorised public crossings.",
+    "Technical buildings and the protected station building may have separate ownership and access rules.",
+    "The 300-metre radius is not a track, railway, heritage, property, platform, customs or safety boundary."
+  ],
+  "nextManifestEntry": "tomb_herregard"
+}
