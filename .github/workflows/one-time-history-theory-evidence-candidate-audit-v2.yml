@@ -1,0 +1,67 @@
+name: One-time History theory evidence candidate audit V2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-theory-evidence-candidate-audit-v2-trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/history-theory-evidence-batch-2
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Synchronize fresh main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Run candidate audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/candidate-audit-v2
+          node --check tools/audit-historie-theory-evidence-candidates-v2.mjs \
+            | tee reports/historie-theory-evidence/candidate-audit-v2/syntax.log
+          node tools/audit-historie-theory-evidence-candidates-v2.mjs \
+            | tee reports/historie-theory-evidence/candidate-audit-v2/audit.log
+
+      - name: Remove one-time transport files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/audit-historie-theory-evidence-candidates-v2.mjs
+          rm -f .github/workflows/one-time-history-theory-evidence-candidate-audit-v2.yml
+          rm -f .github/history-theory-evidence-candidate-audit-v2-trigger.txt
+
+      - name: Commit diagnostic report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git diff --cached --check \
+            | tee reports/historie-theory-evidence/candidate-audit-v2/git-diff-check.log
+          git add reports/historie-theory-evidence/candidate-audit-v2/git-diff-check.log
+          git status --short \
+            | tee reports/historie-theory-evidence/candidate-audit-v2/git-status.log
+          git add reports/historie-theory-evidence/candidate-audit-v2/git-status.log
+          git commit -m "Audit History theory evidence batch 2 candidates"
+          git push origin HEAD:agent/history-theory-evidence-batch-2
