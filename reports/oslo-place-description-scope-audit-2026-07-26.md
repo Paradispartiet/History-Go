@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **259**
-- Additional active Oslo IDs outside the protocol: **253**
+- IDs in the current revision protocol: **260**
+- Additional active Oslo IDs outside the protocol: **252**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **253**
+- Additional IDs needing revision: **252**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -20,7 +20,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | subkultur | 38 |
 | sport | 29 |
 | scenekunst | 24 |
-| litteratur | 1 |
 
 ## Additional active Oslo places
 
@@ -66,7 +65,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | kunst | Van Etten | `van_etten` | 21 | 132 | 3 | `data/places/kunst/oslo/places_kunst/van_etten.json` | needs revision |
 | kunst | VI, VII | `vi_vii_gallery` | 39 | 153 | 3 | `data/places/kunst/oslo/places_kunst/vi_vii_gallery.json` | needs revision |
 | kunst | Vigelandmuseet | `vigelandmuseet` | 27 | 110 | 2 | `data/places/kunst/oslo/places_kunst/vigelandmuseet.json` | needs revision |
-| litteratur | Tronsmo Bokhandel | `tronsmo_bokhandel` | 13 | 13 | 1 | `data/places/litteratur/oslo/places_litteratur/tronsmo_bokhandel.json` | needs revision |
 | naeringsliv | FLOP Museum | `flop_museum` | 21 | 133 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07/flop_museum.json` | needs revision |
 | naeringsliv | Tøyen trafo | `toyen_trafo` | 14 | 126 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json` | needs revision |
 | naeringsliv | Etterstadgata 6 | `etterstadgata_6` | 14 | 121 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_05/etterstadgata_6.json` | needs revision |
