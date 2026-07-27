@@ -1,0 +1,232 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hobol_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch5/hobol_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.60081,
+    "lon": 10.92389,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 81114208; Wikidata Q6493315; Kulturminne 84587; Norges Kirker; Den norske kirke i Hobøl og Tomter",
+    "coordType": "church_building_representative_point",
+    "coordRole": "medieval_church_building_anchor",
+    "sourceObjectId": "osm-way:81114208;wikidata:Q6493315;kulturminne:84587"
+  },
+  "previousCoordinate": {
+    "lat": 59.6232,
+    "lon": 10.9474,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 2819.5,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,82 kilometer nordøst for Hobøl kirke og manglet kontrakt mot kirkebygget eller kirkestedet."
+  },
+  "identity": {
+    "resolvedIdentity": "Hobøl kirke, den stående romanske steinkirken og middelalderkirkestedet ved Hobøl prestegård sør for Elvestad.",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-teksten blandet kirkebygget med et bredt ferdsels- og overgangslandskap, mens koordinaten lå langt unna kirken.",
+    "locatorTypeCandidate": "medieval_church_building",
+    "requiresSplit": false,
+    "splitReason": "Kirkebygget og kirkestedet er ett sammenhengende sted. Prestegården er et nærliggende kontekstobjekt og skal ikke overta canonical-punktet."
+  },
+  "requiredEvidence": [
+    "named medieval church-building geometry",
+    "independent church entity",
+    "heritage identifier",
+    "official visitor address",
+    "late-twelfth-century chronology",
+    "architectural description",
+    "churchyard and rectory separation",
+    "current-use and temporary-access context"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 81114208 – Hobøl kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/81114208",
+      "sourceObjectId": "osm-way:81114208",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 59.60081, 10.92389.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for den stående kirkebygningen."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Hobøl kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6493315",
+      "sourceObjectId": "wikidata:Q6493315",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Q6493315 identifiserer Hobøl kirke ved samme punkt og kobler kirken til bygge-ID 1769 og datering 1175.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Kulturminne 84587 – Hobøl kirkested",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=84587",
+      "sourceObjectId": "kulturminne:84587",
+      "sourceQuality": "authoritative_heritage_identity",
+      "finding": "Kulturminne-ID 84587 identifiserer Hobøl kirkested og den middelalderske steinkirken.",
+      "canVerifyCoordinate": true,
+      "reason": "Offentlig kulturminneidentitet og fredningskontekst."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Hobøl kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Hob%C3%B8l_kirke",
+      "sourceObjectId": "norges-kirker:hobol-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Dokumenterer den romanske steinkirken, skipet, koret, apsiden, kirkegården og plasseringen ved prestegården.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter bygningsidentitet, arkitektur og kirkestedsavgrensning."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Den norske kirke i Hobøl og Tomter – kirkebygg og adresse",
+      "sourceUrl": "https://www.kyrkja.no/nb-NO/fellesrad/indreostfold/menigheter/hobol/omoss/kontaktoss/",
+      "sourceObjectId": "kirken:hobol-kirke",
+      "sourceQuality": "official_current_address_and_use_control",
+      "finding": "Oppgir Hobøl kirke som aktivt kirkebygg i Mjærumveien 53, 1827 Hobøl.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell nåtidskontroll av navn, adresse og kirkelig bruk."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Den norske kirke – midlertidig stenging og 2026-bruk",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/indreostfold/menigheter/hobol/d%C3%A5p/",
+      "sourceObjectId": "kirken:hobol-temporary-closure-2025-2026",
+      "sourceQuality": "official_temporary_access_context",
+      "finding": "Kirken var midlertidig stengt under arbeider fram til mai 2026; planlagte konfirmasjoner i juni 2026 viser fortsatt aktiv bruk.",
+      "canVerifyCoordinate": false,
+      "reason": "Hindrer at en tidsbegrenset driftsstans modelleres som permanent tilgangsstatus."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Hobøl prestegård med Stenbøl",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Hob%C3%B8l_presteg%C3%A5rd_med_Stenb%C3%B8l_%28Hob%C3%B8l_gnr._106%29",
+      "sourceObjectId": "lokalhistoriewiki:hobol-prestegard-med-stenbol",
+      "sourceQuality": "independent_site_coordinate_and_rectory_context",
+      "finding": "Oppgir Hobøl kirke ved 59.60076675, 10.92396232 og beskriver kirke og prestegård på samme høydedrag.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig punktkontroll få meter fra anvendt bygganker."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Hobøl church point",
+      "sourceObjectId": "legacy:hobol_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 2819,5 meter nordøst for kirkebygget.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer kirken eller kirkestedet."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:81114208",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6493315",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende entitetskontroll; OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:hobol-prestegard-med-stenbol",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Sterk uavhengig punktkontroll, men ikke direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hobol_kirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger 2,82 kilometer fra kirken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hobol_medieval_church",
+      "name": "Hobøl kirke",
+      "lat": 59.60081,
+      "lon": 10.92389,
+      "r": 95,
+      "type": "medieval_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:81114208;wikidata:Q6493315;kulturminne:84587",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "hobol_churchyard",
+      "name": "Hobøl kirkegård og kirkested",
+      "lat": 59.60081,
+      "lon": 10.92389,
+      "r": 180,
+      "type": "churchyard_and_kirkested_context",
+      "sourceProvider": "norges_kirker_riksantikvaren",
+      "sourceObjectId": "kulturminne:84587",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "hobol_rectory",
+      "name": "Hobøl prestegård",
+      "lat": 59.60077,
+      "lon": 10.92396,
+      "r": 260,
+      "type": "rectory_and_historic_landscape_context",
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:hobol-prestegard-med-stenbol",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hobol_kirke",
+      "lat": 59.6232,
+      "lon": 10.9474,
+      "distanceFromAppliedM": 2819.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:81114208;wikidata:Q6493315",
+      "lat": 59.60081,
+      "lon": 10.92389,
+      "distanceFromPreviousM": 2819.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:hobol-prestegard-med-stenbol",
+      "lat": 59.60076675,
+      "lon": 10.92396232,
+      "distanceFromAppliedM": 6.3,
+      "canApplyToPlace": true,
+      "applied": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-hobol-kirke-source-probe/source-summary.json",
+      "description": "Vedvarende kildekontroll for geometri, entitet, kulturminne, adresse, arkitektur, datering og midlertidig tilgang."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den navngitte middelalderkirken som canonical, beholdt 1175 som omtrentlig datering og skilte kirkegård, prestegård og midlertidig stenging fra selve byggankeret. Fortsett med rakkestad_kirke."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 2,82 kilometer sørvest.",
+    "Den stående middelalderkirken er canonical-objektet.",
+    "År 1175 er omtrentlig og ikke et dokumentert eksakt bygge- eller innvielsesår.",
+    "Prestegården er et kontekstobjekt, ikke canonical-geometri.",
+    "Radiusen er ikke en bygnings-, kirkegårds-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+  ]
+}
