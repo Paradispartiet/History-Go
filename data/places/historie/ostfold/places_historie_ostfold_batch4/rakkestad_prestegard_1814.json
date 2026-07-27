@@ -1,9 +1,57 @@
 {
   "id": "rakkestad_prestegard_1814",
   "name": "Rakkestad prestegård",
-  "lat": 59.4258,
-  "lon": 11.3452,
+  "lat": 59.41279,
+  "lon": 11.36889,
   "r": 260,
+  "locatorType": "rectory_complex",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:6259987033",
+  "geocodeAccuracy": "named_rectory_site_point",
+  "coordRole": "protected_rectory_complex_anchor",
+  "coordType": "named_rectory_site_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap node 6259987033 – Prestegard; Lokalhistoriewiki – Rakkestad prestegård; Allstad – Rakkestad prestebolig; Riksantikvaren; Kulturminne ID 86067",
+  "coordSourceId": "osm-node:6259987033;kulturminne:86067",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/6259987033",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 1 972 meter sørøst fra Rakkestad tettsted til det navngitte prestegårdsanlegget ved Rakkestad kirke.",
+  "coordNote": "OpenStreetMap node 6259987033 og Lokalhistoriewikis stedspunkt samler seg ved 59.41279, 11.36889 og identifiserer Rakkestad prestegård, gnr. 5/1. Allstad oppgir Kirkeveien 116 og dokumenterer den laftede hovedbygningen fra 1797, Christian Frederiks besøk i 1814, ombyggingen i 1838, restaureringen i 1922–1923 og rehabiliteringen i 2022–2023. Kulturminne ID 86067 og Riksantikvarens klageavgjørelse bekrefter at hovedbygningen er et fredet kulturminne. Canonical representerer hele prestegårdsanlegget, ikke et usikkert inngangspunkt eller én antatt bygningsflate. Radius 260 meter er et gameplayområde rundt tunet og kirkestedet, men er ikke en bygnings-, frednings-, eiendoms-, jordbruks-, hage- eller adgangsgrense. Prestegården er en aktiv eiendom; oppgaver skal foregå fra lovlige offentlige veier eller etter uttrykkelig tillatelse og aldri kreve adgang til bolig, driftsbygninger eller privat hage.",
+  "anchors": [
+    {
+      "id": "rakkestad_prestegard_site",
+      "name": "Rakkestad prestegård – anleggspunkt",
+      "lat": 59.41279,
+      "lon": 11.36889,
+      "r": 120,
+      "type": "protected_rectory_complex_anchor",
+      "sourceProvider": "osm_and_lokalhistoriewiki",
+      "sourceObjectId": "osm-node:6259987033;geonames:9489359",
+      "note": "Navngitt prestegårds- og gårdspunkt kontrollert mot Lokalhistoriewikis koordinat for gnr. 5/1."
+    },
+    {
+      "id": "rakkestad_prestegard_main_building_control",
+      "name": "Hovedbygningen fra 1797 – adressekontroll",
+      "lat": 59.41261,
+      "lon": 11.36898,
+      "r": 55,
+      "type": "historic_main_building_address_control",
+      "sourceProvider": "allstad_and_address_control",
+      "sourceObjectId": "kulturminne:86067;address:Kirkeveien 116",
+      "note": "Kontrollpunkt for den fredede hovedbygningen og besøksadressen; brukes ikke som påstått bygningsgeometri."
+    },
+    {
+      "id": "rakkestad_church_context",
+      "name": "Rakkestad kirke",
+      "lat": 59.41093,
+      "lon": 11.36944,
+      "r": 80,
+      "type": "adjacent_medieval_church_context_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:316802556;wikidata:Q6494287",
+      "note": "Separat kirkebygg omtrent 200 meter sør for prestegårdsanlegget; forklarer kirkestedet, men er ikke prestegårdens canonical-punkt."
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Rakkestad",
@@ -14,42 +62,90 @@
     "1814",
     "prestegård",
     "rakkestad",
-    "kulturminne"
+    "kulturminne",
+    "christian_frederik",
+    "poståpneri"
   ],
-  "desc": "Prestegård ved Rakkestad kirke, med hovedbygning fra 1797 og historie knyttet til 1814, ferdselsåren mot Sverige og eldre kirkelandskap.",
-  "popupDesc": "Rakkestad prestegård ligger på en høyde ved kirkestedet og ferdselsåren mot Sverige. Hovedbygningen ble oppført i 1797, og anlegget er særlig interessant fordi Christian Frederik besøkte prestegården i 1814. Senere fikk gården også besøk av kronprins Karl Johan. Stedet bør brukes i History Go til å vise hvordan prestegårder kunne være både kirkelig sentrum, sosial institusjon, politisk møtepunkt og stoppested i et strategisk grenselandskap.",
+  "desc": "Fredet prestegårdsanlegg ved Rakkestad kirke med hovedbygning fra 1797. Christian Frederik besøkte stedet i 1814, og prestegården var representasjonssted, poståpneri og stoppested ved ferdselsåren mot Sverige.",
+  "popupDesc": "Rakkestad prestegård ligger ved det gamle kirkestedet sør for dagens tettsted. Den laftede hovedbygningen ble oppført i 1797, opprinnelig i to etasjer. I 1838 ble den øvre etasjen tatt ned, og inngangen ble vendt mot hagen og kirken. Prestegården losjerte biskoper og kongelige på gjennomreise; Christian Frederik besøkte den i 1814, mens norske styrker samme sommer var samlet i Rakkestad under krigen mot Sverige. Gården var også poståpneri i flere tiår. Hovedbygningen og deler av tunet er fredet, og hele anlegget ble rehabilitert i 2022–2023. Canonical-punktet viser det navngitte prestegårdsanlegget, ikke Rakkestad tettsted eller Rakkestad kirke. Eiendommen er aktiv, og oppgaver skal gjennomføres fra lovlige offentlige steder eller med uttrykkelig tillatelse.",
+  "externalLinks": [
+    {
+      "type": "official_property",
+      "label": "Allstad – Rakkestad prestebolig",
+      "url": "https://www.allstad.no/presteboliger/rakkestad-prestebolig",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "heritage_authority",
+      "label": "Riksantikvaren – Rakkestad prestegård",
+      "url": "https://riksantikvaren.no/rakkestad-prestegard-klage-pa-avslag-pa-soknad-om-dispensasjon-til-montering-av-elektronisk-lassystem-kulturminneloven-15-a/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "local_history",
+      "label": "Lokalhistoriewiki – Rakkestad prestegård",
+      "url": "https://lokalhistoriewiki.no/wiki/Rakkestad_presteg%C3%A5rd",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "heritage_record",
+      "label": "Kulturminnesøk – Rakkestad prestegård",
+      "url": "https://kulturminnesok.no/minne/?queryString=https%3A%2F%2Fdata.kulturminne.no%2Faskeladden%2Flokalitet%2F86067",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "map_object",
+      "label": "OpenStreetMap – Prestegard",
+      "url": "https://www.openstreetmap.org/node/6259987033",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    }
+  ],
   "quiz_profile": {
     "place_type": "prestegard",
-    "subtype": "1814_kulturminne_ved_kirkested",
+    "subtype": "fredet_prestegardsanlegg_med_1814_og_posthistorie",
     "signature_features": [
-      "hovedbygning fra 1797",
+      "fredet hovedbygning oppført i 1797",
       "Christian Frederik besøkte prestegården i 1814",
-      "ligger ved kirkestedet og ferdselsåren mot Sverige"
+      "opprinnelig to etasjer, redusert og ombygd i 1838",
+      "prestegård som representasjonssted og poståpneri"
     ],
     "primary_angles": [
       "historie",
       "1814",
       "prestegård",
-      "grense"
+      "ferdsel",
+      "posthistorie"
     ],
     "question_families": [
       "1814",
       "prestegårdshistorie",
-      "ferdsel",
-      "politisk_kultur"
+      "ferdsel_mot_sverige",
+      "poståpneri",
+      "fredning_og_bygningsendring"
     ],
     "avoid_angles": [
       "generisk_prestebolig",
-      "bare_lokalt_bygg"
+      "bare_lokalt_bygg",
+      "forveksling_med_rakkestad_tettsted",
+      "forveksling_med_rakkestad_kirke",
+      "påstand_om_offentlig_adgang_til_bolig_eller_tun"
     ],
     "must_include": [
-      "hovedbygningen fra 1797",
-      "Christian Frederiks besøk i 1814"
+      "hovedbygningen fra 1797 og ombyggingen i 1838",
+      "Christian Frederiks besøk i 1814",
+      "prestegården som representasjonssted og poståpneri",
+      "skillet mellom prestegårdsanlegget og kirken"
     ],
     "contrast_targets": [
       "spydeberg_prestegard_1814",
-      "moss_jernverk_konventionsgarden"
+      "moss_jernverk_konventionsgarden",
+      "rakkestad_kirke"
     ],
-    "notes": "Skal spørres som 1814- og ferdselshistorie, ikke bare som prestebolig."
+    "notes": "Skal spørres som et fredet prestegårdsanlegg med 1814-, ferdsels- og posthistorie. Punktet representerer anlegget, ikke en garantert offentlig besøksflate."
   }
 }
