@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>History Go – Fagverk</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fagverk.css">
+</head>
+<body class="hg-fagverk-page">
+  <header class="fagverk-topbar">
+    <a class="fagverk-brand" href="index.html" aria-label="Tilbake til History Go">
+      <img src="bilder/logo_historygo.PNG" alt="History Go">
+    </a>
+    <nav aria-label="Fagverknavigasjon">
+      <a href="index.html">Kartet</a>
+      <a href="emner.html">Min progresjon</a>
+    </nav>
+  </header>
+
+  <main class="fagverk-shell">
+    <aside class="fagverk-sidebar" aria-label="Kapitler">
+      <p class="fagverk-kicker">Fagverk</p>
+      <h1 id="fagverkSubjectTitle">Politikk og samfunn</h1>
+      <p id="fagverkSubjectDescription" class="fagverk-subject-description"></p>
+      <div id="fagverkChapterNav" class="fagverk-chapter-nav"></div>
+      <div id="fagverkPlaceContext" class="fagverk-place-context" hidden></div>
+    </aside>
+
+    <article class="fagverk-article" aria-live="polite">
+      <div id="fagverkLoading" class="fagverk-loading">Laster læreverket …</div>
+      <div id="fagverkContent" hidden>
+        <header class="fagverk-hero">
+          <p id="fagverkChapterKicker" class="fagverk-kicker"></p>
+          <h2 id="fagverkChapterTitle"></h2>
+          <p id="fagverkChapterSubtitle" class="fagverk-subtitle"></p>
+          <p id="fagverkLead" class="fagverk-lead"></p>
+        </header>
+
+        <section class="fagverk-objectives" aria-labelledby="fagverkObjectivesTitle">
+          <h3 id="fagverkObjectivesTitle">Dette skal du kunne</h3>
+          <ul id="fagverkObjectives"></ul>
+        </section>
+
+        <nav id="fagverkContents" class="fagverk-contents" aria-label="Innhold"></nav>
+        <div id="fagverkSections"></div>
+
+        <section class="fagverk-concepts" aria-labelledby="fagverkConceptsTitle">
+          <h3 id="fagverkConceptsTitle">Begreper</h3>
+          <div id="fagverkConceptGrid" class="fagverk-concept-grid"></div>
+        </section>
+
+        <section class="fagverk-selfcheck" aria-labelledby="fagverkSelfCheckTitle">
+          <h3 id="fagverkSelfCheckTitle">Sjekk hva du har forstått</h3>
+          <div id="fagverkSelfCheck"></div>
+        </section>
+
+        <section class="fagverk-cases" aria-labelledby="fagverkCasesTitle">
+          <h3 id="fagverkCasesTitle">Steder som gjør faget konkret</h3>
+          <div id="fagverkCases" class="fagverk-case-grid"></div>
+        </section>
+
+        <section class="fagverk-sources" aria-labelledby="fagverkSourcesTitle">
+          <h3 id="fagverkSourcesTitle">Kilder og videre lesning</h3>
+          <ul id="fagverkSources"></ul>
+        </section>
+      </div>
+      <div id="fagverkError" class="fagverk-error" hidden></div>
+    </article>
+  </main>
+
+  <script src="js/fagverk.js"></script>
+</body>
+</html>
