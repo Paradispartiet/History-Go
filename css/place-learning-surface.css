@@ -1,0 +1,250 @@
+/* Fagverk- og relasjonsflater i stedspopup */
+body.hg-app .hg-place-popup-v2 .hg-place-learning-section{
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 92% 8%,rgba(246,200,0,.16),transparent 16rem),
+    linear-gradient(145deg,rgba(23,33,49,.98),rgba(10,15,23,.98));
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:12px;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-heading h3{
+  margin:4px 0 0;
+  color:#fff;
+  font-size:24px;
+  line-height:1.05;
+  letter-spacing:-.035em;
+  text-transform:none;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-heading h3::before{display:none;}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-eyebrow{
+  margin:0;
+  color:#f6c800;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-all{
+  flex:0 0 auto;
+  padding:9px 11px;
+  border:1px solid rgba(246,200,0,.28);
+  border-radius:999px;
+  background:rgba(246,200,0,.09);
+  color:#ffe168;
+  font-size:11px;
+  font-weight:850;
+  text-decoration:none;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-all:hover{
+  border-color:rgba(246,200,0,.5);
+  background:rgba(246,200,0,.15);
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-intro{
+  max-width:72ch;
+  margin:0 0 14px;
+  color:rgba(255,255,255,.78);
+  font-size:14px;
+  line-height:1.58;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-concepts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 15px;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-concepts a,
+body.hg-app .hg-place-popup-v2 .hg-place-learning-emner a{
+  padding:7px 10px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.045);
+  color:rgba(255,255,255,.84);
+  font-size:11px;
+  line-height:1.1;
+  font-weight:750;
+  text-decoration:none;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-concepts a:hover,
+body.hg-app .hg-place-popup-v2 .hg-place-learning-emner a:hover{
+  border-color:rgba(246,200,0,.35);
+  color:#fff1a6;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-chapters{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-chapter{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  background:rgba(0,0,0,.19);
+  color:#fff;
+  text-decoration:none;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-chapter:hover{
+  border-color:rgba(246,200,0,.36);
+  background:rgba(246,200,0,.065);
+  transform:translateY(-1px);
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-chapter>span{
+  margin-bottom:7px;
+  color:#f6c800;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-chapter>strong{
+  font-size:17px;
+  line-height:1.2;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-chapter>p{
+  margin:8px 0 0;
+  color:rgba(255,255,255,.64);
+  font-size:12px;
+  line-height:1.45;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-chapter>small{
+  margin-top:auto;
+  padding-top:13px;
+  color:#ffe168;
+  font-weight:850;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-emner{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-learning-emner h4{
+  width:100%;
+  margin:0 0 2px;
+  color:rgba(255,255,255,.52);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-place-relations-list{
+  display:grid;
+  gap:10px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-relation-card{
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(0,0,0,.16));
+}
+
+body.hg-app .hg-place-popup-v2 .hg-relation-card-main{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  width:100%;
+  padding:15px;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font:inherit;
+  text-align:left;
+}
+
+body.hg-app .hg-place-popup-v2 button.hg-relation-card-main{cursor:pointer;}
+
+body.hg-app .hg-place-popup-v2 button.hg-relation-card-main:hover{
+  background:rgba(246,200,0,.065);
+}
+
+body.hg-app .hg-place-popup-v2 .hg-relation-card-type{
+  margin-bottom:6px;
+  color:#f6c800;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-relation-card-main>strong{
+  font-size:16px;
+  line-height:1.25;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-relation-card-meta{
+  margin-top:4px;
+  color:rgba(255,255,255,.48);
+  font-size:11px;
+  line-height:1.35;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-relation-card-why{
+  margin-top:9px;
+  color:rgba(255,255,255,.7);
+  font-size:13px;
+  line-height:1.48;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-relation-card-open{
+  margin-top:12px;
+  color:#ffe168;
+  font-size:11px;
+  font-weight:850;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-rel-source-link,
+body.hg-app .hg-place-popup-v2 .hg-rel-source-text{
+  display:block;
+  padding:10px 15px;
+  border-top:1px solid rgba(255,255,255,.07);
+  background:rgba(0,0,0,.16);
+  color:rgba(255,255,255,.58);
+  font-size:11px;
+  line-height:1.35;
+  text-decoration:none;
+}
+
+body.hg-app .hg-place-popup-v2 .hg-rel-source-link:hover{
+  color:#ffe168;
+  background:rgba(246,200,0,.055);
+}
+
+@media(max-width:680px){
+  body.hg-app .hg-place-popup-v2 .hg-place-learning-heading{flex-direction:column;}
+  body.hg-app .hg-place-popup-v2 .hg-place-learning-all{align-self:flex-start;}
+  body.hg-app .hg-place-popup-v2 .hg-place-learning-chapters{grid-template-columns:1fr;}
+}

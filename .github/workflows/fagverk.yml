@@ -1,0 +1,38 @@
+name: Fagverk and place learning
+
+on:
+  pull_request:
+    paths:
+      - 'fagverk.html'
+      - 'data/fagverk/**'
+      - 'js/fagverk.js'
+      - 'js/ui/place-learning-surface.js'
+      - 'js/ui/place-card-status-surface.js'
+      - 'css/fagverk.css'
+      - 'css/place-learning-surface.css'
+      - 'tests/fagverk-content.test.mjs'
+      - 'tests/place-learning-surface.test.js'
+      - '.github/workflows/fagverk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate learning content and UI links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax check runtimes
+        run: |
+          node --check js/fagverk.js
+          node --check js/ui/place-learning-surface.js
+          node --check js/ui/place-card-status-surface.js
+      - name: Validate textbook data and popup integration
+        run: |
+          node --test tests/fagverk-content.test.mjs
+          node --test tests/place-learning-surface.test.js
