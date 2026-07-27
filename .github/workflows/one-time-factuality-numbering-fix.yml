@@ -1,0 +1,68 @@
+name: One-time factuality documentation numbering repair
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/factuality-numbering-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  repair-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize production branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/canonical-factuality-contract
+          git checkout -B agent/canonical-factuality-contract origin/agent/canonical-factuality-contract
+          git merge --no-edit origin/main
+
+      - name: Repair documentation map from fresh main
+        run: node scripts/fix-factuality-doc-numbering.mjs
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run factuality contract tests
+        run: npm run test:factuality-contract
+
+      - name: Validate documentation governance
+        run: |
+          npm run build:scripts
+          mkdir -p reports/documentation-governance
+          node dist/scripts/check-documentation-governance.mjs
+
+      - name: Remove one-time repair script and generated reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/fix-factuality-doc-numbering.mjs
+          git restore --staged --worktree reports/documentation-governance 2>/dev/null || true
+          git clean -fd reports/documentation-governance 2>/dev/null || true
+
+      - name: Commit clean repaired contract diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          git commit -m "Repair factuality documentation ordering"
+          git push origin HEAD:agent/canonical-factuality-contract

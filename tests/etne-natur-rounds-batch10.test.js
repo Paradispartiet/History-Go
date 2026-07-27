@@ -1,0 +1,18 @@
+const fs=require('fs'),assert=require('assert');
+const place=JSON.parse(fs.readFileSync('data/places/natur/vestland/etne/osnes_honsvikjo/osnes_honsvikjo.json','utf8'));
+assert.strictEqual(place.id,'osnes_honsvikjo');
+assert.ok(place.tasks_profile.tasks.length>=4,'tasks');
+assert.ok(place.nature_profile.summary.length>=180,'nature summary');
+assert.ok(place.underbadge_ids.length>=3,'badges');
+assert.ok(place.training_profile.exercises.length>=3,'training');
+assert.ok(place.civication_store.length>=4,'civication');
+assert.ok(place.brands.length>=4,'brands');
+assert.ok(place.for_na.before&&place.for_na.now&&place.for_na.change,'for_na');
+assert.ok(!place.rounds&&!place.rundinger,'no manual override');
+const stories=JSON.parse(fs.readFileSync('data/stories/stories_etne_natur_rounds_batch9.json','utf8'));
+const story=stories.find(x=>x.place_id===place.id);
+assert.ok(story&&story.story.length>=900,'story');
+const lex=JSON.parse(fs.readFileSync('data/leksikon/places/vestland/etne/natur/leksikon_etne_natur_rounds_batch9.json','utf8')).find(x=>x.place_id===place.id);
+assert.ok(lex&&lex.wikiText.length>=5&&lex.facts.length>=10,'leksikon');
+assert.ok(place.quiz_profile.avoid_angles.includes('gjore_borgasen_bygdeborg_til_naturstedets_hovedtema'),'boundary');
+console.log('Etne nature rounds batch 10 OK');
