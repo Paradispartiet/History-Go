@@ -240,7 +240,6 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 199 | Sentrum Scene | `sentrum_scene` | 43 | 301 | 6 | #4257 |
 
 
-| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4260 |
 
 
 | 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |
@@ -300,6 +299,5 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 22 | 7 | #4253 – fullførte hele Oslo-køen for fagområdet media |
 | Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |
 | Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |
-| Oslo V4 batch 24 | 1 | #4260 – fullførte hele Oslo-køen for fagområdet psykologi |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
