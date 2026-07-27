@@ -1,0 +1,77 @@
+{
+  "placeId": "orje_sluser_haldenkanalen",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.4807,
+    "lon": 11.6607,
+    "r": 420
+  },
+  "appliedCoordinate": {
+    "lat": 59.4814778,
+    "lon": 11.6507861,
+    "r": 420,
+    "displacementM": 566.5
+  },
+  "identityDecision": "Use the named three-lock Ørje complex as the primary anchor and the adjacent canal museum as a secondary interpretation anchor.",
+  "primarySourceObject": {
+    "provider": "wikidata",
+    "objectId": "wikidata:Q12011862",
+    "name": "Ørje sluser",
+    "linkedIdentifiers": [
+      "riksantikvaren-kulturminne:241336"
+    ],
+    "lat": 59.4814778,
+    "lon": 11.6507861
+  },
+  "secondarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:506492465",
+    "name": "Haldenvassdragets Kanalmuseum",
+    "linkedIdentifiers": [
+      "wikidata:Q11973697"
+    ],
+    "lat": 59.48109,
+    "lon": 11.65168,
+    "distanceFromPrimaryM": 66.4
+  },
+  "historicalScope": {
+    "source": "Marker kommune; Riksantikvaren; NVE",
+    "finding": "Three hand-operated locks opened in 1860 lift vessels approximately ten metres. The locks are one component of the approximately 80-kilometre Halden Canal and sit beside lock residences, the Engebret Soot memorial, Ørje Brug and the canal museum."
+  },
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:orje_sluser_haldenkanalen",
+      "lat": 59.4807,
+      "lon": 11.6607,
+      "distanceFromAppliedM": 566.5,
+      "reason": "Settlement-side point east of the locks without a source-object identity."
+    },
+    {
+      "sourceObjectId": "osm-way:506492465",
+      "reason": "Valid secondary museum anchor, but not the lock complex itself."
+    },
+    {
+      "sourceObjectId": "orje-town-centre",
+      "reason": "A town-centre point does not identify the canal locks."
+    },
+    {
+      "sourceObjectId": "orje-power-station-or-canal-bridge",
+      "reason": "Separate infrastructure objects with different roles."
+    },
+    {
+      "sourceObjectId": "full-halden-canal",
+      "reason": "The complete canal system cannot be represented by one Ørje point or gameplay circle."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 420,
+    "covers": "The lock chambers, lock residences, parts of Ørje Brug and the canal museum for gameplay.",
+    "doesNotRepresent": [
+      "the exact lock or technical-installation geometry",
+      "a legal protection boundary",
+      "the waterway or property boundary",
+      "the complete Halden Canal system"
+    ]
+  },
+  "nextManifestPlace": "askim_gummivarefabrikk"
+}

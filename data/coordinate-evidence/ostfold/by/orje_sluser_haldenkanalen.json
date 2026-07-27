@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "orje_sluser_haldenkanalen",
+  "placeFile": "data/places/by/ostfold/orje_sluser_haldenkanalen/orje_sluser_haldenkanalen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_three_lock_complex_anchor",
+  "currentCoordinate": {
+    "lat": 59.4814778,
+    "lon": 11.6507861,
+    "r": 420,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q12011862 – Ørje sluser; Kulturminne ID 241336; Marker kommune; Riksantikvaren; NVE",
+    "coordType": "named_three_lock_canal_complex_coordinate",
+    "coordRole": "canal_lock_complex_anchor",
+    "sourceObjectId": "wikidata:Q12011862;riksantikvaren-kulturminne:241336"
+  },
+  "previousCoordinate": {
+    "lat": 59.4807,
+    "lon": 11.6607,
+    "r": 420,
+    "distanceToAppliedCoordinateM": 566.5,
+    "reasonReplaced": "The legacy point represented the eastern Ørje settlement area rather than the lock complex."
+  },
+  "identity": {
+    "resolvedIdentity": "The three hand-operated Ørje locks between Rødenessjøen and Øymarksjøen, with associated lock residences, memorial, Ørje Brug and canal museum context.",
+    "identityStatus": "resolved",
+    "identityProblem": "The combined name can be mistaken for the full Halden Canal, the museum, Ørje Brug or Ørje town centre.",
+    "locatorTypeCandidate": "canal_lock_complex",
+    "requiresSplit": false,
+    "splitReason": "The locks are the primary physical object; museum and industrial components remain secondary anchors in one coherent visitor environment."
+  },
+  "evidence": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q12011862 – Ørje sluser",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q12011862",
+      "sourceObjectId": "wikidata:Q12011862",
+      "sourceQuality": "named_canal_lock_entity_coordinate",
+      "finding": "The named lock entity is located at 59.4814778, 11.6507861 and linked through Wikimedia Commons to Kulturminne ID 241336.",
+      "canVerifyCoordinate": true
+    },
+    {
+      "sourceProvider": "marker_kommune",
+      "sourceName": "Marker kommune – Ørje sluser",
+      "sourceUrl": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/arrangement-og-moteplasser/kulturminner-og-museer/orje-sluser-i-haldenkanalen",
+      "sourceObjectId": "marker-kommune:orje-sluser",
+      "sourceQuality": "official_local_identity_and_operation_context",
+      "finding": "Marker municipality documents three hand-operated locks, approximately ten metres total lift, opening in 1860 and the associated lock residences and Engebret Soot memorial.",
+      "canVerifyCoordinate": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – Haldenkanalen",
+      "sourceUrl": "https://www.riksantikvaren.no/prosjekter/bevaringsprogramma/tekniske-og-industrielle-kulturminner/haldenkanalen/",
+      "sourceObjectId": "riksantikvaren:haldenkanalen",
+      "sourceQuality": "authoritative_system_and_industrial_heritage_context",
+      "finding": "Ørje is one of three lock complexes in the approximately 80-kilometre Halden Canal system built for timber and transport infrastructure.",
+      "canVerifyCoordinate": false
+    },
+    {
+      "sourceProvider": "nve",
+      "sourceName": "NVE – Haldenkanalen",
+      "sourceUrl": "https://www.nve.no/om-nve/nves-listefoerte-kulturminner/vassdragstekniske-anlegg/haldenkanalen/",
+      "sourceObjectId": "nve:haldenkanalen",
+      "sourceQuality": "authoritative_waterway_technical_context",
+      "finding": "NVE identifies Ørje as the northern lock site and the canal museum as an adjacent interpretation institution.",
+      "canVerifyCoordinate": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Ørje point",
+      "sourceObjectId": "legacy:orje_sluser_haldenkanalen",
+      "sourceQuality": "incorrect_settlement_point",
+      "finding": "The legacy point lies approximately 566.5 metres east of the named lock complex.",
+      "canVerifyCoordinate": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q12011862",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:506492465",
+      "canApplyToPlace": false,
+      "rejectionReason": "This is the adjacent canal museum building, not the lock complex."
+    },
+    {
+      "sourceProvider": "locality_control",
+      "sourceObjectId": "orje-town-centre",
+      "canApplyToPlace": false,
+      "rejectionReason": "The town-centre point does not identify the locks."
+    },
+    {
+      "sourceProvider": "infrastructure_control",
+      "sourceObjectId": "orje-power-station-or-canal-bridge",
+      "canApplyToPlace": false,
+      "rejectionReason": "Power and bridge infrastructure are separate objects."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "orje_slusekompleks",
+      "name": "Ørje sluser – tre slusekamre",
+      "lat": 59.4814778,
+      "lon": 11.6507861,
+      "r": 120,
+      "type": "canal_lock_complex_anchor",
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q12011862;riksantikvaren-kulturminne:241336",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "haldenvassdragets_kanalmuseum",
+      "name": "Haldenvassdragets Kanalmuseum",
+      "lat": 59.48109,
+      "lon": 11.65168,
+      "r": 90,
+      "type": "adjacent_canal_museum_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:506492465;wikidata:Q11973697",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:orje_sluser_haldenkanalen",
+      "lat": 59.4807,
+      "lon": 11.6607,
+      "distanceFromAppliedM": 566.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q12011862",
+      "lat": 59.4814778,
+      "lon": 11.6507861,
+      "distanceFromPreviousM": 566.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:506492465",
+      "lat": 59.48109,
+      "lon": 11.65168,
+      "distanceFromAppliedM": 66.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-orje-sluser-source-probe/source-summary.json",
+      "description": "Persisted lock identity, canal-system scope, secondary museum anchor, rejected candidates and radius limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Ørje lock-complex coordinate and retained the 420-metre gameplay radius. Continue with askim_gummivarefabrikk."
+  },
+  "notes": [
+    "The coordinate moves approximately 566.5 metres west.",
+    "The lock complex is the primary anchor; the canal museum is secondary.",
+    "The full Halden Canal extends far beyond the gameplay circle.",
+    "The radius is not a lock, legal protection, waterway, property or full-canal boundary."
+  ]
+}
