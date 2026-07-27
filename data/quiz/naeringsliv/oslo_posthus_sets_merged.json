@@ -13,7 +13,7 @@
   "production_context": {
     "manifest_category": "naeringsliv",
     "profile": "rich_5x7",
-    "standard_version": "3.0",
+    "standard_version": "3.2",
     "source_brief": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
     "context_artifact": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
     "resolved_files": {
@@ -64,7 +64,30 @@
     "works": [],
     "source_review_status": "reviewed",
     "theory_start_phase": "final",
-    "quality_lift": "naeringsliv_pilot_context_v1"
+    "quality_lift": "naeringsliv_pilot_context_v1",
+    "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+    "professional_module_ids": [
+      "mod_naering_operations_kapasitet",
+      "mod_naering_prosjektledelse_prosjektokonomi",
+      "mod_naering_regnskapsanalyse_verdsettelse",
+      "mod_naering_markedsmiks_kanaler",
+      "mod_naering_konsernstrategi_implementering",
+      "mod_naering_kostnad_kalkulasjon_budsjett"
+    ],
+    "professional_depth_files": [
+      "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+      "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+      "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+    ],
+    "normal_opening_questions_preserved": 14,
+    "professional_questions": 21,
+    "scenario_currency": "NOK",
+    "method_start_phase": "final",
+    "content_balance": {
+      "fact": 19,
+      "context": 9,
+      "concept_theory": 7
+    }
   },
   "sets": [
     {
@@ -474,24 +497,43 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilken funksjon hadde Hovedpostkontoret fra 1924 til 1975?",
+          "question": "Hvor lenge var Hovedpostkontoret hovedterminal i Oslo postdistrikt?",
           "options": [
-            "Norges Banks hovedkontor",
-            "Oslos største jernbaneverksted",
-            "Postverkets hovedterminal i Oslo postdistrikt"
+            "Fra 1924 til 1975",
+            "Fra 1854 til 1912",
+            "Fra 1975 til 2004"
           ],
-          "answer": "Postverkets hovedterminal i Oslo postdistrikt",
-          "answerIndex": 2,
-          "knowledge": "Lokalhistoriewiki beskriver Hovedpostkontoret som Postverkets hovedterminal i Oslo postdistrikt fra 23. februar 1924 til 1975.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "answer": "Fra 1924 til 1975",
+          "answerIndex": 0,
+          "knowledge": "Terminalperioden varte i litt over femti år. Deretter fortsatte andre postfunksjoner, slik at omstillingen ikke skjedde på én dato.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "source": [
             "lokalhistoriewiki"
           ],
           "source_origin": "external",
           "claim_basis": "Lokalhistoriewiki beskriver Hovedpostkontoret som Postverkets hovedterminal i Oslo postdistrikt fra 23. februar 1924 til 1975.",
-          "claim_id": "claim_oslo_posthus_15"
+          "claim_id": "claim_oslo_posthus_15",
+          "professional_module_id": "mod_naering_operations_kapasitet",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "identifiser terminalfunksjonens dokumenterte tidsrom",
+          "core_concepts": [
+            "hovedterminal",
+            "postdistrikt",
+            "driftsperiode"
+          ],
+          "concept_focus": [
+            "hovedterminal",
+            "postdistrikt"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ]
         },
         {
           "id": "oslo_posthus_quiz_16",
@@ -500,15 +542,15 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva viser det at hovedterminalen sluttet i 1975, mens andre postfunksjoner fortsatte til 2004?",
+          "question": "Hva viser det at hovedterminalen sluttet i 1975, mens postkontor, direktorat og museum fortsatte til 2004?",
           "options": [
-            "Logistikkfunksjonen ble flyttet før alle postrelaterte tjenester forsvant",
-            "All postrelatert virksomhet ble flyttet samtidig i 1975",
-            "Terminaldriften fortsatte uendret helt til 2004"
+            "Omstillingen skjedde trinnvis mellom ulike funksjoner",
+            "All postvirksomhet opphørte samtidig i 1975",
+            "Bygningen stod ubrukt i nesten tretti år"
           ],
-          "answer": "Logistikkfunksjonen ble flyttet før alle postrelaterte tjenester forsvant",
+          "answer": "Omstillingen skjedde trinnvis mellom ulike funksjoner",
           "answerIndex": 0,
-          "knowledge": "Terminaldriften, publikumstjenestene og administrasjonen ble ikke avviklet samtidig. Det viser at en virksomhet kan omstilles trinnvis.",
+          "knowledge": "Funksjoner med ulik teknologi, bemanning og publikumskontakt kan avvikles eller flyttes i forskjellig tempo.",
           "difficulty": 2,
           "question_type": "context",
           "emne_id": "em_naering_omstilling_kriser_skift",
@@ -518,7 +560,27 @@
           ],
           "source_origin": "external",
           "claim_basis": "Hovedterminalfunksjonen sluttet i 1975, mens postkontor, direktorat og museum fortsatte til 2004, så omstillingen skjedde trinnvis.",
-          "claim_id": "claim_oslo_posthus_16"
+          "claim_id": "claim_oslo_posthus_16",
+          "professional_module_id": "mod_naering_konsernstrategi_implementering",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "forklar en sekvensiell organisasjonsomstilling",
+          "core_concepts": [
+            "trinnvis omstilling",
+            "funksjonsdeling",
+            "implementering"
+          ],
+          "concept_focus": [
+            "trinnvis omstilling",
+            "funksjonsdeling"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "planlegge avvikling og videreføring uten driftsbrudd"
         },
         {
           "id": "oslo_posthus_quiz_17",
@@ -527,17 +589,17 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva huset bygningen etter hovedterminalperioden og fram til 2004?",
+          "question": "Hvilke funksjoner holdt til i bygningen fram til 2004?",
           "options": [
-            "Kun boligblokker",
             "Sentrum postkontor, Postdirektoratet og Postmuseet",
-            "En containerterminal"
+            "Tollvesenet, Norges Bank og Havnevesenet",
+            "Jernbanedirektoratet, Telegrafverket og Oslo Børs"
           ],
           "answer": "Sentrum postkontor, Postdirektoratet og Postmuseet",
-          "answerIndex": 1,
-          "knowledge": "Oslo byleksikon og Lokalhistoriewiki skriver at bygningen huset Sentrum postkontor, Postdirektoratet og Postmuseet til 2004.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "answerIndex": 0,
+          "knowledge": "Bygningen rommet både publikumstjeneste, administrasjon og institusjonell historie etter at terminaldriften var flyttet.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_arbeid_verdiskaping",
           "source": [
             "oslo_byleksikon",
@@ -545,7 +607,26 @@
           ],
           "source_origin": "external",
           "claim_basis": "Oslo byleksikon og Lokalhistoriewiki skriver at bygningen huset Sentrum postkontor, Postdirektoratet og Postmuseet til 2004.",
-          "claim_id": "claim_oslo_posthus_17"
+          "claim_id": "claim_oslo_posthus_17",
+          "professional_module_id": "mod_naering_konsernstrategi_implementering",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "identifiser dokumenterte videreførte funksjoner",
+          "core_concepts": [
+            "postkontor",
+            "direktorat",
+            "museum"
+          ],
+          "concept_focus": [
+            "postkontor",
+            "direktorat"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ]
         },
         {
           "id": "oslo_posthus_quiz_18",
@@ -554,15 +635,15 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva slags omstilling skjedde etter at hovedterminalperioden var over?",
+          "question": "I et scenario sorterer en terminal 240 000 sendinger på 12 timer. Hva er gjennomsnittlig gjennomstrømning per time?",
           "options": [
-            "Fra tung terminaldrift til postkontor, administrasjon og museum",
-            "Fra publikumstjenester til større sorterings- og terminaldrift",
-            "Fra postadministrasjon til ren lager- og transportvirksomhet"
+            "2 000 sendinger",
+            "20 000 sendinger",
+            "200 000 sendinger"
           ],
-          "answer": "Fra tung terminaldrift til postkontor, administrasjon og museum",
-          "answerIndex": 0,
-          "knowledge": "Bygningen beholdt postfaglige funksjoner, men arbeidsinnholdet dreide bort fra den store vare- og sorteringsstrømmen mot tjenester, ledelse og formidling.",
+          "answer": "20 000 sendinger",
+          "answerIndex": 1,
+          "knowledge": "240 000 delt på 12 er 20 000 sendinger per time. Et gjennomsnitt skjuler topper, feil, kø og ulik behandlingstid mellom sendingstyper.",
           "difficulty": 2,
           "question_type": "context",
           "emne_id": "em_naering_arbeid_verdiskaping",
@@ -572,7 +653,36 @@
           ],
           "source_origin": "external",
           "claim_basis": "Etter hovedterminalperioden gikk bygningen fra tung terminaldrift til postkontor, administrasjon og museum.",
-          "claim_id": "claim_oslo_posthus_18"
+          "claim_id": "claim_oslo_posthus_18",
+          "professional_module_id": "mod_naering_operations_kapasitet",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "beregn terminalens gjennomsnittlige timekapasitet",
+          "core_concepts": [
+            "gjennomstrømning",
+            "sortering",
+            "kapasitet"
+          ],
+          "concept_focus": [
+            "gjennomstrømning",
+            "sortering"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "calculation": {
+            "inputs": {
+              "sendinger": 240000,
+              "timer": 12
+            },
+            "formula": "sendinger / timer",
+            "result": 20000,
+            "unit": "sendinger per time"
+          },
+          "decision_context": "vurdere om kapasiteten tåler toppbelastning"
         },
         {
           "id": "oslo_posthus_quiz_19",
@@ -581,15 +691,15 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva viser Postverkets overgang fra dampskip til jernbane om virksomheten?",
+          "question": "Hva viser Postverkets bruk av dampskip fra 1827 og jernbane fra 1854?",
           "options": [
-            "Den tok i bruk nye transportnett for å få posten raskere og lengre",
-            "Den beholdt samme transportmodell uavhengig av ny infrastruktur",
-            "Den konsentrerte all transport om lokale budruter i sentrum"
+            "Virksomheten tok i bruk nye transportnett for større hastighet og rekkevidde",
+            "Posten sluttet å være avhengig av fysisk transport",
+            "Alle postruter ble lønnsomme samtidig"
           ],
-          "answer": "Den tok i bruk nye transportnett for å få posten raskere og lengre",
+          "answer": "Virksomheten tok i bruk nye transportnett for større hastighet og rekkevidde",
           "answerIndex": 0,
-          "knowledge": "Postverket koblet tjenesten til tidens nye infrastruktur. Dampskip og jernbane utvidet rekkevidden og reduserte transporttiden.",
+          "knowledge": "Postsystemet utviklet seg sammen med transportteknologien. Nye nett kunne redusere tid, men krevde kapital, rutekoordinering og standardisering.",
           "difficulty": 2,
           "question_type": "context",
           "emne_id": "em_naering_logistikk_verdikjeder",
@@ -599,7 +709,27 @@
           ],
           "source_origin": "external",
           "claim_basis": "Postverkets bruk av dampskip fra 1827 og jernbane fra 1854 viser at virksomheten tok i bruk nye transportnett for å øke hastighet og rekkevidde.",
-          "claim_id": "claim_oslo_posthus_19"
+          "claim_id": "claim_oslo_posthus_19",
+          "professional_module_id": "mod_naering_internasjonal_handel_valuta",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "forklar hvordan transportinnovasjon endrer en tjenestekjede",
+          "core_concepts": [
+            "transportnett",
+            "rekkevidde",
+            "teknologisk skift"
+          ],
+          "concept_focus": [
+            "transportnett",
+            "rekkevidde"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "velge når ny infrastruktur forsvarer investeringen"
         },
         {
           "id": "oslo_posthus_quiz_20",
@@ -608,15 +738,15 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvorfor var det effektivt å samle sortering, ekspedisjon og administrasjon i ett hovedpostkontor?",
+          "question": "Hva er den viktigste driftsmessige fordelen og risikoen ved å samle sortering, ekspedisjon, publikumstjenester og administrasjon i ett hovedpostkontor?",
           "options": [
-            "Poststrømmer, publikumstjenester og ledelse kunne koordineres på samme sted",
-            "Hvert ledd kunne drives uavhengig på forskjellige steder",
-            "Samlingen reduserte behovet for kontakt mellom publikum og postdrift"
+            "Færre overleveringer, men større konsekvens ved flaskehals eller driftsstans",
+            "Ingen behov for arbeidsdeling eller kontroll",
+            "Lavere kostnader uten noen kapasitetsbegrensning"
           ],
-          "answer": "Poststrømmer, publikumstjenester og ledelse kunne koordineres på samme sted",
+          "answer": "Færre overleveringer, men større konsekvens ved flaskehals eller driftsstans",
           "answerIndex": 0,
-          "knowledge": "Samlingen reduserte avstanden mellom operative og administrative ledd og gjorde hovedpostkontoret til et organisatorisk knutepunkt.",
+          "knowledge": "Samling kan korte ned koordineringen, men gjør kapasitet, kø, sikkerhet og reserveplaner kritiske.",
           "difficulty": 2,
           "question_type": "context",
           "emne_id": "em_naering_logistikk_verdikjeder",
@@ -627,7 +757,27 @@
           ],
           "source_origin": "external",
           "claim_basis": "Et samlet hovedpostkontor gjorde det mulig å koordinere sortering, ekspedisjon, publikumstjenester og administrasjon på samme sted.",
-          "claim_id": "claim_oslo_posthus_20"
+          "claim_id": "claim_oslo_posthus_20",
+          "professional_module_id": "mod_naering_operations_kapasitet",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "vurder sentraliseringens driftsmessige avveiing",
+          "core_concepts": [
+            "overlevering",
+            "flaskehals",
+            "reservekapasitet"
+          ],
+          "concept_focus": [
+            "overlevering",
+            "flaskehals"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "balansere prosesseffektivitet mot kontinuitetsrisiko"
         },
         {
           "id": "oslo_posthus_quiz_21",
@@ -636,15 +786,15 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvorfor var plasseringen i Kvadraturen viktig for et hovedpostkontor?",
+          "question": "Hvorfor var plasseringen i Kvadraturen økonomisk viktig for et hovedpostkontor?",
           "options": [
-            "Det lå sentralt mellom byens virksomheter, publikum og transportforbindelser",
-            "Det lå nær havna, men langt fra byens kunder og virksomheter",
-            "Plasseringen var først og fremst valgt for framtidig boligbygging"
+            "Den reduserte avstanden mellom virksomheter, publikum og transportforbindelser",
+            "Den gjorde sortering og budtjenester overflødige",
+            "Den fjernet behovet for terminalkapasitet"
           ],
-          "answer": "Det lå sentralt mellom byens virksomheter, publikum og transportforbindelser",
+          "answer": "Den reduserte avstanden mellom virksomheter, publikum og transportforbindelser",
           "answerIndex": 0,
-          "knowledge": "Et hovedpostkontor var både terminal, arbeidsplass og publikumstjeneste. Den sentrale plasseringen gjorde flere ledd i postnettverket tilgjengelige.",
+          "knowledge": "Sentral beliggenhet kan redusere sisteledds transport og gjøre publikumstjenester tilgjengelige, men gir også høye arealkostnader og bymessige begrensninger.",
           "difficulty": 2,
           "question_type": "context",
           "emne_id": "em_naering_teknologi_infrastruktur",
@@ -655,7 +805,27 @@
           ],
           "source_origin": "mixed",
           "claim_basis": "Plasseringen i Kvadraturen var viktig fordi hovedpostkontoret lå sentralt mellom byens virksomheter, publikum og transportforbindelser.",
-          "claim_id": "claim_oslo_posthus_21"
+          "claim_id": "claim_oslo_posthus_21",
+          "professional_module_id": "mod_naering_operations_kapasitet",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "knytt lokalisering til transport- og servicekostnad",
+          "core_concepts": [
+            "lokalisering",
+            "sisteledd",
+            "tilgjengelighet"
+          ],
+          "concept_focus": [
+            "lokalisering",
+            "sisteledd"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "vurdere sentral tomtekostnad mot logistisk nytte"
         }
       ]
     },
@@ -672,16 +842,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilke byggefaser oppgir Oslo byleksikon for Hovedpostkontoret?",
+          "question": "Hvilke byggeperioder oppgir Oslo byleksikon for Hovedpostkontoret?",
           "options": [
             "1914–18 og 1921–24",
-            "1909–19 og 1931–33",
-            "1975–76 og 2004–09"
+            "1890–94 og 1901–04",
+            "1940–45 og 1950–54"
           ],
           "answer": "1914–18 og 1921–24",
           "answerIndex": 0,
-          "knowledge": "Oslo byleksikon oppgir byggefaser 1914–18 og 1921–24.",
-          "difficulty": 1,
+          "knowledge": "To byggefaser betyr at prosjektets tid, finansiering og gjennomføring må forstås som mer enn én sammenhengende byggeoperasjon.",
+          "difficulty": 3,
           "question_type": "fact",
           "emne_id": "em_naering_teknologi_infrastruktur",
           "source": [
@@ -689,7 +859,26 @@
           ],
           "source_origin": "external",
           "claim_basis": "Oslo byleksikon oppgir byggefaser 1914–18 og 1921–24.",
-          "claim_id": "claim_oslo_posthus_22"
+          "claim_id": "claim_oslo_posthus_22",
+          "professional_module_id": "mod_naering_prosjektledelse_prosjektokonomi",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "identifiser dokumenterte prosjektfaser",
+          "core_concepts": [
+            "byggefaser",
+            "prosjektperiode",
+            "sekvensering"
+          ],
+          "concept_focus": [
+            "byggefaser",
+            "prosjektperiode"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ]
         },
         {
           "id": "oslo_posthus_quiz_23",
@@ -698,16 +887,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilket preg har bygningen ifølge Oslo byleksikon?",
+          "question": "Hvilke trekk gir bygningen det tunge borgpreget som Oslo byleksikon beskriver?",
           "options": [
-            "Lett glassfasade med internasjonal høyhusstil",
-            "Tungt borgpreg med høyt mansardtak og barokke tårnhjelmer",
-            "Utsvevende jugendstil med smijernsbalkonger"
+            "Høyt mansardtak og barokke tårnhjelmer",
+            "Glassfasade og flatt tak",
+            "Åpent stålfagverk og fabrikkpiper"
           ],
-          "answer": "Tungt borgpreg med høyt mansardtak og barokke tårnhjelmer",
-          "answerIndex": 1,
-          "knowledge": "Oslo byleksikon beskriver et tungt borgpreg, høyt mansardtak og barokke tårnhjelmer.",
-          "difficulty": 1,
+          "answer": "Høyt mansardtak og barokke tårnhjelmer",
+          "answerIndex": 0,
+          "knowledge": "Arkitekturen signaliserte institusjonell tyngde og varighet. Slike kvaliteter kan senere bli både en markedsressurs og en ombyggingsbegrensning.",
+          "difficulty": 3,
           "question_type": "fact",
           "emne_id": "em_naering_teknologi_infrastruktur",
           "source": [
@@ -716,7 +905,26 @@
           ],
           "source_origin": "external",
           "claim_basis": "Oslo byleksikon beskriver et tungt borgpreg, høyt mansardtak og barokke tårnhjelmer.",
-          "claim_id": "claim_oslo_posthus_23"
+          "claim_id": "claim_oslo_posthus_23",
+          "professional_module_id": "mod_naering_merkevare_kunderelasjon",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "identifiser dokumenterte arkitektoniske kjennetegn",
+          "core_concepts": [
+            "institusjonsarkitektur",
+            "borgpreg",
+            "stedsidentitet"
+          ],
+          "concept_focus": [
+            "institusjonsarkitektur",
+            "borgpreg"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ]
         },
         {
           "id": "oslo_posthus_quiz_24",
@@ -725,16 +933,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilket dekorativt mønster nevner Oslo byleksikon på fasaden?",
+          "question": "Hva kjennetegner fasadedekoren?",
           "options": [
-            "Keramiske fliser fra Lodalen vognhall",
-            "Glassmosaikk fra Sommerro",
-            "Granittdekor med mønster fra norsk treskurd"
+            "Granittdekor med mønster fra norsk treskurd",
+            "Ubehandlet aluminium uten ornament",
+            "Keramiske reklameskilt fra 1970-årene"
           ],
           "answer": "Granittdekor med mønster fra norsk treskurd",
-          "answerIndex": 2,
-          "knowledge": "Oslo byleksikon beskriver grovt pussede fasader med granittdekor med mønster fra norsk treskurd.",
-          "difficulty": 2,
+          "answerIndex": 0,
+          "knowledge": "Dekoren er et konkret verne- og identitetselement som må håndteres i vedlikehold, rehabilitering og kommunikasjon av stedet.",
+          "difficulty": 3,
           "question_type": "fact",
           "emne_id": "em_naering_teknologi_infrastruktur",
           "source": [
@@ -742,7 +950,26 @@
           ],
           "source_origin": "external",
           "claim_basis": "Oslo byleksikon beskriver grovt pussede fasader med granittdekor med mønster fra norsk treskurd.",
-          "claim_id": "claim_oslo_posthus_24"
+          "claim_id": "claim_oslo_posthus_24",
+          "professional_module_id": "mod_naering_prosjektledelse_prosjektokonomi",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "identifiser et dokumentert bevaringselement",
+          "core_concepts": [
+            "granittdekor",
+            "verneverdi",
+            "fasade"
+          ],
+          "concept_focus": [
+            "granittdekor",
+            "verneverdi"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ]
         },
         {
           "id": "oslo_posthus_quiz_25",
@@ -751,17 +978,17 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvordan påvirket verneverdiene ombyggingen av Posthallen?",
+          "question": "Hva er den viktigste prosjektkonsekvensen av at fasader, postekspedisjonshall og trappeløp skal bevares?",
           "options": [
-            "Ny bruk måtte tilpasses fasader, hall og trappeløp som skulle bevares",
-            "Ny bruk kunne planlegges uten hensyn til historiske rom",
-            "Vernet begrenset ombyggingen til bare utvendig vedlikehold"
+            "Ny bruk må prosjekteres rundt fastlagte verneverdier",
+            "Alle tekniske krav kan ignoreres",
+            "Bygningen kan bare brukes som museum"
           ],
-          "answer": "Ny bruk måtte tilpasses fasader, hall og trappeløp som skulle bevares",
+          "answer": "Ny bruk må prosjekteres rundt fastlagte verneverdier",
           "answerIndex": 0,
-          "knowledge": "Vernet la føringer på prosjektet. Utvikleren måtte skape boliger og næring uten å miste de viktigste historiske rommene og bygningsdelene.",
-          "difficulty": 2,
-          "question_type": "context",
+          "knowledge": "Bevaring låser deler av løsningsrommet. Prosjektet må dokumentere inngrep, tekniske løsninger, kostnad og hvordan ny bruk fungerer uten å ødelegge verdiene.",
+          "difficulty": 3,
+          "question_type": "fact",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
             "linstow",
@@ -769,7 +996,27 @@
           ],
           "source_origin": "external",
           "claim_basis": "Verneverdiene gjorde at ny bruk måtte tilpasses fasadene, postekspedisjonshallen og trappeløpene som skulle bevares.",
-          "claim_id": "claim_oslo_posthus_25"
+          "claim_id": "claim_oslo_posthus_25",
+          "professional_module_id": "mod_naering_prosjektledelse_prosjektokonomi",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "oversett verneverdier til prosjektkrav",
+          "core_concepts": [
+            "vernekrav",
+            "løsningsrom",
+            "prosjektering"
+          ],
+          "concept_focus": [
+            "vernekrav",
+            "løsningsrom"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "prioritere funksjon og teknikk innen et begrenset inngrepsrom"
         },
         {
           "id": "oslo_posthus_quiz_26",
@@ -778,16 +1025,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvem kjøpte Posthuskvartalet fra Posten Norge i 1999?",
+          "question": "Kjøpesummen var 275 millioner kroner. Hvis prosjektet setter av 15 % av kjøpesummen som usikkerhetsreserve, hvor stor blir reserven?",
           "options": [
-            "OBOS",
-            "Linstow",
-            "Akershus Energi"
+            "13,75 millioner kroner",
+            "41,25 millioner kroner",
+            "68,75 millioner kroner"
           ],
-          "answer": "Linstow",
+          "answer": "41,25 millioner kroner",
           "answerIndex": 1,
-          "knowledge": "Linstow skriver at selskapet ervervet Posthuskvartalet fra Posten Norge i 1999 for 275 millioner kroner.",
-          "difficulty": 1,
+          "knowledge": "275 millioner kroner multiplisert med 0,15 er 41,25 millioner kroner. Reserven er et scenario og må begrunnes med identifisert risiko; den dokumenterte kjøpesummen er ikke i seg selv et kostnadsestimat for ombyggingen.",
+          "difficulty": 3,
           "question_type": "fact",
           "emne_id": "em_naering_kapital_finans",
           "source": [
@@ -795,7 +1042,36 @@
           ],
           "source_origin": "external",
           "claim_basis": "Linstow skriver at selskapet ervervet Posthuskvartalet fra Posten Norge i 1999 for 275 millioner kroner.",
-          "claim_id": "claim_oslo_posthus_26"
+          "claim_id": "claim_oslo_posthus_26",
+          "professional_module_id": "mod_naering_prosjektledelse_prosjektokonomi",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "beregn en eksplisitt usikkerhetsreserve fra dokumentert kjøpesum",
+          "core_concepts": [
+            "kjøpesum",
+            "usikkerhetsreserve",
+            "prosjektrisiko"
+          ],
+          "concept_focus": [
+            "kjøpesum",
+            "usikkerhetsreserve"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "calculation": {
+            "inputs": {
+              "kjopesum_nok": 275000000,
+              "reserveandel": 0.15
+            },
+            "formula": "kjopesum_nok * reserveandel",
+            "result": 41250000,
+            "unit": "NOK"
+          },
+          "decision_context": "fastsette reserve ut fra faktisk risiko og ikke en mekanisk prosentsats"
         },
         {
           "id": "oslo_posthus_quiz_27",
@@ -804,16 +1080,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva viser kjøpesummen på 275 millioner kroner om Posthuskvartalet?",
+          "question": "Hvis kjøpet på 275 millioner kroner finansieres med 60 % gjeld, hvor mye egenkapital kreves?",
           "options": [
-            "Kvartalet ble behandlet som et stort kapital- og utviklingsobjekt",
-            "Kjøpet var først og fremst en mindre driftsutgift for ett postkontor",
-            "Summen viste at eiendommen ikke var planlagt for videre utvikling"
+            "55 millioner kroner",
+            "110 millioner kroner",
+            "165 millioner kroner"
           ],
-          "answer": "Kvartalet ble behandlet som et stort kapital- og utviklingsobjekt",
-          "answerIndex": 0,
-          "knowledge": "Kjøpesummen viser at omstillingen også var en kapitalbeslutning: ny bruk måtte forsvare investering, risiko og forventet avkastning.",
-          "difficulty": 2,
+          "answer": "110 millioner kroner",
+          "answerIndex": 1,
+          "knowledge": "Gjeldsandelen er 165 millioner kroner, og resten er 110 millioner kroner i egenkapital. Beregningen sier ikke noe om renter, avdrag eller byggelån til ombyggingen.",
+          "difficulty": 3,
           "question_type": "context",
           "emne_id": "em_naering_kapital_finans",
           "source": [
@@ -821,7 +1097,36 @@
           ],
           "source_origin": "external",
           "claim_basis": "Kjøpesummen på 275 millioner kroner viser at Posthuskvartalet ble behandlet som et stort kapital- og utviklingsobjekt.",
-          "claim_id": "claim_oslo_posthus_27"
+          "claim_id": "claim_oslo_posthus_27",
+          "professional_module_id": "mod_naering_regnskapsanalyse_verdsettelse",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "beregn egenkapitalbehov i et finansieringsscenario",
+          "core_concepts": [
+            "gjeldsgrad",
+            "egenkapital",
+            "finansiering"
+          ],
+          "concept_focus": [
+            "gjeldsgrad",
+            "egenkapital"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "calculation": {
+            "inputs": {
+              "kjopesum_nok": 275000000,
+              "gjeldsandel": 0.6
+            },
+            "formula": "kjopesum_nok * (1 - gjeldsandel)",
+            "result": 110000000,
+            "unit": "NOK"
+          },
+          "decision_context": "vurdere kapitalstruktur og finansieringsrisiko"
         },
         {
           "id": "oslo_posthus_quiz_28",
@@ -830,16 +1135,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvorfor var det viktig at kjøpet omfattet tre eiendommer i samme kvartal?",
+          "question": "Hva er den viktigste strategiske fordelen ved å kjøpe tre eiendommer i samme kvartal?",
           "options": [
-            "Det gjorde det mulig å planlegge ombruk og ny næring som ett samlet prosjekt",
-            "Hver eiendom måtte utvikles helt uavhengig av de andre",
-            "Kjøpet begrenset prosjektet til å bevare eksisterende bruk uendret"
+            "Ombruk, logistikk og leietakermiks kan planlegges samlet",
+            "Hver eiendom blir uavhengig av markedet",
+            "Prosjektet trenger ikke offentlige tillatelser"
           ],
-          "answer": "Det gjorde det mulig å planlegge ombruk og ny næring som ett samlet prosjekt",
+          "answer": "Ombruk, logistikk og leietakermiks kan planlegges samlet",
           "answerIndex": 0,
-          "knowledge": "Samlet kontroll over Dronningens gate 15, Tollbugata 17 og Kirkegata 20 ga utvikleren større handlingsrom til å koordinere boliger, næring og fellesfunksjoner.",
-          "difficulty": 2,
+          "knowledge": "Samlet kontroll kan gi portefølje- og områdegevinster, men øker kapitalbindingen og konsekvensen av feil i marked, framdrift eller regulering.",
+          "difficulty": 3,
           "question_type": "context",
           "emne_id": "em_naering_kapital_finans",
           "source": [
@@ -847,7 +1152,27 @@
           ],
           "source_origin": "external",
           "claim_basis": "Kjøpet av tre eiendommer i samme kvartal gjorde det mulig å planlegge ombruk og ny næring som ett samlet prosjekt.",
-          "claim_id": "claim_oslo_posthus_28"
+          "claim_id": "claim_oslo_posthus_28",
+          "professional_module_id": "mod_naering_konsernstrategi_implementering",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "vurder porteføljesynergi i et samlet kvartal",
+          "core_concepts": [
+            "portefølje",
+            "områdeutvikling",
+            "synergi"
+          ],
+          "concept_focus": [
+            "portefølje",
+            "områdeutvikling"
+          ],
+          "guidance_basis": [
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "skille reelle synergier fra bare større prosjektomfang"
         }
       ]
     },
@@ -864,16 +1189,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva ble en stor del av Posthallen-prosjektet bygget om til?",
+          "question": "Posthallen-prosjektet omfattet 211 leiligheter. I et scenario med 3,5 millioner kroner i gjennomsnittlig verdi per leilighet, hva blir samlet boligverdi?",
           "options": [
-            "Et nytt postterminalanlegg",
-            "211 leiligheter med næringsarealer",
-            "Et jernbaneverksted"
+            "73,85 millioner kroner",
+            "738,5 millioner kroner",
+            "7,385 milliarder kroner"
           ],
-          "answer": "211 leiligheter med næringsarealer",
+          "answer": "738,5 millioner kroner",
           "answerIndex": 1,
-          "knowledge": "Posthallen-prosjektet omfattet 211 leiligheter med næringsarealer.",
-          "difficulty": 1,
+          "knowledge": "211 multiplisert med 3,5 millioner kroner er 738,5 millioner kroner. Gjennomsnittsverdien er bare en synlig scenarioantakelse; en virkelig analyse må skille boligtyper, areal, salgs- eller leiepriser, kostnader og tidspunkt.",
+          "difficulty": 3,
           "question_type": "analysis",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
@@ -883,11 +1208,36 @@
           "source_origin": "external",
           "claim_basis": "Posthallen-prosjektet omfattet 211 leiligheter med næringsarealer.",
           "claim_id": "claim_oslo_posthus_29",
+          "professional_module_id": "mod_naering_regnskapsanalyse_verdsettelse",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "beregn et transparent boligverdiscenario fra dokumentert enhetsantall",
+          "core_concepts": [
+            "boligportefølje",
+            "gjennomsnittsverdi",
+            "blandet bruk"
+          ],
+          "concept_focus": [
+            "boligportefølje",
+            "gjennomsnittsverdi"
+          ],
           "method_id": "met_naering_verdiskapingsanalyse",
           "guidance_basis": [
             "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
-            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json"
-          ]
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "calculation": {
+            "inputs": {
+              "leiligheter": 211,
+              "gjennomsnittsverdi_per_leilighet_nok": 3500000
+            },
+            "formula": "leiligheter * gjennomsnittsverdi_per_leilighet_nok",
+            "result": 738500000,
+            "unit": "NOK"
+          },
+          "decision_context": "teste porteføljeverdien med differensierte boligtyper og kostnader"
         },
         {
           "id": "oslo_posthus_quiz_30",
@@ -896,16 +1246,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvor mye næringsareal inngikk i prosjektet ifølge Linstow?",
+          "question": "Prosjektet har omtrent 7 000 m² næringsareal. Med 4 200 kroner i årlig leie per m² og 90 % utleiegrad, hva blir brutto leie omtrent?",
           "options": [
-            "Ca. 700 m² næringsarealer",
-            "Ca. 70 000 m² næringsarealer",
-            "Ca. 7 000 m² næringsarealer"
+            "2,65 millioner kroner",
+            "26,46 millioner kroner",
+            "264,6 millioner kroner"
           ],
-          "answer": "Ca. 7 000 m² næringsarealer",
-          "answerIndex": 2,
-          "knowledge": "Linstow skriver at prosjektet bestod av 211 leiligheter samt ca. 7 000 m² næringsarealer.",
-          "difficulty": 1,
+          "answer": "26,46 millioner kroner",
+          "answerIndex": 1,
+          "knowledge": "7 000 × 4 200 × 0,90 er 26 460 000 kroner. Netto resultat blir lavere etter drift, vedlikehold, ledighet, leietakertilpasninger og administrasjon.",
+          "difficulty": 3,
           "question_type": "analysis",
           "emne_id": "em_naering_forbruk_marked",
           "source": [
@@ -914,11 +1264,37 @@
           "source_origin": "external",
           "claim_basis": "Linstow skriver at prosjektet bestod av 211 leiligheter samt ca. 7 000 m² næringsarealer.",
           "claim_id": "claim_oslo_posthus_30",
+          "professional_module_id": "mod_naering_regnskapsanalyse_verdsettelse",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "beregn brutto leie i et eksplisitt scenario",
+          "core_concepts": [
+            "næringsareal",
+            "utleiegrad",
+            "brutto leie"
+          ],
+          "concept_focus": [
+            "næringsareal",
+            "utleiegrad"
+          ],
           "method_id": "met_naering_verdiskapingsanalyse",
           "guidance_basis": [
             "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
-            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json"
-          ]
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "calculation": {
+            "inputs": {
+              "areal_m2": 7000,
+              "leie_per_m2_nok": 4200,
+              "utleiegrad": 0.9
+            },
+            "formula": "areal_m2 * leie_per_m2_nok * utleiegrad",
+            "result": 26460000,
+            "unit": "NOK per år"
+          },
+          "decision_context": "teste inntekten mot driftskostnad og kapital"
         },
         {
           "id": "oslo_posthus_quiz_31",
@@ -927,16 +1303,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hvilke funksjoner nevner Kritt i de nederste etasjene etter konverteringen?",
+          "question": "Hva oppnår prosjektet ved å samle restauranter, butikker, treningsanlegg og kulturtilbud i de nederste etasjene?",
           "options": [
-            "Restauranter, butikker, treningsanlegg og kulturtilbud",
-            "Togverksted, fjellstall og undergulvsvekt",
-            "Kullfyrt kraftstasjon og gassverk"
+            "Et bredere tilbud som kan skape flere og lengre besøk",
+            "At alle virksomheter får identisk målgruppe",
+            "At etterspørsel ikke lenger trenger å måles"
           ],
-          "answer": "Restauranter, butikker, treningsanlegg og kulturtilbud",
+          "answer": "Et bredere tilbud som kan skape flere og lengre besøk",
           "answerIndex": 0,
-          "knowledge": "Kritt beskriver nederste etasjer med restauranter, butikker, treningsanlegg og kulturtilbud.",
-          "difficulty": 1,
+          "knowledge": "Tilbudsmiksen kan bygge kryssende kundestrømmer. Den må likevel styres med data om besøk, omsetning, åpningstider, støy og lønnsomhet per areal.",
+          "difficulty": 3,
           "question_type": "analysis",
           "emne_id": "em_naering_forbruk_marked",
           "source": [
@@ -946,11 +1322,27 @@
           "source_origin": "external",
           "claim_basis": "Kritt beskriver nederste etasjer med restauranter, butikker, treningsanlegg og kulturtilbud.",
           "claim_id": "claim_oslo_posthus_31",
+          "professional_module_id": "mod_naering_markedsmiks_kanaler",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "vurder hvordan flere tilbud virker sammen i gateplanet",
+          "core_concepts": [
+            "tilbudsmiks",
+            "kundestrøm",
+            "arealproduktivitet"
+          ],
+          "concept_focus": [
+            "tilbudsmiks",
+            "kundestrøm"
+          ],
           "method_id": "met_naering_forbruker_og_atferdsanalyse",
           "guidance_basis": [
             "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
-            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json"
-          ]
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "velge leietakermiks som skaper aktivitet uten intern kannibalisering"
         },
         {
           "id": "oslo_posthus_quiz_32",
@@ -959,16 +1351,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva er den viktigste funksjonelle endringen i Hovedpostkontoret?",
+          "question": "Hvordan bør store engangskostnader til å gjøre en postterminal om til boliger og næring behandles i en prosjektanalyse?",
           "options": [
-            "Fra bryggeri til kraftverk",
-            "Fra postterminal og administrasjon til boliger, næring og publikumsfunksjoner",
-            "Fra jernbaneverksted til skole"
+            "Som investeringer som må skilles fra løpende drift",
+            "Som gratis verdi fordi bygningen allerede finnes",
+            "Som ordinær dagsomsetning"
           ],
-          "answer": "Fra postterminal og administrasjon til boliger, næring og publikumsfunksjoner",
-          "answerIndex": 1,
-          "knowledge": "Hovedpostkontoret er omformet fra postterminal og administrasjonsbygg til boliger, næring og publikumsfunksjoner.",
-          "difficulty": 2,
+          "answer": "Som investeringer som må skilles fra løpende drift",
+          "answerIndex": 0,
+          "knowledge": "Ombyggingskostnader binder kapital og skaper framtidig kapasitet. Analyse må skille investering, løpende drift, finansiering og senere inntekter.",
+          "difficulty": 3,
           "question_type": "analysis",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
@@ -979,11 +1371,27 @@
           "source_origin": "external",
           "claim_basis": "Hovedpostkontoret er omformet fra postterminal og administrasjonsbygg til boliger, næring og publikumsfunksjoner.",
           "claim_id": "claim_oslo_posthus_32",
+          "professional_module_id": "mod_naering_kostnad_kalkulasjon_budsjett",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "klassifiser prosjektkostnad etter økonomisk funksjon",
+          "core_concepts": [
+            "investering",
+            "driftskostnad",
+            "kapitalisering"
+          ],
+          "concept_focus": [
+            "investering",
+            "driftskostnad"
+          ],
           "method_id": "met_naering_arbeidslivsanalyse",
           "guidance_basis": [
             "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
-            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json"
-          ]
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "unngå å blande engangsinvestering med normal drift"
         },
         {
           "id": "oslo_posthus_quiz_33",
@@ -992,16 +1400,16 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva ble særlig bevart da Posthallen ble ombygd?",
+          "question": "Hvorfor bør et ombyggingsbudsjett ha en egen usikkerhetsreserve når verneverdier skal bevares?",
           "options": [
-            "Bare garasjene",
-            "Bare moderne balkonger",
-            "Fasadene, postekspedisjonshallen og trappeløpene"
+            "Skjulte forhold og spesialløsninger kan gi kostnads- og tidsavvik",
+            "Vernekrav gjør alle kostnader kjente på forhånd",
+            "Reserve brukes bare for å øke rapportert fortjeneste"
           ],
-          "answer": "Fasadene, postekspedisjonshallen og trappeløpene",
-          "answerIndex": 2,
-          "knowledge": "Fasadene, postekspedisjonshallen og trappeløpene ble fremhevet som sentrale verneverdier i ombyggingen.",
-          "difficulty": 2,
+          "answer": "Skjulte forhold og spesialløsninger kan gi kostnads- og tidsavvik",
+          "answerIndex": 0,
+          "knowledge": "Historiske bygg kan avdekke uventede konstruksjoner, materialer og myndighetskrav. Reserven må være begrunnet og styres, ikke skjule svak planlegging.",
+          "difficulty": 3,
           "question_type": "analysis",
           "emne_id": "em_naering_teknologi_infrastruktur",
           "source": [
@@ -1011,11 +1419,27 @@
           "source_origin": "external",
           "claim_basis": "Fasadene, postekspedisjonshallen og trappeløpene ble fremhevet som sentrale verneverdier i ombyggingen.",
           "claim_id": "claim_oslo_posthus_33",
+          "professional_module_id": "mod_naering_prosjektledelse_prosjektokonomi",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "begrunn og avgrens prosjektreserve",
+          "core_concepts": [
+            "usikkerhetsreserve",
+            "vernebygg",
+            "kostnadsavvik"
+          ],
+          "concept_focus": [
+            "usikkerhetsreserve",
+            "vernebygg"
+          ],
           "method_id": "met_naering_infrastrukturanalyse",
           "guidance_basis": [
             "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
-            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json"
-          ]
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "fastsette reserve ut fra identifisert risiko"
         },
         {
           "id": "oslo_posthus_quiz_34",
@@ -1024,15 +1448,15 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva har den historiske og den nye bruken av bygningen til felles?",
+          "question": "Hva er den viktigste risikofordelen ved å kombinere boliger og næring i samme kvartal?",
           "options": [
-            "Begge samler tjenester og mange brukere i ett bykvartal",
-            "Begge produserer bygass",
-            "Begge reparerer lokomotiver"
+            "Inntektene blir mindre avhengige av ett enkelt etterspørselssegment",
+            "Alle leie- og boligmarkeder beveger seg alltid likt",
+            "Blandet bruk fjerner finansieringsrisiko"
           ],
-          "answer": "Begge samler tjenester og mange brukere i ett bykvartal",
+          "answer": "Inntektene blir mindre avhengige av ett enkelt etterspørselssegment",
           "answerIndex": 0,
-          "knowledge": "Både hovedpostkontoret og dagens blandede bruk samler tjenester og mange brukere i ett bykvartal.",
+          "knowledge": "Bolig og næring kan spre markedsrisiko og skape byliv, men gir også mer kompleks forvaltning, finansiering og interessentstyring.",
           "difficulty": 3,
           "question_type": "analysis",
           "emne_id": "em_naering_omstilling_kriser_skift",
@@ -1044,11 +1468,27 @@
           "source_origin": "external",
           "claim_basis": "Både hovedpostkontoret og dagens blandede bruk samler tjenester og mange brukere i ett bykvartal.",
           "claim_id": "claim_oslo_posthus_34",
+          "professional_module_id": "mod_naering_konsernstrategi_implementering",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "vurder risiko i en blandet eiendomsportefølje",
+          "core_concepts": [
+            "diversifisering",
+            "markedsrisiko",
+            "blandet bruk"
+          ],
+          "concept_focus": [
+            "diversifisering",
+            "markedsrisiko"
+          ],
           "method_id": "met_naering_verdiskapingsanalyse",
           "guidance_basis": [
             "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
-            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json"
-          ]
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "decision_context": "balansere risikospredning mot forvaltningskompleksitet"
         },
         {
           "id": "oslo_posthus_quiz_35",
@@ -1057,15 +1497,15 @@
           "placeId": "oslo_posthus",
           "targetId": "oslo_posthus",
           "question_scope": "place",
-          "question": "Hva viser samlingen av sortering, ekspedisjon og administrasjon i ett hovedpostkontor?",
+          "question": "Hva var den viktigste rasjonaliseringsgevinsten ved å samle sortering, ekspedisjon og administrasjon i ett hovedpostkontor?",
           "options": [
-            "At postgangen ble overlatt til private hjem",
-            "At posttjenestene ble organisert som ett stort, rasjonalisert system",
-            "At jernbanepost ble avviklet før 1924"
+            "Standardiserte prosesser og færre koordineringsledd",
+            "At post ikke lenger måtte transporteres",
+            "At alle arbeidsoppgaver ble automatiske i 1924"
           ],
-          "answer": "At posttjenestene ble organisert som ett stort, rasjonalisert system",
-          "answerIndex": 1,
-          "knowledge": "Samlingen av sortering, ekspedisjon og administrasjon i ett hovedpostkontor viser en rasjonalisering av posttjenestene.",
+          "answer": "Standardiserte prosesser og færre koordineringsledd",
+          "answerIndex": 0,
+          "knowledge": "Samling kunne gi kontroll, arbeidsdeling og skala. Samtidig kunne store systemer bli mindre fleksible og mer sårbare for flaskehalser.",
           "difficulty": 3,
           "question_type": "analysis",
           "emne_id": "em_naering_arbeid_verdiskaping",
@@ -1076,19 +1516,33 @@
           "source_origin": "external",
           "claim_basis": "Samlingen av sortering, ekspedisjon og administrasjon i ett hovedpostkontor viser en rasjonalisering av posttjenestene.",
           "claim_id": "claim_oslo_posthus_35",
+          "professional_module_id": "mod_naering_operations_kapasitet",
+          "professional_materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+          "professional_operation": "forklar mekanismen bak organisatorisk stordrift",
+          "core_concepts": [
+            "rasjonalisering",
+            "standardisering",
+            "arbeidsdeling"
+          ],
+          "concept_focus": [
+            "rasjonalisering",
+            "standardisering"
+          ],
           "method_id": "met_naering_arbeidslivsanalyse",
-          "topic_hook_id": "arbeid_som_verdiskaping",
-          "thinker_id": "max_weber",
-          "thinker_name": "Max Weber",
-          "theory_focus": "rasjonalisering og organisering",
-          "theory_ref": {
-            "topic_hook_id": "arbeid_som_verdiskaping",
-            "why_it_helps": "Webers perspektiv på rasjonalisering gjør det mulig å forstå hvorfor sortering, ekspedisjon, administrasjon og arbeidskraft ble samlet i ett stort postalt system."
-          },
           "guidance_basis": [
             "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
-            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json"
-          ]
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+            "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+          ],
+          "topic_hook_id": "arbeid_som_verdiskaping",
+          "thinker_id": "max_weber",
+          "decision_context": "vurdere skala mot fleksibilitet og tjenestekvalitet",
+          "theory_ref": {
+            "topic_hook_id": "arbeid_som_verdiskaping",
+            "why_it_helps": "Webers begrep om rasjonalisering forklarer hvordan sortering, ekspedisjon og administrasjon ble samlet i et regelstyrt hovedpostkontor for mer forutsigbar massehåndtering."
+          }
         }
       ]
     }
