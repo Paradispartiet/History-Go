@@ -32,6 +32,8 @@ jobs:
           set -euo pipefail
           git fetch origin main
           node tools/materialize-etne-non-nature-quality-uplift.mjs
+          node tools/materialize-etne-religion-rounds.mjs
+          node tests/etne-religion-round-content.test.js
           export AUDIT_GENERATED_AT="$(git show -s --format=%cI origin/main)"
           node tools/audit-etne-non-nature-round-quality.mjs \
             > reports/etne-non-nature-quality-audit/audit.log 2>&1
@@ -44,11 +46,11 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/places tools/audit-etne-non-nature-round-quality.mjs reports/etne-non-nature-quality-audit
+          git add data js/ui/place-card.js tests/etne-religion-round-content.test.js tools/audit-etne-non-nature-round-quality.mjs reports/etne-non-nature-quality-audit
           if git diff --cached --quiet; then
             echo 'Etne uplift and audit are already current.'
             exit 0
           fi
           git diff --cached --check
-          git commit -m 'Uplift Etne non-nature round quality'
+          git commit -m 'Complete Etne religion round quality'
           git push origin HEAD:agent/etne-all-rounds-quality-audit-uplift
