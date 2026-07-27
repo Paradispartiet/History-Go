@@ -34,6 +34,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          exec > >(tee /tmp/naeringsliv-batch-02.log) 2>&1
 
           FINAL_BRANCH='agent/naeringsliv-oslo-batch-02'
           FINAL_DIR='/tmp/history-go-naeringsliv-oslo-batch-02'
@@ -153,3 +154,12 @@ jobs:
           git commit -m 'Materialiser profesjonsdybde for næringsliv Oslo batch 2'
           test "$(git rev-list --count origin/main..HEAD)" = '1'
           git push --force origin "HEAD:${FINAL_BRANCH}"
+
+      - name: Upload diagnostic log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: naeringsliv-batch-02-run-log
+          path: /tmp/naeringsliv-batch-02.log
+          if-no-files-found: ignore
+          retention-days: 1
