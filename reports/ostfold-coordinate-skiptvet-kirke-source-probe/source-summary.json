@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "skiptvet_kirke",
+  "generatedAt": "2026-07-27",
+  "purpose": "Persist the sources used to verify the Skiptvet church coordinate, medieval building identity, fire history, later building layers and current-use constraints.",
+  "legacyCoordinate": {
+    "lat": 59.4764,
+    "lon": 11.1709,
+    "assessment": "Undocumented point approximately 988.3 metres north-north-west of the church."
+  },
+  "appliedCoordinate": {
+    "lat": 59.4677,
+    "lon": 11.17448,
+    "role": "medieval_stone_church_building_anchor",
+    "sourceObjectId": "osm-way:605207574",
+    "distanceFromLegacyM": 988.3
+  },
+  "identityResolution": {
+    "canonicalEntity": "Skiptvet kirke",
+    "entityType": "standing Romanesque medieval stone church rebuilt after the 1762 fire",
+    "wikidata": "Q6494661",
+    "protectionStatus": "automatically protected",
+    "address": "Kirkebakken 3, 1816 Skiptvet",
+    "osmWay": "605207574"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/way/605207574",
+      "objectId": "osm-way:605207574",
+      "supports": ["named building geometry", "representative coordinate"]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6494661",
+      "objectId": "wikidata:Q6494661",
+      "supports": ["independent church entity", "coordinate", "OSM way 605207574"]
+    },
+    {
+      "provider": "Norges Kirker",
+      "url": "https://norgeskirker.no/wiki/Skiptvet_kirke",
+      "objectId": "norges-kirker:skiptvet-kirke",
+      "supports": [
+        "Romanesque nave, chancel and west-tower base",
+        "Virgin Mary dedication",
+        "1762 fire and rebuilding",
+        "1887 porch and sacristy",
+        "1895 interior renewal",
+        "1936 grave chapel",
+        "1937 restoration"
+      ]
+    },
+    {
+      "provider": "Riksantikvaren",
+      "url": "https://riksantikvaren.no/kirkebevaringsfondet/kirker-som-har-soknadsrett-til-kirkebevaringsfondet/",
+      "objectId": "riksantikvaren:auto-protected-church:Skiptvet",
+      "supports": ["automatic protection status"]
+    },
+    {
+      "provider": "Store norske leksikon",
+      "url": "https://snl.no/Skiptvet",
+      "objectId": "snl:Skiptvet",
+      "supports": ["Romanesque stone church from the twelfth century"]
+    },
+    {
+      "provider": "Skiptvet kirkelige fellesråd",
+      "url": "https://skiptvet.kirken.no/",
+      "objectId": "kirken:skiptvet-kirke",
+      "supports": ["active church organisation", "visitor address", "current services"]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "twelfth century or circa 1200",
+      "event": "The Romanesque stone church was built and dedicated to the Virgin Mary.",
+      "certainty": "approximate"
+    },
+    {
+      "date": "1762",
+      "event": "A fire destroyed the timber and interior; the south wall was heavily damaged and the church was rebuilt.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1855",
+      "event": "Skiptvet municipality acquired the church.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1887",
+      "event": "The present wooden porch and sacristy were built.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1895",
+      "event": "Much of the interior furnishing was renewed.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1937",
+      "event": "Harald Sund and Ulrik Hendriksen completed a major restoration.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "Year 1200 is approximate; sources place the church in the twelfth century or around 1200.",
+    "The 1762 fire caused extensive rebuilding but did not erase the entire medieval stone structure.",
+    "The canonical point represents the church building, not the entire churchyard or Kirkebakken.",
+    "The rectory and the 1936 grave chapel are separate components.",
+    "Services, confirmations, funerals and cemetery use take priority over gameplay."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "59.46770, 11.17448",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "momarken_markedsplass"
+  }
+}
