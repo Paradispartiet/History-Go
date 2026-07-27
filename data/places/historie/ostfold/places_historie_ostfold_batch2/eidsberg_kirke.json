@@ -1,9 +1,41 @@
 {
   "id": "eidsberg_kirke",
   "name": "Eidsberg kirke",
-  "lat": 59.5489,
-  "lon": 11.3547,
+  "lat": 59.5199,
+  "lon": 11.25748,
   "r": 260,
+  "locatorType": "church",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:285802498",
+  "address": {
+    "street": "Grønnsundveien",
+    "number": "1",
+    "postcode": "1880",
+    "city": "Eidsberg",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "building_representative_point",
+  "coordRole": "church_building_anchor",
+  "coordType": "named_medieval_church_building_polygon_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 285802498 – Eidsberg kirke; Wikidata Q6492967; Kulturminne-ID 84070; Den norske kirke",
+  "coordSourceId": "osm-way:285802498",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/285802498",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 6 359,3 meter sørvest til representasjonspunktet for Eidsberg kirkes navngitte bygningspolygon.",
+  "coordNote": "OSM way 285802498 er den navngitte kirkebygningen Eidsberg kirke og er koblet til Wikidata Q6492967, kulturminne-ID 84070, SSR 854723 og Den norske kirkes bygg-ID 824. Bygningsankeret ligger under to meter fra både Wikidata-koordinaten og Commons-kategoriens kartpunkt. Den norske kirke oppgir besøksadressen Grønnsundveien 1 og omtaler kirken som en gotisk kirke bygget 1250–1260, viet til St. Olav og omfattende ombygd i 1880–1881. Canonical representerer kirkebygningen og det nærmeste kirkestedet; radius 260 meter dekker kirken, kirkegården og nærliggende kulturmiljø som gameplayområde, men er ikke bygnings-, kirkegårds-, frednings-, eiendoms- eller arkeologisk grense.",
+  "anchors": [
+    {
+      "id": "eidsberg_medieval_church",
+      "name": "Eidsberg kirke",
+      "lat": 59.5199,
+      "lon": 11.25748,
+      "r": 100,
+      "type": "church_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:285802498"
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Indre Østfold",
@@ -16,15 +48,29 @@
     "ostfolddomen",
     "olav"
   ],
-  "desc": "Stor gotisk middelalderkirke fra 1200-tallet i Eidsberg, ofte kalt Østfolddomen. Kirken er viet til St. Olav og er et av Østfolds viktigste kirkesteder.",
-  "popupDesc": "Eidsberg kirke er en stor steinkirke fra middelalderen og kalles ofte Østfolddomen. Den er innviet til St. Olav og nevnes i Håkon Håkonssons saga i forbindelse med møtet mellom hertug Skule og Ambjørn Jonsson. Kirken ble kraftig ombygd i 1880–1881, noe gjør den til et godt sted å spørre om middelalder, Olavskult, regional kirkemakt og restaurering. Stedet viser at et bygg kan være både gammelt og sterkt formet av senere tider.",
+  "desc": "Gotisk middelalderkirke i stein, oppført omkring 1250–1260 og ofte kalt Østfolddomen. Kirken er viet til St. Olav og ble omfattende ombygd i 1880–1881.",
+  "popupDesc": "Eidsberg kirke er en stor middelalderkirke i stein og omtales ofte som Østfolddomen. Den norske kirke daterer den gotiske kirken til 1250–1260 og oppgir at den er viet til St. Olav. Kirkestedet er nevnt i Håkon Håkonssons saga i forbindelse med et møte i 1236, men dagens bygning bærer flere historiske lag og skal ikke leses som uendret siden middelalderen. Den omfattende ombyggingen i 1880–1881 ga kirken mye av uttrykket den har i dag. History Go forankrer posten ved selve kirkebygningen. Kirkegården og det omkringliggende kirkestedet er en del av opplevelsen og kulturmiljøet, men den runde gameplayradiusen er ikke en juridisk eller arkeologisk avgrensning.",
+  "externalLinks": [
+    {
+      "label": "Den norske kirke – Eidsberg kirke",
+      "url": "https://www.kirken.no/nn-NO/fellesrad/indreostfold/menigheter/eidsberg/v%C3%A5rekirker/eidsberg/"
+    },
+    {
+      "label": "Norges Kirker – Eidsberg kirke",
+      "url": "https://norgeskirker.no/wiki/Eidsberg_kirke"
+    },
+    {
+      "label": "Wikidata – Eidsberg Church",
+      "url": "https://www.wikidata.org/wiki/Q6492967"
+    }
+  ],
   "quiz_profile": {
     "place_type": "kirke",
     "subtype": "stor_middelalderkirke_med_ombyggingslag",
     "signature_features": [
-      "gotisk middelalderkirke fra 1200-tallet",
-      "kalt Østfolddomen",
-      "innviet til St. Olav og sterkt ombygd på 1800-tallet"
+      "gotisk steinkirke datert til omkring 1250–1260",
+      "ofte kalt Østfolddomen og viet til St. Olav",
+      "omfattende ombygd i 1880–1881"
     ],
     "primary_angles": [
       "historie",
@@ -40,16 +86,18 @@
     ],
     "avoid_angles": [
       "generisk_kirke",
-      "bare_størrelse"
+      "bare_størrelse",
+      "påstand_om_uendret_middelalderbygg"
     ],
     "must_include": [
       "Østfolddomen og St. Olav",
-      "middelalderkirke med senere ombygginger"
+      "dateringen omkring 1250–1260",
+      "middelalderkirken som er sterkt formet av senere ombygging"
     ],
     "contrast_targets": [
       "rygge_kirke",
       "hvaler_kirke"
     ],
-    "notes": "Skal spørres som regional middelalderkirke og kildepunkt, ikke bare som stor kirke."
+    "notes": "Skal spørres som regional middelalderkirke og kildepunkt. Kirkebygningen er coordinate anchor; kirkegården og kirkestedet er nærmiljø, ikke én presis gameplaygeometri."
   }
 }
