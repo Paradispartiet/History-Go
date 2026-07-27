@@ -38,13 +38,14 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Run factuality and focused profile regressions
-        run: |
-          node --test \
-            tests/factuality-contract.test.mjs \
-            tests/people-popup-system-contract.test.mjs \
-            tests/nationaltheatret-modern-ensemble-people-v2.test.js \
-            tests/nationaltheatret-factuality-audit-people-batch-2.test.js
+      - name: Run canonical factuality contracts
+        run: node --test tests/factuality-contract.test.mjs tests/people-popup-system-contract.test.mjs
+
+      - name: Run existing modern ensemble regression
+        run: node --test tests/nationaltheatret-modern-ensemble-people-v2.test.js
+
+      - name: Run factuality audit batch 2 regression
+        run: node --test tests/nationaltheatret-factuality-audit-people-batch-2.test.js
 
       - name: Typecheck and build tools
         run: |
