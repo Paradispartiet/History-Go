@@ -1,0 +1,86 @@
+{
+  "placeId": "eidsberg_kirke",
+  "researchedAt": "2026-07-27",
+  "coordinateDecision": "named_medieval_church_building_polygon_representative_point",
+  "legacyCoordinate": {
+    "lat": 59.5489,
+    "lon": 11.3547,
+    "distanceToAppliedM": 6359.3
+  },
+  "appliedCoordinate": {
+    "lat": 59.5199,
+    "lon": 11.25748,
+    "radiusM": 260,
+    "sourceObjectId": "osm-way:285802498"
+  },
+  "sources": [
+    {
+      "provider": "openstreetmap",
+      "name": "Eidsberg kirke",
+      "url": "https://www.openstreetmap.org/way/285802498",
+      "objectId": "osm-way:285802498",
+      "finding": "Named church-building polygon linked to Wikidata Q6492967."
+    },
+    {
+      "provider": "wikidata",
+      "name": "Eidsberg Church Q6492967",
+      "url": "https://www.wikidata.org/wiki/Q6492967",
+      "finding": "Church entity linked to OSM way 285802498, Kulturminne ID 84070, SSR 854723 and Church of Norway building ID 824; entity coordinate is approximately 1.7 m from the applied building anchor."
+    },
+    {
+      "provider": "den_norske_kirke",
+      "name": "Eidsberg kirke",
+      "url": "https://www.kirken.no/nn-NO/fellesrad/indreostfold/menigheter/eidsberg/v%C3%A5rekirker/eidsberg/",
+      "finding": "Official church page gives address Grønnsundveien 1, dates the Gothic church to 1250–1260, identifies the St. Olav dedication and documents the extensive 1880–1881 rebuilding."
+    },
+    {
+      "provider": "norges_kirker",
+      "name": "Eidsberg kirke",
+      "url": "https://norgeskirker.no/wiki/Eidsberg_kirke",
+      "finding": "Scholarly building-history source documents medieval masonry, later repairs and alterations and the complex construction history."
+    },
+    {
+      "provider": "wikimedia_commons",
+      "name": "Eidsberg kirke category",
+      "url": "https://commons.wikimedia.org/wiki/Category:Eidsberg_kirke",
+      "finding": "The category map coordinate 59.5199167, 11.2574778 is approximately 1.9 m from the applied building anchor and confirms the physical church location."
+    }
+  ],
+  "crossChecks": [
+    {
+      "candidate": "wikidata:Q6492967",
+      "lat": 59.519888888888886,
+      "lon": 11.2575,
+      "distanceToAppliedM": 1.7,
+      "role": "independent_church_entity_coordinate"
+    },
+    {
+      "candidate": "commons:eidsberg-kirke-category",
+      "lat": 59.51991666666667,
+      "lon": 11.257477777777778,
+      "distanceToAppliedM": 1.9,
+      "role": "independent_physical_church_cross_check"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "Eidsberg locality or railway-station point",
+      "reason": "Broader or different place object, not the church building."
+    },
+    {
+      "candidate": "churchyard centroid",
+      "reason": "The named building polygon is more precise; the churchyard remains associated context."
+    },
+    {
+      "candidate": "legacy coordinate",
+      "reason": "Approximately 6,359.3 metres northeast of the church and not tied to any church object."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the named medieval church building.",
+    "The churchyard and immediate church-site landscape are associated context inside the gameplay radius.",
+    "The 260 m radius is not a building, cemetery, archaeological-locality, legal protection or property boundary.",
+    "The official sources document several construction and rebuilding layers; the marker does not imply an unchanged building from one exact year."
+  ],
+  "nextManifestEntry": "rygge_kirke"
+}
