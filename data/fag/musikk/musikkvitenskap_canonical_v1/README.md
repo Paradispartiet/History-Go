@@ -16,13 +16,16 @@ Start i `index.json`. Alle referanser er relative til denne katalogen.
 - `research_contract.json`: påstands-, evidens- og dybdekontrakt
 - `scholarly_source_standard_v1.json`: kilde-, metadata- og proveniensstandard
 - `source_dossier_contract_v1.json`: bindende kontrakt for temavise forsknings- og kildegrunnlag
-- `scholarly_source_registries_v1/*.json`: fire modulære registre med til sammen 21 verifiserte forskningskilder for domenet musikalsk analyse, lyd og struktur
-- `source_dossiers_v1/musikalsk_analyse_lyd_struktur/*.json`: seks separate temadossierer med kilder, direkte objektkrav, søkelogg, skjevheter og slutningsgrenser
+- `scholarly_source_registries_v1/*.json`: fem modulære registre med 30 verifiserte forskningskilder
+- `source_dossiers_v1/musikalsk_analyse_lyd_struktur/*.json`: seks dossierer for analyse, lyd og struktur
+- `source_dossiers_v1/historisk_musikkvitenskap_historiografi/*.json`: seks dossierer for historisk musikkvitenskap og historiografi
 
-Kildedossierene er ikke pensumlister og ikke systematiske litteraturgjennomganger. De dokumenterer et kontrollert bibliografisk grunnlag. Detaljpåstander krever fortsatt fulltekst, side- eller kapittellokator og et identifisert direkte musikk- eller kildeobjekt.
+Kildedossierene er ikke pensumlister og ikke systematiske litteraturgjennomganger. De dokumenterer et kontrollert bibliografisk grunnlag. Detaljpåstander krever fortsatt fulltekst, presis side-, kapittel-, signatur-, takt- eller tidskodelokator og et identifisert direkte musikk- eller kildeobjekt.
+
+De historiske dossierene krever i tillegg dokumentert proveniens, datering, arkiv- eller katalogidentitet, eksplisitt korpusavgrensning og kontroll mot arkivfravær, anakronisme, institusjonell selvbeskrivelse og nasjonal eller kulturell essensialisering.
 
 Filene i `modules/` er beholdt som legacy kildeinventar for eksisterende avhengigheter. De er ikke lenger autoritet for tema-, metode-, teori- eller spørsmålsproduksjon. `legacy_module_id_map_v1.json` oversetter gamle ID-er til canonicale ID-er.
 
 Aktiv emnerevisjon: `musikkvitenskap-emnemigrasjon-v2-2026-07-27`
 
-Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-analyse-v1-2026-07-27`
+Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-to-domener-v2-2026-07-28`
