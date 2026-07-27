@@ -1,14 +1,26 @@
 {
   "id": "folkenborg_museum",
   "name": "Folkenborg Museum",
-  "lat": 59.5519,
-  "lon": 11.3515,
+  "lat": 59.54484,
+  "lon": 11.30669,
   "r": 320,
+  "locatorType": "open_air_museum_complex",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:6591537403",
+  "geocodeAccuracy": "named_open_air_museum_point",
+  "coordRole": "open_air_museum_complex_anchor",
+  "coordType": "museum_complex_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap node 6591537403; Folkenborg Museum official site; Wikidata Q11969372; Kulturminne ID 86041; Store norske leksikon; Brønnøysundregistrene",
+  "coordSourceId": "osm-node:6591537403;wikidata:Q11969372;kulturminne:86041",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/6591537403",
+  "coordVerifiedAt": "2026-07-27",
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Indre Østfold",
-  "year": 1850,
-  "period": "Bygdemuseum, embetsgård og lokalhistorie",
+  "year": 1936,
+  "yearMeaning": "Året Eidsberg og Mysen historielag opprettet Folkenborg museum. År 1850 viser til lokale møter og administrative funksjoner på Folkenborg, ikke til museets etablering.",
+  "period": "Friluftsmuseum, bygdehistorie og kongshistorie",
   "tags": [
     "historie",
     "museum",
@@ -16,15 +28,128 @@
     "eidsberg",
     "lokalhistorie"
   ],
-  "desc": "Lokalhistorisk museum ved Eidsberg som formidler gårds-, embets-, skole- og hverdagsliv i indre Østfold. Folkenborg gir fylket et tydelig bygdemuseums- og sosialhistorisk tyngdepunkt.",
-  "popupDesc": "Folkenborg Museum samler bygninger, gjenstander og miljøer som viser hverdagsliv, jordbruk, håndverk, skole, embetsmannskultur og lokal organisering i indre Østfold. I et fylke med sterke festnings- og industrispor er Folkenborg viktig fordi det viser den mer langsomme samfunnshistorien: tun, redskaper, klasseforskjeller, skolegang, prestegårdsmiljø og overgang fra bondesamfunn til moderne lokalsamfunn. I History Go bør stedet brukes som et sosialhistorisk hovedpunkt for Indre Østfold.",
+  "desc": "Friluftsmuseum ved Mysen med tilflyttede bygninger, gårdstun og husmannsplass som formidler jordbruk, håndverk og hverdagsliv i Indre Østfold. Stedet knyttes også til Håkon Håkonssons fødsel i 1204.",
+  "popupDesc": "Folkenborg Museum er et friluftsmuseum med bygninger og miljøer fra Indre Østfold, hovedsakelig knyttet til jordbruk, matkultur, håndverk og hverdagsliv fra 1700-tallet og framover. Museet ble opprettet av Eidsberg og Mysen historielag i 1936. Den fredede Narvestadbygningen fra 1723 er ett av de viktigste husene, men den er bare én del av museumsområdet. Folkenborg har også eldre historiske lag: stedet identifiseres av museet og Store norske leksikon som fødestedet til Håkon Håkonsson i 1204, og det tilflyttede Haga-huset ble brukt til lokale politiske møter fra 1850. Fra 1. januar 2025 overtok Stiftelsen Folkenborg museum selv publikumsdrift og forvaltning av bygninger og anlegg, mens Østfoldmuseene beholdt eierskap og forvaltning av den kulturhistoriske samlingen. Canonical-punktet representerer hele friluftsmuseet, ikke bare Narvestadbygningen, Kirkebylåven, den tidligere Folkenborg-gården eller én museumsinngang.",
+  "accessContext": {
+    "siteType": "seasonal_open_air_museum_and_event_site",
+    "publicAccess": "Museumsområdet kan besøkes etter gjeldende åpningstider, arrangementer og avtaler. Enkelte uteområder kan være synlige utenom åpningstid, men bygninger, utstillinger og arrangementslokaler følger museets regler.",
+    "visitorArrival": "Folkenborg Museum oppgir Narvestadveien 7, 1850 Mysen som besøks- og kontaktadresse.",
+    "limitations": [
+      "Ikke gå inn i låste antikvariske bygninger, magasin, kontor, driftsrom, dyreinnhegninger eller private og avsperrede arealer.",
+      "Arrangementer, utleie, omvisninger og sesongåpning kan begrense eller endre publikumsadgangen.",
+      "Gameplay-radiusen er ikke en museums-, eiendoms-, bygnings-, samlings-, dyreholds-, arrangements-, verne- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "hakon_hakonsson_birthplace",
+      "date": "1204",
+      "status": "documented_site_tradition",
+      "note": "Folkenborg identifiseres av museet og Store norske leksikon som stedet der Håkon Håkonsson ble født."
+    },
+    {
+      "type": "narvestad_building",
+      "date": "1723",
+      "status": "relocated_and_preserved_heritage_building",
+      "note": "Den fredede Narvestadbygningen er en sentral museumsbygning med rikt dekorert interiør."
+    },
+    {
+      "type": "local_administrative_meeting_place",
+      "date": "1850-1900",
+      "status": "historical_social_and_governance_layer",
+      "note": "Lokale politikere, forliksråd og sparebank brukte det tilflyttede Haga-huset før administrative funksjoner flyttet til Mysen."
+    },
+    {
+      "type": "historical_society",
+      "date": "1920",
+      "status": "institutional_predecessor_layer",
+      "note": "Eidsberg og Mysen historielag ble etablert før museumsgrunnleggelsen."
+    },
+    {
+      "type": "museum_foundation",
+      "date": "1936",
+      "status": "active_museum_origin",
+      "note": "Historielaget opprettet Folkenborg museum som samlingssted for lokale historiske minner."
+    },
+    {
+      "type": "governance_change",
+      "date": "2025",
+      "status": "current_operating_model",
+      "note": "Folkenborg museum overtok publikumsdrift og bygningsforvaltning, mens Østfoldmuseene beholdt den kulturhistoriske samlingen."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "narvestadbygget",
+      "name": "Narvestadbygningen",
+      "relation": "fredet_embetsmannsbolig_og_museumsbygning",
+      "canonical": false,
+      "note": "Bygningen fra 1723 har Wikidata Q11969372, Kulturminne ID 86041 og OSM way 440618847, men representerer ikke hele museet."
+    },
+    {
+      "id": "folkenborg_farm_site",
+      "name": "Folkenborg gård og det eldre gårdsstedet",
+      "relation": "historic_farm_and_place_context",
+      "canonical": false,
+      "note": "Gårds- og stedsidentiteten forklarer den lange historien, men må ikke forveksles med dagens friluftsmuseumsgeometri."
+    },
+    {
+      "id": "kirkebylaven",
+      "name": "Kirkebylåven",
+      "relation": "museum_event_and_service_building",
+      "canonical": false,
+      "note": "Låven brukes til arrangementer, utleie, utstillinger og publikumsfunksjoner."
+    },
+    {
+      "id": "folkenborg_collections",
+      "name": "Folkenborgs kulturhistoriske samling",
+      "relation": "collection_governed_by_ostfoldmuseene",
+      "canonical": false,
+      "note": "Samlingen forvaltes fra 2025 av Østfoldmuseene og er ikke geografisk identisk med alle bygninger og utearealer."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "folkenborg_open_air_museum",
+      "name": "Folkenborg Museum",
+      "lat": 59.54484,
+      "lon": 11.30669,
+      "r": 170,
+      "type": "open_air_museum_complex_anchor",
+      "sourceProvider": "osm_official_site",
+      "sourceObjectId": "osm-node:6591537403;address:Narvestadveien 7",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "narvestadbygget",
+      "name": "Narvestadbygningen",
+      "lat": 59.54474,
+      "lon": 11.30519,
+      "r": 85,
+      "type": "protected_historic_building_anchor",
+      "sourceProvider": "osm_wikidata_kulturminne",
+      "sourceObjectId": "osm-way:440618847;wikidata:Q11969372;kulturminne:86041",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "folkenborg_historic_farm_context",
+      "name": "Folkenborg",
+      "lat": 59.54386,
+      "lon": 11.30753,
+      "r": 100,
+      "type": "historic_farm_and_locality_context",
+      "sourceProvider": "osm_geonames",
+      "sourceObjectId": "osm-node:6257804130;geonames:9493229",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "bygdemuseum",
-    "subtype": "lokalhistorisk_museum_med_gards_og_embetsmiljo",
+    "subtype": "friluftsmuseum_med_gardsmiljo_og_kongshistorie",
     "signature_features": [
-      "museum ved Eidsberg i Indre Østfold",
-      "formidler gårds-, skole-, embets- og hverdagsliv",
-      "gir kontrast til festnings- og industristedene i fylket"
+      "friluftsmuseum med bygninger fra Indre Østfold",
+      "Narvestadbygningen fra 1723",
+      "Folkenborg som Håkon Håkonssons fødested i 1204"
     ],
     "primary_angles": [
       "historie",
@@ -33,23 +158,25 @@
       "museum"
     ],
     "question_families": [
-      "bygdemuseum",
-      "hverdagsliv",
-      "embetsmiljø",
-      "før_etter"
+      "friluftsmuseum",
+      "jordbruk_og_hverdagsliv",
+      "lokal_styring_og_samlingssted",
+      "hakon_hakonsson"
     ],
     "avoid_angles": [
       "generisk_museum",
-      "bare_arrangement"
+      "bare_arrangement",
+      "sammenblanding_med_narvestadbygget",
+      "1850_som_museumsgrunnleggelse"
     ],
     "must_include": [
-      "Folkenborg som lokalhistorisk museum",
-      "gårds-, skole- og embetshistorie i Indre Østfold"
+      "Folkenborg som friluftsmuseum grunnlagt i 1936",
+      "gårds-, hverdags- og kongshistorie som separate tidslag"
     ],
     "contrast_targets": [
       "eidsberg_kirke",
       "tomb_herregard"
     ],
-    "notes": "Skal spørres som lokal- og sosialhistorie, ikke som generell museumsmarkør."
+    "notes": "Skal spørres som et sammensatt friluftsmuseum. Narvestadbygningen, den historiske gården, Håkon Håkonsson-fortellingen og samlingsforvaltningen er separate komponenter og tidslag."
   }
 }
