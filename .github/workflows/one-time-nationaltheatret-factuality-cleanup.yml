@@ -1,0 +1,70 @@
+name: One-time Nationaltheatret factuality diff cleanup
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/nationaltheatret-factuality-cleanup-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  clean-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize production branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/nationaltheatret-ensemble-leadership-factuality-audit
+          git checkout -B agent/nationaltheatret-ensemble-leadership-factuality-audit origin/agent/nationaltheatret-ensemble-leadership-factuality-audit
+          git merge --no-edit origin/main
+
+      - name: Remove unrelated generated changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git restore --source=origin/main -- \
+            js/core/categories.js \
+            reports/people-invalid-place-refs.json \
+            reports/people-invalid-place-refs.md \
+            reports/people-of-places-status.json \
+            reports/people-of-places-status.md \
+            reports/people-place-coverage.json \
+            reports/people-place-coverage.md
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Revalidate retained factuality diff
+        run: |
+          npm run test:factuality-contract
+          node --test tests/nationaltheatret-ensemble-leadership-people-v2.test.js tests/person-popup-v2.test.js
+          npm run audit:people-popup-readiness:check
+          npm run civication:history-people:check
+          npm run typecheck:tools
+          npm run typecheck:scripts
+
+      - name: Commit clean factuality diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          git commit -m "Keep Nationaltheatret factuality audit diff focused"
+          git push origin HEAD:agent/nationaltheatret-ensemble-leadership-factuality-audit
