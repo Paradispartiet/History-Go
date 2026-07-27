@@ -1,0 +1,86 @@
+{
+  "placeId": "basmo_festning",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.6635,
+    "lon": 11.6738,
+    "r": 320
+  },
+  "appliedCoordinate": {
+    "lat": 59.6171,
+    "lon": 11.53487,
+    "r": 320,
+    "displacementM": 9358.7
+  },
+  "identityDecision": "Use the centroid of the restored Basmo donjon and main-fort ruin as the stable physical anchor while retaining the wider fortress and forterrain as historical context.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:1263141701",
+    "name": "Basmo festning",
+    "tags": [
+      "building=fort"
+    ],
+    "linkedIdentifiers": [
+      "wikidata:Q4867802",
+      "riksantikvaren-kulturminne:86068"
+    ],
+    "lat": 59.6171,
+    "lon": 11.53487
+  },
+  "historicalScope": {
+    "source": "Store norske leksikon – Basmo festning; Marker kommune – Basmo festning",
+    "finding": "The donjon and main fort occupied the highest point on a steep hill between Rødenessjøen and Hemnessjøen. The wider fortress included batteries, outworks, a southern retrenchment and approximately 40 buildings, and therefore extended far beyond the surviving main ruin.",
+    "visitorIdentity": "The main fort is partially restored and freely accessible; restoration of the lower stone levels continues."
+  },
+  "crossChecks": [
+    {
+      "provider": "wikidata",
+      "sourceObjectId": "wikidata:Q4867802",
+      "finding": "The fortress and cultural-property entity lies approximately 34.1 metres from the applied building centroid and links Kulturminne ID 86068."
+    },
+    {
+      "provider": "marker_kommune",
+      "source": "Basmo festning",
+      "finding": "The official local source documents the first five-storey, 18-metre tower in 1683, approximately 40 buildings, closure in 1745, protection in 1985 and continuing restoration."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:basmo_festning",
+      "lat": 59.6635,
+      "lon": 11.6738,
+      "distanceFromAppliedM": 9358.7,
+      "reason": "Remote uncontracted point northeast of the documented fortress."
+    },
+    {
+      "sourceObjectId": "wikidata:Q4867802",
+      "lat": 59.6168888889,
+      "lon": 11.5353055556,
+      "distanceFromAppliedM": 34.1,
+      "reason": "Valid entity cross-check, but the mapped main-fort building geometry is the more direct physical coordinate source."
+    },
+    {
+      "sourceObjectId": "basmo-locality-or-farm-point",
+      "reason": "A broad locality or farm point does not identify the surviving fort ruin."
+    },
+    {
+      "sourceObjectId": "basmo-road-or-access-point",
+      "reason": "Access and visitor infrastructure are not substitutes for the historical object."
+    },
+    {
+      "sourceObjectId": "basmo-full-fortress-and-forterrain",
+      "reason": "The approximate full military landscape is wider than the surviving main ruin and no verified canonical polygon was captured in this production."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 320,
+    "covers": "The main ruin, hilltop and immediate visitor approach for gameplay.",
+    "doesNotRepresent": [
+      "the complete historical fortress and forterrain",
+      "the legal heritage-protection geometry",
+      "a property boundary",
+      "the exact ruin or building polygon"
+    ]
+  },
+  "nextManifestPlace": "eidsberg_kirke"
+}
