@@ -1,0 +1,806 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_individual_professional_depth",
+  "type": "business_school_depth_track",
+  "subject_id": "naeringsliv",
+  "track_id": "kvantitative_metoder_business_analytics",
+  "updated_at": "2026-07-27",
+  "profile_count": 5,
+  "profiles": [
+    {
+      "module_id": "mod_naering_matematikk_for_okonomi",
+      "title": "Matematikk for økonomi",
+      "track_id": "kvantitative_metoder_business_analytics",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "funksjoner",
+        "derivasjon",
+        "elastisitet",
+        "optimering",
+        "matriser",
+        "nåverdi"
+      ],
+      "canonical_works": [
+        {
+          "author": "Alpha C. Chiang and Kevin Wainwright",
+          "title": "Fundamental Methods of Mathematical Economics",
+          "year": 2005,
+          "role": "foundational"
+        },
+        {
+          "author": "Carl P. Simon and Lawrence Blume",
+          "title": "Mathematics for Economists",
+          "year": 1994,
+          "role": "theory"
+        },
+        {
+          "author": "Knut Sydsæter et al.",
+          "title": "Essential Mathematics for Economic Analysis",
+          "year": 2021,
+          "role": "applied"
+        },
+        {
+          "author": "Stephen Boyd and Lieven Vandenberghe",
+          "title": "Convex Optimization",
+          "year": 2004,
+          "role": "advanced"
+        }
+      ],
+      "authority_basis": [
+        "dokumenterte modellforutsetninger",
+        "virksomhetens pris-, kostnads- og kapasitetsdata",
+        "Norges Banks rente- og inflasjonsdata ved nåverdiberegning",
+        "versjonert beregningsark eller kode"
+      ],
+      "research_questions": [
+        "Hvilken økonomisk tolkning har den deriverte, og i hvilke enheter uttrykkes den?",
+        "Når er et lokalt optimum også globalt, og hvilke begrensninger binder?",
+        "Hvordan påvirker skalering og dårlig kondisjonerte ligningssystemer resultatet?"
+      ],
+      "analytical_sequence": [
+        "definer variable, domene, enheter og økonomisk mekanisme",
+        "skriv funksjon eller ligningssystem og kontroller dimensjoner",
+        "analyser nivå, endring, marginaleffekt og elastisitet",
+        "finn kandidatoptimum og kontroller andreordensvilkår",
+        "innfør begrensninger med substitusjon eller Lagrange-metode",
+        "test løsningens følsomhet og kondisjon",
+        "tolk resultatet økonomisk og kontroller mot observerbare data"
+      ],
+      "worked_case": {
+        "case_title": "Pris og kapasitet i tjenestevirksomhet",
+        "input_facts": [
+          "etterspørsel q = 10 000 - 20p per måned",
+          "variabel kostnad 180 NOK per enhet",
+          "fast kostnad 1 200 000 NOK per måned",
+          "kapasitet 5 500 enheter",
+          "investering 18 000 000 NOK med levetid 5 år",
+          "diskonteringsrente 8 prosent"
+        ],
+        "required_operations": [
+          "utled inntekts- og profittfunksjon",
+          "finn ubundet og kapasitetsbundet optimum",
+          "beregn priselastisitet i optimum",
+          "beregn nåverdi av investeringen under tre volumscenarioer"
+        ],
+        "required_outputs": [
+          "symbolsk utledning med enheter",
+          "numerisk optimum og skyggepris",
+          "elastisitets- og sensitivitetskart",
+          "nåverdimodell med beslutningsregel"
+        ],
+        "validation_checks": [
+          "resultatet skal tilfredsstille første- og andreordensvilkår",
+          "løsningen skal ligge innenfor definert domene og kapasitet",
+          "numerisk kontroll skal reprodusere analytisk resultat"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Utled og tegn en inntekts-, kostnads- og profittfunksjon og forklar marginalbegrepene med korrekte enheter.",
+          "deliverable": "matematisk modellnotat med grafisk og numerisk kontroll",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Løs et begrenset optimeringsproblem og analyser skyggepris, elastisitet og parameterfølsomhet.",
+          "deliverable": "optimeringsrapport med Lagrange-betingelser",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Formuler og løs et flerproduktproblem med matriser eller konveks optimering, og vurder kondisjon, dualitet og økonomisk tolkning.",
+          "deliverable": "reproduserbar modell med primal/dual-resultat og sensitivitetsanalyse",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "Lagrange-multiplikatorer",
+        "Hessian og konkavitet",
+        "lineære ligningssystemer og kondisjonstall",
+        "konveks dualitet"
+      ],
+      "failure_modes": [
+        "derivert oppgis uten enhet eller økonomisk mening",
+        "optimum rapporteres uten domene- og randkontroll",
+        "prosenter og prosentpoeng blandes",
+        "matriser brukes uten kontroll av rang og kondisjon"
+      ],
+      "cross_module_integration": [
+        "mod_naering_prognose_optimering_beslutning",
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "mod_naering_kostnad_kalkulasjon_budsjett"
+      ],
+      "professional_ethics": [
+        "ikke skjul normative mål i objektfunksjonen",
+        "vis hvem som påvirkes av begrensninger og skyggepriser",
+        "ikke presenter matematisk eleganse som empirisk sannhet"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "versjonert notebook eller regneark med symbolsk og numerisk løsning",
+        "tests": [
+          "enhetskontroll",
+          "randpunkttest",
+          "numerisk reproduksjon",
+          "parameterfølsomhet"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_naering_sannsynlighet_inferens",
+      "title": "Sannsynlighet og statistisk inferens",
+      "track_id": "kvantitative_metoder_business_analytics",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "sannsynlighet",
+        "fordelinger",
+        "estimering",
+        "konfidensintervall",
+        "hypotesetesting",
+        "styrke"
+      ],
+      "canonical_works": [
+        {
+          "author": "George Casella and Roger L. Berger",
+          "title": "Statistical Inference",
+          "year": 2002,
+          "role": "foundational"
+        },
+        {
+          "author": "Larry Wasserman",
+          "title": "All of Statistics",
+          "year": 2004,
+          "role": "applied"
+        },
+        {
+          "author": "Andrew Gelman et al.",
+          "title": "Bayesian Data Analysis",
+          "year": 2013,
+          "role": "advanced"
+        },
+        {
+          "author": "Jerzy Neyman and Egon S. Pearson",
+          "title": "On the Problem of the Most Efficient Tests of Statistical Hypotheses",
+          "year": 1933,
+          "role": "theory"
+        }
+      ],
+      "authority_basis": [
+        "dokumentert populasjon og utvalgsdesign",
+        "survey- eller eksperimentdata",
+        "kodebok og måleprotokoll",
+        "forhåndsregistrert analyseplan ved bekreftende test"
+      ],
+      "research_questions": [
+        "Hvilken populasjon og parameter gjelder usikkerhetsutsagnet faktisk for?",
+        "Hvordan påvirker utvalgsdesign, frafall og målefeil standardfeil og gyldighet?",
+        "Hvilke feilkonsekvenser bør bestemme alfa, styrke og beslutningsgrense?"
+      ],
+      "analytical_sequence": [
+        "definer populasjon, enhet, utvalg og parameter før data analyseres",
+        "beskriv måleprosess, frafall og avhengighetsstruktur",
+        "velg sannsynlighetsmodell og begrunn antakelser",
+        "estimer parameter med standardfeil eller posterior fordeling",
+        "bygg intervall og gjennomfør forhåndsdefinert test",
+        "beregn styrke eller forventet beslutningstap",
+        "gjennomfør robusthets- og sensitivitetsanalyse",
+        "kommuniser estimat, usikkerhet og gyldighetsområde"
+      ],
+      "worked_case": {
+        "case_title": "Kundetilfredshet før og etter serviceendring",
+        "input_facts": [
+          "utvalg før endring n=420 med gjennomsnitt 71,2 av 100",
+          "utvalg etter endring n=460 med gjennomsnitt 74,0",
+          "standardavvik 14,5 og 15,2",
+          "frafall er 18 prosent før og 31 prosent etter",
+          "minste beslutningsrelevante effekt er 2 poeng",
+          "tiltakskostnad 3 600 000 NOK per år"
+        ],
+        "required_operations": [
+          "estimer forskjell og 95 prosent konfidensintervall",
+          "beregn teststyrke for 2 poeng effekt",
+          "juster eller sensitivitetsanalyser for differensielt frafall",
+          "oversett statistisk usikkerhet til økonomisk beslutningsrisiko"
+        ],
+        "required_outputs": [
+          "estimat med intervall",
+          "styrke- og utvalgsberegning",
+          "frafallsanalyse",
+          "beslutningstabell med feilkonsekvenser"
+        ],
+        "validation_checks": [
+          "uavhengighetsantakelsen skal testes eller begrunnes",
+          "p-verdi skal ikke tolkes som sannsynlighet for hypotesen",
+          "frafall skal ikke ignoreres når det endres mellom grupper"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Beregn forventning, varians, standardfeil og konfidensintervall for en dokumentert parameter.",
+          "deliverable": "estimeringsark med tolkning i kontekst",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Planlegg en test med effektmål, alfa, styrke, utvalgsstørrelse og forhåndsdefinert beslutningsregel.",
+          "deliverable": "analyseplan og styrkeberegning",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Analyser samme problem frekventistisk og bayesiansk, inkluder seleksjon/frafall og knytt usikkerheten til forventet beslutningstap.",
+          "deliverable": "inferensrapport med modellkontroll og beslutningsanalyse",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "bootstrap og randomiseringstester",
+        "hierarkiske modeller",
+        "Bayes-faktor eller posterior beslutning",
+        "multiple-testing-kontroll"
+      ],
+      "failure_modes": [
+        "p-verdi brukes som effektstørrelse",
+        "konfidensintervall beskrives som sannsynlighet for fast parameter uten rammeverk",
+        "utvalget er stort, derfor antas målingen gyldig",
+        "mange tester gjennomføres uten korrigering eller forhåndsplan"
+      ],
+      "cross_module_integration": [
+        "mod_naering_markedsinnsikt_segmentering",
+        "mod_naering_regresjon_kausalitet",
+        "mod_naering_prognose_optimering_beslutning"
+      ],
+      "professional_ethics": [
+        "velg feilgrenser etter konsekvens, ikke bekvemmelighet",
+        "rapporter nullfunn og analyseavvik",
+        "unngå å skjule grupper med liten n eller stor usikkerhet"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "reproduserbar statistisk analyse med analyseplan",
+        "tests": [
+          "seed og programversjon lagret",
+          "effektmål definert før test",
+          "frafall rapportert",
+          "intervall og punktestimat samsvarer"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_naering_regresjon_kausalitet",
+      "title": "Regresjon og kausal identifikasjon",
+      "track_id": "kvantitative_metoder_business_analytics",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "regresjon",
+        "konfundering",
+        "paneldata",
+        "faste effekter",
+        "naturlige eksperimenter",
+        "kausal identifikasjon"
+      ],
+      "canonical_works": [
+        {
+          "author": "Joshua D. Angrist and Jörn-Steffen Pischke",
+          "title": "Mostly Harmless Econometrics",
+          "year": 2009,
+          "role": "foundational"
+        },
+        {
+          "author": "Jeffrey M. Wooldridge",
+          "title": "Econometric Analysis of Cross Section and Panel Data",
+          "year": 2010,
+          "role": "advanced"
+        },
+        {
+          "author": "Judea Pearl",
+          "title": "Causality",
+          "year": 2009,
+          "role": "causal_graphs"
+        },
+        {
+          "author": "Scott Cunningham",
+          "title": "Causal Inference: The Mixtape",
+          "year": 2021,
+          "role": "applied"
+        }
+      ],
+      "authority_basis": [
+        "panel-, tidsserie- eller eksperimentdata",
+        "dokumentert behandlings- og utfallsdefinisjon",
+        "kausal graf eller identifikasjonsargument",
+        "replikasjonskode og spesifikasjonslogg"
+      ],
+      "research_questions": [
+        "Hvilken variasjon identifiserer effekten, og hvorfor er den plausibelt eksogen?",
+        "Hvilke kontrollvariabler reduserer konfundering, og hvilke skaper bias?",
+        "Hvilken populasjon og hvilket tidsrom kan estimatet generaliseres til?"
+      ],
+      "analytical_sequence": [
+        "formuler kausalt estimand og sammenligningsfaktum",
+        "tegn kausal graf og identifiser konfoundere, mediatorer og kollidere",
+        "beskriv datagenererende prosess og behandlingsmekanisme",
+        "estimer enkel og utvidet modell med robuste standardfeil",
+        "test identifikasjonsantakelser og pretrender",
+        "gjennomfør placebo-, spesifikasjons- og følsomhetsanalyse",
+        "vurder heterogenitet og ekstern gyldighet",
+        "kommuniser estimat som betinget på design, ikke bare modell"
+      ],
+      "worked_case": {
+        "case_title": "Effekt av åpningstidsutvidelse på salg",
+        "input_facts": [
+          "24 butikker, 12 behandlet og 12 kontroll",
+          "ukentlig omsetning i 104 uker",
+          "gjennomsnittlig ukesomsetning 2 400 000 NOK",
+          "behandling starter uke 53",
+          "to kontrollbutikker pusser opp samtidig",
+          "lokal arbeidsledighet og værdata er tilgjengelig"
+        ],
+        "required_operations": [
+          "estimer difference-in-differences med butikk- og ukeeffekter",
+          "test parallelle pretrender og hendelsesstudie",
+          "gjennomfør placebo og ekskluderingssensitivitet",
+          "beregn netto effekt etter ekstra lønns- og energikostnad"
+        ],
+        "required_outputs": [
+          "kausal graf og identifikasjonsargument",
+          "reproduserbar hovedmodell",
+          "robusthets- og placeboresultater",
+          "økonomisk nettoeffekt med usikkerhet"
+        ],
+        "validation_checks": [
+          "behandlings- og kontrolltidspunkt skal verifiseres",
+          "pretrend skal vises, ikke bare omtales",
+          "modellresultat skal tåle minst én rimelig alternativ spesifikasjon"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Estimer og tolk en enkel regresjon med eksplisitte enheter, residualkontroll og robuste standardfeil.",
+          "deliverable": "regresjonsnotat med diagnostikk",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Bygg et panel- eller kvasieksperimentelt design og test de viktigste identifikasjonsantakelsene.",
+          "deliverable": "designrapport med kausal graf og pretrend",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Gjennomfør en full spesifikasjonskurve, heterogenitetsanalyse og sensitivitetsanalyse for uobserverbar konfundering.",
+          "deliverable": "kausal evidenspakke med replikasjonskode og konklusjonsgrense",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "difference-in-differences med event study",
+        "instrumentvariabler",
+        "regresjonsdiskontinuitet",
+        "syntetisk kontroll",
+        "Oster/Rosenbaum-sensitivitet"
+      ],
+      "failure_modes": [
+        "høy R² brukes som kausal evidens",
+        "post-treatment-kontroller tas inn ukritisk",
+        "parallelle trender antas uten data",
+        "signifikant hovedmodell rapporteres mens robuste alternativer skjules"
+      ],
+      "cross_module_integration": [
+        "mod_naering_sannsynlighet_inferens",
+        "mod_naering_programmering_databehandling",
+        "mod_naering_markedsmiks_kanaler"
+      ],
+      "professional_ethics": [
+        "unngå kausale påstander utover designet",
+        "rapporter alle forhåndsdefinerte utfall",
+        "vurder hvem behandlingen ikke representerer"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "versjonert analysepakke med rå-til-resultat-pipeline",
+        "tests": [
+          "identifikasjonsantakelser dokumentert",
+          "pretrend/placebo inkludert",
+          "robuste standardfeil begrunnet",
+          "resultattabell genereres fra kode"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_naering_programmering_databehandling",
+      "title": "Programmering, databehandling og visualisering",
+      "track_id": "kvantitative_metoder_business_analytics",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "datakontrakt",
+        "typer og manglende verdier",
+        "joins",
+        "pipeline",
+        "versjonering",
+        "visualisering",
+        "reproduserbarhet"
+      ],
+      "canonical_works": [
+        {
+          "author": "Wes McKinney",
+          "title": "Python for Data Analysis",
+          "year": 2022,
+          "role": "applied"
+        },
+        {
+          "author": "Hadley Wickham and Garrett Grolemund",
+          "title": "R for Data Science",
+          "year": 2017,
+          "role": "applied"
+        },
+        {
+          "author": "Greg Wilson et al.",
+          "title": "Good Enough Practices in Scientific Computing",
+          "year": 2017,
+          "role": "reproducibility"
+        },
+        {
+          "author": "Roger D. Peng",
+          "title": "Reproducible Research in Computational Science",
+          "year": 2011,
+          "role": "method"
+        }
+      ],
+      "authority_basis": [
+        "versjonert kildeuttrekk og datakontrakt",
+        "kode-repository med låste avhengigheter",
+        "datakvalitets- og lineage-logg",
+        "personvern- og tilgangsregler for data"
+      ],
+      "research_questions": [
+        "Hvilke tap eller skjevheter oppstår i hver transformasjon fra kilde til analysevariabel?",
+        "Når er en join logisk gyldig selv om den teknisk kjører uten feil?",
+        "Hvordan kan en visualisering være numerisk korrekt, men analytisk villedende?"
+      ],
+      "analytical_sequence": [
+        "definer datakontrakt, nøkkel, granularitet og lovlig formål",
+        "profiler rådata for typer, manglendehet, duplikater og ugyldige verdier",
+        "bygg eksplisitt rense- og standardiseringspipeline",
+        "valider joins med kardinalitet og tapte/dupliserte rader",
+        "konstruer variabler med tester og dokumentert lineage",
+        "lag visualiseringer med riktig skala, usikkerhet og sammenligningsgrunnlag",
+        "pakk kjøring, miljø, seed og datafingeravtrykk for reproduksjon",
+        "gjennomfør peer review og negativ test"
+      ],
+      "worked_case": {
+        "case_title": "Sammenkobling av salg, kampanje og kunde",
+        "input_facts": [
+          "2 400 000 transaksjonsrader",
+          "kunderegister med 310 000 kunder",
+          "4,8 prosent manglende kunde-ID",
+          "kampanjeloggen bruker lokal tid mens salg bruker UTC",
+          "to systemer har ulike produktkoder",
+          "rapportert omsetning skal avstemmes til 486 200 000 NOK"
+        ],
+        "required_operations": [
+          "bygg datakontrakt og profiler alle kilder",
+          "standardiser tid, produktkode og valuta",
+          "gjennomfør joins med kardinalitetstester",
+          "lag testet analysetabell og tre beslutningsrelevante figurer"
+        ],
+        "required_outputs": [
+          "maskinlesbar datakontrakt",
+          "pipeline med automatiske tester",
+          "avstemmingsrapport mot finansielt fasittall",
+          "visualiseringsnotat med usikkerhet og alternativ framstilling"
+        ],
+        "validation_checks": [
+          "radantall og beløp skal avstemmes før og etter hver join",
+          "ingen personidentifikator skal brukes uten dokumentert formål",
+          "hele resultatet skal kunne regenereres i rent miljø"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Importer, valider og visualiser ett datasett med eksplisitt datakontrakt og minst ti automatiske kontroller.",
+          "deliverable": "reproduserbar notebook og datakvalitetsrapport",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Bygg en fler-kilde-pipeline med joins, lineage, testdekning og avstemming mot en ekstern totalsum.",
+          "deliverable": "versjonert analysepakke med CI-test",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Design et produksjonsnært analyseprodukt med tilgangskontroll, personvern, monitorering, datadrift og dokumentert rollback.",
+          "deliverable": "teknisk design og kjørbar referanseimplementasjon",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "property-based testing",
+        "data contracts og schema evolution",
+        "lineage/observability",
+        "privacy-preserving aggregation",
+        "uncertainty-aware visualization"
+      ],
+      "failure_modes": [
+        "left join antas å bevare analyseenheten",
+        "manglende verdier fylles uten mekanismevurdering",
+        "figurer bruker avkuttet akse uten begrunnelse",
+        "notebook kjører bare i forfatterens lokale miljø"
+      ],
+      "cross_module_integration": [
+        "mod_naering_regresjon_kausalitet",
+        "mod_naering_markedsinnsikt_segmentering",
+        "mod_naering_arbeidsrett_personvern"
+      ],
+      "professional_ethics": [
+        "dataminimering og tilgang etter tjenstlig behov",
+        "dokumenter transformasjoner som kan skade grupper",
+        "ikke skjul datakvalitetsbrudd bak pene visualiseringer"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "CI-testet kodepakke med miljølås og datafingeravtrykk",
+        "tests": [
+          "schema og kardinalitet",
+          "beløpsavstemming",
+          "reproduksjon i rent miljø",
+          "persondata- og tilgangskontroll"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_naering_prognose_optimering_beslutning",
+      "title": "Prognoser, optimering og beslutningsanalyse",
+      "track_id": "kvantitative_metoder_business_analytics",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "tidsserieprognoser",
+        "benchmark",
+        "tapfunksjon",
+        "lineærprogrammering",
+        "scenario",
+        "Monte Carlo",
+        "robust beslutning"
+      ],
+      "canonical_works": [
+        {
+          "author": "Rob J. Hyndman and George Athanasopoulos",
+          "title": "Forecasting: Principles and Practice",
+          "year": 2021,
+          "role": "foundational"
+        },
+        {
+          "author": "Frederick S. Hillier and Gerald J. Lieberman",
+          "title": "Introduction to Operations Research",
+          "year": 2021,
+          "role": "optimization"
+        },
+        {
+          "author": "Stephen Boyd and Lieven Vandenberghe",
+          "title": "Convex Optimization",
+          "year": 2004,
+          "role": "advanced"
+        },
+        {
+          "author": "Paul Glasserman",
+          "title": "Monte Carlo Methods in Financial Engineering",
+          "year": 2004,
+          "role": "simulation"
+        }
+      ],
+      "authority_basis": [
+        "historiske tidsserier med versjonert cutoff",
+        "kapasitets-, kostnads- og etterspørselsdata",
+        "scenarioantakelser med eiere",
+        "beslutningslogg og faktisk utfall for etterkontroll"
+      ],
+      "research_questions": [
+        "Hvilken benchmark må en avansert prognose slå for å ha verdi?",
+        "Hvilken tapfunksjon samsvarer med den faktiske kostnaden ved over- og underestimering?",
+        "Når bør en forventet optimal løsning forkastes til fordel for en robust løsning?"
+      ],
+      "analytical_sequence": [
+        "definer målvariabel, beslutningshorisont og økonomisk tapfunksjon",
+        "etabler naive og sesongbaserte benchmarker",
+        "valider tidsserien med rullerende opprinnelse",
+        "estimer prognose og prediksjonsintervall",
+        "formuler beslutningsproblem, mål og begrensninger",
+        "løs grunnmodell og identifiser bindinger og skyggepriser",
+        "simuler parameter- og etterspørselsusikkerhet",
+        "sammenlign forventet, robust og fleksibel løsning",
+        "etabler etterkontroll mot faktisk utfall"
+      ],
+      "worked_case": {
+        "case_title": "Bemannings- og kapasitetsplan",
+        "input_facts": [
+          "ukentlig etterspørsel i 156 uker",
+          "gjennomsnitt 8 400 saker med sesongtopp 13 200",
+          "fast kapasitet koster 780 NOK per time",
+          "overtid koster 1 250 NOK per time",
+          "forsinket sak koster estimert 420 NOK",
+          "servicekrav er 90 prosent behandlet innen 48 timer"
+        ],
+        "required_operations": [
+          "bygg naive og ETS/ARIMA-benchmarker med rullerende validering",
+          "estimer asymmetrisk tap for over- og underkapasitet",
+          "løs bemanningsmodell med servicebegrensning",
+          "simuler 10 000 etterspørselsscenarioer og sammenlign robust løsning"
+        ],
+        "required_outputs": [
+          "prognosekort med benchmark og intervall",
+          "optimeringsmodell med bindinger og skyggepriser",
+          "scenariofordeling for kostnad og service",
+          "beslutningsregel og etterkontrollplan"
+        ],
+        "validation_checks": [
+          "benchmark skal evalueres på samme tidsvinduer",
+          "ingen framtidsdata skal lekke inn i trening",
+          "løsningen skal testes mot ekstreme, men plausible scenarioer"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Bygg en naiv benchmark og én enkel prognose med rullerende feilmål og prediksjonsintervall.",
+          "deliverable": "prognoserapport med backtest",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Løs et lineært beslutningsproblem og koble prognosefeil til faktisk økonomisk tap.",
+          "deliverable": "integrert prognose- og optimeringsmodell",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Utform en robust beslutningsregel med Monte Carlo, skyggepriser, modellrisiko og verdi av fleksibilitet.",
+          "deliverable": "beslutningsanalyse med scenariofordeling og styringsgrenser",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "hierarkisk prognoseavstemming",
+        "probabilistiske prognoser",
+        "robust/stokastisk optimering",
+        "value of information",
+        "stress testing"
+      ],
+      "failure_modes": [
+        "avansert modell sammenlignes ikke mot naiv benchmark",
+        "MAPE brukes når nullverdier eller asymmetrisk tap gjør målet uegnet",
+        "punktprognose brukes som sikker framtid",
+        "optimum rapporteres uten gjennomførbarhets- og robusthetstest"
+      ],
+      "cross_module_integration": [
+        "mod_naering_matematikk_for_okonomi",
+        "mod_naering_operations_kapasitet",
+        "mod_naering_prosjektledelse_prosjektokonomi"
+      ],
+      "professional_ethics": [
+        "tapfunksjonen skal avspeile berørte parter, ikke bare budsjett",
+        "ikke optimaliser bort sikkerhetsmarginer uten eksplisitt beslutning",
+        "registrer modellfeil og læring etter implementering"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "prognose- og optimeringspipeline med backtest og scenariofrø",
+        "tests": [
+          "ingen datalekkasje",
+          "benchmark inkludert",
+          "begrensninger verifisert",
+          "scenarioresultater reproduserbare"
+        ]
+      }
+    }
+  ]
+}

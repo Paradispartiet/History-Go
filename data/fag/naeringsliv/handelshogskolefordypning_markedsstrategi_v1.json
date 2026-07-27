@@ -1,0 +1,769 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_individual_professional_depth",
+  "type": "business_school_depth_track",
+  "subject_id": "naeringsliv",
+  "track_id": "markedsforing_og_strategi",
+  "updated_at": "2026-07-27",
+  "profile_count": 5,
+  "profiles": [
+    {
+      "module_id": "mod_naering_markedsinnsikt_segmentering",
+      "title": "Markedsinnsikt og segmentering",
+      "track_id": "markedsforing_og_strategi",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "markedsavgrensning",
+        "kundebehov",
+        "segmentering",
+        "målgruppevalg",
+        "posisjonering",
+        "personvern"
+      ],
+      "canonical_works": [
+        {
+          "author": "Philip Kotler and Kevin Lane Keller",
+          "title": "Marketing Management",
+          "year": 2016,
+          "role": "foundational"
+        },
+        {
+          "author": "Michel Wedel and Wagner A. Kamakura",
+          "title": "Market Segmentation: Conceptual and Methodological Foundations",
+          "year": 2000,
+          "role": "method"
+        },
+        {
+          "author": "Daniel Kahneman",
+          "title": "Thinking, Fast and Slow",
+          "year": 2011,
+          "role": "behavioral"
+        },
+        {
+          "author": "Alan Andreasen",
+          "title": "Marketing Social Change",
+          "year": 1995,
+          "role": "critical"
+        }
+      ],
+      "authority_basis": [
+        "virksomhetens CRM- og transaksjonsdata",
+        "survey- og paneldata",
+        "SSB markeds- og befolkningsstatistikk",
+        "personopplysningsloven og GDPR ved behandling av persondata"
+      ],
+      "research_questions": [
+        "Hvilken markedsavgrensning gir et relevant, men ikke kunstig smalt konkurransebilde?",
+        "Er segmentene stabile, målbare og handlingsrelevante, eller bare statistiske mønstre?",
+        "Hvilke grupper ekskluderes eller feilklassifiseres når målgruppen velges?"
+      ],
+      "analytical_sequence": [
+        "definer beslutningen og avgrens markedet med substitusjonslogikk",
+        "vurder datagrunnlag, samtykke, representativitet og målefeil",
+        "beskriv behov og atferd før segmenteringsvariabler velges",
+        "estimer og profiler minst to alternative segmentløsninger",
+        "test stabilitet, størrelse, respons og lønnsomhet",
+        "vurder målgruppevalg mot kapasitet, etikk og personvern",
+        "formuler posisjonering med dokumentert forskjell og bevis"
+      ],
+      "worked_case": {
+        "case_title": "Segmentering for digital abonnementstjeneste",
+        "input_facts": [
+          "48 000 aktive kunder og 12 måneders transaksjonshistorikk",
+          "gjennomsnittlig månedspris 249 NOK",
+          "månedlig churn varierer fra 1,8 til 8,5 prosent",
+          "survey med 1 200 svar og 32 prosent svarprosent",
+          "markedsbudsjett 6 000 000 NOK",
+          "persondata inneholder alder, bosted, bruk og kundeservicehistorikk"
+        ],
+        "required_operations": [
+          "bygg to segmenteringer med henholdsvis behovs- og atferdsvariabler",
+          "beregn segmentstørrelse, churn, bidrag og forventet respons",
+          "test stabilitet i holdout-utvalg og over tid",
+          "gjennomfør personvern- og diskrimineringskontroll"
+        ],
+        "required_outputs": [
+          "segmentprofiler med usikkerhetsintervall",
+          "målgruppematrise med økonomi og etikk",
+          "posisjoneringshypoteser med beviskrav",
+          "databehandlingsnotat med formål og minimering"
+        ],
+        "validation_checks": [
+          "segmenter skal kunne replikeres i holdout-data",
+          "målgruppevalg skal ikke baseres på ulovlig eller irrelevante sensitive kjennetegn",
+          "økonomisk verdi skal beregnes etter forventet kostnad og churn"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Beskriv markedet, analyser en enkel survey og bygg to tydelig forskjellige segmenter med dokumenterte behov.",
+          "deliverable": "markedsinnsiktsrapport med segmentkort",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Sammenlign regelbasert og datadrevet segmentering, og test om segmentene er stabile og lønnsomme i en holdout-periode.",
+          "deliverable": "segmenteringsanalyse med valideringsvedlegg",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Utform målgruppe- og posisjoneringsstrategi som integrerer kausal responsmåling, personvern, eksklusjonsrisiko og kapasitetsbegrensninger.",
+          "deliverable": "beslutningsgrunnlag med segmentmodell, DPIA-sjekk og eksperimentplan",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "latent class analysis",
+        "klyngeanalyse med stabilitetstest",
+        "conjoint- eller choice-modell",
+        "propensity/uplift-segmentering"
+      ],
+      "failure_modes": [
+        "demografi brukes som behovsproxy uten bevis",
+        "klynger gis meningsfulle navn etterpå uten validering",
+        "surveyutvalg behandles som representativt uten frafallsanalyse",
+        "segmentlønnsomhet beregnes uten anskaffelses- og betjeningskostnad"
+      ],
+      "cross_module_integration": [
+        "mod_naering_sannsynlighet_inferens",
+        "mod_naering_programmering_databehandling",
+        "mod_naering_markedsmiks_kanaler"
+      ],
+      "professional_ethics": [
+        "minimer persondata og dokumenter formål",
+        "unngå målgrupper som systematisk utnytter sårbarhet",
+        "rapporter usikkerhet og skjevhet i segmentmodellen"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "reproduserbart segmenteringsnotat i Python eller R",
+        "tests": [
+          "skjemavalidering",
+          "holdout-stabilitet",
+          "ingen uautoriserte personvariabler",
+          "seed og versjoner loggført"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_naering_markedsmiks_kanaler",
+      "title": "Produkt, pris, distribusjon og kommunikasjon",
+      "track_id": "markedsforing_og_strategi",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "verdiforslag",
+        "priselastisitet",
+        "kanaløkonomi",
+        "kommunikasjon",
+        "attribusjon",
+        "inkrementell effekt"
+      ],
+      "canonical_works": [
+        {
+          "author": "Neil H. Borden",
+          "title": "The Concept of the Marketing Mix",
+          "year": 1964,
+          "role": "foundational"
+        },
+        {
+          "author": "E. Jerome McCarthy",
+          "title": "Basic Marketing: A Managerial Approach",
+          "year": 1960,
+          "role": "framework"
+        },
+        {
+          "author": "Gerard J. Tellis",
+          "title": "Effective Advertising",
+          "year": 2004,
+          "role": "evidence"
+        },
+        {
+          "author": "Byron Sharp",
+          "title": "How Brands Grow",
+          "year": 2010,
+          "role": "critical"
+        }
+      ],
+      "authority_basis": [
+        "pris- og salgsdata",
+        "kampanje- og kanaldata",
+        "markedsføringsloven og relevant forbrukerregelverk",
+        "plattformenes dokumenterte attribusjons- og målekontrakter"
+      ],
+      "research_questions": [
+        "Hvilke deler av salgsendringen er inkrementelle og hvilke skyldes seleksjon eller sesong?",
+        "Hvordan påvirker pris, kanal og kommunikasjon hverandre når kapasitet og margin er begrenset?",
+        "Når øker konvertering på bekostning av tillit, langsiktig verdi eller svakere kunders vern?"
+      ],
+      "analytical_sequence": [
+        "definer produktets jobb, målgruppe og økonomiske enhetsmodell",
+        "kartlegg prisarkitektur, rabatter og relevante referansepriser",
+        "beregn kanalens fulle kostnad, margin og kapasitet",
+        "skilj observert attribusjon fra inkrementell effekt",
+        "design test eller kvasieksperiment for pris eller kommunikasjon",
+        "vurder kanal- og budskapskonsistens over kundereisen",
+        "anbefal miks med kort- og langsiktig resultat samt etiske grenser"
+      ],
+      "worked_case": {
+        "case_title": "Pris- og kanalmiks for norsk nettbutikk",
+        "input_facts": [
+          "listepris 1 499 NOK og varekost 620 NOK",
+          "betalt søk koster 210 NOK per ordre",
+          "affiliate-kanal tar 12 prosent av omsetning",
+          "returrate 18 prosent og returbehandling 145 NOK",
+          "kontrollgruppekonvertering 2,4 prosent",
+          "kampanjegruppekonvertering 3,1 prosent på 80 000 eksponeringer"
+        ],
+        "required_operations": [
+          "beregn netto kanalbidrag etter retur og rabatt",
+          "estimer inkrementelle ordre og kostnad per inkrementell ordre",
+          "beregn priselastisitet fra to prisperioder med sesongkontroll",
+          "bygg scenario for kanalreallokering under budsjettgrense"
+        ],
+        "required_outputs": [
+          "kanal-P&L",
+          "inkrementalitetsanalyse",
+          "pris- og volumscenario",
+          "anbefalt miks med kapasitets- og etikkvurdering"
+        ],
+        "validation_checks": [
+          "attribusjonsandel skal ikke brukes som kausal effekt uten design",
+          "retur, rabatt og servicekostnad skal inngå i bidraget",
+          "priseksperiment skal ha forhåndsdefinert beslutningsregel"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Beregn bidrag og konvertering for tre kanaler og forklar hvorfor siste-klikk-attribusjon kan være misvisende.",
+          "deliverable": "kanaløkonomitabell med måleforbehold",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Design og analyser et pris- eller budskapseksperiment med kontrollgruppe, effektmål og lønnsomhetsgrense.",
+          "deliverable": "eksperimentrapport med inkrementell økonomi",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Optimaliser markedsmiksen under budsjett, kapasitet og langsiktig CLV; stresstest mot attribusjonsfeil og endret priselastisitet.",
+          "deliverable": "markedsinvesteringsmemo med optimeringsmodell og kontrollplan",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "marketing-mix modeling",
+        "geografisk holdout",
+        "multi-armed bandit med sikkerhetsgrenser",
+        "price waterfall og pocket margin"
+      ],
+      "failure_modes": [
+        "ROAS brukes uten inkrementalitet",
+        "rabattløft måles uten kannibalisering",
+        "kanalkostnad stopper ved mediekjøp",
+        "konvertering maksimeres uten retur, churn eller kundeskade"
+      ],
+      "cross_module_integration": [
+        "mod_naering_markedsinnsikt_segmentering",
+        "mod_naering_merkevare_kunderelasjon",
+        "mod_naering_regresjon_kausalitet"
+      ],
+      "professional_ethics": [
+        "unngå skjult eller villedende påvirkning",
+        "test budskap mot sårbare grupper",
+        "rapporter både kortsiktig salg og langsiktig kundeeffekt"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "kanal- og eksperimentmodell med eksplisitt kontrollgruppe",
+        "tests": [
+          "netto bidrag inkluderer retur",
+          "holdout er uavhengig",
+          "attribusjon og kausal effekt merkes separat",
+          "scenario summerer til budsjett"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_naering_merkevare_kunderelasjon",
+      "title": "Merkevare og kunderelasjoner",
+      "track_id": "markedsforing_og_strategi",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "merkevarekjennskap",
+        "assosiasjoner",
+        "tillit",
+        "prispremie",
+        "retensjon",
+        "kundelivstidsverdi"
+      ],
+      "canonical_works": [
+        {
+          "author": "David A. Aaker",
+          "title": "Managing Brand Equity",
+          "year": 1991,
+          "role": "foundational"
+        },
+        {
+          "author": "Kevin Lane Keller",
+          "title": "Conceptualizing, Measuring, and Managing Customer-Based Brand Equity",
+          "year": 1993,
+          "role": "theory"
+        },
+        {
+          "author": "Roland T. Rust, Valarie A. Zeithaml and Katherine N. Lemon",
+          "title": "Driving Customer Equity",
+          "year": 2000,
+          "role": "customer_value"
+        },
+        {
+          "author": "Frederick F. Reichheld",
+          "title": "The Loyalty Effect",
+          "year": 1996,
+          "role": "retention"
+        }
+      ],
+      "authority_basis": [
+        "CRM- og kohortdata",
+        "merkevareundersøkelser med metodebeskrivelse",
+        "pris- og konkurransedata",
+        "kundeservice- og klagedata"
+      ],
+      "research_questions": [
+        "Hvilke assosiasjoner driver faktisk valg, betalingsvilje og tillit?",
+        "Er retensjon et resultat av verdi, binding, treghet eller mangel på alternativer?",
+        "Hvor mye av beregnet CLV forsvinner når churn, margin og diskontering estimeres konservativt?"
+      ],
+      "analytical_sequence": [
+        "definer merkevareobjekt, kategori og relevant sammenligning",
+        "mål kjennskap, saliens, assosiasjoner og opplevd forskjell",
+        "bygg kohorter og skilj nykundeeffekt fra retensjon",
+        "beregn prispremie med kvalitets- og miksjustering",
+        "estimer CLV med bidrag, churn, servicekostnad og diskontering",
+        "analyser kontaktpunkter og klager som tillitsdata",
+        "vurder relasjonsverdi mot binding, manipulasjon og ulikhet"
+      ],
+      "worked_case": {
+        "case_title": "Kundeverdi i mobilabonnement",
+        "input_facts": [
+          "100 000 kunder med månedspris 399 NOK",
+          "bruttomargin 58 prosent",
+          "månedlig churn 2,6 prosent",
+          "anskaffelseskostnad 1 050 NOK",
+          "gjennomsnittlig servicekostnad 32 NOK per måned",
+          "alternativt merke har 6 prosent lavere pris og samme dekning"
+        ],
+        "required_operations": [
+          "bygg 24-måneders kohortkurve",
+          "beregn CLV under tre churn- og marginantakelser",
+          "estimer kvalitetsjustert prispremie",
+          "koble klagefrekvens og servicehendelser til retensjon"
+        ],
+        "required_outputs": [
+          "kohortdashboard",
+          "CLV-sensitivitetsmatrise",
+          "merkevare- og tillitsdiagnose",
+          "prioritert kundereise med økonomisk effekt"
+        ],
+        "validation_checks": [
+          "CLV skal bruke netto bidrag og eksplisitt diskonteringsregel",
+          "prispremie skal kontrolleres for produktkvalitet og segmentmiks",
+          "retensjon skal ikke tolkes som lojalitet uten alternativdata"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Bygg en enkel merketrakt og beregn kohortretensjon, churn og CLV for én kundegruppe.",
+          "deliverable": "merkevare- og kohortanalyse",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Sammenlign to merker med kvalitetsjustert prispremie og analyser hvilke kontaktpunkter som forklarer tillitsforskjellen.",
+          "deliverable": "kundeverdirapport med konkurrentbenchmark",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Utform en relasjonsstrategi som balanserer CLV, kundevern, prisrettferdighet og langsiktig tillit; test tre churnscenarioer.",
+          "deliverable": "kundestrategi med etikkgrense, økonomimodell og måleplan",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "survivalanalyse for churn",
+        "hierarkisk merkevaremodell",
+        "discrete-choice betalingsvilje",
+        "causal impact av serviceforbedring"
+      ],
+      "failure_modes": [
+        "NPS behandles som fullstendig lojalitetsmål",
+        "CLV beregnes uten service- og kapitalkostnad",
+        "retensjon forveksles med tilfredshet",
+        "prispremie tolkes uten kvalitetskontroll"
+      ],
+      "cross_module_integration": [
+        "mod_naering_markedsmiks_kanaler",
+        "mod_naering_sannsynlighet_inferens",
+        "em_naering_tjenesteyting_og_service"
+      ],
+      "professional_ethics": [
+        "ikke design bindinger som gjør utmelding urimelig vanskelig",
+        "skill relasjonsbygging fra utnyttelse av vaner",
+        "inkluder klager og sårbare kunder i styringsbildet"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_konkurransestrategi_ressurser",
+      "title": "Konkurransestrategi og ressursanalyse",
+      "track_id": "markedsforing_og_strategi",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "bransjestruktur",
+        "posisjonering",
+        "aktivitetssystem",
+        "ressursbasert teori",
+        "dynamiske kapabiliteter",
+        "trade-offs"
+      ],
+      "canonical_works": [
+        {
+          "author": "Michael E. Porter",
+          "title": "Competitive Strategy",
+          "year": 1980,
+          "role": "foundational"
+        },
+        {
+          "author": "Jay B. Barney",
+          "title": "Firm Resources and Sustained Competitive Advantage",
+          "year": 1991,
+          "role": "resource_based"
+        },
+        {
+          "author": "David J. Teece, Gary Pisano and Amy Shuen",
+          "title": "Dynamic Capabilities and Strategic Management",
+          "year": 1997,
+          "role": "dynamic"
+        },
+        {
+          "author": "Richard P. Rumelt",
+          "title": "Good Strategy/Bad Strategy",
+          "year": 2011,
+          "role": "critical"
+        }
+      ],
+      "authority_basis": [
+        "bransje- og markedsdata",
+        "konkurrentenes årsregnskap og offentlige dokumentasjon",
+        "kunde- og leverandørdata",
+        "konkurranseloven som ramme for informasjonsinnhenting og samarbeid"
+      ],
+      "research_questions": [
+        "Hvilke mekanismer, ikke bare korrelasjoner, forklarer vedvarende marginforskjeller?",
+        "Hvilke aktiviteter må passe sammen for at posisjonen skal være vanskelig å kopiere?",
+        "Når blir en verdifull ressurs en rigiditet som hindrer omstilling?"
+      ],
+      "analytical_sequence": [
+        "avgrens marked, kundeproblem og strategisk tidshorisont",
+        "kartlegg fem krefter og dokumenter hver mekanisme",
+        "bygg aktivitetssystem og identifiser trade-offs",
+        "test ressurser med VRIO og faktisk imitasjonshistorikk",
+        "koble strategi til margin, vekst, kapitalbinding og risiko",
+        "analyser dynamiske kapabiliteter og endringshastighet",
+        "formuler et diagnose–valg–sammenhengende handling-sett"
+      ],
+      "worked_case": {
+        "case_title": "Strategivalg for regional logistikkaktør",
+        "input_facts": [
+          "omsetning 780 000 000 NOK",
+          "EBIT-margin 4,2 prosent mot konkurrentenes 2,5–7,1 prosent",
+          "tre største kunder står for 46 prosent av inntektene",
+          "eget terminalnett binder 310 000 000 NOK kapital",
+          "leveringspresisjon er 97,3 prosent",
+          "ny digital konkurrent priser 12 prosent lavere"
+        ],
+        "required_operations": [
+          "bygg femkraftsanalyse med kvantifiserte indikatorer",
+          "kartlegg aktivitetssystem og kritiske gjensidige forsterkninger",
+          "gjennomfør VRIO- og rigiditetsanalyse",
+          "modellér tre strategiske alternativer med margin, kapital og risiko"
+        ],
+        "required_outputs": [
+          "bransjediagnose med evidens",
+          "aktivitetssystemkart",
+          "ressurs- og kapabilitetsregister",
+          "strategivalg med eksplisitte nei-valg"
+        ],
+        "validation_checks": [
+          "markedsandel skal ikke brukes som alene-bevis for makt",
+          "VRIO-vurderinger skal ha observerbart grunnlag",
+          "strategialternativer skal være gjensidig forskjellige og ressursmessig gjennomførbare"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Avgrens en bransje og dokumenter fem krefter med minst én kvantitativ indikator per kraft.",
+          "deliverable": "bransjeanalyse med kildematrise",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Sammenlign tre konkurrenters aktivitetssystemer og test om marginforskjeller følger posisjon, skala eller regnskapspraksis.",
+          "deliverable": "konkurrent- og ressursanalyse",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Utform en koherent strategi med trade-offs, dynamiske kapabiliteter og treårig ressursplan; stresstest mot teknologisk skift.",
+          "deliverable": "styrestrategi med handlingssystem og scenario",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "profit-pool analysis",
+        "activity-system fit testing",
+        "real-options strategy",
+        "capability lifecycle mapping"
+      ],
+      "failure_modes": [
+        "fem krefter fylles med generelle utsagn",
+        "ressurser kalles unike uten imitasjonsbevis",
+        "strategi blir en ønskeliste uten trade-offs",
+        "regnskapsmargin brukes uten normalisering"
+      ],
+      "cross_module_integration": [
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "em_naering_innovasjon_teknologisk_skift",
+        "mod_naering_konsernstrategi_implementering"
+      ],
+      "professional_ethics": [
+        "unngå ulovlig konkurrentkoordinering",
+        "synliggjør virkninger for arbeidstakere og leverandører",
+        "ikke forkled nedbemanning som rent teknisk strategivalg"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_konsernstrategi_implementering",
+      "title": "Konsernstrategi, implementering og strategisk endring",
+      "track_id": "markedsforing_og_strategi",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "diversifisering",
+        "vertikal integrasjon",
+        "synergi",
+        "portefølje",
+        "implementering",
+        "strategisk endring"
+      ],
+      "canonical_works": [
+        {
+          "author": "Alfred D. Chandler Jr.",
+          "title": "Strategy and Structure",
+          "year": 1962,
+          "role": "foundational"
+        },
+        {
+          "author": "H. Igor Ansoff",
+          "title": "Corporate Strategy",
+          "year": 1965,
+          "role": "portfolio"
+        },
+        {
+          "author": "Robert S. Kaplan and David P. Norton",
+          "title": "Strategy Maps",
+          "year": 2004,
+          "role": "implementation"
+        },
+        {
+          "author": "Andrew M. Pettigrew",
+          "title": "The Management of Strategic Change",
+          "year": 1987,
+          "role": "process"
+        }
+      ],
+      "authority_basis": [
+        "konsernregnskap og segmentinformasjon",
+        "oppkjøps- og investeringsdokumentasjon",
+        "organisasjons- og prosjektdata",
+        "arbeidsmiljø- og medbestemmelseskrav ved omstilling"
+      ],
+      "research_questions": [
+        "Hvilke synergier krever faktisk integrasjon, og hvilke er bare finansielle antakelser?",
+        "Når bør en aktivitet eies, kontraheres eller skilles ut?",
+        "Hvordan måles implementering uten at milepæler forveksles med faktisk atferds- og resultatendring?"
+      ],
+      "analytical_sequence": [
+        "definer konsernlogikk og verdiskapingshypotese",
+        "analyser portefølje, eierskapsalternativer og kapitalallokering",
+        "kvantifiser inntekts-, kostnads- og kapitalsynergier separat",
+        "kartlegg integrasjonsavhengigheter, kultur og beslutningsrett",
+        "bygg strategikart med ledende og etterslepende indikatorer",
+        "test gevinstrealisering mot counterfactual og kannibalisering",
+        "planlegg endring, læringssløyfer og stoppkriterier"
+      ],
+      "worked_case": {
+        "case_title": "Integrasjon etter oppkjøp",
+        "input_facts": [
+          "kjøpesum 1 200 000 000 NOK",
+          "forventede kostnadssynergier 95 000 000 NOK per år",
+          "integrasjonskostnad 180 000 000 NOK",
+          "kundekannibalisering kan redusere inntekt med 40 000 000 NOK",
+          "22 kritiske IT-avhengigheter",
+          "frivillig turnover blant nøkkelpersoner er 14 prosent"
+        ],
+        "required_operations": [
+          "bygg synergy bridge fra brutto til netto nåverdi",
+          "fordel gevinsteiere og verifiseringskilder",
+          "modellér integrasjonssekvens og kritiske avhengigheter",
+          "stresstest verdi mot forsinkelse, turnover og kannibalisering"
+        ],
+        "required_outputs": [
+          "netto synergimodell",
+          "integrasjonsroadmap med beslutningsporter",
+          "strategikart og gevinstregister",
+          "styrenotat med stop/go-kriterier"
+        ],
+        "validation_checks": [
+          "synergier skal ha eier, baseline og målemetode",
+          "integrasjonskostnader og kannibalisering skal medregnes",
+          "milepæloppnåelse skal ikke erstatte måling av faktisk gevinst"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Analyser en virksomhetsportefølje og vurder hvilke enheter som deler kunder, kapabiliteter eller kapitalbehov.",
+          "deliverable": "porteføljekart med konsernlogikk",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Bygg et integrasjons- eller utskillingscase med netto synergi, avhengigheter, organisasjonsrisiko og gevinstmåling.",
+          "deliverable": "implementeringscase med gevinstregister",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Utform en flerårig endringsarkitektur som kombinerer kapitalallokering, strategikart, kultur, medbestemmelse og adaptiv læring.",
+          "deliverable": "styresak med porteføljebeslutning og endringsgovernance",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "parenting advantage analysis",
+        "real-options capital allocation",
+        "synergy attribution",
+        "difference-in-differences for gevinstrealisering"
+      ],
+      "failure_modes": [
+        "brutto synergier presenteres uten kostnad og timing",
+        "porteføljematrise brukes som beslutningsautomat",
+        "kultur reduseres til kommunikasjonstiltak",
+        "implementering måles bare med aktivitet og ikke effekt"
+      ],
+      "cross_module_integration": [
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "mod_naering_prosjektledelse_prosjektokonomi",
+        "mod_naering_arbeidsrett_personvern"
+      ],
+      "professional_ethics": [
+        "medbestemmelse og arbeidstakerkonsekvenser inn i beslutningen",
+        "ikke manipulere baseline for å vise gevinst",
+        "stopp tiltak som skaper uforholdsmessig skade uten dokumentert verdi"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    }
+  ]
+}

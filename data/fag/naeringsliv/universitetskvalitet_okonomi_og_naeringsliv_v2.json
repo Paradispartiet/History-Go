@@ -1,12 +1,12 @@
 {
-  "version": "4.0.0",
+  "version": "5.0.0",
   "status": "canonical_university_quality",
   "type": "university_quality_manifest",
   "subject_id": "naeringsliv",
   "display_name": "Økonomi og næringsliv",
-  "updated_at": "2026-07-26",
+  "updated_at": "2026-07-27",
   "foundation": "universitetsramme_okonomi_og_naeringsliv_v1.json",
-  "purpose": "Individuelt universitetslag for 36 kjerneemner, supplert med et kanonisk handelshøyskolelag med 25 profesjonsmoduler.",
+  "purpose": "Individuelt universitetslag for 36 kjerneemner, supplert med et kanonisk og individuelt fordypet handelshøyskolelag med 25 profesjonsmoduler.",
   "coverage": {
     "discipline_tracks": 6,
     "core_emners": 36,
@@ -20,7 +20,10 @@
     "professional_tracks": 5,
     "professional_modules": 25,
     "total_tracks": 11,
-    "total_learning_units": 61
+    "total_learning_units": 61,
+    "professional_depth_profiles": 25,
+    "professional_canonical_works": 100,
+    "professional_worked_cases": 25
   },
   "quality_gates": {
     "every_emne_has_multiple_theories": true,
@@ -38,7 +41,9 @@
     "every_emne_has_unique_learning_activities": true,
     "every_emne_has_unique_assessment_products": true,
     "every_emne_has_empirical_unit_calculation_conflict_and_datasets": true,
-    "every_emne_mapping_is_individually_reviewed": true
+    "every_emne_mapping_is_individually_reviewed": true,
+    "every_professional_module_has_individual_depth": true,
+    "professional_depth_requires_works_cases_and_unique_progression": true
   },
   "anti_tokenism": {
     "theory_name_without_mechanism": false,
@@ -61,7 +66,7 @@
   "enforcement": {
     "validator": "tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs",
     "category_audit": "scripts/audit-category-governance.mjs",
-    "failure_policy": "Enhver manglende kobling, tynt felt, foreldet dekningstall eller ubrukt registerpost skal stoppe kategori-auditen."
+    "failure_policy": "Enhver manglende kobling, tynt felt, foreldet dekningstall, ubrukt registerpost eller generisk profesjonsfordypning skal stoppe kategori-auditen."
   },
   "individual_revision": {
     "status": "complete",
@@ -89,6 +94,12 @@
     "professional_models": 50,
     "professional_measures": 100,
     "professional_datasets": 35,
-    "professional_assessment_profiles": 15
+    "professional_assessment_profiles": 15,
+    "professional_depth_manifest": "handelshogskolefordypning_manifest_v1.json",
+    "professional_depth_profiles": 25,
+    "professional_canonical_works": 100,
+    "professional_worked_cases": 25,
+    "professional_unique_level_activities": 75,
+    "professional_unique_level_deliverables": 75
   }
 }
