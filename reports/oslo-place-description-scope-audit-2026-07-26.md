@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **150**
-- Additional active Oslo IDs outside the protocol: **362**
+- IDs in the current revision protocol: **160**
+- Additional active Oslo IDs outside the protocol: **352**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **362**
+- Additional IDs needing revision: **352**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -18,8 +18,8 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | naeringsliv | 47 |
 | kunst | 40 |
 | subkultur | 38 |
-| historie | 37 |
 | sport | 29 |
+| historie | 27 |
 | scenekunst | 24 |
 | litteratur | 21 |
 | vitenskap | 21 |
@@ -32,16 +32,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| historie | Garmanngården | `garmanngarden` | 17 | 103 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/garmanngarden.json` | needs revision |
-| historie | Myntgatakvartalet | `myntgatakvartalet` | 16 | 96 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/myntgatakvartalet.json` | needs revision |
-| historie | Stattholdergården | `stattholdergarden` | 15 | 97 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/stattholdergarden.json` | needs revision |
-| historie | Waisenhuset | `waisenhuset_kongens_gate` | 20 | 106 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/waisenhuset_kongens_gate.json` | needs revision |
-| historie | Kontraskjæret | `kontraskjaeret` | 17 | 112 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04/kontraskjaeret.json` | needs revision |
-| historie | Paléhaven og Paleet | `palehaven_paleet` | 18 | 122 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04/palehaven_paleet.json` | needs revision |
-| historie | Avisen Tiden – Rådhusgata 10 | `avisen_tiden_radhusgata_10` | 19 | 119 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_hovedstaden_batch_01/avisen_tiden_radhusgata_10.json` | needs revision |
-| historie | Åmot bru | `aamot_bru` | 16 | 73 | 1 | `data/places/historie/oslo/places_historie/aamot_bru.json` | needs revision |
-| historie | Abelonegården | `abelonegarden` | 14 | 85 | 1 | `data/places/historie/oslo/places_historie/abelonegarden.json` | needs revision |
-| historie | Arbeidermuseet | `arbeidermuseet` | 21 | 108 | 2 | `data/places/historie/oslo/places_historie/arbeidermuseet.json` | needs revision |
 | historie | Brannmuseet i Oslo | `brannmuseet_oslo` | 28 | 111 | 2 | `data/places/historie/oslo/places_historie/brannmuseet_oslo.json` | needs revision |
 | historie | Bygdø Kongsgård | `bygdoy_kongsgard` | 20 | 143 | 3 | `data/places/historie/oslo/places_historie/bygdoy_kongsgard.json` | needs revision |
 | historie | Central Jam-e-Mosque | `central_jam_e_mosque` | 28 | 175 | 3 | `data/places/historie/oslo/places_historie/central_jam_e_mosque.json` | needs revision |
