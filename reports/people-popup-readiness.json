@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "cf9e070b1b424f503eb45c8d8aea6c41c3024c20c01540ce702f080cbe323d36",
+  "sourceFingerprint": "41c506b09156e5dceea535454a77eed35dfa45e84a48538b5a66cc1b0999056f",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -10,20 +10,20 @@
     "sparse": 0
   },
   "summary": {
-    "totalPeople": 1367,
+    "totalPeople": 1370,
     "complete": 38,
     "strong": 0,
-    "partial": 1000,
+    "partial": 1003,
     "sparse": 329,
     "brokenImages": 306,
-    "explicitFallbacks": 995,
+    "explicitFallbacks": 998,
     "implicitFallbacks": 23,
     "averageScore": 42.3
   },
   "fieldCoverage": {
     "identity": {
-      "count": 53,
-      "percent": 3.9
+      "count": 56,
+      "percent": 4.1
     },
     "popupDesc": {
       "count": 47,
@@ -38,24 +38,24 @@
       "percent": 2.8
     },
     "education": {
-      "count": 36,
+      "count": 35,
       "percent": 2.6
     },
     "practiceProfile": {
-      "count": 1197,
+      "count": 1200,
       "percent": 87.6
     },
     "placeGrounding": {
-      "count": 1367,
+      "count": 1370,
       "percent": 100
     },
     "sources": {
-      "count": 290,
-      "percent": 21.2
+      "count": 293,
+      "percent": 21.4
     },
     "imageContract": {
-      "count": 1061,
-      "percent": 77.6
+      "count": 1064,
+      "percent": 77.7
     }
   },
   "categories": [
@@ -184,6 +184,15 @@
       "partial": 6,
       "sparse": 16,
       "averageScore": 30.4
+    },
+    {
+      "category": "religion",
+      "total": 3,
+      "complete": 0,
+      "strong": 0,
+      "partial": 3,
+      "sparse": 0,
+      "averageScore": 51
     },
     {
       "category": "psykologi",
@@ -8254,6 +8263,54 @@
           "id": "varhaug_nervik_gravmiljoet",
           "name": "Gravmiljøet ved Varhaug",
           "score": 50,
+          "status": "partial"
+        }
+      ]
+    },
+    {
+      "placeId": "etne_kyrkje",
+      "totalIncomplete": 1,
+      "sparse": 0,
+      "partial": 1,
+      "strong": 0,
+      "averageScore": 51,
+      "people": [
+        {
+          "id": "etne_kyrkjelydsmiljoet",
+          "name": "Kyrkjelydsmiljøet i Etne kyrkje",
+          "score": 51,
+          "status": "partial"
+        }
+      ]
+    },
+    {
+      "placeId": "frette_kapell",
+      "totalIncomplete": 1,
+      "sparse": 0,
+      "partial": 1,
+      "strong": 0,
+      "averageScore": 51,
+      "people": [
+        {
+          "id": "frette_bedehus_og_kapellmiljoet",
+          "name": "Bedehus- og kapellmiljøet på Frette",
+          "score": 51,
+          "status": "partial"
+        }
+      ]
+    },
+    {
+      "placeId": "skanevik_kyrkje",
+      "totalIncomplete": 1,
+      "sparse": 0,
+      "partial": 1,
+      "strong": 0,
+      "averageScore": 51,
+      "people": [
+        {
+          "id": "skanevik_kyrkjelydsmiljoet",
+          "name": "Kyrkjelydsmiljøet i Skånevik kyrkje",
+          "score": 51,
           "status": "partial"
         }
       ]
@@ -56855,6 +56912,123 @@
       ]
     },
     {
+      "id": "frette_bedehus_og_kapellmiljoet",
+      "name": "Bedehus- og kapellmiljøet på Frette",
+      "category": "religion",
+      "kindLabel": "kollektivt_trusmiljoanker",
+      "sourceFile": "data/people/religion/vestland/etne/people_etne_religion_rounds_batch1.json",
+      "primaryPlace": "frette_kapell",
+      "places": [
+        "frette_kapell"
+      ],
+      "score": 51,
+      "priority": 61,
+      "status": "partial",
+      "paragraphCount": 1,
+      "popupLength": 282,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 4,
+      "sourceCount": 2,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": false,
+        "lifeData": false,
+        "contributions": false,
+        "education": false,
+        "practiceProfile": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true
+      },
+      "issues": [
+        "single_paragraph_popup_desc",
+        "missing_birth_data",
+        "missing_contributions",
+        "missing_education_or_training"
+      ]
+    },
+    {
+      "id": "etne_kyrkjelydsmiljoet",
+      "name": "Kyrkjelydsmiljøet i Etne kyrkje",
+      "category": "religion",
+      "kindLabel": "kollektivt_trusmiljoanker",
+      "sourceFile": "data/people/religion/vestland/etne/people_etne_religion_rounds_batch1.json",
+      "primaryPlace": "etne_kyrkje",
+      "places": [
+        "etne_kyrkje"
+      ],
+      "score": 51,
+      "priority": 61,
+      "status": "partial",
+      "paragraphCount": 1,
+      "popupLength": 323,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 4,
+      "sourceCount": 2,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": false,
+        "lifeData": false,
+        "contributions": false,
+        "education": false,
+        "practiceProfile": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true
+      },
+      "issues": [
+        "single_paragraph_popup_desc",
+        "missing_birth_data",
+        "missing_contributions",
+        "missing_education_or_training"
+      ]
+    },
+    {
+      "id": "skanevik_kyrkjelydsmiljoet",
+      "name": "Kyrkjelydsmiljøet i Skånevik kyrkje",
+      "category": "religion",
+      "kindLabel": "kollektivt_trusmiljoanker",
+      "sourceFile": "data/people/religion/vestland/etne/people_etne_religion_rounds_batch1.json",
+      "primaryPlace": "skanevik_kyrkje",
+      "places": [
+        "skanevik_kyrkje"
+      ],
+      "score": 51,
+      "priority": 61,
+      "status": "partial",
+      "paragraphCount": 1,
+      "popupLength": 273,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 4,
+      "sourceCount": 2,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": false,
+        "lifeData": false,
+        "contributions": false,
+        "education": false,
+        "practiceProfile": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true
+      },
+      "issues": [
+        "single_paragraph_popup_desc",
+        "missing_birth_data",
+        "missing_contributions",
+        "missing_education_or_training"
+      ]
+    },
+    {
       "id": "adam_severin_hiorth_nydalen",
       "name": "Adam Severin Hiorth",
       "category": "historie",
@@ -64467,23 +64641,23 @@
       "id": "henrik_bull",
       "name": "Henrik Bull",
       "category": "by",
-      "kindLabel": "Arkitekt og formgiver",
+      "kindLabel": "Arkitekt / formgiver",
       "sourceFile": "data/people/by/oslo/people_by_oslo.json",
       "primaryPlace": "nationaltheatret",
       "places": [
-        "centralbanken_kirkegata",
+        "historisk_museum",
         "nationaltheatret",
-        "regjeringskvartalet",
-        "universitetsplassen"
+        "paulus_kirke",
+        "regjeringskvartalet"
       ],
       "score": 100,
       "priority": 20,
       "status": "complete",
       "paragraphCount": 3,
-      "popupLength": 1039,
-      "contributionCount": 8,
+      "popupLength": 1125,
+      "contributionCount": 7,
       "educationCount": 3,
-      "practiceCount": 26,
+      "practiceCount": 25,
       "sourceCount": 10,
       "imageState": "broken_image",
       "imagePath": "bilder/kort/people/henrik_bull.PNG",
@@ -65114,7 +65288,7 @@
       "id": "bjorn_bjornson",
       "name": "Bjørn Bjørnson",
       "category": "litteratur",
-      "kindLabel": "Skuespiller, instruktør, dramatiker og teatersjef",
+      "kindLabel": "Skuespiller / instruktør, dramatiker og teatersjef",
       "sourceFile": "data/people/litteratur/oslo/nationaltheatret/bjorn_bjornson.json",
       "primaryPlace": "nationaltheatret",
       "places": [
@@ -65124,11 +65298,11 @@
       "priority": 0,
       "status": "complete",
       "paragraphCount": 3,
-      "popupLength": 1219,
+      "popupLength": 1088,
       "contributionCount": 8,
-      "educationCount": 3,
-      "practiceCount": 25,
-      "sourceCount": 7,
+      "educationCount": 1,
+      "practiceCount": 22,
+      "sourceCount": 8,
       "imageState": "explicit_fallback",
       "imagePath": "",
       "coverage": {
@@ -65252,7 +65426,7 @@
       "id": "halfdan_christensen",
       "name": "Halfdan Christensen",
       "category": "litteratur",
-      "kindLabel": "Skuespiller, instruktør, dramatiker og teatersjef",
+      "kindLabel": "Skuespiller / instruktør, dramatiker og teatersjef",
       "sourceFile": "data/people/litteratur/oslo/nationaltheatret/halfdan_christensen.json",
       "primaryPlace": "nationaltheatret",
       "places": [
@@ -65262,11 +65436,11 @@
       "priority": 0,
       "status": "complete",
       "paragraphCount": 3,
-      "popupLength": 1132,
+      "popupLength": 1177,
       "contributionCount": 8,
-      "educationCount": 4,
-      "practiceCount": 25,
-      "sourceCount": 7,
+      "educationCount": 3,
+      "practiceCount": 23,
+      "sourceCount": 8,
       "imageState": "explicit_fallback",
       "imagePath": "",
       "coverage": {
@@ -65423,7 +65597,7 @@
       "id": "johanne_dybwad",
       "name": "Johanne Dybwad",
       "category": "litteratur",
-      "kindLabel": "Skuespiller og instruktør",
+      "kindLabel": "Skuespiller / instruktør",
       "sourceFile": "data/people/litteratur/oslo/nationaltheatret/johanne_dybwad.json",
       "primaryPlace": "nationaltheatret",
       "places": [
@@ -65433,11 +65607,11 @@
       "priority": 0,
       "status": "complete",
       "paragraphCount": 3,
-      "popupLength": 1169,
-      "contributionCount": 8,
-      "educationCount": 3,
-      "practiceCount": 25,
-      "sourceCount": 7,
+      "popupLength": 1230,
+      "contributionCount": 7,
+      "educationCount": 0,
+      "practiceCount": 24,
+      "sourceCount": 8,
       "imageState": "explicit_fallback",
       "imagePath": "",
       "coverage": {
@@ -65445,13 +65619,15 @@
         "popupDesc": true,
         "lifeData": true,
         "contributions": true,
-        "education": true,
+        "education": false,
         "practiceProfile": true,
         "placeGrounding": true,
         "sources": true,
         "imageContract": true
       },
-      "issues": []
+      "issues": [
+        "missing_education_or_training"
+      ]
     },
     {
       "id": "kjersti_wexelsen_goksoyr",
