@@ -1,55 +1,150 @@
 {
   "id": "spydeberg_kirke",
   "name": "Spydeberg kirke",
-  "lat": 59.6171,
-  "lon": 11.0872,
+  "lat": 59.59503,
+  "lon": 11.06876,
   "r": 240,
+  "locatorType": "historic_church_building",
+  "sourceProvider": "openstreetmap",
+  "sourceObjectId": "osm-way:753561392",
+  "geocodeAccuracy": "named_church_building_geometry",
+  "coordRole": "standing_1844_church_building_anchor",
+  "coordType": "building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 753561392; Wikidata Q6494789; Kulturminne ID 85532; Norges Kirker; Lokalhistoriewiki; Den norske kirke",
+  "coordSourceId": "osm-way:753561392;wikidata:Q6494789;kulturminne:85532",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/753561392",
+  "coordVerifiedAt": "2026-07-27",
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Indre Østfold",
-  "year": 1200,
-  "period": "Middelalderkirke og 1814-landskap",
+  "year": 1844,
+  "yearMeaning": "Året den stående klassisistiske steinkirken ble innviet, ikke starten på middelalderkirkestedet.",
+  "period": "Klassisistisk steinkirke på middelalderkirkested",
   "tags": [
     "historie",
-    "middelalder",
     "kirke",
     "spydeberg",
-    "1814"
+    "middelalderkirkested",
+    "1844"
   ],
-  "desc": "Middelaldersk kirkested i Spydeberg, tett knyttet til prestegården der Christian Frederik holdt møte i 1814. Kirken og prestegården gir samme landskap både middelalder- og grunnlovshistorisk tyngde.",
-  "popupDesc": "Spydeberg kirke ligger ved prestegården og kirkestedet som fikk nasjonal betydning i 1814. Selve kirkestedet har røtter i middelalderen, mens prestegården ved siden av ble politisk møtepunkt under krigen mot Sverige. I History Go bør Spydeberg kirke brukes til å skille mellom kirkestedets lange middelalderkontinuitet og prestegårdens korte, men avgjørende 1814-rolle. Sammen gjør de området til et lagdelt historisk landskap.",
+  "desc": "Klassisistisk steinkirke innviet i 1844 på samme sted som middelalderkirken som brant i 1841. Bygningen gjenbruker middelalderstein og bevarer eldre inventar, men er et eget 1800-tallsverk.",
+  "popupDesc": "Spydeberg kirke er den stående steinkirken som ble innviet i 1844 etter at middelalderkirken på samme sted brant ved lynnedslag i 1841. Johan Fredrich Lühr utformet den strengt klassisistiske bygningen med utgangspunkt i kirkemønstre knyttet til H.D.F. Linstow. Stein fra middelalderkirken ble gjenbrukt, og døpefonten av kleberstein samt kirkeklokker fra 1595 og 1625 knytter bygningen til det eldre kirkestedet. Kirken skal derfor ikke modelleres som en bevart middelalderbygning: middelalderkirken er et tapt og delvis innarbeidet historisk lag. Spydeberg prestegård ligger omtrent 670 meter sørøst og har sin egen canonical-identitet knyttet til Christian Frederiks møte i 1814. Gudstjenester, gravferder, kirkegård og kirkelig drift har alltid prioritet foran gameplay.",
+  "accessContext": {
+    "siteType": "active_church_and_cemetery_environment",
+    "publicAccess": "Kirken er i aktiv bruk. Utvendig ferdsel må følge kirkegårdens regler, mens innvendig tilgang følger gudstjenester, arrangementer og avtaler.",
+    "limitations": [
+      "Ikke forstyrr gudstjenester, gravferder, seremonier eller sorgarbeid.",
+      "Ikke gå inn i låste rom, på gravsteder eller i tekniske og driftsmessige arealer.",
+      "Gameplay-radiusen er ikke en kirke-, kirkegårds-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "medieval_church_site",
+      "date": "c.1200",
+      "status": "lost_building_continuing_site",
+      "note": "En middelaldersk steinkirke viet til Sankta Margareta stod på stedet. Dateringen er omtrentlig."
+    },
+    {
+      "type": "lightning_fire",
+      "date": "1841-10-21",
+      "status": "documented_destruction_event",
+      "note": "Lynnedslag førte til brann; den gamle kirken ble vurdert som ikke reparerbar og revet."
+    },
+    {
+      "type": "standing_church",
+      "date": "1844",
+      "status": "surviving_and_active",
+      "note": "Den nåværende klassisistiske gråsteinskirken ble innviet."
+    },
+    {
+      "type": "grav_chapel",
+      "date": "1922",
+      "status": "adjacent_later_layer",
+      "note": "Gravkapellet ved kirkegården ble oppført som et separat bygg."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "spydeberg_medieval_church",
+      "name": "Spydeberg middelalderkirke",
+      "relation": "lost_predecessor_on_same_site",
+      "canonical": false,
+      "note": "Den eldre kirken brant i 1841; gjenbrukt murstein og inventar gjør den til et historisk lag, ikke den stående bygningen."
+    },
+    {
+      "id": "spydeberg_prestegard_1814",
+      "name": "Spydeberg prestegård",
+      "relation": "separate_nearby_1814_place",
+      "canonical": false,
+      "note": "Prestegården ligger omtrent 670 meter sørøst og har egen canonical-identitet for 1814-hendelsen."
+    },
+    {
+      "id": "spydeberg_gravkapell",
+      "name": "Spydeberg gravkapell",
+      "relation": "adjacent_cemetery_building",
+      "canonical": false,
+      "note": "Kapellet fra 1922 er en egen bygning på kirkegården."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "spydeberg_church_building",
+      "name": "Spydeberg kirke",
+      "lat": 59.59503,
+      "lon": 11.06876,
+      "r": 120,
+      "type": "standing_1844_church_building_anchor",
+      "sourceProvider": "openstreetmap_wikidata_kulturminne",
+      "sourceObjectId": "osm-way:753561392;wikidata:Q6494789;kulturminne:85532",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "spydeberg_prestegard_context",
+      "name": "Spydeberg prestegård",
+      "lat": 59.59067,
+      "lon": 11.07696,
+      "r": 130,
+      "type": "separate_1814_place_context",
+      "sourceProvider": "history_go_canonical",
+      "sourceObjectId": "place:spydeberg_prestegard_1814",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "kirke",
-    "subtype": "middelalderlig_kirkested_i_1814_landskap",
+    "subtype": "klassisistisk_steinkirke_pa_middelalderkirkested",
     "signature_features": [
-      "middelaldersk kirkested i Spydeberg",
-      "ligger ved prestegården med 1814-historie",
-      "kobler lokal kirkekontinuitet og nasjonal krisehistorie"
+      "stående steinkirke innviet i 1844",
+      "middelalderkirken brant i 1841",
+      "gjenbrukte middelaldersteiner og eldre inventar"
     ],
     "primary_angles": [
       "historie",
-      "middelalder",
-      "1814",
-      "stedslag"
-    ],
-    "question_families": [
+      "arkitektur",
       "kirkested",
-      "1814_landskap",
-      "sted_vs_hendelse",
       "kontinuitet"
     ],
+    "question_families": [
+      "brann_og_gjenreisning",
+      "middelalderlag",
+      "klassisistisk_kirkearkitektur",
+      "sted_vs_hendelse"
+    ],
     "avoid_angles": [
+      "omtale_som_bevart_middelalderkirke",
       "duplikat_av_prestegarden",
       "generisk_kirke"
     ],
     "must_include": [
-      "kirken som eldre kirkested",
-      "nærheten til Spydeberg prestegård og 1814-møtet"
+      "1844 som året for den stående bygningen",
+      "middelalderkirken som tapt forgjenger på samme sted"
     ],
     "contrast_targets": [
       "spydeberg_prestegard_1814",
       "hobol_kirke"
     ],
-    "notes": "Skal spørres som eget kirkested, men kobles tydelig til prestegården."
+    "notes": "Skal spørres som en 1844-kirke med gjenbrukte middelalderlag. Prestegårdens 1814-hendelse er et separat sted."
   }
 }
