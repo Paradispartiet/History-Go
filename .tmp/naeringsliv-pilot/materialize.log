@@ -23,15 +23,14 @@ Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
 > node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
 
 Skrev data/quiz/production_context/naeringsliv/havnelageret.json
-file:///home/runner/work/History-Go/History-Go/tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs:7
-const assert = (condition, message) => { if (!condition) throw new Error(message); };
-                                                               ^
-
-Error: havnelageret_quiz_29: monetary scenario lacks NOK/krone
-    at assert (file:///home/runner/work/History-Go/History-Go/tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs:7:64)
-    at file:///home/runner/work/History-Go/History-Go/tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs:65:7
-    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
-    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
-    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
-
-Node.js v22.23.1
+OK: Næringsliv Oslo professional materialization validates (63 questions, 16 calculations, 3 places).
+npm error Missing script: "places:emners:check"
+npm error
+npm error Did you mean one of these?
+npm error   npm run places:coords:check # run the "places:coords:check" package script
+npm error   npm run places:index:check # run the "places:index:check" package script
+npm error   npm run places:emner:check # run the "places:emner:check" package script
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-07-27T08_35_17_289Z-debug-0.log
