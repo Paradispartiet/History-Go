@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "momarken_markedsplass",
+  "generatedAt": "2026-07-27",
+  "purpose": "Persist sources used to verify the modern Momarken market and event-site coordinate, distinguish it from the racecourse and preserve the older market as a broader historical layer.",
+  "legacyCoordinate": {
+    "lat": 59.5584,
+    "lon": 11.3229,
+    "assessment": "Unsupported point approximately 1127.7 metres south-west of the documented Momarken venue coordinate."
+  },
+  "appliedCoordinate": {
+    "lat": 59.56742,
+    "lon": 11.33205,
+    "role": "modern_momarkedet_market_and_event_site_anchor",
+    "sourceObjectId": "official-gps:59.56742,11.33205",
+    "distanceFromLegacyM": 1127.7
+  },
+  "identityResolution": {
+    "canonicalEntity": "Momarken markedsplass",
+    "entityType": "modern market and event site associated with Momarkedet",
+    "address": "Skofterudveien 12, 1850 Mysen",
+    "parcelContext": "gnr. 156 bnr. 15",
+    "separateRacecourseEntity": "Wikidata Q15410067 / OSM way 35952118"
+  },
+  "sources": [
+    {
+      "provider": "Official event regulations",
+      "url": "https://wrm.wrm.no/wrm/db/regler/22__20092025205235_NMK%20-%20Tilleggsregler%20klubbl%C3%B8p%204.10.2025.pdf",
+      "objectId": "official-gps:59.56742,11.33205",
+      "supports": [
+        "venue GPS coordinate",
+        "Skofterudveien 12 event address"
+      ]
+    },
+    {
+      "provider": "Momarken Travbane",
+      "url": "https://www.momarken.no/administrasjon/kontakt-oss/momarken-travbane/",
+      "objectId": "address:Skofterudveien-12",
+      "supports": [
+        "shared venue address",
+        "current operational context"
+      ]
+    },
+    {
+      "provider": "Indre Østfold municipality",
+      "objectId": "parcel:156/15",
+      "supports": [
+        "market-place land-use area",
+        "approximately 23.5-decare parcel",
+        "separation between market area and racecourse relief use"
+      ]
+    },
+    {
+      "provider": "Store norske leksikon",
+      "url": "https://snl.no/Momarken",
+      "objectId": "snl:Momarken",
+      "supports": [
+        "older market documented from 1611",
+        "market closure in 1830",
+        "racecourse opening in 1920",
+        "modern Momarkedet from 1950 to 2012",
+        "motor track from 1982"
+      ]
+    },
+    {
+      "provider": "Østfoldmuseene",
+      "url": "https://ostfoldmuseene.no/moss/smaalens-75-ar--markedet-som-samlet-ostfold",
+      "objectId": "ostfoldmuseene:Momarken-1611-1830",
+      "supports": [
+        "independent older-market chronology",
+        "1611 documentation",
+        "1830 closure"
+      ]
+    },
+    {
+      "provider": "Momarkedet",
+      "url": "https://momarkedet.no/",
+      "objectId": "momarkedet:1950-2012",
+      "supports": [
+        "modern festival beginning in 1950",
+        "annual operation through 2012",
+        "Røde Kors fundraising purpose"
+      ]
+    },
+    {
+      "provider": "OpenStreetMap and Wikidata",
+      "objectId": "osm-way:35952118;wikidata:Q15410067",
+      "supports": [
+        "separate racecourse identity",
+        "racecourse representative point 59.56956, 11.33350"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "1611",
+      "event": "Momarken is documented as an older market.",
+      "certainty": "documented, exact footprint unresolved"
+    },
+    {
+      "date": "1820",
+      "event": "The broader Momarken area was used as a military drill ground under an agreement.",
+      "certainty": "documented broader land-use layer"
+    },
+    {
+      "date": "1830",
+      "event": "The older market was closed.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1920",
+      "event": "Momarken Travbane opened as a separate sports facility.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1950",
+      "event": "The modern Momarkedet was held for the first time.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1950-2012",
+      "event": "Momarkedet operated as a recurring festival and fundraising event.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1982",
+      "event": "The separate motor-sport track entered use.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "Year 1950 belongs to the modern Momarkedet, not the first older market.",
+    "The exact footprint of the market documented from 1611 is not asserted as identical to the modern event-site point.",
+    "The racecourse oval, motor track and Travmuseum are separate facilities.",
+    "The canonical point represents the modern market and event site, not every use of the wider Momarken area.",
+    "Access follows current races, events, rigging, animal areas and safety restrictions."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "59.56742, 11.33205",
+    "coordStatus": "verified_historical_source",
+    "nextManifestEntry": "homlungen_fyr"
+  }
+}
