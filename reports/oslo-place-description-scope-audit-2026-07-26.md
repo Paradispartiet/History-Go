@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **160**
-- Additional active Oslo IDs outside the protocol: **352**
+- IDs in the current revision protocol: **170**
+- Additional active Oslo IDs outside the protocol: **342**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **352**
+- Additional IDs needing revision: **342**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -19,11 +19,11 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | kunst | 40 |
 | subkultur | 38 |
 | sport | 29 |
-| historie | 27 |
 | scenekunst | 24 |
 | litteratur | 21 |
 | vitenskap | 21 |
 | politikk | 18 |
+| historie | 17 |
 | media | 7 |
 | musikk | 5 |
 | psykologi | 1 |
@@ -32,16 +32,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| historie | Brannmuseet i Oslo | `brannmuseet_oslo` | 28 | 111 | 2 | `data/places/historie/oslo/places_historie/brannmuseet_oslo.json` | needs revision |
-| historie | Bygdø Kongsgård | `bygdoy_kongsgard` | 20 | 143 | 3 | `data/places/historie/oslo/places_historie/bygdoy_kongsgard.json` | needs revision |
-| historie | Central Jam-e-Mosque | `central_jam_e_mosque` | 28 | 175 | 3 | `data/places/historie/oslo/places_historie/central_jam_e_mosque.json` | needs revision |
-| historie | Christian Radich | `christian_radich` | 22 | 176 | 3 | `data/places/historie/oslo/places_historie/christian_radich.json` | needs revision |
-| historie | Clemenskirkeruinen | `clemenskirken_ruin_oslo` | 25 | 173 | 3 | `data/places/historie/oslo/places_historie/clemenskirken_ruin_oslo.json` | needs revision |
-| historie | Helleristningene på Ekeberg | `ekeberg_helleristninger` | 16 | 116 | 2 | `data/places/historie/oslo/places_historie/ekeberg_helleristninger.json` | needs revision |
-| historie | Ekebergparken Museum | `ekebergparken_museum` | 28 | 129 | 3 | `data/places/historie/oslo/places_historie/ekebergparken_museum.json` | needs revision |
-| historie | Frogner hovedgård | `frogner_hovedgard` | 27 | 111 | 2 | `data/places/historie/oslo/places_historie/frogner_hovedgard.json` | needs revision |
-| historie | Gamlebyen kirke | `gamlebyen_kirke` | 32 | 124 | 3 | `data/places/historie/oslo/places_historie/gamlebyen_kirke.json` | needs revision |
-| historie | Heggholmen | `heggholmen` | 23 | 59 | 1 | `data/places/historie/oslo/places_historie/heggholmen.json` | needs revision |
 | historie | Historisk museum | `historisk_museum` | 19 | 87 | 2 | `data/places/historie/oslo/places_historie/historisk_museum.json` | needs revision |
 | historie | Skimuseet i Holmenkollen | `holmenkollen_skimuseum` | 24 | 154 | 3 | `data/places/historie/oslo/places_historie/holmenkollen_skimuseum.json` | needs revision |
 | historie | Jødisk Museum i Oslo | `jodisk_museum_oslo` | 36 | 134 | 2 | `data/places/historie/oslo/places_historie/jodisk_museum_oslo.json` | needs revision |
