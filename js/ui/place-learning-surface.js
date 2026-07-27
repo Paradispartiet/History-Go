@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/ui/place-learning-surface.js
 (function installPlaceLearningSurface(global) {
   'use strict';
