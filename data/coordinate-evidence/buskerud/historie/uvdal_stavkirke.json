@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "uvdal_stavkirke",
+  "placeFile": "data/places/historie/buskerud/places_historie_buskerud_batch1/uvdal_stavkirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_stave_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 60.26514,
+    "lon": 8.83478,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 220941602; Wikidata Q1398030; Fortidsminneforeningen; Nore og Uvdal bygdetun; Lokalhistoriewiki",
+    "coordType": "building_representative_point",
+    "coordRole": "medieval_stave_church_building_anchor",
+    "sourceObjectId": "osm-way:220941602;wikidata:Q1398030"
+  },
+  "previousCoordinate": {
+    "lat": 60.2677,
+    "lon": 8.5986,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 13028.2,
+    "reasonReplaced": "Legacy-punktet lå omtrent 13,03 kilometer vest for Uvdal stavkirke."
+  },
+  "identity": {
+    "resolvedIdentity": "Uvdal stavkirke, den fredede middelalderkirken ved Kirkebygda 111, omgitt av Nore og Uvdal bygdetun.",
+    "identityStatus": "resolved",
+    "identityProblem": "Stavkirken forveksles både med Uvdal kirke fra 1893 og med bygdetunet. Canonical-beskrivelsen hevder dessuten feilaktig at kirken ble flyttet inn i bygdetunet.",
+    "locatorTypeCandidate": "medieval_stave_church_building",
+    "requiresSplit": false,
+    "splitReason": "Stavkirken er ett bygg. Bygdetun, kirkegård, nyere kirke og billettmottak er separate komponenter."
+  },
+  "requiredEvidence": [
+    "named stave-church building geometry",
+    "independent entity and coordinate",
+    "official address and ownership",
+    "1168 dendrochronology",
+    "original-site versus open-air-museum distinction",
+    "newer Uvdal church separation",
+    "seasonal access and current use"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 220941602 – Uvdal stavkirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/220941602",
+      "sourceObjectId": "osm-way:220941602",
+      "sourceQuality": "named_stave_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 60.26514, 8.83478.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for stavkirkebygget."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Uvdal Stave Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q1398030",
+      "sourceObjectId": "wikidata:Q1398030",
+      "sourceQuality": "independent_church_entity_coordinate_control",
+      "finding": "Q1398030 identifiserer Uvdal stavkirke ved samme punkt og kobler den til bygnings- og kulturminneidentiteten.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Fortidsminneforeningen – Uvdal stavkirke",
+      "sourceUrl": "https://fortidsminneforeningen.no/museum/uvdal-stavkirke/",
+      "sourceObjectId": "fortidsminneforeningen:uvdal-stavkirke",
+      "sourceQuality": "official_owner_address_chronology_and_access_control",
+      "finding": "Eieren oppgir Kirkebygda 111 og koordinat 60.265536, 8.8348002, tømmerdatert 1168, eierskap siden 1901 og sesong 1. juni–31. august 2026.",
+      "canVerifyCoordinate": true,
+      "reason": "Autoritativ nærkontroll av identitet, adresse og adgang."
+    },
+    {
+      "sourceProvider": "municipal_museum",
+      "sourceName": "Nore og Uvdal bygdetun – bygdetun og stavkirke",
+      "sourceUrl": "https://uvdal.no/nore-og-uvdal-bygdetun-og-uvdal-stavkirke/",
+      "sourceObjectId": "uvdal-bygdetun:stavkirke",
+      "sourceQuality": "official_site_relationship_and_current_visit_control",
+      "finding": "Bygdetunet er oppført på den gamle prestegårdens grunn nær stavkirken og samarbeider med Fortidsminneforeningen om besøket. Dette støtter at kirken ikke er en tilflyttet bygdetunbygning.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer forholdet mellom kirke, prestegårdsgrunn og bygdetun."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Uvdal stavkirke",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Uvdal_stavkirke",
+      "sourceObjectId": "lokalhistoriewiki:Uvdal_stavkirke",
+      "sourceQuality": "building_history_and_newer_church_separation",
+      "finding": "Stavkirken står i Kirkebygda og var soknekirke til 1893; nyere Uvdal kirke i dalbunnen overtok og blir ofte forvekslet med stavkirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter stedsidentitet og avgrensning."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Nore kirkelige fellesråd – Uvdal stavkirke",
+      "sourceUrl": "https://www.nore.kirken.no/Artikler/Artikkeldetaljer/ArticleId/86/Uvdal-stavkirke",
+      "sourceObjectId": "kirken:uvdal-stavkirke",
+      "sourceQuality": "official_current_worship_and_period_control",
+      "finding": "Kirken er sannsynligvis fra slutten av 1100-tallet, eies av Fortidsminneforeningen og brukes til gudstjenester om sommeren.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer nåværende kirkelig bruk."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Uvdal stave church point",
+      "sourceObjectId": "legacy:uvdal_stavkirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 13028,2 meter vest for kirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist som feil sted."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:220941602",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "fortidsminneforeningen",
+      "sourceObjectId": "official-coordinate:60.265536,8.8348002",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarer med kirkestedet, men OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:uvdal_stavkirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger rundt 13 kilometer vest for kirken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "uvdal_stave_church",
+      "name": "Uvdal stavkirke",
+      "lat": 60.26514,
+      "lon": 8.83478,
+      "r": 95,
+      "type": "medieval_stave_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:220941602;wikidata:Q1398030",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:uvdal_stavkirke",
+      "lat": 60.2677,
+      "lon": 8.5986,
+      "distanceFromAppliedM": 13028.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:220941602",
+      "lat": 60.26514,
+      "lon": 8.83478,
+      "distanceFromPreviousM": 13028.2,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/buskerud-coordinate-uvdal-stavkirke-source-probe/source-summary.json",
+      "description": "Kildekontroll for bygningsgeometri, 1168-datering, bygdetunforhold, nyere kirke, interiør, arkeologi og tilgang."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den navngitte stavkirkebygningen som canonical, endret år til dendroankeret 1168 og skilte bygdetun, kirkegård, nyere kirke og besøksmottak. Fortsett med rollag_stavkirke."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 13,03 kilometer øst.",
+    "Kirken står ved sitt historiske kirkested og ble ikke flyttet inn i bygdetunet.",
+    "Den feilaktige flyttepåstanden i desc/popupDesc kan bare korrigeres i en separat place-description 4.2-produksjon.",
+    "Uvdal kirke fra 1893 er et separat bygg i dalbunnen.",
+    "Radiusen er ikke en kirke-, bygdetun-, kirkegårds-, museums-, eiendoms-, verne- eller tilgangsgrense."
+  ]
+}
