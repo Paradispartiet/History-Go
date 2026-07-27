@@ -1,0 +1,100 @@
+{
+  "placeId": "hvaler_kirke",
+  "researchedAt": "2026-07-27",
+  "coordinateDecision": "named_medieval_island_church_building_polygon_representative_point",
+  "legacyCoordinate": {
+    "lat": 59.0375,
+    "lon": 11.0319,
+    "distanceToAppliedM": 644.3
+  },
+  "appliedCoordinate": {
+    "lat": 59.03267,
+    "lon": 11.02568,
+    "radiusM": 240,
+    "sourceObjectId": "osm-way:543076065"
+  },
+  "sources": [
+    {
+      "provider": "openstreetmap",
+      "name": "Hvaler kirke",
+      "url": "https://www.openstreetmap.org/way/543076065",
+      "objectId": "osm-way:543076065",
+      "finding": "Named church-building polygon on Kirkøy linked to Wikidata Q6493554."
+    },
+    {
+      "provider": "wikidata",
+      "name": "Hvaler Church Q6493554",
+      "url": "https://www.wikidata.org/wiki/Q6493554",
+      "finding": "Church entity linked to OSM way 543076065, Kulturminne ID 84680, SSR 790650 and Church of Norway building ID 444; entity coordinate is approximately 4.8 m from the applied point."
+    },
+    {
+      "provider": "den_norske_kirke",
+      "name": "Hvaler menighet – building list",
+      "url": "https://www.kirken.no/nn-NO/fellesrad/hvaler-menighet/om-menigheten/kontakt-oss/",
+      "finding": "Official building list gives the visitor address Svanekilveien 11, 1680 Skjærhalden."
+    },
+    {
+      "provider": "norges_kirker",
+      "name": "Hvaler kirke",
+      "url": "https://norgeskirker.no/wiki/Hvaler_kirke",
+      "finding": "Scholarly survey documents the Romanesque stone church, its position near Ørekroken, the churchyard, building phases and older settlement remains found beneath the church during the 1953–1955 restoration."
+    },
+    {
+      "provider": "wikimedia_commons",
+      "name": "Hvaler kirke category",
+      "url": "https://commons.wikimedia.org/wiki/Category:Hvaler_kirke",
+      "finding": "The category map coordinate 59.0326500, 11.0256167 is approximately 4.3 m from the applied building anchor and confirms the physical location."
+    },
+    {
+      "provider": "lokalhistoriewiki",
+      "name": "Hvaler kirke",
+      "url": "https://lokalhistoriewiki.no/wiki/Hvaler_kirke",
+      "finding": "The secondary historical source places construction in the first half of the twelfth century, supporting a cautious around-1100 or early-twelfth-century formulation."
+    }
+  ],
+  "chronologyNote": {
+    "finding": "Structured sources use inception 1100, while secondary historical sources generally place construction in the first half of the twelfth century. The previous categorical claim 'before 1100' was stronger than the retrieved evidence and has been replaced with a cautious around-1100 or early-twelfth-century formulation.",
+    "coordinateImpact": "none"
+  },
+  "crossChecks": [
+    {
+      "candidate": "wikidata:Q6493554",
+      "lat": 59.032694444444445,
+      "lon": 11.025611111111113,
+      "distanceToAppliedM": 4.8,
+      "role": "independent_church_entity_coordinate"
+    },
+    {
+      "candidate": "commons:hvaler-kirke-category",
+      "lat": 59.03265,
+      "lon": 11.025616666666668,
+      "distanceToAppliedM": 4.3,
+      "role": "independent_physical_church_cross_check"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "Hvaler municipality or Kirkøy locality point",
+      "reason": "Broader island or administrative identity rather than the church building."
+    },
+    {
+      "candidate": "Hvaler kirke bus stop",
+      "reason": "Access infrastructure approximately 140 m southwest, not the church."
+    },
+    {
+      "candidate": "churchyard or prestegård centroid",
+      "reason": "Associated context, but less precise than the named church-building polygon."
+    },
+    {
+      "candidate": "legacy coordinate",
+      "reason": "Approximately 644.3 m northeast of the identified church building and not tied to a source object."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the named medieval church building on Kirkøy.",
+    "The churchyard, prestegård, Ørekroken and wider maritime cultural landscape are associated context inside or beyond the gameplay radius.",
+    "The older settlement remains beneath the church do not by themselves date the present church building.",
+    "The 240 m radius is not a building, cemetery, archaeological-locality, legal protection or property boundary."
+  ],
+  "nextManifestEntry": "orje_sluser_haldenkanalen"
+}
