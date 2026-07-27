@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "orje_sluser_haldenkanalen",
+  "placeFile": "data/places/by/ostfold/orje_sluser_haldenkanalen/orje_sluser_haldenkanalen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_heritage_entity_anchor_for_three_chamber_lock_complex",
+  "currentCoordinate": {
+    "lat": 59.48147777777778,
+    "lon": 11.65078611111111,
+    "r": 420,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q12011862 – Ørje sluser; Kulturminne-ID 241336; Marker kommune; NVE",
+    "coordType": "heritage_entity_coordinate_for_three_chamber_lock_complex",
+    "coordRole": "lock_complex_anchor",
+    "sourceObjectId": "wikidata:Q12011862;riksantikvaren-kulturminne:241336",
+    "coordNote": "The canonical marker follows the three-chamber lock complex; the museum, bridge, power station and wider canal remain associated context."
+  },
+  "previousCoordinate": {
+    "lat": 59.4807,
+    "lon": 11.6607,
+    "r": 420,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 566.5,
+    "reasonReplaced": "The legacy point lay approximately 566.5 metres east of the documented Ørje lock-complex coordinate and had no identifiable source object."
+  },
+  "identity": {
+    "currentName": "Ørje sluser / Haldenkanalen",
+    "resolvedIdentity": "The three-chamber lock complex at Ørje, opened in 1860 as part of the Halden Canal, distinct from the adjacent canal museum, former Ørje Brug, swing bridge, power station and the full waterway.",
+    "identityStatus": "resolved",
+    "identityProblem": "The record combines one physical lock complex with the much longer Halden Canal and several adjacent technical and museum objects. The canonical coordinate must follow the locks without claiming the geometry of the entire canal environment.",
+    "locatorTypeCandidate": "lock_complex",
+    "requiresSplit": false,
+    "splitReason": "The three lock chambers form one coherent destination. The museum, bridge and power station remain separately identifiable neighbouring objects."
+  },
+  "requiredEvidence": [
+    "stable lock-complex entity coordinate",
+    "heritage identifier",
+    "official municipal identity and operation history",
+    "authoritative canal and timber-transport context",
+    "three-chamber technical confirmation",
+    "explicit separation from museum, bridge and power station",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceName": "Commons category – Ørje sluser",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:%C3%98rje_sluser",
+      "sourceObjectId": "wikidata:Q12011862;riksantikvaren-kulturminne:241336",
+      "sourceQuality": "heritage_entity_and_physical_lock_complex_coordinate",
+      "finding": "The category publishes 59°28′53.32″N, 11°39′02.83″E for Ørje sluser and links Wikidata Q12011862 and Kulturminne ID 241336.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named lock complex and its heritage identity."
+    },
+    {
+      "sourceProvider": "marker_kommune",
+      "sourceName": "Marker kommune – Ørje sluser",
+      "sourceUrl": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/arrangement-og-moteplasser/kulturminner-og-museer/orje-sluser",
+      "sourceObjectId": "marker-kommune:orje-sluser",
+      "sourceQuality": "official_identity_operation_and_location_context",
+      "finding": "The municipality identifies the hand-operated locks west of Ørje centre, opened in 1860, with an aggregate lift of approximately ten metres.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms identity, operation and physical role."
+    },
+    {
+      "sourceProvider": "marker_kommune",
+      "sourceName": "Marker kommune – Haldenkanalen",
+      "sourceUrl": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/friluftsliv-og-aktivitet/haldenkanalen",
+      "sourceObjectId": "marker-kommune:haldenkanalen",
+      "sourceQuality": "official_canal_construction_and_component_scope",
+      "finding": "The municipality documents canal construction from 1852 to 1860 and distinguishes the Ørje and Strømsfoss lock installations from the full waterway.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the larger system and prevents overclaiming from the Ørje point."
+    },
+    {
+      "sourceProvider": "nve",
+      "sourceName": "NVE – Haldenkanalen",
+      "sourceUrl": "https://www.nve.no/om-nve/nves-utvalgte-kulturminner/vassdragstekniske-anlegg/haldenkanalen/",
+      "sourceObjectId": "nve:haldenkanalen",
+      "sourceQuality": "authoritative_technical_and_transport_history",
+      "finding": "NVE documents the 1860 opening of Ørje locks, their role in timber transport and the continuation of floating until 1982.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the technical and economic interpretation."
+    },
+    {
+      "sourceProvider": "visit_norway",
+      "sourceName": "Visit Norway – Ørje sluser",
+      "sourceUrl": "https://www.visitnorway.no/listings/%C3%B8rje-sluser/213624/",
+      "sourceObjectId": "visit-norway:orje-sluser",
+      "sourceQuality": "current_three_chamber_operation_description",
+      "finding": "The destination description identifies three lock chambers and a normal passage time of approximately 30 minutes.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the chamber count and current operation."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Haldenvassdragets Kanalmuseum",
+      "sourceUrl": "https://ostfoldmuseene.no/kanalmuseet",
+      "sourceObjectId": "ostfoldmuseene:kanalmuseet",
+      "sourceQuality": "adjacent_museum_identity_and_interpretation_scope",
+      "finding": "The museum is located in the former Ørje Brug pulp mill beside the locks and interprets canal, floating and steamboat history.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms an important neighbouring component while distinguishing it from the lock-complex coordinate."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Ørje point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:orje_sluser_haldenkanalen",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 566.5 metres east of the lock complex.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the documented sluseanlegg."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q12011862;riksantikvaren-kulturminne:241336",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "museum_context",
+      "sourceObjectId": "haldenvassdragets-kanalmuseum-orje-brug",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adjacent museum and former industrial building rather than the locks."
+    },
+    {
+      "sourceProvider": "canal_infrastructure",
+      "sourceObjectId": "orje-swing-bridge",
+      "canApplyToPlace": false,
+      "rejectionReason": "Related but separate canal structure."
+    },
+    {
+      "sourceProvider": "energy_infrastructure",
+      "sourceObjectId": "orje-power-station",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate power-production site."
+    },
+    {
+      "sourceProvider": "locality",
+      "sourceObjectId": "orje-settlement",
+      "canApplyToPlace": false,
+      "rejectionReason": "Broader locality rather than the lock complex."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:241336",
+      "geometryType": "protected_lock_complex_geometry_not_captured",
+      "geometryRole": "legal_heritage_scope_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "canal_context",
+      "sourceObjectId": "halden-canal-full-waterway",
+      "geometryType": "linear_waterway_system_not_captured",
+      "geometryRole": "wider_transport_and_cultural_landscape_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "orje_three_chamber_lock_complex",
+      "name": "Ørje three-chamber lock complex",
+      "lat": 59.48147777777778,
+      "lon": 11.65078611111111,
+      "r": 140,
+      "type": "lock_complex_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q12011862;riksantikvaren-kulturminne:241336",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:orje_sluser_haldenkanalen",
+      "lat": 59.4807,
+      "lon": 11.6607,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 566.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q12011862;riksantikvaren-kulturminne:241336",
+      "lat": 59.48147777777778,
+      "lon": 11.65078611111111,
+      "coordRole": "lock_complex_anchor",
+      "distanceFromPreviousM": 566.5,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-orje-sluser-source-probe/source-summary.json",
+      "description": "Persisted heritage lock coordinate, official construction and operating context, neighbouring-object exclusions and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the documented Ørje three-chamber lock-complex anchor and retained the 420-metre gameplay radius. Continue with Askim gummivarefabrikk."
+  },
+  "notes": [
+    "The coordinate moves approximately 566.5 metres west.",
+    "The three-chamber lock complex is the applied canonical subject.",
+    "The museum, bridge, power station and full canal remain associated or wider context.",
+    "The radius is not a legal, property, canal, watercourse or complete cultural-environment boundary."
+  ]
+}
