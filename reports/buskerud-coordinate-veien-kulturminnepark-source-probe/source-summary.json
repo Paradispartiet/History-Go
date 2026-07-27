@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "veien_kulturminnepark",
+  "generatedAt": "2026-07-28",
+  "purpose": "Persist source findings used to verify Veien Kulturminnepark's coordinate, identity, archaeological chronology, component boundaries and access context.",
+  "legacyCoordinate": {
+    "lat": 60.1842,
+    "lon": 10.2504,
+    "assessment": "Unsupported point approximately 2026.7 metres north-east of the named heritage park."
+  },
+  "appliedCoordinate": {
+    "lat": 60.17016,
+    "lon": 10.22703,
+    "role": "archaeological_heritage_park_representative_anchor",
+    "sourceObjectId": "osm-node:3030030881",
+    "distanceFromLegacyM": 2026.7
+  },
+  "identityResolution": {
+    "canonicalEntity": "Veien Kulturminnepark",
+    "entityType": "archaeological heritage park with burial field, reconstructed longhouse and museum building",
+    "visitorAddress": "Ringveien 112, 3517 Hønefoss",
+    "osmNode": "3030030881",
+    "operator": "Stiftelsen Buskerudmuseene"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/node/3030030881",
+      "objectId": "osm-node:3030030881",
+      "supports": [
+        "named museum entity point",
+        "representative coordinate",
+        "operator identity"
+      ]
+    },
+    {
+      "provider": "Buskerudmuseene",
+      "url": "https://buskerudmuseene.no/veienkulturminnepark/kontaktinfo",
+      "objectId": "buskerudmuseene:veien-kulturminnepark",
+      "supports": [
+        "official institution identity",
+        "over one hundred visible burial mounds",
+        "reconstructed longhouse",
+        "museum building",
+        "Ringveien 112 visitor address"
+      ]
+    },
+    {
+      "provider": "Buskerudmuseene",
+      "url": "https://buskerudmuseene.no/veienkulturminnepark/besoksinformasjon",
+      "objectId": "buskerudmuseene:veien-besoksinformasjon",
+      "supports": [
+        "free outdoor burial-field access under normal conditions",
+        "prepared paths and information signs",
+        "group-contact request",
+        "grilling restriction",
+        "leash requirements"
+      ]
+    },
+    {
+      "provider": "Ringerike municipality",
+      "url": "https://www.ringerike.kommune.no/innhold/kultur-og-idrett/se-og-oppleve/",
+      "objectId": "ringerike-kommune:veien-kulturminnepark",
+      "supports": [
+        "large Iron Age burial field",
+        "flat graves and settlement traces",
+        "four excavated longhouse traces",
+        "one reconstructed longhouse"
+      ]
+    },
+    {
+      "provider": "Store norske leksikon",
+      "url": "https://snl.no/Veien_-_arkeologisk",
+      "objectId": "snl:Veien_-_arkeologisk",
+      "supports": [
+        "144 mounds recorded in 1847",
+        "main grave chronology from the beginning of the Common Era to about 400",
+        "later Viking-age finds",
+        "47-metre longhouse from the Early Roman Iron Age",
+        "Oluf Rygh excavations in 1870-1871"
+      ]
+    },
+    {
+      "provider": "Wikimedia Commons geotagged documentation",
+      "url": "https://commons.wikimedia.org/wiki/File:Langhus_Veien_Kulturminnepark_west_wall.JPG",
+      "objectId": "commons:Langhus_Veien_Kulturminnepark_west_wall.JPG",
+      "supports": [
+        "separate reconstructed-longhouse component",
+        "component coordinate approximately 60.17056, 10.22411"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "circa 0-200 CE",
+      "event": "Settlement traces include multiple longhouses, including a roughly 47-metre building from the Early Roman Iron Age.",
+      "certainty": "archaeologically documented range"
+    },
+    {
+      "date": "circa 0-400 CE",
+      "event": "The main burial-field and rich-grave phase developed, with some later finds also present.",
+      "certainty": "archaeologically documented range"
+    },
+    {
+      "date": "1847",
+      "event": "The burial field was recorded with 144 mounds.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1870-1871",
+      "event": "Oluf Rygh systematically investigated and documented many of the burial mounds.",
+      "certainty": "documented"
+    },
+    {
+      "date": "modern",
+      "event": "A longhouse was reconstructed as an interpretation building based on excavated local settlement traces.",
+      "certainty": "documented interpretation layer"
+    }
+  ],
+  "interpretationLimits": [
+    "The canonical coordinate represents the heritage park as a whole through its named museum point.",
+    "The point does not define the protected burial-field boundary.",
+    "The reconstructed longhouse is a modern interpretation building, not an original surviving Iron Age structure.",
+    "Year 200 is an approximate archaeological anchor, not a single construction, burial or institution date.",
+    "The museum building, burial field and longhouse are distinct components with different access conditions.",
+    "The existing desc and popupDesc remain unchanged under place-description governance."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "60.17016, 10.22703",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "norderhov_prestegard_1716"
+  }
+}

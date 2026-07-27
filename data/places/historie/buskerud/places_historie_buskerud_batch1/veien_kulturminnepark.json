@@ -1,14 +1,26 @@
 {
   "id": "veien_kulturminnepark",
   "name": "Veien Kulturminnepark",
-  "lat": 60.1842,
-  "lon": 10.2504,
+  "lat": 60.17016,
+  "lon": 10.22703,
   "r": 420,
+  "locatorType": "archaeological_heritage_park_complex",
+  "sourceProvider": "openstreetmap",
+  "sourceObjectId": "osm-node:3030030881",
+  "geocodeAccuracy": "named_museum_and_heritage_park_entity_point",
+  "coordRole": "archaeological_heritage_park_representative_anchor",
+  "coordType": "museum_park_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap node 3030030881; Buskerudmuseene Veien Kulturminnepark; Ringerike kommune; Store norske leksikon",
+  "coordSourceId": "osm-node:3030030881;institution:veien-kulturminnepark",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/3030030881",
+  "coordVerifiedAt": "2026-07-28",
   "category": "historie",
   "fylke": "buskerud",
   "kommune": "Ringerike",
   "year": 200,
-  "period": "Eldre jernalder og langhusmiljø",
+  "yearMeaning": "Omtrentlig kronologisk anker for den romertidsfasen som preger flere av de rike gravfunnene og bosetningssporene; ikke parkens etableringsår eller en eksakt datering av hele gravfeltet.",
+  "period": "Eldre jernalder, gravfelt og langhusmiljø",
   "tags": [
     "historie",
     "arkeologi",
@@ -18,12 +30,95 @@
   ],
   "desc": "Arkeologisk kulturminnepark ved Hønefoss med gravfelt fra eldre jernalder, gjenreist langhus og museum. Veien gjør Ringerikes førhistoriske makt- og bosetningslandskap fysisk lesbart.",
   "popupDesc": "Veien Kulturminnepark er et av Buskeruds viktigste arkeologiske steder. Gravfeltet rommer over hundre gravhauger fra eldre jernalder, og det gjenreiste langhuset gjør bosetning, sosial organisering, ritualer og håndverk konkret. Stedet bør brukes i History Go som inngang til Ringerikes oldtid: ikke bare gravene, men hele landskapet av gård, makt, dødsritual, jordbruk og arkeologisk metode.",
+  "accessContext": {
+    "siteType": "museum_with_protected_burial_field_and_reconstructed_longhouse",
+    "publicAccess": "Museumsbygningen følger annonserte åpningstider og billettregler. Gravfeltet har opparbeidede stier og kan normalt besøkes uten museumsbillett, men grupper, arrangementer og organisert bruk skal avklares med museet.",
+    "visitorAddress": "Ringveien 112, 3517 Hønefoss",
+    "limitations": [
+      "Ikke gå på gravhaugene, flytt stein eller forstyrr arkeologiske strukturer.",
+      "Grilling er ikke tillatt uten avtale med museet, og hunder skal følge gjeldende båndtvang.",
+      "Gameplay-radiusen er ikke en gravfelt-, park-, museums-, eiendoms-, verne-, utstillings- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "roman_iron_age_settlement",
+      "date": "circa_0_200_ce",
+      "status": "archaeologically_documented_layer",
+      "note": "Bosetningssporene omfatter flere langhus, blant annet et undersøkt hus på omtrent 47 meter fra eldre romertid."
+    },
+    {
+      "type": "iron_age_burial_field",
+      "date": "circa_0_400_ce_with_later_finds",
+      "status": "surviving_protected_landscape",
+      "note": "Gravplassen hadde 144 registrerte hauger i 1847; over hundre synlige hauger inngår i dagens kulturminnepark, og det finnes også yngre funn."
+    },
+    {
+      "type": "early_archaeological_investigations",
+      "date": "1870_1871",
+      "status": "documented_research_history",
+      "note": "Oluf Rygh undersøkte og dokumenterte et stort antall gravhauger og bidro til å etablere norsk jernalderarkeologi som fagfelt."
+    },
+    {
+      "type": "reconstructed_longhouse",
+      "date": "modern_interpretation_layer",
+      "status": "reconstruction_based_on_local_excavations",
+      "note": "Det rekonstruerte langhuset formidler bosetning og sosial organisering, men er ikke en bevart bygning fra jernalderen."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "veien_burial_field",
+      "name": "Veien gravfelt",
+      "relation": "protected_archaeological_landscape",
+      "canonical": false,
+      "note": "Gravfeltet er et større landskap med hauger, flatmarksgraver og stier; parkpunktet er ikke en avgrensning av feltet."
+    },
+    {
+      "id": "veien_reconstructed_longhouse",
+      "name": "Langhuset",
+      "relation": "reconstructed_interpretation_building",
+      "canonical": false,
+      "note": "Langhuset ligger omtrent 160 meter vest for museumspunktet og er en separat formidlingskomponent."
+    },
+    {
+      "id": "veien_museum_building",
+      "name": "Museumsbygningen",
+      "relation": "visitor_reception_and_exhibition_component",
+      "canonical": false,
+      "note": "Museumsbygningen rommer utstillinger, butikk og besøksfunksjoner, men representerer ikke alene hele kulturminneparken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "veien_heritage_park",
+      "name": "Veien Kulturminnepark",
+      "lat": 60.17016,
+      "lon": 10.22703,
+      "r": 180,
+      "type": "archaeological_heritage_park_representative_anchor",
+      "sourceProvider": "openstreetmap_buskerudmuseene",
+      "sourceObjectId": "osm-node:3030030881",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "veien_reconstructed_longhouse",
+      "name": "Langhuset",
+      "lat": 60.17056,
+      "lon": 10.22411,
+      "r": 90,
+      "type": "reconstructed_longhouse_component",
+      "sourceProvider": "geotagged_documentation",
+      "sourceObjectId": "commons:Langhus_Veien_Kulturminnepark_west_wall.JPG",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "arkeologisk_kulturminnepark",
     "subtype": "gravfelt_og_gjenreist_langhus",
     "signature_features": [
       "gravfelt fra eldre jernalder",
-      "over hundre gravhauger i kulturminneparken",
+      "over hundre synlige gravhauger i kulturminneparken",
       "gjenreist langhus som viser bosetning og sosial organisering"
     ],
     "primary_angles": [
@@ -40,7 +135,8 @@
     ],
     "avoid_angles": [
       "generisk_museum",
-      "bare_langhus_rekonstruksjon"
+      "bare_langhus_rekonstruksjon",
+      "omtale_rekonstruksjonen_som_originalbygning"
     ],
     "must_include": [
       "gravfeltet fra eldre jernalder",
@@ -50,6 +146,6 @@
       "norderhov_prestegard_1716",
       "kongsberg_solvverk"
     ],
-    "notes": "Skal spørres som arkeologisk hovedsted i Ringerike, ikke som vanlig friluftsmuseum."
+    "notes": "Skal spørres som arkeologisk hovedsted i Ringerike. Gravfelt, rekonstruert langhus og museum er ulike komponenter i samme kulturminnepark."
   }
 }
