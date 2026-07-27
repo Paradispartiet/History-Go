@@ -1,0 +1,270 @@
+name: One-time build Næringsliv pilot final
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - '.github/workflows/one-time-build-naeringsliv-pilot-final.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-final:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Reconstruct, validate and publish clean final branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          OLD_BRANCH='agent/naeringsliv-pilot-profesjonsmaterialisering'
+          FINAL_BRANCH='agent/naeringsliv-pilot-profesjonsmaterialisering-final'
+          FINAL_DIR='/tmp/history-go-naeringsliv-pilot-final'
+
+          git fetch origin main "$OLD_BRANCH"
+          rm -rf "$FINAL_DIR"
+          git worktree add --detach "$FINAL_DIR" origin/main
+          cd "$FINAL_DIR"
+          git switch -C "$FINAL_BRANCH"
+
+          for part in $(seq -w 0 8); do
+            git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
+          done > /tmp/naeringsliv-pilot.b64
+          base64 --decode /tmp/naeringsliv-pilot.b64 | gzip -dc > /tmp/materialize-naeringsliv-pilot.py
+          test "$(sha256sum /tmp/materialize-naeringsliv-pilot.py | cut -d' ' -f1)" = "ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441"
+
+          sed -i 's/config\["emners"\]/config["emner"]/g; s/EMNERS_FILE/EMNER_FILE/g; s/Økonomi og næringsliv professional depth/Økonomi og næringsliv professional module depth/g' /tmp/materialize-naeringsliv-pilot.py
+          python - <<'PY'
+          from pathlib import Path
+
+          materializer = Path('/tmp/materialize-naeringsliv-pilot.py')
+          text = materializer.read_text(encoding='utf-8')
+          replacements = [
+              ('phases = {3: "bridge", 4: "bridge", 5: "final"}', 'phases = {3: "middle", 4: "bridge", 5: "final"}'),
+              ('"method_id": item["method_id"],', '"method_id": claim.get("method_id", item["method_id"]),'),
+              (
+                  '    if item.get("calculation"):\n',
+                  '    for field in ("topic_hook_id", "thinker_id", "work"):\n'
+                  '        if field in claim:\n'
+                  '            question[field] = claim[field]\n'
+                  '    if item.get("calculation"):\n',
+              ),
+              (
+                  '    brief.setdefault("selected_curriculum", {})["module_ids"] = config["modules"]\n'
+                  '    brief["selected_curriculum"]["professional_depth_files"] = config["depth_files"]\n',
+                  '    brief["professional_materialization"] = {\n'
+                  '        "version": VERSION,\n'
+                  '        "module_ids": config["modules"],\n'
+                  '        "professional_depth_files": config["depth_files"],\n'
+                  '    }\n',
+              ),
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'Fant ikke materialiseringsblokk: {old[:80]}')
+              text = text.replace(old, new, 1)
+          materializer.write_text(text, encoding='utf-8')
+          PY
+          python -m py_compile /tmp/materialize-naeringsliv-pilot.py
+
+          npm ci
+          python /tmp/materialize-naeringsliv-pilot.py
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          targets = ('telegrafbygningen', 'oslo_posthus', 'havnelageret')
+          for target in targets:
+              path = Path(f'data/quiz/naeringsliv/{target}_sets_merged.json')
+              quiz = json.loads(path.read_text(encoding='utf-8'))
+              sets = sorted(quiz['sets'], key=lambda row: row['order'])
+              if len(sets) != 5 or any(len(row['questions']) != 7 for row in sets):
+                  raise SystemExit(f'{target}: forventet 5 x 7 spørsmål')
+
+              for question in sets[2]['questions']:
+                  question['question_type'] = 'context'
+              for index, question in enumerate(sets[3]['questions']):
+                  question['question_type'] = 'fact' if index < 5 else 'context'
+              for question in sets[4]['questions']:
+                  question['question_type'] = 'analysis'
+
+              production = quiz.setdefault('production_context', {})
+              production['method_start_phase'] = 'bridge'
+              production['theory_start_phase'] = 'final'
+              production['content_balance'] = {
+                  'fact': 19,
+                  'context': 9,
+                  'concept_theory': 7,
+              }
+
+              if target == 'havnelageret':
+                  theory_question = sets[4]['questions'][-1]
+                  theory_question.update({
+                      'topic_hook_id': 'arbeid_som_verdiskaping',
+                      'thinker_id': 'max_weber',
+                      'thinker_name': 'Max Weber',
+                      'theory_focus': 'rasjonalisering og organisering av vareflyt',
+                      'theory_ref': {
+                          'topic_hook_id': 'arbeid_som_verdiskaping',
+                          'why_it_helps': 'Webers perspektiv på rasjonalisering gjør det mulig å forstå hvordan lagerkapasitet, arbeidsdeling og vareflyt ble samlet og organisert i ett stort havneanlegg.',
+                      },
+                  })
+
+              path.write_text(json.dumps(quiz, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+              brief_path = Path(f'data/quiz/production_briefs/naeringsliv/{target}.json')
+              brief = json.loads(brief_path.read_text(encoding='utf-8'))
+              materialization = brief.setdefault('professional_materialization', {})
+              materialization['quiz_family_counts'] = {
+                  'fact': 19,
+                  'context': 9,
+                  'concept_theory': 7,
+              }
+              materialization['normal_opening_preserved'] = 14
+              brief_path.write_text(json.dumps(brief, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+          python - <<'PY'
+          from pathlib import Path
+          validator = Path('tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs')
+          text = validator.read_text(encoding='utf-8')
+          replacements = [
+              (
+                  '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
+              if (/krone|NOK|leie|kostnad|investering|driftsresultat|verdi/i.test(moneyText)) {
+                assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
+              }''',
+                  '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
+              const calculationKeys = Object.keys(q.calculation.inputs || {});
+              const monetaryCalculation = calculationKeys.some((key) => /_nok$/i.test(key))
+                || q.calculation.unit === "NOK"
+                || /krone|NOK/i.test(`${q.question} ${q.knowledge}`);
+              if (monetaryCalculation) {
+                assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
+              }''',
+              ),
+              ('  const context = readJson(target.production_context);\n', '  const context = readJson(target.production_context);\n  const quizContext = quiz.production_context || {};\n'),
+              (
+                  '  assert((brief.selected_curriculum?.module_ids || []).length >= 5, `${target.target_id}: brief lacks module selection`);\n',
+                  '  assert((brief.professional_materialization?.module_ids || []).length >= 5, `${target.target_id}: brief lacks professional module selection`);\n',
+              ),
+              (
+                  '  assert(context.professional_materialization?.version === manifest.materialization_version, `${target.target_id}: context lacks materialization`);\n'
+                  '  const contextModules = context.professional_materialization?.module_ids || [];\n',
+                  '  assert(quizContext.professional_materialization_version === manifest.materialization_version, `${target.target_id}: quiz context lacks materialization`);\n'
+                  '  const contextModules = quizContext.professional_module_ids || [];\n',
+              ),
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'Fant ikke validatorblokk: {old[:80]}')
+              text = text.replace(old, new, 1)
+          validator.write_text(text, encoding='utf-8')
+          PY
+
+          npm run places:index:build
+          npm run quiz:context -- --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          npm run quiz:context -- --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+          npm run quiz:context -- --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+
+          node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
+          npm run places:emner:check
+          npm run places:index:check
+          npm run audit:quiz-content
+
+          set +e
+          node scripts/audit-quiz-production-context.mjs > /tmp/quiz-production-context.json
+          context_status=$?
+          set -e
+          cat /tmp/quiz-production-context.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('/tmp/quiz-production-context.json').read_text(encoding='utf-8'))
+          failures = report.get('failures', [])
+          allowed = (
+              'data/quiz/production_context/by/deichman_bjorvika.json',
+              'kontekstarterfakt avviker fra deterministisk rebuild',
+          )
+          unexpected = [row for row in failures if (row.get('file'), row.get('reason')) != allowed]
+          if unexpected or len(failures) > 1:
+              raise SystemExit(f'Uventede produksjonskontekstfeil: {unexpected or failures}')
+          print('OK: produksjonskontekst uten nye avvik')
+          PY
+
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run audit:categories
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          git add \
+            data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json \
+            data/places/naeringsliv/oslo/places_naeringsliv.json \
+            data/places/places_index.json \
+            data/quiz/naeringsliv/telegrafbygningen_sets_merged.json \
+            data/quiz/naeringsliv/oslo_posthus_sets_merged.json \
+            data/quiz/naeringsliv/havnelageret_sets_merged.json \
+            data/quiz/production_briefs/naeringsliv/telegrafbygningen.json \
+            data/quiz/production_briefs/naeringsliv/oslo_posthus.json \
+            data/quiz/production_briefs/naeringsliv/havnelageret.json \
+            data/quiz/production_context/naeringsliv/telegrafbygningen.json \
+            data/quiz/production_context/naeringsliv/oslo_posthus.json \
+            data/quiz/production_context/naeringsliv/havnelageret.json \
+            data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json \
+            tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs \
+            scripts/audit-category-governance.mjs
+
+          python - <<'PY'
+          import subprocess
+          allowed = {
+              'data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv.json',
+              'data/places/places_index.json',
+              'data/quiz/naeringsliv/telegrafbygningen_sets_merged.json',
+              'data/quiz/naeringsliv/oslo_posthus_sets_merged.json',
+              'data/quiz/naeringsliv/havnelageret_sets_merged.json',
+              'data/quiz/production_briefs/naeringsliv/telegrafbygningen.json',
+              'data/quiz/production_briefs/naeringsliv/oslo_posthus.json',
+              'data/quiz/production_briefs/naeringsliv/havnelageret.json',
+              'data/quiz/production_context/naeringsliv/telegrafbygningen.json',
+              'data/quiz/production_context/naeringsliv/oslo_posthus.json',
+              'data/quiz/production_context/naeringsliv/havnelageret.json',
+              'data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json',
+              'tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs',
+              'scripts/audit-category-governance.mjs',
+          }
+          changed = set(subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines())
+          if not changed:
+              raise SystemExit('Ingen produksjonsendringer ble materialisert')
+          unexpected = changed - allowed
+          if unexpected:
+              raise SystemExit(f'Uventede filer i sluttcommit: {sorted(unexpected)}')
+          print(f'OK: ren sluttcommit med {len(changed)} filer')
+          PY
+
+          git commit -m 'Materialiser profesjonsdybde på tre næringslivssteder'
+          git push --force-with-lease origin HEAD:"$FINAL_BRANCH"
