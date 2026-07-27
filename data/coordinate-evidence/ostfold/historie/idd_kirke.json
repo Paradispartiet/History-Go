@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "idd_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch5/idd_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.08631,
+    "lon": 11.43481,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 344603830; Wikidata Q6493646; Kulturminne 84710; Norges Kirker; Halden cemetery authority",
+    "coordType": "church_building_representative_point",
+    "coordRole": "medieval_church_building_anchor",
+    "sourceObjectId": "osm-way:344603830;wikidata:Q6493646;kulturminne:84710"
+  },
+  "previousCoordinate": {
+    "lat": 59.0855,
+    "lon": 11.4381,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 208.4,
+    "reasonReplaced": "Legacy-punktet lå omtrent 208 meter sørøst for kirken og identifiserte ikke kirkebygningen."
+  },
+  "identity": {
+    "resolvedIdentity": "Idd church, the standing Romanesque medieval stone church on Iddesletta south-east of Halden.",
+    "identityStatus": "resolved",
+    "identityProblem": "The place combines a standing medieval church, churchyard, pilgrim route, medieval inventory and broader interpretations of pre-Christian landscape evidence. Canonical must identify the building without absorbing all nearby archaeological context.",
+    "locatorTypeCandidate": "medieval_church_building",
+    "requiresSplit": false,
+    "splitReason": "The church, churchyard and inventory are one church site. Hov place-name and rock carvings are wider landscape context, not a separate verified component of the church geometry."
+  },
+  "requiredEvidence": [
+    "named medieval church-building geometry",
+    "independent church entity",
+    "heritage identifier",
+    "official address and cemetery context",
+    "twelfth-century chronology",
+    "1904 earthquake and preservation history",
+    "medieval inventory support",
+    "careful pre-Christian landscape interpretation",
+    "ceremony and cemetery limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 344603830 – Idd kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/344603830",
+      "sourceObjectId": "osm-way:344603830",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "The named church-building geometry has representative point 59.08631, 11.43481.",
+      "canVerifyCoordinate": true,
+      "reason": "Direct geometry for the standing medieval church."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Idd kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6493646",
+      "sourceObjectId": "wikidata:Q6493646",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Q6493646 identifies Idd church at the same coordinate with Church of Norway building ID 270, Kulturminne ID 84710, address Iddeveien 107 and OSM way 344603830.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides a matching independent entity and identifier contract."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Idd kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Idd_kirke",
+      "sourceObjectId": "norges-kirker:idd-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Documents the medieval stone church on Iddesletta, the churchyard, the 1904 earthquake damage and later structural securing.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the building age, site and preservation history."
+    },
+    {
+      "sourceProvider": "gravplass_authority",
+      "sourceName": "Gravplassmyndigheten i Halden – Idd kirke",
+      "sourceUrl": "https://www.gravplass.no/nb-NO/Halden/seremonirom/idd%20kirke/",
+      "sourceObjectId": "halden-gravplass:idd-kirke",
+      "sourceQuality": "official_current_address_access_and_cemetery_status",
+      "finding": "Confirms Idd church as a twelfth-century stone church at Iddeveien 107 adjoining Idd cemetery and provides current accessibility information.",
+      "canVerifyCoordinate": false,
+      "reason": "Supplies the current address, use and access context."
+    },
+    {
+      "sourceProvider": "visit_halden",
+      "sourceName": "Visit Halden – Idd kirke",
+      "sourceUrl": "https://www.visitnorway.no/listings/idd-kirke/282311/",
+      "sourceObjectId": "visit-halden:idd-kirke",
+      "sourceQuality": "local_destination_and_inventory_summary",
+      "finding": "Documents the medieval font, two crucifixes, St Michael figure and seventeenth-century altar and pulpit layers.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the surviving inventory interpretation."
+    },
+    {
+      "sourceProvider": "pilegrimsleden",
+      "sourceName": "Pilegrimsleden – Idd kirke",
+      "sourceUrl": "https://www.pilegrimsleden.no/interessepunkter/idd-kirke",
+      "sourceObjectId": "pilegrimsleden:idd-kirke",
+      "sourceQuality": "pilgrim_and_landscape_interpretation",
+      "finding": "Places the church on Borgleden and links the broader landscape to the Hov place-name and nearby rock carvings.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as cautious landscape context, not proof of a specific pre-Christian sanctuary on the church plot."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Idd church point",
+      "sourceObjectId": "legacy:idd_kirke",
+      "sourceQuality": "incorrect_nearby_point",
+      "finding": "The legacy point lies approximately 208.4 metres south-east of the church building.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it has no church-object contract."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:344603830",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6493646",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Matching entity control; OSM provides direct building geometry."
+    },
+    {
+      "sourceProvider": "landscape_interpretation",
+      "sourceObjectId": "hov-and-rock-carving-context",
+      "canApplyToPlace": false,
+      "rejectionReason": "Broader interpretive landscape and not a single verified church-site geometry."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "idd_medieval_church",
+      "name": "Idd church",
+      "lat": 59.08631,
+      "lon": 11.43481,
+      "r": 95,
+      "type": "medieval_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:344603830;wikidata:Q6493646;kulturminne:84710",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "idd_churchyard_context",
+      "name": "Idd churchyard",
+      "lat": 59.08631,
+      "lon": 11.43481,
+      "r": 170,
+      "type": "churchyard_and_medieval_site_context",
+      "sourceProvider": "norges_kirker_and_gravplass_authority",
+      "sourceObjectId": "kulturminne:84710;address:Iddeveien 107",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "idd_prechristian_landscape_context",
+      "name": "Iddesletta pre-Christian landscape context",
+      "lat": 59.08631,
+      "lon": 11.43481,
+      "r": 260,
+      "type": "interpretive_prechristian_landscape_layer",
+      "sourceProvider": "pilegrimsleden",
+      "sourceObjectId": "pilegrimsleden:idd-kirke",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:idd_kirke",
+      "lat": 59.0855,
+      "lon": 11.4381,
+      "distanceFromAppliedM": 208.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:344603830;wikidata:Q6493646",
+      "lat": 59.08631,
+      "lon": 11.43481,
+      "distanceFromPreviousM": 208.4,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-idd-kirke-source-probe/source-summary.json",
+      "description": "Persisted medieval building geometry, church identity, heritage and address controls, earthquake history, inventory, pilgrim context and interpretation limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Idd medieval church geometry, retained 1150 as an explicitly approximate twelfth-century midpoint and limited pre-Christian claims to broader landscape interpretation. Continue with hobol_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 208 metres north-west.",
+    "The standing medieval church is the canonical object.",
+    "Year 1150 is approximate and not a documented exact construction year.",
+    "Hov and nearby rock carvings are landscape context, not proof of a temple on the church plot.",
+    "The radius is not a building, cemetery, heritage, property, stream, road, memorial, ceremony or access boundary."
+  ]
+}
