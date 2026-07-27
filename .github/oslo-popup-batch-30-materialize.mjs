@@ -27,14 +27,19 @@ const popupSupplements = {
   henrik_wergeland_statue: 'Monumentets plassering gjør ettertidens fortolkning synlig, men den historiske Wergeland må fortsatt undersøkes gjennom egne tekster, samtidige kilder og konfliktene han deltok i.'
 };
 const finalSupplement = 'Denne avgrensningen gjør det mulig å bruke stedet som kilde uten å blande dokumenterte hendelser, senere minnekultur, institusjonell bruk og tolkninger som krever egne belegg.';
+const descSupplements = {
+  eldorado_bokhandel: 'Bokhandeldriften kom langt senere enn kinobygningen.'
+};
 
 const rows = [];
 for (const item of items) {
   const before = JSON.parse(fs.readFileSync(item.path, 'utf8'));
+  let desc = item.desc;
   let popupDesc = item.popupDesc;
+  if (words(desc) < 40 && descSupplements[item.id]) desc += ` ${descSupplements[item.id]}`;
   if (words(popupDesc) < 300) popupDesc += ` ${popupSupplements[item.id]}`;
   if (words(popupDesc) < 300) popupDesc += ` ${finalSupplement}`;
-  const after = { ...before, desc: item.desc, popupDesc };
+  const after = { ...before, desc, popupDesc };
   if (JSON.stringify(withoutText(before)) !== JSON.stringify(withoutText(after))) {
     throw new Error(`Non-text parity: ${item.id}`);
   }
