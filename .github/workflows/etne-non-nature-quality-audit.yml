@@ -42,6 +42,18 @@ jobs:
               echo '== religion materializer =='
               node tools/materialize-etne-religion-rounds.mjs
               RELIGION_STATUS=$?
+              if [ "${RELIGION_STATUS}" -eq 0 ]; then
+                python3 <<'PY'
+          from pathlib import Path
+          p = Path('tests/etne-religion-round-content.test.js')
+          s = p.read_text(encoding='utf-8')
+          old = "assert(/2013/.test(stories.find(x=>x.place_id==='etne_kyrkje').story)&&!/middelalderkyrkje[^.]*er/.test(stories.find(x=>x.place_id==='etne_kyrkje').story));"
+          new = "assert(/2013/.test(stories.find(x=>x.place_id==='etne_kyrkje').story)&&/ikkje ei middelalderkyrkje/.test(stories.find(x=>x.place_id==='etne_kyrkje').story));"
+          if old not in s:
+              raise SystemExit('Etne religion test assertion anchor missing')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+              fi
             else
               RELIGION_STATUS=90
             fi
