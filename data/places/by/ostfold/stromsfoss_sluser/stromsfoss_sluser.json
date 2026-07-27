@@ -1,14 +1,26 @@
 {
   "id": "stromsfoss_sluser",
   "name": "Strømsfoss sluser",
-  "lat": 59.2977,
-  "lon": 11.6626,
+  "lat": 59.3005,
+  "lon": 11.6601,
   "r": 320,
+  "locatorType": "single_chamber_lock_complex",
+  "sourceProvider": "lokalhistoriewiki",
+  "sourceObjectId": "lokalhistoriewiki:stromsfoss-sluser",
+  "geocodeAccuracy": "named_lock_complex_historical_coordinate",
+  "coordRole": "single_chamber_lock_anchor",
+  "coordType": "lock_channel_representative_point",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Lokalhistoriewiki Strømsfoss sluser; NVE Haldenkanalen; Visit Norway Strømsfoss sluse; Haldenkanalen Regionalpark",
+  "coordSourceId": "lokalhistoriewiki:stromsfoss-sluser;nve:haldenkanalen",
+  "coordSourceUrl": "https://lokalhistoriewiki.no/wiki/Str%C3%B8msfoss_sluser",
+  "coordVerifiedAt": "2026-07-27",
   "category": "by",
   "fylke": "ostfold",
   "kommune": "Aremark",
   "year": 1860,
-  "period": "Haldenkanalen og lokalt industristed",
+  "yearMeaning": "Året slusen åpnet etter bygging i perioden 1857–1860.",
+  "period": "Énkammer-sluse, kanalsted og lokalt knutepunkt",
   "tags": [
     "historie",
     "kanal",
@@ -16,15 +28,106 @@
     "aremark",
     "lokalindustri"
   ],
-  "desc": "Mellom Aremarksjøen og Øymarksjøen vokste Strømsfoss frem rundt vannfallet og slusene fra 1857–1860. Kanalen, mølla, kraften, butikken og ferdselen skapte et lite sentrum der vannet både flyttet båter, drev arbeid og samlet lokalsamfunnet.",
-  "popupDesc": "Strømsfoss er ett av Haldenkanalens tre slusesteder og ble bygget i perioden 1857–1860, samtidig med Ørje sluser. Slusekanalen ble sprengt ut i fjellet sørøst for fossen for å føre trafikken mellom Aremarksjøen og Øymarksjøen. Men stedet utviklet seg til mer enn et teknisk passasjepunkt. Vannfallet ga grunnlag for mølle og kraft, mens slusen førte reisende, varer og arbeidere forbi. Handel og butikkvirksomhet vokste frem rundt den samme strømmen av mennesker og ressurser. Derfor kan Strømsfoss leses som et helt lite sentrum bygget av vannveien. Slusen organiserte bevegelsen, fossen leverte energi, og virksomhetene rundt ga hverdagsliv. Stedet viser hvordan kanalbygging kunne skape lokale knutepunkter langt fra de større byene.",
+  "desc": "Énkammer-sluse fra 1860 mellom Aremarksjøen og Øymarksjøen. Slusekanalen ble sprengt ut sørøst for fossen og ble kjernen i et lite transport- og arbeidssted.",
+  "popupDesc": "Strømsfoss sluse har ett kammer, to porter og omkring to meters løftehøyde. Anlegget ble bygget mellom 1857 og 1860 samtidig med Ørje sluser. Slusekanalen ble sprengt ut i fjellet omtrent 50 meter sørøst for elva og fossefallet, slik at fartøy kunne passere mellom Aremarksjøen og Øymarksjøen. Rundt kanalen vokste det fram et slusemiljø med slusemesterbolig, handel, brygger og overnatting, mens fossen og mølla tilhører et parallelt energi- og industrilag. Den manuelle nedbørstasjonen ved slusen ble opprettet i 1883 og er et eget vitenskapshistorisk objekt. Strømsfoss bru krysser elva nord for slusen og er heller ikke slusegeometri. Besøkende må følge skilting, slusebetjening og sikkerhetsregler nær porter, fortøyninger og vannkanter.",
+  "accessContext": {
+    "siteType": "operational_single_chamber_lock_and_visitor_environment",
+    "publicAccess": "Slusemiljøet kan oppleves fra lovlige besøksarealer, brygger og veier. Båtpassering og slusing følger kanalens tider, operatørregler og sesong.",
+    "limitations": [
+      "Ikke gå på sluseporter, tekniske installasjoner, fortøyningsutstyr eller avsperrede arealer.",
+      "Hold avstand til vannkanter og fartøy under slusing.",
+      "Respekter overnattingsgjester, privat bruk, butikkdrift og slusebetjening.",
+      "Gameplay-radiusen er ikke en sluse-, kanal-, brygge-, eiendoms-, sikkerhets-, verne- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "lock_construction",
+      "date": "1857_to_1860",
+      "status": "documented",
+      "note": "Slusekanalen og énkammeranlegget ble bygget samtidig med Ørje sluser."
+    },
+    {
+      "type": "lock_opening",
+      "date": "1860",
+      "status": "documented",
+      "note": "Strømsfoss sluse inngikk i den ferdige nordlige delen av Haldenkanalen."
+    },
+    {
+      "type": "manual_precipitation_station",
+      "date": "1883",
+      "status": "surviving_separate_component",
+      "note": "Den manuelle målestasjonen ved slusen representerer et eget langt måle- og klimahistorisk lag."
+    },
+    {
+      "type": "transport_and_service_hub",
+      "date": "late_19th_and_20th_centuries",
+      "status": "historical_environment",
+      "note": "Slusemesterbolig, brygger, handel og reisende gjorde Strømsfoss til et lokalt knutepunkt."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "stromsfoss_bridge",
+      "name": "Strømsfoss bru",
+      "relation": "separate_road_bridge_north_of_lock",
+      "canonical": false,
+      "sourceObjectId": "wikidata:Q131928102",
+      "note": "Brua fører fylkesvei 124 over Strømselva og er ikke del av slusekammeret."
+    },
+    {
+      "id": "stromsfoss_waterfall_and_mill",
+      "name": "Fossen og møllemiljøet",
+      "relation": "parallel_waterpower_and_industry_layer",
+      "canonical": false,
+      "note": "Fossen og mølla forklarer lokal energi og arbeid, men slusekanalen ligger omtrent 50 meter sørøst for det naturlige løpet."
+    },
+    {
+      "id": "stromsfoss_lockmaster_environment",
+      "name": "Slusemesterboligen og Fjøset",
+      "relation": "historic_operational_and_accommodation_environment",
+      "canonical": false,
+      "note": "Bebyggelsen er knyttet til slusedriften, men har egne bruks- og tilgangsforhold."
+    },
+    {
+      "id": "stromsfoss_weather_station",
+      "name": "Strømsfoss sluse målestasjon",
+      "relation": "separate_1883_precipitation_station",
+      "canonical": false,
+      "note": "Målestasjonen ligger ved slusen og er et selvstendig vitenskaps- og driftsobjekt."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "stromsfoss_single_chamber_lock",
+      "name": "Strømsfoss sluse",
+      "lat": 59.3005,
+      "lon": 11.6601,
+      "r": 105,
+      "type": "single_chamber_lock_anchor",
+      "sourceProvider": "lokalhistoriewiki_nve_visitnorway",
+      "sourceObjectId": "lokalhistoriewiki:stromsfoss-sluser",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "stromsfoss_bridge_context",
+      "name": "Strømsfoss bru",
+      "lat": 59.30152,
+      "lon": 11.65972,
+      "r": 80,
+      "type": "separate_road_bridge_context",
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q131928102",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "kanalsted",
-    "subtype": "sluse_og_lokalt_knutepunkt",
+    "subtype": "enkammer_sluse_og_lokalt_knutepunkt",
     "signature_features": [
-      "bygget i perioden 1857–1860",
-      "ligger mellom Aremarksjøen og Øymarksjøen",
-      "kobler sluse, mølle, kraft og småstedshistorie"
+      "ett slusekammer og to porter",
+      "to meters løftehøyde",
+      "slusekanal sprengt ut sørøst for fossen"
     ],
     "primary_angles": [
       "historie",
@@ -34,22 +137,24 @@
     ],
     "question_families": [
       "slusehistorie",
+      "enkammer_teknikk",
       "lokalt_knutepunkt",
-      "vannkraft",
-      "før_etter"
+      "sluse_vs_foss_og_bru"
     ],
     "avoid_angles": [
       "bare_pittoresk_sentrum",
-      "duplikat_av_orje"
+      "duplikat_av_orje",
+      "sammenblanding_med_landsbyen",
+      "sammenblanding_med_brua_eller_fossen"
     ],
     "must_include": [
-      "Strømsfoss som slusested i Haldenkanalen",
-      "koblingen mellom vannfall, kanal og lokalt sentrum"
+      "ett kammer, to porter og to meters løft",
+      "at slusekanalen ble sprengt ut ved siden av det naturlige elveløpet"
     ],
     "contrast_targets": [
       "orje_sluser_haldenkanalen",
       "brekke_sluser_haldenkanalen"
     ],
-    "notes": "Skal spørres som kanalsted og lokalt industriknutepunkt."
+    "notes": "Skal spørres som operativ énkammer-sluse og kanalsted. Bru, foss, mølle, målestasjon og slusebebyggelse er separate komponenter."
   }
 }
