@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "ad24b4485d6708871a721e69dfca83655d21d7b6146f83696005cde12e55139a",
+  "sourceFingerprint": "5bb3f27876602a16dce03b611d2e824a77ca4d1f2a7e7a316b37ff243bb36b74",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -10,51 +10,51 @@
     "sparse": 0
   },
   "summary": {
-    "totalPeople": 1368,
-    "complete": 26,
+    "totalPeople": 1367,
+    "complete": 30,
     "strong": 0,
-    "partial": 1013,
+    "partial": 1008,
     "sparse": 329,
     "brokenImages": 306,
-    "explicitFallbacks": 996,
+    "explicitFallbacks": 995,
     "implicitFallbacks": 23,
-    "averageScore": 41.8
+    "averageScore": 42
   },
   "fieldCoverage": {
     "identity": {
-      "count": 41,
-      "percent": 3
+      "count": 45,
+      "percent": 3.3
     },
     "popupDesc": {
-      "count": 35,
-      "percent": 2.6
+      "count": 39,
+      "percent": 2.9
     },
     "lifeData": {
-      "count": 26,
-      "percent": 1.9
+      "count": 30,
+      "percent": 2.2
     },
     "contributions": {
-      "count": 26,
-      "percent": 1.9
+      "count": 30,
+      "percent": 2.2
     },
     "education": {
-      "count": 26,
-      "percent": 1.9
+      "count": 30,
+      "percent": 2.2
     },
     "practiceProfile": {
-      "count": 1198,
+      "count": 1197,
       "percent": 87.6
     },
     "placeGrounding": {
-      "count": 1368,
+      "count": 1367,
       "percent": 100
     },
     "sources": {
-      "count": 278,
-      "percent": 20.3
+      "count": 282,
+      "percent": 20.6
     },
     "imageContract": {
-      "count": 1062,
+      "count": 1061,
       "percent": 77.6
     }
   },
@@ -80,18 +80,18 @@
     {
       "category": "litteratur",
       "total": 172,
-      "complete": 8,
+      "complete": 12,
       "strong": 0,
-      "partial": 135,
+      "partial": 131,
       "sparse": 29,
-      "averageScore": 43.7
+      "averageScore": 45.1
     },
     {
       "category": "musikk",
-      "total": 122,
+      "total": 121,
       "complete": 0,
       "strong": 0,
-      "partial": 99,
+      "partial": 98,
       "sparse": 23,
       "averageScore": 41.1
     },
@@ -280,18 +280,12 @@
     },
     {
       "placeId": "nationaltheatret",
-      "totalIncomplete": 109,
+      "totalIncomplete": 105,
       "sparse": 0,
-      "partial": 109,
+      "partial": 105,
       "strong": 0,
       "averageScore": 42.2,
       "people": [
-        {
-          "id": "alfred_maurstad",
-          "name": "Alfred Maurstad",
-          "score": 42,
-          "status": "partial"
-        },
         {
           "id": "anders_mordal",
           "name": "Anders Mordal",
@@ -355,6 +349,12 @@
         {
           "id": "bente_borsum",
           "name": "Bente Børsum",
+          "score": 42,
+          "status": "partial"
+        },
+        {
+          "id": "bjarte_hjelmeland",
+          "name": "Bjarte Hjelmeland",
           "score": 42,
           "status": "partial"
         }
@@ -444,18 +444,12 @@
     },
     {
       "placeId": "det_norske_teatret",
-      "totalIncomplete": 71,
+      "totalIncomplete": 70,
       "sparse": 0,
-      "partial": 71,
+      "partial": 70,
       "strong": 0,
       "averageScore": 42,
       "people": [
-        {
-          "id": "alfred_maurstad_det_norske_teatret",
-          "name": "Alfred Maurstad",
-          "score": 42,
-          "status": "partial"
-        },
         {
           "id": "amund_rydland",
           "name": "Amund Rydland",
@@ -519,6 +513,12 @@
         {
           "id": "charlotte_frogner",
           "name": "Charlotte Frogner",
+          "score": 42,
+          "status": "partial"
+        },
+        {
+          "id": "edvard_drablos",
+          "name": "Edvard Drabløs",
           "score": 42,
           "status": "partial"
         }
@@ -28620,88 +28620,6 @@
       ]
     },
     {
-      "id": "alfred_maurstad",
-      "name": "Alfred Maurstad",
-      "category": "litteratur",
-      "kindLabel": "",
-      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json",
-      "primaryPlace": "nationaltheatret",
-      "places": [
-        "nationaltheatret"
-      ],
-      "score": 42,
-      "priority": 84,
-      "status": "partial",
-      "paragraphCount": 1,
-      "popupLength": 284,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributions": false,
-        "education": false,
-        "practiceProfile": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true
-      },
-      "issues": [
-        "missing_role_label",
-        "single_paragraph_popup_desc",
-        "missing_birth_data",
-        "missing_contributions",
-        "missing_education_or_training",
-        "missing_sources"
-      ]
-    },
-    {
-      "id": "alfred_maurstad_det_norske_teatret",
-      "name": "Alfred Maurstad",
-      "category": "musikk",
-      "kindLabel": "",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/alfred_maurstad_det_norske_teatret.json",
-      "primaryPlace": "det_norske_teatret",
-      "places": [
-        "det_norske_teatret"
-      ],
-      "score": 42,
-      "priority": 84,
-      "status": "partial",
-      "paragraphCount": 1,
-      "popupLength": 331,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributions": false,
-        "education": false,
-        "practiceProfile": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true
-      },
-      "issues": [
-        "missing_role_label",
-        "single_paragraph_popup_desc",
-        "missing_birth_data",
-        "missing_contributions",
-        "missing_education_or_training",
-        "missing_sources"
-      ]
-    },
-    {
       "id": "alfred_nobel",
       "name": "Alfred Nobel",
       "category": "vitenskap",
@@ -34501,47 +34419,6 @@
       ]
     },
     {
-      "id": "gerd_grieg",
-      "name": "Gerd Grieg",
-      "category": "litteratur",
-      "kindLabel": "",
-      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/gerd_grieg.json",
-      "primaryPlace": "nationaltheatret",
-      "places": [
-        "nationaltheatret"
-      ],
-      "score": 42,
-      "priority": 84,
-      "status": "partial",
-      "paragraphCount": 1,
-      "popupLength": 265,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributions": false,
-        "education": false,
-        "practiceProfile": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true
-      },
-      "issues": [
-        "missing_role_label",
-        "single_paragraph_popup_desc",
-        "missing_birth_data",
-        "missing_contributions",
-        "missing_education_or_training",
-        "missing_sources"
-      ]
-    },
-    {
       "id": "gerda_ring",
       "name": "Gerda Ring",
       "category": "litteratur",
@@ -40033,47 +39910,6 @@
       "contributionCount": 0,
       "educationCount": 0,
       "practiceCount": 5,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributions": false,
-        "education": false,
-        "practiceProfile": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true
-      },
-      "issues": [
-        "missing_role_label",
-        "single_paragraph_popup_desc",
-        "missing_birth_data",
-        "missing_contributions",
-        "missing_education_or_training",
-        "missing_sources"
-      ]
-    },
-    {
-      "id": "lillebil_ibsen",
-      "name": "Lillebil Ibsen",
-      "category": "litteratur",
-      "kindLabel": "",
-      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/lillebil_ibsen.json",
-      "primaryPlace": "nationaltheatret",
-      "places": [
-        "nationaltheatret"
-      ],
-      "score": 42,
-      "priority": 84,
-      "status": "partial",
-      "paragraphCount": 1,
-      "popupLength": 315,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
       "sourceCount": 0,
       "imageState": "explicit_fallback",
       "imagePath": "",
@@ -47558,47 +47394,6 @@
       "status": "partial",
       "paragraphCount": 1,
       "popupLength": 285,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributions": false,
-        "education": false,
-        "practiceProfile": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true
-      },
-      "issues": [
-        "missing_role_label",
-        "single_paragraph_popup_desc",
-        "missing_birth_data",
-        "missing_contributions",
-        "missing_education_or_training",
-        "missing_sources"
-      ]
-    },
-    {
-      "id": "tore_segelcke",
-      "name": "Tore Segelcke",
-      "category": "litteratur",
-      "kindLabel": "",
-      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/tore_segelcke.json",
-      "primaryPlace": "nationaltheatret",
-      "places": [
-        "nationaltheatret"
-      ],
-      "score": 42,
-      "priority": 84,
-      "status": "partial",
-      "paragraphCount": 1,
-      "popupLength": 280,
       "contributionCount": 0,
       "educationCount": 0,
       "practiceCount": 7,
@@ -65292,6 +65087,41 @@
       "issues": []
     },
     {
+      "id": "alfred_maurstad",
+      "name": "Alfred Maurstad",
+      "category": "litteratur",
+      "kindLabel": "Skuespiller / regissør, teatersjef og hardingfelespiller",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json",
+      "primaryPlace": "nationaltheatret",
+      "places": [
+        "det_norske_teatret",
+        "nationaltheatret"
+      ],
+      "score": 100,
+      "priority": 0,
+      "status": "complete",
+      "paragraphCount": 3,
+      "popupLength": 1250,
+      "contributionCount": 8,
+      "educationCount": 3,
+      "practiceCount": 23,
+      "sourceCount": 7,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributions": true,
+        "education": true,
+        "practiceProfile": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true
+      },
+      "issues": []
+    },
+    {
       "id": "august_oddvar",
       "name": "August Oddvar",
       "category": "litteratur",
@@ -65375,6 +65205,40 @@
       "paragraphCount": 3,
       "popupLength": 914,
       "contributionCount": 8,
+      "educationCount": 3,
+      "practiceCount": 23,
+      "sourceCount": 7,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributions": true,
+        "education": true,
+        "practiceProfile": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true
+      },
+      "issues": []
+    },
+    {
+      "id": "gerd_grieg",
+      "name": "Gerd Grieg",
+      "category": "litteratur",
+      "kindLabel": "Skuespiller / instruktør og Ibsen-tolker",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/gerd_grieg.json",
+      "primaryPlace": "nationaltheatret",
+      "places": [
+        "nationaltheatret"
+      ],
+      "score": 100,
+      "priority": 0,
+      "status": "complete",
+      "paragraphCount": 3,
+      "popupLength": 1128,
+      "contributionCount": 7,
       "educationCount": 3,
       "practiceCount": 23,
       "sourceCount": 7,
@@ -65703,6 +65567,42 @@
       "issues": []
     },
     {
+      "id": "lillebil_ibsen",
+      "name": "Lillebil Ibsen",
+      "category": "litteratur",
+      "kindLabel": "Danser / skuespiller og komedienne",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/lillebil_ibsen.json",
+      "primaryPlace": "nationaltheatret",
+      "places": [
+        "centralteatret",
+        "nationaltheatret",
+        "oslo_nye_teater_hovedscenen"
+      ],
+      "score": 100,
+      "priority": 0,
+      "status": "complete",
+      "paragraphCount": 3,
+      "popupLength": 1154,
+      "contributionCount": 8,
+      "educationCount": 3,
+      "practiceCount": 23,
+      "sourceCount": 7,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributions": true,
+        "education": true,
+        "practiceProfile": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true
+      },
+      "issues": []
+    },
+    {
       "id": "miksa_roth",
       "name": "Miksa Róth",
       "category": "kunst",
@@ -65863,6 +65763,41 @@
       "sourceCount": 4,
       "imageState": "valid_image",
       "imagePath": "bilder/people/Sigrid_Undset.JPG",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributions": true,
+        "education": true,
+        "practiceProfile": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true
+      },
+      "issues": []
+    },
+    {
+      "id": "tore_segelcke",
+      "name": "Tore Segelcke",
+      "category": "litteratur",
+      "kindLabel": "Skuespiller / klassisk tragedienne",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/tore_segelcke.json",
+      "primaryPlace": "nationaltheatret",
+      "places": [
+        "det_norske_teatret",
+        "nationaltheatret"
+      ],
+      "score": 100,
+      "priority": 0,
+      "status": "complete",
+      "paragraphCount": 3,
+      "popupLength": 1171,
+      "contributionCount": 8,
+      "educationCount": 3,
+      "practiceCount": 24,
+      "sourceCount": 7,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
       "coverage": {
         "identity": true,
         "popupDesc": true,
