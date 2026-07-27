@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **10**
-- Andel med dokumentert evidensgrunnlag: **4.3 %**
+- Validerte pilotobjekter: **22**
+- Andel med dokumentert evidensgrunnlag: **9.6 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -25,6 +25,18 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Samtid, ettertid og historisk fortelling | 4 | 3 | 6 | 4 | evidence_ready |
 | Kildekritikk, opphav og formål | 3 | 3 | 3 | 3 | evidence_ready |
 | Materielle spor og sted som kilde | 4 | 4 | 8 | 4 | evidence_ready |
+| Kommunalt selvstyre, lokal forvaltning og politisk deltakelse: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
+| Nasjonal identitet og historiske fortellinger: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
+| Kongemakt, kirke og konflikt: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Okkupasjon og motstand: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
+| Jubileum, seremoni og historiebruk | 4 | 4 | 7 | 4 | evidence_ready |
+| Museum, samling og kanon | 5 | 5 | 8 | 5 | evidence_ready |
+| Kulturminneutvelgelse og verdi | 5 | 5 | 9 | 5 | evidence_ready |
+| Monument, symbol og makt | 4 | 4 | 6 | 4 | evidence_ready |
+| Folkedannelse og arbeideroffentlighet | 4 | 3 | 4 | 4 | evidence_ready |
+| Industriby, produksjon og arbeiderliv | 5 | 3 | 6 | 5 | evidence_ready |
+| Bevaring, ombruk og kulturmiljø | 5 | 5 | 9 | 5 | evidence_ready |
+| Sanering, riving og fortrengning | 4 | 3 | 6 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
