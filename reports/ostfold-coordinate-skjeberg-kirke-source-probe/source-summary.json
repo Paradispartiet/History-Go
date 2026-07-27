@@ -1,0 +1,90 @@
+{
+  "placeId": "skjeberg_kirke",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.2309,
+    "lon": 11.1901,
+    "r": 260
+  },
+  "appliedCoordinate": {
+    "lat": 59.22886,
+    "lon": 11.1903,
+    "r": 260,
+    "displacementM": 227.1
+  },
+  "identityDecision": "Use the named Skjeberg medieval church-building polygon as the primary anchor and retain the churchyard, parsonage and Oldtidsveien landscape as wider context.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:271994592",
+    "name": "Skjeberg kirke",
+    "tags": [
+      "amenity=place_of_worship",
+      "building=church",
+      "denomination=lutheran"
+    ],
+    "linkedIdentifiers": [
+      "wikidata:Q6495600",
+      "riksantikvaren-kulturminne:85456",
+      "church-of-norway-building:792"
+    ],
+    "lat": 59.22886,
+    "lon": 11.1903
+  },
+  "historicalScope": {
+    "source": "Store norske leksikon; Norges Kirker; Den norske kirke",
+    "finding": "The stone church dates to approximately 1100 and was later enlarged. The church-site ensemble includes the churchyard, special grave monuments, grave chapels, parsonage and residence wings. The broader Skjeberg and Oldtidsveien landscape contains distributed prehistoric sites that are not enclosed by the church radius.",
+    "yearDecision": {
+      "previous": 1180,
+      "applied": 1100,
+      "status": "approximate",
+      "reason": "Store norske leksikon describes the stone church as dating from approximately 1100."
+    }
+  },
+  "crossChecks": [
+    {
+      "provider": "wikidata",
+      "sourceObjectId": "wikidata:Q6495600",
+      "finding": "Links OSM way 271994592, Kulturminne ID 85456 and Church of Norway building ID 792; entity coordinate lies approximately 34.6 metres from the applied building point."
+    },
+    {
+      "provider": "church_of_norway",
+      "finding": "Confirms the address Prestegårdsbakken 30 and the combined church, grave-monument and parsonage environment."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:skjeberg_kirke",
+      "lat": 59.2309,
+      "lon": 11.1901,
+      "distanceFromAppliedM": 227.1,
+      "reason": "Nearby point north of the mapped church building without a source-object identity."
+    },
+    {
+      "sourceObjectId": "skjeberg-kirke-bus-stop",
+      "reason": "Access infrastructure approximately 170 metres north of the church."
+    },
+    {
+      "sourceObjectId": "skjeberg-prestegard",
+      "reason": "A separate property in the church-site ensemble."
+    },
+    {
+      "sourceObjectId": "skjeberg-churchyard-centroid",
+      "reason": "The church-building polygon is the more precise primary object."
+    },
+    {
+      "sourceObjectId": "oldtidsveien-route-or-landscape-centroid",
+      "reason": "The route and prehistoric sites form a distributed regional landscape rather than the church coordinate."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 260,
+    "covers": "The church, churchyard and immediate historical church-site environment for gameplay.",
+    "doesNotRepresent": [
+      "the church-building or churchyard geometry",
+      "a legal heritage-protection or property boundary",
+      "the full Oldtidsveien route",
+      "the distributed prehistoric landscape around Skjeberg"
+    ]
+  },
+  "nextManifestPlace": "indreroed_gard_fredrikstad"
+}
