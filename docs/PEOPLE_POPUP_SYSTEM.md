@@ -1,19 +1,20 @@
 # History GO — people-popup-system
 
-Status: **canonical**  
-Eier: `person_popup_presentation_contract`  
-Runtime: `js/ui/person-popup-v2.js`  
-Design: `css/person-popup-v2.css`  
-Canonical data: `data/people/manifest.json`  
-Readiness-audit: `tools/audit-people-popup-readiness.mts`  
-Faktisitetskontrakt: `docs/FACTUALITY_CONTRACT.md`  
+Status: **canonical**
+Eier: `person_popup_presentation_contract`
+Runtime: `js/ui/person-popup-v2.js`
+Design: `css/person-popup-v2.css`
+Canonical data: `data/people/manifest.json`
+Readiness-audit: `tools/audit-people-popup-readiness.mts`
+Faktisitetskontrakt: `docs/FACTUALITY_CONTRACT.md`
+Profilproduksjon: `docs/PEOPLE_PROFILE_CANONICAL.md`
 Sist kontrollert: **2026-07-27**
 
 Dette dokumentet definerer hvordan people-popupen skal presentere en canonical person, hvilke felt den kan lese, hvordan ulike persontyper skal fylles, og hvordan manglende informasjon skal håndteres uten tomme bokser eller oppdiktede data.
 
 ## 0. Faktisitetsgate
 
-Alle people-profiler følger [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md). Ingen dato, rolle, utdanning, produksjon, publikasjon, stedskobling, vurdering eller annen detalj skal fylles inn fordi den virker sannsynlig eller gjør profilen mer komplett.
+Alle people-profiler følger [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md). Produksjon, claims, feltsemantikk, review og ferdigstatus eies av [`PEOPLE_PROFILE_CANONICAL.md`](./PEOPLE_PROFILE_CANONICAL.md). Ingen dato, rolle, utdanning, produksjon, publikasjon, stedskobling, vurdering eller annen detalj skal fylles inn fordi den virker sannsynlig eller gjør profilen mer komplett.
 
 - En språkmodell er aldri en faktakilde.
 - Hver brukerrettet faktapåstand skal kunne spores til en inspectable kilde som faktisk støtter påstanden.
@@ -96,13 +97,7 @@ Regler:
 }
 ```
 
-`popupDesc` bør normalt ha tre avsnitt:
-
-1. liv, bakgrunn og utdanning;
-2. praksis, verk, roller eller historiske bidrag;
-3. konkret kobling til hovedstedet eller stedsklyngen.
-
-Biografien skal ikke være en løs leksikonkopi. Den skal forklare hvorfor personen er relevant i History GO og hvordan steder, verk og hendelser henger sammen.
+`popupDesc` skal være en selvstendig, faktabasert biografi. Avsnittstallet bestemmes av stoffets naturlige struktur; tre avsnitt er ikke et krav. Biografien skal formidle dokumenterte livsdata, handlinger, verk, institusjoner og stedstilknytninger uten å forklare hvorfor redaksjonen valgte personen eller hva spilleren skal lære.
 
 ### 3.3 Livsdata
 
@@ -150,7 +145,7 @@ Hvert bidrag bør ha:
 - `title`;
 - `year` eller `date` når relevant;
 - `material`, `role`, `place` eller `location` når relevant;
-- en kort `summary` som forklarer betydningen.
+- en kort `summary` som beskriver personens dokumenterte rolle, handling eller bidrag uten vurderende fyll.
 
 Popupen dedupliserer på tittel. Generiske titler som «Arbeid» eller «Bidrag» uten forklaring skal unngås.
 
@@ -226,8 +221,8 @@ Foretrukket form:
 
 Popupen kan også lese `sources` og `source_urls`, men nye komplette profiler bør bruke `externalLinks` med lesbar label.
 
-- minst to uavhengige, inspectable kilder er normal minimumsstandard;
-- fire eller flere kilder er anbefalt for komplette profiler;
+- det finnes ikke et fast kildeantall; én direkte, autoritativ kilde kan være sterkere enn flere irrelevante lenker;
+- kildedekningen skal vurderes claim for claim etter `PEOPLE_PROFILE_CANONICAL.md`;
 - kildene skal dekke både biografi og den konkrete stedskoblingen;
 - URL-er må bruke `http` eller `https`;
 - interne auditnotater og rapportstier skal ikke vises som brukerrettede kilder;
@@ -332,52 +327,42 @@ Prioriter virksomheter, roller, produkter, investeringer, organisasjoner, donasj
 
 ## 8. Readiness-modell
 
-`tools/audit-people-popup-readiness.mts` rangerer alle manifest-lastede canonical personer etter hvor mye av popupkontrakten de kan fylle.
+`tools/audit-people-popup-readiness.mts` måler bare om runtime kan presentere tilgjengelige canonical felt. Den eier ikke faktaverifikasjon, claims eller ferdigstatus.
 
-Auditen måler:
+Presentasjonsstatusene beholdes for kompatibilitet:
 
-- identitet og rolle;
-- hovedbiografi;
-- livsdata;
-- verk eller bidrag;
-- utdanning eller faglig bakgrunn;
-- fagprofil gjennom temaer, materialer eller arbeidsfelt;
-- stedlig forankring;
-- inspectable kilder;
-- bildekontrakt og ødelagte bildereferanser.
+- **complete**;
+- **strong**;
+- **partial**;
+- **sparse**.
 
-Statusene er:
+Poengsummen skal ikke øke med antall utdanningspunkter, verk, temaer, materialer eller kilder. Tom `education` er en gyldig sluttstatus. Tekstlengde alene er ikke kvalitetsbevis.
 
-- **complete** — 85–100 poeng;
-- **strong** — 65–84 poeng;
-- **partial** — 40–64 poeng;
-- **sparse** — 0–39 poeng.
+`complete` betyr ikke `source_verified`; presentasjonsdekning og faktaverifisering er separate statuser.
 
-Poengsummen er et produksjonsverktøy, ikke historisk kvalitetsdom. En person kan være viktig selv om profilen er `sparse`. Auditen avgjør heller ikke om personen er relevant for stedet; dette eies fortsatt av `people-of-places-method.md`.
-
-**Viktig:** `complete` betyr bare at profilen har høy feltdekning. Statusen betyr ikke `source_verified`, og skal aldri omtales som faktaverifisert uten en egen påstand-for-påstand-kontroll etter `FACTUALITY_CONTRACT.md`.
+Rapporten viser i tillegg produksjonsstatus fra `PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`. `ready_people_v1` krever separat claims-fil og bestått canonical validator.
 
 Rapportene skrives til:
 
-- `reports/people-popup-readiness.json` — alle profiler og maskinlesbar rangering;
-- `reports/people-popup-readiness.md` — sammendrag, kategorier, stedsklynger og prioritert arbeidsliste.
+- `reports/people-popup-readiness.json`;
+- `reports/people-popup-readiness.md`.
 
 ## 9. Produksjonskrav
 
-En ny komplett people-profil bør normalt ha:
+Alle nye eller reviderte profiler følger `docs/PEOPLE_PROFILE_CANONICAL.md`.
 
-- canonical `id`, `name`, `category`, `kindLabel`, `placeId` og `places`;
-- konkret `desc`;
-- `popupDesc` med normalt tre avsnitt;
-- dokumenterte livsdata når de finnes;
-- minst tre kuraterte verk eller bidrag, helst fem eller flere for sentrale personer;
-- utdanning eller faglig bakgrunn når relevant;
-- temaer og eventuelt materialer eller arbeidsformer;
-- minst to inspectable kilder, helst fire for sentrale profiler;
-- dokumentert påstand-for-påstand-kontroll av navn, datoer, roller, verk og alle stedskoblinger;
-- ingen felt som er fylt bare for å øke readiness-score eller oppnå et ønsket antall verk;
-- et godkjent bilde eller bevisst initialfallback;
-- en regresjonstest når profilen er pilot for en ny persontype eller et nytt datafelt.
+Popupkontrakten krever bare at runtime kan skjule manglende felt og presentere dokumenterte data uten tomme bokser. Den krever ikke et bestemt antall avsnitt, verk, utdanningspunkter, temaer, materialer eller kilder.
+
+En profil som er godkjent som `ready_people_v1` skal ha:
+
+- canonical personfil med `profileStandard`, `profileStatus` og `claimsFile`;
+- separat claims-fil med identitetsport, claims, feltmapping og setningsmapping;
+- bestått faktareview og redaksjonell review;
+- dokumenterte person–sted-koblinger;
+- godkjent bilde eller bevisst initialfallback;
+- bestått `audit:people-profile-canonical`.
+
+Profiler med utilstrekkelige kilder skal få en ærlig produksjonsstatus, ikke fylles for å se komplette ut.
 
 ## 10. QA
 
@@ -385,14 +370,15 @@ Ved endring av people-popupen, kontrakten eller readiness-auditen:
 
 1. kjør `node --check js/ui/person-popup-v2.js`;
 2. kjør `node --test tests/person-popup-v2.test.js`;
-3. kjør `node --test tests/people-popup-system-contract.test.mjs tests/factuality-contract.test.mjs`;
-4. kjør `npm run typecheck:tools`;
-5. kjør `npm run build:tools`;
-6. kjør `npm run audit:people-popup-readiness`;
-7. kjør `bash scripts/check-people.sh`;
-8. kjør `npm run build:web:check` når runtime eller CSS endres;
-9. kontroller minst én profil med bilde, én med initialfallback, én med mange bidrag og én profil uten quiz;
-10. kontroller mobil, smal iPad, bred iPad og desktop før designendringer regnes som ferdige.
+3. kjør `node --test tests/people-popup-system-contract.test.mjs tests/people-profile-canonical.test.mjs tests/factuality-contract.test.mjs`;
+4. kjør `npm run audit:people-profile-canonical`;
+5. kjør `npm run typecheck:tools`;
+6. kjør `npm run build:tools`;
+7. kjør `npm run audit:people-popup-readiness`;
+8. kjør `bash scripts/check-people.sh`;
+9. kjør `npm run build:web:check` når runtime eller CSS endres;
+10. kontroller minst én profil med bilde, én med initialfallback, én med mange bidrag og én profil uten quiz;
+11. kontroller mobil, smal iPad, bred iPad og desktop før designendringer regnes som ferdige.
 
 ## 11. Eierskap
 
@@ -400,9 +386,11 @@ Ved endring av people-popupen, kontrakten eller readiness-auditen:
 - `data/people/manifest.json` eier hvilke canonical filer runtime laster.
 - `js/ui/person-popup-v2.js` eier renderingen.
 - `css/person-popup-v2.css` eier presentasjonen.
-- `docs/PEOPLE_POPUP_SYSTEM.md` eier presentasjons- og feltkontrakten.
+- `docs/PEOPLE_POPUP_SYSTEM.md` eier runtime-presentasjon, handlinger, feltvisning og fallback.
+- `docs/PEOPLE_PROFILE_CANONICAL.md` eier profilproduksjon, claims, feltsemantikk, review og ferdigstatus.
 - `docs/FACTUALITY_CONTRACT.md` eier den overordnede regelen om sannhet, kildeverifikasjon, usikkerhet og forbud mot gjetting.
 - `docs/people-of-places-method.md` eier relevans- og kildegaten for person–sted-koblinger.
 - `docs/PEOPLE_IMAGES.md` eier bilde-, lisens- og identitetskontrakten.
-- `tools/audit-people-popup-readiness.mts` eier readiness-rangeringen.
+- `tools/audit-people-profile-canonical.mjs` eier v1 claim- og ferdigstatusvalidering.
+- `tools/audit-people-popup-readiness.mts` eier bare presentasjons-readiness.
 - `tools/audit-people-of-places-status.mts` og `tools/check-people-of-places-gate.mts` eier canonical struktur, stedreferanser og blokkerende people-feil.

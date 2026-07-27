@@ -14,6 +14,7 @@ test('canonical people popup documentation owns the active presentation contract
   assert.match(docs, /css\/person-popup-v2\.css/);
   assert.match(docs, /tools\/audit-people-popup-readiness\.mts/);
   assert.match(docs, /FACTUALITY_CONTRACT\.md/);
+  assert.match(docs, /PEOPLE_PROFILE_CANONICAL\.md/);
   assert.match(docs, /En språkmodell er aldri en faktakilde/i);
   assert.match(docs, /complete.*betyr ikke.*source_verified/is);
   assert.match(docs, /Quizknappen skal aldri være en fullbredde gul bannerknapp/);
@@ -40,11 +41,16 @@ test('runtime and CSS still implement the documented people popup surface', () =
 test('documentation registry and package scripts expose the people popup contract', () => {
   const registry = readJson('docs/documentation_registry.json');
   const packageJson = readJson('package.json');
+  assert.ok(registry.priority_order.includes('docs/PEOPLE_PROFILE_CANONICAL.md'));
   assert.ok(registry.priority_order.includes('docs/PEOPLE_POPUP_SYSTEM.md'));
   const entry = registry.documents.find((item) => item.path === 'docs/PEOPLE_POPUP_SYSTEM.md');
   assert.ok(entry);
   assert.equal(entry.status, 'canonical');
   assert.ok(entry.owns.includes('person_popup_presentation_contract'));
+  assert.equal(entry.owns.includes('person_popup_readiness_model'), false);
+  const productionEntry = registry.documents.find((item) => item.path === 'docs/PEOPLE_PROFILE_CANONICAL.md');
+  assert.ok(productionEntry);
+  assert.ok(productionEntry.owns.includes('person_profile_production_contract'));
   assert.equal(
     packageJson.scripts['audit:people-popup-readiness'],
     'npm run build:tools && node dist/tools/audit-people-popup-readiness.mjs',
@@ -58,8 +64,12 @@ test('documentation registry and package scripts expose the people popup contrac
 test('readiness reports are deterministic and internally consistent', () => {
   const report = readJson('reports/people-popup-readiness.json');
   const markdown = read('reports/people-popup-readiness.md');
-  assert.equal(report.schemaVersion, 1);
+  assert.equal(report.schemaVersion, 2);
   assert.equal(report.contract, 'docs/PEOPLE_POPUP_SYSTEM.md');
+  assert.equal(report.productionContract, 'docs/PEOPLE_PROFILE_CANONICAL.md');
+  assert.equal(report.policy.countBasedRewards, false);
+  assert.equal(report.policy.missingEducationIsError, false);
+  assert.equal(report.summary.readyPeopleV1 + report.summary.legacyUnreviewed, report.summary.totalPeople);
   assert.match(report.sourceFingerprint, /^[a-f0-9]{64}$/);
   assert.equal(report.people.length, report.summary.totalPeople);
   assert.equal(

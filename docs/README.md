@@ -50,7 +50,8 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 5. [`PROFILE_PROGRESS_READER_RUNTIME.md`](./PROFILE_PROGRESS_READER_RUNTIME.md) — implementert read-only helper for eksisterende progresjonskilder
 6. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
 7. [`PLACE_POPUP_SYSTEM.md`](./PLACE_POPUP_SYSTEM.md) — canonical presentasjons- og stedstypekontrakt for den rike stedspopupen
-8. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical presentasjons-, felt- og persontypekontrakt for den rike people-popupen
+8. [`PEOPLE_PROFILE_CANONICAL.md`](./PEOPLE_PROFILE_CANONICAL.md) — canonical claim-first produksjons-, review- og ferdigstatuskontrakt for People
+9. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical runtime-, presentasjons- og fallbackkontrakt for den rike people-popupen
 
 Compatibility-filer som bare videresender eldre lenker:
 
@@ -144,18 +145,22 @@ En story er aktiv først når filen er manifestregistrert og `npm run check:stor
 ### People-produksjon, stedskobling og bilder
 
 1. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — bindende regel om at ingen personopplysning eller stedskobling kan gjettes eller fylles for completeness
-2. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
-3. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical presentasjons-, felt-, fallback- og persontypekontrakt
-4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
-5. [`../tools/audit-people-popup-readiness.mts`](../tools/audit-people-popup-readiness.mts) — rangerer alle manifest-lastede profiler etter popup-readiness og skriver regenererbare rapporter
-6. [`../reports/people-popup-readiness.md`](../reports/people-popup-readiness.md) — prioritert arbeidsliste etter kategori og stedsklynge
-7. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
-8. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
-9. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
-10. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
-11. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+2. [`PEOPLE_PROFILE_CANONICAL.md`](./PEOPLE_PROFILE_CANONICAL.md) — canonical claim-first produksjon, feltsemantikk, review og versjonert ferdigstatus
+3. [`../data/people/regler/people_profile_templates_v1.json`](../data/people/regler/people_profile_templates_v1.json) — maskinlesbare People-produksjonsregler
+4. [`../data/people/regler/people_claims_schema_v1.json`](../data/people/regler/people_claims_schema_v1.json) — claims-format og statuskontrakt
+5. [`../tools/audit-people-profile-canonical.mjs`](../tools/audit-people-profile-canonical.mjs) — blokkerende claim-, felt-, setnings-, styrke- og ferskhetsvalidator
+6. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
+7. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical runtime-, presentasjons-, handling- og fallbackkontrakt
+8. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+9. [`../tools/audit-people-popup-readiness.mts`](../tools/audit-people-popup-readiness.mts) — presentasjons-readiness uten count-baserte fyldebelønninger
+10. [`../reports/people-popup-readiness.md`](../reports/people-popup-readiness.md) — prioritert arbeidsliste med separat produksjonsstatus
+11. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+12. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+13. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+14. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+15. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
 
-Faktisitetskontrakten står over alle lokale people-regler. Readiness, schema og grønne tester er ikke sannhetsbevis; hver brukerrettet påstand og person–sted-kobling må støttes av kilder som faktisk er lest. People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
+Faktisitetskontrakten står over alle lokale people-regler. People Profile Canonical eier claims, felt- og setningsparitet, review og ferdigstatus. Readiness, schema og grønne tester er ikke sannhetsbevis; hver brukerrettet påstand og person–sted-kobling må støttes av kilder som faktisk er lest. People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 
 ### Naturmapping
 
