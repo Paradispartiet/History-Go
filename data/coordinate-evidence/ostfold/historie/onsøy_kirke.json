@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "onsøy_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch3/onsøy_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_listed_1877_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.25629,
+    "lon": 10.85077,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 246639578 – Onsøy kirke; Wikidata Q6494084; Kulturminne ID 85220; Den norske kirke; Store norske leksikon; Norges Kirker",
+    "coordType": "named_listed_church_building_polygon_representative_point",
+    "coordRole": "listed_1877_church_building_anchor",
+    "sourceObjectId": "osm-way:246639578;wikidata:Q6494084;riksantikvaren-kulturminne:85220;church-of-norway-building:275"
+  },
+  "previousCoordinate": {
+    "lat": 59.2194,
+    "lon": 10.8159,
+    "r": 240,
+    "distanceToAppliedCoordinateM": 4556.2,
+    "reasonReplaced": "The legacy point lay approximately 4.56 kilometres southwest of the mapped church building and had no source-object contract."
+  },
+  "identity": {
+    "resolvedIdentity": "The listed 1877 Onsøy church at Kolbergveien 7, built on the site of a demolished medieval stone church formerly also known as Kolberg church.",
+    "identityStatus": "resolved",
+    "identityProblem": "The record described the standing building as a medieval church. The present church is a nineteenth-century building on a medieval church site, so physical identity and historical continuity must be separated.",
+    "locatorTypeCandidate": "church",
+    "requiresSplit": false,
+    "splitReason": "The present church and the earlier medieval church occupied the same church site. One record can preserve both layers when it clearly identifies the standing 1877 building as the coordinate anchor."
+  },
+  "requiredEvidence": [
+    "named current church-building geometry",
+    "current address and Church of Norway identity",
+    "construction date and architect",
+    "documentation that the medieval church was demolished and replaced on the same site",
+    "heritage and registry cross-checks",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 246639578 – Onsøy kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/246639578",
+      "sourceObjectId": "osm-way:246639578",
+      "sourceQuality": "named_church_building_geometry",
+      "finding": "The mapped Lutheran church-building polygon has representative point 59.25629, 10.85077 and is linked to Wikidata Q6494084.",
+      "canVerifyCoordinate": true,
+      "reason": "It directly represents the standing church building."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q6494084 – Onsøy Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6494084",
+      "sourceObjectId": "wikidata:Q6494084",
+      "sourceQuality": "church_entity_date_and_registry_cross_check",
+      "finding": "The entity identifies the 1877 church, Church of Norway building ID 275 and a coordinate approximately 10.8 metres from the applied OSM building point.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that the current registered church and the mapped building are the same entity."
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceName": "Wikimedia Commons – Category:Onsøy kirke",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Ons%C3%B8y_kirke",
+      "sourceObjectId": "riksantikvaren-kulturminne:85220",
+      "sourceQuality": "heritage_identifier_cross_check",
+      "finding": "The Commons category links the church identity to Kulturminne ID 85220 and Wikidata Q6494084.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides the heritage identity cross-check without replacing the direct building geometry."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Den norske kirke – Onsøy kirkegård, kapell og kirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/fredrikstad/om-oss3/gravplasser-og-gravkapeller-i-fredrikstad/onsoy-kirkegard-kapell-og-kirke/",
+      "sourceObjectId": "church-of-norway-building:275",
+      "sourceQuality": "official_current_address_and_site_identity",
+      "finding": "The official church page identifies Onsøy church, cemetery and chapel at Kolbergveien 7, 1621 Gressvik.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current church-site identity and address."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Onsøy kirke",
+      "sourceUrl": "https://snl.no/Ons%C3%B8y_kirke",
+      "sourceObjectId": "snl:onsoy-kirke",
+      "sourceQuality": "authoritative_current_building_and_architectural_history",
+      "finding": "SNL documents a masonry church designed by Henrik Thrap-Meyer and completed in 1877, with listed heritage status, replacing a medieval stone church on the same site.",
+      "canVerifyCoordinate": false,
+      "reason": "Corrects the record's physical date and architectural identity."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Onsøy kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Ons%C3%B8y_kirke",
+      "sourceObjectId": "norges-kirker:onsoy-kirke",
+      "sourceQuality": "authoritative_medieval_and_1877_site_history",
+      "finding": "Norges Kirker documents the medieval stone church, its historical name Kolberg church, demolition, and construction of the present church in 1875–1877 on the old church site.",
+      "canVerifyCoordinate": false,
+      "reason": "Separates the standing nineteenth-century building from the demolished medieval predecessor."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Onsøy church point",
+      "sourceObjectId": "legacy:onsøy_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 4,556.2 metres southwest of the mapped church building.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify Onsøy church."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "church_of_norway",
+      "address": "Kolbergveien 7, 1621 Gressvik",
+      "addressRole": "official_church_cemetery_and_chapel_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Confirms identity and access, while the church-building polygon supplies the direct coordinate."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:246639578",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6494084",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and registry cross-check; the linked OSM building geometry supplies the direct anchor."
+    },
+    {
+      "sourceProvider": "historical_building_control",
+      "sourceObjectId": "demolished-medieval-kolberg-church",
+      "canApplyToPlace": false,
+      "rejectionReason": "The medieval church is an earlier building layer on the same site and has no standing building geometry to substitute for the present church."
+    },
+    {
+      "sourceProvider": "nearby_component_control",
+      "sourceObjectId": "onsoy-chapel",
+      "canApplyToPlace": false,
+      "rejectionReason": "The cemetery chapel is a separate component north of the church."
+    },
+    {
+      "sourceProvider": "access_control",
+      "sourceObjectId": "onsoy-cemetery-parking-or-service-building",
+      "canApplyToPlace": false,
+      "rejectionReason": "Visitor infrastructure is not the church coordinate source."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:246639578",
+      "geometryType": "church_building_polygon",
+      "geometryRole": "listed_1877_church_geometry",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "church_site_context",
+      "sourceObjectId": "onsoy-cemetery-and-chapel",
+      "geometryType": "wider_current_church_site_not_applied",
+      "geometryRole": "cemetery_chapel_parking_and_service_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "historical_site_context",
+      "sourceObjectId": "demolished-medieval-church-site",
+      "geometryType": "historical_building_footprint_not_captured",
+      "geometryRole": "medieval_predecessor_on_same_site",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "onsoy_1877_church",
+      "name": "Onsøy kirke – kirkebygningen fra 1877",
+      "lat": 59.25629,
+      "lon": 10.85077,
+      "r": 90,
+      "type": "listed_1877_church_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:246639578;wikidata:Q6494084;riksantikvaren-kulturminne:85220;church-of-norway-building:275",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:onsøy_kirke",
+      "lat": 59.2194,
+      "lon": 10.8159,
+      "distanceFromAppliedM": 4556.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:246639578",
+      "lat": 59.25629,
+      "lon": 10.85077,
+      "distanceFromPreviousM": 4556.2,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6494084",
+      "lat": 59.2561944444,
+      "lon": 10.8508055556,
+      "distanceFromAppliedM": 10.8,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-onsoy-kirke-source-probe/source-summary.json",
+      "description": "Persisted current building geometry, official address, heritage identity, 1877 construction and medieval predecessor distinction, rejected candidates and radius limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the listed 1877 church-building point, changed the physical building year from 1200 to 1877 and retained the 240-metre gameplay radius. Continue with borregaard_sarpsborg_industri."
+  },
+  "notes": [
+    "The coordinate moves approximately 4,556.2 metres northeast.",
+    "The standing building dates from 1877 and is not the medieval church.",
+    "The demolished medieval church remains a historical site layer on the same church site.",
+    "The radius is not a building, cemetery, heritage-protection, property or medieval-church boundary."
+  ]
+}
