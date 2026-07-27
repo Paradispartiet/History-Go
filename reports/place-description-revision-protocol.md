@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **170 steder**
-- Gjenstår: **342 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **180 steder**
+- Gjenstår: **332 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -206,9 +206,20 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 169 | Gamlebyen kirke | `gamlebyen_kirke` | 40 | 303 | 6 | #4204 |
 | 170 | Heggholmen | `heggholmen` | 44 | 306 | 6 | #4204 |
 
+| 171 | Historisk museum | `historisk_museum` | 40 | 310 | 6 | #4212 |
+| 172 | Skimuseet i Holmenkollen | `holmenkollen_skimuseum` | 43 | 304 | 6 | #4212 |
+| 173 | Jødisk Museum i Oslo | `jodisk_museum_oslo` | 47 | 307 | 6 | #4212 |
+| 174 | Mariakirken-ruinen | `mariakirken_ruin_oslo` | 41 | 300 | 6 | #4212 |
+| 175 | Møllergata skole | `mollergata_skole` | 47 | 304 | 6 | #4212 |
+| 176 | Museumsleiligheten Gråbein | `museumsleiligheten_grabein` | 42 | 312 | 6 | #4212 |
+| 177 | Nobels Fredssenter | `nobels_fredssenter` | 41 | 305 | 6 | #4212 |
+| 178 | Norsk Folkemuseum | `norsk_folkemuseum` | 48 | 315 | 6 | #4212 |
+| 179 | Norsk Maritimt Museum | `norsk_maritimt_museum` | 43 | 305 | 6 | #4212 |
+| 180 | Oscarshall | `oscarshall` | 47 | 301 | 6 | #4212 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **342 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **332 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -219,7 +230,7 @@ Det gjenstår **342 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - litteratur: **21**
 - vitenskap: **21**
 - politikk: **18**
-- historie: **17**
+- historie: **7**
 - media: **7**
 - musikk: **5**
 - psykologi: **1**
@@ -260,5 +271,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 17 | 10 | #4190 – tredje produksjonsbatch fra historiekøen |
 | Oslo V4 batch 18 | 10 | #4200 – fjerde produksjonsbatch fra historiekøen |
 | Oslo V4 batch 19 | 10 | #4204 – femte produksjonsbatch fra historiekøen |
+| Oslo V4 batch 20 | 10 | #4212 – sjette produksjonsbatch fra historiekøen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
