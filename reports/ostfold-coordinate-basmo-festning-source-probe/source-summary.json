@@ -1,0 +1,96 @@
+{
+  "placeId": "basmo_festning",
+  "researchedAt": "2026-07-27",
+  "coordinateDecision": "named_restored_fortress_ruin_polygon_representative_point",
+  "legacyCoordinate": {
+    "lat": 59.6635,
+    "lon": 11.6738,
+    "distanceToAppliedM": 9358.7
+  },
+  "appliedCoordinate": {
+    "lat": 59.6171,
+    "lon": 11.53487,
+    "radiusM": 320,
+    "sourceObjectId": "osm-way:1263141701"
+  },
+  "sources": [
+    {
+      "provider": "openstreetmap",
+      "name": "Basmo Fortress",
+      "url": "https://www.openstreetmap.org/way/1263141701",
+      "objectId": "osm-way:1263141701",
+      "finding": "Named fort and cultural-property polygon at the restored main ruin, linked to Wikidata Q4867802."
+    },
+    {
+      "provider": "wikidata",
+      "name": "Basmo Fortress Q4867802",
+      "url": "https://www.wikidata.org/wiki/Q4867802",
+      "finding": "Fortress and cultural-property entity linked to Kulturminne ID 86068; entity coordinate is approximately 33.9 m from the applied ruin anchor."
+    },
+    {
+      "provider": "marker_kommune",
+      "name": "Basmo festning",
+      "url": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/arrangement-og-moteplasser/kulturminner-og-museer/basmo-festning",
+      "finding": "Official municipal history documents the 1683 tower, later expansion, 1745 closure, 1985 protection, restoration from 1987 and present visitor access."
+    },
+    {
+      "provider": "store_norske_leksikon",
+      "name": "Basmo festning",
+      "url": "https://snl.no/Basmo_festning",
+      "finding": "Authoritative assessment of Basmo as a short-lived inland border fortress and a restored military-historical monument."
+    },
+    {
+      "provider": "lokalhistoriewiki",
+      "name": "Basmo festning",
+      "url": "https://lokalhistoriewiki.no/Basmo_festning",
+      "finding": "Detailed layout context identifies the tower fortress, three batteries, buildings and the separate retranchement across the valley floor."
+    },
+    {
+      "provider": "wikimedia_commons",
+      "name": "Basmo fortress ruin photographs",
+      "url": "https://commons.wikimedia.org/wiki/Category:Basmo_festning",
+      "finding": "Geotagged ruin photographs around 59.617207, 11.534370 provide a physical cross-check approximately 30.5 m from the applied point."
+    }
+  ],
+  "crossChecks": [
+    {
+      "candidate": "wikidata:Q4867802",
+      "lat": 59.61688888888889,
+      "lon": 11.535305555555556,
+      "distanceToAppliedM": 33.9,
+      "role": "independent_fortress_entity_coordinate"
+    },
+    {
+      "candidate": "commons:basmo-ruin-photo",
+      "lat": 59.617207,
+      "lon": 11.53437,
+      "distanceToAppliedM": 30.5,
+      "role": "geotagged_physical_ruin_cross_check"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "Basmo farm or Basmoen locality",
+      "reason": "Broader locality and farm identity rather than the fortress ruin."
+    },
+    {
+      "candidate": "Basmo festning bus stop or information board",
+      "reason": "Access and interpretation infrastructure rather than the historic ruin."
+    },
+    {
+      "candidate": "retranchement and former barracks landscape",
+      "reason": "Separate and wider historical components not captured as the canonical ruin polygon."
+    },
+    {
+      "candidate": "legacy coordinate",
+      "reason": "Approximately 9,358.7 metres northeast of the identified fortress ruin and not tied to any source object."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the restored main fortress ruin on the hill.",
+    "The original batteries, buildings, barracks and valley retranchement formed a larger historical complex.",
+    "The 320 m gameplay radius is not a ruin, archaeological-locality, legal protection, property or complete fortress boundary.",
+    "Nearby farm, bus-stop and information objects are not coordinate sources."
+  ],
+  "nextManifestEntry": "eidsberg_kirke"
+}
