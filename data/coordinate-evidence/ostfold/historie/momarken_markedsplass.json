@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "momarken_markedsplass",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch6/momarken_markedsplass.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_modern_market_and_event_site_anchor",
+  "currentCoordinate": {
+    "lat": 59.56742,
+    "lon": 11.33205,
+    "r": 300,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Official Momarken Arena event GPS; Skofterudveien 12 venue address; Indre Østfold planning material for parcel 156/15; Store norske leksikon; Østfoldmuseene; Momarkedet history",
+    "coordType": "event_site_representative_point",
+    "coordRole": "modern_momarkedet_market_and_event_site_anchor",
+    "sourceObjectId": "official-gps:59.56742,11.33205;address:Skofterudveien-12;parcel:156/15"
+  },
+  "previousCoordinate": {
+    "lat": 59.5584,
+    "lon": 11.3229,
+    "r": 300,
+    "distanceToAppliedCoordinateM": 1127.7,
+    "reasonReplaced": "Legacy-punktet lå omtrent 1,13 kilometer sørvest for den dokumenterte Momarken-arenaen og markedsplassen ved travbanen."
+  },
+  "identity": {
+    "resolvedIdentity": "Den moderne Momarken-markedsplassen og arrangementsarealet ved Skofterudveien 12, brukt av Momarkedet fra 1950 til 2012.",
+    "identityStatus": "resolved_with_historical_geometry_limit",
+    "identityProblem": "Legacy-data blandet eldre marked, moderne Momarked, travbane og arrangementsområde uten et dokumentert fysisk anker.",
+    "locatorTypeCandidate": "historic_market_and_event_site",
+    "requiresSplit": false,
+    "splitReason": "Det moderne markedsarealet kan være canonical. Den eldre markedsgeografien, travbanen, bilbanen og travmuseet modelleres som separate lag og komponenter."
+  },
+  "requiredEvidence": [
+    "official venue coordinate and address",
+    "modern Momarked chronology",
+    "older market chronology",
+    "market-versus-racecourse separation",
+    "parcel and current land-use control",
+    "event and operational access limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_event_regulations",
+      "sourceName": "Momarken Arena event GPS",
+      "sourceUrl": "https://wrm.wrm.no/wrm/db/regler/22__20092025205235_NMK%20-%20Tilleggsregler%20klubbl%C3%B8p%204.10.2025.pdf",
+      "sourceObjectId": "official-gps:59.56742,11.33205",
+      "sourceQuality": "official_venue_coordinate",
+      "finding": "Official regulations state Skofterudveien 12 and GPS 59°34′2.7084″N, 11°19′55.394″E, converted to 59.56742, 11.33205.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides a documented coordinate for the shared Momarken arena and event site."
+    },
+    {
+      "sourceProvider": "momarken_travbane",
+      "sourceName": "Momarken Travbane – contact and venue information",
+      "sourceUrl": "https://www.momarken.no/administrasjon/kontakt-oss/momarken-travbane/",
+      "sourceObjectId": "address:Skofterudveien-12",
+      "sourceQuality": "official_current_address_control",
+      "finding": "Confirms the shared visitor address Skofterudveien 12, 1850 Mysen and current venue operation.",
+      "canVerifyCoordinate": false,
+      "reason": "Address and current-use control."
+    },
+    {
+      "sourceProvider": "indre_ostfold_municipality",
+      "sourceName": "Municipal planning material – Momarken parcel 156/15",
+      "sourceObjectId": "parcel:156/15",
+      "sourceQuality": "official_land_use_control",
+      "finding": "Describes a 23.5-decare area owned by Østfold Landbruksselskap and used as market place and relief area for the racecourse.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that the market place is a separate land-use area associated with, but not identical to, the racecourse."
+    },
+    {
+      "sourceProvider": "store_norske_leksikon",
+      "sourceName": "Store norske leksikon – Momarken",
+      "sourceUrl": "https://snl.no/Momarken",
+      "sourceObjectId": "snl:Momarken",
+      "sourceQuality": "reputable_historical_summary",
+      "finding": "Documents the older market from 1611, its closure in 1830, the racecourse, Momarkedet from 1950 to 2012 and the motor track from 1982.",
+      "canVerifyCoordinate": false,
+      "reason": "Chronology and identity-layer control."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – marked tradition",
+      "sourceUrl": "https://ostfoldmuseene.no/moss/smaalens-75-ar--markedet-som-samlet-ostfold",
+      "sourceObjectId": "ostfoldmuseene:Momarken-1611-1830",
+      "sourceQuality": "institutional_historical_control",
+      "finding": "Confirms that Momarken is mentioned as a market in 1611 and was closed in 1830.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent chronology control; does not establish the exact old-market footprint."
+    },
+    {
+      "sourceProvider": "momarkedet",
+      "sourceName": "Momarkedet history",
+      "sourceUrl": "https://momarkedet.no/",
+      "sourceObjectId": "momarkedet:1950-2012",
+      "sourceQuality": "event_history_control",
+      "finding": "Documents the modern festival at Momarken Travbane from 1950 to 2012 and its Røde Kors fundraising purpose.",
+      "canVerifyCoordinate": false,
+      "reason": "Modern event identity and chronology."
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceName": "Momarken Travbane geometry",
+      "sourceObjectId": "osm-way:35952118;wikidata:Q15410067",
+      "sourceQuality": "separate_racecourse_geometry_control",
+      "finding": "The racecourse representative point is 59.56956, 11.33350, approximately 250 metres north-east of the applied market-site point.",
+      "canVerifyCoordinate": true,
+      "reason": "Prevents the racecourse oval from being used as the market-place coordinate."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Momarken point",
+      "sourceObjectId": "legacy:momarken_markedsplass",
+      "sourceQuality": "unsupported_remote_point",
+      "finding": "Legacy point is approximately 1127.7 metres south-west of the documented venue coordinate.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify the market or venue."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_event_regulations",
+      "sourceObjectId": "official-gps:59.56742,11.33205",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:35952118;wikidata:Q15410067",
+      "canApplyToPlace": false,
+      "rejectionReason": "Represents the separate racecourse oval rather than the market place."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:momarken_markedsplass",
+      "canApplyToPlace": false,
+      "rejectionReason": "Unsupported point 1.13 kilometres south-west of the venue."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "momarken_modern_market_site",
+      "name": "Momarken markedsplass",
+      "lat": 59.56742,
+      "lon": 11.33205,
+      "r": 190,
+      "type": "modern_market_and_event_site_anchor",
+      "sourceProvider": "official_event_coordinate_and_address",
+      "sourceObjectId": "official-gps:59.56742,11.33205;address:Skofterudveien-12",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "momarken_racecourse",
+      "name": "Momarken Travbane",
+      "lat": 59.56956,
+      "lon": 11.3335,
+      "r": 230,
+      "type": "separate_racecourse_geometry_control",
+      "sourceProvider": "openstreetmap_wikidata",
+      "sourceObjectId": "osm-way:35952118;wikidata:Q15410067",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:momarken_markedsplass",
+      "lat": 59.5584,
+      "lon": 11.3229,
+      "distanceFromAppliedM": 1127.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_event_regulations",
+      "sourceObjectId": "official-gps:59.56742,11.33205",
+      "lat": 59.56742,
+      "lon": 11.33205,
+      "distanceFromPreviousM": 1127.7,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-momarken-markedsplass-source-probe/source-summary.json",
+      "description": "Persistent source control for the modern event-site coordinate, older market chronology, racecourse separation and access limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the modern Momarkedet market and event site as canonical, retained the older market as a broader historical layer and kept the racecourse separate. Continue with homlungen_fyr."
+  },
+  "notes": [
+    "Coordinate moves approximately 1.13 kilometres north-east.",
+    "Year 1950 belongs to the modern Momarkedet, not the first older market.",
+    "The older market is documented from 1611 but its exact footprint is not asserted.",
+    "The racecourse, motor track and Travmuseum are separate components.",
+    "The radius is not a market, racecourse, motor-sport, property, event, safety or access boundary."
+  ]
+}

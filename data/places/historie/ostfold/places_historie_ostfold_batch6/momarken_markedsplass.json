@@ -1,14 +1,26 @@
 {
   "id": "momarken_markedsplass",
   "name": "Momarken markedsplass",
-  "lat": 59.5584,
-  "lon": 11.3229,
+  "lat": 59.56742,
+  "lon": 11.33205,
   "r": 300,
+  "locatorType": "historic_market_and_event_site",
+  "sourceProvider": "official_event_coordinate",
+  "sourceObjectId": "official-gps:Skofterudveien-12-Momarken",
+  "geocodeAccuracy": "official_shared_venue_coordinate",
+  "coordRole": "modern_momarkedet_market_and_event_site_anchor",
+  "coordType": "event_site_representative_point",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Official Momarken Arena event GPS at Skofterudveien 12; Momarken Travbane address; Indre Østfold planning material for gnr. 156 bnr. 15; Store norske leksikon; Østfoldmuseene; Momarkedet history",
+  "coordSourceId": "official-gps:59.56742,11.33205;address:Skofterudveien-12;parcel:156/15",
+  "coordSourceUrl": "https://www.momarken.no/administrasjon/kontakt-oss/momarken-travbane/",
+  "coordVerifiedAt": "2026-07-27",
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Indre Østfold",
-  "year": 1900,
-  "period": "Marked, hestekultur og regional møteplass",
+  "year": 1950,
+  "yearMeaning": "Året det moderne Momarkedet ble arrangert for første gang på Momarken; den eldre markedsplassen er dokumentert fra 1611, men har ikke et sikkert avgrenset punkt som kan likestilles med dagens arrangementstomt.",
+  "period": "Moderne Momarked, travmiljø og eldre markedstradisjon",
   "tags": [
     "historie",
     "marked",
@@ -18,38 +30,141 @@
   ],
   "desc": "Historisk markeds- og møteplass ved Mysen, kjent for Momarkedet og travbanen. Momarken viser handel, hestekultur, folkefest, frivillighet og regional identitet i Indre Østfold.",
   "popupDesc": "Momarken er et viktig kulturhistorisk sted fordi det viser møtestedets rolle i moderne lokal- og regionalhistorie. Markeder, hestehandel, trav, tivoli, organisasjonsliv og store folkefester har samlet mennesker på tvers av bygder og kommuner. I History Go bør Momarken brukes til å vise at historie også handler om gjentatte hendelser, markedstradisjoner, fritid, frivillighet og regional sosial infrastruktur – ikke bare gamle bygninger.",
+  "accessContext": {
+    "siteType": "mixed_event_market_and_sports_environment",
+    "publicAccess": "Tilgang følger travløp, festivaler, messer, bilsport, utleie, rigging og andre arrangementer. Området kan være avstengt eller driftsaktivt utenom annonserte publikumsperioder.",
+    "visitorAddress": "Skofterudveien 12, 1850 Mysen",
+    "limitations": [
+      "Ikke gå inn på løpsbaner, depot, stallområder, riggområder eller avsperrede arrangementssoner uten tillatelse.",
+      "Respekter dyr, utøvere, kjøretøy, maskiner, vakthold og midlertidige sikkerhetssoner.",
+      "Gameplay-radiusen er ikke en markedsplass-, travbane-, bilbane-, eiendoms-, arrangement-, sikkerhets- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "older_momarken_market",
+      "date": "documented_1611_to_1830",
+      "status": "broader_historical_place_layer",
+      "note": "Momarken var et kjent marked i eldre tid og er dokumentert fra 1611. Markedet ble opphevet i 1830; det eksakte historiske arealet likestilles ikke automatisk med dagens punkt."
+    },
+    {
+      "type": "military_drill_ground",
+      "date": "from_1820",
+      "status": "broader_land_use_layer",
+      "note": "Kilder omtaler avtale om bruk av Momarken som ekserserplass fra 1820."
+    },
+    {
+      "type": "momarken_racecourse",
+      "date": "1920",
+      "status": "adjacent_active_sports_layer",
+      "note": "Momarken Travbane åpnet i 1920 og er et separat, fortsatt aktivt idrettsanlegg."
+    },
+    {
+      "type": "modern_momarkedet",
+      "date": "1950-2012",
+      "status": "ended_annual_festival_layer",
+      "note": "Mysen og Omegn Røde Kors arrangerte Momarkedet årlig på markedsplassen og travbaneområdet."
+    },
+    {
+      "type": "motor_sport_track",
+      "date": "from_1982",
+      "status": "separate_active_sports_layer",
+      "note": "Bilbanen ved E18 er et eget anlegg og må ikke forveksles med markedsplassen."
+    },
+    {
+      "type": "later_event_concepts",
+      "date": "from_2013",
+      "status": "intermittent_event_layer",
+      "note": "Etter det tradisjonelle Momarkedet kom forsøk med nye festival- og festdagskonsepter."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "momarken_historic_market_area",
+      "name": "Den eldre Momarken-marken",
+      "relation": "broader_early_modern_market_landscape",
+      "canonical": false,
+      "note": "Den eldre markedsgeografien er dokumentert som Momarken, men er ikke presist avgrenset til dagens representasjonspunkt."
+    },
+    {
+      "id": "momarken_travbane",
+      "name": "Momarken Travbane",
+      "relation": "adjacent_active_harness_racing_track",
+      "canonical": false,
+      "note": "Travbanen åpnet i 1920, har egen oval og egne drifts- og sikkerhetsregler, og er ikke selve markedsplassen."
+    },
+    {
+      "id": "momarken_travmuseum",
+      "name": "Momarken Travmuseum",
+      "relation": "separate_museum_component",
+      "canonical": false,
+      "note": "Travmuseet ble etablert i 1999 og formidler travsportens historie som et eget tilbud."
+    },
+    {
+      "id": "momarken_bilbane",
+      "name": "Momarken Bilbane",
+      "relation": "separate_motor_sport_facility",
+      "canonical": false,
+      "note": "Bilbanen er et eget idretts- og sikkerhetsområde."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "momarken_modern_market_site",
+      "name": "Momarken markedsplass",
+      "lat": 59.56742,
+      "lon": 11.33205,
+      "r": 190,
+      "type": "modern_market_and_event_site_anchor",
+      "sourceProvider": "official_event_coordinate_and_address",
+      "sourceObjectId": "official-gps:59.56742,11.33205;address:Skofterudveien-12",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "momarken_racecourse_control",
+      "name": "Momarken Travbane",
+      "lat": 59.56956,
+      "lon": 11.3335,
+      "r": 230,
+      "type": "separate_racecourse_geometry_control",
+      "sourceProvider": "openstreetmap_wikidata",
+      "sourceObjectId": "osm-way:35952118;wikidata:Q15410067",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "markedsplass",
-    "subtype": "regionalt_marked_og_hestekultursted",
+    "subtype": "moderne_momarked_og_lagdelt_regional_moteplass",
     "signature_features": [
-      "markeds- og møteplass ved Mysen",
-      "kjent for Momarkedet og travbanen",
-      "kobler handel, hestekultur, folkefest og frivillighet"
+      "eldre marked dokumentert fra 1611",
+      "moderne Momarked fra 1950 til 2012",
+      "markedsplass ved en separat travbane fra 1920"
     ],
     "primary_angles": [
       "historie",
       "marked",
-      "fritid",
-      "lokalsamfunn"
+      "frivillighet",
+      "regional_motekultur"
     ],
     "question_families": [
-      "markedstradisjon",
-      "hestekultur",
-      "regional_identitet",
-      "organisasjonsliv"
+      "eldre_marked",
+      "momarkedet",
+      "humanitaer_innsamling",
+      "marked_vs_travbane"
     ],
     "avoid_angles": [
       "bare_travbane",
+      "paastand_om_eksakt_1611_geometri",
       "generisk_arrangementsplass"
     ],
     "must_include": [
-      "Momarken som markeds- og møteplass",
-      "koblingen mellom hestekultur, handel og folkefest"
+      "1950 som starten på det moderne Momarkedet",
+      "skillet mellom markedsplassen, travbanen og den eldre markedsgeografien"
     ],
     "contrast_targets": [
       "folkenborg_museum",
-      "askim_gummivarefabrikk"
+      "trogstad_fort"
     ],
-    "notes": "Skal spørres som sosial og regional møteplasshistorie, ikke som idrettsanlegg alene."
+    "notes": "Skal spørres som lagdelt markeds- og møteplasshistorie. Punktet representerer den moderne markedsplassen; det eldre markedets eksakte fotavtrykk er ikke fastslått."
   }
 }
