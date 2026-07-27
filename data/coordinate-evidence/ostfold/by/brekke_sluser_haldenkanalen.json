@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "brekke_sluser_haldenkanalen",
+  "placeFile": "data/places/by/ostfold/brekke_sluser_haldenkanalen/brekke_sluser_haldenkanalen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_four_chamber_lock_complex_anchor",
+  "currentCoordinate": {
+    "lat": 59.148,
+    "lon": 11.5577,
+    "r": 420,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q11040669; Kulturminne 241336-9; NVE Haldenkanalen; Haldenkanalen and Visit Norway; Lokalhistoriewiki",
+    "coordType": "lock_complex_representative_point",
+    "coordRole": "current_four_chamber_lock_staircase_anchor",
+    "sourceObjectId": "wikidata:Q11040669;kulturminne:241336-9"
+  },
+  "previousCoordinate": {
+    "lat": 59.1501,
+    "lon": 11.4643,
+    "r": 420,
+    "distanceToAppliedCoordinateM": 5330.9,
+    "reasonReplaced": "Legacy-punktet lå omtrent 5,33 kilometer vest for Brekke sluser og identifiserte ikke sluseanlegget eller besøksområdet."
+  },
+  "identity": {
+    "resolvedIdentity": "Brekke sluser, dagens firekammer-slusetrapp fra 1924 i Haldenkanalen.",
+    "identityStatus": "resolved",
+    "identityProblem": "Stedet omfatter en operativ slusetrapp, et tilgrensende kraftverk, eldre slusespor, slusebebyggelse, besøksområder og vannbaserte aktiviteter. Canonical må representere selve 1924-slusetrappen.",
+    "locatorTypeCandidate": "lock_staircase_complex",
+    "requiresSplit": false,
+    "splitReason": "Slusetrappen er ett sammenhengende kanalanlegg. Kraftstasjonen, besøksområdet, den eldre traseen og Anleggsbrygga er separate komponenter eller ankomstpunkter."
+  },
+  "requiredEvidence": [
+    "named lock-complex entity coordinate",
+    "heritage identifier",
+    "four lock chambers",
+    "26.6-metre lift",
+    "1924 current-system chronology",
+    "older canal-history layer",
+    "hydropower relationship",
+    "visitor-arrival separation",
+    "water and operational safety limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Brekke sluser",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q11040669",
+      "sourceObjectId": "wikidata:Q11040669",
+      "sourceQuality": "named_lock_entity_coordinate",
+      "finding": "Q11040669 identifies Brekke sluser at 59.14800, 11.55770 and links the entity to Kulturminne ID 241336-9.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides a named lock entity and stable representative coordinate within the current staircase."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Kulturminne 241336-9 – Brekke sluser",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=241336-9",
+      "sourceObjectId": "kulturminne:241336-9",
+      "sourceQuality": "authoritative_heritage_identity",
+      "finding": "The heritage identifier resolves the lock installation as Brekke sluser in Halden municipality.",
+      "canVerifyCoordinate": true,
+      "reason": "Official cultural-heritage identity for the lock complex."
+    },
+    {
+      "sourceProvider": "nve",
+      "sourceName": "NVE – Haldenkanalen",
+      "sourceUrl": "https://www.nve.no/om-nve/nves-listefoerte-kulturminner/vassdragstekniske-anlegg/haldenkanalen/",
+      "sourceObjectId": "nve:haldenkanalen",
+      "sourceQuality": "authoritative_waterway_engineering_history",
+      "finding": "NVE documents the canal system and that construction of Brekke power station in 1917–1924 raised Brekke locks and submerged Krappeto locks after the upstream water-level change.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the relationship between the current lock staircase, hydropower works and the wider canal system."
+    },
+    {
+      "sourceProvider": "haldenkanalen_visit",
+      "sourceName": "Haldenkanalen / Visit Norway – Brekke sluser",
+      "sourceUrl": "https://www.visitnorway.no/listings/brekke-sluser-europas-h%C3%B8yeste-sammenhengende-slusetrapp/199578/",
+      "sourceObjectId": "visitnorway:brekke-sluser-199578",
+      "sourceQuality": "current_operator_and_visitor_description",
+      "finding": "Documents four lock chambers, a total lift of 26.6 metres, the adjacent power station and the lock staircase as an active visitor destination.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the physical configuration, current use and visitor interpretation."
+    },
+    {
+      "sourceProvider": "visit_norway",
+      "sourceName": "Visit Norway – MS Brekke 2026",
+      "sourceUrl": "https://www.visitnorway.no/listings/ms-brekke-b%C3%A5ttur-p%C3%A5-haldenkanalen/274480/",
+      "sourceObjectId": "visitnorway:ms-brekke-274480",
+      "sourceQuality": "current_2026_operational_and_arrival_context",
+      "finding": "Documents 2026 boat operations through the four chambers, Brekkeveien 16 as the visitor address and the lack of scheduled bus service to the site.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports present visitor operations without replacing the lock coordinate with the sales or parking address."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Brekke sluser",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Brekke_sluser",
+      "sourceObjectId": "lokalhistoriewiki:brekke-sluser",
+      "sourceQuality": "independent_historical_and_coordinate_control",
+      "finding": "Provides an independent coordinate near 59.1478, 11.5560 and documents early locks, flood destruction, rebuilding, the 1924 system and timber transport until 1982.",
+      "canVerifyCoordinate": true,
+      "reason": "Independent point and historical control within the same lock environment."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Brekke kanal",
+      "sourceUrl": "https://snl.no/Brekke_kanal",
+      "sourceObjectId": "snl:Brekke_kanal",
+      "sourceQuality": "encyclopedic_system_and_power_context",
+      "finding": "Identifies the canal and locks between Aspern and Femsjøen and explains that the power station uses the same 26.6-metre head as the lock installation.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports system boundaries and the lock-versus-power relationship."
+    },
+    {
+      "sourceProvider": "visitor_listing",
+      "sourceName": "Brekke visitor parking / Brekkeveien 16",
+      "sourceObjectId": "address:Brekkeveien 16",
+      "sourceQuality": "visitor_arrival_coordinate",
+      "finding": "Visitor and parking listings place the arrival area around 59.14713, 11.55303, several hundred metres west of the applied lock anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Useful arrival control but rejected as canonical because it represents parking and services rather than the lock staircase."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Brekke locks point",
+      "sourceObjectId": "legacy:brekke_sluser_haldenkanalen",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy point is approximately 5330.9 metres west of the current lock staircase.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it has no lock, canal or visitor-object contract."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q11040669",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "kulturminne:241336-9",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Matching heritage control; Wikidata supplies the explicit representative coordinate."
+    },
+    {
+      "sourceProvider": "visitor_arrival",
+      "sourceObjectId": "address:Brekkeveien 16",
+      "canApplyToPlace": false,
+      "rejectionReason": "Visitor address and parking area rather than lock-complex geometry."
+    },
+    {
+      "sourceProvider": "power_station",
+      "sourceObjectId": "brekke-power-station",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adjacent operational hydropower facility, not the lock staircase."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:brekke_sluser_haldenkanalen",
+      "canApplyToPlace": false,
+      "rejectionReason": "Located 5.33 kilometres west of Brekke locks."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "brekke_current_lock_staircase",
+      "name": "Brekke sluser",
+      "lat": 59.148,
+      "lon": 11.5577,
+      "r": 170,
+      "type": "four_chamber_lock_staircase_anchor",
+      "sourceProvider": "wikidata_kulturminne",
+      "sourceObjectId": "wikidata:Q11040669;kulturminne:241336-9",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "brekke_visitor_arrival",
+      "name": "Brekkeveien 16 and visitor area",
+      "lat": 59.14713,
+      "lon": 11.55303,
+      "r": 160,
+      "type": "visitor_arrival_and_parking_anchor",
+      "sourceProvider": "current_visitor_sources",
+      "sourceObjectId": "address:Brekkeveien 16",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:brekke_sluser_haldenkanalen",
+      "lat": 59.1501,
+      "lon": 11.4643,
+      "distanceFromAppliedM": 5330.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata_kulturminne",
+      "sourceObjectId": "wikidata:Q11040669;kulturminne:241336-9",
+      "lat": 59.148,
+      "lon": 11.5577,
+      "distanceFromPreviousM": 5330.9,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:brekke-sluser",
+      "lat": 59.1478,
+      "lon": 11.556,
+      "distanceFromAppliedM": 99.5,
+      "canApplyToPlace": true,
+      "applied": false
+    },
+    {
+      "sourceProvider": "visitor_arrival",
+      "sourceObjectId": "address:Brekkeveien 16",
+      "lat": 59.14713,
+      "lon": 11.55303,
+      "distanceFromAppliedM": 283.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-brekke-sluser-source-probe/source-summary.json",
+      "description": "Persisted lock entity, heritage, canal chronology, hydropower context, current operations, arrival controls and safety limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named four-chamber lock-complex entity coordinate, retained 1924 for the current staircase and separated power, visitor and earlier-lock components. Continue with stromsfoss_sluser."
+  },
+  "notes": [
+    "The coordinate moves approximately 5.33 kilometres east.",
+    "The current four-chamber staircase is the canonical object.",
+    "The first Brekke lock phase is described broadly as the 1850s because sources vary in exact completion wording.",
+    "The power station, old lock environment, visitor parking and downstream harbour are separate components.",
+    "The radius is not a lock, canal, power, property, safety, heritage or access boundary."
+  ]
+}
