@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hobol_kirke",
+  "generatedAt": "2026-07-27",
+  "purpose": "Persist source findings used to verify the Hobøl church coordinate, identity, chronology and access interpretation.",
+  "legacyCoordinate": {
+    "lat": 59.6232,
+    "lon": 10.9474,
+    "assessment": "Undocumented remote point approximately 2819.5 metres north-east of the church."
+  },
+  "appliedCoordinate": {
+    "lat": 59.60081,
+    "lon": 10.92389,
+    "role": "medieval_church_building_anchor",
+    "sourceObjectId": "osm-way:81114208",
+    "distanceFromLegacyM": 2819.5
+  },
+  "identityResolution": {
+    "canonicalEntity": "Hobøl kirke",
+    "entityType": "standing Romanesque medieval stone church",
+    "wikidata": "Q6493315",
+    "churchOfNorwayBuildingId": "1769",
+    "kulturminneId": "84587",
+    "address": "Mjærumveien 53, 1827 Hobøl",
+    "osmWay": "81114208"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/way/81114208",
+      "objectId": "osm-way:81114208",
+      "supports": [
+        "named church-building geometry",
+        "representative coordinate"
+      ]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6493315",
+      "objectId": "wikidata:Q6493315",
+      "supports": [
+        "independent church entity",
+        "coordinate",
+        "Church of Norway building ID 1769",
+        "approximate inception 1175"
+      ]
+    },
+    {
+      "provider": "Riksantikvaren / Kulturminnesøk",
+      "url": "https://www.kulturminnesok.no/kart/?id=84587",
+      "objectId": "kulturminne:84587",
+      "supports": [
+        "Hobøl kirkested heritage identity",
+        "medieval protected-site context"
+      ]
+    },
+    {
+      "provider": "Norges Kirker",
+      "url": "https://norgeskirker.no/wiki/Hob%C3%B8l_kirke",
+      "objectId": "norges-kirker:hobol-kirke",
+      "supports": [
+        "Romanesque stone church",
+        "short high nave",
+        "narrower choir and apse",
+        "churchyard history",
+        "church and rectory on the same ridge"
+      ]
+    },
+    {
+      "provider": "Den norske kirke i Hobøl og Tomter",
+      "url": "https://www.kyrkja.no/nb-NO/fellesrad/indreostfold/menigheter/hobol/omoss/kontaktoss/",
+      "objectId": "kirken:hobol-kirke",
+      "supports": [
+        "official current name",
+        "visitor address",
+        "active church use"
+      ]
+    },
+    {
+      "provider": "Den norske kirke i Hobøl og Tomter",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/indreostfold/menigheter/hobol/d%C3%A5p/",
+      "objectId": "kirken:hobol-temporary-closure-2025-2026",
+      "supports": [
+        "temporary closure during works until May 2026",
+        "non-permanent access interpretation"
+      ]
+    },
+    {
+      "provider": "Den norske kirke i Hobøl og Tomter",
+      "url": "https://www.kirken.no/nn-NO/fellesrad/indreostfold/menigheter/hobol/konfirmasjon/datoer/",
+      "objectId": "kirken:hobol-confirmations-2026",
+      "supports": [
+        "scheduled church use in June 2026",
+        "continued active function after temporary closure"
+      ]
+    },
+    {
+      "provider": "Lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/wiki/Hob%C3%B8l_presteg%C3%A5rd_med_Stenb%C3%B8l_%28Hob%C3%B8l_gnr._106%29",
+      "objectId": "lokalhistoriewiki:hobol-prestegard-med-stenbol",
+      "supports": [
+        "independent coordinate 59.60076675, 10.92396232",
+        "rectory and church relationship",
+        "historic visitation and property context"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "late twelfth century",
+      "event": "The Romanesque stone church was probably built.",
+      "certainty": "approximate"
+    },
+    {
+      "date": "medieval period",
+      "event": "The church functioned as the main church and was dedicated to St Margaret.",
+      "certainty": "documented historical tradition"
+    },
+    {
+      "date": "post-medieval period",
+      "event": "The building received later additions, repairs and inventory while retaining its medieval core.",
+      "certainty": "documented"
+    },
+    {
+      "date": "20 November 2025 to spring 2026",
+      "event": "The church was temporarily closed during works and heating/safety constraints.",
+      "certainty": "official current-history source"
+    },
+    {
+      "date": "June 2026",
+      "event": "Hobøl church was scheduled for confirmations, showing continuing active church use.",
+      "certainty": "official schedule"
+    }
+  ],
+  "interpretationLimits": [
+    "Year 1175 is an approximate late-twelfth-century dating, not an exact documented construction or consecration date.",
+    "The canonical point represents the standing church building, not the whole churchyard or rectory property.",
+    "The rectory is a contextual neighbour and must not be treated as the same geometry as the church.",
+    "The 2025–2026 closure was temporary and must not become permanent access metadata.",
+    "No task may require entry into graves, closed work areas or private rectory property."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "59.60081, 10.92389",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "rakkestad_kirke"
+  }
+}
