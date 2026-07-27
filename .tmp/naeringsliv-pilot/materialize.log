@@ -4,12 +4,8 @@ Traceback (most recent call last):
     main()
   File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 858, in main
     materialize()
-  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 845, in materialize
-    patch_quiz(target_id, config)
-  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 668, in patch_quiz
-    rows.append(make_question(target_id, set_no, q_no, claim, item, config["depth_files"]))
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 604, in make_question
-    "guidance_basis": [METHODS_FILE, EMNERS_FILE, *depth_files],
-                                     ^^^^^^^^^^^
-NameError: name 'EMNERS_FILE' is not defined. Did you mean: 'EMNER_FILE'?
+  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 848, in materialize
+    patch_category_audit()
+  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 821, in patch_category_audit
+    raise RuntimeError("Could not find professional depth validator anchor in category audit")
+RuntimeError: Could not find professional depth validator anchor in category audit
