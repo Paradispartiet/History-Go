@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_place_professional_materialization",
+  "type": "naeringsliv_place_professional_materialization",
+  "subject_id": "naeringsliv",
+  "updated_at": "2026-07-27",
+  "materialization_version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+  "principle": "Normalåpningen på 2x7 bevares. Profesjonsfaglig dybde starter i sett 3 og skal bygge på stedets påstandsbank, eksplisitte scenarioverdier og profesjonelle beslutninger.",
+  "targets": [
+    {
+      "target_id": "telegrafbygningen",
+      "title": "Telegrafbygningen",
+      "place_file": "data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json",
+      "quiz_file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "source_brief": "data/quiz/production_briefs/naeringsliv/telegrafbygningen.json",
+      "production_context": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
+      "opening_questions": 14,
+      "professional_questions": 21,
+      "professional_module_ids": [
+        "mod_naering_operations_kapasitet",
+        "mod_naering_kostnad_kalkulasjon_budsjett",
+        "mod_naering_internkontroll_revisjon_prestasjon",
+        "mod_naering_prosjektledelse_prosjektokonomi",
+        "mod_naering_markedsmiks_kanaler",
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "mod_naering_konkurranserett_compliance_baerekraft"
+      ],
+      "professional_depth_files": [
+        "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+        "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+        "data/fag/naeringsliv/handelshogskolefordypning_jus_v1.json",
+        "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+      ]
+    },
+    {
+      "target_id": "oslo_posthus",
+      "title": "Oslo Posthus",
+      "place_file": "data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json",
+      "quiz_file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "source_brief": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
+      "production_context": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
+      "opening_questions": 14,
+      "professional_questions": 21,
+      "professional_module_ids": [
+        "mod_naering_operations_kapasitet",
+        "mod_naering_prosjektledelse_prosjektokonomi",
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "mod_naering_markedsmiks_kanaler",
+        "mod_naering_konsernstrategi_implementering",
+        "mod_naering_kostnad_kalkulasjon_budsjett"
+      ],
+      "professional_depth_files": [
+        "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+        "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+        "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+      ]
+    },
+    {
+      "target_id": "havnelageret",
+      "title": "Oslo Havnelager",
+      "place_file": "data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json",
+      "quiz_file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "source_brief": "data/quiz/production_briefs/naeringsliv/havnelageret.json",
+      "production_context": "data/quiz/production_context/naeringsliv/havnelageret.json",
+      "opening_questions": 14,
+      "professional_questions": 21,
+      "professional_module_ids": [
+        "mod_naering_operations_kapasitet",
+        "mod_naering_innkjop_kvalitet_forsyningsrisiko",
+        "mod_naering_internasjonal_handel_valuta",
+        "mod_naering_prosjektledelse_prosjektokonomi",
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "mod_naering_markedsinnsikt_segmentering"
+      ],
+      "professional_depth_files": [
+        "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+        "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+        "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+      ]
+    }
+  ],
+  "coverage": {
+    "target_count": 3,
+    "opening_questions_preserved": 42,
+    "professional_questions": 63,
+    "distinct_professional_modules": 11,
+    "scenario_currency": "NOK"
+  },
+  "quality_contract": {
+    "sets_per_target": 5,
+    "questions_per_set": 7,
+    "normal_opening_sets": [
+      1,
+      2
+    ],
+    "professional_sets": [
+      3,
+      4,
+      5
+    ],
+    "minimum_calculations_per_target": 5,
+    "minimum_professional_modules_per_target": 5,
+    "claim_binding_required": true,
+    "external_source_binding_required": true,
+    "scenario_assumptions_visible": true,
+    "historical_claims_must_not_include_scenario_values": true
+  },
+  "validator": "tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs"
+}
