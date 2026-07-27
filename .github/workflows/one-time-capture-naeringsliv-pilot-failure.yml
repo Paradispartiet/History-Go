@@ -1,0 +1,41 @@
+name: One-time capture Næringsliv pilot failure
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - synchronize
+    paths:
+      - '.github/workflows/one-time-capture-naeringsliv-pilot-failure.yml'
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  capture:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/naeringsliv-pilot-profesjonsmaterialisering-control
+          fetch-depth: 0
+
+      - name: Capture failed log
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          gh run view 30257829118 --repo "$GITHUB_REPOSITORY" --log-failed > /tmp/full-failure.log
+          tail -n 800 /tmp/full-failure.log > .tmp/naeringsliv-pilot-final-failure.log
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .tmp/naeringsliv-pilot-final-failure.log
+          git diff --cached --quiet && exit 0
+          git commit -m 'Diagnostiser ren Næringsliv-pilotbygging'
+          git push origin HEAD:agent/naeringsliv-pilot-profesjonsmaterialisering-control
