@@ -1,0 +1,245 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "trogstad_fort",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch4/trogstad_fort.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_distributed_inland_fort_complex_anchor",
+  "currentCoordinate": {
+    "lat": 59.63389,
+    "lon": 11.34139,
+    "r": 420,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q19393412 / Wikimedia Commons – Trøgstad fort; OpenStreetMap way 142710283 – Trøgstad Fort; Indre Østfold kommune – Trøgstad fort; OpenStreetMap node 9848907993 – informasjonspunkt; OpenStreetMap node 574887370 – Trøgstad varde",
+    "coordType": "named_fort_entity_coordinate",
+    "coordRole": "inland_fort_complex_anchor",
+    "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort"
+  },
+  "previousCoordinate": {
+    "lat": 59.6426,
+    "lon": 11.3334,
+    "r": 420,
+    "distanceToAppliedCoordinateM": 1067.6,
+    "reasonReplaced": "Legacy-punktet lå omtrent 1,07 kilometer nordvest for fortkjernen og hadde ingen dokumentert rolle i det distribuerte anlegget."
+  },
+  "identity": {
+    "resolvedIdentity": "Det samlede Trøgstad fort-komplekset med batterier, tunneler, nærforsvar, senere radar-, verksted- og Nike-lag.",
+    "identityStatus": "resolved",
+    "identityProblem": "Fortet dekker omkring 430 mål og kan ikke representeres korrekt av én bunker, én attraksjonsbygning, ett informasjonsskilt eller ett utsiktspunkt.",
+    "locatorTypeCandidate": "distributed_inland_mountain_fort_complex",
+    "requiresSplit": false,
+    "splitReason": "Batterier, tunneler, nærforsvar og kaldkrigsinstallasjoner er komponenter av ett sammenhengende fortkompleks. Delankere brukes til besøk og orientering."
+  },
+  "requiredEvidence": [
+    "navngitt fortentitet",
+    "fortkompleks mot enkeltbygg",
+    "offisiell kommunal historie",
+    "bygge- og operativ tidslinje",
+    "andre verdenskrig",
+    "radar- og Nike-perioden",
+    "kommunalt eierskap og dagens bruk",
+    "adgangs- og radiusbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "wikidata_wikimedia",
+      "sourceName": "Wikidata and Wikimedia Commons – Trøgstad fort",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q19393412",
+      "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort",
+      "sourceQuality": "named_fort_complex_entity_and_coordinate",
+      "finding": "The fort entity is mapped at approximately 59.63389, 11.34139 and represents Trøgstad fort as a fortification rather than one visitor component.",
+      "canVerifyCoordinate": true,
+      "reason": "Best available entity point for the distributed fort complex."
+    },
+    {
+      "sourceProvider": "indre_ostfold_kommune",
+      "sourceName": "Indre Østfold kommune – Trøgstad fort",
+      "sourceUrl": "https://www.io.kommune.no/tjenester/kultur-idrett-og-fritid/kultur-og-fritidsaktiviteter/kulturvern-og-kulturminner/trogstad-fort/",
+      "sourceObjectId": "indre-ostfold:trogstad-fort",
+      "sourceQuality": "official_local_history_and_current_management",
+      "finding": "The municipality documents construction in 1912–1917, 1.3 km of tunnels, 500 metres of trenches, two artillery batteries, outer infantry defences, combat in April 1940, radar, ammunition, workshop and Nike functions, military closure in 1995, municipal ownership from 2001 and present public activities.",
+      "canVerifyCoordinate": false,
+      "reason": "Authoritatively defines the scale, chronology and current management of the fort."
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceName": "OpenStreetMap way 142710283 – Trøgstad Fort",
+      "sourceUrl": "https://www.openstreetmap.org/way/142710283",
+      "sourceObjectId": "osm-way:142710283;wikidata:Q19393412",
+      "sourceQuality": "named_fortification_component_geometry",
+      "finding": "The named fortification and tourist-attraction component has representative point 59.63220, 11.34572 in the south-eastern part of the complex.",
+      "canVerifyCoordinate": true,
+      "reason": "Strong component anchor but too narrow to replace the fort-complex entity point."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Trøgstad Fort information point",
+      "sourceUrl": "https://www.openstreetmap.org/node/9848907993",
+      "sourceObjectId": "osm-node:9848907993",
+      "sourceQuality": "named_public_information_point",
+      "finding": "The public information point at 59.63371, 11.33687 provides an accessible interpretation anchor in the western area.",
+      "canVerifyCoordinate": false,
+      "reason": "Useful for public orientation, not the identity of the full fort."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Trøgstad varde",
+      "sourceUrl": "https://www.openstreetmap.org/node/574887370",
+      "sourceObjectId": "osm-node:574887370",
+      "sourceQuality": "named_public_viewpoint",
+      "finding": "The viewpoint at 59.63408, 11.34016 is a public orientation and landscape-reading anchor close to the fort centre.",
+      "canVerifyCoordinate": false,
+      "reason": "Visitor subanchor, not a fort coordinate."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Trøgstad fort point",
+      "sourceObjectId": "legacy:trogstad_fort",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 1,067.6 metres north-west of the applied fort-complex point.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify the complex or a documented component."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "wikidata_wikimedia",
+      "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:142710283;wikidata:Q19393412",
+      "canApplyToPlace": false,
+      "rejectionReason": "Represents one named fortification component rather than the whole 430-mål complex."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:9848907993",
+      "canApplyToPlace": false,
+      "rejectionReason": "Information point only."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:574887370",
+      "canApplyToPlace": false,
+      "rejectionReason": "Viewpoint only."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "wikidata_wikimedia",
+      "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort",
+      "geometryType": "named_fort_complex_entity_point",
+      "geometryRole": "distributed_fort_complex_anchor",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:142710283",
+      "geometryType": "fortification_building_or_component_polygon",
+      "geometryRole": "south_eastern_fort_component",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "municipal_extent_control",
+      "sourceObjectId": "trogstad-fort-approximately-430-decare-site",
+      "geometryType": "full_municipal_property_and_fort_extent_not_captured",
+      "geometryRole": "batteries_tunnels_defences_and_cold_war_components",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "trogstad_fort_complex",
+      "name": "Trøgstad fort – anleggskjernen",
+      "lat": 59.63389,
+      "lon": 11.34139,
+      "r": 260,
+      "type": "inland_fort_complex_anchor",
+      "sourceProvider": "wikidata_wikimedia",
+      "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "trogstad_fort_southeast_structure",
+      "name": "Trøgstad Fort – sørøstlig fortifikasjonsobjekt",
+      "lat": 59.6322,
+      "lon": 11.34572,
+      "r": 110,
+      "type": "fortification_component_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:142710283;wikidata:Q19393412",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "trogstad_fort_information",
+      "name": "Trøgstad fort – informasjonspunkt",
+      "lat": 59.63371,
+      "lon": 11.33687,
+      "r": 60,
+      "type": "public_information_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:9848907993",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "trogstad_varde",
+      "name": "Trøgstad varde",
+      "lat": 59.63408,
+      "lon": 11.34016,
+      "r": 70,
+      "type": "public_viewpoint_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:574887370",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:trogstad_fort",
+      "lat": 59.6426,
+      "lon": 11.3334,
+      "distanceFromAppliedM": 1067.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata_wikimedia",
+      "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort",
+      "lat": 59.63389,
+      "lon": 11.34139,
+      "distanceFromPreviousM": 1067.6,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:142710283;wikidata:Q19393412",
+      "lat": 59.6322,
+      "lon": 11.34572,
+      "distanceFromAppliedM": 308.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-trogstad-fort-source-probe/source-summary.json",
+      "description": "Persisted fort-complex entity point, component and visitor anchors, official chronology, current municipal use and access limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the fort-complex entity point, retained component and public visitor anchors and continued with rodenes_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 1,067.6 metres south-east.",
+    "The marker represents a distributed fort complex of approximately 430 decares, not one bunker or building.",
+    "The operational defence role ended with Nike around 1990–1991, while other military activity continued until 1995.",
+    "The municipality took ownership in 2001 and the area now supports heritage, educational, recreational and event uses.",
+    "Tunnels, bunkers, workshop areas and event zones may have separate access restrictions.",
+    "The radius is not the full site, tunnel, battery, property, event or safety boundary."
+  ]
+}
