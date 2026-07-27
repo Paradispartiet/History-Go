@@ -38,28 +38,50 @@ jobs:
       - name: Regenerate Civication people index
         run: npm run civication:history-people:build
 
-      - name: Run final Etne and People validation
-        shell: bash
-        run: |
-          set -euo pipefail
-          node tests/etne-religion-round-content.test.js
-          node tools/audit-etne-non-nature-round-quality.mjs
-          bash scripts/check-people.sh
-          node tests/place-card-rounds-runtime-audit.test.js
-          node tests/etne-city-batch1-round-content.test.js
-          node tests/etne-literature-batch1-round-content.test.js
-
-      - name: Publish generated index and refreshed audit
+      - name: Publish generated people index
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/Civication/historyPeople_index.json reports/etne-non-nature-quality-audit/report.json reports/etne-non-nature-quality-audit/report.md
+          git add data/Civication/historyPeople_index.json
           if git diff --cached --quiet; then
-            echo 'Generated index and audit already current.'
+            echo 'Civication people index already current.'
+          else
+            git diff --cached --check
+            git commit -m 'Sync Civication people index for Etne religion'
+            git push origin HEAD:agent/etne-all-rounds-quality-audit-uplift
+          fi
+
+      - name: Validate Etne religion rounds
+        run: node tests/etne-religion-round-content.test.js
+
+      - name: Validate consolidated Etne quality
+        run: node tools/audit-etne-non-nature-round-quality.mjs
+
+      - name: Validate all People data
+        run: bash scripts/check-people.sh
+
+      - name: Validate PlaceCard runtime profiles
+        run: node tests/place-card-rounds-runtime-audit.test.js
+
+      - name: Validate Etne city profile
+        run: node tests/etne-city-batch1-round-content.test.js
+
+      - name: Validate Etne literature profile
+        run: node tests/etne-literature-batch1-round-content.test.js
+
+      - name: Publish refreshed audit report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/etne-non-nature-quality-audit/report.json reports/etne-non-nature-quality-audit/report.md
+          if git diff --cached --quiet; then
+            echo 'Audit report already current.'
             exit 0
           fi
           git diff --cached --check
-          git commit -m 'Sync Civication people index for Etne religion'
+          git commit -m 'Refresh Etne non-nature quality audit'
           git push origin HEAD:agent/etne-all-rounds-quality-audit-uplift
