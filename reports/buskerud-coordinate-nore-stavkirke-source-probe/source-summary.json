@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nore_stavkirke",
+  "generatedAt": "2026-07-28",
+  "purpose": "Persist source findings used to verify Nore stave church's coordinate, identity, dating, rebuilding history, ownership and access.",
+  "legacyCoordinate": {
+    "lat": 60.1663,
+    "lon": 8.8082,
+    "assessment": "Unsupported point approximately 11178.9 metres west of the stave church."
+  },
+  "appliedCoordinate": {
+    "lat": 60.16456,
+    "lon": 9.01025,
+    "role": "medieval_stave_church_building_anchor",
+    "sourceObjectId": "osm-way:546328493;wikidata:Q1557490;kulturminne:85174",
+    "distanceFromLegacyM": 11178.9
+  },
+  "identityResolution": {
+    "canonicalEntity": "Nore stavkirke",
+    "entityType": "protected medieval stave-church building",
+    "wikidata": "Q1557490",
+    "churchOfNorwayBuildingId": "589",
+    "kulturminneId": "85174",
+    "address": "Fjordevegen 90, 3629 Nore",
+    "osmWay": "546328493",
+    "owner": "Fortidsminneforeningen"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/way/546328493",
+      "objectId": "osm-way:546328493",
+      "supports": [
+        "named stave-church building geometry",
+        "representative coordinate",
+        "attraction and worship identity"
+      ]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1557490",
+      "objectId": "wikidata:Q1557490",
+      "supports": [
+        "independent church entity",
+        "coordinate",
+        "OpenStreetMap way 546328493",
+        "Church of Norway building ID 589",
+        "Kulturminne ID 85174",
+        "Fjordvegen 90 address",
+        "Fortidsminneforeningen ownership from 1890"
+      ]
+    },
+    {
+      "provider": "Riksantikvaren / Kulturminnesøk",
+      "url": "https://www.kulturminnesok.no/kart/?id=85174",
+      "objectId": "kulturminne:85174",
+      "supports": [
+        "authoritative protected-church identity",
+        "historic church-site context"
+      ]
+    },
+    {
+      "provider": "Fortidsminneforeningen",
+      "url": "https://fortidsminneforeningen.no/museum/nore-stavkirke/",
+      "objectId": "fortidsminneforeningen:nore-stavkirke",
+      "supports": [
+        "official owner identity",
+        "circa-1167 dating convention",
+        "ownership since 1890",
+        "rich decorative layers around 1650 and 1730",
+        "seasonal visitor access",
+        "Fjordevegen 90 address"
+      ],
+      "coordinateCaveat": "The page's embedded map point is several kilometres south of the church and is rejected as a geometry source."
+    },
+    {
+      "provider": "Lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/wiki/Nore_stavkirke",
+      "objectId": "lokalhistoriewiki:Nore_stavkirke",
+      "supports": [
+        "independent coordinate 60.1645778, 9.0102556",
+        "timber felled in 1167 as earliest possible date",
+        "likely construction somewhat later",
+        "new chancel in 1683",
+        "transepts in 1709 and 1714",
+        "porch in 1723",
+        "museum-church preservation after 1890"
+      ]
+    },
+    {
+      "provider": "Store norske leksikon",
+      "url": "https://snl.no/Nore_stavkirke",
+      "objectId": "snl:Nore_stavkirke",
+      "supports": [
+        "central-mast construction",
+        "timber felled in winter 1166/1167",
+        "probable construction some years later",
+        "architectural and portal context"
+      ]
+    },
+    {
+      "provider": "Nore kirkelige fellesråd",
+      "url": "https://www.nore.kirken.no/Artikler/Artikkeldetaljer/ArticleId/85/Nore-stavkirke",
+      "objectId": "kirken:nore-stavkirke",
+      "supports": [
+        "Fortidsminneforeningen ownership",
+        "summer-season worship use"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "1166/1167",
+      "event": "Dendrochronologically examined timber was felled, establishing the earliest possible building date.",
+      "certainty": "documented terminus post quem"
+    },
+    {
+      "date": "circa 1190-1200",
+      "event": "Rune inscriptions provide a late twelfth-century outer frame for the standing medieval building.",
+      "certainty": "scholarly approximate dating"
+    },
+    {
+      "date": "1683",
+      "event": "A new log-built chancel was added.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1709 and 1714",
+      "event": "The present south and north transept arms were formed as later log-built additions.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1723",
+      "event": "The porch carrying Frederik IV's monogram was built.",
+      "certainty": "documented"
+    },
+    {
+      "date": "circa 1730",
+      "event": "The present octagonal roof rider and a major decorative phase were introduced.",
+      "certainty": "approximate"
+    },
+    {
+      "date": "by 1772",
+      "event": "The sacristy north of the chancel had been completed.",
+      "certainty": "documented terminus ante quem"
+    },
+    {
+      "date": "1890",
+      "event": "Fortidsminneforeningen took ownership and preserved the church as a museum church.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "The canonical point represents the church building, not the whole cemetery or rectory property.",
+    "Year 1167 is a timber-felling and earliest-possible date, not an exact documented completion year.",
+    "The present cross-shaped plan includes substantial later log-built components and should not be described as uniformly original without qualification.",
+    "Older graves may indicate an earlier church site, but they do not prove a specific predecessor building.",
+    "The nearby Nore church from around 1880 is a separate parish church.",
+    "The embedded map point on the owner's page is rejected because it conflicts with the building geometry and multiple independent coordinates.",
+    "The existing desc and popupDesc remain unchanged under place-description governance."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "60.16456, 9.01025",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "uvdal_stavkirke"
+  }
+}
