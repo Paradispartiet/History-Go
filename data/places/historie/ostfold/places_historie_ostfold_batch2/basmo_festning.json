@@ -1,9 +1,35 @@
 {
   "id": "basmo_festning",
   "name": "Basmo festning",
-  "lat": 59.6635,
-  "lon": 11.6738,
+  "lat": 59.6171,
+  "lon": 11.53487,
   "r": 320,
+  "locatorType": "fortress",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:1263141701;wikidata:Q4867802",
+  "geocodeAccuracy": "building_centroid",
+  "coordRole": "main_fort_ruin_anchor",
+  "coordType": "restored_donjon_and_main_fort_building_centroid",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 1263141701 – Basmo festning; Wikidata Q4867802; Store norske leksikon – Basmo festning; Marker kommune",
+  "coordSourceId": "osm-way:1263141701;wikidata:Q4867802",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/1263141701",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 9 358,7 meter sørvest til bygningsflaten for den restaurerte hovedruinen og donjonen ved Basmo festning.",
+  "coordNote": "OpenStreetMap way 1263141701 kartfester den restaurerte hovedruinen ved Basmo festning på 59.61710, 11.53487 og er koblet til Wikidata Q4867802. Store norske leksikon og Marker kommune beskriver festningen som et større grenseforsvarsanlegg på en høy ås mellom Rødenessjøen og Hemnessjøen, med donjon, retranchement, utenverker og historisk rundt 40 bygninger. Canonical bruker derfor hovedruinen som stabilt fysisk besøksanker uten å hevde at punktet representerer hele det historiske forterrenget. Radius 320 meter beholdes for hovedruinen, høydepartiet og den nærmeste besøksadkomsten som gameplayområde, men er ikke en frednings-, eiendoms-, bygnings-, ruin- eller full festningsgrense.",
+  "anchors": [
+    {
+      "id": "basmo_main_fort_ruin",
+      "name": "Basmo festning – hovedruinen",
+      "lat": 59.6171,
+      "lon": 11.53487,
+      "r": 100,
+      "type": "main_fort_ruin_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1263141701;wikidata:Q4867802",
+      "note": "Bygningssentrum for den restaurerte donjonen og hovedruinen, brukt som anker for et historisk festningsområde som var vesentlig større."
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Marker",
@@ -16,15 +42,38 @@
     "marker",
     "forsvar"
   ],
-  "desc": "Ruiner etter grensefestning i Marker, anlagt på 1680-tallet som del av forsvaret mot Sverige. Basmo viser hvordan indre Østfolds skog- og vassdragslandskap ble militært strategisk.",
-  "popupDesc": "Basmo festning ble anlagt på 1680-tallet som del av grenseforsvaret mot Sverige. Ruinene ligger i Marker, i et landskap der vann, skog, høyder og ferdselslinjer hadde stor militær betydning. Stedet gjør det mulig å sammenligne kystnære festninger som Fredriksten og Fredrikstad med mindre, men strategisk viktige anlegg i innlandet. I History Go bør Basmo brukes til grensehistorie, terrenglesning, festningsruiner og svensk-norske konflikter.",
+  "desc": "Restaurert hovedruin etter grensefestningen Basmo i Marker, oppført fra 1680-årene på høyden mellom Rødenessjøen og Hemnessjøen. Festningen voktet ferdselslinjene mellom Sverige og Christiania.",
+  "popupDesc": "Basmo festning ble anlagt i 1680-årene på en bratt høyde mellom Rødenessjøen og Hemnessjøen, der landeveier og vannveier gjorde området strategisk i grenseforsvaret mot Sverige. Den fem etasjer høye donjonen sto ferdig i 1683, og anlegget utviklet seg til et omfattende militærmiljø med retranchement, utenverker og omkring 40 bygninger. I 1717 kunne festningen huse opptil 1 350 mann og 24 kanoner. Anlegget ble nedlagt i 1745 og senere brutt ned, men hovedruinen er restaurert og gjør fortsatt den militære kontrollen over landskapet lesbar. I History Go brukes hovedruinen som fysisk anker for en større fortelling om grensepolitikk, terreng, forsyning, svensk-norske konflikter og hvordan et omfattende festningssamfunn kan reduseres til få synlige ruiner.",
+  "externalLinks": [
+    {
+      "type": "reference",
+      "label": "Store norske leksikon – Basmo festning",
+      "url": "https://snl.no/Basmo_festning",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "local_authority",
+      "label": "Marker kommune – Basmo festning",
+      "url": "https://www.marker.kommune.no/basmo-festning.578521.no.html",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Basmo festning",
+      "url": "https://www.openstreetmap.org/way/1263141701",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    }
+  ],
   "quiz_profile": {
     "place_type": "festningsruin",
-    "subtype": "innlandsfestning_i_grenseland",
+    "subtype": "restaurert_donjon_i_innlands_grensefestning",
     "signature_features": [
-      "anlagt på 1680-tallet",
-      "ruiner etter grensefestning i Marker",
-      "viser innlandsforsvar mot Sverige"
+      "donjonen sto ferdig i 1683",
+      "festningen lå strategisk mellom Rødenessjøen og Hemnessjøen",
+      "hovedruinen er det synlige ankeret for et tidligere anlegg med rundt 40 bygninger"
     ],
     "primary_angles": [
       "historie",
@@ -40,16 +89,18 @@
     ],
     "avoid_angles": [
       "generisk_ruin",
-      "forveksling_med_fredriksten"
+      "forveksling_med_fredriksten",
+      "hovedruinen_som_full_festningsgrense"
     ],
     "must_include": [
       "1680-tallet og grenseforsvaret",
-      "innlandsplasseringen i Marker"
+      "innlandsplasseringen i Marker",
+      "forskjellen mellom hovedruinen og det større historiske festningsanlegget"
     ],
     "contrast_targets": [
       "fredriksten_festning",
       "hoytorp_fort"
     ],
-    "notes": "Skal spørres som innlandsgrensefestning, ikke som vanlig ruin."
+    "notes": "Skal spørres som innlandsgrensefestning og terrenganlegg. Hovedruinen er fysisk anker, ikke en komplett representasjon av den historiske festningen."
   }
 }
