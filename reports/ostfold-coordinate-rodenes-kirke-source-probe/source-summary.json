@@ -1,0 +1,128 @@
+{
+  "placeId": "rodenes_kirke",
+  "generatedAt": "2026-07-27",
+  "decision": "Apply the named Rødenes church building geometry and bind it to the correct church, heritage and address identities while rejecting the former-municipality entity.",
+  "canonical": {
+    "name": "Rødenes kirke",
+    "lat": 59.58808,
+    "lon": 11.59488,
+    "r": 260,
+    "sourceProvider": "osm_wikidata_heritage",
+    "sourceObjectId": "osm-way:957797045;wikidata:Q6494543;kulturminne:85331",
+    "coordRole": "medieval_church_building_anchor"
+  },
+  "previous": {
+    "lat": 59.58807,
+    "lon": 11.59473,
+    "distanceToCanonicalM": 8.5,
+    "status": "nearby_uncontracted_legacy_point"
+  },
+  "identityFindings": [
+    "OSM way 957797045 represents the Rødenes church building and gives representative point 59.58808, 11.59488.",
+    "Wikimedia Commons identifies the church building as Wikidata Q6494543 and Norwegian heritage ID 85331, with address Rødenes Kirkevei 174.",
+    "Wikidata Q7386714 represents the former Rødenes municipality and must not be used as the church-building identity, even where an external map aggregate exposes that association.",
+    "The public information point south of the church is a visitor component, not the canonical building anchor."
+  ],
+  "chronologyFindings": [
+    "Marker municipality dates the Romanesque stone church to around 1230.",
+    "The Church of Norway describes it more cautiously as built in the first half of the thirteenth century.",
+    "Some registry metadata uses 1275; this is not adopted as a certain exact construction year.",
+    "The church was lengthened and substantially altered in 1703–1709, receiving the present tower, porch and sacristy.",
+    "Medieval roof construction and parts of the eastern gables remain preserved.",
+    "The church was restored in 1949–1952."
+  ],
+  "siteContext": {
+    "address": "Rødenes Kirkevei 174, 1870 Ørje",
+    "setting": "Headland on the western side of Rødenessjøen, east of the rectory",
+    "secondaryAnchor": {
+      "name": "Rødenes kirke information point",
+      "lat": 59.58597,
+      "lon": 11.59411,
+      "sourceObjectId": "osm-node:8863322802"
+    }
+  },
+  "sources": [
+    {
+      "provider": "osm",
+      "title": "OpenStreetMap – Rødenes kirke",
+      "url": "https://www.openstreetmap.org/way/957797045",
+      "objectId": "osm-way:957797045",
+      "supports": [
+        "named church-building geometry",
+        "building representative coordinate"
+      ]
+    },
+    {
+      "provider": "wikimedia_wikidata_heritage",
+      "title": "Wikimedia Commons – Rødenes kirke",
+      "url": "https://commons.wikimedia.org/wiki/Category:R%C3%B8denes_kirke",
+      "objectId": "wikidata:Q6494543;kulturminne:85331;osm-way:957797045",
+      "supports": [
+        "correct church-building entity",
+        "heritage ID",
+        "street address",
+        "OSM building link"
+      ]
+    },
+    {
+      "provider": "marker_kommune",
+      "title": "Marker kommune – Rødenes kirke",
+      "url": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/arrangement-og-moteplasser/kulturminner-og-museer/rodenes-kirke",
+      "objectId": "marker:rodenes-kirke",
+      "supports": [
+        "around-1230 dating",
+        "Romanesque stone construction",
+        "1703–1709 rebuilding",
+        "inventory and restoration history"
+      ]
+    },
+    {
+      "provider": "marker_sokn",
+      "title": "Marker sokn – Rødenes kirke historikk",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/marker/omoss/kirkenev%C3%A5re/r%C3%B8deneskirke/historikk/",
+      "objectId": "church-of-norway:rodenes-history",
+      "supports": [
+        "first-half-of-thirteenth-century dating",
+        "original Romanesque building",
+        "1703–1709 extension",
+        "preserved medieval components"
+      ]
+    },
+    {
+      "provider": "norges_kirker",
+      "title": "Norges Kirker – Rødenes kirke",
+      "url": "https://norgeskirker.no/wiki/R%C3%B8denes_kirke",
+      "objectId": "norges-kirker:rodenes",
+      "supports": [
+        "architectural history",
+        "lakeside and rectory setting",
+        "ownership and inventory context"
+      ]
+    }
+  ],
+  "rejectedAlternatives": [
+    {
+      "candidate": "legacy point 59.58807, 11.59473",
+      "reason": "Geographically close but lacks an explicit building and entity contract."
+    },
+    {
+      "candidate": "Wikidata Q7386714",
+      "reason": "Identifies the former Rødenes municipality, not the church building."
+    },
+    {
+      "candidate": "information point 59.58597, 11.59411",
+      "reason": "Represents public interpretation rather than the church building."
+    },
+    {
+      "candidate": "churchyard or rectory centroid",
+      "reason": "Would represent wider site context rather than the protected medieval building."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the church building, while the churchyard, rectory and lakeside setting are wider contexts.",
+    "The radius is not a building, churchyard, heritage, property, shoreline or event boundary.",
+    "Services, funerals, cemetery use and other current church activities take precedence over gameplay.",
+    "Year 1230 is approximate and must not be treated as an exact documented construction date."
+  ],
+  "nextManifestEntry": "fredrikshalds_teater"
+}

@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rodenes_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch4/rodenes_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.58808,
+    "lon": 11.59488,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 957797045 – Rødenes kirke; Wikimedia Commons / Wikidata Q6494543; Kulturminne ID 85331; Marker kommune – Rødenes kirke; Marker sokn – historikk; Norges Kirker – Rødenes kirke",
+    "coordType": "named_church_building_representative_point",
+    "coordRole": "medieval_church_building_anchor",
+    "sourceObjectId": "osm-way:957797045;wikidata:Q6494543;kulturminne:85331"
+  },
+  "previousCoordinate": {
+    "lat": 59.58807,
+    "lon": 11.59473,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 8.5,
+    "reasonReplaced": "Legacy-punktet lå nær kirken, men var ikke bundet til en navngitt bygningsgeometri eller riktig kirkebygningsidentitet."
+  },
+  "identity": {
+    "resolvedIdentity": "Rødenes kirkes fredede middelalderbygning på odden ved Rødenessjøen.",
+    "identityStatus": "resolved",
+    "identityProblem": "Enkelte kartaggregater kobler kirkebygningswayen til Wikidata Q7386714, som gjelder den tidligere Rødenes kommune. Kirkebygningen må i stedet knyttes til Q6494543 og Kulturminne ID 85331.",
+    "locatorTypeCandidate": "protected_medieval_church_building",
+    "requiresSplit": false,
+    "splitReason": "Kirkebygningen er hovedobjektet. Kirkegården, prestegården, informasjonspunktet og innsjølandskapet er kontekst eller delankere."
+  },
+  "requiredEvidence": [
+    "navngitt kirkebygningsgeometri",
+    "riktig Wikidata- og kulturminneidentitet",
+    "offisiell adresse",
+    "byggeår med kildevariasjon",
+    "middelalderske og senere bygningslag",
+    "kirkegårds- og adgangsbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 957797045 – Rødenes kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/957797045",
+      "sourceObjectId": "osm-way:957797045",
+      "sourceQuality": "named_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien gir representativt punkt 59.58808, 11.59488.",
+      "canVerifyCoordinate": true,
+      "reason": "Objektet identifiserer direkte selve kirkebygningen."
+    },
+    {
+      "sourceProvider": "wikimedia_wikidata_heritage",
+      "sourceName": "Wikimedia Commons – Rødenes kirke",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:R%C3%B8denes_kirke",
+      "sourceObjectId": "wikidata:Q6494543;kulturminne:85331;osm-way:957797045",
+      "sourceQuality": "church_entity_address_and_heritage_identity",
+      "finding": "Commons identifiserer Rødenes kirke som kirkebygg i Marker med adresse Rødenes Kirkevei 174, Wikidata Q6494543, Kulturminne ID 85331 og OSM-way 957797045.",
+      "canVerifyCoordinate": true,
+      "reason": "Binder geometri, riktig kirkebygningsentitet, adresse og kulturminneidentitet sammen."
+    },
+    {
+      "sourceProvider": "marker_kommune",
+      "sourceName": "Marker kommune – Rødenes kirke",
+      "sourceUrl": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/arrangement-og-moteplasser/kulturminner-og-museer/rodenes-kirke",
+      "sourceObjectId": "marker:rodenes-kirke",
+      "sourceQuality": "official_local_authority_building_history",
+      "finding": "Kommunen beskriver kirken som romansk steinkirke bygget omkring 1230, ombygd 1703–1709, med cirka 240 sitteplasser og restaurering 1949–1952.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir den mest aktuelle lokale myndighetskilden for datering og bygningshistorie."
+    },
+    {
+      "sourceProvider": "marker_sokn",
+      "sourceName": "Marker sokn – Rødenes kirke historikk",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/marker/omoss/kirkenev%C3%A5re/r%C3%B8deneskirke/historikk/",
+      "sourceObjectId": "church-of-norway:rodenes-history",
+      "sourceQuality": "official_church_history",
+      "finding": "Soknet daterer middelalderkirken til første halvdel av 1200-tallet og dokumenterer forlengelsen, tårnet, våpenhuset og sakristiet fra 1703–1709 samt bevarte middelalderske deler.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger forsiktig datering og flerfaset bygningshistorie."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Rødenes kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/R%C3%B8denes_kirke",
+      "sourceObjectId": "norges-kirker:rodenes",
+      "sourceQuality": "authoritative_architectural_and_site_reference",
+      "finding": "Norges Kirker beskriver kirkens plassering ved Rødenessjøens vestre bredd, prestegårdskontekst, eldre bygningshistorie og eierskapslag.",
+      "canVerifyCoordinate": false,
+      "reason": "Krysskontrollerer arkitektur, plassering og historisk kontekst."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Rødenes kirke information point",
+      "sourceUrl": "https://www.openstreetmap.org/node/8863322802",
+      "sourceObjectId": "osm-node:8863322802",
+      "sourceQuality": "public_information_point",
+      "finding": "Informasjonspunktet ligger ved 59.58597, 11.59411 sør for kirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Offentlig delanker, men ikke kirkebygningsidentiteten."
+    },
+    {
+      "sourceProvider": "identity_conflict_control",
+      "sourceName": "Former Rødenes municipality Wikidata entity",
+      "sourceObjectId": "wikidata:Q7386714",
+      "sourceQuality": "rejected_wrong_entity",
+      "finding": "Q7386714 identifiserer tidligere Rødenes kommune, ikke kirkebygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Eksplisitt avvist for å hindre at en feil kartkobling arves i canonical metadata."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Rødenes church point",
+      "sourceObjectId": "legacy:rodenes_kirke",
+      "sourceQuality": "nearby_uncontracted_point",
+      "finding": "Legacy-koordinatet ligger bare 8,5 meter vest for bygningsankeret, men mangler kildeobjektkontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattet for å få en eksplisitt og reproduserbar kirkebygningskontrakt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "wikimedia_wikidata_heritage",
+      "address": "Rødenes Kirkevei 174, 1870 Ørje",
+      "addressRole": "official_church_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adressen bekrefter identitet og tilgang, mens bygningspolygonet gir et mer presist hovedanker."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm_wikidata_heritage",
+      "sourceObjectId": "osm-way:957797045;wikidata:Q6494543;kulturminne:85331",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q7386714",
+      "canApplyToPlace": false,
+      "rejectionReason": "Gjelder tidligere Rødenes kommune, ikke kirkebygningen."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8863322802",
+      "canApplyToPlace": false,
+      "rejectionReason": "Informasjonspunkt, ikke kirke."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:957797045",
+      "geometryType": "named_church_building_polygon",
+      "geometryRole": "protected_medieval_church_building",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "churchyard_and_site_control",
+      "sourceObjectId": "rodenes-churchyard-prestegard-and-lakeside-site",
+      "geometryType": "wider_church_site_not_captured",
+      "geometryRole": "churchyard_prestegard_and_lakeside_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "rodenes_church_building",
+      "name": "Rødenes kirke – kirkebygningen",
+      "lat": 59.58808,
+      "lon": 11.59488,
+      "r": 90,
+      "type": "medieval_church_building_anchor",
+      "sourceProvider": "osm_wikidata_heritage",
+      "sourceObjectId": "osm-way:957797045;wikidata:Q6494543;kulturminne:85331",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "rodenes_church_information",
+      "name": "Rødenes kirke – informasjonspunkt",
+      "lat": 59.58597,
+      "lon": 11.59411,
+      "r": 55,
+      "type": "public_information_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8863322802",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rodenes_kirke",
+      "lat": 59.58807,
+      "lon": 11.59473,
+      "distanceFromAppliedM": 8.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata_heritage",
+      "sourceObjectId": "osm-way:957797045;wikidata:Q6494543;kulturminne:85331",
+      "lat": 59.58808,
+      "lon": 11.59488,
+      "distanceFromPreviousM": 8.5,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-rodenes-kirke-source-probe/source-summary.json",
+      "description": "Persisted church-building geometry, corrected entity identity, heritage ID, address, dating variation, architectural phases and access limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named church-building geometry, rejected the former-municipality entity and continued with fredrikshalds_teater."
+  },
+  "notes": [
+    "The coordinate moves only 8.5 metres east but gains an explicit building-geometry contract.",
+    "Q6494543 and Kulturminne ID 85331 identify the church building; Q7386714 identifies the former municipality and is rejected.",
+    "Year 1230 is retained as Marker municipality's approximate date, while the safer historical formulation is the first half of the thirteenth century.",
+    "The 1703–1709 extension and preserved medieval roof and east-gable components are separate building layers.",
+    "The radius is not a building, churchyard, heritage, property, shoreline or event boundary."
+  ]
+}
