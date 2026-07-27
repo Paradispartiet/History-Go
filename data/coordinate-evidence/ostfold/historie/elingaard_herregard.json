@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "elingaard_herregard",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch6/elingaard_herregard.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_manor_main_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.25222,
+    "lon": 10.8025,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 519150231; Wikidata Q5361129; Kulturminne 86064; Østfoldmuseene; Lokalhistoriewiki",
+    "coordType": "manor_house_building_representative_point",
+    "coordRole": "historic_manor_main_building_anchor",
+    "sourceObjectId": "osm-way:519150231;wikidata:Q5361129;kulturminne:86064"
+  },
+  "previousCoordinate": {
+    "lat": 59.2136,
+    "lon": 10.7566,
+    "r": 320,
+    "distanceToAppliedCoordinateM": 5025.7,
+    "reasonReplaced": "Legacy-punktet lå omtrent 5,03 km sørvest for Elingaard og identifiserte verken hovedbygningen, herregårdsanlegget eller besøksadressen."
+  },
+  "identity": {
+    "resolvedIdentity": "Elingaard manor, the protected 1749 main building on a medieval noble estate with seventeenth-century cellars, bastions, moats, gardens and a larger cultural landscape.",
+    "identityStatus": "resolved",
+    "identityProblem": "The place combines a standing manor house, fortified platform, gardens, archaeological landscape, museum functions, rental use and a much larger historical estate. Canonical must identify the main building without treating the whole landscape or visitor address as one geometry.",
+    "locatorTypeCandidate": "historic_manor_house_and_fortified_estate",
+    "requiresSplit": false,
+    "splitReason": "The main building and estate components form one manor place, but the building, park, fortifications, landscape and operational uses require separate anchors and access rules."
+  },
+  "requiredEvidence": [
+    "named manor-house geometry",
+    "independent manor entity",
+    "heritage identifier",
+    "official address and current museum identity",
+    "1746 fire and 1749 rebuilding chronology",
+    "medieval and seventeenth-century estate layers",
+    "1923 protection and 1975 museum transition",
+    "current tour, rental, park and cultural-trail access controls",
+    "separation of building, fortifications and wider cultural landscape"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 519150231 – Elingaard",
+      "sourceUrl": "https://www.openstreetmap.org/way/519150231",
+      "sourceObjectId": "osm-way:519150231",
+      "sourceQuality": "named_manor_house_building_geometry",
+      "finding": "The named manor-house geometry has a representative coordinate at approximately 59.25222, 10.80250.",
+      "canVerifyCoordinate": true,
+      "reason": "Direct geometry for the standing main building."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Elingård",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q5361129",
+      "sourceObjectId": "wikidata:Q5361129",
+      "sourceQuality": "independent_manor_entity_and_identifier_control",
+      "finding": "Q5361129 identifies Elingaard as a manor house, cultural property and museum at 59°15′08″N, 10°48′09″E with Kulturminne ID 86064 and OSM way 519150231.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides matching independent entity, coordinate and identifiers."
+    },
+    {
+      "sourceProvider": "kulturminne",
+      "sourceName": "Kulturminne – Elingaard",
+      "sourceObjectId": "kulturminne:86064",
+      "sourceQuality": "protected_cultural_property_identity",
+      "finding": "The heritage identifier controls the protected manor-house identity and prevents confusion with one garden or landscape component.",
+      "canVerifyCoordinate": true,
+      "reason": "Heritage identity is linked to the same manor entity and OSM geometry."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Om Elingaard Herregård",
+      "sourceUrl": "https://ostfoldmuseene.no/elingaard/om",
+      "sourceObjectId": "ostfoldmuseene:elingaard-om",
+      "sourceQuality": "official_manor_history_and_landscape_source",
+      "finding": "Documents the medieval noble-estate roots, seventeenth-century cellars, fires in 1645 and 1746, current 1749 building, noble-family continuity, bankruptcy in 1778, protection in 1923, museum use from 1975, bastions, moats, garden and cultural landscape.",
+      "canVerifyCoordinate": false,
+      "reason": "Authoritative identity, chronology and component source."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Contact Elingaard",
+      "sourceUrl": "https://ostfoldmuseene.no/elingaard/kontakt",
+      "sourceObjectId": "ostfoldmuseene:elingaard-contact",
+      "sourceQuality": "official_current_address_control",
+      "finding": "Confirms Elingårdsveien 33, Gressvik as the current visitor address and Østfoldmuseene as the operator.",
+      "canVerifyCoordinate": false,
+      "reason": "Current address and institution control, not replacement building geometry."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Rental and tours",
+      "sourceUrl": "https://ostfoldmuseene.no/elingaard/utleie",
+      "sourceObjectId": "ostfoldmuseene:elingaard-rental-tours",
+      "sourceQuality": "official_current_use_and_access_source",
+      "finding": "Documents current rental, accommodation and guided-tour functions, and states that museum rooms otherwise remain closed to renters unless included in a guided visit.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines operational access limits for interiors."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Elingaard cultural trail",
+      "sourceUrl": "https://ostfoldmuseene.no/elingaard/kulturtips-elingaard-herregard",
+      "sourceObjectId": "ostfoldmuseene:elingaard-cultural-trail",
+      "sourceQuality": "official_outdoor_access_and_landscape_source",
+      "finding": "Describes the park, garden and nature-and-culture trail as outdoor visitor areas and identifies the water system, burial field and mill pond as wider landscape components.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports outdoor access while separating landscape from the main-building anchor."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Elingård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Eling%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:Elingård",
+      "sourceQuality": "independent_manor_coordinate_control",
+      "finding": "Gives an independent coordinate at 59.25228, 10.80256, within a few metres of the applied main-building point.",
+      "canVerifyCoordinate": true,
+      "reason": "Independent coordinate corroboration."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Libertas research at Elingaard",
+      "sourceUrl": "https://ostfoldmuseene.no/utforsket-historien-om-libertas-pa-elingaard",
+      "sourceObjectId": "ostfoldmuseene:elingaard-libertas-2026",
+      "sourceQuality": "official_modern_use_history",
+      "finding": "Documents Libertas use of Elingaard as a course centre from 1948 to 1975 and confirms active historical research at the site in June 2026.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the twentieth-century institutional layer and current museum activity."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Fire-protection project",
+      "sourceUrl": "https://ostfoldmuseene.no/fredrikstad/elingaard-herregard-far-endelig-moderne-brannsikring--102-ar-etter-fredningen",
+      "sourceObjectId": "ostfoldmuseene:elingaard-fire-protection",
+      "sourceQuality": "official_conservation_project_source",
+      "finding": "Documents the planned 2025-2026 automatic fire-protection project for the entire main building and its sensitive interiors.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports conservation and temporary-access caution without asserting completion."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Elingaard point",
+      "sourceObjectId": "legacy:elingaard_herregard",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy point lies approximately 5025.7 metres south-west of the manor house.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it has no Elingaard entity or source-object contract."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:519150231",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q5361129",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Matching independent entity and coordinate control; OSM provides direct building geometry."
+    },
+    {
+      "sourceProvider": "visitor_address",
+      "sourceObjectId": "address:Elingårdsveien 33",
+      "canApplyToPlace": false,
+      "rejectionReason": "The address is an arrival control, not a substitute for the building geometry."
+    },
+    {
+      "sourceProvider": "landscape",
+      "sourceObjectId": "elingaard-estate-cultural-landscape",
+      "canApplyToPlace": false,
+      "rejectionReason": "The larger estate, archaeological sites, park, garden and mill pond are broader than one canonical coordinate."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "elingaard_main_building",
+      "name": "Elingaard main building",
+      "lat": 59.25222,
+      "lon": 10.8025,
+      "r": 110,
+      "type": "historic_manor_main_building_anchor",
+      "sourceProvider": "osm_wikidata_kulturminne",
+      "sourceObjectId": "osm-way:519150231;wikidata:Q5361129;kulturminne:86064",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "elingaard_visitor_address",
+      "name": "Elingårdsveien 33",
+      "lat": 59.25222,
+      "lon": 10.8025,
+      "r": 130,
+      "type": "visitor_address_and_arrival_control",
+      "sourceProvider": "ostfoldmuseene",
+      "sourceObjectId": "address:Elingårdsveien 33",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "elingaard_cultural_landscape_context",
+      "name": "Elingaard cultural landscape",
+      "lat": 59.25222,
+      "lon": 10.8025,
+      "r": 320,
+      "type": "estate_garden_and_archaeological_landscape_context",
+      "sourceProvider": "ostfoldmuseene",
+      "sourceObjectId": "ostfoldmuseene:elingaard-om",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:elingaard_herregard",
+      "lat": 59.2136,
+      "lon": 10.7566,
+      "distanceFromAppliedM": 5025.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:519150231;wikidata:Q5361129",
+      "lat": 59.25222,
+      "lon": 10.8025,
+      "distanceFromPreviousM": 5025.7,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:Elingård",
+      "lat": 59.25228,
+      "lon": 10.80256,
+      "distanceFromAppliedM": 7.5,
+      "canApplyToPlace": true,
+      "applied": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-elingaard-herregard-source-probe/source-summary.json",
+      "description": "Persisted building geometry, manor identity, heritage and address controls, historical layers, operational use, outdoor access and conservation limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Elingaard main-building geometry and continue with nes_lensemuseum."
+  },
+  "notes": [
+    "The coordinate moves approximately 5.03 kilometres north-east.",
+    "The standing 1749 main building is canonical.",
+    "The medieval estate, seventeenth-century cellars, fortifications, gardens and cultural landscape are separate layers or components.",
+    "Indoor access follows tours, events, rental and conservation conditions.",
+    "The radius is not a building, property, park, garden, museum, event, water, heritage, safety or access boundary."
+  ]
+}
