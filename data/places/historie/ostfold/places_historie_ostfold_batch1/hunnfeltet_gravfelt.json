@@ -1,30 +1,58 @@
 {
   "id": "hunnfeltet_gravfelt",
   "name": "Hunnfeltet gravfelt",
-  "lat": 59.2182,
-  "lon": 11.0368,
+  "lat": 59.21764,
+  "lon": 11.07646,
   "r": 360,
+  "locatorType": "historic_site",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:8374670062;wikidata:Q11976121",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "archaeological_field_anchor",
+  "coordType": "named_steinring_field_visitor_anchor_for_multi_part_grave_landscape",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "OpenStreetMap node 8374670062 – Hunn (Steinringfeltet); Wikidata Q11976121; Store norske leksikon – Hunn; Visit Fredrikstad & Hvaler – Oldtidsruta",
+  "coordSourceId": "osm-node:8374670062;wikidata:Q11976121",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/8374670062",
+  "coordVerifiedAt": "2026-07-26",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 2 257,8 meter øst til det navngitte arkeologiske steinringfeltet, som er det mest stabile og besøkbart identifiserbare hovedankeret i Hunnfeltets flerleddede gravlandskap.",
+  "coordNote": "OpenStreetMap node 8374670062 er et navngitt arkeologisk sted og besøksmål for Hunn (Steinringfeltet), koblet til Wikidata Q11976121, ved 59.21764, 11.07646. Store norske leksikon beskriver Hunn som et stort og godt bevart gravfelt med mer enn 100 hauger, røyser og steinringer, vanligvis delt i Vestfeltet med gravhauger, Sydfeltet med runde steinsetninger og Midtfeltet med gravrøyser. Visit Fredrikstad & Hvaler beskriver steinringfeltet som Hunnfeltets mest tydelige besøksmål og dokumenterer at gravminnene ligger spredt over et større område. Canonical bruker derfor steinringfeltet som et fysisk og pedagogisk hovedanker for den samlede posten, ikke som påstått centroid for alle delfeltene. OSM-node 803006104 med navnet Hunnfeltet og node 803006407 med navnet Steinringene på Hunn er informasjonspunkter og brukes ikke som hovedkoordinat. Oldtidspark node 6271663565 er besøksinfrastruktur, mens helleristningen øst for feltet og Ravneberget bygdeborg er separate kulturminner. Midtfeltet ligger omtrent 330 meter nordvest og Vestfeltet omtrent 510 meter nordvest for ankeret. Radius 360 meter dekker Sydfeltet, steinringene og deler av det nærmeste gravlandskapet på gameplay-nivå, men er ikke en arkeologisk lokalitets-, sikringssone-, eiendoms- eller fullfeltpolygon.",
+  "anchors": [
+    {
+      "id": "hunn_steinringfeltet",
+      "name": "Hunn – Steinringfeltet",
+      "lat": 59.21764,
+      "lon": 11.07646,
+      "r": 120,
+      "type": "archaeological_field_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8374670062;wikidata:Q11976121",
+      "note": "Navngitt arkeologisk besøkssted i Sydfeltet, brukt som hovedanker for den samlede Hunnfeltet-posten uten å hevde at punktet dekker alle delfelt eller enkeltgraver."
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Fredrikstad",
   "year": 500,
-  "period": "Jernalder og gravlandskap",
+  "period": "Bronsealder, jernalder og gravlandskap",
   "tags": [
     "historie",
     "arkeologi",
     "gravfelt",
     "jernalder",
-    "oldtid"
+    "bronsealder",
+    "steinringer",
+    "oldtidsveien"
   ],
-  "desc": "Stort gravfelt ved Borge/Fredrikstad med gravhauger, steinsettinger og oldtidsspor. Hunnfeltet viser Østfold som et av Norges rikeste oldtidslandskap.",
-  "popupDesc": "Hunnfeltet er et stort oldtids- og gravlandskap ved Borge i Fredrikstad. Området rommer gravhauger, steinsettinger og spor etter langvarig bruk gjennom jernalderen. Sammen med helleristningsfeltene langs Oldtidsveien viser Hunnfeltet hvordan Østfolds landskap var tett fylt av rituelle og sosiale markører lenge før middelalderbyer og festninger. I History Go bør stedet brukes til gravskikk, makt, slekt, ritualer og arkeologisk landskapslesning.",
+  "desc": "Stort og godt bevart gravlandskap ved Borge med mer enn hundre hauger, røyser og steinringer. Hunnfeltet består av flere delfelt og viser hvordan gravminner, ferdsel, gårder og sosial makt ble skrevet inn i landskapet gjennom bronse- og jernalderen.",
+  "popupDesc": "Hunnfeltet ligger i skogen øst for Hunn-gårdene og er et av Østfolds viktigste oldtidslandskap. Feltet deles vanligvis i tre deler: Vestfeltet med gravhauger, Sydfeltet med de karakteristiske runde steinsetningene og Midtfeltet med gravrøyser. Gravminnene spenner over lang tid, fra bronsealder og førromersk jernalder til yngre jernalder, og arkeologiske undersøkelser har funnet både brente bein, trekull, gravfunn og spor etter eldre bosetning og jordbruk. Steinringene i Sydfeltet er det tydeligste besøksankeret, men de er bare én del av helheten. I History Go skal Hunn leses som et flerledd grav-, ferdsels- og maktlandskap langs Oldtidsveien – ikke som én enkelt gravhaug, en informasjonstavle eller et oppdiktet sentrum for hele kulturmiljøet.",
   "quiz_profile": {
     "place_type": "gravfelt",
-    "subtype": "jernaldergravfelt_i_oldtidslandskap",
+    "subtype": "flerleddet_gravlandskap_med_steinringer_hauger_og_royser",
     "signature_features": [
-      "gravhauger og steinsettinger",
-      "del av Oldtidsveien-miljøet",
-      "viser jernalderens rituelle landskap"
+      "mer enn hundre gravhauger, røyser og steinringer",
+      "Vestfelt, Sydfelt og Midtfelt med ulike gravminnetyper",
+      "del av Oldtidsveiens konsentrerte bronse- og jernalderlandskap"
     ],
     "primary_angles": [
       "historie",
@@ -33,23 +61,47 @@
       "makt"
     ],
     "question_families": [
-      "jernalder",
+      "bronsealder_og_jernalder",
       "gravfelt",
       "ritualer",
-      "landskap"
+      "landskapslesning"
     ],
     "avoid_angles": [
       "generisk_gravhaug",
+      "steinring_som_sikker_tingplass",
       "uklar_sagnhistorie"
     ],
     "must_include": [
-      "gravfeltets rolle i Oldtidsveien-landskapet",
-      "sammenhengen mellom gravminner og sosial makt"
+      "gravfeltets tre delfelt og ulike gravminnetyper",
+      "sammenhengen mellom gravminner, landskap, slekt og sosial makt"
     ],
     "contrast_targets": [
       "solbergfeltet_helleristninger",
       "tune_skipet_funnsted"
     ],
-    "notes": "Skal spørres som arkeologisk landskap, ikke som enkeltgrav."
-  }
+    "notes": "Skal spørres som et stort, flerleddet arkeologisk landskap. Steinringfeltet er fysisk hovedanker, men posten må ikke reduseres til én ring eller én grav."
+  },
+  "externalLinks": [
+    {
+      "type": "reference",
+      "label": "Store norske leksikon – Hunn",
+      "url": "https://snl.no/Hunn",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "visitor_history",
+      "label": "Visit Fredrikstad & Hvaler – Oldtidsruta",
+      "url": "https://www.visitfredrikstadhvaler.com/no/artikler/oldtidsruta",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Hunn (Steinringfeltet)",
+      "url": "https://www.openstreetmap.org/node/8374670062",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    }
+  ]
 }
