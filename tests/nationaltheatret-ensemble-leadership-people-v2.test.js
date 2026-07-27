@@ -9,8 +9,8 @@ const targets = [
     id: 'anne_marit_jacobsen',
     file: 'data/people/litteratur/oslo/nationaltheatret/anne_marit_jacobsen.json',
     living: true,
-    places: ['nationaltheatret', 'oslo_nye_teater_hovedscenen', 'det_norske_teatret', 'nrk_huset_marienlyst'],
-    works: ['Lilli Valentin', 'Jo fortere jeg går, jo mindre er jeg'],
+    places: ['nationaltheatret', 'centralteatret', 'oslo_nye_teater_hovedscenen', 'det_norske_teatret', 'nrk_huset_marienlyst'],
+    works: ['Lilli Valentin', 'Så inn i Norden', 'Jo fortere jeg går, jo mindre er jeg'],
   },
   {
     id: 'anneke_von_der_lippe',

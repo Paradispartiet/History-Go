@@ -1,9 +1,35 @@
 {
   "id": "borregaard_sarpsborg_industri",
   "name": "Borregaard Sarpsborg",
-  "lat": 59.2846,
-  "lon": 11.1139,
+  "lat": 59.27224,
+  "lon": 11.11388,
   "r": 420,
+  "locatorType": "active_industrial_complex",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:190303979;business-register:998753562",
+  "geocodeAccuracy": "area_representative_point",
+  "coordRole": "biorefinery_industrial_area_anchor",
+  "coordType": "named_active_industrial_area_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 190303979 – Borregaard; Borregaard – historie, om oss og anlegg; Brønnøysundregistrene – Borregaard ASA; Store norske leksikon – Borregaard",
+  "coordSourceId": "osm-way:190303979;business-register:998753562",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/190303979",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 1 374,4 meter sør til representasjonspunktet for det navngitte aktive Borregaard-industriområdet.",
+  "coordNote": "OpenStreetMap way 190303979 kartfester det navngitte Borregaard-industriområdet på 59.27224, 11.11388. Borregaards egne sider beskriver bioraffineriet i Sarpsborg som selskapets norske produksjonsanlegg og daterer den moderne industrivirksomheten til Kellner Partington Paper Pulp Company Ltd i 1889. Brønnøysundregistrene og Borregaards kontaktinformasjon knytter virksomheten til Hjalmar Wessels vei 6, men administrasjonsadressen brukes som identitetskontroll, ikke som erstatning for industriområdets geometri. Canonical bruker det aktive industriområdet som hovedanker, ikke Borregaard hovedgård, Borregaard kraftverk, Sarpsfossen, hovedkontorinngangen eller et generisk Borregård-lokalitetspunkt. Radius 420 meter beholdes som et begrenset gameplayområde ved den vestlige og sentrale industrikjernen, men dekker ikke hele OSM-polygonet og er ikke en fabrikk-, prosess-, sikkerhets-, eiendoms-, utslipps- eller virksomhetsgrense. Området er et aktivt, adgangskontrollert industrianlegg; gameplay skal foregå fra lovlige offentlige veier og utsiktspunkter og aldri kreve adgang innenfor portene.",
+  "anchors": [
+    {
+      "id": "borregaard_biorefinery_area",
+      "name": "Borregaard – aktivt industri- og bioraffineriområde",
+      "lat": 59.27224,
+      "lon": 11.11388,
+      "r": 180,
+      "type": "biorefinery_industrial_area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:190303979;business-register:998753562",
+      "note": "Representasjonspunkt for det navngitte, aktive industriområdet. Kraftverk, hovedgård, Sarpsfossen og administrasjonsadresse er separate objekter eller kontrollpunkter."
+    }
+  ],
   "category": "naeringsliv",
   "fylke": "ostfold",
   "kommune": "Sarpsborg",
@@ -14,17 +40,48 @@
     "industri",
     "treforedling",
     "sarpsfossen",
-    "arbeid"
+    "arbeid",
+    "bioraffineri"
   ],
-  "desc": "Stort industrimiljø ved Sarpsfossen, utviklet fra sagbruk og treforedling til moderne bioraffineri. Borregaard viser hvordan foss, skog, teknologi, arbeid og global industrihistorie møtes i Sarpsborg.",
-  "popupDesc": "Borregaard i Sarpsborg er et av Norges viktigste industrimiljøer. Stedet ligger ved Sarpsfossen, der kraften fra fossen og tømmerressursene i Glomma-vassdraget ga grunnlag for sagbruk, cellulose, papir og senere avansert biokjemisk industri. Borregaard bør brukes i History Go som et sted der man kan følge overgangen fra naturressurs og arbeid til teknologi, eksport, miljøspørsmål og moderne industriell kunnskap.",
+  "desc": "Aktivt industriområde i Sarpsborg der moderne treforedling startet i 1889 og senere ble utviklet til et avansert bioraffineri. Borregaard knytter skogsråstoff, prosessindustri, energi, forskning, arbeidsliv og internasjonal eksport sammen.",
+  "popupDesc": "Borregaards moderne industrivirksomhet i Sarpsborg begynte i 1889, da det britiske Kellner Partington-selskapet kjøpte Borregård og bygde ut celluloseproduksjon ved Sarpsfossen. Stedet hadde eldre sagbruks- og industrispor, men 1889 markerer starten på den sammenhengende moderne fabrikkutviklingen. Produksjonen vokste fra cellulose og papirrelaterte produkter til spesialcellulose, ligninbaserte biopolymerer, vanillin og andre biokjemikalier. Borregaard omtaler i dag Sarpsborg-anlegget som et bioraffineri som utnytter ulike deler av tømmeret til flere produktstrømmer. I History Go er det navngitte, aktive industriområdet det fysiske hovedankeret. Borregaard hovedgård, kraftverket og Sarpsfossen har egne identiteter og skal ikke slås sammen med fabrikkområdet. Anlegget er adgangskontrollert; historien skal oppleves fra lovlige offentlige veier og utsiktspunkter, ikke ved å gå inn på industriområdet.",
+  "externalLinks": [
+    {
+      "type": "official_history",
+      "label": "Borregaard – historie",
+      "url": "https://www.borregaard.com/no/om-oss/historie",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "official_site",
+      "label": "Borregaard – om oss",
+      "url": "https://www.borregaard.com/no/om-oss",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "business_register",
+      "label": "Brønnøysundregistrene – Borregaard ASA",
+      "url": "https://virksomhet.brreg.no/nb/oppslag/enheter/998753562",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Borregaard",
+      "url": "https://www.openstreetmap.org/way/190303979",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    }
+  ],
   "quiz_profile": {
     "place_type": "industrianlegg",
-    "subtype": "treforedling_og_fossbasert_industri",
+    "subtype": "aktivt_trebasert_bioraffineri_og_industriomrade",
     "signature_features": [
-      "industrimiljø ved Sarpsfossen",
-      "kobler skog, vannkraft, cellulose og moderne bioraffineri",
-      "en av Sarpsborgs historiske hjørnesteinsbedrifter"
+      "moderne industrivirksomhet fra 1889",
+      "fra cellulose og treforedling til spesialiserte biokjemikalier",
+      "aktivt bioraffineri med forskning, produksjon og eksport"
     ],
     "primary_angles": [
       "historie",
@@ -34,22 +91,25 @@
     ],
     "question_families": [
       "treforedling",
-      "foss_og_kraft",
+      "foss_og_energi",
       "arbeiderhistorie",
-      "modernisering"
+      "bioraffineri_og_omstilling"
     ],
     "avoid_angles": [
       "generisk_fabrikk",
-      "kun_nåtidig_bedrift"
+      "kun_nåtidig_bedrift",
+      "borregaard_hovedgard_som_fabrikk",
+      "oppgave_som_krever_adgang_til_industriomradet"
     ],
     "must_include": [
-      "Sarpsfossen som kraft- og ressursgrunnlag",
-      "overgangen fra treforedling til moderne industri"
+      "1889 som start på den moderne industrivirksomheten",
+      "overgangen fra cellulose og treforedling til bioraffineri",
+      "skillet mellom industriområdet, Sarpsfossen, kraftverket og hovedgården"
     ],
     "contrast_targets": [
-      "hafslund_hovedgard",
-      "askim_gummivarefabrikk"
+      "sarpsfossen",
+      "hafslund_hovedgard"
     ],
-    "notes": "Skal spørres som ressurs-, arbeid- og teknologihistorie, ikke som bedriftsprofil."
+    "notes": "Skal spørres som ressurs-, arbeid-, prosess- og teknologihistorie, ikke som reklame eller bedriftsprofil. Anlegget er aktivt og adgangskontrollert; bruk bare offentlige observasjonspunkter."
   }
 }

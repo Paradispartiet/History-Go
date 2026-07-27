@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "auditType": "retrospective_claim_by_claim_factuality_audit",
+  "contract": "docs/FACTUALITY_CONTRACT.md",
+  "auditedAt": "2026-07-27",
+  "scope": {
+    "placeCluster": "nationaltheatret",
+    "profileIds": [
+      "anne_marit_jacobsen",
+      "anneke_von_der_lippe",
+      "anton_ronneberg",
+      "arild_brinchmann"
+    ],
+    "fields": [
+      "identity",
+      "life_data",
+      "education",
+      "roles_and_productions",
+      "institutional_periods",
+      "place_links",
+      "popup_narrative"
+    ],
+    "exclusions": [
+      "subjective theme selection is editorial synthesis and is not labelled as an independently verified historical event"
+    ]
+  },
+  "statusDefinitions": {
+    "verified": "The checked claim is directly supported by an inspectable source.",
+    "corrected": "The prior canonical wording or linkage was changed to match the source.",
+    "resolved_source_conflict": "Sources disagreed; the direct production record and corroborating authoritative source controlled the canonical wording.",
+    "editorial_synthesis": "The wording summarizes verified facts without adding a new factual detail."
+  },
+  "profiles": [
+    {
+      "id": "anne_marit_jacobsen",
+      "status": "corrected",
+      "corrections": [
+        {
+          "claim": "Jacobsen, værsågod! venue",
+          "before": "Oslo Nye Teater",
+          "after": "Centralteatret",
+          "reason": "Sceneweb identifies Centralteatret as the premiere venue.",
+          "source": "https://sceneweb.no/nb/production/85684/Jacobsen%2C_v%C3%A6rs%C3%A5god"
+        },
+        {
+          "claim": "Oslo Nye Teater main-stage place link",
+          "before": "Linked through an imprecisely located production.",
+          "after": "Grounded in Så inn i Norden (1984), performed on Hovedscenen with Jacobsen in several roles.",
+          "source": "https://sceneweb.no/nb/production/22246/S%C3%A5_inn%20i%20Norden"
+        },
+        {
+          "claim": "Lilli Valentin performance count",
+          "before": "over 300 performances",
+          "after": "around 300 performances",
+          "reason": "Nationaltheatret and Store norske leksikon use slightly different counts; the canonical wording no longer asserts a disputed exact threshold.",
+          "sources": [
+            "https://www.nationaltheatret.no/om-oss/ensemble/anne-marit-jacobsen",
+            "https://snl.no/Anne_Marit_Jacobsen"
+          ]
+        }
+      ],
+      "verifiedClaimGroups": [
+        {
+          "group": "identity_life_education_and_debut",
+          "sources": [
+            "https://snl.no/Anne_Marit_Jacobsen",
+            "https://sceneweb.no/nb/artist/7665/Anne_Marit%20Jacobsen"
+          ]
+        },
+        {
+          "group": "nationaltheatret_roles_and_projects",
+          "sources": [
+            "https://www.nationaltheatret.no/om-oss/ensemble/anne-marit-jacobsen",
+            "https://forest.nationaltheatret.no/person/anne-marit-jacobsen"
+          ]
+        },
+        {
+          "group": "selected_sceneweb_productions",
+          "sources": [
+            "https://sceneweb.no/nb/production/40940/Johan_uten%20land",
+            "https://sceneweb.no/nb/production/43028/Lilli_Valentin",
+            "https://sceneweb.no/nb/production/37805/Jo_fortere%20jeg%20g%C3%A5r%2C%20jo%20mindre%20er%20jeg",
+            "https://sceneweb.no/nb/production/85684/Jacobsen%2C_v%C3%A6rs%C3%A5god",
+            "https://sceneweb.no/nb/production/114184/Sterk_vind",
+            "https://sceneweb.no/nb/production/22246/S%C3%A5_inn%20i%20Norden"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anneke_von_der_lippe",
+      "status": "resolved_source_conflict",
+      "sourceConflict": {
+        "claim": "Role in Uskyld (2011)",
+        "conflictingBriefSource": "Nationaltheatrets short ensemble page lists Professoren.",
+        "canonicalResolution": "Ella",
+        "reason": "The direct FOREST production/person record and Store norske leksikon both identify the role as Ella.",
+        "controllingSources": [
+          "https://forest.nationaltheatret.no/person/anneke-von-der-lippe",
+          "https://snl.no/Anneke_von_der_Lippe"
+        ]
+      },
+      "verifiedClaimGroups": [
+        {
+          "group": "identity_education_stage_and_screen_career",
+          "sources": [
+            "https://snl.no/Anneke_von_der_Lippe",
+            "https://sceneweb.no/nb/artist/4144/Anneke_von%20der%20Lippe"
+          ]
+        },
+        {
+          "group": "nationaltheatret_roles",
+          "sources": [
+            "https://forest.nationaltheatret.no/person/anneke-von-der-lippe"
+          ]
+        },
+        {
+          "group": "det_norske_teatret_roles",
+          "sources": [
+            "https://sceneweb.no/nb/production/42669/Salka_Valka",
+            "https://sceneweb.no/nb/production/42814/Medmenneske",
+            "https://sceneweb.no/nb/production/80304/Molly_Sweeney",
+            "https://sceneweb.no/nb/production/46568/Macbeth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anton_ronneberg",
+      "status": "verified",
+      "corrections": [],
+      "verifiedClaimGroups": [
+        {
+          "group": "life_data_education_and_early_criticism",
+          "sources": [
+            "https://nbl.snl.no/Anton_R%C3%B8nneberg",
+            "https://snl.no/Anton_R%C3%B8nneberg"
+          ]
+        },
+        {
+          "group": "nationaltheatret_periods_and_leadership",
+          "sources": [
+            "https://nbl.snl.no/Anton_R%C3%B8nneberg",
+            "https://sceneweb.no/nb/artist/20279/Anton_R%C3%B8nneberg"
+          ]
+        },
+        {
+          "group": "book_publications",
+          "sources": [
+            "https://nbl.snl.no/Anton_R%C3%B8nneberg",
+            "https://snl.no/Anton_R%C3%B8nneberg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arild_brinchmann",
+      "status": "corrected",
+      "corrections": [
+        {
+          "claim": "Natten er dagens mor contribution",
+          "before": "adaptation and direction",
+          "after": "direction",
+          "reason": "Sceneweb credits Klaus Hagerup with translation and Arild Brinchmann with direction only.",
+          "source": "https://sceneweb.no/nb/production/43374/Natten_er%20dagens%20mor"
+        },
+        {
+          "claim": "Hedda Gabler 1971/1975 continuity",
+          "before": "later reworked for Fjernsynsteatret",
+          "after": "the Nationaltheatret production was later filmed and broadcast by NRK Fjernsynsteatret in 1975",
+          "reason": "The source documents filming and broadcast, not a separate unsupported reworking claim.",
+          "source": "https://sceneweb.no/nb/production/17226/Hedda_Gabler"
+        },
+        {
+          "claim": "Balansegang and chief-tenure wording",
+          "before": "interpretive claim that the production began the tenure",
+          "after": "direct source wording: the 1967 production was the first in his tenure as theatre director",
+          "source": "https://sceneweb.no/nb/production/39880/Balansegang"
+        }
+      ],
+      "verifiedClaimGroups": [
+        {
+          "group": "life_training_film_and_institutional_roles",
+          "sources": [
+            "https://nbl.snl.no/Arild_Brinchmann",
+            "https://snl.no/Arild_Brinchmann"
+          ]
+        },
+        {
+          "group": "selected_stage_and_television_direction",
+          "sources": [
+            "https://sceneweb.no/nb/artist/29899/Arild_Brinchmann",
+            "https://sceneweb.no/nb/production/65259/Den_fjerde%20nattevakt",
+            "https://sceneweb.no/nb/production/17282/Fruen_fra%20havet",
+            "https://sceneweb.no/nb/production/43374/Natten_er%20dagens%20mor"
+          ]
+        }
+      ]
+    }
+  ],
+  "conclusion": {
+    "auditedProfiles": 4,
+    "profilesCorrected": 2,
+    "sourceConflictsResolved": 1,
+    "profilesRetainedWithoutCorrection": 1,
+    "wholeAppVerified": false,
+    "note": "This report verifies only the listed claim groups for these four profiles. It is not evidence that every History GO object is factually audited."
+  }
+}
