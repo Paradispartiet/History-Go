@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "stromsfoss_sluser",
+  "placeFile": "data/places/by/ostfold/stromsfoss_sluser/stromsfoss_sluser.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_single_chamber_lock_anchor",
+  "currentCoordinate": {
+    "lat": 59.3005,
+    "lon": 11.6601,
+    "r": 320,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Lokalhistoriewiki Strømsfoss sluser; NVE Haldenkanalen; Visit Norway Strømsfoss sluse; Haldenkanalen Regionalpark",
+    "coordType": "lock_channel_representative_point",
+    "coordRole": "single_chamber_lock_anchor",
+    "sourceObjectId": "lokalhistoriewiki:stromsfoss-sluser;nve:haldenkanalen"
+  },
+  "previousCoordinate": {
+    "lat": 59.2977,
+    "lon": 11.6626,
+    "r": 320,
+    "distanceToAppliedCoordinateM": 342.2,
+    "reasonReplaced": "Legacy-punktet lå sørøst for den utsprengte slusekanalen og manglet kontrakt mot selve slusekammeret."
+  },
+  "identity": {
+    "resolvedIdentity": "Strømsfoss sluse, énkammeranlegget fra 1860 mellom Aremarksjøen og Øymarksjøen.",
+    "identityStatus": "resolved",
+    "identityProblem": "Strømsfoss er både landsby, foss, bru, mølle- og handelssted, slusemiljø og målestasjonssted. Canonical må identifisere slusekanalen og kammeret, ikke det bredere tettstedet.",
+    "locatorTypeCandidate": "single_chamber_lock_complex",
+    "requiresSplit": false,
+    "splitReason": "Slusen er ett sammenhengende anlegg. Brua, fossen, mølla, slusemesterboligen, landhandleriet, bryggene og målestasjonen er relaterte, men separate komponenter."
+  },
+  "requiredEvidence": [
+    "named lock coordinate",
+    "single chamber and two gates",
+    "two-metre lift",
+    "1857–1860 construction chronology",
+    "blasted-channel relation to waterfall",
+    "NVE canal-system identity",
+    "bridge and settlement separation",
+    "visitor and water-safety limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Strømsfoss sluser",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Str%C3%B8msfoss_sluser",
+      "sourceObjectId": "lokalhistoriewiki:stromsfoss-sluser",
+      "sourceQuality": "named_lock_coordinate_and_history",
+      "finding": "Identifies Strømsfoss locks at 59.3005, 11.6601, with one chamber, two gates, two metres of lift and construction in 1857–1860.",
+      "canVerifyCoordinate": true,
+      "reason": "Direct named lock coordinate and detailed physical description."
+    },
+    {
+      "sourceProvider": "nve",
+      "sourceName": "NVE – Haldenkanalen",
+      "sourceUrl": "https://www.nve.no/om-nve/nves-listefoerte-kulturminner/vassdragstekniske-anlegg/haldenkanalen/",
+      "sourceObjectId": "nve:haldenkanalen",
+      "sourceQuality": "authoritative_waterway_and_heritage_context",
+      "finding": "Identifies a lock at Strømsfoss in the north end of Aremarksjøen and assigns high national value to Haldenkanalen as technical heritage.",
+      "canVerifyCoordinate": false,
+      "reason": "Authoritative system and cultural-heritage control."
+    },
+    {
+      "sourceProvider": "visit_norway",
+      "sourceName": "Visit Norway – Strømsfoss sluse",
+      "sourceUrl": "https://www.visitnorway.no/listings/str%C3%B8msfoss-sluse/216595/",
+      "sourceObjectId": "visitnorway:stromsfoss-sluse-216595",
+      "sourceQuality": "current_physical_and_visitor_description",
+      "finding": "Documents one chamber, two gates, two metres of lift, construction from 1857 to 1860, the blasted channel and current guest-berth and service context.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports physical configuration and current visitor use."
+    },
+    {
+      "sourceProvider": "marker_municipality",
+      "sourceName": "Marker municipality – Haldenkanalen",
+      "sourceUrl": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/arrangement-og-moteplasser/kulturminner-og-museer/om-haldenkanalen",
+      "sourceObjectId": "marker-kommune:haldenkanalen",
+      "sourceQuality": "municipal_chronology_control",
+      "finding": "States that Strømsfoss and Ørje locks were built in 1860 and remain part of the living canal heritage.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent municipal chronology and continuing-use control."
+    },
+    {
+      "sourceProvider": "regional_park",
+      "sourceName": "Haldenkanalen Regionalpark – Strømsfoss development",
+      "sourceUrl": "https://www.haldenkanalenregionalpark.no/prosjekter/stedsutvikling-str%C3%B8msfoss",
+      "sourceObjectId": "haldenkanalen-regionalpark:stromsfoss",
+      "sourceQuality": "current_place_and_lock_identity",
+      "finding": "Identifies Strømsfoss locks between Aremarksjøen and Øymarksjøen and confirms the two-metre lift.",
+      "canVerifyCoordinate": false,
+      "reason": "Current regional place and lock control."
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceName": "Commons image location – Strømsfoss locks",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stromsfoss_sluser_Aremark-003-06-09-2023-huskerdu.jpg",
+      "sourceObjectId": "commons:Stromsfoss-sluser-Aremark-003",
+      "sourceQuality": "independent_camera_location_at_lock",
+      "finding": "A 2023 photograph of the lock has camera location 59.300670, 11.660200, approximately 20 metres from the applied point.",
+      "canVerifyCoordinate": true,
+      "reason": "Independent visual-location control inside the same lock environment."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Strømsfoss bridge",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q131928102",
+      "sourceObjectId": "wikidata:Q131928102",
+      "sourceQuality": "separate_bridge_entity_control",
+      "finding": "Places the road bridge at approximately 59.30152, 11.65972 north of the lock.",
+      "canVerifyCoordinate": true,
+      "reason": "Prevents the nearby bridge from being mistaken for lock geometry."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Strømsfoss settlement",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q7626074",
+      "sourceObjectId": "wikidata:Q7626074",
+      "sourceQuality": "separate_settlement_entity_control",
+      "finding": "Q7626074 identifies the settlement, not the lock installation.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected as canonical because it represents the village."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Strømsfoss lock precipitation station",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Str%C3%B8msfoss_sluse_m%C3%A5lestasjon",
+      "sourceObjectId": "lokalhistoriewiki:stromsfoss-lock-weather-station",
+      "sourceQuality": "separate_scientific_component_control",
+      "finding": "Documents the manual precipitation station established in 1883 beside the locks and its long measurement continuity.",
+      "canVerifyCoordinate": true,
+      "reason": "Important adjacent component but not the lock chamber itself."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Strømsfoss point",
+      "sourceObjectId": "legacy:stromsfoss_sluser",
+      "sourceQuality": "imprecise_nearby_point",
+      "finding": "The legacy point is approximately 342.2 metres south-east of the named lock coordinate.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify the lock channel or chamber."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:stromsfoss-sluser",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceObjectId": "commons:Stromsfoss-sluser-Aremark-003",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Camera location supports the same site but is not a canonical lock entity."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q131928102",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate road bridge north of the lock."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q7626074",
+      "canApplyToPlace": false,
+      "rejectionReason": "Settlement entity rather than lock geometry."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:stromsfoss_sluser",
+      "canApplyToPlace": false,
+      "rejectionReason": "Located 342 metres from the lock channel."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "stromsfoss_single_chamber_lock",
+      "name": "Strømsfoss sluse",
+      "lat": 59.3005,
+      "lon": 11.6601,
+      "r": 105,
+      "type": "single_chamber_lock_anchor",
+      "sourceProvider": "lokalhistoriewiki_nve_visitnorway",
+      "sourceObjectId": "lokalhistoriewiki:stromsfoss-sluser",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "stromsfoss_bridge",
+      "name": "Strømsfoss bridge",
+      "lat": 59.30152,
+      "lon": 11.65972,
+      "r": 80,
+      "type": "separate_road_bridge_context",
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q131928102",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:stromsfoss_sluser",
+      "lat": 59.2977,
+      "lon": 11.6626,
+      "distanceFromAppliedM": 342.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:stromsfoss-sluser",
+      "lat": 59.3005,
+      "lon": 11.6601,
+      "distanceFromPreviousM": 342.2,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikimedia_commons",
+      "sourceObjectId": "commons:Stromsfoss-sluser-Aremark-003",
+      "lat": 59.30067,
+      "lon": 11.6602,
+      "distanceFromAppliedM": 19.8,
+      "canApplyToPlace": true,
+      "applied": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q131928102",
+      "lat": 59.30152,
+      "lon": 11.65972,
+      "distanceFromAppliedM": 115.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-stromsfoss-sluser-source-probe/source-summary.json",
+      "description": "Persisted lock coordinate, physical configuration, canal chronology, current-use context and separation from settlement, bridge, waterfall and weather station."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named single-chamber lock coordinate, retained 1860 as opening year and separated the lock from village, bridge, waterfall, mill and measurement-station objects. Continue with moss_mollebyen_industri."
+  },
+  "notes": [
+    "The coordinate moves approximately 342 metres north-northwest.",
+    "The single lock chamber and blasted channel are the canonical object.",
+    "The bridge, waterfall, mill, lockmaster environment and weather station are separate components.",
+    "The radius is not a lock, canal, quay, property, safety, heritage or access boundary."
+  ]
+}
