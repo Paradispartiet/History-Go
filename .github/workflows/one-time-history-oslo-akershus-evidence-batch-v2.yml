@@ -1,0 +1,128 @@
+name: One-time History Oslo Akershus evidence batch V2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-oslo-akershus-evidence-batch-v2.mjs'
+      - '.github/workflows/one-time-history-oslo-akershus-evidence-batch-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-oslo-akershus-evidence-batch-v2
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize and validate evidence batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-profile-evidence/batch-v2-validation reports/historie-geographic-profiles reports/historie-universal-coverage reports/historie-v5
+
+          node --check .github/history-oslo-akershus-evidence-batch-v2.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/materializer-syntax.log
+          node .github/history-oslo-akershus-evidence-batch-v2.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/materializer.log
+
+          node --check tools/validate-historie-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/validator-syntax.log
+          node --check tools/audit-historie-geographic-profile.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/geographic-audit-syntax.log
+          node tools/validate-historie-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/profile-validation.log
+
+          node tools/audit-historie-geographic-profile.mjs 2>&1 \
+            | tee reports/historie-geographic-profiles/audit-command.log
+          node tools/audit-historie-geographic-profile.mjs --check 2>&1 \
+            | tee -a reports/historie-geographic-profiles/audit-command.log
+
+          node tools/audit-historie-universal-coverage.mjs 2>&1 \
+            | tee reports/historie-universal-coverage/audit-command.log
+          node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
+            | tee -a reports/historie-universal-coverage/audit-command.log
+
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze \
+            --reason='V5.8 geographic production profile reaches ten canonical cases and 22 claim-source-evidence links in Oslo/Akershus evidence batch V2.' 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/quality-freeze-write.log
+          node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/quality-freeze-verify.log
+
+          node <<'NODE' 2>&1 | tee reports/historie-profile-evidence/batch-v2-validation/target-check.log
+          const fs = require('fs');
+          const profile = JSON.parse(fs.readFileSync('data/fag/profiles/historie/oslo_akershus/profile.json'));
+          const claims = JSON.parse(fs.readFileSync('data/fag/historie/claims_historie_canonical_v1.json')).claims;
+          const sources = JSON.parse(fs.readFileSync('data/fag/historie/sources_historie_canonical_v1.json')).sources;
+          const evidence = JSON.parse(fs.readFileSync('data/fag/historie/place_evidence_historie_v1.json')).evidence_links;
+          const geo = JSON.parse(fs.readFileSync('reports/historie-geographic-profiles/oslo-akershus-profile.json'));
+          const universal = JSON.parse(fs.readFileSync('reports/historie-universal-coverage/historie-universal-coverage.json'));
+          const verified = profile.cases.filter((item) => item.evidence_status === 'claim_source_linked');
+          const expected = { verified: 10, claims: 22, sources: 22, evidence: 22 };
+          const actual = { verified: verified.length, claims: claims.length, sources: sources.length, evidence: evidence.length };
+          for (const [key, value] of Object.entries(expected)) {
+            if (actual[key] !== value) throw new Error(`${key}: expected ${value}, got ${actual[key]}`);
+          }
+          if (profile.production_coverage.status !== 'COMPLETE') throw new Error(`profile status=${profile.production_coverage.status}`);
+          if (geo.status !== 'COMPLETE' || geo.open_gaps.length !== 0) throw new Error(`geographic audit status=${geo.status}`);
+          if (universal.summary.covered_cells !== 58 || universal.summary.partial_cells !== 0 || universal.summary.missing_cells !== 0) throw new Error('universal coverage cells changed');
+          if (universal.summary.production_passes !== 10 || universal.summary.production_gaps !== 1) throw new Error('universal production summary changed');
+          const gaps = universal.production.checks.filter((item) => item.status === 'GAP');
+          if (gaps.length !== 1 || gaps[0].id !== 'theory_evidence_readiness') throw new Error(JSON.stringify(gaps));
+          console.log(JSON.stringify({actual, geographic_status: geo.status, universal_status: universal.status, remaining_gap: gaps[0].id}, null, 2));
+          NODE
+
+          git diff --check 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/git-diff-check.log
+          git status --short 2>&1 \
+            | tee reports/historie-profile-evidence/batch-v2-validation/git-status.log
+
+      - name: Publish validated evidence batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/fag/historie \
+            data/fag/profiles/historie/oslo_akershus/profile.json \
+            reports/historie-geographic-profiles \
+            reports/historie-profile-evidence \
+            reports/historie-universal-coverage \
+            reports/historie-v5 \
+            tools/audit-historie-geographic-profile.mjs \
+            tools/validate-historie-profile-evidence.mjs
+          git rm .github/history-oslo-akershus-evidence-batch-v2.mjs
+          git rm .github/workflows/one-time-history-oslo-akershus-evidence-batch-v2.yml
+          git commit -m 'Utvid Oslo/Akershus til ti validerte Historie-evidenscaser'
+          git push origin HEAD:agent/history-oslo-akershus-evidence-batch-v2 2>&1 \
+            | tee /tmp/history-oslo-akershus-evidence-batch-v2-publish.log
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-oslo-akershus-evidence-batch-v2
+          path: |
+            reports/historie-profile-evidence/**
+            reports/historie-geographic-profiles/**
+            reports/historie-universal-coverage/**
+            reports/historie-v5/**
+            /tmp/history-oslo-akershus-evidence-batch-v2-publish.log
+          if-no-files-found: warn
