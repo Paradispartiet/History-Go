@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "trogstad_kirke",
+  "generatedAt": "2026-07-27",
+  "purpose": "Persist source findings used to verify the Trøgstad church coordinate, medieval building identity, 1904 extension and separation from adjacent museum and rectory components.",
+  "legacyCoordinate": {
+    "lat": 59.6445,
+    "lon": 11.3171,
+    "assessment": "Undocumented point approximately 904.3 metres north-north-east of the church."
+  },
+  "appliedCoordinate": {
+    "lat": 59.63664,
+    "lon": 11.31297,
+    "role": "medieval_stone_church_building_anchor",
+    "sourceObjectId": "osm-way:229175374",
+    "distanceFromLegacyM": 904.3
+  },
+  "identityResolution": {
+    "canonicalEntity": "Trøgstad kirke",
+    "entityType": "standing Romanesque medieval stone church with major 1904 extension",
+    "wikidata": "Q6495125",
+    "kulturminneId": "85678",
+    "kartverketSsrId": "3972",
+    "address": "Trøgstadveien 1202, 1860 Trøgstad",
+    "osmWay": "229175374"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/way/229175374",
+      "objectId": "osm-way:229175374",
+      "supports": [
+        "named medieval church-building geometry",
+        "representative coordinate"
+      ]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6495125",
+      "objectId": "wikidata:Q6495125",
+      "supports": [
+        "independent church entity",
+        "coordinate",
+        "Kulturminne ID 85678",
+        "address Trøgstadveien 1202",
+        "OSM way 229175374"
+      ]
+    },
+    {
+      "provider": "Riksantikvaren / Kulturminnesøk",
+      "url": "https://www.kulturminnesok.no/kart/?id=85678",
+      "objectId": "kulturminne:85678",
+      "supports": [
+        "protected medieval church identity",
+        "church-site context"
+      ]
+    },
+    {
+      "provider": "Kartverket SSR",
+      "url": "https://stadnamn.kartverket.no/fakta/3972",
+      "objectId": "ssr:3972",
+      "supports": [
+        "official place name",
+        "official coordinate 59.63643, 11.31259"
+      ]
+    },
+    {
+      "provider": "Norges Kirker",
+      "url": "https://norgeskirker.no/wiki/Tr%C3%B8gstad_kirke",
+      "objectId": "norges-kirker:trogstad-kirke",
+      "supports": [
+        "Romanesque stone nave and chancel",
+        "Saint Olaf dedication",
+        "1697 sacristy",
+        "1849 municipal acquisition",
+        "major 1904 west extension and interior alteration"
+      ]
+    },
+    {
+      "provider": "Den norske kirke",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/indreostfold/menigheter/tr%C3%B8gstad/kirkene/tr%C3%B8gstadkirke/",
+      "objectId": "kirken:trogstad-kirke",
+      "supports": [
+        "Romanesque church built circa 1250",
+        "Saint Olaf dedication",
+        "Maurus-day consecration tradition",
+        "possible earlier wooden church as an unverified hypothesis",
+        "active church use"
+      ]
+    },
+    {
+      "provider": "Lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/wiki/Tr%C3%B8gstad_bygdemuseum",
+      "objectId": "lokalhistoriewiki:trogstad-bygdemuseum",
+      "supports": [
+        "separate adjacent museum identity",
+        "museum establishment in 1928",
+        "fourteen buildings on three farmstead groups"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "possibly mid-11th century",
+      "event": "An earlier wooden church may have stood on the site.",
+      "certainty": "unverified hypothesis"
+    },
+    {
+      "date": "circa 1250",
+      "event": "The standing Romanesque stone church was probably built and consecrated.",
+      "certainty": "approximate"
+    },
+    {
+      "date": "1697",
+      "event": "A sacristy was built on the north side of the chancel.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1849",
+      "event": "The municipality acquired the formerly privately owned church.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1904",
+      "event": "The west wall and porch were removed, the nave was extended and the interior was extensively altered under Halfdan Berle.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "Year 1250 is approximate and not an exact documented construction or consecration date.",
+    "The possible earlier wooden church is a hypothesis and is not used as the canonical year.",
+    "The 1904 work is a major extension of a surviving medieval church, not a complete replacement building.",
+    "The canonical point represents the church building, not the full churchyard or Skjønhaug centre.",
+    "Trøgstad bygdemuseum, the chapel and the rectory are separate components.",
+    "Services, funerals and cemetery use take priority over gameplay."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "59.63664, 11.31297",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "skiptvet_kirke"
+  }
+}

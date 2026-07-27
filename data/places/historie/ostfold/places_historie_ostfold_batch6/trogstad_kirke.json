@@ -1,55 +1,163 @@
 {
   "id": "trogstad_kirke",
   "name": "Trøgstad kirke",
-  "lat": 59.6445,
-  "lon": 11.3171,
+  "lat": 59.63664,
+  "lon": 11.31297,
   "r": 260,
+  "locatorType": "medieval_church_building",
+  "sourceProvider": "openstreetmap",
+  "sourceObjectId": "osm-way:229175374",
+  "geocodeAccuracy": "named_medieval_church_building_geometry",
+  "coordRole": "medieval_stone_church_building_anchor",
+  "coordType": "building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 229175374; Wikidata Q6495125; Kulturminne ID 85678; Kartverket SSR 3972; Norges Kirker; Den norske kirke",
+  "coordSourceId": "osm-way:229175374;wikidata:Q6495125;kulturminne:85678;ssr:3972",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/229175374",
+  "coordVerifiedAt": "2026-07-27",
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Indre Østfold",
-  "year": 1200,
-  "period": "Middelalderkirke og innlandsbygd",
+  "year": 1250,
+  "yearMeaning": "Omtrentlig datering av den stående romanske steinkirken, ikke en dokumentert eksakt bygge- eller innvielsesdato.",
+  "period": "Romansk middelalderkirke med 1904-utvidelse",
   "tags": [
     "historie",
     "middelalder",
     "kirke",
     "trøgstad",
-    "indre_ostfold"
+    "romansk"
   ],
-  "desc": "Middelaldersk kirkested i Trøgstad, i et innlandslandskap mellom Glomma, skog, jordbruk og gamle ferdselsårer. Kirken gir Indre Østfold flere kirkelige middelalderpunkter utenfor de største byene.",
-  "popupDesc": "Trøgstad kirke representerer den eldre kirkestrukturen i indre Østfold. Stedet er viktig fordi det viser hvordan middelalderens kirker ikke bare lå i byer og langs kysten, men også i jordbruks- og skogsbygder med egne makt- og ferdselslinjer. I History Go bør Trøgstad kirke brukes til å forklare kirkebygging, bygdesentrum, grense mot skoglandskapet og forholdet mellom gårder, vei og kirke.",
+  "desc": "Romansk steinkirke fra omkring 1250, viet til Olav den hellige. Middelalderkoret og deler av skipet står fortsatt, mens vestdelen og interiøret ble sterkt endret ved utvidelsen i 1904.",
+  "popupDesc": "Trøgstad kirke er en stående romansk steinkirke som vanligvis dateres til omkring 1250. Kirken var viet til Olav den hellige og ble innviet på abbed Maurus' dag, 15. januar, men året er ikke sikkert dokumentert. Middelalderbygget består av skip og et lavere, smalere kor med bevart opprinnelig østvindu. I 1904 ble vestmuren og våpenhuset revet, skipet forlenget med et smalere teglmurt tilbygg og interiøret gjennomgripende endret under arkitekt Halfdan Berle. Canonical-punktet representerer den stående kirken, ikke Trøgstad bygdemuseum øst for kirken, kapellet fra 1917, prestegården eller hele Skjønhaug sentrum. Gudstjenester, gravferder og kirkegårdsbruk går foran gameplay.",
+  "accessContext": {
+    "siteType": "active_medieval_church_and_cemetery_environment",
+    "publicAccess": "Kirken er i aktiv bruk. Utvendig ferdsel følger kirkegårdens regler, mens innvendig tilgang følger gudstjenester, arrangementer og avtaler.",
+    "limitations": [
+      "Ikke forstyrr gudstjenester, gravferder, seremonier eller sorgarbeid.",
+      "Ikke gå inn i låste rom, på gravsteder eller i tekniske og driftsmessige arealer.",
+      "Gameplay-radiusen er ikke en kirke-, kirkegårds-, museums-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "possible_earlier_wooden_church",
+      "date": "possibly_11th_century",
+      "status": "unverified_hypothesis",
+      "note": "Offisiell kirkehistorikk nevner muligheten for en eldre trekirke, men dette brukes ikke som canonical datering."
+    },
+    {
+      "type": "medieval_stone_church",
+      "date": "circa_1250",
+      "status": "surviving_core",
+      "note": "Romansk steinkirke med skip, smalere kor og bevart opprinnelig østvindu."
+    },
+    {
+      "type": "north_sacristy",
+      "date": "1697",
+      "status": "later_building_layer",
+      "note": "Et sakristi ble oppført ved korets nordside."
+    },
+    {
+      "type": "municipal_ownership",
+      "date": "1849",
+      "status": "documented_ownership_transition",
+      "note": "Kirken gikk fra privat eie til kommunen."
+    },
+    {
+      "type": "major_west_extension",
+      "date": "1904",
+      "status": "surviving_major_alteration",
+      "note": "Vestmuren og våpenhuset ble revet, skipet forlenget og interiøret gjennomgripende endret under Halfdan Berle."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "trogstad_churchyard",
+      "name": "Trøgstad kirkegård",
+      "relation": "surrounding_active_cemetery",
+      "canonical": false,
+      "note": "Kirkegården og kirkebakken er et større seremoni- og landskapsområde enn bygningsankeret."
+    },
+    {
+      "id": "trogstad_bygdemuseum",
+      "name": "Trøgstad bygdemuseum",
+      "relation": "adjacent_open_air_museum",
+      "canonical": false,
+      "note": "Bygdemuseet øst for kirken ble etablert i 1928 og er et eget museumsområde."
+    },
+    {
+      "id": "trogstad_kapell",
+      "name": "Trøgstad kapell",
+      "relation": "adjacent_1917_chapel",
+      "canonical": false,
+      "note": "Kapellet er en egen bygning nordøst for kirken."
+    },
+    {
+      "id": "trogstad_prestegard",
+      "name": "Trøgstad prestegård",
+      "relation": "separate_rectory_property",
+      "canonical": false,
+      "note": "Prestegården vest for kirken er en separat eiendom og delvis privat bruk."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "trogstad_medieval_church",
+      "name": "Trøgstad kirke",
+      "lat": 59.63664,
+      "lon": 11.31297,
+      "r": 110,
+      "type": "medieval_stone_church_building_anchor",
+      "sourceProvider": "openstreetmap_wikidata_kulturminne",
+      "sourceObjectId": "osm-way:229175374;wikidata:Q6495125;kulturminne:85678",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "trogstad_official_name_point",
+      "name": "Trøgstad kirke – Kartverket",
+      "lat": 59.63643,
+      "lon": 11.31259,
+      "r": 100,
+      "type": "official_named_church_control",
+      "sourceProvider": "kartverket_ssr",
+      "sourceObjectId": "ssr:3972",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "kirke",
-    "subtype": "middelalderlig_innlandskirkested",
+    "subtype": "romansk_middelalderkirke_med_1904_utvidelse",
     "signature_features": [
-      "middelaldersk kirkested i Trøgstad",
-      "ligger i indre Østfolds jordbruks- og skoglandskap",
-      "kobler kirke, ferdsel og bygdesamfunn"
+      "romansk steinkirke fra omkring 1250",
+      "viet til Olav den hellige",
+      "middelalderkjerne med omfattende vestutvidelse i 1904"
     ],
     "primary_angles": [
       "historie",
       "middelalder",
-      "lokalsamfunn",
-      "landskap"
+      "arkitektur",
+      "bygningsendring"
     ],
     "question_families": [
       "middelalderkirke",
-      "bygdesentrum",
-      "ferdsel",
-      "indre_ostfold"
+      "olavsdedikasjon",
+      "1904_utvidelse",
+      "kirkebygg_vs_kirkemiljo"
     ],
     "avoid_angles": [
-      "generisk_kirke",
-      "bare_dagens_bygg"
+      "omtale_1904_som_ny_kirke",
+      "generisk_innlandsbygd",
+      "sammenblanding_med_bygdemuseet"
     ],
     "must_include": [
-      "Trøgstad som middelaldersk kirkested",
-      "innlandsbygdas kirke- og ferdselshistorie"
+      "cirka 1250 som omtrentlig datering",
+      "1904 som omfattende utvidelse av en stående middelalderkirke"
     ],
     "contrast_targets": [
       "hobol_kirke",
-      "eidsberg_kirke"
+      "spydeberg_kirke"
     ],
-    "notes": "Skal spørres som innlandskirkested, ikke bare som lokal kirke."
+    "notes": "Skal spørres som stående romansk middelalderkirke. 1904 er en stor endring, ikke byggeåret for hele kirken."
   }
 }
