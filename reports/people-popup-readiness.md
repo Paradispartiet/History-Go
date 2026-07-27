@@ -4,34 +4,34 @@ Status: **generert produksjonsrapport**
 
 Rapporten rangerer manifest-lastede canonical personer etter hvor mye av `docs/PEOPLE_POPUP_SYSTEM.md` de kan fylle. Den måler datakompletthet, ikke personens historiske betydning eller person–sted-relevans.
 
-Source fingerprint: `6218c5a5bdcb1bc8ef1156eda4d97be9c36338caa37777343d1c8b1c690b4198`
+Source fingerprint: `5a20d02ebf7fe0474a26c4e763c1445456829297381dd30c880b568039caee94`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
 | Personer | 1367 |
-| Complete | 34 |
+| Complete | 38 |
 | Strong | 0 |
-| Partial | 1004 |
+| Partial | 1000 |
 | Sparse | 329 |
 | Ødelagte bildereferanser | 306 |
 | Eksplisitt initialfallback | 995 |
 | Implisitt initialfallback | 23 |
-| Gjennomsnittspoeng | 42.1 |
+| Gjennomsnittspoeng | 42.3 |
 
 ## Feltdekning
 
 | Kontraktdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 49 | 3.6 % |
-| popupDesc | 43 | 3.1 % |
-| lifeData | 34 | 2.5 % |
-| contributions | 34 | 2.5 % |
-| education | 34 | 2.5 % |
+| identity | 53 | 3.9 % |
+| popupDesc | 47 | 3.4 % |
+| lifeData | 38 | 2.8 % |
+| contributions | 38 | 2.8 % |
+| education | 38 | 2.8 % |
 | practiceProfile | 1197 | 87.6 % |
 | placeGrounding | 1367 | 100 % |
-| sources | 286 | 20.9 % |
+| sources | 290 | 21.2 % |
 | imageContract | 1061 | 77.6 % |
 
 ## Kategorier
@@ -40,7 +40,7 @@ Source fingerprint: `6218c5a5bdcb1bc8ef1156eda4d97be9c36338caa37777343d1c8b1c690
 |---|---:|---:|---:|---:|---:|---:|
 | sport | 323 | 0 | 0 | 297 | 26 | 41.3 |
 | historie | 216 | 1 | 0 | 118 | 97 | 39.9 |
-| litteratur | 172 | 16 | 0 | 127 | 29 | 46.4 |
+| litteratur | 172 | 20 | 0 | 123 | 29 | 47.8 |
 | musikk | 121 | 0 | 0 | 98 | 23 | 41.1 |
 | politikk | 106 | 3 | 0 | 83 | 20 | 43.8 |
 | naeringsliv | 81 | 0 | 0 | 62 | 19 | 40 |
@@ -59,7 +59,7 @@ Source fingerprint: `6218c5a5bdcb1bc8ef1156eda4d97be9c36338caa37777343d1c8b1c690
 | Primærsted | Ufullstendige | Sparse | Partial | Strong | Snitt | Første profiler |
 |---|---:|---:|---:|---:|---:|---|
 | holmenkollen_nasjonalanlegg | 109 | 4 | 105 | 0 | 40.4 | Kjetil André Aamodt (27), Lasse Kjus (27), Marit Bjørgen (27), Therese Johaug (27), Andreas Felder (40) |
-| nationaltheatret | 101 | 0 | 101 | 0 | 42.2 | Anne Marit Jacobsen (42), Anneke von der Lippe (42), Anton Rønneberg (42), Arild Brinchmann (42), Axel Otto Normann (42) |
+| nationaltheatret | 97 | 0 | 97 | 0 | 42.2 | Axel Otto Normann (42), Bab Christensen (42), Bente Børsum (42), Bjarte Hjelmeland (42), Bjørn Skagestad (42) |
 | bislett_stadion | 76 | 7 | 69 | 0 | 41.1 | Andreas Thorkildsen (27), Ingrid Kristiansen (27), Jakob Ingebrigtsen (27), Karsten Warholm (27), Trine Hattestad (27) |
 | det_norske_teatret | 70 | 0 | 70 | 0 | 42 | Amund Rydland (42), Ane Dahl Torp (42), Anton Heiberg (42), Arne Garborg (42), Arne Lygre (42) |
 | ullevaal_stadion | 55 | 8 | 47 | 0 | 39.4 | Nils Arne Eggen (21), Nora Mørk (21), Ole Gunnar Solskjær (21), Sander Sagosen (21), Lyn Fotball (24) |
