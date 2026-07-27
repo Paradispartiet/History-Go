@@ -40,9 +40,7 @@ jobs:
             const before = JSON.parse(fs.readFileSync(item.path, 'utf8'));
             if (before.id !== item.id) throw new Error(`ID mismatch for ${item.path}`);
             const after = { ...before, desc: item.desc, popupDesc: item.popupDesc };
-            if (JSON.stringify(withoutText(before)) !== JSON.stringify(withoutText(after))) {
-              throw new Error(`Non-text parity failed for ${item.id}`);
-            }
+            if (JSON.stringify(withoutText(before)) !== JSON.stringify(withoutText(after))) throw new Error(`Non-text parity failed for ${item.id}`);
             const descWords = words(after.desc);
             const popupWords = words(after.popupDesc);
             const paraCount = paragraphs(after.popupDesc);
@@ -54,6 +52,9 @@ jobs:
 
           const protocolPath = 'reports/place-description-revision-protocol.md';
           let protocol = fs.readFileSync(protocolPath, 'utf8');
+          protocol = protocol
+            .replace(/\n\| 200 \| Psykologisk institutt, UiO \| `psykologisk_institutt_uio` \| 48 \| 311 \| 6 \| #4260 \|\n/g, '\n')
+            .replace(/\| Oslo V4 batch 24 \| 1 \| #4260 – fullførte hele Oslo-køen for fagområdet psykologi \|\n/g, '');
           const row = '| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |';
           if (!protocol.includes(row)) {
             protocol = protocol
@@ -75,6 +76,7 @@ jobs:
           if (!protocol.includes('Ferdige etter alle mergede revisjonsbatcher: **200 steder**')) throw new Error('protocol total');
           if (!protocol.includes('Gjenstår: **312 steder**')) throw new Error('protocol remaining');
           if (!protocol.includes('| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |')) throw new Error('protocol row');
+          if (protocol.includes('#4260')) throw new Error('stale PR reference');
           if (protocol.includes('- psykologi: **1**')) throw new Error('psychology remains in protocol');
           if (!audit.includes('IDs in the current revision protocol: **200**')) throw new Error('audit protocol count');
           if (!audit.includes('Additional active Oslo IDs outside the protocol: **312**')) throw new Error('audit remaining count');
@@ -91,6 +93,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No material changes to commit"
           else
-            git commit -m "Complete Oslo psychology description revision"
+            git commit -m "Normalize Oslo psychology closure protocol"
             git push origin HEAD:agent/oslo-popup-v4-batch-24-finish-psychology
           fi
