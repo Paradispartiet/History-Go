@@ -1,0 +1,56 @@
+name: Place description governance
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/**'
+      - 'scripts/validate-place-description-production-v4_2.mjs'
+      - 'scripts/upgrade-place-description-protocol-v4_2.mjs'
+      - 'tests/place-description-production-v4_2.test.mjs'
+      - 'reports/place-description-revision-protocol*.md'
+      - '.github/workflows/place-description-governance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  canonical-v4-2:
+    name: Canonical 4.2 claim and scope gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository with PR history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Syntax check validator and migration tool
+        run: |
+          node --check scripts/validate-place-description-production-v4_2.mjs
+          node --check scripts/upgrade-place-description-protocol-v4_2.mjs
+
+      - name: Run canonical 4.2 regression tests
+        run: node --test tests/place-description-production-v4_2.test.mjs
+
+      - name: Validate all committed production packets
+        run: node scripts/validate-place-description-production-v4_2.mjs --all --report reports/place-description-validation-v4_2.json
+
+      - name: Enforce changed-description and PR-isolation gates
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GITHUB_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/validate-place-description-production-v4_2.mjs --changed --base "$GITHUB_BASE_SHA" --head "$GITHUB_HEAD_SHA"
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: place-description-validation-v4-2
+          path: reports/place-description-validation-v4_2.json
+          if-no-files-found: warn
