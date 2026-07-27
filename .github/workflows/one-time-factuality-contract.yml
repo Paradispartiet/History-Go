@@ -1,0 +1,74 @@
+name: One-time canonical factuality contract
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/factuality-contract-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize production branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/canonical-factuality-contract
+          git checkout -B agent/canonical-factuality-contract origin/agent/canonical-factuality-contract
+          git merge --no-edit origin/main
+
+      - name: Apply factuality documentation migration
+        run: node scripts/apply-factuality-contract-docs.mjs
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run factuality and people contract tests
+        run: npm run test:factuality-contract
+
+      - name: Validate documentation governance
+        run: |
+          npm run build:scripts
+          mkdir -p reports/documentation-governance
+          node dist/scripts/check-documentation-governance.mjs
+
+      - name: Validate TypeScript tools and permanent gate
+        run: |
+          npm run typecheck:tools
+          npm run build:tools
+          npm run audit:people-popup-readiness:check
+
+      - name: Remove one-time migration script and generated reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/apply-factuality-contract-docs.mjs
+          git restore --staged --worktree reports/documentation-governance 2>/dev/null || true
+          git clean -fd reports/documentation-governance 2>/dev/null || true
+
+      - name: Commit clean canonical contract diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          git commit -m "Make factuality and source verification canonical"
+          git push origin HEAD:agent/canonical-factuality-contract
