@@ -16,6 +16,8 @@ Et sted teller som **current** bare når produksjonspakken har:
 - bestått metadata-, likhets- og PR-scope-port;
 - `validatorVersion: 4.2.x`.
 
+Ordtall er ikke en del av ferdigdefinisjonen.
+
 ## Migreringsstatus
 
 Den eksisterende protokollen registrerer **260 steder** som ferdige under standard 4.1. Disse oppføringene beholdes som historisk produksjonsstatus, men de er ikke automatisk ferdige under 4.2.
@@ -60,6 +62,24 @@ Bare `ready_v4_2` kan gi `currentStatus: current`.
 
 Faktareview og redaksjonell review skal logges separat. En redaksjonell endring som innfører en ny faktisk bestanddel, sender teksten tilbake til claim- og faktareviewfasen.
 
-## Ordtall
+## Stoffstyrt lengde
 
-300 ord er et ferdigkrav for `ready_v4_2`, ikke et krav om fylltekst. Når kildene ikke gir nok dokumentert stoff, brukes `blocked_insufficient_sources` eller `needs_research`.
+Det finnes ingen fast nedre eller øvre ordgrense for `popupDesc`.
+
+Rundt **300–1200 ord** er redaksjonell veiledning for mange steder, ikke en port. En tekst kan være kortere når identiteten er smal og kildene gir begrenset, men tilstrekkelig stoff. Den kan være lengre når stedet har mange dokumenterte tidslag, funksjonsskifter, aktører eller hendelser.
+
+Lengden bestemmes av:
+
+- tilgjengelige inspectable kilder;
+- stedets historiske og institusjonelle kompleksitet;
+- identitetsavgrensningen;
+- antallet relevante dokumenterte tidslag;
+- om ytterligere tekst tilfører nye, claim-dekkede fakta.
+
+Produksjonen skal aldri fylle ut for å nå et tall eller kutte dokumentert stoff for å holde seg under et tall.
+
+Gjeldende kontrollkommando er:
+
+```bash
+node scripts/validate-place-description-production-v4_2_policy.mjs --all
+```
