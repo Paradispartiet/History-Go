@@ -1,6 +1,6 @@
 name: One-time build verified Næringsliv pilot final
 
-# Original branch v4: locked package and builder.
+# Original branch v5: locked package and builder.
 on:
   pull_request:
     branches:
@@ -35,7 +35,6 @@ jobs:
         run: |
           set -euo pipefail
           LOCKED_BUILDER_COMMIT='4234d827f9d852a0bde596d928d689a821408b21'
-          LOCKED_PACKAGE_COMMIT='adf47efbabb88be77cd0413dee695557923a9b97'
           git show "${LOCKED_BUILDER_COMMIT}:.github/workflows/one-time-build-naeringsliv-pilot-final.yml" > /tmp/locked-builder.yml
 
           python - <<'PY'
@@ -49,24 +48,24 @@ jobs:
           body = '\n'.join(line[10:] if line.startswith('          ') else line for line in body_lines) + '\n'
 
           old = '''for part in $(seq -w 0 8); do
-  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
-done > /tmp/naeringsliv-pilot.b64
-'''
+            git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
+          done > /tmp/naeringsliv-pilot.b64
+          '''
           new = '''python - <<'PACKAGEPY'
-import subprocess
-from pathlib import Path
+          import subprocess
+          from pathlib import Path
 
-commit = 'adf47efbabb88be77cd0413dee695557923a9b97'
-chunks = [
-    subprocess.check_output([
-        'git', '-C', Path.cwd().as_posix(), 'show',
-        f'{commit}:.tmp/naeringsliv-pilot/pkg-{index:02d}',
-    ])
-    for index in range(9)
-]
-Path('/tmp/naeringsliv-pilot.b64').write_bytes(b''.join(chunk.strip() for chunk in chunks))
-PACKAGEPY
-'''
+          commit = 'adf47efbabb88be77cd0413dee695557923a9b97'
+          chunks = [
+              subprocess.check_output([
+                  'git', '-C', Path.cwd().as_posix(), 'show',
+                  f'{commit}:.tmp/naeringsliv-pilot/pkg-{index:02d}',
+              ])
+              for index in range(9)
+          ]
+          Path('/tmp/naeringsliv-pilot.b64').write_bytes(b''.join(chunk.strip() for chunk in chunks))
+          PACKAGEPY
+          '''
           if old not in body:
               raise SystemExit('Fant ikke pakkeløkken i den låste sluttbyggeren')
           body = body.replace(old, new, 1)
