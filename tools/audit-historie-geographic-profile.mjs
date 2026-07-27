@@ -22,35 +22,58 @@ const mappings = A(profile.emne_case_mappings);
 const verifiedCases = cases.filter((item) => item.evidence_status === 'claim_source_linked');
 const mappedEmneIds = new Set(mappings.map((item) => item.emne_id));
 const claimsWithMultipleSources = claims.filter((item) => A(item.source_ids).length >= 2);
+const linksByCase = new Map();
+for (const link of evidence) {
+  const links = linksByCase.get(link.case_id) ?? [];
+  links.push(link);
+  linksByCase.set(link.case_id, links);
+}
+const casesWithTwoEvidenceLinks = verifiedCases.filter((item) => (linksByCase.get(item.case_id) ?? []).length >= 2);
+const thresholdComplete = verifiedCases.length >= 10 && evidence.length >= 20 && casesWithTwoEvidenceLinks.length === verifiedCases.length;
+
+const openGaps = [
+  ...(verifiedCases.length < 10 ? ['Færre enn ti profilcaser har validert claim–source–evidence-kjede.'] : []),
+  ...(evidence.length < 20 ? ['Profilen har færre enn 20 validerte sted–emne–claim–kildekoblinger.'] : []),
+  ...(casesWithTwoEvidenceLinks.length !== verifiedCases.length ? ['Minst ett validert case har færre enn to evidenskoblinger.'] : []),
+];
+const productionBacklog = [
+  ...(mappedEmneIds.size < emner.length
+    ? [`${emner.length - mappedEmneIds.size} universelle emner mangler fortsatt en Oslo/Akershus-casekandidat.`]
+    : []),
+  `${cases.length - verifiedCases.length} bevarte profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.`,
+  'Videre produksjon skal normalisere legacy-kandidater mot canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon.',
+];
 
 const report = {
-  schema_version: '1.0',
-  report_id: 'historie_geographic_profile_oslo_akershus_v1',
+  schema_version: '2.0',
+  report_id: 'historie_geographic_profile_oslo_akershus_v2',
   profile_id: profile.profile_id,
   subject_id: 'historie',
   geography_id: profile.geography.geography_id,
-  status: verifiedCases.length >= 10 && evidence.length >= 20 ? 'COMPLETE' : 'INCOMPLETE',
+  status: thresholdComplete ? 'COMPLETE' : 'INCOMPLETE',
+  completion_scope: 'minimum_representative_evidence_foundation',
   structural_foundation: {
     status: mappings.length >= 190 ? 'PASS' : 'GAP',
     total_subject_emner: emner.length,
     mapped_emner: mappings.length,
-    mapped_ratio: emner.length ? Math.round((mappings.length / emner.length) * 1000) / 1000 : 0,
+    unique_mapped_emner: mappedEmneIds.size,
+    mapped_ratio: emner.length ? Math.round((mappedEmneIds.size / emner.length) * 1000) / 1000 : 0,
     preserved_case_candidates: cases.length,
   },
   evidence_foundation: {
-    status: claims.length >= 4 && sources.length >= 4 && evidence.length >= 4 ? 'PASS' : 'GAP',
+    status: thresholdComplete ? 'PASS' : 'GAP',
     claims: claims.length,
     sources: sources.length,
     evidence_links: evidence.length,
     verified_cases: verifiedCases.length,
+    cases_with_two_evidence_links: casesWithTwoEvidenceLinks.length,
     claims_with_multiple_sources: claimsWithMultipleSources.length,
+    minimum_verified_cases: 10,
+    minimum_evidence_links: 20,
   },
-  open_gaps: [
-    ...(mappedEmneIds.size < emner.length ? ['Ikke alle universelle emner har en Oslo/Akershus-casekandidat.'] : []),
-    ...(verifiedCases.length < 10 ? ['Færre enn ti profilcaser har validert claim–source–evidence-kjede.'] : []),
-    ...(evidence.length < 20 ? ['Evidensregisteret er fortsatt en pilot og dekker ikke et bredt utvalg steder og perioder.'] : []),
-    'Legacy-casekandidater må normaliseres mot canonical place- og person-ID-er før de kan regnes som produksjonsklare.',
-  ],
+  verified_case_ids: verifiedCases.map((item) => item.case_id).sort(),
+  open_gaps: openGaps,
+  production_backlog: productionBacklog,
 };
 
 const markdown = [
@@ -58,12 +81,15 @@ const markdown = [
   '',
   `Status: **${report.status}**`,
   '',
-  'Denne rapporten måler geografisk produksjonsdekning separat fra den universelle fagmodellen.',
+  `Fullføringsomfang: **${report.completion_scope}**`,
+  '',
+  'Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmodellen. `COMPLETE` betyr at minimumsgrunnlaget for representativ, auditerbar produksjon er nådd; det betyr ikke at alle lokale cases er ferdig produsert.',
   '',
   '## Struktur',
   '',
   `- Universelle emner: **${report.structural_foundation.total_subject_emner}**`,
-  `- Emner med migrerte profilkoblinger: **${report.structural_foundation.mapped_emner}**`,
+  `- Unike emner med profilkoblinger: **${report.structural_foundation.unique_mapped_emner}**`,
+  `- Migrerte mappingrecords: **${report.structural_foundation.mapped_emner}**`,
   `- Bevarte lokale casekandidater: **${report.structural_foundation.preserved_case_candidates}**`,
   '',
   '## Evidensgrunnlag',
@@ -71,11 +97,20 @@ const markdown = [
   `- Claims: **${report.evidence_foundation.claims}**`,
   `- Kilder: **${report.evidence_foundation.sources}**`,
   `- Sted–emne–claim–kildekoblinger: **${report.evidence_foundation.evidence_links}**`,
-  `- Validerte pilotcaser: **${report.evidence_foundation.verified_cases}**`,
+  `- Validerte caser: **${report.evidence_foundation.verified_cases}**`,
+  `- Validerte caser med minst to evidenskoblinger: **${report.evidence_foundation.cases_with_two_evidence_links}**`,
   '',
-  '## Åpne gap',
+  '## Validerte caser',
   '',
-  ...report.open_gaps.map((item) => `- ${item}`),
+  ...report.verified_case_ids.map((item) => `- \`${item}\``),
+  '',
+  '## Åpne terskelgap',
+  '',
+  ...(report.open_gaps.length ? report.open_gaps.map((item) => `- ${item}`) : ['Ingen åpne terskelgap.']),
+  '',
+  '## Videre produksjonskø',
+  '',
+  ...report.production_backlog.map((item) => `- ${item}`),
   '',
 ].join('\n');
 
@@ -93,4 +128,4 @@ if (checkMode) {
   fs.writeFileSync(jsonPath, stable(report));
   fs.writeFileSync(mdPath, markdown);
 }
-console.log(`Historie Oslo/Akershus profile: ${report.status}; mappings=${mappings.length}, cases=${cases.length}, evidence=${evidence.length}`);
+console.log(`Historie Oslo/Akershus profile: ${report.status}; mappings=${mappings.length}, cases=${cases.length}, verified=${verifiedCases.length}, evidence=${evidence.length}`);
