@@ -8,7 +8,7 @@ on:
       - '.github/history-theory-evidence-candidate-audit-v2-trigger.txt'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   audit:
@@ -29,8 +29,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git merge --no-edit origin/main
 
@@ -44,23 +42,9 @@ jobs:
           node tools/audit-historie-theory-evidence-candidates-v2.mjs \
             | tee reports/historie-theory-evidence/candidate-audit-v2/audit.log
 
-      - name: Remove one-time transport files
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -f tools/audit-historie-theory-evidence-candidates-v2.mjs
-          rm -f .github/workflows/one-time-history-theory-evidence-candidate-audit-v2.yml
-          rm -f .github/history-theory-evidence-candidate-audit-v2-trigger.txt
-
-      - name: Commit diagnostic report
-        shell: bash
-        run: |
-          set -euo pipefail
-          git add -A
-          git diff --cached --check \
-            | tee reports/historie-theory-evidence/candidate-audit-v2/git-diff-check.log
-          git status --short \
-            | tee reports/historie-theory-evidence/candidate-audit-v2/git-status.log
-          git add -f reports/historie-theory-evidence/candidate-audit-v2
-          git commit -m "Audit History theory evidence batch 2 candidates"
-          git push origin HEAD:agent/history-theory-evidence-batch-2
+      - name: Upload diagnostic report
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-theory-evidence-candidate-audit-v2
+          path: reports/historie-theory-evidence/candidate-audit-v2
+          if-no-files-found: error
