@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **140 steder**
-- Gjenstår: **372 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **150 steder**
+- Gjenstår: **362 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -173,15 +173,26 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 139 | Lambertseter gård | `lambertseter_gard` | 46 | 301 | 6 | #4182 |
 | 140 | Lokomotivverkstedet | `lokomotivverkstedet` | 48 | 300 | 6 | #4182 |
 
+| 141 | Nordre Skøyen hovedgård | `nordre_skoyen_hovedgard` | 40 | 306 | 6 | #4190 |
+| 142 | Øvre Fossum gård | `ovre_fossum_gard` | 43 | 307 | 6 | #4190 |
+| 143 | Saxegården | `saxegarden` | 41 | 305 | 6 | #4190 |
+| 144 | Sporveismuseet | `sporveismuseet` | 41 | 304 | 6 | #4190 |
+| 145 | Tveten gård | `tveten_gard` | 42 | 306 | 6 | #4190 |
+| 146 | Minneparken | `minneparken_gamlebyen` | 45 | 301 | 6 | #4190 |
+| 147 | Bånkall gård | `bankall_gard` | 41 | 301 | 6 | #4190 |
+| 148 | Mustadgården – Kongens gate 3 | `mustadgarden_kongens_gate_3` | 46 | 304 | 6 | #4190 |
+| 149 | Den gamle Krigsskolen | `den_gamle_krigsskolen` | 40 | 300 | 6 | #4190 |
+| 150 | Kirkeristen, Basarene og Brannvakten | `kirkeristen_basarene_brannvakten` | 40 | 300 | 6 | #4190 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **372 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **362 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
-- historie: **47**
 - naeringsliv: **47**
 - kunst: **40**
 - subkultur: **38**
+- historie: **37**
 - sport: **29**
 - scenekunst: **24**
 - litteratur: **21**
@@ -221,5 +232,9 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 11 | 10 | #4167 – første produksjonsbatch fra full 512-steders scope |
 | Oslo V4 batch 12 | 10 | #4170 – andre produksjonsbatch fra full 512-steders scope |
 | Oslo V4 batch 13 | 8 | #4173 – fullførte hele Oslo-køen for fagområdet by |
+| Oslo V4 batch 14 | 2 | #4174 – fullførte hele Oslo-køen for fagområdet film_tv |
+| Oslo V4 batch 15 | 10 | #4180 – første produksjonsbatch fra historiekøen |
+| Oslo V4 batch 16 | 10 | #4182 – andre produksjonsbatch fra historiekøen |
+| Oslo V4 batch 17 | 10 | #4190 – tredje produksjonsbatch fra historiekøen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
