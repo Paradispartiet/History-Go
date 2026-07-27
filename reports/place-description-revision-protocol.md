@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **194 steder**
-- Gjenstår: **318 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **200 steder**
+- Gjenstår: **312 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -233,9 +233,20 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 193 | NRK-huset på Marienlyst | `nrk_huset_marienlyst` | 42 | 300 | 6 | #4253 |
 | 194 | VG-huset | `vg_huset` | 42 | 312 | 6 | #4253 |
 
+| 195 | Blå | `blaa` | 40 | 300 | 6 | #4257 |
+| 196 | John Dee | `john_dee` | 44 | 300 | 6 | #4257 |
+| 197 | Rockefeller Music Hall | `rockefeller` | 43 | 301 | 6 | #4257 |
+| 198 | SALT | `salt` | 41 | 300 | 6 | #4257 |
+| 199 | Sentrum Scene | `sentrum_scene` | 43 | 301 | 6 | #4257 |
+
+
+
+
+| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **318 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **312 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -246,8 +257,6 @@ Det gjenstår **318 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - litteratur: **21**
 - vitenskap: **21**
 - politikk: **18**
-- musikk: **5**
-- psykologi: **1**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -288,5 +297,7 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 20 | 10 | #4212 – sjette produksjonsbatch fra historiekøen |
 | Oslo V4 batch 21 | 7 | #4225 – fullførte hele Oslo-køen for fagområdet historie |
 | Oslo V4 batch 22 | 7 | #4253 – fullførte hele Oslo-køen for fagområdet media |
+| Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |
+| Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
