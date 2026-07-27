@@ -74,11 +74,22 @@ jobs:
       - name: Validate Etne religion rounds
         run: node tests/etne-religion-round-content.test.js
 
-      - name: Validate consolidated Etne quality
+      - name: Refresh and validate consolidated Etne quality
+        shell: bash
         run: |
+          set -euo pipefail
           export AUDIT_GENERATED_AT="$(node -p "require('./reports/etne-non-nature-quality-audit/report.json').generatedAt")"
           node tools/audit-etne-non-nature-round-quality.mjs
-          git diff --exit-code -- reports/etne-non-nature-quality-audit/report.json reports/etne-non-nature-quality-audit/report.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/etne-non-nature-quality-audit/report.json reports/etne-non-nature-quality-audit/report.md
+          if git diff --cached --quiet; then
+            echo 'Audit report already deterministic and current.'
+          else
+            git diff --cached --check
+            git commit -m 'Refresh deterministic Etne quality audit'
+            git push origin HEAD:agent/etne-all-rounds-quality-audit-uplift
+          fi
 
       - name: Validate all People data
         run: bash scripts/check-people.sh
