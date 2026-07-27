@@ -1,11 +1,37 @@
 materializer_sha=ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441
-Traceback (most recent call last):
-  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 862, in <module>
-    main()
-  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 858, in main
-    materialize()
-  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 848, in materialize
-    patch_category_audit()
-  File "/home/runner/work/History-Go/History-Go/.tmp/naeringsliv-pilot/materialize.py", line 821, in patch_category_audit
-    raise RuntimeError("Could not find professional depth validator anchor in category audit")
-RuntimeError: Could not find professional depth validator anchor in category audit
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1431 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 213 category override(s)
+
+> history-go@0.0.0 quiz:context
+> node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+
+Skrev data/quiz/production_context/naeringsliv/telegrafbygningen.json
+
+> history-go@0.0.0 quiz:context
+> node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+
+Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
+
+> history-go@0.0.0 quiz:context
+> node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+
+Skrev data/quiz/production_context/naeringsliv/havnelageret.json
+file:///home/runner/work/History-Go/History-Go/tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs:7
+const assert = (condition, message) => { if (!condition) throw new Error(message); };
+                                                               ^
+
+Error: havnelageret_quiz_29: monetary scenario lacks NOK/krone
+    at assert (file:///home/runner/work/History-Go/History-Go/tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs:7:64)
+    at file:///home/runner/work/History-Go/History-Go/tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs:65:7
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.23.1
