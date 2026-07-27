@@ -1,6 +1,6 @@
 # Etne – kvalitetsaudit av øvrige rundinger
 
-Generert: 2026-07-27T14:20:50+02:00
+Generert: 2026-07-27T14:28:51+02:00
 
 Naturkategorien er utelatt fordi den allerede har egen fullført 26-steders audit. People-rundingen måles gjennom canonical person–sted-relasjoner i `data/relations.json`.
 
