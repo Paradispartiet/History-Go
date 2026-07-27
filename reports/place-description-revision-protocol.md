@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **239 steder**
-- Gjenstår: **273 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **249 steder**
+- Gjenstår: **263 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -293,9 +293,21 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 
 | 239 | Universitetets gamle kjemibygning | `universitetets_gamle_kjemi` | 44 | 301 | 6 | #4302 |
 
+
+| 240 | Blått skilt: Stein Mehren | `bla_skilt_stein_mehren_ullevalsveien_60` | 41 | 305 | 6 | #4310 |
+| 241 | Hønse-Lovisas hus | `honse_lovisas_hus` | 40 | 303 | 6 | #4310 |
+| 242 | Alexander Kiellands plass | `alexander_kiellands_plass` | 43 | 311 | 6 | #4310 |
+| 243 | Biblo Tøyen | `biblo_toyen` | 40 | 312 | 6 | #4310 |
+| 244 | Camilla Collett-statuen | `camilla_collett_statue` | 41 | 311 | 6 | #4310 |
+| 245 | Deichman Grünerløkka | `deichman_grunerlokka` | 42 | 305 | 6 | #4310 |
+| 246 | Eldorado Bokhandel | `eldorado_bokhandel` | 45 | 316 | 6 | #4310 |
+| 247 | Gamle Deichman | `gamle_deichman` | 41 | 313 | 6 | #4310 |
+| 248 | Grotten | `grotta` | 43 | 304 | 6 | #4310 |
+| 249 | Henrik Wergeland-statuen | `henrik_wergeland_statue` | 40 | 307 | 6 | #4310 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **273 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **263 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -303,7 +315,7 @@ Det gjenstår **273 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - subkultur: **38**
 - sport: **29**
 - scenekunst: **24**
-- litteratur: **21**
+- litteratur: **11**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -355,5 +367,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 27 | 10 | #4292 – første produksjonsbatch fra vitenskapskøen |
 | Oslo V4 batch 28 | 10 | #4298 – andre produksjonsbatch fra vitenskapskøen |
 | Oslo V4 batch 29 | 1 | #4302 – fullførte hele Oslo-køen for fagområdet vitenskap |
+| Oslo V4 batch 30 | 10 | #4310 – første produksjonsbatch fra litteraturkøen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
