@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "elingaard_herregard",
+  "generatedAt": "2026-07-27",
+  "researchQuestion": "Which coordinate should represent Elingaard manor without conflating the 1749 main building, fortified platform, gardens, visitor address or wider estate landscape?",
+  "result": {
+    "identityStatus": "resolved",
+    "coordinateStatus": "verified_geometry",
+    "appliedCoordinate": {
+      "lat": 59.25222,
+      "lon": 10.8025,
+      "role": "historic_manor_main_building_anchor",
+      "sourceObjectId": "osm-way:519150231;wikidata:Q5361129;kulturminne:86064"
+    },
+    "previousCoordinate": {
+      "lat": 59.2136,
+      "lon": 10.7566,
+      "distanceToAppliedM": 5025.7
+    },
+    "decisionSummary": "Use the named and protected 1749 main-building geometry as the physical canonical anchor. Keep the fortified platform, garden, visitor address and wider archaeological and agricultural landscape as related components."
+  },
+  "sources": [
+    {
+      "provider": "osm",
+      "title": "Elingaard",
+      "url": "https://www.openstreetmap.org/way/519150231",
+      "sourceObjectId": "osm-way:519150231",
+      "sourceClass": "named_manor_house_building_geometry",
+      "coordinate": {
+        "lat": 59.25222,
+        "lon": 10.8025
+      },
+      "supports": [
+        "the applied coordinate",
+        "the standing main building as a direct geometry object",
+        "separation from park and estate landscape"
+      ],
+      "limitations": [
+        "the building geometry does not define the whole protected estate",
+        "the object does not document historical chronology or access"
+      ]
+    },
+    {
+      "provider": "wikidata",
+      "title": "Elingård",
+      "url": "https://www.wikidata.org/wiki/Q5361129",
+      "sourceObjectId": "wikidata:Q5361129",
+      "sourceClass": "independent_manor_entity_and_identifier_control",
+      "coordinate": {
+        "lat": 59.25222,
+        "lon": 10.8025
+      },
+      "supports": [
+        "Elingaard as a manor house, museum and cultural property",
+        "the matching coordinate",
+        "Kulturminne ID 86064",
+        "OSM way 519150231"
+      ],
+      "limitations": [
+        "the entity coordinate is representative rather than a property boundary",
+        "structured identifiers do not define current visitor access"
+      ]
+    },
+    {
+      "provider": "kulturminne",
+      "title": "Elingaard cultural property",
+      "sourceObjectId": "kulturminne:86064",
+      "sourceClass": "protected_manor_identity",
+      "supports": [
+        "the protected manor-house identity",
+        "separation from one garden, event or accommodation function"
+      ],
+      "limitations": [
+        "heritage status does not grant public access",
+        "the identifier is not a gameplay boundary"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Om Elingaard Herregård",
+      "url": "https://ostfoldmuseene.no/elingaard/om",
+      "sourceObjectId": "ostfoldmuseene:elingaard-om",
+      "sourceClass": "official_manor_history_and_component_source",
+      "supports": [
+        "medieval noble-estate roots",
+        "seventeenth-century cellars",
+        "fires in 1645 and 1746",
+        "the current building completed in 1749",
+        "the noble-family and estate history through 1778",
+        "protection in 1923",
+        "museum use from 1975",
+        "bastions, moats, garden and wider cultural landscape"
+      ],
+      "limitations": [
+        "the source does not provide a surveyed site boundary",
+        "outdoor descriptions do not imply access to every structure"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Kontakt Elingaard",
+      "url": "https://ostfoldmuseene.no/elingaard/kontakt",
+      "sourceObjectId": "ostfoldmuseene:elingaard-contact",
+      "sourceClass": "official_current_address_and_operator_control",
+      "supports": [
+        "Elingårdsveien 33 as the visitor address",
+        "Østfoldmuseene as the current museum operator"
+      ],
+      "limitations": [
+        "the address is not a building or property geometry",
+        "the postal-code wording varies between current museum pages"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Utleie og omvisninger",
+      "url": "https://ostfoldmuseene.no/elingaard/utleie",
+      "sourceObjectId": "ostfoldmuseene:elingaard-rental-tours",
+      "sourceClass": "official_current_operational_access",
+      "supports": [
+        "rental, accommodation and guided-tour use",
+        "museum rooms are not automatically open to renters",
+        "interior access follows booking and tour conditions"
+      ],
+      "limitations": [
+        "availability and prices can change",
+        "operational use does not define canonical geometry"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Elingaard nature and culture trail",
+      "url": "https://ostfoldmuseene.no/elingaard/kulturtips-elingaard-herregard",
+      "sourceObjectId": "ostfoldmuseene:elingaard-cultural-trail",
+      "sourceClass": "official_outdoor_access_and_landscape_source",
+      "supports": [
+        "park and garden access",
+        "the nature-and-culture trail",
+        "the water system, burial field and mill pond as wider components"
+      ],
+      "limitations": [
+        "the trail does not grant access to the manor interiors",
+        "the described landscape extends beyond one coordinate and radius"
+      ]
+    },
+    {
+      "provider": "lokalhistoriewiki",
+      "title": "Elingård",
+      "url": "https://lokalhistoriewiki.no/wiki/Eling%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:Elingård",
+      "sourceClass": "independent_coordinate_control",
+      "coordinate": {
+        "lat": 59.25228,
+        "lon": 10.80256
+      },
+      "supports": [
+        "an independent coordinate within approximately eight metres of the applied point",
+        "the manor and noble-estate identity"
+      ],
+      "limitations": [
+        "the coordinate is representative rather than a building footprint",
+        "the source is not the primary current access authority"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Libertas history at Elingaard",
+      "url": "https://ostfoldmuseene.no/utforsket-historien-om-libertas-pa-elingaard",
+      "sourceObjectId": "ostfoldmuseene:elingaard-libertas-2026",
+      "sourceClass": "official_twentieth_century_use_history",
+      "supports": [
+        "Libertas used Elingaard as a course centre from 1948 to 1975",
+        "the site retained relevant objects and documentary material",
+        "active research took place at Elingaard in June 2026"
+      ],
+      "limitations": [
+        "the Libertas layer is not the manor's primary identity",
+        "research activity does not define general visitor access"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Automatic fire-protection project",
+      "url": "https://ostfoldmuseene.no/fredrikstad/elingaard-herregard-far-endelig-moderne-brannsikring--102-ar-etter-fredningen",
+      "sourceObjectId": "ostfoldmuseene:elingaard-fire-protection",
+      "sourceClass": "official_conservation_project",
+      "supports": [
+        "protection of the main building since 1923",
+        "the main building completed in 1749 over seventeenth-century cellars",
+        "a planned 2025-2026 automatic fire-protection installation",
+        "the exceptional vulnerability of historic interiors"
+      ],
+      "limitations": [
+        "the source gives a planned completion window and is not proof that all work is complete",
+        "current access must follow updated museum information and on-site restrictions"
+      ]
+    }
+  ],
+  "rejectedAnchors": [
+    {
+      "candidate": "legacy point 59.2136, 10.7566",
+      "reason": "Approximately 5.03 kilometres south-west of the manor and unsupported by an Elingaard object."
+    },
+    {
+      "candidate": "Elingårdsveien 33 address point",
+      "reason": "Useful arrival control, but direct main-building geometry is available."
+    },
+    {
+      "candidate": "park or garden centre",
+      "reason": "The garden is a related component and not the main manor-house identity."
+    },
+    {
+      "candidate": "fortified platform or moat centre",
+      "reason": "The platform and moats are protected components, while the standing main building provides the clearest physical anchor."
+    },
+    {
+      "candidate": "whole historical estate",
+      "reason": "The estate and cultural landscape are too broad and cannot be represented as one precise point or gameplay radius."
+    }
+  ],
+  "chronologyControls": [
+    {
+      "layer": "known medieval and noble ownership",
+      "date": "1352-1400s",
+      "certainty": "documented_estate_layer"
+    },
+    {
+      "layer": "seventeenth-century manor and surviving cellars",
+      "date": "1600s",
+      "certainty": "documented_surviving_substructure"
+    },
+    {
+      "layer": "fires and rebuilding",
+      "date": "1645 and 1746",
+      "certainty": "documented_events"
+    },
+    {
+      "layer": "current main building",
+      "date": "1749",
+      "certainty": "documented_completion_year"
+    },
+    {
+      "layer": "end of long Huitfeldt family ownership",
+      "date": "1778",
+      "certainty": "documented_bankruptcy_transition"
+    },
+    {
+      "layer": "heritage protection",
+      "date": "1923",
+      "certainty": "documented_protection_year"
+    },
+    {
+      "layer": "Libertas course centre",
+      "date": "1948-1975",
+      "certainty": "documented_organisational_use"
+    },
+    {
+      "layer": "museum",
+      "date": "1975",
+      "certainty": "documented_museum_transition"
+    },
+    {
+      "layer": "modern fire-protection project",
+      "date": "2025-2026",
+      "certainty": "planned_and_documented_conservation_project"
+    }
+  ],
+  "accessControls": [
+    "The park, garden and signed nature-and-culture trail can be used according to current on-site information.",
+    "The main building, museum rooms, rental spaces and accommodation follow booking, event and tour rules.",
+    "Museum rooms are not automatically included in rental access.",
+    "Conservation or fire-protection work may temporarily restrict areas; completion must not be assumed from the planning source alone.",
+    "Moats, ponds, steep edges, protected structures and sensitive interiors require distance and compliance with barriers and staff instructions.",
+    "The 320 metre radius is not a building, property, park, garden, museum, event, water, heritage, safety or access boundary."
+  ],
+  "nextManifestEntry": "nes_lensemuseum"
+}
