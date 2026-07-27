@@ -9,26 +9,20 @@ Start i `index.json`. Alle referanser er relative til denne katalogen.
 ## Aktiv faglig autoritet
 
 - `domain_catalog_v2.json`: åtte vitenskapelige domener
-- `modules_v2/*.json`: åtte aktive moduler med 48 forskningsmessig avgrensede temaer og 48 evidens- og metodebundne spørsmålsplaner
-- `content_contract_defaults_v2.json`: felles evidens-, svar-, kilde- og distraktorkontrakter
-- `method_protocols_v1.json`: canonicale metodeprotokoller
-- `theory_and_debates_v1.json`: teoritradisjoner og aktive fagdebatter
-- `research_contract.json`: påstands-, evidens- og dybdekontrakt
-- `scholarly_source_standard_v1.json`: kilde-, metadata- og proveniensstandard
-- `source_dossier_contract_v1.json`: bindende kontrakt for temavise forsknings- og kildegrunnlag
-- `scholarly_source_registries_v1/*.json`: seks modulære registre med 39 verifiserte forskningskilder
-- `source_dossiers_v1/musikalsk_analyse_lyd_struktur/*.json`: seks dossierer for analyse, lyd og struktur
-- `source_dossiers_v1/historisk_musikkvitenskap_historiografi/*.json`: seks dossierer for historisk musikkvitenskap og historiografi
-- `source_dossiers_v1/etnomusikologi_kultur_samfunn/*.json`: seks dossierer for feltarbeid, språk, identitet, migrasjon, ritual og urfolksstyrt forskning
+- `modules_v2/*.json`: 48 forskningsmessig avgrensede temaer og 48 evidens- og metodebundne spørsmålsplaner
+- `source_dossier_contract_v1.json`: kumulativ kilde-, proveniens- og styringskontrakt
+- `scholarly_source_registries_v1/*.json`: analyse- og etnomusikologiregistre
+- `scholarly_source_registries_v2/*.json`: konsoliderte historiske registre
+- `source_dossiers_v1/musikalsk_analyse_lyd_struktur/*.json`: seks analysedossierer
+- `source_dossiers_v1/etnomusikologi_kultur_samfunn/*.json`: seks dossierer med etiske styringsporter
+- `source_dossiers_v2/historisk_musikkvitenskap_historiografi/*.json`: seks styrkede historiedossierer
 
-Kildedossierene er ikke pensumlister og ikke systematiske litteraturgjennomganger. De dokumenterer et kontrollert bibliografisk grunnlag. Detaljpåstander krever fortsatt fulltekst, presis side-, kapittel-, signatur-, takt- eller tidskodelokator og et identifisert direkte musikk- eller kildeobjekt.
+Kildepakken dekker nå tre domener, ni registre, atten temadossierer og 56 unike forskningspublikasjoner. Alle allerede mergede analyse-, historie- og etnomusikkilder er bevart; historiedelen er konsolidert til 26 unike kilder fordelt på fire registre.
 
-De historiske dossierene krever i tillegg dokumentert proveniens, datering, arkiv- eller katalogidentitet, eksplisitt korpusavgrensning og kontroll mot arkivfravær, anakronisme, institusjonell selvbeskrivelse og nasjonal eller kulturell essensialisering.
+Kildedossierene er ikke pensumlister og ikke systematiske litteraturgjennomganger. Detaljpåstander krever relevant fulltekst, presis lokator og et identifisert direkte musikk-, felt- eller kildeobjekt.
 
-De etnomusikologiske dossierene krever i tillegg bruksspesifikt og løpende samtykke, dokumentert deltaker- og fellesskapsmyndighet, originalspråk og oversettelsesansvar, anonymiserings- og skaderisiko, kollektiv nytte, tilbakeføring, regler for tilgang og sekundærbruk samt eksplisitt sperre for restriktivt, hellig, sensitivt eller ikke godkjent materiale. Offentlig tilgang eller juridisk minimum er ikke automatisk tillatelse til quiz, lydbruk, stedfesting eller ny publisering.
-
-Filene i `modules/` er beholdt som legacy kildeinventar for eksisterende avhengigheter. De er ikke lenger autoritet for tema-, metode-, teori- eller spørsmålsproduksjon. `legacy_module_id_map_v1.json` oversetter gamle ID-er til canonicale ID-er.
+Historiedossierene skiller katalogmetadata fra evidens i selve objektet og krever arkiv-, utgave-, opptaks-, institusjons- eller sirkulasjonskjede etter kildetypen. Etnomusikkdossierene blokkerer spørsmål når samtykke, deltaker- eller fellesskapsmyndighet, språk, risiko, tilbakeføring, gjenbruk eller sensitivitet ikke er avklart.
 
 Aktiv emnerevisjon: `musikkvitenskap-emnemigrasjon-v2-2026-07-27`
 
-Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-tre-domener-v3-2026-07-28`
+Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-tre-domener-v4-2026-07-28`
