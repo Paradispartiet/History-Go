@@ -39,17 +39,17 @@ jobs:
 
           expected = 'ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441'
           paths = [f'.tmp/naeringsliv-pilot/pkg-{index:02d}' for index in range(9)]
-          commits = subprocess.check_output(
-              ['git', 'rev-list', '--all', '--', paths[0]], text=True
-          ).splitlines()
+          commits = subprocess.check_output(['git', 'rev-list', '--all'], text=True).splitlines()
 
           rows = []
           matches = []
+          complete = 0
           for commit in commits:
               try:
-                  chunks = [subprocess.check_output(['git', 'show', f'{commit}:{path}']) for path in paths]
+                  chunks = [subprocess.check_output(['git', 'show', f'{commit}:{path}'], stderr=subprocess.DEVNULL) for path in paths]
               except subprocess.CalledProcessError:
                   continue
+              complete += 1
               encoded = b''.join(chunk.strip() for chunk in chunks)
               try:
                   decoded = base64.b64decode(encoded, validate=True)
@@ -64,7 +64,8 @@ jobs:
 
           report = [
               f'expected_sha={expected}',
-              f'candidate_commits={len(commits)}',
+              f'history_commits={len(commits)}',
+              f'complete_package_commits={complete}',
               f'matching_commits={len(matches)}',
               *rows,
           ]
