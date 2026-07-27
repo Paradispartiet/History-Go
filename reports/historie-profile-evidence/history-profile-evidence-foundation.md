@@ -1,13 +1,11 @@
-# Historie profil- og evidensgrunnlag V5
+# Historie profil- og evidensgrunnlag V6
 
 - Status: **COMPLETE**
 - Fullføringsomfang: **minimum_representative_evidence_foundation**
 - Profilcaser: **103**
-- Validerte caser: **16**
-- Claims: **57**
-- Kilder: **53**
-- Evidenskoblinger: **57**
-- Politisk kronologi V1: **2 cases / 13 claims**
-- Bevegelsesoffentligheter V1: **3 cases / 13 claims / 4 teoriobjekter**
-- Ritual og resepsjon V1: **1 nyvalidert case / 2 utvidede cases / 9 claims / 2 teoriobjekter**
+- Validerte caser: **18**
+- Claims: **74**
+- Kilder: **66**
+- Evidenskoblinger: **74**
+- Kildeformfamilier V1: **2 nye cases / 17 claims / 13 kilder / 5 teoriobjekter**
 - Gjenværende universelt produksjonsgap: **theory_evidence_readiness**

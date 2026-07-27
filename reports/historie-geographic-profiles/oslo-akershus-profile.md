@@ -15,11 +15,11 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 
 ## Evidensgrunnlag
 
-- Claims: **57**
-- Kilder: **53**
-- Sted–emne–claim–kildekoblinger: **57**
-- Validerte caser: **16**
-- Validerte caser med minst to evidenskoblinger: **16**
+- Claims: **74**
+- Kilder: **66**
+- Sted–emne–claim–kildekoblinger: **74**
+- Validerte caser: **18**
+- Validerte caser med minst to evidenskoblinger: **18**
 
 ## Validerte caser
 
@@ -34,6 +34,8 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_gamle_deichman_pa_hammersborg`
 - `case_his_hl_senteret_villa_grande`
 - `case_his_hovedoya_kloster`
+- `case_his_meteorologisk_institutt`
+- `case_his_middelalderbyen_oslo`
 - `case_his_norsk_folkemuseum`
 - `case_his_oslo_radhus`
 - `case_his_regjeringskvartalet`
@@ -47,5 +49,5 @@ Ingen åpne terskelgap.
 ## Videre produksjonskø
 
 - 30 universelle emner mangler fortsatt en Oslo/Akershus-casekandidat.
-- 87 bevarte profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
+- 85 bevarte profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
 - Videre produksjon skal normalisere legacy-kandidater mot canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon.
