@@ -1,0 +1,91 @@
+name: One-time History evidence batch V2
+
+on:
+  push:
+    branches:
+      - agent/history-evidence-candidate-audit-v2
+    paths:
+      - '.github/workflows/one-time-history-evidence-batch-v2.yml'
+      - 'tools/one-time-materialize-history-evidence-batch-v2.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    name: Materialize regional evidence baseline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out candidate branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-evidence-candidate-audit-v2
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Materialize evidence registries and reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-profile-evidence/batch-v2
+          node --check tools/one-time-materialize-history-evidence-batch-v2.mjs \
+            | tee reports/historie-profile-evidence/batch-v2/node-check.log
+          node tools/one-time-materialize-history-evidence-batch-v2.mjs \
+            | tee reports/historie-profile-evidence/batch-v2/materialize-command.log
+
+      - name: Validate permanent contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/validate-historie-profile-evidence.mjs \
+            | tee reports/historie-profile-evidence/batch-v2/validator-node-check.log
+          node --check tools/audit-historie-geographic-profile.mjs \
+            | tee reports/historie-profile-evidence/batch-v2/profile-audit-node-check.log
+          node tools/validate-historie-profile-evidence.mjs \
+            | tee reports/historie-profile-evidence/batch-v2/validator.log
+          node tools/audit-historie-geographic-profile.mjs \
+            | tee reports/historie-profile-evidence/batch-v2/profile-audit-materialize.log
+          node tools/audit-historie-geographic-profile.mjs --check \
+            | tee reports/historie-profile-evidence/batch-v2/profile-audit-check.log
+          node tools/audit-historie-universal-coverage.mjs --check \
+            | tee reports/historie-profile-evidence/batch-v2/universal-coverage-check.log
+          node tools/audit-historie-v5-5-quality-depth.mjs \
+            | tee reports/historie-profile-evidence/batch-v2/v5-8-quality-depth.log
+
+      - name: Record repository checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check \
+            | tee reports/historie-profile-evidence/batch-v2/git-diff-check.log
+          git status --short \
+            | tee reports/historie-profile-evidence/batch-v2/git-status-before-cleanup.log
+
+      - name: Publish batch and remove one-time machinery
+        shell: bash
+        env:
+          BRANCH: agent/history-evidence-candidate-audit-v2
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/one-time-history-evidence-batch-v2.yml
+          rm -f tools/one-time-materialize-history-evidence-batch-v2.mjs
+          git status --short \
+            | tee reports/historie-profile-evidence/batch-v2/git-status-final.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Materialize Oslo Akershus history evidence batch V2"
+          git push origin "HEAD:${BRANCH}"
+
+      - name: Upload materialization report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-evidence-batch-v2
+          path: reports/historie-profile-evidence/batch-v2
+          if-no-files-found: error
