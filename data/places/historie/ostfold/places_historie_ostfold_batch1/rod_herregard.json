@@ -1,9 +1,35 @@
 {
   "id": "rod_herregard",
   "name": "Rød Herregård",
-  "lat": 59.1261,
-  "lon": 11.3769,
+  "lat": 59.12269,
+  "lon": 11.36845,
   "r": 320,
+  "locatorType": "historic_site",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:4481504;wikidata:Q14556917;riksantikvaren-kulturminne:86040",
+  "geocodeAccuracy": "building_centroid",
+  "coordRole": "manor_house_main_building_anchor",
+  "coordType": "protected_manor_house_building_centroid",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "OpenStreetMap way 4481504 – Rød Herregård; Wikidata Q14556917; Kulturminne ID 86040; Store norske leksikon – Rød; Østfoldmuseene – Rød herregård",
+  "coordSourceId": "osm-way:4481504;wikidata:Q14556917;riksantikvaren-kulturminne:86040",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/4481504",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 613,4 meter sørvest til bygningsflaten for den fredede hovedbygningen ved Rød Herregård.",
+  "coordNote": "OpenStreetMap way 4481504 er bygningsflaten for Rød Herregård og er koblet til Wikidata Q14556917, Kulturminne ID 86040 og museumsidentiteten. Wikidata plasserer samme herregårdsobjekt omtrent ni meter fra det anvendte bygningssentrumet, mens OSM-node 27470219 er et separat museumspunkt omtrent 34 meter mot nordøst. Canonical bruker hovedbygningens geometri som fysisk anker, ikke museumspunktet, den store skogeiendommen, hageanleggets sentrum eller et generisk Rød-gårdspunkt. Radius 320 meter beholdes for hovedbygningen, gårdstunet og den nærmeste museums- og parkhelheten på gameplay-nivå, men er ikke en frednings-, eiendoms-, gods-, park- eller tomtegrense.",
+  "anchors": [
+    {
+      "id": "rod_herregard_hovedbygning",
+      "name": "Rød Herregård – hovedbygningen",
+      "lat": 59.12269,
+      "lon": 11.36845,
+      "r": 100,
+      "type": "manor_house_main_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4481504;wikidata:Q14556917;riksantikvaren-kulturminne:86040",
+      "note": "Bygningssentrum for den fredede herregården, brukt som hovedanker uten å redusere det samlede museums-, hage- og gårdsanlegget til én bygning."
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Halden",
@@ -16,15 +42,38 @@
     "anker",
     "elite"
   ],
-  "desc": "En av Norges best bevarte herregårder, med røtter tilbake til 1600-tallet og særlig knyttet til Tank- og Anker-familiene fra 1733. Rød Herregård viser elitekultur, handel, kunst, hageanlegg og politiske forbindelser i grenselandskapet.",
-  "popupDesc": "Rød Herregård i Halden er et av Østfolds viktigste herregårdsmiljøer. Eiendommen har røtter tilbake til slutten av 1600-tallet, men ble særlig formet av Tank- og Anker-familiene fra 1733 og gjennom 1700- og 1800-tallet. Bygninger, interiører, kunstsamlinger, våpensamlinger, barokkhage og landskapshage gjør stedet til en sjelden helhet. Stedet bør brukes i History Go til å vise forbindelser mellom handel, embetsstand, europeisk kultur, grensepolitikk og lokal makt.",
+  "desc": "Fredet herregård i Halden med en kjerne fra 1600-tallet, tilbygg fra 1733 og sterke forbindelser til Tank- og Anker-familiene. Rød bevarer hovedbygning, interiører, samlinger, gårdstun og historiske hager som en samlet elite- og museumshistorie.",
+  "popupDesc": "Rød Herregård vest for Halden sentrum er et av Østfolds viktigste og best bevarte herregårdsmiljøer. En bygning fra 1600-tallet og et tilbygg fra 1733 danner kjernen i den fredede hovedbygningen, som senere ble ombygd i 1862 og utvidet i 1875. Tank-familien overtok gården rundt midten av 1700-tallet, og fra 1829 var den knyttet til Anker-familien. I dag inngår hus, park, innbo, familiearkiv og Halden historiske Samlinger i Østfoldmuseene. I History Go skal hovedbygningen være det fysiske ankeret for en større fortelling om handel, embets- og eierelite, europeisk kultur, kunstsamlinger, hagehistorie og makt i grenselandskapet – ikke et punkt for hele det omfattende godset.",
+  "externalLinks": [
+    {
+      "type": "museum",
+      "label": "Østfoldmuseene – Rød Herregård",
+      "url": "https://ostfoldmuseene.no/rod",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "reference",
+      "label": "Store norske leksikon – Rød",
+      "url": "https://snl.no/R%C3%B8d_-_storg%C3%A5rd_i_Halden_kommune",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Rød Herregård",
+      "url": "https://www.openstreetmap.org/way/4481504",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    }
+  ],
   "quiz_profile": {
     "place_type": "herregard",
-    "subtype": "bevart_elitemiljo_med_hager_og_samlinger",
+    "subtype": "bevart_elitemiljo_med_hager_samlinger_og_museum",
     "signature_features": [
-      "Tank- og Anker-familienes herregård fra 1733",
-      "barokkhage, landskapshage og rike interiører",
-      "kobler handel, elitekultur og grensebyens historie"
+      "fredet hovedbygning med kjerne fra 1600-tallet og tilbygg fra 1733",
+      "Tank- og Anker-familienes herregårdsmiljø",
+      "hus, interiører, samlinger, gårdstun og historiske hager som samlet museum"
     ],
     "primary_angles": [
       "historie",
@@ -40,16 +89,18 @@
     ],
     "avoid_angles": [
       "bare_hageanlegg",
-      "generisk_herregård"
+      "generisk_herregård",
+      "hele_godset_som_ett_punkt"
     ],
     "must_include": [
-      "Tank- og Anker-familiene fra 1733",
-      "herregården som bevart elite- og kulturmiljø"
+      "hovedbygningens 1600-tallskjerne og tilbygg fra 1733",
+      "Tank- og Anker-familienes rolle",
+      "herregården som bevart elite-, samlings- og museumsmiljø"
     ],
     "contrast_targets": [
       "hafslund_hovedgard",
       "fredriksten_festning"
     ],
-    "notes": "Skal spørres som sosial og kulturell makthistorie i Halden."
+    "notes": "Skal spørres som sosial og kulturell makthistorie i Halden. Hovedbygningen er fysisk anker, mens museum, gårdstun og hager utgjør den større stedshelheten."
   }
 }
