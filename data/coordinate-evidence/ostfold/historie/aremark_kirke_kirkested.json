@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "aremark_kirke_kirkested",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch4/aremark_kirke_kirkested.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_current_church_building_anchor_with_medieval_site_layer",
+  "currentCoordinate": {
+    "lat": 59.24473,
+    "lon": 11.68211,
+    "r": 240,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 733677615 – Aremark kirke; Wikidata Q6492585; Kulturminne ID 83789; Norges Kirker; Store norske leksikon",
+    "coordType": "church_building_representative_point",
+    "coordRole": "current_church_building_anchor",
+    "sourceObjectId": "osm-way:733677615;wikidata:Q6492585;kulturminne:83789"
+  },
+  "previousCoordinate": {
+    "lat": 59.2212,
+    "lon": 11.6959,
+    "r": 240,
+    "distanceToAppliedCoordinateM": 2731.5,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,73 km sør-sørøst for kirken og identifiserte verken kirkebygningen eller kirkestedet."
+  },
+  "identity": {
+    "resolvedIdentity": "Aremark kirke, dagens teglkirke fra 1860–1861 på det eldre middelalderkirkestedet ved Aremarksjøen.",
+    "identityStatus": "resolved",
+    "identityProblem": "Stedet omfatter både dagens kirkebygning, kirkegården og et eldre middelalderkirkested. Canonical må bruke den stående kirken som fysisk hovedanker uten å fremstille middelalderkirken som bevart eller kirkegården som fri gameplayflate.",
+    "locatorTypeCandidate": "church_building_and_historic_kirkested",
+    "requiresSplit": false,
+    "splitReason": "Dagens kirke og middelalderkirkestedet er tidslag av samme kirkested. Det eldre bygget har ikke et separat sikkert, stående fotavtrykk som bør bli eget place."
+  },
+  "requiredEvidence": [
+    "navngitt kirkebygggeometri",
+    "uavhengig kirkeentitet",
+    "kulturminneidentitet",
+    "oppførings- og innvielsesdato",
+    "middelalderkirkestedets kontinuitet",
+    "adresse og offentlig ankomst",
+    "seremoni-, kirkegårds- og adgangsbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 733677615 – Aremark kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/733677615",
+      "sourceObjectId": "osm-way:733677615",
+      "sourceQuality": "named_church_building_geometry",
+      "finding": "Den navngitte kirkebygningen har representativt punkt 59.24473, 11.68211.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte bygningsgeometri for den stående kirken og derfor sterkeste fysiske canonical-anker."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Aremark kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6492585",
+      "sourceObjectId": "wikidata:Q6492585",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Entiteten identifiserer Aremark kirke og knytter bygget til Aremark, arkitekten Peter Høier Holtermann og 1861-laget.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som entitetskontroll sammen med OSM-geometrien."
+    },
+    {
+      "sourceProvider": "kulturminnesok",
+      "sourceName": "Kulturminnesøk – Aremark kirke",
+      "sourceUrl": "https://kulturminnesok.no/minne/?queryString=https%3A%2F%2Fdata.kulturminne.no%2Faskeladden%2Flokalitet%2F83789",
+      "sourceObjectId": "kulturminne:83789",
+      "sourceQuality": "official_heritage_identity",
+      "finding": "Kulturminne ID 83789 identifiserer Aremark kirke og kirkested.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter kulturminne- og kirkestedsidentiteten."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Aremark kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Aremark_kirke",
+      "sourceObjectId": "norges-kirker:aremark-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Dokumenterer middelalderens steinkirke, rivingen i 1860, Holtermanns teglkirke, innvielsen 6. november 1861 og overført eldre inventar.",
+      "canVerifyCoordinate": false,
+      "reason": "Fastslår tidslagene og hindrer at dagens bygg forveksles med middelalderkirken."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Aremark",
+      "sourceUrl": "https://snl.no/Aremark",
+      "sourceObjectId": "snl:aremark",
+      "sourceQuality": "authoritative_locality_and_church_context",
+      "finding": "Plasserer kirken øst for Aremarksjøen og oppgir 1861 og Peter Høier Holtermann.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker kirkens plassering, arkitekt og byggeperiode."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6373485107 – Aremark kirke bus stop",
+      "sourceUrl": "https://www.openstreetmap.org/node/6373485107",
+      "sourceObjectId": "osm-node:6373485107",
+      "sourceQuality": "public_arrival_control",
+      "finding": "Offentlig ankomstpunkt på 59.24487, 11.68278 øst for kirkebygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som trygt ankomstanker, ikke som canonical-punkt."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Aremark church point",
+      "sourceObjectId": "legacy:aremark_kirke_kirkested",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-koordinaten ligger omtrent 2 731,5 meter sør-sørøst for den navngitte kirkebygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises fordi den ikke identifiserer kirken eller kirkestedet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "church_and_address_sources",
+      "address": "Aremarkveien 2558, 1798 Aremark",
+      "addressRole": "church_and_cemetery_visitor_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adressen bekrefter besøksstedet, men kirkebygggeometrien er et mer presist canonical-anker."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:733677615",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6492585",
+      "canApplyToPlace": false,
+      "rejectionReason": "Sterk entitetskontroll, men OSM gir den direkte bygningsgeometrien."
+    },
+    {
+      "sourceProvider": "kulturminnesok",
+      "sourceObjectId": "kulturminne:83789",
+      "canApplyToPlace": false,
+      "rejectionReason": "Brukes som kulturminneidentitet, ikke som separat canonical-koordinat."
+    },
+    {
+      "sourceProvider": "historical_site_layer",
+      "sourceObjectId": "medieval-aremark-church-site",
+      "canApplyToPlace": false,
+      "rejectionReason": "Middelalderkirken er revet og har ikke et separat sikkert stående fotavtrykk."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "aremark_church_building",
+      "name": "Aremark kirke",
+      "lat": 59.24473,
+      "lon": 11.68211,
+      "r": 90,
+      "type": "current_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:733677615;wikidata:Q6492585;kulturminne:83789",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "aremark_medieval_kirkested",
+      "name": "Aremark middelalderkirkested",
+      "lat": 59.24473,
+      "lon": 11.68211,
+      "r": 115,
+      "type": "medieval_church_site_historical_layer",
+      "sourceProvider": "norges_kirker",
+      "sourceObjectId": "norges-kirker:aremark-kirke",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "aremark_church_public_arrival",
+      "name": "Aremark kirke – offentlig ankomst",
+      "lat": 59.24487,
+      "lon": 11.68278,
+      "r": 45,
+      "type": "public_transport_and_roadside_arrival_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6373485107",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:aremark_kirke_kirkested",
+      "lat": 59.2212,
+      "lon": 11.6959,
+      "distanceFromAppliedM": 2731.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:733677615",
+      "lat": 59.24473,
+      "lon": 11.68211,
+      "distanceFromPreviousM": 2731.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6373485107",
+      "lat": 59.24487,
+      "lon": 11.68278,
+      "distanceFromAppliedM": 41.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-aremark-kirke-source-probe/source-summary.json",
+      "description": "Persisted church-building geometry, entity and heritage identity, medieval-site continuity, exact 1861 consecration, public arrival and access limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Aremark church building geometry and retained the medieval church as a historical layer at the same kirkested. Continue with kornsjo_grensestasjon."
+  },
+  "notes": [
+    "The coordinate moves approximately 2,731.5 metres north-northwest.",
+    "The marker represents the standing 1861 church building and the continuous kirkested.",
+    "The medieval stone church was demolished in 1860 and is not represented as a surviving building.",
+    "Services, funerals and cemetery use take precedence over gameplay.",
+    "The 240-metre radius is not a building, cemetery, heritage, property, shoreline, ceremony or access boundary."
+  ]
+}

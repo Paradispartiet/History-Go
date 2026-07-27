@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "aremark_kirke_kirkested",
+  "generatedAt": "2026-07-27",
+  "researchStatus": "complete",
+  "resolvedIdentity": "Aremark kirke, the standing brick church from 1860–1861 on the older medieval kirkested east of Aremarksjøen.",
+  "coordinateDecision": {
+    "previous": {
+      "lat": 59.2212,
+      "lon": 11.6959
+    },
+    "applied": {
+      "lat": 59.24473,
+      "lon": 11.68211,
+      "sourceObjectId": "osm-way:733677615",
+      "role": "current_church_building_anchor"
+    },
+    "distanceM": 2731.5,
+    "direction": "north-northwest",
+    "reason": "The legacy point was remote from the kirkested. The applied point is the representative point of the named standing church-building geometry and aligns with independent entity and heritage records."
+  },
+  "sources": [
+    {
+      "name": "OpenStreetMap way 733677615 – Aremark kirke",
+      "provider": "osm",
+      "url": "https://www.openstreetmap.org/way/733677615",
+      "objectId": "osm-way:733677615",
+      "usedFor": [
+        "named church-building geometry",
+        "canonical coordinate"
+      ],
+      "findings": [
+        "The named church-building geometry has representative point 59.24473, 11.68211.",
+        "The geometry identifies the standing Aremark church rather than a settlement or generic road point."
+      ]
+    },
+    {
+      "name": "Wikidata – Aremark kirke",
+      "provider": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6492585",
+      "objectId": "wikidata:Q6492585",
+      "usedFor": [
+        "church entity control",
+        "architect and date cross-check"
+      ],
+      "findings": [
+        "Q6492585 identifies Aremark church.",
+        "The entity supports the 1861 and Peter Høier Holtermann identity layers."
+      ]
+    },
+    {
+      "name": "Kulturminnesøk – Aremark kirke",
+      "provider": "kulturminnesok",
+      "url": "https://kulturminnesok.no/minne/?queryString=https%3A%2F%2Fdata.kulturminne.no%2Faskeladden%2Flokalitet%2F83789",
+      "objectId": "kulturminne:83789",
+      "usedFor": [
+        "official heritage and kirkested identity"
+      ],
+      "findings": [
+        "Heritage locality 83789 identifies Aremark church and kirkested."
+      ]
+    },
+    {
+      "name": "Norges Kirker – Aremark kirke",
+      "provider": "norges_kirker",
+      "url": "https://norgeskirker.no/wiki/Aremark_kirke",
+      "objectId": "norges-kirker:aremark-kirke",
+      "usedFor": [
+        "medieval church history",
+        "demolition and construction chronology",
+        "architectural description",
+        "inventory continuity"
+      ],
+      "findings": [
+        "A medieval stone church dedicated to St. Lawrence stood at the kirkested.",
+        "The medieval church was demolished in 1860.",
+        "The current brick church was designed by Peter Høier Holtermann and built in 1860–1861.",
+        "The current church was consecrated on 6 November 1861.",
+        "Older inventory was transferred into the new church."
+      ]
+    },
+    {
+      "name": "Store norske leksikon – Aremark",
+      "provider": "snl",
+      "url": "https://snl.no/Aremark",
+      "objectId": "snl:aremark",
+      "usedFor": [
+        "municipality and landscape context",
+        "church date and architect cross-check"
+      ],
+      "findings": [
+        "Aremark church from 1861 stands east of Aremarksjøen.",
+        "Peter Høier Holtermann is identified as architect."
+      ]
+    },
+    {
+      "name": "OpenStreetMap node 6373485107 – Aremark kirke bus stop",
+      "provider": "osm",
+      "url": "https://www.openstreetmap.org/node/6373485107",
+      "objectId": "osm-node:6373485107",
+      "usedFor": [
+        "public-arrival control"
+      ],
+      "findings": [
+        "Public transport and roadside arrival point at 59.24487, 11.68278, about 41 metres east of the church anchor."
+      ]
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "Legacy point 59.2212, 11.6959",
+      "reason": "Approximately 2.73 km south-southeast and unsupported by a church or kirkested object."
+    },
+    {
+      "candidate": "Medieval church as a separate surviving building",
+      "reason": "The stone church was demolished in 1860 and has no separate standing building geometry."
+    },
+    {
+      "candidate": "Bus stop node 6373485107",
+      "reason": "Useful public-arrival anchor, but not the church building itself."
+    },
+    {
+      "candidate": "Whole churchyard or lakeside landscape",
+      "reason": "Contextual area rather than the precise standing church-building anchor."
+    }
+  ],
+  "historicalInterpretation": {
+    "year": 1861,
+    "yearRole": "consecration year of the standing church",
+    "constructionPeriod": "1860–1861",
+    "architect": "Peter Høier Holtermann",
+    "medievalLayer": "A medieval stone church dedicated to St. Lawrence stood at the same kirkested and was demolished in 1860.",
+    "limits": [
+      "The record does not claim that the medieval church survives.",
+      "The medieval layer is not assigned a separately verified building footprint.",
+      "The current church year is not used as the age of the kirkested."
+    ]
+  },
+  "accessAndSafety": [
+    "Services, funerals and cemetery use take precedence over gameplay.",
+    "Tasks must not interfere with graves, memorials or ceremonies.",
+    "Interior access follows current parish arrangements and opening conditions.",
+    "The 240-metre radius is not a building, cemetery, heritage, property, shoreline, ceremony or access boundary."
+  ],
+  "nextManifestEntry": "kornsjo_grensestasjon"
+}
