@@ -1,0 +1,130 @@
+{
+  "placeId": "akeroya_fort",
+  "generatedAt": "2026-07-27",
+  "decision": "Apply the named Akerøy fort geometry on Festningsholmen and retain the main island Akerøya only as a separate geographic and protection context.",
+  "canonical": {
+    "name": "Akerøy fort",
+    "lat": 59.05017,
+    "lon": 10.89472,
+    "r": 360,
+    "sourceProvider": "osm_wikidata",
+    "sourceObjectId": "osm-way:289950084;wikidata:Q3078124",
+    "coordRole": "restored_coastal_fort_anchor"
+  },
+  "previous": {
+    "lat": 59.0495,
+    "lon": 10.9136,
+    "distanceToCanonicalM": 1082.3,
+    "status": "rejected_main_island_side_legacy_point"
+  },
+  "identityFindings": [
+    "Akerøy fort is situated on Festningsholmen, a small islet beside Akerøya, not at the legacy point on the eastern side of the main island.",
+    "OSM way 289950084 and Wikidata Q3078124 identify the fortification itself.",
+    "Hvaler municipality uses the name Akerøy fort and presents 1664 as the establishment year.",
+    "The main island Akerøya is a separate geographic object with OSM way 296238827, Wikidata Q1770613 and GeoNames 9063813."
+  ],
+  "chronologyFindings": [
+    "Hvaler municipality presents the fort as built in 1664.",
+    "Store norske leksikon describes an initial fortification around 1660 and later reinforcement in 1675, 1744 and 1788.",
+    "Sources vary between 1807 and 1808 for the demolition of the fort.",
+    "The state sold the remains in 1850, and organised voluntary restoration began in 1962.",
+    "The canonical year 1664 is retained as the municipality's foundation year while the text preserves the multi-phase development."
+  ],
+  "accessAndProtection": {
+    "accessMode": "boat_only",
+    "mainIslandContext": "Akerøya lies in Ytre Hvaler National Park and parts of the main island have seasonal access restrictions.",
+    "fortContext": "The fort lies on the separate Festningsholmen. Restrictions documented for the main island must not be automatically projected onto the fort islet without checking the current official protection map.",
+    "requiredChecks": [
+      "current national-park and seasonal-restriction map",
+      "weather and sea state",
+      "boat and landing suitability",
+      "local signs and temporary closures",
+      "ruin and wall stability"
+    ]
+  },
+  "sources": [
+    {
+      "provider": "osm_wikidata",
+      "title": "OpenStreetMap – Akerøy fort",
+      "url": "https://www.openstreetmap.org/way/289950084",
+      "objectId": "osm-way:289950084;wikidata:Q3078124",
+      "supports": [
+        "named fortification geometry",
+        "fort coordinate",
+        "fort entity identity"
+      ]
+    },
+    {
+      "provider": "hvaler_kommune_nkdb",
+      "title": "Hvaler kommune / NKDB – Akerøy fort",
+      "url": "https://hvaler.nkdb.no/objekt/101000",
+      "objectId": "hvaler-nkdb:akeroy-fort",
+      "supports": [
+        "official local name",
+        "Festningsholmen location",
+        "1664 establishment year",
+        "coastal-defence purpose"
+      ]
+    },
+    {
+      "provider": "snl",
+      "title": "Store norske leksikon – Akerøya",
+      "url": "https://snl.no/Aker%C3%B8ya",
+      "objectId": "snl:akeroya",
+      "supports": [
+        "fort on Festningsholmen",
+        "fortification phases",
+        "demolition and restoration history",
+        "main-island national-park and access context"
+      ]
+    },
+    {
+      "provider": "akeroy_fort_association",
+      "title": "Foreningen Akerøy Fort – historie",
+      "url": "https://akeroyfort.com/historie/",
+      "objectId": "akeroyfort:history",
+      "supports": [
+        "site-specific phase history",
+        "demolition around 1808",
+        "voluntary restoration from 1962"
+      ]
+    },
+    {
+      "provider": "osm_wikidata_geonames",
+      "title": "Akerøya main-island geometry",
+      "url": "https://www.openstreetmap.org/way/296238827",
+      "objectId": "osm-way:296238827;wikidata:Q1770613;geonames:9063813",
+      "supports": [
+        "separate main-island identity",
+        "main-island representative coordinate",
+        "geographic separation from Festningsholmen"
+      ]
+    }
+  ],
+  "rejectedAlternatives": [
+    {
+      "candidate": "legacy point 59.0495, 10.9136",
+      "reason": "Approximately 1.08 kilometres east of the named fortification and not tied to a source object."
+    },
+    {
+      "candidate": "Akerøya main-island representative point 59.04718, 10.88325",
+      "reason": "Represents the main island rather than the fort on Festningsholmen."
+    },
+    {
+      "candidate": "generic landing or harbour point",
+      "reason": "May identify access but not the fortification."
+    },
+    {
+      "candidate": "national-park or seasonal-restriction centroid",
+      "reason": "Represents regulatory landscape rather than the historic fort and may incorrectly project main-island restrictions onto Festningsholmen."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the restored fortification on Festningsholmen.",
+    "The radius is not a fortification, property, national-park, bird-protection, seasonal-access, water or safety boundary.",
+    "Boat access and landing suitability vary with weather and sea conditions.",
+    "Current official protection maps and local signs take precedence over the gameplay radius.",
+    "No task may require climbing unstable walls, entering closed structures or landing during a prohibited period."
+  ],
+  "nextManifestEntry": "trogstad_fort"
+}
