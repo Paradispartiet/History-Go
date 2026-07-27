@@ -79,6 +79,7 @@ const allowedHosts = new Set([
   "press.uchicago.edu",
   "www.hup.harvard.edu",
   "www.press.umich.edu",
+  "press.umich.edu",
   "www.press.uillinois.edu",
   "manchesteruniversitypress.co.uk",
   "www.dukeupress.edu",
