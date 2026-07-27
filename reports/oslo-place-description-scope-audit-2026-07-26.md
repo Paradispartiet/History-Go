@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **140**
-- Additional active Oslo IDs outside the protocol: **372**
+- IDs in the current revision protocol: **150**
+- Additional active Oslo IDs outside the protocol: **362**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **372**
+- Additional IDs needing revision: **362**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -15,10 +15,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | Domain | Remaining |
 |---|---:|
 | natur | 74 |
-| historie | 47 |
 | naeringsliv | 47 |
 | kunst | 40 |
 | subkultur | 38 |
+| historie | 37 |
 | sport | 29 |
 | scenekunst | 24 |
 | litteratur | 21 |
@@ -32,16 +32,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| historie | Nordre Skøyen hovedgård | `nordre_skoyen_hovedgard` | 14 | 93 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/nordre_skoyen_hovedgard.json` | needs revision |
-| historie | Øvre Fossum gård | `ovre_fossum_gard` | 15 | 90 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/ovre_fossum_gard.json` | needs revision |
-| historie | Saxegården | `saxegarden` | 15 | 98 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/saxegarden.json` | needs revision |
-| historie | Sporveismuseet | `sporveismuseet` | 13 | 88 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/sporveismuseet.json` | needs revision |
-| historie | Tveten gård | `tveten_gard` | 16 | 96 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/tveten_gard.json` | needs revision |
-| historie | Minneparken | `minneparken_gamlebyen` | 12 | 124 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11/minneparken_gamlebyen.json` | needs revision |
-| historie | Bånkall gård | `bankall_gard` | 12 | 101 | 2 | `data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13/bankall_gard.json` | needs revision |
-| historie | Mustadgården – Kongens gate 3 | `mustadgarden_kongens_gate_3` | 17 | 138 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01/mustadgarden_kongens_gate_3.json` | needs revision |
-| historie | Den gamle Krigsskolen | `den_gamle_krigsskolen` | 17 | 80 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01/den_gamle_krigsskolen.json` | needs revision |
-| historie | Kirkeristen, Basarene og Brannvakten | `kirkeristen_basarene_brannvakten` | 39 | 153 | 3 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01/kirkeristen_basarene_brannvakten.json` | needs revision |
 | historie | Garmanngården | `garmanngarden` | 17 | 103 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/garmanngarden.json` | needs revision |
 | historie | Myntgatakvartalet | `myntgatakvartalet` | 16 | 96 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/myntgatakvartalet.json` | needs revision |
 | historie | Stattholdergården | `stattholdergarden` | 15 | 97 | 2 | `data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02/stattholdergarden.json` | needs revision |
