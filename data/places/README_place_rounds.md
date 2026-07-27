@@ -94,6 +94,16 @@ people | nature | badges
 works | civication | brands
 før_nå | fortellinger | leksikon
 
+psykologi:
+people | nature | badges
+works | civication | brands
+før_nå | fortellinger | leksikon
+
+religion:
+people | nature | badges
+works | civication | brands
+før_nå | fortellinger | leksikon
+
 subkultur:
 people | works | badges
 play | civication | brands

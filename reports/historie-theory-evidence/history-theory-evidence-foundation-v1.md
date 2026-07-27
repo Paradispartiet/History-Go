@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **32**
-- Andel med dokumentert evidensgrunnlag: **13.9 %**
+- Validerte pilotobjekter: **35**
+- Andel med dokumentert evidensgrunnlag: **15.2 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -47,6 +47,9 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Institusjonsbygging, mandat og funksjon | 6 | 5 | 6 | 6 | evidence_ready |
 | Offentlig rom, tilgang og konflikt | 6 | 5 | 9 | 6 | evidence_ready |
 | Okkupasjon som byrom og kontroll | 5 | 4 | 8 | 5 | evidence_ready |
+| Stemmerett, partier og parlamentarisme: forklarings- og kildebane | 8 | 3 | 9 | 7 | evidence_ready |
+| Union, selvstendighet og 1905: forklarings- og kildebane | 6 | 3 | 6 | 6 | evidence_ready |
+| 1905, unionsoppløsning og ny utenrikspolitisk orientering: forklarings- og kildebane | 5 | 2 | 3 | 5 | evidence_ready |
 
 ## Kontraktsgrense
 

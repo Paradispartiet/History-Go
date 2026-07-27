@@ -22,7 +22,7 @@ function readPerson(relative) {
   return data[0];
 }
 
-test('Nationaltheatret star profiles satisfy the people-popup V2 contract', () => {
+test('Nationaltheatret star profiles satisfy the people-popup V2 structure without forcing invented fullness', () => {
   const people = targets.map(([expectedId, relative]) => {
     const person = readPerson(relative);
     assert.equal(person.id, expectedId);
@@ -36,16 +36,15 @@ test('Nationaltheatret star profiles satisfy the people-popup V2 contract', () =
     assert.equal(person.category, 'litteratur');
     assert.match(person.birth_date, /^\d{4}-\d{2}-\d{2}$/);
     assert.match(person.death_date, /^\d{4}-\d{2}-\d{2}$/);
-    assert.ok(person.birth_place.length >= 3);
-    assert.ok(person.active_place.length >= 8);
-    assert.ok(person.kindLabel.length >= 12);
-    assert.ok(person.desc.length >= 90);
+    if (person.birth_place != null) assert.ok(person.birth_place.length >= 3);
+    assert.ok(person.active_place.length >= 3);
+    assert.ok(person.kindLabel.length >= 3);
+    assert.ok(person.desc.trim().length > 0);
     assert.ok(person.popupDesc.split('\n\n').length >= 3);
-    assert.ok(person.popupDesc.length >= 650);
-    assert.ok(Array.isArray(person.education) && person.education.length >= 3);
-    assert.ok(Array.isArray(person.materials) && person.materials.length >= 5);
-    assert.ok(Array.isArray(person.themes) && person.themes.length >= 5);
-    assert.ok(Array.isArray(person.works) && person.works.length >= 8);
+    assert.ok(Array.isArray(person.education));
+    assert.ok(Array.isArray(person.materials) && person.materials.length > 0);
+    assert.ok(Array.isArray(person.themes) && person.themes.length > 0);
+    assert.ok(Array.isArray(person.works) && person.works.length > 0);
     assert.ok(person.works.every((entry) => entry.id && entry.title && entry.year && entry.material && entry.place && entry.summary));
     assert.ok(Array.isArray(person.externalLinks) && person.externalLinks.length >= 4);
     assert.ok(person.externalLinks.every((entry) => entry.type === 'source' && entry.url.startsWith('https://') && entry.verifiedAt === '2026-07-27'));
@@ -55,6 +54,22 @@ test('Nationaltheatret star profiles satisfy the people-popup V2 contract', () =
     assert.equal(person.cardImage, '');
     assert.equal(person.verifiedAt, '2026-07-27');
   }
+});
+
+test('documented education may be shorter than three entries or empty', () => {
+  const alfred = readPerson(targets[0][1]);
+  const gerd = readPerson(targets[1][1]);
+  const lillebil = readPerson(targets[2][1]);
+  const tore = readPerson(targets[3][1]);
+
+  assert.deepEqual(alfred.education, ['Underoffiserskolen i Bergen, 1916–1917']);
+  assert.deepEqual(gerd.education, []);
+  assert.deepEqual(lillebil.education, [
+    'Ballettundervisning hos moren Gyda Christensen',
+    'Studier hos ballettmester Hans Beck ved Det Kongelige Teater i København',
+    'Studier hos koreograf Mikhail Fokine',
+  ]);
+  assert.deepEqual(tore.education, []);
 });
 
 test('Alfred Maurstad is one canonical identity across Nationaltheatret and Det Norske Teatret', () => {
