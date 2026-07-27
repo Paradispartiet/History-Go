@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "moss_mollebyen_industri",
+  "placeFile": "data/places/naeringsliv/ostfold/moss_mollebyen_industri/moss_mollebyen_industri.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_historic_industrial_district_anchor",
+  "currentCoordinate": {
+    "lat": 59.43843,
+    "lon": 10.66789,
+    "r": 320,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Wikidata Q28719372; Lokalhistoriewiki Møllebyen; Østfoldmuseene; Moss kommune; Moss byleksikon",
+    "coordType": "district_representative_point",
+    "coordRole": "historic_mill_and_industrial_district_anchor",
+    "sourceObjectId": "wikidata:Q28719372;lokalhistoriewiki:Møllebyen"
+  },
+  "previousCoordinate": {
+    "lat": 59.4377,
+    "lon": 10.6665,
+    "r": 320,
+    "distanceToAppliedCoordinateM": 113.0,
+    "reasonReplaced": "Legacy-punktet lå omtrent 113 meter sørvest for det navngitte områdepunktet og hadde ingen dokumentert kontrakt til Møllebyen, museet eller et bestemt industribygg."
+  },
+  "identity": {
+    "resolvedIdentity": "Møllebyen in Moss, the historic mill and industrial district at Mossefossen, with Moss by- og industrimuseum as a visitor and interpretation component inside the district.",
+    "identityStatus": "resolved",
+    "identityProblem": "The place name combines a district and a museum. The coordinate must represent the historic industrial area without collapsing it into the museum entrance, the waterfall, one mill building, the library or the nearby Moss Ironworks and Convention House.",
+    "locatorTypeCandidate": "historic_industrial_district",
+    "requiresSplit": false,
+    "splitReason": "The district and museum belong in one composite place because the museum interprets the same industrial environment. They remain separate anchors and access objects inside the record."
+  },
+  "requiredEvidence": [
+    "named district entity or independent district coordinate",
+    "industrial-area identity at Mossefossen",
+    "museum identity and address as a separate component",
+    "long-duration mill and waterpower history",
+    "dating of the surviving industrial buildings",
+    "industrial decline and adaptive reuse chronology",
+    "mixed-use and water-safety limitations",
+    "separation from Moss Ironworks and the Convention House"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Møllebyen",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q28719372",
+      "sourceObjectId": "wikidata:Q28719372",
+      "sourceQuality": "named_historic_district_entity_coordinate",
+      "finding": "Q28719372 identifies Møllebyen in Moss at 59.43900, 10.66800 and describes the former industrial area at Mossefossen that is now used for museum, library, cinema, galleries, restaurants and businesses.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides an independent named-area entity and coordinate within a few dozen metres of the applied district point."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Møllebyen",
+      "sourceUrl": "https://lokalhistoriewiki.no/M%C3%B8llebyen",
+      "sourceObjectId": "lokalhistoriewiki:Møllebyen",
+      "sourceQuality": "independent_district_coordinate_and_history",
+      "finding": "Identifies Møllebyen as the area by Mossefossen, mainly along Henrik Gerners gate, and gives the coordinate 59.43843, 10.66789. It describes nineteenth- and early-twentieth-century mill and factory buildings, the Lilleelv watercourse, decline, rehabilitation after 1998 and new cultural and commercial uses.",
+      "canVerifyCoordinate": true,
+      "reason": "Direct independent coordinate for the district and a clear entity description matching the place."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Moss by- og industrimuseum",
+      "sourceUrl": "https://ostfoldmuseene.no/moss/om",
+      "sourceObjectId": "ostfoldmuseene:moss-by-og-industrimuseum",
+      "sourceQuality": "official_museum_identity_address_and_current_use",
+      "finding": "Places the museum in an old mill building in Møllebyen beside Mossefossen at Fossen 21/23 and presents waterpower, labour, machines and people as central to more than 300 years of Moss history.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the museum as an active component and visitor anchor, not the full district coordinate."
+    },
+    {
+      "sourceProvider": "wikidata_commons",
+      "sourceName": "Wikidata and Wikimedia Commons – Moss by- og industrimuseum",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q112630775",
+      "sourceObjectId": "wikidata:Q112630775",
+      "sourceQuality": "independent_museum_entity_coordinate",
+      "finding": "Identifies the museum at approximately 59.43861, 10.66806, inside the Møllebyen district and close to the applied district coordinate.",
+      "canVerifyCoordinate": true,
+      "reason": "Useful as a component control while the wider district remains canonical."
+    },
+    {
+      "sourceProvider": "brreg",
+      "sourceName": "Brønnøysundregistrene – Moss by- og industrimuseum",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/986167730",
+      "sourceObjectId": "brreg:986167730",
+      "sourceQuality": "official_current_organisation_and_address_control",
+      "finding": "Confirms the registered museum unit and the address Fossen 21-23, Møllebyen, 1530 Moss.",
+      "canVerifyCoordinate": false,
+      "reason": "Authoritative current address control for the museum component."
+    },
+    {
+      "sourceProvider": "moss_municipality",
+      "sourceName": "Moss kommune – Byutvikling",
+      "sourceUrl": "https://www.moss.kommune.no/alle-tjenester/politikk-og-samfunn/kommuneliv/byutvikling/",
+      "sourceObjectId": "moss-kommune:byutvikling-mollebyen",
+      "sourceQuality": "official_current_district_and_adaptive_reuse_context",
+      "finding": "Describes Møllebyen by Mossefossen as a successful example of new use of old industrial buildings, now containing library, cinema, museum, restaurants, homes and offices.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the district identity and current mixed-use limitations."
+    },
+    {
+      "sourceProvider": "moss_byleksikon",
+      "sourceName": "Moss byleksikon – Møllebyen",
+      "sourceUrl": "https://mossbyleksikon.no/index.php?title=M%C3%B8llebyen",
+      "sourceObjectId": "moss-byleksikon:Møllebyen",
+      "sourceQuality": "local_building_and_industry_chronology",
+      "finding": "Describes likely mill activity from the medieval period, surviving brick industrial buildings mainly from 1875-1920, Moss as the third-largest mill town in Norway in the late nineteenth century, industrial relocation, the 1971 fire, rehabilitation after 1998 and completion of major adaptive reuse by 2003.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the historical layers and prevents year 1700 from being misread as the construction year of the standing buildings."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Møllebyen point",
+      "sourceObjectId": "legacy:moss_mollebyen_industri",
+      "sourceQuality": "imprecise_nearby_point",
+      "finding": "The legacy point lies approximately 113.0 metres south-west of the applied district coordinate and does not identify a named area or component.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it lacks an entity and source-object contract."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:Møllebyen",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q28719372",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Matching district entity and control coordinate; the applied Lokalhistoriewiki point is slightly more precise and directly stated for the district."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q112630775",
+      "canApplyToPlace": false,
+      "rejectionReason": "The museum is a component and visitor anchor, not the whole Møllebyen district."
+    },
+    {
+      "sourceProvider": "natural_feature",
+      "sourceObjectId": "mossefossen",
+      "canApplyToPlace": false,
+      "rejectionReason": "The waterfall is the power source and landscape context, not the historic industrial district itself."
+    },
+    {
+      "sourceProvider": "separate_history_go_place",
+      "sourceObjectId": "moss_jernverk_konventionsgarden",
+      "canApplyToPlace": false,
+      "rejectionReason": "Moss Ironworks and the Convention House are a nearby but separate canonical place."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "mollebyen_historic_industrial_district",
+      "name": "Møllebyen",
+      "lat": 59.43843,
+      "lon": 10.66789,
+      "r": 180,
+      "type": "historic_industrial_district_anchor",
+      "sourceProvider": "wikidata_lokalhistoriewiki",
+      "sourceObjectId": "wikidata:Q28719372;lokalhistoriewiki:Møllebyen",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "moss_city_and_industry_museum",
+      "name": "Moss by- og industrimuseum",
+      "lat": 59.43861,
+      "lon": 10.66806,
+      "r": 90,
+      "type": "museum_visitor_and_interpretation_anchor",
+      "sourceProvider": "wikidata_ostfoldmuseene_brreg",
+      "sourceObjectId": "wikidata:Q112630775;brreg:986167730;address:Fossen 21-23",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:moss_mollebyen_industri",
+      "lat": 59.4377,
+      "lon": 10.6665,
+      "distanceFromAppliedM": 113.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:Møllebyen",
+      "lat": 59.43843,
+      "lon": 10.66789,
+      "distanceFromPreviousM": 113.0,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q28719372",
+      "lat": 59.439,
+      "lon": 10.668,
+      "distanceFromAppliedM": 63.7,
+      "canApplyToPlace": true,
+      "applied": false
+    },
+    {
+      "sourceProvider": "wikidata_commons",
+      "sourceObjectId": "wikidata:Q112630775",
+      "lat": 59.43861,
+      "lon": 10.66806,
+      "distanceFromAppliedM": 22.2,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-moss-mollebyen-source-probe/source-summary.json",
+      "description": "Persisted district and museum coordinates, area identity, address controls, industrial chronology, adaptive reuse and access limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Møllebyen district coordinate, retained the museum as a separate visitor anchor and continue with folkenborg_museum."
+  },
+  "notes": [
+    "The coordinate moves approximately 113 metres north-east.",
+    "The historic industrial district is canonical; the museum is a component.",
+    "Year 1700 is a rounded historical layer, not the construction year of the standing buildings.",
+    "Mossefossen and Lilleelv are power and watercourse components.",
+    "The radius is not a district, property, building, museum, business, water, safety, heritage or access boundary."
+  ]
+}
