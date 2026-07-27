@@ -1,0 +1,121 @@
+name: Inspect archived naeringsliv batch 2 payload
+
+on:
+  push:
+    branches:
+      - archive/naeringsliv-batch-2-pre-place-description-v4-2
+    paths:
+      - .github/workflows/inspect-naeringsliv-batch2-archive.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: archive/naeringsliv-batch-2-pre-place-description-v4-2
+          fetch-depth: 0
+
+      - name: Decode and inspect payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64, bz2, gzip, json, lzma, pathlib, tarfile, zipfile, zlib
+
+          root = pathlib.Path('.')
+          parts = sorted(root.glob('.tmp/naeringsliv-batch2.payload.*'))
+          joined = ''.join(p.read_text(encoding='utf-8').strip() for p in parts)
+          raw = base64.b64decode(joined)
+          out = root / '.tmp' / 'naeringsliv-batch2-inspection'
+          out.mkdir(parents=True, exist_ok=True)
+          (out / 'raw.bin').write_bytes(raw)
+
+          report = {
+              'parts': [str(p) for p in parts],
+              'joined_base64_chars': len(joined),
+              'decoded_bytes': len(raw),
+              'first_32_hex': raw[:32].hex(),
+              'attempts': []
+          }
+
+          candidates = [('identity', lambda b: b)]
+          candidates += [
+              ('gzip', gzip.decompress),
+              ('zlib', zlib.decompress),
+              ('raw_deflate', lambda b: zlib.decompress(b, -15)),
+              ('bz2', bz2.decompress),
+              ('lzma', lzma.decompress),
+          ]
+          try:
+              import brotli
+              candidates.append(('brotli', brotli.decompress))
+          except Exception as exc:
+              report['brotli_import'] = repr(exc)
+
+          decoded = None
+          decoded_name = None
+          for name, fn in candidates:
+              try:
+                  data = fn(raw)
+                  text_ok = False
+                  try:
+                      text = data.decode('utf-8')
+                      text_ok = True
+                  except Exception:
+                      text = ''
+                  report['attempts'].append({
+                      'name': name,
+                      'success': True,
+                      'bytes': len(data),
+                      'first_32_hex': data[:32].hex(),
+                      'utf8': text_ok,
+                      'text_prefix': text[:500] if text_ok else None,
+                  })
+                  if name != 'identity' or text_ok:
+                      decoded = data
+                      decoded_name = name
+                      break
+              except Exception as exc:
+                  report['attempts'].append({'name': name, 'success': False, 'error': repr(exc)})
+
+          if decoded is not None:
+              (out / f'decoded-{decoded_name}.bin').write_bytes(decoded)
+              try:
+                  text = decoded.decode('utf-8')
+                  (out / f'decoded-{decoded_name}.txt').write_text(text, encoding='utf-8')
+              except Exception:
+                  pass
+
+              archive = out / f'decoded-{decoded_name}.bin'
+              extracted = out / 'extracted'
+              extracted.mkdir(exist_ok=True)
+              try:
+                  if zipfile.is_zipfile(archive):
+                      with zipfile.ZipFile(archive) as zf:
+                          zf.extractall(extracted)
+                      report['archive_type'] = 'zip'
+                  elif tarfile.is_tarfile(archive):
+                      with tarfile.open(archive) as tf:
+                          tf.extractall(extracted)
+                      report['archive_type'] = 'tar'
+              except Exception as exc:
+                  report['archive_error'] = repr(exc)
+
+          (out / 'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          file .tmp/naeringsliv-batch2-inspection/raw.bin > .tmp/naeringsliv-batch2-inspection/file.txt || true
+          find .tmp/naeringsliv-batch2-inspection -maxdepth 4 -type f -printf '%p %s bytes\n' | sort > .tmp/naeringsliv-batch2-inspection/files.txt
+
+      - name: Commit inspection report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .tmp/naeringsliv-batch2-inspection
+          git commit -m "Inspect archived naeringsliv batch 2 payload"
+          git push origin HEAD:archive/naeringsliv-batch-2-pre-place-description-v4-2
