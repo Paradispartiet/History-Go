@@ -1,0 +1,598 @@
+build-final	Build final branch with synchronized bindings	﻿2026-07-27T11:17:57.8767761Z ##[group]Run set -euo pipefail
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8768162Z ^[[36;1mset -euo pipefail^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8768793Z ^[[36;1mgit show 4234d827f9d852a0bde596d928d689a821408b21:.github/workflows/one-time-build-naeringsliv-pilot-final.yml > /tmp/locked.yml^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8769462Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8769713Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8769968Z ^[[36;1m^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8770297Z ^[[36;1mlines = Path('/tmp/locked.yml').read_text(encoding='utf-8').splitlines()^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8770901Z ^[[36;1mstart = lines.index('      - name: Reconstruct, validate and publish clean final branch')^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8771470Z ^[[36;1mrun = next(i for i in range(start, len(lines)) if lines[i] == '        run: |')^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8772064Z ^[[36;1mbody = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[run + 1:]) + '\n'^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8772520Z ^[[36;1m^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8773194Z ^[[36;1mpackage_loop = 'for part in $(seq -w 0 8); do\n  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"\ndone > /tmp/naeringsliv-pilot.b64\n'^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8775144Z ^[[36;1mpackage_reader = "python -c \"import subprocess,pathlib; c='adf47efbabb88be77cd0413dee695557923a9b97'; p=[subprocess.check_output(['git','show',f'{c}:.tmp/naeringsliv-pilot/pkg-{i:02d}']).strip() for i in range(9)]; pathlib.Path('/tmp/naeringsliv-pilot.b64').write_bytes(b''.join(p))\"\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8776344Z ^[[36;1mif package_loop not in body:^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8776673Z ^[[36;1m    raise SystemExit('Pakkeløkken mangler')^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8777075Z ^[[36;1mbody = body.replace(package_loop, package_reader, 1)^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8777407Z ^[[36;1m^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8777851Z ^[[36;1mbinding_fields = "('method_id', 'topic_hook_id', 'thinker_id', 'thinker_name', 'work', 'theory_focus', 'theory_ref')"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8778384Z ^[[36;1mquiz_cleanup = (^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8778893Z ^[[36;1m    f"    binding_fields = {binding_fields}\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8779227Z ^[[36;1m    "    for set_row in sets[2:4]:\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8779564Z ^[[36;1m    "        for question in set_row['questions']:\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8779910Z ^[[36;1m    "            for field in binding_fields:\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8780248Z ^[[36;1m    "                question.pop(field, None)\n\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8780552Z ^[[36;1m)^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8780903Z ^[[36;1mproduction_marker = "    production = quiz.setdefault('production_context', {})\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8781362Z ^[[36;1mif production_marker not in body:^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8781722Z ^[[36;1m    raise SystemExit('Produksjonsmarkøren mangler')^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8782188Z ^[[36;1mbody = body.replace(production_marker, quiz_cleanup + production_marker, 1)^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8782860Z ^[[36;1mbody = body.replace("production['method_start_phase'] = 'bridge'", "production['method_start_phase'] = 'final'", 1)^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8783398Z ^[[36;1m^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8783789Z ^[[36;1mbrief_marker = "    materialization = brief.setdefault('professional_materialization', {})\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8784481Z ^[[36;1mbrief_cleanup = (^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8784869Z ^[[36;1m    "    claim_by_id = {claim['claim_id']: claim for claim in brief.get('claims', [])}\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8785306Z ^[[36;1m    "    for set_row in sets[2:4]:\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8785631Z ^[[36;1m    "        for question in set_row['questions']:\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8786016Z ^[[36;1m    "            claim = claim_by_id.get(question.get('claim_id'))\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8786367Z ^[[36;1m    "            if claim:\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8786662Z ^[[36;1m    "                for field in binding_fields:\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8787002Z ^[[36;1m    "                    claim.pop(field, None)\n\n"^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8787299Z ^[[36;1m)^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8787501Z ^[[36;1mif brief_marker not in body:^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8788094Z ^[[36;1m    raise SystemExit('Briefmarkøren mangler')^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8788515Z ^[[36;1mbody = body.replace(brief_marker, brief_cleanup + brief_marker, 1)^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8788891Z ^[[36;1m^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8789167Z ^[[36;1mPath('/tmp/run-final.sh').write_text(body, encoding='utf-8')^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8789517Z ^[[36;1mPY^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8789712Z ^[[36;1mbash /tmp/run-final.sh^[[0m
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8925706Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:57.8926077Z ##[endgroup]
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:58.2895912Z From https://github.com/Paradispartiet/History-Go
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:58.2896693Z  * branch                main       -> FETCH_HEAD
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:58.2897528Z  * branch                agent/naeringsliv-pilot-profesjonsmaterialisering -> FETCH_HEAD
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:58.2980940Z Preparing worktree (detached HEAD 48fcb689e)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.3147635Z Updating files:  32% (4849/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.3361996Z Updating files:  33% (4851/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.3529916Z Updating files:  34% (4997/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.3622389Z Updating files:  35% (5144/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.3695070Z Updating files:  36% (5291/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.3794046Z Updating files:  37% (5438/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.3954370Z Updating files:  38% (5585/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.4093498Z Updating files:  39% (5732/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.4223176Z Updating files:  40% (5879/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.4384421Z Updating files:  41% (6026/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.4767102Z Updating files:  42% (6173/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.4933994Z Updating files:  43% (6320/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5084346Z Updating files:  44% (6467/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5159502Z Updating files:  45% (6614/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5239615Z Updating files:  46% (6761/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5322547Z Updating files:  47% (6908/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5557100Z Updating files:  48% (7055/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5625965Z Updating files:  49% (7202/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5693340Z Updating files:  50% (7349/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5759482Z Updating files:  51% (7496/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5847696Z Updating files:  52% (7643/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.5931719Z Updating files:  53% (7790/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6005627Z Updating files:  54% (7937/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6072054Z Updating files:  55% (8084/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6139435Z Updating files:  56% (8231/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6212593Z Updating files:  57% (8378/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6291572Z Updating files:  58% (8525/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6393351Z Updating files:  59% (8672/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6459362Z Updating files:  60% (8819/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6533246Z Updating files:  61% (8966/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6604140Z Updating files:  62% (9113/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6672305Z Updating files:  63% (9260/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6766932Z Updating files:  64% (9407/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6844367Z Updating files:  65% (9554/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6913753Z Updating files:  66% (9701/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.6980627Z Updating files:  67% (9847/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7076966Z Updating files:  68% (9994/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7142163Z Updating files:  69% (10141/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7281055Z Updating files:  70% (10288/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7386099Z Updating files:  71% (10435/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7470812Z Updating files:  72% (10582/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7604505Z Updating files:  73% (10729/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7692172Z Updating files:  74% (10876/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7781955Z Updating files:  75% (11023/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.7900635Z Updating files:  76% (11170/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.8113957Z Updating files:  77% (11317/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.8201275Z Updating files:  78% (11464/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.8357034Z Updating files:  79% (11611/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.8488543Z Updating files:  80% (11758/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.8662025Z Updating files:  81% (11905/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.8876390Z Updating files:  82% (12052/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9136179Z Updating files:  83% (12199/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9331401Z Updating files:  84% (12346/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9433512Z Updating files:  85% (12493/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9507445Z Updating files:  86% (12640/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9613883Z Updating files:  87% (12787/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9709936Z Updating files:  88% (12934/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9780314Z Updating files:  89% (13081/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:17:59.9938315Z Updating files:  90% (13228/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0117214Z Updating files:  91% (13375/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0422160Z Updating files:  92% (13522/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0524860Z Updating files:  93% (13669/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0617660Z Updating files:  94% (13816/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0687509Z Updating files:  95% (13963/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0787570Z Updating files:  96% (14110/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0883707Z Updating files:  97% (14257/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.0973814Z Updating files:  98% (14404/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.1079065Z Updating files:  99% (14551/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.1079668Z Updating files: 100% (14697/14697)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.1080227Z Updating files: 100% (14697/14697), done.
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.1231666Z HEAD is now at 48fcb689e Merge pull request #4251 from Paradispartiet/agent/coordinate-orje-sluser-20260727
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:00.1435766Z Switched to a new branch 'agent/naeringsliv-pilot-profesjonsmaterialisering-final'
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6432814Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6433535Z added 55 packages, and audited 56 packages in 3s
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6433976Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6434433Z 13 packages are looking for funding
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6434876Z   run `npm fund` for details
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6457771Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6458060Z 1 high severity vulnerability
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6458357Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6458743Z To address all issues (including breaking changes), run:
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6459237Z   npm audit fix --force
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6459689Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.6459810Z Run `npm audit` for details.
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.9037515Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.9038095Z > history-go@0.0.0 places:index:build
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.9038751Z > npm run build:tools && node dist/tools/build_places_index.mjs
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.9039036Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:03.9999831Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:04.0000421Z > history-go@0.0.0 build:tools
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:04.0001049Z > tsc -p tsconfig.tools.build.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:04.0001261Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.0789058Z Wrote 1431 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 213 category override(s)
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.1840977Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.1841597Z > history-go@0.0.0 quiz:context
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.1842662Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.1843378Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.3701337Z Skrev data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.4717583Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.4718154Z > history-go@0.0.0 quiz:context
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.6564024Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.6565001Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.6565283Z Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.7592666Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.7593284Z > history-go@0.0.0 quiz:context
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.7594859Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.7595688Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.9466956Z Skrev data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:07.9901480Z OK: Næringsliv Oslo professional materialization validates (63 questions, 16 calculations, 3 places).
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.0829100Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.0829705Z > history-go@0.0.0 places:emner:check
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.0830606Z > npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.0830918Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.1775573Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.1775984Z > history-go@0.0.0 build:tools
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.1776571Z > tsc -p tsconfig.tools.build.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:08.1776841Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8945820Z === Place emne_id validation ===
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8947702Z Active place files: 1444
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8948220Z Canonical emne files scanned: 20
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8948563Z Canonical emne ids loaded: 1411
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8954517Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8954768Z Missing emne_ids: 0
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8955050Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8955342Z Duplicate emne_ids within same place: 0
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8955915Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8956250Z Duplicate place ids across active files: 0
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8956640Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8957035Z Duplicate place ids within same active file: 0
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8957396Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:10.8957792Z Duplicate canonical emne_ids across canonical files: 0
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.0032156Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.0033106Z > history-go@0.0.0 places:index:check
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.0034018Z > npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.0035124Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.1017626Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.1018225Z > history-go@0.0.0 build:tools
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.1018726Z > tsc -p tsconfig.tools.build.json
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:11.1019054Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:13.7531761Z OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.2461666Z places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.3410719Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.3411395Z > history-go@0.0.0 places:coords:check
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.3412066Z > node tests/place-coordinate-index-parity.test.js
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.3412341Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.4758000Z Place coordinate index parity OK: runtime index coordinate fields match source files.
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.5870612Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.5871772Z > history-go@0.0.0 audit:quiz-content
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.5872531Z > node scripts/audit-quiz-content-quality.mjs
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.5872898Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9623420Z Quizinnholds-audit
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9625532Z - filer: 335
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9626444Z - spørsmål: 8463
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9626959Z - balansebrudd: 254
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9627568Z - teori/begrepsspørsmål: 3066
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9628133Z - forbudte teorimaler: 277
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9628732Z - gjentatte åpninger: 64
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9629277Z - mistenkelig svarlengde: 2521
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9629740Z - JSON-feil: 0
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9631264Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9631459Z Verste balansebrudd:
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9632347Z - data/quiz/litteratur/deichman_bjorvika_sets.json [deichman_bjorvika]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9633554Z - data/quiz/litteratur/litteraturhuset_sets.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9634951Z - data/quiz/litteratur/norli_universitetsgata_sets.json [norli_universitetsgata]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9636155Z - data/quiz/litteratur/tronsmo_bokhandel_sets.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9637326Z - data/quiz/litteratur/wergelandsveien_15_sets.json [wergelandsveien_15]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9638759Z - data/quiz/litteratur/camilla_collett_statue_sets_merged.json [camilla_collett_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9640396Z - data/quiz/litteratur/eldorado_bokhandel_sets_merged.json [eldorado_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9647658Z - data/quiz/litteratur/gamle_deichman.json [gamle_deichman]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9649140Z - data/quiz/litteratur/henrik_wergeland_statue_sets_merged.json [henrik_wergeland_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9651259Z - data/quiz/litteratur/litteraturhuset_sets_merged.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9652890Z - data/quiz/litteratur/nationaltheatret_sets_merged.json [nationaltheatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9654761Z - data/quiz/litteratur/tronsmo_bokhandel_sets_merged.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9656592Z - data/quiz/musikk/Lisboa/lisbon_coliseu_dos_recreios_sets_merged.json [lisbon_coliseu_dos_recreios]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9658428Z - data/quiz/musikk/Lisboa/lisbon_mouraria_fado_sets_merged.json [lisbon_mouraria_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9660328Z - data/quiz/musikk/Lisboa/lisbon_teatro_tivoli_bbva_sets_merged.json [lisbon_teatro_tivoli_bbva]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9662027Z - data/quiz/musikk/Lisboa/museu_fado.json [lisbon_museu_do_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9663411Z - data/quiz/musikk/blaa_sets_merged.json [blaa]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9665073Z - data/quiz/musikk/det_norske_teatret_sets_merged.json [det_norske_teatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9666589Z - data/quiz/musikk/john_dee_sets_merged_REVISED.json [john_dee]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9667970Z - data/quiz/musikk/operaen_musikk_sets_merged.json [operaen]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9669369Z - data/quiz/musikk/parkteatret_sets_merged.json [parkteatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9670777Z - data/quiz/musikk/rockefeller_sets_merged.json [rockefeller]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9672033Z - data/quiz/musikk/salt_sets_merged.json [salt]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9673339Z - data/quiz/musikk/sentrum_scene_sets_merged.json [sentrum_scene]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9675010Z - data/quiz/naeringsliv/akerselva_industri_sets_merged.json [akerselva]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9676067Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9676496Z Mest gjentatte spørsmålsåpninger:
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9677436Z - 58 × «hvilken samlet analyse passer best for …» i 58 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9678550Z - 27 × «hva bør spilleren se etter først …» i 27 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9679550Z - 27 × «hva er et godt første observasjonsspørsmal …» i 27 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9680476Z - 23 × «hva er den dypere læringen i …» i 23 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9681322Z - 20 × «hvilken metode passer best for a …» i 13 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9682157Z - 16 × «hva bør holdes ute av trygg …» i 16 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9683078Z - 14 × «hva er den viktigste forskjellen mellom …» i 14 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9683992Z - 14 × «hva er en avansert observasjon ved …» i 14 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9685024Z - 11 × «hva betyr stedlesning …» i 10 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9685826Z - 11 × «hva bør spilleren se etter for …» i 9 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9686803Z - 11 × «hva er den mest presise faglige …» i 9 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9687732Z - 11 × «hva betyr blagrønn struktur …» i 7 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9688436Z - 9 × «hva er en kantsone …» i 5 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9689219Z - 8 × «hva er en avansert observasjon i …» i 8 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9690147Z - 8 × «hva er den beste korte forklaringen …» i 8 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9690792Z - 8 × «hva bør holdes ute av en …» i 8 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9691201Z - 8 × «hva betyr bynatur …» i 5 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9691606Z - 8 × «hva er en kritisk blindside ved …» i 2 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9692254Z - 7 × «hva kan være en konflikt i …» i 7 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:14.9692660Z - 7 × «hva er en trygg mate a …» i 7 filer
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6230645Z {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6231106Z   "status": "passed",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6231615Z   "categoriesWithQuizProduction": 3,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6232286Z   "quizFilesChecked": 8,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6232875Z   "checked": [
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6233226Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6233906Z       "categoryId": "by",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6234672Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6235055Z       "targetId": "deichman_bjorvika",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6235329Z       "questions": 35
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6235555Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6235733Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6235948Z       "categoryId": "historie",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6236313Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6236733Z       "targetId": "grindheim_runestein",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6237015Z       "questions": 21
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6237232Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6237407Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6237619Z       "categoryId": "historie",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6237982Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6238362Z       "targetId": "grindheim_steinkross",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6238638Z       "questions": 21
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6238839Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6239008Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6239232Z       "categoryId": "historie",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6239624Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6240075Z       "targetId": "grindheimsveien_nord_gravfelt",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6240374Z       "questions": 21
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6240584Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6240759Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6240971Z       "categoryId": "historie",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6241341Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6241727Z       "targetId": "hoyland_gravhaug_etne",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6242012Z       "questions": 21
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6242221Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6242394Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6242617Z       "categoryId": "naeringsliv",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6243042Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6243479Z       "targetId": "telegrafbygningen",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6243750Z       "questions": 35
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6244338Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6244594Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6244814Z       "categoryId": "naeringsliv",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6245195Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6245574Z       "targetId": "oslo_posthus",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6245824Z       "questions": 35
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6246024Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6246200Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6246409Z       "categoryId": "naeringsliv",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6246775Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6247157Z       "targetId": "havnelageret",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6247408Z       "questions": 35
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6247618Z     }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6247793Z   ],
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6247977Z   "failures": []
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6248176Z }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.6460168Z OK: produksjonskontekst uten nye avvik
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.7434344Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.7435377Z > history-go@0.0.0 audit:quiz-progression
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.7435827Z > node scripts/audit-quiz-progression.mjs
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.7436090Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8504557Z {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8505015Z   "status": "passed",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8505462Z   "quizFilesChecked": 8,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8506122Z   "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8506535Z   "checked": [
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8506740Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8507225Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8507785Z       "profile": "rich_5x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8508183Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8508540Z         "total": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8508893Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8509248Z           "fact": 19,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8509606Z           "context": 9,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8509993Z           "concept_theory": 7
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8510461Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8510844Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8511276Z           "fact": 0.543,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8511717Z           "context": 0.257,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8512699Z           "concept_theory": 0.2
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8513136Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8513474Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8513847Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8514621Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8515073Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8515542Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8515971Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8516309Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8516640Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8517180Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8517867Z       "profile": "narrow_3x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8518272Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8518506Z         "total": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8518715Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8518940Z           "fact": 12,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8519177Z           "context": 5,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8519434Z           "concept_theory": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8519689Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8519908Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8520148Z           "fact": 0.571,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8520401Z           "context": 0.238,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8520705Z           "concept_theory": 0.19
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8520970Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8521172Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8521389Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8521620Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8521889Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8522187Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8522481Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8522672Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8522844Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8523185Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8523596Z       "profile": "narrow_3x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8523850Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8524055Z         "total": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8524540Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8524761Z           "fact": 12,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8524967Z           "context": 5,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8525498Z           "concept_theory": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8525767Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8525966Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8526175Z           "fact": 0.571,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8526411Z           "context": 0.238,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8526689Z           "concept_theory": 0.19
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8526924Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8527108Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8527317Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8527586Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8527845Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8528101Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8528325Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8528519Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8528693Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8529022Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8529429Z       "profile": "narrow_3x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8529662Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8529891Z         "total": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8530096Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8530310Z           "fact": 12,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8530522Z           "context": 5,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8530766Z           "concept_theory": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8531013Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8531203Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8531428Z           "fact": 0.571,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8531672Z           "context": 0.238,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8531947Z           "concept_theory": 0.19
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8532217Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8532393Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8532603Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8532846Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8533099Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8533369Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8533631Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8533809Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8534003Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8534569Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8534980Z       "profile": "narrow_3x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8535245Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8535615Z         "total": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8535857Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8536099Z           "fact": 12,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8536380Z           "context": 5,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8536654Z           "concept_theory": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8536923Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8537109Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8537329Z           "fact": 0.571,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8537569Z           "context": 0.238,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8537843Z           "concept_theory": 0.19
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8538106Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8538302Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8538509Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8538761Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8539020Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8539308Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8539577Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8539771Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8539950Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8540319Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8540820Z       "profile": "rich_5x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8541130Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8541391Z         "total": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8541654Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8541900Z           "fact": 19,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8542109Z           "context": 9,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8542369Z           "concept_theory": 7
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8542593Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8542772Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8542975Z           "fact": 0.543,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8543214Z           "context": 0.257,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8543460Z           "concept_theory": 0.2
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8543744Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8544059Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8545805Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8546100Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8546437Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8546774Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8547018Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8547416Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8547591Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8547910Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8548283Z       "profile": "rich_5x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8548520Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8548735Z         "total": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8548944Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8549149Z           "fact": 19,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8549365Z           "context": 9,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8549590Z           "concept_theory": 7
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8549827Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8550017Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8550223Z           "fact": 0.543,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8550443Z           "context": 0.257,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8550702Z           "concept_theory": 0.2
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8550935Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8551112Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8551384Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8551798Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8552168Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8552656Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8552901Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8553079Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8553255Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8553583Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8553947Z       "profile": "rich_5x7",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8554430Z       "balance": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8554646Z         "total": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8554847Z         "counts": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8555050Z           "fact": 19,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8555256Z           "context": 9,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8555482Z           "concept_theory": 7
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8555713Z         },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8555897Z         "ratios": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8556109Z           "fact": 0.543,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8556329Z           "context": 0.257,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8556585Z           "concept_theory": 0.2
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8556815Z         }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8556994Z       },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8557188Z       "normalOpening": {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8557582Z         "status": "checked",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8557818Z         "checkedSets": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8558072Z         "checkedQuestions": 14
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8558301Z       }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8558480Z     }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8558653Z   ],
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8558837Z   "failures": []
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.8559032Z }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.9556758Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.9557129Z > history-go@0.0.0 audit:quiz-theory-binding
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.9557578Z > node scripts/audit-quiz-theory-binding.mjs
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:16.9557803Z 
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0559879Z {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0560264Z   "status": "failed",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0560538Z   "quizFilesChecked": 8,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0560819Z   "checked": [
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0561020Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0561313Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0561652Z       "questions": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0561901Z       "theoryQuestions": 3,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0562154Z       "methodQuestions": 2
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0562418Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0562599Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0562907Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0563264Z       "questions": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0563495Z       "theoryQuestions": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0563742Z       "methodQuestions": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0563965Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0564440Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0564958Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0565348Z       "questions": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0565609Z       "theoryQuestions": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0565875Z       "methodQuestions": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0566153Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0566357Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0566718Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0567121Z       "questions": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0567368Z       "theoryQuestions": 2,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0567632Z       "methodQuestions": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0568274Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0568455Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0568804Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0569177Z       "questions": 21,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0569421Z       "theoryQuestions": 1,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0569681Z       "methodQuestions": 4
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0569903Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0570100Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0570457Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0570869Z       "questions": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0571094Z       "theoryQuestions": 1,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0571352Z       "methodQuestions": 7
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0571596Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0571798Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0572117Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0572504Z       "questions": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0572726Z       "theoryQuestions": 1,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0573001Z       "methodQuestions": 7
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0573257Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0573457Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0573776Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0574303Z       "questions": 35,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0574544Z       "theoryQuestions": 1,
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0574801Z       "methodQuestions": 7
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0575041Z     }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0575236Z   ],
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0575440Z   "failures": [
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0575659Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0576024Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0576468Z       "questionId": "telegrafbygningen_quiz_32",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0577088Z       "reason": "teorispørsmål mangler theory_ref"
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0577412Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0577599Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0577966Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0578447Z       "questionId": "telegrafbygningen_quiz_32",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0578807Z       "reason": "theory_ref peker til feil hook"
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0579292Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0579467Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0579840Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0580280Z       "questionId": "telegrafbygningen_quiz_32",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0580629Z       "reason": "theory_ref mangler why_it_helps"
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0580913Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0581086Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0581404Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0581791Z       "questionId": "oslo_posthus_quiz_35",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0582198Z       "reason": "teorispørsmål mangler theory_ref"
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0582481Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0582653Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0582965Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0583356Z       "questionId": "oslo_posthus_quiz_35",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0583681Z       "reason": "theory_ref peker til feil hook"
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0583984Z     },
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0584311Z     {
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0584635Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0585038Z       "questionId": "oslo_posthus_quiz_35",
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0585410Z       "reason": "theory_ref mangler why_it_helps"
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0585705Z     }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0585908Z   ]
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0586087Z }
+build-final	Build final branch with synchronized bindings	2026-07-27T11:18:17.0714514Z ##[error]Process completed with exit code 1.
