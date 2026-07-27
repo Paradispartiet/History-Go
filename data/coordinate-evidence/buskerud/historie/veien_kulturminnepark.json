@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "veien_kulturminnepark",
+  "placeFile": "data/places/historie/buskerud/places_historie_buskerud_batch1/veien_kulturminnepark.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_archaeological_heritage_park_anchor",
+  "currentCoordinate": {
+    "lat": 60.17016,
+    "lon": 10.22703,
+    "r": 420,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 3030030881; Buskerudmuseene; Ringerike kommune; Store norske leksikon",
+    "coordType": "museum_park_representative_point",
+    "coordRole": "archaeological_heritage_park_representative_anchor",
+    "sourceObjectId": "osm-node:3030030881"
+  },
+  "previousCoordinate": {
+    "lat": 60.1842,
+    "lon": 10.2504,
+    "r": 420,
+    "distanceToAppliedCoordinateM": 2026.7,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,03 kilometer nordøst for Veien Kulturminnepark og identifiserte verken museumsområdet, gravfeltet eller langhuset."
+  },
+  "identity": {
+    "resolvedIdentity": "Veien Kulturminnepark, et samlet arkeologisk museums- og kulturminneområde ved Ringveien 112 med gravfelt, rekonstruert langhus og museumsbygning.",
+    "identityStatus": "resolved",
+    "identityProblem": "Stedet består av flere fysiske komponenter. Ett tilfeldig gravhaug- eller langhuspunkt ville underrepresentert parken, mens legacy-punktet lå utenfor anlegget.",
+    "locatorTypeCandidate": "archaeological_heritage_park_complex",
+    "requiresSplit": false,
+    "splitReason": "Gravfeltet, langhuset og museet er komponenter i samme institusjonelle kulturminnepark og kan håndteres med ett representativt parkanker og underankre."
+  },
+  "requiredEvidence": [
+    "named museum and heritage-park entity point",
+    "official visitor address",
+    "burial-field scale and chronology",
+    "longhouse reconstruction status",
+    "museum-versus-archaeological-landscape separation",
+    "current outdoor and museum access limits"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 3030030881 – Veien Kulturminnepark",
+      "sourceUrl": "https://www.openstreetmap.org/node/3030030881",
+      "sourceObjectId": "osm-node:3030030881",
+      "sourceQuality": "named_museum_entity_point",
+      "finding": "Den navngitte museumsentiteten ligger ved 60.17016, 10.22703 og drives av Buskerudmuseet.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte navngitt punkt for besøks- og museumsområdet."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Buskerudmuseene – Veien Kulturminnepark kontaktinformasjon",
+      "sourceUrl": "https://buskerudmuseene.no/veienkulturminnepark/kontaktinfo",
+      "sourceObjectId": "buskerudmuseene:veien-kulturminnepark",
+      "sourceQuality": "official_identity_address_and_component_control",
+      "finding": "Institusjonen beskriver over hundre synlige gravhauger, rekonstruert langhus, museumsbygning og besøksadresse Ringveien 112.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer identitet, komponenter og adresse."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Ringerike kommune – Veien Kulturminnepark",
+      "sourceUrl": "https://www.ringerike.kommune.no/innhold/kultur-og-idrett/se-og-oppleve/",
+      "sourceObjectId": "ringerike-kommune:veien-kulturminnepark",
+      "sourceQuality": "municipal_site_and_archaeology_control",
+      "finding": "Kommunen beskriver et stort jernaldergravfelt, spor etter fire langhus og ett rekonstruert langhus utenfor gravfeltet.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter parkens fysiske og arkeologiske struktur."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Store norske leksikon – Veien (arkeologisk)",
+      "sourceUrl": "https://snl.no/Veien_-_arkeologisk",
+      "sourceObjectId": "snl:Veien_-_arkeologisk",
+      "sourceQuality": "archaeological_chronology_and_scale_control",
+      "finding": "Gravfeltet hadde 144 hauger registrert i 1847. Funnene tilhører hovedsakelig perioden fra vår tids begynnelse til om lag 400, og det er undersøkt et 47 meter langt hus fra eldre romertid.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer arkeologisk tidsdybde og feltets historiske omfang."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Buskerudmuseene – besøksinformasjon",
+      "sourceUrl": "https://buskerudmuseene.no/veienkulturminnepark/besoksinformasjon",
+      "sourceObjectId": "buskerudmuseene:veien-besoksinformasjon",
+      "sourceQuality": "official_current_access_control",
+      "finding": "Gravfeltet har opparbeidede stier og kan besøkes uten billett; grupper bør kontakte museet, grilling krever avtale, og området følger båndtvang.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer nåværende besøks- og sikkerhetsrammer."
+    },
+    {
+      "sourceProvider": "geotagged_documentation",
+      "sourceName": "Wikimedia Commons – Langhus Veien Kulturminnepark",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Langhus_Veien_Kulturminnepark_west_wall.JPG",
+      "sourceObjectId": "commons:Langhus_Veien_Kulturminnepark_west_wall.JPG",
+      "sourceQuality": "independent_component_coordinate",
+      "finding": "Det rekonstruerte langhuset er dokumentert ved omtrent 60.17056, 10.22411, rundt 160 meter vest for museumsankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig geotagget kontroll av en separat parkkomponent."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Veien point",
+      "sourceObjectId": "legacy:veien_kulturminnepark",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 2026,7 meter nordøst for den navngitte kulturminneparken.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer anlegget."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:3030030881",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "geotagged_documentation",
+      "sourceObjectId": "commons:Langhus_Veien_Kulturminnepark_west_wall.JPG",
+      "canApplyToPlace": false,
+      "rejectionReason": "Representerer bare det rekonstruerte langhuset, ikke hele kulturminneparken."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:veien_kulturminnepark",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger mer enn to kilometer fra anlegget."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "veien_heritage_park",
+      "name": "Veien Kulturminnepark",
+      "lat": 60.17016,
+      "lon": 10.22703,
+      "r": 180,
+      "type": "archaeological_heritage_park_representative_anchor",
+      "sourceProvider": "osm_buskerudmuseene",
+      "sourceObjectId": "osm-node:3030030881",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "veien_reconstructed_longhouse",
+      "name": "Langhuset",
+      "lat": 60.17056,
+      "lon": 10.22411,
+      "r": 90,
+      "type": "reconstructed_longhouse_component",
+      "sourceProvider": "geotagged_documentation",
+      "sourceObjectId": "commons:Langhus_Veien_Kulturminnepark_west_wall.JPG",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:veien_kulturminnepark",
+      "lat": 60.1842,
+      "lon": 10.2504,
+      "distanceFromAppliedM": 2026.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:3030030881",
+      "lat": 60.17016,
+      "lon": 10.22703,
+      "distanceFromPreviousM": 2026.7,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/buskerud-coordinate-veien-kulturminnepark-source-probe/source-summary.json",
+      "description": "Vedvarende kildekontroll for museumsidentitet, gravfelt, langhus, kronologi, adresse og tilgang."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den navngitte kulturminneparken som representativt anker og beholdt gravfelt, langhus og museumsbygning som separate komponenter. Fortsett med norderhov_prestegard_1716."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 2,03 kilometer sørvest.",
+    "Punktet representerer kulturminneparken samlet, ikke én gravhaug eller bare museumsbygningen.",
+    "År 200 er et omtrentlig arkeologisk tidsanker og ikke parkens etableringsår.",
+    "Det rekonstruerte langhuset er en moderne formidlingsbygning basert på lokale utgravninger.",
+    "desc og popupDesc er beholdt uendret av hensyn til place-description governance.",
+    "Radiusen er ikke en gravfelt-, park-, museums-, eiendoms-, verne- eller tilgangsgrense."
+  ]
+}
