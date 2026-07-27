@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **150 steder**
-- Gjenstår: **362 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **160 steder**
+- Gjenstår: **352 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -184,16 +184,27 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 149 | Den gamle Krigsskolen | `den_gamle_krigsskolen` | 40 | 300 | 6 | #4190 |
 | 150 | Kirkeristen, Basarene og Brannvakten | `kirkeristen_basarene_brannvakten` | 40 | 300 | 6 | #4190 |
 
+| 151 | Garmanngården | `garmanngarden` | 48 | 303 | 6 | #4200 |
+| 152 | Myntgatakvartalet | `myntgatakvartalet` | 46 | 311 | 6 | #4200 |
+| 153 | Stattholdergården | `stattholdergarden` | 47 | 312 | 6 | #4200 |
+| 154 | Waisenhuset | `waisenhuset_kongens_gate` | 45 | 315 | 6 | #4200 |
+| 155 | Kontraskjæret | `kontraskjaeret` | 44 | 301 | 6 | #4200 |
+| 156 | Paléhaven og Paleet | `palehaven_paleet` | 45 | 310 | 6 | #4200 |
+| 157 | Avisen Tiden – Rådhusgata 10 | `avisen_tiden_radhusgata_10` | 44 | 303 | 6 | #4200 |
+| 158 | Åmot bru | `aamot_bru` | 43 | 307 | 6 | #4200 |
+| 159 | Abelonegården | `abelonegarden` | 42 | 308 | 6 | #4200 |
+| 160 | Arbeidermuseet | `arbeidermuseet` | 45 | 305 | 6 | #4200 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **362 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **352 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
 - kunst: **40**
 - subkultur: **38**
-- historie: **37**
 - sport: **29**
+- historie: **27**
 - scenekunst: **24**
 - litteratur: **21**
 - vitenskap: **21**
@@ -236,5 +247,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 15 | 10 | #4180 – første produksjonsbatch fra historiekøen |
 | Oslo V4 batch 16 | 10 | #4182 – andre produksjonsbatch fra historiekøen |
 | Oslo V4 batch 17 | 10 | #4190 – tredje produksjonsbatch fra historiekøen |
+| Oslo V4 batch 18 | 10 | #4200 – fjerde produksjonsbatch fra historiekøen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
