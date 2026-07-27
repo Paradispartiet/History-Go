@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **170**
-- Additional active Oslo IDs outside the protocol: **342**
+- IDs in the current revision protocol: **180**
+- Additional active Oslo IDs outside the protocol: **332**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **342**
+- Additional IDs needing revision: **332**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -23,7 +23,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | 21 |
 | vitenskap | 21 |
 | politikk | 18 |
-| historie | 17 |
+| historie | 7 |
 | media | 7 |
 | musikk | 5 |
 | psykologi | 1 |
@@ -32,16 +32,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| historie | Historisk museum | `historisk_museum` | 19 | 87 | 2 | `data/places/historie/oslo/places_historie/historisk_museum.json` | needs revision |
-| historie | Skimuseet i Holmenkollen | `holmenkollen_skimuseum` | 24 | 154 | 3 | `data/places/historie/oslo/places_historie/holmenkollen_skimuseum.json` | needs revision |
-| historie | Jødisk Museum i Oslo | `jodisk_museum_oslo` | 36 | 134 | 2 | `data/places/historie/oslo/places_historie/jodisk_museum_oslo.json` | needs revision |
-| historie | Mariakirken-ruinen | `mariakirken_ruin_oslo` | 20 | 111 | 2 | `data/places/historie/oslo/places_historie/mariakirken_ruin_oslo.json` | needs revision |
-| historie | Møllergata skole | `mollergata_skole` | 29 | 99 | 2 | `data/places/historie/oslo/places_historie/mollergata_skole.json` | needs revision |
-| historie | Museumsleiligheten Gråbein | `museumsleiligheten_grabein` | 23 | 169 | 3 | `data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json` | needs revision |
-| historie | Nobels Fredssenter | `nobels_fredssenter` | 17 | 95 | 2 | `data/places/historie/oslo/places_historie/nobels_fredssenter.json` | needs revision |
-| historie | Norsk Folkemuseum | `norsk_folkemuseum` | 22 | 111 | 2 | `data/places/historie/oslo/places_historie/norsk_folkemuseum.json` | needs revision |
-| historie | Norsk Maritimt Museum | `norsk_maritimt_museum` | 23 | 94 | 2 | `data/places/historie/oslo/places_historie/norsk_maritimt_museum.json` | needs revision |
-| historie | Oscarshall | `oscarshall` | 23 | 107 | 2 | `data/places/historie/oslo/places_historie/oscarshall.json` | needs revision |
 | historie | Paulus kirke | `paulus_kirke` | 21 | 115 | 3 | `data/places/historie/oslo/places_historie/paulus_kirke.json` | needs revision |
 | historie | The Mini Bottle Gallery | `the_mini_bottle_gallery` | 23 | 118 | 3 | `data/places/historie/oslo/places_historie/the_mini_bottle_gallery.json` | needs revision |
 | historie | Tøyen hovedgård | `toyen_hovedgard` | 30 | 157 | 3 | `data/places/historie/oslo/places_historie/toyen_hovedgard.json` | needs revision |
