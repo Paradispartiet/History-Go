@@ -1,4 +1,4 @@
-name: One-time locate valid Næringsliv pilot package
+name: One-time build verified Næringsliv pilot final
 
 on:
   pull_request:
@@ -10,13 +10,12 @@ on:
       - reopened
     paths:
       - '.github/workflows/one-time-materialize-naeringsliv-pilot.yml'
-      - '.tmp/naeringsliv-pilot/**'
 
 permissions:
   contents: write
 
 jobs:
-  locate-package:
+  build-final:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -25,65 +24,52 @@ jobs:
           ref: agent/naeringsliv-pilot-profesjonsmaterialisering
           fetch-depth: 0
 
-      - name: Test every historical package revision
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Execute locked final builder with byte-exact package reconstruction
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p .tmp/naeringsliv-pilot
+          LOCKED_BUILDER_COMMIT='4234d827f9d852a0bde596d928d689a821408b21'
+          LOCKED_PACKAGE_COMMIT='adf47efbabb88be77cd0413dee695557923a9b97'
+          git show "${LOCKED_BUILDER_COMMIT}:.github/workflows/one-time-build-naeringsliv-pilot-final.yml" > /tmp/locked-builder.yml
+
           python - <<'PY'
-          import base64
-          import gzip
-          import hashlib
-          import subprocess
           from pathlib import Path
 
-          expected = 'ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441'
-          paths = [f'.tmp/naeringsliv-pilot/pkg-{index:02d}' for index in range(9)]
-          commits = subprocess.check_output(['git', 'rev-list', '--all'], text=True).splitlines()
+          lines = Path('/tmp/locked-builder.yml').read_text(encoding='utf-8').splitlines()
+          marker = '      - name: Reconstruct, validate and publish clean final branch'
+          marker_index = lines.index(marker)
+          run_index = next(index for index in range(marker_index, len(lines)) if lines[index] == '        run: |')
+          body_lines = lines[run_index + 1:]
+          body = '\n'.join(line[10:] if line.startswith('          ') else line for line in body_lines) + '\n'
 
-          rows = []
-          matches = []
-          complete = 0
-          for commit in commits:
-              try:
-                  chunks = [subprocess.check_output(['git', 'show', f'{commit}:{path}'], stderr=subprocess.DEVNULL) for path in paths]
-              except subprocess.CalledProcessError:
-                  continue
-              complete += 1
-              encoded = b''.join(chunk.strip() for chunk in chunks)
-              try:
-                  decoded = base64.b64decode(encoded, validate=True)
-                  materializer = gzip.decompress(decoded)
-                  digest = hashlib.sha256(materializer).hexdigest()
-                  state = 'MATCH' if digest == expected else 'valid-other'
-                  rows.append(f'{state}\t{commit}\t{digest}\t{len(materializer)}')
-                  if digest == expected:
-                      matches.append(commit)
-              except Exception as exc:
-                  rows.append(f'invalid\t{commit}\t{type(exc).__name__}: {exc}')
+          old = '''for part in $(seq -w 0 8); do
+  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
+done > /tmp/naeringsliv-pilot.b64
+'''
+          new = '''python - <<'PACKAGEPY'
+import subprocess
+from pathlib import Path
 
-          report = [
-              f'expected_sha={expected}',
-              f'history_commits={len(commits)}',
-              f'complete_package_commits={complete}',
-              f'matching_commits={len(matches)}',
-              *rows,
-          ]
-          Path('.tmp/naeringsliv-pilot/package-history.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
-          print('\n'.join(report))
-          if not matches:
-              raise SystemExit('Fant ingen historisk pakke med forventet materializer-SHA')
+commit = 'adf47efbabb88be77cd0413dee695557923a9b97'
+chunks = [
+    subprocess.check_output([
+        'git', '-C', Path.cwd().as_posix(), 'show',
+        f'{commit}:.tmp/naeringsliv-pilot/pkg-{index:02d}',
+    ])
+    for index in range(9)
+]
+Path('/tmp/naeringsliv-pilot.b64').write_bytes(b''.join(chunk.strip() for chunk in chunks))
+PACKAGEPY
+'''
+          if old not in body:
+              raise SystemExit('Fant ikke pakkeløkken i den låste sluttbyggeren')
+          body = body.replace(old, new, 1)
+          Path('/tmp/run-verified-naeringsliv-pilot-final.sh').write_text(body, encoding='utf-8')
           PY
 
-      - name: Save package history
-        if: always()
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f .tmp/naeringsliv-pilot/package-history.txt
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .tmp/naeringsliv-pilot/package-history.txt
-          git diff --cached --quiet && exit 0
-          git commit -m 'Kartlegg historiske materialiseringspakker'
-          git push origin HEAD:agent/naeringsliv-pilot-profesjonsmaterialisering
+          bash /tmp/run-verified-naeringsliv-pilot-final.sh
