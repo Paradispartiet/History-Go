@@ -1,4 +1,4 @@
-# attempt 3: run with verified corrected validator payload
+# attempt 4: patch the byte-verified validator before materialization
 name: One-time materialize Næringsliv batch 2
 
 on:
@@ -91,6 +91,7 @@ jobs:
             fs.writeFileSync(target, zlib.inflateSync(Buffer.from(encoded, 'base64')));
           }
           NODE
+          node .tmp/naeringsliv-batch2/patch-validator.mjs
           node --check .tmp/naeringsliv-batch2/materialize.mjs
           node --check .tmp/naeringsliv-batch2/validator.mjs
 
