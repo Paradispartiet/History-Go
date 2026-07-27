@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "spydeberg_prestegard_1814",
+  "placeFile": "data/places/politikk/ostfold/spydeberg_prestegard_1814/spydeberg_prestegard_1814.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_protected_rectory_main_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.59067,
+    "lon": 11.07696,
+    "r": 300,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Riksantikvaren Kulturminne ID 86078; Wikimedia Commons – Spydeberg prestegård; Lokalhistoriewiki – Spydeberg prestegård; Visit Indre Østfold – Giltvetveien 18; Riksantikvaren – Fredens hage",
+    "coordType": "heritage_and_wikimedia_entity_coordinate",
+    "coordRole": "rectory_main_building_anchor",
+    "sourceObjectId": "kulturminne:86078;commons-category:Spydeberg_prestegård"
+  },
+  "previousCoordinate": {
+    "lat": 59.6177,
+    "lon": 11.0868,
+    "r": 300,
+    "distanceToAppliedCoordinateM": 3056.2,
+    "reasonReplaced": "Legacy-punktet lå omtrent 3,06 kilometer nord-nordøst ved Spydeberg tettsted og identifiserte ikke prestegården eller det fredede 1814-anlegget."
+  },
+  "identity": {
+    "resolvedIdentity": "Spydeberg prestegårds fredede hovedbygning, der Christian Frederik holdt statsråd 8. august 1814.",
+    "identityStatus": "resolved",
+    "identityProblem": "Navnet kan vise til hovedbygningen, hele prestegårdstunet, den rekonstruerte Wilse-hagen, stiftelsen eller et generelt prestegårdsområde. 1814-stedet må forankres i hovedbygningen uten å redusere det større fredede anlegget til ett punkt.",
+    "locatorTypeCandidate": "protected_rectory_main_building",
+    "requiresSplit": false,
+    "splitReason": "Hovedbygningen er 1814-ankeret. Tunet, stabburet og hagen inngår som sekundært anleggskontekst i samme place-record."
+  },
+  "requiredEvidence": [
+    "fredet kulturminneidentitet",
+    "kartfestet hovedbygning eller kulturminnepunkt",
+    "besøksadresse",
+    "1814-hendelseskontroll",
+    "hovedbygning mot helt anlegg",
+    "Wilse- og hagekontekst",
+    "adgangs- og radiusbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "riksantikvaren_commons",
+      "sourceName": "Wikimedia Commons – Spydeberg prestegård",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Spydeberg_presteg%C3%A5rd",
+      "sourceObjectId": "kulturminne:86078;commons-category:Spydeberg_prestegård",
+      "sourceQuality": "heritage_entity_and_mapped_main_site_identity",
+      "finding": "Commons identifies Spydeberg prestegård as a protected rectory and museum at approximately 59.59067, 11.07696; monument photographs identify Norwegian heritage ID 86078.",
+      "canVerifyCoordinate": true,
+      "reason": "Combines the mapped entity with the official national heritage identifier for the rectory."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Spydeberg prestegård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Spydeberg_presteg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:Spydeberg_prestegård",
+      "sourceQuality": "detailed_local_history_and_site_coordinate",
+      "finding": "The article places the rectory approximately three kilometres south of Spydeberg, gives site coordinate 59.59093, 11.07714, identifies the protected main building, storehouse, yard and garden, and documents the 8 August 1814 council meeting.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides an independent whole-site coordinate approximately 30.6 metres from the applied main-building point and confirms the event identity."
+    },
+    {
+      "sourceProvider": "visit_indre_ostfold",
+      "sourceName": "Visit Indre Østfold / Visit Norway – Spydeberg prestegård",
+      "sourceUrl": "https://www.visitnorway.no/listings/spydeberg-presteg%C3%A5rd/240947/",
+      "sourceObjectId": "visit-indre-ostfold:spydeberg-prestegard",
+      "sourceQuality": "official_destination_address_and_visitor_identity",
+      "finding": "The visitor listing gives Giltvetveien 18 and describes the protected main building, storehouse and garden, the 1814 meeting and guided access.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current visit identity and address while the heritage entity supplies the spatial anchor."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – Fredens hage",
+      "sourceUrl": "https://riksantikvaren.no/kulturhistorie/fredens-hage/",
+      "sourceObjectId": "riksantikvaren:spydeberg-prestegard-fredens-hage;heritage:86078",
+      "sourceQuality": "official_heritage_authority_history_and_conservation",
+      "finding": "Riksantikvaren documents the 1991 protection, the reconstructed Wilse garden and the 8 August 1814 council meeting in the main house.",
+      "canVerifyCoordinate": false,
+      "reason": "Authoritatively confirms protection, building-and-garden context and the event."
+    },
+    {
+      "sourceProvider": "sparebankstiftelsen",
+      "sourceName": "Sparebankstiftelsen – Stiftelsen Spydeberg Prestegård",
+      "sourceUrl": "https://sparebankstiftelsen.no/tildelinger/stiftelsen-spydeberg-prestegard-3/",
+      "sourceObjectId": "sparebankstiftelsen:spydeberg-prestegard-2025",
+      "sourceQuality": "current_conservation_and_mission_control",
+      "finding": "The foundation's purpose is to manage the rectory as a national memorial and communicate the Enlightenment, Wilse and the events of 8–9 August 1814.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current heritage-management identity and interpretive scope."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Spydeberg prestegård point",
+      "sourceObjectId": "legacy:spydeberg_prestegard_1814",
+      "sourceQuality": "incorrect_settlement_side_point",
+      "finding": "The legacy coordinate lies approximately 3,056.2 metres north-northeast of the protected rectory.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify the rectory, main building or protected site."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "visit_indre_ostfold",
+      "address": "Giltvetveien 18, Spydeberg",
+      "addressRole": "visitor_and_site_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "The address confirms identity and access, while the heritage entity point more directly identifies the main historic building."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "riksantikvaren_wikimedia",
+      "sourceObjectId": "kulturminne:86078;commons-category:Spydeberg_prestegård",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:Spydeberg_prestegård",
+      "canApplyToPlace": false,
+      "rejectionReason": "The coordinate is retained as a whole-site control rather than the main-building anchor."
+    },
+    {
+      "sourceProvider": "address_control",
+      "sourceObjectId": "Giltvetveien-18",
+      "canApplyToPlace": false,
+      "rejectionReason": "A road-address point may identify access rather than the 1814 room-bearing main building."
+    },
+    {
+      "sourceProvider": "settlement_control",
+      "sourceObjectId": "Spydeberg-settlement",
+      "canApplyToPlace": false,
+      "rejectionReason": "The settlement is approximately three kilometres north and is not the historic site."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "riksantikvaren_wikimedia",
+      "sourceObjectId": "kulturminne:86078;commons-category:Spydeberg_prestegård",
+      "geometryType": "mapped_protected_rectory_entity_point",
+      "geometryRole": "main_building_and_heritage_identity_anchor",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:Spydeberg_prestegård",
+      "geometryType": "rectory_site_coordinate",
+      "geometryRole": "whole_yard_and_garden_control",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "heritage_extent_control",
+      "sourceObjectId": "kulturminne:86078-full-protected-site",
+      "geometryType": "protected_site_extent_not_captured",
+      "geometryRole": "main_building_storehouse_yard_and_garden",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "spydeberg_prestegard_main_building",
+      "name": "Spydeberg prestegård – hovedbygningen",
+      "lat": 59.59067,
+      "lon": 11.07696,
+      "r": 90,
+      "type": "rectory_main_building_anchor",
+      "sourceProvider": "riksantikvaren_wikimedia",
+      "sourceObjectId": "kulturminne:86078;commons-category:Spydeberg_prestegård",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "spydeberg_prestegard_site",
+      "name": "Spydeberg prestegård – tun og Wilse-hage",
+      "lat": 59.59093,
+      "lon": 11.07714,
+      "r": 150,
+      "type": "protected_rectory_site_anchor",
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:Spydeberg_prestegård;kulturminne:86078",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:spydeberg_prestegard_1814",
+      "lat": 59.6177,
+      "lon": 11.0868,
+      "distanceFromAppliedM": 3056.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "riksantikvaren_wikimedia",
+      "sourceObjectId": "kulturminne:86078;commons-category:Spydeberg_prestegård",
+      "lat": 59.59067,
+      "lon": 11.07696,
+      "distanceFromPreviousM": 3056.2,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:Spydeberg_prestegård",
+      "lat": 59.59093,
+      "lon": 11.07714,
+      "distanceFromAppliedM": 30.6,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-spydeberg-prestegard-source-probe/source-summary.json",
+      "description": "Persisted heritage identity, main-building and whole-site coordinates, 1814 event evidence, visitor address, Wilse garden context and access limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the protected main-building point, retained the whole rectory site as a secondary anchor and continued with tistedalen_saugbrugsforeningen."
+  },
+  "notes": [
+    "The coordinate moves approximately 3,056.2 metres south-southwest.",
+    "The marker represents the main rectory building where the 8 August 1814 council meeting took place.",
+    "The protected storehouse, yard and reconstructed Wilse garden are part of the wider site context.",
+    "The Constitution was adopted at Eidsvoll and the Convention of Moss was concluded in Moss; Spydeberg is the council and headquarters site in the intervening crisis.",
+    "The radius is not a building, garden, heritage, property or event boundary, and opening and access rules apply."
+  ]
+}
