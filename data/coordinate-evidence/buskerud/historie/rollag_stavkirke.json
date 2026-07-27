@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rollag_stavkirke",
+  "placeFile": "data/places/historie/buskerud/places_historie_buskerud_batch1/rollag_stavkirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_active_stave_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 60.02106,
+    "lon": 9.27318,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 324221606; Wikidata Q1818591; Kulturminne 85311; Rollag kirkelige fellesråd; Lokalhistoriewiki; Norges Kirker",
+    "coordType": "building_representative_point",
+    "coordRole": "active_stave_church_building_anchor",
+    "sourceObjectId": "osm-way:324221606;wikidata:Q1818591;kulturminne:85311"
+  },
+  "previousCoordinate": {
+    "lat": 60.0255,
+    "lon": 9.2768,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 533.1,
+    "reasonReplaced": "Legacy-punktet lå omtrent 533 meter nord-nordøst for Rollag stavkirke og identifiserte ikke kirkebygget."
+  },
+  "identity": {
+    "resolvedIdentity": "Rollag stavkirke, den aktive menighetseide stavkirken ved Rollagsvegen og Rollag kirkegård.",
+    "identityStatus": "resolved",
+    "identityProblem": "Eldre litteratur og datasett daterer kirken bredt til 1100- eller 1200-tallet, mens nyere dendrokronologi daterer dagens stavkjerne til midten av 1400-tallet. Prestegård, bygdetun og kirkegård ligger tett på.",
+    "locatorTypeCandidate": "active_medieval_stave_church_building",
+    "requiresSplit": false,
+    "splitReason": "Kirken er ett aktivt bygg. Kirkegård, prestegård, bygdetun og Kyrkjestugo er separate komponenter."
+  },
+  "requiredEvidence": [
+    "named stave-church building geometry",
+    "independent entity and coordinate",
+    "heritage identifier",
+    "new dendrochronological dating",
+    "older church-site versus present building distinction",
+    "active parish use",
+    "rectory, cemetery and museum separation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 324221606 – Rollag stavkirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/324221606",
+      "sourceObjectId": "osm-way:324221606",
+      "sourceQuality": "named_stave_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 60.02106, 9.27318.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for kirkebygget."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Rollag Stave Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q1818591",
+      "sourceObjectId": "wikidata:Q1818591",
+      "sourceQuality": "independent_entity_identifier_coordinate_control",
+      "finding": "Q1818591 oppgir koordinat, OSM-way 324221606, bygge-ID 918 og kulturminne 85311.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets-, identifier- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Rollag kirkelige fellesråd – Rollag stavkirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/Rollag/kirker/rollag-stavkirke/",
+      "sourceObjectId": "kirken:rollag-stavkirke",
+      "sourceQuality": "official_owner_dendrochronology_and_current_use_control",
+      "finding": "Fellesrådet oppgir at nyere dendroprøver daterer dagens kirke til midten av 1400-tallet, at en eldre kirkehistorie finnes på stedet, og at bygget fortsatt er menighetseid og i full bruk som sognekirke.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ datering og nåtidsbruk."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Rollag stavkirke og kirkegård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Rollag_stavkirke",
+      "sourceObjectId": "lokalhistoriewiki:Rollag_stavkirke",
+      "sourceQuality": "independent_coordinate_site_and_component_control",
+      "finding": "Oppgir 60.021054, 9.273148 og dokumenterer kirkegård, eldre gravminner, prestegård og fortsatt sognekirkebruk.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig koordinat og landskapskontroll."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Rollag kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Rollag_kirke",
+      "sourceObjectId": "norges-kirker:rollag-kirke",
+      "sourceQuality": "architectural_and_site_history_control",
+      "finding": "Dokumenterer stavkonstruksjonen, senere laftede påbygg, kirkegården, veien, prestegården og øvrige kirkestedskomponenter.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter bygningslag og fysisk avgrensning."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Rollag prestegård",
+      "sourceUrl": "https://lokalhistoriewiki.no/Rollag_presteg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:Rollag_prestegård",
+      "sourceQuality": "separate_rectory_coordinate_and_identity_control",
+      "finding": "Prestegården ligger ved 60.0210716, 9.2779016, omtrent 260 meter øst for kirken, og er et separat fredet anlegg.",
+      "canVerifyCoordinate": true,
+      "reason": "Forhindrer sammenblanding med prestegården."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Rollag bygdetun",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Rollag_bygdetun",
+      "sourceObjectId": "lokalhistoriewiki:Rollag_bygdetun",
+      "sourceQuality": "separate_open_air_museum_control",
+      "finding": "Bygdetunet ved 60.0204578, 9.2794817 ble etablert fra 1960 og består av tilflyttede bygninger; det er ikke stavkirken.",
+      "canVerifyCoordinate": true,
+      "reason": "Forhindrer sammenblanding med museumsmiljøet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Rollag stave church point",
+      "sourceObjectId": "legacy:rollag_stavkirke",
+      "sourceQuality": "incorrect_nearby_point",
+      "finding": "Legacy-punktet ligger omtrent 533,1 meter nord-nordøst for kirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist som ikke-bygningspunkt."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:324221606",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q1818591",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende kontroll; OSM gir direkte geometri."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rollag_stavkirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger over 500 meter fra kirkebygget."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "rollag_stave_church",
+      "name": "Rollag stavkirke",
+      "lat": 60.02106,
+      "lon": 9.27318,
+      "r": 95,
+      "type": "active_stave_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:324221606;wikidata:Q1818591;kulturminne:85311",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rollag_stavkirke",
+      "lat": 60.0255,
+      "lon": 9.2768,
+      "distanceFromAppliedM": 533.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:324221606",
+      "lat": 60.02106,
+      "lon": 9.27318,
+      "distanceFromPreviousM": 533.1,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/buskerud-coordinate-rollag-stavkirke-source-probe/source-summary.json",
+      "description": "Kildekontroll for geometri, dendrodatering, eldre kirkested, aktiv sognebruk, prestegård, kirkegård og bygdetun."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte stavkirkebygningen som canonical, korrigerte år fra 1200 til omtrentlig 1450 for dagens stavkjerne og skilte eldre kirkested, kirkegård, prestegård, bygdetun og Kyrkjestugo. Fortsett med flesberg_stavkirke."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 533 meter sør-sørvest.",
+    "Dagens stavkjerne er dendrodatert til midten av 1400-tallet, selv om kirkestedet er eldre.",
+    "Kirken er fortsatt menighetseid og i full bruk som sognekirke.",
+    "desc og popupDesc er beholdt uendret under place-description governance.",
+    "Radiusen er ikke en kirke-, kirkegårds-, prestegårds-, museums-, eiendoms-, verne- eller tilgangsgrense."
+  ]
+}
