@@ -1,4 +1,4 @@
-name: One-time capture Næringsliv pilot failure
+name: One-time corrected Næringsliv pilot builder
 
 on:
   pull_request:
@@ -10,11 +10,10 @@ on:
       - '.github/workflows/one-time-capture-naeringsliv-pilot-failure.yml'
 
 permissions:
-  actions: read
   contents: write
 
 jobs:
-  capture:
+  build-corrected:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -23,19 +22,37 @@ jobs:
           ref: agent/naeringsliv-pilot-profesjonsmaterialisering-control
           fetch-depth: 0
 
-      - name: Capture failed log
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Execute corrected builder body
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p .tmp
-          gh run view 30257829118 --repo "$GITHUB_REPOSITORY" --log-failed > /tmp/full-failure.log
-          tail -n 800 /tmp/full-failure.log > .tmp/naeringsliv-pilot-final-failure.log
+          python - <<'PY'
+          from pathlib import Path
 
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .tmp/naeringsliv-pilot-final-failure.log
-          git diff --cached --quiet && exit 0
-          git commit -m 'Diagnostiser ren Næringsliv-pilotbygging'
-          git push origin HEAD:agent/naeringsliv-pilot-profesjonsmaterialisering-control
+          source = Path('.github/workflows/one-time-build-naeringsliv-pilot-final.yml')
+          lines = source.read_text(encoding='utf-8').splitlines()
+          marker = '      - name: Reconstruct, validate and publish clean final branch'
+          marker_index = lines.index(marker)
+          run_index = next(index for index in range(marker_index, len(lines)) if lines[index] == '        run: |')
+          body_lines = lines[run_index + 1:]
+          body = '\n'.join(line[10:] if line.startswith('          ') else line for line in body_lines) + '\n'
+          old = '''for part in $(seq -w 0 8); do
+  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
+done > /tmp/naeringsliv-pilot.b64
+'''
+          new = '''for part_index in $(seq 0 8); do
+  part=$(printf '%02d' "$part_index")
+  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
+done > /tmp/naeringsliv-pilot.b64
+'''
+          if old not in body:
+              raise SystemExit('Fant ikke pakkeløkken i byggekroppen')
+          body = body.replace(old, new, 1)
+          Path('/tmp/run-corrected-naeringsliv-pilot-builder.sh').write_text(body, encoding='utf-8')
+          PY
+          bash /tmp/run-corrected-naeringsliv-pilot-builder.sh
