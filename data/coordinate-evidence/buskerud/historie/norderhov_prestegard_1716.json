@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "norderhov_prestegard_1716",
+  "placeFile": "data/places/historie/buskerud/places_historie_buskerud_batch1/norderhov_prestegard_1716.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_historic_rectory_museum_building_anchor",
+  "currentCoordinate": {
+    "lat": 60.13189,
+    "lon": 10.26845,
+    "r": 300,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 6588462257; Wikidata Q11997890; Buskerudmuseene Ringerikes Museum; Ringerike kommune",
+    "coordType": "building_representative_point",
+    "coordRole": "historic_rectory_main_building_anchor",
+    "sourceObjectId": "osm-node:6588462257;wikidata:Q11997890"
+  },
+  "previousCoordinate": {
+    "lat": 60.1359,
+    "lon": 10.2551,
+    "r": 300,
+    "distanceToAppliedCoordinateM": 863.3,
+    "reasonReplaced": "Legacy-punktet lå omtrent 863 meter vest-nordvest for Norderhov gamle prestegård og identifiserte ikke museums- eller prestegårdsbygningen."
+  },
+  "identity": {
+    "resolvedIdentity": "Norderhov gamle prestegård, den historiske hovedbygningen som i dag huser Ringerikes Museum ved Norderhovsbakken 8.",
+    "identityStatus": "resolved",
+    "identityProblem": "Prestegården, Ringerikes Museum, Norderhov kirke, Munkestua og det historiske gårdslandskapet er nært knyttet, men ikke samme fysiske objekt.",
+    "locatorTypeCandidate": "historic_rectory_main_building_and_museum",
+    "requiresSplit": false,
+    "splitReason": "Prestegårdens hovedbygning og museet deler samme bygg. Kirken, Munkestua og det større gårdslandskapet håndteres som separate komponenter."
+  },
+  "requiredEvidence": [
+    "named museum point in the historic rectory",
+    "independent museum entity and address",
+    "1635 building chronology",
+    "1716 event and memory interpretation",
+    "church-versus-rectory separation",
+    "current museum access conditions"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6588462257 – Ringerikes museum",
+      "sourceUrl": "https://www.openstreetmap.org/node/6588462257",
+      "sourceObjectId": "osm-node:6588462257",
+      "sourceQuality": "named_museum_entity_point_in_historic_rectory",
+      "finding": "Ringerikes Museum is named at 60.13189, 10.26845 in the old rectory complex.",
+      "canVerifyCoordinate": true,
+      "reason": "Direct named point for the institution occupying the historic building."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q11997890 – Ringerikes Museum",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q11997890",
+      "sourceObjectId": "wikidata:Q11997890",
+      "sourceQuality": "independent_building_entity_coordinate_and_address",
+      "finding": "Q11997890 identifies the museum building at approximately 60.13187, 10.26847 and gives Norderhovsbakken 8–10.",
+      "canVerifyCoordinate": true,
+      "reason": "Independent entity, coordinate and address control."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Buskerudmuseene – Ringerikes Museum contact information",
+      "sourceUrl": "https://buskerudmuseene.no/ringerikes-museum/kontaktinformasjon",
+      "sourceObjectId": "buskerudmuseene:ringerikes-museum",
+      "sourceQuality": "official_identity_address_and_reuse_control",
+      "finding": "The museum is located in Norderhov Rectory, used as the parish priest's residence from 1635 until the late 1950s, at Norderhovsbakken 8.",
+      "canVerifyCoordinate": false,
+      "reason": "Official current identity, building use and address."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Buskerudmuseene – historical buildings at Ringerikes Museum",
+      "sourceUrl": "https://buskerudmuseene.no/ringerikes-museum/en/historical-buildings-",
+      "sourceObjectId": "buskerudmuseene:norderhov-historical-buildings",
+      "sourceQuality": "official_building_chronology_control",
+      "finding": "Dendrochronology dates the ground floor of Svenskestua to 1635; the north wing followed in 1729, the south wing's second floor in 1745 and a new roof in 1822.",
+      "canVerifyCoordinate": false,
+      "reason": "Controls the surviving building layers and prevents treating 1716 as the building year."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Buskerudmuseene – guided tours and exhibitions",
+      "sourceUrl": "https://buskerudmuseene.no/ringerikes-museum/omvisninger",
+      "sourceObjectId": "buskerudmuseene:norderhov-1716-interpretation",
+      "sourceQuality": "official_event_and_current_interpretation_control",
+      "finding": "The museum interprets Anna Colbjørnsdatter and the Battle of Norderhov in 1716 in Svenskestua and offers guided access under museum conditions.",
+      "canVerifyCoordinate": false,
+      "reason": "Controls event association and present interpretation without proving every later narrative detail."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Ringerike municipality – Ringerikes Museum",
+      "sourceUrl": "https://www.ringerike.kommune.no/innhold/kultur-og-idrett/se-og-oppleve/",
+      "sourceObjectId": "ringerike-kommune:ringerikes-museum",
+      "sourceQuality": "municipal_building_and_local_history_control",
+      "finding": "The municipality describes the nearly 400-year-old timber rectory, the 1716 event memory and the first meeting of Asbjørnsen and Moe in 1826.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports local historical layers and the separation from the neighbouring church."
+    },
+    {
+      "sourceProvider": "geotagged_documentation",
+      "sourceName": "Wikimedia Commons – Norderhov gamle prestegård",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Norderhov_gamle_presteg%C3%A5rd_2017-05-02_13.35.06.jpg",
+      "sourceObjectId": "commons:Norderhov_gamle_prestegård_2017-05-02_13.35.06.jpg",
+      "sourceQuality": "independent_building_location_control",
+      "finding": "Independent geotagged images place the rectory and Munkestua at approximately 60.1317, 10.2689, close to the museum point.",
+      "canVerifyCoordinate": true,
+      "reason": "Independent physical-location cross-check."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Norderhov rectory point",
+      "sourceObjectId": "legacy:norderhov_prestegard_1716",
+      "sourceQuality": "incorrect_nearby_point",
+      "finding": "The legacy coordinate is about 863.3 metres west-north-west of the rectory.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify the building or museum."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6588462257",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q11997890",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Matching independent entity control; OSM supplies the named operational museum point."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558315235",
+      "canApplyToPlace": false,
+      "rejectionReason": "Represents Norderhov church, a separate active medieval church."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:norderhov_prestegard_1716",
+      "canApplyToPlace": false,
+      "rejectionReason": "Does not identify the rectory and is more than 800 metres away."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "norderhov_old_rectory",
+      "name": "Norderhov gamle prestegård / Ringerikes Museum",
+      "lat": 60.13189,
+      "lon": 10.26845,
+      "r": 115,
+      "type": "historic_rectory_main_building_anchor",
+      "sourceProvider": "osm_wikidata_buskerudmuseene",
+      "sourceObjectId": "osm-node:6588462257;wikidata:Q11997890",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:norderhov_prestegard_1716",
+      "lat": 60.1359,
+      "lon": 10.2551,
+      "distanceFromAppliedM": 863.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-node:6588462257;wikidata:Q11997890",
+      "lat": 60.13189,
+      "lon": 10.26845,
+      "distanceFromPreviousM": 863.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/buskerud-coordinate-norderhov-prestegard-source-probe/source-summary.json",
+      "description": "Persistent source control for the rectory building, 1635 chronology, 1716 memory, museum reuse, address and separation from Norderhov church."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named historic rectory and museum building as canonical, retained 1716 as the event year and separated the church, Munkestua and wider farm landscape. Continue with nore_stavkirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 863 metres east-south-east.",
+    "The canonical point represents the historic rectory main building now used by Ringerikes Museum.",
+    "Year 1716 is an event and memory year, not the construction date of the whole building.",
+    "The Anna Colbjørnsdatter narrative must retain room for source criticism and later memory formation.",
+    "Norderhov church, Munkestua and the wider rectory property are separate components.",
+    "desc and popupDesc remain unchanged under place-description governance."
+  ]
+}
