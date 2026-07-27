@@ -33,6 +33,13 @@ test('all active people and data contracts defer to factuality contract', () => 
   assert.match(people, /påstand-for-påstand/i);
 });
 
+test('documentation map preserves exact ordered lists', () => {
+  const docs = read('docs/README.md');
+  assert.match(docs, /### Dagens runtime og arbeidsflyt[\s\S]*?1\. .*SYSTEM_REGISTRY\.md[\s\S]*?2\. .*SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS\.md[\s\S]*?3\. .*SYSTEM_MAP\.md/);
+  assert.match(docs, /### People-produksjon, stedskobling og bilder[\s\S]*?1\. .*FACTUALITY_CONTRACT\.md[\s\S]*?2\. .*people-of-places-method\.md[\s\S]*?3\. .*PEOPLE_POPUP_SYSTEM\.md[\s\S]*?11\. .*people-images\.test\.mjs/);
+  assert.doesNotMatch(docs, /### Dagens runtime og arbeidsflyt[\s\S]*?10\. .*SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS\.md/);
+});
+
 test('documentation registry gives factuality one canonical owner and high priority', () => {
   const registry = readJson('docs/documentation_registry.json');
   const entries = registry.documents.filter((item) => item.path === 'docs/FACTUALITY_CONTRACT.md');
