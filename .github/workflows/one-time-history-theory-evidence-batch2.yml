@@ -30,24 +30,24 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p reports/historie-theory-evidence/batch-2-validation
-          node --check tools/materialize-historie-theory-evidence-batch2.mjs \
+          node --check tools/materialize-historie-theory-evidence-batch2.mjs 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/materializer-syntax.log
-          node tools/materialize-historie-theory-evidence-batch2.mjs \
+          node tools/materialize-historie-theory-evidence-batch2.mjs 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/materializer.log
 
       - name: Validate theory evidence and regenerate reports
         shell: bash
         run: |
           set -euo pipefail
-          node --check tools/validate-historie-theory-evidence.mjs \
+          node --check tools/validate-historie-theory-evidence.mjs 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/validator-syntax.log
-          node tools/validate-historie-theory-evidence.mjs \
+          node tools/validate-historie-theory-evidence.mjs 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/validator.log
-          node tools/validate-historie-theory-evidence.mjs --check \
+          node tools/validate-historie-theory-evidence.mjs --check 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/validator-check.log
-          node tools/audit-historie-universal-coverage.mjs \
+          node tools/audit-historie-universal-coverage.mjs 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/universal-coverage.log
-          node tools/audit-historie-universal-coverage.mjs --check \
+          node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/universal-coverage-check.log
 
       - name: Upload batch 2 diagnostics
@@ -55,14 +55,17 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: history-theory-evidence-batch2-diagnostics
-          path: reports/historie-theory-evidence/batch-2-validation
+          path: |
+            reports/historie-theory-evidence/batch-2-validation
+            reports/historie-theory-evidence/history-theory-evidence-foundation-v1.json
+            reports/historie-theory-evidence/history-theory-evidence-foundation-v1.md
           if-no-files-found: error
 
       - name: Verify frozen V5.8 base
         shell: bash
         run: |
           set -euo pipefail
-          node tools/audit-historie-v5-5-quality-depth.mjs \
+          node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/quality-freeze.log
           git restore -- reports/historie-v5/historie-v5-8-quality-depth.json reports/historie-v5/historie-v5-8-quality-depth.md 2>/dev/null || true
 
@@ -78,7 +81,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git diff --check \
+          git diff --check 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/git-diff-check.log
           git status --short \
             | tee reports/historie-theory-evidence/batch-2-validation/git-status.log
