@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rakkestad_kirke",
+  "generatedAt": "2026-07-27",
+  "purpose": "Persist source findings used to verify the Rakkestad church coordinate, identity, chronology, rebuilding history and separation from the rectory.",
+  "legacyCoordinate": {
+    "lat": 59.4254,
+    "lon": 11.3452,
+    "assessment": "Undocumented point approximately 2121.6 metres north-west of the church."
+  },
+  "appliedCoordinate": {
+    "lat": 59.41078,
+    "lon": 11.36931,
+    "role": "medieval_church_building_anchor",
+    "sourceObjectId": "osm-way:316802556",
+    "distanceFromLegacyM": 2121.6
+  },
+  "identityResolution": {
+    "canonicalEntity": "Rakkestad kirke",
+    "entityType": "standing Romanesque medieval stone church",
+    "wikidata": "Q6494287",
+    "churchOfNorwayBuildingId": "446",
+    "kulturminneId": "85264",
+    "address": "Kirkeveien 139, 1890 Rakkestad",
+    "osmWay": "316802556"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/way/316802556",
+      "objectId": "osm-way:316802556",
+      "supports": [
+        "named church-building geometry",
+        "representative coordinate"
+      ]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q6494287",
+      "objectId": "wikidata:Q6494287",
+      "supports": [
+        "independent church entity",
+        "coordinate",
+        "Church of Norway building ID 446",
+        "Kulturminne ID 85264",
+        "address Kirkeveien 139",
+        "OSM way 316802556"
+      ]
+    },
+    {
+      "provider": "Riksantikvaren / Kulturminnesøk",
+      "url": "https://www.kulturminnesok.no/kart/?id=85264",
+      "objectId": "kulturminne:85264",
+      "supports": [
+        "Rakkestad church heritage identity",
+        "medieval protected-site context"
+      ]
+    },
+    {
+      "provider": "Norges Kirker",
+      "url": "https://norgeskirker.no/wiki/Rakkestad_kirke",
+      "objectId": "norges-kirker:rakkestad-kirke",
+      "supports": [
+        "medieval stone nave and choir",
+        "churchyard and rectory relation",
+        "major 1875 rebuilding",
+        "later grave and inventory history"
+      ]
+    },
+    {
+      "provider": "Rakkestad sokn",
+      "url": "https://www.kirken.no/nb-NO/fellesrad/rakkestad-sokn/om-oss/rakkestad-kirke/",
+      "objectId": "kirken:rakkestad-kirke",
+      "supports": [
+        "Romanesque church from circa 1200",
+        "first written reference in 1370",
+        "1875 tower and rebuilding",
+        "baroque inventory",
+        "address and active use"
+      ]
+    },
+    {
+      "provider": "Rakkestad municipality",
+      "url": "https://www.rakkestad.kommune.no/kommunen-var/kultur-og-fritidstilbud/lokalhistorie-museer-og-severdigheter",
+      "objectId": "rakkestad-kommune:middelalderkirke",
+      "supports": [
+        "local historical significance",
+        "more than 800 years of community use"
+      ]
+    },
+    {
+      "provider": "History Go canonical",
+      "objectId": "place:rakkestad_prestegard_1814",
+      "supports": [
+        "separate rectory identity",
+        "rectory coordinate 59.41279, 11.36889",
+        "approximately 225-metre church-to-rectory separation",
+        "separate 1814 historical profile"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "circa 1200",
+      "event": "The Romanesque stone church was probably built.",
+      "certainty": "approximate"
+    },
+    {
+      "date": "1370",
+      "event": "The church appears in written sources.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1696",
+      "event": "The surviving altarpiece was donated.",
+      "certainty": "documented"
+    },
+    {
+      "date": "circa 1700",
+      "event": "The pulpit and font belong to the baroque inventory layer.",
+      "certainty": "approximate"
+    },
+    {
+      "date": "1875",
+      "event": "A major rebuilding added the west tower, enlarged the chancel arch and portals and introduced pointed windows.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1934",
+      "event": "Domenico Erdmann restored the colours of painted inventory.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "Year 1200 is approximate and not an exact documented construction or consecration date.",
+    "The standing building retains a medieval stone core despite major 1875 alterations.",
+    "The canonical point represents the church building, not the whole churchyard.",
+    "Rakkestad rectory is a separate History Go place and must not be absorbed into this canonical object.",
+    "The 1814 narrative belongs primarily to the rectory place, not to the church coordinate.",
+    "Services, funerals and cemetery use take priority over gameplay."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "59.41078, 11.36931",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "brekke_sluser_haldenkanalen"
+  }
+}
