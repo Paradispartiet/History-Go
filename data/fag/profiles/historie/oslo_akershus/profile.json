@@ -33,20 +33,20 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 12,
-    "unverified_case_candidates": 91
+    "validated_cases": 15,
+    "unverified_case_candidates": 88
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 103,
-    "claims_total": 35,
-    "sources_total": 33,
-    "evidence_links_total": 35,
+    "claims_total": 48,
+    "sources_total": 44,
+    "evidence_links_total": 48,
     "status": "COMPLETE",
-    "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med nye claim-, source- og place-evidence-baner for Stortinget og Eidsvolls plass. Fullført profilstatus gjelder minimumsgrunnlaget; resterende kandidater og teoriavhengigheter er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 12,
+    "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med bevegelsesspesifikke claim–source–place-baner for Youngstorget, Blitz og Norsk Folkemuseum. Fullført profilstatus gjelder minimumsgrunnlaget; resterende casekandidater og universell teori-evidens er fortsatt eksplisitt produksjonskø.",
+    "verified_cases_total": 15,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -459,19 +459,33 @@
       "label": "Blitz",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "blitzhuset"
+      ],
       "emne_ids": [
         "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
         "em_his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
         "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
         "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_movement_publics_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -1722,9 +1736,11 @@
       "label": "Norsk Folkemuseum",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "norsk_folkemuseum"
+      ],
       "emne_ids": [
         "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
         "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis",
@@ -1733,10 +1749,22 @@
         "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
         "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_movement_publics_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -2884,9 +2912,11 @@
       "label": "Youngstorget",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "youngstorget"
+      ],
       "emne_ids": [
         "em_his_arbeid_nettverk_naring",
         "em_his_arbeiderbevegelse_folkedannelse",
@@ -2898,10 +2928,22 @@
         "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
         "em_his_organisering_motstand_offentlighet"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_movement_publics_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     }
   ],
