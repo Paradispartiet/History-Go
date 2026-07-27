@@ -1,0 +1,560 @@
+[
+  {
+    "case_id": "case_his_akershus_festning",
+    "place_id": "akershus_festning",
+    "sources": [
+      {
+        "source_id": "src_his_akershus_festning_forsvarsbygg",
+        "title": "Akershus festning",
+        "publisher": "Forsvarsbygg",
+        "source_type": "official_site_page",
+        "url": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/akershus-festning",
+        "repository_source": "data/places/historie/oslo/places_historie/akershus_festning.json",
+        "extracted_from": ["popupDesc", "coordSourceUrl"],
+        "temporal_scope": {"from": 1290, "to": null},
+        "limitations": [
+          "Forvalterens presentasjon prioriterer anleggets institusjonelle og offentlige historie fremfor en uttømmende sosialhistorie.",
+          "Nettsiden er en levende institusjonsside og gir ikke full sporbarhet til alle enkeltopplysninger i den lange kronologien."
+        ],
+        "tier": "A",
+        "rationale": "Offisiell forvalterkilde for festningsanleggets identitet, funksjon og hovedhistorie."
+      },
+      {
+        "source_id": "src_his_akershus_festning_terboven_snl",
+        "title": "Josef Terboven",
+        "publisher": "Store norske leksikon",
+        "source_type": "reference_encyclopedia",
+        "url": "https://snl.no/Josef_Terboven",
+        "repository_source": "data/stories/stories_akerhus_slott.json",
+        "extracted_from": ["sources", "story"],
+        "temporal_scope": {"from": 1940, "to": 1945},
+        "limitations": [
+          "Personartikkelen belyser okkupasjonsmakten gjennom Terboven og dekker ikke hele festningens krigshistorie.",
+          "Leksikonformatet sammenfatter forskning og erstatter ikke samtidige administrative eller militære arkivkilder."
+        ],
+        "tier": "B",
+        "rationale": "Redigert referansekilde for Terbovens maktovertakelse og okkupasjonskonteksten."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_akershus_festning_medieval_state_center",
+        "statement": "Akershus festning ble påbegynt omkring 1290 under Håkon 5. Magnusson og utviklet seg som kongelig residens, forsvarsverk og administrativt maktsentrum ved innseilingen til Oslo.",
+        "claim_type": "institutional_and_material_development",
+        "temporal": {"from": 1290, "to": 1500},
+        "source_ids": ["src_his_akershus_festning_forsvarsbygg"],
+        "emne_patterns": ["middelalder_oslo", "kongemakt_kirke_konflikt", "stat_institusjoner", "krig_okkupasjon_krig_mobilisering"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Hovedforløpet er godt dokumentert, men den eksakte byggestarten og fasene i den tidlige borgen angis ofte omtrentlig."},
+        "alternative_interpretations": ["Festningen kan leses både som vern av byen og som en materiell demonstrasjon av kongemakt, skattlegging og kontroll."]
+      },
+      {
+        "claim_id": "claim_his_akershus_festning_occupation_memory_layers",
+        "statement": "Under okkupasjonen 1940–1945 ble Akershus festning brukt av tyske myndigheter; etter frigjøringen ble anlegget også knyttet til rettsoppgjør, motstandshistorie, museer og nasjonal minnekultur.",
+        "claim_type": "occupation_and_memory_transformation",
+        "temporal": {"from": 1940, "to": null},
+        "source_ids": ["src_his_akershus_festning_forsvarsbygg", "src_his_akershus_festning_terboven_snl"],
+        "emne_patterns": ["okkupasjon_motstand", "rettsoppgjor", "minnesteder_historiebruk", "samtid_ettertid_fortelling"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Kildene dokumenterer hovedlagene, men hvert museum, henrettelsessted og rettsoppgjør krever egne spesialkilder for detaljert analyse."},
+        "alternative_interpretations": ["Et nasjonalt minnested kan fremheve motstand og statlig kontinuitet, men må også romme okkupasjonsmakt, samarbeid, straff og omstridte etterkrigsfortolkninger."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_hovedoya_kloster",
+    "place_id": "hovedoya_kloster",
+    "sources": [
+      {
+        "source_id": "src_his_hovedoya_kloster_snl",
+        "title": "Hovedøya kloster",
+        "publisher": "Store norske leksikon",
+        "source_type": "reference_encyclopedia",
+        "url": "https://snl.no/Hoved%C3%B8ya_kloster",
+        "repository_source": "data/stories/stories_hovedoya_kloster.json",
+        "extracted_from": ["sources", "story"],
+        "temporal_scope": {"from": 1147, "to": 1532},
+        "limitations": [
+          "Leksikonartikkelen sammenfatter et langt institusjons- og bygningsforløp og kan komprimere arkeologisk uenighet.",
+          "Oversiktskilden bør suppleres med arkeologiske rapporter ved analyse av byggefaser, rombruk og funn."
+        ],
+        "tier": "B",
+        "rationale": "Redigert referansekilde for grunnleggelse, klosterhistorie og ødeleggelsen i 1532."
+      },
+      {
+        "source_id": "src_his_hovedoya_oslo_byleksikon",
+        "title": "Hovedøya",
+        "publisher": "Oslo byleksikon",
+        "source_type": "local_reference_encyclopedia",
+        "url": "https://oslobyleksikon.no/index.php?title=Hoved%C3%B8ya",
+        "repository_source": "data/stories/stories_hovedoya_kloster.json",
+        "extracted_from": ["sources", "related_places"],
+        "temporal_scope": {"from": 1100, "to": null},
+        "limitations": [
+          "Den lokale oversikten dekker hele øya og skiller ikke alltid skarpt mellom klosteranlegget og senere brukslag.",
+          "Artikkelen er sekundær formidling og gir begrenset innsyn i kildegrunnlaget for hver enkelt detalj."
+        ],
+        "tier": "B",
+        "rationale": "Lokal redigert referansekilde for klosterets plass i Hovedøyas og Oslos historie."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_hovedoya_kloster_founded_1147",
+        "statement": "Hovedøya kloster ble grunnlagt i 1147 da cisterciensermunker fra Kirkstead i England etablerte et kloster ved en eldre kirke på øya.",
+        "claim_type": "dated_foundation",
+        "temporal": {"from": 1147, "to": 1147},
+        "source_ids": ["src_his_hovedoya_kloster_snl", "src_his_hovedoya_oslo_byleksikon"],
+        "emne_patterns": ["kirke_kloster_middelalder", "middelalder_oslo", "middelalder_kirke_kristning", "handel_handverk_bydannelse"],
+        "confidence": "high",
+        "uncertainty": {"level": "low", "note": "Grunnleggelsesåret og ordenstilknytningen er gjennomgående i de redigerte kildene."},
+        "alternative_interpretations": ["Grunnleggelsen kan forstås som religiøs etablering, men også som del av europeiske nettverk for jordegods, arbeid, arkitektur og kunnskapsmakt."]
+      },
+      {
+        "claim_id": "claim_his_hovedoya_kloster_burned_1532_material_trace",
+        "statement": "Klosteret ble plyndret og brent i 1532 under maktkampen før reformasjonen, og ruinene ble senere et fysisk spor etter oppløst klostermakt, materialgjenbruk og skiftende kulturminnevern.",
+        "claim_type": "destruction_and_material_afterlife",
+        "temporal": {"from": 1532, "to": null},
+        "source_ids": ["src_his_hovedoya_kloster_snl", "src_his_hovedoya_oslo_byleksikon"],
+        "emne_patterns": ["ruiner_rester_ombruk", "spor_materialitet", "kulturminner_bevaring", "restaurering_autentisitet"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Brannen og institusjonens fall er dokumentert, mens ombruk og restaurering består av flere faser som bør skilles i detaljstudier."},
+        "alternative_interpretations": ["Ruinene kan framstå som rester etter et brått brudd, men synligheten deres er også skapt av senere utgravning, restaurering og kulturminnepolitikk."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_eidsvollsbygningen",
+    "place_id": "eidsvollsbygningen",
+    "sources": [
+      {
+        "source_id": "src_his_eidsvoll1814_eidsvollsbygningen",
+        "title": "Eidsvollsbygningen",
+        "publisher": "Eidsvoll 1814",
+        "source_type": "official_museum_page",
+        "url": "https://eidsvoll1814.no/eidsvollbygningen",
+        "repository_source": "data/places/politikk/akershus/eidsvollsbygningen/eidsvollsbygningen.json",
+        "extracted_from": ["popupDesc", "externalLinks"],
+        "temporal_scope": {"from": 1814, "to": null},
+        "limitations": [
+          "Museets presentasjon er autoritativ for anlegget og formidlingen, men er også del av en nasjonal minneinstitusjon.",
+          "Nettsiden gir et oversiktsnivå og erstatter ikke protokoller, brev og andre primærkilder fra Riksforsamlingen."
+        ],
+        "tier": "A",
+        "rationale": "Offisiell museumskilde for bygningen, Riksforsamlingen og 1814-formidlingen."
+      },
+      {
+        "source_id": "src_his_riksantikvaren_eidsvollsbygningen",
+        "title": "Fredet Eidsvollsbygningen",
+        "publisher": "Riksantikvaren",
+        "source_type": "official_heritage_page",
+        "url": "https://riksantikvaren.no/fredninger/fredet-eidsvollsbygningen/",
+        "repository_source": "data/places/politikk/akershus/eidsvollsbygningen/eidsvollsbygningen.json",
+        "extracted_from": ["coordNote", "externalLinks"],
+        "temporal_scope": {"from": 1814, "to": null},
+        "limitations": [
+          "Fredningssiden prioriterer kulturminneverdier og forvaltningshistorie fremfor en full politisk analyse av 1814.",
+          "Vernet beskriver anlegget i dagens kulturminneforvaltning og må skilles fra historiske eiendomsgrenser og bruk."
+        ],
+        "tier": "A",
+        "rationale": "Offisiell kulturminnekilde for bygningens identitet, vern og nasjonalmonumentale status."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_eidsvollsbygningen_constitution_1814",
+        "statement": "Riksforsamlingen møttes i Eidsvollsbygningen fra 10. april til 20. mai 1814, vedtok Grunnloven 17. mai og valgte Christian Frederik til norsk konge.",
+        "claim_type": "constitutional_process",
+        "temporal": {"from": "1814-04-10", "to": "1814-05-20"},
+        "source_ids": ["src_his_eidsvoll1814_eidsvollsbygningen"],
+        "emne_patterns": ["1814_statsdannelse_suverenitet", "1814_statsdannelse_kiel", "1814_grunnloven_statsdannelse", "stat_institusjoner"],
+        "confidence": "high",
+        "uncertainty": {"level": "low", "note": "Datoene og hovedbeslutningene er sentrale, etablerte deler av den dokumenterte 1814-kronologien."},
+        "alternative_interpretations": ["Stedet symboliserer nasjonal suverenitet og representasjon, men forsamlingen var sosialt og politisk avgrenset og ga ikke alle grupper lik deltakelse."]
+      },
+      {
+        "claim_id": "claim_his_eidsvollsbygningen_national_monument_1837",
+        "statement": "Eidsvollsbygningen med paviljonger og park ble kjøpt inn som nasjonalmonument i 1837, og staten overtok anlegget i 1851; stedet ble dermed tidlig institusjonalisert som nasjonalt minne.",
+        "claim_type": "heritage_institutionalization",
+        "temporal": {"from": 1837, "to": 1851},
+        "source_ids": ["src_his_eidsvoll1814_eidsvollsbygningen", "src_his_riksantikvaren_eidsvollsbygningen"],
+        "emne_patterns": ["nasjonal_identitet_fortellinger", "minnesteder_historiebruk", "kulturminner_bevaring", "jubileum_seremoni_historiebruk"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Hoveddatoene er dokumentert i stedets formidling, men kjøps-, eierskaps- og restaureringshistorien har flere juridiske og materielle ledd."},
+        "alternative_interpretations": ["Nasjonalmonumentet bevarer et demokratisk symbol, men kulturarvprosessen former også hvilke personer, rom og konflikter som får stå i sentrum."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_folkets_hus",
+    "place_id": "folkets_hus_oslo",
+    "sources": [
+      {
+        "source_id": "src_his_arbark_folkets_hus_oslo",
+        "title": "Folkets Hus bygges",
+        "publisher": "Arbeiderbevegelsens arkiv og bibliotek",
+        "source_type": "archive_illustrated_history",
+        "url": "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+        "repository_source": "data/leksikon/places/oslo/politikk/leksikon_folkets_hus_oslo.json",
+        "extracted_from": ["facts", "chronology", "externalLinks"],
+        "temporal_scope": {"from": 1907, "to": 1962},
+        "limitations": [
+          "Bildeserien er kuratert av arbeiderbevegelsens eget arkiv og vektlegger institusjonens bygge- og organisasjonshistorie.",
+          "Nettformatet gir begrenset kildeapparat for hvert bilde og hver detalj i byggeprosessen."
+        ],
+        "tier": "A",
+        "rationale": "Institusjonsarkivets kildebaserte framstilling av Folkets Hus' byggefaser."
+      },
+      {
+        "source_id": "src_his_snl_folkets_hus_oslo",
+        "title": "Folkets hus – Oslo",
+        "publisher": "Store norske leksikon",
+        "source_type": "reference_encyclopedia",
+        "url": "https://snl.no/Folkets_hus_-_Oslo",
+        "repository_source": "data/leksikon/places/oslo/politikk/leksikon_folkets_hus_oslo.json",
+        "extracted_from": ["facts", "chronology", "externalLinks"],
+        "temporal_scope": {"from": 1907, "to": null},
+        "limitations": [
+          "Leksikonartikkelen sammenfatter institusjons-, arkitektur- og organisasjonshistorie i kort form.",
+          "Kilden bør suppleres med organisasjonsarkiver ved analyse av beslutninger, medlemsbruk og interne konflikter."
+        ],
+        "tier": "B",
+        "rationale": "Redigert referansekilde for byggefaser, arkitekt og institusjonsfunksjoner."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_folkets_hus_first_opened_1907",
+        "statement": "Det første Folkets Hus ved Youngstorget åpnet i 1907 som et felles møte- og organisasjonssted for arbeiderbevegelsen.",
+        "claim_type": "institutional_foundation",
+        "temporal": {"from": 1907, "to": 1907},
+        "source_ids": ["src_his_arbark_folkets_hus_oslo", "src_his_snl_folkets_hus_oslo"],
+        "emne_patterns": ["arbeiderbevegelse_folkedannelse", "organisering_motstand_offentlighet", "sivilsamfunn", "arbeid_nettverk_naring"],
+        "confidence": "high",
+        "uncertainty": {"level": "low", "note": "Åpningsåret og institusjonstypen er eksplisitt dokumentert i arkiv- og leksikonkildene."},
+        "alternative_interpretations": ["Huset var et uttrykk for organisasjonsfrihet og kollektiv kapasitet, men representerte ulike deler av arbeiderbevegelsen med skiftende makt og tilgang."]
+      },
+      {
+        "claim_id": "claim_his_folkets_hus_current_complex_1958_1962",
+        "statement": "Dagens Folkets Hus-anlegg ble reist i byggetrinn fra 1958 til 1962 og samlet fagorganisasjoner, møter, kongressfunksjoner og Arbeiderbevegelsens arkiv og bibliotek.",
+        "claim_type": "organizational_infrastructure",
+        "temporal": {"from": 1958, "to": 1962},
+        "source_ids": ["src_his_arbark_folkets_hus_oslo", "src_his_snl_folkets_hus_oslo"],
+        "emne_patterns": ["arbeiderbevegelse_folkedannelse", "kunnskapsinstitusjoner_ekspertise", "arkiv_og_dokumentasjon", "stat_institusjoner"],
+        "confidence": "high",
+        "uncertainty": {"level": "low", "note": "Byggeårene og hovedfunksjonene er eksplisitt oppgitt, mens intern rombruk og organisasjonssammensetning har endret seg."},
+        "alternative_interpretations": ["Anlegget kan leses som varig demokratisk infrastruktur, men også som uttrykk for profesjonalisering og sentralisering i en stor organisasjon."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_akerselva",
+    "place_id": "akerselva",
+    "sources": [
+      {
+        "source_id": "src_his_oslo_kommune_akerselva",
+        "title": "Lakes and rivers in Oslo",
+        "publisher": "Oslo kommune",
+        "source_type": "official_municipal_page",
+        "url": "https://www.oslo.kommune.no/english/welcome-to-oslo/life-in-oslo/enjoy-the-outdoors/lakes-and-rivers/",
+        "repository_source": "data/places/by/oslo/places/akerselva.json",
+        "extracted_from": ["coordSourceUrl", "coordNote"],
+        "temporal_scope": {"from": null, "to": null},
+        "limitations": [
+          "Kommunesiden presenterer dagens elv og friluftsbruk og er ikke en full industri- eller miljøhistorisk studie.",
+          "Den engelskspråklige oversikten kan endres og gir begrenset dokumentasjon av historiske utslipp og planprosesser."
+        ],
+        "tier": "A",
+        "rationale": "Offisiell kommunal kilde for elveløpet og Akerselva som sammenhengende by- og naturakse."
+      },
+      {
+        "source_id": "src_his_snl_akerselva",
+        "title": "Akerselva",
+        "publisher": "Store norske leksikon",
+        "source_type": "reference_encyclopedia",
+        "url": "https://snl.no/Akerselva",
+        "repository_source": "data/places/by/oslo/places/akerselva.json",
+        "extracted_from": ["desc", "popupDesc"],
+        "temporal_scope": {"from": 1100, "to": null},
+        "limitations": [
+          "Leksikonartikkelen sammenfatter en lang natur-, industri- og byhistorie og kan utelate lokale variasjoner langs elveløpet.",
+          "Oversikten bør suppleres med bedriftsarkiver, miljømålinger og kommunale plandokumenter ved detaljert analyse."
+        ],
+        "tier": "B",
+        "rationale": "Redigert referansekilde for Akerselvas fosser, industrihistorie og senere miljø- og byomforming."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_akerselva_industrial_energy_axis",
+        "statement": "Akerselvas mange fosser ga kraft til møller, sagbruk, papirproduksjon, spinnerier og verksteder og gjorde elva til en sentral produksjonsakse i Christianias industrialisering.",
+        "claim_type": "industrial_landscape",
+        "temporal": {"from": 1100, "to": 1950},
+        "source_ids": ["src_his_snl_akerselva"],
+        "emne_patterns": ["industriby_1900", "industri_produksjon_energi", "arbeid_nettverk_naring", "modernisering_1800"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Hovedsammenhengen mellom vannkraft og industri er etablert, men virksomhetene hadde ulike perioder, teknologier og arbeidsregimer."},
+        "alternative_interpretations": ["Elva kan framstilles som motor for vekst, men den samme produksjonen skapte klassedelte boområder, farlig arbeid og omfattende forurensning."]
+      },
+      {
+        "claim_id": "claim_his_akerselva_environmental_reuse_from_1986",
+        "statement": "Fra 1986 ble Akerselva Miljøpark utviklet for å bedre tilgjengelighet, vern og miljøkvalitet, samtidig som tidligere fabrikkbygg gradvis fikk nye kultur-, utdannings- og næringsfunksjoner.",
+        "claim_type": "environmental_and_urban_transformation",
+        "temporal": {"from": 1986, "to": null},
+        "source_ids": ["src_his_oslo_kommune_akerselva", "src_his_snl_akerselva"],
+        "emne_patterns": ["miljo_klima_naturforvaltning", "avindustrialisering_ombruk_industriarv", "riving_ombruk_bevaring", "urban_natur_helse"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Startåret og hovedretningen er dokumentert, men miljøforbedring, vern og eiendomsomforming skjedde i mange tiltak over flere tiår."},
+        "alternative_interpretations": ["Miljøpark og ombruk kan leses som rehabilitering av et forurenset industrilandskap, men også som grunnlag for eiendomsutvikling og sosial endring."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_hl_senteret_villa_grande",
+    "place_id": "villa_grande",
+    "sources": [
+      {
+        "source_id": "src_his_hl_senteret_official",
+        "title": "HL-senteret",
+        "publisher": "Senter for studier av Holocaust og livssynsminoriteter",
+        "source_type": "official_institution_page",
+        "url": "https://www.hlsenteret.no/",
+        "repository_source": "data/stories/stories_villa_grande.json",
+        "extracted_from": ["sources", "story"],
+        "temporal_scope": {"from": 1941, "to": null},
+        "limitations": [
+          "Institusjonens egen nettside er autoritativ for dagens virksomhet, men representerer også senterets faglige og formidlingsmessige selvpresentasjon.",
+          "Forsiden gir ikke nødvendigvis full bygningshistorie eller dokumentasjon av alle ombyggings- og brukslag."
+        ],
+        "tier": "A",
+        "rationale": "Offisiell institusjonskilde for HL-senterets virksomhet i Villa Grande."
+      },
+      {
+        "source_id": "src_his_bmc_villa_grande_new_wing",
+        "title": "Villa Grande – HL-senterets nye fløy",
+        "publisher": "BMC Norge",
+        "source_type": "project_presentation",
+        "url": "https://bmc-norge.no/prosjekter/villa-grande-hl-senterets-nye-floy/",
+        "repository_source": "data/stories/stories_villa_grande.json",
+        "extracted_from": ["sources", "story"],
+        "temporal_scope": {"from": 2000, "to": null},
+        "limitations": [
+          "Prosjektpresentasjonen er knyttet til en leverandør og kan ha et markedsførende perspektiv på byggeprosjektet.",
+          "Kilden dokumenterer nyere fysisk utvikling bedre enn okkupasjonstidens politiske historie."
+        ],
+        "tier": "C",
+        "rationale": "Inspectabel prosjektkilde for den nyere institusjonelle og fysiske omformingen av Villa Grande."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_villa_grande_gimle_quisling_residence_1941",
+        "statement": "Nasjonal Samlings myndigheter tok Villa Grande i bruk i 1941 og bygde den om til Vidkun og Maria Quislings bevoktede residens under navnet «Gimle».",
+        "claim_type": "occupation_power_site",
+        "temporal": {"from": 1941, "to": 1945},
+        "source_ids": ["src_his_hl_senteret_official"],
+        "emne_patterns": ["okkupasjon_motstand", "stat_institusjoner", "idehistorie_fascisme_nazisme_kommunisme", "kontroll_overvakning"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Hovedfunksjonen og navnet er etablert, mens ombyggingsdetaljer og beslutningskjeder krever arkiv- og bygningshistoriske spesialkilder."},
+        "alternative_interpretations": ["Residensen kan analyseres som privat bolig, men fungerte også som sikret og iscenesatt maktsentrum for et kollaborasjonsregime."]
+      },
+      {
+        "claim_id": "claim_his_villa_grande_transformed_to_hl_center",
+        "statement": "Villa Grande ble i etterkrigstiden omformet fra et belastet maktsted til HL-senterets forsknings-, undervisnings- og formidlingssted for Holocaust, minoriteter, antisemittisme og menneskerettigheter.",
+        "claim_type": "critical_reuse_and_memory",
+        "temporal": {"from": 1945, "to": null},
+        "source_ids": ["src_his_hl_senteret_official", "src_his_bmc_villa_grande_new_wing"],
+        "emne_patterns": ["minnesteder_historiebruk", "minoritetshistorie", "riving_ombruk_bevaring", "museum_samling_kanon"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Dagens funksjon er klar, men overgangen omfatter flere mellomliggende institusjonsbruk og byggeprosjekter."},
+        "alternative_interpretations": ["Kritisk ombruk kan utfordre stedets autoritære arv, men opphever ikke konflikter om hvordan Quisling, Holocaust og minoritetshistorie skal representeres."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_bispelokket",
+    "place_id": "bispelokket",
+    "sources": [
+      {
+        "source_id": "src_his_regjeringen_bispelokket_stmeld28",
+        "title": "St.meld. nr. 28 (2001–2002): Utbygging av Bjørvika",
+        "publisher": "Regjeringen.no",
+        "source_type": "government_white_paper",
+        "url": "https://www.regjeringen.no/no/dokumenter/stmeld-nr-28-2001-2002-/id432071/?ch=3",
+        "repository_source": "data/places/by/oslo/places/bispelokket.json",
+        "extracted_from": ["coordSource", "coordSourceUrl", "popupDesc"],
+        "temporal_scope": {"from": 1960, "to": 2013},
+        "limitations": [
+          "Stortingsmeldingen er et plan- og beslutningsdokument som argumenterer for en bestemt utbyggingsretning.",
+          "Dokumentet er sterkest for prosjektforutsetninger og svakere som uavhengig vurdering av sosiale og miljømessige konsekvenser."
+        ],
+        "tier": "A",
+        "rationale": "Offisielt statlig plandokument for Bjørvikatunnelen, trafikkomleggingen og byutviklingen."
+      },
+      {
+        "source_id": "src_his_wikipedia_bispelokket",
+        "title": "Bispelokket",
+        "publisher": "Wikipedia",
+        "source_type": "tertiary_reference",
+        "url": "https://en.wikipedia.org/wiki/Bispelokket",
+        "repository_source": "data/places/by/oslo/places/bispelokket.json",
+        "extracted_from": ["desc", "popupDesc"],
+        "temporal_scope": {"from": 1967, "to": 2013},
+        "limitations": [
+          "Wikipedia er en åpent redigert tertiærkilde og kan endres uten redaksjonell forhåndskontroll.",
+          "Kilden brukes bare som sekundær orientering og må leses sammen med det offisielle plandokumentet og canonical stedsdata."
+        ],
+        "tier": "C",
+        "rationale": "Tertiær oversiktskilde som supplerer den offisielle planproveniensens kronologi."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_bispelokket_completed_1967_traffic_machine",
+        "statement": "Bispelokket sto ferdig i 1967 som et planskilt veikryss der E18 i Bispegata og Nylandsveien ble koblet sammen gjennom ramper og broer på flere nivåer.",
+        "claim_type": "infrastructure_completion",
+        "temporal": {"from": 1967, "to": 1967},
+        "source_ids": ["src_his_regjeringen_bispelokket_stmeld28", "src_his_wikipedia_bispelokket"],
+        "emne_patterns": ["teknologi_infrastruktur_samfunn", "historiske_lag_i_byrom", "sanering_byfornyelse", "statlig_kapasitet_skatt_infrastruktur"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Ferdigstillelsen og hovedfunksjonen er dokumentert, mens betegnelser, delåpninger og trafikkmålinger kan variere mellom kilder."},
+        "alternative_interpretations": ["Anlegget kan vurderes som teknisk effektivisering av gjennomgangstrafikk, men også som en fysisk og sosial barriere i byen."]
+      },
+      {
+        "claim_id": "claim_his_bispelokket_demolished_after_bjorvika_tunnel",
+        "statement": "Etter at Bjørvikatunnelen åpnet i 2010, ble Bispelokket revet etappevis fra 2011 til 2013 og arealet inngikk i nye gater, kollektivforbindelser og offentlige byrom i Bjørvika.",
+        "claim_type": "infrastructure_removal_and_urban_change",
+        "temporal": {"from": 2010, "to": 2013},
+        "source_ids": ["src_his_regjeringen_bispelokket_stmeld28", "src_his_wikipedia_bispelokket"],
+        "emne_patterns": ["riving_ombruk_bevaring", "sanering_byfornyelse", "byutvidelse_gentrifisering", "historiske_lag_i_byrom"],
+        "confidence": "high",
+        "uncertainty": {"level": "medium", "note": "Hovedrekkefølgen er klar, mens sammenhengen mellom hvert rivningstrinn og senere byrom består av flere prosjekter og aktører."},
+        "alternative_interpretations": ["Rivningen kan framstilles som åpning av byen mot fjorden, men må også analyseres sammen med kostnader, eiendomsutvikling og hvem de nye byrommene er tilgjengelige for."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_22_juli_senteret",
+    "place_id": "22_juli_senteret",
+    "sources": [
+      {
+        "source_id": "src_his_22_juli_senteret_official",
+        "title": "22. juli-senteret",
+        "publisher": "22. juli-senteret",
+        "source_type": "official_institution_page",
+        "url": "https://www.22julisenteret.no/",
+        "repository_source": "data/places/politikk/oslo/places_politikk/22_juli_senteret.json",
+        "extracted_from": ["popupDesc", "externalLinks"],
+        "temporal_scope": {"from": 2011, "to": null},
+        "limitations": [
+          "Institusjonens egen nettside er autoritativ for formål og tilbud, men er også en kuratert selvpresentasjon av minne- og læringsarbeidet.",
+          "Nettsiden kan endres og erstatter ikke kommisjonsrapporter, rettsdokumenter eller forskningslitteratur om terrorangrepene."
+        ],
+        "tier": "A",
+        "rationale": "Offisiell kilde for senterets mandat, formidling og permanente institusjonssted."
+      },
+      {
+        "source_id": "src_his_snl_bombeangrepet_regjeringskvartalet",
+        "title": "Bombeangrepet på regjeringskvartalet",
+        "publisher": "Store norske leksikon",
+        "source_type": "reference_encyclopedia",
+        "url": "https://snl.no/Bombeangrepet_p%C3%A5_regjeringskvartalet",
+        "repository_source": "data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json",
+        "extracted_from": ["chronology.chrono_2011", "facts"],
+        "temporal_scope": {"from": "2011-07-22", "to": "2011-07-22"},
+        "limitations": [
+          "Leksikonartikkelen sammenfatter hendelsen og kan ikke gjengi alle berørte personers erfaringer eller hele etterforskningsmaterialet.",
+          "Kilden må skilles fra senterets senere minne- og læringsarbeid og fra normative fortolkninger av demokrati og ekstremisme."
+        ],
+        "tier": "B",
+        "rationale": "Redigert referansekilde for bombeangrepet og åstedet i Regjeringskvartalet."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_22_juli_center_documents_attacks_and_democracy",
+        "statement": "22. juli-senteret dokumenterer terrorangrepene mot Regjeringskvartalet og Utøya, menneskene som ble rammet og samfunnets arbeid med demokrati, ekstremisme, beredskap og minnekultur.",
+        "claim_type": "memory_and_learning_institution",
+        "temporal": {"from": 2011, "to": null},
+        "source_ids": ["src_his_22_juli_senteret_official"],
+        "emne_patterns": ["terror_samtidshistorie", "minnesteder_historiebruk", "gjenoppbygging_minne", "samtid_ettertid_fortelling"],
+        "confidence": "high",
+        "uncertainty": {"level": "low", "note": "Institusjonens mandat og temaer er eksplisitt formidlet av senteret."},
+        "alternative_interpretations": ["Et nasjonalt læringssenter må både bevare dokumentasjon og åpne for uenighet om årsaker, ansvar, beredskap, politisk ekstremisme og hvilke minner som får offentlig plass."]
+      },
+      {
+        "claim_id": "claim_his_22_juli_center_akersgata42_site_connection",
+        "statement": "Den permanente plasseringen i Akersgata 42 knytter 22. juli-senterets læringsarbeid fysisk til Regjeringskvartalet, der bombeangrepet 22. juli 2011 drepte åtte mennesker.",
+        "claim_type": "site_bound_memory_institution",
+        "temporal": {"from": 2011, "to": null},
+        "source_ids": ["src_his_22_juli_senteret_official", "src_his_snl_bombeangrepet_regjeringskvartalet"],
+        "emne_patterns": ["terror_samtidshistorie", "historiske_lag_i_byrom", "minnesteder_historiebruk", "styring_krise_kontinuitet"],
+        "confidence": "high",
+        "uncertainty": {"level": "low", "note": "Adressetilknytningen og åstedets plassering er direkte dokumentert i de canonical steds- og leksikondataene."},
+        "alternative_interpretations": ["Nærheten til åstedet gir sterk autentisitets- og minneverdi, men senterets nasjonale mandat omfatter også Utøya og erfaringer langt utenfor Oslo sentrum."]
+      }
+    ]
+  },
+  {
+    "case_id": "case_his_gamle_deichman_pa_hammersborg",
+    "place_id": "gamle_deichman",
+    "sources": [
+      {
+        "source_id": "src_his_snl_deichman_library",
+        "title": "Deichman (bibliotek)",
+        "publisher": "Store norske leksikon",
+        "source_type": "reference_encyclopedia",
+        "url": "https://snl.no/Deichman_%28bibliotek%29",
+        "repository_source": "data/stories/stories_gamle_deichman.json",
+        "extracted_from": ["sources", "story"],
+        "temporal_scope": {"from": 1785, "to": null},
+        "limitations": [
+          "Leksikonartikkelen dekker bibliotekinstitusjonen gjennom flere adresser og kan komprimere Hammersborg-bygningens særlige brukshistorie.",
+          "Kilden bør suppleres med bibliotekarkiv, brukerhistorie og bygningsundersøkelser ved detaljert sosial- og arkitekturhistorie."
+        ],
+        "tier": "B",
+        "rationale": "Redigert referansekilde for Deichmans institusjonshistorie og perioden som hovedbibliotek."
+      },
+      {
+        "source_id": "src_his_deich_fotohuset_official",
+        "title": "Fotohuset Deich",
+        "publisher": "Deich",
+        "source_type": "official_project_page",
+        "url": "https://www.deich.no/no/fotohuset-deich",
+        "repository_source": "data/places/litteratur/oslo/places_litteratur/gamle_deichman.json",
+        "extracted_from": ["popupDesc", "externalLinks"],
+        "temporal_scope": {"from": 2019, "to": 2028},
+        "limitations": [
+          "Prosjektsiden beskriver en framtidig ombruk og kan bli endret dersom framdrift, aktører eller åpningsdato justeres.",
+          "Kilden er prosjektets egen presentasjon og er ikke en uavhengig vurdering av kulturminne-, økonomi- eller tilgjengelighetskonsekvenser."
+        ],
+        "tier": "A",
+        "rationale": "Offisiell prosjektkilde for den planlagte ombruken av det tidligere hovedbiblioteket."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": "claim_his_gamle_deichman_main_library_1933_2019",
+        "statement": "Bibliotekbygningen på Hammersborg åpnet i 1933 og fungerte som Deichmans hovedbibliotek fram til 2019, som et sentralt offentlig rom for lesing, studier og tilgang til informasjon.",
+        "claim_type": "public_knowledge_institution",
+        "temporal": {"from": 1933, "to": 2019},
+        "source_ids": ["src_his_snl_deichman_library"],
+        "emne_patterns": ["kunnskapsinstitusjoner_ekspertise", "museum_samling_kanon", "arkiv_og_dokumentasjon", "sosialhistorie_hverdagsliv"],
+        "confidence": "high",
+        "uncertainty": {"level": "low", "note": "Perioden som hovedbibliotek er klart dokumentert, mens brukernes erfaringer og tilgang må undersøkes gjennom andre kildetyper."},
+        "alternative_interpretations": ["Bygningen representerte kunnskap som offentlig gode, men monumental arkitektur, samlingspolitikk og adgangsordninger formet også hvem og hva institusjonen gjorde synlig."]
+      },
+      {
+        "claim_id": "claim_his_gamle_deichman_planned_fotohuset_reuse",
+        "statement": "Etter at biblioteket flyttet ut, ble det tidligere hovedbiblioteket planlagt ombrukt som Fotohuset Deich, et framtidig museum-, møte- og formidlingshus for fotografi med planlagt åpning i 2028.",
+        "claim_type": "future_adaptive_reuse",
+        "temporal": {"from": 2019, "to": 2028},
+        "source_ids": ["src_his_deich_fotohuset_official"],
+        "emne_patterns": ["riving_ombruk_bevaring", "visuelle_kilder_fotografi", "museum_samling_kanon", "kulturminner_bevaring"],
+        "confidence": "medium",
+        "uncertainty": {"level": "high", "note": "Dette er en framtidsplan per 2026; funksjon, aktører og åpningstidspunkt kan endres før huset faktisk åpner."},
+        "alternative_interpretations": ["Ombruket kan bevare et offentlig kulturbygg og gi ny aktivitet, men det reiser også spørsmål om kontinuitet mellom folkebibliotekets brede mandat og en ny spesialisert kulturinstitusjon."]
+      }
+    ]
+  }
+]
