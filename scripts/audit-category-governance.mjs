@@ -70,7 +70,7 @@ if (!contract.runtimeCategories.includes("scenekunst")) failures.push({ name: "s
 if (!contract.fagSubjects.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing fag subject" });
 if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });
 
-// Keep the professional business-school extension separate so the stable six-track academic core remains independently auditable.
+// Keep the academic core, business-school breadth and individual professional depth independently auditable.
 for (const validator of [
   {
     name: "Økonomi og næringsliv university framework",
@@ -87,6 +87,10 @@ for (const validator of [
   {
     name: "Økonomi og næringsliv business-school coverage",
     module: "../tools/validate-okonomi-naeringsliv-handelshogskole.mjs"
+  },
+  {
+    name: "Økonomi og næringsliv professional module depth",
+    module: "../tools/validate-okonomi-naeringsliv-profesjonsfordypning.mjs"
   }
 ]) {
   try {

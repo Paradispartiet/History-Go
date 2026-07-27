@@ -1,0 +1,747 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_individual_professional_depth",
+  "type": "business_school_depth_track",
+  "subject_id": "naeringsliv",
+  "track_id": "regnskap_revisjon_okonomistyring",
+  "updated_at": "2026-07-27",
+  "profile_count": 5,
+  "profiles": [
+    {
+      "module_id": "mod_naering_bokforing_regnskapskretslop",
+      "title": "Bokføring og regnskapskretsløp",
+      "track_id": "regnskap_revisjon_okonomistyring",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "dobbel bokføring",
+        "transaksjonsanalyse",
+        "periodisering",
+        "avstemming",
+        "kontrollspor"
+      ],
+      "canonical_works": [
+        {
+          "author": "Luca Pacioli",
+          "title": "Summa de arithmetica, geometria, proportioni et proportionalità",
+          "year": 1494,
+          "role": "foundational"
+        },
+        {
+          "author": "Yuji Ijiri",
+          "title": "Theory of Accounting Measurement",
+          "year": 1975,
+          "role": "measurement"
+        },
+        {
+          "author": "Shyam Sunder",
+          "title": "Theory of Accounting and Control",
+          "year": 1997,
+          "role": "institutional"
+        },
+        {
+          "author": "Finansdepartementet",
+          "title": "Bokføringsloven og bokføringsforskriften",
+          "year": 2004,
+          "role": "current_standard"
+        }
+      ],
+      "authority_basis": [
+        "bokføringsloven",
+        "bokføringsforskriften",
+        "regnskapsloven",
+        "Skatteetatens veiledning om dokumentasjon og oppbevaring"
+      ],
+      "research_questions": [
+        "Hvilke transaksjoner endrer resultat, balanse og likviditet på forskjellige tidspunkter?",
+        "Hvordan kan et fullstendig kontrollspor avdekke feil som en prøvebalanse ikke viser?",
+        "Når gir formelt korrekt bokføring et økonomisk misvisende perioderesultat?"
+      ],
+      "analytical_sequence": [
+        "identifiser transaksjonens økonomiske substans og dokumentasjonskrav",
+        "fastsett konto, debet/kredit, avgiftsbehandling og tidspunkt",
+        "før bilaget og oppdater hovedbok og reskontro",
+        "avstem bank, kunde, leverandør og avgiftskonto mot ekstern dokumentasjon",
+        "utarbeid prøvebalanse og søk etter klassifiserings- og periodiseringsfeil",
+        "gjennomfør cut-off-test og dokumenter korrigeringsposteringer",
+        "vurder om kontrollsporet er komplett nok for en uavhengig etterprøver"
+      ],
+      "worked_case": {
+        "case_title": "Bilagsmåned i en liten tjenestevirksomhet",
+        "input_facts": [
+          "inngående bank 1 250 000 NOK",
+          "12 salgs- og kjøpsbilag med nettoverdi 860 000 NOK",
+          "to fakturaer på til sammen 180 000 NOK gjelder neste periode",
+          "bankgebyr 2 400 NOK mangler bilag",
+          "kundetap på 35 000 NOK er ikke vurdert",
+          "utgående bank ifølge bankutskrift 1 487 600 NOK"
+        ],
+        "required_operations": [
+          "konter alle bilag med eksplisitt debet og kredit",
+          "beregn merverdiavgift og periodiser de to forskuddsfakturaene",
+          "avstem bank og reskontro og forklar alle differanser",
+          "bygg prøvebalanse før og etter korrigering"
+        ],
+        "required_outputs": [
+          "hovedbok med bilagsreferanser",
+          "avstemmingsskjema med dokumenterte differanser",
+          "korrigert prøvebalanse",
+          "kort notat om økonomisk substans og cut-off"
+        ],
+        "validation_checks": [
+          "sum debet skal være lik sum kredit",
+          "bankkonto skal avstemmes mot ekstern bankutskrift",
+          "hver korrigering skal ha dokumentert årsak og godkjenner"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Før en komplett måned med minst 20 bilag, og dokumenter hvordan fem ulike transaksjonstyper påvirker resultat, balanse og kontantstrøm.",
+          "deliverable": "nummerert bilagsjournal, hovedbok, reskontro og avstemmingsmappe",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Rekonstruer en måned der tre skjulte feil er lagt inn, og bruk kontrollspor, cut-off og ekstern avstemming til å lokalisere dem.",
+          "deliverable": "feildiagnose med korrigeringsbilag og kontrollbevis",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Design et bokførings- og avstemmingsopplegg for en virksomhet med salg, abonnement, lønn og import; vurder automatisering, tilgangskontroll og vesentlighetsgrenser.",
+          "deliverable": "internkontrollnotat med prosesskart, kontrollmatrise og testutvalg",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "treveis matching mellom ordre, mottak og faktura",
+        "Benfords lov som varslingssignal, ikke bevis",
+        "kontinuerlig avstemming i ERP",
+        "cut-off-testing rundt periodeslutt"
+      ],
+      "failure_modes": [
+        "prøvebalansen balanserer selv om feil konto er brukt",
+        "manglende bilag erstattes av muntlig forklaring",
+        "avgiftskode behandles som ren teknisk detalj",
+        "automatisert kontering godtas uten test av regel og unntak"
+      ],
+      "cross_module_integration": [
+        "mod_naering_finansregnskap_rapportering",
+        "mod_naering_internkontroll_revisjon_prestasjon",
+        "mod_naering_skatt_avgift"
+      ],
+      "professional_ethics": [
+        "bevar uforanderlig kontrollspor",
+        "skill feilretting fra etterfølgende manipulering",
+        "eskaler mistanke om bevisst feil etter dokumentert prosedyre"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_finansregnskap_rapportering",
+      "title": "Finansregnskap og ekstern rapportering",
+      "track_id": "regnskap_revisjon_okonomistyring",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "innregning og måling",
+        "resultat og balanse",
+        "kontantstrøm",
+        "noter",
+        "regnskapskvalitet"
+      ],
+      "canonical_works": [
+        {
+          "author": "International Accounting Standards Board",
+          "title": "Conceptual Framework for Financial Reporting",
+          "year": 2018,
+          "role": "current_standard"
+        },
+        {
+          "author": "William H. Beaver",
+          "title": "Financial Reporting: An Accounting Revolution",
+          "year": 1998,
+          "role": "information_perspective"
+        },
+        {
+          "author": "William R. Scott",
+          "title": "Financial Accounting Theory",
+          "year": 2015,
+          "role": "theory"
+        },
+        {
+          "author": "Ross L. Watts and Jerold L. Zimmerman",
+          "title": "Positive Accounting Theory",
+          "year": 1986,
+          "role": "critical"
+        }
+      ],
+      "authority_basis": [
+        "regnskapsloven",
+        "god regnskapsskikk og relevante NRS",
+        "IFRS Accounting Standards der foretaket er omfattet",
+        "Finansdepartementets regelverksoversikt for finansiell rapportering"
+      ],
+      "research_questions": [
+        "Hvilke økonomiske ressurser og forpliktelser oppfyller kriteriene for innregning?",
+        "Hvordan påvirker estimater og klassifisering sammenlignbarhet mellom foretak og perioder?",
+        "Når gir resultat og kontantstrøm motstridende signaler om virksomhetens utvikling?"
+      ],
+      "analytical_sequence": [
+        "fastsett rapporteringsplikt, regelsett og analyseenhet",
+        "kartlegg transaksjoner, estimater og prinsippvalg med vesentlig effekt",
+        "rekonstruer resultat, balanse, egenkapital og kontantstrøm",
+        "les noter som integrert del av målingen, ikke som vedlegg",
+        "avstem perioderesultat mot kontantstrøm fra drift",
+        "normaliser engangsposter og vurder estimatusikkerhet",
+        "formuler en konklusjon om regnskapskvalitet med eksplisitt begrensning"
+      ],
+      "worked_case": {
+        "case_title": "Årsregnskap med periodiseringsvalg",
+        "input_facts": [
+          "salgsinntekter 84 000 000 NOK",
+          "varekostnad 45 000 000 NOK",
+          "utviklingsutgifter 6 000 000 NOK kan kostnadsføres eller balanseføres etter vilkår",
+          "avsetning for garanti er estimert til 1 500 000–3 500 000 NOK",
+          "avskrivninger 5 200 000 NOK",
+          "kontantstrøm fra kunder 79 000 000 NOK"
+        ],
+        "required_operations": [
+          "bygg resultat og balanse under to faglig forsvarlige estimatscenarioer",
+          "utarbeid indirekte kontantstrømoppstilling",
+          "beregn periodiseringsandel og kontantkonvertering",
+          "identifiser noteopplysninger som er nødvendige for å forstå usikkerheten"
+        ],
+        "required_outputs": [
+          "to komplette regnskapssett med forklaring av forskjeller",
+          "kontantstrømoppstilling med avstemming",
+          "estimatusikkerhetsmatrise",
+          "regnskapskvalitetsnotat for ekstern bruker"
+        ],
+        "validation_checks": [
+          "balansen skal balansere og egenkapitalendring avstemmes",
+          "kontantstrøm skal forklare endringen i likvider",
+          "prinsippvalg skal knyttes til rett regelsett og faktum"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Rekonstruer et offentlig årsregnskap og forklar sammenhengen mellom ti sentrale poster i resultat, balanse, kontantstrøm og noter.",
+          "deliverable": "annotert årsregnskap med avstemmingsbroer",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Sammenlign to foretak etter å ha normalisert prinsippforskjeller, engangsposter og finansieringsstruktur.",
+          "deliverable": "sammenlignbarhetsrapport med normaliserte nøkkeltall",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Vurder et komplekst estimat eller innregningsvalg under to regelsett og vis hvordan brukerbeslutninger kan påvirkes.",
+          "deliverable": "regnskapsfaglig posisjonsnotat med scenarioregnskap og noteutkast",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "kvalitativ egenskapsanalyse",
+        "periodiseringskvalitet og kontantkonvertering",
+        "estimatsensitivitet",
+        "earnings-management-risikoindikatorer"
+      ],
+      "failure_modes": [
+        "notene ignoreres ved nøkkeltallsanalyse",
+        "kontantstrøm behandles som lik resultat",
+        "alle prinsippforskjeller kalles manipulasjon",
+        "historiske kostnader og virkelig verdi blandes uten regelgrunnlag"
+      ],
+      "cross_module_integration": [
+        "mod_naering_bokforing_regnskapskretslop",
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "mod_naering_konkurranserett_compliance_baerekraft"
+      ],
+      "professional_ethics": [
+        "vis virkningen av skjønn for ulike interessenter",
+        "unngå presentasjon som skjuler vesentlig usikkerhet",
+        "skill lovlig prinsippvalg fra opportunistisk rapportering"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_regnskapsanalyse_verdsettelse",
+      "title": "Regnskapsanalyse og verdsettelse",
+      "track_id": "regnskap_revisjon_okonomistyring",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "normalisering",
+        "lønnsomhet og kapitalbinding",
+        "fri kontantstrøm",
+        "kapitalkostnad",
+        "fundamental verdsettelse"
+      ],
+      "canonical_works": [
+        {
+          "author": "Stephen H. Penman",
+          "title": "Financial Statement Analysis and Security Valuation",
+          "year": 2013,
+          "role": "foundational"
+        },
+        {
+          "author": "Tim Koller, Marc Goedhart and David Wessels",
+          "title": "Valuation: Measuring and Managing the Value of Companies",
+          "year": 2020,
+          "role": "applied"
+        },
+        {
+          "author": "Aswath Damodaran",
+          "title": "Investment Valuation",
+          "year": 2012,
+          "role": "advanced"
+        },
+        {
+          "author": "Franco Modigliani and Merton H. Miller",
+          "title": "The Cost of Capital, Corporation Finance and the Theory of Investment",
+          "year": 1958,
+          "role": "theory"
+        }
+      ],
+      "authority_basis": [
+        "reviderte årsregnskap og noter",
+        "Norges Banks rente- og markedsdata",
+        "offentlig foretaks- og eierinformasjon",
+        "relevant bransjestatistikk"
+      ],
+      "research_questions": [
+        "Hvilke resultat- og balanseposter må normaliseres før historisk avkastning kan tolkes?",
+        "Hvor stor del av beregnet verdi drives av terminalverdi og kapitalkostnad?",
+        "Når er markedsbasert multiplikator mer informativ enn en kontantstrømmodell?"
+      ],
+      "analytical_sequence": [
+        "avgrens virksomhet, verdsettelsestidspunkt og perspektiv",
+        "normaliser drift, finansiering, skatt og engangsposter",
+        "dekomponer ROE og ROIC med DuPont og kapitalbinding",
+        "bygg historisk og framoverskuende fri kontantstrøm",
+        "estimer kapitalkostnad og begrunn risikopremier",
+        "beregn verdi med DCF og minst én relativ metode",
+        "gjennomfør sensitivitets-, scenario- og reversert-DCF-analyse",
+        "formuler verdiintervall og viktigste falsifiserbare antakelser"
+      ],
+      "worked_case": {
+        "case_title": "Verdsettelse av moden industrivirksomhet",
+        "input_facts": [
+          "normalisert EBIT 42 000 000 NOK",
+          "investert kapital 260 000 000 NOK",
+          "netto rentebærende gjeld 95 000 000 NOK",
+          "forventet langsiktig vekst 1,5–3,0 prosent",
+          "WACC 7,0–10,0 prosent",
+          "markedsverdi egenkapital 410 000 000 NOK"
+        ],
+        "required_operations": [
+          "beregn ROIC og fri kontantstrøm fra driftsdriverne",
+          "bygg femårs DCF med eksplisitt terminalverdi",
+          "lag sensitivitetsmatrise for WACC og vekst",
+          "gjennomfør reversert DCF og sammenlign med markedspris"
+        ],
+        "required_outputs": [
+          "normalisert historikk",
+          "driverbasert prognosemodell",
+          "verdiintervall for egenkapital",
+          "investeringsnotat med antakelsesregister"
+        ],
+        "validation_checks": [
+          "terminalverdien skal kunne avstemmes mot varig avkastning og vekst",
+          "gjeld og ikke-operative eiendeler skal behandles konsistent",
+          "verdikonklusjonen skal endres når sentrale antakelser endres"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Normaliser tre års regnskap og beregn DuPont, ROIC, fri kontantstrøm og kapitalbinding.",
+          "deliverable": "analysebok med dokumentert normaliseringsjournal",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Verdsett samme virksomhet med DCF og to multipler og forklar avviket med vekst, risiko og regnskapsprinsipper.",
+          "deliverable": "verdsettelsesrapport med sammenligningsutvalg",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Bygg en driverbasert modell med bull/base/bear, reversert DCF og eksplisitt modellrisiko; presenter verdi som intervall.",
+          "deliverable": "investeringskomitémemo med modell, sensitivitetskart og falsifiseringspunkter",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "reversert DCF",
+        "residualinntektsmodell",
+        "Monte Carlo for verdiintervall",
+        "sum-of-the-parts"
+      ],
+      "failure_modes": [
+        "terminalverdi blir en restpost uten økonomisk begrunnelse",
+        "WACC kopieres fra en database uten kapitalstrukturkontroll",
+        "engangsposter fjernes asymmetrisk",
+        "multipler sammenlignes på ulikt definert resultatmål"
+      ],
+      "cross_module_integration": [
+        "mod_naering_finansregnskap_rapportering",
+        "em_naering_kapital_finans",
+        "mod_naering_prognose_optimering_beslutning"
+      ],
+      "professional_ethics": [
+        "skill analyse fra investeringsinteresse",
+        "vis hvem som bærer nedsiderisiko",
+        "ikke skjul følsomhet bak ett punktestimat"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_kostnad_kalkulasjon_budsjett",
+      "title": "Kostnadsanalyse, kalkulasjon og budsjettering",
+      "track_id": "regnskap_revisjon_okonomistyring",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "kostnadsatferd",
+        "relevante kostnader",
+        "ABC",
+        "fleksibelt budsjett",
+        "avviksanalyse"
+      ],
+      "canonical_works": [
+        {
+          "author": "Charles T. Horngren",
+          "title": "Cost Accounting: A Managerial Emphasis",
+          "year": 2018,
+          "role": "foundational"
+        },
+        {
+          "author": "Robert S. Kaplan and Robin Cooper",
+          "title": "Cost & Effect",
+          "year": 1998,
+          "role": "activity_based"
+        },
+        {
+          "author": "Jeremy Hope and Robin Fraser",
+          "title": "Beyond Budgeting",
+          "year": 2003,
+          "role": "critical"
+        },
+        {
+          "author": "Kenneth A. Merchant and Wim A. Van der Stede",
+          "title": "Management Control Systems",
+          "year": 2017,
+          "role": "control"
+        }
+      ],
+      "authority_basis": [
+        "virksomhetens koststeds- og aktivitetsdata",
+        "kontrakts- og leverandørdata",
+        "årsregnskap og interne budsjetter",
+        "arbeids- og kapasitetsdata"
+      ],
+      "research_questions": [
+        "Hvilke kostnader endres faktisk når beslutningsalternativet endres?",
+        "Når gir kostnadsdrivere en bedre årsaksmodell enn fordelingsnøkler?",
+        "Hvordan påvirker budsjettregimet lokal læring, gaming og ansvarlighet?"
+      ],
+      "analytical_sequence": [
+        "definer beslutning, tidshorisont og relevante kapasitetsgrenser",
+        "klassifiser kostnader etter atferd og beslutningsrelevans",
+        "bygg bidrags-, selvkost- og aktivitetsbasert kalkyle",
+        "beregn fleksibelt budsjett og pris-, volum- og effektivitetsavvik",
+        "test kostnadsdriverne mot faktisk ressursbruk",
+        "analyser ledig kapasitet, flaskehals og alternativkostnad",
+        "vurder styringsvirkning og mulige insentivvridninger"
+      ],
+      "worked_case": {
+        "case_title": "Produktmiks med knapp maskintid",
+        "input_facts": [
+          "produkt A selges for 1 200 NOK og bruker 2 maskintimer",
+          "produkt B selges for 1 850 NOK og bruker 5 maskintimer",
+          "variable kostnader er 650 NOK for A og 900 NOK for B",
+          "månedlig kapasitet er 3 200 maskintimer",
+          "indirekte kostnader er 1 440 000 NOK",
+          "etterspørselen er maksimalt 1 000 A og 500 B"
+        ],
+        "required_operations": [
+          "beregn dekningsbidrag per enhet og per knapp faktor",
+          "finn optimal produktmiks under kapasitetsbegrensningen",
+          "fordel indirekte kostnader med tradisjonell og ABC-basert metode",
+          "bygg fleksibelt budsjett og avvik for faktisk volum"
+        ],
+        "required_outputs": [
+          "beslutningsrelevant produktmiks",
+          "to kalkyler med forklaring av forskjell",
+          "kapasitets- og alternativkostnadsanalyse",
+          "styringsnotat om budsjett- og insentivvirkning"
+        ],
+        "validation_checks": [
+          "produktmiksen skal respektere kapasitet og etterspørselsgrenser",
+          "faste kostnader skal ikke automatisk gjøres variable",
+          "ABC-driverne skal kunne knyttes til observerbar aktivitet"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Bygg bidrags- og selvkostkalkyle for tre produkter og identifiser relevante kostnader i en make-or-buy-beslutning.",
+          "deliverable": "kalkylemappe med beslutningsbro",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Estimer kostnadsdrivere fra aktivitetsdata, bygg fleksibelt budsjett og forklar hvert hovedavvik.",
+          "deliverable": "kostnadsdriveranalyse med avviksfortelling",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Optimaliser produkt- eller tjenestemiks med kapasitetsgrenser og vurder hvordan budsjettmål kan skape gaming eller underinvestering.",
+          "deliverable": "styringsdesign med optimeringsmodell og kontrolltiltak",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "time-driven ABC",
+        "throughput accounting",
+        "fleksibelt budsjett med stokastisk volum",
+        "constraint-based product mix"
+      ],
+      "failure_modes": [
+        "sunk cost tas med i framtidsbeslutning",
+        "fordelingsnøkkel tolkes som kausal kostnadsdriver",
+        "full kapasitetskostnad brukes som marginalkostnad",
+        "gunstige avvik vurderes uten kvalitets- eller leveringseffekt"
+      ],
+      "cross_module_integration": [
+        "mod_naering_operations_kapasitet",
+        "mod_naering_prognose_optimering_beslutning",
+        "mod_naering_internkontroll_revisjon_prestasjon"
+      ],
+      "professional_ethics": [
+        "unngå mål som belønner lokal gevinst og samlet tap",
+        "synliggjør arbeidsbelastning og kvalitetskostnad",
+        "skill økonomisk kontroll fra detaljstyring"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_internkontroll_revisjon_prestasjon",
+      "title": "Internkontroll, revisjon og prestasjonsstyring",
+      "track_id": "regnskap_revisjon_okonomistyring",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "kontrollmiljø",
+        "revisjonsrisiko",
+        "revisjonsbevis",
+        "KPI-design",
+        "målforskyvning"
+      ],
+      "canonical_works": [
+        {
+          "author": "Committee of Sponsoring Organizations of the Treadway Commission",
+          "title": "Internal Control—Integrated Framework",
+          "year": 2013,
+          "role": "current_standard"
+        },
+        {
+          "author": "International Auditing and Assurance Standards Board",
+          "title": "ISA 315 (Revised 2019): Identifying and Assessing the Risks of Material Misstatement",
+          "year": 2019,
+          "role": "audit_standard"
+        },
+        {
+          "author": "Michael Power",
+          "title": "The Audit Society",
+          "year": 1997,
+          "role": "critical"
+        },
+        {
+          "author": "Robert S. Kaplan and David P. Norton",
+          "title": "The Balanced Scorecard",
+          "year": 1996,
+          "role": "performance"
+        }
+      ],
+      "authority_basis": [
+        "revisorloven og relevante revisjonsstandarder",
+        "COSO-rammeverket",
+        "virksomhetens prosess-, tilgangs- og hendelseslogger",
+        "styre- og revisjonsutvalgsdokumentasjon"
+      ],
+      "research_questions": [
+        "Hvilke kombinasjoner av iboende risiko og kontrollsvikt kan gi vesentlig feil?",
+        "Hvilket revisjonsbevis er tilstrekkelig og hensiktsmessig for den konkrete påstanden?",
+        "Når fortrenger KPI-er formålet de skulle representere?"
+      ],
+      "analytical_sequence": [
+        "forstå virksomhet, prosess, mål og kontrollmiljø",
+        "identifiser påstander, risikoer og mulige mislighetsmekanismer",
+        "koble forebyggende og avdekkende kontroller til hver risiko",
+        "test kontrolldesign og faktisk utførelse",
+        "planlegg substanshandlinger og utvalg basert på rest-risiko",
+        "vurder KPI-validitet, gaming og utilsiktede virkninger",
+        "kommuniser funn, alvorlighet, ansvar og oppfølging"
+      ],
+      "worked_case": {
+        "case_title": "Inntektsprosess med bonusmål",
+        "input_facts": [
+          "årlig omsetning 320 000 000 NOK",
+          "salgsbonus utløses ved 12 prosent vekst",
+          "45 manuelle krediteringer på til sammen 7 800 000 NOK er bokført etter årsslutt",
+          "20 prosent av kontraktene mangler dokumentert leveringsaksept",
+          "kontrollutvalg 60 transaksjoner gir 6 avvik",
+          "vesentlighetsgrense er 4 500 000 NOK"
+        ],
+        "required_operations": [
+          "bygg risiko-kontroll-matrise for inntektsprosessen",
+          "beregn kontrollavviksrate og vurder utvidet utvalg",
+          "gjennomfør analytisk forventningsmodell og cut-off-test",
+          "vurder om bonus-KPI-en skaper målforskyvning"
+        ],
+        "required_outputs": [
+          "revisjonsplan med påstander og handlinger",
+          "kontrolltest med konklusjon",
+          "kvantifisert mulig feilintervall",
+          "ledelses- og styrekommunikasjon med prioritering"
+        ],
+        "validation_checks": [
+          "revisjonsbevis skal knyttes til konkret påstand",
+          "utvalgsresultat skal ikke ekstrapoleres uten metode",
+          "kontroll som finnes på papiret skal ikke regnes som utført"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Kartlegg én prosess og koble fem risikoer til kontroller, påstander og dokumentasjon.",
+          "deliverable": "risiko-kontroll-matrise med testprogram",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Test et kontrollutvalg, beregn avviksrate og utform målrettede substanshandlinger for rest-risikoen.",
+          "deliverable": "arbeidspapirpakke med bevisvurdering",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Utform et samlet kontroll- og KPI-system for en kompleks prosess og analyser mislighetsrisiko, gaming, personvern og rapportering til styret.",
+          "deliverable": "revisjonsutvalgsrapport med kontrollarkitektur og oppfølgingsplan",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "process mining for kontrolltesting",
+        "statistisk og ikke-statistisk revisjonsutvalg",
+        "fraud triangle og incentive mapping",
+        "KPI-validitetsanalyse"
+      ],
+      "failure_modes": [
+        "kontrollbeskrivelse forveksles med kontrollevidens",
+        "ingen kobling mellom risiko, påstand og handling",
+        "avvik lukkes uten rotårsaksanalyse",
+        "KPI forbedres mens faktisk kvalitet faller"
+      ],
+      "cross_module_integration": [
+        "mod_naering_bokforing_regnskapskretslop",
+        "mod_naering_finansregnskap_rapportering",
+        "mod_naering_konkurranserett_compliance_baerekraft"
+      ],
+      "professional_ethics": [
+        "uavhengighet og profesjonell skepsis",
+        "beskytt varslere og sensitive data",
+        "grader funn etter evidens og konsekvens, ikke organisatorisk makt"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    }
+  ]
+}

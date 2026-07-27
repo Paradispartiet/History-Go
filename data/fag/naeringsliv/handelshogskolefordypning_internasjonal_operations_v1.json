@@ -1,0 +1,780 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_individual_professional_depth",
+  "type": "business_school_depth_track",
+  "subject_id": "naeringsliv",
+  "track_id": "internasjonal_virksomhet_operations_prosjekt",
+  "updated_at": "2026-07-27",
+  "profile_count": 5,
+  "profiles": [
+    {
+      "module_id": "mod_naering_internasjonal_handel_valuta",
+      "title": "Internasjonal handel og valuta",
+      "track_id": "internasjonal_virksomhet_operations_prosjekt",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "komparative fortrinn",
+        "handelshindringer",
+        "valutakurs",
+        "prising",
+        "sikring",
+        "eksponering"
+      ],
+      "canonical_works": [
+        {
+          "author": "David Ricardo",
+          "title": "On the Principles of Political Economy and Taxation",
+          "year": 1817,
+          "role": "foundational"
+        },
+        {
+          "author": "Paul R. Krugman, Maurice Obstfeld and Marc J. Melitz",
+          "title": "International Economics: Theory and Policy",
+          "year": 2018,
+          "role": "theory"
+        },
+        {
+          "author": "Rudiger Dornbusch",
+          "title": "Expectations and Exchange Rate Dynamics",
+          "year": 1976,
+          "role": "exchange_rate"
+        },
+        {
+          "author": "Alan C. Shapiro",
+          "title": "Multinational Financial Management",
+          "year": 2014,
+          "role": "applied"
+        }
+      ],
+      "authority_basis": [
+        "tolldata og handelsstatistikk",
+        "Norges Banks valuta- og rentedata",
+        "kontrakter, incoterms og leverandørdata",
+        "gjeldende toll-, sanksjons- og eksportkontrollregler"
+      ],
+      "research_questions": [
+        "Hvilke kostnader og produktivitetsforskjeller forklarer handelsstrømmen etter transport og toll?",
+        "Hvilken del av resultatet er transaksjons-, omregnings- eller økonomisk valutaeksponering?",
+        "Når reduserer sikring risiko, og når skaper den basis- eller likviditetsrisiko?"
+      ],
+      "analytical_sequence": [
+        "avgrens vare/tjeneste, land, kontrakt, valuta og leveringsbetingelse",
+        "bygg prisbro fra produsent til levert kostnad",
+        "beregn toll, avgift, transport og finansiering",
+        "kartlegg valutaeksponering etter tidspunkt og kontantstrøm",
+        "estimer naturlig og finansiell sikring",
+        "modellér volum-, pris- og valutascenarioer",
+        "vurder strategisk avhengighet, fordelingsvirkning og regelrisiko"
+      ],
+      "worked_case": {
+        "case_title": "Importkontrakt i EUR",
+        "input_facts": [
+          "årlig volum 18 000 enheter",
+          "innkjøpspris 420 EUR per enhet",
+          "spotkurs 11,60 NOK/EUR",
+          "seksmåneders terminkurs 11,82",
+          "toll og transport 310 NOK per enhet",
+          "salgspris i Norge 7 490 NOK per enhet"
+        ],
+        "required_operations": [
+          "beregn levert kostnad og handelsmargin ved spot og termin",
+          "kartlegg eksponering per betalingsmåned",
+          "sammenlign naturlig sikring, termin og usikret posisjon",
+          "stresstest mot 15 prosent volumfall og 10 prosent svakere krone"
+        ],
+        "required_outputs": [
+          "landed-cost-modell",
+          "valutaeksponeringskalender",
+          "sikringsalternativer med kostnad og risiko",
+          "handelsbeslutning med fordelings- og avhengighetsanalyse"
+        ],
+        "validation_checks": [
+          "valutakurs og kontraktsvaluta skal behandles konsistent",
+          "termin skal ikke vurderes mot framtidig spot som om den er kjent",
+          "toll- og sanksjonsstatus skal verifiseres for varen og datoen"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Bygg en levert-kostnad-bro og beregn handelsmargin og valutaeksponering for én varestrøm.",
+          "deliverable": "handels- og valutakalkyle med kildespor",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Sammenlign tre sikringsstrategier og inkluder basisrisiko, likviditet og sensitivitet for volum.",
+          "deliverable": "valutarisikorapport med scenario",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Utform en markeds- og sikringsstrategi som integrerer pris, toll, valuta, kontrakt og strategisk avhengighet.",
+          "deliverable": "treasury- og handelskomitémemo med hedge policy",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "effective exchange rate decomposition",
+        "pass-through analysis",
+        "cash-flow-at-risk",
+        "natural hedge optimization"
+      ],
+      "failure_modes": [
+        "komparative fortrinn brukes uten transport og institusjonelle kostnader",
+        "termin behandles som prognose",
+        "omregningseksponering blandes med kontantstrømseksponering",
+        "sanksjons- og tollrisiko ignoreres"
+      ],
+      "cross_module_integration": [
+        "mod_naering_regnskapsanalyse_verdsettelse",
+        "mod_naering_avtalerett_kjopsrett",
+        "mod_naering_multinasjonale_globale_verdikjeder"
+      ],
+      "professional_ethics": [
+        "vurder arbeids- og miljøvirkning i handelsleddene",
+        "ikke skjul sanksjons- eller korrupsjonsrisiko bak margin",
+        "unngå spekulasjon som presenteres som sikring"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_multinasjonale_globale_verdikjeder",
+      "title": "Multinasjonale selskaper og globale verdikjeder",
+      "track_id": "internasjonal_virksomhet_operations_prosjekt",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "markedsinngang",
+        "FDI",
+        "CAGE",
+        "transaksjonskostnad",
+        "global verdikjede",
+        "internprising",
+        "lokal verdiskaping"
+      ],
+      "canonical_works": [
+        {
+          "author": "John H. Dunning",
+          "title": "The Eclectic Paradigm of International Production",
+          "year": 1988,
+          "role": "foundational"
+        },
+        {
+          "author": "Pankaj Ghemawat",
+          "title": "Distance Still Matters",
+          "year": 2001,
+          "role": "distance"
+        },
+        {
+          "author": "Gary Gereffi, John Humphrey and Timothy Sturgeon",
+          "title": "The Governance of Global Value Chains",
+          "year": 2005,
+          "role": "value_chain"
+        },
+        {
+          "author": "Alan M. Rugman and Alain Verbeke",
+          "title": "A Perspective on Regional and Global Strategies of Multinational Enterprises",
+          "year": 2004,
+          "role": "critical"
+        }
+      ],
+      "authority_basis": [
+        "foretaks-, eier- og landdata",
+        "toll- og handelsdata",
+        "verdikjede-, leverandør- og arbeidslivsdata",
+        "skatteavtaler, internprisings- og aktsomhetskrav der relevante"
+      ],
+      "research_questions": [
+        "Hvilken kombinasjon av eierskap, lokasjon og internalisering forklarer inngangsformen?",
+        "Hvor i verdikjeden skapes og kapres verdi, og hvilke ledd bærer risiko?",
+        "Hvordan påvirker institusjonell avstand kontroll, legitimitet og lokal læring?"
+      ],
+      "analytical_sequence": [
+        "definer marked, aktivitet og inngangsbeslutning",
+        "kartlegg landavstand med CAGE og konkrete indikatorer",
+        "sammenlign eksport, lisens, joint venture og heleid etablering",
+        "kartlegg aktivitet, kontrakt, styring og verdi per verdikjedeledd",
+        "analyser kontroll, kunnskapsoverføring og leverandørmakt",
+        "beregn landrisikojustert avkastning og lokal verdiskapingsandel",
+        "vurder skatt, arbeidsliv, aktsomhet og exit-alternativ"
+      ],
+      "worked_case": {
+        "case_title": "Markedsinngang i tre land",
+        "input_facts": [
+          "investering ved heleid etablering 480 000 000 NOK",
+          "joint venture krever 240 000 000 NOK og 50 prosent eierandel",
+          "lisens gir royalty 6 prosent av omsetning",
+          "forventet omsetning 900 000 000 NOK etter fem år",
+          "landrisikopremie varierer 2–7 prosentpoeng",
+          "lokal innkjøpsandel varierer 25–65 prosent"
+        ],
+        "required_operations": [
+          "bygg CAGE- og institusjonsanalyse",
+          "modellér kontantstrøm og kontroll for tre inngangsformer",
+          "kartlegg global verdifordeling og lokal verdiskaping",
+          "stresstest politisk risiko, kunnskapstap og exit"
+        ],
+        "required_outputs": [
+          "inngangsmodematrise",
+          "landrisikojustert verdimodell",
+          "verdikjedekart med styringsform",
+          "aktsomhets- og exitplan"
+        ],
+        "validation_checks": [
+          "risikopremie skal ikke erstatte kvalitativ landanalyse",
+          "royalty og internprising skal behandles etter faktisk funksjon og regelverk",
+          "lokal verdiskaping skal defineres og ikke likestilles med lokal omsetning"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Sammenlign eksport, lisens, joint venture og heleid etablering for ett dokumentert marked. Beregn kapitalbehov, forventet margin, kontrollgrad og landrisiko for hvert alternativ, og bruk CAGE-rammen til å forklare hvordan institusjonell, kulturell, geografisk og økonomisk avstand påvirker gjennomførbarheten.",
+          "deliverable": "markedsinngangsrapport med CAGE-data",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Kartlegg tre land- eller organisasjonsledd og beregn verdi, kontroll og risiko per ledd.",
+          "deliverable": "global verdikjedeanalyse med styringskart",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Design en internasjonal portefølje med landrisiko, skatte-/aktsomhetskrav, kunnskapsoverføring og exit-rettigheter.",
+          "deliverable": "konsernkomitémemo med inngangs- og exitarkitektur",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "OLI/internalization analysis",
+        "global value-chain governance typology",
+        "country-risk-adjusted NPV",
+        "transfer-pricing functional analysis"
+      ],
+      "failure_modes": [
+        "landscore blir beslutningsautomat",
+        "FDI beskrives uten alternativkostnad og exit",
+        "lokal omsetning kalles lokal verdiskaping",
+        "leverandørledd vurderes uten arbeids- og menneskerettighetsdata"
+      ],
+      "cross_module_integration": [
+        "mod_naering_internasjonal_handel_valuta",
+        "mod_naering_skatt_avgift",
+        "mod_naering_innkjop_kvalitet_forsyningsrisiko"
+      ],
+      "professional_ethics": [
+        "fordel kontroll og risiko rettferdig i verdikjeden",
+        "unngå race-to-the-bottom i arbeid og skatt",
+        "dokumenter aktsomhet og lokal påvirkning"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_operations_kapasitet",
+      "title": "Operations og kapasitetsstyring",
+      "track_id": "internasjonal_virksomhet_operations_prosjekt",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "prosessflyt",
+        "variasjon",
+        "kapasitet",
+        "kø",
+        "flaskehals",
+        "Little's law",
+        "kvalitet",
+        "service"
+      ],
+      "canonical_works": [
+        {
+          "author": "John D. C. Little",
+          "title": "A Proof for the Queuing Formula L = λW",
+          "year": 1961,
+          "role": "foundational"
+        },
+        {
+          "author": "Wallace J. Hopp and Mark L. Spearman",
+          "title": "Factory Physics",
+          "year": 2011,
+          "role": "operations"
+        },
+        {
+          "author": "Eliyahu M. Goldratt and Jeff Cox",
+          "title": "The Goal",
+          "year": 1984,
+          "role": "constraints"
+        },
+        {
+          "author": "Wickham Skinner",
+          "title": "Manufacturing—Missing Link in Corporate Strategy",
+          "year": 1969,
+          "role": "strategy"
+        }
+      ],
+      "authority_basis": [
+        "prosess- og hendelseslogger",
+        "bemannings-, skift- og kapasitetsdata",
+        "kvalitets-, feil- og servicehendelser",
+        "arbeidsmiljø- og sikkerhetskrav"
+      ],
+      "research_questions": [
+        "Hvilken variasjon skaper kø, og hvilken kapasitet er faktisk fleksibel?",
+        "Er flaskehalsen fysisk, informasjonsmessig eller styringsskapt?",
+        "Hvordan endres kvalitet og arbeidsbelastning når utnyttelsen nærmer seg 100 prosent?"
+      ],
+      "analytical_sequence": [
+        "definer prosessgrense, enhet, start/slutt og kvalitetsutfall",
+        "kartlegg strøm, venting, omarbeid og beslutningspunkter",
+        "estimer ankomst, behandlingstid, variasjon og effektiv kapasitet",
+        "beregn utnyttelse, WIP og gjennomløp med Little's law",
+        "identifiser flaskehals og constraint buffer",
+        "simuler etterspørsels- og bemanningsscenario",
+        "vurder kvalitet, sikkerhet, service og arbeidsbelastning",
+        "utform kontrollplan og læringssløyfe"
+      ],
+      "worked_case": {
+        "case_title": "Kapasitet i reparasjonsverksted",
+        "input_facts": [
+          "ankomst 42 jobber per dag",
+          "tre teknikere med 7,5 timer hver",
+          "gjennomsnittlig behandlingstid 28 minutter",
+          "standardavvik behandlingstid 19 minutter",
+          "17 prosent krever omarbeid",
+          "forsinkelseskostnad anslås til 650 NOK per jobb per dag"
+        ],
+        "required_operations": [
+          "beregn nominell og effektiv kapasitet",
+          "beregn WIP og gjennomløp med Little's law",
+          "identifiser flaskehals og omarbeidsbelastning",
+          "simuler bemanning, prioritering og kvalitetsforbedring"
+        ],
+        "required_outputs": [
+          "prosesskart med tider og kø",
+          "kapasitets- og flaskehalsanalyse",
+          "scenario for kostnad, service og kvalitet",
+          "implementeringsplan med kontrollgrenser"
+        ],
+        "validation_checks": [
+          "Little's law skal brukes på stabil og konsistent avgrenset prosess",
+          "nominell tid skal justeres for fravær, variasjon og omarbeid",
+          "høy utnyttelse skal vurderes mot kø og arbeidsmiljø"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Kartlegg en avgrenset ende-til-ende-prosess med ankomster, aktivitetstider, kapasitet og kvalitetsutfall. Beregn kapasitetsutnyttelse, arbeid i prosess og gjennomløp med Little’s law, identifiser flaskehalsen og kontroller at enheter og tidsperioder er konsistente.",
+          "deliverable": "prosess- og kapasitetsark",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Analyser variasjon og omarbeid, identifiser flaskehals og sammenlign tre forbedringsalternativer.",
+          "deliverable": "operationsanalyse med scenario",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Bygg en diskret-hendelsessimulering eller kømodell og optimaliser service, kostnad, kvalitet og bemanning under usikkerhet.",
+          "deliverable": "operativt design med simuleringsmodell og kontrollplan",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "queueing models",
+        "discrete-event simulation",
+        "theory of constraints",
+        "statistical process control",
+        "capacity pooling"
+      ],
+      "failure_modes": [
+        "100 prosent utnyttelse behandles som ideal",
+        "gjennomsnittstid brukes uten variasjon",
+        "WIP og kø blandes",
+        "lokal effektivitet forbedres mens flaskehalsen forverres"
+      ],
+      "cross_module_integration": [
+        "mod_naering_kostnad_kalkulasjon_budsjett",
+        "mod_naering_prognose_optimering_beslutning",
+        "mod_naering_arbeidsrett_personvern"
+      ],
+      "professional_ethics": [
+        "ikke flytt kostnad til ansatte eller kunder uten å synliggjøre det",
+        "sikkerhet og kvalitet er harde begrensninger",
+        "mål belastning og restitusjon, ikke bare produksjon"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "prosessmodell eller simulering med dokumenterte fordelinger",
+        "tests": [
+          "flow conservation",
+          "Little's-law-konsistens",
+          "ekstrembelastning",
+          "kapasitet kan ikke bli negativ"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_naering_innkjop_kvalitet_forsyningsrisiko",
+      "title": "Innkjøp, kvalitet og forsyningsrisiko",
+      "track_id": "internasjonal_virksomhet_operations_prosjekt",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "behov og spesifikasjon",
+        "leverandørvalg",
+        "total eierkostnad",
+        "kvalitet",
+        "lager",
+        "forsyningsrisiko",
+        "resiliens"
+      ],
+      "canonical_works": [
+        {
+          "author": "Peter Kraljic",
+          "title": "Purchasing Must Become Supply Management",
+          "year": 1983,
+          "role": "foundational"
+        },
+        {
+          "author": "W. Edwards Deming",
+          "title": "Out of the Crisis",
+          "year": 1986,
+          "role": "quality"
+        },
+        {
+          "author": "Martin Christopher",
+          "title": "Logistics & Supply Chain Management",
+          "year": 2016,
+          "role": "supply_chain"
+        },
+        {
+          "author": "Christopher S. Tang",
+          "title": "Perspectives in Supply Chain Risk Management",
+          "year": 2006,
+          "role": "risk"
+        }
+      ],
+      "authority_basis": [
+        "leverandør- og kontraktsdata",
+        "kvalitets-, avviks- og reklamasjonsdata",
+        "lager-, etterspørsels- og ledetidsdata",
+        "aktsomhets-, sanksjons- og anskaffelseskrav der relevante"
+      ],
+      "research_questions": [
+        "Hvilke krav er funksjonelle behov, og hvilke låser unødvendig til leverandør?",
+        "Hvordan endres leverandørvalget når pris erstattes av total eierkostnad og avbruddsrisiko?",
+        "Hvor mye redundans er rasjonell når sjeldne avbrudd har store konsekvenser?"
+      ],
+      "analytical_sequence": [
+        "definer behov, kategori, tjenestenivå og kritikalitet",
+        "utform målbar og ikke-diskriminerende spesifikasjon",
+        "kartlegg leverandørmarked, avhengighet og switching cost",
+        "beregn total eierkostnad med kvalitet, logistikk og livsløp",
+        "analyser feilrate, prosesskapabilitet og rotårsak",
+        "beregn sikkerhetslager og forventet avbruddstap",
+        "bygg leverandørportefølje og kontrakts-/oppfølgingsmodell",
+        "vurder aktsomhet, makt og beredskap"
+      ],
+      "worked_case": {
+        "case_title": "Valg av kritisk komponentleverandør",
+        "input_facts": [
+          "leverandør A pris 8 200 NOK per enhet og 2,8 prosent feilrate",
+          "leverandør B pris 8 750 NOK og 0,9 prosent feilrate",
+          "leverandør C pris 7 900 NOK og 11 ukers ledetid",
+          "årlig behov 6 000 enheter",
+          "produksjonsstans koster 380 000 NOK per dag",
+          "sikkerhetslager binder kapital til 9 prosent årlig"
+        ],
+        "required_operations": [
+          "beregn total eierkostnad per leverandør",
+          "estimer sikkerhetslager fra ledetid og etterspørselsvariasjon",
+          "beregn forventet avbruddstap og konsentrasjonsrisiko",
+          "design dual-sourcing og kvalitetsoppfølging"
+        ],
+        "required_outputs": [
+          "TCO-modell",
+          "leverandørscore med usikkerhet",
+          "lager- og avbruddsscenario",
+          "kontrakts- og beredskapsplan"
+        ],
+        "validation_checks": [
+          "alle kostnadskomponenter skal ha definert tidsperiode og enhet",
+          "scorevekter skal sensitivitetstestes",
+          "leverandørdata skal kontrolleres for rapporterings- og utvalgsbias"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Sammenlign tre dokumenterte leverandørtilbud ved å beregne total eierkostnad, kvalitetsjustert leverandørscore og forventet leveringstid. Forklar hvordan pris, feilrate, transport, kapitalbinding og kontraktsvilkår påvirker rangeringen.",
+          "deliverable": "innkjøpsanalyse med sporbar vekting",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Bygg en lager- og avbruddsmodell med etterspørselsvariasjon, ledetid, sikkerhetslager og forventet tap ved leveransestans. Sammenlign single- og dual-sourcing og stresstest resultatet mot leverandørsvikt, prisøkning og endret tjenestenivå.",
+          "deliverable": "forsyningsrisikorapport med scenario",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Design en kategori- og leverandørstrategi med kvalitetssystem, aktsomhet, kontraktsinsentiver og robusthetsopsjoner.",
+          "deliverable": "anskaffelseskomitémemo med portefølje og beredskap",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "Kraljic portfolio with evidence",
+        "supplier capability audit",
+        "newsvendor/safety-stock model",
+        "fault tree and FMEA",
+        "real-options redundancy"
+      ],
+      "failure_modes": [
+        "laveste pris kalles laveste kostnad",
+        "scoremodell skjuler verdidommer i vekter",
+        "sikkerhetslager beregnes uten servicegrad og ledetidsfordeling",
+        "leverandørrisiko vurderes uten underleverandører"
+      ],
+      "cross_module_integration": [
+        "mod_naering_operations_kapasitet",
+        "mod_naering_avtalerett_kjopsrett",
+        "mod_naering_multinasjonale_globale_verdikjeder"
+      ],
+      "professional_ethics": [
+        "unngå å skyve urimelig risiko og betalingspress nedover kjeden",
+        "inkluder menneskerettigheter og miljø i kritiske kategorier",
+        "dokumenter interessekonflikter i leverandørvalg"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      }
+    },
+    {
+      "module_id": "mod_naering_prosjektledelse_prosjektokonomi",
+      "title": "Prosjektledelse og prosjektøkonomi",
+      "track_id": "internasjonal_virksomhet_operations_prosjekt",
+      "depth_status": "canonical_individually_curated_depth",
+      "disciplinary_scope": [
+        "omfang",
+        "WBS",
+        "kritisk linje",
+        "opptjent verdi",
+        "risikoreserve",
+        "endringskontroll",
+        "gevinstrealisering"
+      ],
+      "canonical_works": [
+        {
+          "author": "Project Management Institute",
+          "title": "A Guide to the Project Management Body of Knowledge (PMBOK Guide), Seventh Edition",
+          "year": 2021,
+          "role": "current_standard"
+        },
+        {
+          "author": "Eliyahu M. Goldratt",
+          "title": "Critical Chain",
+          "year": 1997,
+          "role": "constraints"
+        },
+        {
+          "author": "Bent Flyvbjerg and Dan Gardner",
+          "title": "How Big Things Get Done",
+          "year": 2023,
+          "role": "reference_class"
+        },
+        {
+          "author": "Aaron J. Shenhar and Dov Dvir",
+          "title": "Reinventing Project Management",
+          "year": 2007,
+          "role": "contingency"
+        }
+      ],
+      "authority_basis": [
+        "godkjent mandat, business case og kontrakter",
+        "plan-, ressurs- og kostnadsdata",
+        "risiko-, endrings- og beslutningslogg",
+        "gevinstmål og operativ baseline"
+      ],
+      "research_questions": [
+        "Hvilke leveranser er nødvendige for gevinsten, og hvilke er bare aktivitet?",
+        "Hva er kritisk linje når ressursavhengigheter og usikkerhet tas med?",
+        "Hvordan skiller man prognoseendring, scope creep og legitim læring?"
+      ],
+      "analytical_sequence": [
+        "forankre problem, gevinst, eier og beslutningsmandat",
+        "bygg WBS og ansvarsmatrise med akseptansekriterier",
+        "estimer varighet, kostnad og usikkerhet med referanseklasse",
+        "bygg nettverksplan og identifiser kritisk linje/kjede",
+        "etabler baseline, opptjent verdi og endringskontroll",
+        "kvantifiser risiko og reserve uten dobbeltelling",
+        "oppdater sluttprognose og beslutningsporter",
+        "planlegg overgang, gevinstmåling og etterevaluering"
+      ],
+      "worked_case": {
+        "case_title": "Digitaliseringsprosjekt",
+        "input_facts": [
+          "opprinnelig budsjett 96 000 000 NOK",
+          "planlagt varighet 18 måneder",
+          "etter 9 måneder er planlagt verdi 52 000 000 NOK",
+          "opptjent verdi 41 000 000 NOK",
+          "faktisk kostnad 49 000 000 NOK",
+          "risikoregister har P50-restkostnad 58 000 000 NOK"
+        ],
+        "required_operations": [
+          "beregn CPI, SPI og estimate at completion",
+          "bygg kritisk-linje-analyse med to ressurskonflikter",
+          "simuler P50/P80 kostnad og ferdigdato",
+          "vurder endringsforslag mot gevinst og sunk cost"
+        ],
+        "required_outputs": [
+          "oppdatert nettverksplan",
+          "earned-value- og sluttprognose",
+          "kvantitativ risikoanalyse",
+          "beslutningsport med fortsett/redesign/stopp"
+        ],
+        "validation_checks": [
+          "EVM-tall skal avstemmes mot samme baseline og dato",
+          "risikoreserve skal ikke legges dobbelt oppå usikker estimat",
+          "gevinst skal ha eier, baseline og måletidspunkt"
+        ]
+      },
+      "progression": {
+        "introductory": {
+          "activity": "Bygg en WBS, nettverksplan og kostnadsbaseline for et avgrenset prosjekt med dokumenterte aktiviteter, avhengigheter og ressurser. Finn kritisk linje, beregn planlagt varighet og kontroller at arbeidsomfang, milepæler og budsjett kan avstemmes.",
+          "deliverable": "prosjektplan med kritisk linje og akseptansekriterier",
+          "pass_criteria": [
+            "alle tall, enheter og kilder er sporbare",
+            "fagbegrepene brukes i korrekt betydning",
+            "beregning eller rettsanvendelse kan etterprøves trinn for trinn",
+            "konklusjonen holder seg innenfor dokumentert evidens"
+          ]
+        },
+        "intermediate": {
+          "activity": "Beregn opptjent verdi, sluttprognose og kvantitativ risikoreserve ved en statusdato.",
+          "deliverable": "prosjektkontrollrapport med risikomodell",
+          "pass_criteria": [
+            "minst to plausible forklaringer eller alternativer sammenlignes",
+            "metodevalg og avgrensning begrunnes eksplisitt",
+            "resultatet stresstestes mot minst én endret antakelse",
+            "datakvalitet, skjevhet eller rettskildevekt vurderes"
+          ]
+        },
+        "advanced": {
+          "activity": "Bruk referanseklasse, Monte Carlo og gevinstrealisering til å anbefale fortsett, redesign eller stopp.",
+          "deliverable": "styringsgruppememo med beslutningsport og etterevalueringsplan",
+          "pass_criteria": [
+            "analysen integrerer minst to fagperspektiver",
+            "modell-, måle- eller rettslig usikkerhet kvantifiseres eller graderes",
+            "anbefalingen viser fordelingsvirkninger og profesjonsetisk risiko",
+            "replikasjons-, kontroll- eller kontradiksjonsgrunnlag følger leveransen"
+          ]
+        }
+      },
+      "advanced_techniques": [
+        "reference class forecasting",
+        "critical-chain buffers",
+        "earned value management",
+        "Monte Carlo schedule risk",
+        "benefits realization management"
+      ],
+      "failure_modes": [
+        "prosent ferdig rapporteres uten leveransebevis",
+        "sunk cost brukes som argument for å fortsette",
+        "reserve brukes som skjult budsjett",
+        "prosjektet erklæres vellykket ved levering uten gevinstmåling"
+      ],
+      "cross_module_integration": [
+        "mod_naering_konsernstrategi_implementering",
+        "mod_naering_prognose_optimering_beslutning",
+        "mod_naering_innkjop_kvalitet_forsyningsrisiko"
+      ],
+      "professional_ethics": [
+        "rapporter realistisk status uten optimisme- eller maktpress",
+        "beskytt sikkerhet og kvalitet ved tids- og kostnadspress",
+        "stopp eller redesign når forventet samfunns- og virksomhetsverdi ikke lenger forsvarer risiko"
+      ],
+      "source_refresh": {
+        "reviewed_at": "2026-07-27",
+        "frequency": "annual",
+        "trigger": "ny standard, lovendring, vesentlig metodeoppdatering eller endret datakilde",
+        "owner_rule": "fagansvarlig skal kontrollere primærkilde før stedsspesifikt innhold produseres"
+      },
+      "computational_artifact": {
+        "required": "versjonert nettverks-, EVM- og risikomodell",
+        "tests": [
+          "baseline og statusdato konsistent",
+          "kritisk linje kan reproduseres",
+          "P50/P80 følger definert fordeling",
+          "gevinst har eier og målepunkt"
+        ]
+      }
+    }
+  ]
+}
