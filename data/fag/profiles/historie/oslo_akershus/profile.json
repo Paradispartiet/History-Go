@@ -33,20 +33,20 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 15,
-    "unverified_case_candidates": 88
+    "validated_cases": 16,
+    "unverified_case_candidates": 87
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 103,
-    "claims_total": 48,
-    "sources_total": 44,
-    "evidence_links_total": 48,
+    "claims_total": 57,
+    "sources_total": 53,
+    "evidence_links_total": 57,
     "status": "COMPLETE",
-    "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med bevegelsesspesifikke claim–source–place-baner for Youngstorget, Blitz og Norsk Folkemuseum. Fullført profilstatus gjelder minimumsgrunnlaget; resterende casekandidater og universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 15,
+    "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med ritual-, sorg- og veteranbaner for Rådhusplassen, Regjeringskvartalet og Akershus festning. Fullført profilstatus gjelder minimumsgrunnlaget; dokumentert arkivtaushet og universell teori-evidens er fortsatt eksplisitt produksjonskø.",
+    "verified_cases_total": 16,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -277,7 +277,11 @@
         "batch_id": "history_oslo_akershus_evidence_batch_v2",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_ritual_reception_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -2121,7 +2125,8 @@
       "status": "pilot_validated",
       "evidence_status": "claim_source_linked",
       "place_ids": [
-        "oslo_radhus"
+        "oslo_radhus",
+        "radhusplassen"
       ],
       "emne_ids": [
         "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
@@ -2135,14 +2140,18 @@
         "em_his_embetsstat_forvaltning",
         "em_his_fattigvesen_veldedighet_sosial_kontroll",
         "em_his_idehistorie_fascisme_nazisme_kommunisme",
+        "em_his_jubileum_seremoni_historiebruk",
+        "em_his_minnesteder_historiebruk",
         "em_his_politi_straff_institusjonshverdag",
         "em_his_rettigheter_borgerskap_forvaltning",
         "em_his_rettsoppgjor_etterkrig",
+        "em_his_samtid_ettertid_fortelling",
         "em_his_sanering_byfornyelse",
         "em_his_sosialforsikring_pensjon_universalisme",
         "em_his_stat_institusjoner",
         "em_his_statlig_kapasitet_skatt_infrastruktur",
         "em_his_styring_krise_kontinuitet",
+        "em_his_terror_samtidshistorie",
         "em_his_velferd_hverdagsliv"
       ],
       "case_requirement_ids": [
@@ -2155,6 +2164,12 @@
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26",
         "repository_source": "data/leksikon/places/oslo/politikk/leksikon_oslo_radhus.json"
+      },
+      "validation": {
+        "additional_batch_ids": [
+          "history_ritual_reception_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -2225,9 +2240,11 @@
       "label": "Regjeringskvartalet",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "regjeringskvartalet"
+      ],
       "emne_ids": [
         "em_his_1814_grunnlov_statsdannelse",
         "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
@@ -2247,6 +2264,7 @@
         "em_his_gjenoppbygging_minne",
         "em_his_hendelse_prosess_tidsforlop",
         "em_his_historiske_lag_i_byrom",
+        "em_his_jubileum_seremoni_historiebruk",
         "em_his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
         "em_his_katastrofer_brudd_brann_epidemi_og_naturfare",
         "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
@@ -2256,6 +2274,7 @@
         "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
         "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
         "em_his_kronologi_datering_usikkerhet",
+        "em_his_minnesteder_historiebruk",
         "em_his_minoritetshistorie",
         "em_his_nasjonal_identitet_fortellinger",
         "em_his_politi_straff_institusjonshverdag",
@@ -2274,10 +2293,22 @@
         "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
         "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_ritual_reception_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -4101,13 +4132,15 @@
         "case_his_interkulturelt_museum",
         "case_his_jodisk_museum",
         "case_his_oslo_museum",
+        "case_his_oslo_radhus",
+        "case_his_regjeringskvartalet",
         "case_his_var_frelsers_gravlund"
       ],
       "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
         "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
         "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
+        "case_req_his_temporal_sequence"
       ],
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
@@ -5107,13 +5140,15 @@
         "case_his_interkulturelt_museum",
         "case_his_jodisk_museum",
         "case_his_oslo_museum",
+        "case_his_oslo_radhus",
+        "case_his_regjeringskvartalet",
         "case_his_var_frelsers_gravlund"
       ],
       "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
         "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
         "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
+        "case_req_his_temporal_sequence"
       ],
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
@@ -5427,10 +5462,10 @@
         "case_his_villa_grande"
       ],
       "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
         "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
         "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
+        "case_req_his_temporal_sequence"
       ],
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
@@ -6193,15 +6228,16 @@
         "case_his_akershus_festning",
         "case_his_bjorvika",
         "case_his_eidsvollsbygningen",
+        "case_his_oslo_radhus",
         "case_his_regjeringskvartalet",
         "case_his_var_frelsers_gravlund",
         "case_his_villa_grande"
       ],
       "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
         "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
         "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
+        "case_req_his_temporal_sequence"
       ],
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
@@ -6532,13 +6568,14 @@
         "case_his_loenga_bru",
         "case_his_oslo_brannhistoriske_steder",
         "case_his_oslo_brannmuseum",
+        "case_his_oslo_radhus",
         "case_his_regjeringskvartalet"
       ],
       "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
         "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
         "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
+        "case_req_his_temporal_sequence"
       ],
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
