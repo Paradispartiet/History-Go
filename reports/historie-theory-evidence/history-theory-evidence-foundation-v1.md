@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **35**
-- Andel med dokumentert evidensgrunnlag: **15.2 %**
+- Validerte pilotobjekter: **39**
+- Andel med dokumentert evidensgrunnlag: **17 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -50,6 +50,10 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Stemmerett, partier og parlamentarisme: forklarings- og kildebane | 8 | 3 | 9 | 7 | evidence_ready |
 | Union, selvstendighet og 1905: forklarings- og kildebane | 6 | 3 | 6 | 6 | evidence_ready |
 | 1905, unionsoppløsning og ny utenrikspolitisk orientering: forklarings- og kildebane | 5 | 2 | 3 | 5 | evidence_ready |
+| Protest, kollektiv handling og repertoarer: forklarings- og kildebane | 6 | 4 | 7 | 6 | evidence_ready |
+| Arbeider-, kvinne- og avholdsbevegelser: forklarings- og kildebane | 6 | 4 | 9 | 6 | evidence_ready |
+| Borgerrettighetskamp, antirasisme og solidaritetsbevegelser: forklarings- og kildebane | 5 | 3 | 8 | 5 | evidence_ready |
+| Miljøbevegelse og nye sosiale bevegelser: forklarings- og kildebane | 4 | 2 | 2 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
