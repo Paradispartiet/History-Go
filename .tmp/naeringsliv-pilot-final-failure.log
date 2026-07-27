@@ -1,322 +1,314 @@
-build-final	Reconstruct, validate and publish clean final branch	﻿2026-07-27T10:46:34.4645266Z ##[group]Run set -euo pipefail
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4646358Z ^[[36;1mset -euo pipefail^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4646782Z ^[[36;1mOLD_BRANCH='agent/naeringsliv-pilot-profesjonsmaterialisering'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4647363Z ^[[36;1mFINAL_BRANCH='agent/naeringsliv-pilot-profesjonsmaterialisering-final'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4647884Z ^[[36;1mFINAL_DIR='/tmp/history-go-naeringsliv-pilot-final'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4648238Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4648449Z ^[[36;1mgit fetch origin main "$OLD_BRANCH"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4648735Z ^[[36;1mrm -rf "$FINAL_DIR"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4649037Z ^[[36;1mgit worktree add --detach "$FINAL_DIR" origin/main^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4649385Z ^[[36;1mcd "$FINAL_DIR"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4649630Z ^[[36;1mgit switch -C "$FINAL_BRANCH"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4649888Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4650086Z ^[[36;1mfor part in $(seq -w 0 8); do^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4650549Z ^[[36;1m  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4651072Z ^[[36;1mdone > /tmp/naeringsliv-pilot.b64^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4651576Z ^[[36;1mbase64 --decode /tmp/naeringsliv-pilot.b64 | gzip -dc > /tmp/materialize-naeringsliv-pilot.py^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4652440Z ^[[36;1mtest "$(sha256sum /tmp/materialize-naeringsliv-pilot.py | cut -d' ' -f1)" = "ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4653074Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4653927Z ^[[36;1msed -i 's/config\["emners"\]/config["emner"]/g; s/EMNERS_FILE/EMNER_FILE/g; s/Økonomi og næringsliv professional depth/Økonomi og næringsliv professional module depth/g' /tmp/materialize-naeringsliv-pilot.py^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4654831Z ^[[36;1mpython - <<'PY'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4655073Z ^[[36;1mfrom pathlib import Path^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4655324Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4655623Z ^[[36;1mmaterializer = Path('/tmp/materialize-naeringsliv-pilot.py')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4656276Z ^[[36;1mtext = materializer.read_text(encoding='utf-8')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4656627Z ^[[36;1mreplacements = [^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4657068Z ^[[36;1m    ('phases = {3: "bridge", 4: "bridge", 5: "final"}', 'phases = {3: "middle", 4: "bridge", 5: "final"}'),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4657703Z ^[[36;1m    ('"method_id": item["method_id"],', '"method_id": claim.get("method_id", item["method_id"]),'),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4658363Z ^[[36;1m    (^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4658595Z ^[[36;1m        '    if item.get("calculation"):\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4658979Z ^[[36;1m        '    for field in ("topic_hook_id", "thinker_id", "work"):\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4659354Z ^[[36;1m        '        if field in claim:\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4659680Z ^[[36;1m        '            question[field] = claim[field]\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4660016Z ^[[36;1m        '    if item.get("calculation"):\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4660294Z ^[[36;1m    ),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4660480Z ^[[36;1m    (^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4660846Z ^[[36;1m        '    brief.setdefault("selected_curriculum", {})["module_ids"] = config["modules"]\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4661483Z ^[[36;1m        '    brief["selected_curriculum"]["professional_depth_files"] = config["depth_files"]\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4662001Z ^[[36;1m        '    brief["professional_materialization"] = {\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4662346Z ^[[36;1m        '        "version": VERSION,\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4662673Z ^[[36;1m        '        "module_ids": config["modules"],\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4663060Z ^[[36;1m        '        "professional_depth_files": config["depth_files"],\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4663408Z ^[[36;1m        '    }\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4663629Z ^[[36;1m    ),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4663813Z ^[[36;1m]^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4664014Z ^[[36;1mfor old, new in replacements:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4664283Z ^[[36;1m    if old not in text:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4664644Z ^[[36;1m        raise SystemExit(f'Fant ikke materialiseringsblokk: {old[:80]}')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4665052Z ^[[36;1m    text = text.replace(old, new, 1)^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4665564Z ^[[36;1mmaterializer.write_text(text, encoding='utf-8')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4665881Z ^[[36;1mPY^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4666478Z ^[[36;1mpython -m py_compile /tmp/materialize-naeringsliv-pilot.py^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4666849Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4667028Z ^[[36;1mnpm ci^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4667300Z ^[[36;1mpython /tmp/materialize-naeringsliv-pilot.py^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4667608Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4667794Z ^[[36;1mpython - <<'PY'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4668019Z ^[[36;1mimport json^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4668239Z ^[[36;1mfrom pathlib import Path^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4668482Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4668766Z ^[[36;1mtargets = ('telegrafbygningen', 'oslo_posthus', 'havnelageret')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4669145Z ^[[36;1mfor target in targets:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4669495Z ^[[36;1m    path = Path(f'data/quiz/naeringsliv/{target}_sets_merged.json')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4669937Z ^[[36;1m    quiz = json.loads(path.read_text(encoding='utf-8'))^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4670348Z ^[[36;1m    sets = sorted(quiz['sets'], key=lambda row: row['order'])^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4670791Z ^[[36;1m    if len(sets) != 5 or any(len(row['questions']) != 7 for row in sets):^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4671247Z ^[[36;1m        raise SystemExit(f'{target}: forventet 5 x 7 spørsmål')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4671605Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4671827Z ^[[36;1m    for question in sets[2]['questions']:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4672161Z ^[[36;1m        question['question_type'] = 'context'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4672534Z ^[[36;1m    for index, question in enumerate(sets[3]['questions']):^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4672974Z ^[[36;1m        question['question_type'] = 'fact' if index < 5 else 'context'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4673370Z ^[[36;1m    for question in sets[4]['questions']:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4673691Z ^[[36;1m        question['question_type'] = 'analysis'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4673974Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4674244Z ^[[36;1m    production = quiz.setdefault('production_context', {})^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4674650Z ^[[36;1m    production['method_start_phase'] = 'bridge'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4674996Z ^[[36;1m    production['theory_start_phase'] = 'final'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4675314Z ^[[36;1m    production['content_balance'] = {^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4675591Z ^[[36;1m        'fact': 19,^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4676188Z ^[[36;1m        'context': 9,^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4676467Z ^[[36;1m        'concept_theory': 7,^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4676717Z ^[[36;1m    }^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4676902Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4677095Z ^[[36;1m    if target == 'havnelageret':^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4677417Z ^[[36;1m        theory_question = sets[4]['questions'][-1]^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4677757Z ^[[36;1m        theory_question.update({^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4678092Z ^[[36;1m            'topic_hook_id': 'arbeid_som_verdiskaping',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4678426Z ^[[36;1m            'thinker_id': 'max_weber',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4678731Z ^[[36;1m            'thinker_name': 'Max Weber',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4679117Z ^[[36;1m            'theory_focus': 'rasjonalisering og organisering av vareflyt',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4679498Z ^[[36;1m            'theory_ref': {^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4679800Z ^[[36;1m                'topic_hook_id': 'arbeid_som_verdiskaping',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4680685Z ^[[36;1m                'why_it_helps': 'Webers perspektiv på rasjonalisering gjør det mulig å forstå hvordan lagerkapasitet, arbeidsdeling og vareflyt ble samlet og organisert i ett stort havneanlegg.',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4681478Z ^[[36;1m            },^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4681685Z ^[[36;1m        })^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4681883Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4682252Z ^[[36;1m    path.write_text(json.dumps(quiz, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4682704Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4683038Z ^[[36;1m    brief_path = Path(f'data/quiz/production_briefs/naeringsliv/{target}.json')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4683690Z ^[[36;1m    brief = json.loads(brief_path.read_text(encoding='utf-8'))^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4684181Z ^[[36;1m    materialization = brief.setdefault('professional_materialization', {})^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4684629Z ^[[36;1m    materialization['quiz_family_counts'] = {^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4684928Z ^[[36;1m        'fact': 19,^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4685171Z ^[[36;1m        'context': 9,^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4685420Z ^[[36;1m        'concept_theory': 7,^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4685665Z ^[[36;1m    }^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4685926Z ^[[36;1m    materialization['normal_opening_preserved'] = 14^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4686711Z ^[[36;1m    brief_path.write_text(json.dumps(brief, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4687188Z ^[[36;1mPY^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4687370Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4687561Z ^[[36;1mpython - <<'PY'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4687796Z ^[[36;1mfrom pathlib import Path^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4688251Z ^[[36;1mvalidator = Path('tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4688769Z ^[[36;1mtext = validator.read_text(encoding='utf-8')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4689075Z ^[[36;1mreplacements = [^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4689289Z ^[[36;1m    (^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4689663Z ^[[36;1m        '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4690277Z ^[[36;1m    if (/krone|NOK|leie|kostnad|investering|driftsresultat|verdi/i.test(moneyText)) {^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4690874Z ^[[36;1m      assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4691297Z ^[[36;1m    }''',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4691665Z ^[[36;1m        '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4692225Z ^[[36;1m    const calculationKeys = Object.keys(q.calculation.inputs || {});^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4692770Z ^[[36;1m    const monetaryCalculation = calculationKeys.some((key) => /_nok$/i.test(key))^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4693220Z ^[[36;1m      || q.calculation.unit === "NOK"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4693567Z ^[[36;1m      || /krone|NOK/i.test(`${q.question} ${q.knowledge}`);^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4693910Z ^[[36;1m    if (monetaryCalculation) {^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4694345Z ^[[36;1m      assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4694927Z ^[[36;1m    }''',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4695125Z ^[[36;1m    ),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4695798Z ^[[36;1m    ('  const context = readJson(target.production_context);\n', '  const context = readJson(target.production_context);\n  const quizContext = quiz.production_context || {};\n'),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4696728Z ^[[36;1m    (^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4697225Z ^[[36;1m        '  assert((brief.selected_curriculum?.module_ids || []).length >= 5, `${target.target_id}: brief lacks module selection`);\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4698167Z ^[[36;1m        '  assert((brief.professional_materialization?.module_ids || []).length >= 5, `${target.target_id}: brief lacks professional module selection`);\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4698805Z ^[[36;1m    ),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4698991Z ^[[36;1m    (^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4699597Z ^[[36;1m        '  assert(context.professional_materialization?.version === manifest.materialization_version, `${target.target_id}: context lacks materialization`);\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4700471Z ^[[36;1m        '  const contextModules = context.professional_materialization?.module_ids || [];\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4701377Z ^[[36;1m        '  assert(quizContext.professional_materialization_version === manifest.materialization_version, `${target.target_id}: quiz context lacks materialization`);\n'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4702232Z ^[[36;1m        '  const contextModules = quizContext.professional_module_ids || [];\n',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4702635Z ^[[36;1m    ),^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4702817Z ^[[36;1m]^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4703016Z ^[[36;1mfor old, new in replacements:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4703416Z ^[[36;1m    if old not in text:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4703754Z ^[[36;1m        raise SystemExit(f'Fant ikke validatorblokk: {old[:80]}')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4704138Z ^[[36;1m    text = text.replace(old, new, 1)^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4704472Z ^[[36;1mvalidator.write_text(text, encoding='utf-8')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4704775Z ^[[36;1mPY^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4704955Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4705157Z ^[[36;1mnpm run places:index:build^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4705828Z ^[[36;1mnpm run quiz:context -- --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4707143Z ^[[36;1mnpm run quiz:context -- --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4708157Z ^[[36;1mnpm run quiz:context -- --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4708788Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4709129Z ^[[36;1mnode tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4709557Z ^[[36;1mnpm run places:emner:check^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4709819Z ^[[36;1mnpm run places:index:check^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4710071Z ^[[36;1mnpm run audit:quiz-content^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4710310Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4710477Z ^[[36;1mset +e^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4710868Z ^[[36;1mnode scripts/audit-quiz-production-context.mjs > /tmp/quiz-production-context.json^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4711339Z ^[[36;1mcontext_status=$?^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4711564Z ^[[36;1mset -e^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4711794Z ^[[36;1mcat /tmp/quiz-production-context.json^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4712088Z ^[[36;1mpython - <<'PY'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4712308Z ^[[36;1mimport json^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4712530Z ^[[36;1mfrom pathlib import Path^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4712990Z ^[[36;1mreport = json.loads(Path('/tmp/quiz-production-context.json').read_text(encoding='utf-8'))^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4713489Z ^[[36;1mfailures = report.get('failures', [])^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4713768Z ^[[36;1mallowed = (^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4714066Z ^[[36;1m    'data/quiz/production_context/by/deichman_bjorvika.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4714504Z ^[[36;1m    'kontekstarterfakt avviker fra deterministisk rebuild',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4714999Z ^[[36;1m)^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4715368Z ^[[36;1munexpected = [row for row in failures if (row.get('file'), row.get('reason')) != allowed]^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4715836Z ^[[36;1mif unexpected or len(failures) > 1:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4716533Z ^[[36;1m    raise SystemExit(f'Uventede produksjonskontekstfeil: {unexpected or failures}')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4717046Z ^[[36;1mprint('OK: produksjonskontekst uten nye avvik')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4717354Z ^[[36;1mPY^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4717535Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4717741Z ^[[36;1mnpm run audit:quiz-progression^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4728799Z ^[[36;1mnpm run audit:quiz-theory-binding^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4729180Z ^[[36;1mnpm run audit:categories^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4729482Z ^[[36;1mnpm run test:quiz-content-audit^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4729799Z ^[[36;1mnpm run test:quiz-production^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4730075Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4730309Z ^[[36;1mgit config user.name github-actions[bot]^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4730788Z ^[[36;1mgit config user.email 41898282+github-actions[bot]@users.noreply.github.com^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4731210Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4731392Z ^[[36;1mgit add \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4731767Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4732327Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4732847Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4733328Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4733887Z ^[[36;1m  data/places/places_index.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4734264Z ^[[36;1m  data/quiz/naeringsliv/telegrafbygningen_sets_merged.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4734700Z ^[[36;1m  data/quiz/naeringsliv/oslo_posthus_sets_merged.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4735109Z ^[[36;1m  data/quiz/naeringsliv/havnelageret_sets_merged.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4735566Z ^[[36;1m  data/quiz/production_briefs/naeringsliv/telegrafbygningen.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4736299Z ^[[36;1m  data/quiz/production_briefs/naeringsliv/oslo_posthus.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4736770Z ^[[36;1m  data/quiz/production_briefs/naeringsliv/havnelageret.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4737250Z ^[[36;1m  data/quiz/production_context/naeringsliv/telegrafbygningen.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4737733Z ^[[36;1m  data/quiz/production_context/naeringsliv/oslo_posthus.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4738189Z ^[[36;1m  data/quiz/production_context/naeringsliv/havnelageret.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4738687Z ^[[36;1m  data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4739231Z ^[[36;1m  tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs \^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4739677Z ^[[36;1m  scripts/audit-category-governance.mjs^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4739965Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4740155Z ^[[36;1mpython - <<'PY'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4740395Z ^[[36;1mimport subprocess^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4740633Z ^[[36;1mallowed = {^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4741012Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4741563Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4742078Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4742553Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4742933Z ^[[36;1m    'data/places/places_index.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4743310Z ^[[36;1m    'data/quiz/naeringsliv/telegrafbygningen_sets_merged.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4743753Z ^[[36;1m    'data/quiz/naeringsliv/oslo_posthus_sets_merged.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4744164Z ^[[36;1m    'data/quiz/naeringsliv/havnelageret_sets_merged.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4744622Z ^[[36;1m    'data/quiz/production_briefs/naeringsliv/telegrafbygningen.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4745231Z ^[[36;1m    'data/quiz/production_briefs/naeringsliv/oslo_posthus.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4745698Z ^[[36;1m    'data/quiz/production_briefs/naeringsliv/havnelageret.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4746433Z ^[[36;1m    'data/quiz/production_context/naeringsliv/telegrafbygningen.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4746929Z ^[[36;1m    'data/quiz/production_context/naeringsliv/oslo_posthus.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4747392Z ^[[36;1m    'data/quiz/production_context/naeringsliv/havnelageret.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4747885Z ^[[36;1m    'data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4748439Z ^[[36;1m    'tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4748889Z ^[[36;1m    'scripts/audit-category-governance.mjs',^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4749188Z ^[[36;1m}^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4749611Z ^[[36;1mchanged = set(subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines())^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4750115Z ^[[36;1mif not changed:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4750455Z ^[[36;1m    raise SystemExit('Ingen produksjonsendringer ble materialisert')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4750852Z ^[[36;1munexpected = changed - allowed^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4751125Z ^[[36;1mif unexpected:^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4751479Z ^[[36;1m    raise SystemExit(f'Uventede filer i sluttcommit: {sorted(unexpected)}')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4751953Z ^[[36;1mprint(f'OK: ren sluttcommit med {len(changed)} filer')^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4752275Z ^[[36;1mPY^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4752456Z ^[[36;1m^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4752797Z ^[[36;1mgit commit -m 'Materialiser profesjonsdybde på tre næringslivssteder'^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4753464Z ^[[36;1mgit push --force-with-lease origin HEAD:"$FINAL_BRANCH"^[[0m
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4811728Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.4812092Z ##[endgroup]
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.9995437Z From https://github.com/Paradispartiet/History-Go
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.9996400Z  * branch                main       -> FETCH_HEAD
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.9996962Z  * branch                agent/naeringsliv-pilot-profesjonsmaterialisering -> FETCH_HEAD
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:34.9997884Z    0f2430496..963d9253a  agent/naeringsliv-pilot-profesjonsmaterialisering -> origin/agent/naeringsliv-pilot-profesjonsmaterialisering
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:35.0053095Z Preparing worktree (detached HEAD c83dfbfac)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.0507886Z Updating files:  32% (4753/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.0701874Z Updating files:  33% (4846/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.0871564Z Updating files:  34% (4992/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.0980098Z Updating files:  35% (5139/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.1060745Z Updating files:  36% (5286/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.1157218Z Updating files:  37% (5433/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.1301936Z Updating files:  38% (5580/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.1445516Z Updating files:  39% (5726/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.1581236Z Updating files:  40% (5873/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.1730712Z Updating files:  41% (6020/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2087166Z Updating files:  42% (6167/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2250180Z Updating files:  43% (6314/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2398797Z Updating files:  44% (6461/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2479904Z Updating files:  45% (6607/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2571387Z Updating files:  46% (6754/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2644490Z Updating files:  47% (6901/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2714039Z Updating files:  48% (7048/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2782636Z Updating files:  49% (7195/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2851714Z Updating files:  50% (7341/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.2919448Z Updating files:  51% (7488/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3005253Z Updating files:  52% (7635/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3084210Z Updating files:  53% (7782/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3159761Z Updating files:  54% (7929/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3229462Z Updating files:  55% (8076/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3296118Z Updating files:  56% (8222/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3368845Z Updating files:  57% (8369/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3455594Z Updating files:  58% (8516/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3549574Z Updating files:  59% (8663/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3615869Z Updating files:  60% (8810/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3690537Z Updating files:  61% (8957/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3773667Z Updating files:  62% (9103/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3847424Z Updating files:  63% (9250/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.3950156Z Updating files:  64% (9397/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4044802Z Updating files:  65% (9544/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4116900Z Updating files:  66% (9691/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4186276Z Updating files:  67% (9837/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4281429Z Updating files:  68% (9984/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4357430Z Updating files:  69% (10131/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4543159Z Updating files:  70% (10278/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4659160Z Updating files:  71% (10425/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4721040Z Updating files:  72% (10572/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4893565Z Updating files:  73% (10718/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.4981927Z Updating files:  74% (10865/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.5071843Z Updating files:  75% (11012/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.5243541Z Updating files:  76% (11159/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.5426553Z Updating files:  77% (11306/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.5524915Z Updating files:  78% (11452/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.5684104Z Updating files:  79% (11599/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.5806387Z Updating files:  80% (11746/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.5979734Z Updating files:  81% (11893/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.6185803Z Updating files:  82% (12040/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.6453045Z Updating files:  83% (12187/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.6660710Z Updating files:  84% (12333/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.6755210Z Updating files:  85% (12480/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.6828493Z Updating files:  86% (12627/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.6934015Z Updating files:  87% (12774/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.7032404Z Updating files:  88% (12921/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.7103233Z Updating files:  89% (13067/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.7273145Z Updating files:  90% (13214/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.7443671Z Updating files:  91% (13361/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.7743936Z Updating files:  92% (13508/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.7850185Z Updating files:  93% (13655/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.7943594Z Updating files:  94% (13802/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8015095Z Updating files:  95% (13948/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8117713Z Updating files:  96% (14095/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8217761Z Updating files:  97% (14242/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8310391Z Updating files:  98% (14389/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8416209Z Updating files:  99% (14536/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8417060Z Updating files: 100% (14682/14682)
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8417493Z Updating files: 100% (14682/14682), done.
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8568761Z HEAD is now at c83dfbfac Rett Stories til episode v1-kontrakten
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.8772935Z Switched to a new branch 'agent/naeringsliv-pilot-profesjonsmaterialisering-final'
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.9049244Z 
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.9049982Z gzip: stdin: invalid compressed data--crc error
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.9050420Z 
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.9050770Z gzip: stdin: invalid compressed data--length error
-build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:46:36.9067002Z ##[error]Process completed with exit code 1.
+build-final	Reconstruct, validate and publish clean final branch	﻿2026-07-27T10:50:44.3131060Z ##[group]Run set -euo pipefail
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3131881Z ^[[36;1mset -euo pipefail^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3132315Z ^[[36;1mOLD_BRANCH='agent/naeringsliv-pilot-profesjonsmaterialisering'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3132860Z ^[[36;1mFINAL_BRANCH='agent/naeringsliv-pilot-profesjonsmaterialisering-final'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3133343Z ^[[36;1mFINAL_DIR='/tmp/history-go-naeringsliv-pilot-final'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3133677Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3133900Z ^[[36;1mgit fetch origin main "$OLD_BRANCH"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3134201Z ^[[36;1mrm -rf "$FINAL_DIR"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3134496Z ^[[36;1mgit worktree add --detach "$FINAL_DIR" origin/main^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3134806Z ^[[36;1mcd "$FINAL_DIR"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3135044Z ^[[36;1mgit switch -C "$FINAL_BRANCH"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3135295Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3135497Z ^[[36;1mfor part in $(seq -w 0 8); do^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3135932Z ^[[36;1m  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3136648Z ^[[36;1mdone > /tmp/naeringsliv-pilot.b64^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3137136Z ^[[36;1mbase64 --decode /tmp/naeringsliv-pilot.b64 | gzip -dc > /tmp/materialize-naeringsliv-pilot.py^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3137958Z ^[[36;1mtest "$(sha256sum /tmp/materialize-naeringsliv-pilot.py | cut -d' ' -f1)" = "ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3138550Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3139334Z ^[[36;1msed -i 's/config\["emners"\]/config["emner"]/g; s/EMNERS_FILE/EMNER_FILE/g; s/Økonomi og næringsliv professional depth/Økonomi og næringsliv professional module depth/g' /tmp/materialize-naeringsliv-pilot.py^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3140150Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3140391Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3140632Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3140917Z ^[[36;1mmaterializer = Path('/tmp/materialize-naeringsliv-pilot.py')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3141332Z ^[[36;1mtext = materializer.read_text(encoding='utf-8')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3141657Z ^[[36;1mreplacements = [^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3142060Z ^[[36;1m    ('phases = {3: "bridge", 4: "bridge", 5: "final"}', 'phases = {3: "middle", 4: "bridge", 5: "final"}'),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3142649Z ^[[36;1m    ('"method_id": item["method_id"],', '"method_id": claim.get("method_id", item["method_id"]),'),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3143062Z ^[[36;1m    (^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3143289Z ^[[36;1m        '    if item.get("calculation"):\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3143835Z ^[[36;1m        '    for field in ("topic_hook_id", "thinker_id", "work"):\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3144201Z ^[[36;1m        '        if field in claim:\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3144519Z ^[[36;1m        '            question[field] = claim[field]\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3144841Z ^[[36;1m        '    if item.get("calculation"):\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3145112Z ^[[36;1m    ),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3145307Z ^[[36;1m    (^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3145661Z ^[[36;1m        '    brief.setdefault("selected_curriculum", {})["module_ids"] = config["modules"]\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3146399Z ^[[36;1m        '    brief["selected_curriculum"]["professional_depth_files"] = config["depth_files"]\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3146885Z ^[[36;1m        '    brief["professional_materialization"] = {\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3147219Z ^[[36;1m        '        "version": VERSION,\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3147535Z ^[[36;1m        '        "module_ids": config["modules"],\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3147913Z ^[[36;1m        '        "professional_depth_files": config["depth_files"],\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3148252Z ^[[36;1m        '    }\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3148488Z ^[[36;1m    ),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3148679Z ^[[36;1m]^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3148891Z ^[[36;1mfor old, new in replacements:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3149157Z ^[[36;1m    if old not in text:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3149510Z ^[[36;1m        raise SystemExit(f'Fant ikke materialiseringsblokk: {old[:80]}')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3149896Z ^[[36;1m    text = text.replace(old, new, 1)^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3150375Z ^[[36;1mmaterializer.write_text(text, encoding='utf-8')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3150676Z ^[[36;1mPY^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3150976Z ^[[36;1mpython -m py_compile /tmp/materialize-naeringsliv-pilot.py^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3151326Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3151519Z ^[[36;1mnpm ci^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3151793Z ^[[36;1mpython /tmp/materialize-naeringsliv-pilot.py^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3152096Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3152319Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3152541Z ^[[36;1mimport json^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3152765Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3153006Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3153288Z ^[[36;1mtargets = ('telegrafbygningen', 'oslo_posthus', 'havnelageret')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3153647Z ^[[36;1mfor target in targets:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3153996Z ^[[36;1m    path = Path(f'data/quiz/naeringsliv/{target}_sets_merged.json')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3154402Z ^[[36;1m    quiz = json.loads(path.read_text(encoding='utf-8'))^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3154788Z ^[[36;1m    sets = sorted(quiz['sets'], key=lambda row: row['order'])^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3155197Z ^[[36;1m    if len(sets) != 5 or any(len(row['questions']) != 7 for row in sets):^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3155621Z ^[[36;1m        raise SystemExit(f'{target}: forventet 5 x 7 spørsmål')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3155941Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3156363Z ^[[36;1m    for question in sets[2]['questions']:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3156688Z ^[[36;1m        question['question_type'] = 'context'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3157041Z ^[[36;1m    for index, question in enumerate(sets[3]['questions']):^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3157459Z ^[[36;1m        question['question_type'] = 'fact' if index < 5 else 'context'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3157839Z ^[[36;1m    for question in sets[4]['questions']:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3158158Z ^[[36;1m        question['question_type'] = 'analysis'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3158440Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3158707Z ^[[36;1m    production = quiz.setdefault('production_context', {})^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3159095Z ^[[36;1m    production['method_start_phase'] = 'bridge'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3159427Z ^[[36;1m    production['theory_start_phase'] = 'final'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3159738Z ^[[36;1m    production['content_balance'] = {^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3160015Z ^[[36;1m        'fact': 19,^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3160262Z ^[[36;1m        'context': 9,^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3160504Z ^[[36;1m        'concept_theory': 7,^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3160864Z ^[[36;1m    }^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3161054Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3161252Z ^[[36;1m    if target == 'havnelageret':^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3161564Z ^[[36;1m        theory_question = sets[4]['questions'][-1]^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3161871Z ^[[36;1m        theory_question.update({^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3162196Z ^[[36;1m            'topic_hook_id': 'arbeid_som_verdiskaping',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3162521Z ^[[36;1m            'thinker_id': 'max_weber',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3162824Z ^[[36;1m            'thinker_name': 'Max Weber',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3163203Z ^[[36;1m            'theory_focus': 'rasjonalisering og organisering av vareflyt',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3163569Z ^[[36;1m            'theory_ref': {^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3163879Z ^[[36;1m                'topic_hook_id': 'arbeid_som_verdiskaping',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3164704Z ^[[36;1m                'why_it_helps': 'Webers perspektiv på rasjonalisering gjør det mulig å forstå hvordan lagerkapasitet, arbeidsdeling og vareflyt ble samlet og organisert i ett stort havneanlegg.',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3165448Z ^[[36;1m            },^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3165662Z ^[[36;1m        })^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3165858Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3166397Z ^[[36;1m    path.write_text(json.dumps(quiz, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3166833Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3167163Z ^[[36;1m    brief_path = Path(f'data/quiz/production_briefs/naeringsliv/{target}.json')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3167745Z ^[[36;1m    brief = json.loads(brief_path.read_text(encoding='utf-8'))^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3168212Z ^[[36;1m    materialization = brief.setdefault('professional_materialization', {})^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3168652Z ^[[36;1m    materialization['quiz_family_counts'] = {^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3168967Z ^[[36;1m        'fact': 19,^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3169204Z ^[[36;1m        'context': 9,^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3169452Z ^[[36;1m        'concept_theory': 7,^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3169709Z ^[[36;1m    }^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3169964Z ^[[36;1m    materialization['normal_opening_preserved'] = 14^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3170469Z ^[[36;1m    brief_path.write_text(json.dumps(brief, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3170907Z ^[[36;1mPY^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3171086Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3171281Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3171520Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3171955Z ^[[36;1mvalidator = Path('tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3172443Z ^[[36;1mtext = validator.read_text(encoding='utf-8')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3172742Z ^[[36;1mreplacements = [^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3172957Z ^[[36;1m    (^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3173310Z ^[[36;1m        '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3173866Z ^[[36;1m    if (/krone|NOK|leie|kostnad|investering|driftsresultat|verdi/i.test(moneyText)) {^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3174421Z ^[[36;1m      assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3174821Z ^[[36;1m    }''',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3175181Z ^[[36;1m        '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3175699Z ^[[36;1m    const calculationKeys = Object.keys(q.calculation.inputs || {});^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3176335Z ^[[36;1m    const monetaryCalculation = calculationKeys.some((key) => /_nok$/i.test(key))^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3176764Z ^[[36;1m      || q.calculation.unit === "NOK"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3177103Z ^[[36;1m      || /krone|NOK/i.test(`${q.question} ${q.knowledge}`);^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3177446Z ^[[36;1m    if (monetaryCalculation) {^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3177857Z ^[[36;1m      assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3178248Z ^[[36;1m    }''',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3178539Z ^[[36;1m    ),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3179160Z ^[[36;1m    ('  const context = readJson(target.production_context);\n', '  const context = readJson(target.production_context);\n  const quizContext = quiz.production_context || {};\n'),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3179823Z ^[[36;1m    (^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3180296Z ^[[36;1m        '  assert((brief.selected_curriculum?.module_ids || []).length >= 5, `${target.target_id}: brief lacks module selection`);\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3181145Z ^[[36;1m        '  assert((brief.professional_materialization?.module_ids || []).length >= 5, `${target.target_id}: brief lacks professional module selection`);\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3181737Z ^[[36;1m    ),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3181927Z ^[[36;1m    (^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3182498Z ^[[36;1m        '  assert(context.professional_materialization?.version === manifest.materialization_version, `${target.target_id}: context lacks materialization`);\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3183298Z ^[[36;1m        '  const contextModules = context.professional_materialization?.module_ids || [];\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3184118Z ^[[36;1m        '  assert(quizContext.professional_materialization_version === manifest.materialization_version, `${target.target_id}: quiz context lacks materialization`);\n'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3184892Z ^[[36;1m        '  const contextModules = quizContext.professional_module_ids || [];\n',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3185275Z ^[[36;1m    ),^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3185473Z ^[[36;1m]^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3185681Z ^[[36;1mfor old, new in replacements:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3186028Z ^[[36;1m    if old not in text:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3186548Z ^[[36;1m        raise SystemExit(f'Fant ikke validatorblokk: {old[:80]}')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3186919Z ^[[36;1m    text = text.replace(old, new, 1)^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3187243Z ^[[36;1mvalidator.write_text(text, encoding='utf-8')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3187531Z ^[[36;1mPY^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3187737Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3187936Z ^[[36;1mnpm run places:index:build^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3188566Z ^[[36;1mnpm run quiz:context -- --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3189490Z ^[[36;1mnpm run quiz:context -- --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3190367Z ^[[36;1mnpm run quiz:context -- --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3190949Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3191279Z ^[[36;1mnode tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3191689Z ^[[36;1mnpm run places:emner:check^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3191946Z ^[[36;1mnpm run places:index:check^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3192201Z ^[[36;1mnpm run audit:quiz-content^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3192432Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3192609Z ^[[36;1mset +e^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3192993Z ^[[36;1mnode scripts/audit-quiz-production-context.mjs > /tmp/quiz-production-context.json^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3193435Z ^[[36;1mcontext_status=$?^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3193665Z ^[[36;1mset -e^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3193897Z ^[[36;1mcat /tmp/quiz-production-context.json^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3194184Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3194405Z ^[[36;1mimport json^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3194637Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3195070Z ^[[36;1mreport = json.loads(Path('/tmp/quiz-production-context.json').read_text(encoding='utf-8'))^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3195550Z ^[[36;1mfailures = report.get('failures', [])^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3195828Z ^[[36;1mallowed = (^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3196294Z ^[[36;1m    'data/quiz/production_context/by/deichman_bjorvika.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3196719Z ^[[36;1m    'kontekstarterfakt avviker fra deterministisk rebuild',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3197056Z ^[[36;1m)^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3197403Z ^[[36;1munexpected = [row for row in failures if (row.get('file'), row.get('reason')) != allowed]^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3197977Z ^[[36;1mif unexpected or len(failures) > 1:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3198418Z ^[[36;1m    raise SystemExit(f'Uventede produksjonskontekstfeil: {unexpected or failures}')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3198885Z ^[[36;1mprint('OK: produksjonskontekst uten nye avvik')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3199194Z ^[[36;1mPY^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3199385Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3199592Z ^[[36;1mnpm run audit:quiz-progression^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3199889Z ^[[36;1mnpm run audit:quiz-theory-binding^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3200173Z ^[[36;1mnpm run audit:categories^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3200438Z ^[[36;1mnpm run test:quiz-content-audit^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3200718Z ^[[36;1mnpm run test:quiz-production^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3200971Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3201189Z ^[[36;1mgit config user.name github-actions[bot]^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3201601Z ^[[36;1mgit config user.email 41898282+github-actions[bot]@users.noreply.github.com^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3201987Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3202169Z ^[[36;1mgit add \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3202512Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3203025Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3203503Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3203939Z ^[[36;1m  data/places/naeringsliv/oslo/places_naeringsliv.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3204368Z ^[[36;1m  data/places/places_index.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3204726Z ^[[36;1m  data/quiz/naeringsliv/telegrafbygningen_sets_merged.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3205139Z ^[[36;1m  data/quiz/naeringsliv/oslo_posthus_sets_merged.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3205540Z ^[[36;1m  data/quiz/naeringsliv/havnelageret_sets_merged.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3205969Z ^[[36;1m  data/quiz/production_briefs/naeringsliv/telegrafbygningen.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3206613Z ^[[36;1m  data/quiz/production_briefs/naeringsliv/oslo_posthus.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3207066Z ^[[36;1m  data/quiz/production_briefs/naeringsliv/havnelageret.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3207538Z ^[[36;1m  data/quiz/production_context/naeringsliv/telegrafbygningen.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3208034Z ^[[36;1m  data/quiz/production_context/naeringsliv/oslo_posthus.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3208486Z ^[[36;1m  data/quiz/production_context/naeringsliv/havnelageret.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3208954Z ^[[36;1m  data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3209479Z ^[[36;1m  tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs \^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3209912Z ^[[36;1m  scripts/audit-category-governance.mjs^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3210197Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3210398Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3210627Z ^[[36;1mimport subprocess^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3210855Z ^[[36;1mallowed = {^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3211208Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3211718Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3212204Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3212655Z ^[[36;1m    'data/places/naeringsliv/oslo/places_naeringsliv.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3213012Z ^[[36;1m    'data/places/places_index.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3213369Z ^[[36;1m    'data/quiz/naeringsliv/telegrafbygningen_sets_merged.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3213788Z ^[[36;1m    'data/quiz/naeringsliv/oslo_posthus_sets_merged.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3214177Z ^[[36;1m    'data/quiz/naeringsliv/havnelageret_sets_merged.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3214615Z ^[[36;1m    'data/quiz/production_briefs/naeringsliv/telegrafbygningen.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3215072Z ^[[36;1m    'data/quiz/production_briefs/naeringsliv/oslo_posthus.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3215628Z ^[[36;1m    'data/quiz/production_briefs/naeringsliv/havnelageret.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3216229Z ^[[36;1m    'data/quiz/production_context/naeringsliv/telegrafbygningen.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3216736Z ^[[36;1m    'data/quiz/production_context/naeringsliv/oslo_posthus.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3217234Z ^[[36;1m    'data/quiz/production_context/naeringsliv/havnelageret.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3217709Z ^[[36;1m    'data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3218239Z ^[[36;1m    'tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3218691Z ^[[36;1m    'scripts/audit-category-governance.mjs',^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3218984Z ^[[36;1m}^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3219385Z ^[[36;1mchanged = set(subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines())^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3219927Z ^[[36;1mif not changed:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3220404Z ^[[36;1m    raise SystemExit('Ingen produksjonsendringer ble materialisert')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3220985Z ^[[36;1munexpected = changed - allowed^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3221487Z ^[[36;1mif unexpected:^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3222092Z ^[[36;1m    raise SystemExit(f'Uventede filer i sluttcommit: {sorted(unexpected)}')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3222954Z ^[[36;1mprint(f'OK: ren sluttcommit med {len(changed)} filer')^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3223470Z ^[[36;1mPY^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3223686Z ^[[36;1m^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3224012Z ^[[36;1mgit commit -m 'Materialiser profesjonsdybde på tre næringslivssteder'^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3224585Z ^[[36;1mgit push --force-with-lease origin HEAD:"$FINAL_BRANCH"^[[0m
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3268940Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.3269325Z ##[endgroup]
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.7025675Z From https://github.com/Paradispartiet/History-Go
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.7026680Z  * branch                main       -> FETCH_HEAD
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.7027235Z  * branch                agent/naeringsliv-pilot-profesjonsmaterialisering -> FETCH_HEAD
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.7027790Z    c83dfbfac..b7f701fd0  main       -> origin/main
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:44.7061380Z Preparing worktree (detached HEAD b7f701fd0)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.7221484Z Updating files:  40% (6015/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.7367219Z Updating files:  41% (6020/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.7682481Z Updating files:  42% (6167/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.7816658Z Updating files:  43% (6314/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.7947786Z Updating files:  44% (6461/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.7996861Z Updating files:  45% (6607/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8056465Z Updating files:  46% (6754/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8104155Z Updating files:  47% (6901/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8147142Z Updating files:  48% (7048/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8189998Z Updating files:  49% (7195/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8234443Z Updating files:  50% (7341/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8275029Z Updating files:  51% (7488/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8319004Z Updating files:  52% (7635/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8362153Z Updating files:  53% (7782/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8413733Z Updating files:  54% (7929/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8457101Z Updating files:  55% (8076/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8498230Z Updating files:  56% (8222/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8547067Z Updating files:  57% (8369/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8588946Z Updating files:  58% (8516/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8644425Z Updating files:  59% (8663/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8728200Z Updating files:  60% (8810/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8799649Z Updating files:  61% (8957/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8860596Z Updating files:  62% (9103/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.8923993Z Updating files:  63% (9250/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9016602Z Updating files:  64% (9397/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9064247Z Updating files:  65% (9544/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9113266Z Updating files:  66% (9691/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9159608Z Updating files:  67% (9837/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9298417Z Updating files:  68% (9984/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9343652Z Updating files:  69% (10131/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9471013Z Updating files:  70% (10278/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9553260Z Updating files:  71% (10425/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9590300Z Updating files:  72% (10572/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9697175Z Updating files:  73% (10718/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9761405Z Updating files:  74% (10865/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9823100Z Updating files:  75% (11012/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:45.9967857Z Updating files:  76% (11159/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.0095445Z Updating files:  77% (11306/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.0158840Z Updating files:  78% (11452/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.0299063Z Updating files:  79% (11599/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.0401660Z Updating files:  80% (11746/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.0554325Z Updating files:  81% (11893/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.0737246Z Updating files:  82% (12040/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.0981506Z Updating files:  83% (12187/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1152453Z Updating files:  84% (12333/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1215743Z Updating files:  85% (12480/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1260998Z Updating files:  86% (12627/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1340562Z Updating files:  87% (12774/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1412239Z Updating files:  88% (12921/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1458214Z Updating files:  89% (13067/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1592649Z Updating files:  90% (13214/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.1757254Z Updating files:  91% (13361/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2054904Z Updating files:  92% (13508/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2133180Z Updating files:  93% (13655/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2211791Z Updating files:  94% (13802/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2257733Z Updating files:  95% (13948/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2335167Z Updating files:  96% (14095/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2408219Z Updating files:  97% (14242/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2473778Z Updating files:  98% (14389/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2554825Z Updating files:  99% (14536/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2555443Z Updating files: 100% (14682/14682)
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2555847Z Updating files: 100% (14682/14682), done.
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.2728415Z HEAD is now at b7f701fd0 Merge pull request #4225 from Paradispartiet/agent/oslo-popup-v4-batch-21-finish-history
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.4674094Z Switched to a new branch 'agent/naeringsliv-pilot-profesjonsmaterialisering-final'
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.4860299Z 
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.4861052Z gzip: stdin: invalid compressed data--crc error
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.4861361Z 
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.4861547Z gzip: stdin: invalid compressed data--length error
+build-final	Reconstruct, validate and publish clean final branch	2026-07-27T10:50:46.4878693Z ##[error]Process completed with exit code 1.
