@@ -1,0 +1,128 @@
+name: One-time Oslo popup batch 27 science writer
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-27-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Batch 27 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-27-science-ten
+          fetch-depth: 0
+
+      - name: Apply isolated desc and popupDesc patches
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const patches = [
+            '.github/oslo-popup-batch-27-science-patch-a.json',
+            '.github/oslo-popup-batch-27-science-patch-b.json'
+          ].flatMap(path => JSON.parse(fs.readFileSync(path, 'utf8')).places);
+          const words = text => (String(text).match(/[\p{L}\p{N}]+(?:[’'\-][\p{L}\p{N}]+)*/gu) || []).length;
+          const paragraphs = text => String(text).trim().split(/\n\s*\n/).filter(Boolean).length;
+          const withoutText = value => {
+            const copy = JSON.parse(JSON.stringify(value));
+            delete copy.desc;
+            delete copy.popupDesc;
+            return copy;
+          };
+          const expectedIds = [
+            'nobelinstituttet', 'observatoriet', 'folkeobservatoriet_holmenkollen', 'abelhaugen',
+            'arkitektur_og_designhogskolen', 'bi_nydalen', 'botanisk_hage', 'forskningsparken',
+            'gamlebyen_skole', 'klimahuset'
+          ];
+          if (patches.length !== 10) throw new Error(`Expected 10 patches, got ${patches.length}`);
+          if (JSON.stringify(patches.map(x => x.id)) !== JSON.stringify(expectedIds)) throw new Error('Patch order or IDs changed');
+
+          const rows = [];
+          for (const item of patches) {
+            const before = JSON.parse(fs.readFileSync(item.path, 'utf8'));
+            if (before.id !== item.id) throw new Error(`ID mismatch for ${item.path}`);
+            const after = { ...before, desc: item.desc, popupDesc: item.popupDesc };
+            if (JSON.stringify(withoutText(before)) !== JSON.stringify(withoutText(after))) throw new Error(`Non-text parity failed for ${item.id}`);
+            const descWords = words(after.desc);
+            const popupWords = words(after.popupDesc);
+            const paraCount = paragraphs(after.popupDesc);
+            if (descWords < 40 || descWords > 80) throw new Error(`${item.id}: desc words ${descWords}`);
+            if (popupWords < 300 || popupWords > 600) throw new Error(`${item.id}: popup words ${popupWords}`);
+            if (paraCount !== 6) throw new Error(`${item.id}: paragraphs ${paraCount}`);
+            fs.writeFileSync(item.path, JSON.stringify(after, null, 2) + '\n');
+            rows.push({ id: item.id, name: after.name, descWords, popupWords, paraCount });
+          }
+
+          const pr = process.env.PR_NUMBER;
+          if (!/^\d+$/.test(pr || '')) throw new Error(`Invalid PR number: ${pr}`);
+          const protocolPath = 'reports/place-description-revision-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          protocol = protocol
+            .replace('Ferdige etter alle mergede revisjonsbatcher: **218 steder**', 'Ferdige etter alle mergede revisjonsbatcher: **228 steder**')
+            .replace('Gjenstår: **294 steder**', 'Gjenstår: **284 steder**')
+            .replace('Det gjenstår **294 aktive Oslo-steder**', 'Det gjenstår **284 aktive Oslo-steder**')
+            .replace('- vitenskap: **21**', '- vitenskap: **11**');
+
+          const rowText = rows.map((r, i) => `| ${219 + i} | ${r.name} | \`${r.id}\` | ${r.descWords} | ${r.popupWords} | ${r.paraCount} | #${pr} |`).join('\n');
+          if (!protocol.includes(`| 219 | ${rows[0].name}`)) {
+            protocol = protocol.replace('\n## Gjenstående Oslo-kø', `\n\n${rowText}\n\n## Gjenstående Oslo-kø`);
+          }
+          const anomaly = '- `gamlebyen_skole.year` står som 1799, mens Gamlebyen skoles egen historikk dokumenterer at skolen åpnet som Oslo skole 1. november 1881.';
+          if (!protocol.includes(anomaly)) {
+            protocol = protocol.replace('\nDisse avvikene skal repareres', `\n${anomaly}\n\nDisse avvikene skal repareres`);
+          }
+          const batchRow = `| Oslo V4 batch 27 | 10 | #${pr} – første produksjonsbatch fra vitenskapskøen |`;
+          if (!protocol.includes(batchRow)) {
+            protocol = protocol.replace(/(\| Oslo V4 batch 26 \| 8 \| #[0-9]+ – fullførte hele Oslo-køen for fagområdet politikk \|)/, `$1\n${batchRow}`);
+          }
+          fs.writeFileSync(protocolPath, protocol);
+          NODE
+
+          node tools/audit-oslo-place-description-scope.mjs --write
+
+          node <<'NODE'
+          const fs = require('fs');
+          const protocol = fs.readFileSync('reports/place-description-revision-protocol.md', 'utf8');
+          const audit = fs.readFileSync('reports/oslo-place-description-scope-audit-2026-07-26.md', 'utf8');
+          if (!protocol.includes('Ferdige etter alle mergede revisjonsbatcher: **228 steder**')) throw new Error('protocol total');
+          if (!protocol.includes('Gjenstår: **284 steder**')) throw new Error('protocol remaining');
+          if (!protocol.includes('- vitenskap: **11**')) throw new Error('protocol science remaining');
+          if (!protocol.includes('`gamlebyen_skole.year` står som 1799')) throw new Error('metadata anomaly missing');
+          if (!audit.includes('IDs in the current revision protocol: **228**')) throw new Error('audit protocol count');
+          if (!audit.includes('Additional active Oslo IDs outside the protocol: **284**')) throw new Error('audit remaining count');
+          if (!audit.includes('| vitenskap | 11 |')) throw new Error('audit science count');
+          NODE
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner/nobelinstituttet.json \
+            data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner/observatoriet.json \
+            data/places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01/folkeobservatoriet_holmenkollen.json \
+            data/places/vitenskap/oslo/places_vitenskap/abelhaugen.json \
+            data/places/vitenskap/oslo/places_vitenskap/arkitektur_og_designhogskolen.json \
+            data/places/vitenskap/oslo/places_vitenskap/bi_nydalen.json \
+            data/places/vitenskap/oslo/places_vitenskap/botanisk_hage.json \
+            data/places/vitenskap/oslo/places_vitenskap/forskningsparken.json \
+            data/places/vitenskap/oslo/places_vitenskap/gamlebyen_skole.json \
+            data/places/vitenskap/oslo/places_vitenskap/klimahuset.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.md \
+            reports/place-description-revision-protocol.md
+          if git diff --cached --quiet; then
+            echo "No material changes to commit"
+          else
+            git commit -m "Revise first Oslo science description batch"
+            git push origin HEAD:agent/oslo-popup-v4-batch-27-science-ten
+          fi
