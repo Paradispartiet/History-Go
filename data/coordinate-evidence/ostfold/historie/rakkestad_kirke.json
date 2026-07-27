@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rakkestad_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch5/rakkestad_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.41078,
+    "lon": 11.36931,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 316802556; Wikidata Q6494287; Kulturminne 85264; Norges Kirker; Rakkestad sokn",
+    "coordType": "church_building_representative_point",
+    "coordRole": "medieval_church_building_anchor",
+    "sourceObjectId": "osm-way:316802556;wikidata:Q6494287;kulturminne:85264"
+  },
+  "previousCoordinate": {
+    "lat": 59.4254,
+    "lon": 11.3452,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 2121.6,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,12 kilometer nordvest for Rakkestad kirke og identifiserte verken kirkebygget eller kirkestedet."
+  },
+  "identity": {
+    "resolvedIdentity": "Rakkestad kirke, den stående romanske middelalderkirken ved Kirkeveien 139.",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-koordinaten lå ved tettstedssiden og blandet kirkebygget med prestegård, ferdsel og bygdesentrum.",
+    "locatorTypeCandidate": "medieval_church_building",
+    "requiresSplit": false,
+    "splitReason": "Kirken og kirkestedet er ett sted. Rakkestad prestegård ligger omtrent 225 meter nord og er allerede et separat canonical-sted."
+  },
+  "requiredEvidence": [
+    "named medieval church-building geometry",
+    "independent church entity",
+    "heritage identifier",
+    "official address",
+    "approximately-1200 chronology",
+    "first written reference in 1370",
+    "1875 rebuilding history",
+    "church-versus-rectory separation",
+    "active-use and cemetery limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 316802556 – Rakkestad kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/316802556",
+      "sourceObjectId": "osm-way:316802556",
+      "sourceQuality": "named_medieval_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 59.41078, 11.36931.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for den stående kirkebygningen."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Rakkestad kirke",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6494287",
+      "sourceObjectId": "wikidata:Q6494287",
+      "sourceQuality": "independent_church_entity_control",
+      "finding": "Q6494287 identifiserer Rakkestad kirke ved samme punkt med bygge-ID 446, Kulturminne 85264, adresse Kirkeveien 139 og OSM-way 316802556.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets-, identifier- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Kulturminne 85264 – Rakkestad kirke",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=85264",
+      "sourceObjectId": "kulturminne:85264",
+      "sourceQuality": "authoritative_heritage_identity",
+      "finding": "Kulturminne-ID 85264 identifiserer Rakkestad kirke og middelalderkirkestedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offentlig kulturminneidentitet og fredningskontekst."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Rakkestad kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Rakkestad_kirke",
+      "sourceObjectId": "norges-kirker:rakkestad-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Dokumenterer middelalderens steinkirke, kirkegården, prestegården nord for kirken og den omfattende ombyggingen i 1875.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter bygningsidentitet, historiske lag og fysisk avgrensning."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Rakkestad sokn – Rakkestad kirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/rakkestad-sokn/om-oss/rakkestad-kirke/",
+      "sourceObjectId": "kirken:rakkestad-kirke",
+      "sourceQuality": "official_current_identity_chronology_and_address",
+      "finding": "Oppgir romansk middelalderkirke fra ca. 1200, første skriftlige omtale i 1370, ombyggingen i 1875, 260 sitteplasser og adressen Kirkeveien 139.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell nåtids- og historikkontroll."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Rakkestad kommune – lokalhistorie og severdigheter",
+      "sourceUrl": "https://www.rakkestad.kommune.no/kommunen-var/kultur-og-fritidstilbud/lokalhistorie-museer-og-severdigheter",
+      "sourceObjectId": "rakkestad-kommune:middelalderkirke",
+      "sourceQuality": "municipal_historical_significance_control",
+      "finding": "Kommunen omtaler Rakkestad kirke som kommunens viktigste middelalderkulturminne og et kirkelig samlingssted gjennom mer enn 800 år.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter lokal betydning uten å erstatte bygningsgeometrien."
+    },
+    {
+      "sourceProvider": "history_go_canonical",
+      "sourceName": "Rakkestad prestegård canonical",
+      "sourceObjectId": "place:rakkestad_prestegard_1814",
+      "sourceQuality": "separate_nearby_place_control",
+      "finding": "Prestegården ligger ved 59.41279, 11.36889, omtrent 225 meter nord for kirken, og er et separat sted med egen 1814-profil.",
+      "canVerifyCoordinate": false,
+      "reason": "Forhindrer duplisering og sammenblanding mellom kirke og prestegård."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Rakkestad church point",
+      "sourceObjectId": "legacy:rakkestad_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 2121,6 meter nordvest for kirkebygget.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer kirken eller kirkestedet."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:316802556",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6494287",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende entitetskontroll; OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "history_go_canonical",
+      "sourceObjectId": "place:rakkestad_prestegard_1814",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separat nabosted med egen identitet og koordinat."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rakkestad_kirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger 2,12 kilometer fra kirken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "rakkestad_medieval_church",
+      "name": "Rakkestad kirke",
+      "lat": 59.41078,
+      "lon": 11.36931,
+      "r": 95,
+      "type": "medieval_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:316802556;wikidata:Q6494287;kulturminne:85264",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "rakkestad_churchyard",
+      "name": "Rakkestad kirkegård og kirkested",
+      "lat": 59.41078,
+      "lon": 11.36931,
+      "r": 180,
+      "type": "churchyard_and_kirkested_context",
+      "sourceProvider": "norges_kirker_riksantikvaren",
+      "sourceObjectId": "kulturminne:85264",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "rakkestad_rectory",
+      "name": "Rakkestad prestegård",
+      "lat": 59.41279,
+      "lon": 11.36889,
+      "r": 260,
+      "type": "separate_rectory_and_1814_place",
+      "sourceProvider": "history_go_canonical",
+      "sourceObjectId": "place:rakkestad_prestegard_1814",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rakkestad_kirke",
+      "lat": 59.4254,
+      "lon": 11.3452,
+      "distanceFromAppliedM": 2121.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:316802556;wikidata:Q6494287",
+      "lat": 59.41078,
+      "lon": 11.36931,
+      "distanceFromPreviousM": 2121.6,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-rakkestad-kirke-source-probe/source-summary.json",
+      "description": "Vedvarende kildekontroll for geometri, entitet, kulturminne, adresse, datering, 1875-ombygging og skillet mot prestegården."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den navngitte middelalderkirken som canonical, beholdt ca. 1200 som omtrentlig datering og skilte kirken tydelig fra prestegårdens separate 1814-profil. Fortsett med brekke_sluser_haldenkanalen."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 2,12 kilometer sørøst.",
+    "Den stående middelalderkirken er canonical-objektet.",
+    "År 1200 er omtrentlig og ikke et dokumentert eksakt bygge- eller innvielsesår.",
+    "Ombyggingen i 1875 er et senere lag, ikke en erstatning for middelalderkjernen.",
+    "Prestegården er et separat History Go-sted omtrent 225 meter nord for kirken.",
+    "Radiusen er ikke en bygnings-, kirkegårds-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+  ]
+}
