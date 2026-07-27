@@ -1,0 +1,94 @@
+name: One-time History political chronology report refresh V1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-political-chronology-report-refresh-v1-trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/history-political-chronology-evidence-v1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Regenerate canonical profile reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/political-chronology-v1-report-refresh
+          node tools/audit-historie-geographic-profile.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/geographic-profile-materialize.log
+          node tools/audit-historie-universal-coverage.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/universal-coverage-materialize.log
+          node --check tools/refresh-history-political-chronology-reports-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/profile-foundation-syntax.log
+          node tools/refresh-history-political-chronology-reports-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/profile-foundation-materialize.log
+
+      - name: Verify report and data contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/profile-validator.log
+          node tools/audit-historie-geographic-profile.mjs --check 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/geographic-profile-check.log
+          node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/universal-coverage-check.log
+          node tools/validate-historie-theory-evidence.mjs --check 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/theory-evidence-check.log
+          node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/quality-freeze-check.log
+          git restore -- reports/historie-v5/historie-v5-8-quality-depth.json reports/historie-v5/historie-v5-8-quality-depth.md 2>/dev/null || true
+
+      - name: Upload report refresh diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-political-chronology-report-refresh-v1
+          path: |
+            reports/historie-theory-evidence/political-chronology-v1-report-refresh
+            reports/historie-profile-evidence/history-profile-evidence-foundation.json
+            reports/historie-profile-evidence/history-profile-evidence-foundation.md
+            reports/historie-geographic-profiles/oslo-akershus-profile.json
+            reports/historie-geographic-profiles/oslo-akershus-profile.md
+            reports/historie-universal-coverage/historie-universal-coverage.json
+            reports/historie-universal-coverage/historie-universal-coverage.md
+          if-no-files-found: error
+
+      - name: Remove one-time transport files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/refresh-history-political-chronology-reports-v1.mjs
+          rm -f .github/workflows/one-time-history-political-chronology-report-refresh-v1.yml
+          rm -f .github/history-political-chronology-report-refresh-v1-trigger.txt
+
+      - name: Commit refreshed production reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --check 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/git-diff-check.log
+          git status --short \
+            | tee reports/historie-theory-evidence/political-chronology-v1-report-refresh/git-status.log
+          git add -A
+          git add -f reports/historie-theory-evidence/political-chronology-v1-report-refresh
+          git commit -m "Refresh History political chronology reports"
+          git push origin HEAD:agent/history-political-chronology-evidence-v1
