@@ -65,7 +65,23 @@ jobs:
           retention-days: 7
 
       - name: Validate governance metrics contract
-        run: node --test tests/stories-governance-metrics.test.mjs
+        shell: bash
+        run: |
+          if ! node --test tests/stories-governance-metrics.test.mjs > stories-governance-metrics.log 2>&1; then
+            echo 'Stories governance metrics test failed. Compact diagnostic follows:'
+            tail -n 50 stories-governance-metrics.log
+            exit 1
+          fi
+          cat stories-governance-metrics.log
+
+      - name: Upload metrics diagnostic
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stories-governance-metrics-diagnostic
+          path: stories-governance-metrics.log
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Print governance snapshot
         run: node dist/tools/report_stories_governance.mjs
