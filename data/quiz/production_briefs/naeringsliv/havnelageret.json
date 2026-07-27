@@ -3,8 +3,8 @@
   "status": "reviewed",
   "categoryId": "naeringsliv",
   "targetId": "havnelageret",
-  "reviewed_at": "2026-07-26",
-  "review_note": "Påstandsbanken er kvalitetsløftet etter individuell kuratering av Næringsliv-faget. De første 14 normale spørsmålene og de sju avsluttende fagspørsmålene er beholdt, mens svake detaljfakta i midt- og brofasen er erstattet med kildebelagte spørsmål om årsak, utvikling, konsekvens og virksomhetssammenheng.",
+  "reviewed_at": "2026-07-27",
+  "review_note": "De første 14 normale spørsmålene er bevart. Påstand 15–35 er nå materialisert individuelt i profesjonsfaglige spørsmål med stedlig kildegrunnlag, eksplisitte scenarioverdier, beregninger, antakelser og beslutningsgrenser.",
   "profile_hint": "rich",
   "sources": {
     "place_record": {
@@ -550,17 +550,42 @@
         "lokalhistoriewiki"
       ],
       "source_origin": "external",
-      "emne_id": "em_naering_arbeid_verdiskaping"
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "theory_ref": {
+        "topic_hook_id": "arbeid_som_verdiskaping",
+        "why_it_helps": "Webers perspektiv på rasjonalisering gjør det mulig å forstå hvordan lagerkapasitet, arbeidsdeling og vareflyt ble samlet og organisert i ett stort havneanlegg."
+      }
     }
   ],
   "quality_lift": {
-    "version": "naeringsliv_pilot_context_v1",
-    "completed_at": "2026-07-26",
+    "version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+    "completed_at": "2026-07-27",
     "opening_questions_preserved": 14,
-    "family_counts": {
-      "fact": 20,
-      "context": 8,
+    "professional_questions": 21,
+    "professional_modules": 6,
+    "scenario_currency": "NOK",
+    "historical_claims_separated_from_scenarios": true
+  },
+  "professional_materialization": {
+    "version": "naeringsliv_oslo_profesjonsmaterialisering_v1",
+    "module_ids": [
+      "mod_naering_operations_kapasitet",
+      "mod_naering_innkjop_kvalitet_forsyningsrisiko",
+      "mod_naering_internasjonal_handel_valuta",
+      "mod_naering_prosjektledelse_prosjektokonomi",
+      "mod_naering_regnskapsanalyse_verdsettelse",
+      "mod_naering_markedsinnsikt_segmentering"
+    ],
+    "professional_depth_files": [
+      "data/fag/naeringsliv/handelshogskolefordypning_regnskap_v1.json",
+      "data/fag/naeringsliv/handelshogskolefordypning_markedsstrategi_v1.json",
+      "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+    ],
+    "quiz_family_counts": {
+      "fact": 19,
+      "context": 9,
       "concept_theory": 7
-    }
+    },
+    "normal_opening_preserved": 14
   }
 }

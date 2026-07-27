@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **200**
-- Additional active Oslo IDs outside the protocol: **312**
+- IDs in the current revision protocol: **210**
+- Additional active Oslo IDs outside the protocol: **302**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **312**
+- Additional IDs needing revision: **302**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -22,7 +22,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | scenekunst | 24 |
 | litteratur | 21 |
 | vitenskap | 21 |
-| politikk | 18 |
+| politikk | 8 |
 
 ## Additional active Oslo places
 
@@ -210,16 +210,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | natur | Bygdøy Kongsgård salamanderdam | `bygdoy_kongsgard_salamanderdam` | 16 | 93 | 2 | `data/places/natur/oslo/places_oslo_natur_salamanderdammer/bygdoy_kongsgard_salamanderdam.json` | needs revision |
 | natur | Rambergøya | `rambergoya` | 17 | 57 | 1 | `data/places/natur/oslo/rambergoya.json` | needs revision |
 | natur | Sognsvann | `sognsvann` | 17 | 63 | 2 | `data/places/natur/oslo/sognsvann.json` | needs revision |
-| politikk | Blått skilt: Christopher Hornsrud | `bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5` | 17 | 85 | 2 | `data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01/bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5.json` | needs revision |
-| politikk | 22. juli-senteret | `22_juli_senteret` | 17 | 37 | 1 | `data/places/politikk/oslo/places_politikk/22_juli_senteret.json` | needs revision |
-| politikk | Arbeidersamfunnets plass | `arbeidersamfunnets_plass` | 13 | 40 | 1 | `data/places/politikk/oslo/places_politikk/arbeidersamfunnets_plass.json` | needs revision |
-| politikk | Eidsvolls plass | `eidsvolls_plass` | 17 | 99 | 1 | `data/places/politikk/oslo/places_politikk/eidsvolls_plass.json` | needs revision |
-| politikk | Folkets Hus i Oslo | `folkets_hus_oslo` | 10 | 86 | 1 | `data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json` | needs revision |
-| politikk | Høyblokka | `hoyblokka` | 17 | 39 | 1 | `data/places/politikk/oslo/places_politikk/hoyblokka.json` | needs revision |
-| politikk | Høyesteretts hus | `hoyesteretts_hus` | 54 | 112 | 1 | `data/places/politikk/oslo/places_politikk/hoyesteretts_hus.json` | needs revision |
-| politikk | Høyres Hus | `hoyres_hus` | 14 | 36 | 1 | `data/places/politikk/oslo/places_politikk/hoyres_hus.json` | needs revision |
-| politikk | Oslo rådhus | `oslo_radhus` | 21 | 83 | 1 | `data/places/politikk/oslo/places_politikk/oslo_radhus.json` | needs revision |
-| politikk | Politihuset på Grønland | `politihuset_gronland` | 41 | 104 | 1 | `data/places/politikk/oslo/places_politikk/politihuset_gronland.json` | needs revision |
 | politikk | Regjeringskvartalet | `regjeringskvartalet` | 13 | 83 | 1 | `data/places/politikk/oslo/places_politikk/regjeringskvartalet.json` | needs revision |
 | politikk | Statsministerboligen | `statsministerboligen` | 19 | 26 | 1 | `data/places/politikk/oslo/places_politikk/statsministerboligen.json` | needs revision |
 | politikk | Stortinget | `stortinget` | 20 | 90 | 1 | `data/places/politikk/oslo/places_politikk/stortinget.json` | needs revision |
