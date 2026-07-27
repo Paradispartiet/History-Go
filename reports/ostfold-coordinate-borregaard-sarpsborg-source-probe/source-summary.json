@@ -1,0 +1,89 @@
+{
+  "placeId": "borregaard_sarpsborg_industri",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.2846,
+    "lon": 11.1139,
+    "r": 420
+  },
+  "appliedCoordinate": {
+    "lat": 59.27224,
+    "lon": 11.11388,
+    "r": 420,
+    "displacementM": 1374.4
+  },
+  "identityDecision": "Use the named active Borregaard industrial-area polygon as the physical anchor for the Sarpsborg factory and biorefinery complex.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:190303979",
+    "name": "Borregaard",
+    "tags": [
+      "landuse=industrial"
+    ],
+    "lat": 59.27224,
+    "lon": 11.11388
+  },
+  "historicalScope": {
+    "source": "Borregaard official history; Store norske leksikon",
+    "finding": "Modern industrial activity at Borregaard began in 1889 with Kellner Partington's acquisition and cellulose development. The Sarpsborg site later shifted toward specialised cellulose, lignin-based products, vanillin and other biochemicals and is now operated as a biorefinery.",
+    "yearDecision": {
+      "storedYear": 1889,
+      "status": "retained_modern_industrial_start",
+      "reason": "The company's official history and SNL both use 1889 as the beginning of modern industrial activity at the Sarpsborg site."
+    }
+  },
+  "currentIdentityControls": [
+    {
+      "provider": "borregaard",
+      "finding": "Borregaard identifies the Sarpsborg site as its Norwegian biorefinery and headquarters."
+    },
+    {
+      "provider": "borregaard_and_brreg",
+      "finding": "The current plant and company address is Hjalmar Wessels vei 6, 1721 Sarpsborg; the address is an identity control rather than the coordinate source."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:borregaard_sarpsborg_industri",
+      "lat": 59.2846,
+      "lon": 11.1139,
+      "distanceFromAppliedM": 1374.4,
+      "reason": "Remote point north of the named industrial polygon without a source-object identity."
+    },
+    {
+      "sourceObjectId": "osm-way:194919724;wikidata:Q11961992",
+      "reason": "Borregaard power station is a separate energy facility approximately 1.0 kilometre east of the industrial-area anchor."
+    },
+    {
+      "sourceObjectId": "osm-node:6264815484;wikidata:Q11961990",
+      "reason": "Borregaard hovedgård is the historic manor approximately 544 metres west of the industrial-area anchor."
+    },
+    {
+      "sourceObjectId": "sarpsfossen",
+      "reason": "The waterfall is the separate natural and industrial resource landscape east of the factory complex."
+    },
+    {
+      "sourceObjectId": "geonames:3160607",
+      "reason": "The generic Borregård locality is not the active factory complex."
+    },
+    {
+      "sourceObjectId": "hjalmar-wessels-vei-6-entrance",
+      "reason": "An address or gate point would reduce the large industrial complex to one access location."
+    }
+  ],
+  "accessDecision": {
+    "status": "active_access_controlled_industrial_site",
+    "rule": "The coordinate identifies the industrial site but does not imply access. Tasks must remain on lawful public roads and viewpoints and must never require entry through factory gates or into operational areas."
+  },
+  "radiusDecision": {
+    "retainedM": 420,
+    "covers": "A limited gameplay area around the western and central Borregaard industrial core.",
+    "doesNotRepresent": [
+      "the complete OSM industrial polygon",
+      "factory process or safety zones",
+      "property, emission or operational boundaries",
+      "the separate power station, manor or Sarpsfossen"
+    ]
+  },
+  "nextManifestPlace": "sarpsfossen"
+}
