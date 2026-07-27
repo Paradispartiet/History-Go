@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "varne_kloster",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch3/varne_kloster.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_monastery_manor_farmyard_anchor",
+  "currentCoordinate": {
+    "lat": 59.39354,
+    "lon": 10.67424,
+    "r": 300,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 124839227 – Værne Kloster; Wikidata Q4994287; Kulturminne ID 9570; Store norske leksikon; Lokalhistoriewiki; Lovdata",
+    "coordType": "named_farmyard_and_manor_area_representative_point",
+    "coordRole": "monastery_manor_core_anchor",
+    "sourceObjectId": "osm-way:124839227;wikidata:Q4994287;riksantikvaren-kulturminne:9570"
+  },
+  "previousCoordinate": {
+    "lat": 59.3609,
+    "lon": 10.7269,
+    "r": 300,
+    "distanceToAppliedCoordinateM": 4697.8,
+    "reasonReplaced": "The legacy point lay approximately 4.7 kilometres southeast of Værne Kloster and had no source-object contract."
+  },
+  "identity": {
+    "resolvedIdentity": "The named Værne Kloster farmyard and manor core at Klosterveien 91, on the former royal estate and site of Norway's only Knights Hospitaller monastery and hospital.",
+    "identityStatus": "resolved",
+    "identityProblem": "The record combines the medieval monastery, later manor, active private farm, historical estate and a 5,473-decare protected landscape. The coordinate must identify a stable physical core without treating the gameplay radius as the full monastery, estate, property or protection geometry.",
+    "locatorTypeCandidate": "monastery_manor_farmyard",
+    "requiresSplit": false,
+    "splitReason": "The monastery traces and later manor developed at the same named core. The wider estate and protected landscape remain larger contextual extents."
+  },
+  "requiredEvidence": [
+    "named farmyard or manor geometry",
+    "heritage entity and Kulturminne identifier",
+    "current address and farm identity",
+    "authoritative monastery and manor chronology",
+    "explicit treatment of dating uncertainty",
+    "private-access and radius limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 124839227 – Værne Kloster",
+      "sourceUrl": "https://www.openstreetmap.org/way/124839227",
+      "sourceObjectId": "osm-way:124839227",
+      "sourceQuality": "named_farmyard_and_manor_area_geometry",
+      "finding": "The named farmyard polygon has representative point 59.39354, 10.67424 and is linked to Wikidata Q4994287.",
+      "canVerifyCoordinate": true,
+      "reason": "It directly identifies the current physical manor and farm core."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q4994287 – Værne Kloster",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q4994287",
+      "sourceObjectId": "wikidata:Q4994287",
+      "sourceQuality": "heritage_entity_and_registry_cross_check",
+      "finding": "The entity links OSM way 124839227 and Kulturminne ID 9570. Its coordinate lies approximately 109.4 metres west of the applied farmyard representative point.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the identity and heritage registration of the mapped core."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Værne kloster",
+      "sourceUrl": "https://snl.no/V%C3%A6rne_kloster",
+      "sourceObjectId": "snl:vaerne-kloster",
+      "sourceQuality": "authoritative_monastery_manor_and_estate_history",
+      "finding": "SNL identifies Værne as a former royal estate, Norway's only Knights Hospitaller monastery with hospital, later a large manor and farm, and places the foundation in the 1190s under King Sverre.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the historical identity and warns against reducing the place to the current farm use."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Værne kloster",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/V%C3%A6rne_kloster",
+      "sourceObjectId": "lokalhistoriewiki:vaerne-kloster",
+      "sourceQuality": "local_address_property_and_dating_context",
+      "finding": "The source gives Klosterveien 91, gnr. 189/bnr. 1 and notes that the monastery was probably founded late in the twelfth century but may have been established later.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current property identity and supports explicit dating uncertainty."
+    },
+    {
+      "sourceProvider": "brreg",
+      "sourceName": "Brønnøysundregistrene – Værne Kloster Gård",
+      "sourceUrl": "https://virksomhet.brreg.no/nn/oppslag/enheter/969739070",
+      "sourceObjectId": "brreg:969739070",
+      "sourceQuality": "official_current_farm_address_control",
+      "finding": "The active farm business is registered at Værne Kloster, Klosterveien 91, 1570 Dilling.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current farm and address identity."
+    },
+    {
+      "sourceProvider": "lovdata",
+      "sourceName": "Lovdata – Værne kloster landskapsvernområde",
+      "sourceUrl": "https://lovdata.no/dokument/LF/forskrift/2013-09-13-1086/KAPITTEL_1",
+      "sourceObjectId": "lovdata:FOR-2013-09-13-1086",
+      "sourceQuality": "official_protected_landscape_scope",
+      "finding": "The protected landscape covers approximately 5,473 decares and preserves a manor-shaped agricultural and cultural landscape.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes that the legal landscape extent is far larger than the gameplay radius and must not be inferred from the point."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Værne Kloster point",
+      "sourceObjectId": "legacy:varne_kloster",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 4,697.8 metres southeast of the named manor and farmyard core.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify Værne Kloster."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "lokalhistoriewiki_and_brreg",
+      "address": "Klosterveien 91, 1570 Dilling",
+      "addressRole": "current_manor_and_farm_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Confirms identity and access context, while the named OSM area supplies the direct coordinate."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:124839227",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6241620634",
+      "canApplyToPlace": false,
+      "rejectionReason": "Named farm locality point inside the wider site; the farmyard polygon gives the stronger physical core."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4994287",
+      "canApplyToPlace": false,
+      "rejectionReason": "Heritage identity cross-check; the linked OSM area provides direct geometry."
+    },
+    {
+      "sourceProvider": "access_control",
+      "sourceObjectId": "vaerne-kloster-bus-stop",
+      "canApplyToPlace": false,
+      "rejectionReason": "Public transport access point approximately 250 metres southwest, not the historical site."
+    },
+    {
+      "sourceProvider": "legal_geometry_control",
+      "sourceObjectId": "vaerne-kloster-landscape-protection-area",
+      "canApplyToPlace": false,
+      "rejectionReason": "The 5,473-decare protected landscape is a legal and ecological extent, not a point coordinate substitute."
+    },
+    {
+      "sourceProvider": "archaeology_control",
+      "sourceObjectId": "single-monastery-wall-fragment",
+      "canApplyToPlace": false,
+      "rejectionReason": "One surviving fragment would reduce the combined monastery, hospital, manor and estate record to one archaeological component."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:124839227",
+      "geometryType": "named_farmyard_polygon",
+      "geometryRole": "manor_farmyard_and_monastery_core",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "lovdata",
+      "sourceObjectId": "lovdata:FOR-2013-09-13-1086",
+      "geometryType": "landscape_protection_polygon",
+      "geometryRole": "protected_manor_agricultural_and_natural_landscape",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "historical_estate_context",
+      "sourceObjectId": "vaerne-historical-estate",
+      "geometryType": "changing_historical_property_extent_not_applied",
+      "geometryRole": "monastery_and_later_manor_estate",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "varne_kloster_manor_core",
+      "name": "Værne kloster – gårdstun og herregårdskjerne",
+      "lat": 59.39354,
+      "lon": 10.67424,
+      "r": 120,
+      "type": "monastery_manor_core_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:124839227;wikidata:Q4994287;riksantikvaren-kulturminne:9570",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:varne_kloster",
+      "lat": 59.3609,
+      "lon": 10.7269,
+      "distanceFromAppliedM": 4697.8,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:124839227",
+      "lat": 59.39354,
+      "lon": 10.67424,
+      "distanceFromPreviousM": 4697.8,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4994287",
+      "lat": 59.3931111111,
+      "lon": 10.6725,
+      "distanceFromAppliedM": 109.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6241620634",
+      "lat": 59.39306,
+      "lon": 10.67266,
+      "distanceFromAppliedM": 103.9,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-varne-kloster-source-probe/source-summary.json",
+      "description": "Persisted manor-core geometry, heritage identity, address, dating uncertainty, wider protected-landscape scope, rejected candidates and access limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the Værne Kloster farmyard and manor-core point, retained 1190 as an approximate 1190s period anchor and retained the 300-metre gameplay radius. Continue with onsoy_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 4,697.8 metres northwest.",
+    "The marker represents the named farmyard and manor core, not the complete monastery, estate or protected landscape.",
+    "The year 1190 is an approximate period anchor, not an exact foundation date.",
+    "The site is an active private farm; the coordinate does not grant access to the yard or buildings.",
+    "The radius is not a building, ruin, property, protection, agricultural or monastery-landscape boundary."
+  ]
+}
