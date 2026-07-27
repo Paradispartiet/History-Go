@@ -1,55 +1,151 @@
 {
   "id": "aremark_kirke_kirkested",
-  "name": "Aremark kirke / kirkested",
-  "lat": 59.2212,
-  "lon": 11.6959,
+  "name": "Aremark kirke og kirkested",
+  "lat": 59.24473,
+  "lon": 11.68211,
   "r": 240,
+  "locatorType": "church_building_and_historic_kirkested",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:733677615",
+  "geocodeAccuracy": "named_church_building_geometry",
+  "coordRole": "current_church_building_anchor",
+  "coordType": "church_building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 733677615 – Aremark kirke; Wikidata Q6492585; Kulturminne ID 83789; Norges Kirker; Store norske leksikon",
+  "coordSourceId": "osm-way:733677615;wikidata:Q6492585;kulturminne:83789",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/733677615",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 2 731,5 meter nord-nordvest til den navngitte kirkebygningen ved Aremarksjøen.",
+  "coordNote": "OpenStreetMap way 733677615 identifiserer Aremark kirke på 59.24473, 11.68211 og samsvarer med Wikidata Q6492585, Kulturminne ID 83789 og adressen Aremarkveien 2558. Dagens teglkirke ble tegnet av Peter Høier Holtermann, oppført i 1860–1861 og innviet 6. november 1861. Den erstattet en middelaldersk steinkirke viet til St. Laurentius, som ble revet i 1860; dagens bygg står på eller delvis på det eldre kirkestedet. Canonical bruker dagens kirkebygning som hovedanker, mens middelalderkirkestedet er et historisk lag ved samme sted. Radius 240 meter omfatter kirkebygget, kirkegården og offentlig ankomst som gameplayområde, men er ikke en bygnings-, kirkegårds-, kulturminne-, eiendoms-, strandsone- eller seremonigrense. Gudstjenester, gravferder, kirkegårdsbruk og aktuelle adgangsregler går foran gameplay.",
+  "anchors": [
+    {
+      "id": "aremark_church_building",
+      "name": "Aremark kirke",
+      "lat": 59.24473,
+      "lon": 11.68211,
+      "r": 90,
+      "type": "current_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:733677615;wikidata:Q6492585;kulturminne:83789",
+      "note": "Dagens teglkirke, oppført 1860–1861 og innviet 6. november 1861."
+    },
+    {
+      "id": "aremark_medieval_kirkested",
+      "name": "Aremark middelalderkirkested",
+      "lat": 59.24473,
+      "lon": 11.68211,
+      "r": 115,
+      "type": "medieval_church_site_historical_layer",
+      "sourceProvider": "norges_kirker",
+      "sourceObjectId": "norges-kirker:aremark-kirke",
+      "note": "Historisk lag for steinkirken som ble revet i 1860; ikke et separat kartpunkt med sikkert avgrenset bygningsfotavtrykk."
+    },
+    {
+      "id": "aremark_church_public_arrival",
+      "name": "Aremark kirke – offentlig ankomst",
+      "lat": 59.24487,
+      "lon": 11.68278,
+      "r": 45,
+      "type": "public_transport_and_roadside_arrival_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6373485107",
+      "note": "Busstopp og offentlig ankomst øst for kirkebygningen; brukes som trygt besøksanker."
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Aremark",
   "year": 1861,
-  "period": "Kirkested, grenselandskap og 1800-talls kirke",
+  "period": "Middelalderkirkested og 1800-talls teglkirke",
   "tags": [
     "historie",
     "kirke",
     "aremark",
     "grense",
-    "kirkested"
+    "kirkested",
+    "middelalder",
+    "peter_holtermann"
   ],
-  "desc": "Kirkested i Aremark med dagens kirke innviet i 1861 på eldre kirketomt. Stedet binder bygdehistorie, Haldenvassdraget, ferdsel og grenselandets kirkelige organisering sammen.",
-  "popupDesc": "Aremark kirke ble innviet i 1861 etter at ny kirke ble reist på den gamle kirkens tomt. Stedet ligger i et grenselandskap der Haldenvassdraget, skog, gårder og veier har bundet bygda sammen over lang tid. Aremark kirke bør brukes i History Go til å vise hvordan et kirkested kan være eldre enn dagens bygg, og hvordan kirken fungerte som lokalt samlingspunkt i et område preget av avstand, vassdrag og nærhet til Sverige.",
+  "desc": "Aremark kirke er en teglkirke innviet i 1861 på et middelaldersk kirkested ved Aremarksjøen. Stedet viser kontinuiteten mellom den gamle steinkirken, dagens kirkebygg og grenselandskapets lokale samlingspunkt.",
+  "popupDesc": "Aremark kirke ligger øst for Aremarksjøen. Dagens langkirke i tegl ble tegnet av Peter Høier Holtermann, reist i 1860–1861 og innviet 6. november 1861. Før den stod en middelaldersk steinkirke viet til St. Laurentius på stedet; den ble revet i 1860, og deler av inventaret ble overført til den nye kirken. Kirkegården strekker seg mot sjøen og rommer blant annet en minnebauta over eidsvollsmannen Ole Svendsen Illerød. Canonical-punktet viser dagens kirkebygning, mens middelalderkirken behandles som et historisk lag ved samme kirkested. Oppgaver skal respektere gudstjenester, gravferder, gravminner og aktuelle adgangsregler.",
+  "externalLinks": [
+    {
+      "type": "architectural_history",
+      "label": "Norges Kirker – Aremark kirke",
+      "url": "https://norgeskirker.no/wiki/Aremark_kirke",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "reference",
+      "label": "Store norske leksikon – Aremark",
+      "url": "https://snl.no/Aremark",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "heritage_record",
+      "label": "Kulturminnesøk – Aremark kirke",
+      "url": "https://kulturminnesok.no/minne/?queryString=https%3A%2F%2Fdata.kulturminne.no%2Faskeladden%2Flokalitet%2F83789",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "map_object",
+      "label": "OpenStreetMap – Aremark kirke",
+      "url": "https://www.openstreetmap.org/way/733677615",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "entity",
+      "label": "Wikidata – Aremark kirke",
+      "url": "https://www.wikidata.org/wiki/Q6492585",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    }
+  ],
   "quiz_profile": {
     "place_type": "kirkested",
-    "subtype": "ny_1800_tallskirke_pa_eldre_kirketomt",
+    "subtype": "teglkirke_fra_1861_pa_middelalderkirkested",
     "signature_features": [
-      "dagens kirke innviet i 1861",
-      "reist på den gamle kirkens tomt",
-      "knyttet til Aremarks bygde- og grenselandskap"
+      "dagens teglkirke innviet 6. november 1861",
+      "tegnet av Peter Høier Holtermann",
+      "middelalderkirken ble revet i 1860",
+      "eldre inventar ble overført til dagens kirke"
     ],
     "primary_angles": [
       "historie",
       "religion",
+      "arkitektur",
       "grense",
       "lokalsamfunn"
     ],
     "question_families": [
       "kirkested",
-      "1800_tallet",
-      "bygdesamfunn",
-      "sted_vs_bygg"
+      "middelalder_til_1800_tall",
+      "arkitekt_og_teglkirke",
+      "inventar_og_kontinuitet",
+      "bygdesamfunn"
     ],
     "avoid_angles": [
       "generisk_1800_tallskirke",
-      "bare_byggår"
+      "bare_byggår",
+      "påstand_om_at_middelalderkirken_står",
+      "forveksling_med_aremark_prestegard",
+      "oppgave_som_forstyrrer_seremoni_eller_gravplass"
     ],
     "must_include": [
-      "innvielsen i 1861",
-      "at kirken står på eldre kirketomt"
+      "innvielsen 6. november 1861",
+      "Peter Høier Holtermann",
+      "middelalderkirken og rivingen i 1860",
+      "skillet mellom dagens bygg og det eldre kirkestedet"
     ],
     "contrast_targets": [
       "rodenes_kirke",
-      "hvaler_kirke"
+      "hvaler_kirke",
+      "rakkestad_kirke"
     ],
-    "notes": "Skal spørres som kirkested og grensebygdhistorie, ikke bare som kirkebygg."
+    "notes": "Skal spørres som kontinuerlig kirkested med dagens 1861-kirke som fysisk hovedanker. Middelalderkirken er et historisk lag, ikke en stående bygning."
   }
 }
