@@ -1,1 +1,10 @@
-Not run because archive extraction failed.
+file:///home/runner/work/History-Go/History-Go/scripts/audit-category-governance.mjs:11
+  const pattern = new RegExp(`const\s+${constantName}\s*=\s*\[([\s\S]*?)\]`, "m");
+                  ^
+
+SyntaxError: Invalid regular expression: /consts+CANONICALs*=s*[([sS]*?)]/m: Unmatched ')'
+    at new RegExp (<anonymous>)
+    at extractStringArray (file:///home/runner/work/History-Go/History-Go/scripts/audit-category-governance.mjs:11:19)
+    at file:///home/runner/work/History-Go/History-Go/scripts/audit-category-governance.mjs:44:21
+
+Node.js v22.23.1
