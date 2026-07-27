@@ -1,14 +1,26 @@
 {
   "id": "brekke_sluser_haldenkanalen",
   "name": "Brekke sluser / Haldenkanalen",
-  "lat": 59.1501,
-  "lon": 11.4643,
+  "lat": 59.148,
+  "lon": 11.5577,
   "r": 420,
+  "locatorType": "lock_staircase_complex",
+  "sourceProvider": "wikidata",
+  "sourceObjectId": "wikidata:Q11040669",
+  "geocodeAccuracy": "named_lock_complex_entity_coordinate",
+  "coordRole": "current_four_chamber_lock_staircase_anchor",
+  "coordType": "lock_complex_representative_point",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Wikidata Q11040669; Kulturminne ID 241336-9; NVE Haldenkanalen; Haldenkanalen and Visit Norway; Lokalhistoriewiki",
+  "coordSourceId": "wikidata:Q11040669;kulturminne:241336-9",
+  "coordSourceUrl": "https://www.wikidata.org/wiki/Q11040669",
+  "coordVerifiedAt": "2026-07-27",
   "category": "by",
   "fylke": "ostfold",
   "kommune": "Halden",
   "year": 1924,
-  "period": "Kanal, sluseteknikk og kraftutbygging",
+  "yearMeaning": "Året da dagens firekammeranlegg og den tilknyttede kraftutbyggingen stod ferdig, ikke starten på kanalhistorien ved Brekke.",
+  "period": "Slusetrapp, kanalhistorie og kraftutbygging",
   "tags": [
     "historie",
     "kanal",
@@ -16,15 +28,111 @@
     "haldenkanalen",
     "teknologi"
   ],
-  "desc": "Ved Brekke løftes båtene gjennom Nord-Europas høyeste sammenhengende slusetrapp. Dagens anlegg fra 1924 kobler Haldenkanalens tømmer- og ferdselshistorie til kraftutbygging og oppdemming, slik at kanal, vannstand og energiproduksjon kan leses som ett teknisk landskap.",
-  "popupDesc": "De første slusene ved Brekke ble bygget midt på 1800-tallet, men dagens store anlegg stod ferdig i 1924 i forbindelse med kraftutbygging og oppdemming. Slusetrappen fører båtene gjennom flere nivåer mellom Femsjøen og Stenselva og er kjent som Nord-Europas høyeste sammenhengende slusetrapp. Hver passering gjør ingeniørarbeidet synlig: vann må holdes tilbake, slippes inn og fordeles slik at fartøyet gradvis flyttes mellom høydene. Samtidig inngår Brekke i et større kanalsystem som fraktet tømmer, mennesker og varer gjennom Haldenvassdraget. Stedet viser derfor hvordan samferdsel og kraftutbygging kunne gripe inn i det samme vannløpet. Sammen med Ørje og Strømsfoss forklarer Brekke Haldenkanalen som ett sammenhengende teknisk og økonomisk system, ikke tre isolerte turistmål.",
+  "desc": "Firekammer-slusetrapp fra 1924 med 26,6 meters samlet løftehøyde. Anlegget samler eldre kanalhistorie, tømmerfløting og kraftutbygging i ett teknisk kulturmiljø.",
+  "popupDesc": "Brekke sluser består av fire sammenhengende slusekamre som løfter eller senker fartøy 26,6 meter mellom nivåene i Haldenkanalen. Dagens anlegg stod ferdig i 1924 da kraftutbyggingen samlet fallene ved Brekke og vannstanden oppstrøms ble hevet. Dermed ble Krappeto-slusene lenger opp neddemmet, mens Brekke fikk den store slusetrappen som fortsatt brukes. Kanalhistorien er eldre: de første slusene ved Brekke ble anlagt på 1850-tallet, ødelagt av flom i 1861 og senere gjenoppbygget. Tømmertransporten fortsatte fram til 1982. Brekke kraftstasjon ligger ved siden av slusene, men er et separat driftsanlegg; parkeringsplassen, Anleggsbrygga, overnattingsbyggene og via-ferrata-anlegget er også egne besøks- eller aktivitetsobjekter. Ferdsel nær vann, porter og tekniske områder må følge skilting, slusebetjening og sesongregler.",
+  "accessContext": {
+    "siteType": "operational_lock_and_hydropower_environment",
+    "publicAccess": "Slusemiljøet kan oppleves fra lovlige besøksarealer og gjennom organiserte kanalaktiviteter. Slusing, båtturer og service følger gjeldende sesong, tider og operatørregler.",
+    "visitorArrival": "Brekkeveien 16 og parkeringsområdet vest for slusene er publikumsankre, ikke canonical-koordinaten for selve slusetrappen.",
+    "limitations": [
+      "Ikke gå inn på sluseporter, damkonstruksjoner, kraftverksområder eller andre avsperrede tekniske arealer.",
+      "Hold avstand til vannkanter, bevegelige porter, fortøyninger og fartøy under slusing.",
+      "Gameplay-radiusen er ikke en sluse-, kanal-, kraftverks-, eiendoms-, sikkerhets-, verne- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "first_brekke_locks",
+      "date": "1850s",
+      "status": "replaced_historical_layer",
+      "note": "De første slusene ble anlagt under den tidlige utbyggingen av Haldenkanalen."
+    },
+    {
+      "type": "flood_destruction",
+      "date": "1861",
+      "status": "documented_event",
+      "note": "Flommen ødela det tidlige sluseanlegget."
+    },
+    {
+      "type": "rebuilt_navigation_system",
+      "date": "1877",
+      "status": "historical_layer",
+      "note": "Kanalen ble igjen farbar etter gjenoppbyggingen."
+    },
+    {
+      "type": "current_lock_staircase",
+      "date": "1924",
+      "status": "surviving_and_operational",
+      "note": "Fire kamre med 26,6 meters samlet løftehøyde ble ferdigstilt sammen med kraftutbyggingen."
+    },
+    {
+      "type": "timber_floating",
+      "date": "until_1982",
+      "status": "ended",
+      "note": "Slusene inngikk i tømmertransporten fram til 1982."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "brekke_power_station",
+      "name": "Brekke kraftstasjon",
+      "relation": "adjacent_operational_hydropower_component",
+      "canonical": false,
+      "note": "Kraftstasjonen ble ferdigstilt i tilknytning til 1924-anlegget, men er et separat teknisk og sikkerhetsmessig objekt."
+    },
+    {
+      "id": "brekke_old_lock_environment",
+      "name": "Det eldre slusemiljøet",
+      "relation": "historical_pre_1924_layer",
+      "canonical": false,
+      "note": "Tidligere sluser og slusebebyggelse er historiske lag som ikke skal forveksles med dagens fire kamre."
+    },
+    {
+      "id": "brekke_visitor_arrival",
+      "name": "Brekkeveien 16 og besøksområdet",
+      "relation": "visitor_arrival_and_activity_area",
+      "canonical": false,
+      "note": "Parkering, kiosk, bobilplass, båttur, kano og via ferrata er besøksfunksjoner, ikke slusegeometri."
+    },
+    {
+      "id": "anleggsbrygga",
+      "name": "Anleggsbrygga",
+      "relation": "downstream_guest_harbour",
+      "canonical": false,
+      "note": "Gjestehavna ligger om lag 300 meter nedstrøms og er et eget ankomststed."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "brekke_current_lock_staircase",
+      "name": "Brekke sluser",
+      "lat": 59.148,
+      "lon": 11.5577,
+      "r": 170,
+      "type": "four_chamber_lock_staircase_anchor",
+      "sourceProvider": "wikidata_kulturminne",
+      "sourceObjectId": "wikidata:Q11040669;kulturminne:241336-9",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "brekke_visitor_arrival",
+      "name": "Besøksområde ved Brekkeveien 16",
+      "lat": 59.14713,
+      "lon": 11.55303,
+      "r": 160,
+      "type": "visitor_arrival_and_parking_anchor",
+      "sourceProvider": "visitor_address_and_osm_derived_listing",
+      "sourceObjectId": "address:Brekkeveien 16",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "kanalanlegg",
-    "subtype": "hoy_slusetrapp_og_krafttilknyttet_kanalsted",
+    "subtype": "firekammer_slusetrapp_koblet_til_kraftutbygging",
     "signature_features": [
-      "dagens store sluseanlegg stod ferdig i 1924",
-      "del av Haldenkanalen",
-      "kobler sluseteknikk, tømmertransport og kraftutbygging"
+      "fire sammenhengende slusekamre",
+      "26,6 meters samlet løftehøyde",
+      "dagens anlegg ferdigstilt i 1924"
     ],
     "primary_angles": [
       "historie",
@@ -36,20 +144,22 @@
       "kanalhistorie",
       "sluseteknikk",
       "kraftutbygging",
-      "tømmertransport"
+      "tømmerfløting"
     ],
     "avoid_angles": [
       "bare_båttur",
-      "generisk_vannvei"
+      "generisk_vannvei",
+      "sammenblanding_med_kraftstasjonen",
+      "sammenblanding_med_besøksparkeringen"
     ],
     "must_include": [
-      "Brekke som del av Haldenkanalen",
-      "1924-anlegget og slusetrappen"
+      "fire kamre og 26,6 meters løftehøyde",
+      "1924-anlegget som et senere lag i en eldre kanalhistorie"
     ],
     "contrast_targets": [
       "orje_sluser_haldenkanalen",
       "stromsfoss_sluser"
     ],
-    "notes": "Skal spørres som teknisk kulturminne og kanalhistorie, ikke som ren turistattraksjon."
+    "notes": "Skal spørres som operativ slusetrapp og teknisk kulturminne. Kraftstasjon, gammel slusetrase og besøksområder er separate komponenter."
   }
 }
