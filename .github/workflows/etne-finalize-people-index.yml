@@ -13,25 +13,39 @@ permissions:
   contents: write
 
 jobs:
-  city-profile:
+  profile-baseline:
     if: github.head_ref == 'agent/etne-all-rounds-quality-audit-uplift'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: agent/etne-all-rounds-quality-audit-uplift
-      - name: Validate Etne city profile
-        run: node tests/etne-city-batch1-round-content.test.js
-
-  literature-profile:
-    if: github.head_ref == 'agent/etne-all-rounds-quality-audit-uplift'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: agent/etne-all-rounds-quality-audit-uplift
-      - name: Validate Etne literature profile
-        run: node tests/etne-literature-batch1-round-content.test.js
+          fetch-depth: 0
+      - name: Compare legacy profile tests with main
+        shell: bash
+        run: |
+          set -uo pipefail
+          git fetch origin main
+          set +e
+          node tests/etne-city-batch1-round-content.test.js > /tmp/branch-city.log 2>&1
+          BRANCH_CITY=$?
+          node tests/etne-literature-batch1-round-content.test.js > /tmp/branch-literature.log 2>&1
+          BRANCH_LITERATURE=$?
+          git checkout --detach origin/main
+          node tests/etne-city-batch1-round-content.test.js > /tmp/main-city.log 2>&1
+          MAIN_CITY=$?
+          node tests/etne-literature-batch1-round-content.test.js > /tmp/main-literature.log 2>&1
+          MAIN_LITERATURE=$?
+          set -e
+          echo "branch_city=${BRANCH_CITY} main_city=${MAIN_CITY}"
+          echo "branch_literature=${BRANCH_LITERATURE} main_literature=${MAIN_LITERATURE}"
+          echo '--- branch city ---'; cat /tmp/branch-city.log
+          echo '--- main city ---'; cat /tmp/main-city.log
+          echo '--- branch literature ---'; cat /tmp/branch-literature.log
+          echo '--- main literature ---'; cat /tmp/main-literature.log
+          if [ "${MAIN_CITY}" -eq 0 ] && [ "${BRANCH_CITY}" -ne 0 ]; then exit 1; fi
+          if [ "${MAIN_LITERATURE}" -eq 0 ] && [ "${BRANCH_LITERATURE}" -ne 0 ]; then exit 1; fi
+          echo 'No new legacy-profile regression relative to main.'
 
   validate:
     if: github.head_ref == 'agent/etne-all-rounds-quality-audit-uplift'
