@@ -1,9 +1,34 @@
 {
   "id": "hoytorp_fort",
   "name": "Høytorp fort",
-  "lat": 59.5536,
-  "lon": 11.3317,
+  "lat": 59.56228,
+  "lon": 11.34038,
   "r": 420,
+  "locatorType": "fortress",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:35952117",
+  "geocodeAccuracy": "area_representative_point",
+  "coordRole": "fort_area_anchor",
+  "coordType": "named_historic_land_fort_area_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 35952117 – Høytorp fort; Forsvarsbygg establishment 012501; Fortene; Foreningen Høytorp Fort",
+  "coordSourceId": "osm-way:35952117",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/35952117",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 1 082 meter nordøst til representasjonspunktet for det navngitte fortområdet.",
+  "coordNote": "OSM way 35952117 er det navngitte historiske militærområdet Høytorp fort ved 59.56228, 11.34038. Forsvarsbygg identifiserer anlegget som etablering 012501 og et tidligere landfort, mens Fortene dokumenterer et område på 426 dekar med 41 bygninger, fjellanlegg og flere fortifikatoriske deler. Det likenavnede OSM-punktet 987933937 ligger omtrent 122,4 meter nordøst, men er et informasjonspunkt og ikke selve fortet. Canonical representerer hovedfortets samlede område, ikke Reduiten, én kanonstilling, ett museum eller inngangspunkt alene. Radius 420 meter dekker den sentrale delen av fortet og viktige besøksfunksjoner som gameplayområde, men er ikke frednings-, eiendoms-, bygnings- eller full festningsgrense.",
+  "anchors": [
+    {
+      "id": "hoytorp_main_fort_area",
+      "name": "Høytorp fort – hovedanlegget",
+      "lat": 59.56228,
+      "lon": 11.34038,
+      "r": 180,
+      "type": "fort_area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35952117"
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Indre Østfold",
@@ -16,14 +41,28 @@
     "1940",
     "indre_ostfold"
   ],
-  "desc": "Hovedfort i Fossumstrøkets festning ved Mysen, bygget i perioden 1912–1918 og tatt i bruk av rekrutter i 1915. Fortet deltok i kampene mot tyske styrker i april 1940.",
-  "popupDesc": "Høytorp fort var hovedfortet i Fossumstrøkets festning og ble bygget for å hindre angrep mot hovedstaden gjennom indre Østfold. Anlegget ble etablert i årene 1912–1918, og første rekruttkontingent kom i 1915. Fortet var i kamp mot tyske styrker 9.–14. april 1940. Stedet gjør forsvarshistorie konkret gjennom fjellanlegg, tårnkanoner, kasematter, samband, fjellkjøkken og kontroll over landskapet.",
+  "desc": "Hovedfort i Fossumstrøkets festning ved Mysen, bygget i perioden 1912–1918. Første rekruttkontingent kom i 1915, og fortet deltok i kampene mot tyske styrker 9.–14. april 1940.",
+  "popupDesc": "Høytorp fort ble bygget i perioden 1912–1918 som hovedfort i Fossumstrøkets festning og som del av Glommalinjen, den nye forsvarslinjen øst for hovedstaden etter 1905. Sammen med Trøgstad fort og brogalleriene ved Glomma skulle anlegget møte angrep gjennom indre Østfold. Første rekruttkontingent kom 10. august 1915, og fortet var sete for festningskommandoen. Under felttoget i 1940 deltok Høytorp i kampene mot tyske styrker fra 9. til 14. april. Anlegget er et stort sammensatt kulturmiljø med fjellanlegg, kanontårn, reduit, kasematter, leirområde og en rekke bygninger. I dag brukes området til museum, omvisninger, kultur, næring og friluftsliv. History Go forankrer posten til det navngitte hovedfortområdet. Enkeltdeler som Reduiten, tårnkanonene, artillerimuseet og fjellanleggets inngang er viktige observasjonspunkter, men skal ikke erstatte helhetsankeret.",
+  "externalLinks": [
+    {
+      "label": "Fortene – Høytorp fort",
+      "url": "https://www.fortene.no/hoytorp-fort/"
+    },
+    {
+      "label": "Foreningen Høytorp Fort",
+      "url": "https://www.hoytorpfort.org/no/"
+    },
+    {
+      "label": "Forsvarsbygg – Høytorp fort",
+      "url": "https://www.forsvarsbygg.no/no/verneplaner/landsverneplan-for-forsvaret/ostlandet/hoytorp-fort/"
+    }
+  ],
   "quiz_profile": {
     "place_type": "fort",
     "subtype": "fjellfort_og_hovedfort_i_fossumstrøket",
     "signature_features": [
       "hovedfort i Fossumstrøkets festning",
-      "bygget 1912–1918",
+      "bygget 1912–1918 med første rekrutter i 1915",
       "deltok i kampene 9.–14. april 1940"
     ],
     "primary_angles": [
@@ -40,16 +79,18 @@
     ],
     "avoid_angles": [
       "bare_tursted",
-      "generisk_fort"
+      "generisk_fort",
+      "forveksling_av_informasjonspunkt_med_fortområdet"
     ],
     "must_include": [
-      "Fossumstrøkets festning",
-      "kampene i april 1940"
+      "Fossumstrøkets festning og Glommalinjen",
+      "kampene i april 1940",
+      "hovedfortet som et sammensatt område med fjellanlegg og leirområde"
     ],
     "contrast_targets": [
       "fredriksten_festning",
       "basmo_festning"
     ],
-    "notes": "Skal spørres som 1900-tallets grenseforsvar, ikke som middelalderfestning."
+    "notes": "Skal spørres som 1900-tallets grenseforsvar og et sammensatt landfort, ikke som middelalderfestning eller ett enkelt museumspunkt."
   }
 }
