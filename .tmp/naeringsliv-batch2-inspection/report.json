@@ -1,0 +1,46 @@
+{
+  "parts": [
+    ".tmp/naeringsliv-batch2.payload.0",
+    ".tmp/naeringsliv-batch2.payload.1",
+    ".tmp/naeringsliv-batch2.payload.2"
+  ],
+  "joined_base64_chars": 24000,
+  "decoded_bytes": 18000,
+  "first_32_hex": "5bac501245cd60b5a86624ebb379408fc513190bfe5745724abda061c16c4462",
+  "attempts": [
+    {
+      "name": "identity",
+      "success": true,
+      "bytes": 18000,
+      "first_32_hex": "5bac501245cd60b5a86624ebb379408fc513190bfe5745724abda061c16c4462",
+      "utf8": false,
+      "text_prefix": null
+    },
+    {
+      "name": "gzip",
+      "success": false,
+      "error": "BadGzipFile(\"Not a gzipped file (b'[\\\\xac')\")"
+    },
+    {
+      "name": "zlib",
+      "success": false,
+      "error": "error('Error -3 while decompressing data: incorrect header check')"
+    },
+    {
+      "name": "raw_deflate",
+      "success": false,
+      "error": "error('Error -3 while decompressing data: invalid distance too far back')"
+    },
+    {
+      "name": "bz2",
+      "success": false,
+      "error": "OSError('Invalid data stream')"
+    },
+    {
+      "name": "lzma",
+      "success": false,
+      "error": "LZMAError('Input format not supported by decoder')"
+    }
+  ],
+  "brotli_import": "ModuleNotFoundError(\"No module named 'brotli'\")"
+}
