@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **187**
-- Additional active Oslo IDs outside the protocol: **325**
+- IDs in the current revision protocol: **194**
+- Additional active Oslo IDs outside the protocol: **318**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **325**
+- Additional IDs needing revision: **318**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -23,7 +23,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | 21 |
 | vitenskap | 21 |
 | politikk | 18 |
-| media | 7 |
 | musikk | 5 |
 | psykologi | 1 |
 
@@ -92,13 +91,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | Ruth Maier-minnesmerke | `ruth_maier_minne` | 23 | 44 | 1 | `data/places/litteratur/oslo/places_litteratur/ruth_maier_minne.json` | needs revision |
 | litteratur | Sigrid Undset-statuen | `sigrid_undset_statue` | 19 | 47 | 1 | `data/places/litteratur/oslo/places_litteratur/sigrid_undset_statue.json` | needs revision |
 | litteratur | Tronsmo Bokhandel | `tronsmo_bokhandel` | 13 | 13 | 1 | `data/places/litteratur/oslo/places_litteratur/tronsmo_bokhandel.json` | needs revision |
-| media | Frognerstranda | `frognerstranda` | 7 | 68 | 1 | `data/places/media/oslo/frognerstranda.json` | needs revision |
-| media | Grand Hotel | `grand_hotel` | 7 | 61 | 1 | `data/places/media/oslo/grand_hotel.json` | needs revision |
-| media | Aftenposten – Akersgata 51 | `aftenposten_akersgata` | 19 | 107 | 2 | `data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json` | needs revision |
-| media | Dagbladet – Akersgata 49 | `dagbladet_akersgata` | 16 | 84 | 2 | `data/places/media/oslo/places_oslo_media/dagbladet_akersgata.json` | needs revision |
-| media | Klassekampen-redaksjonen | `klassekampen_redaksjon` | 13 | 57 | 1 | `data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json` | needs revision |
-| media | NRK-huset på Marienlyst | `nrk_huset_marienlyst` | 11 | 57 | 1 | `data/places/media/oslo/places_oslo_media/nrk_huset_marienlyst.json` | needs revision |
-| media | VG-huset | `vg_huset` | 8 | 62 | 1 | `data/places/media/oslo/places_oslo_media/vg_huset.json` | needs revision |
 | musikk | Blå | `blaa` | 13 | 64 | 1 | `data/places/musikk/oslo/places_musikk/blaa.json` | needs revision |
 | musikk | John Dee | `john_dee` | 10 | 58 | 1 | `data/places/musikk/oslo/places_musikk/john_dee.json` | needs revision |
 | musikk | Rockefeller Music Hall | `rockefeller` | 12 | 63 | 1 | `data/places/musikk/oslo/places_musikk/rockefeller.json` | needs revision |
