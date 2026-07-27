@@ -44,7 +44,7 @@ jobs:
 
           test "$(find "$PAYLOAD_DIR" -maxdepth 1 -type f -name 'part-*' | wc -l)" = '4'
           cat "$PAYLOAD_DIR"/part-* | tr -d '\n' > "$ENCODED"
-          echo 'eabd0d26f4e59d793552f2ee17ed0481e3c2c3d2460e84157d91ffbfaf2813b3  /tmp/materialize-naeringsliv-oslo-batch-02.py.gz.b64' | sha256sum -c -
+          echo 'eeaf917e3804b1d9c8a34fd5f09ef2762a91c6cd3ed7499ded9c6df6e07588fc  /tmp/materialize-naeringsliv-oslo-batch-02.py.gz.b64' | sha256sum -c -
           base64 --decode "$ENCODED" | gzip -dc > "$MATERIALIZER"
           echo 'd6e20646555d9cc3233f4a5f9a534b76f765f4e5dc63db8c8e691795d45ff242  /tmp/materialize-naeringsliv-oslo-batch-02.py' | sha256sum -c -
           python -m py_compile "$MATERIALIZER"
