@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nes_lensemuseum",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch6/nes_lensemuseum.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_lensemuseum_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.48694,
+    "lon": 11.23116,
+    "r": 360,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 605086495; Skiptvet municipality; Visit Indre Østfold; Visit Norway; Visit Oslofjorden",
+    "coordType": "museum_building_representative_point",
+    "coordRole": "lensemuseum_complex_representative_building_anchor",
+    "sourceObjectId": "osm-way:605086495;address:Nesveien 265"
+  },
+  "previousCoordinate": {
+    "lat": 59.4707,
+    "lon": 11.1754,
+    "r": 360,
+    "distanceToAppliedCoordinateM": 3629.9,
+    "reasonReplaced": "Legacy-punktet lå omtrent 3,63 km sørvest for Nes Lensemuseum og identifiserte ikke museumsbygningen, lensemiljøet eller besøksadressen."
+  },
+  "identity": {
+    "resolvedIdentity": "Nes Lensemuseum, the seasonal museum and preserved work environment at the former Nes sorting boom on the Glomma in Skiptvet.",
+    "identityStatus": "resolved",
+    "identityProblem": "The place combines a named museum building, several land buildings, floating work structures and a historical sorting boom that extended for kilometres along the river. Canonical must identify the museum without shrinking the original lense system to one building or radius.",
+    "locatorTypeCandidate": "timber_boom_museum_and_floating_work_environment",
+    "requiresSplit": false,
+    "splitReason": "The museum and preserved work environment form one place, but the museum building, historical river installation, floating components and private Solnes residence need separate object and access treatment."
+  },
+  "requiredEvidence": [
+    "named museum geometry",
+    "official municipal museum identity",
+    "visitor address",
+    "1853 lense establishment chronology",
+    "1985 operational closure",
+    "1993 museum opening",
+    "land-building and floating-component inventory",
+    "seasonal 2026 opening controls",
+    "river, machinery and private-property safety limits"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 605086495 – Nes Lensemuseum",
+      "sourceUrl": "https://www.openstreetmap.org/way/605086495",
+      "sourceObjectId": "osm-way:605086495",
+      "sourceQuality": "named_museum_building_geometry",
+      "finding": "The named museum building has a representative coordinate at 59.48694, 11.23116.",
+      "canVerifyCoordinate": true,
+      "reason": "Direct named geometry within the museum grounds."
+    },
+    {
+      "sourceProvider": "skiptvet_municipality",
+      "sourceName": "Skiptvet municipality – Museums",
+      "sourceUrl": "https://www.skiptvet.kommune.no/tjenester/kultur-fritid-og-folkehelse/museer",
+      "sourceObjectId": "skiptvet:Nes-Lensemuseum",
+      "sourceQuality": "official_museum_and_component_inventory",
+      "finding": "Confirms Nes Lensemuseum by the Glomma and describes the historical sorting boom, its kilometre-scale length, sorting bays, mose machines, boom model and preserved eating barrack, saw, power station, workshop and smithy.",
+      "canVerifyCoordinate": false,
+      "reason": "Authoritative municipal identity and component source."
+    },
+    {
+      "sourceProvider": "visit_indre_ostfold",
+      "sourceName": "Visit Norway / Visit Indre Østfold – Nes Lensemuseum",
+      "sourceUrl": "https://www.visitnorway.no/listings/nes-lensemuseum-skiptvet/16957/",
+      "sourceObjectId": "visit-indre-ostfold:nes-lensemuseum",
+      "sourceQuality": "destination_address_and_chronology_control",
+      "finding": "Gives Nesveien 265 as the visitor address, dates the lense to 1853, describes several hundred workers and states that operations continued until 1985.",
+      "canVerifyCoordinate": false,
+      "reason": "Current address and core historical chronology."
+    },
+    {
+      "sourceProvider": "visit_oslofjorden",
+      "sourceName": "Visit Oslofjorden – Nes lensemuseum",
+      "sourceUrl": "https://www.visitoslofjorden.no/attraksjoner-i-oslo-og-oslofjorden/2019/3/19/nes-lensemuseum",
+      "sourceObjectId": "visit-oslofjorden:nes-lensemuseum",
+      "sourceQuality": "museum_opening_and_work_environment_history",
+      "finding": "States that Skiptvet municipality owns the museum, that it opened in 1993, and describes the eating barrack, workshop and smithy, power station, saw, floating mose machine, counting hut, machine house, wire house and the private former manager's residence Solnes.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the museum date, component model and private-property limitation."
+    },
+    {
+      "sourceProvider": "visit_ostfold",
+      "sourceName": "Visit Østfold – Open day at Nes Lensemuseum",
+      "sourceUrl": "https://www.visitoestfold.com/indre-ostfold/event/%C3%85pen-dag-p%C3%A5-nes-lensemuseum/804271306/",
+      "sourceObjectId": "visit-ostfold:nes-open-days-2026",
+      "sourceQuality": "current_2026_opening_and_programme_control",
+      "finding": "Publishes selected open days in June, July and September 2026 with talks, refreshments and access to the museum area.",
+      "canVerifyCoordinate": false,
+      "reason": "Current seasonal-access evidence; not proof of continuous opening."
+    },
+    {
+      "sourceProvider": "skiptvet_municipality",
+      "sourceName": "Skiptvet municipality – Open day at Nes Lensemuseum",
+      "sourceUrl": "https://www.skiptvet.kommune.no/nyhetsarkiv/nyheter/2025-08-06-velkommen-til-apen-dag-pa-nes-lensemuseum-sondag-10.-august",
+      "sourceObjectId": "skiptvet:nes-open-day-2025",
+      "sourceQuality": "official_event_and_guided_access_control",
+      "finding": "Documents guided visits in the museum buildings and Brøkkerhuset and describes the lense system from historical sorting to closure in 1985.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports event-based interior access and interpretation."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Nes Lensemuseum point",
+      "sourceObjectId": "legacy:nes_lensemuseum",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy point lies approximately 3629.9 metres south-west of the named museum building.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it has no museum, lense or visitor-address contract."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:605086495",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "historical_river_installation",
+      "sourceObjectId": "nes-sorting-boom-system",
+      "canApplyToPlace": false,
+      "rejectionReason": "The original sorting boom extended for kilometres and cannot be represented by one precise point or gameplay radius."
+    },
+    {
+      "sourceProvider": "private_property",
+      "sourceObjectId": "solnes-former-manager-residence",
+      "canApplyToPlace": false,
+      "rejectionReason": "Solnes is a private former management residence, not the museum or public arrival point."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "nes_lensemuseum_building",
+      "name": "Nes Lensemuseum",
+      "lat": 59.48694,
+      "lon": 11.23116,
+      "r": 130,
+      "type": "lensemuseum_complex_representative_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:605086495",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "nes_visitor_address",
+      "name": "Nesveien 265",
+      "lat": 59.48694,
+      "lon": 11.23116,
+      "r": 150,
+      "type": "visitor_address_and_arrival_control",
+      "sourceProvider": "visit_indre_ostfold",
+      "sourceObjectId": "address:Nesveien 265",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "nes_river_work_environment",
+      "name": "Nes lense- og elvearbeidsmiljø",
+      "lat": 59.48694,
+      "lon": 11.23116,
+      "r": 360,
+      "type": "historic_sorting_boom_and_floating_work_context",
+      "sourceProvider": "skiptvet_municipality",
+      "sourceObjectId": "skiptvet:Nes-Lensemuseum",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nes_lensemuseum",
+      "lat": 59.4707,
+      "lon": 11.1754,
+      "distanceFromAppliedM": 3629.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:605086495",
+      "lat": 59.48694,
+      "lon": 11.23116,
+      "distanceFromPreviousM": 3629.9,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-nes-lensemuseum-source-probe/source-summary.json",
+      "description": "Persisted museum geometry, official identity, address, lense chronology, building and floating-component inventory, seasonal access and river-safety limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Nes Lensemuseum geometry, corrected the historical year to 1853 and continue with spydeberg_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 3.63 kilometres north-east.",
+    "The named museum building is the physical canonical anchor for the museum complex.",
+    "The historical sorting boom was much larger than the museum point and radius.",
+    "Year 1853 is the lense origin; 1985 is operational closure and 1993 is museum opening.",
+    "The radius is not a museum, lense, river, dock, building, property, safety, event or access boundary."
+  ]
+}
