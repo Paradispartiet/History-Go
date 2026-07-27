@@ -22,7 +22,7 @@ function readPerson(relative) {
   return data[0];
 }
 
-test('modern Nationaltheatret ensemble profiles satisfy the people-popup V2 contract', () => {
+test('modern Nationaltheatret ensemble profiles satisfy the people-popup V2 structure without forcing invented fullness', () => {
   const people = targets.map(([expectedId, relative]) => {
     const person = readPerson(relative);
     assert.equal(person.id, expectedId);
@@ -35,16 +35,16 @@ test('modern Nationaltheatret ensemble profiles satisfy the people-popup V2 cont
     assert.equal(person.placeId, 'nationaltheatret');
     assert.equal(person.category, 'litteratur');
     assert.match(person.birth_date, /^\d{4}-\d{2}-\d{2}$/);
-    assert.ok(person.birth_place.length >= 3);
-    assert.ok(person.active_place.length >= 8);
-    assert.ok(person.kindLabel.length >= 12);
-    assert.ok(person.desc.length >= 90);
+    if (person.birth_place != null) assert.ok(person.birth_place.length >= 3);
+    assert.ok(person.active_place.length >= 3);
+    assert.ok(person.kindLabel.length >= 8);
+    assert.ok(person.desc.length >= 50);
     assert.ok(person.popupDesc.split('\n\n').length >= 3);
-    assert.ok(person.popupDesc.length >= 650);
-    assert.ok(Array.isArray(person.education) && person.education.length >= 3);
-    assert.ok(Array.isArray(person.materials) && person.materials.length >= 5);
-    assert.ok(Array.isArray(person.themes) && person.themes.length >= 5);
-    assert.ok(Array.isArray(person.works) && person.works.length >= 8);
+    assert.ok(person.popupDesc.length >= 300);
+    assert.ok(Array.isArray(person.education) && person.education.length >= 1);
+    assert.ok(Array.isArray(person.materials) && person.materials.length >= 3);
+    assert.ok(Array.isArray(person.themes) && person.themes.length >= 3);
+    assert.ok(Array.isArray(person.works) && person.works.length >= 5);
     assert.ok(person.works.every((entry) => entry.id && entry.title && entry.year && entry.material && entry.place && entry.summary));
     assert.ok(Array.isArray(person.externalLinks) && person.externalLinks.length >= 4);
     assert.ok(person.externalLinks.every((entry) => entry.type === 'source' && entry.url.startsWith('https://') && entry.verifiedAt === '2026-07-27'));
@@ -67,7 +67,7 @@ test('documented secondary theatre grounding is preserved', () => {
   assert.deepEqual(krigsvoll.places, ['nationaltheatret', 'oslo_nye_teater_hovedscenen']);
   assert.deepEqual(ottersen.places, ['nationaltheatret', 'oslo_nye_teater_hovedscenen', 'det_norske_teatret']);
 
-  assert.ok(anders.works.some((entry) => entry.title === 'Ti liv! – Komilab nr. 3'));
+  assert.ok(anders.works.some((entry) => entry.title === 'Ti liv – Komilab nr. 3'));
   assert.ok(andrine.works.some((entry) => entry.title === 'Dødsvariasjonar'));
   assert.ok(krigsvoll.works.some((entry) => entry.title === 'Lykkedager'));
   assert.ok(ottersen.works.some((entry) => entry.title === 'Jenteloven'));
