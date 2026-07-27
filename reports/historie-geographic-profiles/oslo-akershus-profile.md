@@ -9,17 +9,17 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 ## Struktur
 
 - Universelle emner: **230**
-- Unike emner med profilkoblinger: **200**
-- Migrerte mappingrecords: **200**
+- Unike emner med profilkoblinger: **201**
+- Migrerte mappingrecords: **201**
 - Bevarte lokale casekandidater: **103**
 
 ## Evidensgrunnlag
 
-- Claims: **74**
-- Kilder: **66**
-- Sted–emne–claim–kildekoblinger: **74**
-- Validerte caser: **18**
-- Validerte caser med minst to evidenskoblinger: **18**
+- Claims: **95**
+- Kilder: **81**
+- Sted–emne–claim–kildekoblinger: **95**
+- Validerte caser: **22**
+- Validerte caser med minst to evidenskoblinger: **22**
 
 ## Validerte caser
 
@@ -27,13 +27,17 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_akerselva`
 - `case_his_akershus_festning`
 - `case_his_bispelokket`
+- `case_his_bjorvika`
 - `case_his_blitz`
 - `case_his_eidsvolls_plass`
 - `case_his_eidsvollsbygningen`
 - `case_his_folkets_hus`
+- `case_his_gamle_aker_kirke`
 - `case_his_gamle_deichman_pa_hammersborg`
+- `case_his_hallvardskatedralen`
 - `case_his_hl_senteret_villa_grande`
 - `case_his_hovedoya_kloster`
+- `case_his_mariakirkeruinen`
 - `case_his_meteorologisk_institutt`
 - `case_his_middelalderbyen_oslo`
 - `case_his_norsk_folkemuseum`
@@ -48,6 +52,6 @@ Ingen åpne terskelgap.
 
 ## Videre produksjonskø
 
-- 30 universelle emner mangler fortsatt en Oslo/Akershus-casekandidat.
-- 85 bevarte profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
+- 29 universelle emner mangler fortsatt en Oslo/Akershus-casekandidat.
+- 81 bevarte profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
 - Videre produksjon skal normalisere legacy-kandidater mot canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon.
