@@ -59,9 +59,8 @@ jobs:
           git add -A
           git diff --cached --check \
             | tee reports/historie-theory-evidence/candidate-audit-v2/git-diff-check.log
-          git add reports/historie-theory-evidence/candidate-audit-v2/git-diff-check.log
           git status --short \
             | tee reports/historie-theory-evidence/candidate-audit-v2/git-status.log
-          git add reports/historie-theory-evidence/candidate-audit-v2/git-status.log
+          git add -f reports/historie-theory-evidence/candidate-audit-v2
           git commit -m "Audit History theory evidence batch 2 candidates"
           git push origin HEAD:agent/history-theory-evidence-batch-2
