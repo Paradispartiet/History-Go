@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **228 steder**
-- Gjenstår: **284 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **238 steder**
+- Gjenstår: **274 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -278,9 +278,21 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 227 | Gamlebyen skole | `gamlebyen_skole` | 41 | 327 | 6 | #4292 |
 | 228 | Klimahuset | `klimahuset` | 42 | 328 | 6 | #4292 |
 
+
+| 229 | Meteorologisk institutt | `meteorologisk_institutt` | 45 | 302 | 6 | #4298 |
+| 230 | Naturhistorisk museum | `naturhistorisk_museum` | 43 | 314 | 6 | #4298 |
+| 231 | OsloMet, Pilestredet | `oslo_met_pilestredet` | 41 | 303 | 6 | #4298 |
+| 232 | Oslo Reptilpark | `oslo_reptilpark` | 48 | 314 | 6 | #4298 |
+| 233 | Radiumhospitalet | `radiumhospitalet` | 45 | 310 | 6 | #4298 |
+| 234 | Rikshospitalet | `rikshospitalet` | 41 | 310 | 6 | #4298 |
+| 235 | Norsk Teknisk Museum | `teknisk_museum` | 43 | 317 | 6 | #4298 |
+| 236 | Tvergastein | `tvergastein` | 47 | 306 | 6 | #4298 |
+| 237 | Universitetet i Oslo, Blindern | `universitetet_i_oslo_blindern` | 40 | 300 | 6 | #4298 |
+| 238 | Universitetets gamle hovedbygning | `universitetets_gamle_hovedbygning` | 47 | 309 | 6 | #4298 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **284 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **274 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -289,7 +301,7 @@ Det gjenstår **284 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - sport: **29**
 - scenekunst: **24**
 - litteratur: **21**
-- vitenskap: **11**
+- vitenskap: **1**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -300,6 +312,8 @@ Det gjenstår **284 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - `klingenberg_kino.category` står som `sport` selv om filens emner og innhold gjelder film- og kinokultur.
 
 - `gamlebyen_skole.year` står som 1799, mens Gamlebyen skoles egen historikk dokumenterer at skolen åpnet som Oslo skole 1. november 1881.
+
+- `tvergastein` ligger fysisk i Hol kommune, men telles i Oslo-revisjonskøen fordi filen ligger under `data/places/vitenskap/oslo`; scopeplasseringen må vurderes separat.
 
 Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke blandes skjult inn i desc/popupDesc-revisjonen.
 
@@ -337,5 +351,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 25 | 10 | #4269 – første produksjonsbatch fra politikk-køen |
 | Oslo V4 batch 26 | 8 | #4278 – fullførte hele Oslo-køen for fagområdet politikk |
 | Oslo V4 batch 27 | 10 | #4292 – første produksjonsbatch fra vitenskapskøen |
+| Oslo V4 batch 28 | 10 | #4298 – andre produksjonsbatch fra vitenskapskøen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
