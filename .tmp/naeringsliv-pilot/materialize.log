@@ -24,13 +24,266 @@ Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
 
 Skrev data/quiz/production_context/naeringsliv/havnelageret.json
 OK: Næringsliv Oslo professional materialization validates (63 questions, 16 calculations, 3 places).
-npm error Missing script: "places:emners:check"
-npm error
-npm error Did you mean one of these?
-npm error   npm run places:coords:check # run the "places:coords:check" package script
-npm error   npm run places:index:check # run the "places:index:check" package script
-npm error   npm run places:emner:check # run the "places:emner:check" package script
-npm error
-npm error To see a list of scripts, run:
-npm error   npm run
-npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-07-27T08_35_17_289Z-debug-0.log
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 1444
+Canonical emne files scanned: 20
+Canonical emne ids loaded: 1411
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+
+> history-go@0.0.0 audit:quiz-content
+> node scripts/audit-quiz-content-quality.mjs
+
+Quizinnholds-audit
+- filer: 335
+- spørsmål: 8463
+- balansebrudd: 257
+- teori/begrepsspørsmål: 3108
+- forbudte teorimaler: 277
+- gjentatte åpninger: 64
+- mistenkelig svarlengde: 2521
+- JSON-feil: 0
+
+Verste balansebrudd:
+- data/quiz/litteratur/deichman_bjorvika_sets.json [deichman_bjorvika]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/litteraturhuset_sets.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/norli_universitetsgata_sets.json [norli_universitetsgata]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/tronsmo_bokhandel_sets.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/wergelandsveien_15_sets.json [wergelandsveien_15]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/camilla_collett_statue_sets_merged.json [camilla_collett_statue]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/eldorado_bokhandel_sets_merged.json [eldorado_bokhandel]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/gamle_deichman.json [gamle_deichman]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/henrik_wergeland_statue_sets_merged.json [henrik_wergeland_statue]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/litteraturhuset_sets_merged.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/nationaltheatret_sets_merged.json [nationaltheatret]: fakta 0, sammenheng 0, teori 1
+- data/quiz/litteratur/tronsmo_bokhandel_sets_merged.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/Lisboa/lisbon_coliseu_dos_recreios_sets_merged.json [lisbon_coliseu_dos_recreios]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/Lisboa/lisbon_mouraria_fado_sets_merged.json [lisbon_mouraria_fado]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/Lisboa/lisbon_teatro_tivoli_bbva_sets_merged.json [lisbon_teatro_tivoli_bbva]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/Lisboa/museu_fado.json [lisbon_museu_do_fado]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/blaa_sets_merged.json [blaa]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/det_norske_teatret_sets_merged.json [det_norske_teatret]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/john_dee_sets_merged_REVISED.json [john_dee]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/operaen_musikk_sets_merged.json [operaen]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/parkteatret_sets_merged.json [parkteatret]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/rockefeller_sets_merged.json [rockefeller]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/salt_sets_merged.json [salt]: fakta 0, sammenheng 0, teori 1
+- data/quiz/musikk/sentrum_scene_sets_merged.json [sentrum_scene]: fakta 0, sammenheng 0, teori 1
+- data/quiz/naeringsliv/akerselva_industri_sets_merged.json [akerselva]: fakta 0, sammenheng 0, teori 1
+
+Mest gjentatte spørsmålsåpninger:
+- 58 × «hvilken samlet analyse passer best for …» i 58 filer
+- 27 × «hva bør spilleren se etter først …» i 27 filer
+- 27 × «hva er et godt første observasjonsspørsmal …» i 27 filer
+- 23 × «hva er den dypere læringen i …» i 23 filer
+- 20 × «hvilken metode passer best for a …» i 13 filer
+- 16 × «hva bør holdes ute av trygg …» i 16 filer
+- 14 × «hva er den viktigste forskjellen mellom …» i 14 filer
+- 14 × «hva er en avansert observasjon ved …» i 14 filer
+- 11 × «hva betyr stedlesning …» i 10 filer
+- 11 × «hva bør spilleren se etter for …» i 9 filer
+- 11 × «hva er den mest presise faglige …» i 9 filer
+- 11 × «hva betyr blagrønn struktur …» i 7 filer
+- 9 × «hva er en kantsone …» i 5 filer
+- 8 × «hva er en avansert observasjon i …» i 8 filer
+- 8 × «hva er den beste korte forklaringen …» i 8 filer
+- 8 × «hva bør holdes ute av en …» i 8 filer
+- 8 × «hva betyr bynatur …» i 5 filer
+- 8 × «hva er en kritisk blindside ved …» i 2 filer
+- 7 × «hva kan være en konflikt i …» i 7 filer
+- 7 × «hva er en trygg mate a …» i 7 filer
+
+> history-go@0.0.0 audit:quiz-production-context
+> node scripts/audit-quiz-production-context.mjs
+
+{
+  "status": "failed",
+  "categoriesWithQuizProduction": 3,
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "targetId": "deichman_bjorvika",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "targetId": "grindheim_runestein",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "targetId": "grindheim_steinkross",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "targetId": "grindheimsveien_nord_gravfelt",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "targetId": "hoyland_gravhaug_etne",
+      "questions": 21
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "targetId": "telegrafbygningen",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "targetId": "oslo_posthus",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "targetId": "havnelageret",
+      "questions": 35
+    }
+  ],
+  "failures": [
+    {
+      "file": "data/quiz/production_context/by/deichman_bjorvika.json",
+      "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.method_id",
+      "questionId": "telegrafbygningen_quiz_22",
+      "claimId": "claim_telegrafbygningen_22",
+      "expected": "met_naering_arbeidslivsanalyse",
+      "actual": "met_naering_infrastrukturanalyse"
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.method_id",
+      "questionId": "telegrafbygningen_quiz_32",
+      "claimId": "claim_telegrafbygningen_32",
+      "expected": "met_naering_infrastrukturanalyse",
+      "actual": "met_naering_arbeidslivsanalyse"
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.topic_hook_id",
+      "questionId": "telegrafbygningen_quiz_32",
+      "claimId": "claim_telegrafbygningen_32",
+      "expected": "arbeid_som_verdiskaping"
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.thinker_id",
+      "questionId": "telegrafbygningen_quiz_32",
+      "claimId": "claim_telegrafbygningen_32",
+      "expected": "max_weber"
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.method_id",
+      "questionId": "telegrafbygningen_quiz_33",
+      "claimId": "claim_telegrafbygningen_33",
+      "expected": "met_naering_arbeidslivsanalyse",
+      "actual": "met_naering_verdiskapingsanalyse"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
+      "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
+      "reason": "valgt fagkontekst avviker: pensum_module_ids"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
+      "reason": "sett følger ikke den forhåndsbygde påstandsplanen",
+      "setId": "naeringsliv_telegrafbygningen_set_3"
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.method_id",
+      "questionId": "oslo_posthus_quiz_32",
+      "claimId": "claim_oslo_posthus_32",
+      "expected": "met_naering_arbeidslivsanalyse",
+      "actual": "met_naering_verdiskapingsanalyse"
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.topic_hook_id",
+      "questionId": "oslo_posthus_quiz_35",
+      "claimId": "claim_oslo_posthus_35",
+      "expected": "arbeid_som_verdiskaping"
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "reason": "spørsmålet avviker fra claim.thinker_id",
+      "questionId": "oslo_posthus_quiz_35",
+      "claimId": "claim_oslo_posthus_35",
+      "expected": "max_weber"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
+      "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
+      "reason": "valgt fagkontekst avviker: pensum_module_ids"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
+      "reason": "sett følger ikke den forhåndsbygde påstandsplanen",
+      "setId": "naeringsliv_oslo_posthus_set_3"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/havnelageret.json",
+      "reason": "kontekstarterfakt avviker fra deterministisk rebuild"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/havnelageret.json",
+      "reason": "valgt fagkontekst avviker: pensum_module_ids"
+    },
+    {
+      "file": "data/quiz/production_context/naeringsliv/havnelageret.json",
+      "reason": "sett følger ikke den forhåndsbygde påstandsplanen",
+      "setId": "naeringsliv_havnelageret_set_3"
+    }
+  ]
+}
