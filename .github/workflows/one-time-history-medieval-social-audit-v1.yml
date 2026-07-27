@@ -1,0 +1,43 @@
+name: One-time History medieval social audit V1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-medieval-social-audit-v1-trigger.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-medieval-social-audit-v1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Run repository audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/medieval-social-audit-v1
+          node --check tools/audit-history-medieval-social-economic-legal-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/medieval-social-audit-v1/syntax.log
+          node tools/audit-history-medieval-social-economic-legal-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/medieval-social-audit-v1/audit.log
+
+      - name: Upload audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-medieval-social-audit-v1
+          path: reports/historie-theory-evidence/medieval-social-audit-v1
+          if-no-files-found: error
