@@ -1,0 +1,77 @@
+name: History theory evidence
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/historie/theory_evidence_historie_contract_v1.json'
+      - 'data/fag/historie/theory_evidence_historie_canonical_v1.json'
+      - 'data/fag/historie/theory_objects_historie_canonical_v5_5.json'
+      - 'data/fag/historie/claims_historie_canonical_v1.json'
+      - 'data/fag/historie/sources_historie_canonical_v1.json'
+      - 'data/fag/historie/place_evidence_historie_v1.json'
+      - 'data/fag/historie/historie_universal_coverage_contract_v1.json'
+      - 'tools/validate-historie-theory-evidence.mjs'
+      - 'tools/audit-historie-universal-coverage.mjs'
+      - 'reports/historie-theory-evidence/**'
+      - 'reports/historie-universal-coverage/**'
+      - 'docs/HISTORY_THEORY_EVIDENCE.md'
+      - '.github/workflows/history-theory-evidence.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/fag/historie/theory_evidence_historie_contract_v1.json'
+      - 'data/fag/historie/theory_evidence_historie_canonical_v1.json'
+      - 'data/fag/historie/theory_objects_historie_canonical_v5_5.json'
+      - 'data/fag/historie/claims_historie_canonical_v1.json'
+      - 'data/fag/historie/sources_historie_canonical_v1.json'
+      - 'data/fag/historie/place_evidence_historie_v1.json'
+      - 'data/fag/historie/historie_universal_coverage_contract_v1.json'
+      - 'tools/validate-historie-theory-evidence.mjs'
+      - 'tools/audit-historie-universal-coverage.mjs'
+      - 'reports/historie-theory-evidence/**'
+      - 'reports/historie-universal-coverage/**'
+      - 'docs/HISTORY_THEORY_EVIDENCE.md'
+      - '.github/workflows/history-theory-evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  theory-evidence:
+    name: History theory evidence contracts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Validate theory evidence foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/validate-historie-theory-evidence.mjs
+          node tools/validate-historie-theory-evidence.mjs --check
+
+      - name: Verify universal coverage integration
+        run: node tools/audit-historie-universal-coverage.mjs --check
+
+      - name: Verify frozen V5.8 base remains intact
+        run: node tools/audit-historie-v5-5-quality-depth.mjs
+
+      - name: Upload theory evidence audits
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-theory-evidence
+          path: |
+            reports/historie-theory-evidence/history-theory-evidence-foundation-v1.json
+            reports/historie-theory-evidence/history-theory-evidence-foundation-v1.md
+            reports/historie-universal-coverage/historie-universal-coverage.json
+            reports/historie-universal-coverage/historie-universal-coverage.md
+          if-no-files-found: error

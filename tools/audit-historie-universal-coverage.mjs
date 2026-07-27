@@ -155,7 +155,7 @@ function evaluateCell(cell, emner, matchingPolicy) {
   };
 }
 
-function evaluateProductionCheck(check, emner, theories) {
+function evaluateProductionCheck(check, emner, theories, theoryEvidenceRegistry) {
   let measured = {};
   let passed = false;
 
@@ -186,6 +186,14 @@ function evaluateProductionCheck(check, emner, theories) {
     const existing = A(check.paths).filter((candidate) => fs.existsSync(path.join(root, candidate)));
     measured = { existing_paths: existing, checked_paths: A(check.paths) };
     passed = existing.length > 0;
+  } else if (check.type === 'theory_evidence_registry_ratio') {
+    const validTheoryIds = new Set(theories.map((theory) => theory.theory_id));
+    const qualifyingIds = unique(A(theoryEvidenceRegistry?.entries)
+      .filter((entry) => entry.status === check.expected_status && validTheoryIds.has(entry.theory_id))
+      .map((entry) => entry.theory_id));
+    const measuredRatio = ratio(qualifyingIds.length, theories.length);
+    measured = { qualifying: qualifyingIds.length, total: theories.length, ratio: roundRatio(measuredRatio), registry_entries: A(theoryEvidenceRegistry?.entries).length };
+    passed = measuredRatio >= check.minimum_ratio;
   } else if (check.type === 'theory_boolean_ratio') {
     const qualifying = theories.filter((theory) => getPath(theory, check.field) === check.expected);
     const measuredRatio = ratio(qualifying.length, theories.length);
@@ -201,7 +209,7 @@ function evaluateProductionCheck(check, emner, theories) {
     type: check.type,
     status: passed ? 'PASS' : 'GAP',
     measured,
-    threshold: Object.fromEntries(Object.entries(check).filter(([key]) => key.startsWith('minimum_') || key.startsWith('maximum_') || key === 'expected')),
+    threshold: Object.fromEntries(Object.entries(check).filter(([key]) => key.startsWith('minimum_') || key.startsWith('maximum_') || key === 'expected' || key === 'expected_status')),
     gap_action: check.gap_action,
   };
 }
@@ -311,6 +319,9 @@ const pensum = readJson(pensumPath);
 const methodsFile = readJson(methodsPath);
 const concepts = readJson(conceptsPath);
 const theories = readJson(theoriesPath);
+const theoryEvidenceCheck = coverageContract.production_checks.find((check) => check.type === 'theory_evidence_registry_ratio');
+const theoryEvidenceRegistryPath = theoryEvidenceCheck?.registry_path ? path.join(root, theoryEvidenceCheck.registry_path) : null;
+const theoryEvidenceRegistry = theoryEvidenceRegistryPath && fs.existsSync(theoryEvidenceRegistryPath) ? readJson(theoryEvidenceRegistryPath) : { entries: [] };
 const readiness = fs.existsSync(readinessPath) ? readJson(readinessPath) : {};
 
 if (!Array.isArray(emner) || !Array.isArray(concepts) || !Array.isArray(theories)) {
@@ -335,7 +346,7 @@ for (const [axisId, axisContract] of Object.entries(coverageContract.axes)) {
   };
 }
 
-const productionChecks = coverageContract.production_checks.map((check) => evaluateProductionCheck(check, emner, theories));
+const productionChecks = coverageContract.production_checks.map((check) => evaluateProductionCheck(check, emner, theories, theoryEvidenceRegistry));
 const production = {
   status: productionChecks.every((check) => check.status === 'PASS') ? 'COMPLETE' : 'INCOMPLETE',
   counts: {
@@ -368,6 +379,7 @@ for (const check of coverageContract.production_checks.filter((item) => item.typ
     if (fs.existsSync(file)) fingerprintFiles.push(file);
   }
 }
+if (theoryEvidenceRegistryPath && fs.existsSync(theoryEvidenceRegistryPath)) fingerprintFiles.push(theoryEvidenceRegistryPath);
 for (const key of ['case_requirements', 'profiles_manifest', 'oslo_akershus_profile']) {
   if (!authoritative[key]) continue;
   const file = path.join(historyDir, authoritative[key]);
