@@ -1,0 +1,93 @@
+name: One-time Nationaltheatret factuality audit
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/nationaltheatret-factuality-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  apply-audit-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize production branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/nationaltheatret-ensemble-leadership-factuality-audit
+          git checkout -B agent/nationaltheatret-ensemble-leadership-factuality-audit origin/agent/nationaltheatret-ensemble-leadership-factuality-audit
+          git merge --no-edit origin/main
+
+      - name: Apply audited corrections and reports
+        run: node scripts/apply-nationaltheatret-ensemble-leadership-factuality-audit.mjs
+
+      - name: Register permanent factuality regression
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          packageJson.scripts['test:factuality-contract'] = 'node --test tests/factuality-contract.test.mjs tests/people-popup-system-contract.test.mjs tests/nationaltheatret-ensemble-leadership-factuality.test.js';
+          fs.writeFileSync('package.json', `${JSON.stringify(packageJson, null, 2)}\n`);
+          NODE
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run factuality and profile regressions
+        run: |
+          npm run test:factuality-contract
+          node --test tests/nationaltheatret-ensemble-leadership-people-v2.test.js tests/person-popup-v2.test.js
+
+      - name: Regenerate readiness and Civication people index
+        run: |
+          npm run audit:people-popup-readiness
+          npm run civication:history-people:build
+
+      - name: Validate people data and generated outputs
+        run: |
+          npm run audit:people-popup-readiness:check
+          npm run civication:history-people:check
+          bash scripts/check-people.sh
+
+      - name: Validate TypeScript tools and browser build
+        run: |
+          npm run typecheck:tools
+          npm run build:tools
+          npm run typecheck:scripts
+          npm run build:scripts
+          npm run build:web:check
+
+      - name: Remove one-time script and unrelated generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/apply-nationaltheatret-ensemble-leadership-factuality-audit.mjs
+          git restore --staged --worktree reports/documentation-governance 2>/dev/null || true
+          git clean -fd reports/documentation-governance 2>/dev/null || true
+
+      - name: Commit clean retrospective audit diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          git commit -m "Audit Nationaltheatret ensemble leadership facts"
+          git push origin HEAD:agent/nationaltheatret-ensemble-leadership-factuality-audit
