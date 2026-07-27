@@ -1,0 +1,80 @@
+name: One-time History theory evidence batch 2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-theory-evidence-batch2-trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/history-theory-evidence-batch2-prod
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Materialize batch 2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/batch-2-validation
+          node --check tools/materialize-historie-theory-evidence-batch2.mjs \
+            | tee reports/historie-theory-evidence/batch-2-validation/materializer-syntax.log
+          node tools/materialize-historie-theory-evidence-batch2.mjs \
+            | tee reports/historie-theory-evidence/batch-2-validation/materializer.log
+
+      - name: Validate theory evidence and regenerate reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/validate-historie-theory-evidence.mjs \
+            | tee reports/historie-theory-evidence/batch-2-validation/validator-syntax.log
+          node tools/validate-historie-theory-evidence.mjs \
+            | tee reports/historie-theory-evidence/batch-2-validation/validator.log
+          node tools/validate-historie-theory-evidence.mjs --check \
+            | tee reports/historie-theory-evidence/batch-2-validation/validator-check.log
+          node tools/audit-historie-universal-coverage.mjs \
+            | tee reports/historie-theory-evidence/batch-2-validation/universal-coverage.log
+          node tools/audit-historie-universal-coverage.mjs --check \
+            | tee reports/historie-theory-evidence/batch-2-validation/universal-coverage-check.log
+
+      - name: Verify frozen V5.8 base
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/audit-historie-v5-5-quality-depth.mjs \
+            | tee reports/historie-theory-evidence/batch-2-validation/quality-freeze.log
+          git restore -- reports/historie-v5/historie-v5-8-quality-depth.json reports/historie-v5/historie-v5-8-quality-depth.md 2>/dev/null || true
+
+      - name: Remove one-time transport files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/materialize-historie-theory-evidence-batch2.mjs
+          rm -f .github/workflows/one-time-history-theory-evidence-batch2.yml
+          rm -f .github/history-theory-evidence-batch2-trigger.txt
+
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check \
+            | tee reports/historie-theory-evidence/batch-2-validation/git-diff-check.log
+          git status --short \
+            | tee reports/historie-theory-evidence/batch-2-validation/git-status.log
+          git add -A
+          git add -f reports/historie-theory-evidence/batch-2-validation
+          git commit -m "Expand History theory evidence batch 2"
+          git push origin HEAD:agent/history-theory-evidence-batch2-prod
