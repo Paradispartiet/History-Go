@@ -1,0 +1,686 @@
+build-final	Build final branch with complete theory references	﻿2026-07-27T11:21:34.3804165Z ##[group]Run set -euo pipefail
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3804585Z ^[[36;1mset -euo pipefail^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3805231Z ^[[36;1mgit show 4234d827f9d852a0bde596d928d689a821408b21:.github/workflows/one-time-build-naeringsliv-pilot-final.yml > /tmp/locked.yml^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3805894Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3806136Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3806501Z ^[[36;1m^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3806982Z ^[[36;1mlines = Path('/tmp/locked.yml').read_text(encoding='utf-8').splitlines()^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3807563Z ^[[36;1mstart = lines.index('      - name: Reconstruct, validate and publish clean final branch')^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3808149Z ^[[36;1mrun = next(i for i in range(start, len(lines)) if lines[i] == '        run: |')^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3809042Z ^[[36;1mbody = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[run + 1:]) + '\n'^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3809529Z ^[[36;1m^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3810254Z ^[[36;1mpackage_loop = 'for part in $(seq -w 0 8); do\n  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"\ndone > /tmp/naeringsliv-pilot.b64\n'^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3811841Z ^[[36;1mpackage_reader = "python -c \"import subprocess,pathlib; c='adf47efbabb88be77cd0413dee695557923a9b97'; p=[subprocess.check_output(['git','show',f'{c}:.tmp/naeringsliv-pilot/pkg-{i:02d}']).strip() for i in range(9)]; pathlib.Path('/tmp/naeringsliv-pilot.b64').write_bytes(b''.join(p))\"\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3812944Z ^[[36;1mif package_loop not in body:^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3813269Z ^[[36;1m    raise SystemExit('Pakkeløkken mangler')^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3813649Z ^[[36;1mbody = body.replace(package_loop, package_reader, 1)^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3813979Z ^[[36;1m^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3814422Z ^[[36;1mbinding_fields = "('method_id', 'topic_hook_id', 'thinker_id', 'thinker_name', 'work', 'theory_focus', 'theory_ref')"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3814943Z ^[[36;1mquiz_cleanup = (^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3815414Z ^[[36;1m    f"    binding_fields = {binding_fields}\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3815741Z ^[[36;1m    "    for set_row in sets[2:4]:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3816064Z ^[[36;1m    "        for question in set_row['questions']:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3816408Z ^[[36;1m    "            for field in binding_fields:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3816742Z ^[[36;1m    "                question.pop(field, None)\n\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3817057Z ^[[36;1m    "    theory_explanations = {\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3817923Z ^[[36;1m    "        'telegrafbygningen': 'Webers begrep om rasjonalisering synliggjør hvordan kommunikasjon, arbeidsdeling, standardiserte rutiner og tekniske systemer ble samlet i én stor organisasjon.',\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3819602Z ^[[36;1m    "        'oslo_posthus': 'Webers begrep om rasjonalisering forklarer hvordan sortering, ekspedisjon og administrasjon ble samlet i et regelstyrt hovedpostkontor for mer forutsigbar massehåndtering.',\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3820435Z ^[[36;1m    "    }\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3820857Z ^[[36;1m    "    for question in sets[4]['questions']:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3821301Z ^[[36;1m    "        if question.get('topic_hook_id') and not question.get('theory_ref'):\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3821736Z ^[[36;1m    "            question['theory_ref'] = {\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3822090Z ^[[36;1m    "                'topic_hook_id': question['topic_hook_id'],\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3822978Z ^[[36;1m    "                'why_it_helps': theory_explanations.get(target, 'Teoribindingen forklarer hvordan organisering, arbeidsdeling og standardisering former den dokumenterte virksomheten ved stedet.'),\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3823790Z ^[[36;1m    "            }\n\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3824019Z ^[[36;1m)^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3824367Z ^[[36;1mproduction_marker = "    production = quiz.setdefault('production_context', {})\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3824808Z ^[[36;1mif production_marker not in body:^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3825146Z ^[[36;1m    raise SystemExit('Produksjonsmarkøren mangler')^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3825813Z ^[[36;1mbody = body.replace(production_marker, quiz_cleanup + production_marker, 1)^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3826475Z ^[[36;1mbody = body.replace("production['method_start_phase'] = 'bridge'", "production['method_start_phase'] = 'final'", 1)^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3826989Z ^[[36;1m^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3827366Z ^[[36;1mbrief_marker = "    materialization = brief.setdefault('professional_materialization', {})\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3827829Z ^[[36;1mbrief_cleanup = (^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3828447Z ^[[36;1m    "    claim_by_id = {claim['claim_id']: claim for claim in brief.get('claims', [])}\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3828895Z ^[[36;1m    "    for set_row in sets[2:4]:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3829213Z ^[[36;1m    "        for question in set_row['questions']:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3829601Z ^[[36;1m    "            claim = claim_by_id.get(question.get('claim_id'))\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3829950Z ^[[36;1m    "            if claim:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3830249Z ^[[36;1m    "                for field in binding_fields:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3830591Z ^[[36;1m    "                    claim.pop(field, None)\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3830916Z ^[[36;1m    "    for question in sets[4]['questions']:\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3831283Z ^[[36;1m    "        claim = claim_by_id.get(question.get('claim_id'))\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3831679Z ^[[36;1m    "        if claim and question.get('theory_ref'):\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3832053Z ^[[36;1m    "            claim['theory_ref'] = question['theory_ref']\n\n"^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3832372Z ^[[36;1m)^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3832565Z ^[[36;1mif brief_marker not in body:^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3832876Z ^[[36;1m    raise SystemExit('Briefmarkøren mangler')^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3833290Z ^[[36;1mbody = body.replace(brief_marker, brief_cleanup + brief_marker, 1)^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3833647Z ^[[36;1m^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3833918Z ^[[36;1mPath('/tmp/run-final.sh').write_text(body, encoding='utf-8')^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3834400Z ^[[36;1mPY^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3834595Z ^[[36;1mbash /tmp/run-final.sh^[[0m
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3892651Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.3893027Z ##[endgroup]
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.7687934Z From https://github.com/Paradispartiet/History-Go
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.7688975Z  * branch                main       -> FETCH_HEAD
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.7689823Z  * branch                agent/naeringsliv-pilot-profesjonsmaterialisering -> FETCH_HEAD
+build-final	Build final branch with complete theory references	2026-07-27T11:21:34.7777660Z Preparing worktree (detached HEAD 48fcb689e)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.8059892Z Updating files:  32% (4745/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.8254247Z Updating files:  33% (4851/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.8421268Z Updating files:  34% (4997/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.8532847Z Updating files:  35% (5144/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.8607406Z Updating files:  36% (5291/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.8738524Z Updating files:  37% (5438/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.8887553Z Updating files:  38% (5585/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.9020946Z Updating files:  39% (5732/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.9153686Z Updating files:  40% (5879/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.9300399Z Updating files:  41% (6026/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.9672203Z Updating files:  42% (6173/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.9808812Z Updating files:  43% (6320/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:35.9960862Z Updating files:  44% (6467/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0037787Z Updating files:  45% (6614/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0120251Z Updating files:  46% (6761/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0195085Z Updating files:  47% (6908/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0264153Z Updating files:  48% (7055/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0334818Z Updating files:  49% (7202/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0405930Z Updating files:  50% (7349/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0473860Z Updating files:  51% (7496/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0543504Z Updating files:  52% (7643/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0614880Z Updating files:  53% (7790/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0691855Z Updating files:  54% (7937/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0761198Z Updating files:  55% (8084/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0830567Z Updating files:  56% (8231/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0903769Z Updating files:  57% (8378/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.0973214Z Updating files:  58% (8525/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1052512Z Updating files:  59% (8672/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1157890Z Updating files:  60% (8819/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1246052Z Updating files:  61% (8966/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1326105Z Updating files:  62% (9113/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1407254Z Updating files:  63% (9260/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1509858Z Updating files:  64% (9407/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1603396Z Updating files:  65% (9554/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1676646Z Updating files:  66% (9701/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1748378Z Updating files:  67% (9847/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1854324Z Updating files:  68% (9994/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.1923897Z Updating files:  69% (10141/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2071960Z Updating files:  70% (10288/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2258990Z Updating files:  71% (10435/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2325986Z Updating files:  72% (10582/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2446315Z Updating files:  73% (10729/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2533054Z Updating files:  74% (10876/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2622725Z Updating files:  75% (11023/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2738057Z Updating files:  76% (11170/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.2948894Z Updating files:  77% (11317/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.3035962Z Updating files:  78% (11464/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.3190778Z Updating files:  79% (11611/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.3318699Z Updating files:  80% (11758/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.3491997Z Updating files:  81% (11905/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.3704878Z Updating files:  82% (12052/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.3965642Z Updating files:  83% (12199/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4170486Z Updating files:  84% (12346/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4255761Z Updating files:  85% (12493/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4328927Z Updating files:  86% (12640/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4435215Z Updating files:  87% (12787/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4531901Z Updating files:  88% (12934/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4602699Z Updating files:  89% (13081/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4761012Z Updating files:  90% (13228/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.4935852Z Updating files:  91% (13375/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5249902Z Updating files:  92% (13522/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5354631Z Updating files:  93% (13669/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5448388Z Updating files:  94% (13816/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5520212Z Updating files:  95% (13963/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5621471Z Updating files:  96% (14110/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5718439Z Updating files:  97% (14257/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5810677Z Updating files:  98% (14404/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5915794Z Updating files:  99% (14551/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5916372Z Updating files: 100% (14697/14697)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.5916866Z Updating files: 100% (14697/14697), done.
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.6066601Z HEAD is now at 48fcb689e Merge pull request #4251 from Paradispartiet/agent/coordinate-orje-sluser-20260727
+build-final	Build final branch with complete theory references	2026-07-27T11:21:36.6271408Z Switched to a new branch 'agent/naeringsliv-pilot-profesjonsmaterialisering-final'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3337433Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3338523Z added 55 packages, and audited 56 packages in 3s
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3339073Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3339405Z 13 packages are looking for funding
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3339805Z   run `npm fund` for details
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3361798Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3362062Z 1 high severity vulnerability
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3362381Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3362788Z To address all issues (including breaking changes), run:
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3363282Z   npm audit fix --force
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3363460Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.3363605Z Run `npm audit` for details.
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.5947578Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.5948693Z > history-go@0.0.0 places:index:build
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.5949981Z > npm run build:tools && node dist/tools/build_places_index.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.5950688Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.6967230Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.6968873Z > history-go@0.0.0 build:tools
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.6969624Z > tsc -p tsconfig.tools.build.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:39.6970015Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.0682863Z Wrote 1431 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 213 category override(s)
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.2256572Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.2257071Z > history-go@0.0.0 quiz:context
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.2258566Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.2259403Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.4240136Z Skrev data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.5381196Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.5381915Z > history-go@0.0.0 quiz:context
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.5383043Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.5383834Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.7464128Z Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.8520637Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.8521332Z > history-go@0.0.0 quiz:context
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.8522395Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:43.8523109Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.0602492Z Skrev data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.1062014Z OK: Næringsliv Oslo professional materialization validates (63 questions, 16 calculations, 3 places).
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.2058209Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.2058931Z > history-go@0.0.0 places:emner:check
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.2059507Z > npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.2059816Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.3048179Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.3048992Z > history-go@0.0.0 build:tools
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.3049434Z > tsc -p tsconfig.tools.build.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:44.3049931Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2305089Z === Place emne_id validation ===
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2307007Z Active place files: 1444
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2307753Z Canonical emne files scanned: 20
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2308826Z Canonical emne ids loaded: 1411
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2309267Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2309746Z Missing emne_ids: 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2310002Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2320623Z Duplicate emne_ids within same place: 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2346429Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2347062Z Duplicate place ids across active files: 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2347485Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2347819Z Duplicate place ids within same active file: 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2348386Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.2348766Z Duplicate canonical emne_ids across canonical files: 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.3459883Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.3460785Z > history-go@0.0.0 places:index:check
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.3462483Z > npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.3463645Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.4496588Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.4497441Z > history-go@0.0.0 build:tools
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.4498158Z > tsc -p tsconfig.tools.build.json
+build-final	Build final branch with complete theory references	2026-07-27T11:21:47.4498893Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:50.4688511Z OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+build-final	Build final branch with complete theory references	2026-07-27T11:21:50.9552711Z places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.0529034Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.0529627Z > history-go@0.0.0 places:coords:check
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.0530157Z > node tests/place-coordinate-index-parity.test.js
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.0530473Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.1938897Z Place coordinate index parity OK: runtime index coordinate fields match source files.
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.3114906Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.3115563Z > history-go@0.0.0 audit:quiz-content
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.3116251Z > node scripts/audit-quiz-content-quality.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.3116533Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7012832Z Quizinnholds-audit
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7014880Z - filer: 335
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7015537Z - spørsmål: 8463
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7015932Z - balansebrudd: 254
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7016719Z - teori/begrepsspørsmål: 3066
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7017235Z - forbudte teorimaler: 277
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7017754Z - gjentatte åpninger: 64
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7018430Z - mistenkelig svarlengde: 2521
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7018913Z - JSON-feil: 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7034775Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7035097Z Verste balansebrudd:
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7036150Z - data/quiz/litteratur/deichman_bjorvika_sets.json [deichman_bjorvika]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7037088Z - data/quiz/litteratur/litteraturhuset_sets.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7037982Z - data/quiz/litteratur/norli_universitetsgata_sets.json [norli_universitetsgata]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7039035Z - data/quiz/litteratur/tronsmo_bokhandel_sets.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7039910Z - data/quiz/litteratur/wergelandsveien_15_sets.json [wergelandsveien_15]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7040857Z - data/quiz/litteratur/camilla_collett_statue_sets_merged.json [camilla_collett_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7041826Z - data/quiz/litteratur/eldorado_bokhandel_sets_merged.json [eldorado_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7042665Z - data/quiz/litteratur/gamle_deichman.json [gamle_deichman]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7043583Z - data/quiz/litteratur/henrik_wergeland_statue_sets_merged.json [henrik_wergeland_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7044573Z - data/quiz/litteratur/litteraturhuset_sets_merged.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7045537Z - data/quiz/litteratur/nationaltheatret_sets_merged.json [nationaltheatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7046485Z - data/quiz/litteratur/tronsmo_bokhandel_sets_merged.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7047838Z - data/quiz/musikk/Lisboa/lisbon_coliseu_dos_recreios_sets_merged.json [lisbon_coliseu_dos_recreios]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7049059Z - data/quiz/musikk/Lisboa/lisbon_mouraria_fado_sets_merged.json [lisbon_mouraria_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7050118Z - data/quiz/musikk/Lisboa/lisbon_teatro_tivoli_bbva_sets_merged.json [lisbon_teatro_tivoli_bbva]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7051020Z - data/quiz/musikk/Lisboa/museu_fado.json [lisbon_museu_do_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7051731Z - data/quiz/musikk/blaa_sets_merged.json [blaa]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7052520Z - data/quiz/musikk/det_norske_teatret_sets_merged.json [det_norske_teatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7053346Z - data/quiz/musikk/john_dee_sets_merged_REVISED.json [john_dee]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7054115Z - data/quiz/musikk/operaen_musikk_sets_merged.json [operaen]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7054892Z - data/quiz/musikk/parkteatret_sets_merged.json [parkteatret]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7055643Z - data/quiz/musikk/rockefeller_sets_merged.json [rockefeller]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7056335Z - data/quiz/musikk/salt_sets_merged.json [salt]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7057083Z - data/quiz/musikk/sentrum_scene_sets_merged.json [sentrum_scene]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7057925Z - data/quiz/naeringsliv/akerselva_industri_sets_merged.json [akerselva]: fakta 0, sammenheng 0, teori 1
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7058468Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7058766Z Mest gjentatte spørsmålsåpninger:
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7059270Z - 58 × «hvilken samlet analyse passer best for …» i 58 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7059906Z - 27 × «hva bør spilleren se etter først …» i 27 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7060767Z - 27 × «hva er et godt første observasjonsspørsmal …» i 27 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7061280Z - 23 × «hva er den dypere læringen i …» i 23 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7061755Z - 20 × «hvilken metode passer best for a …» i 13 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7062213Z - 16 × «hva bør holdes ute av trygg …» i 16 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7062707Z - 14 × «hva er den viktigste forskjellen mellom …» i 14 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7063219Z - 14 × «hva er en avansert observasjon ved …» i 14 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7063666Z - 11 × «hva betyr stedlesning …» i 10 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7064123Z - 11 × «hva bør spilleren se etter for …» i 9 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7064605Z - 11 × «hva er den mest presise faglige …» i 9 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7065069Z - 11 × «hva betyr blagrønn struktur …» i 7 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7065479Z - 9 × «hva er en kantsone …» i 5 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7065912Z - 8 × «hva er en avansert observasjon i …» i 8 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7066389Z - 8 × «hva er den beste korte forklaringen …» i 8 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7066856Z - 8 × «hva bør holdes ute av en …» i 8 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7067250Z - 8 × «hva betyr bynatur …» i 5 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7067668Z - 8 × «hva er en kritisk blindside ved …» i 2 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7068104Z - 7 × «hva kan være en konflikt i …» i 7 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:51.7068656Z - 7 × «hva er en trygg mate a …» i 7 filer
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4204830Z {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4205183Z   "status": "passed",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4205712Z   "categoriesWithQuizProduction": 3,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4206247Z   "quizFilesChecked": 8,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4206693Z   "checked": [
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4207157Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4207647Z       "categoryId": "by",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4208118Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4209231Z       "targetId": "deichman_bjorvika",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4209678Z       "questions": 35
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4210026Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4210308Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4210985Z       "categoryId": "historie",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4211582Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4212220Z       "targetId": "grindheim_runestein",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4212645Z       "questions": 21
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4212986Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4213268Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4213614Z       "categoryId": "historie",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4213968Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4214357Z       "targetId": "grindheim_steinkross",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4214624Z       "questions": 21
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4214824Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4214992Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4215204Z       "categoryId": "historie",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4215599Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4216035Z       "targetId": "grindheimsveien_nord_gravfelt",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4216326Z       "questions": 21
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4216541Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4216707Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4216916Z       "categoryId": "historie",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4217260Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4217637Z       "targetId": "hoyland_gravhaug_etne",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4217902Z       "questions": 21
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4218106Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4218639Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4218890Z       "categoryId": "naeringsliv",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4219304Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4219727Z       "targetId": "telegrafbygningen",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4220000Z       "questions": 35
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4220202Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4220367Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4220575Z       "categoryId": "naeringsliv",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4220941Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4221317Z       "targetId": "oslo_posthus",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4221571Z       "questions": 35
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4221964Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4222133Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4222338Z       "categoryId": "naeringsliv",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4222704Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4223105Z       "targetId": "havnelageret",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4223374Z       "questions": 35
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4223570Z     }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4223740Z   ],
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4223921Z   "failures": []
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4224113Z }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.4436936Z OK: produksjonskontekst uten nye avvik
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.5390739Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.5391374Z > history-go@0.0.0 audit:quiz-progression
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.5391893Z > node scripts/audit-quiz-progression.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.5392149Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6496234Z {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6496800Z   "status": "passed",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6497277Z   "quizFilesChecked": 8,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6498042Z   "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6499304Z   "checked": [
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6499697Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6500145Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6500667Z       "profile": "rich_5x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6501046Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6501387Z         "total": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6501730Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6502034Z           "fact": 19,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6502366Z           "context": 9,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6502812Z           "concept_theory": 7
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6503246Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6503594Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6503970Z           "fact": 0.543,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6504383Z           "context": 0.257,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6504852Z           "concept_theory": 0.2
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6505302Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6505601Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6505953Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6506382Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6506809Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6507677Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6508126Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6508664Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6508991Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6509564Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6510225Z       "profile": "narrow_3x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6510687Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6511065Z         "total": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6511410Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6511815Z           "fact": 12,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6512205Z           "context": 5,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6512611Z           "concept_theory": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6513036Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6513381Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6513750Z           "fact": 0.571,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6514158Z           "context": 0.238,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6514587Z           "concept_theory": 0.19
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6515023Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6515347Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6515690Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6516132Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6516565Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6517033Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6517505Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6517841Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6518165Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6518907Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6519598Z       "profile": "narrow_3x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6520029Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6520387Z         "total": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6520735Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6521057Z           "fact": 12,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6521441Z           "context": 5,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6521810Z           "concept_theory": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6522210Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6522531Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6522912Z           "fact": 0.571,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6523342Z           "context": 0.238,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6523806Z           "concept_theory": 0.19
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6524445Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6524772Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6525170Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6525533Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6525928Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6526393Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6526773Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6527100Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6527386Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6527945Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6528873Z       "profile": "narrow_3x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6529283Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6529640Z         "total": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6529993Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6530332Z           "fact": 12,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6530678Z           "context": 5,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6531088Z           "concept_theory": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6531500Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6531816Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6532145Z           "fact": 0.571,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6532510Z           "context": 0.238,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6532934Z           "concept_theory": 0.19
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6533411Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6533711Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6534064Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6534517Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6534954Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6535419Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6535832Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6536148Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6536462Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6537000Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6537687Z       "profile": "narrow_3x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6538111Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6538641Z         "total": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6539055Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6539414Z           "fact": 12,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6539807Z           "context": 5,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6540226Z           "concept_theory": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6540685Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6541263Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6541675Z           "fact": 0.571,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6542168Z           "context": 0.238,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6542743Z           "concept_theory": 0.19
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6543179Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6543508Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6543863Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6544281Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6544736Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6545209Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6545634Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6545974Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6546266Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6546887Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6547594Z       "profile": "rich_5x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6548021Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6548592Z         "total": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6548942Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6549316Z           "fact": 19,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6549752Z           "context": 9,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6550280Z           "concept_theory": 7
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6550807Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6551211Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6551616Z           "fact": 0.543,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6552026Z           "context": 0.257,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6552517Z           "concept_theory": 0.2
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6552909Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6553241Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6553555Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6553953Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6554440Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6555013Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6555434Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6555809Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6556141Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6556728Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6557266Z       "profile": "rich_5x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6557622Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6557931Z         "total": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6558754Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6559103Z           "fact": 19,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6559473Z           "context": 9,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6559831Z           "concept_theory": 7
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6560165Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6560467Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6560803Z           "fact": 0.543,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6561144Z           "context": 0.257,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6561535Z           "concept_theory": 0.2
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6561889Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6562157Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6562479Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6562914Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6563328Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6563601Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6563840Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6564024Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6564197Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6564657Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6565047Z       "profile": "rich_5x7",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6565304Z       "balance": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6565508Z         "total": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6565712Z         "counts": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6565910Z           "fact": 19,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6566120Z           "context": 9,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6566349Z           "concept_theory": 7
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6566574Z         },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6566756Z         "ratios": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6566955Z           "fact": 0.543,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6567175Z           "context": 0.257,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6567430Z           "concept_theory": 0.2
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6567655Z         }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6567829Z       },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6568020Z       "normalOpening": {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6568673Z         "status": "checked",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6569071Z         "checkedSets": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6569346Z         "checkedQuestions": 14
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6569764Z       }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6570046Z     }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6570323Z   ],
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6570614Z   "failures": []
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.6571182Z }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.7588401Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.7589069Z > history-go@0.0.0 audit:quiz-theory-binding
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.7589730Z > node scripts/audit-quiz-theory-binding.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.7589999Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8666387Z {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8666846Z   "status": "passed",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8667291Z   "quizFilesChecked": 8,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8667585Z   "checked": [
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8667778Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8668078Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8668578Z       "questions": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8668813Z       "theoryQuestions": 3,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8669060Z       "methodQuestions": 2
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8669282Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8669464Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8669762Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8670107Z       "questions": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8670333Z       "theoryQuestions": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8670577Z       "methodQuestions": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8670836Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8671047Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8671418Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8671794Z       "questions": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8672071Z       "theoryQuestions": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8672331Z       "methodQuestions": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8672573Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8672766Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8673132Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8673555Z       "questions": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8673780Z       "theoryQuestions": 2,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8674042Z       "methodQuestions": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8674280Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8674469Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8674790Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8675146Z       "questions": 21,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8675396Z       "theoryQuestions": 1,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8675661Z       "methodQuestions": 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8676280Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8676480Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8676842Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8677239Z       "questions": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8677481Z       "theoryQuestions": 1,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8677764Z       "methodQuestions": 7
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8677998Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8678331Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8678638Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8679032Z       "questions": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8679278Z       "theoryQuestions": 1,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8679533Z       "methodQuestions": 7
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8679755Z     },
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8679942Z     {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8680260Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8680635Z       "questions": 35,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8680904Z       "theoryQuestions": 1,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8681163Z       "methodQuestions": 7
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8681411Z     }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8681603Z   ],
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8681810Z   "failures": []
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.8682025Z }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.9735585Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.9736159Z > history-go@0.0.0 audit:categories
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.9736718Z > node scripts/audit-category-governance.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:53.9736977Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0142649Z OK: Økonomi og næringsliv university framework validates (36 emners, 6 tracks).
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0237262Z OK: Økonomi og næringsliv university quality validates (36 emners, 29 theories, 23 methods, 29 models, 45 measures, 18 assessment profiles).
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0320125Z OK: individually reviewed 36 emners; 29 theories, 23 methods, 29 models, 45 measures, 20 datasets.
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0461567Z OK: Økonomi og næringsliv business-school coverage validates (5 tracks, 25 modules, 50 theories, 50 methods, 50 models, 100 measures, 35 datasets, 15 assessment profiles).
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0527517Z OK: Økonomi og næringsliv professional depth validates (25 individually curated modules, 100 canonical works, 25 worked cases).
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0581559Z OK: Næringsliv Oslo professional materialization validates (63 questions, 16 calculations, 3 places).
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0582410Z {
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0582654Z   "status": "passed",
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0582946Z   "runtimeCategories": 18,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0583448Z   "fagSubjects": 18,
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0583907Z   "failures": []
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.0584336Z }
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.1617342Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.1618118Z > history-go@0.0.0 test:quiz-content-audit
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.1619047Z > node --test tests/quiz-content-quality-audit.test.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.1619359Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2042747Z TAP version 13
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2553053Z # Subtest: flags emne-first wording and a quiz outside the canonical balance
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2560544Z ok 1 - flags emne-first wording and a quiz outside the canonical balance
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2561615Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2562326Z   duration_ms: 13.744364
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2563256Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2563950Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2580285Z # Subtest: accepts a 60/20/20 content mix
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2585156Z ok 2 - accepts a 60/20/20 content mix
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2586306Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2586648Z   duration_ms: 3.426588
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2587048Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2587388Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2624101Z # Subtest: flags a correct answer that is much longer than the distractors
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2627845Z ok 3 - flags a correct answer that is much longer than the distractors
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2629474Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2629840Z   duration_ms: 4.081101
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2630216Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2630534Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2712817Z # Subtest: keeps repaired Deichman and Ullevaal quizzes within the canonical balance
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2714505Z ok 4 - keeps repaired Deichman and Ullevaal quizzes within the canonical balance
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2715489Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2716362Z   duration_ms: 9.056931
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2716937Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2717430Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2815926Z 1..4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2816346Z # tests 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2816837Z # suites 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2817363Z # pass 4
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2817878Z # fail 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2818744Z # cancelled 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2819566Z # skipped 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2820098Z # todo 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.2820688Z # duration_ms 89.603976
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.3893198Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.3893869Z > history-go@0.0.0 test:quiz-production
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.3894519Z > node --test tests/quiz-production-pipeline.test.mjs
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.3894788Z 
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.4339494Z TAP version 13
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.6828846Z # Subtest: builds the full by production context through the manifest
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.6839445Z ok 1 - builds the full by production context through the manifest
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.6840194Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.6840646Z   duration_ms: 204.37374
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.6841149Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.6841524Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.9556942Z # Subtest: builds the full history production context through domain-based curriculum
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.9559517Z ok 2 - builds the full history production context through domain-based curriculum
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.9560492Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.9560757Z   duration_ms: 273.072253
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.9561033Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:54.9561314Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.2005795Z # Subtest: isolates each history target in the manifest proof
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.2008093Z ok 3 - isolates each history target in the manifest proof
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.2010037Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.2010455Z   duration_ms: 245.192576
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.2010879Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.2011106Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.4514545Z # Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.4516008Z ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.4517296Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.4517734Z   duration_ms: 250.734224
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.4518451Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.4518798Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.7156711Z # Subtest: builds the Høyland grave-mound context before quiz writing
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.7157973Z ok 5 - builds the Høyland grave-mound context before quiz writing
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.7159268Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.7159659Z   duration_ms: 262.962069
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.7160114Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:55.7160487Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4621157Z # Subtest: passes production-context, progression and theory-binding audits
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4622498Z ok 6 - passes production-context, progression and theory-binding audits
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4623414Z   ---
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4623830Z   duration_ms: 1747.743778
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4624313Z   type: 'test'
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4624779Z   ...
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4840536Z 1..6
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4840967Z # tests 6
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4841340Z # suites 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4841773Z # pass 6
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4842124Z # fail 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4842527Z # cancelled 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4843111Z # skipped 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4843688Z # todo 0
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.4844329Z # duration_ms 3062.156227
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.5074275Z fatal: pathspec 'data/places/naeringsliv/oslo/places_naeringsliv.json' did not match any files
+build-final	Build final branch with complete theory references	2026-07-27T11:21:57.5096651Z ##[error]Process completed with exit code 128.
