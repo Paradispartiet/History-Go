@@ -1,14 +1,26 @@
 {
   "id": "flesberg_stavkirke",
   "name": "Flesberg stavkirke",
-  "lat": 59.8604,
-  "lon": 9.4358,
+  "lat": 59.86272,
+  "lon": 9.43303,
   "r": 260,
+  "locatorType": "active_medieval_stave_church_building",
+  "sourceProvider": "openstreetmap",
+  "sourceObjectId": "osm-way:558315310",
+  "geocodeAccuracy": "named_stave_church_building_geometry",
+  "coordRole": "active_stave_church_building_anchor",
+  "coordType": "building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 558315310; Wikidata Q1789458; Kulturminne 84161; Lokalhistoriewiki; Norges Kirker",
+  "coordSourceId": "osm-way:558315310;wikidata:Q1789458;kulturminne:84161",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/558315310",
+  "coordVerifiedAt": "2026-07-28",
   "category": "historie",
   "fylke": "buskerud",
   "kommune": "Flesberg",
-  "year": 1180,
-  "period": "Stavkirke, middelalder og ombygging",
+  "year": 1200,
+  "yearMeaning": "Omtrentlig datering av den bevarte middelalderske stavkirkekjernen; kildene plasserer oppføringen i tiårene før eller etter 1200 uten et sikkert eksakt bygge- eller innvielsesår.",
+  "period": "Middelaldersk stavkjerne, korskirke fra 1735 og aktivt kirkested",
   "tags": [
     "historie",
     "stavkirke",
@@ -18,13 +30,104 @@
   ],
   "desc": "Stavkirke i Flesberg, opprinnelig fra slutten av 1100-tallet og senere kraftig ombygd. Flesberg viser samspillet mellom stavkonstruksjon, kirkegård, bygdesamfunn og etterreformatorisk omforming.",
   "popupDesc": "Flesberg stavkirke er en av de viktige stavkirkene i Numedal. Den opprinnelige kirken var fra slutten av 1100-tallet, men ble senere kraftig utvidet og ombygd til korskirke. Kirkegården og det gamle kirkestedet gjør stedet til mer enn et bygg: det er et langvarig lokalt sentrum for ritualer, slekt, død, fellesskap og bygdeidentitet. I History Go bør Flesberg brukes til å forklare hvordan stavkirker ble bevart gjennom endring.",
+  "accessContext": {
+    "siteType": "protected_active_parish_stave_church_and_cemetery",
+    "publicAccess": "Kirken er fortsatt i bruk som soknekirke. Innvendig adgang følger gudstjenester, kirkelige handlinger, konserter, annonserte omvisninger og avtaler, mens kirkegården følger ordinære gravplassregler.",
+    "visitorAddress": "Haugbruvegen 3, 3620 Flesberg",
+    "limitations": [
+      "Ikke berør den utskårne middelalderportalen, stavveggene, bemalte flater, inventar eller tjærede yttervegger.",
+      "Steinheller, tjoringsringer, steinkors og gravminner på kirkegården skal ikke klatres på, flyttes eller brukes som aktivitetsutstyr.",
+      "Gameplay-radiusen er ikke en kirke-, kirkegårds-, prestegårds-, menighetshus-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "medieval_stave_church_core",
+      "date": "late_12th_or_early_13th_century",
+      "status": "partly_surviving_medieval_core",
+      "note": "Omgangsveggene, hjørnestaver, sviller, deler av grunnstokkene og den omformede vestportalen er bevart fra middelalderkirken."
+    },
+    {
+      "type": "earliest_written_reference",
+      "date": "1359",
+      "status": "documented_reference",
+      "note": "Kirken er første gang kjent i skriftlige kilder i 1359."
+    },
+    {
+      "type": "cross_church_rebuilding",
+      "date": "1735",
+      "status": "surviving_major_rebuilding_layer",
+      "note": "Midtrommet og østre omgangsvegg ble revet, og laftede korsarmer, kor, sakristi og ny innredning formet dagens korskirke."
+    },
+    {
+      "type": "baroque_inventory",
+      "date": "1660s_to_1745",
+      "status": "surviving_liturgical_and_decorative_layer",
+      "note": "Prekestolen skriver seg fra 1660-årene, mens altertavlen ble satt opp i 1745."
+    },
+    {
+      "type": "election_church",
+      "date": "1814",
+      "status": "documented_political_history_layer",
+      "note": "Flesberg stavkirke var valgkirke ved valgene til Riksforsamlingen i 1814."
+    },
+    {
+      "type": "restoration_and_conservation",
+      "date": "1870_and_1955_1965",
+      "status": "documented_preservation_layers",
+      "note": "Kirken gjennomgikk større endringer omkring 1870 og en omfattende restaurering og undersøkelse i 1955–1965."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "flesberg_churchyard",
+      "name": "Flesberg kirkegård",
+      "relation": "surrounding_active_medieval_cemetery",
+      "canonical": false,
+      "note": "Kirkegården går tilbake til middelalderen og har en særpreget innhegning av oppreiste steinheller, eldre gravminner og steinkors."
+    },
+    {
+      "id": "flesberg_tethering_stones",
+      "name": "Steinheller med tjoringsringer",
+      "relation": "historic_transport_and_farm_community_component",
+      "canonical": false,
+      "note": "Vest for kirken står høye steinheller med jernringer som tidligere ble brukt til å tjore hester under kirkeferd."
+    },
+    {
+      "id": "flesberg_rectory",
+      "name": "Flesberg prestegård",
+      "relation": "separate_nearby_rectory_property",
+      "canonical": false,
+      "note": "Prestegården ligger omtrent 200 meter nordvest for kirken og er en separat historisk eiendom."
+    },
+    {
+      "id": "flesberg_parish_house",
+      "name": "Flesberg menighetshus",
+      "relation": "separate_1977_parish_building",
+      "canonical": false,
+      "note": "Menighetshuset på kirkebakken er en nyere bruksbygning og ikke del av stavkirkens geometri."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "flesberg_stave_church",
+      "name": "Flesberg stavkirke",
+      "lat": 59.86272,
+      "lon": 9.43303,
+      "r": 95,
+      "type": "active_stave_church_building_anchor",
+      "sourceProvider": "openstreetmap_wikidata",
+      "sourceObjectId": "osm-way:558315310;wikidata:Q1789458;kulturminne:84161",
+      "canApplyToPlace": true
+    }
+  ],
   "quiz_profile": {
     "place_type": "stavkirke",
-    "subtype": "ombygd_stavkirke_og_kirkegardslandskap",
+    "subtype": "ombygd_stavkirke_og_aktivt_kirkegardslandskap",
     "signature_features": [
-      "opprinnelig fra slutten av 1100-tallet",
-      "senere kraftig ombygd til korskirke",
-      "kirkegård og kirkested viser lang lokal kontinuitet"
+      "middelaldersk stavkjerne fra tiårene rundt 1200",
+      "kraftig ombygd til korskirke i 1735",
+      "kirkegård med oppreiste steinheller, tjoringsringer og steinkors"
     ],
     "primary_angles": [
       "historie",
@@ -35,21 +138,23 @@
     "question_families": [
       "stavkirke",
       "kirkegård",
-      "ombygging",
-      "tidslag"
+      "1735_ombyggingen",
+      "1814_valgkirke"
     ],
     "avoid_angles": [
       "generisk_stavkirke",
-      "bare_arkitektur"
+      "bare_arkitektur",
+      "1180_som_sikkert_byggeaar",
+      "omtale_av_dagens_korskirke_som_uendret_middelalderbygg"
     ],
     "must_include": [
-      "slutten av 1100-tallet",
-      "ombyggingen og kirkestedets kontinuitet"
+      "cirka 1200 som omtrentlig datering",
+      "1735-ombyggingen og kirkestedets kontinuitet"
     ],
     "contrast_targets": [
       "rollag_stavkirke",
       "uvdal_stavkirke"
     ],
-    "notes": "Skal spørres som stavkirke i endring og lokalt minnelandskap."
+    "notes": "Skal spørres som aktiv stavkirke i endring. Den middelalderske stavkjernen, korskirkeombyggingen og kirkegårdens særpreg er separate, sammenhengende lag."
   }
 }
