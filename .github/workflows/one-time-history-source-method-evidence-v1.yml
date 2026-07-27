@@ -98,15 +98,7 @@ jobs:
             reports/historie-universal-coverage/historie-universal-coverage.md
           if-no-files-found: error
 
-      - name: Remove one-time transport files
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -f .github/history-source-method-evidence-v1-materializer.b64
-          rm -f .github/workflows/one-time-history-source-method-evidence-v1.yml
-          rm -f .github/history-source-method-evidence-v1-trigger.txt
-
-      - name: Commit clean production diff
+      - name: Commit validated production diff
         shell: bash
         run: |
           set -euo pipefail
