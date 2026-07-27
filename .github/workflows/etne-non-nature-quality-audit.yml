@@ -26,46 +26,29 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run deterministic Etne audit
+      - name: Materialize and audit Etne uplift
         shell: bash
         run: |
-          set -uo pipefail
+          set -euo pipefail
           git fetch origin main
-          python3 <<'PY'
-          from pathlib import Path
-          p = Path('tools/audit-etne-non-nature-round-quality.mjs')
-          s = p.read_text(encoding='utf-8')
-          old = '      storyArticleSourceUrls\n'
-          new = '      storyArticleSourceUrls: storyArticleUrls\n'
-          if old in s:
-              s = s.replace(old, new, 1)
-          if new not in s:
-              raise SystemExit('Could not fix storyArticleSourceUrls reference')
-          p.write_text(s, encoding='utf-8')
-          PY
+          node tools/materialize-etne-non-nature-quality-uplift.mjs
           export AUDIT_GENERATED_AT="$(git show -s --format=%cI origin/main)"
-          mkdir -p reports/etne-non-nature-quality-audit
-          set +e
           node tools/audit-etne-non-nature-round-quality.mjs \
             > reports/etne-non-nature-quality-audit/audit.log 2>&1
-          STATUS=$?
-          set -e
-          printf '%s\n' "${STATUS}" > reports/etne-non-nature-quality-audit/audit-exit-code.txt
-          if [ -f reports/etne-non-nature-quality-audit/report.md ]; then
-            sed -i 's/[[:space:]]\+$//' reports/etne-non-nature-quality-audit/report.md
-          fi
+          printf '0\n' > reports/etne-non-nature-quality-audit/audit-exit-code.txt
+          sed -i 's/[[:space:]]\+$//' reports/etne-non-nature-quality-audit/report.md
 
-      - name: Publish audit report and diagnostics
+      - name: Publish uplift and audit report
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/audit-etne-non-nature-round-quality.mjs reports/etne-non-nature-quality-audit
+          git add data/places tools/audit-etne-non-nature-round-quality.mjs reports/etne-non-nature-quality-audit
           if git diff --cached --quiet; then
-            echo 'Audit report already current.'
+            echo 'Etne uplift and audit are already current.'
             exit 0
           fi
           git diff --cached --check
-          git commit -m 'Add Etne non-nature quality audit'
+          git commit -m 'Uplift Etne non-nature round quality'
           git push origin HEAD:agent/etne-all-rounds-quality-audit-uplift
