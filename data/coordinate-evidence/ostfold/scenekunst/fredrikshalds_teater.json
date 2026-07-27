@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fredrikshalds_teater",
+  "placeFile": "data/places/scenekunst/ostfold/fredrikshalds_teater/fredrikshalds_teater.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_historic_theatre_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.12338,
+    "lon": 11.3849,
+    "r": 180,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "OpenStreetMap node 866964389 – Fredrikshalds Teater; Wikidata Q10498766 / Wikimedia Commons; Østfoldmuseene – Fredrikshalds Teater; Halden kommune – Fredrikshalds teater; Teatergata 3",
+    "coordType": "named_theatre_building_point",
+    "coordRole": "historic_theatre_building_anchor",
+    "sourceObjectId": "osm-node:866964389;wikidata:Q10498766"
+  },
+  "previousCoordinate": {
+    "lat": 59.1244,
+    "lon": 11.3867,
+    "r": 180,
+    "distanceToAppliedCoordinateM": 153.0,
+    "reasonReplaced": "Legacy-punktet lå omtrent 153 meter nordøst for den navngitte teaterbygningen og hadde ingen bygnings- eller entitetskontrakt."
+  },
+  "identity": {
+    "resolvedIdentity": "Fredrikshalds Teaters historiske teaterbygning i Teatergata 3, som både museum og aktiv scene.",
+    "identityStatus": "resolved",
+    "identityProblem": "Stedet kan feilaktig reduseres til et generelt kulturkvartal, en arrangementsadresse eller en arkitektonisk barokkbygning. Canonical må identifisere det konkrete teaterhuset og skille barokkteaterets sceneform fra empirebygningens eksteriør.",
+    "locatorTypeCandidate": "historic_theatre_building_and_living_stage",
+    "requiresSplit": false,
+    "splitReason": "Museum, historisk scene, ballsal og aktive forestillinger ligger i samme teaterbygning. Kulisselager og omkringliggende kulturaktører er separate komponenter."
+  },
+  "requiredEvidence": [
+    "navngitt teaterbygning",
+    "Wikidata- og adresseidentitet",
+    "åpningsdato og arkitekt",
+    "barokkteaterform mot empirearkitektur",
+    "historiske kulisser og restaurering",
+    "museum og aktiv scene",
+    "tilgjengelighets- og adgangsbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceName": "OpenStreetMap node 866964389 – Fredrikshalds Teater",
+      "sourceUrl": "https://www.openstreetmap.org/node/866964389",
+      "sourceObjectId": "osm-node:866964389;wikidata:Q10498766",
+      "sourceQuality": "named_theatre_building_entity_point",
+      "finding": "Det navngitte teaterbygget er kartfestet på 59.12338, 11.38490 og identifisert som teater og besøksmål.",
+      "canVerifyCoordinate": true,
+      "reason": "Objektet identifiserer direkte teaterbygningen."
+    },
+    {
+      "sourceProvider": "wikimedia_wikidata",
+      "sourceName": "Wikimedia Commons – Fredrikshalds teater",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Fredrikshalds_teater",
+      "sourceObjectId": "wikidata:Q10498766",
+      "sourceQuality": "theatre_entity_address_architect_and_opening_identity",
+      "finding": "Commons og Wikidata knytter bygningen til Teatergata 3, arkitekt Balthazar Nicolai Garben, offisiell åpning i 1838 og koordinat nær OSM-punktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Krysskontrollerer entitet, adresse, arkitekt, år og plassering."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Om Fredrikshalds Teater",
+      "sourceUrl": "https://ostfoldmuseene.no/fredrikshald/om",
+      "sourceObjectId": "ostfoldmuseene:fredrikshald-theatre",
+      "sourceQuality": "official_museum_identity_and_current_use",
+      "finding": "Museet beskriver landets eneste bevarte barokkteater med skrå scene, gamle kulisser, ballsal og stuer, og dokumenterer dagens bruk til teater, konserter, foredrag og andre arrangementer.",
+      "canVerifyCoordinate": false,
+      "reason": "Definerer teaterets kulturhistoriske identitet og nåværende funksjon."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Teaterets historie",
+      "sourceUrl": "https://ostfoldmuseene.no/fredrikshald/om/teatrets-historie",
+      "sourceObjectId": "ostfoldmuseene:fredrikshald-history",
+      "sourceQuality": "official_detailed_theatre_and_building_history",
+      "finding": "Kilden oppgir ferdigstillelse 18. mars 1838, Garben som arkitekt, empirepreget trebygning, barokkteaterform, utvidelse i 1850, kinotilpasning i 1937 og senere restaureringer.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger eksakt åpningsdato, arkitektur, scenetype, kulisser og restaureringslag."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Kontaktinformasjon",
+      "sourceUrl": "https://ostfoldmuseene.no/fredrikshald/kontakt",
+      "sourceObjectId": "address:Teatergata-3-Halden",
+      "sourceQuality": "official_visitor_address",
+      "finding": "Museet oppgir besøksadressen Teatergata 3 i Halden.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter dagens besøksidentitet og adkomst."
+    },
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "sourceName": "Østfoldmuseene – Tilgjengelighet og tilrettelegging",
+      "sourceUrl": "https://ostfoldmuseene.no/fredrikshald/tilgjengelighet",
+      "sourceObjectId": "ostfoldmuseene:fredrikshald-accessibility",
+      "sourceQuality": "official_accessibility_and_internal_layout",
+      "finding": "Kilden dokumenterer nivåforskjeller, trapper, manglende heis og variasjon i tilgjengeligheten mellom inngang, selskapsdel, teatersalong, balkong og sceneområder.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir grunnlag for adgangs- og tilgjengelighetsbegrensninger i gameplay."
+    },
+    {
+      "sourceProvider": "halden_kommune",
+      "sourceName": "Halden kommune – Fredrikshalds teater",
+      "sourceUrl": "https://www.halden.kommune.no/tjenester/kultur-idrett-og-fritid/for-arrangorer/arrangementsomrader/fredrikshalds-teater/",
+      "sourceObjectId": "halden:fredrikshald-theatre",
+      "sourceQuality": "official_local_venue_control",
+      "finding": "Kommunen bekrefter barokkteateridentiteten, 1838, dagens arrangementbruk og kapasitets- og sceneforhold.",
+      "canVerifyCoordinate": false,
+      "reason": "Krysskontrollerer lokal arena- og arrangementsidentitet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Fredrikshalds Teater point",
+      "sourceObjectId": "legacy:fredrikshalds_teater",
+      "sourceQuality": "incorrect_nearby_point",
+      "finding": "Legacy-koordinatet ligger omtrent 153 meter nordøst for teaterbygningen.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer bygningen eller en dokumentert offentlig inngang."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "ostfoldmuseene",
+      "address": "Teatergata 3, Halden",
+      "addressRole": "official_visitor_and_building_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adressen bekrefter identiteten, mens det navngitte OSM- og Wikidata-punktet gir hovedkoordinaten."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-node:866964389;wikidata:Q10498766",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "address_control",
+      "sourceObjectId": "Teatergata-3",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adressekontroll, ikke en separat objekttype."
+    },
+    {
+      "sourceProvider": "cultural_quarter_control",
+      "sourceObjectId": "Halden-Kulturkvartalet",
+      "canApplyToPlace": false,
+      "rejectionReason": "Kulturkvartalet er et større moderne områdenavn og ikke identisk med teaterbygningen."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-node:866964389;wikidata:Q10498766",
+      "geometryType": "named_theatre_building_entity_point",
+      "geometryRole": "historic_theatre_building_and_living_stage",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "building_extent_control",
+      "sourceObjectId": "Fredrikshalds-Teater-building-footprint-not-captured",
+      "geometryType": "historic_building_extent_not_explicitly_captured",
+      "geometryRole": "theatre_ballsal_stuer_and_service_areas",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "fredrikshalds_theatre_building",
+      "name": "Fredrikshalds Teater – teaterbygget",
+      "lat": 59.12338,
+      "lon": 11.3849,
+      "r": 80,
+      "type": "historic_theatre_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-node:866964389;wikidata:Q10498766",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:fredrikshalds_teater",
+      "lat": 59.1244,
+      "lon": 11.3867,
+      "distanceFromAppliedM": 153.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-node:866964389;wikidata:Q10498766",
+      "lat": 59.12338,
+      "lon": 11.3849,
+      "distanceFromPreviousM": 153.0,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-fredrikshalds-teater-source-probe/source-summary.json",
+      "description": "Persisted theatre entity, visitor address, opening date, architecture and stage-form distinction, museum and venue use, restoration and accessibility limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named theatre-building point and continued with rakkestad_prestegard_1814."
+  },
+  "notes": [
+    "The coordinate moves approximately 153 metres south-west.",
+    "The baroque-theatre label describes the preserved stage and auditorium tradition, while the external wooden building is classically Empire-influenced.",
+    "The venue is both a museum and an active theatre and has event, tour and preservation-based access rules.",
+    "Some historic scenery predates the 1838 building and additional scenery from Arendal is held in the collection.",
+    "The radius is not a building, museum, event, accessibility or access boundary."
+  ]
+}
