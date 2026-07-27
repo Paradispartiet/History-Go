@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "gjellestadskipet_jellhaugen",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch2/gjellestadskipet_jellhaugen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_ship_grave_findspot_with_jellhaugen_secondary_anchor",
+  "currentCoordinate": {
+    "lat": 59.14857,
+    "lon": 11.25038,
+    "r": 360,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "OpenStreetMap node 5985030252 – Viking ship and settlements remains; OpenStreetMap way 891998939 – Jellhaugen; NIKU – Gjellestadskipet; Store norske leksikon – Jellhaugen; Halden kommune",
+    "coordType": "named_archaeological_ship_grave_point",
+    "coordRole": "ship_grave_findspot_anchor",
+    "sourceObjectId": "osm-node:5985030252;osm-way:891998939;wikidata:Q19376190;riksantikvaren-kulturminne:42959",
+    "coordNote": "The canonical point follows the ship grave; Jellhaugen is retained as a separate secondary anchor within the same archaeological landscape."
+  },
+  "previousCoordinate": {
+    "lat": 59.1517,
+    "lon": 11.2962,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 2635.7,
+    "reasonReplaced": "The legacy point lay approximately 2.64 kilometres east of the documented Gjellestad archaeological landscape and had no source-object contract."
+  },
+  "identity": {
+    "currentName": "Gjellestadskipet / Jellhaugen",
+    "resolvedIdentity": "The excavated and still in-situ Gjellestad ship-grave location on Viksletta, paired with the separate monumental Jellhaugen approximately 176 metres to the south.",
+    "identityStatus": "resolved",
+    "identityProblem": "The combined name can imply that the Viking ship was buried inside the surviving Jellhaugen. The evidence instead identifies a ploughed-out ship mound north of Jellhaugen within one larger burial and settlement landscape.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The ship grave and Jellhaugen are separate monuments but function as one coherent archaeological visitor landscape and can be represented through one primary and one secondary anchor."
+  },
+  "requiredEvidence": [
+    "named ship-grave point",
+    "mapped Jellhaugen geometry",
+    "authoritative georadar and excavation context",
+    "explicit separation of ship grave and surviving mound",
+    "documentation that ship remains remain at the findspot",
+    "radius and landscape limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5985030252 – Viking ship and settlements remains",
+      "sourceUrl": "https://www.openstreetmap.org/node/5985030252",
+      "sourceObjectId": "osm-node:5985030252",
+      "sourceQuality": "named_archaeological_ship_and_settlement_point",
+      "finding": "The named archaeological-site point is at 59.14857, 11.25038 and represents the Gjellestad ship grave and nearby settlement remains.",
+      "canVerifyCoordinate": true,
+      "reason": "It identifies the physical ship-grave location rather than a farm centroid, road point or the separate Jellhaugen monument."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 891998939 – Jellhaugen",
+      "sourceUrl": "https://www.openstreetmap.org/way/891998939",
+      "sourceObjectId": "osm-way:891998939",
+      "sourceQuality": "mapped_monumental_burial_mound_geometry",
+      "finding": "The Jellhaugen archaeological-site geometry has centroid 59.14704, 11.25114, approximately 175.6 metres south of the ship-grave point, and is linked to Wikidata Q19376190.",
+      "canVerifyCoordinate": true,
+      "reason": "Supplies the secondary anchor and makes the physical distinction between the surviving mound and ship grave explicit."
+    },
+    {
+      "sourceProvider": "niku",
+      "sourceName": "NIKU – Gjellestadskipet",
+      "sourceUrl": "https://www.niku.no/prosjekter/gjellestadskipet/",
+      "sourceObjectId": "niku:gjellestadskipet",
+      "sourceQuality": "primary_research_and_excavation_context",
+      "finding": "NIKU documents the 2018 georadar discovery of the approximately 20-metre ship imprint immediately below the topsoil, together with multiple burial mounds and Iron Age buildings; the ship was excavated in 2020–2021.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes the archaeological identity, method and wider landscape represented by the mapped ship point."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Jellhaugen",
+      "sourceUrl": "https://snl.no/Jellhaugen",
+      "sourceObjectId": "snl:jellhaugen",
+      "sourceQuality": "authoritative_monument_and_landscape_context",
+      "finding": "Jellhaugen is a surviving oval mound approximately 85 by 70 metres and up to nine metres high. SNL describes the Gjellestad ship burial as lying in one of the destroyed mounds in the surrounding cemetery, not in Jellhaugen itself.",
+      "canVerifyCoordinate": false,
+      "reason": "Prevents conflation of the monumental surviving mound with the separate ship grave."
+    },
+    {
+      "sourceProvider": "halden_kommune",
+      "sourceName": "Halden kommune – Viktige sensorer i Gjellestadskipet",
+      "sourceUrl": "https://www.halden.kommune.no/aktuelt/viktige-sensorer-i-gjellestadskipet.55967.aspx",
+      "sourceObjectId": "halden-kommune:gjellestadskipet-sensors",
+      "sourceQuality": "official_current_findspot_and_preservation_context",
+      "finding": "The municipality documents that the fragile ship remains are still at the Gjellestad findspot and are monitored with temperature and moisture sensors.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that the canonical location is still the in-situ archaeological findspot rather than a museum destination."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Gjellestad point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:gjellestadskipet_jellhaugen",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 2,635.7 metres east of the named ship-grave point.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent either the ship grave or Jellhaugen."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5985030252",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:891998939",
+      "canApplyToPlace": false,
+      "rejectionReason": "Used as a secondary anchor; the combined record is primarily located at the ship grave."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q19376190",
+      "canApplyToPlace": false,
+      "rejectionReason": "Identifies Jellhaugen only, not the separate ship grave."
+    },
+    {
+      "sourceProvider": "locality_control",
+      "sourceObjectId": "gjellestad-farm-centroid",
+      "canApplyToPlace": false,
+      "rejectionReason": "A farm or locality centroid is less precise than the named archaeological ship-grave point."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:891998939",
+      "geometryType": "surviving_burial_mound_polygon",
+      "geometryRole": "jellhaugen_secondary_monument",
+      "canApplyToPlace": true,
+      "appliedAsSecondaryAnchor": true
+    },
+    {
+      "sourceProvider": "archaeological_context",
+      "sourceObjectId": "gjellestad-central-place-landscape",
+      "geometryType": "full_archaeological_landscape_not_captured",
+      "geometryRole": "burial_settlement_and_ritual_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:42959",
+      "geometryType": "legal_jellhaugen_protection_geometry_not_captured",
+      "geometryRole": "protection_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "gjellestadskipet_skipsgrav",
+      "name": "Gjellestadskipet – skipsgraven",
+      "lat": 59.14857,
+      "lon": 11.25038,
+      "r": 90,
+      "type": "ship_grave_findspot_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5985030252",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "jellhaugen_gravhaug",
+      "name": "Jellhaugen",
+      "lat": 59.14704,
+      "lon": 11.25114,
+      "r": 120,
+      "type": "monumental_burial_mound_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:891998939;wikidata:Q19376190;riksantikvaren-kulturminne:42959",
+      "distanceFromPrimaryM": 175.6,
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:gjellestadskipet_jellhaugen",
+      "lat": 59.1517,
+      "lon": 11.2962,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 2635.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5985030252",
+      "lat": 59.14857,
+      "lon": 11.25038,
+      "coordRole": "ship_grave_findspot_anchor",
+      "distanceFromPreviousM": 2635.7,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:891998939",
+      "lat": 59.14704,
+      "lon": 11.25114,
+      "coordRole": "jellhaugen_secondary_anchor",
+      "distanceFromAppliedM": 175.6,
+      "canApplyToPlace": true,
+      "appliedAsSecondaryAnchor": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-gjellestadskipet-source-probe/source-summary.json",
+      "description": "Persisted ship-grave point, Jellhaugen secondary geometry, authoritative archaeological context, false-candidate controls and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Gjellestad ship-grave point, added Jellhaugen as a secondary anchor and retained the 360-metre gameplay radius. Continue with hoytorp_fort."
+  },
+  "notes": [
+    "The coordinate moves approximately 2.64 kilometres west-southwest.",
+    "The ship grave and Jellhaugen are separate monuments approximately 176 metres apart.",
+    "The marker represents the ship grave; Jellhaugen remains a secondary anchor within the same place record.",
+    "The radius is not an archaeological locality, legal protection, World Heritage, property or full landscape boundary."
+  ]
+}
