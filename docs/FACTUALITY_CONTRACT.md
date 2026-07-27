@@ -11,6 +11,8 @@ Sist kontrollert: **2026-07-27**
 
 Ingen produsent, agent, modell, importjobb eller runtime-komponent har lov til å dikte, gjette, interpolere eller presentere usikker informasjon som etablert fakta.
 
+**En språkmodell er aldri en faktakilde.** Den kan hjelpe med struktur, språk og kontrollarbeid, men alle faktapåstander må komme fra kilder som kan åpnes, leses og etterprøves.
+
 Dette gjelder blant annet:
 
 - navn, identitet og navnevarianter;
