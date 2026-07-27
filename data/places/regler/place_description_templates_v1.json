@@ -1,102 +1,243 @@
 {
-  "schema": "history_go_place_description_templates_v4",
-  "version": "4.1.0",
-  "status": "canonical_fact_only_full_popup_articles",
-  "purpose": "Sikre at desc og popupDesc består av dokumenterte stedfakta, uten redaksjonell, pedagogisk, kartteknisk eller oppkonstruert fylltekst.",
+  "schema": "history_go_place_description_templates_v4_2",
+  "version": "4.2.0",
+  "status": "canonical_claim_first_sentence_traceable",
+  "purpose": "Sikre identitetsavklaring, claim-first research, full setningssporbarhet, separate reviews og versjonert ferdigstatus for desc og popupDesc.",
+  "canonicalDocument": "data/places/regler/PLACE_DESCRIPTION_CANONICAL.md",
+  "productionSchema": "data/places/regler/place_description_production_v4_2.schema.json",
+  "productionDirectory": "data/places/production",
   "categoryAliases": {
     "popkultur": "populaerkultur"
   },
   "informationHierarchy": {
     "desc": "Konsentrert faktasammendrag: hva stedet er, når, hvem, hva som skjedde, og hva som gjør det spesielt.",
-    "popupDesc": "Fullverdig, selvstendig stedartikkel med rik kronologi, aktører, bruk, fysiske detaljer, endringer og minneverdige dokumenterte fakta.",
-    "merInfo": "Ytterligere fordypning, full kronologi, lange årsaksforklaringer, tolkninger, forbindelser, kildeapparat og videre lesning.",
-    "peoplePopup": "Full biografi, samlet verk, nettverk, konflikter og etterliv utenfor den aktuelle stedstilknytningen."
+    "popupDesc": "Fullverdig, selvstendig stedartikkel med dokumentert kronologi, aktører, bruk, fysiske detaljer, endringer og minneverdige fakta.",
+    "merInfo": "Ytterligere fordypning, konkurrerende tolkninger, forbindelser, kildeapparat og videre lesning.",
+    "peoplePopup": "Full biografi og forbindelser utenfor den aktuelle stedstilknytningen.",
+    "productionPacket": "Internt claim-register, identitetsport, setningsdekning, reviews, quiz-readiness og ferdigstatus. Skal aldri gjengis i brukerinnholdet."
   },
   "global": {
     "desc": {
-      "targetWords": [
-        40,
-        80
-      ],
-      "targetSentences": [
-        2,
-        4
-      ],
+      "targetWords": [40, 80],
+      "targetSentences": [2, 4],
       "rangeType": "soft_normal_range",
-      "job": "Gi et konsentrert og innholdsrikt faktasammendrag, ikke bare en teaser.",
       "minimumConcreteFacts": 4,
       "mustDifferFromPopupDesc": true
     },
     "popupDesc": {
       "minimumWords": 300,
-      "recommendedWords": [
-        300,
-        600
-      ],
+      "recommendedWords": [300, 600],
       "hardMaximumWords": null,
-      "targetSentences": [
-        12,
-        30
-      ],
+      "targetSentences": [12, 30],
       "minimumParagraphs": 3,
-      "rangeType": "hard_minimum_open_upper_range",
-      "job": "Gi en fullverdig, selvstendig stedartikkel med omfattende, kildebelagt og minneverdig kunnskap.",
+      "fixedParagraphCount": null,
+      "paragraphRule": "organic_structure_from_documented_material",
+      "rangeType": "hard_minimum_when_sources_are_sufficient",
       "minimumConcreteFacts": 12,
       "minimumNewInformationShare": 0.6667,
-      "mustAddNewInformation": true
+      "mustAddNewInformation": true,
+      "insufficientSourceOutcome": "blocked_insufficient_sources"
     },
-    "popupContentLayers": [
-      "grunnfakta og sentralt tidsrom",
-      "opprinnelse, etablering eller første dokumenterte bruk",
-      "navngitte aktører, virksomheter, institusjoner eller arter",
-      "faktisk bruk, produksjon, aktivitet eller funksjon",
-      "hendelser, konflikter, resultater og funksjonsskifter",
-      "fysiske detaljer, materialer, mål, teknikk, landskap eller observerbare spor",
-      "minst én overraskende, dramatisk eller særlig minneverdig dokumentert detalj",
-      "dagens faktiske bruk, bevarte spor eller det som forsvant"
+    "identityGate": {
+      "required": true,
+      "requiredStatus": "resolved",
+      "requiredFields": ["represents", "period", "excludes"],
+      "distinctions": [
+        "building_vs_institution",
+        "current_vs_historic_operation",
+        "construction_year_vs_foundation_year",
+        "area_vs_single_building",
+        "author_vs_fictional_character",
+        "memorial_site_vs_event_site",
+        "historic_address_vs_current_visitor_address"
+      ]
+    },
+    "claimsGate": {
+      "requiredForNewOrRevisedDescriptions": true,
+      "stableClaimIds": true,
+      "allFactualComponentsNeedVerifiedClaims": true,
+      "allowedClaimStatuses": ["verified", "rejected", "superseded", "needs_research"],
+      "readyStatusRequires": "verified",
+      "requiredClaimFields": [
+        "id",
+        "claim",
+        "sourceUrl",
+        "sourceLocation",
+        "sourceType",
+        "verifiedAt",
+        "status"
+      ],
+      "allowedSourceTypes": [
+        "primary",
+        "official",
+        "institutional",
+        "archive",
+        "catalogue",
+        "scholarly",
+        "reputable_secondary"
+      ],
+      "identitySourceTypes": ["primary", "official", "institutional", "archive", "catalogue"],
+      "sourceLocationRequired": true,
+      "inspectableHttpsRequired": true
+    },
+    "sentenceClaimParity": {
+      "required": true,
+      "appliesTo": ["desc", "popupDesc"],
+      "everySentenceNeedsClaimIds": true,
+      "textHashAlgorithm": "sha256",
+      "rejectPartialSupport": true,
+      "rejectUnclaimedCause": true,
+      "rejectUnclaimedEvaluation": true,
+      "rejectSyntheticConclusion": true
+    },
+    "strongClaims": {
+      "requiresExplicitEvidence": true,
+      "requiresStrongClaimFlag": true,
+      "requiresEvidenceMode": "explicit",
+      "terms": [
+        "første",
+        "eldste",
+        "største",
+        "minste",
+        "eneste",
+        "viktigste",
+        "ledende",
+        "særlig kjent for",
+        "avgjørende",
+        "førte til",
+        "på grunn av",
+        "derfor",
+        "dermed",
+        "revolusjonerte",
+        "endret for alltid"
+      ],
+      "minimumIndependentSourcesForDisputedOrStrongClaims": 2
+    },
+    "temporalClaims": {
+      "requiresTemporalStatus": true,
+      "currentStatusValue": "current",
+      "maximumVerificationAgeDays": 180,
+      "markers": [
+        "i dag",
+        "nå",
+        "holder til",
+        "drives av",
+        "brukes som",
+        "er under bygging",
+        "skal åpne",
+        "planlegges",
+        "forventes ferdig"
+      ],
+      "futurePlansMustRemainQualified": true,
+      "outdatedFuturePlansAreErrors": true
+    },
+    "productionStatuses": [
+      "ready_v4_2",
+      "needs_research",
+      "source_conflict",
+      "identity_unresolved",
+      "blocked_insufficient_sources",
+      "metadata_correction_required"
     ],
-    "factTypes": [
-      "navngitt person, gruppe eller institusjon",
-      "årstall eller tydelig tidsrom",
-      "hva stedet er eller ble brukt til",
-      "hendelse, vedtak, produksjon, forestilling, kamp eller oppdagelse",
-      "arkitekt, kunstner, forsker, eier, grunnlegger eller utøver",
-      "materiale, mål, art, instrument, maskin, produkt eller fysisk detalj",
-      "verk, vare, rute, rekord eller resultat",
-      "konkret endring, skade, brann, flytting, restaurering, konkurs eller ombygging",
-      "overraskende, morsom, dramatisk eller minneverdig dokumentert detalj"
-    ],
-    "researchOrder": [
-      "Les og vurder inspectable kilder før teksten planlegges.",
-      "Finn stedets viktigste grunnfakta og sentrale tidslag.",
-      "Finn navngitte aktører, institusjoner, verk, produkter, arter og hendelser.",
-      "Finn fysiske detaljer og det stedet har som lignende steder ikke har.",
-      "Finn nok dokumentert stoff til minst 300 ord uten fylltekst.",
-      "Organiser fakta i en sammenhengende artikkel med minst tre avsnitt."
-    ],
-    "writingRules": [
-      "Start direkte med et interessant faktum. Ikke innled med hva stedet symboliserer, viser eller kan lære oss.",
-      "Bruk egennavn, årstall, handlinger, funksjoner, gjenstander og resultater når de finnes i kildene.",
-      "Prioriter det særegne ved akkurat dette stedet framfor kategoridefinisjoner.",
-      "Hver setning skal helst tilføre minst én ny opplysning.",
-      "Underholdning skal komme fra fakta, overraskelser, kontraster og presise detaljer, ikke oppdiktet stemning.",
-      "Organiser fakta gjennom kronologi, virksomhet, hendelse, bygg, person, verk eller naturprosess.",
-      "Tolkning kan brukes når den forklarer et konkret faktum, men skal ikke erstatte kunnskapsinnhold.",
-      "Ikke press alle steder inn i fortellinger om samfunn, identitet, system, arbeid, metode, bevegelse eller dagens betydning.",
-      "En popupDesc under 300 ord er uferdig.",
-      "Manglende stoff skal løses med mer research, ikke gjentakelse, generell analyse eller spekulasjon.",
-      "PopupDesc kan være lengre enn 600 ord når kildene og stedet forsvarer det; det finnes ingen automatisk hard maksimumsgrense.",
-      "Hvert avsnitt skal inneholde minst to konkrete stedsholdepunkter når kildegrunnlaget tillater det.",
-      "Ikke konstruer en generell spenning, moral eller faglig lesning som kildene ikke uttrykker.",
-      "Fjern alle setninger som forklarer History Go, spilleren, kartpunktet, markøren eller produksjonsvalget."
-    ],
-    "notFirstLineContent": [
-      "læringsmål eller hva spilleren bør forstå",
-      "hvilken kategori eller quizvinkel stedet bør ha",
-      "generelle koblinger til vår tid",
-      "redaksjonell begrunnelse for hvorfor stedet er med",
-      "koordinatstatus, kildearbeid, validering eller interne produksjonsnotater"
-    ],
+    "reviews": {
+      "factual": {
+        "required": true,
+        "requiredStatusForReady": "passed",
+        "checks": [
+          "names",
+          "dates",
+          "roles",
+          "causes",
+          "quotes",
+          "numbers",
+          "current_status",
+          "claim_coverage",
+          "source_quality",
+          "metadata_consistency"
+        ],
+        "languageEditingAllowed": false
+      },
+      "editorial": {
+        "required": true,
+        "requiredStatusForReady": "passed",
+        "checks": [
+          "flow",
+          "repetition",
+          "variation",
+          "clarity",
+          "interest",
+          "unnecessary_jargon",
+          "generic_openings",
+          "generic_endings"
+        ],
+        "mayIntroduceNewFacts": false
+      }
+    },
+    "quizReadiness": {
+      "minimumDirectQuestions": 8,
+      "minimumNormalKnowledgeQuestions": 5,
+      "minimumQuestionTypes": 4,
+      "allowedQuestionTypes": [
+        "hvem",
+        "når",
+        "hva",
+        "hvor",
+        "hvilket_verk_eller_objekt",
+        "hva_skjedde",
+        "hva_ble_bygget_produsert_eller_endret"
+      ],
+      "answerMustBeUnambiguous": true
+    },
+    "metadataConsistency": {
+      "required": true,
+      "fields": [
+        "name",
+        "year",
+        "period",
+        "category",
+        "address",
+        "coordinates",
+        "externalLinks",
+        "operationStatus",
+        "placeType"
+      ],
+      "failureStatus": "metadata_correction_required"
+    },
+    "batchDiversification": {
+      "maxSameOpeningPatternInTen": 2,
+      "maximumNormalizedTextJaccard": 0.75,
+      "maximumRepeatedSentenceWords": 8,
+      "rejectSameOpening": true,
+      "rejectSameEnding": true,
+      "rejectPortableParagraphs": true,
+      "allowedRepeatedSentenceReasons": [
+        "official_title",
+        "necessary_proper_name",
+        "fixed_source_wording"
+      ]
+    },
+    "prIsolation": {
+      "requireProductionPacketForChangedDescription": true,
+      "forbidRulesAndPlaceContentInSamePr": true,
+      "forbidCoordinateAndDescriptionChangesInSamePr": true,
+      "forbidGeneratedIndexChangesInDescriptionPr": true,
+      "requireCanonicalSourceForIndexChange": true
+    },
+    "completion": {
+      "currentStandard": "4.2",
+      "requiredCompletedUnder": "4.2",
+      "requiredCurrentStatus": "current",
+      "legacyCurrentStatus": "requires_4_2_review",
+      "requiredFields": [
+        "completedUnder",
+        "currentStatus",
+        "sourceVerifiedAt",
+        "claimsVerified",
+        "factualReview",
+        "editorialReview",
+        "validatorVersion"
+      ]
+    },
     "antiFormula": {
       "doNotUseAsDefaultOpenings": [
         "Stedet viser hvordan",
@@ -124,390 +265,73 @@
       ],
       "rule": "Abstrakte ord er tillatt når de forklarer et konkret, kildebelagt faktum, men ikke som erstatning for fakta."
     },
-    "batchDiversification": {
-      "maxSameOpeningPatternInTen": 2,
-      "requirements": [
-        "Ikke bruk samme setningsform på alle stedene.",
-        "Ikke avslutt hver popupDesc med en generell læresetning eller kobling til i dag.",
-        "Ingen tekst skal kunne flyttes til et annet sted ved bare å bytte egennavnet.",
-        "Hvert sted skal inneholde flere fakta som ikke passer på et lignende nabosted.",
-        "Lange popuptekster skal variere mellom kronologi, aktører, hendelser, fysisk beskrivelse og minneverdige detaljer."
-      ]
-    },
-    "reviewQuestions": [
-      "Er popupDesc minst 300 ord?",
-      "Har popupDesc minst tre avsnitt og tydelig indre struktur?",
-      "Lærer spilleren mange konkrete ting?",
-      "Finnes det navn, hendelser, årstall, funksjoner, fysiske spor og særegne detaljer?",
-      "Inneholder teksten flere opplysninger som ikke passer på et annet lignende sted?",
-      "Kan flere normale quizspørsmål lages direkte fra teksten?",
-      "Tilfører popupDesc vesentlig mer enn desc?",
-      "Er minst to tredeler av opplysningene i popupDesc nye?",
-      "Er teksten interessant uten generiske fagkonklusjoner eller fylltekst?",
-      "Er alle faktiske påstander kildebelagte?",
-      "Kan hver faktisk påstand føres tilbake til en inspectable kilde?",
-      "Har hvert avsnitt konkrete navn, datoer, handlinger, objekter, funksjoner, mål eller resultater?",
-      "Er all History Go-, spiller-, kart-, markør- og produksjonsmetatekst fjernet?"
-    ],
-    "factualityGate": {
-      "everyFactualClaimNeedsInspectableSupport": true,
-      "everyParagraphNeedsConcretePlaceAnchors": true,
-      "minimumConcreteAnchorsPerParagraph": 2,
-      "allowedExplanations": [
-        "kildebelagt årsak og konsekvens",
-        "dokumentert konflikt mellom navngitte aktører eller vedtak",
-        "konkret sammenligning mellom daterte tidslag"
-      ],
-      "notFactsOnTheirOwn": [
-        "betydning",
-        "spenning",
-        "rolle",
-        "identitet",
-        "åpenhet",
-        "sikkerhet",
-        "transformasjon",
-        "samfunn",
-        "relevans",
-        "lesbarhet"
-      ],
-      "missingContentRule": "Mer research er eneste godkjente løsning. Ikke fyll med analyse, moral, redaksjonell forklaring eller generelle setninger."
-    },
     "forbiddenEditorialLanguage": [
-      {
-        "id": "history_go_reader_copy",
-        "examples": [
-          "History Go kan bruke stedet til",
-          "I History Go"
-        ],
-        "rule": "Produktnavn og redaksjonell bruk skal aldri stå i brukerartikkelen."
-      },
-      {
-        "id": "reader_instruction",
-        "examples": [
-          "Se hvordan",
-          "Husk at",
-          "spilleren skal forstå",
-          "spilleren bør forstå"
-        ],
-        "rule": "popupDesc skal formidle kunnskap, ikke instruere spilleren."
-      },
-      {
-        "id": "map_identity_copy",
-        "examples": [
-          "kartpunktet er et områdeanker",
-          "autoritative kartidentiteten",
-          "markør for hele området"
-        ],
-        "rule": "Kart-, koordinat- og representasjonslogikk hører i egne metadatafelt."
-      },
-      {
-        "id": "dataset_distinction_copy",
-        "examples": [
-          "må holdes adskilt fra",
-          "skal ikke reduseres til én samlet markør",
-          "oppdateres separat"
-        ],
-        "rule": "Datasettgrenser og canonical-identiteter skal ikke forklares i popupDesc."
-      },
-      {
-        "id": "production_defence_copy",
-        "examples": [
-          "Dette hindrer at",
-          "stabil nok til å romme videre utvikling"
-        ],
-        "rule": "Teksten skal ikke forsvare redaksjonelle eller tekniske valg."
-      }
+      "History Go kan bruke stedet til",
+      "I History Go",
+      "Se hvordan",
+      "Husk at",
+      "spilleren skal forstå",
+      "spilleren bør forstå",
+      "kartpunktet er et områdeanker",
+      "autoritative kartidentiteten",
+      "markør for hele området",
+      "må holdes adskilt fra",
+      "skal ikke reduseres til én samlet markør",
+      "stabil nok til å romme videre utvikling"
     ]
   },
   "categories": {
     "by": {
       "label": "By & arkitektur",
-      "factPriorities": [
-        "hva stedet eller bygningen er",
-        "byggeår, åpning eller ombygging",
-        "arkitekt, ingeniør eller planlegger",
-        "konkret funksjon",
-        "materiale, form, mål eller transportløsning",
-        "faktisk bruk eller kjent hendelse"
-      ],
-      "avoid": [
-        "generell byutvikling",
-        "påtvunget hverdagsanalyse",
-        "bevegelse som obligatorisk hovedpoeng"
-      ]
+      "factPriorities": ["bygg eller område", "byggeår", "arkitekt eller planlegger", "funksjon", "materiale og mål", "ombygging og bruk"]
     },
     "historie": {
       "label": "Historie",
-      "factPriorities": [
-        "hva som skjedde",
-        "når det skjedde",
-        "navngitte aktører",
-        "stedets funksjon i hendelsen",
-        "bevarte rester eller senere endring",
-        "uvanlig kildebelagt detalj"
-      ],
-      "avoid": [
-        "historisk betydning uten hendelse",
-        "generisk kulturminnespråk",
-        "læresetning om fortid og nåtid"
-      ]
+      "factPriorities": ["hendelse", "dato", "aktør", "handling", "gjenstand", "bevarte spor"]
     },
     "kunst": {
       "label": "Kunst",
-      "factPriorities": [
-        "verkets navn og type",
-        "kunstner",
-        "årstall",
-        "materiale, størrelse eller teknikk",
-        "bestilling, plassering eller flytting",
-        "mottakelse eller kjent hendelse"
-      ],
-      "avoid": [
-        "symbolikk uten beskrivelse",
-        "kunst møter samfunn som standardformel",
-        "tolkning uten verkfakta"
-      ]
+      "factPriorities": ["verk", "kunstner", "år", "materiale", "størrelse", "teknikk og plassering"]
     },
     "litteratur": {
       "label": "Litteratur",
-      "factPriorities": [
-        "forfatter eller litterært miljø",
-        "verk",
-        "konkret forbindelse til stedet",
-        "årstall eller arbeidsperiode",
-        "hva som ble skrevet, lest eller utgitt",
-        "dokumentert episode eller etterliv"
-      ],
-      "avoid": [
-        "generisk inspirasjon",
-        "handlingsreferat uten stedstilknytning",
-        "løs påstand om litterær identitet"
-      ]
-    },
-    "media": {
-      "label": "Medier",
-      "factPriorities": [
-        "medium eller institusjon",
-        "program, avis, sending eller sak",
-        "redaktør, journalist eller produsent",
-        "teknologi eller distribusjonsform",
-        "dato eller periode",
-        "konkret publikumseffekt eller konflikt"
-      ],
-      "avoid": [
-        "offentlighet som eneste substans",
-        "plattform uten produksjon",
-        "mediehistorie uten navn eller verk"
-      ]
+      "factPriorities": ["forfatter", "verk", "stedstilknytning", "arbeidsperiode", "utgivelse", "dokumentert episode"]
     },
     "musikk": {
       "label": "Musikk",
-      "factPriorities": [
-        "artist, ensemble eller arrangør",
-        "konsert, innspilling eller verk",
-        "dato eller periode",
-        "sjanger eller instrument",
-        "akustikk, scene eller teknologi",
-        "minneverdig dokumentert hendelse"
-      ],
-      "avoid": [
-        "viktig musikkscene uten hendelser",
-        "sjangerliste",
-        "identitet som standardkonklusjon"
-      ]
+      "factPriorities": ["artist", "konsert eller innspilling", "scene", "instrument", "teknologi", "publikumshendelse"]
     },
     "naeringsliv": {
       "label": "Næringsliv",
-      "factPriorities": [
-        "bedrift, grunnlegger eller eier",
-        "produkt eller tjeneste",
-        "etableringsår eller driftsperiode",
-        "produksjonsmåte eller teknologi",
-        "marked, eksport eller kunde",
-        "vekst, konkurs, streik eller omstilling"
-      ],
-      "avoid": [
-        "økonomisk utvikling uten bedrift eller produkt",
-        "arbeid som obligatorisk moral",
-        "innovasjon som tom ros"
-      ]
+      "factPriorities": ["bedrift", "grunnlegger", "produkt", "etableringsår", "produksjon", "marked og omstilling"]
     },
     "natur": {
-      "label": "Natur & miljø",
-      "factPriorities": [
-        "navngitte arter eller naturtype",
-        "geologi, habitat eller prosess",
-        "sesong eller observerbart kjennetegn",
-        "størrelse, utbredelse eller livsløp",
-        "samspill eller økologisk funksjon",
-        "vern, trussel eller særskilt observasjon"
-      ],
-      "avoid": [
-        "naturmangfold uten arter",
-        "grønn lunge som standard",
-        "økologisk betydning uten konkret prosess"
-      ]
+      "label": "Natur",
+      "factPriorities": ["arter", "naturtype", "geologi", "habitat", "sesong", "atferd og kjennetegn"]
     },
     "politikk": {
-      "label": "Politikk & samfunn",
-      "factPriorities": [
-        "institusjon, organisasjon eller bevegelse",
-        "beslutning, lov, møte eller aksjon",
-        "dato",
-        "navngitte aktører",
-        "hva saken gjaldt",
-        "konkret resultat eller konflikt"
-      ],
-      "avoid": [
-        "demokrati som pyntord",
-        "politisk betydning uten sak",
-        "generell maktanalyse i førstelinjen",
-        "udokumentert spenning mellom åpenhet og sikkerhet"
-      ]
+      "label": "Politikk",
+      "factPriorities": ["institusjon", "beslutning", "møte eller aksjon", "aktører", "konflikt", "resultat"]
     },
     "populaerkultur": {
       "label": "Populærkultur",
-      "factPriorities": [
-        "fenomen, arrangement eller gjenstand",
-        "utøver, arrangør eller fanmiljø",
-        "dato eller periode",
-        "format eller praksis",
-        "publikumstall, gjennombrudd eller spredning",
-        "minneverdig episode eller etterliv"
-      ],
-      "avoid": [
-        "popularitet uten fenomen",
-        "nostalgi som eneste innhold",
-        "levende kultur som tom ros"
-      ]
+      "factPriorities": ["verk eller produksjon", "skaper", "utgivelse", "stedsscene", "mottakelse", "dokumentert etterliv"]
     },
     "psykologi": {
       "label": "Psykologi",
-      "factPriorities": [
-        "forsker, behandler eller institusjon",
-        "undersøkelse, behandling eller praksis",
-        "metode",
-        "dato eller periode",
-        "deltakere eller målgruppe",
-        "resultat, reform eller dokumentert kritikk"
-      ],
-      "avoid": [
-        "diagnostisering uten kilder",
-        "teoribegrep uten situasjon",
-        "abstrakt forklaring av sinnet"
-      ]
-    },
-    "religion": {
-      "label": "Religion",
-      "factPriorities": [
-        "trossamfunn eller menighet",
-        "bygg, gjenstand eller ritual",
-        "grunnleggelse eller byggeår",
-        "arkitekt, kunstner eller grunnlegger",
-        "høytid eller konkret bruk",
-        "endring, brann, flytting eller restaurering"
-      ],
-      "avoid": [
-        "tro som homogen størrelse",
-        "symbolikk uten gjenstand eller ritual",
-        "kirkehistorie uten navn eller dato"
-      ]
-    },
-    "scenekunst": {
-      "label": "Scenekunst",
-      "factPriorities": [
-        "scene, kompani eller institusjon",
-        "forestilling eller produksjon",
-        "dramatiker, regissør eller utøver",
-        "premieredato eller periode",
-        "sceneform, teknikk eller kapasitet",
-        "gjennombrudd, konflikt eller minneverdig kveld"
-      ],
-      "avoid": [
-        "viktig kulturarena uten produksjoner",
-        "møteplass som eneste funksjon",
-        "oppramsing av sjangre"
-      ]
+      "factPriorities": ["institusjon eller praksis", "fagperson", "metode", "hendelse", "dokumentert resultat", "etisk eller historisk endring"]
     },
     "sport": {
-      "label": "Sport & lek",
-      "factPriorities": [
-        "idrett, lag eller utøver",
-        "kamp, løp, rekord eller turnering",
-        "dato eller sesong",
-        "resultat eller prestasjon",
-        "arenaens mål, kapasitet eller særtrekk",
-        "rivalisering eller lokal tradisjon"
-      ],
-      "avoid": [
-        "idrettsglede som standard",
-        "arena uten hendelse",
-        "identitet uten kamp, person eller resultat"
-      ]
+      "label": "Sport",
+      "factPriorities": ["lag eller utøver", "kamp", "turnering", "rekord", "resultat", "arena og rivalisering"]
     },
     "subkultur": {
       "label": "Subkultur",
-      "factPriorities": [
-        "gruppe eller miljø",
-        "musikk, klær, kunst, språk eller aktivitet",
-        "stedlig praksis",
-        "dato eller periode",
-        "egenorganisering eller arrangement",
-        "konkret konflikt, forbud eller etterliv"
-      ],
-      "avoid": [
-        "alternativ som tom etikett",
-        "opprør uten hendelse",
-        "miljø uten deltakere eller praksis"
-      ]
+      "factPriorities": ["miljø", "aktører", "stedlig praksis", "arrangement", "uttrykk", "konflikt eller endring"]
     },
     "vitenskap": {
-      "label": "Vitenskap & teknologi",
-      "factPriorities": [
-        "forsker, team eller institusjon",
-        "spørsmål, oppfinnelse eller prosjekt",
-        "metode, instrument eller teknologi",
-        "dato eller periode",
-        "funn, resultat eller anvendelse",
-        "begrensning, feil eller uventet detalj"
-      ],
-      "avoid": [
-        "kunnskapsproduksjon uten funn",
-        "metode som obligatorisk pynt når den ikke er sentral",
-        "innovasjon uten konkret resultat"
-      ]
-    },
-    "filosofi": {
-      "label": "Filosofi",
-      "factPriorities": [
-        "tenker eller miljø",
-        "verk, forelesning eller samtale",
-        "konkret spørsmål eller argument",
-        "dato eller periode",
-        "stedstilknytning",
-        "uenighet eller senere virkning"
-      ],
-      "avoid": [
-        "liv og mening uten verk eller argument",
-        "abstrakte begreper uten person eller tekst",
-        "stedet reiser spørsmål som standardformel"
-      ]
-    },
-    "film_tv": {
-      "label": "Film & TV",
-      "factPriorities": [
-        "film, serie, episode eller institusjon",
-        "regissør, skuespiller eller produksjonsteam",
-        "innspillings- eller visningsdato",
-        "scene eller produksjonshendelse",
-        "kamera, lys, lyd, klipp eller scenografi",
-        "mottakelse eller etterliv"
-      ],
-      "avoid": [
-        "filmhistorisk viktig uten produksjon",
-        "bare handlingsreferat",
-        "stedet som kulisse uten konkret scene"
-      ]
+      "label": "Vitenskap",
+      "factPriorities": ["forsker", "institusjon", "spørsmål", "instrument", "metode", "funn og anvendelse"]
     }
   }
 }
