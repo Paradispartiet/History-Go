@@ -29,58 +29,69 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p reports/historie-theory-evidence/medieval-social-v1-validation
-          cat .github/history-medieval-social-evidence-v1-materializer.part* \
-            | base64 -d \
-            | gzip -d \
-            > /tmp/materialize-history-medieval-social-v1.mjs
+          out=reports/historie-theory-evidence/medieval-social-v1-validation
+          mkdir -p "$out"
+          wc -c .github/history-medieval-social-evidence-v1-materializer.part* \
+            | tee "$out/transport-part-sizes.log"
+          cat .github/history-medieval-social-evidence-v1-materializer.part* > "$out/materializer-assembled.b64"
+          sha256sum "$out/materializer-assembled.b64" \
+            | tee "$out/transport-sha256.log"
+          actual_sha="$(sha256sum "$out/materializer-assembled.b64" | cut -d' ' -f1)"
+          expected_sha="507547d62cfeafd8f6f744d70785eacb9365edbc018f11daea91afbb8f8a9796"
+          printf 'expected=%s\nactual=%s\n' "$expected_sha" "$actual_sha" \
+            | tee "$out/transport-sha256-check.log"
+          test "$actual_sha" = "$expected_sha"
+          base64 -d "$out/materializer-assembled.b64" > "$out/materializer.gz" 2> "$out/base64-decode.log"
+          gzip -t "$out/materializer.gz" 2> "$out/gzip-test.log"
+          gzip -dc "$out/materializer.gz" > /tmp/materialize-history-medieval-social-v1.mjs
           node --check /tmp/materialize-history-medieval-social-v1.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/materializer-syntax.log
+            | tee "$out/materializer-syntax.log"
           node /tmp/materialize-history-medieval-social-v1.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/materializer.log
+            | tee "$out/materializer.log"
 
       - name: Validate and regenerate reports
         shell: bash
         run: |
           set -euo pipefail
+          out=reports/historie-theory-evidence/medieval-social-v1-validation
           node --check tools/validate-historie-profile-evidence.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/profile-validator-syntax.log
+            | tee "$out/profile-validator-syntax.log"
           node tools/validate-historie-profile-evidence.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/profile-validator.log
+            | tee "$out/profile-validator.log"
           node tools/audit-historie-geographic-profile.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/geographic-profile.log
+            | tee "$out/geographic-profile.log"
           node tools/audit-historie-geographic-profile.mjs --check 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/geographic-profile-check.log
+            | tee "$out/geographic-profile-check.log"
           node --check tools/validate-historie-theory-evidence.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/theory-validator-syntax.log
+            | tee "$out/theory-validator-syntax.log"
           node tools/validate-historie-theory-evidence.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/theory-validator.log
+            | tee "$out/theory-validator.log"
           node tools/validate-historie-theory-evidence.mjs --check 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/theory-validator-check.log
+            | tee "$out/theory-validator-check.log"
           node tools/audit-historie-universal-coverage.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/universal-coverage.log
+            | tee "$out/universal-coverage.log"
           node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/universal-coverage-check.log
+            | tee "$out/universal-coverage-check.log"
 
       - name: Refresh and verify V5.8 freeze
         shell: bash
         run: |
           set -euo pipefail
+          out=reports/historie-theory-evidence/medieval-social-v1-validation
           node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze \
             --reason="Reviewed medieval social, economic and legal evidence V1 adds canonical source-specific claims, sources, place evidence and profile scope without mutating frozen universal concepts or theory objects." 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/quality-freeze-refresh.log
+            | tee "$out/quality-freeze-refresh.log"
           node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/quality-freeze-verify.log
+            | tee "$out/quality-freeze-verify.log"
           git restore -- reports/historie-v5/historie-v5-8-quality-depth.json reports/historie-v5/historie-v5-8-quality-depth.md 2>/dev/null || true
 
       - name: Verify clean production diff
         shell: bash
         run: |
           set -euo pipefail
-          git diff --check 2>&1 \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/git-diff-check.log
-          git status --short \
-            | tee reports/historie-theory-evidence/medieval-social-v1-validation/git-status.log
+          out=reports/historie-theory-evidence/medieval-social-v1-validation
+          git diff --check 2>&1 | tee "$out/git-diff-check.log"
+          git status --short | tee "$out/git-status.log"
 
       - name: Upload diagnostics
         if: always()
