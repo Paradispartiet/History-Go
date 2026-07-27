@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fossesholm_herregard",
+  "generatedAt": "2026-07-28",
+  "purpose": "Persist source findings used to verify Fossesholm manor's museum-complex coordinate, estate chronology, protected buildings, rococo layer and access.",
+  "legacyCoordinate": {
+    "lat": 59.7346,
+    "lon": 9.8672,
+    "assessment": "Unsupported point approximately 720.2 metres north of the manor complex."
+  },
+  "appliedCoordinate": {
+    "lat": 59.72813,
+    "lon": 9.86661,
+    "role": "protected_manor_museum_complex_anchor",
+    "sourceObjectId": "osm-node:6588462253;wikidata:Q17773609;kulturminne:86480",
+    "distanceFromLegacyM": 720.2
+  },
+  "identityResolution": {
+    "canonicalEntity": "Fossesholm Herregård",
+    "entityType": "protected six-building manor courtyard operated as a museum and event site",
+    "wikidata": "Q17773609",
+    "osmNode": "6588462253",
+    "kulturminneComplex": "86480",
+    "address": "Fossgata 49, 3320 Vestfossen",
+    "operator": "Stiftelsen Buskerudmuseet"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/node/6588462253",
+      "objectId": "osm-node:6588462253",
+      "supports": [
+        "named museum and events-venue point",
+        "representative coordinate",
+        "Buskerudmuseet operator identity"
+      ]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q17773609",
+      "objectId": "wikidata:Q17773609",
+      "supports": [
+        "independent manor entity",
+        "coordinate",
+        "farm, manor-house and cultural-property identity"
+      ]
+    },
+    {
+      "provider": "Buskerudmuseene",
+      "url": "https://buskerudmuseene.no/fossesholm/historie",
+      "objectId": "buskerudmuseene:fossesholm-history",
+      "supports": [
+        "medieval estate roots",
+        "Foss estate centre in the 1540s",
+        "sawmill and timber-export wealth",
+        "rococo modernisation in the 1760s",
+        "museum acquisition in 1973",
+        "Fossgata 49 address"
+      ]
+    },
+    {
+      "provider": "Buskerudmuseene",
+      "url": "https://buskerudmuseene.no/fossesholm/en/visit-us",
+      "objectId": "buskerudmuseene:fossesholm-visit",
+      "supports": [
+        "summer-season opening",
+        "free courtyard, shop, café and selected exhibition access",
+        "ticketed guided main-building access",
+        "group booking",
+        "visitor address"
+      ]
+    },
+    {
+      "provider": "Lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/Fossesholm_Herreg%C3%A5rd",
+      "objectId": "lokalhistoriewiki:Fossesholm_Herregård",
+      "supports": [
+        "independent manor coordinate",
+        "six protected buildings",
+        "eighteenth-century interiors",
+        "1923 protection",
+        "1973 museum purchase",
+        "current museum, exhibition and event functions"
+      ]
+    },
+    {
+      "provider": "Cultural-heritage register summary",
+      "url": "https://lokalhistoriewiki.no/wiki/Vedtaksfredede_og_listef%C3%B8rte_kulturminner_p%C3%A5_%C3%98vre_Eiker",
+      "objectId": "kulturminne:86480",
+      "supports": [
+        "main building 86480-1 at 59.72834, 9.86572",
+        "north wing 86480-2",
+        "stone barn 86480-3",
+        "timber barn 86480-4",
+        "post house and clock tower 86480-5",
+        "south wing 86480-6",
+        "formal protection from 1923"
+      ]
+    },
+    {
+      "provider": "Lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/Fossesholmgodset",
+      "objectId": "lokalhistoriewiki:Fossesholmgodset",
+      "supports": [
+        "estate establishment in 1541",
+        "forest, waterfall, sawmill and timber-export economy",
+        "ownership transitions",
+        "estate breakup in 1822"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "medieval period",
+      "event": "Nordre and Søndre Foss formed an older farm, mill and local-elite landscape.",
+      "certainty": "documented historical layer"
+    },
+    {
+      "date": "1541",
+      "event": "Peder Hanssøn Litle established Foss as the centre of a major landed and timber estate.",
+      "certainty": "documented"
+    },
+    {
+      "date": "early 17th century",
+      "event": "The name Fossesholm was introduced as part of a manor-oriented status culture.",
+      "certainty": "documented range"
+    },
+    {
+      "date": "18th century",
+      "event": "The surviving six-building courtyard complex took shape.",
+      "certainty": "building and heritage-register dating"
+    },
+    {
+      "date": "1760s",
+      "event": "The von Cappelen family modernised the manor in rococo style and created major surviving interior layers.",
+      "certainty": "official museum chronology"
+    },
+    {
+      "date": "1822",
+      "event": "The wider estate was broken up after a forced auction.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1923",
+      "event": "Six manor buildings received formal protection.",
+      "certainty": "heritage-register record"
+    },
+    {
+      "date": "1973",
+      "event": "Eiker Historical Society acquired the courtyard and initiated its museum restoration and public use.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "The canonical coordinate represents the current protected museum courtyard, not the historical extent of Fossesholm estate.",
+    "Year 1541 is the estate-centre foundation year, not the construction year of the main building.",
+    "The main building and five other protected structures have separate heritage identities within one complex.",
+    "The rococo appearance and interiors are principally an eighteenth-century layer over older estate history.",
+    "The garden is an archaeological and reconstruction landscape with access and preservation constraints.",
+    "The existing desc and popupDesc remain unchanged under place-description governance."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "59.72813, 9.86661",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "hadeland_glassverk"
+  }
+}
