@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **259 steder**
-- Gjenstår: **253 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **260 steder**
+- Gjenstår: **252 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -317,9 +317,12 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 258 | Ruth Maier-minnesmerke | `ruth_maier_minne` | 42 | 305 | 6 | #4321 |
 | 259 | Sigrid Undset-statuen | `sigrid_undset_statue` | 44 | 308 | 6 | #4321 |
 
+
+| 260 | Tronsmo Bokhandel | `tronsmo_bokhandel` | 42 | 313 | 6 | #4325 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **253 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **252 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -327,7 +330,6 @@ Det gjenstår **253 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - subkultur: **38**
 - sport: **29**
 - scenekunst: **24**
-- litteratur: **1**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -381,5 +383,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 29 | 1 | #4302 – fullførte hele Oslo-køen for fagområdet vitenskap |
 | Oslo V4 batch 30 | 10 | #4310 – første produksjonsbatch fra litteraturkøen |
 | Oslo V4 batch 31 | 10 | #4321 – andre produksjonsbatch fra litteraturkøen |
+| Oslo V4 batch 32 | 1 | #4325 – fullførte hele Oslo-køen for fagområdet litteratur |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
