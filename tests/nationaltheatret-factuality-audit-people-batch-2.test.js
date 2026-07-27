@@ -37,7 +37,7 @@ test('Anders Mordal profile removes generic birthplace and unsupported evaluatio
 });
 
 test('Andrine Sæther profile keeps leadership as work history, not education', () => {
-  assert.match(profiles.andrine.popupDesc, /Torshovgruppas kunstneriske ledelse 1998–2000/);
+  assert.match(profiles.andrine.popupDesc, /1998 til 2000[\s\S]*Torshovgruppas kunstneriske ledelse/);
   assert.ok(profiles.andrine.works.some((work) => work.title === 'Lille Eyolf & co'));
   assert.ok(profiles.andrine.works.some((work) => work.title === 'Dødsvariasjonar' && /Den unge kvinna/.test(work.summary)));
   assert.doesNotMatch(allText(profiles.andrine), /særlig viktig|virker foran kamera|lytting, rytme og presisjon/);
