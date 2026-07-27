@@ -23,5 +23,3 @@ Fasen etablerer nye claim–source–case-baner for stemmerett, parlamentarisme,
 ## Proveniens
 
 Canonical source dossier: `data/fag/historie/source_dossiers/political_chronology_v1.json`.
-
-<!-- review-check retrigger -->
