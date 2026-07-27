@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "akeroya_fort",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch4/akeroya_fort.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_restored_coastal_fort_anchor_on_festningsholmen",
+  "currentCoordinate": {
+    "lat": 59.05017,
+    "lon": 10.89472,
+    "r": 360,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 289950084 – Akerøy fort; Wikidata Q3078124; Hvaler kommune / NKDB – Akerøy fort; Store norske leksikon – Akerøya; Foreningen Akerøy Fort",
+    "coordType": "named_fortification_geometry_representative_point",
+    "coordRole": "restored_coastal_fort_anchor",
+    "sourceObjectId": "osm-way:289950084;wikidata:Q3078124"
+  },
+  "previousCoordinate": {
+    "lat": 59.0495,
+    "lon": 10.9136,
+    "r": 360,
+    "distanceToAppliedCoordinateM": 1082.3,
+    "reasonReplaced": "Legacy-punktet lå omtrent 1,08 kilometer øst på eller ved hovedøya Akerøya og identifiserte ikke fortet på Festningsholmen."
+  },
+  "identity": {
+    "resolvedIdentity": "Det restaurerte Akerøy fort på Festningsholmen ved Akerøya i Hvaler.",
+    "identityStatus": "resolved",
+    "identityProblem": "Stedsnavnet kan feilaktig forstås som et generelt punkt på hovedøya Akerøya. Fortet ligger på den separate Festningsholmen og må skilles fra hovedøya, nasjonalparken, fuglevernområdene og generelle båtankomster.",
+    "locatorTypeCandidate": "restored_islet_coastal_fortification",
+    "requiresSplit": false,
+    "splitReason": "Fortet er ett sammenhengende fortifikasjonsobjekt. Hovedøya Akerøya beholdes som et separat kontekstanker."
+  },
+  "requiredEvidence": [
+    "navngitt fortifikasjonsgeometri",
+    "fort- og holmeidentitet",
+    "lokal myndighetskilde",
+    "etablerings- og utbyggingsfaser",
+    "restaureringshistorie",
+    "sjøveisadkomst og vernebegrensninger",
+    "radius- og sikkerhetsbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceName": "OpenStreetMap way 289950084 – Akerøy fort",
+      "sourceUrl": "https://www.openstreetmap.org/way/289950084",
+      "sourceObjectId": "osm-way:289950084;wikidata:Q3078124",
+      "sourceQuality": "named_fortification_geometry_and_entity_crosscheck",
+      "finding": "Det navngitte fortifikasjonsobjektet på Festningsholmen gir representativt punkt 59.05017, 10.89472 og er koblet til Wikidata Q3078124.",
+      "canVerifyCoordinate": true,
+      "reason": "Objektet representerer direkte fortet, ikke hovedøya eller et tilfeldig sjøpunkt."
+    },
+    {
+      "sourceProvider": "hvaler_kommune_nkdb",
+      "sourceName": "Hvaler kommune / NKDB – Akerøy fort",
+      "sourceUrl": "https://hvaler.nkdb.no/objekt/101000",
+      "sourceObjectId": "hvaler-nkdb:akeroy-fort",
+      "sourceQuality": "official_local_heritage_identity",
+      "finding": "Kommunens kulturminnebase bruker navnet Akerøy fort, oppgir 1664 og plasserer fortet på Festningsholmen ved Akerøya.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter lokal offisiell identitet, navn, plassering og etableringsår."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Akerøya",
+      "sourceUrl": "https://snl.no/Aker%C3%B8ya",
+      "sourceObjectId": "snl:akeroya",
+      "sourceQuality": "authoritative_geography_history_and_access_reference",
+      "finding": "SNL skiller fortet på Festningsholmen fra hovedøya, beskriver første befestning omkring 1660, senere forsterkninger, demolering i 1807, salg i 1850 og restaurering fra 1962. SNL dokumenterer også nasjonalpark- og ferdselskontekst på Akerøya.",
+      "canVerifyCoordinate": false,
+      "reason": "Krysskontrollerer holmeplassering, fasehistorie og naturvernsammenheng."
+    },
+    {
+      "sourceProvider": "akeroy_fort_association",
+      "sourceName": "Foreningen Akerøy Fort – historie",
+      "sourceUrl": "https://akeroyfort.com/historie/",
+      "sourceObjectId": "akeroyfort:history",
+      "sourceQuality": "site_specific_restoration_history",
+      "finding": "Foreningen beskriver fortets tidlige fase, senere utvidelser, demolering omkring 1808 og det omfattende frivillige restaureringsarbeidet fra 1962.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger fortifikasjonsfasene og restaureringshistorien, samtidig som årstallsvariasjoner bevares."
+    },
+    {
+      "sourceProvider": "osm_wikidata_geonames",
+      "sourceName": "Akerøya main-island geometry",
+      "sourceUrl": "https://www.openstreetmap.org/way/296238827",
+      "sourceObjectId": "osm-way:296238827;wikidata:Q1770613;geonames:9063813",
+      "sourceQuality": "named_main_island_geometry_control",
+      "finding": "Hovedøya Akerøya har representativt punkt 59.04718, 10.88325 og er et separat geografisk objekt vest for Festningsholmen.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes til å forhindre at fortet kartfestes som hovedøya."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Akerøya fort point",
+      "sourceObjectId": "legacy:akeroya_fort",
+      "sourceQuality": "incorrect_main_island_side_point",
+      "finding": "Legacy-koordinatet ligger omtrent 1 082,3 meter øst for fortifikasjonsankeret.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi det ikke identifiserer fortet på Festningsholmen."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:289950084;wikidata:Q3078124",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_wikidata_geonames",
+      "sourceObjectId": "osm-way:296238827;wikidata:Q1770613;geonames:9063813",
+      "canApplyToPlace": false,
+      "rejectionReason": "Representerer hovedøya Akerøya, ikke fortet på Festningsholmen."
+    },
+    {
+      "sourceProvider": "generic_island_or_harbour_control",
+      "sourceObjectId": "Akeroya-general-arrival",
+      "canApplyToPlace": false,
+      "rejectionReason": "Et generelt ankomst- eller øypunkt identifiserer ikke fortifikasjonen."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:289950084",
+      "geometryType": "named_fortification_polygon",
+      "geometryRole": "restored_coastal_fort_on_festningsholmen",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:296238827",
+      "geometryType": "named_main_island_polygon",
+      "geometryRole": "Akeroya_context_and_national_park_landscape",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "nature_protection_control",
+      "sourceObjectId": "Ytre-Hvaler-and-seasonal-restriction-extents",
+      "geometryType": "regulatory_extents_not_captured",
+      "geometryRole": "national_park_and_seasonal_access_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "akeroy_fort",
+      "name": "Akerøy fort på Festningsholmen",
+      "lat": 59.05017,
+      "lon": 10.89472,
+      "r": 130,
+      "type": "restored_coastal_fort_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:289950084;wikidata:Q3078124",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "akeroya_island_context",
+      "name": "Akerøya – hovedøya",
+      "lat": 59.04718,
+      "lon": 10.88325,
+      "r": 260,
+      "type": "main_island_context_anchor",
+      "sourceProvider": "osm_wikidata_geonames",
+      "sourceObjectId": "osm-way:296238827;wikidata:Q1770613;geonames:9063813",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:akeroya_fort",
+      "lat": 59.0495,
+      "lon": 10.9136,
+      "distanceFromAppliedM": 1082.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:289950084;wikidata:Q3078124",
+      "lat": 59.05017,
+      "lon": 10.89472,
+      "distanceFromPreviousM": 1082.3,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_wikidata_geonames",
+      "sourceObjectId": "osm-way:296238827;wikidata:Q1770613;geonames:9063813",
+      "lat": 59.04718,
+      "lon": 10.88325,
+      "distanceFromAppliedM": 756.8,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-akeroy-fort-source-probe/source-summary.json",
+      "description": "Persisted fort geometry, Festningsholmen identity, main-island control, phase chronology, restoration history and access limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named fortification geometry on Festningsholmen, retained Akerøya as a context anchor and continued with trogstad_fort."
+  },
+  "notes": [
+    "The coordinate moves approximately 1,082.3 metres west.",
+    "The marker represents Akerøy fort on Festningsholmen, not the main island Akerøya.",
+    "Year 1664 follows Hvaler municipality's official presentation, while other sources describe an initial fortification around 1660 and later building phases.",
+    "Sources vary between 1807 and 1808 for the demolition; the canonical text preserves this uncertainty.",
+    "Boat access, landing conditions, current national-park maps and seasonal restrictions must be checked before a visit.",
+    "The radius is not a fortification, property, national-park, seasonal-access, water or safety boundary."
+  ]
+}
