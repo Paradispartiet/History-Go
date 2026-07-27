@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "flesberg_stavkirke",
+  "placeFile": "data/places/historie/buskerud/places_historie_buskerud_batch1/flesberg_stavkirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_active_stave_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.86272,
+    "lon": 9.43303,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 558315310; Wikidata Q1789458; Kulturminne 84161; Lokalhistoriewiki; Norges Kirker",
+    "coordType": "building_representative_point",
+    "coordRole": "active_stave_church_building_anchor",
+    "sourceObjectId": "osm-way:558315310;wikidata:Q1789458;kulturminne:84161"
+  },
+  "previousCoordinate": {
+    "lat": 59.8604,
+    "lon": 9.4358,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 300.8,
+    "reasonReplaced": "Legacy-punktet lå omtrent 301 meter sørøst for Flesberg stavkirke og identifiserte ikke kirkebygget."
+  },
+  "identity": {
+    "resolvedIdentity": "Flesberg stavkirke, den aktive soknekirken ved Haugbruvegen 3 med en delvis bevart middelaldersk stavkjerne og omfattende korsutvidelse fra 1735.",
+    "identityStatus": "resolved",
+    "identityProblem": "Kirken, kirkegården, steingjerdet med tjoringsringer, prestegården og menighetshuset er nært knyttet, mens legacy-årstallet 1180 var mer presist enn kildene tillater.",
+    "locatorTypeCandidate": "active_medieval_stave_church_building",
+    "requiresSplit": false,
+    "splitReason": "Kirken er ett bygg. Kirkegård, tjoringssteiner, prestegård og menighetshus beholdes som separate komponenter."
+  },
+  "requiredEvidence": [
+    "named stave-church building geometry",
+    "independent entity and coordinate",
+    "heritage identifier",
+    "late-twelfth or early-thirteenth-century dating limits",
+    "1735 cross-church rebuilding",
+    "active parish use",
+    "churchyard and rectory separation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 558315310 – Flesberg stavkirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/558315310",
+      "sourceObjectId": "osm-way:558315310",
+      "sourceQuality": "named_stave_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 59.86272, 9.43303.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte geometri for canonical-kirkebygget."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Flesberg Stave Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q1789458",
+      "sourceObjectId": "wikidata:Q1789458",
+      "sourceQuality": "independent_entity_identifier_coordinate_control",
+      "finding": "Q1789458 identifiserer Flesberg stavkirke med OSM-way 558315310, kulturminne 84161 og samme bygningspunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets-, identifier- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Kulturminne 84161 – Flesberg stavkirke",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=84161",
+      "sourceObjectId": "kulturminne:84161",
+      "sourceQuality": "authoritative_heritage_identity",
+      "finding": "Kulturminne-ID 84161 identifiserer den fredede stavkirken og kirkestedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offentlig kulturminneidentitet."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Flesberg stavkirke",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Flesberg_stavkirke",
+      "sourceObjectId": "lokalhistoriewiki:Flesberg_stavkirke",
+      "sourceQuality": "independent_coordinate_chronology_and_current_use_control",
+      "finding": "Oppgir 59.86272, 9.43311, bygging i tiårene rundt 1200, ombygging til korskirke i 1735, fortsatt soknekirkebruk og valgkirkestatus i 1814.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig koordinat- og historieoversikt."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Flesberg kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Flesberg_kirke",
+      "sourceObjectId": "norges-kirker:flesberg-kirke",
+      "sourceQuality": "authoritative_architectural_and_site_history",
+      "finding": "Dokumenterer de bevarte stavveggene, grunnstokkene og portalen, den omfattende 1735-ombyggingen, prestegården omtrent 200 meter nordvest og kirkegårdens steinheller og tjoringsringer.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer bygningslag og fysisk avgrensning."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Flesberg kirkegård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Flesberg_kirkeg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:Flesberg_kirkegård",
+      "sourceQuality": "churchyard_material_culture_control",
+      "finding": "Kirkegården går tilbake til middelalderen og har oppreiste steinheller, tjoringsringer, steinkors og senere utvidelser i 1910 og 1924.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter kirkegårdens separate identitet og materiell kultur."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Flesberg stave church point",
+      "sourceObjectId": "legacy:flesberg_stavkirke",
+      "sourceQuality": "incorrect_nearby_point",
+      "finding": "Legacy-punktet ligger omtrent 300,8 meter sørøst for kirkebygget.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi det ikke identifiserer kirken."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558315310",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q1789458",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende entitetskontroll; OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:flesberg_stavkirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger omtrent 301 meter fra kirkebygget."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "flesberg_stave_church",
+      "name": "Flesberg stavkirke",
+      "lat": 59.86272,
+      "lon": 9.43303,
+      "r": 95,
+      "type": "active_stave_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:558315310;wikidata:Q1789458;kulturminne:84161",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:flesberg_stavkirke",
+      "lat": 59.8604,
+      "lon": 9.4358,
+      "distanceFromAppliedM": 300.8,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:558315310",
+      "lat": 59.86272,
+      "lon": 9.43303,
+      "distanceFromPreviousM": 300.8,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/buskerud-coordinate-flesberg-stavkirke-source-probe/source-summary.json",
+      "description": "Kildekontroll for geometri, datering, 1735-ombygging, 1814, kirkegård, tjoringsringer, prestegård og aktiv bruk."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte kirkebygningen som canonical, normaliserte år til omtrentlig 1200 og skilte stavkjerne, 1735-korskirke, kirkegård, tjoringssteiner, prestegård og menighetshus. Fortsett med fossesholm_herregard."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 301 meter nordvest.",
+    "År 1200 er en omtrentlig datering og ikke et dokumentert eksakt bygge- eller innvielsesår.",
+    "Dagens korskirkeform er i hovedsak et resultat av ombyggingen i 1735.",
+    "Kirken er fortsatt i bruk som soknekirke.",
+    "desc og popupDesc er beholdt uendret under place-description governance.",
+    "Radiusen er ikke en kirke-, kirkegårds-, prestegårds-, menighetshus-, eiendoms-, verne- eller tilgangsgrense."
+  ]
+}
