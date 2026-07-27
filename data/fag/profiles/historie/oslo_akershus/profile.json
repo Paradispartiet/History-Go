@@ -33,20 +33,20 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 16,
-    "unverified_case_candidates": 87
+    "validated_cases": 18,
+    "unverified_case_candidates": 85
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 103,
-    "claims_total": 57,
-    "sources_total": 53,
-    "evidence_links_total": 57,
+    "claims_total": 74,
+    "sources_total": 66,
+    "evidence_links_total": 74,
     "status": "COMPLETE",
-    "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med ritual-, sorg- og veteranbaner for Rådhusplassen, Regjeringskvartalet og Akershus festning. Fullført profilstatus gjelder minimumsgrunnlaget; dokumentert arkivtaushet og universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 16,
+    "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
+    "verified_cases_total": 18,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -71,6 +71,7 @@
         "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
         "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
         "em_his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+        "em_his_kildekritikk_arkiv_spor",
         "em_his_kontrovers_fjerning_omtolking",
         "em_his_kulturminner_bevaring",
         "em_his_minnesteder_historiebruk",
@@ -97,7 +98,11 @@
         "batch_id": "history_oslo_akershus_evidence_batch_v2",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -703,12 +708,14 @@
         "em_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
         "em_his_1814_statsdannelse_union_selvstendighet_og_1905",
         "em_his_embetsstat_demokratisering",
+        "em_his_kildekritikk_arkiv_spor",
         "em_his_nasjonal_identitet_fortellinger",
         "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
         "em_his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer",
         "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
         "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
-        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer"
+        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+        "em_his_visuelle_kilder_fotografi"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -725,7 +732,11 @@
         "batch_id": "history_political_chronology_evidence_v1",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -762,6 +773,7 @@
         "em_his_restaurering_autentisitet",
         "em_his_samtid_ettertid_fortelling",
         "em_his_samtidshistorie_brudd",
+        "em_his_spor_materialitet",
         "em_his_stedsnavn_navnepolitikk",
         "em_his_tid_periodisering_epoker"
       ],
@@ -780,7 +792,11 @@
         "batch_id": "history_oslo_akershus_evidence_batch_v2",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -1214,6 +1230,7 @@
         "hovedoya_kloster"
       ],
       "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
         "em_his_kirke_kloster_middelalder",
         "em_his_kongemakt_kirke_konflikt",
         "em_his_kronologi_datering_usikkerhet",
@@ -1246,7 +1263,11 @@
         "batch_id": "history_oslo_akershus_evidence_batch_v2",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -1547,10 +1568,14 @@
       "label": "Meteorologisk institutt",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "meteorologisk_institutt"
+      ],
       "emne_ids": [
+        "em_his_kildekritikk_arkiv_spor",
+        "em_his_serielle_kilder_kvantifisering",
         "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
         "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
         "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
@@ -1558,10 +1583,26 @@
         "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
         "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27",
+        "status": "validated_case",
+        "batch_id": "history_source_method_families_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -1569,12 +1610,16 @@
       "label": "Middelalderbyen Oslo",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "middelalder_oslo"
+      ],
       "emne_ids": [
         "em_his_anakronisme_historiske_begreper",
+        "em_his_arkeologisk_kontekst_formation",
         "em_his_historiske_lag_i_byrom",
+        "em_his_kildekritikk_arkiv_spor",
         "em_his_kirke_kloster_middelalder",
         "em_his_kongemakt_kirke_konflikt",
         "em_his_kronologi_datering_usikkerhet",
@@ -1586,12 +1631,29 @@
         "em_his_modernisering_1800",
         "em_his_samtidshistorie_brudd",
         "em_his_skrift_hand_lesning",
+        "em_his_spor_materialitet",
         "em_his_tid_periodisering_epoker"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27",
+        "status": "validated_case",
+        "batch_id": "history_source_method_families_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -1750,6 +1812,7 @@
         "norsk_folkemuseum"
       ],
       "emne_ids": [
+        "em_his_kildekritikk_arkiv_spor",
         "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
         "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
         "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
@@ -1757,7 +1820,9 @@
         "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
         "em_his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
         "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
-        "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar"
+        "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
+        "em_his_samtid_ettertid_fortelling",
+        "em_his_serielle_kilder_kvantifisering"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -1774,7 +1839,11 @@
         "batch_id": "history_movement_publics_evidence_v1",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -2512,6 +2581,7 @@
         "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
         "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
         "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+        "em_his_kildekritikk_arkiv_spor",
         "em_his_kjonn_familie_ekteskap_arv_og_eiendom",
         "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
         "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
@@ -2534,6 +2604,7 @@
         "em_his_rettsoppgjor",
         "em_his_samtidshistorie_brudd",
         "em_his_serielle_kilder_kvantifisering",
+        "em_his_spor_materialitet",
         "em_his_stat_institusjoner",
         "em_his_statlig_kapasitet_skatt_infrastruktur",
         "em_his_statsborgerskap_status_rettigheter"
@@ -2553,7 +2624,11 @@
         "batch_id": "history_political_chronology_evidence_v1",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     },
     {
@@ -2957,6 +3032,7 @@
       "emne_ids": [
         "em_his_arbeid_nettverk_naring",
         "em_his_arbeiderbevegelse_folkedannelse",
+        "em_his_kildekritikk_arkiv_spor",
         "em_his_minoritetshistorie",
         "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
         "em_his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
@@ -2966,7 +3042,8 @@
         "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
         "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
         "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
-        "em_his_organisering_motstand_offentlighet"
+        "em_his_organisering_motstand_offentlighet",
+        "em_his_visuelle_kilder_fotografi"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -2983,7 +3060,11 @@
         "batch_id": "history_movement_publics_evidence_v1",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_source_method_families_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-27"
       }
     }
   ],
@@ -4275,12 +4356,19 @@
     {
       "emne_id": "em_his_kildekritikk_arkiv_spor",
       "case_ids": [
+        "case_his_22_juli_senteret",
         "case_his_digitalarkivet",
+        "case_his_eidsvolls_plass",
         "case_his_gamle_deichman_pa_hammersborg",
+        "case_his_meteorologisk_institutt",
+        "case_his_middelalderbyen_oslo",
         "case_his_mollergata_19",
         "case_his_nasjonalbiblioteket",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
-        "case_his_riksarkivet"
+        "case_his_riksarkivet",
+        "case_his_stortinget",
+        "case_his_youngstorget"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -6228,6 +6316,7 @@
         "case_his_akershus_festning",
         "case_his_bjorvika",
         "case_his_eidsvollsbygningen",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_radhus",
         "case_his_regjeringskvartalet",
         "case_his_var_frelsers_gravlund",
@@ -6290,7 +6379,9 @@
         "case_his_akershus_festning",
         "case_his_botsfengselet",
         "case_his_hoyesteretts_hus",
+        "case_his_meteorologisk_institutt",
         "case_his_mollergata_19",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
         "case_his_riksarkivet",
         "case_his_stortinget",
@@ -6396,11 +6487,14 @@
       "case_ids": [
         "case_his_akershus_festning",
         "case_his_digitalarkivet",
+        "case_his_eidsvollsbygningen",
         "case_his_gamle_aker_kirke",
         "case_his_gamle_deichman_pa_hammersborg",
         "case_his_hovedoya_kloster",
+        "case_his_middelalderbyen_oslo",
         "case_his_nasjonalbiblioteket",
         "case_his_oslo_byarkiv",
+        "case_his_stortinget",
         "case_his_var_frelsers_gravlund"
       ],
       "case_requirement_ids": [
@@ -6649,10 +6743,12 @@
         "case_his_akershus_festning",
         "case_his_bjorvika",
         "case_his_digitalarkivet",
+        "case_his_eidsvolls_plass",
         "case_his_gamle_deichman_pa_hammersborg",
         "case_his_nasjonalbiblioteket",
         "case_his_oslo_byarkiv",
-        "case_his_oslo_museum"
+        "case_his_oslo_museum",
+        "case_his_youngstorget"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
