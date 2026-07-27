@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-27T09:03:28.896Z
+Generert: 2026-07-27T10:28:46.729Z
 
 ## Oppsummering
 - Aktive filer validert: **1444**
 - Antall steder validert: **1444**
 - Harde feil: **0**
-- Varsler: **601**
-- Coordinate review candidates: **741** signaler fordelt på **641** steder
+- Varsler: **600**
+- Coordinate review candidates: **740** signaler fordelt på **640** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1505,7 +1505,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json#tanum_kirke: coordStatus=verified uten coordPrecisionM
 - data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json#skedsmo_kirke: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/akershus/hadeland_glassverk/hadeland_glassverk.json#hadeland_glassverk: coordStatus=verified uten coordPrecisionM
-- data/places/historie/ostfold/places_historie_ostfold_batch2/hoytorp_fort.json#hoytorp_fort: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/ostfold/tistedalen_saugbrugsforeningen/tistedalen_saugbrugsforeningen.json#tistedalen_saugbrugsforeningen: stort område uten coordNote/coordStatus
 - data/places/historie/ostfold/places_historie_ostfold_batch4/akeroya_fort.json#akeroya_fort: stort område uten coordNote/coordStatus
 - data/places/historie/buskerud/places_historie_buskerud_batch1/veien_kulturminnepark.json#veien_kulturminnepark: lineært sted uten anchors
@@ -2071,7 +2070,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 741 signaler fordelt på 641 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 740 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -2080,7 +2079,7 @@ Totalt 741 signaler fordelt på 641 steder. Et sted kan ha flere signaler. Kandi
 | coordStatus=verified uten coordPrecisionM | 331 |
 | lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 69 |
-| park/stort område uten anchors eller coordNote | 120 |
+| park/stort område uten anchors eller coordNote | 119 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 61 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 3 |
@@ -2582,11 +2581,10 @@ Totalt 741 signaler fordelt på 641 steder. Et sted kan ha flere signaler. Kandi
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_feira_do_livro | Feira do Livro de Lisboa | litteratur | data/places/litteratur/europe/portugal/lisbon/lisbon_feira_do_livro.json | 38.727 | -9.1542 | 350 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### park/stort område uten anchors eller coordNote (120)
+### park/stort område uten anchors eller coordNote (119)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| hoytorp_fort | Høytorp fort | historie | data/places/historie/ostfold/places_historie_ostfold_batch2/hoytorp_fort.json | 59.5536 | 11.3317 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | tistedalen_saugbrugsforeningen | Tistedalen / Saugbrugsforeningen | naeringsliv | data/places/naeringsliv/ostfold/tistedalen_saugbrugsforeningen/tistedalen_saugbrugsforeningen.json | 59.1242 | 11.4492 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | akeroya_fort | Akerøya fort | historie | data/places/historie/ostfold/places_historie_ostfold_batch4/akeroya_fort.json | 59.0495 | 10.9136 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | veien_kulturminnepark | Veien Kulturminnepark | historie | data/places/historie/buskerud/places_historie_buskerud_batch1/veien_kulturminnepark.json | 60.1842 | 10.2504 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
