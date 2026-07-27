@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **239**
-- Additional active Oslo IDs outside the protocol: **273**
+- IDs in the current revision protocol: **249**
+- Additional active Oslo IDs outside the protocol: **263**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **273**
+- Additional IDs needing revision: **263**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -20,7 +20,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | subkultur | 38 |
 | sport | 29 |
 | scenekunst | 24 |
-| litteratur | 21 |
+| litteratur | 11 |
 
 ## Additional active Oslo places
 
@@ -66,16 +66,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | kunst | Van Etten | `van_etten` | 21 | 132 | 3 | `data/places/kunst/oslo/places_kunst/van_etten.json` | needs revision |
 | kunst | VI, VII | `vi_vii_gallery` | 39 | 153 | 3 | `data/places/kunst/oslo/places_kunst/vi_vii_gallery.json` | needs revision |
 | kunst | Vigelandmuseet | `vigelandmuseet` | 27 | 110 | 2 | `data/places/kunst/oslo/places_kunst/vigelandmuseet.json` | needs revision |
-| litteratur | Blått skilt: Stein Mehren | `bla_skilt_stein_mehren_ullevalsveien_60` | 21 | 83 | 2 | `data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01/bla_skilt_stein_mehren_ullevalsveien_60.json` | needs revision |
-| litteratur | Hønse-Lovisas hus | `honse_lovisas_hus` | 18 | 118 | 2 | `data/places/litteratur/oslo/places_litteratur_oslo_kultureiendommer_batch_05/honse_lovisas_hus.json` | needs revision |
-| litteratur | Alexander Kiellands plass | `alexander_kiellands_plass` | 18 | 61 | 1 | `data/places/litteratur/oslo/places_litteratur/alexander_kiellands_plass.json` | needs revision |
-| litteratur | Biblo Tøyen | `biblo_toyen` | 32 | 139 | 3 | `data/places/litteratur/oslo/places_litteratur/biblo_toyen.json` | needs revision |
-| litteratur | Camilla Collett-statuen | `camilla_collett_statue` | 15 | 15 | 1 | `data/places/litteratur/oslo/places_litteratur/camilla_collett_statue.json` | needs revision |
-| litteratur | Deichman Grünerløkka | `deichman_grunerlokka` | 10 | 43 | 1 | `data/places/litteratur/oslo/places_litteratur/deichman_grunerlokka.json` | needs revision |
-| litteratur | Eldorado Bokhandel | `eldorado_bokhandel` | 13 | 13 | 1 | `data/places/litteratur/oslo/places_litteratur/eldorado_bokhandel.json` | needs revision |
-| litteratur | Gamle Deichman | `gamle_deichman` | 25 | 127 | 2 | `data/places/litteratur/oslo/places_litteratur/gamle_deichman.json` | needs revision |
-| litteratur | Grotten | `grotta` | 13 | 13 | 1 | `data/places/litteratur/oslo/places_litteratur/grotta.json` | needs revision |
-| litteratur | Henrik Wergeland-statuen | `henrik_wergeland_statue` | 11 | 11 | 1 | `data/places/litteratur/oslo/places_litteratur/henrik_wergeland_statue.json` | needs revision |
 | litteratur | IBSEN Museum & Teater | `ibsen_museum_teater` | 39 | 135 | 2 | `data/places/litteratur/oslo/places_litteratur/ibsen_museum_teater.json` | needs revision |
 | litteratur | Sitatgaten – Ibsen-sitatene | `ibsen_quotes` | 14 | 41 | 1 | `data/places/litteratur/oslo/places_litteratur/ibsen_quotes.json` | needs revision |
 | litteratur | Inger Hagerups plass | `inger_hagerups_plass` | 18 | 69 | 1 | `data/places/litteratur/oslo/places_litteratur/inger_hagerups_plass.json` | needs revision |
