@@ -1,0 +1,136 @@
+name: One-time Oslo popup batch 25 politics writer
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-25-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Batch 25 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-25-politics-ten
+          fetch-depth: 0
+
+      - name: Apply isolated desc and popupDesc patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const parts = [
+            '.github/oslo-popup-batch-25-politics-patch-part1.json',
+            '.github/oslo-popup-batch-25-politics-patch-part2.json'
+          ];
+          const places = parts.flatMap(path => JSON.parse(fs.readFileSync(path, 'utf8')).places);
+          const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+          const pr = event.number;
+          if (!pr) throw new Error('Missing pull request number');
+          if (places.length !== 10) throw new Error(`Expected 10 places, got ${places.length}`);
+
+          const words = text => (String(text).match(/[\p{L}\p{N}]+(?:[’'\-][\p{L}\p{N}]+)*/gu) || []).length;
+          const paragraphs = text => String(text).trim().split(/\n\s*\n/).filter(Boolean).length;
+          const withoutText = value => {
+            const copy = JSON.parse(JSON.stringify(value));
+            delete copy.desc;
+            delete copy.popupDesc;
+            return copy;
+          };
+          const expected = {
+            bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5: [44, 311, 6],
+            '22_juli_senteret': [44, 310, 6],
+            arbeidersamfunnets_plass: [45, 305, 6],
+            eidsvolls_plass: [44, 304, 6],
+            folkets_hus_oslo: [45, 302, 6],
+            hoyblokka: [43, 301, 6],
+            hoyesteretts_hus: [46, 303, 6],
+            hoyres_hus: [45, 306, 6],
+            oslo_radhus: [42, 307, 6],
+            politihuset_gronland: [44, 304, 6]
+          };
+          const rows = [];
+          let nr = 201;
+
+          for (const item of places) {
+            const before = JSON.parse(fs.readFileSync(item.path, 'utf8'));
+            if (before.id !== item.id) throw new Error(`ID mismatch for ${item.path}`);
+            const after = { ...before, desc: item.desc, popupDesc: item.popupDesc };
+            if (JSON.stringify(withoutText(before)) !== JSON.stringify(withoutText(after))) {
+              throw new Error(`Non-text parity failed for ${item.id}`);
+            }
+            const counts = [words(after.desc), words(after.popupDesc), paragraphs(after.popupDesc)];
+            const wanted = expected[item.id];
+            if (!wanted || counts.some((value, index) => value !== wanted[index])) {
+              throw new Error(`${item.id}: got ${counts.join('/')}, expected ${wanted?.join('/')}`);
+            }
+            if (counts[0] < 40 || counts[0] > 80) throw new Error(`${item.id}: desc bounds`);
+            if (counts[1] < 300 || counts[1] > 600) throw new Error(`${item.id}: popup bounds`);
+            if (counts[2] !== 6) throw new Error(`${item.id}: paragraph count`);
+            fs.writeFileSync(item.path, JSON.stringify(after, null, 2) + '\n');
+            rows.push(`| ${nr++} | ${after.name} | \`${after.id}\` | ${counts[0]} | ${counts[1]} | ${counts[2]} | #${pr} |`);
+          }
+
+          const protocolPath = 'reports/place-description-revision-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          const sentinel = `| 210 | Politihuset på Grønland | \`politihuset_gronland\` | 44 | 304 | 6 | #${pr} |`;
+          if (!protocol.includes(sentinel)) {
+            protocol = protocol
+              .replace('Ferdige etter alle mergede revisjonsbatcher: **200 steder**', 'Ferdige etter alle mergede revisjonsbatcher: **210 steder**')
+              .replace('Gjenstår: **312 steder**', 'Gjenstår: **302 steder**')
+              .replace('\n## Gjenstående Oslo-kø', `\n\n${rows.join('\n')}\n\n## Gjenstående Oslo-kø`)
+              .replace('- politikk: **18**', '- politikk: **8**')
+              .replace(
+                '| Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |',
+                `| Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |\n| Oslo V4 batch 25 | 10 | #${pr} – første produksjonsbatch fra politikk-køen |`
+              );
+          }
+          fs.writeFileSync(protocolPath, protocol);
+          NODE
+
+          node tools/audit-oslo-place-description-scope.mjs --write
+
+          node <<'NODE'
+          const fs = require('fs');
+          const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+          const pr = event.number;
+          const protocol = fs.readFileSync('reports/place-description-revision-protocol.md', 'utf8');
+          const audit = fs.readFileSync('reports/oslo-place-description-scope-audit-2026-07-26.md', 'utf8');
+          if (!protocol.includes('Ferdige etter alle mergede revisjonsbatcher: **210 steder**')) throw new Error('protocol total');
+          if (!protocol.includes('Gjenstår: **302 steder**')) throw new Error('protocol remaining');
+          if (!protocol.includes(`| 210 | Politihuset på Grønland | \`politihuset_gronland\` | 44 | 304 | 6 | #${pr} |`)) throw new Error('protocol final row');
+          if (!protocol.includes('- politikk: **8**')) throw new Error('protocol politics count');
+          if (!audit.includes('IDs in the current revision protocol: **210**')) throw new Error('audit protocol count');
+          if (!audit.includes('Additional active Oslo IDs outside the protocol: **302**')) throw new Error('audit remaining count');
+          if (!audit.includes('| politikk | 8 |')) throw new Error('audit politics count');
+          NODE
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01/bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5.json \
+            data/places/politikk/oslo/places_politikk/22_juli_senteret.json \
+            data/places/politikk/oslo/places_politikk/arbeidersamfunnets_plass.json \
+            data/places/politikk/oslo/places_politikk/eidsvolls_plass.json \
+            data/places/politikk/oslo/places_politikk/folkets_hus_oslo.json \
+            data/places/politikk/oslo/places_politikk/hoyblokka.json \
+            data/places/politikk/oslo/places_politikk/hoyesteretts_hus.json \
+            data/places/politikk/oslo/places_politikk/hoyres_hus.json \
+            data/places/politikk/oslo/places_politikk/oslo_radhus.json \
+            data/places/politikk/oslo/places_politikk/politihuset_gronland.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.md \
+            reports/place-description-revision-protocol.md
+          if git diff --cached --quiet; then
+            echo "No material changes to commit"
+          else
+            git commit -m "Revise first Oslo politics description batch"
+            git push origin HEAD:agent/oslo-popup-v4-batch-25-politics-ten
+          fi
