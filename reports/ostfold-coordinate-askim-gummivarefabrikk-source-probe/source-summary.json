@@ -1,0 +1,71 @@
+{
+  "placeId": "askim_gummivarefabrikk",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.5835,
+    "lon": 11.1627,
+    "r": 320
+  },
+  "appliedCoordinate": {
+    "lat": 59.58334,
+    "lon": 11.16558,
+    "r": 320,
+    "displacementM": 163.1
+  },
+  "identityDecision": "Use the named Askimtorget building in the former Viking factory premises as the surviving physical reuse anchor for Askim Gummivarefabrikk.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:244042217",
+    "name": "Askimtorget",
+    "tags": [
+      "building=retail",
+      "shop=mall"
+    ],
+    "linkedIdentifiers": [
+      "wikidata:Q11959366"
+    ],
+    "lat": 59.58334,
+    "lon": 11.16558
+  },
+  "historicalScope": {
+    "source": "Askimtorget; Store norske leksikon; Lokalhistoriewiki",
+    "finding": "The Askim factory opened on 17 January 1920 as a continuation of the Viking enterprise. It produced footwear and technical rubber products, added tyre and tube production in 1931 and closed in 1991. The present shopping centre occupies former factory premises.",
+    "reuseBoundary": "The mapped current building is a surviving and altered reuse anchor. It is not treated as an unchanged 1920 building or as the complete historical factory extent."
+  },
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:askim_gummivarefabrikk",
+      "lat": 59.5835,
+      "lon": 11.1627,
+      "distanceFromAppliedM": 163.1,
+      "reason": "Nearby point west of the named reused building without a source-object identity."
+    },
+    {
+      "sourceObjectId": "former-viking-caretaker-residence",
+      "reason": "A separate factory-associated residence, not the main industrial and reuse anchor."
+    },
+    {
+      "sourceObjectId": "askim-town-centre",
+      "reason": "A town-centre point does not identify the factory premises."
+    },
+    {
+      "sourceObjectId": "individual-askimtorget-shop",
+      "reason": "Current retail tenant rather than the historical industrial site."
+    },
+    {
+      "sourceObjectId": "askim-viking-full-former-factory-site",
+      "reason": "No verified canonical polygon was captured for the complete changing factory complex."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 320,
+    "covers": "The surviving reused building and immediate former factory environment for gameplay.",
+    "doesNotRepresent": [
+      "the complete historical factory extent",
+      "the exact current or former building geometry",
+      "a property or heritage-protection boundary",
+      "the extent of former production departments or yards"
+    ]
+  },
+  "nextManifestPlace": "skjeberg_kirke"
+}
