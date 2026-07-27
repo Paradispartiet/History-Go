@@ -13,7 +13,7 @@
     "enforcement": "Audit exits non-zero for malformed or stale reports. Use --require-complete only when all required cells and production checks are genuinely satisfied."
   },
   "source_fingerprints": {
-    "data/fag/historie/historie_universal_coverage_contract_v1.json": "77d22bf13dd76f34a6cc7c20a87f165ade2fa86d526f83edaf3b2d9cc8b67068",
+    "data/fag/historie/historie_universal_coverage_contract_v1.json": "9318cc34ffe94b44da6e0bee363641d6215241cc65fd5e71af50fee3403c0354",
     "data/fag/historie/historie_v5_contract.json": "6ff2f38b127e8f823aff02eb40ed1d5c25351722bd3e6d4ae840b841d16e5a17",
     "data/fag/historie/emner_historie_canonical_v4_5.json": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
     "data/fag/historie/historiepensum_canonical_v4_5.json": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
@@ -25,6 +25,7 @@
     "data/fag/historie/claims_historie_canonical_v1.json": "f5e01e7926a048afbd4b192d5da1cdfd90f708122f89a8c8aee63746faa06633",
     "data/fag/historie/sources_historie_canonical_v1.json": "882f430dc492b1e965764387530c7df4c364613faaa0b6bf2063071f5cbcd5b1",
     "data/fag/historie/place_evidence_historie_v1.json": "256da2cab0026636c47293540cb36f56581e7da2fa5898756088f497c9e5c957",
+    "data/fag/historie/theory_evidence_historie_canonical_v1.json": "bf69780ae433630b3b5fb71fb7185e86ab560723dca9ef4bf09ff02393141096",
     "data/fag/historie/case_requirements_historie_canonical_v1.json": "0416171785008c9a461cf8d05bc8c608b60bfc22dbe179ae890ab4703e221173",
     "data/fag/profiles/manifest.json": "06cd8cf8a9171e567af5f18955ebacde62c7c45fdb21c71064954d93218e0edd",
     "data/fag/profiles/historie/oslo_akershus/profile.json": "5157d5b5b07042d262586cc62bda59a64adc5cc5b6b41264c2d4f3209cef6f46"
@@ -5743,18 +5744,19 @@
       {
         "id": "theory_evidence_readiness",
         "label": "Teoriobjekter med dokumentert evidensgrunnlag",
-        "type": "theory_boolean_ratio",
+        "type": "theory_evidence_registry_ratio",
         "status": "GAP",
         "measured": {
-          "qualifying": 0,
+          "qualifying": 10,
           "total": 230,
-          "ratio": 0
+          "ratio": 0.043,
+          "registry_entries": 10
         },
         "threshold": {
-          "expected": true,
-          "minimum_ratio": 1
+          "minimum_ratio": 1,
+          "expected_status": "evidence_ready"
         },
-        "gap_action": "Gjør teoriobjekter evidence-ready først når claims, kilder, alternative fortolkninger og casekoblinger er validert."
+        "gap_action": "Utvid det separate theory-evidence-registeret med kontraktvaliderte claims, kilder, alternative fortolkninger og fler-case-koblinger til alle 230 teoriobjekter."
       }
     ]
   }
