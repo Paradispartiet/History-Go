@@ -43,6 +43,42 @@ jobs:
             echo "materializer_sha=$(sha256sum .tmp/naeringsliv-pilot/materialize.py | cut -d' ' -f1)"
             test "$(sha256sum .tmp/naeringsliv-pilot/materialize.py | cut -d' ' -f1)" = "ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441"
             sed -i 's/config\["emners"\]/config["emner"]/g; s/EMNERS_FILE/EMNER_FILE/g; s/Økonomi og næringsliv professional depth/Økonomi og næringsliv professional module depth/g' .tmp/naeringsliv-pilot/materialize.py
+            python - <<'PY'
+          from pathlib import Path
+          materializer = Path(".tmp/naeringsliv-pilot/materialize.py")
+          text = materializer.read_text(encoding="utf-8")
+          replacements = [
+              (
+                  'phases = {3: "bridge", 4: "bridge", 5: "final"}',
+                  'phases = {3: "middle", 4: "bridge", 5: "final"}',
+              ),
+              (
+                  '"method_id": item["method_id"],',
+                  '"method_id": claim.get("method_id", item["method_id"]),',
+              ),
+              (
+                  '    if item.get("calculation"):\n',
+                  '    for field in ("topic_hook_id", "thinker_id", "work"):\n'
+                  '        if field in claim:\n'
+                  '            question[field] = claim[field]\n'
+                  '    if item.get("calculation"):\n',
+              ),
+              (
+                  '    brief.setdefault("selected_curriculum", {})["module_ids"] = config["modules"]\n'
+                  '    brief["selected_curriculum"]["professional_depth_files"] = config["depth_files"]\n',
+                  '    brief["professional_materialization"] = {\n'
+                  '        "version": VERSION,\n'
+                  '        "module_ids": config["modules"],\n'
+                  '        "professional_depth_files": config["depth_files"],\n'
+                  '    }\n',
+              ),
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f"Fant ikke materialiseringsblokk: {old[:70]}")
+              text = text.replace(old, new, 1)
+          materializer.write_text(text, encoding="utf-8")
+          PY
             python -m py_compile .tmp/naeringsliv-pilot/materialize.py
 
             python .tmp/naeringsliv-pilot/materialize.py
@@ -50,28 +86,47 @@ jobs:
           from pathlib import Path
           validator = Path("tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs")
           text = validator.read_text(encoding="utf-8")
-          old = '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
+          replacements = [
+              (
+                  '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
               if (/krone|NOK|leie|kostnad|investering|driftsresultat|verdi/i.test(moneyText)) {
                 assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
-              }'''
-          new = '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
+              }''',
+                  '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
               const calculationKeys = Object.keys(q.calculation.inputs || {});
               const monetaryCalculation = calculationKeys.some((key) => /_nok$/i.test(key))
                 || q.calculation.unit === "NOK"
                 || /krone|NOK/i.test(`${q.question} ${q.knowledge}`);
               if (monetaryCalculation) {
                 assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
-              }'''
-          if old not in text:
-              raise SystemExit("Fant ikke valutakontrollen i pilotvalidatoren")
-          validator.write_text(text.replace(old, new, 1), encoding="utf-8")
+              }''',
+              ),
+              (
+                  '  const context = readJson(target.production_context);\n',
+                  '  const context = readJson(target.production_context);\n  const quizContext = quiz.production_context || {};\n',
+              ),
+              (
+                  '  assert((brief.selected_curriculum?.module_ids || []).length >= 5, `${target.target_id}: brief lacks module selection`);\n',
+                  '  assert((brief.professional_materialization?.module_ids || []).length >= 5, `${target.target_id}: brief lacks professional module selection`);\n',
+              ),
+              (
+                  '  assert(context.professional_materialization?.version === manifest.materialization_version, `${target.target_id}: context lacks materialization`);\n'
+                  '  const contextModules = context.professional_materialization?.module_ids || [];\n',
+                  '  assert(quizContext.professional_materialization_version === manifest.materialization_version, `${target.target_id}: quiz context lacks materialization`);\n'
+                  '  const contextModules = quizContext.professional_module_ids || [];\n',
+              ),
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f"Fant ikke validatorblokk: {old[:70]}")
+              text = text.replace(old, new, 1)
+          validator.write_text(text, encoding="utf-8")
           PY
 
             npm run places:index:build
             npm run quiz:context -- --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
             npm run quiz:context -- --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
             npm run quiz:context -- --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
-            python .tmp/naeringsliv-pilot/materialize.py --patch-contexts
 
             node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
             npm run places:emner:check
