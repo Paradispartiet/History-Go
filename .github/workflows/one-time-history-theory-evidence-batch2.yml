@@ -107,6 +107,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git diff --check 2>&1 \
             | tee reports/historie-theory-evidence/batch-2-validation/git-diff-check.log
           git status --short \
