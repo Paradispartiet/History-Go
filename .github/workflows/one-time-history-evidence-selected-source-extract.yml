@@ -1,0 +1,97 @@
+name: One-time History selected evidence source extract
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/one-time-history-evidence-selected-source-extract.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out candidate branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-evidence-candidate-audit-v2
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Extract selected case sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-profile-evidence/selected-source-extract
+          node <<'NODE' 2>&1 | tee reports/historie-profile-evidence/selected-source-extract/extract-command.log
+          const fs = require('fs');
+          const path = require('path');
+          const root = process.cwd();
+          const profile = JSON.parse(fs.readFileSync('data/fag/profiles/historie/oslo_akershus/profile.json', 'utf8'));
+          const labels = [
+            'Akershus festning',
+            'Hovedøya kloster',
+            'Eidsvollsbygningen',
+            'Folkets Hus',
+            'Akerselva',
+            'HL-senteret / Villa Grande',
+            'Bispelokket',
+            '22. juli-senteret',
+            'Gamle Deichman på Hammersborg',
+          ];
+          const normalize = (value) => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a').replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+          const imageUrl = /\.(?:png|jpe?g|gif|webp|svg)(?:\?|$)/i;
+          const excludedUrl = /(images\.unsplash\.com|upload\.wikimedia\.org|commons\.wikimedia\.org\/wiki\/Special:FilePath)/i;
+          function files(dir, out=[]) { if (!fs.existsSync(dir)) return out; for (const e of fs.readdirSync(dir,{withFileTypes:true})) { const f=path.join(dir,e.name); if(e.isDirectory()) files(f,out); else if(e.name.endsWith('.json')) out.push(f); } return out; }
+          function urls(node, keyPath=[], out=[]) { if(typeof node==='string') { if(/^https?:\/\//i.test(node)&&!imageUrl.test(node)&&!excludedUrl.test(node)) out.push({url:node,context:keyPath.join('.')}); return out; } if(Array.isArray(node)) { node.forEach((v,i)=>urls(v,[...keyPath,String(i)],out)); return out; } if(node&&typeof node==='object') for(const [k,v] of Object.entries(node)) urls(v,[...keyPath,k],out); return out; }
+          function named(node,file,objPath='$',out=[]) { if(Array.isArray(node)){node.forEach((v,i)=>named(v,file,`${objPath}[${i}]`,out));return out;} if(!node||typeof node!=='object')return out; const ids=['id','place_id','placeId','slug','key'].map(k=>node[k]).filter(v=>typeof v==='string'); const names=['name','title','label','displayName'].map(k=>node[k]).filter(v=>typeof v==='string'); if(ids.length||names.length){out.push({file:path.relative(root,file).split(path.sep).join('/'),object_path:objPath,ids,names,description:[node.desc,node.popupDesc,node.description,node.summary,node.intro].filter(v=>typeof v==='string').sort((a,b)=>b.length-a.length)[0]||null,year:node.year??node.opened??node.founded??null,urls:[...new Map(urls(node).map(x=>[x.url,x])).values()],keys:Object.keys(node).sort()});} for(const [k,v] of Object.entries(node)) named(v,file,`${objPath}.${k}`,out); return out; }
+          const roots=['data/places','data/leksikon','data/coordinate-evidence','data/stories','data/people'];
+          const records=[]; for(const f of roots.flatMap(d=>files(d))){try{named(JSON.parse(fs.readFileSync(f,'utf8')),f,'$',records)}catch{}}
+          const selected=[];
+          for(const label of labels){
+            const c=profile.cases.find(x=>normalize(x.label)===normalize(label));
+            if(!c) throw new Error(`Profile case not found: ${label}`);
+            const target=normalize(label); const slug=normalize(c.case_id.replace(/^case_his_/,'')); const tokens=[...new Set(`${target}_${slug}`.split('_').filter(x=>x.length>=4))];
+            const matches=records.map(r=>{const vals=[...r.ids,...r.names].map(normalize);let score=0;if(vals.includes(target)||vals.includes(slug))score+=100;else if(vals.some(v=>v.includes(target)||target.includes(v)||v.includes(slug)||slug.includes(v)))score+=65;const fp=normalize(r.file);score+=Math.min(tokens.filter(t=>fp.includes(t)).length*8,32);if(r.file.startsWith('data/places/'))score+=20;if(r.file.startsWith('data/leksikon/'))score+=24;if(r.urls.length)score+=Math.min(r.urls.length*3,18);if((r.description||'').length>250)score+=12;return{...r,score};}).filter(r=>r.score>=55).sort((a,b)=>b.score-a.score||a.file.localeCompare(b.file)).slice(0,20);
+            const placeRecords=matches.filter(r=>r.file.startsWith('data/places/'));
+            const leksikonRecords=matches.filter(r=>r.file.startsWith('data/leksikon/'));
+            const allUrls=[...new Map(matches.flatMap(r=>r.urls).map(x=>[x.url,x])).values()];
+            selected.push({label,case_id:c.case_id,emne_ids:c.emne_ids,existing_place_ids:c.place_ids,matched_place_ids:[...new Set(placeRecords.flatMap(r=>r.ids))],place_records:placeRecords.slice(0,6),leksikon_records:leksikonRecords.slice(0,8),all_repository_matches:matches,source_urls:allUrls.slice(0,30)});
+          }
+          const report={schema_version:'1.0',report_id:'history_selected_evidence_source_extract_v1',profile_id:profile.profile_id,selected};
+          fs.writeFileSync('reports/historie-profile-evidence/selected-source-extract/selected-source-extract.json',JSON.stringify(report,null,2)+'\n');
+          const md=['# Historie — kildeutdrag for valgt evidensbatch','',...selected.flatMap(c=>[`## ${c.label}`,`- Case-ID: \`${c.case_id}\``,`- Matchede place-ID-er: ${c.matched_place_ids.map(x=>`\`${x}\``).join(', ')||'—'}`,`- Place-records: ${c.place_records.map(x=>`\`${x.file}\``).join(', ')||'—'}`,`- Leksikon-records: ${c.leksikon_records.map(x=>`\`${x.file}\``).join(', ')||'—'}`,`- Kilde-URL-er: ${c.source_urls.length}`,''])].join('\n');
+          fs.writeFileSync('reports/historie-profile-evidence/selected-source-extract/selected-source-extract.md',md);
+          console.log(JSON.stringify(selected.map(c=>({label:c.label,case_id:c.case_id,place_ids:c.matched_place_ids,place_records:c.place_records.length,leksikon_records:c.leksikon_records.length,source_urls:c.source_urls.length})),null,2));
+          NODE
+          git diff --check 2>&1 | tee reports/historie-profile-evidence/selected-source-extract/git-diff-check.log
+          git status --short 2>&1 | tee reports/historie-profile-evidence/selected-source-extract/git-status.log
+
+      - name: Publish extract and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/historie-profile-evidence/selected-source-extract
+          git rm .github/workflows/one-time-history-evidence-selected-source-extract.yml
+          git commit -m 'Trekk ut kilder for valgt Historie-evidensbatch'
+          git push origin HEAD:agent/history-evidence-candidate-audit-v2 2>&1 | tee /tmp/history-selected-source-extract-publish.log
+
+      - name: Upload extract
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-selected-source-extract
+          path: |
+            reports/historie-profile-evidence/selected-source-extract/**
+            /tmp/history-selected-source-extract-publish.log
+          if-no-files-found: warn
