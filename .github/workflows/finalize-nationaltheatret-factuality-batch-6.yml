@@ -1,0 +1,111 @@
+name: Finalize Nationaltheatret factuality batch 6
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/finalize-nationaltheatret-factuality-batch-6.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finalize-nationaltheatret-factuality-batch-6
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/nationaltheatret-factuality-audit-people-batch-6
+          fetch-depth: 0
+          show-progress: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Preserve only the audited handwritten content
+        run: |
+          mkdir -p /tmp/batch6/data/people/litteratur/oslo/nationaltheatret
+          mkdir -p /tmp/batch6/reports /tmp/batch6/tests
+          cp data/people/litteratur/oslo/nationaltheatret/axel_otto_normann.json /tmp/batch6/data/people/litteratur/oslo/nationaltheatret/
+          cp data/people/litteratur/oslo/nationaltheatret/bab_christensen.json /tmp/batch6/data/people/litteratur/oslo/nationaltheatret/
+          cp data/people/litteratur/oslo/nationaltheatret/bente_borsum.json /tmp/batch6/data/people/litteratur/oslo/nationaltheatret/
+          cp data/people/litteratur/oslo/nationaltheatret/bjarte_hjelmeland.json /tmp/batch6/data/people/litteratur/oslo/nationaltheatret/
+          cp reports/people-factuality-audit-nationaltheatret-batch-6.md /tmp/batch6/reports/
+          cp tests/nationaltheatret-factuality-audit-people-batch-6.test.js /tmp/batch6/tests/
+
+      - name: Reset to current main and restore the audit atomically
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/batch6/data/people/litteratur/oslo/nationaltheatret/*.json data/people/litteratur/oslo/nationaltheatret/
+          cp /tmp/batch6/reports/people-factuality-audit-nationaltheatret-batch-6.md reports/
+          cp /tmp/batch6/tests/nationaltheatret-factuality-audit-people-batch-6.test.js tests/
+          git diff --check
+
+      - name: Install and build tools
+        run: |
+          npm ci --silent
+          npm run typecheck:tools --silent
+          npm run build:tools --silent
+
+      - name: Run factuality and profile gates
+        run: |
+          npm run test:factuality-contract --silent
+          node --test tests/nationaltheatret-factuality-audit-people-batch-6.test.js
+
+      - name: Regenerate people outputs on current main
+        run: |
+          npm run audit:people-popup-readiness --silent
+          npm run civication:history-people:build --silent
+          npm run audit:people-popup-readiness:check --silent
+          npm run civication:history-people:check --silent
+          npm run audit:people-of-places --silent
+
+      - name: Build browser bundle
+        run: npm run build:web --silent
+
+      - name: Verify production files before staging
+        run: |
+          git diff --check
+          git add \
+            data/Civication/historyPeople_index.json \
+            data/people/litteratur/oslo/nationaltheatret/axel_otto_normann.json \
+            data/people/litteratur/oslo/nationaltheatret/bab_christensen.json \
+            data/people/litteratur/oslo/nationaltheatret/bente_borsum.json \
+            data/people/litteratur/oslo/nationaltheatret/bjarte_hjelmeland.json \
+            reports/people-factuality-audit-nationaltheatret-batch-6.md \
+            reports/people-popup-readiness.json \
+            reports/people-popup-readiness.md \
+            tests/nationaltheatret-factuality-audit-people-batch-6.test.js
+          node --input-type=module <<'NODE'
+          import { execFileSync } from 'node:child_process';
+          const allowed = new Set([
+            'data/Civication/historyPeople_index.json',
+            'data/people/litteratur/oslo/nationaltheatret/axel_otto_normann.json',
+            'data/people/litteratur/oslo/nationaltheatret/bab_christensen.json',
+            'data/people/litteratur/oslo/nationaltheatret/bente_borsum.json',
+            'data/people/litteratur/oslo/nationaltheatret/bjarte_hjelmeland.json',
+            'reports/people-factuality-audit-nationaltheatret-batch-6.md',
+            'reports/people-popup-readiness.json',
+            'reports/people-popup-readiness.md',
+            'tests/nationaltheatret-factuality-audit-people-batch-6.test.js',
+          ]);
+          const output = execFileSync('git', ['diff', '--cached', '--name-only'], { encoding: 'utf8' }).trim();
+          const changed = output ? output.split('\n') : [];
+          const unexpected = changed.filter((file) => !allowed.has(file));
+          if (unexpected.length) throw new Error(`Unexpected staged files: ${unexpected.join(', ')}`);
+          if (changed.length !== allowed.size) throw new Error(`Expected ${allowed.size} staged files, found ${changed.length}: ${changed.join(', ')}`);
+          NODE
+
+      - name: Replace the branch with one clean commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Audit Nationaltheatret anchor people for factuality"
+          git push --force origin HEAD:agent/nationaltheatret-factuality-audit-people-batch-6
