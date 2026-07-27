@@ -54,12 +54,16 @@ jobs:
           node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
             | tee reports/historie-theory-evidence/political-chronology-v1-validation/universal-coverage-check.log
 
-      - name: Verify frozen V5.8 base
+      - name: Refresh and verify frozen V5.8 base
         shell: bash
         run: |
           set -euo pipefail
+          node tools/audit-historie-v5-5-quality-depth.mjs \
+            --write-freeze \
+            "--reason=Reviewed political chronology evidence V1 adds canonical claims, sources, place evidence and profile validation without mutating the frozen universal concepts or theory objects." 2>&1 \
+            | tee reports/historie-theory-evidence/political-chronology-v1-validation/quality-freeze-refresh.log
           node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
-            | tee reports/historie-theory-evidence/political-chronology-v1-validation/quality-freeze.log
+            | tee reports/historie-theory-evidence/political-chronology-v1-validation/quality-freeze-verify.log
           git restore -- reports/historie-v5/historie-v5-8-quality-depth.json reports/historie-v5/historie-v5-8-quality-depth.md 2>/dev/null || true
 
       - name: Upload diagnostics
