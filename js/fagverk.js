@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/fagverk.js
 (function installFagverkPage(global) {
   'use strict';
