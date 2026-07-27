@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "askim_gummivarefabrikk",
+  "placeFile": "data/places/naeringsliv/ostfold/askim_gummivarefabrikk/askim_gummivarefabrikk.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_surviving_factory_reuse_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.58334,
+    "lon": 11.16558,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 244042217 – Askimtorget; Wikidata Q11959366; Askimtorget; Store norske leksikon; Lokalhistoriewiki",
+    "coordType": "named_retail_building_in_former_viking_factory_complex",
+    "coordRole": "surviving_factory_reuse_anchor",
+    "sourceObjectId": "osm-way:244042217;wikidata:Q11959366"
+  },
+  "previousCoordinate": {
+    "lat": 59.5835,
+    "lon": 11.1627,
+    "r": 320,
+    "distanceToAppliedCoordinateM": 163.1,
+    "reasonReplaced": "The legacy point lay west of the named reused factory building and had no source-object contract."
+  },
+  "identity": {
+    "resolvedIdentity": "The surviving and altered former Viking Askim factory premises now occupied by Askimtorget, represented by named OSM building way 244042217.",
+    "identityStatus": "resolved",
+    "identityProblem": "The historical factory occupied a larger and changing industrial site. The accessible surviving building is now a shopping centre, so the coordinate must preserve the industrial identity without claiming that the entire current structure is unchanged from 1920 or that the point represents the full former factory boundary.",
+    "locatorTypeCandidate": "industrial_heritage_site",
+    "requiresSplit": false,
+    "splitReason": "The reused main building is the strongest surviving physical anchor. The former caretaker residence and wider production grounds remain separate or contextual components."
+  },
+  "requiredEvidence": [
+    "named surviving building geometry",
+    "official documentation of reuse of former factory premises",
+    "authoritative industrial chronology",
+    "explicit separation of current retail use from historical identity",
+    "explicit rejection of the legacy point and full-site reconstruction",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 244042217 – Askimtorget",
+      "sourceUrl": "https://www.openstreetmap.org/way/244042217",
+      "sourceObjectId": "osm-way:244042217",
+      "sourceQuality": "named_current_building_geometry",
+      "finding": "The named retail-building polygon has representative point 59.58334, 11.16558 and is linked to Wikidata Q11959366.",
+      "canVerifyCoordinate": true,
+      "reason": "It identifies the surviving accessible building that official current-site history places in the former Viking factory premises."
+    },
+    {
+      "sourceProvider": "askimtorget",
+      "sourceName": "Askimtorget – Om oss",
+      "sourceUrl": "https://askimtorget.no/om-oss/",
+      "sourceObjectId": "askimtorget:om-oss",
+      "sourceQuality": "official_current_site_identity_and_reuse_context",
+      "finding": "Askimtorget states that Viking Askim Gummivarefabrikk operated in the building and that commercial and service uses grew into the present shopping centre after industrial activity ended in the early 1990s.",
+      "canVerifyCoordinate": false,
+      "reason": "Connects the mapped current building directly to the historical factory use."
+    },
+    {
+      "sourceProvider": "askimtorget",
+      "sourceName": "Askimtorget – Historie",
+      "sourceUrl": "https://askimtorget.no/om-oss/historie/",
+      "sourceObjectId": "askimtorget:historie",
+      "sourceQuality": "official_site_chronology_and_local_industrial_context",
+      "finding": "The current site history dates the Askim factory opening to 17 January 1920, identifies power and railway access as location factors, and describes the factory as a major local employer before final closure in the early 1990s.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the industrial identity attached to the reused building."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Askim Gummivarefabrik",
+      "sourceUrl": "https://snl.no/Askim_Gummivarefabrik",
+      "sourceObjectId": "snl:askim-gummivarefabrik",
+      "sourceQuality": "authoritative_company_and_product_history",
+      "finding": "SNL documents the 1906 predecessor, the new Askim company in 1920, tyre and tube production from 1931, the Viking brand and the company's position among Norway's major industrial enterprises.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the industrial chronology and product identity without supplying building geometry."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Askim Gummivarefabrikk",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Askim_Gummivarefabrikk",
+      "sourceObjectId": "lokalhistoriewiki:askim-gummivarefabrikk",
+      "sourceQuality": "local_workforce_product_and_closure_context",
+      "finding": "The local history source documents the January 1920 start, expansion from footwear into tyres and technical rubber products, approximately 2,200 employees in 1950 and final closure in 1991.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks factory growth, work history and closure."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Askim factory point",
+      "sourceObjectId": "legacy:askim_gummivarefabrikk",
+      "sourceQuality": "nearby_uncontracted_point",
+      "finding": "The legacy coordinate lies approximately 163.1 metres west of the named reused factory building.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it has no direct physical object or source contract."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:244042217",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q11959366",
+      "canApplyToPlace": false,
+      "rejectionReason": "Current Askimtorget entity cross-check; the linked OSM building geometry supplies the direct coordinate."
+    },
+    {
+      "sourceProvider": "nearby_component_control",
+      "sourceObjectId": "former-viking-caretaker-residence",
+      "canApplyToPlace": false,
+      "rejectionReason": "A separate surviving factory-associated residence, not the main production and reuse anchor."
+    },
+    {
+      "sourceProvider": "locality_control",
+      "sourceObjectId": "askim-town-centre",
+      "canApplyToPlace": false,
+      "rejectionReason": "A town-centre point does not identify the factory premises."
+    },
+    {
+      "sourceProvider": "retail_control",
+      "sourceObjectId": "individual-askimtorget-shop",
+      "canApplyToPlace": false,
+      "rejectionReason": "Individual stores are current tenants and not industrial-history coordinate sources."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:244042217",
+      "geometryType": "current_reused_building_polygon",
+      "geometryRole": "surviving_factory_reuse_geometry",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "historical_factory_context",
+      "sourceObjectId": "askim-viking-full-former-factory-site",
+      "geometryType": "historical_industrial_extent_not_captured",
+      "geometryRole": "former_factory_buildings_yards_and_production_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "askim_viking_factory_reuse",
+      "name": "Askimtorget – tidligere Viking-fabrikklokaler",
+      "lat": 59.58334,
+      "lon": 11.16558,
+      "r": 120,
+      "type": "surviving_factory_reuse_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:244042217;wikidata:Q11959366",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:askim_gummivarefabrikk",
+      "lat": 59.5835,
+      "lon": 11.1627,
+      "distanceFromAppliedM": 163.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:244042217",
+      "lat": 59.58334,
+      "lon": 11.16558,
+      "distanceFromPreviousM": 163.1,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-askim-gummivarefabrikk-source-probe/source-summary.json",
+      "description": "Persisted current building geometry, official reuse identity, industrial chronology, rejected candidates and radius limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Askimtorget building in the former Viking factory premises and retained the 320-metre gameplay radius. Continue with skjeberg_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 163.1 metres east.",
+    "The marker represents surviving reused factory premises, not the shopping-centre function as the historical subject.",
+    "The current building is not claimed to be unchanged from 1920 or to represent the complete former factory site.",
+    "The radius is not a factory, building, property, protection or former production boundary."
+  ]
+}
