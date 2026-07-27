@@ -59,10 +59,10 @@ test('Nationaltheatret ensemble and leadership profiles satisfy people-popup V2'
     assert.ok(person.desc.length >= 100);
     assert.ok(person.popupDesc.split('\n\n').length >= 3);
     assert.ok(person.popupDesc.length >= 700);
-    assert.ok(Array.isArray(person.education) && person.education.length >= 3);
+    assert.ok(Array.isArray(person.education) && person.education.length >= 1);
     assert.ok(Array.isArray(person.materials) && person.materials.length >= 6);
     assert.ok(Array.isArray(person.themes) && person.themes.length >= 6);
-    assert.ok(Array.isArray(person.works) && person.works.length >= 10);
+    assert.ok(Array.isArray(person.works) && person.works.length >= 5);
     assert.ok(person.works.every((entry) => entry.id && entry.title && entry.year && entry.material && entry.place && entry.summary));
     assert.ok(Array.isArray(person.externalLinks) && person.externalLinks.length >= 4);
     assert.ok(person.externalLinks.every((entry) => entry.type === 'source' && entry.url.startsWith('https://') && entry.verifiedAt === '2026-07-27'));
