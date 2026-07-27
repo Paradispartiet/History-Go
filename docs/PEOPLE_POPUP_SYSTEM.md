@@ -6,9 +6,23 @@ Runtime: `js/ui/person-popup-v2.js`
 Design: `css/person-popup-v2.css`  
 Canonical data: `data/people/manifest.json`  
 Readiness-audit: `tools/audit-people-popup-readiness.mts`  
-Sist kontrollert: **2026-07-26**
+Faktisitetskontrakt: `docs/FACTUALITY_CONTRACT.md`  
+Sist kontrollert: **2026-07-27**
 
 Dette dokumentet definerer hvordan people-popupen skal presentere en canonical person, hvilke felt den kan lese, hvordan ulike persontyper skal fylles, og hvordan manglende informasjon skal håndteres uten tomme bokser eller oppdiktede data.
+
+## 0. Faktisitetsgate
+
+Alle people-profiler følger [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md). Ingen dato, rolle, utdanning, produksjon, publikasjon, stedskobling, vurdering eller annen detalj skal fylles inn fordi den virker sannsynlig eller gjør profilen mer komplett.
+
+- En språkmodell er aldri en faktakilde.
+- Hver brukerrettet faktapåstand skal kunne spores til en inspectable kilde som faktisk støtter påstanden.
+- Manglende informasjon skal utelates, ikke rekonstrueres.
+- Kilder skal leses; det er ikke nok at en URL finnes.
+- Motstridende eller utilstrekkelige kilder skal føre til utelatelse eller eksplisitt dokumentert usikkerhet.
+- Readiness, schema, grønne tester og `verifiedAt` er ikke bevis på historisk korrekthet.
+
+En profilebatch skal stoppes dersom navn, livsdata, verk, roller eller stedstilknytninger ikke kan verifiseres. Framdrift og visuell fylde er alltid underordnet sannhet.
 
 ## 1. Rolle og avgrensning
 
@@ -216,7 +230,10 @@ Popupen kan også lese `sources` og `source_urls`, men nye komplette profiler b�
 - fire eller flere kilder er anbefalt for komplette profiler;
 - kildene skal dekke både biografi og den konkrete stedskoblingen;
 - URL-er må bruke `http` eller `https`;
-- interne auditnotater og rapportstier skal ikke vises som brukerrettede kilder.
+- interne auditnotater og rapportstier skal ikke vises som brukerrettede kilder;
+- kildeantall alene er ikke verifikasjon: hver dato, rolle, produksjon og stedskobling må faktisk støttes av kildematerialet;
+- en generell biografiside kan ikke brukes som bevis for et verk eller en produksjon den ikke omtaler;
+- PR- eller researchmaterialet skal dokumentere hvilke kilder som støtter hvilke grupper av påstander.
 
 ### 3.9 Bilder og initialfallback
 
@@ -338,6 +355,8 @@ Statusene er:
 
 Poengsummen er et produksjonsverktøy, ikke historisk kvalitetsdom. En person kan være viktig selv om profilen er `sparse`. Auditen avgjør heller ikke om personen er relevant for stedet; dette eies fortsatt av `people-of-places-method.md`.
 
+**Viktig:** `complete` betyr bare at profilen har høy feltdekning. Statusen betyr ikke `source_verified`, og skal aldri omtales som faktaverifisert uten en egen påstand-for-påstand-kontroll etter `FACTUALITY_CONTRACT.md`.
+
 Rapportene skrives til:
 
 - `reports/people-popup-readiness.json` — alle profiler og maskinlesbar rangering;
@@ -355,6 +374,8 @@ En ny komplett people-profil bør normalt ha:
 - utdanning eller faglig bakgrunn når relevant;
 - temaer og eventuelt materialer eller arbeidsformer;
 - minst to inspectable kilder, helst fire for sentrale profiler;
+- dokumentert påstand-for-påstand-kontroll av navn, datoer, roller, verk og alle stedskoblinger;
+- ingen felt som er fylt bare for å øke readiness-score eller oppnå et ønsket antall verk;
 - et godkjent bilde eller bevisst initialfallback;
 - en regresjonstest når profilen er pilot for en ny persontype eller et nytt datafelt.
 
@@ -364,7 +385,7 @@ Ved endring av people-popupen, kontrakten eller readiness-auditen:
 
 1. kjør `node --check js/ui/person-popup-v2.js`;
 2. kjør `node --test tests/person-popup-v2.test.js`;
-3. kjør `node --test tests/people-popup-system-contract.test.mjs`;
+3. kjør `node --test tests/people-popup-system-contract.test.mjs tests/factuality-contract.test.mjs`;
 4. kjør `npm run typecheck:tools`;
 5. kjør `npm run build:tools`;
 6. kjør `npm run audit:people-popup-readiness`;
@@ -380,6 +401,7 @@ Ved endring av people-popupen, kontrakten eller readiness-auditen:
 - `js/ui/person-popup-v2.js` eier renderingen.
 - `css/person-popup-v2.css` eier presentasjonen.
 - `docs/PEOPLE_POPUP_SYSTEM.md` eier presentasjons- og feltkontrakten.
+- `docs/FACTUALITY_CONTRACT.md` eier den overordnede regelen om sannhet, kildeverifikasjon, usikkerhet og forbud mot gjetting.
 - `docs/people-of-places-method.md` eier relevans- og kildegaten for person–sted-koblinger.
 - `docs/PEOPLE_IMAGES.md` eier bilde-, lisens- og identitetskontrakten.
 - `tools/audit-people-popup-readiness.mts` eier readiness-rangeringen.
