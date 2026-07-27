@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **218**
-- Additional active Oslo IDs outside the protocol: **294**
+- IDs in the current revision protocol: **228**
+- Additional active Oslo IDs outside the protocol: **284**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **294**
+- Additional IDs needing revision: **284**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -21,7 +21,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | sport | 29 |
 | scenekunst | 24 |
 | litteratur | 21 |
-| vitenskap | 21 |
+| vitenskap | 11 |
 
 ## Additional active Oslo places
 
@@ -115,7 +115,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | naeringsliv | Grensen – handelsgate | `grensen_kjopesenter` | 12 | 39 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/grensen_kjopesenter.json` | needs revision |
 | naeringsliv | Grønlikaia | `gronlikaia` | 12 | 41 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json` | needs revision |
 | naeringsliv | Den gamle Norges Bank | `grunnlovsbygget_bankplassen` | 12 | 152 | 3 | `data/places/naeringsliv/oslo/places_naeringsliv/grunnlovsbygget_bankplassen.json` | needs revision |
-| naeringsliv | Oslo Havnelager | `havnelageret` | 16 | 57 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json` | needs revision |
+| naeringsliv | Oslo Havnelager | `havnelageret` | 38 | 125 | 3 | `data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json` | needs revision |
 | naeringsliv | Lodalen jernbaneverksted | `jernbaneverkstedet_lodalen` | 9 | 49 | 1 | `data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json` | needs revision |
 | naeringsliv | Lilleborg Fabrikker | `lilleborg_fabrikker` | 37 | 94 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/lilleborg_fabrikker.json` | needs revision |
 | naeringsliv | Myrens Verksted | `myrens_verksted` | 15 | 38 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/myrens_verksted.json` | needs revision |
@@ -124,12 +124,12 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | naeringsliv | Kornmagasinet på Akershus festning | `oslo_kornmagasin` | 43 | 76 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/oslo_kornmagasin.json` | needs revision |
 | naeringsliv | Oslo Lysverkers hovedkontor | `oslo_kraftselskap` | 18 | 78 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/oslo_kraftselskap.json` | needs revision |
 | naeringsliv | Akers mekaniske Verksted | `oslo_mek` | 17 | 55 | 1 | `data/places/naeringsliv/oslo/places_naeringsliv/oslo_mek.json` | needs revision |
-| naeringsliv | Oslo Posthus | `oslo_posthus` | 13 | 48 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json` | needs revision |
+| naeringsliv | Oslo Posthus | `oslo_posthus` | 33 | 127 | 3 | `data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json` | needs revision |
 | naeringsliv | Øvre Foss – Hjula Veveri | `ovre_foss` | 16 | 41 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/ovre_foss.json` | needs revision |
 | naeringsliv | Ringnes bryggeri | `ringnes_bryggeri` | 19 | 39 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json` | needs revision |
 | naeringsliv | Schous bryggeri | `schous_bryggeri` | 31 | 96 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/schous_bryggeri.json` | needs revision |
 | naeringsliv | St. Halvard bryggeri | `st_halvard_bryggeri` | 25 | 84 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/st_halvard_bryggeri.json` | needs revision |
-| naeringsliv | Telegrafbygningen | `telegrafbygningen` | 14 | 41 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json` | needs revision |
+| naeringsliv | Telegrafbygningen | `telegrafbygningen` | 31 | 118 | 3 | `data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json` | needs revision |
 | naeringsliv | The Salmon – kunnskapssenter | `the_salmon_vitensenter` | 20 | 105 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/the_salmon_vitensenter.json` | needs revision |
 | naeringsliv | Tollbukaia | `tollbukaia` | 12 | 61 | 1 | `data/places/naeringsliv/oslo/places_naeringsliv/tollbukaia.json` | needs revision |
 | naeringsliv | Construction City | `ulven_handelspark` | 10 | 70 | 2 | `data/places/naeringsliv/oslo/places_naeringsliv/ulven_handelspark.json` | needs revision |
@@ -300,16 +300,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | subkultur | Vaterland Bar & Scene | `vaterland_bar_scene` | 16 | 90 | 2 | `data/places/subkultur/oslo/places_subkultur/vaterland_bar_scene.json` | needs revision |
 | subkultur | Vulkan murvegger og passasjer | `vulkan_murvegger` | 13 | 73 | 2 | `data/places/subkultur/oslo/places_subkultur/vulkan_murvegger.json` | needs revision |
 | subkultur | X-Ray Ungdomskulturhus | `xray_ungdomskulturhus` | 14 | 81 | 2 | `data/places/subkultur/oslo/places_subkultur/xray_ungdomskulturhus.json` | needs revision |
-| vitenskap | Nobelinstituttet | `nobelinstituttet` | 15 | 67 | 2 | `data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner/nobelinstituttet.json` | needs revision |
-| vitenskap | Observatoriet | `observatoriet` | 58 | 66 | 2 | `data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner/observatoriet.json` | needs revision |
-| vitenskap | Folkeobservatoriet | `folkeobservatoriet_holmenkollen` | 22 | 131 | 2 | `data/places/vitenskap/oslo/places_vitenskap_oslo_kultureiendommer_batch_01/folkeobservatoriet_holmenkollen.json` | needs revision |
-| vitenskap | Abelhaugen | `abelhaugen` | 10 | 58 | 1 | `data/places/vitenskap/oslo/places_vitenskap/abelhaugen.json` | needs revision |
-| vitenskap | Arkitektur- og designhøgskolen i Oslo | `arkitektur_og_designhogskolen` | 9 | 41 | 1 | `data/places/vitenskap/oslo/places_vitenskap/arkitektur_og_designhogskolen.json` | needs revision |
-| vitenskap | BI i Nydalen | `bi_nydalen` | 7 | 40 | 1 | `data/places/vitenskap/oslo/places_vitenskap/bi_nydalen.json` | needs revision |
-| vitenskap | Botanisk hage | `botanisk_hage` | 11 | 36 | 1 | `data/places/vitenskap/oslo/places_vitenskap/botanisk_hage.json` | needs revision |
-| vitenskap | Forskningsparken | `forskningsparken` | 10 | 36 | 1 | `data/places/vitenskap/oslo/places_vitenskap/forskningsparken.json` | needs revision |
-| vitenskap | Gamlebyen skole | `gamlebyen_skole` | 12 | 47 | 1 | `data/places/vitenskap/oslo/places_vitenskap/gamlebyen_skole.json` | needs revision |
-| vitenskap | Klimahuset | `klimahuset` | 22 | 196 | 3 | `data/places/vitenskap/oslo/places_vitenskap/klimahuset.json` | needs revision |
 | vitenskap | Meteorologisk institutt | `meteorologisk_institutt` | 8 | 38 | 1 | `data/places/vitenskap/oslo/places_vitenskap/meteorologisk_institutt.json` | needs revision |
 | vitenskap | Naturhistorisk museum | `naturhistorisk_museum` | 12 | 39 | 1 | `data/places/vitenskap/oslo/places_vitenskap/naturhistorisk_museum.json` | needs revision |
 | vitenskap | OsloMet, Pilestredet | `oslo_met_pilestredet` | 8 | 36 | 1 | `data/places/vitenskap/oslo/places_vitenskap/oslo_met_pilestredet.json` | needs revision |
