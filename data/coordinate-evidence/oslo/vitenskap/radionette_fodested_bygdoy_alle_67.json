@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "radionette_fodested_bygdoy_alle_67",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.918959,
+    "lon": 10.702483,
+    "r": 35,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Kartverket/Geonorge-adressepunktet for Bygdøy allé 67 brukes som fasade- og byggpunkt. Oslo byleksikon og Lokalhistoriewiki dokumenterer produksjonsstarten og det blå skiltet. Radius 35 meter avgrenser mikroplassen til fasaden og eiendommen."
+  },
+  "identity": {
+    "currentName": "Radionettes fødested",
+    "resolvedIdentity": "Radionettes fødested, Bygdøy allé 67, 0265 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell adresse",
+    "dokumentert teknologisk identitet",
+    "avgrenset kartanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Bygdøy allé 67",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Bygd%C3%B8y%20all%C3%A9&nummer=67&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-address-v1:0301:radionette_fodested_bygdoy_alle_67:59.91895900,10.70248300",
+      "sourceQuality": "official_address",
+      "finding": "Offisielt adressepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical byggpunkt under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Radionette",
+      "sourceUrl": "https://oslobyleksikon.no/side/Radionette",
+      "sourceObjectId": "source:radionette_fodested_bygdoy_alle_67:oslo-byleksikon-radionette",
+      "sourceQuality": "documented_place_identity",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Radionette Norsk Radiofabrikk",
+      "sourceUrl": "https://lokalhistoriewiki.no/Radionette_Norsk_Radiofabrikk",
+      "sourceObjectId": "source:radionette_fodested_bygdoy_alle_67:lokalhistoriewiki-radionette-norsk-radiofabrikk",
+      "sourceQuality": "documented_place_identity",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Bygdøy allé 67, 0265 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:radionette_fodested_bygdoy_alle_67:59.91895900,10.70248300",
+      "lat": 59.918959,
+      "lon": 10.702483,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:radionette_fodested_bygdoy_alle_67:59.91895900,10.70248300",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:radionette_fodested_bygdoy_alle_67:59.91895900,10.70248300",
+      "lat": 59.918959,
+      "lon": 10.702483,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinaten er anvendt i canonical place-fil."
+  },
+  "notes": [
+    "Kartverket/Geonorge-adressepunktet for Bygdøy allé 67 brukes som fasade- og byggpunkt. Oslo byleksikon og Lokalhistoriewiki dokumenterer produksjonsstarten og det blå skiltet. Radius 35 meter avgrenser mikroplassen til fasaden og eiendommen."
+  ]
+}

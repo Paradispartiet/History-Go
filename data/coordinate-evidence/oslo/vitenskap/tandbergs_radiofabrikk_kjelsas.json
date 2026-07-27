@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tandbergs_radiofabrikk_kjelsas",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.96851908911736,
+    "lon": 10.772328336306844,
+    "r": 110,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisielt Kartverket/Geonorge-adressepunkt for Kjelsåsveien 161 brukes som byggpunkt for den tidligere Tandberg-fabrikken. Oslo byleksikon dokumenterer samme adresse, forskningsbygget og det blå skiltet. Radius 110 meter dekker fabrikkankeret, ikke hele boligkomplekset."
+  },
+  "identity": {
+    "currentName": "Tandbergs Radiofabrikk på Kjelsås",
+    "resolvedIdentity": "Tandbergs Radiofabrikk på Kjelsås, Kjelsåsveien 161, 0884 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell adresse",
+    "dokumentert teknologisk identitet",
+    "avgrenset kartanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Kjelsåsveien 161",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Kjels%C3%A5sveien&nummer=161&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-address-v1:0301:tandbergs_radiofabrikk_kjelsas:59.96851909,10.77232834",
+      "sourceQuality": "official_address",
+      "finding": "Offisielt adressepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical byggpunkt under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Tandbergs Radiofabrikk",
+      "sourceUrl": "https://oslobyleksikon.no/side/Tandbergs_Radiofabrikk",
+      "sourceObjectId": "source:tandbergs_radiofabrikk_kjelsas:oslo-byleksikon-tandbergs-radiofabrikk",
+      "sourceQuality": "documented_place_identity",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Tandbergs Radiofabrikk",
+      "sourceUrl": "https://snl.no/Tandbergs_Radiofabrikk",
+      "sourceObjectId": "source:tandbergs_radiofabrikk_kjelsas:store-norske-leksikon-tandbergs-radiofabrikk",
+      "sourceQuality": "documented_place_identity",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kjelsåsveien 161, 0884 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:tandbergs_radiofabrikk_kjelsas:59.96851909,10.77232834",
+      "lat": 59.96851908911736,
+      "lon": 10.772328336306844,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:tandbergs_radiofabrikk_kjelsas:59.96851909,10.77232834",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:tandbergs_radiofabrikk_kjelsas:59.96851909,10.77232834",
+      "lat": 59.96851908911736,
+      "lon": 10.772328336306844,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinaten er anvendt i canonical place-fil."
+  },
+  "notes": [
+    "Offisielt Kartverket/Geonorge-adressepunkt for Kjelsåsveien 161 brukes som byggpunkt for den tidligere Tandberg-fabrikken. Oslo byleksikon dokumenterer samme adresse, forskningsbygget og det blå skiltet. Radius 110 meter dekker fabrikkankeret, ikke hele boligkomplekset."
+  ]
+}
