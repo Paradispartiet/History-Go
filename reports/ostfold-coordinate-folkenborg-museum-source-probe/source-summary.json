@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "folkenborg_museum",
+  "generatedAt": "2026-07-27",
+  "researchQuestion": "Which coordinate should represent Folkenborg Museum without conflating the open-air museum complex, Narvestadbygningen, the historic Folkenborg farm or one visitor address?",
+  "result": {
+    "identityStatus": "resolved",
+    "coordinateStatus": "verified_geometry",
+    "appliedCoordinate": {
+      "lat": 59.54484,
+      "lon": 11.30669,
+      "role": "open_air_museum_complex_anchor",
+      "sourceObjectId": "osm-node:6591537403"
+    },
+    "previousCoordinate": {
+      "lat": 59.5519,
+      "lon": 11.3515,
+      "distanceToAppliedM": 2644.5
+    },
+    "decisionSummary": "Use the named Folkenborg Museum point for the whole open-air museum. Keep Narvestadbygningen and the older Folkenborg farm/locality as separate building and historical-context anchors."
+  },
+  "sources": [
+    {
+      "provider": "osm",
+      "title": "Folkenborg museum",
+      "url": "https://www.openstreetmap.org/node/6591537403",
+      "sourceObjectId": "osm-node:6591537403",
+      "sourceClass": "named_open_air_museum_point",
+      "coordinate": {
+        "lat": 59.54484,
+        "lon": 11.30669
+      },
+      "supports": [
+        "the applied museum-complex coordinate",
+        "a named tourism museum object inside the Folkenborg grounds",
+        "separation from one protected historic building"
+      ],
+      "limitations": [
+        "the point is representative rather than a surveyed site boundary",
+        "it does not by itself document museum chronology or access"
+      ]
+    },
+    {
+      "provider": "official_museum",
+      "title": "Folkenborg Museum",
+      "url": "https://www.folkenborgmuseum.no/",
+      "sourceObjectId": "folkenborgmuseum:no",
+      "sourceClass": "official_current_museum_identity",
+      "supports": [
+        "Folkenborg is an open-air museum",
+        "the buildings represent agricultural and everyday history in Indre Østfold from the eighteenth century onward",
+        "the Håkon Håkonsson birthplace narrative is a separate interpretive layer",
+        "the museum has current exhibitions and events"
+      ],
+      "limitations": [
+        "the current programme and opening hours may change",
+        "the site does not define a precise museum boundary"
+      ]
+    },
+    {
+      "provider": "official_museum",
+      "title": "Folkenborg Museum – utleie",
+      "url": "https://www.folkenborgmuseum.no/utleie",
+      "sourceObjectId": "folkenborgmuseum:utleie",
+      "sourceClass": "official_address_and_event_use",
+      "supports": [
+        "Narvestadveien 7, 1850 Mysen as the current visitor and contact address",
+        "Kirkebylåven as an event and rental building",
+        "separate access conditions for event spaces"
+      ],
+      "limitations": [
+        "the address is not the geometry of the whole museum",
+        "rental information does not document all historic buildings"
+      ]
+    },
+    {
+      "provider": "osm_wikidata_kulturminne",
+      "title": "Narvestadbygningen",
+      "url": "https://www.openstreetmap.org/way/440618847",
+      "sourceObjectId": "osm-way:440618847;wikidata:Q11969372;kulturminne:86041",
+      "sourceClass": "protected_building_geometry_and_identity",
+      "coordinate": {
+        "lat": 59.54474,
+        "lon": 11.30519
+      },
+      "supports": [
+        "the protected Narvestad building is a separate identifiable museum component",
+        "the building dates from 1723",
+        "the building has a heritage identity distinct from the museum institution"
+      ],
+      "limitations": [
+        "the building cannot represent the full open-air museum",
+        "the point does not define public interior access"
+      ]
+    },
+    {
+      "provider": "snl",
+      "title": "Folkenborg",
+      "url": "https://snl.no/Folkenborg",
+      "sourceObjectId": "snl:Folkenborg",
+      "sourceClass": "authoritative_place_and_birthplace_context",
+      "supports": [
+        "Folkenborg is part of Mysen",
+        "the museum is an open-air museum with farmyard and crofter's holding",
+        "the place is associated with Håkon Håkonsson's birth in 1204"
+      ],
+      "limitations": [
+        "the article does not provide museum-complex geometry",
+        "the birthplace layer is historical context and not the museum foundation date"
+      ]
+    },
+    {
+      "provider": "eidsberg_historielag",
+      "title": "Eidsberg historielag – historie",
+      "url": "https://www.eidsberghistorielag.no/omoss/historie/",
+      "sourceObjectId": "eidsberg-historielag:historie",
+      "sourceClass": "institutional_foundation_history",
+      "supports": [
+        "Eidsberg and Mysen historical society preceded the museum",
+        "Folkenborg was acquired in 1935-1936",
+        "the museum was established in 1936 to preserve local buildings, crafts, art and everyday history"
+      ],
+      "limitations": [
+        "the historical society source is not a geometry source",
+        "it does not define current access to each building"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Østfoldmuseene – organisation history",
+      "url": "https://ostfoldmuseene.no/om",
+      "sourceObjectId": "ostfoldmuseene:folkenborg-governance-2025",
+      "sourceClass": "official_current_governance_source",
+      "supports": [
+        "from 1 January 2025 Folkenborg Museum took over public activities and management of buildings and facilities",
+        "Østfoldmuseene retained ownership and management of the cultural-history collection",
+        "the operating site and collection governance are not identical objects"
+      ],
+      "limitations": [
+        "governance information does not locate individual buildings",
+        "the operating model may change after the verified date"
+      ]
+    },
+    {
+      "provider": "brreg",
+      "title": "Folkenborg Museum STI",
+      "url": "https://virksomhet.brreg.no/nb/oppslag/enheter/971492325",
+      "sourceObjectId": "brreg:971492325",
+      "sourceClass": "official_current_organisation_and_address_control",
+      "supports": [
+        "the active museum foundation",
+        "museum activity classification",
+        "Narvestadveien 7, 1850 Mysen as the business address"
+      ],
+      "limitations": [
+        "the register address is not museum-complex geometry",
+        "the register does not document historical layers"
+      ]
+    },
+    {
+      "provider": "osm_geonames",
+      "title": "Folkenborg historic farm and locality",
+      "sourceObjectId": "osm-node:6257804130;geonames:9493229",
+      "sourceClass": "separate_historic_farm_context",
+      "coordinate": {
+        "lat": 59.54386,
+        "lon": 11.30753
+      },
+      "supports": [
+        "the older Folkenborg farm and locality are near the museum",
+        "the farm point is distinct from the named museum point"
+      ],
+      "limitations": [
+        "the farm/locality cannot replace the museum coordinate",
+        "the point does not define the historical birthplace footprint"
+      ]
+    }
+  ],
+  "rejectedAnchors": [
+    {
+      "candidate": "legacy point 59.5519, 11.3515",
+      "reason": "Approximately 2.64 kilometres east of the named museum and unsupported by any museum, building or farm object."
+    },
+    {
+      "candidate": "Narvestadbygningen",
+      "reason": "Strong protected-building anchor, but only one component inside the open-air museum."
+    },
+    {
+      "candidate": "Folkenborg historic farm/locality",
+      "reason": "Important site context and birthplace layer, but not the present museum-complex object."
+    },
+    {
+      "candidate": "Narvestadveien 7 address point",
+      "reason": "Useful visitor and organisation control, but an address is not the geometry of the entire museum."
+    }
+  ],
+  "chronologyControls": [
+    {
+      "layer": "Håkon Håkonsson birthplace",
+      "date": "1204",
+      "certainty": "documented_site_tradition"
+    },
+    {
+      "layer": "Narvestadbygningen",
+      "date": "1723",
+      "certainty": "documented_building_year"
+    },
+    {
+      "layer": "local administrative and political meetings",
+      "date": "1850-1900",
+      "certainty": "documented_historical_use_layer"
+    },
+    {
+      "layer": "historical society",
+      "date": "1920",
+      "certainty": "institutional_predecessor"
+    },
+    {
+      "layer": "museum foundation",
+      "date": "1936",
+      "certainty": "documented_museum_origin"
+    },
+    {
+      "layer": "governance and collection split",
+      "date": "2025",
+      "certainty": "official_current_operating_model"
+    }
+  ],
+  "accessControls": [
+    "The museum follows current seasonal opening, event, rental and guided-tour rules.",
+    "Locked historic buildings, collection storage, offices and technical areas are not automatically public.",
+    "Animal areas, event setups and maintenance zones may impose temporary restrictions.",
+    "The visitor address does not grant access to every building or part of the site.",
+    "The 320 metre radius is not a museum, property, building, collection, animal, event, heritage or access boundary."
+  ],
+  "nextManifestEntry": "elingaard_herregard"
+}
