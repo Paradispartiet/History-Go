@@ -1,0 +1,94 @@
+name: One-time Nationaltheatret modern ensemble people V2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/nationaltheatret-modern-ensemble-people-v2-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  enrich-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize production branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/nationaltheatret-modern-ensemble-people-v2
+          git checkout -B agent/nationaltheatret-modern-ensemble-people-v2 origin/agent/nationaltheatret-modern-ensemble-people-v2
+          git merge --no-edit origin/main
+
+      - name: Apply rich profiles
+        run: python scripts/one-time-enrich-nationaltheatret-modern-ensemble-people-v2.py
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Typecheck and build tools and scripts
+        run: |
+          npm run typecheck:tools
+          npm run build:tools
+          npm run typecheck:scripts
+          npm run build:scripts
+
+      - name: Regenerate people-popup readiness reports
+        run: |
+          npm run audit:people-popup-readiness
+          npm run audit:people-popup-readiness:check
+
+      - name: Rebuild Civication people index
+        run: |
+          npm run civication:history-people:build
+          npm run civication:history-people:check
+
+      - name: Run focused profile and popup tests
+        run: |
+          node --check js/ui/person-popup-v2.js
+          node --test \
+            tests/person-popup-v2.test.js \
+            tests/people-popup-system-contract.test.mjs \
+            tests/nationaltheatret-modern-ensemble-people-v2.test.js
+
+      - name: Validate complete people data
+        run: bash scripts/check-people.sh
+
+      - name: Verify browser build remains synchronized
+        run: npm run build:web:check
+
+      - name: Remove one-time script and unrelated generated side effects
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout origin/main -- js/core/categories.js 2>/dev/null || true
+          git rm scripts/one-time-enrich-nationaltheatret-modern-ensemble-people-v2.py
+          find reports -mindepth 1 -maxdepth 1 \
+            ! -name 'people-popup-readiness.json' \
+            ! -name 'people-popup-readiness.md' \
+            -exec git restore --staged --worktree -- '{}' + 2>/dev/null || true
+          git clean -fd reports 2>/dev/null || true
+
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          git commit -m "Complete modern Nationaltheatret ensemble profiles"
+          git push origin HEAD:agent/nationaltheatret-modern-ensemble-people-v2
