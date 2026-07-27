@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "moss_mollebyen_industri",
+  "generatedAt": "2026-07-27",
+  "researchQuestion": "Which coordinate should represent Møllebyen / Moss by- og industrimuseum without confusing the historic industrial district, museum, waterfall or nearby Moss Ironworks?",
+  "result": {
+    "identityStatus": "resolved",
+    "coordinateStatus": "verified_historical_source",
+    "appliedCoordinate": {
+      "lat": 59.43843,
+      "lon": 10.66789,
+      "role": "historic_mill_and_industrial_district_anchor",
+      "sourceObjectId": "wikidata:Q28719372;lokalhistoriewiki:Møllebyen"
+    },
+    "previousCoordinate": {
+      "lat": 59.4377,
+      "lon": 10.6665,
+      "distanceToAppliedM": 113.0
+    },
+    "decisionSummary": "Use the independently stated Møllebyen district coordinate. Keep Moss by- og industrimuseum as a visitor and interpretation anchor approximately 22 metres away, not as a replacement for the whole district."
+  },
+  "sources": [
+    {
+      "provider": "wikidata",
+      "title": "Møllebyen",
+      "url": "https://www.wikidata.org/wiki/Q28719372",
+      "sourceObjectId": "wikidata:Q28719372",
+      "sourceClass": "named_district_entity",
+      "coordinate": {
+        "lat": 59.439,
+        "lon": 10.668
+      },
+      "supports": [
+        "Møllebyen is a named entity in Moss",
+        "the entity represents the former industrial area at Mossefossen",
+        "the district now contains museum, library, cinema, galleries, restaurants and businesses",
+        "the coordinate independently controls the applied district point"
+      ],
+      "limitations": [
+        "the coordinate is a rounded district point rather than a surveyed boundary",
+        "it does not identify one building or public entrance"
+      ]
+    },
+    {
+      "provider": "lokalhistoriewiki",
+      "title": "Møllebyen",
+      "url": "https://lokalhistoriewiki.no/M%C3%B8llebyen",
+      "sourceObjectId": "lokalhistoriewiki:Møllebyen",
+      "sourceClass": "independent_local_history_and_coordinate",
+      "coordinate": {
+        "lat": 59.43843,
+        "lon": 10.66789
+      },
+      "supports": [
+        "the applied district coordinate",
+        "location by Mossefossen and mainly along Henrik Gerners gate",
+        "nineteenth- and early-twentieth-century mills and factory buildings",
+        "Lilleelv as an artificial industrial watercourse",
+        "decline, rehabilitation after 1998 and adaptive reuse"
+      ],
+      "limitations": [
+        "the point is representative and not a district boundary",
+        "the article does not define access to individual buildings"
+      ]
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "title": "Om Moss by- og industrimuseum",
+      "url": "https://ostfoldmuseene.no/moss/om",
+      "sourceObjectId": "ostfoldmuseene:moss-by-og-industrimuseum",
+      "sourceClass": "official_museum_source",
+      "supports": [
+        "the museum lies in an old mill building in Møllebyen by Mossefossen",
+        "waterpower, labour, machines and people are central to the interpretation",
+        "the current address is Fossen 21/23",
+        "the museum is active and includes exhibitions and visitor services"
+      ],
+      "limitations": [
+        "the museum source describes the institution, not the full district geometry",
+        "current opening hours and activities may change"
+      ]
+    },
+    {
+      "provider": "wikidata_commons",
+      "title": "Moss by- og industrimuseum",
+      "url": "https://www.wikidata.org/wiki/Q112630775",
+      "sourceObjectId": "wikidata:Q112630775",
+      "sourceClass": "museum_entity_coordinate",
+      "coordinate": {
+        "lat": 59.43861,
+        "lon": 10.66806
+      },
+      "supports": [
+        "the museum is a separate entity inside Møllebyen",
+        "the museum point is approximately 22 metres from the applied district point",
+        "the museum can serve as a visitor and interpretation anchor"
+      ],
+      "limitations": [
+        "the museum point must not replace the district identity",
+        "the coordinate does not define entrances or accessible rooms"
+      ]
+    },
+    {
+      "provider": "brreg",
+      "title": "Moss by- og industrimuseum",
+      "url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986167730",
+      "sourceObjectId": "brreg:986167730",
+      "sourceClass": "official_organisation_register",
+      "supports": [
+        "the active museum unit",
+        "the address Fossen 21-23, Møllebyen, 1530 Moss",
+        "the cultural-history museum activity classification"
+      ],
+      "limitations": [
+        "the register address is not an area coordinate",
+        "registration does not document historical chronology"
+      ]
+    },
+    {
+      "provider": "moss_municipality",
+      "title": "Byutvikling",
+      "url": "https://www.moss.kommune.no/alle-tjenester/politikk-og-samfunn/kommuneliv/byutvikling/",
+      "sourceObjectId": "moss-kommune:byutvikling-mollebyen",
+      "sourceClass": "official_current_area_context",
+      "supports": [
+        "Møllebyen is by Mossefossen",
+        "old industrial buildings have been reused",
+        "the district now contains library, cinema, museum, restaurants, homes and offices"
+      ],
+      "limitations": [
+        "the page is a strategic overview rather than a heritage inventory",
+        "it does not provide a precise district boundary"
+      ]
+    },
+    {
+      "provider": "moss_byleksikon",
+      "title": "Møllebyen",
+      "url": "https://mossbyleksikon.no/index.php?title=M%C3%B8llebyen",
+      "sourceObjectId": "moss-byleksikon:Møllebyen",
+      "sourceClass": "local_industrial_and_building_chronology",
+      "supports": [
+        "possible mill activity from the medieval period",
+        "surviving brick industrial buildings mainly from 1875-1920",
+        "Moss as Norway's third-largest mill town in the late nineteenth century",
+        "industrial relocation and the 1971 fire",
+        "rehabilitation after 1998 and adaptive reuse completed in the early 2000s",
+        "the museum moved into Kloster and Galla mills in 2000"
+      ],
+      "limitations": [
+        "the source is a local encyclopedia and should not be used as a surveyed geometry source",
+        "probable medieval mill activity is not an exact construction date"
+      ]
+    }
+  ],
+  "rejectedAnchors": [
+    {
+      "candidate": "legacy point 59.4377, 10.6665",
+      "reason": "No named district, museum, building or source-object contract; approximately 113 metres south-west of the applied point."
+    },
+    {
+      "candidate": "Moss by- og industrimuseum",
+      "reason": "Strong visitor and interpretation anchor, but only one institution inside the larger district."
+    },
+    {
+      "candidate": "Mossefossen",
+      "reason": "The historic power source and landscape context, not the industrial district itself."
+    },
+    {
+      "candidate": "one mill building",
+      "reason": "The place describes a multi-building district and should not be collapsed into one surviving structure."
+    },
+    {
+      "candidate": "Moss Jernverk / Konventionsgården",
+      "reason": "Nearby separate History Go place with a different industrial and 1814 identity."
+    }
+  ],
+  "chronologyControls": [
+    {
+      "layer": "possible mill tradition",
+      "date": "possibly_from_1100s",
+      "certainty": "probable_local_history_layer"
+    },
+    {
+      "layer": "rounded early-modern industry reference",
+      "date": "1700s",
+      "certainty": "broad_period_not_building_year"
+    },
+    {
+      "layer": "surviving brick industrial buildings",
+      "date": "1875-1920",
+      "certainty": "documented_built_environment_period"
+    },
+    {
+      "layer": "industrial decline and fire",
+      "date": "1968-1971",
+      "certainty": "documented_transition"
+    },
+    {
+      "layer": "rehabilitation and adaptive reuse",
+      "date": "1998-2003",
+      "certainty": "documented_current_use_transition"
+    },
+    {
+      "layer": "museum in Møllebyen",
+      "date": "2000",
+      "certainty": "documented_museum_move"
+    }
+  ],
+  "accessControls": [
+    "Public streets and open urban spaces can be used without implying access to every building.",
+    "Museum, cinema, library, restaurants and businesses follow their own hours, tickets and event rules.",
+    "Homes, offices, technical rooms and private yards are not gameplay areas unless explicitly open.",
+    "Waterfalls, channels, steep edges and construction zones require distance and compliance with barriers and signs.",
+    "The 320 metre radius is not a legal or physical boundary."
+  ],
+  "nextManifestEntry": "folkenborg_museum"
+}
