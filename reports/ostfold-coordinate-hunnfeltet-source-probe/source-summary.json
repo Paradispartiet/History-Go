@@ -1,0 +1,118 @@
+{
+  "placeId": "hunnfeltet_gravfelt",
+  "generatedAt": "2026-07-26",
+  "legacyCoordinate": {
+    "lat": 59.2182,
+    "lon": 11.0368,
+    "r": 360
+  },
+  "appliedCoordinate": {
+    "lat": 59.21764,
+    "lon": 11.07646,
+    "r": 360,
+    "displacementM": 2257.8
+  },
+  "identityDecision": "Use the named Hunn stone-ring archaeological site as the stable visitor and interpretation anchor for the larger multi-part Hunn burial landscape.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-node:8374670062",
+    "name": "Hunn (Steinringfeltet)",
+    "tags": [
+      "historic=archaeological_site",
+      "tourism=attraction"
+    ],
+    "wikidata": "Q11976121",
+    "lat": 59.21764,
+    "lon": 11.07646
+  },
+  "fieldScope": {
+    "source": "Store norske leksikon – Hunn",
+    "finding": "Hunn is a large and well-preserved burial field with more than 100 mounds, cairns and stone circles, usually divided into Vestfeltet, Sydfeltet and Midtfeltet.",
+    "subfields": [
+      {
+        "name": "Vestfeltet",
+        "dominantFeature": "gravhauger",
+        "approxDistanceFromAppliedM": 510
+      },
+      {
+        "name": "Sydfeltet",
+        "dominantFeature": "runde steinsetninger",
+        "role": "applied visitor and interpretation anchor"
+      },
+      {
+        "name": "Midtfeltet",
+        "dominantFeature": "gravrøyser",
+        "approxDistanceFromAppliedM": 330
+      }
+    ]
+  },
+  "crossChecks": [
+    {
+      "provider": "visit_fredrikstad_hvaler",
+      "source": "Oldtidsruta",
+      "finding": "The stone-ring field is the clearest public destination at Hunn and contains rings, smaller graves, cairns and other traces spread across a larger area."
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "source": "Historic walk at Hunnfeltet",
+      "finding": "Archaeological investigations in 1950–1952 examined 31 monuments and explicitly treated the remains as a complete Iron Age farm and landscape context."
+    },
+    {
+      "provider": "riksantikvaren_cross_check",
+      "sourceObjectId": "riksantikvaren-kulturminne:80636",
+      "finding": "Askeladden-derived documentation identifies the protected stone-ring field; nearby rock art locality 151039 is a separate monument east of the field."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:hunnfeltet_gravfelt",
+      "lat": 59.2182,
+      "lon": 11.0368,
+      "distanceFromAppliedM": 2257.8,
+      "reason": "Remote uncontracted point west of the burial landscape."
+    },
+    {
+      "sourceObjectId": "osm-node:803006104",
+      "name": "Hunnfeltet",
+      "lat": 59.21616,
+      "lon": 11.07515,
+      "distanceFromAppliedM": 180.7,
+      "reason": "Tourism information point, not the archaeological field itself."
+    },
+    {
+      "sourceObjectId": "osm-node:803006407",
+      "name": "Steinringene på Hunn",
+      "lat": 59.21704,
+      "lon": 11.07579,
+      "distanceFromAppliedM": 76.8,
+      "reason": "Information sign rather than an archaeological-site object."
+    },
+    {
+      "sourceObjectId": "osm-node:6271663565",
+      "name": "Oldtidspark",
+      "lat": 59.21703,
+      "lon": 11.07543,
+      "distanceFromAppliedM": 89.6,
+      "reason": "Visitor park infrastructure, not the burial-field identity."
+    },
+    {
+      "sourceObjectId": "osm-node:803006030",
+      "name": "Helleristning",
+      "lat": 59.21675,
+      "lon": 11.07692,
+      "distanceFromAppliedM": 102.4,
+      "reason": "Separate rock-art monument east of the stone-ring field."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 360,
+    "covers": "Sydfeltet, the principal stone rings and parts of the immediate burial landscape for gameplay.",
+    "doesNotRepresent": [
+      "the full Vestfeltet–Midtfeltet–Sydfeltet extent",
+      "an archaeological locality or protection polygon",
+      "a property boundary",
+      "every individual grave monument"
+    ]
+  },
+  "nextManifestPlace": "tune_skipet_funnsted"
+}
