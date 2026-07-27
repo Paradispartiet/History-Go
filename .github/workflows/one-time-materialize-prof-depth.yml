@@ -31,6 +31,7 @@ jobs:
           set -euo pipefail
           cat .tmp/prof-depth/pkg-* | base64 --decode > /tmp/prof-depth.tar.gz
           tar -xzf /tmp/prof-depth.tar.gz -C .
+          python .tmp/prof-depth/patch_multinasjonale.py
 
           node tools/validate-okonomi-naeringsliv-universitetsramme.mjs
           node tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs
