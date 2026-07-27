@@ -6,6 +6,7 @@ on:
       - agent/naeringsliv-profesjonsmaterialisering-batch-2
     paths:
       - .github/workflows/one-time-materialize-naeringsliv-batch2.yml
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -25,16 +26,62 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: npm
 
-      - name: Decode temporary production programs
+      - name: Materialize, validate and publish with diagnostics
         shell: bash
+        env:
+          PROD_BRANCH: agent/naeringsliv-profesjonsmaterialisering-batch-2
+          DIAG_BRANCH: diagnostics/naeringsliv-batch-2
         run: |
-          set -euo pipefail
+          set -Eeuo pipefail
+          LOG=/tmp/naeringsliv-batch2-job.log
+          : > "$LOG"
+          exec > >(tee -a "$LOG") 2>&1
+
+          publish_diag() {
+            local state="$1"
+            local code="$2"
+            local command="$3"
+            local diag
+            diag="$(mktemp -d)"
+            cp "$LOG" /tmp/naeringsliv-batch2-job-copy.log
+            git fetch origin main
+            git worktree add --detach "$diag" origin/main
+            (
+              cd "$diag"
+              git checkout --orphan diagnostic-naeringsliv-batch2
+              git rm -rf . >/dev/null 2>&1 || true
+              mkdir -p reports
+              cp /tmp/naeringsliv-batch2-job-copy.log reports/job.log
+              {
+                printf 'state=%s\n' "$state"
+                printf 'exit_code=%s\n' "$code"
+                printf 'failed_command=%s\n' "$command"
+                printf 'source_sha=%s\n' "$GITHUB_SHA"
+                printf 'run_id=%s\n' "$GITHUB_RUN_ID"
+              } > reports/status.txt
+              git add reports
+              git config user.name github-actions[bot]
+              git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+              git commit -m "Record Næringsliv batch-2 ${state}"
+              git push --force origin HEAD:"$DIAG_BRANCH"
+            )
+            git worktree remove --force "$diag" || true
+          }
+
+          on_error() {
+            local code="$?"
+            local command="$BASH_COMMAND"
+            trap - ERR
+            publish_diag failed "$code" "$command" || true
+            exit "$code"
+          }
+          trap on_error ERR
+
+          echo '== Decode production programs =='
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import zlib from 'node:zlib';
-
           for (const [source, target] of [
             ['.tmp/naeringsliv-batch2/materialize.mjs.zlib64', '.tmp/naeringsliv-batch2/materialize.mjs'],
             ['.tmp/naeringsliv-batch2/validator.mjs.zlib64', '.tmp/naeringsliv-batch2/validator.mjs']
@@ -46,29 +93,21 @@ jobs:
           node --check .tmp/naeringsliv-batch2/materialize.mjs
           node --check .tmp/naeringsliv-batch2/validator.mjs
 
-      - name: Materialize places, packets, briefs, quizzes and contexts
-        run: node .tmp/naeringsliv-batch2/materialize.mjs
+          echo '== Materialize =='
+          node .tmp/naeringsliv-batch2/materialize.mjs
 
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+          echo '== Install dependencies =='
+          npm ci --no-audit --no-fund
 
-      - name: Validate place-description 4.2 packages
-        run: node scripts/validate-place-description-production-v4_2.mjs --all
+          echo '== Place-description validation =='
+          node scripts/validate-place-description-production-v4_2.mjs --all
+          node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
 
-      - name: Validate Næringsliv materialization
-        run: node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
-
-      - name: Validate place data
-        shell: bash
-        run: |
-          set -euo pipefail
+          echo '== Place data validation =='
           bash scripts/check-places.sh
           git restore --source=origin/main -- data/places/places_index.json
 
-      - name: Validate quiz governance and production
-        shell: bash
-        run: |
-          set -euo pipefail
+          echo '== Quiz validation =='
           npm run audit:quiz-content
           npm run audit:quiz-production-context
           npm run audit:quiz-progression
@@ -77,20 +116,14 @@ jobs:
           npm run test:quiz-content-audit
           npm run test:quiz-production
 
-      - name: Run TypeScript and browser checks
-        shell: bash
-        run: |
-          set -euo pipefail
+          echo '== TypeScript and browser validation =='
           npm run typecheck
           npm run typecheck:scripts
           npm run typecheck:tools
           npm run typecheck:web
           npm run build:web:check
 
-      - name: Build one clean production commit
-        shell: bash
-        run: |
-          set -euo pipefail
+          echo '== Build clean final commit =='
           git fetch origin main
           rm -rf .tmp/naeringsliv-batch2
           rm -f .github/workflows/one-time-materialize-naeringsliv-batch2.yml
@@ -106,16 +139,15 @@ jobs:
 
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git commit -m "Materialiser Næringsliv batch 2"
+          git commit -m 'Materialiser Næringsliv batch 2'
 
-      - name: Validate final PR scope and clean tree
-        shell: bash
-        run: |
-          set -euo pipefail
+          echo '== Final scope validation =='
           node scripts/validate-place-description-production-v4_2.mjs --changed --base origin/main --head HEAD
           node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
           test -z "$(git status --porcelain)"
           git diff --exit-code origin/main -- data/places/places_index.json
 
-      - name: Publish clean production branch
-        run: git push --force-with-lease origin HEAD:agent/naeringsliv-profesjonsmaterialisering-batch-2
+          echo '== Publish clean branch =='
+          git push --force-with-lease origin HEAD:"$PROD_BRANCH"
+          trap - ERR
+          publish_diag success 0 complete
