@@ -1,0 +1,211 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fossesholm_herregard",
+  "placeFile": "data/places/historie/buskerud/places_historie_buskerud_batch1/fossesholm_herregard.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_protected_manor_museum_complex_anchor",
+  "currentCoordinate": {
+    "lat": 59.72813,
+    "lon": 9.86661,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 6588462253; Wikidata Q17773609; Buskerudmuseene Fossesholm; Kulturminne 86480; Lokalhistoriewiki",
+    "coordType": "museum_complex_representative_point",
+    "coordRole": "protected_manor_museum_complex_anchor",
+    "sourceObjectId": "osm-node:6588462253;wikidata:Q17773609;kulturminne:86480"
+  },
+  "previousCoordinate": {
+    "lat": 59.7346,
+    "lon": 9.8672,
+    "r": 320,
+    "distanceToAppliedCoordinateM": 720.2,
+    "reasonReplaced": "Legacy-punktet lå omtrent 720 meter nord for Fossesholm Herregård og identifiserte verken museumstunet eller hovedbygningen."
+  },
+  "identity": {
+    "resolvedIdentity": "Fossesholm Herregård, det fredede seksbygningsanlegget og museumstunet ved Fossgata 49.",
+    "identityStatus": "resolved",
+    "identityProblem": "Fossesholm kan bety den eldre gården, Fossesholmgodset, dagens hovedbygning eller det samlede museumstunet. Canonical-navnet viser til dagens herregårds- og museumsanlegg.",
+    "locatorTypeCandidate": "protected_manor_and_museum_complex",
+    "requiresSplit": false,
+    "splitReason": "De fredede bygningene, tunet og hageanlegget inngår i ett museumskompleks og håndteres med ett representativt anker og komponentankre."
+  },
+  "requiredEvidence": [
+    "named manor-museum entity point",
+    "independent manor entity and coordinate",
+    "official visitor address and access",
+    "1541 estate-foundation chronology",
+    "eighteenth-century building and rococo layers",
+    "formal protection identifiers",
+    "estate-versus-museum-complex separation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6588462253 – Fossesholm",
+      "sourceUrl": "https://www.openstreetmap.org/node/6588462253",
+      "sourceObjectId": "osm-node:6588462253",
+      "sourceQuality": "named_manor_museum_entity_point",
+      "finding": "Den navngitte museums- og arrangementsentiteten ligger ved 59.72813, 9.86661 og drives av Stiftelsen Buskerudmuseet.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte navngitt punkt for det operative museumskomplekset."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Fossesholm",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q17773609",
+      "sourceObjectId": "wikidata:Q17773609",
+      "sourceQuality": "independent_manor_entity_coordinate_control",
+      "finding": "Q17773609 identifiserer Fossesholm som gård, kulturminne og herregård ved omtrent 59.72811, 9.86642.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Buskerudmuseene – Fossesholm historie",
+      "sourceUrl": "https://buskerudmuseene.no/fossesholm/historie",
+      "sourceObjectId": "buskerudmuseene:fossesholm-historie",
+      "sourceQuality": "official_history_and_identity_control",
+      "finding": "Museet dokumenterer middelalderrøtter, etableringen som stort Foss-gods i 1540-årene, trelastøkonomien, rokokkoomformingen i 1760-årene og museumsdriften etter kjøpet i 1973.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ institusjons- og historieoversikt."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Buskerudmuseene – besøk Fossesholm",
+      "sourceUrl": "https://buskerudmuseene.no/fossesholm/en/visit-us",
+      "sourceObjectId": "buskerudmuseene:fossesholm-visit",
+      "sourceQuality": "official_address_and_access_control",
+      "finding": "Oppgir Fossgata 49, sommersesong, fri adgang til tun, kafé, butikk og enkelte utstillinger, mens hovedbygningen krever billett og omvisning.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer dagens besøks- og tilgangsmodell."
+    },
+    {
+      "sourceProvider": "riksantikvaren_derived_register",
+      "sourceName": "Fossesholm fredede bygninger",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Vedtaksfredede_og_listef%C3%B8rte_kulturminner_p%C3%A5_%C3%98vre_Eiker",
+      "sourceObjectId": "kulturminne:86480",
+      "sourceQuality": "building_level_heritage_identifier_and_coordinate_control",
+      "finding": "Anlegget omfatter seks vedtaksfredede objekter: hovedbygning 86480-1, nordre sidebygning -2, steinfjøs -3, tømmerfjøs -4, posthus/klokketårn -5 og søndre sidefløy -6.",
+      "canVerifyCoordinate": true,
+      "reason": "Kontrollerer fysisk anleggsstruktur, fredningsidentitet og komponentkoordinater."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Fossesholm Herregård",
+      "sourceUrl": "https://lokalhistoriewiki.no/Fossesholm_Herreg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:Fossesholm_Herregård",
+      "sourceQuality": "independent_complex_identity_coordinate_and_museum_control",
+      "finding": "Oppgir 59.7281089, 9.8655025 og beskriver seks fredede bygninger, 1700-tallsinteriører, 1923-fredning, museumskjøpet i 1973 og dagens flerbruk.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig kontroll av tunidentitet, historie og geografi."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Fossesholmgodset",
+      "sourceUrl": "https://lokalhistoriewiki.no/Fossesholmgodset",
+      "sourceObjectId": "lokalhistoriewiki:Fossesholmgodset",
+      "sourceQuality": "estate_economy_and_chronology_control",
+      "finding": "Godset ble etablert i 1541 rundt Foss-gårdene, skog, fossefall og sagbruk; godssamlingen ble oppløst etter tvangsauksjonen i 1822.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer 1541-årstallet og forskjellen mellom godset og dagens museumstun."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Fossesholm point",
+      "sourceObjectId": "legacy:fossesholm_herregard",
+      "sourceQuality": "incorrect_nearby_point",
+      "finding": "Legacy-punktet ligger omtrent 720,2 meter nord for museumstunet.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer anlegget."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6588462253",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q17773609",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende herregårdsentitet; OSM gir dagens navngitte museums- og besøksanker."
+    },
+    {
+      "sourceProvider": "kulturminne",
+      "sourceObjectId": "kulturminne:86480-1",
+      "canApplyToPlace": false,
+      "rejectionReason": "Representerer bare hovedbygningen, ikke hele museumstunet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:fossesholm_herregard",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger omtrent 720 meter nord for anlegget."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "fossesholm_manor_museum",
+      "name": "Fossesholm Herregård",
+      "lat": 59.72813,
+      "lon": 9.86661,
+      "r": 150,
+      "type": "protected_manor_museum_complex_anchor",
+      "sourceProvider": "osm_wikidata_buskerudmuseene",
+      "sourceObjectId": "osm-node:6588462253;wikidata:Q17773609;kulturminne:86480",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "fossesholm_main_building",
+      "name": "Fossesholm hovedbygning",
+      "lat": 59.72834,
+      "lon": 9.86572,
+      "r": 75,
+      "type": "protected_main_building_component",
+      "sourceProvider": "kulturminne",
+      "sourceObjectId": "kulturminne:86480-1",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:fossesholm_herregard",
+      "lat": 59.7346,
+      "lon": 9.8672,
+      "distanceFromAppliedM": 720.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6588462253",
+      "lat": 59.72813,
+      "lon": 9.86661,
+      "distanceFromPreviousM": 720.2,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/buskerud-coordinate-fossesholm-herregard-source-probe/source-summary.json",
+      "description": "Kildekontroll for tunanker, fredede bygninger, 1541-gods, trelastøkonomi, rokokkolag, museumsdrift og tilgang."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte det navngitte museumstunet som canonical, beholdt 1541 som godsets etableringsår og skilte hovedbygning, øvrige fredede bygg, hage og det historiske godset. Fortsett med hadeland_glassverk."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 720 meter sør.",
+    "Canonical representerer det samlede fredede museumstunet, ikke bare hovedbygningen.",
+    "År 1541 gjelder godsets etablering, ikke dagens hovedbygning eller rokokkoomformingen.",
+    "Seks enkeltbygninger har egne fredningsobjekter under kulturminne 86480.",
+    "desc og popupDesc er beholdt uendret under place-description governance.",
+    "Radiusen er ikke en tun-, bygnings-, hage-, museums-, eiendoms-, verne- eller tilgangsgrense."
+  ]
+}
