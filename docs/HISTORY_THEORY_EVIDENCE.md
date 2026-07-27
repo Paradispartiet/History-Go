@@ -32,11 +32,13 @@ Batchene er `multi_case_geographic_pilot` i Oslo/Akershus. Hvert objekt står de
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Batch 1 etablerte kontrakten med ti objekter; batch 2 tilfører tolv og bringer produksjonen til 22 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Batch 1 etablerte kontrakten med ti objekter, batch 2 tilføyde tolv, og batch 3 tilfører ti med egne claim-profiler. Produksjonen står dermed på 32 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
 - Batch 1: **10** kvalifiserende teoriobjekter.
 - Batch 2: **12** nye kvalifiserende teoriobjekter.
-- Totalt: **22 av 230** teoriobjekter (**9,6 %**).
+- Batch 3: **10** nye kvalifiserende teoriobjekter med egne claim-profiler.
+- Totalt: **32 av 230** teoriobjekter (**13,9 %**).
 - Universell status: **INCOMPLETE**.
+- Produksjonsavhengigheter: `reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v1.md`.
