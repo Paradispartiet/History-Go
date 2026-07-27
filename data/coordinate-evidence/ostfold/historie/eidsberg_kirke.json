@@ -1,0 +1,232 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "eidsberg_kirke",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch2/eidsberg_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_protected_medieval_church_building_geometry_anchor",
+  "currentCoordinate": {
+    "lat": 59.51955,
+    "lon": 11.2574,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 285802498 – Eidsberg kirke; Wikidata Q6492967; Kulturminne ID 84070; Den norske kirke – Eidsberg kirke",
+    "coordType": "protected_medieval_church_building_centroid",
+    "coordRole": "medieval_church_building_anchor",
+    "sourceObjectId": "osm-way:285802498;wikidata:Q6492967;riksantikvaren-kulturminne:84070;church-of-norway-building:824",
+    "coordNote": "The canonical marker follows the church-building geometry, not the cemetery, parsonage, parish or wider Eidsberg locality."
+  },
+  "previousCoordinate": {
+    "lat": 59.5489,
+    "lon": 11.3547,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 6383.0,
+    "reasonReplaced": "The legacy point lay approximately 6.38 kilometres northeast of Eidsberg church and had no identifiable source object."
+  },
+  "identity": {
+    "currentName": "Eidsberg kirke",
+    "resolvedIdentity": "The protected medieval stone church at Grønnsundveien 1, identified by OSM way 285802498, Wikidata Q6492967, Kulturminne ID 84070 and Church of Norway building ID 824.",
+    "identityStatus": "resolved",
+    "identityProblem": "The church name can be confused with the wider parish, cemetery, parsonage, bus stop or Eidsberg locality. The canonical record needs the actual church building as its physical anchor.",
+    "locatorTypeCandidate": "church",
+    "requiresSplit": false,
+    "splitReason": "The medieval church building and immediate church-site context form one coherent place record. Cemetery and parsonage remain associated context rather than separate anchors in this production."
+  },
+  "requiredEvidence": [
+    "named church-building geometry",
+    "heritage and Church of Norway identifier linkage",
+    "official building identity and address",
+    "authoritative medieval and rebuilding context",
+    "explicit rejection of locality and access-point substitutes",
+    "radius and church-site limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 285802498 – Eidsberg kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/285802498",
+      "sourceObjectId": "osm-way:285802498",
+      "sourceQuality": "named_church_building_geometry",
+      "finding": "The mapped place-of-worship and church-building geometry has centroid 59.51955, 11.25740 and represents Eidsberg church itself.",
+      "canVerifyCoordinate": true,
+      "reason": "It directly identifies the physical church building rather than the wider church site or locality."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q6492967 – Eidsberg Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q6492967",
+      "sourceObjectId": "wikidata:Q6492967",
+      "sourceQuality": "church_entity_identifier_and_address_cross_check",
+      "finding": "The entity identifies Eidsberg church as church building and cultural property, links OSM way 285802498, Kulturminne ID 84070 and Church of Norway building ID 824, gives address Grønnsundveien 1 and places the entity approximately 38.1 metres from the applied building centroid.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that the building geometry, protected-site identity, church register and visitor address refer to the same church."
+    },
+    {
+      "sourceProvider": "riksantikvaren_cross_check",
+      "sourceName": "Kulturminne ID 84070 – Eidsberg kirke",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=84070",
+      "sourceObjectId": "riksantikvaren-kulturminne:84070",
+      "sourceQuality": "official_protected_heritage_identity",
+      "finding": "The national heritage identifier is linked to the Eidsberg church cultural-property entity.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms protected-site identity while the mapped church-building geometry supplies the applied coordinate."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Den norske kirke – Eidsberg kirke",
+      "sourceUrl": "https://www.kirken.no/nn-NO/fellesrad/indreostfold/menigheter/eidsberg/v%C3%A5rekirker/eidsberg/",
+      "sourceObjectId": "church-of-norway-building:824",
+      "sourceQuality": "official_current_church_identity_and_history",
+      "finding": "The official church page identifies the building as Eidsberg church, also called Østfolddomen, dedicated to St. Olav and the only surviving medieval church in the former district. It documents the saga reference from 1236 and the major rebuilding in 1880–1881.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current institutional identity and the medieval and later building layers represented by the place record."
+    },
+    {
+      "sourceProvider": "norges_kirker",
+      "sourceName": "Norges Kirker – Eidsberg kirke",
+      "sourceUrl": "https://norgeskirker.no/wiki/Eidsberg_kirke",
+      "sourceObjectId": "norges-kirker:eidsberg-kirke",
+      "sourceQuality": "architectural_and_church_site_context",
+      "finding": "Norges Kirker documents the church as the main church dedicated to St. Olav and describes the church-site and architectural history.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides deeper architectural context without replacing the direct building geometry as coordinate source."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Eidsberg church point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:eidsberg_kirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 6,383.0 metres northeast of the mapped church building.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent Eidsberg church or its immediate church-site environment."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "wikidata_and_church_of_norway",
+      "address": "Grønnsundveien 1, 1880 Eidsberg",
+      "addressRole": "official_church_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Confirms identity and access, while the church-building geometry is the more direct coordinate source."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:285802498",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6492967",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and identifier cross-check; the linked OSM church-building geometry supplies the applied centroid."
+    },
+    {
+      "sourceProvider": "access_control",
+      "sourceObjectId": "eidsberg-kirke-bus-stop",
+      "canApplyToPlace": false,
+      "rejectionReason": "The bus stop is visitor infrastructure rather than the church building."
+    },
+    {
+      "sourceProvider": "nearby_place_control",
+      "sourceObjectId": "eidsberg-prestegard",
+      "canApplyToPlace": false,
+      "rejectionReason": "The parsonage is a separate historical property and not the church coordinate."
+    },
+    {
+      "sourceProvider": "locality_control",
+      "sourceObjectId": "eidsberg-locality-centroid",
+      "canApplyToPlace": false,
+      "rejectionReason": "A locality centroid does not identify the church building."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:285802498",
+      "geometryType": "church_building_polygon",
+      "geometryRole": "protected_medieval_church_geometry",
+      "canApplyToPlace": true,
+      "appliedAsCentroid": true
+    },
+    {
+      "sourceProvider": "church_site_context",
+      "sourceObjectId": "eidsberg-churchyard-and-cemetery",
+      "geometryType": "wider_church_site_geometry_not_captured",
+      "geometryRole": "cemetery_and_church_site_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:84070",
+      "geometryType": "legal_protection_geometry_not_captured",
+      "geometryRole": "protection_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "eidsberg_kirke_hovedbygning",
+      "name": "Eidsberg kirke – kirkebygningen",
+      "lat": 59.51955,
+      "lon": 11.2574,
+      "r": 90,
+      "type": "medieval_church_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:285802498;wikidata:Q6492967;riksantikvaren-kulturminne:84070;church-of-norway-building:824",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:eidsberg_kirke",
+      "lat": 59.5489,
+      "lon": 11.3547,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 6383.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:285802498",
+      "lat": 59.51955,
+      "lon": 11.2574,
+      "coordRole": "medieval_church_building_anchor",
+      "distanceFromPreviousM": 6383.0,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q6492967",
+      "lat": 59.5198888889,
+      "lon": 11.2575,
+      "coordRole": "church_entity_coordinate_cross_check",
+      "distanceFromAppliedM": 38.1,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-eidsberg-kirke-source-probe/source-summary.json",
+      "description": "Persisted church-building geometry, heritage and church-register identity, false-candidate controls and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the Eidsberg medieval church-building centroid and retained the 260-metre gameplay radius. Continue with rygge_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 6.38 kilometres southwest.",
+    "The marker represents the protected church building as anchor for the wider church-site history.",
+    "The cemetery, parsonage, parish and locality are not coordinate substitutes.",
+    "The radius is not a cemetery, legal protection, property, parish or building boundary."
+  ]
+}
