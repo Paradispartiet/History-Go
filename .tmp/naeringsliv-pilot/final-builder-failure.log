@@ -1,0 +1,613 @@
+build-final	Execute locked final builder with byte-exact package reconstruction	﻿2026-07-27T11:08:06.1852531Z ##[group]Run set -euo pipefail
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1853224Z ^[[36;1mset -euo pipefail^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1853633Z ^[[36;1mLOCKED_BUILDER_COMMIT='4234d827f9d852a0bde596d928d689a821408b21'^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1854370Z ^[[36;1mgit show "${LOCKED_BUILDER_COMMIT}:.github/workflows/one-time-build-naeringsliv-pilot-final.yml" > /tmp/locked-builder.yml^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1854986Z ^[[36;1m^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1855197Z ^[[36;1mpython - <<'PY'^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1855454Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1855717Z ^[[36;1m^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1856078Z ^[[36;1mlines = Path('/tmp/locked-builder.yml').read_text(encoding='utf-8').splitlines()^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1856646Z ^[[36;1mmarker = '      - name: Reconstruct, validate and publish clean final branch'^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1857073Z ^[[36;1mmarker_index = lines.index(marker)^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1857579Z ^[[36;1mrun_index = next(index for index in range(marker_index, len(lines)) if lines[index] == '        run: |')^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1858121Z ^[[36;1mbody_lines = lines[run_index + 1:]^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1858594Z ^[[36;1mbody = '\n'.join(line[10:] if line.startswith('          ') else line for line in body_lines) + '\n'^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1859028Z ^[[36;1m^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1859266Z ^[[36;1mold = '''for part in $(seq -w 0 8); do^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1859752Z ^[[36;1m  git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1860221Z ^[[36;1mdone > /tmp/naeringsliv-pilot.b64^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1860499Z ^[[36;1m'''^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1860722Z ^[[36;1mnew = '''python - <<'PACKAGEPY'^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1861011Z ^[[36;1mimport subprocess^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1861266Z ^[[36;1mfrom pathlib import Path^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1861523Z ^[[36;1m^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1861795Z ^[[36;1mcommit = 'adf47efbabb88be77cd0413dee695557923a9b97'^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1862123Z ^[[36;1mchunks = [^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1862360Z ^[[36;1m    subprocess.check_output([^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1862676Z ^[[36;1m        'git', '-C', Path.cwd().as_posix(), 'show',^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1863358Z ^[[36;1m        f'{commit}:.tmp/naeringsliv-pilot/pkg-{index:02d}',^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1863692Z ^[[36;1m    ])^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1864132Z ^[[36;1m    for index in range(9)^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1864384Z ^[[36;1m]^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1864780Z ^[[36;1mPath('/tmp/naeringsliv-pilot.b64').write_bytes(b''.join(chunk.strip() for chunk in chunks))^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1865236Z ^[[36;1mPACKAGEPY^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1865454Z ^[[36;1m'''^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1865664Z ^[[36;1mif old not in body:^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1866068Z ^[[36;1m    raise SystemExit('Fant ikke pakkeløkken i den låste sluttbyggeren')^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1866512Z ^[[36;1mbody = body.replace(old, new, 1)^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1867001Z ^[[36;1mPath('/tmp/run-verified-naeringsliv-pilot-final.sh').write_text(body, encoding='utf-8')^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1867459Z ^[[36;1mPY^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1867659Z ^[[36;1m^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1867937Z ^[[36;1mbash /tmp/run-verified-naeringsliv-pilot-final.sh^[[0m
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1927781Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.1928163Z ##[endgroup]
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.4091706Z From https://github.com/Paradispartiet/History-Go
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.4092520Z  * branch                main       -> FETCH_HEAD
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.4093577Z  * branch                agent/naeringsliv-pilot-profesjonsmaterialisering -> FETCH_HEAD
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:06.4179869Z Preparing worktree (detached HEAD e4d329f35)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.4466374Z Updating files:  29% (4326/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.4575808Z Updating files:  30% (4409/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.4777329Z Updating files:  31% (4556/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.4982989Z Updating files:  32% (4703/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.5183030Z Updating files:  33% (4850/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.5355621Z Updating files:  34% (4996/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.5451329Z Updating files:  35% (5143/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.5525175Z Updating files:  36% (5290/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.5626074Z Updating files:  37% (5437/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.5811199Z Updating files:  38% (5584/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.5949427Z Updating files:  39% (5731/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.6086583Z Updating files:  40% (5878/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.6239872Z Updating files:  41% (6025/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.6630633Z Updating files:  42% (6172/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.6769440Z Updating files:  43% (6319/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.6927554Z Updating files:  44% (6466/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7003357Z Updating files:  45% (6613/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7083615Z Updating files:  46% (6760/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7156478Z Updating files:  47% (6907/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7223661Z Updating files:  48% (7054/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7292691Z Updating files:  49% (7201/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7361158Z Updating files:  50% (7347/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7427416Z Updating files:  51% (7494/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7495137Z Updating files:  52% (7641/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7562511Z Updating files:  53% (7788/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7637915Z Updating files:  54% (7935/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7704111Z Updating files:  55% (8082/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7771544Z Updating files:  56% (8229/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7843736Z Updating files:  57% (8376/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7910087Z Updating files:  58% (8523/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.7995435Z Updating files:  59% (8670/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8066390Z Updating files:  60% (8817/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8143061Z Updating files:  61% (8964/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8212085Z Updating files:  62% (9111/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8283683Z Updating files:  63% (9258/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8379221Z Updating files:  64% (9405/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8451991Z Updating files:  65% (9552/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8522550Z Updating files:  66% (9699/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8588661Z Updating files:  67% (9845/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8684915Z Updating files:  68% (9992/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8753391Z Updating files:  69% (10139/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.8897845Z Updating files:  70% (10286/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9004945Z Updating files:  71% (10433/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9070139Z Updating files:  72% (10580/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9198019Z Updating files:  73% (10727/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9286062Z Updating files:  74% (10874/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9377031Z Updating files:  75% (11021/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9486954Z Updating files:  76% (11168/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9713533Z Updating files:  77% (11315/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9800765Z Updating files:  78% (11462/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:07.9966448Z Updating files:  79% (11609/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.0097059Z Updating files:  80% (11756/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.0279992Z Updating files:  81% (11903/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.0506616Z Updating files:  82% (12050/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.0787223Z Updating files:  83% (12197/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.0991738Z Updating files:  84% (12343/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.1085187Z Updating files:  85% (12490/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.1160536Z Updating files:  86% (12637/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.1269224Z Updating files:  87% (12784/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.1370452Z Updating files:  88% (12931/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.1442549Z Updating files:  89% (13078/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.1604825Z Updating files:  90% (13225/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.1795572Z Updating files:  91% (13372/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2112209Z Updating files:  92% (13519/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2218793Z Updating files:  93% (13666/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2314501Z Updating files:  94% (13813/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2386259Z Updating files:  95% (13960/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2490184Z Updating files:  96% (14107/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2589636Z Updating files:  97% (14254/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2680379Z Updating files:  98% (14401/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2788847Z Updating files:  99% (14548/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2789425Z Updating files: 100% (14694/14694)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2790250Z Updating files: 100% (14694/14694), done.
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.2945892Z HEAD is now at e4d329f35 Utvid Historie teori-evidens med batch 3
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:08.3158922Z Switched to a new branch 'agent/naeringsliv-pilot-profesjonsmaterialisering-final'
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8239027Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8239801Z added 55 packages, and audited 56 packages in 2s
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8240216Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8240468Z 13 packages are looking for funding
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8240797Z   run `npm fund` for details
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8264493Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8264698Z 1 high severity vulnerability
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8264945Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8265231Z To address all issues (including breaking changes), run:
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8265606Z   npm audit fix --force
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8265771Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:10.8265893Z Run `npm audit` for details.
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.0905085Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.0905831Z > history-go@0.0.0 places:index:build
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.0906505Z > npm run build:tools && node dist/tools/build_places_index.mjs
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.0906781Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.1874019Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.1874802Z > history-go@0.0.0 build:tools
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.1875372Z > tsc -p tsconfig.tools.build.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:11.1875691Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.0961509Z Wrote 1431 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 213 category override(s)
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.1986576Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.1987414Z > history-go@0.0.0 quiz:context
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.1988667Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.1989345Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.4069939Z Skrev data/quiz/production_context/naeringsliv/telegrafbygningen.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.5184777Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.5185453Z > history-go@0.0.0 quiz:context
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.5186546Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.5187185Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.7315773Z Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.8468336Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.8469458Z > history-go@0.0.0 quiz:context
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.8471076Z > node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:14.8472169Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.0765442Z Skrev data/quiz/production_context/naeringsliv/havnelageret.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.1288055Z OK: Næringsliv Oslo professional materialization validates (63 questions, 16 calculations, 3 places).
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.2284323Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.2284867Z > history-go@0.0.0 places:emner:check
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.2285541Z > npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.2285818Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.3360667Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.3361219Z > history-go@0.0.0 build:tools
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.3361670Z > tsc -p tsconfig.tools.build.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:15.3361905Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9835050Z === Place emne_id validation ===
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9849021Z Active place files: 1444
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9867629Z Canonical emne files scanned: 20
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9868180Z Canonical emne ids loaded: 1411
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9868458Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9868632Z Missing emne_ids: 0
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9868844Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9869019Z Duplicate emne_ids within same place: 0
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9869236Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9869414Z Duplicate place ids across active files: 0
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9869622Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9869804Z Duplicate place ids within same active file: 0
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9870023Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:17.9870231Z Duplicate canonical emne_ids across canonical files: 0
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.0930602Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.0931280Z > history-go@0.0.0 places:index:check
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.0932421Z > npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.0933217Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.1895150Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.1895823Z > history-go@0.0.0 build:tools
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.1896338Z > tsc -p tsconfig.tools.build.json
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:18.1896553Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:20.6802949Z OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.1197271Z places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.2196277Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.2196936Z > history-go@0.0.0 places:coords:check
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.2197455Z > node tests/place-coordinate-index-parity.test.js
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.2197721Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.3636418Z Place coordinate index parity OK: runtime index coordinate fields match source files.
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.4795868Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.4796361Z > history-go@0.0.0 audit:quiz-content
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.4797050Z > node scripts/audit-quiz-content-quality.mjs
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.4797449Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8567619Z Quizinnholds-audit
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8569438Z - filer: 335
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8570226Z - spørsmål: 8463
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8570664Z - balansebrudd: 257
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8571374Z - teori/begrepsspørsmål: 3108
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8571872Z - forbudte teorimaler: 277
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8572396Z - gjentatte åpninger: 64
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8573081Z - mistenkelig svarlengde: 2521
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8590630Z - JSON-feil: 0
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8591062Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8591275Z Verste balansebrudd:
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8592211Z - data/quiz/litteratur/deichman_bjorvika_sets.json [deichman_bjorvika]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8593442Z - data/quiz/litteratur/litteraturhuset_sets.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8594367Z - data/quiz/litteratur/norli_universitetsgata_sets.json [norli_universitetsgata]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8595320Z - data/quiz/litteratur/tronsmo_bokhandel_sets.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8596189Z - data/quiz/litteratur/wergelandsveien_15_sets.json [wergelandsveien_15]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8597534Z - data/quiz/litteratur/camilla_collett_statue_sets_merged.json [camilla_collett_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8598489Z - data/quiz/litteratur/eldorado_bokhandel_sets_merged.json [eldorado_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8599626Z - data/quiz/litteratur/gamle_deichman.json [gamle_deichman]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8600982Z - data/quiz/litteratur/henrik_wergeland_statue_sets_merged.json [henrik_wergeland_statue]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8601947Z - data/quiz/litteratur/litteraturhuset_sets_merged.json [litteraturhuset]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8603036Z - data/quiz/litteratur/nationaltheatret_sets_merged.json [nationaltheatret]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8603981Z - data/quiz/litteratur/tronsmo_bokhandel_sets_merged.json [tronsmo_bokhandel]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8605044Z - data/quiz/musikk/Lisboa/lisbon_coliseu_dos_recreios_sets_merged.json [lisbon_coliseu_dos_recreios]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8606072Z - data/quiz/musikk/Lisboa/lisbon_mouraria_fado_sets_merged.json [lisbon_mouraria_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8607084Z - data/quiz/musikk/Lisboa/lisbon_teatro_tivoli_bbva_sets_merged.json [lisbon_teatro_tivoli_bbva]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8607982Z - data/quiz/musikk/Lisboa/museu_fado.json [lisbon_museu_do_fado]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8608684Z - data/quiz/musikk/blaa_sets_merged.json [blaa]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8609459Z - data/quiz/musikk/det_norske_teatret_sets_merged.json [det_norske_teatret]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8610499Z - data/quiz/musikk/john_dee_sets_merged_REVISED.json [john_dee]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8611276Z - data/quiz/musikk/operaen_musikk_sets_merged.json [operaen]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8612047Z - data/quiz/musikk/parkteatret_sets_merged.json [parkteatret]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8612988Z - data/quiz/musikk/rockefeller_sets_merged.json [rockefeller]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8613670Z - data/quiz/musikk/salt_sets_merged.json [salt]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8614406Z - data/quiz/musikk/sentrum_scene_sets_merged.json [sentrum_scene]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8615227Z - data/quiz/naeringsliv/akerselva_industri_sets_merged.json [akerselva]: fakta 0, sammenheng 0, teori 1
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8615647Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8616045Z Mest gjentatte spørsmålsåpninger:
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8616598Z - 58 × «hvilken samlet analyse passer best for …» i 58 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8617495Z - 27 × «hva bør spilleren se etter først …» i 27 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8618413Z - 27 × «hva er et godt første observasjonsspørsmal …» i 27 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8619308Z - 23 × «hva er den dypere læringen i …» i 23 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8620169Z - 20 × «hvilken metode passer best for a …» i 13 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8620993Z - 16 × «hva bør holdes ute av trygg …» i 16 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8621893Z - 14 × «hva er den viktigste forskjellen mellom …» i 14 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8622983Z - 14 × «hva er en avansert observasjon ved …» i 14 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8623790Z - 11 × «hva betyr stedlesning …» i 10 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8624607Z - 11 × «hva bør spilleren se etter for …» i 9 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8625393Z - 11 × «hva er den mest presise faglige …» i 9 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8626160Z - 11 × «hva betyr blagrønn struktur …» i 7 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8626850Z - 9 × «hva er en kantsone …» i 5 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8629539Z - 8 × «hva er en avansert observasjon i …» i 8 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8630365Z - 8 × «hva er den beste korte forklaringen …» i 8 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8631096Z - 8 × «hva bør holdes ute av en …» i 8 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8632031Z - 8 × «hva betyr bynatur …» i 5 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8632922Z - 8 × «hva er en kritisk blindside ved …» i 2 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8633653Z - 7 × «hva kan være en konflikt i …» i 7 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:21.8634331Z - 7 × «hva er en trygg mate a …» i 7 filer
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5232399Z {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5232985Z   "status": "passed",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5233395Z   "categoriesWithQuizProduction": 3,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5233722Z   "quizFilesChecked": 8,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5233976Z   "checked": [
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5234185Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5234438Z       "categoryId": "by",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5234859Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5235350Z       "targetId": "deichman_bjorvika",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5235751Z       "questions": 35
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5235995Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5236194Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5236418Z       "categoryId": "historie",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5236779Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5237176Z       "targetId": "grindheim_runestein",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5237459Z       "questions": 21
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5237695Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5237882Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5238107Z       "categoryId": "historie",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5238458Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5238839Z       "targetId": "grindheim_steinkross",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5239134Z       "questions": 21
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5239350Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5239534Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5239746Z       "categoryId": "historie",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5240135Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5240867Z       "targetId": "grindheimsveien_nord_gravfelt",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5241168Z       "questions": 21
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5241376Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5241562Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5241785Z       "categoryId": "historie",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5242135Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5242551Z       "targetId": "hoyland_gravhaug_etne",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5243069Z       "questions": 21
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5243289Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5243475Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5243705Z       "categoryId": "naeringsliv",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5244101Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5244502Z       "targetId": "telegrafbygningen",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5244782Z       "questions": 35
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5244991Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5245180Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5245399Z       "categoryId": "naeringsliv",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5245767Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5246161Z       "targetId": "oslo_posthus",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5246417Z       "questions": 35
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5246627Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5246812Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5247040Z       "categoryId": "naeringsliv",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5247415Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5247814Z       "targetId": "havnelageret",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5248072Z       "questions": 35
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5248286Z     }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5248482Z   ],
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5248682Z   "failures": []
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5248896Z }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.5483020Z OK: produksjonskontekst uten nye avvik
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.6459809Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.6463076Z > history-go@0.0.0 audit:quiz-progression
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.6463881Z > node scripts/audit-quiz-progression.mjs
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.6464221Z 
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7565555Z {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7565983Z   "status": "failed",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7566361Z   "quizFilesChecked": 8,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7566837Z   "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7567245Z   "checked": [
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7567459Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7567765Z       "file": "data/quiz/by/deichman_bjorvika_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7568463Z       "profile": "rich_5x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7568719Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7568939Z         "total": 35,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7569163Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7569383Z           "fact": 19,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7569605Z           "context": 9,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7569847Z           "concept_theory": 7
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7570095Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7570301Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7570561Z           "fact": 0.543,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7570848Z           "context": 0.257,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7571155Z           "concept_theory": 0.2
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7571407Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7571626Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7571857Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7572125Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7572405Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7572940Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7573281Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7573493Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7573710Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7574045Z       "file": "data/quiz/historie/grindheim_runestein_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7574445Z       "profile": "narrow_3x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7574723Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7574965Z         "total": 21,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7575191Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7575429Z           "fact": 12,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7575675Z           "context": 5,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7575930Z           "concept_theory": 4
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7576188Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7576415Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7576639Z           "fact": 0.571,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7576900Z           "context": 0.238,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7577188Z           "concept_theory": 0.19
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7577687Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7577904Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7578132Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7578401Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7578666Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7578962Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7579214Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7579420Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7579631Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7579961Z       "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7580354Z       "profile": "narrow_3x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7580639Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7580875Z         "total": 21,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7581114Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7581342Z           "fact": 12,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7581569Z           "context": 5,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7581834Z           "concept_theory": 4
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7582097Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7582359Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7582588Z           "fact": 0.571,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7582941Z           "context": 0.238,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7583237Z           "concept_theory": 0.19
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7583502Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7583718Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7583956Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7584227Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7584477Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7584735Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7584987Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7585180Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7585373Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7585714Z       "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7586153Z       "profile": "narrow_3x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7586496Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7586730Z         "total": 21,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7586965Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7587179Z           "fact": 12,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7587410Z           "context": 5,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7587653Z           "concept_theory": 4
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7587896Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7588098Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7588319Z           "fact": 0.571,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7588559Z           "context": 0.238,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7588837Z           "concept_theory": 0.19
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7589244Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7589456Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7589660Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7589907Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7590146Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7590405Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7590667Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7590854Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7591045Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7591348Z       "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7591717Z       "profile": "narrow_3x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7591960Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7592174Z         "total": 21,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7592417Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7592626Z           "fact": 12,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7592962Z           "context": 5,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7593195Z           "concept_theory": 4
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7593431Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7593637Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7593871Z           "fact": 0.571,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7594101Z           "context": 0.238,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7594398Z           "concept_theory": 0.19
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7594652Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7594858Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7595076Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7595331Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7595572Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7595854Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7596113Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7596320Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7596513Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7596862Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7597287Z       "profile": "rich_5x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7597543Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7597758Z         "total": 35,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7598135Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7598371Z           "fact": 14,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7598625Z           "context": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7598894Z           "concept_theory": 21
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7599150Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7599354Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7599582Z           "fact": 0.4,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7599840Z           "context": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7600105Z           "concept_theory": 0.6
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7600369Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7600609Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7600861Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7601160Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7601437Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7601693Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7601948Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7602156Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7602367Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7602796Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7603182Z       "profile": "rich_5x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7603446Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7603669Z         "total": 35,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7603924Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7604165Z           "fact": 14,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7604411Z           "context": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7604695Z           "concept_theory": 21
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7604967Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7605176Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7605415Z           "fact": 0.4,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7605661Z           "context": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7605932Z           "concept_theory": 0.6
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7606208Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7606457Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7606725Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7607047Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7607356Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7607683Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7607924Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7608139Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7608353Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7608677Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7609052Z       "profile": "rich_5x7",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7609321Z       "balance": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7609564Z         "total": 35,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7609843Z         "counts": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7610433Z           "fact": 14,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7610813Z           "context": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7611197Z           "concept_theory": 21
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7611536Z         },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7611739Z         "ratios": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7611953Z           "fact": 0.4,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7612185Z           "context": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7612437Z           "concept_theory": 0.6
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7612683Z         }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7613190Z       },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7613566Z       "normalOpening": {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7613948Z         "status": "checked",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7614344Z         "checkedSets": 2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7614637Z         "checkedQuestions": 14
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7614931Z       }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7615135Z     }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7615328Z   ],
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7615527Z   "failures": [
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7615747Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7616111Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7616868Z       "reason": "metode starter før oppgitt fase",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7617263Z       "setId": "naeringsliv_telegrafbygningen_set_3",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7617615Z       "expectedStartPhase": "bridge"
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7617898Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7618094Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7618441Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7618924Z       "reason": "metode starter før oppgitt fase",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7619297Z       "setId": "naeringsliv_telegrafbygningen_set_5",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7619635Z       "expectedStartPhase": "bridge"
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7619911Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7620103Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7620430Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7621114Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7621660Z       "family": "fact",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7621911Z       "ratio": 0.4,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7622126Z       "minimum": 0.5,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7622361Z       "maximum": 0.6
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7622578Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7622986Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7623351Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7623778Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7624083Z       "family": "context",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7624322Z       "ratio": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7624547Z       "minimum": 0.2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7624766Z       "maximum": 0.3
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7624977Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7625163Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7625509Z       "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7625929Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7626263Z       "family": "concept_theory",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7626528Z       "ratio": 0.6,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7626751Z       "minimum": 0.15,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7626972Z       "maximum": 0.25
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7627195Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7627379Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7627688Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7628189Z       "reason": "metode starter før oppgitt fase",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7628555Z       "setId": "naeringsliv_oslo_posthus_set_3",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7628886Z       "expectedStartPhase": "bridge"
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7629145Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7629329Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7629623Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7630066Z       "reason": "metode starter før oppgitt fase",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7630409Z       "setId": "naeringsliv_oslo_posthus_set_5",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7630724Z       "expectedStartPhase": "bridge"
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7630985Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7631173Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7631473Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7631896Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7632431Z       "family": "fact",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7632656Z       "ratio": 0.4,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7633089Z       "minimum": 0.5,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7633313Z       "maximum": 0.6
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7633527Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7633716Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7634009Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7634405Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7634702Z       "family": "context",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7634944Z       "ratio": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7635168Z       "minimum": 0.2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7635386Z       "maximum": 0.3
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7635609Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7635810Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7636114Z       "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7636545Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7636883Z       "family": "concept_theory",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7637141Z       "ratio": 0.6,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7637362Z       "minimum": 0.15,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7637588Z       "maximum": 0.25
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7637803Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7637997Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7638294Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7638769Z       "reason": "metode starter før oppgitt fase",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7639132Z       "setId": "naeringsliv_havnelageret_set_3",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7639459Z       "expectedStartPhase": "bridge"
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7639744Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7639930Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7640246Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7640695Z       "reason": "metode starter før oppgitt fase",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7641183Z       "setId": "naeringsliv_havnelageret_set_5",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7641500Z       "expectedStartPhase": "bridge"
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7641758Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7641943Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7642232Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7642863Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7643308Z       "family": "fact",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7643632Z       "ratio": 0.4,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7643951Z       "minimum": 0.5,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7644275Z       "maximum": 0.6
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7644618Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7644885Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7645347Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7645983Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7646453Z       "family": "context",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7646826Z       "ratio": 0,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7647154Z       "minimum": 0.2,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7647506Z       "maximum": 0.3
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7647852Z     },
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7648153Z     {
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7648629Z       "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7649277Z       "reason": "innholdsbalanse utenfor superset",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7649811Z       "family": "concept_theory",
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7650226Z       "ratio": 0.6,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7650577Z       "minimum": 0.15,
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7650917Z       "maximum": 0.25
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7651235Z     }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7651522Z   ]
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7651816Z }
+build-final	Execute locked final builder with byte-exact package reconstruction	2026-07-27T11:08:23.7735389Z ##[error]Process completed with exit code 1.
