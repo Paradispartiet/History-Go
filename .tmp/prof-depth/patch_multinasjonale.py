@@ -1,7 +1,7 @@
 import json
 
-path = "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
-with open(path, encoding="utf-8") as handle:
+profile_path = "data/fag/naeringsliv/handelshogskolefordypning_internasjonal_operations_v1.json"
+with open(profile_path, encoding="utf-8") as handle:
     document = json.load(handle)
 
 patches = {
@@ -39,6 +39,17 @@ missing = set(patches) - seen
 if missing:
     raise SystemExit(f"Fant ikke profiler som skulle rettes: {sorted(missing)}")
 
-with open(path, "w", encoding="utf-8") as handle:
+with open(profile_path, "w", encoding="utf-8") as handle:
     json.dump(document, handle, ensure_ascii=False, indent=2)
     handle.write("\n")
+
+audit_path = "scripts/audit-category-governance.mjs"
+with open(audit_path, encoding="utf-8") as handle:
+    audit_source = handle.read()
+bad = r'const pattern = new RegExp(`const\s+${constantName}\s*=\s*\[([\s\S]*?)\]`, "m");'
+good = r'const pattern = new RegExp(`const\\s+${constantName}\\s*=\\s*\\[([\\s\\S]*?)\\]`, "m");'
+if bad not in audit_source:
+    raise SystemExit("Fant ikke regulæruttrykket som skulle escapes")
+audit_source = audit_source.replace(bad, good, 1)
+with open(audit_path, "w", encoding="utf-8") as handle:
+    handle.write(audit_source)
