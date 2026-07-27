@@ -80,6 +80,7 @@ jobs:
           set -euo pipefail
           export AUDIT_GENERATED_AT="$(node -p "require('./reports/etne-non-nature-quality-audit/report.json').generatedAt")"
           node tools/audit-etne-non-nature-round-quality.mjs
+          sed -i 's/[[:space:]]\+$//' reports/etne-non-nature-quality-audit/report.md
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reports/etne-non-nature-quality-audit/report.json reports/etne-non-nature-quality-audit/report.md
