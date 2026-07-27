@@ -33,20 +33,20 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 10,
-    "unverified_case_candidates": 93
+    "validated_cases": 12,
+    "unverified_case_candidates": 91
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 103,
-    "claims_total": 22,
-    "sources_total": 22,
-    "evidence_links_total": 22,
+    "claims_total": 35,
+    "sources_total": 33,
+    "evidence_links_total": 35,
     "status": "COMPLETE",
-    "interpretation": "Profilen har nå et representativt minimumsgrunnlag med minst ti canonical place-koblede caser og minst to evidenslenker per validert case. Resterende kandidater er en eksplisitt produksjonskø, ikke et skjult terskelgap.",
-    "verified_cases_total": 10,
+    "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med nye claim-, source- og place-evidence-baner for Stortinget og Eidsvolls plass. Fullført profilstatus gjelder minimumsgrunnlaget; resterende kandidater og teoriavhengigheter er fortsatt eksplisitt produksjonskø.",
+    "verified_cases_total": 12,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -670,9 +670,11 @@
       "label": "Eidsvolls plass",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "eidsvolls_plass"
+      ],
       "emne_ids": [
         "em_his_1814_grunnlov_statsdannelse",
         "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
@@ -686,10 +688,22 @@
         "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
         "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_political_chronology_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -2411,9 +2425,11 @@
       "label": "Stortinget",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "stortinget"
+      ],
       "emne_ids": [
         "em_his_1814_grunnlov_statsdannelse",
         "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
@@ -2457,10 +2473,22 @@
         "em_his_statlig_kapasitet_skatt_infrastruktur",
         "em_his_statsborgerskap_status_rettigheter"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_political_chronology_evidence_v1",
+        "validated_at": "2026-07-27",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
