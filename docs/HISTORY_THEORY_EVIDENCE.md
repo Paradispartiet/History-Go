@@ -40,5 +40,3 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Batch 2: **12** nye kvalifiserende teoriobjekter.
 - Totalt: **22 av 230** teoriobjekter (**9,6 %**).
 - Universell status: **INCOMPLETE**.
-
-<!-- review-check retrigger -->
