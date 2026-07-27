@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tune_skipet_funnsted",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/tune_skipet_funnsted.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_archaeological_findspot_and_memorial_anchor_for_destroyed_bathaugen_ship_grave",
+  "currentCoordinate": {
+    "lat": 59.27912,
+    "lon": 11.00285,
+    "r": 260,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "OpenStreetMap node 798882848 – Tuneskipet; Store norske leksikon – Tuneskipet; Tune historielag – Tuneskipet",
+    "coordType": "named_archaeological_site_and_memorial_at_destroyed_ship_mound",
+    "coordRole": "archaeological_findspot_memorial_anchor",
+    "sourceObjectId": "osm-node:798882848",
+    "coordNote": "The canonical marker follows the named archaeological site and memorial at the documented Tune ship findspot on Haugen farm."
+  },
+  "previousCoordinate": {
+    "lat": 59.2713,
+    "lon": 10.9867,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 1264.1,
+    "reasonReplaced": "The legacy point lay approximately 1.26 kilometres southwest of the named findspot and had no identifiable source object."
+  },
+  "identity": {
+    "currentName": "Tune-skipets funnsted",
+    "resolvedIdentity": "The Båthaugen ship-grave findspot on Haugen farm at Rolvsøy, represented today by the named archaeological-site and memorial location.",
+    "identityStatus": "resolved",
+    "identityProblem": "The original mound was heavily reduced before and during the 1867 excavation. The surviving visitor object is a memorial at the findspot, while the ship itself is kept at the Viking Age Museum in Oslo.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The findspot and memorial form one coherent place record. The museum object in Oslo remains a separate destination."
+  },
+  "requiredEvidence": [
+    "stable named archaeological-site point",
+    "authoritative identification of Båthaugen and Haugen farm",
+    "documentation that the memorial stands at the findspot",
+    "explicit separation from the museum object in Oslo",
+    "explicit rejection of the legacy coordinate",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 798882848 – Tuneskipet",
+      "sourceUrl": "https://www.openstreetmap.org/node/798882848",
+      "sourceObjectId": "osm-node:798882848",
+      "sourceQuality": "named_archaeological_site_and_visitor_attraction_point",
+      "finding": "The named archaeological-site object is at 59.27912, 11.00285 and represents the public Tune ship findspot.",
+      "canVerifyCoordinate": true,
+      "reason": "It identifies the physical archaeological destination rather than a generic farm, locality or museum point."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Tuneskipet",
+      "sourceUrl": "https://snl.no/Tuneskipet",
+      "sourceObjectId": "snl:tuneskipet",
+      "sourceQuality": "authoritative_archaeological_identity_and_scope",
+      "finding": "Tuneskipet was excavated from Båthaugen on Haugen farm at Rolvsøy in 1867. The mound was around 60 metres in diameter and about four metres high, but much of it had already been removed.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the historical identity and prevents the memorial anchor from being mistaken for a fully preserved mound geometry."
+    },
+    {
+      "sourceProvider": "tune_historielag",
+      "sourceName": "Tune historielag – Tuneskipet",
+      "sourceUrl": "https://www.tunehistorielag.com/severdigheter/tuneskipet/",
+      "sourceObjectId": "tune-historielag:tuneskipet",
+      "sourceQuality": "local_findspot_and_memorial_documentation",
+      "finding": "The local-history source identifies the memorial stone as standing at the Tune ship findspot on Haugen farm and records that Østfold Historielag erected it in 1947.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that the named visitor point is a memorial at the documented findspot."
+    },
+    {
+      "sourceProvider": "snl_cross_check",
+      "sourceName": "Store norske leksikon – Rolvsøy",
+      "sourceUrl": "https://snl.no/Rolvs%C3%B8y",
+      "sourceObjectId": "snl:rolvsoy",
+      "sourceQuality": "regional_location_cross_check",
+      "finding": "The Rolvsøy article places the excavation on Haugen farm north of Rolvsøy church and explains the Tune name through the historical parish affiliation.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks the place identity and local geography."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Tune ship point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:tune_skipet_funnsted",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 1,264.1 metres southwest of the named archaeological-site point.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the findspot."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:798882848",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm_locality_control",
+      "sourceObjectId": "generic-haugen-farm-point",
+      "canApplyToPlace": false,
+      "rejectionReason": "A generic farm or locality point would not identify the actual archaeological findspot and memorial."
+    },
+    {
+      "sourceProvider": "museum_control",
+      "sourceObjectId": "vikingtidsmuseet:tuneskipet",
+      "canApplyToPlace": false,
+      "rejectionReason": "The ship is held in Oslo, but this record is explicitly the Østfold findspot."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "historical_archaeology",
+      "sourceObjectId": "bathaugen-original-mound",
+      "geometryType": "destroyed_or_heavily_reduced_mound_extent_not_captured",
+      "geometryRole": "historical_ship_grave_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "tuneskipet_minnested",
+      "name": "Tuneskipet – funnsted og minnestein",
+      "lat": 59.27912,
+      "lon": 11.00285,
+      "r": 90,
+      "type": "archaeological_findspot_memorial_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:798882848",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:tune_skipet_funnsted",
+      "lat": 59.2713,
+      "lon": 10.9867,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 1264.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:798882848",
+      "lat": 59.27912,
+      "lon": 11.00285,
+      "coordRole": "archaeological_findspot_memorial_anchor",
+      "distanceFromPreviousM": 1264.1,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-tuneskipet-source-probe/source-summary.json",
+      "description": "Persisted findspot identity, memorial role, wrong-point control, museum separation and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Tune ship archaeological-site and memorial anchor and retained the 260-metre gameplay radius."
+  },
+  "notes": [
+    "The coordinate moves approximately 1.26 kilometres northeast.",
+    "The marker represents the named findspot and memorial at Båthaugen on Haugen farm.",
+    "The Viking Age Museum in Oslo is not the canonical coordinate for this place record.",
+    "The radius is not the original mound, archaeological locality, protection or property geometry."
+  ]
+}
