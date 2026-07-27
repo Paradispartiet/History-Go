@@ -1,9 +1,41 @@
 {
   "id": "hvaler_kirke",
   "name": "Hvaler kirke",
-  "lat": 59.0375,
-  "lon": 11.0319,
+  "lat": 59.03267,
+  "lon": 11.02568,
   "r": 240,
+  "locatorType": "church",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:543076065",
+  "address": {
+    "street": "Svanekilveien",
+    "number": "11",
+    "postcode": "1680",
+    "city": "Skjærhalden",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "building_representative_point",
+  "coordRole": "church_building_anchor",
+  "coordType": "named_medieval_island_church_building_polygon_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 543076065 – Hvaler kirke; Wikidata Q6493554; Kulturminne-ID 84680; Den norske kirke",
+  "coordSourceId": "osm-way:543076065",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/543076065",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 644,3 meter sørvest til representasjonspunktet for Hvaler kirkes navngitte bygningspolygon.",
+  "coordNote": "OSM way 543076065 er den navngitte kirkebygningen Hvaler kirke på Kirkøy og er koblet til Wikidata Q6493554, kulturminne-ID 84680, SSR 790650 og Den norske kirkes bygg-ID 444. Bygningsankeret ligger omtrent 4,8 meter fra Wikidata-koordinaten og 4,3 meter fra Commons-kategoriens kartpunkt. Den norske kirke oppgir besøksadressen Svanekilveien 11. Kildene plasserer middelalderkirken omkring 1100 eller i første halvdel av 1100-tallet; funn under kirkegulvet dokumenterer eldre bosetning, men er ikke i seg selv en datering av dagens kirkebygning. Canonical representerer kirkebygningen og det nærmeste kirkestedet. Radius 240 meter dekker kirken, kirkegården og deler av det maritime kulturmiljøet som gameplayområde, men er ikke bygnings-, kirkegårds-, frednings-, eiendoms- eller arkeologisk grense.",
+  "anchors": [
+    {
+      "id": "hvaler_medieval_island_church",
+      "name": "Hvaler kirke",
+      "lat": 59.03267,
+      "lon": 11.02568,
+      "r": 100,
+      "type": "church_building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:543076065"
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Hvaler",
@@ -16,15 +48,29 @@
     "hvaler",
     "sjøfart"
   ],
-  "desc": "Middelalderkirke i stein på Kirkøy, trolig bygget før 1100. Hvaler kirke knytter kristning, øysamfunn, sjøfart, bronsealderfunn og maritime kulturlag sammen.",
-  "popupDesc": "Hvaler kirke ligger på Kirkøy og er en romansk middelalderkirke i stein, trolig bygget før 1100. Den er et av de eldste konkrete historiske punktene i Hvalers øylandskap. Rundt kirken finnes et bredt maritimt kulturlandskap med bronsealderfunn, hustufter fra vikingtid, sjøfartshistorie, steinindustri og eldre hvalerbåter. Stedet bør brukes til å spørre om hvordan kirke, hav, øyer og ferdsel hang sammen i middelalderen.",
+  "desc": "Romansk middelalderkirke i stein på Kirkøy, oppført omkring 1100 eller tidlig på 1100-tallet. Hvaler kirke knytter kirkestedet til øysamfunn, sjøfart og eldre bosetningsspor.",
+  "popupDesc": "Hvaler kirke ligger på Kirkøy, rett nord for den lune pollen Ørekroken, og er en romansk middelalderkirke i stein. Kildene plasserer oppføringen omkring 1100 eller i første halvdel av 1100-tallet. Kirken har rektangulært skip, smalere kor og apsis, og byggematerialer og portaler viser flere stadier i den tidlige byggeprosessen. Under restaureringen i 1953–1955 ble det funnet spor etter eldre bosetning under kirkegrunnen. Det viser lang bruk av stedet, men betyr ikke automatisk at dagens kirkebygning er eldre enn middelalderdateringen. Beliggenheten ved tidligere havn og sildefiske gjør kirken til et tydelig knutepunkt mellom kristning, øysamfunn, ferdsel og maritim økonomi. History Go forankrer posten ved selve kirkebygningen. Kirkegården, prestegården, Ørekroken og det bredere maritime kulturlandskapet er viktige sammenhenger, men ikke del av én presis koordinatgeometri.",
+  "externalLinks": [
+    {
+      "label": "Den norske kirke – Hvaler kirke",
+      "url": "https://www.kirken.no/nn-NO/fellesrad/hvaler-menighet/om-menigheten/kontakt-oss/"
+    },
+    {
+      "label": "Norges Kirker – Hvaler kirke",
+      "url": "https://norgeskirker.no/wiki/Hvaler_kirke"
+    },
+    {
+      "label": "Wikidata – Hvaler Church",
+      "url": "https://www.wikidata.org/wiki/Q6493554"
+    }
+  ],
   "quiz_profile": {
     "place_type": "kirke",
-    "subtype": "middelalderkirke_i_øysamfunn",
+    "subtype": "middelalderkirke_i_maritimt_øysamfunn",
     "signature_features": [
-      "romansk steinkirke på Kirkøy",
-      "trolig bygget før 1100",
-      "koblet til maritimt øylandskap og eldre kulturlag"
+      "romansk steinkirke på Kirkøy fra omkring 1100 eller tidlig 1100-tall",
+      "ligger nær Ørekroken og et historisk maritimt ferdsels- og fiskerilandskap",
+      "eldre bosetningsspor ble funnet under kirkegrunnen"
     ],
     "primary_angles": [
       "historie",
@@ -36,20 +82,22 @@
       "middelalderkirke",
       "øylandskap",
       "maritim_historie",
-      "kontinuitet"
+      "arkeologisk_kontinuitet"
     ],
     "avoid_angles": [
       "bare_sommerøy",
-      "generisk_kirke"
+      "generisk_kirke",
+      "påstand_om_at_bosetningsspor_daterer_kirken"
     ],
     "must_include": [
       "kirken som tidlig middelalderkirke på Kirkøy",
-      "koblingen til Hvalers maritime kulturlandskap"
+      "koblingen til Ørekroken og Hvalers maritime landskap",
+      "skillet mellom eldre bosetningsspor og dateringen av kirkebygningen"
     ],
     "contrast_targets": [
       "rygge_kirke",
       "akeroya_fort"
     ],
-    "notes": "Skal spørres som øy- og sjøfartskirke, ikke som vanlig bygdekirke."
+    "notes": "Skal spørres som middelalderkirke i et maritimt øysamfunn. Kirkebygningen er coordinate anchor; kirkegården, prestegården og det bredere kystlandskapet er assosiert kontekst."
   }
 }
