@@ -34,6 +34,11 @@ jobs:
             | tee reports/historie-theory-evidence/ritual-reception-v1-validation/materializer-syntax.log
           node tools/materialize-history-ritual-reception-evidence-v1.mjs 2>&1 \
             | tee reports/historie-theory-evidence/ritual-reception-v1-validation/materializer.log
+          python - <<'PY'
+          from pathlib import Path
+          report = Path('reports/historie-profile-evidence/history-profile-evidence-foundation.md')
+          report.write_text(report.read_text().rstrip() + '\n')
+          PY
 
       - name: Validate profile and theory evidence
         shell: bash
