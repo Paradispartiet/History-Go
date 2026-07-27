@@ -13,6 +13,26 @@ permissions:
   contents: write
 
 jobs:
+  city-profile:
+    if: github.head_ref == 'agent/etne-all-rounds-quality-audit-uplift'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-all-rounds-quality-audit-uplift
+      - name: Validate Etne city profile
+        run: node tests/etne-city-batch1-round-content.test.js
+
+  literature-profile:
+    if: github.head_ref == 'agent/etne-all-rounds-quality-audit-uplift'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/etne-all-rounds-quality-audit-uplift
+      - name: Validate Etne literature profile
+        run: node tests/etne-literature-batch1-round-content.test.js
+
   validate:
     if: github.head_ref == 'agent/etne-all-rounds-quality-audit-uplift'
     runs-on: ubuntu-latest
@@ -64,12 +84,6 @@ jobs:
 
       - name: Validate PlaceCard runtime profiles
         run: node tests/place-card-rounds-runtime-audit.test.js
-
-      - name: Validate Etne city profile
-        run: node tests/etne-city-batch1-round-content.test.js
-
-      - name: Validate Etne literature profile
-        run: node tests/etne-literature-batch1-round-content.test.js
 
       - name: Publish refreshed audit report
         shell: bash
