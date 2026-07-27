@@ -1,55 +1,139 @@
 {
   "id": "rakkestad_kirke",
   "name": "Rakkestad kirke",
-  "lat": 59.4254,
-  "lon": 11.3452,
+  "lat": 59.41078,
+  "lon": 11.36931,
   "r": 260,
+  "locatorType": "medieval_church_building",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:316802556",
+  "geocodeAccuracy": "named_medieval_church_building_geometry",
+  "coordRole": "medieval_church_building_anchor",
+  "coordType": "church_building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 316802556 – Rakkestad kirke; Wikidata Q6494287; Kulturminne ID 85264; Norges Kirker; Rakkestad sokn",
+  "coordSourceId": "osm-way:316802556;wikidata:Q6494287;kulturminne:85264",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/316802556",
+  "coordVerifiedAt": "2026-07-27",
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Rakkestad",
   "year": 1200,
-  "period": "Middelalderkirke og bygdesentrum",
+  "yearQualifier": "circa",
+  "yearMeaning": "Omtrentlig datering av middelalderkirken, ikke et dokumentert eksakt bygge- eller innvielsesår.",
+  "period": "Romansk middelalderkirke og ombygd kirkested",
   "tags": [
     "historie",
     "middelalder",
     "kirke",
     "rakkestad",
-    "lokalsamfunn"
+    "romansk"
   ],
-  "desc": "Romansk middelalderkirke i Rakkestad, antakelig bygget omkring 1200. Kirken og prestegården viser et gammelt bygdesentrum ved ferdselsåren mot Sverige.",
-  "popupDesc": "Rakkestad kirke er en romansk middelalderkirke med rektangulært skip og smalere kor, antakelig bygget omkring 1200. Den ble første gang nevnt i skriftlige kilder i 1370 og ble senere endret gjennom ombygging og restaurering. Sammen med Rakkestad prestegård gjør kirken området til et sterkt lokalt historiepunkt: kirkested, prestegård, ferdsel, 1814-spor og bygdesamfunn henger sammen.",
+  "desc": "Romansk middelalderkirke fra omkring 1200 med bevart steinkjerne og tydelige ombyggingslag fra 1875. Kirken står som eget historisk anker sør for den separate Rakkestad prestegård.",
+  "popupDesc": "Rakkestad kirke er en romansk steinkirke med rektangulært skip og smalere, lavere kor, trolig reist omkring 1200. Kirken er første gang nevnt i skriftlige kilder i 1370. En omfattende ombygging i 1875 gav bygget vesttårn, større korbue og portal samt nye spissbuede vinduer, men middelaldermurene er fortsatt kjernen i anlegget. Altertavlen fra 1696, prekestolen og døpefonten fra omkring 1700 viser hvordan kirkerommet er blitt formet gjennom flere perioder. Rakkestad prestegård ligger omtrent 225 meter nord for kirken og er et eget History Go-sted med sin egen 1814-historie. Gudstjenester, gravferder og kirkegårdsbruk går alltid foran gameplay.",
+  "accessContext": {
+    "siteType": "active_church_and_churchyard",
+    "publicAccess": "Kirkeområdet kan oppleves fra lovlige offentlige adkomster. Innvendig adgang følger gudstjenester, arrangementer og åpningstider.",
+    "limitations": [
+      "Ikke gå inn i gravfelt, avsperrede områder eller private deler av prestegården.",
+      "Gudstjenester, gravferder og annen kirkelig aktivitet har prioritet.",
+      "Gameplay-radiusen er ikke en bygnings-, kirkegårds-, eiendoms-, verne- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "standing_medieval_church",
+      "date": "circa_1200",
+      "status": "surviving_core",
+      "note": "Middelalderens steinmurer i skip og kor utgjør byggets historiske kjerne."
+    },
+    {
+      "type": "first_written_reference",
+      "date": "1370",
+      "status": "documented",
+      "note": "Kirken er første gang nevnt i skriftlige kilder i 1370."
+    },
+    {
+      "type": "major_rebuilding",
+      "date": "1875",
+      "status": "documented",
+      "note": "Vesttårn, større korbue og portal, spissbuede vinduer og omfattende interiørendringer."
+    },
+    {
+      "type": "baroque_inventory",
+      "date": "1696_to_1700",
+      "status": "surviving",
+      "note": "Altertavle fra 1696 og prekestol og døpefont fra omkring 1700."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "rakkestad_medieval_church",
+      "name": "Rakkestad kirke",
+      "lat": 59.41078,
+      "lon": 11.36931,
+      "r": 95,
+      "type": "medieval_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:316802556;wikidata:Q6494287;kulturminne:85264",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "rakkestad_churchyard_context",
+      "name": "Rakkestad kirkegård og kirkested",
+      "lat": 59.41078,
+      "lon": 11.36931,
+      "r": 180,
+      "type": "churchyard_and_kirkested_context",
+      "sourceProvider": "norges_kirker_and_kulturminne",
+      "sourceObjectId": "kulturminne:85264",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "rakkestad_rectory_context",
+      "name": "Rakkestad prestegård",
+      "lat": 59.41279,
+      "lon": 11.36889,
+      "r": 260,
+      "type": "separate_rectory_and_1814_place",
+      "sourceProvider": "history_go_canonical",
+      "sourceObjectId": "place:rakkestad_prestegard_1814",
+      "canApplyToPlace": false
+    }
+  ],
   "quiz_profile": {
     "place_type": "kirke",
-    "subtype": "romansk_middelalderkirke_og_bygdesentrum",
+    "subtype": "romansk_middelalderkirke_med_1875_ombygging",
     "signature_features": [
-      "romansk middelalderkirke fra ca. 1200",
-      "første gang nevnt i skriftlige kilder i 1370",
-      "koblet til prestegård, bygdesentrum og ferdselsåre"
+      "romansk steinkirke fra omkring 1200",
+      "første skriftlige omtale i 1370",
+      "vesttårn og store ombygginger fra 1875"
     ],
     "primary_angles": [
       "historie",
       "middelalder",
-      "religion",
-      "lokalsamfunn"
+      "arkitektur",
+      "ombygging"
     ],
     "question_families": [
       "middelalderkirke",
       "skriftlig_kilde",
-      "kirkested",
-      "bygdesentrum"
+      "1875_ombygging",
+      "middelalderkjerne_og_senere_lag"
     ],
     "avoid_angles": [
       "generisk_kirke",
-      "duplikat_av_prestegarden"
+      "duplikat_av_prestegarden",
+      "eksakt_byggeår_1200"
     ],
     "must_include": [
-      "ca. 1200 som middelalderkirke",
-      "koblingen til Rakkestad prestegård og bygdesentrum"
+      "at 1200 er omtrentlig",
+      "skillet mellom middelalderkjernen og ombyggingen i 1875"
     ],
     "contrast_targets": [
       "rakkestad_prestegard_1814",
       "eidsberg_kirke"
     ],
-    "notes": "Skal spørres som middelalderkirke og lokalt makt-/samfunnspunkt."
+    "notes": "Skal spørres som stående middelalderkirke med dokumenterte senere bygningslag. Prestegården og dens 1814-historie er et separat sted."
   }
 }
