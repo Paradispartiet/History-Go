@@ -1,0 +1,42 @@
+name: One-time History source-method audit V1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-source-method-audit-v1-trigger.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-source-method-audit-v1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Run repository audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/source-method-audit-v1
+          node --check tools/audit-history-source-method-families-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-audit-v1/syntax.log
+          node tools/audit-history-source-method-families-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/source-method-audit-v1/audit.log
+
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-source-method-audit-v1
+          path: reports/historie-theory-evidence/source-method-audit-v1
+          if-no-files-found: error
