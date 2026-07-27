@@ -4,19 +4,19 @@ Status: **generert produksjonsrapport**
 
 Rapporten rangerer manifest-lastede canonical personer etter hvor mye av `docs/PEOPLE_POPUP_SYSTEM.md` de kan fylle. Den måler datakompletthet, ikke personens historiske betydning eller person–sted-relevans.
 
-Source fingerprint: `cf9e070b1b424f503eb45c8d8aea6c41c3024c20c01540ce702f080cbe323d36`
+Source fingerprint: `41c506b09156e5dceea535454a77eed35dfa45e84a48538b5a66cc1b0999056f`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1367 |
+| Personer | 1370 |
 | Complete | 38 |
 | Strong | 0 |
-| Partial | 1000 |
+| Partial | 1003 |
 | Sparse | 329 |
 | Ødelagte bildereferanser | 306 |
-| Eksplisitt initialfallback | 995 |
+| Eksplisitt initialfallback | 998 |
 | Implisitt initialfallback | 23 |
 | Gjennomsnittspoeng | 42.3 |
 
@@ -24,15 +24,15 @@ Source fingerprint: `cf9e070b1b424f503eb45c8d8aea6c41c3024c20c01540ce702f080cbe3
 
 | Kontraktdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 53 | 3.9 % |
+| identity | 56 | 4.1 % |
 | popupDesc | 47 | 3.4 % |
 | lifeData | 38 | 2.8 % |
 | contributions | 38 | 2.8 % |
-| education | 36 | 2.6 % |
-| practiceProfile | 1197 | 87.6 % |
-| placeGrounding | 1367 | 100 % |
-| sources | 290 | 21.2 % |
-| imageContract | 1061 | 77.6 % |
+| education | 35 | 2.6 % |
+| practiceProfile | 1200 | 87.6 % |
+| placeGrounding | 1370 | 100 % |
+| sources | 293 | 21.4 % |
+| imageContract | 1064 | 77.7 % |
 
 ## Kategorier
 
@@ -52,6 +52,7 @@ Source fingerprint: `cf9e070b1b424f503eb45c8d8aea6c41c3024c20c01540ce702f080cbe3
 | media | 29 | 0 | 0 | 12 | 17 | 35 |
 | film_tv | 24 | 0 | 0 | 6 | 18 | 34.9 |
 | natur | 22 | 0 | 0 | 6 | 16 | 30.4 |
+| religion | 3 | 0 | 0 | 3 | 0 | 51 |
 | psykologi | 1 | 0 | 0 | 1 | 0 | 55 |
 
 ## Stedsklynger med mest gjenstående arbeid
