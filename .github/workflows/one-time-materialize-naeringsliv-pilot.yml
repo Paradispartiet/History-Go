@@ -1,0 +1,91 @@
+name: One-time materialize Næringsliv Oslo pilot
+
+on:
+  push:
+    branches:
+      - agent/naeringsliv-pilot-profesjonsmaterialisering
+    paths:
+      - '.github/workflows/one-time-materialize-naeringsliv-pilot.yml'
+      - '.tmp/naeringsliv-pilot/**'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/naeringsliv-pilot-profesjonsmaterialisering
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize and validate pilot
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .tmp/naeringsliv-pilot/pkg-* | base64 --decode | gzip -dc > .tmp/naeringsliv-pilot/materialize.py
+          test "$(sha256sum .tmp/naeringsliv-pilot/materialize.py | cut -d' ' -f1)" = "ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441"
+
+          python .tmp/naeringsliv-pilot/materialize.py
+
+          npm run places:index:build
+          npm run quiz:context -- --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          npm run quiz:context -- --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+          npm run quiz:context -- --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+          python .tmp/naeringsliv-pilot/materialize.py --patch-contexts
+
+          node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
+          npm run places:emners:check
+          npm run places:index:check
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run audit:categories
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+
+      - name: Commit clean production result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          rm -rf .tmp/naeringsliv-pilot
+          rm -f .github/workflows/one-time-materialize-naeringsliv-pilot.yml
+
+          git add \
+            data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json \
+            data/places/naeringsliv/oslo/places_naeringsliv.json \
+            data/places/places_index.json \
+            data/quiz/naeringsliv/telegrafbygningen_sets_merged.json \
+            data/quiz/naeringsliv/oslo_posthus_sets_merged.json \
+            data/quiz/naeringsliv/havnelageret_sets_merged.json \
+            data/quiz/production_briefs/naeringsliv/telegrafbygningen.json \
+            data/quiz/production_briefs/naeringsliv/oslo_posthus.json \
+            data/quiz/production_briefs/naeringsliv/havnelageret.json \
+            data/quiz/production_context/naeringsliv/telegrafbygningen.json \
+            data/quiz/production_context/naeringsliv/oslo_posthus.json \
+            data/quiz/production_context/naeringsliv/havnelageret.json \
+            data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json \
+            tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs \
+            scripts/audit-category-governance.mjs \
+            .tmp/naeringsliv-pilot \
+            .github/workflows/one-time-materialize-naeringsliv-pilot.yml
+
+          git diff --cached --quiet && exit 0
+          git commit -m 'Materialiser profesjonsdybde på tre næringslivssteder'
+          git push origin HEAD:agent/naeringsliv-pilot-profesjonsmaterialisering
