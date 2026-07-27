@@ -42,7 +42,7 @@ jobs:
             cat .tmp/naeringsliv-pilot/pkg-* | base64 --decode | gzip -dc > .tmp/naeringsliv-pilot/materialize.py
             echo "materializer_sha=$(sha256sum .tmp/naeringsliv-pilot/materialize.py | cut -d' ' -f1)"
             test "$(sha256sum .tmp/naeringsliv-pilot/materialize.py | cut -d' ' -f1)" = "ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441"
-            sed -i 's/config\["emners"\]/config["emner"]/g' .tmp/naeringsliv-pilot/materialize.py
+            sed -i 's/config\["emners"\]/config["emner"]/g; s/EMNERS_FILE/EMNER_FILE/g' .tmp/naeringsliv-pilot/materialize.py
             python -m py_compile .tmp/naeringsliv-pilot/materialize.py
 
             python .tmp/naeringsliv-pilot/materialize.py
