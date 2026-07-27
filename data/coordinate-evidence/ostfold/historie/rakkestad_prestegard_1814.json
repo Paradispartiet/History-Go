@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rakkestad_prestegard_1814",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch4/rakkestad_prestegard_1814.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_rectory_complex_anchor",
+  "currentCoordinate": {
+    "lat": 59.41279,
+    "lon": 11.36889,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 6259987033 – Prestegard; Lokalhistoriewiki – Rakkestad prestegård; Allstad – Rakkestad prestebolig; Riksantikvaren; Kulturminne ID 86067",
+    "coordType": "named_rectory_site_representative_point",
+    "coordRole": "protected_rectory_complex_anchor",
+    "sourceObjectId": "osm-node:6259987033;kulturminne:86067"
+  },
+  "previousCoordinate": {
+    "lat": 59.4258,
+    "lon": 11.3452,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 1972.0,
+    "reasonReplaced": "Legacy-punktet lå omtrent 1,97 km nordvest ved Rakkestad tettsted og identifiserte ikke prestegårdsanlegget ved kirken."
+  },
+  "identity": {
+    "resolvedIdentity": "Rakkestad prestegård, gnr. 5/1, som et fredet prestegårdsanlegg ved Rakkestad kirke med hovedbygning fra 1797.",
+    "identityStatus": "resolved",
+    "identityProblem": "Navnet kan vise til det store landbrukseiendomsarealet, gårdsnavnet Prestegard, hovedbygningen, besøksadressen eller det nærliggende kirkestedet. Canonical skal representere det historiske prestegårdsanlegget uten å påstå en ubekreftet bygningsflate eller offentlig adgang.",
+    "locatorTypeCandidate": "protected_rectory_complex",
+    "requiresSplit": false,
+    "splitReason": "Hovedbygning, stabbur og driftsbygninger utgjør ett prestegårdsanlegg. Rakkestad kirke og Rakkestad tettsted er separate steder."
+  },
+  "requiredEvidence": [
+    "navngitt prestegårds- eller gårdspunkt",
+    "adresse og eiendomsidentitet",
+    "hovedbygningens oppføringsår og bygningshistorie",
+    "fredningsidentitet",
+    "støtte for Christian Frederiks besøk i 1814",
+    "skille fra Rakkestad kirke og tettsted",
+    "adgangs- og radiusbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6259987033 – Prestegard",
+      "sourceUrl": "https://www.openstreetmap.org/node/6259987033",
+      "sourceObjectId": "osm-node:6259987033",
+      "sourceQuality": "named_rectory_farm_site_point",
+      "finding": "Det navngitte gårdspunktet ligger på 59.41279, 11.36889 ved prestegårdsanlegget sør for Rakkestad tettsted.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir et direkte navngitt punkt for prestegårdsanlegget og samsvarer med den uavhengige Lokalhistoriewiki-koordinaten."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Rakkestad prestegård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Rakkestad_presteg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:rakkestad-prestegard",
+      "sourceQuality": "site_coordinate_address_and_local_history",
+      "finding": "Oppgir gnr. 5/1, Kirkeveien 116, koordinat 59.4127854, 11.3688136, hovedbygning fra 1797, ombygging i 1838, restaurering i 1922–1923 og Christian Frederiks besøk i 1814.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at OSM-punktet ligger på riktig prestegårdsanlegg og gir bygnings- og hendelseskontekst."
+    },
+    {
+      "sourceProvider": "allstad",
+      "sourceName": "Allstad – Rakkestad prestebolig",
+      "sourceUrl": "https://www.allstad.no/presteboliger/rakkestad-prestebolig",
+      "sourceObjectId": "allstad:rakkestad-prestebolig",
+      "sourceQuality": "official_property_management_and_history",
+      "finding": "Oppgir Kirkeveien 116, hovedbygningen fra 1797, Christian Frederiks besøk i 1814, ombyggingen i 1838, restaurering i 1922–1923, rehabilitering i 2022–2023 og fredning i 1990.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter dagens eiendomsidentitet, hovedbygningen og historikken, men publiserer ikke en presis bygningsgeometri."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – klageavgjørelse for Rakkestad prestegård",
+      "sourceUrl": "https://riksantikvaren.no/rakkestad-prestegard-klage-pa-avslag-pa-soknad-om-dispensasjon-til-montering-av-elektronisk-lassystem-kulturminneloven-15-a/",
+      "sourceObjectId": "riksantikvaren:25-01627-rakkestad",
+      "sourceQuality": "official_current_heritage_authority",
+      "finding": "Klageavgjørelsen gjelder hoveddøren i det fredede kulturminnet og viser at fasade og hovedbygning fortsatt forvaltes etter kulturminneloven.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter aktiv frednings- og forvaltningsstatus."
+    },
+    {
+      "sourceProvider": "kulturminnesok",
+      "sourceName": "Kulturminnesøk – Rakkestad prestegård",
+      "sourceUrl": "https://kulturminnesok.no/minne/?queryString=https%3A%2F%2Fdata.kulturminne.no%2Faskeladden%2Flokalitet%2F86067",
+      "sourceObjectId": "kulturminne:86067",
+      "sourceQuality": "official_heritage_identity",
+      "finding": "Kulturminne ID 86067 identifiserer Rakkestad prestegård som kulturminne.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes som identitets- og fredningskontroll sammen med anleggspunktet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Rakkestad prestegård point",
+      "sourceObjectId": "legacy:rakkestad_prestegard_1814",
+      "sourceQuality": "incorrect_settlement_side_point",
+      "finding": "Legacy-punktet 59.4258, 11.3452 ligger omtrent 1 972 meter nordvest for prestegårdsanlegget.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises fordi det ligger ved tettstedet og ikke ved prestegården eller kirkestedet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "allstad_and_lokalhistoriewiki",
+      "address": "Kirkeveien 116, 1890 Rakkestad",
+      "addressRole": "current_rectory_and_main_building_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adressen bekrefter eiendommen og hovedbygningen, men et adressepunkt er mindre egnet enn det navngitte anleggspunktet for hele prestegårdsanlegget."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6259987033",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "kulturminnesok",
+      "sourceObjectId": "kulturminne:86067",
+      "canApplyToPlace": false,
+      "rejectionReason": "Sterk kulturminneidentitet, men den offentlige kilden gir ikke her en separat maskinlesbar bygningskoordinat som bør erstatte det navngitte anleggspunktet."
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:316802556;wikidata:Q6494287",
+      "canApplyToPlace": false,
+      "rejectionReason": "Rakkestad kirke er et separat middelalderkirkebygg sør for prestegården."
+    },
+    {
+      "sourceProvider": "settlement_control",
+      "sourceObjectId": "rakkestad-settlement",
+      "canApplyToPlace": false,
+      "rejectionReason": "Rakkestad tettsted identifiserer ikke prestegårdsanlegget."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "rakkestad_prestegard_site",
+      "name": "Rakkestad prestegård – anleggspunkt",
+      "lat": 59.41279,
+      "lon": 11.36889,
+      "r": 120,
+      "type": "protected_rectory_complex_anchor",
+      "sourceProvider": "osm_and_lokalhistoriewiki",
+      "sourceObjectId": "osm-node:6259987033;geonames:9489359",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "rakkestad_prestegard_main_building_control",
+      "name": "Hovedbygningen fra 1797 – adressekontroll",
+      "lat": 59.41261,
+      "lon": 11.36898,
+      "r": 55,
+      "type": "historic_main_building_address_control",
+      "sourceProvider": "allstad_and_address_control",
+      "sourceObjectId": "kulturminne:86067;address:Kirkeveien 116",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "rakkestad_church_context",
+      "name": "Rakkestad kirke",
+      "lat": 59.41093,
+      "lon": 11.36944,
+      "r": 80,
+      "type": "adjacent_medieval_church_context_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:316802556;wikidata:Q6494287",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:rakkestad_prestegard_1814",
+      "lat": 59.4258,
+      "lon": 11.3452,
+      "distanceFromAppliedM": 1972.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6259987033",
+      "lat": 59.41279,
+      "lon": 11.36889,
+      "distanceFromPreviousM": 1972.0,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceObjectId": "lokalhistoriewiki:rakkestad-prestegard",
+      "lat": 59.4127854,
+      "lon": 11.3688136,
+      "distanceFromAppliedM": 4.4,
+      "canApplyToPlace": true,
+      "applied": false
+    },
+    {
+      "sourceProvider": "address_control",
+      "sourceObjectId": "address:Kirkeveien 116",
+      "lat": 59.41261,
+      "lon": 11.36898,
+      "distanceFromAppliedM": 20.6,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-rakkestad-prestegard-source-probe/source-summary.json",
+      "description": "Persisted named site coordinate, address and heritage identity, building chronology, 1814 visit, separate church and settlement controls, and access limitations."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Rakkestad prestegård site point, retained 1797 as the main-building year and preserved Christian Frederiks 1814 visit as a historical layer. Continue with aremark_kirke_kirkested."
+  },
+  "notes": [
+    "The coordinate moves approximately 1,972 metres south-east.",
+    "The marker represents the protected rectory complex, not Rakkestad settlement, Rakkestad church or the full agricultural property.",
+    "The main-building address is a control point and is not asserted as a verified building footprint.",
+    "The property is active; gameplay must remain on lawful public areas or use explicit permission.",
+    "The 260-metre radius is not a building, heritage, property, garden, agricultural or access boundary."
+  ]
+}
