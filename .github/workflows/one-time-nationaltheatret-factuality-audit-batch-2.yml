@@ -44,8 +44,23 @@ jobs:
       - name: Run existing modern ensemble regression
         run: node --test tests/nationaltheatret-modern-ensemble-people-v2.test.js
 
-      - name: Run factuality audit batch 2 regression
-        run: node --test tests/nationaltheatret-factuality-audit-people-batch-2.test.js
+      - name: Audit education separation
+        run: node --test --test-name-pattern="keeps documented education" tests/nationaltheatret-factuality-audit-people-batch-2.test.js
+
+      - name: Audit Anders Mordal corrections
+        run: node --test --test-name-pattern="Anders Mordal" tests/nationaltheatret-factuality-audit-people-batch-2.test.js
+
+      - name: Audit Andrine Sæther corrections
+        run: node --test --test-name-pattern="Andrine Sæther" tests/nationaltheatret-factuality-audit-people-batch-2.test.js
+
+      - name: Audit Anne Krigsvoll corrections
+        run: node --test --test-name-pattern="Anne Krigsvoll" tests/nationaltheatret-factuality-audit-people-batch-2.test.js
+
+      - name: Audit Anne Marie Ottersen corrections
+        run: node --test --test-name-pattern="Anne Marie Ottersen" tests/nationaltheatret-factuality-audit-people-batch-2.test.js
+
+      - name: Audit traceable report
+        run: node --test --test-name-pattern="traceable audit report" tests/nationaltheatret-factuality-audit-people-batch-2.test.js
 
       - name: Typecheck and build tools
         run: |
