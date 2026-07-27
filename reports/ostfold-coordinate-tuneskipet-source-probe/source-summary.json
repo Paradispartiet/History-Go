@@ -1,0 +1,72 @@
+{
+  "placeId": "tune_skipet_funnsted",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.2713,
+    "lon": 10.9867,
+    "r": 260
+  },
+  "appliedCoordinate": {
+    "lat": 59.27912,
+    "lon": 11.00285,
+    "r": 260,
+    "displacementM": 1264.1
+  },
+  "identityDecision": "Use the named Tune ship archaeological-site point and 1947 memorial as the stable physical anchor for the Båthaugen findspot on Haugen farm.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-node:798882848",
+    "name": "Tuneskipet",
+    "tags": [
+      "historic=archaeological_site",
+      "tourism=attraction"
+    ],
+    "lat": 59.27912,
+    "lon": 11.00285
+  },
+  "historicalScope": {
+    "source": "Store norske leksikon – Tuneskipet",
+    "finding": "The ship was excavated from Båthaugen on Haugen farm at Rolvsøy in 1867. The mound was around 60 metres in diameter and about four metres high, but much of it had already been removed.",
+    "date": "around 910 or slightly later",
+    "moundCondition": "destroyed_or_heavily_reduced_before_and_during_excavation"
+  },
+  "crossChecks": [
+    {
+      "provider": "tune_historielag",
+      "source": "Tuneskipet",
+      "finding": "The memorial stone stands at the Tune ship findspot on Haugen farm and was erected by Østfold Historielag in 1947."
+    },
+    {
+      "provider": "snl",
+      "source": "Rolvsøy",
+      "finding": "The excavation site is on Haugen farm north of Rolvsøy church; the Tune name reflects the historical parish affiliation."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:tune_skipet_funnsted",
+      "lat": 59.2713,
+      "lon": 10.9867,
+      "distanceFromAppliedM": 1264.1,
+      "reason": "Remote uncontracted point southwest of the documented findspot."
+    },
+    {
+      "sourceObjectId": "generic-haugen-farm-point",
+      "reason": "A farm or locality centroid does not identify the archaeological findspot and memorial."
+    },
+    {
+      "sourceObjectId": "vikingtidsmuseet:tuneskipet",
+      "reason": "The ship is held in Oslo, but this canonical record is the Østfold findspot."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 260,
+    "covers": "The memorial, immediate findspot approaches and nearby Haugen farm context for gameplay.",
+    "doesNotRepresent": [
+      "the original 60-metre Båthaugen geometry",
+      "an archaeological locality or protection polygon",
+      "a property boundary",
+      "the museum location of the ship"
+    ]
+  }
+}
