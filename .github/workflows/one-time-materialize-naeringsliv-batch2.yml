@@ -1,0 +1,121 @@
+name: One-time materialize Næringsliv batch 2
+
+on:
+  push:
+    branches:
+      - agent/naeringsliv-profesjonsmaterialisering-batch-2
+    paths:
+      - .github/workflows/one-time-materialize-naeringsliv-batch2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/naeringsliv-profesjonsmaterialisering-batch-2
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Decode temporary production programs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import zlib from 'node:zlib';
+
+          for (const [source, target] of [
+            ['.tmp/naeringsliv-batch2/materialize.mjs.zlib64', '.tmp/naeringsliv-batch2/materialize.mjs'],
+            ['.tmp/naeringsliv-batch2/validator.mjs.zlib64', '.tmp/naeringsliv-batch2/validator.mjs']
+          ]) {
+            const encoded = fs.readFileSync(source, 'utf8').trim();
+            fs.writeFileSync(target, zlib.inflateSync(Buffer.from(encoded, 'base64')));
+          }
+          NODE
+          node --check .tmp/naeringsliv-batch2/materialize.mjs
+          node --check .tmp/naeringsliv-batch2/validator.mjs
+
+      - name: Materialize places, packets, briefs, quizzes and contexts
+        run: node .tmp/naeringsliv-batch2/materialize.mjs
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate place-description 4.2 packages
+        run: node scripts/validate-place-description-production-v4_2.mjs --all
+
+      - name: Validate Næringsliv materialization
+        run: node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
+
+      - name: Validate place data
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/check-places.sh
+          git restore --source=origin/main -- data/places/places_index.json
+
+      - name: Validate quiz governance and production
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run audit:categories
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+
+      - name: Run TypeScript and browser checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run typecheck
+          npm run typecheck:scripts
+          npm run typecheck:tools
+          npm run typecheck:web
+          npm run build:web:check
+
+      - name: Build one clean production commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          rm -rf .tmp/naeringsliv-batch2
+          rm -f .github/workflows/one-time-materialize-naeringsliv-batch2.yml
+          git restore --source=origin/main -- data/places/places_index.json
+          git reset --mixed origin/main
+          git restore --source=origin/main -- data/places/places_index.json
+          git add -A
+
+          if git diff --cached --name-only | grep -E '^(\.tmp/|\.github/workflows/one-time-materialize-naeringsliv-batch2\.yml$|data/places/places_index\.json$)'; then
+            echo 'Temporary workflow, payload or generated places index leaked into final commit.' >&2
+            exit 1
+          fi
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m "Materialiser Næringsliv batch 2"
+
+      - name: Validate final PR scope and clean tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/validate-place-description-production-v4_2.mjs --changed --base origin/main --head HEAD
+          node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
+          test -z "$(git status --porcelain)"
+          git diff --exit-code origin/main -- data/places/places_index.json
+
+      - name: Publish clean production branch
+        run: git push --force-with-lease origin HEAD:agent/naeringsliv-profesjonsmaterialisering-batch-2
