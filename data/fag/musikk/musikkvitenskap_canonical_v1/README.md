@@ -16,16 +16,19 @@ Start i `index.json`. Alle referanser er relative til denne katalogen.
 - `research_contract.json`: påstands-, evidens- og dybdekontrakt
 - `scholarly_source_standard_v1.json`: kilde-, metadata- og proveniensstandard
 - `source_dossier_contract_v1.json`: bindende kontrakt for temavise forsknings- og kildegrunnlag
-- `scholarly_source_registries_v1/*.json`: fem modulære registre med 30 verifiserte forskningskilder
+- `scholarly_source_registries_v1/*.json`: seks modulære registre med 39 verifiserte forskningskilder
 - `source_dossiers_v1/musikalsk_analyse_lyd_struktur/*.json`: seks dossierer for analyse, lyd og struktur
 - `source_dossiers_v1/historisk_musikkvitenskap_historiografi/*.json`: seks dossierer for historisk musikkvitenskap og historiografi
+- `source_dossiers_v1/etnomusikologi_kultur_samfunn/*.json`: seks dossierer for feltarbeid, språk, identitet, migrasjon, ritual og urfolksstyrt forskning
 
 Kildedossierene er ikke pensumlister og ikke systematiske litteraturgjennomganger. De dokumenterer et kontrollert bibliografisk grunnlag. Detaljpåstander krever fortsatt fulltekst, presis side-, kapittel-, signatur-, takt- eller tidskodelokator og et identifisert direkte musikk- eller kildeobjekt.
 
 De historiske dossierene krever i tillegg dokumentert proveniens, datering, arkiv- eller katalogidentitet, eksplisitt korpusavgrensning og kontroll mot arkivfravær, anakronisme, institusjonell selvbeskrivelse og nasjonal eller kulturell essensialisering.
 
+De etnomusikologiske dossierene krever i tillegg bruksspesifikt og løpende samtykke, dokumentert deltaker- og fellesskapsmyndighet, originalspråk og oversettelsesansvar, anonymiserings- og skaderisiko, kollektiv nytte, tilbakeføring, regler for tilgang og sekundærbruk samt eksplisitt sperre for restriktivt, hellig, sensitivt eller ikke godkjent materiale. Offentlig tilgang eller juridisk minimum er ikke automatisk tillatelse til quiz, lydbruk, stedfesting eller ny publisering.
+
 Filene i `modules/` er beholdt som legacy kildeinventar for eksisterende avhengigheter. De er ikke lenger autoritet for tema-, metode-, teori- eller spørsmålsproduksjon. `legacy_module_id_map_v1.json` oversetter gamle ID-er til canonicale ID-er.
 
 Aktiv emnerevisjon: `musikkvitenskap-emnemigrasjon-v2-2026-07-27`
 
-Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-to-domener-v2-2026-07-28`
+Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-tre-domener-v3-2026-07-28`
