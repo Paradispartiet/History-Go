@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **180**
-- Additional active Oslo IDs outside the protocol: **332**
+- IDs in the current revision protocol: **187**
+- Additional active Oslo IDs outside the protocol: **325**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **332**
+- Additional IDs needing revision: **325**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -23,7 +23,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | 21 |
 | vitenskap | 21 |
 | politikk | 18 |
-| historie | 7 |
 | media | 7 |
 | musikk | 5 |
 | psykologi | 1 |
@@ -32,13 +31,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| historie | Paulus kirke | `paulus_kirke` | 21 | 115 | 3 | `data/places/historie/oslo/places_historie/paulus_kirke.json` | needs revision |
-| historie | The Mini Bottle Gallery | `the_mini_bottle_gallery` | 23 | 118 | 3 | `data/places/historie/oslo/places_historie/the_mini_bottle_gallery.json` | needs revision |
-| historie | Tøyen hovedgård | `toyen_hovedgard` | 30 | 157 | 3 | `data/places/historie/oslo/places_historie/toyen_hovedgard.json` | needs revision |
-| historie | Vålerenga kirke | `valerenga_kirke` | 31 | 139 | 3 | `data/places/historie/oslo/places_historie/valerenga_kirke.json` | needs revision |
-| historie | Vestre gravlund | `vestre_gravlund` | 26 | 107 | 2 | `data/places/historie/oslo/places_historie/vestre_gravlund.json` | needs revision |
-| historie | The Viking Planet Oslo | `viking_planet_oslo` | 21 | 107 | 2 | `data/places/historie/oslo/places_historie/viking_planet_oslo.json` | needs revision |
-| historie | Vikingtidsmuseet | `vikingtidsmuseet` | 23 | 131 | 3 | `data/places/historie/oslo/places_historie/vikingtidsmuseet.json` | needs revision |
 | kunst | Villa Furulund | `villa_furulund` | 21 | 117 | 2 | `data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_05/villa_furulund.json` | needs revision |
 | kunst | Roseslottet | `roseslottet` | 21 | 124 | 2 | `data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06/roseslottet.json` | needs revision |
 | kunst | Villa Romsli | `villa_romsli` | 21 | 118 | 2 | `data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06/villa_romsli.json` | needs revision |
