@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "basmo_festning",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch2/basmo_festning.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_restored_main_fort_ruin_geometry_anchor",
+  "currentCoordinate": {
+    "lat": 59.6171,
+    "lon": 11.53487,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 1263141701 – Basmo festning; Wikidata Q4867802; Kulturminne ID 86068; Store norske leksikon – Basmo festning; Marker kommune",
+    "coordType": "restored_donjon_and_main_fort_building_centroid",
+    "coordRole": "main_fort_ruin_anchor",
+    "sourceObjectId": "osm-way:1263141701;wikidata:Q4867802;riksantikvaren-kulturminne:86068",
+    "coordNote": "The canonical marker follows the restored main fort and donjon ruin, not the complete historical fortress and forterrain."
+  },
+  "previousCoordinate": {
+    "lat": 59.6635,
+    "lon": 11.6738,
+    "r": 320,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 9358.7,
+    "reasonReplaced": "The legacy point lay approximately 9.36 kilometres northeast of the documented Basmo main fort and had no identifiable source object."
+  },
+  "identity": {
+    "currentName": "Basmo festning",
+    "resolvedIdentity": "The partially restored donjon and main-fort ruin on the steep hill between Rødenessjøen and Hemnessjøen, identified by OSM way 1263141701, Wikidata Q4867802 and Kulturminne ID 86068.",
+    "identityStatus": "resolved",
+    "identityProblem": "Basmo was historically a larger fortified landscape with a donjon, retrenchment, batteries, outworks and approximately 40 buildings. The canonical point must identify the surviving main ruin without reducing the complete fortress landscape to one building centroid.",
+    "locatorTypeCandidate": "fortress",
+    "requiresSplit": false,
+    "splitReason": "The visible main ruin is the strongest physical visitor anchor for the wider historical fortress. Additional military components remain associated context rather than independent canonical records in this production."
+  },
+  "requiredEvidence": [
+    "named main-fort ruin geometry",
+    "entity and heritage identifier cross-check",
+    "authoritative distinction between main fort and wider forterrain",
+    "official local history and restoration context",
+    "explicit rejection of the legacy point and broad locality substitutes",
+    "radius and fortress-boundary limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 1263141701 – Basmo festning",
+      "sourceUrl": "https://www.openstreetmap.org/way/1263141701",
+      "sourceObjectId": "osm-way:1263141701",
+      "sourceQuality": "named_restored_main_fort_building_geometry",
+      "finding": "The mapped fort building has centroid 59.61710, 11.53487 and represents the restored donjon and main ruin at Basmo.",
+      "canVerifyCoordinate": true,
+      "reason": "It directly identifies the surviving physical fort structure rather than a road, locality, bus stop or broad landscape point."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q4867802 – Basmo Fortress",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q4867802",
+      "sourceObjectId": "wikidata:Q4867802",
+      "sourceQuality": "fortress_entity_and_heritage_cross_check",
+      "finding": "The entity classifies Basmo as both fortress and cultural property, gives coordinate 59°37′0.8″N, 11°32′7.1″E and links Kulturminne ID 86068.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the same fortress identity and places the entity within a few tens of metres of the applied main-ruin centroid."
+    },
+    {
+      "sourceProvider": "riksantikvaren_cross_check",
+      "sourceName": "Kulturminne ID 86068 – Basmo festning",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=86068",
+      "sourceObjectId": "riksantikvaren-kulturminne:86068",
+      "sourceQuality": "official_protected_heritage_identity",
+      "finding": "The national heritage identifier is linked to the Basmo fortress entity and its protected cultural-property status.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the protected site identity while the mapped main-fort geometry supplies the applied coordinate."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Basmo festning",
+      "sourceUrl": "https://snl.no/Basmo_festning",
+      "sourceObjectId": "snl:basmo-festning",
+      "sourceQuality": "authoritative_fortress_identity_and_spatial_scope",
+      "finding": "SNL places Basmo on a steep hill between Rødenessjøen and Hemnessjøen, distinguishes the small main-fort point from the approximate wider fortress and forterrain boundary, and describes the donjon, batteries, outworks and southern retrenchment.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the correct object role and prevents the main-ruin point or gameplay radius from being mistaken for the complete historical fortress."
+    },
+    {
+      "sourceProvider": "marker_kommune",
+      "sourceName": "Marker kommune – Basmo festning",
+      "sourceUrl": "https://www.marker.kommune.no/tjenester/kultur-fritid-og-bibliotek/arrangement-og-moteplasser/kulturminner-og-museer/basmo-festning",
+      "sourceObjectId": "marker-kommune:basmo-festning",
+      "sourceQuality": "official_local_history_restoration_and_access_context",
+      "finding": "Marker municipality documents the five-storey, 18-metre tower completed in 1683, approximately 40 buildings, up to 1,350 men and 24 guns during the wars with Karl XII, closure in 1745, protection in 1985 and ongoing restoration.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the main ruin's visitor identity and the much larger historical scale of the former military settlement."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Basmo festning point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:basmo_festning",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 9,358.7 metres northeast of the named main-fort geometry.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the Basmo fortress or its immediate landscape."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1263141701",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4867802",
+      "canApplyToPlace": false,
+      "rejectionReason": "Entity and heritage cross-check; the mapped main-fort building geometry supplies the more direct physical anchor."
+    },
+    {
+      "sourceProvider": "locality_control",
+      "sourceObjectId": "basmo-locality-or-farm-point",
+      "canApplyToPlace": false,
+      "rejectionReason": "A broad locality or farm point does not identify the surviving fort ruin."
+    },
+    {
+      "sourceProvider": "access_control",
+      "sourceObjectId": "basmo-road-or-access-point",
+      "canApplyToPlace": false,
+      "rejectionReason": "An access, road or parking point is visitor infrastructure rather than the historical object."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1263141701",
+      "geometryType": "restored_main_fort_building_polygon",
+      "geometryRole": "donjon_and_main_ruin_geometry",
+      "canApplyToPlace": true,
+      "appliedAsCentroid": true
+    },
+    {
+      "sourceProvider": "historical_fortress_context",
+      "sourceObjectId": "basmo-full-fortress-and-forterrain",
+      "geometryType": "approximate_historical_fortress_extent_not_captured",
+      "geometryRole": "donjon_batteries_outworks_retrenchment_and_settlement_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:86068",
+      "geometryType": "legal_protection_geometry_not_captured",
+      "geometryRole": "protection_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "basmo_main_fort_ruin",
+      "name": "Basmo festning – hovedruinen",
+      "lat": 59.6171,
+      "lon": 11.53487,
+      "r": 100,
+      "type": "main_fort_ruin_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1263141701;wikidata:Q4867802;riksantikvaren-kulturminne:86068",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:basmo_festning",
+      "lat": 59.6635,
+      "lon": 11.6738,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 9358.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1263141701",
+      "lat": 59.6171,
+      "lon": 11.53487,
+      "coordRole": "main_fort_ruin_anchor",
+      "distanceFromPreviousM": 9358.7,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4867802",
+      "lat": 59.6168888889,
+      "lon": 11.5353055556,
+      "coordRole": "fortress_entity_coordinate_cross_check",
+      "distanceFromAppliedM": 34.1,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-basmo-festning-source-probe/source-summary.json",
+      "description": "Persisted main-ruin geometry, heritage identity, wider fortress scope, false-candidate controls and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the restored Basmo main-fort ruin centroid and retained the 320-metre gameplay radius. Continue with eidsberg_kirke."
+  },
+  "notes": [
+    "The coordinate moves approximately 9.36 kilometres southwest.",
+    "The marker represents the restored main fort and donjon ruin as anchor for the wider historical fortress.",
+    "The complete forterrain, batteries, outworks and former settlement extend beyond the point and gameplay circle.",
+    "The radius is not a legal protection, property, building, ruin or complete fortress boundary."
+  ]
+}
