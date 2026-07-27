@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tune_skipet_funnsted",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/tune_skipet_funnsted.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_archaeological_findspot_and_memorial_anchor",
+  "currentCoordinate": {
+    "lat": 59.27912,
+    "lon": 11.00285,
+    "r": 260,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "OpenStreetMap node 798882848 – Tuneskipet; Store norske leksikon – Tuneskipet; Fredrikstad kommune; Paasche 2020",
+    "coordType": "named_archaeological_findspot_point",
+    "coordRole": "ship_grave_findspot_anchor",
+    "sourceObjectId": "osm-node:798882848",
+    "coordNote": "The canonical marker follows the named archaeological findspot and present memorial for Båthaugen, not the ship object in Oslo."
+  },
+  "previousCoordinate": {
+    "lat": 59.2713,
+    "lon": 10.9867,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 1264.1,
+    "reasonReplaced": "The legacy point lay approximately 1.26 kilometres southwest of the identified Båthaugen findspot and had no source contract."
+  },
+  "identity": {
+    "currentName": "Tune-skipets funnsted",
+    "resolvedIdentity": "The marked Båthaugen ship-grave findspot on Haugen/Nedre Haugen farm at Rolvsøy, distinct from the preserved Tune ship at the Viking Age Museum in Oslo.",
+    "identityStatus": "resolved",
+    "identityProblem": "The record names a findspot, while the famous physical ship is held elsewhere. The original mound was heavily reduced and not reconstructed, so the point must represent the marked discovery site rather than surviving mound geometry.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The findspot and memorial form one coherent local destination. The museum object is a separate institution and should not be collapsed into this record."
+  },
+  "requiredEvidence": [
+    "stable named archaeological-site point",
+    "authoritative identification of Båthaugen and Haugen farm",
+    "archaeological research confirmation of the find context",
+    "local confirmation of the present memorial",
+    "explicit separation from the museum object",
+    "radius and geometry limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 798882848 – Tuneskipet",
+      "sourceUrl": "https://www.openstreetmap.org/node/798882848",
+      "sourceObjectId": "osm-node:798882848",
+      "sourceQuality": "named_archaeological_site_and_visitor_attraction_point",
+      "finding": "The named archaeological-site object is at 59.27912, 11.00285 and represents the marked Tune ship discovery site.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named findspot rather than a farm locality, museum or general area."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Tuneskipet",
+      "sourceUrl": "https://snl.no/Tuneskipet",
+      "sourceObjectId": "snl:tuneskipet",
+      "sourceQuality": "authoritative_findspot_and_excavation_context",
+      "finding": "Tuneskipet was excavated in 1867 from Båthaugen on Haugen farm at Rolvsøy. The mound was exceptionally large but had already been heavily reduced before excavation.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the archaeological identity and explains why the current point is a findspot rather than preserved mound geometry."
+    },
+    {
+      "sourceProvider": "fredrikstad_kommune",
+      "sourceName": "Fredrikstad kommune – Historien om Fredrikstad",
+      "sourceUrl": "https://www.fredrikstad.kommune.no/tjenester/politikk-og-administrasjon/ordfoereren/historien-om-fredrikstad/",
+      "sourceObjectId": "fredrikstad-kommune:tuneskipet-rolvsoy",
+      "sourceQuality": "official_local_identity_context",
+      "finding": "The municipality identifies the Tune ship as a Rolvsøy find from the area that historically belonged to Tune.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the local identity and municipality."
+    },
+    {
+      "sourceProvider": "research_literature",
+      "sourceName": "Paasche – The Tune Viking Ship Reconsidered",
+      "sourceUrl": "https://onlinelibrary.wiley.com/doi/full/10.1111/1095-9270.12391",
+      "sourceObjectId": "doi:10.1111/1095-9270.12391",
+      "sourceQuality": "peer_reviewed_archaeological_context",
+      "finding": "The study identifies Nedre Haugen on Rolvsøy as the find farm and documents the monumental Båthaugen ship burial and the 1867 recovery.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides independent research confirmation of the physical context."
+    },
+    {
+      "sourceProvider": "local_history",
+      "sourceName": "Tidlige tider på Rolvsøy",
+      "sourceUrl": "https://rolvsing.no/1019-2/tidlige-tider-pa-rolvsoy/",
+      "sourceObjectId": "rolvsing:tuneskipet-memorial",
+      "sourceQuality": "local_memorial_and_present_site_context",
+      "finding": "The source describes the memorial at Haugen and confirms that the Tune ship find remains an important local archaeological landmark.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the present visitor-anchor interpretation."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Tune ship point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:tune_skipet_funnsted",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate lies approximately 1,264.1 metres southwest of the named archaeological-site point.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the identified findspot."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:798882848",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "locality",
+      "sourceObjectId": "haugen-farm-locality",
+      "canApplyToPlace": false,
+      "rejectionReason": "The farm confirms identity but is less precise than the named archaeological findspot."
+    },
+    {
+      "sourceProvider": "museum",
+      "sourceObjectId": "viking-age-museum:tune-ship",
+      "canApplyToPlace": false,
+      "rejectionReason": "The ship object is preserved in Oslo; this record represents the Rolvsøy findspot."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "historical_context",
+      "sourceObjectId": "bathaugen-original-mound",
+      "geometryType": "destroyed_or_heavily_reduced_mound_extent_not_captured",
+      "geometryRole": "original_ship_burial_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "tune_ship_bathaugen_findspot",
+      "name": "Båthaugen – Tune ship findspot",
+      "lat": 59.27912,
+      "lon": 11.00285,
+      "r": 100,
+      "type": "ship_grave_findspot_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:798882848",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:tune_skipet_funnsted",
+      "lat": 59.2713,
+      "lon": 10.9867,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 1264.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:798882848",
+      "lat": 59.27912,
+      "lon": 11.00285,
+      "coordRole": "ship_grave_findspot_anchor",
+      "distanceFromPreviousM": 1264.1,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-tune-skipet-source-probe/source-summary.json",
+      "description": "Persisted findspot point, authoritative archaeological identity, museum separation and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Tune ship archaeological findspot and retained the 260-metre gameplay radius. Continue with Hafslund hovedgård."
+  },
+  "notes": [
+    "The coordinate moves approximately 1.26 kilometres northeast.",
+    "The point represents the marked Båthaugen findspot, not the ship in Oslo.",
+    "The original mound was heavily reduced and is not represented as surviving geometry.",
+    "The radius is not an archaeological, legal or property boundary."
+  ]
+}

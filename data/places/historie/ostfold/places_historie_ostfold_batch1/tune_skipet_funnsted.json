@@ -1,13 +1,38 @@
 {
   "id": "tune_skipet_funnsted",
   "name": "Tune-skipets funnsted",
-  "lat": 59.2713,
-  "lon": 10.9867,
+  "lat": 59.27912,
+  "lon": 11.00285,
   "r": 260,
+  "locatorType": "historic_site",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:798882848",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "ship_grave_findspot_anchor",
+  "coordType": "named_archaeological_findspot_point",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "OpenStreetMap node 798882848 – Tuneskipet; Store norske leksikon – Tuneskipet; Fredrikstad kommune; Paasche 2020",
+  "coordSourceId": "osm-node:798882848",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/798882848",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 1 264,1 meter nordøst til det navngitte arkeologiske funnstedet og minnestedet etter Båthaugen på Haugen gård.",
+  "coordNote": "OSM node 798882848 er et navngitt arkeologisk sted og besøksmål ved det markerte funnstedet. Store norske leksikon og arkeologisk forskning identifiserer Båthaugen på Haugen/Nedre Haugen på Rolvsøy som skipsgravstedet som ble utgravd i 1867. Den opprinnelige storhaugen var allerede sterkt redusert og ble ikke rekonstruert; dagens markering er derfor et funnsteds- og minneanker, ikke bevart gravhauggeometri. Skipet befinner seg ved Vikingtidsmuseet i Oslo og skal ikke brukes som koordinatkilde for denne Østfold-posten. Radius 260 meter dekker minnestedet og nærmeste funnlandskap som gameplayområde, men er ikke en arkeologisk lokalitets-, verne- eller eiendomsgrense.",
+  "anchors": [
+    {
+      "id": "tune_ship_bathaugen_findspot",
+      "name": "Båthaugen – Tune-skipets funnsted",
+      "lat": 59.27912,
+      "lon": 11.00285,
+      "r": 100,
+      "type": "ship_grave_findspot_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:798882848"
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Fredrikstad",
-  "year": 900,
+  "year": 910,
   "period": "Vikingtid og skipsgrav",
   "tags": [
     "historie",
@@ -16,15 +41,29 @@
     "arkeologi",
     "rolvsøy"
   ],
-  "desc": "Funnstedet for Tune-skipet, et vikingskip fra rundt år 900 funnet i en gravhaug på Rolvsøy i 1867. Skipet er et av de store norske vikingskipsfunnene.",
-  "popupDesc": "Tune-skipet ble funnet i en gravhaug på Rolvsøy i 1867, i et område som den gang hørte til Tune. Skipet dateres til rundt år 900 og er i dag blant de sentrale norske vikingskipsfunnene. Funnstedet er viktig fordi det gjør vikingtiden stedlig i Østfold: skipsgraven viser elite, gravritual, håndverk, sjøfart og arkeologihistorie. I History Go bør stedet brukes til å vise forskjellen mellom selve funnstedet og museet der skipet senere ble utstilt.",
+  "desc": "Funnstedet for Tune-skipet i Båthaugen på Haugen gård på Rolvsøy. Skipsgraven ble utgravd i 1867, og årringsdatering plasserer gravleggingen omkring år 910 eller noe senere.",
+  "popupDesc": "Tune-skipet ble gravd ut fra Båthaugen på Haugen gård på Rolvsøy i 1867. Haugen hadde vært blant landets største gravhauger, men var allerede sterkt redusert da skipet kom for dagen. Utgravingen ble gjennomført i arkeologiens tidlige fase, og dokumentasjonen og behandlingen av funnet var langt røffere enn dagens standard. Stedet på Rolvsøy er selve skipsgravens funnsted og er markert som minnested; det bevarte skipet befinner seg ved Vikingtidsmuseet på Bygdøy. I History Go skal posten derfor brukes til å skille mellom gravlandskapet, utgravningshistorien og museumsgjenstanden, og til å formidle elitegrav, sjøfart, håndverk og arkeologisk metode i vikingtiden.",
+  "externalLinks": [
+    {
+      "label": "Store norske leksikon – Tuneskipet",
+      "url": "https://snl.no/Tuneskipet"
+    },
+    {
+      "label": "OpenStreetMap – funnstedet",
+      "url": "https://www.openstreetmap.org/node/798882848"
+    },
+    {
+      "label": "Fredrikstad kommune – lokal historie",
+      "url": "https://www.fredrikstad.kommune.no/tjenester/politikk-og-administrasjon/ordfoereren/historien-om-fredrikstad/"
+    }
+  ],
   "quiz_profile": {
     "place_type": "arkeologisk_funnsted",
-    "subtype": "vikingskipgrav",
+    "subtype": "vikingskipsgrav_og_markert_funnsted",
     "signature_features": [
-      "Tune-skipet ble funnet på Rolvsøy i 1867",
-      "skipet dateres til rundt år 900",
-      "et av Norges store vikingskipsfunn"
+      "Tune-skipet ble gravd ut fra Båthaugen på Rolvsøy i 1867",
+      "skipsgraven dateres til omkring år 910 eller noe senere",
+      "dagens sted er et markert funnsted, mens skipet befinner seg i Oslo"
     ],
     "primary_angles": [
       "historie",
@@ -36,20 +75,22 @@
       "vikingskip",
       "gravritual",
       "funnhistorie",
-      "elite"
+      "arkeologisk_metode"
     ],
     "avoid_angles": [
-      "forveksling_med_oslo_museum",
+      "forveksling_med_vikingtidsmuseet",
+      "påstand_om_bevart_opprinnelig_gravhaug",
       "generisk_viking"
     ],
     "must_include": [
-      "funnet i 1867 på Rolvsøy",
-      "skipet som gravfunn fra vikingtiden"
+      "Båthaugen på Haugen gård som funnsted",
+      "utgravningen i 1867",
+      "skillet mellom funnstedet og museumsgjenstanden"
     ],
     "contrast_targets": [
       "hunnfeltet_gravfelt",
       "gjellestadskipet_jellhaugen"
     ],
-    "notes": "Skal spørres som funnsted i Østfold, ikke som museumsgjenstand alene."
+    "notes": "Skal spørres som konkret skipsgravfunn og tidlig arkeologihistorie på Rolvsøy, ikke som om skipet fortsatt ligger på stedet eller som et generelt vikingskipsmuseum."
   }
 }
