@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **130 steder**
-- Gjenstår: **382 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **140 steder**
+- Gjenstår: **372 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -162,12 +162,23 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 129 | Blått skilt: Helverschous løkke | `bla_skilt_helverschous_lokke_munkedamsveien_35` | 46 | 300 | 6 | #4180 |
 | 130 | Magistratgården | `magistratgarden` | 45 | 307 | 6 | #4180 |
 
+| 131 | Rådmannsgården og Anatomibygget | `radmannsgarden_og_anatomibygget` | 46 | 306 | 6 | #4182 |
+| 132 | Hauges Minde | `hauges_minde` | 46 | 304 | 6 | #4182 |
+| 133 | Slurpen | `slurpen_lakkegata` | 43 | 301 | 6 | #4182 |
+| 134 | Geitmyra gård | `geitmyra_gard` | 43 | 301 | 6 | #4182 |
+| 135 | Grønland politistasjon | `gronland_politistasjon` | 45 | 300 | 6 | #4182 |
+| 136 | Sagene festivitetshus | `sagene_festivitetshus` | 43 | 300 | 6 | #4182 |
+| 137 | Stubljan-paviljongen i Hvervenbukta | `stubljan_paviljongen_hvervenbukta` | 45 | 302 | 6 | #4182 |
+| 138 | Trosterudvillaen | `trosterudvillaen` | 46 | 301 | 6 | #4182 |
+| 139 | Lambertseter gård | `lambertseter_gard` | 46 | 301 | 6 | #4182 |
+| 140 | Lokomotivverkstedet | `lokomotivverkstedet` | 48 | 300 | 6 | #4182 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **382 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **372 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
-- historie: **57**
+- historie: **47**
 - naeringsliv: **47**
 - kunst: **40**
 - subkultur: **38**
