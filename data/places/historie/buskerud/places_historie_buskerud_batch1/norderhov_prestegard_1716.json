@@ -1,14 +1,26 @@
 {
   "id": "norderhov_prestegard_1716",
   "name": "Norderhov gamle prestegård",
-  "lat": 60.1359,
-  "lon": 10.2551,
+  "lat": 60.13189,
+  "lon": 10.26845,
   "r": 300,
+  "locatorType": "historic_rectory_main_building_and_museum",
+  "sourceProvider": "openstreetmap",
+  "sourceObjectId": "osm-node:6588462257",
+  "geocodeAccuracy": "named_museum_in_historic_rectory_entity_point",
+  "coordRole": "historic_rectory_main_building_anchor",
+  "coordType": "building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap node 6588462257; Wikidata Q11997890; Buskerudmuseene Ringerikes Museum; Ringerike kommune",
+  "coordSourceId": "osm-node:6588462257;wikidata:Q11997890",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/6588462257",
+  "coordVerifiedAt": "2026-07-28",
   "category": "historie",
   "fylke": "buskerud",
   "kommune": "Ringerike",
   "year": 1716,
-  "period": "Prestegård, krig og 1716",
+  "yearMeaning": "Året for trefningen ved Norderhov og den minnetradisjonen som knytter Anna Colbjørnsdatter til prestegårdens Svenskestue; ikke byggeåret for hele prestegården.",
+  "period": "Prestegård, trefningen ved Norderhov og minnehistorie",
   "tags": [
     "historie",
     "prestegård",
@@ -18,13 +30,103 @@
   ],
   "desc": "Gammel prestegård ved Norderhov kirke, særlig kjent for Anna Colbjørnsdatters rolle under den svenske innmarsjen i 1716. Stedet binder prestegård, krigshistorie, lokal motstand og Ringerikes maktlandskap sammen.",
   "popupDesc": "Norderhov gamle prestegård er et sterkt Buskerud-sted fordi det gjør prestegården til mer enn bolig og kirkelig administrasjon. Under krigshandlingene i 1716 skal Anna Colbjørnsdatter ha bidratt til å forsinke svenske styrker og varsle norske soldater. Stedet bør brukes til å vise hvordan krigshistorie kan utspille seg i lokale hus, veier og prestegårdsmiljøer – ikke bare på festninger. Det kan også kobles til kildekritikk, sagn, minne og lokal identitet.",
+  "accessContext": {
+    "siteType": "historic_rectory_operated_as_regional_museum",
+    "publicAccess": "Prestegårdens interiører og utstillinger følger Ringerikes Museums sesong, billetter, omvisninger og arrangementer. Utearealer og naboområder følger skilting, eiendomsgrenser og kirkelig bruk.",
+    "visitorAddress": "Norderhovsbakken 8, 3512 Hønefoss",
+    "limitations": [
+      "Ikke gå inn i låste rom, magasin, driftsarealer eller private deler av prestegårdsmiljøet.",
+      "Norderhov kirke og kirkegård er separate aktive kirkelige områder der seremonier og gravferd har prioritet.",
+      "Gameplay-radiusen er ikke en bygnings-, prestegårds-, museums-, kirke-, eiendoms-, verne-, arrangements- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "south_wing_svenskestua",
+      "date": "1635",
+      "status": "surviving_oldest_building_layer",
+      "note": "Årringsanalyse daterer første etasje i sørfløyen, senere kalt Svenskestua, til 1635."
+    },
+    {
+      "type": "battle_of_norderhov_memory",
+      "date": "1716",
+      "status": "documented_event_with_memory_tradition",
+      "note": "Prestegården er knyttet til trefningen ved Norderhov og fortellingen om Anna Colbjørnsdatters hjelp til norske styrker; detaljene skal formidles med kildekritisk rom."
+    },
+    {
+      "type": "north_wing_extension",
+      "date": "1729",
+      "status": "surviving_building_layer",
+      "note": "Nordfløyen ble reist etter 1716-hendelsen."
+    },
+    {
+      "type": "south_wing_second_floor",
+      "date": "1745",
+      "status": "surviving_building_layer",
+      "note": "Andre etasje på sørfløyen ble føyd til."
+    },
+    {
+      "type": "new_roof",
+      "date": "1822",
+      "status": "documented_building_change",
+      "note": "Prestegården fikk nytt tak."
+    },
+    {
+      "type": "asbjornsen_moe_first_meeting",
+      "date": "1826",
+      "status": "documented_cultural_history_layer",
+      "note": "Peter Christen Asbjørnsen og Jørgen Moe møttes her som unge, et eget litteraturhistorisk lag."
+    },
+    {
+      "type": "museum_reuse",
+      "date": "late_1950s",
+      "status": "current_institutional_reuse",
+      "note": "Prestegården sluttet som sokneprestbolig og ble tatt i bruk av Ringerikes Museum."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "norderhov_church",
+      "name": "Norderhov kirke",
+      "relation": "adjacent_active_medieval_church",
+      "canonical": false,
+      "note": "Middelalderkirken ligger omtrent 110 meter nordøst og er et separat kirke- og kirkegårdsobjekt."
+    },
+    {
+      "id": "norderhov_munkestua",
+      "name": "Munkestua",
+      "relation": "separate_historic_building_in_museum_environment",
+      "canonical": false,
+      "note": "Munkestua inngår i museumsområdet, men er en egen historisk bygning."
+    },
+    {
+      "id": "norderhov_rectory_farm",
+      "name": "Prestegårdens gårds- og jordbrukslandskap",
+      "relation": "wider_historical_property_and_working_landscape",
+      "canonical": false,
+      "note": "Prestegården var et større arbeids- og jordbrukssamfunn enn dagens museumsbygning."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "norderhov_old_rectory",
+      "name": "Norderhov gamle prestegård / Ringerikes Museum",
+      "lat": 60.13189,
+      "lon": 10.26845,
+      "r": 115,
+      "type": "historic_rectory_main_building_anchor",
+      "sourceProvider": "openstreetmap_wikidata_buskerudmuseene",
+      "sourceObjectId": "osm-node:6588462257;wikidata:Q11997890",
+      "canApplyToPlace": true
+    }
+  ],
   "quiz_profile": {
     "place_type": "prestegard_og_krigsminne",
     "subtype": "1716_sted_og_lokal_motstandshistorie",
     "signature_features": [
-      "gammel prestegård ved Norderhov kirke",
-      "knyttet til Anna Colbjørnsdatter og 1716",
-      "kobler prestegård, ferdsel, krig og lokal minnehistorie"
+      "sørfløy med Svenskestue fra 1635",
+      "knyttet til Anna Colbjørnsdatter og trefningen i 1716",
+      "prestegård brukt som Ringerikes Museum siden slutten av 1950-årene"
     ],
     "primary_angles": [
       "historie",
@@ -40,16 +142,17 @@
     ],
     "avoid_angles": [
       "ukritisk_heltedyrking",
-      "generisk_prestegård"
+      "generisk_prestegård",
+      "sammenblanding_med_norderhov_kirke"
     ],
     "must_include": [
       "Anna Colbjørnsdatter og 1716-sporet",
-      "prestegården som lokalt beslutnings- og minnepunkt"
+      "prestegården som historisk bygning med flere byggeperioder"
     ],
     "contrast_targets": [
       "veien_kulturminnepark",
       "fredriksten_festning"
     ],
-    "notes": "Skal spørres med rom for kildekritikk: hendelsen er historisk viktig, men minnefortellingen må behandles presist."
+    "notes": "Skal spørres med kildekritisk rom. 1716 er hendelsesåret, mens bygningen har lag fra 1635, 1729, 1745 og senere museumstid."
   }
 }
