@@ -1,0 +1,50 @@
+name: One-time History theory evidence candidate audit V2 R2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-theory-evidence-candidate-audit-v2-r2-trigger.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out fresh audit branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/history-theory-evidence-batch-2-audit-r2
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Load isolated audit script
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/history-theory-evidence-batch-2
+          git show origin/agent/history-theory-evidence-batch-2:tools/audit-historie-theory-evidence-candidates-v2.mjs \
+            > /tmp/audit-historie-theory-evidence-candidates-v2.mjs
+          node --check /tmp/audit-historie-theory-evidence-candidates-v2.mjs
+
+      - name: Run candidate audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-theory-evidence/candidate-audit-v2
+          node /tmp/audit-historie-theory-evidence-candidates-v2.mjs \
+            | tee reports/historie-theory-evidence/candidate-audit-v2/audit.log
+
+      - name: Upload diagnostic report
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-theory-evidence-candidate-audit-v2-r2
+          path: reports/historie-theory-evidence/candidate-audit-v2
+          if-no-files-found: error
