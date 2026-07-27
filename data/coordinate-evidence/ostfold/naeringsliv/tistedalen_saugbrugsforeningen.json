@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tistedalen_saugbrugsforeningen",
+  "placeFile": "data/places/naeringsliv/ostfold/tistedalen_saugbrugsforeningen/tistedalen_saugbrugsforeningen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_active_pulp_and_paper_mill_area_anchor",
+  "currentCoordinate": {
+    "lat": 59.12555,
+    "lon": 11.407,
+    "r": 360,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 201600189 – Norske Skog Saugbrugs; Norske Skog – Norske Skog Saugbrugs; Store norske leksikon – Norske Skog Saugbrugs; Halden kommune – Haldens historie; Brønnøysundregistrene 996732703",
+    "coordType": "named_active_industrial_area_representative_point",
+    "coordRole": "active_pulp_and_paper_mill_area_anchor",
+    "sourceObjectId": "osm-way:201600189;wikidata:Q7053474;business-register:996732703"
+  },
+  "previousCoordinate": {
+    "lat": 59.1242,
+    "lon": 11.4492,
+    "r": 360,
+    "distanceToAppliedCoordinateM": 2412.7,
+    "reasonReplaced": "Legacy-punktet lå omtrent 2,41 kilometer øst for det navngitte Saugbrugs-industriområdet og hadde ingen kildeobjektkontrakt."
+  },
+  "identity": {
+    "resolvedIdentity": "Det aktive Norske Skog Saugbrugs fabrikk- og industriområdet ved Tista, historisk videreføring av Saugbrugsforeningen fra 1859.",
+    "identityStatus": "resolved",
+    "identityProblem": "Tistedalen og Saugbrugsforeningen kan vise til tettstedet, de historiske sagbrukene langs Tista, dagens fabrikk, kraftanlegg, arbeidsmiljøet eller et større industrilandskap. Kartpunktet må identifisere dagens navngitte fabrikkkompleks uten å gjøre hele Tistedalen eller alle historiske bruk til ett objekt.",
+    "locatorTypeCandidate": "active_pulp_and_paper_mill_complex",
+    "requiresSplit": false,
+    "splitReason": "Saugbrugsforeningen og Norske Skog Saugbrugs behandles som historiske tidslag av samme virksomhetssted. Elva, fossene, kraftverkene, tettstedet og Haldenreaktoren er separate komponenter eller nabohistorier."
+  },
+  "requiredEvidence": [
+    "navngitt industriområdegeometri",
+    "offisiell anleggs- og adressekontroll",
+    "bedrifts- og registeridentitet",
+    "stiftelsesår og navnehistorie",
+    "separasjon fra tettsted, elv, kraftverk og reaktoranlegg",
+    "adgangs-, sikkerhets- og radiusbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 201600189 – Norske Skog Saugbrugs",
+      "sourceUrl": "https://www.openstreetmap.org/way/201600189",
+      "sourceObjectId": "osm-way:201600189",
+      "sourceQuality": "named_active_industrial_area_geometry",
+      "finding": "Det navngitte industriområdet gir representativt punkt 59.12555, 11.40700 og dekker den sentrale fabrikk- og produksjonskjernen.",
+      "canVerifyCoordinate": true,
+      "reason": "Objektet identifiserer direkte det aktive anlegget, i motsetning til et tettstedspunkt eller én inngang."
+    },
+    {
+      "sourceProvider": "norske_skog",
+      "sourceName": "Norske Skog – Norske Skog Saugbrugs",
+      "sourceUrl": "https://www.norskeskog.com/about-norske-skog/business-units/norske-skog-saugbrugs/",
+      "sourceObjectId": "norske-skog:saugbrugs-site",
+      "sourceQuality": "official_current_site_and_history",
+      "finding": "Norske Skog identifiserer Saugbrugs-anlegget i Halden, oppgir Tistedalsgata 9–11 og fører virksomheten tilbake til Saugbrugsforeningens etablering i 1859 som en samling av sagbruk langs Tistafossene.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter nåværende anleggsidentitet, adresse og historisk kontinuitet."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Norske Skog Saugbrugs",
+      "sourceUrl": "https://snl.no/Norske_Skog_Saugbrugs",
+      "sourceObjectId": "snl:norske-skog-saugbrugs",
+      "sourceQuality": "authoritative_industrial_history",
+      "finding": "SNL dokumenterer etableringen i 1859, samlingen av sagbruk langs Tista, senere høvleri, tresliperi, cellulose- og papirproduksjon og navneskiftet etter overtakelsen i 1989.",
+      "canVerifyCoordinate": false,
+      "reason": "Krysskontrollerer virksomhetsidentitet, årstall og industriell utvikling."
+    },
+    {
+      "sourceProvider": "halden_kommune",
+      "sourceName": "Halden kommune – Haldens historie",
+      "sourceUrl": "https://www.halden.kommune.no/tjenester/byen-og-kommunen/informasjon-om-halden/haldens-historie/",
+      "sourceObjectId": "halden:history-saugbrugs-1859",
+      "sourceQuality": "official_local_history",
+      "finding": "Kommunen identifiserer Saugbrugsforeningen, dagens Norske Skog Saugbrugs, som en treforedlingsbedrift etablert i Fredrikshald i 1859.",
+      "canVerifyCoordinate": false,
+      "reason": "Gir lokal myndighetskontroll av 1859-laget og betydningen i Haldens industrihistorie."
+    },
+    {
+      "sourceProvider": "brreg",
+      "sourceName": "Brønnøysundregistrene – Norske Skog Saugbrugs AS",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/996732703",
+      "sourceObjectId": "business-register:996732703",
+      "sourceQuality": "official_business_identity",
+      "finding": "Registeridentiteten brukes som kontroll for den nåværende virksomheten Norske Skog Saugbrugs AS.",
+      "canVerifyCoordinate": false,
+      "reason": "Skiller dagens juridiske virksomhet fra eldre navn og generelle stedsbetegnelser."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Tistedalen / Saugbrugsforeningen point",
+      "sourceObjectId": "legacy:tistedalen_saugbrugsforeningen",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-koordinatet ligger omtrent 2 412,7 meter øst for representativt punkt i det navngitte industriområdet.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke identifiserer fabrikken eller et dokumentert historisk sagbruksobjekt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "norske_skog",
+      "address": "Tistedalsgata 9–11, 1772 Halden",
+      "addressRole": "current_mill_and_business_address",
+      "canApplyToPlace": false,
+      "rejectionReason": "Adressen bekrefter virksomheten, mens industriområdepolygonet gir et sterkere anker for det store fabrikkkomplekset."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:201600189",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q7053474",
+      "canApplyToPlace": false,
+      "rejectionReason": "Brukes som entitetskontroll; OSM-området gir sterkere eksplisitt geometri for fabrikken."
+    },
+    {
+      "sourceProvider": "settlement_control",
+      "sourceObjectId": "Tistedalen-settlement",
+      "canApplyToPlace": false,
+      "rejectionReason": "Tistedalen er et større tettsted og ikke identisk med fabrikkområdet."
+    },
+    {
+      "sourceProvider": "river_and_waterfall_control",
+      "sourceObjectId": "Tista-and-Tistedalsfossene",
+      "canApplyToPlace": false,
+      "rejectionReason": "Elva og fossene er ressursgrunnlag og landskapskontekst, ikke selve fabrikkobjektet."
+    },
+    {
+      "sourceProvider": "nuclear_site_control",
+      "sourceObjectId": "Haldenreaktoren",
+      "canApplyToPlace": false,
+      "rejectionReason": "Haldenreaktoren er et separat forsknings- og dekommisjoneringsobjekt i naboområdet."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:201600189",
+      "geometryType": "named_industrial_landuse_polygon",
+      "geometryRole": "active_pulp_and_paper_mill_complex",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "historical_landscape_control",
+      "sourceObjectId": "historic-sawmills-along-Tista",
+      "geometryType": "distributed_historical_industrial_landscape_not_captured",
+      "geometryRole": "predecessor_sawmill_and_waterpower_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "property_and_safety_control",
+      "sourceObjectId": "current-operational-property-and-safety-extents",
+      "geometryType": "legal_and_operational_extents_not_captured",
+      "geometryRole": "active_property_process_and_restricted_access_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "saugbrugs_industrial_area",
+      "name": "Norske Skog Saugbrugs – industriområdet",
+      "lat": 59.12555,
+      "lon": 11.407,
+      "r": 180,
+      "type": "active_pulp_and_paper_mill_area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:201600189;wikidata:Q7053474;business-register:996732703",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:tistedalen_saugbrugsforeningen",
+      "lat": 59.1242,
+      "lon": 11.4492,
+      "distanceFromAppliedM": 2412.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:201600189",
+      "lat": 59.12555,
+      "lon": 11.407,
+      "distanceFromPreviousM": 2412.7,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-tistedalen-saugbrugs-source-probe/source-summary.json",
+      "description": "Persisted named factory geometry, current business and address identity, 1859 chronology, historical industrial context, rejected nearby entities and access limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named active Saugbrugs industrial-area representative point, retained 1859 as the foundation year and continued with isegran_fort_verft."
+  },
+  "notes": [
+    "The coordinate moves approximately 2,412.7 metres west.",
+    "The marker represents the active pulp-and-paper industrial complex and the institutional continuity from Saugbrugsforeningen.",
+    "The historical sawmills, Tista, waterfalls, power facilities, Tistedalen settlement and Halden reactor are separate or distributed contexts.",
+    "Gameplay must remain on lawful public roads and viewpoints outside the access-controlled plant.",
+    "The radius is not a factory, property, process, emergency, safety, emission or operational boundary."
+  ]
+}
