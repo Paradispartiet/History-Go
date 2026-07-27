@@ -1,0 +1,60 @@
+name: One-time patch Næringsliv pilot builder
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - synchronize
+    paths:
+      - '.github/workflows/one-time-patch-naeringsliv-pilot-builder.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/naeringsliv-pilot-profesjonsmaterialisering-control
+          fetch-depth: 0
+
+      - name: Patch builder
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('.github/workflows/one-time-build-naeringsliv-pilot-final.yml')
+          text = path.read_text(encoding='utf-8')
+
+          old_paths = "      - '.github/workflows/one-time-build-naeringsliv-pilot-final.yml'\n"
+          new_paths = old_paths + "      - '.tmp/rebuild-naeringsliv-pilot.txt'\n"
+          if old_paths not in text:
+              raise SystemExit('Fant ikke path-triggeren')
+          text = text.replace(old_paths, new_paths, 1)
+
+          old_loop = '''          for part in $(seq -w 0 8); do
+            git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
+          done > /tmp/naeringsliv-pilot.b64
+'''
+          new_loop = '''          for part_index in $(seq 0 8); do
+            part=$(printf '%02d' "$part_index")
+            git -C "$GITHUB_WORKSPACE" show "origin/${OLD_BRANCH}:.tmp/naeringsliv-pilot/pkg-${part}"
+          done > /tmp/naeringsliv-pilot.b64
+'''
+          if old_loop not in text:
+              raise SystemExit('Fant ikke pakkeløkken')
+          text = text.replace(old_loop, new_loop, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .github/workflows/one-time-build-naeringsliv-pilot-final.yml
+          git commit -m 'Rett to-sifret pakkelesing i Næringsliv-pilotbygger'
+          git push origin HEAD:agent/naeringsliv-pilot-profesjonsmaterialisering-control
