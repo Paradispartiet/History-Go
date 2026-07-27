@@ -33,6 +33,10 @@ jobs:
             | tee reports/historie-theory-evidence/medieval-social-audit-v1/syntax.log
           node tools/audit-history-medieval-social-economic-legal-v1.mjs 2>&1 \
             | tee reports/historie-theory-evidence/medieval-social-audit-v1/audit.log
+          node --check tools/audit-history-medieval-production-candidates-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/medieval-social-audit-v1/targeted-syntax.log
+          node tools/audit-history-medieval-production-candidates-v1.mjs 2>&1 \
+            | tee reports/historie-theory-evidence/medieval-social-audit-v1/targeted-audit.log
 
       - name: Upload audit
         if: always()
