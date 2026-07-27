@@ -1,4 +1,4 @@
-name: One-time materialize Næringsliv Oslo pilot
+name: One-time locate valid Næringsliv pilot package
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 jobs:
-  materialize:
+  locate-package:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -25,181 +25,64 @@ jobs:
           ref: agent/naeringsliv-pilot-profesjonsmaterialisering
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Materialize and validate pilot
-        shell: bash
-        run: |
-          set +e
-          (
-            set -euo pipefail
-            cat .tmp/naeringsliv-pilot/pkg-* | base64 --decode | gzip -dc > .tmp/naeringsliv-pilot/materialize.py
-            echo "materializer_sha=$(sha256sum .tmp/naeringsliv-pilot/materialize.py | cut -d' ' -f1)"
-            test "$(sha256sum .tmp/naeringsliv-pilot/materialize.py | cut -d' ' -f1)" = "ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441"
-            sed -i 's/config\["emners"\]/config["emner"]/g; s/EMNERS_FILE/EMNER_FILE/g; s/Økonomi og næringsliv professional depth/Økonomi og næringsliv professional module depth/g' .tmp/naeringsliv-pilot/materialize.py
-            python - <<'PY'
-          from pathlib import Path
-          materializer = Path(".tmp/naeringsliv-pilot/materialize.py")
-          text = materializer.read_text(encoding="utf-8")
-          replacements = [
-              ('phases = {3: "bridge", 4: "bridge", 5: "final"}', 'phases = {3: "middle", 4: "bridge", 5: "final"}'),
-              ('"method_id": item["method_id"],', '"method_id": claim.get("method_id", item["method_id"]),'),
-              (
-                  '    if item.get("calculation"):\n',
-                  '    for field in ("topic_hook_id", "thinker_id", "work"):\n'
-                  '        if field in claim:\n'
-                  '            question[field] = claim[field]\n'
-                  '    if item.get("calculation"):\n',
-              ),
-              (
-                  '    brief.setdefault("selected_curriculum", {})["module_ids"] = config["modules"]\n'
-                  '    brief["selected_curriculum"]["professional_depth_files"] = config["depth_files"]\n',
-                  '    brief["professional_materialization"] = {\n'
-                  '        "version": VERSION,\n'
-                  '        "module_ids": config["modules"],\n'
-                  '        "professional_depth_files": config["depth_files"],\n'
-                  '    }\n',
-              ),
-          ]
-          for old, new in replacements:
-              if old not in text:
-                  raise SystemExit(f"Fant ikke materialiseringsblokk: {old[:70]}")
-              text = text.replace(old, new, 1)
-          materializer.write_text(text, encoding="utf-8")
-          PY
-            python -m py_compile .tmp/naeringsliv-pilot/materialize.py
-
-            python .tmp/naeringsliv-pilot/materialize.py
-            python - <<'PY'
-          from pathlib import Path
-          validator = Path("tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs")
-          text = validator.read_text(encoding="utf-8")
-          replacements = [
-              (
-                  '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
-              if (/krone|NOK|leie|kostnad|investering|driftsresultat|verdi/i.test(moneyText)) {
-                assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
-              }''',
-                  '''    const moneyText = `${q.question} ${q.knowledge} ${JSON.stringify(q.calculation)}`;
-              const calculationKeys = Object.keys(q.calculation.inputs || {});
-              const monetaryCalculation = calculationKeys.some((key) => /_nok$/i.test(key))
-                || q.calculation.unit === "NOK"
-                || /krone|NOK/i.test(`${q.question} ${q.knowledge}`);
-              if (monetaryCalculation) {
-                assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
-              }''',
-              ),
-              ('  const context = readJson(target.production_context);\n', '  const context = readJson(target.production_context);\n  const quizContext = quiz.production_context || {};\n'),
-              (
-                  '  assert((brief.selected_curriculum?.module_ids || []).length >= 5, `${target.target_id}: brief lacks module selection`);\n',
-                  '  assert((brief.professional_materialization?.module_ids || []).length >= 5, `${target.target_id}: brief lacks professional module selection`);\n',
-              ),
-              (
-                  '  assert(context.professional_materialization?.version === manifest.materialization_version, `${target.target_id}: context lacks materialization`);\n'
-                  '  const contextModules = context.professional_materialization?.module_ids || [];\n',
-                  '  assert(quizContext.professional_materialization_version === manifest.materialization_version, `${target.target_id}: quiz context lacks materialization`);\n'
-                  '  const contextModules = quizContext.professional_module_ids || [];\n',
-              ),
-          ]
-          for old, new in replacements:
-              if old not in text:
-                  raise SystemExit(f"Fant ikke validatorblokk: {old[:70]}")
-              text = text.replace(old, new, 1)
-          validator.write_text(text, encoding="utf-8")
-          PY
-
-            npm run places:index:build
-            npm run quiz:context -- --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
-            npm run quiz:context -- --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
-            npm run quiz:context -- --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
-
-            node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
-            npm run places:emner:check
-            npm run places:index:check
-            npm run audit:quiz-content
-
-            set +e
-            node scripts/audit-quiz-production-context.mjs > /tmp/quiz-production-context.json
-            set -e
-            cat /tmp/quiz-production-context.json
-            python - <<'PY'
-          import json
-          from pathlib import Path
-          report = json.loads(Path("/tmp/quiz-production-context.json").read_text(encoding="utf-8"))
-          failures = report.get("failures", [])
-          allowed = (
-              "data/quiz/production_context/by/deichman_bjorvika.json",
-              "kontekstarterfakt avviker fra deterministisk rebuild",
-          )
-          unexpected = [row for row in failures if (row.get("file"), row.get("reason")) != allowed]
-          if unexpected or len(failures) > 1:
-              raise SystemExit(f"Uventede produksjonskontekstfeil: {unexpected or failures}")
-          if failures:
-              print("OK med ett dokumentert, eksisterende Deichman-avvik fra main")
-          else:
-              print("OK: produksjonskontekst-audit helt grønn")
-          PY
-
-            npm run audit:quiz-progression
-            npm run audit:quiz-theory-binding
-            npm run audit:categories
-            npm run test:quiz-content-audit
-            npm run test:quiz-production
-          ) > .tmp/naeringsliv-pilot/materialize.log 2>&1
-          status=$?
-          printf 'status=%s\n' "$status" > .tmp/naeringsliv-pilot/materialize.status
-          cat .tmp/naeringsliv-pilot/materialize.log
-          exit "$status"
-
-      - name: Commit diagnostics on failure
-        if: failure()
+      - name: Test every historical package revision
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .tmp/naeringsliv-pilot/materialize.log .tmp/naeringsliv-pilot/materialize.status
-          git diff --cached --quiet && exit 0
-          git commit -m 'Diagnostiser materialisering av næringslivspilot'
-          git push origin HEAD:agent/naeringsliv-pilot-profesjonsmaterialisering
+          mkdir -p .tmp/naeringsliv-pilot
+          python - <<'PY'
+          import base64
+          import gzip
+          import hashlib
+          import subprocess
+          from pathlib import Path
 
-      - name: Commit clean production result
+          expected = 'ce62c5eb4122540b74e7a0687e65a1926a5520ecbd03caf9d15a78763b6c9441'
+          paths = [f'.tmp/naeringsliv-pilot/pkg-{index:02d}' for index in range(9)]
+          commits = subprocess.check_output(
+              ['git', 'rev-list', '--all', '--', paths[0]], text=True
+          ).splitlines()
+
+          rows = []
+          matches = []
+          for commit in commits:
+              try:
+                  chunks = [subprocess.check_output(['git', 'show', f'{commit}:{path}']) for path in paths]
+              except subprocess.CalledProcessError:
+                  continue
+              encoded = b''.join(chunk.strip() for chunk in chunks)
+              try:
+                  decoded = base64.b64decode(encoded, validate=True)
+                  materializer = gzip.decompress(decoded)
+                  digest = hashlib.sha256(materializer).hexdigest()
+                  state = 'MATCH' if digest == expected else 'valid-other'
+                  rows.append(f'{state}\t{commit}\t{digest}\t{len(materializer)}')
+                  if digest == expected:
+                      matches.append(commit)
+              except Exception as exc:
+                  rows.append(f'invalid\t{commit}\t{type(exc).__name__}: {exc}')
+
+          report = [
+              f'expected_sha={expected}',
+              f'candidate_commits={len(commits)}',
+              f'matching_commits={len(matches)}',
+              *rows,
+          ]
+          Path('.tmp/naeringsliv-pilot/package-history.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
+          print('\n'.join(report))
+          if not matches:
+              raise SystemExit('Fant ingen historisk pakke med forventet materializer-SHA')
+          PY
+
+      - name: Save package history
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
+          test -f .tmp/naeringsliv-pilot/package-history.txt
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-
-          rm -rf .tmp/naeringsliv-pilot
-          rm -f .github/workflows/one-time-materialize-naeringsliv-pilot.yml
-
-          git add \
-            data/places/naeringsliv/oslo/places_naeringsliv/telegrafbygningen.json \
-            data/places/naeringsliv/oslo/places_naeringsliv/oslo_posthus.json \
-            data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json \
-            data/places/naeringsliv/oslo/places_naeringsliv.json \
-            data/places/places_index.json \
-            data/quiz/naeringsliv/telegrafbygningen_sets_merged.json \
-            data/quiz/naeringsliv/oslo_posthus_sets_merged.json \
-            data/quiz/naeringsliv/havnelageret_sets_merged.json \
-            data/quiz/production_briefs/naeringsliv/telegrafbygningen.json \
-            data/quiz/production_briefs/naeringsliv/oslo_posthus.json \
-            data/quiz/production_briefs/naeringsliv/havnelageret.json \
-            data/quiz/production_context/naeringsliv/telegrafbygningen.json \
-            data/quiz/production_context/naeringsliv/oslo_posthus.json \
-            data/quiz/production_context/naeringsliv/havnelageret.json \
-            data/fag/naeringsliv/profesjonsmaterialisering_oslo_pilot_v1.json \
-            tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs \
-            scripts/audit-category-governance.mjs \
-            .tmp/naeringsliv-pilot \
-            .github/workflows/one-time-materialize-naeringsliv-pilot.yml
-
+          git add .tmp/naeringsliv-pilot/package-history.txt
           git diff --cached --quiet && exit 0
-          git commit -m 'Materialiser profesjonsdybde på tre næringslivssteder'
+          git commit -m 'Kartlegg historiske materialiseringspakker'
           git push origin HEAD:agent/naeringsliv-pilot-profesjonsmaterialisering
