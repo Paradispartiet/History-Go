@@ -7,11 +7,11 @@ Naturkategorien er utelatt fordi den allerede har egen fullført 26-steders audi
 ## Omfang
 
 - Aktive Etne-steder utenfor natur: **79**
-- Blockers: **36**
-- Warnings: **7**
-- Gjennomsnittsscore: **96.2**
-- Steder under 90: **3**
-- Steder med blockers: **3**
+- Blockers: **0**
+- Warnings: **0**
+- Gjennomsnittsscore: **100**
+- Steder under 90: **0**
+- Steder med blockers: **0**
 
 ## Kategorier
 
@@ -34,31 +34,12 @@ Naturkategorien er utelatt fordi den allerede har egen fullført 26-steders audi
 | kode | antall | steder |
 |---|---:|---|
 | badge_depth | 30 | abc_studio_etne, bruteigsteinen_etne, duesteinen_etne, dysjanes_rivaisen_gravroys, etne_brannstasjon, etne_prestebustad, etne_tinghus, etnesjoen_forromersk_landsby, fjaera_kapell, grindheim_runestein, grindheim_steinkross, grindheimsveien_nord_gravfelt, gurine_johan_ebnes_minde, helgaberget_etne, hidlesnes_nernes_gravroys, hoyland_gravhaug_etne, keisarhaugen_frette, nesjarhaugen_byrkjenes, olav_vik_garden_osnes, old_river_saloon_etne, postvegen_rullestadjuvet, skanevik_brannstasjon, skanevik_ferjekai, skanevik_kyrkjestad, sorheimsmoen_gravfelt, stampehaug_meland, stodle_kyrkje, tesdal_gravfelt, vardahaugen_lauareid, varhaug_nervik |
-| before_now_contract | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| before_now_sources | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
 | brand_depth | 3 | borgasen_etne, gjerde_kyrkje_etne, stodle_kyrkje |
-| leksikon_count | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_badges_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_brands_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_civication_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_fortellinger_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_før_nå_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_leksikon_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_nature_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_people_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| missing_works_round | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| story_article_source_urls | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| story_count | 3 | etne_kyrkje, frette_kapell, skanevik_kyrkje |
-| invalid_related_place | 1 | psykisk_helse_rus_etne |
 
 ## Samlet oversikt
 
 | placeId | kategori | score | blockers | warnings | people/works/civication/brands | viktigste funn |
 |---|---|---:|---:|---:|---:|---|
-| etne_kyrkje | religion | 0 | 12 | 2 | 0/0/0/0 | missing_people_round, missing_nature_round, missing_badges_round, missing_works_round |
-| frette_kapell | religion | 0 | 12 | 2 | 0/0/0/0 | missing_people_round, missing_nature_round, missing_badges_round, missing_works_round |
-| skanevik_kyrkje | religion | 0 | 12 | 2 | 0/0/0/0 | missing_people_round, missing_nature_round, missing_badges_round, missing_works_round |
-| psykisk_helse_rus_etne | psykologi | 97 | 0 | 1 | 1/8/3/6 | invalid_related_place |
 | etnesjoen_tettstad | by | 100 | 0 | 0 | 1/3/2/3 | OK |
 | etnesjoen_torg_og_kai | by | 100 | 0 | 0 | 1/3/2/3 | OK |
 | kyrping_handelsstad | by | 100 | 0 | 0 | 1/4/2/3 | OK |
@@ -117,7 +98,11 @@ Naturkategorien er utelatt fordi den allerede har egen fullført 26-steders audi
 | etne_brannstasjon | politikk | 100 | 0 | 0 | 1/4/2/4 | badge_depth |
 | etne_tinghus | politikk | 100 | 0 | 0 | 1/4/2/4 | badge_depth |
 | skanevik_brannstasjon | politikk | 100 | 0 | 0 | 1/5/2/4 | badge_depth |
+| psykisk_helse_rus_etne | psykologi | 100 | 0 | 0 | 1/8/3/6 | OK |
 | psykisk_helse_rus_skanevik | psykologi | 100 | 0 | 0 | 1/8/3/6 | OK |
+| etne_kyrkje | religion | 100 | 0 | 0 | 1/4/2/3 | OK |
+| frette_kapell | religion | 100 | 0 | 0 | 1/4/2/3 | OK |
+| skanevik_kyrkje | religion | 100 | 0 | 0 | 1/4/2/3 | OK |
 | engebanen_etne | sport | 100 | 0 | 0 | 1/4/2/3 | OK |
 | etne_bmx_og_skatepark | sport | 100 | 0 | 0 | 1/4/2/3 | OK |
 | etne_idrettsanlegg | sport | 100 | 0 | 0 | 1/4/2/3 | OK |
@@ -134,77 +119,6 @@ Naturkategorien er utelatt fordi den allerede har egen fullført 26-steders audi
 | skanevik_skytebane | sport | 100 | 0 | 0 | 1/8/2/4 | OK |
 | steinsvollen_fotballanlegg | sport | 100 | 0 | 0 | 1/4/2/3 | OK |
 | etneelva_forskningsplattform | vitenskap | 100 | 0 | 0 | 2/4/2/4 | OK |
-
-## Etne kyrkje (`etne_kyrkje`)
-
-Kategori: **religion**
-Fil: `data/places/religion/vestland/etne/etne_kyrkje/etne_kyrkje.json`
-Score: **0** · blockers: **12** · warnings: **2**
-
-- **blocker · missing_people_round:** Canonical people-runding mangler koblet innhold.
-- **blocker · missing_nature_round:** Canonical nature-runding mangler koblet innhold.
-- **blocker · missing_badges_round:** Canonical badges-runding mangler koblet innhold.
-- **blocker · missing_works_round:** Canonical works-runding mangler koblet innhold.
-- **blocker · missing_civication_round:** Canonical civication-runding mangler koblet innhold.
-- **blocker · missing_brands_round:** Canonical brands-runding mangler koblet innhold.
-- **blocker · missing_før_nå_round:** Canonical før_nå-runding mangler koblet innhold.
-- **blocker · missing_fortellinger_round:** Canonical fortellinger-runding mangler koblet innhold.
-- **blocker · missing_leksikon_round:** Canonical leksikon-runding mangler koblet innhold.
-- **blocker · before_now_contract:** Før/nå-rundingen mangler before, now eller change.
-- **warning · before_now_sources:** Før/nå-rundingen mangler eksplisitte kilde-URL-er.
-- **blocker · story_count:** Stedet mangler manifestlastet fortelling. — `{"count":0}`
-- **blocker · leksikon_count:** Stedet mangler leksikonartikkel. — `{"count":0}`
-- **warning · story_article_source_urls:** Fortelling og leksikon mangler eksplisitte eksterne kilde-URL-er.
-
-## Frette kapell (`frette_kapell`)
-
-Kategori: **religion**
-Fil: `data/places/religion/vestland/etne/frette_kapell/frette_kapell.json`
-Score: **0** · blockers: **12** · warnings: **2**
-
-- **blocker · missing_people_round:** Canonical people-runding mangler koblet innhold.
-- **blocker · missing_nature_round:** Canonical nature-runding mangler koblet innhold.
-- **blocker · missing_badges_round:** Canonical badges-runding mangler koblet innhold.
-- **blocker · missing_works_round:** Canonical works-runding mangler koblet innhold.
-- **blocker · missing_civication_round:** Canonical civication-runding mangler koblet innhold.
-- **blocker · missing_brands_round:** Canonical brands-runding mangler koblet innhold.
-- **blocker · missing_før_nå_round:** Canonical før_nå-runding mangler koblet innhold.
-- **blocker · missing_fortellinger_round:** Canonical fortellinger-runding mangler koblet innhold.
-- **blocker · missing_leksikon_round:** Canonical leksikon-runding mangler koblet innhold.
-- **blocker · before_now_contract:** Før/nå-rundingen mangler before, now eller change.
-- **warning · before_now_sources:** Før/nå-rundingen mangler eksplisitte kilde-URL-er.
-- **blocker · story_count:** Stedet mangler manifestlastet fortelling. — `{"count":0}`
-- **blocker · leksikon_count:** Stedet mangler leksikonartikkel. — `{"count":0}`
-- **warning · story_article_source_urls:** Fortelling og leksikon mangler eksplisitte eksterne kilde-URL-er.
-
-## Skånevik kyrkje (`skanevik_kyrkje`)
-
-Kategori: **religion**
-Fil: `data/places/religion/vestland/etne/skanevik_kyrkje/skanevik_kyrkje.json`
-Score: **0** · blockers: **12** · warnings: **2**
-
-- **blocker · missing_people_round:** Canonical people-runding mangler koblet innhold.
-- **blocker · missing_nature_round:** Canonical nature-runding mangler koblet innhold.
-- **blocker · missing_badges_round:** Canonical badges-runding mangler koblet innhold.
-- **blocker · missing_works_round:** Canonical works-runding mangler koblet innhold.
-- **blocker · missing_civication_round:** Canonical civication-runding mangler koblet innhold.
-- **blocker · missing_brands_round:** Canonical brands-runding mangler koblet innhold.
-- **blocker · missing_før_nå_round:** Canonical før_nå-runding mangler koblet innhold.
-- **blocker · missing_fortellinger_round:** Canonical fortellinger-runding mangler koblet innhold.
-- **blocker · missing_leksikon_round:** Canonical leksikon-runding mangler koblet innhold.
-- **blocker · before_now_contract:** Før/nå-rundingen mangler before, now eller change.
-- **warning · before_now_sources:** Før/nå-rundingen mangler eksplisitte kilde-URL-er.
-- **blocker · story_count:** Stedet mangler manifestlastet fortelling. — `{"count":0}`
-- **blocker · leksikon_count:** Stedet mangler leksikonartikkel. — `{"count":0}`
-- **warning · story_article_source_urls:** Fortelling og leksikon mangler eksplisitte eksterne kilde-URL-er.
-
-## Psykisk helse og rus – Etne (`psykisk_helse_rus_etne`)
-
-Kategori: **psykologi**
-Fil: `data/places/psykologi/vestland/etne/psykisk_helse_rus_etne/psykisk_helse_rus_etne.json`
-Score: **97** · blockers: **0** · warnings: **1**
-
-- **warning · invalid_related_place:** Relatert place-id finnes ikke i aktivt place-manifest. — `{"relatedId":"etne_senter"}`
 
 ## Etnesjøen / Etne sentrum (`etnesjoen_tettstad`)
 
@@ -671,10 +585,42 @@ Score: **100** · blockers: **0** · warnings: **0**
 
 - **advisory · badge_depth:** Badge-rundingen har færre enn tre relevante undermerker. — `{"count":1}`
 
+## Psykisk helse og rus – Etne (`psykisk_helse_rus_etne`)
+
+Kategori: **psykologi**
+Fil: `data/places/psykologi/vestland/etne/psykisk_helse_rus_etne/psykisk_helse_rus_etne.json`
+Score: **100** · blockers: **0** · warnings: **0**
+
+- Ingen funn.
+
 ## Psykisk helse og rus – Skånevik (`psykisk_helse_rus_skanevik`)
 
 Kategori: **psykologi**
 Fil: `data/places/psykologi/vestland/etne/psykisk_helse_rus_skanevik/psykisk_helse_rus_skanevik.json`
+Score: **100** · blockers: **0** · warnings: **0**
+
+- Ingen funn.
+
+## Etne kyrkje (`etne_kyrkje`)
+
+Kategori: **religion**
+Fil: `data/places/religion/vestland/etne/etne_kyrkje/etne_kyrkje.json`
+Score: **100** · blockers: **0** · warnings: **0**
+
+- Ingen funn.
+
+## Frette kapell (`frette_kapell`)
+
+Kategori: **religion**
+Fil: `data/places/religion/vestland/etne/frette_kapell/frette_kapell.json`
+Score: **100** · blockers: **0** · warnings: **0**
+
+- Ingen funn.
+
+## Skånevik kyrkje (`skanevik_kyrkje`)
+
+Kategori: **religion**
+Fil: `data/places/religion/vestland/etne/skanevik_kyrkje/skanevik_kyrkje.json`
 Score: **100** · blockers: **0** · warnings: **0**
 
 - Ingen funn.

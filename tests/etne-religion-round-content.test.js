@@ -22,5 +22,5 @@ for(const id of ids){const place=read(paths[id]),rel=relations.filter(x=>x.place
  assert(place.for_na.before&&place.for_na.now&&place.for_na.change&&place.for_na.sources.length>=2);assert(story.sources.length>=2&&article.sources.length>=2&&article.wikiText.length>=3);assert.deepStrictEqual([place.lat,place.lon,place.r,place.year],coords[id]);}
 assert(/1910/.test(stories.find(x=>x.place_id==='frette_kapell').story)&&/1959/.test(stories.find(x=>x.place_id==='frette_kapell').story));
 assert(/skild|separate/.test(stories.find(x=>x.place_id==='skanevik_kyrkje').story)&&/1900/.test(stories.find(x=>x.place_id==='skanevik_kyrkje').story));
-assert(/2013/.test(stories.find(x=>x.place_id==='etne_kyrkje').story)&&!/middelalderkyrkje[^.]*er/.test(stories.find(x=>x.place_id==='etne_kyrkje').story));
+assert(/2013/.test(stories.find(x=>x.place_id==='etne_kyrkje').story)&&/ikkje ei middelalderkyrkje/.test(stories.find(x=>x.place_id==='etne_kyrkje').story));
 console.log('Etne religion round content OK');
