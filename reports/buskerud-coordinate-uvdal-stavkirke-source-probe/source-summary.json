@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "uvdal_stavkirke",
+  "generatedAt": "2026-07-28",
+  "purpose": "Persist source findings used to verify Uvdal stave church's coordinate, 1168 dating, site continuity, museum relationship and access.",
+  "legacyCoordinate": {
+    "lat": 60.2677,
+    "lon": 8.5986,
+    "assessment": "Unsupported point approximately 13028.2 metres west of the church."
+  },
+  "appliedCoordinate": {
+    "lat": 60.26514,
+    "lon": 8.83478,
+    "role": "medieval_stave_church_building_anchor",
+    "sourceObjectId": "osm-way:220941602;wikidata:Q1398030",
+    "distanceFromLegacyM": 13028.2
+  },
+  "identityResolution": {
+    "canonicalEntity": "Uvdal stavkirke",
+    "entityType": "protected medieval stave-church building within the Uvdal open-air-museum environment",
+    "wikidata": "Q1398030",
+    "osmWay": "220941602",
+    "address": "Kirkebygda 111, 3632 Uvdal",
+    "owner": "Fortidsminneforeningen"
+  },
+  "sources": [
+    {
+      "provider": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/way/220941602",
+      "objectId": "osm-way:220941602",
+      "supports": [
+        "named stave-church building geometry",
+        "representative coordinate"
+      ]
+    },
+    {
+      "provider": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1398030",
+      "objectId": "wikidata:Q1398030",
+      "supports": [
+        "independent stave-church entity",
+        "coordinate",
+        "OpenStreetMap linkage"
+      ]
+    },
+    {
+      "provider": "Fortidsminneforeningen",
+      "url": "https://fortidsminneforeningen.no/museum/uvdal-stavkirke/",
+      "objectId": "fortidsminneforeningen:uvdal-stavkirke",
+      "supports": [
+        "official coordinate 60.265536, 8.8348002",
+        "Kirkebygda 111 address",
+        "timber dating to 1168",
+        "ownership since 1901",
+        "centuries of extension and interior decoration",
+        "1978 archaeological finds",
+        "2026 seasonal access"
+      ]
+    },
+    {
+      "provider": "Nore og Uvdal bygdetun",
+      "url": "https://uvdal.no/nore-og-uvdal-bygdetun-og-uvdal-stavkirke/",
+      "objectId": "uvdal-bygdetun:stavkirke",
+      "supports": [
+        "open-air museum on the old rectory ground near the church",
+        "joint visitor operation",
+        "remaining rectory buildings",
+        "2026 hours and ticketing"
+      ]
+    },
+    {
+      "provider": "Lokalhistoriewiki",
+      "url": "https://lokalhistoriewiki.no/wiki/Uvdal_stavkirke",
+      "objectId": "lokalhistoriewiki:Uvdal_stavkirke",
+      "supports": [
+        "historic location in Kirkebygda",
+        "parish-church use until 1893",
+        "museum-church preservation",
+        "separation from the newer Uvdal church"
+      ]
+    },
+    {
+      "provider": "Nore kirkelige fellesråd",
+      "url": "https://www.nore.kirken.no/Artikler/Artikkeldetaljer/ArticleId/86/Uvdal-stavkirke",
+      "objectId": "kirken:uvdal-stavkirke",
+      "supports": [
+        "late-twelfth-century identity",
+        "Fortidsminneforeningen ownership",
+        "summer worship use"
+      ]
+    }
+  ],
+  "chronology": [
+    {
+      "date": "1168",
+      "event": "Construction timber was felled and used shortly afterwards.",
+      "certainty": "dendrochronologically documented anchor"
+    },
+    {
+      "date": "13th century",
+      "event": "The west portal with the Gunnar-in-the-snake-pit motif belongs to a medieval expansion phase.",
+      "certainty": "scholarly dating"
+    },
+    {
+      "date": "mid-17th to 19th centuries",
+      "event": "Major building, furnishing and painted-decoration layers formed the present interior.",
+      "certainty": "documented range"
+    },
+    {
+      "date": "1893",
+      "event": "The newer Uvdal church replaced the stave church as the ordinary parish church.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1901",
+      "event": "Fortidsminneforeningen took ownership.",
+      "certainty": "documented"
+    },
+    {
+      "date": "1978",
+      "event": "Foundation work enabled archaeological excavation of medieval graves and unusually well-preserved textiles.",
+      "certainty": "documented"
+    }
+  ],
+  "interpretationLimits": [
+    "The canonical point represents the stave-church building, not the whole open-air museum or cemetery.",
+    "Year 1168 is a timber-felling and construction anchor, not a documented consecration date.",
+    "The church stands at its historic church site; it was not moved into the open-air museum as the current desc and popupDesc imply.",
+    "The incorrect move claim requires a separate place-description 4.2 revision and is not silently changed in this coordinate PR.",
+    "Uvdal church from 1893 is a separate building in the valley bottom.",
+    "The existing desc and popupDesc remain unchanged under place-description governance."
+  ],
+  "decision": {
+    "status": "production_applied",
+    "coordinate": "60.26514, 8.83478",
+    "coordStatus": "verified_geometry",
+    "nextManifestEntry": "rollag_stavkirke"
+  }
+}
