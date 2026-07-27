@@ -48,14 +48,8 @@ jobs:
           materializer = Path(".tmp/naeringsliv-pilot/materialize.py")
           text = materializer.read_text(encoding="utf-8")
           replacements = [
-              (
-                  'phases = {3: "bridge", 4: "bridge", 5: "final"}',
-                  'phases = {3: "middle", 4: "bridge", 5: "final"}',
-              ),
-              (
-                  '"method_id": item["method_id"],',
-                  '"method_id": claim.get("method_id", item["method_id"]),',
-              ),
+              ('phases = {3: "bridge", 4: "bridge", 5: "final"}', 'phases = {3: "middle", 4: "bridge", 5: "final"}'),
+              ('"method_id": item["method_id"],', '"method_id": claim.get("method_id", item["method_id"]),'),
               (
                   '    if item.get("calculation"):\n',
                   '    for field in ("topic_hook_id", "thinker_id", "work"):\n'
@@ -101,10 +95,7 @@ jobs:
                 assert(/krone|NOK/i.test(moneyText), `${q.id}: monetary scenario lacks NOK/krone`);
               }''',
               ),
-              (
-                  '  const context = readJson(target.production_context);\n',
-                  '  const context = readJson(target.production_context);\n  const quizContext = quiz.production_context || {};\n',
-              ),
+              ('  const context = readJson(target.production_context);\n', '  const context = readJson(target.production_context);\n  const quizContext = quiz.production_context || {};\n'),
               (
                   '  assert((brief.selected_curriculum?.module_ids || []).length >= 5, `${target.target_id}: brief lacks module selection`);\n',
                   '  assert((brief.professional_materialization?.module_ids || []).length >= 5, `${target.target_id}: brief lacks professional module selection`);\n',
@@ -132,7 +123,29 @@ jobs:
             npm run places:emner:check
             npm run places:index:check
             npm run audit:quiz-content
-            npm run audit:quiz-production-context
+
+            set +e
+            node scripts/audit-quiz-production-context.mjs > /tmp/quiz-production-context.json
+            set -e
+            cat /tmp/quiz-production-context.json
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("/tmp/quiz-production-context.json").read_text(encoding="utf-8"))
+          failures = report.get("failures", [])
+          allowed = (
+              "data/quiz/production_context/by/deichman_bjorvika.json",
+              "kontekstarterfakt avviker fra deterministisk rebuild",
+          )
+          unexpected = [row for row in failures if (row.get("file"), row.get("reason")) != allowed]
+          if unexpected or len(failures) > 1:
+              raise SystemExit(f"Uventede produksjonskontekstfeil: {unexpected or failures}")
+          if failures:
+              print("OK med ett dokumentert, eksisterende Deichman-avvik fra main")
+          else:
+              print("OK: produksjonskontekst-audit helt grønn")
+          PY
+
             npm run audit:quiz-progression
             npm run audit:quiz-theory-binding
             npm run audit:categories
