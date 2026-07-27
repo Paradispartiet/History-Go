@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "isegran_fort_verft",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch4/isegran_fort_verft.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_island_cultural_environment_anchor",
+  "currentCoordinate": {
+    "lat": 59.20261,
+    "lon": 10.94497,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 198507904 – Isegran; Wikidata Q49642583; GeoNames 3150998; Fredrikstad kommune – Strategi for Isegran; Wikidata Q11977563 / OSM way 83128998 – Isegran fort; Isegran Fartøyvernsenter – Mindre-Alvs vei 2",
+    "coordType": "named_islet_geometry_representative_point",
+    "coordRole": "island_cultural_environment_anchor",
+    "sourceObjectId": "osm-way:198507904;wikidata:Q49642583;geonames:3150998"
+  },
+  "previousCoordinate": {
+    "lat": 59.20296,
+    "lon": 10.94468,
+    "r": 320,
+    "distanceToAppliedCoordinateM": 42.3,
+    "reasonReplaced": "Legacy-punktet lå nær øyas sentrum, men manglet en kildeobjektkontrakt og skilte ikke mellom øya, fortet og det maritime senteret."
+  },
+  "identity": {
+    "resolvedIdentity": "Hele Isegran-øya som samlet kulturmiljø for forsvar, orlogshavn, verft, museumshavn og dagens fartøyvern.",
+    "identityStatus": "resolved",
+    "identityProblem": "Navnet kombinerer flere fysiske og historiske objekter: øya, Isegran fort, tårnet, museumshavna, Bjarne Aas' båtbyggeri og dagens fartøyvernsenter. Ett fortpunkt eller én verkstedsadresse ville utelate vesentlige deler av place-recorden.",
+    "locatorTypeCandidate": "island_maritime_fortification_cultural_environment",
+    "requiresSplit": false,
+    "splitReason": "Objektene er ulike delankere innenfor samme lille, navngitte øy og sammenhengende kulturmiljø. Separate place-records kan senere opprettes dersom fortet eller fartøyvernsenteret trenger egne gameplayløp."
+  },
+  "requiredEvidence": [
+    "navngitt øygeometri",
+    "øy- og fortidentitet",
+    "1287-omtale mot dokumenterte festningslag",
+    "maritim virksomhet og fartøyvern",
+    "offentlig ankomst",
+    "delanker- og adgangsbegrensninger"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm_wikidata_geonames",
+      "sourceName": "Isegran island geometry",
+      "sourceUrl": "https://www.openstreetmap.org/way/198507904",
+      "sourceObjectId": "osm-way:198507904;wikidata:Q49642583;geonames:3150998",
+      "sourceQuality": "named_islet_geometry_and_entity_crosscheck",
+      "finding": "OSM-way 198507904 identifies the named islet Isegran with representative point 59.20261, 10.94497; Wikidata and GeoNames independently identify the same island.",
+      "canVerifyCoordinate": true,
+      "reason": "The whole-island geometry best represents a composite place combining fortification and maritime-centre layers."
+    },
+    {
+      "sourceProvider": "fredrikstad_kommune",
+      "sourceName": "Fredrikstad kommune – Strategi for Isegran",
+      "sourceUrl": "https://www.fredrikstad.kommune.no/tjenester/samfunn-planarbeid-medvirkning/planer-strategier-og-retningslinjer/strategi-for-isegran-historien-i-sentrum/",
+      "sourceObjectId": "fredrikstad:isegran-strategy-2025",
+      "sourceQuality": "official_current_cultural_environment_strategy",
+      "finding": "The municipality describes Isegran as a strategically situated island with military structures, maritime activity, historical buildings, historic vessels, public recreation and a nationally important cultural environment.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that the canonical subject is the integrated island environment rather than one isolated structure."
+    },
+    {
+      "sourceProvider": "fredrikstad_kommune",
+      "sourceName": "Fredrikstad kommune – Tårnet på Isegran",
+      "sourceUrl": "https://www.fredrikstad.kommune.no/nyheter/offisiell-aapning-av-taarnet-paa-isegran/",
+      "sourceObjectId": "fredrikstad:isegran-tower-history-2025",
+      "sourceQuality": "official_fortification_and_archaeology_history",
+      "finding": "The municipality separates the 1287 chronicle reference from the unproven medieval-castle tradition, documents seventeenth- and eighteenth-century fortification layers, the 1984–1988 tower reconstruction and the 2025 restoration.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides the strongest source for correcting the chronology and avoiding an unsupported medieval-fort claim."
+    },
+    {
+      "sourceProvider": "wikidata_wikimedia_osm",
+      "sourceName": "Isegran fort entity and tower geometry",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Isegran_fort",
+      "sourceObjectId": "wikidata:Q11977563;osm-way:83128998",
+      "sourceQuality": "named_fortification_entity_and_component_geometry",
+      "finding": "Isegran fort is a named fortification subentity at approximately 59.20270, 10.94690 on the east side of the island.",
+      "canVerifyCoordinate": true,
+      "reason": "Used as a fort component anchor, not as the canonical point for the whole island place."
+    },
+    {
+      "sourceProvider": "isegran_fartoyvernsenter",
+      "sourceName": "Isegran Fartøyvernsenter",
+      "sourceUrl": "https://www.isegran-fartoyvern.no/",
+      "sourceObjectId": "business-register:983195326;address:Mindre-Alvs-vei-2",
+      "sourceQuality": "official_current_maritime_centre_identity",
+      "finding": "The centre documents active vessel conservation, boatbuilding, restoration, rigging, bronze casting, documentation, courses and guided tours, and gives the address Mindre-Alvs vei 2.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the current maritime-craft layer and access identity without replacing the island geometry."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Isegran",
+      "sourceUrl": "https://snl.no/Isegran",
+      "sourceObjectId": "snl:isegran",
+      "sourceQuality": "authoritative_geography_and_history_reference",
+      "finding": "SNL identifies the island where Glomma divides, preserved fortifications, the former naval harbour, archaeological station, museum harbour and the historical association with Alv Erlingsson and Tordenskiold.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks the island identity and major historical layers."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Isegran public ferry arrival",
+      "sourceUrl": "https://www.openstreetmap.org/node/5019797124",
+      "sourceObjectId": "osm-node:5019797124",
+      "sourceQuality": "named_public_transport_access_point",
+      "finding": "The ferry terminal at 59.20391, 10.94572 provides a public arrival anchor on the north side of the island.",
+      "canVerifyCoordinate": false,
+      "reason": "Retained as an access anchor rather than the place identity."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Isegran point",
+      "sourceObjectId": "legacy:isegran_fort_verft",
+      "sourceQuality": "nearby_uncontracted_point",
+      "finding": "The legacy coordinate is only 42.3 metres northwest of the island representative point but has no documented object role.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced to establish an explicit and reproducible whole-island contract."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm_wikidata_geonames",
+      "sourceObjectId": "osm-way:198507904;wikidata:Q49642583;geonames:3150998",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata_wikimedia_osm",
+      "sourceObjectId": "wikidata:Q11977563;osm-way:83128998",
+      "canApplyToPlace": false,
+      "rejectionReason": "Represents the fort and tower component, not the complete fort-and-maritime-centre place."
+    },
+    {
+      "sourceProvider": "isegran_fartoyvernsenter",
+      "sourceObjectId": "business-register:983195326;address:Mindre-Alvs-vei-2",
+      "canApplyToPlace": false,
+      "rejectionReason": "Represents the present organisation and workshop address, not all historical and public island layers."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5019797124",
+      "canApplyToPlace": false,
+      "rejectionReason": "Public arrival point only."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:198507904",
+      "geometryType": "named_islet_polygon",
+      "geometryRole": "integrated_island_cultural_environment",
+      "canApplyToPlace": true,
+      "appliedAsRepresentativePoint": true
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:83128998;wikidata:Q11977563",
+      "geometryType": "fortification_tower_component",
+      "geometryRole": "fort_and_tower_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "maritime_site_control",
+      "sourceObjectId": "Mindre-Alvs-vei-2-and-museum-harbour",
+      "geometryType": "distributed_workshop_harbour_and_vessel_environment",
+      "geometryRole": "active_maritime_preservation_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "isegran_island",
+      "name": "Isegran – øya og kulturmiljøet",
+      "lat": 59.20261,
+      "lon": 10.94497,
+      "r": 220,
+      "type": "island_cultural_environment_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:198507904;wikidata:Q49642583;geonames:3150998",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "isegran_fort_tower",
+      "name": "Isegran fort og tårnet",
+      "lat": 59.2027,
+      "lon": 10.9469,
+      "r": 90,
+      "type": "fortification_tower_anchor",
+      "sourceProvider": "wikidata_wikimedia_osm",
+      "sourceObjectId": "wikidata:Q11977563;osm-way:83128998",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "isegran_public_arrival",
+      "name": "Isegran fergeleie og offentlig ankomst",
+      "lat": 59.20391,
+      "lon": 10.94572,
+      "r": 60,
+      "type": "public_access_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5019797124",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:isegran_fort_verft",
+      "lat": 59.20296,
+      "lon": 10.94468,
+      "distanceFromAppliedM": 42.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:198507904",
+      "lat": 59.20261,
+      "lon": 10.94497,
+      "distanceFromPreviousM": 42.3,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata_wikimedia_osm",
+      "sourceObjectId": "wikidata:Q11977563;osm-way:83128998",
+      "lat": 59.2027,
+      "lon": 10.9469,
+      "distanceFromAppliedM": 110.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5019797124",
+      "lat": 59.20391,
+      "lon": 10.94572,
+      "distanceFromAppliedM": 150.7,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-isegran-fort-verft-source-probe/source-summary.json",
+      "description": "Persisted island geometry, fort and public-arrival anchors, chronology controls, maritime-centre identity, rejected single-component anchors and access limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Isegran island geometry, retained fort and public arrival as subanchors and continued with akeroya_fort."
+  },
+  "notes": [
+    "The coordinate moves only 42.3 metres southeast but gains an explicit named-island geometry contract.",
+    "Year 1287 marks the first known chronicle reference and associated event, not a proven surviving medieval castle or the date of the current tower.",
+    "Documented fortification layers primarily belong to the seventeenth and eighteenth centuries.",
+    "The current tower wall is a 1984–1988 reconstruction restored and opened as a viewpoint in 2025.",
+    "Workshop, vessel and event areas may have access restrictions distinct from the public island park and ferry arrival.",
+    "The radius is not an island, fortification, harbour, property, event or safety boundary."
+  ]
+}
