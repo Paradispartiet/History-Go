@@ -303,7 +303,7 @@ for (const source of activeEtne) {
       stories: stories.length,
       leksikon: articles.length,
       externalSourceUrls: countUrls(place.externalLinks),
-      storyArticleSourceUrls
+      storyArticleSourceUrls: storyArticleUrls
     },
     findings
   });
