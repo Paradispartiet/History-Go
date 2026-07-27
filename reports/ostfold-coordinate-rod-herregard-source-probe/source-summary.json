@@ -1,0 +1,91 @@
+{
+  "placeId": "rod_herregard",
+  "researchedAt": "2026-07-27",
+  "coordinateDecision": "named_manor_house_building_polygon_representative_point",
+  "legacyCoordinate": {
+    "lat": 59.1261,
+    "lon": 11.3769,
+    "distanceToAppliedM": 613.4
+  },
+  "appliedCoordinate": {
+    "lat": 59.12269,
+    "lon": 11.36845,
+    "radiusM": 320,
+    "sourceObjectId": "osm-way:4481504"
+  },
+  "sources": [
+    {
+      "provider": "openstreetmap",
+      "name": "Rød herregård",
+      "url": "https://www.openstreetmap.org/way/4481504",
+      "objectId": "osm-way:4481504",
+      "finding": "Named manor-house building polygon linked to Wikidata Q14556917."
+    },
+    {
+      "provider": "wikidata",
+      "name": "Rød herregård Q14556917",
+      "url": "https://www.wikidata.org/wiki/Q14556917",
+      "finding": "Manor-house, museum and cultural-property entity linked to Kulturminne ID 86040 and OSM way 4481504; entity coordinate is approximately 9.2 m from the applied building anchor."
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "name": "Rød herregård",
+      "url": "https://ostfoldmuseene.no/rod/herregarden",
+      "finding": "Official museum identity and interpretation of the preserved house, interiors and collections."
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "name": "Røds hage",
+      "url": "https://ostfoldmuseene.no/rod/hage",
+      "finding": "Official documentation of the park components, including the 1756 pavilion, family burial ground and historical garden features."
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "name": "Kontaktinformasjon",
+      "url": "https://ostfoldmuseene.no/rod/kontakt",
+      "finding": "Official visitor address Herregårdsveien 10, 1771 Halden."
+    },
+    {
+      "provider": "store_norske_leksikon",
+      "name": "Rød – storgård i Halden kommune",
+      "url": "https://snl.no/R%C3%B8d_-_storg%C3%A5rd_i_Halden_kommune",
+      "finding": "The main building has a seventeenth-century core and a 1733 addition; the protected foundation includes house, park and land."
+    }
+  ],
+  "crossChecks": [
+    {
+      "candidate": "wikidata:Q14556917",
+      "lat": 59.12261111111111,
+      "lon": 11.3685,
+      "distanceToAppliedM": 9.2,
+      "role": "independent_manor_entity_coordinate"
+    },
+    {
+      "candidate": "osm-node:27470219",
+      "lat": 59.12286,
+      "lon": 11.36893,
+      "distanceToAppliedM": 33.3,
+      "role": "museum_visitor_point"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "candidate": "osm-node:27470219",
+      "reason": "Valid museum visitor point, but the named main-building polygon is the more precise canonical geometry source."
+    },
+    {
+      "candidate": "Rødsparken",
+      "reason": "The park is a major part of the visitor experience but does not replace the named manor-house building."
+    },
+    {
+      "candidate": "legacy coordinate",
+      "reason": "Approximately 613.4 m northeast and not tied to the manor house or museum complex."
+    }
+  ],
+  "representationLimits": [
+    "The marker represents the main manor house and immediate historic complex.",
+    "The park, pavilion, family burial ground and agricultural land remain associated site components rather than coordinate geometry.",
+    "The 320 m radius is not a building, heritage, property, park or farm boundary."
+  ],
+  "nextManifestEntry": "moss_jernverk_konventionsgarden"
+}
