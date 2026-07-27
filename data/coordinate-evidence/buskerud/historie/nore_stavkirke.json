@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nore_stavkirke",
+  "placeFile": "data/places/historie/buskerud/places_historie_buskerud_batch1/nore_stavkirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_stave_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 60.16456,
+    "lon": 9.01025,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 546328493; Wikidata Q1557490; Kulturminne 85174; Fortidsminneforeningen; Lokalhistoriewiki; Store norske leksikon",
+    "coordType": "building_representative_point",
+    "coordRole": "medieval_stave_church_building_anchor",
+    "sourceObjectId": "osm-way:546328493;wikidata:Q1557490;kulturminne:85174"
+  },
+  "previousCoordinate": {
+    "lat": 60.1663,
+    "lon": 8.8082,
+    "r": 260,
+    "distanceToAppliedCoordinateM": 11178.9,
+    "reasonReplaced": "Legacy-punktet lå omtrent 11,18 kilometer vest for Nore stavkirke og identifiserte ikke kirkebygget, kirkegården eller besøksstedet."
+  },
+  "identity": {
+    "resolvedIdentity": "Nore stavkirke, den fredede middelalderkirken ved Norefjorden, Fjordevegen 90.",
+    "identityStatus": "resolved",
+    "identityProblem": "Fortidsminneforeningens innebygde kartpunkt avviker flere kilometer fra selve kirken, mens nyere Nore kirke, prestegården, kirkegården og besøksankomsten er separate nærobjekter.",
+    "locatorTypeCandidate": "medieval_stave_church_building",
+    "requiresSplit": false,
+    "splitReason": "Stavkirken er ett tydelig bygg. Kirkegård, prestegård, nyere kirke og besøksankomst beholdes som komponenter."
+  },
+  "requiredEvidence": [
+    "named stave-church building geometry",
+    "independent entity and coordinate",
+    "heritage identifier",
+    "official ownership and visitor address",
+    "dendrochronological dating limits",
+    "later rebuilding chronology",
+    "separation from Nore church and rectory",
+    "seasonal museum and worship access"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 546328493 – Nore stavkirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/546328493",
+      "sourceObjectId": "osm-way:546328493",
+      "sourceQuality": "named_stave_church_building_geometry",
+      "finding": "Den navngitte kirkebygningsgeometrien har representativt punkt 60.16456, 9.01025.",
+      "canVerifyCoordinate": true,
+      "reason": "Direkte bygningsgeometri for canonical-objektet."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata – Nore Stave Church",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q1557490",
+      "sourceObjectId": "wikidata:Q1557490",
+      "sourceQuality": "independent_entity_identifier_coordinate_control",
+      "finding": "Q1557490 oppgir koordinat 60°9'52.326 N, 9°0'37.030 E, OSM-way 546328493, kulturminne 85174, bygge-ID 589 og Fjordvegen 90.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig entitets-, identifier- og koordinatkontroll."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Kulturminne 85174 – Nore stavkirke og kirkested",
+      "sourceUrl": "https://www.kulturminnesok.no/kart/?id=85174",
+      "sourceObjectId": "kulturminne:85174",
+      "sourceQuality": "authoritative_heritage_identity",
+      "finding": "Kulturminne-ID 85174 identifiserer Nore stavkirke og det fredede kirkestedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Offentlig kulturminneidentitet."
+    },
+    {
+      "sourceProvider": "institution",
+      "sourceName": "Fortidsminneforeningen – Nore stavkirke",
+      "sourceUrl": "https://fortidsminneforeningen.no/museum/nore-stavkirke/",
+      "sourceObjectId": "fortidsminneforeningen:nore-stavkirke",
+      "sourceQuality": "official_owner_chronology_address_and_access_control",
+      "finding": "Eieren oppgir cirka 1167, eierskap siden 1890, dekorlag rundt 1650 og 1730, besøksadresse Fjordevegen 90 og sesongåpent besøk. Sidens innebygde kartpunkt samsvarer ikke med kirkebygget og er ikke brukt som geometri.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ identitets-, historie- og tilgangskilde, men ikke pålitelig kartpunkt i denne saken."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Lokalhistoriewiki – Nore stavkirke",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Nore_stavkirke",
+      "sourceObjectId": "lokalhistoriewiki:Nore_stavkirke",
+      "sourceQuality": "independent_coordinate_and_building_history_control",
+      "finding": "Oppgir 60.1645778, 9.0102556 og dokumenterer tømmer felt i 1167, sannsynlig noe senere bygging, nytt kor i 1683, korsarmer 1709/1714, våpenhus 1723 og museumskirke etter 1890.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig koordinat og detaljert bygningshistorie."
+    },
+    {
+      "sourceProvider": "reputable_secondary",
+      "sourceName": "Store norske leksikon – Nore stavkirke",
+      "sourceUrl": "https://snl.no/Nore_stavkirke",
+      "sourceObjectId": "snl:Nore_stavkirke",
+      "sourceQuality": "scholarly_architectural_and_dendrochronological_control",
+      "finding": "Midtmasten og en hjørnestav ble felt vinteren 1166/1167; dette støtter datering til senere 1100-tall uten å gjøre 1167 til et eksakt ferdigår.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter datering, konstruksjon og tolkning."
+    },
+    {
+      "sourceProvider": "church_of_norway",
+      "sourceName": "Nore kirkelige fellesråd – Nore stavkirke",
+      "sourceUrl": "https://www.nore.kirken.no/Artikler/Artikkeldetaljer/ArticleId/85/Nore-stavkirke",
+      "sourceObjectId": "kirken:nore-stavkirke",
+      "sourceQuality": "official_current_worship_control",
+      "finding": "Kirken eies av Fortidsminneforeningen og brukes til gudstjenester i sommerhalvåret.",
+      "canVerifyCoordinate": false,
+      "reason": "Kontrollerer aktiv kirkelig bruk."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Nore stave church point",
+      "sourceObjectId": "legacy:nore_stavkirke",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "Legacy-punktet ligger omtrent 11178,9 meter vest for kirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi det ikke identifiserer stedet."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:546328493",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q1557490",
+      "canApplyToPlace": true,
+      "applied": false,
+      "rejectionReason": "Samsvarende kontroll; OSM gir direkte bygningsgeometri."
+    },
+    {
+      "sourceProvider": "fortidsminneforeningen_embedded_map",
+      "sourceObjectId": "embedded-map:60.1358601,9.01775",
+      "canApplyToPlace": false,
+      "rejectionReason": "Kartpunktet ligger flere kilometer sør for den dokumenterte kirkebygningen og motsies av OSM, Wikidata og Lokalhistoriewiki."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nore_stavkirke",
+      "canApplyToPlace": false,
+      "rejectionReason": "Ligger omtrent 11,18 kilometer vest for kirken."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "nore_stave_church",
+      "name": "Nore stavkirke",
+      "lat": 60.16456,
+      "lon": 9.01025,
+      "r": 95,
+      "type": "medieval_stave_church_building_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:546328493;wikidata:Q1557490;kulturminne:85174",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nore_stavkirke",
+      "lat": 60.1663,
+      "lon": 8.8082,
+      "distanceFromAppliedM": 11178.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:546328493;wikidata:Q1557490",
+      "lat": 60.16456,
+      "lon": 9.01025,
+      "distanceFromPreviousM": 11178.9,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/buskerud-coordinate-nore-stavkirke-source-probe/source-summary.json",
+      "description": "Vedvarende kildekontroll for geometri, kulturminne, datering, ombygginger, eierskap, adresse og tilgang."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Anvendte den navngitte stavkirkebygningen som canonical, markerte 1167 som dendrokronologisk tidligst mulig datering og skilte kirkegård, prestegård, nyere kirke og besøksankomst. Fortsett med uvdal_stavkirke."
+  },
+  "notes": [
+    "Koordinaten flyttes omtrent 11,18 kilometer øst.",
+    "1167 er året undersøkt tømmer ble felt, ikke et sikkert ferdigår.",
+    "Kirkens nåværende korsform omfatter omfattende senere laftede ombygginger.",
+    "Fortidsminneforeningens innebygde kartpunkt er avvist som geometri på grunn av stor avstand til selve bygget.",
+    "desc og popupDesc er beholdt uendret under place-description governance.",
+    "Radiusen er ikke en kirke-, kirkegårds-, prestegårds-, museums-, eiendoms-, verne- eller tilgangsgrense."
+  ]
+}

@@ -1,14 +1,26 @@
 {
   "id": "nore_stavkirke",
   "name": "Nore stavkirke",
-  "lat": 60.1663,
-  "lon": 8.8082,
+  "lat": 60.16456,
+  "lon": 9.01025,
   "r": 260,
+  "locatorType": "medieval_stave_church_building",
+  "sourceProvider": "openstreetmap",
+  "sourceObjectId": "osm-way:546328493",
+  "geocodeAccuracy": "named_stave_church_building_geometry",
+  "coordRole": "medieval_stave_church_building_anchor",
+  "coordType": "building_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 546328493; Wikidata Q1557490; Kulturminne 85174; Fortidsminneforeningen; Lokalhistoriewiki; Store norske leksikon",
+  "coordSourceId": "osm-way:546328493;wikidata:Q1557490;kulturminne:85174",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/546328493",
+  "coordVerifiedAt": "2026-07-28",
   "category": "historie",
   "fylke": "buskerud",
   "kommune": "Nore og Uvdal",
   "year": 1167,
-  "period": "Stavkirke og Numedal",
+  "yearMeaning": "Året da dendrokronologisk undersøkte deler av midtmasten og en hjørnestav ble felt; dette er tidligst mulig datering, og kirken ble sannsynligvis oppført noen år senere.",
+  "period": "Middelalderstavkirke med ombyggings- og dekorlag",
   "tags": [
     "historie",
     "stavkirke",
@@ -18,13 +30,110 @@
   ],
   "desc": "Middelaldersk stavkirke i Numedal, bygd som korskirke omkring 1167. Nore stavkirke viser stavbygging, treskurd, renessanse- og rokokkolag og Numedals sterke stavkirkeakse.",
   "popupDesc": "Nore stavkirke er en av Numedals middelalderkirker og skiller seg ut ved sin tidlige korskirkeform. Kirken ble bygd omkring 1167 og ble senere ombygd og dekorert med lag fra 1600- og 1700-tallet. Stedet bør brukes i History Go til å forklare stavkirker som levende historiske bygg: middelalderens konstruksjon, senere kirkekunst, lokal bruk og hvordan et bygg kan bære flere tidslag samtidig.",
+  "accessContext": {
+    "siteType": "protected_museum_stave_church_with_seasonal_worship",
+    "publicAccess": "Kirken eies av Fortidsminneforeningen og har sesongåpent besøk med billett. Den brukes også til enkelte gudstjenester i sommerhalvåret, og adgang kan endres ved seremonier, vedlikehold og vernearbeid.",
+    "visitorAddress": "Fjordevegen 90, 3629 Nore",
+    "limitations": [
+      "Ikke berør utskårne portaler, bemalte flater, runeinnskrifter, inventar eller andre sårbare bygningsdeler.",
+      "Følg vertskapets regler for fotografering, grupper, gudstjenester og innvendig ferdsel.",
+      "Gameplay-radiusen er ikke en kirke-, kirkegårds-, prestegårds-, museums-, eiendoms-, verne-, seremoni- eller tilgangsgrense."
+    ]
+  },
+  "historicalLayers": [
+    {
+      "type": "medieval_stave_church_core",
+      "date": "after_1167_and_before_circa_1200",
+      "status": "surviving_medieval_core",
+      "note": "Dendroprøver gir 1167 som tidligst mulig datering, mens runeinnskrifter rundt 1190–1200 gir en sen ytre ramme for oppføringen."
+    },
+    {
+      "type": "possible_earlier_church_site",
+      "date": "before_current_church",
+      "status": "archaeological_possibility",
+      "note": "Eldre graver funnet under utgravninger kan tyde på en tidligere kirke eller kristen gravplass, men dette er ikke sikkert bevist som et eget bygg."
+    },
+    {
+      "type": "new_chancel",
+      "date": "1683",
+      "status": "surviving_later_building_layer",
+      "note": "Et nytt laftet kor erstattet eller omformet den middelalderske østenden."
+    },
+    {
+      "type": "transept_extensions",
+      "date": "1709_and_1714",
+      "status": "surviving_later_building_layer",
+      "note": "Søndre og nordre korsarm fikk sine nåværende laftede former."
+    },
+    {
+      "type": "porch_and_roof_rider",
+      "date": "1723_and_1730",
+      "status": "surviving_later_building_layer",
+      "note": "Våpenhuset med Frederik IVs monogram er fra 1723, og dagens åttekantede takrytter er fra omkring 1730."
+    },
+    {
+      "type": "sacristy",
+      "date": "completed_by_1772",
+      "status": "surviving_later_building_layer",
+      "note": "Sakristiet nord for koret ble fullført i løpet av 1700-tallet."
+    },
+    {
+      "type": "museum_preservation",
+      "date": "1890",
+      "status": "current_ownership_and_preservation_layer",
+      "note": "Fortidsminneforeningen overtok kirken etter at den var tatt ut av vanlig bruk da nye Nore kirke ble reist."
+    }
+  ],
+  "relatedComponents": [
+    {
+      "id": "nore_old_churchyard",
+      "name": "Nore gamle kirkegård",
+      "relation": "surrounding_historic_cemetery",
+      "canonical": false,
+      "note": "Kirkegården er et større grav- og minnelandskap enn kirkebygningsankeret."
+    },
+    {
+      "id": "nore_rectory",
+      "name": "Nore prestegård",
+      "relation": "adjacent_separate_historic_property",
+      "canonical": false,
+      "note": "Prestegården er nærmeste gårdsanlegg, men er en egen eiendom og historisk enhet."
+    },
+    {
+      "id": "nore_church_1880",
+      "name": "Nore kirke",
+      "relation": "separate_newer_parish_church",
+      "canonical": false,
+      "note": "Den nyere kirken omtrent 540 meter nord overtok som ordinær soknekirke omkring 1880."
+    },
+    {
+      "id": "nore_visitor_arrival",
+      "name": "Besøksadresse og parkering ved Fjordevegen 90",
+      "relation": "visitor_arrival_component",
+      "canonical": false,
+      "note": "Besøksankomst er en praktisk funksjon og skal ikke erstatte bygningskoordinaten."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "nore_stave_church",
+      "name": "Nore stavkirke",
+      "lat": 60.16456,
+      "lon": 9.01025,
+      "r": 95,
+      "type": "medieval_stave_church_building_anchor",
+      "sourceProvider": "openstreetmap_wikidata",
+      "sourceObjectId": "osm-way:546328493;wikidata:Q1557490;kulturminne:85174",
+      "canApplyToPlace": true
+    }
+  ],
   "quiz_profile": {
     "place_type": "stavkirke",
-    "subtype": "middelalderstavkirke_med_korskirkeform",
+    "subtype": "midtmastkirke_med_middelalderkjerne_og_senere_korsarmer",
     "signature_features": [
-      "bygget omkring 1167",
-      "sjeldent tidlig korskirkeanlegg i stavverk",
-      "bevarte dekor- og ombyggingslag fra senere århundrer"
+      "tømmer felt i 1167 og sannsynlig oppføring noen år senere",
+      "midtmastkonstruksjon med særpreget korsform og senere laftede tilbygg",
+      "rike dekorlag fra omkring 1650 og 1730"
     ],
     "primary_angles": [
       "historie",
@@ -34,22 +143,24 @@
     ],
     "question_families": [
       "stavkirke",
-      "byggeskikk",
-      "tidslag",
+      "dendrokronologi",
+      "bygningslag",
       "Numedal"
     ],
     "avoid_angles": [
       "generisk_stavkirke",
-      "bare_fotosted"
+      "bare_fotosted",
+      "1167_som_sikkert_ferdigar",
+      "alle_korsarmer_som_udiskutabelt_opprinnelige"
     ],
     "must_include": [
-      "byggingen omkring 1167",
-      "korskirkeformen og senere dekorlag"
+      "1167 som tidligst mulig datering",
+      "middelalderkjernen og de omfattende senere bygnings- og dekorlagene"
     ],
     "contrast_targets": [
       "uvdal_stavkirke",
       "rollag_stavkirke"
     ],
-    "notes": "Skal spørres som stavkirke med uvanlig form og tydelige tidslag."
+    "notes": "Skal spørres som en bevart midtmaststavkirke med komplisert bygningshistorie. Korskirkeformen og 1167-dateringen må uttrykkes med kildepresisjon."
   }
 }
