@@ -4,7 +4,7 @@ Status: **generert produksjonsrapport**
 
 Rapporten rangerer manifest-lastede canonical personer etter hvor mye av `docs/PEOPLE_POPUP_SYSTEM.md` de kan fylle. Den måler datakompletthet, ikke personens historiske betydning eller person–sted-relevans.
 
-Source fingerprint: `5a20d02ebf7fe0474a26c4e763c1445456829297381dd30c880b568039caee94`
+Source fingerprint: `7bc2d8077d61059989607d6777ff6fdcea6294f31a8d5f92c002b33b8a6ef967`
 
 ## Sammendrag
 
