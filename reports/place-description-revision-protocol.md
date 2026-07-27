@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **218 steder**
-- Gjenstår: **294 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **228 steder**
+- Gjenstår: **284 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -266,9 +266,21 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 217 | Youngstorget | `youngstorget` | 50 | 314 | 6 | #4278 |
 | 218 | Slottsplassen | `slottsplassen` | 44 | 302 | 6 | #4278 |
 
+
+| 219 | Nobelinstituttet | `nobelinstituttet` | 40 | 354 | 6 | #4292 |
+| 220 | Observatoriet | `observatoriet` | 43 | 326 | 6 | #4292 |
+| 221 | Folkeobservatoriet | `folkeobservatoriet_holmenkollen` | 43 | 342 | 6 | #4292 |
+| 222 | Abelhaugen | `abelhaugen` | 44 | 349 | 6 | #4292 |
+| 223 | Arkitektur- og designhøgskolen i Oslo | `arkitektur_og_designhogskolen` | 42 | 336 | 6 | #4292 |
+| 224 | BI i Nydalen | `bi_nydalen` | 42 | 330 | 6 | #4292 |
+| 225 | Botanisk hage | `botanisk_hage` | 46 | 346 | 6 | #4292 |
+| 226 | Forskningsparken | `forskningsparken` | 44 | 322 | 6 | #4292 |
+| 227 | Gamlebyen skole | `gamlebyen_skole` | 41 | 327 | 6 | #4292 |
+| 228 | Klimahuset | `klimahuset` | 42 | 328 | 6 | #4292 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **294 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **284 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -277,7 +289,7 @@ Det gjenstår **294 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - sport: **29**
 - scenekunst: **24**
 - litteratur: **21**
-- vitenskap: **21**
+- vitenskap: **11**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -286,6 +298,8 @@ Det gjenstår **294 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - `saga_kino.year` står som 1989, mens kinoen åpnet i 1934 og ble bygget om til kinosenter i 1981.
 - `vika_kino.year` står som 1981, mens dagens kino i Ruseløkkveien 14 åpnet i 1997.
 - `klingenberg_kino.category` står som `sport` selv om filens emner og innhold gjelder film- og kinokultur.
+
+- `gamlebyen_skole.year` står som 1799, mens Gamlebyen skoles egen historikk dokumenterer at skolen åpnet som Oslo skole 1. november 1881.
 
 Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke blandes skjult inn i desc/popupDesc-revisjonen.
 
@@ -322,5 +336,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |
 | Oslo V4 batch 25 | 10 | #4269 – første produksjonsbatch fra politikk-køen |
 | Oslo V4 batch 26 | 8 | #4278 – fullførte hele Oslo-køen for fagområdet politikk |
+| Oslo V4 batch 27 | 10 | #4292 – første produksjonsbatch fra vitenskapskøen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
