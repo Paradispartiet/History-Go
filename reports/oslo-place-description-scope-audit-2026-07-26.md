@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **210**
-- Additional active Oslo IDs outside the protocol: **302**
+- IDs in the current revision protocol: **218**
+- Additional active Oslo IDs outside the protocol: **294**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **302**
+- Additional IDs needing revision: **294**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -22,7 +22,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | scenekunst | 24 |
 | litteratur | 21 |
 | vitenskap | 21 |
-| politikk | 8 |
 
 ## Additional active Oslo places
 
@@ -210,14 +209,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | natur | Bygdøy Kongsgård salamanderdam | `bygdoy_kongsgard_salamanderdam` | 16 | 93 | 2 | `data/places/natur/oslo/places_oslo_natur_salamanderdammer/bygdoy_kongsgard_salamanderdam.json` | needs revision |
 | natur | Rambergøya | `rambergoya` | 17 | 57 | 1 | `data/places/natur/oslo/rambergoya.json` | needs revision |
 | natur | Sognsvann | `sognsvann` | 17 | 63 | 2 | `data/places/natur/oslo/sognsvann.json` | needs revision |
-| politikk | Regjeringskvartalet | `regjeringskvartalet` | 13 | 83 | 1 | `data/places/politikk/oslo/places_politikk/regjeringskvartalet.json` | needs revision |
-| politikk | Statsministerboligen | `statsministerboligen` | 19 | 26 | 1 | `data/places/politikk/oslo/places_politikk/statsministerboligen.json` | needs revision |
-| politikk | Stortinget | `stortinget` | 20 | 90 | 1 | `data/places/politikk/oslo/places_politikk/stortinget.json` | needs revision |
-| politikk | Oslo tinghus | `tinghuset` | 8 | 51 | 1 | `data/places/politikk/oslo/places_politikk/tinghuset.json` | needs revision |
-| politikk | Victoria terrasse | `victoria_terrasse` | 12 | 55 | 1 | `data/places/politikk/oslo/places_politikk/victoria_terrasse.json` | needs revision |
-| politikk | Y-blokka – historisk sted | `y_blokka` | 18 | 45 | 1 | `data/places/politikk/oslo/places_politikk/y_blokka.json` | needs revision |
-| politikk | Youngstorget | `youngstorget` | 12 | 62 | 1 | `data/places/politikk/oslo/places_politikk/youngstorget.json` | needs revision |
-| politikk | Slottsplassen | `slottsplassen` | 9 | 73 | 1 | `data/places/politikk/oslo/slottsplassen.json` | needs revision |
 | scenekunst | Blått skilt: Aud Schønemann | `bla_skilt_aud_schonemann_vetlandsveien_69d` | 18 | 85 | 2 | `data/places/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d.json` | needs revision |
 | scenekunst | Chateau Neuf | `chateau_neuf` | 10 | 57 | 1 | `data/places/scenekunst/oslo/chateau_neuf.json` | needs revision |
 | scenekunst | Dramatikkens hus | `dramatikkens_hus` | 17 | 66 | 1 | `data/places/scenekunst/oslo/dramatikkens_hus/dramatikkens_hus.json` | needs revision |

@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **210 steder**
-- Gjenstår: **302 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **218 steder**
+- Gjenstår: **294 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -256,9 +256,19 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 209 | Oslo rådhus | `oslo_radhus` | 42 | 307 | 6 | #4269 |
 | 210 | Politihuset på Grønland | `politihuset_gronland` | 44 | 304 | 6 | #4269 |
 
+
+| 211 | Regjeringskvartalet | `regjeringskvartalet` | 45 | 321 | 6 | #4278 |
+| 212 | Statsministerboligen | `statsministerboligen` | 47 | 302 | 6 | #4278 |
+| 213 | Stortinget | `stortinget` | 46 | 303 | 6 | #4278 |
+| 214 | Oslo tinghus | `tinghuset` | 45 | 306 | 6 | #4278 |
+| 215 | Victoria terrasse | `victoria_terrasse` | 46 | 322 | 6 | #4278 |
+| 216 | Y-blokka – historisk sted | `y_blokka` | 50 | 306 | 6 | #4278 |
+| 217 | Youngstorget | `youngstorget` | 50 | 314 | 6 | #4278 |
+| 218 | Slottsplassen | `slottsplassen` | 44 | 302 | 6 | #4278 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **302 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **294 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -268,7 +278,6 @@ Det gjenstår **302 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - scenekunst: **24**
 - litteratur: **21**
 - vitenskap: **21**
-- politikk: **8**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -312,5 +321,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |
 | Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |
 | Oslo V4 batch 25 | 10 | #4269 – første produksjonsbatch fra politikk-køen |
+| Oslo V4 batch 26 | 8 | #4278 – fullførte hele Oslo-køen for fagområdet politikk |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
