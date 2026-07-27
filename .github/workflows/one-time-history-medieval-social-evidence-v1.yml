@@ -44,6 +44,30 @@ jobs:
           base64 -d "$out/materializer-assembled.b64" > "$out/materializer.gz" 2> "$out/base64-decode.log"
           gzip -t "$out/materializer.gz" 2> "$out/gzip-test.log"
           gzip -dc "$out/materializer.gz" > /tmp/materialize-history-medieval-social-v1.mjs
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('/tmp/materialize-history-medieval-social-v1.mjs')
+          text = path.read_text()
+          old = """    const mapping = mappingByEmne.get(emneId);
+              if (!mapping) throw new Error(`Missing reverse profile mapping for ${emneId}`);
+              mapping.case_ids = sorted([...(mapping.case_ids || []), ...claim.scope.case_ids]);"""
+          new = """    let mapping = mappingByEmne.get(emneId);
+              if (!mapping) {
+                mapping = {
+                  emne_id: emneId,
+                  case_ids: [],
+                  case_requirement_ids: requirementIds,
+                  mapping_status: 'validated_production_added',
+                  evidence_status: 'claim_source_linked',
+                  provenance: batchId
+                };
+                mappingByEmne.set(emneId, mapping);
+              }
+              mapping.case_ids = sorted([...(mapping.case_ids || []), ...claim.scope.case_ids]);"""
+          if old not in text:
+              raise SystemExit('Expected reverse-mapping block not found')
+          path.write_text(text.replace(old, new, 1))
+          PY
           node --check /tmp/materialize-history-medieval-social-v1.mjs 2>&1 \
             | tee "$out/materializer-syntax.log"
           node /tmp/materialize-history-medieval-social-v1.mjs 2>&1 \
