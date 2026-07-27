@@ -1,0 +1,155 @@
+name: One-time materialize Næringsliv Oslo batch 2
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - '.github/workflows/one-time-materialize-naeringsliv-batch-02.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Materialize, validate and publish clean batch branch
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          FINAL_BRANCH='agent/naeringsliv-oslo-batch-02'
+          FINAL_DIR='/tmp/history-go-naeringsliv-oslo-batch-02'
+          PAYLOAD='.tmp/naeringsliv-batch-02/materialize.py.gz.b64'
+          MATERIALIZER='/tmp/materialize-naeringsliv-oslo-batch-02.py'
+
+          test -f "$PAYLOAD"
+          base64 --decode "$PAYLOAD" | gzip -dc > "$MATERIALIZER"
+          echo 'd6e20646555d9cc3233f4a5f9a534b76f765f4e5dc63db8c8e691795d45ff242  /tmp/materialize-naeringsliv-oslo-batch-02.py' | sha256sum -c -
+          python -m py_compile "$MATERIALIZER"
+
+          git fetch origin main
+          rm -rf "$FINAL_DIR"
+          git worktree add --detach "$FINAL_DIR" origin/main
+          cd "$FINAL_DIR"
+          git switch -C "$FINAL_BRANCH"
+
+          npm ci
+          python "$MATERIALIZER"
+          npm run places:index:build
+
+          node scripts/build-quiz-production-context.mjs \
+            --category naeringsliv \
+            --target oslo_gassverk \
+            --output data/quiz/production_context/naeringsliv/oslo_gassverk.json
+          node scripts/build-quiz-production-context.mjs \
+            --category naeringsliv \
+            --target vinmonopolet_lager \
+            --output data/quiz/production_context/naeringsliv/vinmonopolet_lager.json
+          node scripts/build-quiz-production-context.mjs \
+            --category naeringsliv \
+            --target jernbaneverkstedet_lodalen \
+            --output data/quiz/production_context/naeringsliv/jernbaneverkstedet_lodalen.json
+
+          node tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+          npm run health:data
+          npm run audit:knowledge
+          npm run typecheck
+          npm run typecheck:scripts
+          npm run typecheck:tools
+          npm run typecheck:web
+          npm run build:web:check
+          npm run tools:check
+
+          python - <<'PY'
+          import subprocess
+
+          expected = {
+              'data/fag/fag_manifest.json',
+              'data/fag/naeringsliv/profesjonsmaterialisering_oslo_batch_02_v1.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json',
+              'data/places/naeringsliv/oslo/places_naeringsliv/vinmonopolet_lager.json',
+              'data/places/places_index.json',
+              'data/quiz/naeringsliv/jernbaneverkstedet_lodalen_sets_merged.json',
+              'data/quiz/naeringsliv/oslo_gassverk_sets_merged.json',
+              'data/quiz/naeringsliv/vinmonopolet_lager_sets_merged.json',
+              'data/quiz/production_briefs/naeringsliv/jernbaneverkstedet_lodalen.json',
+              'data/quiz/production_briefs/naeringsliv/oslo_gassverk.json',
+              'data/quiz/production_briefs/naeringsliv/vinmonopolet_lager.json',
+              'data/quiz/production_context/naeringsliv/jernbaneverkstedet_lodalen.json',
+              'data/quiz/production_context/naeringsliv/oslo_gassverk.json',
+              'data/quiz/production_context/naeringsliv/vinmonopolet_lager.json',
+              'tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs',
+          }
+          raw = subprocess.check_output(['git', 'status', '--porcelain=v1', '-z'])
+          entries = [entry for entry in raw.decode('utf-8').split('\0') if entry]
+          actual = {entry[3:] for entry in entries}
+          if actual != expected:
+              raise SystemExit(
+                  'Uventet arbeidsdiff.\n'
+                  f'Mangler: {sorted(expected - actual)}\n'
+                  f'Ekstra: {sorted(actual - expected)}'
+              )
+          print(f'OK: eksakt arbeidsdiff med {len(actual)} produksjonsfiler')
+          PY
+
+          git add \
+            data/fag/fag_manifest.json \
+            data/fag/naeringsliv/profesjonsmaterialisering_oslo_batch_02_v1.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/oslo_gassverk.json \
+            data/places/naeringsliv/oslo/places_naeringsliv/vinmonopolet_lager.json \
+            data/places/places_index.json \
+            data/quiz/naeringsliv/jernbaneverkstedet_lodalen_sets_merged.json \
+            data/quiz/naeringsliv/oslo_gassverk_sets_merged.json \
+            data/quiz/naeringsliv/vinmonopolet_lager_sets_merged.json \
+            data/quiz/production_briefs/naeringsliv/jernbaneverkstedet_lodalen.json \
+            data/quiz/production_briefs/naeringsliv/oslo_gassverk.json \
+            data/quiz/production_briefs/naeringsliv/vinmonopolet_lager.json \
+            data/quiz/production_context/naeringsliv/jernbaneverkstedet_lodalen.json \
+            data/quiz/production_context/naeringsliv/oslo_gassverk.json \
+            data/quiz/production_context/naeringsliv/vinmonopolet_lager.json \
+            tools/validate-naeringsliv-oslo-profesjonsmaterialisering.mjs
+
+          python - <<'PY'
+          import subprocess
+
+          staged = subprocess.check_output(
+              ['git', 'diff', '--cached', '--name-only'],
+              text=True,
+          ).splitlines()
+          if len(staged) != 16 or len(set(staged)) != 16:
+              raise SystemExit(f'Forventet 16 unike staged filer, fikk {len(staged)}: {staged}')
+          print('OK: 16 unike filer staged')
+          PY
+
+          git diff --cached --check
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Materialiser profesjonsdybde for næringsliv Oslo batch 2'
+          test "$(git rev-list --count origin/main..HEAD)" = '1'
+          git push --force origin "HEAD:${FINAL_BRANCH}"
