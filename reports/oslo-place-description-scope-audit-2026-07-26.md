@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **228**
-- Additional active Oslo IDs outside the protocol: **284**
+- IDs in the current revision protocol: **238**
+- Additional active Oslo IDs outside the protocol: **274**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **284**
+- Additional IDs needing revision: **274**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -21,7 +21,7 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | sport | 29 |
 | scenekunst | 24 |
 | litteratur | 21 |
-| vitenskap | 11 |
+| vitenskap | 1 |
 
 ## Additional active Oslo places
 
@@ -300,16 +300,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | subkultur | Vaterland Bar & Scene | `vaterland_bar_scene` | 16 | 90 | 2 | `data/places/subkultur/oslo/places_subkultur/vaterland_bar_scene.json` | needs revision |
 | subkultur | Vulkan murvegger og passasjer | `vulkan_murvegger` | 13 | 73 | 2 | `data/places/subkultur/oslo/places_subkultur/vulkan_murvegger.json` | needs revision |
 | subkultur | X-Ray Ungdomskulturhus | `xray_ungdomskulturhus` | 14 | 81 | 2 | `data/places/subkultur/oslo/places_subkultur/xray_ungdomskulturhus.json` | needs revision |
-| vitenskap | Meteorologisk institutt | `meteorologisk_institutt` | 8 | 38 | 1 | `data/places/vitenskap/oslo/places_vitenskap/meteorologisk_institutt.json` | needs revision |
-| vitenskap | Naturhistorisk museum | `naturhistorisk_museum` | 12 | 39 | 1 | `data/places/vitenskap/oslo/places_vitenskap/naturhistorisk_museum.json` | needs revision |
-| vitenskap | OsloMet, Pilestredet | `oslo_met_pilestredet` | 8 | 36 | 1 | `data/places/vitenskap/oslo/places_vitenskap/oslo_met_pilestredet.json` | needs revision |
-| vitenskap | Oslo Reptilpark | `oslo_reptilpark` | 27 | 106 | 2 | `data/places/vitenskap/oslo/places_vitenskap/oslo_reptilpark.json` | needs revision |
-| vitenskap | Radiumhospitalet | `radiumhospitalet` | 9 | 32 | 1 | `data/places/vitenskap/oslo/places_vitenskap/radiumhospitalet.json` | needs revision |
-| vitenskap | Rikshospitalet | `rikshospitalet` | 9 | 40 | 1 | `data/places/vitenskap/oslo/places_vitenskap/rikshospitalet.json` | needs revision |
-| vitenskap | Norsk Teknisk Museum | `teknisk_museum` | 8 | 38 | 1 | `data/places/vitenskap/oslo/places_vitenskap/teknisk_museum.json` | needs revision |
-| vitenskap | Tvergastein | `tvergastein` | 11 | 50 | 1 | `data/places/vitenskap/oslo/places_vitenskap/tvergastein.json` | needs revision |
-| vitenskap | Universitetet i Oslo, Blindern | `universitetet_i_oslo_blindern` | 14 | 37 | 1 | `data/places/vitenskap/oslo/places_vitenskap/universitetet_i_oslo_blindern.json` | needs revision |
-| vitenskap | Universitetets gamle hovedbygning | `universitetets_gamle_hovedbygning` | 10 | 58 | 1 | `data/places/vitenskap/oslo/places_vitenskap/universitetets_gamle_hovedbygning.json` | needs revision |
 | vitenskap | Universitetets gamle kjemibygning | `universitetets_gamle_kjemi` | 10 | 48 | 1 | `data/places/vitenskap/oslo/places_vitenskap/universitetets_gamle_kjemi.json` | needs revision |
 
 ## Unmanifested Oslo-path JSON files
