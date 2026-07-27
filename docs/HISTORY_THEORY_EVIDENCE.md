@@ -32,7 +32,7 @@ Batchene er `multi_case_geographic_pilot` i Oslo/Akershus. Hvert objekt står de
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. De tre første batchene etablerte 32 objekter. Politisk kronologi evidens V1 tilfører tre objekter, bevegelsesoffentligheter evidens V1 tilfører fire, og ritual og resepsjon evidens V1 tilfører to objekter på grunnlag av ni nye claims, ni kilder og én nyvalidert case. Produksjonen står dermed på 41 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. De tre første batchene etablerte 32 objekter. Politisk kronologi evidens V1 tilfører tre objekter, bevegelsesoffentligheter evidens V1 tilfører fire, og ritual og resepsjon evidens V1 tilfører to objekter på grunnlag av ni nye claims, ni kilder og én nyvalidert case. Produksjonen står dermed på 46 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -42,6 +42,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Politisk kronologi evidens V1: **3** nye kvalifiserende teoriobjekter, **13** nye claims og **2** nyvaliderte cases.
 - Bevegelsesoffentligheter evidens V1: **4** nye kvalifiserende teoriobjekter, **13** nye claims og **3** nyvaliderte cases.
 - Ritual og resepsjon evidens V1: **2** nye kvalifiserende teoriobjekter, **9** nye claims og **1** nyvalidert case; arkivtaushet holdes tilbake.
-- Totalt: **41 av 230** teoriobjekter (**17,8 %**).
+- Kildeformfamilier evidens V1: **5** nye kvalifiserende teoriobjekter, **17** nye claims og **2** nyvaliderte cases.
+- Totalt: **46 av 230** teoriobjekter (**20,0 %**).
 - Universell status: **INCOMPLETE**.
-- Produksjonsavhengigheter: `reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v4.md`.
+- Produksjonsavhengigheter: `reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v5.md`.

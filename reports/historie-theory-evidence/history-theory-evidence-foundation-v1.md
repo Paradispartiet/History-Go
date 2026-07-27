@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **41**
-- Andel med dokumentert evidensgrunnlag: **17.8 %**
+- Validerte pilotobjekter: **46**
+- Andel med dokumentert evidensgrunnlag: **20 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -20,9 +20,11 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Nasjonal identitet og historiske fortellinger: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
 | Stemmerett, partier og parlamentarisme: forklarings- og kildebane | 8 | 3 | 9 | 7 | evidence_ready |
 | Union, selvstendighet og 1905: forklarings- og kildebane | 6 | 3 | 6 | 6 | evidence_ready |
+| Arkeologiske kilder, kontekst og formasjonsprosesser | 4 | 2 | 3 | 4 | evidence_ready |
 | Arkiv, klassifikasjon og makt | 5 | 5 | 8 | 5 | evidence_ready |
 | Bevaring, ombruk og kulturmiljø | 5 | 5 | 9 | 5 | evidence_ready |
 | Brudd, kontinuitet og omforming | 3 | 3 | 6 | 3 | evidence_ready |
+| Dokumentform og autentisitet | 3 | 2 | 3 | 3 | evidence_ready |
 | Folkedannelse og arbeideroffentlighet | 4 | 3 | 4 | 4 | evidence_ready |
 | Fravær, taushet og motminne | 5 | 3 | 6 | 5 | evidence_ready |
 | Grunnlov som rom og tekst | 5 | 3 | 6 | 5 | evidence_ready |
@@ -42,6 +44,7 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Landskap som historisk prosess: forklarings- og kildebane | 6 | 4 | 8 | 6 | evidence_ready |
 | Minnested, ritual og offentlig sorg | 6 | 3 | 7 | 6 | evidence_ready |
 | Monument, symbol og makt | 4 | 4 | 6 | 4 | evidence_ready |
+| Muntlige kilder og erindring | 4 | 2 | 4 | 4 | evidence_ready |
 | Museum, samling og kanon | 5 | 5 | 8 | 5 | evidence_ready |
 | Offentlig rom, tilgang og konflikt | 6 | 5 | 9 | 6 | evidence_ready |
 | Arbeider-, kvinne- og avholdsbevegelser: forklarings- og kildebane | 6 | 4 | 9 | 6 | evidence_ready |
@@ -54,8 +57,10 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Historiske rytmer, tempo og modernisering | 4 | 2 | 4 | 4 | evidence_ready |
 | Samtid, ettertid og historisk fortelling | 4 | 3 | 6 | 4 | evidence_ready |
 | Sanering, riving og fortrengning | 4 | 3 | 6 | 4 | evidence_ready |
+| Serielle kilder og historiske mønstre | 4 | 2 | 4 | 4 | evidence_ready |
 | Materielle spor og sted som kilde | 4 | 4 | 8 | 4 | evidence_ready |
 | Tidslag og samtidighet i sted | 3 | 3 | 6 | 3 | evidence_ready |
+| Bilder, fotografi og visuelle kilder | 3 | 2 | 2 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 
