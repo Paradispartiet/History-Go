@@ -1,55 +1,163 @@
 {
   "id": "tomb_herregard",
-  "name": "Tomb herregård",
-  "lat": 59.3243,
-  "lon": 10.8052,
+  "name": "Tomb herregård og landbruksskole",
+  "lat": 59.31893,
+  "lon": 10.81377,
   "r": 320,
+  "locatorType": "historic_manor_park_and_school_farm",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:309724146",
+  "geocodeAccuracy": "named_historic_park_geometry",
+  "coordRole": "historic_manor_park_core_anchor",
+  "coordType": "named_park_representative_point",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 309724146 – Rosehagen; Tomb videregående skole – Tombs historie; Store norske leksikon – Tomb; Lokalhistoriewiki – Tomb herregård",
+  "coordSourceId": "osm-way:309724146",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/309724146",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 770 meter sørøst til den navngitte Rosehagen i det historiske herregårds- og parkområdet på Tomb.",
+  "coordNote": "Tombs gamle herregårdsbygning er revet og skal ikke representeres som en stående bygning. Tombs egen historie plasserer den gamle hovedbygningen ved området rundt dagens internat og de karakteristiske dammene, mens Store norske leksikon beskriver den romantiske parken fra omkring 1800 med dammer, kanaler, broer og minnesmerke. OpenStreetMap way 309724146 gir en navngitt og offentlig lesbar geometri for Rosehagen i denne historiske park- og tunskjernen. Punktet representerer derfor det bevarte landskapet og herregårdsmiljøet, ikke et sikkert fotavtrykk etter den revne hovedbygningen. Tomb er i dag en aktiv videregående skole og stor landbrukseiendom. Radius 320 meter er et gameplayområde rundt den historiske kjernen, men er ikke en park-, skole-, gårds-, eiendoms-, drifts-, dyrehold-, maskin- eller adgangsgrense. Oppgaver skal holdes på lovlige offentlige eller uttrykkelig åpne områder og må ikke forstyrre skole, internat, jordbruk, dyr eller maskindrift.",
+  "anchors": [
+    {
+      "id": "tomb_manor_park_core",
+      "name": "Rosehagen og den historiske parkkjernen",
+      "lat": 59.31893,
+      "lon": 10.81377,
+      "r": 150,
+      "type": "historic_manor_park_core_anchor",
+      "sourceProvider": "osm_and_tomb_history",
+      "sourceObjectId": "osm-way:309724146",
+      "note": "Navngitt parkgeometri i det historiske herregårdsmiljøet; ikke et påstått fotavtrykk etter den revne hovedbygningen."
+    },
+    {
+      "id": "galleri_gamle_tomb",
+      "name": "Galleri Gamle Tomb",
+      "lat": 59.31972,
+      "lon": 10.81112,
+      "r": 55,
+      "type": "historic_granary_and_gallery_anchor",
+      "sourceProvider": "osm_and_local_authority",
+      "sourceObjectId": "osm-way:886520413",
+      "note": "Det gamle kornmagasinet fra 1800-tallet, i dag galleri og et konkret bevart bygningsanker."
+    },
+    {
+      "id": "tomb_school_farm_control",
+      "name": "Tomb videregående skole og skolegård",
+      "lat": 59.32016,
+      "lon": 10.81475,
+      "r": 110,
+      "type": "active_school_and_farm_control_anchor",
+      "sourceProvider": "official_school_and_geonames",
+      "sourceObjectId": "geonames:8558069;address:Tomballeen 7",
+      "note": "Kontrollpunkt for dagens skole- og landbruksvirksomhet; ikke hovedanker for den historiske herregården."
+    },
+    {
+      "id": "tomb_church_context",
+      "name": "Tomb kirke",
+      "lat": 59.32203,
+      "lon": 10.80978,
+      "r": 65,
+      "type": "separate_school_church_context_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:309731269;wikidata:Q6494981",
+      "note": "Separat kirke nordvest for herregårds- og skolekjernen; kontekst, ikke del av canonical-identiteten."
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Råde",
   "year": 1500,
-  "period": "Herregård, jordbruk og utdanning",
+  "period": "Herregård, park, jordbruk og utdanning",
   "tags": [
     "historie",
     "herregård",
     "landbruk",
     "råde",
-    "utdanning"
+    "utdanning",
+    "park",
+    "kulturlandskap"
   ],
-  "desc": "Historisk gårds- og herregårdsmiljø i Råde, senere kjent som landbruks- og utdanningssted. Tomb gir Østfold-batchen et tydelig spor av jordbruk, eierskap, kulturlandskap og praktisk kunnskap.",
-  "popupDesc": "Tomb herregård er et historisk gårdsmiljø i Råde og et viktig landbrukshistorisk punkt i Østfold. Stedet har vært knyttet til større eiendom, jordbruksdrift og senere landbruksutdanning. I et fylke der festninger og industri ofte dominerer, gir Tomb et nødvendig jordbruks- og kulturlandskapsperspektiv: eierskap, drift, teknikk, dyrking, skole og overføring av praktisk kunnskap mellom generasjoner.",
+  "desc": "Tomb er et historisk herregårds- og parklandskap i Råde som senere ble landbruksskole og levende skolegård. Den gamle hovedbygningen er revet, men parken, dammene, kornmagasinet og jordbruksmiljøet binder eiendoms-, landskaps- og utdanningshistorien sammen.",
+  "popupDesc": "Tomb har røtter som gård og herregård langt tilbake i middelalderen. Den gamle hovedbygningen, med bygningslag som trolig gikk tilbake til 1500-tallet, ble revet mot slutten av 1800-tallet. Den romantiske parken fra omkring 1800, med dammer, kanaler, broer og Rosehagen, bevarer likevel den gamle herregårdens landskap. Det tidligere kornmagasinet er i dag Galleri Gamle Tomb. Fra 1939 utviklet Tomb seg til landbruks- og internatskole, og stedet er fortsatt en aktiv videregående skole og gård. Canonical-punktet ligger i den navngitte Rosehagen og viser det historiske park- og tunmiljøet, ikke en stående herregårdsbygning. Besøk og oppgaver må respektere skole, internat, dyr, jordbruk, maskiner og områder som ikke er offentlig åpne.",
+  "externalLinks": [
+    {
+      "type": "official_history",
+      "label": "Tomb videregående skole – Tombs historie",
+      "url": "https://tomb.no/om-tomb/tombs-historie/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "reference",
+      "label": "Store norske leksikon – Tomb",
+      "url": "https://snl.no/Tomb",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "local_history",
+      "label": "Lokalhistoriewiki – Tomb herregård",
+      "url": "https://lokalhistoriewiki.no/wiki/Tomb_herreg%C3%A5rd",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "current_visit",
+      "label": "Tomb videregående skole – besøk Tomb",
+      "url": "https://tomb.no/besok-tomb/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "map_object",
+      "label": "OpenStreetMap – Rosehagen",
+      "url": "https://www.openstreetmap.org/way/309724146",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    }
+  ],
   "quiz_profile": {
-    "place_type": "herregard_og_landbrukssted",
-    "subtype": "gårdsmiljo_med_utdanningshistorie",
+    "place_type": "herregardslandskap_og_landbruksskole",
+    "subtype": "revet_herregard_med_bevart_park_og_levende_skolegard",
     "signature_features": [
-      "historisk gårds- og herregårdsmiljø i Råde",
-      "koblet til landbruk og praktisk utdanning",
-      "viser Østfolds jordbruks- og kulturlandskapshistorie"
+      "den gamle hovedbygningen er revet",
+      "romantisk park med dammer, kanaler og broer",
+      "Galleri Gamle Tomb holder til i det gamle kornmagasinet",
+      "landbruks- og internatskole fra 1939",
+      "aktiv skole og gård i dag"
     ],
     "primary_angles": [
       "historie",
       "landbruk",
       "eiendom",
+      "parkhistorie",
       "utdanning"
     ],
     "question_families": [
-      "gårdshistorie",
-      "landbruk",
-      "kunnskap_og_skole",
-      "kulturlandskap"
+      "herregardshistorie",
+      "revet_bygning_og_bevart_landskap",
+      "park_og_kulturlandskap",
+      "landbruksutdanning",
+      "før_og_na"
     ],
     "avoid_angles": [
-      "generisk_gård",
-      "bare_skole"
+      "generisk_gard",
+      "bare_skole",
+      "påstand_om_stående_herregardsbygning",
+      "forveksling_med_tomb_kirke",
+      "oppgave_i_aktivt_jordbruk_eller_privatomrade"
     ],
     "must_include": [
-      "Tomb som historisk gårds- og herregårdsmiljø",
-      "koblingen mellom landbruk og utdanning"
+      "at den gamle hovedbygningen er revet",
+      "parken og dammene som bærere av herregårdshistorien",
+      "overgangen til landbruksskole fra 1939",
+      "skillet mellom historisk parkanker og dagens skolegård"
     ],
     "contrast_targets": [
       "rod_herregard",
-      "indreroed_gard_fredrikstad"
+      "elingaard_herregard",
+      "rakkestad_prestegard_1814"
     ],
-    "notes": "Skal spørres som landbruks- og eiendomshistorie; detaljer kan senere styrkes med lokal kildekontroll."
+    "notes": "Skal spørres som et historisk herregårdslandskap og en levende skolegård. Rosehagen er representativ parkgeometri, ikke det sikre fotavtrykket til den revne hovedbygningen."
   }
 }

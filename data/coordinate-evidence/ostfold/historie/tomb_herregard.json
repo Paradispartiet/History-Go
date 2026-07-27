@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tomb_herregard",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch5/tomb_herregard.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_historic_manor_park_core_anchor",
+  "currentCoordinate": {
+    "lat": 59.31893,
+    "lon": 10.81377,
+    "r": 320,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 309724146 – Rosehagen; Tomb school official history; Store norske leksikon; Lokalhistoriewiki",
+    "coordType": "named_park_representative_point",
+    "coordRole": "historic_manor_park_core_anchor",
+    "sourceObjectId": "osm-way:309724146"
+  },
+  "previousCoordinate": {
+    "lat": 59.3243,
+    "lon": 10.8052,
+    "r": 320,
+    "distanceToAppliedCoordinateM": 770.0,
+    "reasonReplaced": "Legacy-punktet lå nordvest for den historiske park- og tunskjernen og hadde ingen kildeobjektkontrakt."
+  },
+  "identity": {
+    "resolvedIdentity": "Tomb's historic manor, park and farm landscape, now integrated into Tomb upper-secondary agricultural school and active farm.",
+    "identityStatus": "resolved",
+    "identityProblem": "Tomb may refer to the medieval estate, the demolished manor house, the surviving park, today's school buildings, the active farm, Galleri Gamle Tomb or Tomb church. No surviving manor-house geometry can be used as canonical.",
+    "locatorTypeCandidate": "historic_manor_park_and_school_farm",
+    "requiresSplit": false,
+    "splitReason": "The park, farm and education layers form one continuous Tomb estate history. Tomb church is separate context; the demolished house is a historical layer rather than a surviving object."
+  },
+  "requiredEvidence": [
+    "named geometry in the historic manor core",
+    "official estate and school history",
+    "confirmation that the old manor house is demolished",
+    "park-history support",
+    "surviving historic-building control",
+    "current school and farm identity",
+    "access and active-agriculture limitations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 309724146 – Rosehagen",
+      "sourceUrl": "https://www.openstreetmap.org/way/309724146",
+      "sourceObjectId": "osm-way:309724146",
+      "sourceQuality": "named_park_geometry_in_historic_manor_core",
+      "finding": "Rosehagen is a named park geometry with representative point 59.31893, 10.81377 in Tomb's historic park and yard core.",
+      "canVerifyCoordinate": true,
+      "reason": "It supplies inspectable named geometry in the preserved manor landscape without claiming the footprint of the demolished house."
+    },
+    {
+      "sourceProvider": "tomb_school",
+      "sourceName": "Tomb videregående skole – Tombs historie",
+      "sourceUrl": "https://tomb.no/om-tomb/tombs-historie/",
+      "sourceObjectId": "tomb-school:history",
+      "sourceQuality": "official_estate_school_and_site_history",
+      "finding": "The official history traces the estate to the Middle Ages, places the old main house by today's internat and ponds, documents the manor park and describes the transition to agricultural boarding school in 1939.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the historical core and the absence of a surviving old manor house."
+    },
+    {
+      "sourceProvider": "snl",
+      "sourceName": "Store norske leksikon – Tomb",
+      "sourceUrl": "https://snl.no/Tomb",
+      "sourceObjectId": "snl:tomb",
+      "sourceQuality": "authoritative_estate_and_park_history",
+      "finding": "SNL describes Tomb as a former manor, the demolished old main building with likely sixteenth-century roots, and the romantic park from about 1800 with ponds, canals, bridges and memorial features.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the landscape-based canonical decision and the approximate year interpretation."
+    },
+    {
+      "sourceProvider": "lokalhistoriewiki",
+      "sourceName": "Lokalhistoriewiki – Tomb herregård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Tomb_herreg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:tomb-herregard",
+      "sourceQuality": "local_estate_and_school_history",
+      "finding": "Identifies Tomb as a former setegård and manor at Tomballéen 7, acquired for school use in 1938 with school operations from 1939.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks the estate, address and education transition."
+    },
+    {
+      "sourceProvider": "osm_and_local_authority",
+      "sourceName": "Galleri Gamle Tomb",
+      "sourceUrl": "https://www.openstreetmap.org/way/886520413",
+      "sourceObjectId": "osm-way:886520413",
+      "sourceQuality": "surviving_historic_granary_geometry",
+      "finding": "The old grain store, now Galleri Gamle Tomb, is a surviving historic-building component at 59.31972, 10.81112.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides a concrete surviving building anchor but does not represent the complete manor landscape."
+    },
+    {
+      "sourceProvider": "tomb_school",
+      "sourceName": "Tomb videregående skole – Besøk Tomb",
+      "sourceUrl": "https://tomb.no/besok-tomb/",
+      "sourceObjectId": "tomb-school:visit",
+      "sourceQuality": "official_current_public_activity_and_access_context",
+      "finding": "The school identifies selected public activities and attractions while remaining an active school and farm.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports public-use and access limitations without implying unrestricted access."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Tomb point",
+      "sourceObjectId": "legacy:tomb_herregard",
+      "sourceQuality": "unsupported_nearby_point",
+      "finding": "The legacy point lies approximately 770 metres north-west of Rosehagen and has no defined object role.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not identify the historic park core, a surviving building or the current school complex."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:309724146",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "historical_reconstruction",
+      "sourceObjectId": "demolished-tomb-manor-house",
+      "canApplyToPlace": false,
+      "rejectionReason": "The old main house is demolished and no exact verified footprint is available."
+    },
+    {
+      "sourceProvider": "osm_and_local_authority",
+      "sourceObjectId": "osm-way:886520413",
+      "canApplyToPlace": false,
+      "rejectionReason": "Galleri Gamle Tomb is one surviving grain-store building, not the entire manor landscape."
+    },
+    {
+      "sourceProvider": "official_school",
+      "sourceObjectId": "geonames:8558069;address:Tomballeen 7",
+      "canApplyToPlace": false,
+      "rejectionReason": "Represents the modern school and farm rather than the historic manor core."
+    },
+    {
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:309731269;wikidata:Q6494981",
+      "canApplyToPlace": false,
+      "rejectionReason": "Tomb church is a separate church building."
+    }
+  ],
+  "anchors": [
+    {
+      "id": "tomb_manor_park_core",
+      "name": "Rosehagen and historic park core",
+      "lat": 59.31893,
+      "lon": 10.81377,
+      "r": 150,
+      "type": "historic_manor_park_core_anchor",
+      "sourceProvider": "osm_and_tomb_history",
+      "sourceObjectId": "osm-way:309724146",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "galleri_gamle_tomb",
+      "name": "Galleri Gamle Tomb",
+      "lat": 59.31972,
+      "lon": 10.81112,
+      "r": 55,
+      "type": "historic_granary_and_gallery_anchor",
+      "sourceProvider": "osm_and_local_authority",
+      "sourceObjectId": "osm-way:886520413",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "tomb_school_farm_control",
+      "name": "Tomb school and farm",
+      "lat": 59.32016,
+      "lon": 10.81475,
+      "r": 110,
+      "type": "active_school_and_farm_control_anchor",
+      "sourceProvider": "official_school_and_geonames",
+      "sourceObjectId": "geonames:8558069;address:Tomballeen 7",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "tomb_church_context",
+      "name": "Tomb church",
+      "lat": 59.32203,
+      "lon": 10.80978,
+      "r": 65,
+      "type": "separate_school_church_context_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:309731269;wikidata:Q6494981",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:tomb_herregard",
+      "lat": 59.3243,
+      "lon": 10.8052,
+      "distanceFromAppliedM": 770.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:309724146",
+      "lat": 59.31893,
+      "lon": 10.81377,
+      "distanceFromPreviousM": 770.0,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_school_and_geonames",
+      "sourceObjectId": "geonames:8558069;address:Tomballeen 7",
+      "lat": 59.32016,
+      "lon": 10.81475,
+      "distanceFromAppliedM": 147.2,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-tomb-herregard-source-probe/source-summary.json",
+      "description": "Persisted park geometry, demolished-house interpretation, estate and school chronology, surviving granary, separate church and active-farm access limits."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Rosehagen geometry as a representative historic manor-park core, retained 1500 as an approximate demolished-building roots layer and separated the modern school, gallery and church. Continue with tune_kirke_kirkested."
+  },
+  "notes": [
+    "The coordinate moves approximately 770 metres south-east.",
+    "The old manor house is demolished; the coordinate does not claim its exact footprint.",
+    "Rosehagen represents the preserved historic park and yard core.",
+    "Tomb is an active school and farm; public activities do not imply unrestricted access.",
+    "The radius is not a park, school, farm, property, operational, animal, machinery or access boundary."
+  ]
+}
