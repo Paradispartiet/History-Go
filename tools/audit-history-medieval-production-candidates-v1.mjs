@@ -16,6 +16,14 @@ const theoryIds = [
   'theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming',
   'theory_his_middelalder_kirke_handel_handverk_og_bydannelse'
 ];
+const relevantEmneIds = [
+  'em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv',
+  'em_his_middelalder_kirke_jord_eiendom_og_patronasje',
+  'em_his_middelalder_kirke_lov_ting_og_jurisdiksjon',
+  'em_his_middelalder_kirke_handel_handverk_og_bydannelse',
+  'em_his_middelalder_oslo', 'em_his_skrift_hand_lesning', 'em_his_kildekritikk_arkiv_spor',
+  'em_his_spor_materialitet', 'em_his_arkeologisk_kontekst_formation'
+];
 const caseIds = [
   'case_his_middelalderbyen_oslo', 'case_his_hovedoya_kloster', 'case_his_hallvardskatedralen',
   'case_his_mariakirkeruinen', 'case_his_gamle_aker_kirke', 'case_his_oslo_bispegard',
@@ -30,14 +38,16 @@ const theories = arr(read('data/fag/historie/theory_objects_historie_canonical_v
 const emner = arr(read('data/fag/historie/emner_historie_canonical_v4_5.json'), ['emner', 'entries', 'objects']);
 const profile = read('data/fag/profiles/historie/oslo_akershus/profile.json');
 const cases = arr(profile, ['cases']);
+const mappings = arr(profile, ['emne_case_mappings']);
 const claims = arr(read('data/fag/historie/claims_historie_canonical_v1.json'), ['claims', 'entries']);
 const sources = arr(read('data/fag/historie/sources_historie_canonical_v1.json'), ['sources', 'entries']);
 const evidence = arr(read('data/fag/historie/place_evidence_historie_v1.json'), ['evidence_links', 'entries']);
 
 const theoryRecords = theories.filter((x) => theoryIds.includes(x.theory_id ?? x.id));
 const scopeIds = [...new Set(theoryRecords.flatMap((x) => x.explanatory_scope ?? []))];
-const emneRecords = emner.filter((x) => scopeIds.includes(x.emne_id ?? x.id));
+const emneRecords = emner.filter((x) => relevantEmneIds.includes(x.emne_id ?? x.id) || scopeIds.includes(x.emne_id ?? x.id));
 const caseRecords = cases.filter((x) => caseIds.includes(x.case_id));
+const mappingRecords = mappings.filter((x) => relevantEmneIds.includes(x.emne_id ?? x.id));
 const selectedCaseIds = new Set(caseRecords.map((x) => x.case_id));
 const selectedPlaceIds = new Set(placeIds);
 const claimRecords = claims.filter((x) => (x.scope?.case_ids ?? x.case_ids ?? []).some((id) => selectedCaseIds.has(id)) || (x.scope?.place_ids ?? x.place_ids ?? []).some((id) => selectedPlaceIds.has(id)));
@@ -52,34 +62,33 @@ for (const file of walk(path.join(root, 'data/places')).filter((p) => p.endsWith
     if (doc && selectedPlaceIds.has(doc.id)) placeRecords.push({ file: path.relative(root, file), record: doc });
   } catch {}
 }
-const repoFiles = [];
-for (const file of walk(path.join(root, 'data')).filter((p) => /\.(json|md)$/i.test(p))) {
-  let text;
-  try { text = fs.readFileSync(file, 'utf8'); } catch { continue; }
-  const lower = text.toLowerCase();
-  if (['svartedauden','diplomatarium','jordebok','landskyld','lagting','eidsivating','hallvardskirken','mariakirken','bispeborgen','nonneseter','middelalderbyen oslo','middelalderparken'].some((t) => lower.includes(t))) {
-    repoFiles.push(path.relative(root, file));
-  }
-}
-
+const reportFiles = [
+  'reports/historie-profile-evidence/history-profile-evidence-foundation.json',
+  'reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v5.json'
+];
+const reports = Object.fromEntries(reportFiles.filter((p) => fs.existsSync(path.join(root, p))).map((p) => [p, read(p)]));
 const out = {
   status: 'TARGETED_AUDIT_COMPLETE',
+  profile_top_level_keys: Object.keys(profile),
   theory_records: theoryRecords,
   scope_ids: scopeIds,
   emne_records: emneRecords,
   case_records: caseRecords,
+  mapping_records: mappingRecords,
+  mapping_sample: mappings.slice(0, 3),
   place_records: placeRecords,
   existing_claim_records: claimRecords,
   existing_source_records: sourceRecords,
   existing_evidence_records: evidenceRecords,
-  repository_files: repoFiles
+  reports
 };
 fs.writeFileSync(path.join(outDir, 'targeted-audit.json'), JSON.stringify(out, null, 2) + '\n');
 const md = [
   '# Targeted medieval production audit V1', '',
   `- Theories: ${theoryRecords.length}/${theoryIds.length}`,
-  `- Scope emner: ${emneRecords.length}`,
+  `- Relevant emner found: ${emneRecords.length}`,
   `- Profile cases found: ${caseRecords.length}/${caseIds.length}`,
+  `- Mapping records: ${mappingRecords.length}`,
   `- Canonical place records found: ${placeRecords.length}/${placeIds.length}`,
   `- Existing related claims: ${claimRecords.length}`,
   `- Existing related sources: ${sourceRecords.length}`,
@@ -91,4 +100,4 @@ const md = [
   ''
 ].join('\n');
 fs.writeFileSync(path.join(outDir, 'targeted-audit.md'), md);
-console.log(JSON.stringify({ status: out.status, theories: theoryRecords.length, emners: emneRecords.length, cases: caseRecords.length, places: placeRecords.length, claims: claimRecords.length, sources: sourceRecords.length, evidence: evidenceRecords.length, files: repoFiles.length }));
+console.log(JSON.stringify({ status: out.status, theories: theoryRecords.length, emners: emneRecords.length, cases: caseRecords.length, mappings: mappingRecords.length, places: placeRecords.length, claims: claimRecords.length, sources: sourceRecords.length, evidence: evidenceRecords.length }));
