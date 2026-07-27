@@ -242,6 +242,9 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 
 | 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4260 |
 
+
+| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |
+
 ## Gjenstående Oslo-kø
 
 Det gjenstår **312 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
@@ -296,6 +299,7 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 21 | 7 | #4225 – fullførte hele Oslo-køen for fagområdet historie |
 | Oslo V4 batch 22 | 7 | #4253 – fullførte hele Oslo-køen for fagområdet media |
 | Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |
+| Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |
 | Oslo V4 batch 24 | 1 | #4260 – fullførte hele Oslo-køen for fagområdet psykologi |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
