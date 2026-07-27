@@ -1,55 +1,159 @@
 {
   "id": "trogstad_fort",
   "name": "Trøgstad fort",
-  "lat": 59.6426,
-  "lon": 11.3334,
+  "lat": 59.63389,
+  "lon": 11.34139,
   "r": 420,
+  "locatorType": "distributed_inland_mountain_fort_complex",
+  "sourceProvider": "wikidata_wikimedia",
+  "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort",
+  "geocodeAccuracy": "named_fort_complex_entity_point",
+  "coordRole": "inland_fort_complex_anchor",
+  "coordType": "named_fort_entity_coordinate",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Wikidata Q19393412 / Wikimedia Commons – Trøgstad fort; OpenStreetMap way 142710283 – Trøgstad Fort; Indre Østfold kommune – Trøgstad fort; OpenStreetMap node 9848907993 – informasjonspunkt; OpenStreetMap node 574887370 – Trøgstad varde",
+  "coordSourceId": "wikidata:Q19393412",
+  "coordSourceUrl": "https://www.wikidata.org/wiki/Q19393412",
+  "coordVerifiedAt": "2026-07-27",
+  "coordChangeReason": "Legacy-punktet flyttes omtrent 1 067,6 meter sørøst til det kartfestede Trøgstad fort-kompleksets entitetspunkt.",
+  "coordNote": "Trøgstad fort dekker et stort og sammensatt område på omkring 430 mål. Wikidata Q19393412 og Wikimedia Commons identifiserer fortkomplekset ved 59.63389, 11.34139 og brukes som hovedanker. OSM-way 142710283 ved 59.63220, 11.34572 er et navngitt fortifikasjons- og besøksobjekt i den sørøstlige delen av anlegget og beholdes som delanker, ikke som hele fortet. Kommunen dokumenterer 1,3 km tunneler, overbygde skytestillinger, 500 meter skyttergraver, to opprinnelige artilleribatterier og et ytre infanteriforsvar. Fortet ble bygget 1912–1917 og åpnet i 1917. Det var operativt forsvarsanlegg fram til Nike-systemet ble avviklet omkring 1990–1991, mens annen militær virksomhet fortsatte til 1995. Kommunen overtok eiendommen i 2001. Radius 420 meter dekker bare den sentrale fortkjernen og er ikke anleggets fulle 430-målsgrense, tunnel-, batteri-, eiendoms-, sikkerhets- eller arrangementsgrense. Offentlige stier, informasjonspunkt og utsiktspunkter kan brukes, men tunneler, bunkere, verkstedsområder og arrangementssoner kan ha adgangsbegrensninger.",
+  "anchors": [
+    {
+      "id": "trogstad_fort_complex",
+      "name": "Trøgstad fort – anleggskjernen",
+      "lat": 59.63389,
+      "lon": 11.34139,
+      "r": 260,
+      "type": "inland_fort_complex_anchor",
+      "sourceProvider": "wikidata_wikimedia",
+      "sourceObjectId": "wikidata:Q19393412;commons-category:Trøgstad_fort",
+      "note": "Hovedanker for det distribuerte fortkomplekset med batterier, tunneler, nærforsvar og senere kaldkrigsanlegg."
+    },
+    {
+      "id": "trogstad_fort_southeast_structure",
+      "name": "Trøgstad Fort – sørøstlig fortifikasjonsobjekt",
+      "lat": 59.6322,
+      "lon": 11.34572,
+      "r": 110,
+      "type": "fortification_component_anchor",
+      "sourceProvider": "osm_wikidata",
+      "sourceObjectId": "osm-way:142710283;wikidata:Q19393412",
+      "note": "Navngitt fortifikasjons- og besøksobjekt; representerer en komponent, ikke hele 430-målsanlegget."
+    },
+    {
+      "id": "trogstad_fort_information",
+      "name": "Trøgstad fort – informasjonspunkt",
+      "lat": 59.63371,
+      "lon": 11.33687,
+      "r": 60,
+      "type": "public_information_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:9848907993",
+      "note": "Offentlig informasjonsanker i vestre del av fortområdet."
+    },
+    {
+      "id": "trogstad_varde",
+      "name": "Trøgstad varde",
+      "lat": 59.63408,
+      "lon": 11.34016,
+      "r": 70,
+      "type": "public_viewpoint_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:574887370",
+      "note": "Utsiktspunkt og orienteringsanker nær fortkjernen."
+    }
+  ],
   "category": "historie",
   "fylke": "ostfold",
   "kommune": "Indre Østfold",
   "year": 1917,
-  "period": "Fossumstrøkets befestninger og kald krig",
+  "period": "Fossumstrøkets befestninger, verdenskrig og kald krig",
   "tags": [
     "historie",
     "fort",
     "indre_ostfold",
     "fossumstrøket",
+    "fjellfort",
+    "andre_verdenskrig",
+    "nike",
+    "radar",
     "kald_krig"
   ],
-  "desc": "Fjellfort bygget 1912–1917 som del av Fossumstrøkets befestninger. Trøgstad fort er et av landets største innlandsfort og hadde lang militær bruk fra 1917 til Nike-perioden tok slutt i 1990.",
-  "popupDesc": "Trøgstad fort ble bygget i perioden 1912–1917 som del av Fossumstrøkets befestninger. Anlegget har tunneler, overbygde skytestillinger, skyttergraver og utsprengte rom for soldater og forsyninger. Fortet ble brukt til utdanning av festningsartillerister, var okkupert under andre verdenskrig, og fikk senere rolle i radar- og Nike-systemet under den kalde krigen. Stedet bør brukes til å vise hvordan grenseforsvar, fjellanlegg og militær teknologi endret seg gjennom 1900-tallet.",
+  "desc": "Trøgstad fort ble bygget 1912–1917 som del av Fossumstrøkets befestninger. Det store innlandsfortet har batterier, tunneler og nærforsvar og fikk senere radar-, ammunisjons- og Nike-funksjoner.",
+  "popupDesc": "Trøgstad fort er et stort, distribuert fjellfort på omkring 430 mål. Anlegget ble bygget 1912–1917 som del av Fossumstrøkets befestninger og fikk to artilleribatterier, tunneler, overbygde skytestillinger, utsprengte rom og et ytre infanteriforsvar med skyttergraver og løpeganger. I april 1940 skjøt fortet mot tyske styrker som rykket fram fra nord, før anlegget ble overgitt 15. april og okkupert resten av krigen. Etter 1945 ble området brukt til ammunisjonslager, radarutdanning, verksted og radarkontroll for Nike-systemet. Nike-rollen ble avviklet omkring 1990–1991, mens den siste militære virksomheten opphørte i 1995. Kommunen overtok i 2001, og området brukes nå til kulturminneformidling, turer, skoleopplegg og arrangementer. Kartankeret representerer hele fortkomplekset, ikke én bunker. Offentlige ruter kan brukes, men tunneler, bygninger og arrangementssoner kan være stengt eller kreve omvisning.",
+  "externalLinks": [
+    {
+      "type": "fort_entity",
+      "label": "Wikidata – Trøgstad Fort",
+      "url": "https://www.wikidata.org/wiki/Q19393412",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "local_authority",
+      "label": "Indre Østfold kommune – Trøgstad fort",
+      "url": "https://www.io.kommune.no/tjenester/kultur-idrett-og-fritid/kultur-og-fritidsaktiviteter/kulturvern-og-kulturminner/trogstad-fort/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "fortification_component",
+      "label": "OpenStreetMap – Trøgstad Fort",
+      "url": "https://www.openstreetmap.org/way/142710283",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    },
+    {
+      "type": "media_archive",
+      "label": "Wikimedia Commons – Trøgstad fort",
+      "url": "https://commons.wikimedia.org/wiki/Category:Tr%C3%B8gstad_fort",
+      "lang": "nb",
+      "verifiedAt": "2026-07-27"
+    }
+  ],
   "quiz_profile": {
     "place_type": "fort",
-    "subtype": "innlands_fjellfort_med_lang_operativ_bruk",
+    "subtype": "distribuert_innlands_fjellfort_med_kaldkrigslag",
     "signature_features": [
-      "bygget 1912–1917",
-      "del av Fossumstrøkets befestninger",
-      "operativ militær bruk fram til Nike-perioden sluttet i 1990"
+      "bygget 1912–1917 som del av Fossumstrøkets befestninger",
+      "omkring 1,3 km tunneler og 500 meter skyttergraver",
+      "to artilleribatterier og ytre infanteriforsvar",
+      "kampbruk i april 1940 og senere radar- og Nike-funksjoner",
+      "militær aktivitet fram til 1995"
     ],
     "primary_angles": [
       "historie",
       "forsvar",
       "teknologi",
+      "andre_verdenskrig",
       "kald_krig"
     ],
     "question_families": [
       "fortifikasjon",
-      "1900_tallet",
-      "kald_krig",
-      "militærteknologi"
+      "fossumstrøket",
+      "april_1940",
+      "radar_og_nike",
+      "militær_ombruk"
     ],
     "avoid_angles": [
       "bare_turområde",
-      "duplikat_av_hoytorp_fort"
+      "duplikat_av_hoytorp_fort",
+      "ett_bygg_som_hele_fortet",
+      "nike_slutt_som_all_militær_slutt",
+      "fri_adgang_til_alle_tunneler"
     ],
     "must_include": [
       "Fossumstrøkets befestninger",
-      "lang operativ bruk fra 1917 til 1990"
+      "det distribuerte 430-målsanlegget",
+      "kampbruken i april 1940",
+      "Nike- og radarperioden",
+      "skillet mellom operativ forsvarsrolle og siste militære aktivitet"
     ],
     "contrast_targets": [
       "hoytorp_fort",
-      "basmo_festning"
+      "basmo_festning",
+      "akeroya_fort"
     ],
-    "notes": "Skal spørres som 1900-talls militærteknologi og grenseforsvar."
+    "notes": "Skal spørres som et stort, flerfaset fortkompleks. Skill hovedankeret fra enkelte bunkere, og skill Nike-avviklingen rundt 1990–1991 fra all militær avslutning i 1995."
   }
 }
