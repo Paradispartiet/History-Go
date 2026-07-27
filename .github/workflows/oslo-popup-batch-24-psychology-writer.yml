@@ -54,14 +54,14 @@ jobs:
 
           const protocolPath = 'reports/place-description-revision-protocol.md';
           let protocol = fs.readFileSync(protocolPath, 'utf8');
-          const row = '| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4260 |';
+          const row = '| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |';
           if (!protocol.includes(row)) {
             protocol = protocol
               .replace('Ferdige etter alle mergede revisjonsbatcher: **199 steder**', 'Ferdige etter alle mergede revisjonsbatcher: **200 steder**')
               .replace('Gjenstår: **313 steder**', 'Gjenstår: **312 steder**')
               .replace('\n## Gjenstående Oslo-kø', `\n\n${row}\n\n## Gjenstående Oslo-kø`)
               .replace('- psykologi: **1**\n', '')
-              .replace('| Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |', '| Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |\n| Oslo V4 batch 24 | 1 | #4260 – fullførte hele Oslo-køen for fagområdet psykologi |');
+              .replace('| Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |', '| Oslo V4 batch 23 | 5 | #4257 – fullførte hele Oslo-køen for fagområdet musikk |\n| Oslo V4 batch 24 | 1 | #4261 – fullførte hele Oslo-køen for fagområdet psykologi |');
           }
           fs.writeFileSync(protocolPath, protocol);
           NODE
@@ -74,7 +74,7 @@ jobs:
           const audit = fs.readFileSync('reports/oslo-place-description-scope-audit-2026-07-26.md', 'utf8');
           if (!protocol.includes('Ferdige etter alle mergede revisjonsbatcher: **200 steder**')) throw new Error('protocol total');
           if (!protocol.includes('Gjenstår: **312 steder**')) throw new Error('protocol remaining');
-          if (!protocol.includes('| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4260 |')) throw new Error('protocol row');
+          if (!protocol.includes('| 200 | Psykologisk institutt, UiO | `psykologisk_institutt_uio` | 48 | 311 | 6 | #4261 |')) throw new Error('protocol row');
           if (protocol.includes('- psykologi: **1**')) throw new Error('psychology remains in protocol');
           if (!audit.includes('IDs in the current revision protocol: **200**')) throw new Error('audit protocol count');
           if (!audit.includes('Additional active Oslo IDs outside the protocol: **312**')) throw new Error('audit remaining count');
