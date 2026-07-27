@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **118**
-- Additional active Oslo IDs outside the protocol: **394**
+- IDs in the current revision protocol: **120**
+- Additional active Oslo IDs outside the protocol: **392**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **394**
+- Additional IDs needing revision: **392**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -26,15 +26,12 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | politikk | 18 |
 | media | 7 |
 | musikk | 5 |
-| film_tv | 2 |
 | psykologi | 1 |
 
 ## Additional active Oslo places
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| film_tv | Cinemateket i Oslo | `cinemateket_oslo` | 7 | 66 | 1 | `data/places/film_tv/oslo/cinemateket_oslo.json` | needs revision |
-| film_tv | Colosseum kino | `colosseum_kino` | 5 | 64 | 1 | `data/places/film_tv/oslo/colosseum_kino.json` | needs revision |
 | historie | Hallvardskirken i middelalder-Oslo | `hallvardskirken_oslo` | 13 | 22 | 1 | `data/places/historie/norge/places_historie_norge_for_1500_batch2/hallvardskirken_oslo.json` | needs revision |
 | historie | Frammuseet | `frammuseet` | 15 | 110 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05/frammuseet.json` | needs revision |
 | historie | Gol stavkirke – Bygdøy | `gol_stavkirke_bygdoy` | 18 | 121 | 2 | `data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05/gol_stavkirke_bygdoy.json` | needs revision |

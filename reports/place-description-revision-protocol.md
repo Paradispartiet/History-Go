@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **118 steder**
-- Gjenstår: **394 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **120 steder**
+- Gjenstår: **392 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -148,9 +148,12 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 117 | Sofienbergparken | `sofienbergparken` | 43 | 305 | 6 | #4173 |
 | 118 | Torshovdalen | `torshovdalen` | 45 | 301 | 6 | #4173 |
 
+| 119 | Cinemateket i Oslo | `cinemateket_oslo` | 44 | 305 | 6 | #4174 |
+| 120 | Colosseum kino | `colosseum_kino` | 42 | 308 | 6 | #4174 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **394 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **392 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - historie: **67**
@@ -164,10 +167,11 @@ Det gjenstår **394 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - politikk: **18**
 - media: **7**
 - musikk: **5**
-- film_tv: **2**
 - psykologi: **1**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
+
+- `cinemateket_oslo.year` står som 1956, mens Cinemateket i Oslo startet med visninger i 1984 og flyttet til Filmens hus i 1996.
 
 - `saga_kino.year` står som 1989, mens kinoen åpnet i 1934 og ble bygget om til kinosenter i 1981.
 - `vika_kino.year` står som 1981, mens dagens kino i Ruseløkkveien 14 åpnet i 1997.
