@@ -1,0 +1,89 @@
+{
+  "placeId": "eidsberg_kirke",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.5489,
+    "lon": 11.3547,
+    "r": 260
+  },
+  "appliedCoordinate": {
+    "lat": 59.51955,
+    "lon": 11.2574,
+    "r": 260,
+    "displacementM": 6383.0
+  },
+  "identityDecision": "Use the centroid of the protected Eidsberg medieval church building as the stable physical anchor for the wider church-site record.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:285802498",
+    "name": "Eidsberg kirke",
+    "tags": [
+      "amenity=place_of_worship",
+      "building=church",
+      "denomination=lutheran"
+    ],
+    "linkedIdentifiers": [
+      "wikidata:Q6492967",
+      "riksantikvaren-kulturminne:84070",
+      "church-of-norway-building:824"
+    ],
+    "lat": 59.51955,
+    "lon": 11.2574
+  },
+  "historicalScope": {
+    "source": "Den norske kirke – Eidsberg kirke; Norges Kirker – Eidsberg kirke",
+    "finding": "The church is the surviving medieval church of the former district, dedicated to St. Olav and known as Østfolddomen. The building has medieval stone fabric and a major 1880–1881 rebuilding layer.",
+    "datingNote": "The official church page contains both a 1250–1260 dating and a statement that the present church may be from the second half of the twelfth century. This production retains the existing approximate year 1250 and does not use the dating disagreement to determine coordinates."
+  },
+  "crossChecks": [
+    {
+      "provider": "wikidata",
+      "sourceObjectId": "wikidata:Q6492967",
+      "finding": "The church-building and cultural-property entity links OSM way 285802498, Kulturminne ID 84070, Church of Norway building ID 824 and the address Grønnsundveien 1; its coordinate lies approximately 38.1 metres from the applied building centroid."
+    },
+    {
+      "provider": "church_of_norway",
+      "source": "Eidsberg kirke",
+      "finding": "The official institutional source confirms the current church identity, St. Olav dedication, Østfolddomen name, medieval source tradition and major nineteenth-century rebuilding."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:eidsberg_kirke",
+      "lat": 59.5489,
+      "lon": 11.3547,
+      "distanceFromAppliedM": 6383.0,
+      "reason": "Remote uncontracted point northeast of the church building."
+    },
+    {
+      "sourceObjectId": "wikidata:Q6492967",
+      "lat": 59.5198888889,
+      "lon": 11.2575,
+      "distanceFromAppliedM": 38.1,
+      "reason": "Valid entity cross-check, but the mapped church-building geometry is the more direct physical coordinate source."
+    },
+    {
+      "sourceObjectId": "eidsberg-kirke-bus-stop",
+      "reason": "The bus stop is access infrastructure rather than the church building."
+    },
+    {
+      "sourceObjectId": "eidsberg-prestegard",
+      "reason": "The parsonage is a separate historical property."
+    },
+    {
+      "sourceObjectId": "eidsberg-locality-centroid",
+      "reason": "A broad locality point does not identify the church."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 260,
+    "covers": "The church building and immediate church-site environment for gameplay.",
+    "doesNotRepresent": [
+      "the cemetery or churchyard boundary",
+      "the legal heritage-protection geometry",
+      "the property or parish boundary",
+      "the exact church-building polygon"
+    ]
+  },
+  "nextManifestPlace": "rygge_kirke"
+}
