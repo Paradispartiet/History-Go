@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **238**
-- Additional active Oslo IDs outside the protocol: **274**
+- IDs in the current revision protocol: **239**
+- Additional active Oslo IDs outside the protocol: **273**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **274**
+- Additional IDs needing revision: **273**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -21,7 +21,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | sport | 29 |
 | scenekunst | 24 |
 | litteratur | 21 |
-| vitenskap | 1 |
 
 ## Additional active Oslo places
 
@@ -300,7 +299,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | subkultur | Vaterland Bar & Scene | `vaterland_bar_scene` | 16 | 90 | 2 | `data/places/subkultur/oslo/places_subkultur/vaterland_bar_scene.json` | needs revision |
 | subkultur | Vulkan murvegger og passasjer | `vulkan_murvegger` | 13 | 73 | 2 | `data/places/subkultur/oslo/places_subkultur/vulkan_murvegger.json` | needs revision |
 | subkultur | X-Ray Ungdomskulturhus | `xray_ungdomskulturhus` | 14 | 81 | 2 | `data/places/subkultur/oslo/places_subkultur/xray_ungdomskulturhus.json` | needs revision |
-| vitenskap | Universitetets gamle kjemibygning | `universitetets_gamle_kjemi` | 10 | 48 | 1 | `data/places/vitenskap/oslo/places_vitenskap/universitetets_gamle_kjemi.json` | needs revision |
 
 ## Unmanifested Oslo-path JSON files
 

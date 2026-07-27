@@ -15,8 +15,8 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 ## Oslo-status etter full scope-audit
 
 - Totalt aktive Oslo-steder: **512 steder**
-- Ferdige etter alle mergede revisjonsbatcher: **238 steder**
-- Gjenstår: **274 steder**
+- Ferdige etter alle mergede revisjonsbatcher: **239 steder**
+- Gjenstår: **273 steder**
 - Full restkø og ordtelling: `reports/oslo-place-description-scope-audit-2026-07-26.md`
 
 ## Ferdige steder etter denne PR-en
@@ -290,9 +290,12 @@ Oslo-omfanget skal telles fra alle faktiske, manifestlastede stedsobjekter på t
 | 237 | Universitetet i Oslo, Blindern | `universitetet_i_oslo_blindern` | 40 | 300 | 6 | #4298 |
 | 238 | Universitetets gamle hovedbygning | `universitetets_gamle_hovedbygning` | 47 | 309 | 6 | #4298 |
 
+
+| 239 | Universitetets gamle kjemibygning | `universitetets_gamle_kjemi` | 44 | 301 | 6 | #4302 |
+
 ## Gjenstående Oslo-kø
 
-Det gjenstår **274 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
+Det gjenstår **273 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. Den autoritative, filspesifikke køen ligger i `reports/oslo-place-description-scope-audit-2026-07-26.md`.
 
 - natur: **74**
 - naeringsliv: **47**
@@ -301,7 +304,6 @@ Det gjenstår **274 aktive Oslo-steder** uten ferdig desc/popupDesc-revisjon. De
 - sport: **29**
 - scenekunst: **24**
 - litteratur: **21**
-- vitenskap: **1**
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -352,5 +354,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 26 | 8 | #4278 – fullførte hele Oslo-køen for fagområdet politikk |
 | Oslo V4 batch 27 | 10 | #4292 – første produksjonsbatch fra vitenskapskøen |
 | Oslo V4 batch 28 | 10 | #4298 – andre produksjonsbatch fra vitenskapskøen |
+| Oslo V4 batch 29 | 1 | #4302 – fullførte hele Oslo-køen for fagområdet vitenskap |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
