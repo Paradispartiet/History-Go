@@ -1,0 +1,84 @@
+{
+  "placeId": "rod_herregard",
+  "generatedAt": "2026-07-27",
+  "legacyCoordinate": {
+    "lat": 59.1261,
+    "lon": 11.3769,
+    "r": 320
+  },
+  "appliedCoordinate": {
+    "lat": 59.12269,
+    "lon": 11.36845,
+    "r": 320,
+    "displacementM": 613.4
+  },
+  "identityDecision": "Use the centroid of the protected Rød Herregård main-building geometry as the stable physical anchor for the combined manor, museum and garden record.",
+  "primarySourceObject": {
+    "provider": "osm",
+    "objectId": "osm-way:4481504",
+    "name": "Rød Herregård",
+    "tags": [
+      "building=civic",
+      "wikidata=Q14556917"
+    ],
+    "linkedIdentifiers": [
+      "wikidata:Q14556917",
+      "riksantikvaren-kulturminne:86040"
+    ],
+    "lat": 59.12269,
+    "lon": 11.36845
+  },
+  "historicalScope": {
+    "source": "Store norske leksikon – Rød, storgård i Halden kommune",
+    "finding": "A seventeenth-century building and a 1733 addition form the core of the protected main house, which was altered in 1862 and enlarged in 1875. The house, park and site foundation must be distinguished from the much larger forest estate.",
+    "visitorIdentity": "Østfoldmuseene's Rød Herregård department combines the manor house, historic collections, archives, yard and gardens."
+  },
+  "crossChecks": [
+    {
+      "provider": "wikidata",
+      "sourceObjectId": "wikidata:Q14556917",
+      "finding": "The manor entity is classified as cultural property, manor house and museum, links OSM way 4481504 and Kulturminne ID 86040, and lies approximately 9.2 metres from the applied building centroid."
+    },
+    {
+      "provider": "ostfoldmuseene",
+      "source": "Rød Herregård",
+      "finding": "The official museum identifies the public manor destination and gives the visitor address Herregårdsveien 10, 1771 Halden."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "sourceObjectId": "legacy:rod_herregard",
+      "lat": 59.1261,
+      "lon": 11.3769,
+      "distanceFromAppliedM": 613.4,
+      "reason": "Remote uncontracted point northeast of the manor complex."
+    },
+    {
+      "sourceObjectId": "osm-node:27470219",
+      "name": "Rød herregård",
+      "lat": 59.12286,
+      "lon": 11.36893,
+      "distanceFromAppliedM": 33.3,
+      "reason": "Museum visitor point rather than the physical main-building geometry."
+    },
+    {
+      "sourceObjectId": "geonames:9486413",
+      "reason": "Broad farm point and less precise than the protected main-building object."
+    },
+    {
+      "sourceObjectId": "rod-wider-estate",
+      "reason": "The extensive forest and property estate is historical context, not a point coordinate source."
+    }
+  ],
+  "radiusDecision": {
+    "retainedM": 320,
+    "covers": "The main building, immediate yard, museum functions and core garden approaches for gameplay.",
+    "doesNotRepresent": [
+      "the legal heritage protection geometry",
+      "the property or forest-estate boundary",
+      "the full park or every historic garden feature",
+      "a separate archaeological locality"
+    ]
+  },
+  "nextManifestPlace": "gjellestadskipet_jellhaugen"
+}
