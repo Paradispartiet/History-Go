@@ -1,8 +1,8 @@
 {
   "schema": "history_go_place_description_templates_v4",
-  "version": "4.0.0",
-  "status": "canonical_fact_first_full_popup_articles",
-  "purpose": "Sikre at desc er et konsentrert faktasammendrag og at popupDesc er en fullverdig, kildebelagt stedartikkel på minst 300 ord.",
+  "version": "4.1.0",
+  "status": "canonical_fact_only_full_popup_articles",
+  "purpose": "Sikre at desc og popupDesc består av dokumenterte stedfakta, uten redaksjonell, pedagogisk, kartteknisk eller oppkonstruert fylltekst.",
   "categoryAliases": {
     "popkultur": "populaerkultur"
   },
@@ -14,8 +14,14 @@
   },
   "global": {
     "desc": {
-      "targetWords": [40, 80],
-      "targetSentences": [2, 4],
+      "targetWords": [
+        40,
+        80
+      ],
+      "targetSentences": [
+        2,
+        4
+      ],
       "rangeType": "soft_normal_range",
       "job": "Gi et konsentrert og innholdsrikt faktasammendrag, ikke bare en teaser.",
       "minimumConcreteFacts": 4,
@@ -23,9 +29,15 @@
     },
     "popupDesc": {
       "minimumWords": 300,
-      "recommendedWords": [300, 600],
+      "recommendedWords": [
+        300,
+        600
+      ],
       "hardMaximumWords": null,
-      "targetSentences": [12, 30],
+      "targetSentences": [
+        12,
+        30
+      ],
       "minimumParagraphs": 3,
       "rangeType": "hard_minimum_open_upper_range",
       "job": "Gi en fullverdig, selvstendig stedartikkel med omfattende, kildebelagt og minneverdig kunnskap.",
@@ -73,7 +85,10 @@
       "Ikke press alle steder inn i fortellinger om samfunn, identitet, system, arbeid, metode, bevegelse eller dagens betydning.",
       "En popupDesc under 300 ord er uferdig.",
       "Manglende stoff skal løses med mer research, ikke gjentakelse, generell analyse eller spekulasjon.",
-      "PopupDesc kan være lengre enn 600 ord når kildene og stedet forsvarer det; det finnes ingen automatisk hard maksimumsgrense."
+      "PopupDesc kan være lengre enn 600 ord når kildene og stedet forsvarer det; det finnes ingen automatisk hard maksimumsgrense.",
+      "Hvert avsnitt skal inneholde minst to konkrete stedsholdepunkter når kildegrunnlaget tillater det.",
+      "Ikke konstruer en generell spenning, moral eller faglig lesning som kildene ikke uttrykker.",
+      "Fjern alle setninger som forklarer History Go, spilleren, kartpunktet, markøren eller produksjonsvalget."
     ],
     "notFirstLineContent": [
       "læringsmål eller hva spilleren bør forstå",
@@ -104,9 +119,10 @@
         "betydning",
         "rolle",
         "sammenheng",
-        "møteplass"
+        "møteplass",
+        "spenning"
       ],
-      "rule": "Abstrakte ord er tillatt når de forklarer et konkret faktum, men ikke som erstatning for fakta."
+      "rule": "Abstrakte ord er tillatt når de forklarer et konkret, kildebelagt faktum, men ikke som erstatning for fakta."
     },
     "batchDiversification": {
       "maxSameOpeningPatternInTen": 2,
@@ -128,99 +144,370 @@
       "Tilfører popupDesc vesentlig mer enn desc?",
       "Er minst to tredeler av opplysningene i popupDesc nye?",
       "Er teksten interessant uten generiske fagkonklusjoner eller fylltekst?",
-      "Er alle faktiske påstander kildebelagte?"
+      "Er alle faktiske påstander kildebelagte?",
+      "Kan hver faktisk påstand føres tilbake til en inspectable kilde?",
+      "Har hvert avsnitt konkrete navn, datoer, handlinger, objekter, funksjoner, mål eller resultater?",
+      "Er all History Go-, spiller-, kart-, markør- og produksjonsmetatekst fjernet?"
+    ],
+    "factualityGate": {
+      "everyFactualClaimNeedsInspectableSupport": true,
+      "everyParagraphNeedsConcretePlaceAnchors": true,
+      "minimumConcreteAnchorsPerParagraph": 2,
+      "allowedExplanations": [
+        "kildebelagt årsak og konsekvens",
+        "dokumentert konflikt mellom navngitte aktører eller vedtak",
+        "konkret sammenligning mellom daterte tidslag"
+      ],
+      "notFactsOnTheirOwn": [
+        "betydning",
+        "spenning",
+        "rolle",
+        "identitet",
+        "åpenhet",
+        "sikkerhet",
+        "transformasjon",
+        "samfunn",
+        "relevans",
+        "lesbarhet"
+      ],
+      "missingContentRule": "Mer research er eneste godkjente løsning. Ikke fyll med analyse, moral, redaksjonell forklaring eller generelle setninger."
+    },
+    "forbiddenEditorialLanguage": [
+      {
+        "id": "history_go_reader_copy",
+        "examples": [
+          "History Go kan bruke stedet til",
+          "I History Go"
+        ],
+        "rule": "Produktnavn og redaksjonell bruk skal aldri stå i brukerartikkelen."
+      },
+      {
+        "id": "reader_instruction",
+        "examples": [
+          "Se hvordan",
+          "Husk at",
+          "spilleren skal forstå",
+          "spilleren bør forstå"
+        ],
+        "rule": "popupDesc skal formidle kunnskap, ikke instruere spilleren."
+      },
+      {
+        "id": "map_identity_copy",
+        "examples": [
+          "kartpunktet er et områdeanker",
+          "autoritative kartidentiteten",
+          "markør for hele området"
+        ],
+        "rule": "Kart-, koordinat- og representasjonslogikk hører i egne metadatafelt."
+      },
+      {
+        "id": "dataset_distinction_copy",
+        "examples": [
+          "må holdes adskilt fra",
+          "skal ikke reduseres til én samlet markør",
+          "oppdateres separat"
+        ],
+        "rule": "Datasettgrenser og canonical-identiteter skal ikke forklares i popupDesc."
+      },
+      {
+        "id": "production_defence_copy",
+        "examples": [
+          "Dette hindrer at",
+          "stabil nok til å romme videre utvikling"
+        ],
+        "rule": "Teksten skal ikke forsvare redaksjonelle eller tekniske valg."
+      }
     ]
   },
   "categories": {
     "by": {
       "label": "By & arkitektur",
-      "factPriorities": ["hva stedet eller bygningen er", "byggeår, åpning eller ombygging", "arkitekt, ingeniør eller planlegger", "konkret funksjon", "materiale, form, mål eller transportløsning", "faktisk bruk eller kjent hendelse"],
-      "avoid": ["generell byutvikling", "påtvunget hverdagsanalyse", "bevegelse som obligatorisk hovedpoeng"]
+      "factPriorities": [
+        "hva stedet eller bygningen er",
+        "byggeår, åpning eller ombygging",
+        "arkitekt, ingeniør eller planlegger",
+        "konkret funksjon",
+        "materiale, form, mål eller transportløsning",
+        "faktisk bruk eller kjent hendelse"
+      ],
+      "avoid": [
+        "generell byutvikling",
+        "påtvunget hverdagsanalyse",
+        "bevegelse som obligatorisk hovedpoeng"
+      ]
     },
     "historie": {
       "label": "Historie",
-      "factPriorities": ["hva som skjedde", "når det skjedde", "navngitte aktører", "stedets funksjon i hendelsen", "bevarte rester eller senere endring", "uvanlig kildebelagt detalj"],
-      "avoid": ["historisk betydning uten hendelse", "generisk kulturminnespråk", "læresetning om fortid og nåtid"]
+      "factPriorities": [
+        "hva som skjedde",
+        "når det skjedde",
+        "navngitte aktører",
+        "stedets funksjon i hendelsen",
+        "bevarte rester eller senere endring",
+        "uvanlig kildebelagt detalj"
+      ],
+      "avoid": [
+        "historisk betydning uten hendelse",
+        "generisk kulturminnespråk",
+        "læresetning om fortid og nåtid"
+      ]
     },
     "kunst": {
       "label": "Kunst",
-      "factPriorities": ["verkets navn og type", "kunstner", "årstall", "materiale, størrelse eller teknikk", "bestilling, plassering eller flytting", "mottakelse eller kjent hendelse"],
-      "avoid": ["symbolikk uten beskrivelse", "kunst møter samfunn som standardformel", "tolkning uten verkfakta"]
+      "factPriorities": [
+        "verkets navn og type",
+        "kunstner",
+        "årstall",
+        "materiale, størrelse eller teknikk",
+        "bestilling, plassering eller flytting",
+        "mottakelse eller kjent hendelse"
+      ],
+      "avoid": [
+        "symbolikk uten beskrivelse",
+        "kunst møter samfunn som standardformel",
+        "tolkning uten verkfakta"
+      ]
     },
     "litteratur": {
       "label": "Litteratur",
-      "factPriorities": ["forfatter eller litterært miljø", "verk", "konkret forbindelse til stedet", "årstall eller arbeidsperiode", "hva som ble skrevet, lest eller utgitt", "dokumentert episode eller etterliv"],
-      "avoid": ["generisk inspirasjon", "handlingsreferat uten stedstilknytning", "løs påstand om litterær identitet"]
+      "factPriorities": [
+        "forfatter eller litterært miljø",
+        "verk",
+        "konkret forbindelse til stedet",
+        "årstall eller arbeidsperiode",
+        "hva som ble skrevet, lest eller utgitt",
+        "dokumentert episode eller etterliv"
+      ],
+      "avoid": [
+        "generisk inspirasjon",
+        "handlingsreferat uten stedstilknytning",
+        "løs påstand om litterær identitet"
+      ]
     },
     "media": {
       "label": "Medier",
-      "factPriorities": ["medium eller institusjon", "program, avis, sending eller sak", "redaktør, journalist eller produsent", "teknologi eller distribusjonsform", "dato eller periode", "konkret publikumseffekt eller konflikt"],
-      "avoid": ["offentlighet som eneste substans", "plattform uten produksjon", "mediehistorie uten navn eller verk"]
+      "factPriorities": [
+        "medium eller institusjon",
+        "program, avis, sending eller sak",
+        "redaktør, journalist eller produsent",
+        "teknologi eller distribusjonsform",
+        "dato eller periode",
+        "konkret publikumseffekt eller konflikt"
+      ],
+      "avoid": [
+        "offentlighet som eneste substans",
+        "plattform uten produksjon",
+        "mediehistorie uten navn eller verk"
+      ]
     },
     "musikk": {
       "label": "Musikk",
-      "factPriorities": ["artist, ensemble eller arrangør", "konsert, innspilling eller verk", "dato eller periode", "sjanger eller instrument", "akustikk, scene eller teknologi", "minneverdig dokumentert hendelse"],
-      "avoid": ["viktig musikkscene uten hendelser", "sjangerliste", "identitet som standardkonklusjon"]
+      "factPriorities": [
+        "artist, ensemble eller arrangør",
+        "konsert, innspilling eller verk",
+        "dato eller periode",
+        "sjanger eller instrument",
+        "akustikk, scene eller teknologi",
+        "minneverdig dokumentert hendelse"
+      ],
+      "avoid": [
+        "viktig musikkscene uten hendelser",
+        "sjangerliste",
+        "identitet som standardkonklusjon"
+      ]
     },
     "naeringsliv": {
       "label": "Næringsliv",
-      "factPriorities": ["bedrift, grunnlegger eller eier", "produkt eller tjeneste", "etableringsår eller driftsperiode", "produksjonsmåte eller teknologi", "marked, eksport eller kunde", "vekst, konkurs, streik eller omstilling"],
-      "avoid": ["økonomisk utvikling uten bedrift eller produkt", "arbeid som obligatorisk moral", "innovasjon som tom ros"]
+      "factPriorities": [
+        "bedrift, grunnlegger eller eier",
+        "produkt eller tjeneste",
+        "etableringsår eller driftsperiode",
+        "produksjonsmåte eller teknologi",
+        "marked, eksport eller kunde",
+        "vekst, konkurs, streik eller omstilling"
+      ],
+      "avoid": [
+        "økonomisk utvikling uten bedrift eller produkt",
+        "arbeid som obligatorisk moral",
+        "innovasjon som tom ros"
+      ]
     },
     "natur": {
       "label": "Natur & miljø",
-      "factPriorities": ["navngitte arter eller naturtype", "geologi, habitat eller prosess", "sesong eller observerbart kjennetegn", "størrelse, utbredelse eller livsløp", "samspill eller økologisk funksjon", "vern, trussel eller særskilt observasjon"],
-      "avoid": ["naturmangfold uten arter", "grønn lunge som standard", "økologisk betydning uten konkret prosess"]
+      "factPriorities": [
+        "navngitte arter eller naturtype",
+        "geologi, habitat eller prosess",
+        "sesong eller observerbart kjennetegn",
+        "størrelse, utbredelse eller livsløp",
+        "samspill eller økologisk funksjon",
+        "vern, trussel eller særskilt observasjon"
+      ],
+      "avoid": [
+        "naturmangfold uten arter",
+        "grønn lunge som standard",
+        "økologisk betydning uten konkret prosess"
+      ]
     },
     "politikk": {
       "label": "Politikk & samfunn",
-      "factPriorities": ["institusjon, organisasjon eller bevegelse", "beslutning, lov, møte eller aksjon", "dato", "navngitte aktører", "hva saken gjaldt", "konkret resultat eller konflikt"],
-      "avoid": ["demokrati som pyntord", "politisk betydning uten sak", "generell maktanalyse i førstelinjen"]
+      "factPriorities": [
+        "institusjon, organisasjon eller bevegelse",
+        "beslutning, lov, møte eller aksjon",
+        "dato",
+        "navngitte aktører",
+        "hva saken gjaldt",
+        "konkret resultat eller konflikt"
+      ],
+      "avoid": [
+        "demokrati som pyntord",
+        "politisk betydning uten sak",
+        "generell maktanalyse i førstelinjen",
+        "udokumentert spenning mellom åpenhet og sikkerhet"
+      ]
     },
     "populaerkultur": {
       "label": "Populærkultur",
-      "factPriorities": ["fenomen, arrangement eller gjenstand", "utøver, arrangør eller fanmiljø", "dato eller periode", "format eller praksis", "publikumstall, gjennombrudd eller spredning", "minneverdig episode eller etterliv"],
-      "avoid": ["popularitet uten fenomen", "nostalgi som eneste innhold", "levende kultur som tom ros"]
+      "factPriorities": [
+        "fenomen, arrangement eller gjenstand",
+        "utøver, arrangør eller fanmiljø",
+        "dato eller periode",
+        "format eller praksis",
+        "publikumstall, gjennombrudd eller spredning",
+        "minneverdig episode eller etterliv"
+      ],
+      "avoid": [
+        "popularitet uten fenomen",
+        "nostalgi som eneste innhold",
+        "levende kultur som tom ros"
+      ]
     },
     "psykologi": {
       "label": "Psykologi",
-      "factPriorities": ["forsker, behandler eller institusjon", "undersøkelse, behandling eller praksis", "metode", "dato eller periode", "deltakere eller målgruppe", "resultat, reform eller dokumentert kritikk"],
-      "avoid": ["diagnostisering uten kilder", "teoribegrep uten situasjon", "abstrakt forklaring av sinnet"]
+      "factPriorities": [
+        "forsker, behandler eller institusjon",
+        "undersøkelse, behandling eller praksis",
+        "metode",
+        "dato eller periode",
+        "deltakere eller målgruppe",
+        "resultat, reform eller dokumentert kritikk"
+      ],
+      "avoid": [
+        "diagnostisering uten kilder",
+        "teoribegrep uten situasjon",
+        "abstrakt forklaring av sinnet"
+      ]
     },
     "religion": {
       "label": "Religion",
-      "factPriorities": ["trossamfunn eller menighet", "bygg, gjenstand eller ritual", "grunnleggelse eller byggeår", "arkitekt, kunstner eller grunnlegger", "høytid eller konkret bruk", "endring, brann, flytting eller restaurering"],
-      "avoid": ["tro som homogen størrelse", "symbolikk uten gjenstand eller ritual", "kirkehistorie uten navn eller dato"]
+      "factPriorities": [
+        "trossamfunn eller menighet",
+        "bygg, gjenstand eller ritual",
+        "grunnleggelse eller byggeår",
+        "arkitekt, kunstner eller grunnlegger",
+        "høytid eller konkret bruk",
+        "endring, brann, flytting eller restaurering"
+      ],
+      "avoid": [
+        "tro som homogen størrelse",
+        "symbolikk uten gjenstand eller ritual",
+        "kirkehistorie uten navn eller dato"
+      ]
     },
     "scenekunst": {
       "label": "Scenekunst",
-      "factPriorities": ["scene, kompani eller institusjon", "forestilling eller produksjon", "dramatiker, regissør eller utøver", "premieredato eller periode", "sceneform, teknikk eller kapasitet", "gjennombrudd, konflikt eller minneverdig kveld"],
-      "avoid": ["viktig kulturarena uten produksjoner", "møteplass som eneste funksjon", "oppramsing av sjangre"]
+      "factPriorities": [
+        "scene, kompani eller institusjon",
+        "forestilling eller produksjon",
+        "dramatiker, regissør eller utøver",
+        "premieredato eller periode",
+        "sceneform, teknikk eller kapasitet",
+        "gjennombrudd, konflikt eller minneverdig kveld"
+      ],
+      "avoid": [
+        "viktig kulturarena uten produksjoner",
+        "møteplass som eneste funksjon",
+        "oppramsing av sjangre"
+      ]
     },
     "sport": {
       "label": "Sport & lek",
-      "factPriorities": ["idrett, lag eller utøver", "kamp, løp, rekord eller turnering", "dato eller sesong", "resultat eller prestasjon", "arenaens mål, kapasitet eller særtrekk", "rivalisering eller lokal tradisjon"],
-      "avoid": ["idrettsglede som standard", "arena uten hendelse", "identitet uten kamp, person eller resultat"]
+      "factPriorities": [
+        "idrett, lag eller utøver",
+        "kamp, løp, rekord eller turnering",
+        "dato eller sesong",
+        "resultat eller prestasjon",
+        "arenaens mål, kapasitet eller særtrekk",
+        "rivalisering eller lokal tradisjon"
+      ],
+      "avoid": [
+        "idrettsglede som standard",
+        "arena uten hendelse",
+        "identitet uten kamp, person eller resultat"
+      ]
     },
     "subkultur": {
       "label": "Subkultur",
-      "factPriorities": ["gruppe eller miljø", "musikk, klær, kunst, språk eller aktivitet", "stedlig praksis", "dato eller periode", "egenorganisering eller arrangement", "konkret konflikt, forbud eller etterliv"],
-      "avoid": ["alternativ som tom etikett", "opprør uten hendelse", "miljø uten deltakere eller praksis"]
+      "factPriorities": [
+        "gruppe eller miljø",
+        "musikk, klær, kunst, språk eller aktivitet",
+        "stedlig praksis",
+        "dato eller periode",
+        "egenorganisering eller arrangement",
+        "konkret konflikt, forbud eller etterliv"
+      ],
+      "avoid": [
+        "alternativ som tom etikett",
+        "opprør uten hendelse",
+        "miljø uten deltakere eller praksis"
+      ]
     },
     "vitenskap": {
       "label": "Vitenskap & teknologi",
-      "factPriorities": ["forsker, team eller institusjon", "spørsmål, oppfinnelse eller prosjekt", "metode, instrument eller teknologi", "dato eller periode", "funn, resultat eller anvendelse", "begrensning, feil eller uventet detalj"],
-      "avoid": ["kunnskapsproduksjon uten funn", "metode som obligatorisk pynt når den ikke er sentral", "innovasjon uten konkret resultat"]
+      "factPriorities": [
+        "forsker, team eller institusjon",
+        "spørsmål, oppfinnelse eller prosjekt",
+        "metode, instrument eller teknologi",
+        "dato eller periode",
+        "funn, resultat eller anvendelse",
+        "begrensning, feil eller uventet detalj"
+      ],
+      "avoid": [
+        "kunnskapsproduksjon uten funn",
+        "metode som obligatorisk pynt når den ikke er sentral",
+        "innovasjon uten konkret resultat"
+      ]
     },
     "filosofi": {
       "label": "Filosofi",
-      "factPriorities": ["tenker eller miljø", "verk, forelesning eller samtale", "konkret spørsmål eller argument", "dato eller periode", "stedstilknytning", "uenighet eller senere virkning"],
-      "avoid": ["liv og mening uten verk eller argument", "abstrakte begreper uten person eller tekst", "stedet reiser spørsmål som standardformel"]
+      "factPriorities": [
+        "tenker eller miljø",
+        "verk, forelesning eller samtale",
+        "konkret spørsmål eller argument",
+        "dato eller periode",
+        "stedstilknytning",
+        "uenighet eller senere virkning"
+      ],
+      "avoid": [
+        "liv og mening uten verk eller argument",
+        "abstrakte begreper uten person eller tekst",
+        "stedet reiser spørsmål som standardformel"
+      ]
     },
     "film_tv": {
       "label": "Film & TV",
-      "factPriorities": ["film, serie, episode eller institusjon", "regissør, skuespiller eller produksjonsteam", "innspillings- eller visningsdato", "scene eller produksjonshendelse", "kamera, lys, lyd, klipp eller scenografi", "mottakelse eller etterliv"],
-      "avoid": ["filmhistorisk viktig uten produksjon", "bare handlingsreferat", "stedet som kulisse uten konkret scene"]
+      "factPriorities": [
+        "film, serie, episode eller institusjon",
+        "regissør, skuespiller eller produksjonsteam",
+        "innspillings- eller visningsdato",
+        "scene eller produksjonshendelse",
+        "kamera, lys, lyd, klipp eller scenografi",
+        "mottakelse eller etterliv"
+      ],
+      "avoid": [
+        "filmhistorisk viktig uten produksjon",
+        "bare handlingsreferat",
+        "stedet som kulisse uten konkret scene"
+      ]
     }
   }
 }
