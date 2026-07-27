@@ -44,7 +44,15 @@ jobs:
         run: npm run build:tools
 
       - name: Validate Stories integrity
-        run: node dist/tools/check_stories_integrity.mjs
+        shell: bash
+        run: |
+          set -o pipefail
+          if ! node dist/tools/check_stories_integrity.mjs > stories-integrity.log 2>&1; then
+            echo 'Stories integrity failed. Compact diagnostic follows:'
+            tail -n 80 stories-integrity.log
+            exit 1
+          fi
+          cat stories-integrity.log
 
       - name: Validate governance metrics contract
         run: node --test tests/stories-governance-metrics.test.mjs
