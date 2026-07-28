@@ -23,10 +23,8 @@
     document.head.appendChild(stylesheet);
   }
 
-  function ensureScript(src, flagName) {
-    if (flagName && global[flagName]) return;
+  function ensureScript(src) {
     if (document.querySelector(`script[src="${src}"]`)) return;
-    if (flagName) global[flagName] = true;
     const script = document.createElement("script");
     script.src = src;
     script.defer = true;
@@ -36,20 +34,20 @@
   function loadPlacePopupV2() {
     ensureStylesheet("css/place-popup-v2.css");
     if (!global.__HG_PLACE_POPUP_V2_INSTALLED__) {
-      ensureScript("js/ui/place-popup-v2.js", "__HG_PLACE_POPUP_V2_SCRIPT_REQUESTED__");
+      ensureScript("js/ui/place-popup-v2.js");
     }
 
     // Fanearkitekturen er et eget presentasjonslag over V2. Den poller trygt
     // dersom V2 ikke er installert ennå, og source-data blir liggende i sine
     // eksisterende systemer (Leksikon, Stories, Lesespor, før/nå osv.).
     ensureStylesheet("css/place-popup-tabs.css");
-    ensureScript("js/ui/place-popup-tabs.js", "__HG_PLACE_POPUP_TABS_SCRIPT_REQUESTED__");
+    ensureScript("js/ui/place-popup-tabs.js");
 
     // PlaceCard-rundingene snevres inn til visuelle samlinger. Kunnskapsflater
     // flyttes til popupfaner, mens handlinger/møter/events samles under På stedet.
-    ensureScript("js/ui/place-rounds-visual-collections.js", "__HG_VISUAL_PLACE_ROUNDS_SCRIPT_REQUESTED__");
+    ensureScript("js/ui/place-rounds-visual-collections.js");
     ensureStylesheet("css/place-onsite-surface.css");
-    ensureScript("js/ui/place-onsite-surface.js", "__HG_PLACE_ONSITE_SURFACE_SCRIPT_REQUESTED__");
+    ensureScript("js/ui/place-onsite-surface.js");
   }
 
   function loadPlaceLearningSurface() {
