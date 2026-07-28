@@ -57,6 +57,9 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
     assert((emne.key_questions || []).length === 3, `${id}: skal ha tre kjernespørsmål`);
     assert((emne.conflicts || []).length >= 3, `${id}: skal ha minst tre fagspesifikke konflikter`);
     assert((emne.critical_distinctions || []).length >= 2, `${id}: mangler kritiske skiller`);
+    assert(isDeepStrictEqual(emne.analysis_axes, emne.critical_distinctions), `${id}: synlige analyseakser er ikke emnespesifikke`);
+    assert((emne.quiz_angles || []).length === 3, `${id}: mangler tre operative quizvinkler`);
+    assert((emne.blindspots || []).length === 2, `${id}: mangler emnespesifikke blindsoner`);
     assert(!norm(emne.definition).includes('som natur- og miljøfaglig inngang'), `${id}: generisk definisjonsmal står igjen`);
     assert(!(emne.key_questions || [])[0]?.startsWith('Hvilken konkret art, habitat, vassdrag'), `${id}: generisk kjernespørsmål står igjen`);
     assert(!(emne.conflicts || []).includes('naturopplevelse vs økologisk analyse'), `${id}: generisk konfliktliste står igjen`);
@@ -91,6 +94,8 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
   assert(quiz.title === 'Natur & miljø', 'Quizprofilen bruker feil faglabel');
   assert(quiz.normal_question_opening?.sets === 2 && quiz.normal_question_opening?.questions_per_set === 7, 'Quizprofilen mangler 2 × 7 normale åpningsspørsmål');
   assert((quiz.category_rules || []).some((r) => r.includes('stedet eller fenomenet')), 'Quizprofilen mangler konkretitetsregel');
+  assert(quiz.knowledge_delivery?.required === true, 'Quizprofilen mangler Knowledge-leveranse');
+  assert(!JSON.stringify({ emner, methods }).includes('miljørettpferdig'), 'Naturpakken inneholder kjent språkfeil');
   assert(!badge.includes('full teoretisk beskrivelse') && !badge.includes('fulle interne teorien'), 'Merkesiden fremstår fortsatt som intern teorifil');
   assert(badge.includes('fagverk.html?subject=natur'), 'Merkesiden mangler fagsidelenke');
   for (const domain of pensum.domains) assert(badge.includes(domain.label), `Merkesiden omtaler ikke fagområdet ${domain.label}`);
@@ -119,6 +124,8 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
       canonicalDomainReferences: true,
       noGenericEmneTemplates: true,
       noDuplicateEmneLearningText: true,
+      emneSpecificVisibleAnalysis: true,
+      emneSpecificQuizAndBlindspots: true,
       methodProceduresAndLimits: true,
       twoTimesSevenNormalQuizOpening: true,
       publicFacingBadgePage: true
