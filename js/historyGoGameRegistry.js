@@ -68,6 +68,18 @@
     return response.json();
   }
 
+  function loadProfilePolishStyles() {
+    if (typeof document.getElementById !== "function") return;
+    if (document.getElementById("hgProfilePolishStyles")) return;
+    if (typeof document.createElement !== "function" || !document.head?.appendChild) return;
+
+    const link = document.createElement("link");
+    link.id = "hgProfilePolishStyles";
+    link.rel = "stylesheet";
+    link.href = "css/profile-polish.css";
+    document.head.appendChild(link);
+  }
+
   // profile.html already loads this small profile-only registry bootstrap before
   // profile.js. Use it to attach the collection read model without changing the
   // physical-only visit/map runtime.
@@ -86,6 +98,7 @@
 
   window.HGGameRegistry = { loadGameRegistry, normalizeProfileGamesTab, renderGameRegistry, registryPath: REGISTRY_PATH };
 
+  loadProfilePolishStyles();
   loadProfilePlaceCollectionPatch();
 
   document.addEventListener("DOMContentLoaded", () => {
