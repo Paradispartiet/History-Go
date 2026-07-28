@@ -1,0 +1,36 @@
+name: One-time Oscarsborg coordinate source probe
+
+on:
+  push:
+    branches:
+      - agent/coordinate-oscarsborg-festning-20260728
+    paths:
+      - .github/workflows/coordinate-oscarsborg-source-probe.yml
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize raw map sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/oscarsborg"
+          mkdir -p "$OUT"
+          UA='History-Go coordinate research (Paradispartiet/History-Go)'
+          curl --fail --silent --show-error --location --user-agent "$UA" 'https://api.openstreetmap.org/api/0.6/map?bbox=10.6030,59.6700,10.6115,59.6800' | tee "$OUT/osm-kaholmene-bbox.xml" >/dev/null
+          for id in 528047559 540187471 156619353 513833331 520242521; do
+            curl --fail --silent --show-error --location --user-agent "$UA" "https://api.openstreetmap.org/api/0.6/way/${id}/full" | tee "$OUT/osm-way-${id}-full.xml" >/dev/null
+          done
+          for id in 6463615980 582909475 6463616350 13369113787 13369113788 13369113789; do
+            curl --fail --silent --show-error --location --user-agent "$UA" "https://api.openstreetmap.org/api/0.6/node/${id}" | tee "$OUT/osm-node-${id}.xml" >/dev/null
+          done
+      - name: Upload raw source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: oscarsborg-coordinate-source-probe
+          path: ${{ runner.temp }}/oscarsborg
