@@ -1,0 +1,195 @@
+{
+  "schema": "history_go_fagverk_place_design_v1",
+  "version": "1.1.0",
+  "updatedAt": "2026-07-28",
+  "principles": {
+    "sharedLayout": true,
+    "categoryControlsPresentation": true,
+    "realPlaceImageRequired": true,
+    "decorativeFallbackDoesNotCount": true,
+    "imageFieldPriority": ["popupImage", "cardImage", "image"],
+    "imageTarget": {
+      "orientation": "landscape",
+      "preferredRatio": "16:9 or 4:3",
+      "preferredMinimumWidth": 1200,
+      "mustRepresentCanonicalPlace": true,
+      "mustHaveInspectableSourceOrRepositoryAsset": true
+    }
+  },
+  "aliases": {
+    "film": "popkultur",
+    "film_tv": "popkultur",
+    "media": "popkultur",
+    "populaerkultur": "popkultur",
+    "business": "naeringsliv",
+    "science": "vitenskap",
+    "urban": "by"
+  },
+  "categories": {
+    "by": {
+      "label": "By",
+      "accent": "#ef5a63",
+      "accentSecondary": "#ffb26b",
+      "surface": "#171117",
+      "glow": "rgba(239,90,99,.22)",
+      "titleStyle": "modern_condensed",
+      "imageTreatment": "urban_documentary",
+      "imageDirection": "Vis gaterom, bystruktur, ferdsel eller stedet i bruk. Unngå utsnitt som bare viser én tilfeldig fasade når stedet er et helt område.",
+      "contentPriority": ["sted_og_struktur", "bruk_og_bevegelse", "historiske_lag", "planlegging_og_konflikt"]
+    },
+    "historie": {
+      "label": "Historie",
+      "accent": "#8797d8",
+      "accentSecondary": "#c9a86a",
+      "surface": "#101421",
+      "glow": "rgba(135,151,216,.22)",
+      "titleStyle": "editorial_serif",
+      "imageTreatment": "archival_documentary",
+      "imageDirection": "Prioriter et tydelig nåtidsbilde av det canonicale stedet. Historiske bilder kan være supplement, men skal ikke erstatte dokumentasjon av stedet slik det kan oppsøkes i dag.",
+      "contentPriority": ["kronologi", "brudd_og_kontinuitet", "aktorer", "kilder_og_spor"]
+    },
+    "kunst": {
+      "label": "Kunst",
+      "accent": "#f3bd43",
+      "accentSecondary": "#e66bab",
+      "surface": "#18130c",
+      "glow": "rgba(243,189,67,.22)",
+      "titleStyle": "gallery_serif",
+      "imageTreatment": "gallery_precise",
+      "imageDirection": "Vis verket, kunstrommet eller den arkitektoniske sammenhengen presist. Ikke bruk dekorative kunstbilder som ikke tilhører stedet.",
+      "contentPriority": ["verk_og_materiale", "kunstner_og_produksjon", "rom_og_visning", "mottakelse_og_institusjon"]
+    },
+    "scenekunst": {
+      "label": "Scenekunst",
+      "accent": "#e85f86",
+      "accentSecondary": "#e2bc55",
+      "surface": "#190e13",
+      "glow": "rgba(232,95,134,.22)",
+      "titleStyle": "stage_display",
+      "imageTreatment": "venue_atmosphere",
+      "imageDirection": "Vis teatret, scenen, publikumsrommet eller den konkrete arenaen. Forestillingsfoto kan supplere, men teller ikke alene som bilde av stedet.",
+      "contentPriority": ["scene_og_rom", "verk_og_framforing", "institusjon_og_arbeid", "publikum_og_offentlighet"]
+    },
+    "litteratur": {
+      "label": "Litteratur",
+      "accent": "#f0cf55",
+      "accentSecondary": "#a88165",
+      "surface": "#17140e",
+      "glow": "rgba(240,207,85,.2)",
+      "titleStyle": "book_serif",
+      "imageTreatment": "quiet_documentary",
+      "imageDirection": "Vis stedet, huset, biblioteket, gaten eller landskapet som den litterære forbindelsen faktisk gjelder. Bokomslag er supplement, ikke stedsbilde.",
+      "contentPriority": ["sted_og_tekst", "forfatter_og_miljo", "verk_og_motiv", "offentlighet_og_mottakelse"]
+    },
+    "musikk": {
+      "label": "Musikk",
+      "accent": "#ff72c8",
+      "accentSecondary": "#6cbcff",
+      "surface": "#160d18",
+      "glow": "rgba(255,114,200,.22)",
+      "titleStyle": "stage_display",
+      "imageTreatment": "venue_atmosphere",
+      "imageDirection": "Vis spillestedet, scenen, rommet eller et dokumentert miljøbilde. Artistfoto alene teller ikke som bilde av stedet.",
+      "contentPriority": ["scene_og_lyd", "artister_og_miljo", "produksjon", "publikum_og_subkultur"]
+    },
+    "naeringsliv": {
+      "label": "Næringsliv",
+      "accent": "#f18a38",
+      "accentSecondary": "#8fa8bb",
+      "surface": "#17110c",
+      "glow": "rgba(241,138,56,.22)",
+      "titleStyle": "industrial_display",
+      "imageTreatment": "industrial_documentary",
+      "imageDirection": "Vis produksjonssted, forretning, industriområde eller den fysiske infrastrukturen. Logo eller produktbilde alene teller ikke som stedsbilde.",
+      "contentPriority": ["produksjon_og_teknologi", "arbeid_og_organisering", "marked_og_eierskap", "sted_og_infrastruktur"]
+    },
+    "natur": {
+      "label": "Natur",
+      "accent": "#63bd74",
+      "accentSecondary": "#9d845b",
+      "surface": "#0d1710",
+      "glow": "rgba(99,189,116,.2)",
+      "titleStyle": "organic_serif",
+      "imageTreatment": "natural_true_color",
+      "imageDirection": "Vis den faktiske naturtypen, terrengformen eller habitatet. Artsfoto kan supplere, men et enkelt artsportrett teller ikke som bilde av hele stedet.",
+      "contentPriority": ["naturtype_og_terreng", "arter_og_samspill", "sesong_og_observasjon", "forvaltning_og_pavirkning"]
+    },
+    "politikk": {
+      "label": "Politikk",
+      "accent": "#aa8cff",
+      "accentSecondary": "#e3bd55",
+      "surface": "#11101b",
+      "glow": "rgba(170,140,255,.22)",
+      "titleStyle": "institutional_serif",
+      "imageTreatment": "institutional_documentary",
+      "imageDirection": "Vis institusjonen, byrommet eller stedet der politisk handling faktisk foregår. Portrett av en politiker alene teller ikke som stedsbilde.",
+      "contentPriority": ["institusjon_og_makt", "beslutning_og_ansvar", "offentlighet_og_konflikt", "historie_og_rett"]
+    },
+    "popkultur": {
+      "label": "Popkultur",
+      "accent": "#55d7ef",
+      "accentSecondary": "#ffd84f",
+      "surface": "#08161a",
+      "glow": "rgba(85,215,239,.22)",
+      "titleStyle": "cinematic_display",
+      "imageTreatment": "cinematic_documentary",
+      "imageDirection": "Vis innspillingssted, kino, mediehus eller fysisk kultursted. Filmplakat eller skjermbilde alene teller ikke som stedsbilde.",
+      "contentPriority": ["verk_og_format", "produksjon_og_distribusjon", "sted_og_representasjon", "publikum_og_mottakelse"]
+    },
+    "psykologi": {
+      "label": "Psykologi",
+      "accent": "#ef86a8",
+      "accentSecondary": "#7e9ed7",
+      "surface": "#171019",
+      "glow": "rgba(239,134,168,.2)",
+      "titleStyle": "calm_editorial",
+      "imageTreatment": "calm_contextual",
+      "imageDirection": "Vis det konkrete stedet eller miljøet. Unngå generiske stockfoto av ansikter, hjerner eller følelser når de ikke dokumenterer stedet.",
+      "contentPriority": ["miljo_og_atferd", "institusjon_og_praksis", "begreper_og_metoder", "etikk_og_erfaring"]
+    },
+    "religion": {
+      "label": "Religion og livssyn",
+      "accent": "#d4b36b",
+      "accentSecondary": "#8ca8c7",
+      "surface": "#17140f",
+      "glow": "rgba(212,179,107,.2)",
+      "titleStyle": "editorial_serif",
+      "imageTreatment": "quiet_documentary",
+      "imageDirection": "Vis kirken, moskeen, tempelet, gravplassen, møtehuset eller det konkrete livssynsstedet. Symbol eller ritualfoto alene teller ikke som stedsbilde.",
+      "contentPriority": ["sted_og_ritual", "institusjon_og_fellesskap", "arkitektur_og_symbol", "historie_og_mangfold"]
+    },
+    "sport": {
+      "label": "Sport",
+      "accent": "#43c4ae",
+      "accentSecondary": "#dce7ea",
+      "surface": "#0b1716",
+      "glow": "rgba(67,196,174,.2)",
+      "titleStyle": "athletic_display",
+      "imageTreatment": "dynamic_documentary",
+      "imageDirection": "Vis arena, anlegg, løype eller stedet i sportslig bruk. Utøverportrett alene teller ikke som stedsbilde.",
+      "contentPriority": ["arena_og_anlegg", "idrett_og_praksis", "klubb_og_fellesskap", "historie_og_prestasjon"]
+    },
+    "subkultur": {
+      "label": "Subkultur",
+      "accent": "#ff5ecb",
+      "accentSecondary": "#75f0cf",
+      "surface": "#150b15",
+      "glow": "rgba(255,94,203,.22)",
+      "titleStyle": "street_display",
+      "imageTreatment": "street_texture",
+      "imageDirection": "Vis stedet på gateplan, skilt, vegger, rom eller møtesteder. Unngå generiske symbolbilder som ikke dokumenterer det konkrete miljøet.",
+      "contentPriority": ["miljo_og_stil", "fellesskap_og_praksis", "rom_og_grenser", "konflikt_og_endring"]
+    },
+    "vitenskap": {
+      "label": "Vitenskap",
+      "accent": "#a47be8",
+      "accentSecondary": "#62c8e9",
+      "surface": "#11101a",
+      "glow": "rgba(164,123,232,.22)",
+      "titleStyle": "technical_editorial",
+      "imageTreatment": "technical_precise",
+      "imageDirection": "Vis laboratorium, observatorium, samling, feltsted eller teknisk anlegg. Illustrasjon av et begrep teller ikke som bilde av stedet.",
+      "contentPriority": ["problem_og_oppdagelse", "metode_og_instrument", "institusjon_og_personer", "virkning_og_usikkerhet"]
+    }
+  }
+}
