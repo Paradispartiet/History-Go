@@ -9,7 +9,7 @@ Overordnet faktisitet: `docs/FACTUALITY_CONTRACT.md`
 Maskinlesbar mal: `data/people/regler/people_profile_templates_v1.json`
 Claim-schema: `data/people/regler/people_claims_schema_v1.json`
 Validator: `tools/audit-people-profile-canonical.mjs`
-Sist kontrollert: **2026-07-27**
+Sist kontrollert: **2026-07-28**
 
 ## 1. Formål og myndighet
 
@@ -275,6 +275,36 @@ Regler:
 - utløpt nåtidsstatus skal gi `current_status_stale`;
 - levende personer skal bare beskrives med offentlig, relevant og profesjonelt dokumentert informasjon;
 - private forhold skal ikke samles bare fordi de er tilgjengelige.
+
+### 9.1 Personlig informasjon og privatliv
+
+I denne standarden betyr **personlig informasjon** dokumentert personbakgrunn og privatliv. Det er ikke et annet navn på flere karriereopplysninger.
+
+Personlig informasjon kan omfatte oppvekst, familieforhold, identitet, tro, samliv og andre sider av privatlivet når opplysningen:
+
+1. er gjort offentlig av personen selv eller dokumentert i en pålitelig, åpen biografisk kilde;
+2. bidrar til reell forståelse av personens liv, bakgrunn eller offentlige virke;
+3. fremstilles nøkternt, uten spekulasjon, diagnose, motivtolkning eller tabloid vinkling;
+4. har egne claims og full felt- eller setningsmapping;
+5. ikke samles bare for å gjøre profilen lengre eller mer underholdende.
+
+For sensitive opplysninger om blant annet helse, seksualitet, religion, familie og samliv gjelder en høyere terskel:
+
+- personen skal selv ha gjort opplysningen offentlig, eller en solid biografisk kilde skal dokumentere den uttrykkelig;
+- History GO skal aldri utlede identitet, diagnose, tro, konflikt eller relasjonsstatus fra indirekte tegn;
+- bare den delen som er biografisk relevant skal publiseres;
+- nåværende samlivs-, familie- eller livssituasjon krever et ferskt `current`-claim;
+- motstridende eller uklare opplysninger skal utelates eller publiseres kvalifisert etter konfliktreglene.
+
+Følgende skal ikke publiseres som profilfyll:
+
+- privat adresse, kontaktinformasjon, reiseplaner eller andre lokaliserende detaljer;
+- opplysninger om mindreårige som ikke er nødvendige for en dokumentert historisk sammenheng;
+- partneres alder, tidligere forhold eller andre tredjepartsdetaljer uten klar biografisk relevans;
+- rykter, sladder, anonyme påstander eller opplysninger som bare er gjengitt av sekundære aggregatorsider;
+- unødvendig intime detaljer, selv når de teknisk sett finnes i en åpen kilde.
+
+Karrierestoff skal fortsatt beskrives som karriere. Personlig informasjon skal ikke kamufleres som «mer biografi» eller blandes inn i et karriereavsnitt slik at skillet mellom offentlig virke og privatliv blir uklart.
 
 ## 10. Ingen faste fyldekrav
 
