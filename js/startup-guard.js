@@ -56,6 +56,7 @@
 
     if (window.__HG_APP_READY__ !== true && isNonCriticalScript(node)) {
       node.dataset.hgDeferredBoot = "1";
+      node.async = false;
       deferredScripts.push(node);
       trace.deferred.push(label);
       queueMicrotask(() => {
@@ -70,7 +71,6 @@
     }
 
     trace.pendingScript = label;
-    const result = nativeAppendChild.call(this, node);
     let settled = false;
     let timer = null;
     const finish = () => {
@@ -85,7 +85,7 @@
       trace.timeouts.push({ type: "script", url: label, ts: Date.now() });
       try { node.dispatchEvent(new Event("error")); } catch {}
     }, SCRIPT_TIMEOUT_MS);
-    return result;
+    return nativeAppendChild.call(this, node);
   };
 
   function flushDeferredScripts() {
