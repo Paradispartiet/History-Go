@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-07-20-v1.3.144";
+const SW_VERSION = "hg-sw-2026-07-28-v1.3.145";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -276,10 +276,16 @@ async function cacheFirst(req, cacheName) {
   }
 }
 
+function fetchWithTimeout(req, timeoutMs = 4500) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(req, { signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 async function networkFirst(req, cacheName) {
   const cache = await caches.open(cacheName);
   try {
-    const res = await fetch(req);
+    const res = await fetchWithTimeout(req);
     if (res && res.ok) cache.put(req, res.clone());
     return res;
   } catch {
