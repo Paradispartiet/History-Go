@@ -69,6 +69,13 @@ if (contract.runtimeToFag?.filosofi) failures.push({ name: "filosofi", reason: "
 if (!contract.runtimeCategories.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing runtime category" });
 if (!contract.fagSubjects.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing fag subject" });
 if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });
+if (contract.runtimeCategories.includes("teknologi") || contract.fagSubjects.includes("teknologi")) failures.push({ name: "teknologi", reason: "must be a specialization under vitenskap, not a top category" });
+for (const alias of ["technology", "teknologi", "tech", "it", "informasjonsteknologi"]) { if (contract.aliases?.[alias] !== "vitenskap") failures.push({ name: "teknologi alias", alias, expected: "vitenskap", actual: contract.aliases?.[alias] }); }
+if (contract.labels?.vitenskap !== "Vitenskap & teknologi") failures.push({ name: "vitenskap label", reason: "must include technology" });
+const technologySpecialization = manifest.vitenskap?.specializations?.teknologi;
+if (technologySpecialization?.canonicalParentSubject !== "vitenskap" || technologySpecialization?.badgeId !== "vitenskap") failures.push({ name: "teknologi specialization", reason: "missing canonical parent or shared badge" });
+if (templateRegistry.category_profiles?.teknologi) failures.push({ name: "teknologi quiz profile", reason: "must not be registered as a top category profile" });
+if (templateRegistry.subject_specialization_profiles?.vitenskap?.teknologi !== "data/fag/teknologi/supersetQUIZMAL_teknologi.json") failures.push({ name: "teknologi quiz specialization", reason: "missing nested specialization profile" });
 
 // Keep the academic core, business-school breadth and individual professional depth independently auditable.
 for (const validator of [

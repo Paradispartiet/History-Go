@@ -1,0 +1,70 @@
+name: Vitenskap and technology category contract
+
+on:
+  pull_request:
+    paths:
+      - 'data/categories/category_contract.json'
+      - 'data/badges/index.json'
+      - 'data/badges/vitenskap.json'
+      - 'data/badges/teknologi.json'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fag/teknologi/**'
+      - 'data/fagverk/**'
+      - 'data/quiz/manifest.json'
+      - 'data/quiz/teknologi/**'
+      - 'data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json'
+      - 'js/DomainRegistry.js'
+      - 'js/core/categories.ts'
+      - 'js/core/categories.js'
+      - 'dist/web/categories.js'
+      - 'js/merke-fallback.js'
+      - 'tools/placeSchemaPolicy.mts'
+      - 'tools/build-teknologi-canonical-v2_4.mjs'
+      - 'tools/validate-teknologi-*.mjs'
+      - 'scripts/audit-category-governance.mjs'
+      - 'scripts/audit-quiz-template-governance.mjs'
+      - 'scripts/audit-fagverk-subject-inventory.mjs'
+      - 'tests/vitenskap-teknologi-category-contract.test.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - 'docs/DOMAIN_CONTRACT.md'
+      - 'docs/FAGVERK.md'
+      - '.github/workflows/vitenskap-teknologi-category.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate shared Science and Technology badge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Verify browser runtime mirrors
+        run: npm run build:web:check
+      - name: Validate category and quiz governance
+        run: |
+          npm run typecheck:web
+          node scripts/audit-category-governance.mjs
+          node scripts/audit-quiz-template-governance.mjs
+      - name: Validate Fagverk inventory
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
+      - name: Validate preserved Technology specialization
+        run: |
+          node tools/build-teknologi-canonical-v2_4.mjs --check
+          node tools/validate-teknologi-foundation.mjs
+          node tools/validate-teknologi-quality-v2_1.mjs
+          node tools/validate-teknologi-ontology-v2_2.mjs
+          node tools/validate-teknologi-evidence-v2_3.mjs
+          node tools/validate-teknologi-canonical-v2_4.mjs

@@ -262,6 +262,16 @@ if (manifest && registry) {
   }
 }
 
+const specializationProfiles = registry.subject_specialization_profiles || {};
+for (const [parentSubjectId, specializations] of Object.entries(specializationProfiles)) {
+  for (const [specializationId, profilePath] of Object.entries(specializations || {})) {
+    const entry = manifest[parentSubjectId]?.specializations?.[specializationId];
+    if (!entry) { failures.push({ parentSubjectId, specializationId, file: registryPath, reason: "specialization profile has no manifest owner" }); continue; }
+    if (`data/fag/${entry.supersetQuizMal}` !== profilePath) failures.push({ parentSubjectId, specializationId, file: registryPath, reason: "specialization profile path differs from manifest" });
+    if (!(await exists(profilePath))) failures.push({ parentSubjectId, specializationId, file: profilePath, reason: "specialization profile does not exist" });
+  }
+}
+
 if (registry) {
   const expectedAuthorityOrder = [
     standardPath,
@@ -325,6 +335,7 @@ const report = {
   canonicalPackageSchema: packageSchemaPath,
   categoriesChecked: manifest ? Object.keys(manifest).length : 0,
   profilesChecked: checkedProfiles.length,
+  specializationProfilesChecked: Object.values(registry?.subject_specialization_profiles || {}).reduce((sum, value) => sum + Object.keys(value || {}).length, 0),
   failures
 };
 

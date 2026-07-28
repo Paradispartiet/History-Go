@@ -340,20 +340,33 @@ await writeExpected(OUTPUTS.subjectSchema, subjectSchema);
 
 const manifestPath = "data/fag/fag_manifest.json";
 const manifest = await readJson(manifestPath);
-manifest.teknologi = {
-  ...manifest.teknologi,
-  pensum: "teknologi/teknologipensum_canonical_v2_4.json",
-  emner: "teknologi/emner_teknologi_canonical_v2_4.json",
-  fagkart: "teknologi/fagkart_teknologi_canonical_v2_4.json",
-  methods: "teknologi/methods_teknologi_canonical_v2_4.json",
-  quizPackageSchema: "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
-  subjectPathwaySchema: "../quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
-  subjectPathwayPackage: "../quiz/teknologi/teknologi_subject_pathways_v1.json",
-  status: "canonical_scientific_subject",
-  canonicalModelVersion: "2.4",
-  scientificPackage: "teknologi/teknologi_scientific_v2/index.json",
-  universalCoverage: { status: "complete", areas: 12, topics: 48, methods: 35, modules: 12 },
-  geographicProduction: { status: "separate", rule: "Lokale steder, personer, claims, kilder og stedsquizer produseres i geografiske lag." }
+manifest.vitenskap.specializations = {
+  ...(manifest.vitenskap.specializations || {}),
+  teknologi: {
+    ...(manifest.vitenskap.specializations?.teknologi || {}),
+    id: "teknologi",
+    label: "Teknologi",
+    canonicalParentSubject: "vitenskap",
+    badgeId: "vitenskap",
+    schemaFamily: "technology_scientific_v2_4",
+    routeStatus: "planned",
+    route: "",
+    pensum: "teknologi/teknologipensum_canonical_v2_4.json",
+    emner: "teknologi/emner_teknologi_canonical_v2_4.json",
+    fagkart: "teknologi/fagkart_teknologi_canonical_v2_4.json",
+    methods: "teknologi/methods_teknologi_canonical_v2_4.json",
+    supersetQuizMal: "teknologi/supersetQUIZMAL_teknologi.json",
+    quizStandard: "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    quizQuestionSchema: "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    quizPackageSchema: "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    subjectPathwaySchema: "../quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
+    subjectPathwayPackage: "../quiz/teknologi/teknologi_subject_pathways_v1.json",
+    status: "canonical_scientific_specialization",
+    canonicalModelVersion: "2.4",
+    scientificPackage: "teknologi/teknologi_scientific_v2/index.json",
+    universalCoverage: { status: "complete", areas: 12, topics: 48, methods: 35, modules: 12 },
+    geographicProduction: { status: "separate", rule: "Lokale steder, personer, claims, kilder og stedsquizer produseres i geografiske lag." }
+  }
 };
 await writeExpected(manifestPath, manifest);
 
@@ -366,7 +379,9 @@ quizManifest.subjectPackages.push({
   packageKind: "subject_pathway",
   file: OUTPUTS.subjectPackage,
   schema: OUTPUTS.subjectSchema,
-  status: "active"
+  status: "active",
+  parentSubjectId: "vitenskap",
+  specializationId: "teknologi"
 });
 quizManifest.subjectPackages.sort((a, b) => clean(a.subjectId).localeCompare(clean(b.subjectId), "nb"));
 await writeExpected(quizManifestPath, quizManifest);
@@ -381,6 +396,12 @@ await writeExpected(questionSchemaPath, questionSchema);
 const templateRegistryPath = "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json";
 const templateRegistry = await readJson(templateRegistryPath);
 templateRegistry.canonical_files = { ...templateRegistry.canonical_files, subject_pathway_schema: OUTPUTS.subjectSchema };
+templateRegistry.category_profiles = { ...templateRegistry.category_profiles };
+delete templateRegistry.category_profiles.teknologi;
+templateRegistry.subject_specialization_profiles = {
+  ...(templateRegistry.subject_specialization_profiles || {}),
+  vitenskap: { ...(templateRegistry.subject_specialization_profiles?.vitenskap || {}), teknologi: "data/fag/teknologi/supersetQUIZMAL_teknologi.json" }
+};
 templateRegistry.global_invariants = {
   ...templateRegistry.global_invariants,
   subject_pathway_separation: {
@@ -428,7 +449,7 @@ if (!workflow.includes("build-teknologi-canonical-v2_4.mjs")) {
 }
 await writeExpected(workflowPath, workflow);
 
-const report = `# Teknologi V2.4 – canonical integrasjon\n\nStatus: **canonical subject model**\n\n- V2-pakken er nå eneste faglige sannhet som manifestets pensum-, emne-, fagkart- og metodepekere resolver.\n- 12 fagområder, 48 emner, 35 metoder og 12 moduler er materialisert i de ordinære canonical fagfilene.\n- De 60 V2.3-spørsmålene er normalisert som 12 universelle subject pathways med fem faglige progresjonstrinn.\n- Subject pathways er eksplisitt skilt fra sted-, person- og naturquizer og registreres ikke som fysiske mål.\n- Hvert spørsmål følger globalt spørsmålsskjema og Knowledge-kontrakt med stabile knowledge-unit-, concept- og term-ID-er.\n- Quizmanifestets subjectPackages leses av den canonical Knowledge-datapipelinen.\n- Geografisk produksjonsdekning er fortsatt et separat mål og skal bygges med lokale source briefs og stedsquizer.\n`;
+const report = `# Teknologi V2.4 – canonical integrasjon\n\nStatus: **canonical scientific specialization under Vitenskap & teknologi**\n\n- V2-pakken er bevart som Teknologi-spesialiseringen under manifestets canonicale Vitenskap-fag og eier sine pensum-, emne-, fagkart- og metodepekere.\n- 12 fagområder, 48 emner, 35 metoder og 12 moduler er materialisert i de ordinære canonical fagfilene.\n- De 60 V2.3-spørsmålene er normalisert som 12 universelle subject pathways med fem faglige progresjonstrinn.\n- Subject pathways er eksplisitt skilt fra sted-, person- og naturquizer og registreres ikke som fysiske mål.\n- Hvert spørsmål følger globalt spørsmålsskjema og Knowledge-kontrakt med stabile knowledge-unit-, concept- og term-ID-er.\n- Quizmanifestets subjectPackages leses av den canonical Knowledge-datapipelinen.\n- Geografisk produksjonsdekning er fortsatt et separat mål og skal bygges med lokale source briefs og stedsquizer.\n`;
 await writeExpected(OUTPUTS.report, report);
 
 if (CHECK && changed.length) {

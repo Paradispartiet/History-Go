@@ -54,7 +54,7 @@ function markdownMentionsPath(markdown, relativePath) {
 test('FAGVERK.md is the explicit canonical all-subject production contract', () => {
   const master = read(MASTER);
 
-  assert.match(master, /canonical og bindende fagverkskontrakt v5/i);
+  assert.match(master, /canonical og bindende fagverkskontrakt v6/i);
   assert.match(master, /eneste samlede kontrakten/i);
   assert.match(master, /én felles fagsidemotor/i);
   assert.match(master, /fagverk\.html\?subject=<subject_id>/);

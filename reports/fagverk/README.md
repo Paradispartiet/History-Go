@@ -9,7 +9,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 
 ## Rapporter
 
-- `subject-baseline.json` — levende projeksjon av alle 18 fag, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
+- `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 
 ## Regenerering
@@ -44,4 +44,4 @@ Motor-auditen feiler når:
 
 Politikk er første fag som er individuelt auditert gjennom den generelle motoren og står derfor `materialized`, `audited` og `structure_ready`. Dette betyr at fagstruktur, dypkoblinger, metoder, progresjonslesing og eksisterende kapitler kan vises gjennom felles runtime. Det betyr ikke at politikk er redaksjonelt `complete`.
 
-De fire neste pilotene er `natur`, `religion`, `by` og `teknologi`. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
+De fire neste toppfagpilotene er `natur`, `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.

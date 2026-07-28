@@ -88,7 +88,7 @@ test('by-adapter leser emnekoblinger i nested topic hooks', () => {
   assert.deepEqual([...model.domains[0].hookIds], ['hook_by']);
 });
 
-test('teknologiadapter bruker vitenskapelig fagkart og focus-koblinger', () => {
+test('nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-koblinger', () => {
   const model = normalize({
     subjectId: 'teknologi',
     schemaFamily: 'technology_scientific_v2_4',

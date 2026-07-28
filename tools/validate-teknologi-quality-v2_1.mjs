@@ -23,7 +23,7 @@ const minText = (value, minimum) => text(value).length >= minimum;
 
 const paths = {
   contract: "data/categories/category_contract.json",
-  badge: "data/badges/teknologi.json",
+  badge: "data/badges/vitenskap.json",
   manifest: "data/fag/fag_manifest.json",
   profile: "data/fag/teknologi/supersetQUIZMAL_teknologi.json",
   index: "data/fag/teknologi/teknologi_scientific_v2/index.json",
@@ -90,14 +90,14 @@ const claimClassIds = new Set(claimClasses.map((item) => item.id));
 const templateIds = new Set(Object.keys(curatedHookIndex.templates || {}));
 
 // Domain and package identity.
-requireCondition(contract.runtimeCategories.includes("teknologi"), "teknologi mangler som runtimekategori");
-requireCondition(contract.fagSubjects.includes("teknologi"), "teknologi mangler som fag");
-requireCondition(contract.labels?.teknologi === "Teknologi", "feil teknologilabel");
-requireCondition(contract.labels?.vitenskap === "Vitenskap", "vitenskap er ikke skilt ut");
-requireCondition(badge.id === "teknologi" && badge.name === "Teknologi", "badge har feil identitet");
+requireCondition(!contract.runtimeCategories.includes("teknologi"), "teknologi skal ikke være egen runtimekategori");
+requireCondition(!contract.fagSubjects.includes("teknologi"), "teknologi skal ikke være eget toppfag");
+requireCondition(contract.aliases?.teknologi === "vitenskap", "teknologi-aliaset peker ikke til vitenskap");
+requireCondition(contract.labels?.vitenskap === "Vitenskap & teknologi", "feil felleslabel");
+requireCondition(badge.id === "vitenskap" && badge.name === "Vitenskap & teknologi", "fellesbadget har feil identitet");
 requireCondition(arr(badge.tiers).length >= 10, "badge har for få nivåer");
-requireCondition(manifest.teknologi?.status === "canonical_scientific_subject", "manifestet markerer ikke Teknologi som vitenskapelig fag");
-requireCondition(manifest.teknologi?.scientificPackage === "teknologi/teknologi_scientific_v2/index.json", "manifestet mangler scientificPackage");
+requireCondition(manifest.vitenskap?.specializations?.teknologi?.status === "canonical_scientific_specialization", "manifestet markerer ikke Teknologi som vitenskapelig spesialisering");
+requireCondition(manifest.vitenskap?.specializations?.teknologi?.scientificPackage === "teknologi/teknologi_scientific_v2/index.json", "spesialiseringen mangler scientificPackage");
 requireCondition(profile.categoryId === "teknologi", "quizprofil har feil kategori");
 requireCondition(profile.required_emne_prefix === "em_tek_", "quizprofil har feil emneprefix");
 requireCondition(profile.scientificPackage === paths.index, "quizprofilen peker ikke til vitenskapelig pakke");
@@ -318,8 +318,8 @@ const report = {
     curriculum_modules: curriculumModules.length
   },
   gates: {
-    separate_runtime_category: contract.runtimeCategories.includes("teknologi"),
-    canonical_scientific_subject: manifest.teknologi?.status === "canonical_scientific_subject",
+    nested_under_vitenskap: !contract.runtimeCategories.includes("teknologi") && manifest.vitenskap?.specializations?.teknologi?.canonicalParentSubject === "vitenskap",
+    canonical_scientific_specialization: manifest.vitenskap?.specializations?.teknologi?.status === "canonical_scientific_specialization",
     claim_classes_governed: claimClasses.length === 7,
     source_and_uncertainty_policy_complete:
       arr(quality.evidence_policy?.preferred_order).length >= 5 &&

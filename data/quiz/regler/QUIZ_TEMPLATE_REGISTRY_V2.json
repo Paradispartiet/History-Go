@@ -1,5 +1,5 @@
 {
-  "version": "3.3",
+  "version": "3.4",
   "status": "canonical",
   "authority_order": [
     "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -51,7 +51,6 @@
     "sport": "data/fag/sport/supersetQUIZMAL_sport.json",
     "subkultur": "data/fag/subkultur/supersetQUIZMAL_subkultur.json",
     "vitenskap": "data/fag/vitenskap/supersetQUIZMAL_vitenskap.json",
-    "teknologi": "data/fag/teknologi/supersetQUIZMAL_teknologi.json",
     "filosofi": "data/fag/filosofi/supersetQUIZMAL_filosofi.json",
     "film_tv": "data/fag/TV_og_Film/supersetQUIZMAL_film_tv.json"
   },
@@ -70,5 +69,10 @@
     "must_be_marked_deprecated_or_redirect": true,
     "must_not_be_referenced_as_authority": true,
     "must_not_define_independent_balance_or_generation_order": true
+  },
+  "subject_specialization_profiles": {
+    "vitenskap": {
+      "teknologi": "data/fag/teknologi/supersetQUIZMAL_teknologi.json"
+    }
   }
 }
