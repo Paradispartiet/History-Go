@@ -6,23 +6,29 @@ const contract=JSON.parse(fs.readFileSync('data/fagverk/category_place_design.js
 const page=fs.readFileSync('fagverk-sted.html','utf8');
 const runtime=fs.readFileSync('js/fagverk-place-theme.js','utf8');
 const css=fs.readFileSync('css/fagverk-place-category-themes.css','utf8');
-const canonical=['by','historie','kunst','litteratur','musikk','naeringsliv','natur','politikk','popkultur','psykologi','sport','subkultur','vitenskap'];
+const designProfiles=['by','historie','kunst','scenekunst','litteratur','musikk','naeringsliv','natur','politikk','popkultur','psykologi','religion','sport','subkultur','vitenskap'];
 
-test('alle canonicale kategorier har egne stedssideinstrukser',()=>{
+test('alle aktive kategori- og badgeprofiler har egne stedssideinstrukser',()=>{
   assert.equal(contract.schema,'history_go_fagverk_place_design_v1');
-  assert.deepEqual(new Set(Object.keys(contract.categories)),new Set(canonical));
-  for(const id of canonical){
+  assert.deepEqual(new Set(Object.keys(contract.categories)),new Set(designProfiles));
+  for(const id of designProfiles){
     const design=contract.categories[id];
     for(const key of ['label','accent','accentSecondary','surface','glow','titleStyle','imageTreatment','imageDirection'])assert.ok(String(design[key]||'').trim(),`${id}: ${key}`);
     assert.ok(Array.isArray(design.contentPriority)&&design.contentPriority.length>=4,`${id}: contentPriority`);
   }
 });
 
+test('legacy place-category ids har eksplisitte aliaser',()=>{
+  assert.equal(contract.aliases.media,'popkultur');
+  assert.equal(contract.aliases.film_tv,'popkultur');
+  assert.equal(contract.aliases.populaerkultur,'popkultur');
+});
+
 test('bildekontrakten krever reelt stedsbilde',()=>{
   assert.equal(contract.principles.realPlaceImageRequired,true);
   assert.equal(contract.principles.decorativeFallbackDoesNotCount,true);
   assert.deepEqual(contract.principles.imageFieldPriority,['popupImage','cardImage','image']);
-  for(const design of Object.values(contract.categories))assert.match(design.imageDirection,/sted|stedsbilde|stedet|arena|anlegg|naturtypen|produksjonssted|spillestedet|innspillingssted|institusjonen|laboratorium/i);
+  for(const design of Object.values(contract.categories))assert.match(design.imageDirection,/sted|stedsbilde|stedet|arena|anlegg|naturtypen|produksjonssted|spillestedet|innspillingssted|institusjonen|laboratorium|teatret|kirken/i);
 });
 
 test('stedssiden laster kategori-CSS og runtime etter basisdesignet',()=>{
