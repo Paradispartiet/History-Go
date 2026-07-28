@@ -45,7 +45,7 @@ Lovdata regulation `FOR-2014-04-09-1986` identifies:
 - protected scope: the complete installation, including the exteriors and interiors of the shelters;
 - cadastral identity: `70/1`.
 
-The regulation separately inventories the ammunition magazine, Veisvingbatteriet and both connecting lines. This separation is essential to the coordinate decision. citeturn343179search0turn343179search2
+The regulation separately inventories the ammunition magazine, Veisvingbatteriet and both connecting lines. This separation is essential to the coordinate decision.
 
 ## Applied physical anchor
 
