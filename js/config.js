@@ -21,6 +21,85 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
   };
 })();
 
+// index.html har en legacy post-ready-kjede som ellers begynner å laste mange
+// sekundære scripts idet hg:appReady fyres. På iPad/Safari kan den synkrone
+// script-eksekveringen treffe akkurat når onboardingen lukkes og gjøre UI-et
+// tilsynelatende frosset. Legg derfor inn ikke-eksekverende placeholders tidlig;
+// index-kjeden ser at src finnes og hopper over dem, mens denne koordinatoren
+// laster filene én om gangen etter at første interaktive bilde har fått ro.
+(function installPacedPostReadyRuntime() {
+  const scripts = [
+    "js/debug/HGTestMode.js",
+    "js/i18n.js",
+    "dist/web/knowledge.js",
+    "dist/web/hgInsights.js",
+    "dist/web/knowledgeV2.js",
+    "js/hgSocialGuards.js",
+    "js/knowledgeMatch.js",
+    "js/progress/profileProgressReader.js",
+    "js/ui/place-card-status-surface.js",
+    "js/ui/header-menu.js",
+    "js/ui/psychology-room-entry.js",
+    "js/ui/badges.js"
+  ];
+
+  const placeholderType = "application/x-history-go-deferred";
+  const installed = [];
+
+  for (const src of scripts) {
+    if (document.querySelector(`script[src="${src}"]`)) continue;
+    const placeholder = document.createElement("script");
+    placeholder.type = placeholderType;
+    placeholder.src = src;
+    placeholder.dataset.hgPostReadyPlaceholder = "1";
+    document.head.appendChild(placeholder);
+    installed.push(src);
+  }
+
+  function schedule(task) {
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(task, { timeout: 1200 });
+    } else {
+      setTimeout(task, 80);
+    }
+  }
+
+  function loadAt(index) {
+    if (index >= installed.length) return;
+    schedule(() => {
+      const src = installed[index];
+      const placeholder = Array.from(document.scripts || []).find((script) =>
+        script.dataset.hgPostReadyPlaceholder === "1" && script.getAttribute("src") === src
+      );
+      placeholder?.remove();
+
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false;
+      script.dataset.hgPostReadyPaced = "1";
+
+      let done = false;
+      const next = () => {
+        if (done) return;
+        done = true;
+        setTimeout(() => loadAt(index + 1), 40);
+      };
+
+      script.onload = next;
+      script.onerror = () => {
+        console.warn("[post-ready paced] kunne ikke laste", src);
+        next();
+      };
+      document.body.appendChild(script);
+      setTimeout(next, 8000);
+    });
+  }
+
+  window.addEventListener("hg:appReady", () => {
+    setTimeout(() => loadAt(0), 1400);
+  }, { once: true });
+})();
+
 // Load city packages from the central registry without coupling them to an
 // existing city-specific manifest.
 (function loadCityPackageRuntime() {
