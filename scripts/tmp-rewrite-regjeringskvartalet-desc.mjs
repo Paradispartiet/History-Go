@@ -5,10 +5,11 @@ const PLACE_ID = 'regjeringskvartalet';
 const PLACE_PATH = 'data/places/politikk/oslo/places_politikk/regjeringskvartalet.json';
 const PACKET_PATH = 'data/places/production/regjeringskvartalet.json';
 const REVIEW_DATE = '2026-07-28';
-const NEW_DESC = 'Regjeringskvartalet har vokst fram gjennom gjentatte forsøk på å samle den norske statsforvaltningen i sentrum av Oslo. Etter terrorangrepet 22. juli 2011 blir området bygget opp på nytt med både rehabiliterte regjeringsbygg og nye departementsbygninger.';
+const NEW_DESC = 'Regjeringskvartalet har vokst fram gjennom gjentatte forsøk på å samle den norske statsforvaltningen i sentrum av Oslo. Etter terrorangrepet 22. juli 2011 blir området bygget opp på nytt med eldre regjeringsbygg og nye departementsbygninger.';
 
 function readJson(path) {
-  return { raw: fs.readFileSync(path, 'utf8'), value: JSON.parse(fs.readFileSync(path, 'utf8')) };
+  const raw = fs.readFileSync(path, 'utf8');
+  return { raw, value: JSON.parse(raw) };
 }
 
 function writeJson(path, value, originalRaw) {
@@ -42,8 +43,8 @@ const requiredClaims = [
   'claim_departments_spread',
   'claim_attack',
   'claim_rebuild_values',
+  'claim_h_block_1958',
   'claim_stage1_start_scope',
-  'claim_stage1_opening_staff',
   'claim_c_block_current'
 ];
 const verifiedClaims = new Set(
@@ -65,7 +66,7 @@ packet.sentenceCoverage.desc = [
   },
   {
     sentence: 2,
-    claimIds: ['claim_attack', 'claim_rebuild_values', 'claim_stage1_start_scope', 'claim_stage1_opening_staff', 'claim_c_block_current']
+    claimIds: ['claim_attack', 'claim_rebuild_values', 'claim_h_block_1958', 'claim_stage1_start_scope', 'claim_c_block_current']
   }
 ];
 
@@ -76,7 +77,7 @@ packet.reviews.editorial = {
   reviewer: packet.reviews.editorial?.reviewer || 'History Go redaksjon',
   introducedNewFacts: false,
   ingressReview: {
-    controllingIdea: 'Regjeringskvartalet som resultat av gjentatte samlokaliseringsforsøk og den pågående gjenoppbyggingen etter 22. juli.',
+    controllingIdea: 'Regjeringskvartalet som resultat av gjentatte samlokaliseringsforsøk og gjenoppbyggingen etter 22. juli.',
     chronologyInventoryRemoved: true,
     nameAndYearPileupRemoved: true,
     knownNewFlowPassed: true,
