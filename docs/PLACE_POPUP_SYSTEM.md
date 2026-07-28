@@ -52,7 +52,8 @@ Popupen leser fra eksisterende eide systemer:
 - Lesespor → Lesespor;
 - source summaries / eksterne lenker → Kilder;
 - observations/Knowledge → egne systemer;
-- tasks/training/play/events/møteflater → På stedet.
+- play/events/møteflater → På stedet;
+- `training_profile` → sportsinnhold i stedspopupen for sportssteder.
 
 Data skal ikke kopieres inn i én gigantisk place-fil bare fordi popupen viser dem samlet.
 
@@ -203,26 +204,20 @@ Fysiske Objects/Details/Spots skal ikke parkeres permanent i Mer bare fordi rikt
 
 ## 13. På stedet
 
-På stedet ligger i PlaceCard under rundingene og viser det som faktisk skjer eller kan gjøres ved stedet.
+På stedet ligger i PlaceCard under rundingene og er en fast handlingsbar. Disse fire funksjonene skal alltid være synlige:
 
-### Events
+- **Events**;
+- **Social Meet / Avtal å møtes**;
+- **Kunnskapsmøte / Spotmeeting**;
+- **Lek**.
 
-Aktuelle canonical events. Historiske events hører i Historie.
+Manglende stedsspesifikt innhold skal ikke skjule en knapp. Knappen åpner i stedet en tydelig tom/ikke tilgjengelig-flate.
 
-### Møter
+`tasks_profile` / Oppgaver er ikke en del av History GO-produktet og skal ikke produseres eller presenteres.
 
-- Social Meet;
-- Kunnskapsmøte / Spotmeeting.
+`training_profile` er heller ikke en generell På stedet-handling. Trening er type-spesifikt innhold og vises i **stedspopupen for sportssteder** når relevant.
 
-Privacy- og backendgrenser skal følges; live-posisjon skal ikke eksponeres.
-
-### Gjør på stedet
-
-- `tasks_profile` → Oppgaver;
-- `training_profile` → Trening;
-- `play_profile` → Lek.
-
-Quiz, Observer, Notat og Rute kan ha egne flows.
+Quiz, Observer, Notat og Rute beholder egne flows utenfor På stedet-baren.
 
 ## 14. Rundinger
 
@@ -283,7 +278,8 @@ Eksempler:
 - park/grøntområde → areal, topografi, geologi, landskap, delsteder, historiske lag;
 - gate/vei → start/slutt, lengde, segmenter, kryss, adresser, infrastruktur, navnehistorie;
 - bygning → arkitekt, byggeår, stil, materialer, konstruksjon, bruk, vern;
-- torg/plass/byrom → avgrensning, fasader, monumenter, bruk, ombygging.
+- torg/plass/byrom → avgrensning, fasader, monumenter, bruk, ombygging;
+- sportssted → sportstype, arena-/anleggstype, klubber/lag og relevant `training_profile` i stedspopupen.
 
 Faktiske tekster følger fortsatt `PLACE_DESCRIPTION_CANONICAL.md`.
 

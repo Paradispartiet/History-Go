@@ -15,6 +15,7 @@
   function loadPlacePopupV2() {
     ensureStylesheet("css/place-popup-v2.css");
     if (!global.__HG_PLACE_POPUP_V2_INSTALLED__) ensureScript("js/ui/place-popup-v2.js");
+    ensureScript("js/ui/place-popup-sport-training.js");
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
