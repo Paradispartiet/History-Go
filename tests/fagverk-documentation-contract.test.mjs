@@ -75,7 +75,7 @@ test('the master contract points to every relevant owning document and source', 
 });
 
 test('the canonical subject baseline matches category contract and fag manifest', () => {
-  const master = read(MASTER);
+  const masterLines = new Set(read(MASTER).split(/\r?\n/).map((line) => line.trim()));
   const categoryContract = readJson('data/categories/category_contract.json');
   const fagManifest = readJson('data/fag/fag_manifest.json');
 
@@ -83,11 +83,7 @@ test('the canonical subject baseline matches category contract and fag manifest'
 
   for (const subjectId of categoryContract.fagSubjects) {
     assert.ok(fagManifest[subjectId], `Missing fag manifest entry for ${subjectId}`);
-    assert.match(
-      master,
-      new RegExp(`(^|\\n)${subjectId.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}(\\n|$)`),
-      `FAGVERK.md baseline must list ${subjectId}`
-    );
+    assert.ok(masterLines.has(subjectId), `FAGVERK.md baseline must list ${subjectId}`);
   }
 });
 
