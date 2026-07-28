@@ -41,6 +41,7 @@ jobs:
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
           node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node tools/build-teknologi-canonical-v2_4.mjs --write
       - name: Validate contracts and runtimes
         run: |
           npm run typecheck:web
