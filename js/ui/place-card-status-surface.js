@@ -18,6 +18,8 @@
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
+    ensureStylesheet("css/place-rounds-fill-layout.css");
+    ensureScript("js/ui/place-rounds-fill-layout.js");
     ensureStylesheet("css/place-onsite-surface.css");
     ensureScript("js/ui/place-onsite-surface.js");
   }

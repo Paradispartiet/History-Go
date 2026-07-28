@@ -4,8 +4,12 @@ on:
   pull_request:
     paths:
       - "js/ui/place-rounds-visual-collections.js"
+      - "js/ui/place-rounds-fill-layout.js"
+      - "css/place-rounds-fill-layout.css"
+      - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
+      - "tests/place-rounds-fill-layout.test.mjs"
       - "data/places/README_place_rounds.md"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
@@ -13,8 +17,12 @@ on:
     branches: [main]
     paths:
       - "js/ui/place-rounds-visual-collections.js"
+      - "js/ui/place-rounds-fill-layout.js"
+      - "css/place-rounds-fill-layout.css"
+      - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
+      - "tests/place-rounds-fill-layout.test.mjs"
       - "data/places/README_place_rounds.md"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
@@ -42,4 +50,4 @@ jobs:
         run: npm ci
 
       - name: Test 4/6 visual round contract
-        run: node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs
+        run: node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
