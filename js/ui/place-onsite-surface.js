@@ -1,7 +1,7 @@
 // @ts-nocheck
 // js/ui/place-onsite-surface.js
 // Canonical "På stedet"-flate under PlaceCard-rundingene.
-// De fem faste funksjonene er Events, Social Meet, Kunnskapsmøte, Trening og Lek.
+// De fire faste funksjonene er Events, Social Meet, Kunnskapsmøte og Lek.
 (function installPlaceOnSiteSurface(global) {
   "use strict";
 
@@ -39,22 +39,9 @@
     });
   }
 
-  function trainingCount(place) {
-    return place?.training_profile && typeof place.training_profile === "object"
-      ? list(place.training_profile.exercises).filter(Boolean).length
-      : 0;
-  }
-
   function playCount(place) {
     const profile = place?.play_profile && typeof place.play_profile === "object" ? place.play_profile : null;
     return profile ? list(profile.activities || profile.items || profile.tasks).filter(Boolean).length : 0;
-  }
-
-  function renderTrainingProfile(place) {
-    const profile = place?.training_profile && typeof place.training_profile === "object" ? place.training_profile : null;
-    if (!profile) return '<div class="pc-empty">Ingen trening registrert for dette stedet ennå</div>';
-    const exercises = list(profile.exercises).filter(Boolean);
-    return `<article class="pc-tasks-card pc-training-card"><h2 class="pc-tasks-title">${esc(profile.title || "Trening")}</h2>${text(profile.summary) ? `<p class="pc-tasks-summary">${esc(profile.summary)}</p>` : ""}${text(profile.safety) ? `<p class="pc-task-why"><strong>Trygghet:</strong> ${esc(profile.safety)}</p>` : ""}${exercises.length ? `<ol class="pc-tasks-list">${exercises.map(exercise => { const duration=Number(exercise?.duration_minutes); const meta=[Number.isFinite(duration)&&duration>0?`${duration} min`:"",text(exercise?.intensity)].filter(Boolean).join(" · "); return `<li class="pc-task-item"${text(exercise?.id) ? ` data-training-id="${esc(exercise.id)}"` : ""}>${text(exercise?.title) ? `<h3 class="pc-task-title">${esc(exercise.title)}</h3>` : ""}${meta ? `<div class="pc-relation-chip">${esc(meta)}</div>` : ""}${text(exercise?.instruction || exercise?.desc) ? `<p class="pc-task-instruction">${esc(exercise.instruction || exercise.desc)}</p>` : ""}${text(exercise?.why) ? `<p class="pc-task-why"><strong>Hvorfor:</strong> ${esc(exercise.why)}</p>` : ""}</li>`; }).join("")}</ol>` : '<div class="pc-empty">Ingen treningsopplegg registrert ennå</div>'}</article>`;
   }
 
   function renderPlayProfile(place) {
@@ -75,13 +62,11 @@
 
   function renderSurface(place) {
     const placeId = text(place?.id);
-    const social = socialForPlace(placeId);
-    const events = eventsForPlace(placeId, social);
+    const events = eventsForPlace(placeId, socialForPlace(placeId));
     const buttons = [
       button({ action:"events", placeId, icon:"📅", label:"Events", count:events.length, className:"pc-onsite-action-event" }),
       button({ action:"social-meet", placeId, icon:"👥", label:"Avtal å møtes" }),
       button({ action:"knowledge-meet", placeId, icon:"🧠", label:"Kunnskapsmøte", className:"pc-onsite-action-knowledge" }),
-      button({ action:"round", roundId:"training", icon:"🏃", label:"Trening", count:trainingCount(place) }),
       button({ action:"round", roundId:"play", icon:"🛝", label:"Lek", count:playCount(place) })
     ];
     return `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}"><div class="pc-onsite-actions" role="group" aria-label="Funksjoner på stedet">${buttons.join("")}</div></div>`;
@@ -98,14 +83,9 @@
     box.insertAdjacentHTML("beforeend", renderSurface(place));
   }
 
-  function openRoundAction(buttonEl) {
-    const roundId = text(buttonEl?.dataset?.roundId);
+  function openPlay() {
     const place = currentPlace();
-    let html = '<div class="pc-empty">Ingen innhold ennå</div>';
-    if (roundId === "training") html = renderTrainingProfile(place);
-    if (roundId === "play") html = renderPlayProfile(place);
-    const title = roundId === "training" ? "Trening" : roundId === "play" ? "Lek" : roundId;
-    global.showPlaceCardRoundPopup?.({ title, subtitle: text(place?.name || place?.title), html, place, kind: roundId });
+    global.showPlaceCardRoundPopup?.({ title:"Lek", subtitle:text(place?.name || place?.title), html:renderPlayProfile(place), place, kind:"play" });
   }
 
   function openEvents(placeId) {
@@ -139,7 +119,7 @@
     if (!(buttonEl instanceof HTMLElement)) return;
     event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation();
     const action = text(buttonEl.dataset.hgOnsiteAction);
-    if (action === "round") return openRoundAction(buttonEl);
+    if (action === "round" && text(buttonEl.dataset.roundId) === "play") return openPlay();
     const placeId = text(buttonEl.dataset.placeId || currentPlace()?.id);
     if (!placeId) return;
     if (action === "events") return openEvents(placeId);
@@ -159,7 +139,7 @@
     decorate(); observe();
   }
 
-  global.HGPlaceOnSiteSurface = { decorate, renderSurface, renderTrainingProfile, renderPlayProfile, renderEventContent };
+  global.HGPlaceOnSiteSurface = { decorate, renderSurface, renderPlayProfile, renderEventContent };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true }); else init();
   ["hg:appReady","hg:place-selected","hg:placesUpdated"].forEach(name => global.addEventListener?.(name, decorate));
 })(window);
