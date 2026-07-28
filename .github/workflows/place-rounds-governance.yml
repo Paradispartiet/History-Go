@@ -5,6 +5,7 @@ on:
     paths:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
+      - "js/ui/nature-detailed-map.js"
       - "js/ui/place-card.js"
       - "js/ui/popup-utils.js"
       - "css/place-rounds-fill-layout.css"
@@ -12,6 +13,7 @@ on:
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/nature-detailed-map.test.mjs"
       - "tests/place-card-rounds-runtime-audit.test.js"
       - "tests/place-people-ids-runtime.test.js"
       - "tests/nationaltheatret-people-curation.test.js"
@@ -29,6 +31,7 @@ on:
     paths:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
+      - "js/ui/nature-detailed-map.js"
       - "js/ui/place-card.js"
       - "js/ui/popup-utils.js"
       - "css/place-rounds-fill-layout.css"
@@ -36,6 +39,7 @@ on:
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/nature-detailed-map.test.mjs"
       - "tests/place-card-rounds-runtime-audit.test.js"
       - "tests/place-people-ids-runtime.test.js"
       - "tests/nationaltheatret-people-curation.test.js"
@@ -73,7 +77,8 @@ jobs:
 
       - name: Test canonical four-round contract
         run: |
-          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
+          node --check js/ui/nature-detailed-map.js
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-detailed-map.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
