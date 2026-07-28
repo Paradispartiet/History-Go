@@ -1,9 +1,9 @@
 {
   "schema": "history_go_place_description_templates_v4_2",
   "version": "4.2.0",
-  "policyRevision": "4.2.1-source-led-length",
-  "status": "canonical_claim_first_sentence_traceable_source_led_length",
-  "purpose": "Sikre identitetsavklaring, claim-first research, full setningssporbarhet, separate reviews, stoffstyrt lengde og versjonert ferdigstatus for desc og popupDesc.",
+  "policyRevision": "4.2.2-editorial-ingress",
+  "status": "canonical_claim_first_sentence_traceable_source_led_length_editorial_ingress",
+  "purpose": "Sikre identitetsavklaring, claim-first research, full setningssporbarhet, en fokusert leksikalsk ingress, separate reviews, stoffstyrt lengde og versjonert ferdigstatus for desc og popupDesc.",
   "canonicalDocument": "data/places/regler/PLACE_DESCRIPTION_CANONICAL.md",
   "productionSchema": "data/places/regler/place_description_production_v4_2.schema.json",
   "productionDirectory": "data/places/production",
@@ -11,7 +11,7 @@
     "popkultur": "populaerkultur"
   },
   "informationHierarchy": {
-    "desc": "Konsentrert faktasammendrag: hva stedet er, når, hvem, hva som skjedde, og hva som gjør det spesielt.",
+    "desc": "Leksikalsk ingress med én styrende idé: identifiser stedet, prioriter ett hovedpoeng og utsett detaljkronologi, navnelister og støttefakta til popupDesc.",
     "popupDesc": "Fullverdig, selvstendig stedartikkel med dokumentert kronologi, aktører, bruk, fysiske detaljer, endringer og minneverdige fakta. Lengden bestemmes av dokumentert stoff.",
     "merInfo": "Ytterligere fordypning, konkurrerende tolkninger, forbindelser, kildeapparat og videre lesning.",
     "peoplePopup": "Full biografi og forbindelser utenfor den aktuelle stedstilknytningen.",
@@ -19,19 +19,52 @@
   },
   "global": {
     "desc": {
-      "guidanceWords": [40, 80],
-      "guidanceSentences": [2, 4],
+      "guidanceWords": [
+        35,
+        90
+      ],
+      "guidanceSentences": [
+        1,
+        3
+      ],
       "wordCountIsValidationGate": false,
       "rangeType": "editorial_guidance_only",
-      "minimumConcreteFacts": 4,
-      "mustDifferFromPopupDesc": true
+      "minimumConcreteFacts": null,
+      "factSelectionRule": "only_facts_serving_one_controlling_idea",
+      "role": "encyclopedic_lead_not_compressed_table_of_contents",
+      "controllingIdeaRequired": true,
+      "knownNewFlowPreferred": true,
+      "detailsDeferredToPopupDesc": true,
+      "mustDifferFromPopupDesc": true,
+      "avoid": [
+        "chronology_inventory",
+        "name_and_year_pileup",
+        "from_a_via_b_to_c_construction_with_multiple_new_topics",
+        "one_new_epoch_per_sentence",
+        "syntax_overloaded_by_fact_density",
+        "abstract_significance_without_concrete_place_focus"
+      ],
+      "editorialTests": [
+        "main_point_can_be_paraphrased_in_one_simple_sentence",
+        "sentence_two_continues_sentence_one",
+        "every_name_and_date_is_necessary_to_the_controlling_idea",
+        "movable_details_are_deferred_to_popupDesc",
+        "read_aloud_sounds_like_prose_not_keywords",
+        "lead_promises_content_the_popupDesc_delivers"
+      ]
     },
     "popupDesc": {
       "minimumWords": null,
-      "guidanceWords": [300, 1200],
+      "guidanceWords": [
+        300,
+        1200
+      ],
       "maximumWords": null,
       "wordCountIsValidationGate": false,
-      "guidanceSentences": [12, 60],
+      "guidanceSentences": [
+        12,
+        60
+      ],
       "minimumParagraphs": 3,
       "fixedParagraphCount": null,
       "paragraphRule": "organic_structure_from_documented_material",
@@ -63,7 +96,11 @@
     "identityGate": {
       "required": true,
       "requiredStatus": "resolved",
-      "requiredFields": ["represents", "period", "excludes"],
+      "requiredFields": [
+        "represents",
+        "period",
+        "excludes"
+      ],
       "distinctions": [
         "building_vs_institution",
         "current_vs_historic_operation",
@@ -78,7 +115,12 @@
       "requiredForNewOrRevisedDescriptions": true,
       "stableClaimIds": true,
       "allFactualComponentsNeedVerifiedClaims": true,
-      "allowedClaimStatuses": ["verified", "rejected", "superseded", "needs_research"],
+      "allowedClaimStatuses": [
+        "verified",
+        "rejected",
+       "superseded",
+        "needs_research"
+      ],
       "readyStatusRequires": "verified",
       "requiredClaimFields": [
         "id",
@@ -91,20 +133,29 @@
       ],
       "allowedSourceTypes": [
         "primary",
-        "official",
-        "institutional",
+      "official",
+      "institutional",
         "archive",
         "catalogue",
         "scholarly",
         "reputable_secondary"
       ],
-      "identitySourceTypes": ["primary", "official", "institutional", "archive", "catalogue"],
+      "identitySourceTypes": [
+        "primary",
+        "official",
+        "institutional",
+        "archive",
+        "catalogue"
+      ],
       "sourceLocationRequired": true,
       "inspectableHttpsRequired": true
     },
     "sentenceClaimParity": {
       "required": true,
-      "appliesTo": ["desc", "popupDesc"],
+      "appliesTo": [
+        "desc",
+        "popupDesc"
+      ],
       "everySentenceNeedsClaimIds": true,
       "textHashAlgorithm": "sha256",
       "rejectPartialSupport": true,
@@ -141,8 +192,8 @@
       "maximumVerificationAgeDays": 180,
       "markers": [
         "i dag",
-        "nå",
-        "holder til",
+        "niå",
+       "holder til",
         "drives av",
         "brukes som",
         "er under bygging",
@@ -192,7 +243,11 @@
           "generic_openings",
           "generic_endings",
           "historical_balance",
-          "source_led_length"
+          "source_led_length",
+          "ingress_single_focus",
+          "known_new_information_flow",
+          "no_chronology_inventory",
+          "no_name_or_year_pileup"
         ],
         "mayIntroduceNewFacts": false
       }
@@ -203,7 +258,7 @@
       "minimumQuestionTypes": 4,
       "allowedQuestionTypes": [
         "hvem",
-        "når",
+        "nar",
         "hva",
         "hvor",
         "hvilket_verk_eller_objekt",
@@ -288,7 +343,8 @@
         "møteplass",
         "spenning"
       ],
-      "rule": "Abstrakte ord er tillatt når de forklarer et konkret, kildebelagt faktum, men ikke som erstatning for fakta."
+      "rule": "Abstrakte ord er tillatt når de forklarer et konkret, kildebelagt faktum, men ikke som erstatning for fakta.",
+      "descRule": "desc skal ha én styrende idé og naturlig setningsflyt; faktatetthet er ikke et mål dersom resultatet blir en oppramsing."
     },
     "forbiddenEditorialLanguage": [
       "History Go kan bruke stedet til",
@@ -308,55 +364,146 @@
   "categories": {
     "by": {
       "label": "By & arkitektur",
-      "factPriorities": ["bygg eller område", "byggeår", "arkitekt eller planlegger", "funksjon", "materiale og mål", "ombygging og bruk"]
+      "factPriorities": [
+        "bygg eller område",
+        "byggeår",
+        "arkitekt eller planlegger",
+        "funksjon",
+        "materiale og mål",
+        "ombygging og bruk"
+      ]
     },
     "historie": {
       "label": "Historie",
-      "factPriorities": ["hendelse", "dato", "aktør", "handling", "gjenstand", "bevarte spor"]
+      "factPriorities": [
+        "hendelse",
+        "dato",
+        "aktør",
+        "handling",
+        "gjenstand",
+        "bevarte spor"
+      ]
     },
     "kunst": {
       "label": "Kunst",
-      "factPriorities": ["verk", "kunstner", "år", "materiale", "størrelse", "teknikk og plassering"]
+      "factPriorities": [
+        "verk",
+        "kunstner",
+        "år",
+        "materiale",
+        "størrelse",
+        "teknikk og plassering"
+      ]
     },
     "litteratur": {
       "label": "Litteratur",
-      "factPriorities": ["forfatter", "verk", "stedstilknytning", "arbeidsperiode", "utgivelse", "dokumentert episode"]
+      "factPriorities": [
+        "forfatter",
+        "verk",
+        "stedstilknytning",
+        "arbeidsperiode",
+        "utgivelse",
+        "dokumentert episode"
+      ]
     },
     "musikk": {
       "label": "Musikk",
-      "factPriorities": ["artist", "konsert eller innspilling", "scene", "instrument", "teknologi", "publikumshendelse"]
+      "factPriorities": [
+        "artist",
+        "konsert eller innspilling",
+        "scene",
+        "instrument",
+        "teknologi",
+        "publikumshendelse"
+      ]
     },
     "naeringsliv": {
       "label": "Næringsliv",
-      "factPriorities": ["bedrift", "grunnlegger", "produkt", "etableringsår", "produksjon", "marked og omstilling"]
+      "factPriorities": [
+        "bedrift",
+        "grunnlegger",
+        "produkt",
+        "etableringsår",
+        "produksjon",
+        "marked og omstilling"
+      ]
     },
     "natur": {
       "label": "Natur",
-      "factPriorities": ["arter", "naturtype", "geologi", "habitat", "sesong", "atferd og kjennetegn"]
+      "factPriorities": [
+        "arter",
+        "naturtype",
+        "geologi",
+        "habitat",
+        "sesong",
+        "atferd og kjennetegn"
+      ]
     },
     "politikk": {
       "label": "Politikk",
-      "factPriorities": ["institusjon", "beslutning", "møte eller aksjon", "aktører", "konflikt", "resultat"]
+      "factPriorities": [
+        "institusjon",
+        "beslutning",
+        "møte eller aksjon",
+        "aktører",
+        "konflikt",
+        "resultat"
+      ]
     },
     "populaerkultur": {
       "label": "Populærkultur",
-      "factPriorities": ["verk eller produksjon", "skaper", "utgivelse", "stedsscene", "mottakelse", "dokumentert etterliv"]
+      "factPriorities": [
+        "verk eller produksjon",
+        "skaper",
+        "utgivelse",
+        "stedsscene",
+        "mottakelse",
+        "dokumentert etterliv"
+      ]
     },
     "psykologi": {
       "label": "Psykologi",
-      "factPriorities": ["institusjon eller praksis", "fagperson", "metode", "hendelse", "dokumentert resultat", "etisk eller historisk endring"]
+      "factPriorities": [
+        "institusjon eller praksis",
+        "fagperson",
+        "metode",
+        "hendelse",
+        "dokumentert resultat",
+        "etisk eller historisk endring"
+      ]
     },
     "sport": {
       "label": "Sport",
-      "factPriorities": ["lag eller utøver", "kamp", "turnering", "rekord", "resultat", "arena og rivalisering"]
+      "factPriorities": [
+        "lag eller utøver",
+        "kamp",
+        "turnering",
+        "rekord",
+        "resultat",
+        "arena og rivalisering"
+      ]
     },
     "subkultur": {
       "label": "Subkultur",
-      "factPriorities": ["miljø", "aktører", "stedlig praksis", "arrangement", "uttrykk", "konflikt eller endring"]
+      "factPriorities": [
+        "miljø",
+        "aktører",
+        "stedlig praksis",
+        "arrangement",
+        "uttrykk",
+        "konflikt eller endring"
+      ]
     },
     "vitenskap": {
       "label": "Vitenskap",
-      "factPriorities": ["forsker", "institusjon", "spørsmål", "instrument", "metode", "funn og anvendelse"]
+      "factPriorities": [
+        "forsker",
+        "institusjon",
+        "spørsmål",
+        "instrument",
+        "metode",
+        "funn og anvendelse"
+      ]
     }
   }
 }
