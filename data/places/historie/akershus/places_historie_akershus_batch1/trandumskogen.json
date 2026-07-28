@@ -4,19 +4,28 @@
   "lat": 60.2189,
   "lon": 11.1177,
   "r": 300,
-  "locatorType": "memorial_site",
-  "sourceProvider": "osm",
-  "sourceObjectId": "osm-node:8745441267",
-  "geocodeAccuracy": "named_point",
-  "coordRole": "memorial_site_anchor",
-  "coordType": "named_national_war_memorial_site_point",
-  "coordStatus": "verified",
-  "coordSource": "OpenStreetMap node 8745441267 / Wikidata Q7833396; Riksantikvaren; Ullensaker kommune",
-  "coordSourceId": "osm-node:8745441267",
-  "coordSourceUrl": "https://www.openstreetmap.org/node/8745441267",
-  "coordVerifiedAt": "2026-07-26",
-  "coordChangeReason": "Koordinaten flyttes ikke. Legacy-punktet samsvarer eksakt med det navngitte Trandumskogen-objektet og formaliseres med en eksplisitt kilde- og representasjonskontrakt.",
-  "coordNote": "Det navngitte Trandumskogen-punktet i OpenStreetMap, koblet til Wikidata Q7833396, ligger på 60.2189, 11.1177 og er identisk med legacy-koordinaten. Punktet brukes som områdeanker for den seremonielle minnelunden, de markerte tidligere gravstedene og den sentrale besøksopplevelsen. Ullensaker kommune beskriver parkeringsadkomst til minnelunden og gravene langs stien, mens Riksantikvaren avgrenser det fredede kulturmiljøet som et skogområde, stridsvognskytebanen og seremoniplassen. Et historisk fotografipunkt ved gravområdet ligger omtrent 42,0 meter fra markøren og brukes kun som visuell kontroll. Den navngitte stridsvognskytebanen, OSM way 42996009, har et publisert representasjonspunkt omtrent 191,9 meter nord for markøren og ligger dermed innenfor radius 300 meter. Dette delobjektet brukes som uavhengig omfangskontroll, ikke som canonical koordinat. Radiusen er en gameplay-sirkel som dekker minneområdet og den nærmeste dokumenterte skytebanekomponenten; den er ikke fredningsgrense, eiendomsgrense, massegravpolygon eller påstand om at hele kulturmiljøet har geometrisk sentrum i punktet.",
+  "locatorType": "historic_site",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020;osm-node:8745441267",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "historical_anchor",
+  "coordType": "named_national_war_memorial_historical_anchor",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Riksantikvaren – Trandumskogen fredning 8 May 2020; Ullensaker kommune – Trandumskogen; OpenStreetMap node 8745441267 / Wikidata Q7833396",
+  "coordSourceId": "riksantikvaren:trandumskogen-fredning-2020;osm-node:8745441267;wikidata:Q7833396",
+  "coordSourceUrl": "https://riksantikvaren.no/fredninger/trandumskogen/",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The coordinate remains unchanged because 60.2189, 11.1177 exactly matches the named Trandumskogen object. This pass replaces obsolete custom coordinate-contract values with a valid historic-site historical anchor based on the combined official memorial/protection identity and the stable named map point.",
+  "coordNote": "The named Trandumskogen point at 60.2189, 11.1177 is retained as a semantic historical anchor for the memorial, ceremonial space and former-grave visitor core. Riksantikvaren identifies the protected culture environment as a defined forest area, the tank shooting range and the ceremonial memorial area, and confirms formal protection on 8 May 2020. The separately named tank shooting range lies approximately 191.9 metres from the marker and remains a historically connected secondary component inside the 300-metre gameplay radius. The marker is not a centroid for the protected culture environment, a mass-grave polygon or an archaeological boundary. The radius is not the legal protection boundary, property boundary or a claim that all historical traces have one geometric centre.",
+  "accessContext": {
+    "siteType": "protected_national_war_memorial_and_public_culture_environment",
+    "publicAccess": "Riksantikvaren describes Trandumskogen as accessible to the public and a popular walking area. Visitors should use established routes and respect memorial, conservation and any current site-management instructions.",
+    "limitations": [
+      "Treat former grave markers, the ceremonial memorial and execution-site traces with appropriate respect; they are not recreational obstacles or props.",
+      "Do not enter closed, unsafe or restricted military remnants or leave established access where current signs or management rules prohibit it.",
+      "The gameplay radius is not the legal protection polygon, property boundary, former-grave geometry or unrestricted-access guarantee."
+    ]
+  },
   "anchors": [
     {
       "id": "trandumskogen_minnested",
@@ -24,10 +33,23 @@
       "lat": 60.2189,
       "lon": 11.1177,
       "r": 120,
-      "type": "memorial_site_anchor",
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:8745441267",
-      "note": "Navngitt områdepunkt for den sentrale minnelunden og gravstien, ikke centroid for det juridiske fredningsområdet."
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020;osm-node:8745441267",
+      "canApplyToPlace": true,
+      "note": "Named semantic anchor for the memorial, ceremonial and former-grave visitor core; not a centroid for the legal protected culture environment."
+    },
+    {
+      "id": "trandumskogen_tankskytebane",
+      "name": "Stridsvognskytebanen i Trandumskogen",
+      "lat": 60.2206,
+      "lon": 11.1171,
+      "r": 100,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren:trandumskogen-tankskytebane;osm-way:42996009",
+      "canApplyToPlace": false,
+      "note": "Secondary historical component approximately 191.9 metres from the memorial anchor. It remains context within the gameplay radius and is not the canonical marker."
     }
   ],
   "category": "historie",
@@ -53,28 +75,28 @@
       "label": "Riksantikvaren – Trandumskogen",
       "url": "https://riksantikvaren.no/fredninger/trandumskogen/",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "official",
       "label": "Ullensaker kommune – Trandumskogen",
       "url": "https://www.ullensaker.kommune.no/trandumskogen",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "coordinate_source",
       "label": "OpenStreetMap – Trandumskogen",
       "url": "https://www.openstreetmap.org/node/8745441267",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "reference",
       "label": "Wikidata – Trandumskogen",
       "url": "https://www.wikidata.org/wiki/Q7833396",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     }
   ],
   "quiz_profile": {
@@ -116,6 +138,6 @@
       "eidsvollsbygningen",
       "grini_fangeleir"
     ],
-    "notes": "Skal spørres med respektfull tone, dokumenterte tall og tydelig skille mellom rettersted, gravspor, seremoniplass og skytebane. Markøren er det navngitte minnestedsankeret, ikke en juridisk fredningscentroid."
+    "notes": "Skal spørres med respektfull tone, dokumenterte tall og tydelig skille mellom rettersted, gravspor, seremoniplass og skytebane. Markøren er det navngitte historiske minnestedsankeret, ikke en juridisk fredningscentroid."
   }
 }

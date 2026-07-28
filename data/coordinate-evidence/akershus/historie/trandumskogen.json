@@ -3,54 +3,59 @@
   "placeId": "trandumskogen",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/trandumskogen.json",
   "evidenceStatus": "production_applied",
-  "coordinateDecision": "verified_named_memorial_site_point_retain_coordinate",
+  "coordinateDecision": "retain_named_memorial_core_as_verified_historical_anchor",
   "currentCoordinate": {
     "lat": 60.2189,
     "lon": 11.1177,
     "r": 300,
-    "coordStatus": "verified",
-    "coordSource": "OpenStreetMap node 8745441267 / Wikidata Q7833396; Riksantikvaren; Ullensaker kommune",
-    "coordType": "named_national_war_memorial_site_point",
-    "coordRole": "memorial_site_anchor",
-    "sourceObjectId": "osm-node:8745441267",
-    "coordNote": "The existing coordinate exactly matches the named Trandumskogen point. It represents the memorial and former-grave core, while the radius covers the nearby shooting-range component without claiming the legal protection boundary."
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Riksantikvaren – Trandumskogen protection; Ullensaker municipality; OpenStreetMap node 8745441267 / Wikidata Q7833396",
+    "coordType": "named_national_war_memorial_historical_anchor",
+    "coordRole": "historical_anchor",
+    "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020;osm-node:8745441267",
+    "coordNote": "The existing coordinate exactly matches the named Trandumskogen point and is retained as a semantic historical anchor for the memorial, ceremonial and former-grave visitor core. The protected culture environment is broader and includes the tank shooting range."
   },
-  "previousCoordinate": {
+  "previousProductionCoordinate": {
     "lat": 60.2189,
     "lon": 11.1177,
     "r": 300,
-    "coordStatus": null,
-    "coordSource": null,
-    "coordType": null,
-    "distanceToAppliedCoordinateM": 0,
-    "reasonReplaced": "The coordinate itself was retained. Only the missing source, scope and precision contract was replaced."
+    "retained": true,
+    "distanceToCurrentM": 0,
+    "previousLocatorType": "memorial_site",
+    "previousGeocodeAccuracy": "named_point",
+    "previousCoordRole": "memorial_site_anchor",
+    "previousCoordStatus": "verified",
+    "reasonRetained": "The physical marker is correct. This pass replaces obsolete custom contract values and aligns the historical-site source chain with Coordinate Source Contract v1."
   },
   "identity": {
-    "currentName": "Trandumskogen",
-    "resolvedIdentity": "The national war memorial in Ullensaker consisting of the memorial and former-grave area, the ceremonial space and the historically connected tank shooting range.",
+    "resolvedIdentity": "The national war memorial in Ullensaker consisting of the memorial and former-grave area, ceremonial space and historically connected tank shooting range.",
     "identityStatus": "resolved",
-    "identityProblem": "The name may refer narrowly to the memorial grove or broadly to the protected culture environment. The canonical marker must identify the visitor and memorial core without pretending to be the centroid of the legal protected area.",
-    "locatorTypeCandidate": "memorial_site",
+    "identityProblem": "The name can refer narrowly to the memorial grove or broadly to the protected culture environment. The canonical marker must identify the memorial and visitor core without pretending to be the centroid of the legal protected area.",
+    "locatorTypeCandidate": "historic_site",
     "requiresSplit": false,
-    "splitReason": "The memorial grove and shooting range form one documented culture environment and remain within the gameplay radius, while the central named point provides an honest visitor anchor."
+    "splitReason": "The memorial grove and tank shooting range form one officially documented culture environment. The named point is the canonical visitor anchor while the shooting range remains a secondary historical component."
   },
   "requiredEvidence": [
-    "stable named object for Trandumskogen",
-    "official confirmation of memorial identity and protected scope",
-    "physical cross-check against the former-grave and ceremonial area",
-    "independent cross-check against the tank shooting range",
-    "explicit radius limitation that does not claim a legal polygon"
+    "official national-war-memorial identity and protection scope",
+    "official visitor and memorial-core description",
+    "stable named point for Trandumskogen",
+    "secondary tank-shooting-range cross-check",
+    "valid Coordinate Source Contract values",
+    "explicit memorial, access and radius limits"
   ],
   "evidence": [
     {
-      "sourceProvider": "riksantikvaren",
+      "sourceProvider": "manual_research",
       "sourceName": "Riksantikvaren – Trandumskogen",
       "sourceUrl": "https://riksantikvaren.no/fredninger/trandumskogen/",
       "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020",
       "sourceQuality": "official_identity_history_and_protection_scope",
-      "finding": "Riksantikvaren identifies Trandumskogen as a national war memorial and states that the protected scope includes a defined forest area, the tank shooting range and the ceremonial memorial area. The page documents 194 executed people, the 1954 monument, the 1970 memorial plaque and the protection decision of 8 May 2020.",
-      "canVerifyCoordinate": false,
-      "reason": "Authoritatively resolves identity, history and site scope but does not expose a reusable coordinate object on the page."
+      "finding": "Riksantikvaren identifies Trandumskogen as a national war memorial, documents 194 executions, and states that the protected scope includes a defined forest area, the tank shooting range and the ceremonial memorial area. Formal protection dates to 8 May 2020.",
+      "canVerifyCoordinate": true,
+      "reason": "Defines the historic site and protected components that the named map point represents semantically."
     },
     {
       "sourceProvider": "municipality",
@@ -58,9 +63,9 @@
       "sourceUrl": "https://www.ullensaker.kommune.no/trandumskogen",
       "sourceObjectId": "ullensaker-kommune:trandumskogen",
       "sourceQuality": "official_visitor_identity_access_and_memorial_scope",
-      "finding": "Ullensaker describes the memorial grove, the 17 former mass graves marked along the path, the memorial monument and plaque, the tank shooting range and the road access to parking by the memorial area.",
+      "finding": "The municipality describes the memorial grove, marked former graves, memorial monument, tank shooting range and road access to the memorial area.",
       "canVerifyCoordinate": false,
-      "reason": "Confirms that the canonical visitor destination is the memorial and grave-area core rather than an arbitrary forest centroid."
+      "reason": "Confirms that the visitor destination is the memorial and grave-area core rather than an arbitrary forest centroid."
     },
     {
       "sourceProvider": "osm",
@@ -68,9 +73,9 @@
       "sourceUrl": "https://www.openstreetmap.org/node/8745441267",
       "sourceObjectId": "osm-node:8745441267",
       "sourceQuality": "exact_named_memorial_site_point",
-      "finding": "The named Trandumskogen point is at 60.2189, 11.1177 and is linked to Wikidata Q7833396. It exactly matches the legacy coordinate.",
+      "finding": "The named Trandumskogen point is at 60.2189, 11.1177 and is linked to Wikidata Q7833396. It exactly matches the existing canonical coordinate.",
       "canVerifyCoordinate": true,
-      "reason": "Provides a stable named point for the memorial destination, corroborated by official descriptions of the visitor and memorial core."
+      "reason": "Provides the stable named physical-semantic point combined with the official historic-site identity."
     },
     {
       "sourceProvider": "wikidata",
@@ -78,19 +83,19 @@
       "sourceUrl": "https://www.wikidata.org/wiki/Q7833396",
       "sourceObjectId": "wikidata:Q7833396",
       "sourceQuality": "named_entity_coordinate_and_osm_identity_cross_check",
-      "finding": "Wikidata publishes 60°13′8.04″N, 11°7′3.72″E, equal to 60.2189, 11.1177, and links the entity to OSM node 8745441267.",
+      "finding": "Wikidata publishes the same coordinate and links the entity to OSM node 8745441267.",
       "canVerifyCoordinate": false,
-      "reason": "Used as an independent named-entity and object-ID cross-check; OSM remains the applied coordinate object."
+      "reason": "Independent entity and source-object cross-check."
     },
     {
-      "sourceProvider": "osm_discovery",
+      "sourceProvider": "osm",
       "sourceName": "OpenStreetMap way 42996009 – Stridsvognskytebanen i Trandumskogen",
       "sourceUrl": "https://www.openstreetmap.org/way/42996009",
       "sourceObjectId": "osm-way:42996009",
-      "sourceQuality": "named_historic_component_point_cross_check",
-      "finding": "The named shooting-range component has a published point near 60.2206, 11.1171, approximately 191.9 metres from the applied memorial anchor.",
+      "sourceQuality": "named_historic_component_cross_check",
+      "finding": "The named tank shooting range has a representative point near 60.2206, 11.1171, approximately 191.9 metres from the memorial anchor and inside the retained 300-metre gameplay radius.",
       "canVerifyCoordinate": false,
-      "reason": "Confirms that the existing 300-metre radius includes the documented shooting-range component. Raw way geometry is not used for the canonical marker."
+      "reason": "Secondary component control; the range is not the canonical memorial marker."
     },
     {
       "sourceProvider": "wikimedia_commons",
@@ -100,24 +105,14 @@
       "sourceQuality": "visual_qa_only",
       "finding": "The photograph viewpoint at 60.218861, 11.116944 lies approximately 42.0 metres from the applied point.",
       "canVerifyCoordinate": false,
-      "reason": "Used only as visual QA that the named point is near the former-grave area; a photo location is never applied as a coordinate source."
-    },
-    {
-      "sourceProvider": "legacy_dataset",
-      "sourceName": "Legacy Trandumskogen point",
-      "sourceUrl": "",
-      "sourceObjectId": "legacy:trandumskogen",
-      "sourceQuality": "correct_but_uncontracted_named_point",
-      "finding": "The legacy coordinate 60.2189, 11.1177 was already exactly correct but lacked source object, scope, role and verification metadata.",
-      "canVerifyCoordinate": false,
-      "reason": "Retained after it was independently tied to the named memorial object."
+      "reason": "Visual QA only; photo geotags are never applied as production coordinates."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:8745441267",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020;osm-node:8745441267",
       "canApplyToPlace": true,
       "applied": true
     },
@@ -125,25 +120,25 @@
       "sourceProvider": "wikidata",
       "sourceObjectId": "wikidata:Q7833396",
       "canApplyToPlace": false,
-      "rejectionReason": "Identity and coordinate cross-check; the linked OSM named point is the applied map object."
+      "rejectionReason": "Entity and coordinate cross-check only."
     },
     {
-      "sourceProvider": "osm_discovery",
+      "sourceProvider": "osm",
       "sourceObjectId": "osm-way:42996009",
       "canApplyToPlace": false,
-      "rejectionReason": "The tank shooting range is one historically connected component, not the memorial destination marker."
+      "rejectionReason": "The tank shooting range is a secondary component of the protected culture environment, not the memorial destination marker."
     }
   ],
   "geometryCandidates": [
     {
-      "sourceProvider": "riksantikvaren",
+      "sourceProvider": "manual_research",
       "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020",
-      "geometryType": "protected_culture_environment_not_captured",
+      "geometryType": "protected_culture_environment_not_applied_as_circle",
       "geometryRole": "legal_scope_context",
       "canApplyToPlace": false
     },
     {
-      "sourceProvider": "osm_discovery",
+      "sourceProvider": "osm",
       "sourceObjectId": "osm-way:42996009",
       "geometryType": "Polygon",
       "geometryRole": "tank_shooting_range_component_cross_check",
@@ -157,38 +152,41 @@
       "lat": 60.2189,
       "lon": 11.1177,
       "r": 120,
-      "type": "memorial_site_anchor",
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:8745441267",
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020;osm-node:8745441267",
       "canApplyToPlace": true
+    },
+    {
+      "id": "trandumskogen_tankskytebane",
+      "name": "Stridsvognskytebanen i Trandumskogen",
+      "lat": 60.2206,
+      "lon": 11.1171,
+      "r": 100,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren:trandumskogen-tankskytebane;osm-way:42996009",
+      "canApplyToPlace": false
     }
   ],
   "coordinateCandidates": [
     {
-      "sourceProvider": "legacy_dataset",
-      "sourceObjectId": "legacy:trandumskogen",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren:trandumskogen-fredning-2020;osm-node:8745441267",
       "lat": 60.2189,
       "lon": 11.1177,
-      "coordRole": "correct_but_uncontracted_memorial_point",
-      "distanceFromAppliedM": 0,
-      "canApplyToPlace": false
+      "coordRole": "historical_anchor",
+      "distanceFromPreviousM": 0,
+      "canApplyToPlace": true,
+      "applied": true,
+      "retainedFromPreviousProduction": true
     },
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:8745441267",
-      "lat": 60.2189,
-      "lon": 11.1177,
-      "coordRole": "memorial_site_anchor",
-      "distanceFromPreviousM": 0,
-      "canApplyToPlace": true,
-      "applied": true
-    },
-    {
-      "sourceProvider": "osm_discovery",
       "sourceObjectId": "osm-way:42996009",
       "lat": 60.2206,
       "lon": 11.1171,
-      "coordRole": "tank_shooting_range_component_cross_check",
+      "coordRole": "secondary_tank_shooting_range_historical_anchor",
       "distanceFromAppliedM": 191.9,
       "canApplyToPlace": false
     },
@@ -205,19 +203,21 @@
   "rawEvidence": [
     {
       "path": "reports/akershus-coordinate-trandumskogen-source-probe/source-summary.json",
-      "description": "Persisted official scope, named point, shooting-range cross-check, visual QA and representation decision."
+      "description": "Persisted official scope, named point, shooting-range cross-check, visual QA and Coordinate Source Contract migration decision."
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Applied the named OSM memorial-site point without moving the coordinate and retained the 300-metre radius. Continue with Grini fangeleir."
+    "coordinateChangedInThisPass": false,
+    "contractMigrationRequired": true,
+    "nextAction": "Retained the named Trandumskogen memorial-core coordinate, migrated it to a valid historical-site contract and preserved the 300-metre radius. Continue with grini_fangeleir."
   },
   "notes": [
-    "The coordinate correction is exactly 0 metres; this production change formalizes a previously correct but undocumented marker.",
-    "The memorial point represents the visitor, ceremonial and former-grave core, not a legal-area centroid.",
-    "The tank shooting range lies approximately 191.9 metres away and is covered by the gameplay radius as a component, not used as the canonical marker.",
-    "The 300-metre radius is not a protection, property, mass-grave or archaeological polygon.",
-    "Photo coordinates are used only for visual QA."
+    "The coordinate change is exactly 0 metres; the existing marker is physically retained.",
+    "This pass replaces memorial_site, named_point and memorial_site_anchor with historic_site, semantic_anchor and historical_anchor.",
+    "The point represents the memorial, ceremonial and former-grave visitor core, not a legal-area centroid.",
+    "The tank shooting range lies approximately 191.9 metres away and remains a secondary historical component inside the gameplay radius.",
+    "The 300-metre radius is not the protection, property, former-grave or archaeological polygon."
   ]
 }
