@@ -1,9 +1,9 @@
 {
   "id": "anatomigarden",
   "name": "Anatomigården",
-  "lat": 59.9081,
-  "lon": 10.7414,
-  "r": 80,
+  "lat": 59.91088708379257,
+  "lon": 10.74124252410741,
+  "r": 100,
   "category": "historie",
   "year": 1640,
   "desc": "Et av Christianias eldste trehus ved Christiania torv, knyttet til skarpretterhistorie, rettersted og medisinsk undervisning.",
@@ -51,32 +51,63 @@
     ],
     "notes": "Skal behandles nøkternt som retts-, kropp- og vitenskapshistorie."
   },
-  "coordType": "unverified_historical_anchor",
-  "coordStatus": "needs_source",
-  "coordSource": "manual_historical_research",
-  "coordSourceUrl": "https://lokalhistoriewiki.no/wiki/Anatomig%C3%A5rden",
-  "coordVerifiedAt": null,
-  "locatorType": "historic_site",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "history-go-research:historical-sites-20260725:anatomigarden",
-  "geocodeAccuracy": "historical_approximation",
-  "coordRole": "historical_anchor",
-  "coordSourceId": "history-go-research:historical-sites-20260725:anatomigarden",
-  "coordNote": "Den publiserte Anatomigården-posisjonen reverse-resolver til et unavngitt huspunkt, mens navnesøket returnerer Rådmannsgårdens hovedvolum. Ingen kildebelagt geometri skiller Anatomibygget entydig fra resten av anlegget. Dagens koordinat beholdes kun som uverifisert historisk proxy og skal ikke tolkes som dokumentert fysisk sentrum.",
+  "locatorType": "current_place",
+  "sourceProvider": "municipality",
+  "sourceObjectId": "oslo-kommune:Rådhusgata-19",
+  "address": {
+    "street": "Rådhusgata",
+    "number": "19",
+    "postcode": "0158",
+    "city": "Oslo",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "rooftop",
+  "coordRole": "display_marker",
+  "coordType": "municipal_property_marker_for_anatomibygget_at_radhusgata_19",
+  "coordStatus": "verified",
+  "coordSource": "Oslo kommune – Rådmannsgården og Anatomibygget, Rådhusgata 19; previously materialized Oslo municipal property location; current Anatomigården address cross-checks",
+  "coordSourceId": "oslo-kommune:Rådhusgata-19",
+  "coordSourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/radmannsgarden-og-anatomibygget/",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The unsupported historical proxy is moved approximately 310.0 metres north to the existing materialized Oslo municipal property marker for Rådhusgata 19. Oslo kommune explicitly identifies Anatomibygget as a separate standing building within this cultural property and lists Rådhusgata 19 as the visitor address. The marker is verified as a current-property display point rather than misrepresented as a surveyed centroid of Anatomigården alone.",
+  "coordNote": "Oslo kommune explicitly distinguishes Rådmannsgården and Anatomibygget within the same Rådhusgata 19 cultural property and documents Anatomibygget as the standing building later used by the University's medical faculty. The applied point 59.91088708379257, 10.74124252410741 was already materialized from Oslo kommunes property-location source for the related `radmannsgarden_og_anatomibygget` canonical. Reuse is intentional: that record represents the paired municipal cultural property, while `anatomigarden` represents the Anatomibygget/Anatomigården thematic history. The shared property marker must not be interpreted as an exact geometric centroid of Anatomigården or as evidence that the two canonical records are spatially distinct buildings at point precision. Radius 100 metres covers the immediate Christiania Torv property context and is not a property, heritage or access boundary.",
+  "accessContext": {
+    "siteType": "municipal_cultural_property_and_current_artist_workspace",
+    "publicAccess": "The building is a current municipal cultural property with artist workspaces and changing occupancies. Exterior/public-area access does not imply unrestricted access to studios, offices or interiors.",
+    "limitations": [
+      "Use ordinary public streets and Christiania Torv; do not enter studios, offices or closed interiors without normal public access or invitation.",
+      "The canonical marker is a shared municipal property display point, not a surveyed Anatomigården building centroid.",
+      "The 100-metre gameplay radius is not the legal property, heritage or access boundary."
+    ]
+  },
+  "anchors": [
+    {
+      "id": "anatomigarden_radhusgata_19_property",
+      "name": "Anatomigården – Rådhusgata 19 cultural-property marker",
+      "lat": 59.91088708379257,
+      "lon": 10.74124252410741,
+      "r": 60,
+      "type": "display_marker",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:Rådhusgata-19",
+      "canApplyToPlace": true,
+      "note": "Shared property marker for Rådmannsgården and Anatomibygget. Applied to this record as a display marker for the standing Anatomigården identity, not as an exact separate-building centroid."
+    }
+  ],
   "externalLinks": [
     {
-      "type": "source",
-      "label": "Historisk identitetskilde",
+      "type": "official",
+      "label": "Oslo kommune – Rådmannsgården og Anatomibygget",
       "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/radmannsgarden-og-anatomibygget/",
       "lang": "nb",
-      "verifiedAt": "2026-07-25"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "source",
-      "label": "Publisert historisk locator",
+      "label": "Lokalhistoriewiki – Anatomigården",
       "url": "https://lokalhistoriewiki.no/wiki/Anatomig%C3%A5rden",
       "lang": "nb",
-      "verifiedAt": "2026-07-25"
+      "verifiedAt": "2026-07-28"
     }
   ]
 }
