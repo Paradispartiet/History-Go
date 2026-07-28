@@ -6,7 +6,7 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `590d0c34de762c8fd2b9622db8a900796ab945902feb81286cc8614c2b6ce562`
+Source fingerprint: `c4b5e760bc85476de2a4569853b4d059219c426b8f3c7c6fe5df67f45ed81cf9`
 
 ## Sammendrag
 
