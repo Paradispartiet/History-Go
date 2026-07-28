@@ -59,6 +59,7 @@ permissions:
 
 jobs:
   # BEGIN ONE-SHOT LEGACY ROUND CLEANUP
+  # ready-for-review synchronize trigger
   cleanup-legacy-round-registry:
     if: github.event_name == 'pull_request' && github.head_ref == 'agent/place-rounds-canonical-four-cleanup'
     name: Remove legacy PlaceCard round registry
