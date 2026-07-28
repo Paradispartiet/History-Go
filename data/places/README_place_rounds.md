@@ -1,14 +1,25 @@
 # PlaceCard-rundinger (`rounds`)
 
-PlaceCard-rundingene bygger på en fast rundingspool og kategori-profiler. Hver
-kategori-profil viser nøyaktig 9 rundinger i et stabilt 3x3-grid, mens
-`place.category` velger hvilken profil stedet får. `place.rounds` / `rundinger`
-kan fortsatt brukes som manuell override i enkelttilfeller, men nye data trenger
-normalt ikke å sette feltet.
+Status: **canonical presentasjonskontrakt**  
+Sist kontrollert: **2026-07-28**
 
-## Rundingspool
+PlaceCard-rundinger er små, visuelle samlingsinnganger. De skal ikke brukes som en ekstra meny for alt som finnes om et sted.
 
-Canonical PlaceCard-rundinger i poolen er:
+## Hovedregel
+
+> **Rundinger viser ting brukeren kan se, bla i, åpne eller samle. Stedspopupen viser kunnskap om stedet. På stedet viser hva man kan gjøre og hva som skjer her.**
+
+Dette skiller tre produktroller:
+
+- **PlaceCard-rundinger** = visuelle samlinger av entiteter eller objekter;
+- **stedspopupfaner** = artikkel, historie, Stories, før/etter, nyheter, Lesespor, kilder og øvrig stedskunnskap;
+- **På stedet** = events, møter/kunnskapsmøter og konkrete handlinger på eller knyttet til stedet.
+
+Den tidligere 3×3-modellen blandet entiteter, kunnskapsflater, tidsvisninger og handlinger i samme grid. Den modellen er nå compatibility-input, ikke produktkontrakten.
+
+## Canonical visuelle rundinger
+
+Nye data skal bruke disse rundingene når de er relevante:
 
 - `people`
 - `nature`
@@ -16,287 +27,143 @@ Canonical PlaceCard-rundinger i poolen er:
 - `works`
 - `civication`
 - `brands`
+
+Det finnes **ikke lenger noe krav om ni rundinger**. Et sted kan ha tre, fire, fem eller seks relevante visuelle samlinger. Et tomt felt skal ikke fylles med en tilfeldig runding for å oppnå et geometrisk mål.
+
+### `people`
+
+Navngitte personer med canonical personprofil og visuelt kort/portrett når bilde finnes. Koblingen skal være stedsspesifikk og dokumentert.
+
+### `nature`
+
+Observerbare naturentiteter og naturfaglige samleobjekter knyttet til stedet, for eksempel arter, planter, dyr, geologiske detaljer og andre konkrete naturspor.
+
+`nature` skal ikke opprette en kopi av et canonical place. Akerselva, Øyungen eller Stensparken er steder; en art, bergart eller konkret naturdetalj ved stedet kan være innhold i Nature-rundingen.
+
+### `badges`
+
+Merker, faglige samlinger og progresjonsobjekter. Rundingen kan vise hovedbadge, underbadges og andre eksplisitte collectible-progresjonsobjekter.
+
+### `works`
+
+Visuelle eller identifiserbare verk og produksjoner knyttet til stedet: kunstverk, bøker, sanger, album, filmer, sceniske verk, arkitekturverk og andre canonical works.
+
+Sportsresultater eller abstrakte statistikkposter skal ikke presses inn som bilder bare fordi eldre `works`-data tillot en bredere definisjon. Hvis innholdet ikke fungerer som et identifiserbart verk/objekt i en visuell samling, hører det normalt hjemme i en annen flate.
+
+### `civication`
+
+Civication Store / Thingstore. Stedsspesifikke fysiske objekter som kan samles, kjøpes eller brukes videre i Civication.
+
+Dette er en integrasjonsflate, ikke et synonym for Wonderkammer eller alle fysiske ting i History Go. Et Civication-objekt skal miste mye av meningen sin dersom det flyttes til et vilkårlig annet sted.
+
+### `brands`
+
+Navngitte systemaktører med egen identitet: institusjoner, organisasjoner, klubber, bedrifter, museer, scener, medier, butikker, offentlige aktører og andre canonical brands/actors.
+
+`brands` betyr fortsatt ikke bare kommersielle merkevarer.
+
+## Flyttet ut av runding-gridet
+
+Følgende er kunnskaps- eller presentasjonsflater og skal ikke lenger vises som canonical rundinger:
+
+- `leksikon` / `lexicon`
+- `fortellinger` / `stories` / `story`
 - `før_nå`
-- `fortellinger`
-- `leksikon`
+- `routes` som tidligere alias for `før_nå`
+
+De presenteres i stedspopupen:
+
+- Leksikonets hovedartikkel og fakta → **Om**
+- `chronology`, historiske lag og bruksspor → **Historie**
+- canonical Stories → **Fortellinger**
+- `for_na` → **Før/etter**
+- gamle nyheter og nyere notiser → **Nyheter**
+- Lesespor → **Lesespor**
+- `externalLinks` og source summaries → **Kilder**
+- språk, observasjoner og smalere kunnskapsinnhold → **Mer**
+
+## Handlinger er ikke samlingsrundinger
+
+Disse eldre rundingene beskriver handling, ikke en visuell samling:
+
 - `play`
 - `training`
 - `tasks`
 
-Alle kategori-profiler skal ha nøyaktig 9 rundinger, ingen duplikater og bare
-id-er som finnes i denne poolen.
+De skal derfor ikke vises i det canonical visuelle runding-gridet.
 
-## Kategori-profiler
+Eksisterende `tasks_profile`, `training_profile` og eventuelle `play_profile` beholdes som source-data og vises under **På stedet → Gjør på stedet**. Samme flate kan også vise events, vanlige møteinnganger og Kunnskapsmøte.
 
-```text
-by:
-people | nature | badges
-works | civication | brands
-før_nå | fortellinger | leksikon
+Quiz, Observer, Notat og Rute kan fortsatt ha egne tydelige handlingsknapper/flows. De skal ikke gjøres til visuelle samleobjekter bare for å fylle runding-gridet.
 
-historie:
-people | works | badges
-før_nå | civication | brands
-nature | fortellinger | leksikon
+## Wonderkammer
 
-historisk:
-people | works | badges
-før_nå | civication | brands
-nature | fortellinger | leksikon
+`wonderkammer` er **ikke en canonical PlaceCard-runding mens modellen konsolideres**.
 
-natur:
-tasks | nature | badges
-training | civication | brands
-før_nå | fortellinger | leksikon
+Repoet inneholder historisk tre ulike Wonderkammer-idéer:
 
-sport:
-people | training | badges
-works | civication | brands
-før_nå | fortellinger | leksikon
+1. navigasjonsnett som leder videre til personer, steder, praksiser og institusjoner;
+2. aktivitets-/leke-/treningssoner med `activityText`, alder og instruksjoner;
+3. nyere stedsspesifikke kuriositeter og `actual_site_treasure`-oppføringer.
 
-lekeplass:
-play | nature | badges
-tasks | civication | brands
-før_nå | fortellinger | leksikon
+Disse skal ikke blandes i én runding. Den aktive Wonderkammer-kontrakten dokumenteres i `data/wonderkammer/wonderkammer.md`. Generiske aktivitetsoppføringer skal migreres til På stedet/handlingsflater; relasjons-/navigasjonsinnhold skal bruke relations/NextUp; bare den konsoliderte Wonderkammer-typen kan eventuelt bli en visuell samling senere.
 
-trening:
-people | nature | badges
-training | civication | brands
-før_nå | tasks | leksikon
+## `rounds` og `rounds_exclude`
 
-politikk:
-people | works | badges
-før_nå | civication | brands
-nature | fortellinger | leksikon
+`place.rounds` / `rundinger` finnes fortsatt for bakoverkompatibilitet og manuell kuratering.
 
-kunst:
-people | works | badges
-nature | civication | brands
-før_nå | fortellinger | leksikon
+For nye eller reviderte steder:
 
-litteratur:
-people | works | badges
-nature | civication | brands
-før_nå | fortellinger | leksikon
+- bruk bare canonical visuelle ID-er i `rounds`;
+- bruk `rounds_exclude` når en ellers relevant standardrunding ikke passer stedet;
+- ikke legg inn kunnskapsfaner eller handlinger for å fylle plass;
+- ikke krev et bestemt antall rundinger.
 
-musikk:
-people | works | badges
-nature | civication | brands
-før_nå | fortellinger | leksikon
-
-vitenskap:
-people | nature | badges
-works | civication | brands
-før_nå | fortellinger | leksikon
-
-media:
-people | nature | badges
-works | civication | brands
-før_nå | fortellinger | leksikon
-
-psykologi:
-people | nature | badges
-works | civication | brands
-før_nå | fortellinger | leksikon
-
-religion:
-people | nature | badges
-works | civication | brands
-før_nå | fortellinger | leksikon
-
-subkultur:
-people | works | badges
-play | civication | brands
-før_nå | fortellinger | leksikon
-
-naeringsliv:
-people | works | badges
-før_nå | civication | brands
-nature | fortellinger | leksikon
-
-transport:
-people | works | badges
-før_nå | civication | brands
-nature | fortellinger | leksikon
-```
-
-## Legacy aliases
-
-Runtime støtter disse bakoverkompatible aliasene slik at eksisterende data ikke
-knekker:
-
-- `lexicon` -> `leksikon`
-- `stories` / `story` -> `fortellinger`
-- `wonderkammer` -> `leksikon`
-- `football` / `music` -> `works`
-- `routes` er legacy alias for `før_nå`, men skal ikke brukes som ny canonical runding.
-- `observations` er legacy og skal ikke brukes som ny canonical runding.
-
-Nye data skal bruke canonical id-er hvis metadatafeltet fortsatt trengs. `routes` er ikke PlaceCard-runding fordi ruter håndteres av egen Rute-knapp/footer, Nearby/Utforsk og ruteflyt.
-
-## Leksikon og Wonderkammer
-
-`leksikon` er kunnskaps- og oppdagelsesinngangen i PlaceCard. Wonderkammer er
-ikke lenger en egen hovedrunding, men skal fortsatt eksistere som innholdstype og
-ligge under Leksikon-flowen / Leksikon-huben sammen med for eksempel begreper,
-språk, forklaringer, objekter, detaljer og lesespor.
-
-Quiz og kunnskapsspørsmål uten en konkret fysisk stedshandling bør heller ligge
-under `leksikon`, `fortellinger` eller `badges` enn å gi stedet `tasks`.
-
-## Observasjoner
-
-`observations` er ikke en canonical PlaceCard-runding nå. Eventuelle eksisterende
-observasjons-, notat- eller “legg til”-flyter skal beholdes som handlinger utenfor
-runding-gridet. Ikke bruk `observations` som ny PlaceCard-runding.
-
-## Kuratoriske kriterier
-
-### people
-
-Personer knyttet til stedet: forfattere, kunstnere, politikere, idrettsfolk,
-vitenskapsfolk, arkitekter, musikere, lokale aktører, historiske skikkelser og
-personer som har bodd, virket, opptrådt, bygget, skrevet, forsket, kjempet eller
-blitt minnet der.
-
-### nature
-
-Fysisk miljø og naturspor ved stedet. `nature` betyr ikke bare villmark; den kan
-også dekke bynatur, landskap, grøntstruktur, vann, trær, vær, topografi,
-materialitet og stedets fysiske omgivelser. Derfor kan `nature` brukes som en
-stabil innholdsrunding i flere kultur-, institusjons- og transportprofiler.
-
-### works
-
-Stedets verk, produksjoner, stats og prestasjoner. Dette kan være bøker, sanger,
-filmer, malerier, skulpturer, teaterstykker, TV-/radioprogrammer,
-arkitekturverk, taler, artikler, kamper, rekorder, mål, finaler,
-idrettsprestasjoner, utstillinger og forestillinger. Legacy `football` og
-`music` mappes hit fordi kamper, rekorder, låter, konserter, utgivelser og
-prestasjoner hører hjemme i denne rundingen.
-
-### badges
-
-Merker, samling, progresjon og underbadges. Brukes når stedet bør gi
-samlings-/progresjonsverdi eller inngå i et faglig/kuratorisk badge-system.
-
-### tasks
-
-`tasks` er en handlingsrunding, ikke en hypotetisk oppgaveplass. Bruk den bare
-når rundingen kan bety noe brukeren faktisk kan gjøre på stedet: finne noe, leke
-noe, trene noe, observere noe, utføre en fysisk aktivitet eller løse en konkret
-stedshandling.
-
-`tasks` skal bare brukes i kategori-profiler der oppgaven er konkret:
-
-- `natur` — observasjons-/finn-/se-etter-oppgaver, artsjakt, spor, stier og
-  friluftshandlinger.
-- `lekeplass` — leke-, finne-, bevegelses- og barneoppgaver.
-- `trening` — økter, runder, intervaller, styrkeoppgaver og fysisk aktivitet.
-
-Kultur-, institusjons-, transport- og politikksteder skal ikke få `tasks` bare
-fordi de kan ha quiz eller oppgaver senere. Uten en konkret fysisk oppgave bør
-quiz/kunnskapsspørsmål heller kurateres under `leksikon`, `fortellinger` eller
-`badges`.
-
-### play
-
-`play` skal ikke brukes bredt. Bruk den for `lekeplass`, og eventuelt i
-`subkultur` der lek, skate, eksperimentering eller uformell bruk av byrom gir
-mening.
-
-### training
-
-Trening, fysisk øving, runder, aktivitetsopplegg og idrettsnære handlinger.
-
-Stedsspesifikt innhold kan ligge i `training_profile` uten å overstyre
-`place.rounds`:
+Eksempel:
 
 ```json
 {
-  "training_profile": {
-    "title": "Kort tittel",
-    "summary": "Hva økten trener på ved akkurat dette stedet.",
-    "safety": "Stedsspesifikk trygghetsregel.",
-    "exercises": [
-      {
-        "id": "stabil_id",
-        "title": "Øvelsesnavn",
-        "instruction": "Konkret fysisk framgangsmåte.",
-        "duration_minutes": 10,
-        "intensity": "lett",
-        "why": "Hvorfor øvelsen hører hjemme her."
-      }
-    ]
-  }
-}
-```
-
-`training_profile` skal bare fylles når kategori-profilen faktisk har
-`training`, og øvelsene skal kunne utføres trygt og lovlig på stedet.
-
-### civication
-
-Civication Store: en stedsspesifikk store-/butikk-/samlingsfunksjon for konkrete
-fysiske objekter knyttet til akkurat dette stedet. Objektene kan kjøpes eller
-samles og brukes videre i Civication, for eksempel som tegn på stedets historie,
-funksjon, institusjon, symboler eller fysiske miljø. Generiske objekter skal ikke
-legges inn: et godt Civication Store-objekt bør miste mye av meningen sin hvis
-det flyttes til et annet sted. `civication` er fortsatt canonical
-PlaceCard-round-id-en, selv om UI-konseptet kan hete “Civication Store”.
-
-### brands
-
-Aktører: institusjoner, organisasjoner, klubber, museer, medier, butikker,
-scener, offentlige aktører, bedrifter, idrettslag og andre navngitte
-systemaktører. `brands` betyr ikke bare kommersielle merkevarer.
-
-### før_nå
-
-Visuelt og stedlig før/etter-innhold: historiske bilder, dagens bilde,
-transformasjon, og endringer i bruk, uttrykk og fysisk miljø.
-
-### fortellinger
-
-Narrative historier, hendelser, scener, historiske øyeblikk og “hva skjedde
-her”. `fortellinger` dekker behovet for events/hendelser som PlaceCard-runding;
-`stories` / `story` er bare legacy aliases.
-
-### leksikon
-
-Forklaringer, begreper, fagord, språkleksikon, kontekst, kunnskapskort og
-Wonderkammer-innhold som objekter, detaljer og ting å se etter på stedet.
-Leksikon kan fortsatt lenke videre til fortellinger, lesespor og Wonderkammer der
-huben gjør det.
-
-## Ikke egne PlaceCard-rundinger nå
-
-- `wonderkammer` er ikke egen hovedrunding; det ligger under `leksikon`.
-- `observations` er ikke egen hovedrunding; observasjoner håndteres som handling
-  eller separat flyt utenfor gridet.
-- Tidslinje er ikke egen runding nå; tids-/epokeinformasjon kan ligge i badges,
-  leksikon, fortellinger eller annet relevant innhold.
-- Nærhet/koblinger håndteres av NextUp/Fortsett reisen, ikke av en egen
-  PlaceCard-runding.
-- Kategorinavn som `football`, `music`, `art`, `literature`, `science`,
-  `politics`, `history`, `market`, `transport`, `memorial` og `subculture` skal
-  ikke brukes som canonical PlaceCard-rundinger.
-
-
-## Kuraterte eksklusjoner (`rounds_exclude`)
-
-Kategori-profilene er standardprofiler, ikke et krav om at alle steder skal tvinges inn i ni rundinger. Når en standardrunding er faglig irrelevant, kan stedet bruke `rounds_exclude`. Ekskluderte rundinger fjernes uten at runtime fyller hullet med en tilfeldig erstatning.
-
-### Minneskilt, minneplaketter og blå skilt
-
-Når gameplay-objektet er et **minneskilt, en minneplakett eller en tilsvarende liten offentlig minnemarkør**, skal stedet alltid ha:
-
-```json
-{
+  "id": "eksempel_sted",
+  "rounds": ["people", "works", "brands", "badges"],
   "rounds_exclude": ["nature"]
 }
 ```
 
-Slike steder skal **ikke få Nature-rundingen**. Ikke fyll Nature med generell bynatur, vær, gatebeplantning, fasadematerialer eller andre tilfeldige omgivelser bare for å fylle et 3x3-grid. Dersom det historiske emnet faktisk har et eget natursted, skal det naturstedet representeres separat; naturen skal ikke legges på minneplaketten.
+## Runtime og kompatibilitet
 
-Det er heller ikke tillatt å erstatte den fjernede Nature-rundingen med irrelevante `tasks`, `play` eller `training`. Et kuratert minneskilt kan derfor ha færre enn ni rundinger.
+Den eldre PlaceCard-runtimekoden kjenner fortsatt flere historiske round-ID-er og kategori-profiler. `js/ui/place-rounds-visual-collections.js` er presentasjonsgrensen som snevrer den brukerrettede flaten inn til canonical visuelle samlinger uten å slette legacy-data.
+
+`js/ui/place-onsite-surface.js` overtar presentasjonen av handlinger, møter/kunnskapsmøter og events under `#pcEventsBox` / **På stedet**.
+
+Det betyr:
+
+- gammel JSON trenger ikke massemigreres for at UI-et skal bli ryddig;
+- legacy round-ID-er kan fortsatt leses under migrering;
+- brukerflaten viser bare relevante visuelle rundinger;
+- handlinger forsvinner ikke når de tas ut av runding-gridet;
+- source-data kan migreres separat og kontrollert senere.
+
+## Kuratoriske kvalitetsporter
+
+En foreslått ny runding består testen når svaret på alle disse er ja:
+
+1. Representerer den **ting**, ikke en artikkel, en fane eller en handling?
+2. Kan hvert element få et meningsfullt visuelt kort, bilde, ikon eller tydelig collectible-uttrykk?
+3. Har elementene egen identitet som brukeren kan forstå og åpne?
+4. Er koblingen til stedet dokumentert og stedsspesifikk?
+5. Gir samlingen mening selv om stedspopupens brødtekst ikke vises?
+
+Hvis nei, skal innholdet normalt inn i stedspopupen eller **På stedet**.
+
+## Minneskilt og små markører
+
+Tidligere regel om å ekskludere tilfeldig natur på minneskilt gjelder fortsatt. Et minneskilt skal ikke få Nature-runding bare fordi det står ute. Bruk `rounds_exclude: ["nature"]` når naturinnholdet ikke handler om selve objektet eller et dokumentert, stedsspesifikt naturspor.
+
+## Filer
+
+- Presentasjonsruntime for rundinger: `js/ui/place-rounds-visual-collections.js`
+- På stedet-runtime: `js/ui/place-onsite-surface.js`
+- Legacy round registry og source-renderere: `js/ui/place-card.js`
+- Popupfaner: `js/ui/place-popup-tabs.js`
+- Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
+- Wonderkammer-kontrakt: `data/wonderkammer/wonderkammer.md`
