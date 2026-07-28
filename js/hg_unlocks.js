@@ -9,6 +9,8 @@
   "use strict";
 
   const KEY = "hg_unlocks_v1";
+  const PLACE_COLLECTION_KEY = "places_collected";
+
   function dispatchProfileUpdate() {
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
   }
@@ -27,6 +29,37 @@
     try {
       localStorage.setItem(KEY, JSON.stringify(x));
     } catch {}
+  }
+
+  function loadCollectedPlaces() {
+    try {
+      const x = JSON.parse(localStorage.getItem(PLACE_COLLECTION_KEY) || "{}");
+      if (!x || typeof x !== "object" || Array.isArray(x)) return {};
+      return x;
+    } catch {
+      return {};
+    }
+  }
+
+  function recordCollectedPlace(placeId, source = "quiz") {
+    const id = normId(placeId);
+    if (!id) return false;
+
+    const collected = loadCollectedPlaces();
+    if (collected[id]) return false;
+
+    collected[id] = {
+      source: normId(source) || "quiz",
+      ts: Date.now()
+    };
+
+    try {
+      localStorage.setItem(PLACE_COLLECTION_KEY, JSON.stringify(collected));
+      dispatchProfileUpdate();
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   function asArr(x) {
@@ -170,9 +203,21 @@
 
   window.HGUnlocks = {
     key: KEY,
+    placeCollectionKey: PLACE_COLLECTION_KEY,
     load,
+    loadCollectedPlaces,
+    recordCollectedPlace,
     recordFromQuiz
   };
+
+  // A target-unlock for a place only fires when the place itself is actually
+  // unlocked by quiz completion (legacy perfect quiz or all configured sets).
+  // Keep that collectible state separate from physical visit persistence.
+  window.addEventListener("hg:target-unlock", (event) => {
+    const detail = /** @type {CustomEvent} */ (event).detail || {};
+    if (detail?.kind !== "place") return;
+    recordCollectedPlace(detail.id, "quiz");
+  });
 
   // NextUp progression is an optional extension that patches HGNavigator when it
   // becomes available. Loading it here keeps the extension close to quiz/progress
