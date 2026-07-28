@@ -2,7 +2,7 @@
 
 Status: **canonical produktstandard for et History GO-sted**  
 Eier: `place_product_standard`  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-07-29**
 
 Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, rundinger, People eller koordinater.
 
@@ -18,7 +18,7 @@ Sted-for-sted arbeidsrekkefølge:
 | Place-data/manifester/referanser | `docs/DATA_PRODUCTION_CONTRACT.md` |
 | `desc` / `popupDesc` produksjon | `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` |
 | Popup-presentasjon | `docs/PLACE_POPUP_SYSTEM.md` |
-| Rundinger | `data/places/README_place_rounds.md` |
+| Rundinger | **`data/places/README_place_rounds.md`** |
 | Kategorier | `data/categories/category_contract.json` |
 | Koordinater | `docs/coordinates/coordinate-source-contract-v1.md` |
 | People–sted | `docs/people-of-places-method.md` |
@@ -31,6 +31,8 @@ Sted-for-sted arbeidsrekkefølge:
 | Fagverk-navigasjon | `docs/FAGVERK_NAVIGATION.md` |
 
 Ved konflikt gjelder subsystemets eierkontrakt og faktisk source/runtime foran oppsummeringen her.
+
+**Denne filen gjentar ikke rundingspalett, rundingsantall eller rundingsprioriteringer.** Alt dette eies bare av `data/places/README_place_rounds.md`.
 
 ## 2. Grunnmodell
 
@@ -83,11 +85,11 @@ Relevante og dokumenterte felt kan blant annet være:
   cardImage,
   frontImage,
   emne_ids,
-  rounds,
-  rounds_exclude,
   objects,
   details,
   spots,
+  flora,
+  fauna,
   spatial_profile,
   temporal_profile,
   subplaces,
@@ -103,6 +105,8 @@ Relevante og dokumenterte felt kan blant annet være:
 ```
 
 Felt brukes når de faktisk har en rolle. Manglende relevant informasjon skal ikke fylles med plausibelt innhold.
+
+`rounds`, `rundinger` og `rounds_exclude` kan fortsatt finnes i eldre data som compatibility-felt, men er ikke canonical styringsfelt for ny rundingspresentasjon. Se rundingkontrakten.
 
 Canonical data kan også eies utenfor place-recorden: People, Works, Brands, Stories, Leksikon, Før/etter, Lesespor, Quiz, Nature mappings, observations, routes, events og På stedet-profiler.
 
@@ -126,26 +130,14 @@ Denne stedstandarden fastslår bare rollen:
 
 ### Rundinger
 
-Visuelle samlingsinnganger til identifiserbare ting.
-
-Canonical palett:
-
-```text
-Badges · People · Works · Objects · Details · Spots · Nature · Brands
-```
-
-Et ferdig sted viser nøyaktig 4 eller 6. `Badges` er obligatorisk.
+PlaceCard har en canonical rundingsflate. **Hele rundingsmodellen eies av `data/places/README_place_rounds.md`.** Denne filen skal ikke kopiere eller oppsummere paletten.
 
 ### På stedet
 
-Hva som faktisk skjer eller kan gjøres ved stedet, for eksempel:
+Hva som faktisk skjer eller kan gjøres ved stedet. Synlighet og handlinger eies av:
 
-- Events;
-- Social Meet;
-- Spotmeeting/Kunnskapsmøte;
-- Tasks;
-- Training;
-- Play.
+- `docs/PLACE_ONSITE_SYSTEM.md`;
+- `data/categories/place_onsite_contract.json`.
 
 Quiz, Observer, Notat og Rute kan ha egne flows.
 
@@ -168,7 +160,7 @@ Det skal kunne vise, når relevant og implementert:
 - navn og kategori;
 - korrekt stedbilde;
 - `desc`;
-- 4 eller 6 rundinger;
+- canonical rundingsflate etter rundingkontrakten;
 - På stedet;
 - handlingsknapper;
 - favoritt;
@@ -183,29 +175,15 @@ Lang kunnskap hører i popupen, ikke i selve PlaceCard.
 
 `underbadge_ids` brukes til canonical underbadges.
 
-Badges-rundingen åpner:
+Navigasjon mellom sted, merke og fag eies av `docs/FAGVERK_NAVIGATION.md`. Rundingens presentasjonsrolle eies av rundingkontrakten.
 
-```text
-fagverk-sted.html?place=<place_id>
-```
+## 9. Rundinger og place-felt
 
-Merke- og fagsider har forskjellige roller; se `docs/FAGVERK_NAVIGATION.md`.
+Denne filen definerer **ingen rundingstyper**.
 
-## 9. Rundinger og canonical place-felt
-
-Detaljreglene eies av `data/places/README_place_rounds.md`.
-
-For ny/revidert stedproduksjon:
-
-- `rounds` = eksplisitt 4/6-kuratering;
-- `objects` = nye Object-kort;
-- `details` = nye Detail-kort;
-- `spots` = nye Spot-kort;
-- `subplaces` beholdes for reell stedstruktur/soner og kan også være compatibility-kilde for Spots.
-
-Legacy aliaser skal ikke bli nye standarder.
-
-Nature er valgfri. Brands betyr fortsatt bare bedrifter og kjente merker med dokumentert stedskobling.
+- `objects`, `details`, `spots`, `subplaces`, `flora`, `fauna` og andre strukturer kan være gyldige place-/subsystemdata uavhengig av om de presenteres som runding;
+- eksisterende data skal ikke omklassifiseres bare for å fylle PlaceCard;
+- all beslutning om hva som faktisk er en runding ligger i `data/places/README_place_rounds.md`.
 
 ## 10. Strukturerte place-profiler
 
@@ -227,7 +205,7 @@ Kort historisk lagdeling som kan brukes i Historie-fanen. Det erstatter ikke can
 
 ### `nature_profile`
 
-Landskap, habitat, sesong og observerbar naturkarakter til Om. Det er ikke automatisk en Nature-runding.
+Landskap, habitat, sesong og observerbar naturkarakter til Om. Rundingspresentasjon bestemmes separat av rundingkontrakten.
 
 ### `source_summary`
 
@@ -250,9 +228,9 @@ Se `docs/COMPLETION_DEFINITIONS.md`, `docs/PROGRESSION_MODEL.md` og `docs/QUIZ_A
 
 ## 12. Wonderkammer og Civication
 
-Wonderkammer er legacy migreringsgrunnlag, ikke ny PlaceCard-runding eller ny stedproduksjonsmodell.
+Wonderkammer er legacy migreringsgrunnlag, ikke en ny PlaceCard-runding eller ny stedproduksjonsmodell.
 
-Civication er et separat spillsystem. En fysisk Civication-ting kan vises som Object når den også kvalifiserer som et virkelig stedsspesifikt objekt.
+Civication er et separat spillsystem. En fysisk Civication-ting kan gjenbrukes av et annet eierlag når den kvalifiserer etter den eierens kontrakt; Civication-identitet i seg selv gjør den ikke til en runding.
 
 ## 13. Produksjonsferdig sted
 
