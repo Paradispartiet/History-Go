@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_place_design_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updatedAt": "2026-07-28",
   "principles": {
     "sharedLayout": true,
@@ -18,6 +18,7 @@
   },
   "aliases": {
     "film": "popkultur",
+    "film_tv": "popkultur",
     "media": "popkultur",
     "populaerkultur": "popkultur",
     "business": "naeringsliv",
@@ -57,6 +58,17 @@
       "imageTreatment": "gallery_precise",
       "imageDirection": "Vis verket, kunstrommet eller den arkitektoniske sammenhengen presist. Ikke bruk dekorative kunstbilder som ikke tilhører stedet.",
       "contentPriority": ["verk_og_materiale", "kunstner_og_produksjon", "rom_og_visning", "mottakelse_og_institusjon"]
+    },
+    "scenekunst": {
+      "label": "Scenekunst",
+      "accent": "#e85f86",
+      "accentSecondary": "#e2bc55",
+      "surface": "#190e13",
+      "glow": "rgba(232,95,134,.22)",
+      "titleStyle": "stage_display",
+      "imageTreatment": "venue_atmosphere",
+      "imageDirection": "Vis teatret, scenen, publikumsrommet eller den konkrete arenaen. Forestillingsfoto kan supplere, men teller ikke alene som bilde av stedet.",
+      "contentPriority": ["scene_og_rom", "verk_og_framforing", "institusjon_og_arbeid", "publikum_og_offentlighet"]
     },
     "litteratur": {
       "label": "Litteratur",
@@ -134,6 +146,17 @@
       "imageTreatment": "calm_contextual",
       "imageDirection": "Vis det konkrete stedet eller miljøet. Unngå generiske stockfoto av ansikter, hjerner eller følelser når de ikke dokumenterer stedet.",
       "contentPriority": ["miljo_og_atferd", "institusjon_og_praksis", "begreper_og_metoder", "etikk_og_erfaring"]
+    },
+    "religion": {
+      "label": "Religion og livssyn",
+      "accent": "#d4b36b",
+      "accentSecondary": "#8ca8c7",
+      "surface": "#17140f",
+      "glow": "rgba(212,179,107,.2)",
+      "titleStyle": "editorial_serif",
+      "imageTreatment": "quiet_documentary",
+      "imageDirection": "Vis kirken, moskeen, tempelet, gravplassen, møtehuset eller det konkrete livssynsstedet. Symbol eller ritualfoto alene teller ikke som stedsbilde.",
+      "contentPriority": ["sted_og_ritual", "institusjon_og_fellesskap", "arkitektur_og_symbol", "historie_og_mangfold"]
     },
     "sport": {
       "label": "Sport",
