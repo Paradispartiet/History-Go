@@ -19,7 +19,7 @@
       media: "data/fag/media/emner_media_populaerkultur_canonical_v4_5.json",
       naeringsliv: "data/fag/naeringsliv/emner_naeringsliv.json",
       sport: "data/fag/sport/emner_sport.json",
-      politikk: "data/fag/politikk/emner_politikk.json",
+      politikk: "data/fag/politikk/emner_politikk_canonical_v4_5.json",
       subkultur: "data/fag/subkultur/emner_subkultur.json",
       psykologi: "data/fag/psykologi/emner_psykologi.json"
     };

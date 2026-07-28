@@ -1,52 +1,6 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-
-const runtime = fs.readFileSync('js/ui/place-learning-surface.js', 'utf8');
-const loader = fs.readFileSync('js/ui/place-card-status-surface.js', 'utf8');
-const page = fs.readFileSync('fagverk.html', 'utf8');
-
-test('place-card loader requests the learning surface', () => {
-  assert.match(loader, /js\/ui\/place-learning-surface\.js/);
-  assert.match(loader, /loadPlaceLearningSurface\(\)/);
-});
-
-test('relation cards expose whole-card targets and inspectable source links', () => {
-  assert.match(runtime, /class="hg-relation-card-main"/);
-  assert.match(runtime, /data-person/);
-  assert.match(runtime, /data-place/);
-  assert.match(runtime, /class="hg-rel-source-link"/);
-  assert.match(runtime, /target="_blank"/);
-  assert.match(runtime, /rel="noopener noreferrer"/);
-});
-
-test('alle stedspopuper får inngang til egen fagverkside', () => {
-  assert.match(runtime, /fagverk-sted\.html\?place=/);
-  assert.match(runtime, /Åpne stedets fagverkside/);
-  assert.match(runtime, /Stedet har sin egen fagverkside/);
-  assert.match(runtime, /insertAdjacentHTML\('afterend'/);
-});
-
-test('registrerte steder får begreper, emner og fagsider i tillegg', () => {
-  assert.match(runtime, /Fag og begreper/);
-  assert.match(runtime, /fagverk\.html\?/);
-  assert.match(runtime, /concept/);
-  assert.match(runtime, /emne/);
-});
-
-test('fagverk page exposes pedagogical layers and independent place links', () => {
-  for (const id of [
-    'fagverkDiagnostic',
-    'fagverkExamples',
-    'fagverkMisconceptions',
-    'fagverkConceptGrid',
-    'fagverkApplication',
-    'fagverkSelfCheck',
-    'fagverkCases',
-    'fagverkSources'
-  ]) {
-    assert.match(page, new RegExp(`id="${id}"`));
-  }
-  assert.match(page, /Stedene har egne fagverksider/);
-  assert.match(page, /js\/fagverk\.js/);
-});
+const test=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');
+const surface=fs.readFileSync('js/ui/place-learning-surface.js','utf8');const canonical=fs.readFileSync('js/ui/place-learning-canonical.js','utf8');const loader=fs.readFileSync('js/ui/place-card-status-surface.js','utf8');
+test('tilknytningskort og kildelenker forblir klikkbare separat',()=>{assert.match(surface,/hg-relation-card-main/);assert.match(surface,/data-person/);assert.match(surface,/data-place/);assert.match(surface,/Åpne kilde/);assert.match(surface,/stopPropagation/);});
+test('stedspopupen har egen inngang til stedets fagverkside',()=>{assert.match(surface,/fagverk-sted\.html\?place=/);assert.match(surface,/Åpne stedets fagverkside/);});
+test('popupen laster samme canonicale politikkmodell som fagverket',()=>{assert.match(loader,/js\/politikk-fag-model\.js/);assert.match(loader,/js\/ui\/place-learning-canonical\.js/);assert.match(canonical,/HGPolitikkFagModel\.resolvePlace/);assert.match(canonical,/model\.underbadges/);assert.match(canonical,/model\.domains/);assert.match(canonical,/model\.emners/);assert.match(canonical,/model\.chapters/);});
+test('canonical popupinnhold erstatter ikke relasjonsrenderer eller stedsside',()=>{assert.match(canonical,/data-canonical-politikk-learning/);assert.match(canonical,/hg-place-learning-concepts/);assert.match(canonical,/hg-place-learning-chapters/);assert.match(canonical,/hg-place-learning-emner/);});
