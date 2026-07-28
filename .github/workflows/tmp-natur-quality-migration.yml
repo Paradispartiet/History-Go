@@ -1,0 +1,237 @@
+name: Temporary Natur quality migration
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Apply editorial and structural quality lift
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const writeJson = (p, v) => fs.writeFileSync(p, `${JSON.stringify(v, null, 2)}\n`);
+          const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
+          const clean = (value) => {
+            if (typeof value === 'string') return value.replaceAll('miljørettpferdig', 'miljørettferdig').replaceAll('Miljørettpferdig', 'Miljørettferdig');
+            if (Array.isArray(value)) return value.map(clean);
+            if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, clean(v)]));
+            return value;
+          };
+
+          const emnePath = 'data/fag/natur/emner_natur_canonical_v4_5.json';
+          const emners = readJson(emnePath);
+          const emneUpdates = clean(readJson('tmp/natur_emne_quality_updates.json'));
+          assert(emners.length === 35 && Object.keys(emneUpdates).length === 35, 'Emneregisteret skal dekke nøyaktig 35 emner');
+          const knownEmneIds = new Set(emners.map((e) => e.emne_id));
+          for (const id of Object.keys(emneUpdates)) assert(knownEmneIds.has(id), `Ukjent emneoppdatering: ${id}`);
+          for (const emne of emners) Object.assign(emne, emneUpdates[emne.emne_id]);
+          writeJson(emnePath, emners);
+
+          const pensumPath = 'data/fag/natur/naturpensum_canonical_v4_5.json';
+          const pensum = readJson(pensumPath);
+          pensum.scope = 'universal';
+          pensum.application_scope = 'stedbasert_fag_med_oslo_og_omegn_som_forste_geografiske_produksjonslag';
+          pensum.updated_at = '2026-07-29';
+          pensum.purpose = 'Universelt pensum for Natur & miljø i History Go. Faget bygger forståelse fra dokumenterte arter, habitat, vann, klima, geologi og miljøpåvirkning til økologiske prosesser, metoder, usikkerhet og forvaltning. Geografiske steder brukes som undersøkelser og eksempler, ikke som grense for faget.';
+          const roles = {
+            okosystem_mangfold_habitat: 'Start i dokumenterte organismer, habitatkrav og økologiske relasjoner; skill artsfunn, bestand, habitat og systemfunksjon.',
+            vann_hydrologi_kretslop: 'Følg vann og stoff fra nedbørfelt og kilde gjennom strøm, lagring og kvalitet til konsekvenser oppstrøms og nedstrøms.',
+            klima_energi_resiliens: 'Skill vær fra klima og fare fra eksponering og sårbarhet før energi, karbon, risiko, resiliens eller vippepunkt vurderes.',
+            geologi_landskap_tid: 'Les stedet som materiale, form, prosess og tidsrekkefølge; kontroller landskapstolkningen mot kart, feltspor og geologiske kilder.',
+            urban_okologi_gronnstruktur: 'Skill grønt uttrykk fra dokumentert habitat, mikroklima og konnektivitet; undersøk hvordan byform, drift og bruk påvirker funksjonen.',
+            miljopavirkning_forvaltning_regenerasjon: 'Dokumenter belastning, ansvar, mål, virkemiddel og målt respons; skill vedtak og intensjon fra gjennomføring og økologisk resultat.'
+          };
+          for (const domain of pensum.domains) {
+            assert(roles[domain.domain_id], `Mangler question_role for ${domain.domain_id}`);
+            domain.question_role = roles[domain.domain_id];
+          }
+          writeJson(pensumPath, pensum);
+
+          const methodPath = 'data/fag/natur/methods_natur_canonical_v4_5.json';
+          const methodsDoc = readJson(methodPath);
+          const methodUpdates = clean(readJson('tmp/natur_method_quality_updates.json'));
+          assert(methodsDoc.methods.length === 30 && Object.keys(methodUpdates).length === 30, 'Metoderegisteret skal dekke nøyaktig 30 metoder');
+          const knownMethodIds = new Set(methodsDoc.methods.map((m) => m.method_id));
+          for (const id of Object.keys(methodUpdates)) assert(knownMethodIds.has(id), `Ukjent metodeoppdatering: ${id}`);
+          for (const method of methodsDoc.methods) Object.assign(method, methodUpdates[method.method_id]);
+          methodsDoc.scope = 'universal';
+          methodsDoc.application_scope = 'kan_anvendes_globalt_med_stedsspesifikke_data_og_kilder';
+          methodsDoc.version = 'v4.5-canonical';
+          methodsDoc.updated_at = '2026-07-29';
+          methodsDoc.purpose = 'Metodekatalog for Natur & miljø. Hver metode beskriver hva den undersøker, hvilket materiale den krever, en etterprøvbar arbeidsprosedyre og begrensninger som må synliggjøres før en konklusjon trekkes.';
+          writeJson(methodPath, methodsDoc);
+
+          const fagkartPath = 'data/fag/natur/fagkart_natur_canonical_v4_5.json';
+          const fagkart = readJson(fagkartPath);
+          const hookUpdates = clean(readJson('tmp/natur_hook_quality_updates.json'));
+          const hooks = fagkart.categories.flatMap((category) => (category.topic_hooks || []).map((hook) => ({ category, hook })));
+          assert(hooks.length === 60 && Object.keys(hookUpdates).length === 60, 'Hookregisteret skal dekke nøyaktig 60 hooks');
+          const hookIndex = new Map();
+          for (const { category, hook } of hooks) {
+            const update = hookUpdates[hook.id];
+            assert(update, `Mangler hookoppdatering: ${hook.id}`);
+            hook.focus_question = update.focus_question;
+            hook.evidence_focus = update.evidence_focus;
+            hook.preferred_question_moves = [
+              `Start med ${update.evidence_focus[0]} på et konkret sted eller fenomen.`,
+              update.focus_question,
+              `Kontroller forklaringen mot ${update.evidence_focus[1]} og ${update.evidence_focus[2]}.`
+            ];
+            hook.rotation_note = `For ${hook.title}: skill ${update.contrast}; varier sted, kilde og metode før samme hook brukes igjen.`;
+            if (hook.id === 'fjord_okologi' || hook.id === 'oy_okologi') {
+              hook.emne_ids = [...new Set([...(hook.emne_ids || []), 'em_natur_kyst_okosystemer'])];
+            }
+            hookIndex.set(hook.id, { category, hook, update });
+          }
+          fagkart.scope = 'universal';
+          fagkart.application_scope = 'universelt_fagkart_med_geografiske_case_lag';
+          fagkart.version = 'v4.5-canonical';
+          fagkart.updated_at = '2026-07-29';
+          writeJson(fagkartPath, fagkart);
+
+          const mappingPath = 'data/fag/natur/emnemapping_natur_canonical_v4_5.json';
+          const mappings = readJson(mappingPath);
+          assert(mappings.length === 35, 'Mappingregisteret skal ha 35 emner');
+          const emneById = new Map(emners.map((e) => [e.emne_id, e]));
+          for (const row of mappings) {
+            const emne = emneById.get(row.emne_id);
+            assert(emne, `Mapping peker til ukjent emne ${row.emne_id}`);
+            for (const mapping of row.mappings || []) {
+              const indexed = hookIndex.get(mapping.topic_hook);
+              assert(indexed, `${row.emne_id}: ukjent hook ${mapping.topic_hook}`);
+              mapping.fagkart_kategori = indexed.category.id;
+              mapping.fagkart_kategori_tittel = indexed.category.title;
+              mapping.topic_hook_tittel = indexed.hook.title;
+              mapping.preferred_question_moves = indexed.hook.preferred_question_moves;
+              mapping.evidence_focus = indexed.hook.evidence_focus;
+              mapping.use_note = `Bruk ${indexed.hook.title} til å undersøke ${emne.title.toLocaleLowerCase('nb-NO')}: ${indexed.hook.focus_question}`;
+            }
+          }
+          writeJson(mappingPath, mappings);
+
+          const quizPath = 'data/fag/natur/supersetQUIZMAL_natur.json';
+          const quiz = readJson(quizPath);
+          quiz.version = '2.1';
+          quiz.title = 'Natur & miljø';
+          quiz.normal_question_opening = {
+            sets: 2,
+            questions_per_set: 7,
+            total: 14,
+            mode: 'normal_before_special_formats',
+            rule: 'De første to settene skal bestå av sju naturlige kunnskapsspørsmål hver. Spørsmålene skal starte i dokumentert sted, art, materiale, prosess, måling eller tiltak – ikke i emnenavn, teoretiker eller akademisk formulering.'
+          };
+          quiz.content_priorities = [
+            'arter, artskjennetegn, bestand og habitatkrav',
+            'økologiske samspill, næringsnett og funksjon',
+            'vannvei, hydrologi, vannkvalitet og kretsløp',
+            'berggrunn, løsmasser, terreng og landskapsprosess',
+            'vær, klima, energi, karbon, sårbarhet og resiliens',
+            'urban økologi, grønnstruktur og brukspress',
+            'forurensning, vern, restaurering, overvåking og forvaltning'
+          ];
+          quiz.category_rules = [
+            'Start med dokumentert stoff fra stedet eller fenomenet, ikke med emneetiketten.',
+            'De første 14 spørsmålene skal være to sett med sju normale spørsmål før spesielle metode-, sammenhengs- eller teoriformater brukes.',
+            'Spør direkte om hva, hvem, hvor, når, hvordan eller hvilken dokumentert forskjell som er relevant.',
+            'Skill enkeltobservasjon fra bestand, enkeltmåling fra trend og grønt uttrykk fra økologisk funksjon.',
+            'Bevar relevante faguttrykk i spørsmål, knowledge eller metadata, men unngå at riktig svar bare er det som høres mest akademisk ut.',
+            'Bruk bare emne_id som finnes i kategoriens emnefil.',
+            'Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk.'
+          ];
+          quiz.example_question.emne_id = 'em_natur_okosystem_nettverk';
+          quiz.example_question.source = ['konkret, inspectable fagkilde skal oppgis i produksjonsquizen'];
+          writeJson(quizPath, quiz);
+
+          fs.copyFileSync('tmp/natur_badge_quality.html', 'data/fag/natur/merke_natur (1).html');
+
+          const corePath = 'js/fagverk-subject-core.js';
+          let core = fs.readFileSync(corePath, 'utf8');
+          if (!core.includes('procedure: unique([')) {
+            const marker = '      domainIds: unique([\n';
+            assert(core.includes(marker), 'Fant ikke metodeinnsettingspunkt i fagverk-core');
+            core = core.replace(marker, "      procedure: unique([\n        ...list(method?.procedure),\n        ...list(method?.steps)\n      ]),\n      limitations: unique([\n        ...list(method?.limitations),\n        ...list(method?.blindspots)\n      ]),\n" + marker);
+          }
+          fs.writeFileSync(corePath, core);
+
+          const pagePath = 'js/fagverk.js';
+          let page = fs.readFileSync(pagePath, 'utf8');
+          const oldOverview = "<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p>${method.dataForms.length ? `<small>Materiale: ${escapeHtml(method.dataForms.join(' · '))}</small>` : ''}</details>";
+          const newOverview = "<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p>${method.dataForms.length ? `<h5>Datagrunnlag</h5><ul>${method.dataForms.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}${method.procedure.length ? `<h5>Slik arbeider metoden</h5><ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<h5>Begrensninger</h5><ul>${method.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}</details>";
+          assert(page.includes(oldOverview), 'Fant ikke metodevisningen i fagoversikten');
+          page = page.replace(oldOverview, newOverview);
+          const oldDomain = "<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p></details>";
+          const newDomain = "<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p>${method.procedure.length ? `<h5>Slik arbeider metoden</h5><ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<h5>Begrensninger</h5><ul>${method.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}</details>";
+          assert(page.includes(oldDomain), 'Fant ikke metodevisningen i fagområdet');
+          page = page.replace(oldDomain, newDomain);
+          const oldEmne = "<li><strong>${escapeHtml(method.title)}</strong>${method.description ? ` — ${escapeHtml(method.description)}` : ''}</li>";
+          const newEmne = "<li><details><summary><strong>${escapeHtml(method.title)}</strong></summary>${method.description ? `<p>${escapeHtml(method.description)}</p>` : ''}${method.procedure.length ? `<ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<p><strong>Begrensninger:</strong> ${escapeHtml(method.limitations.join(' · '))}</p>` : ''}</details></li>";
+          assert(page.includes(oldEmne), 'Fant ikke metodevisningen på emnesiden');
+          page = page.replace(oldEmne, newEmne);
+          fs.writeFileSync(pagePath, page);
+
+          const generalTestPath = 'tests/fagverk-general-engine.test.mjs';
+          let generalTest = fs.readFileSync(generalTestPath, 'utf8');
+          const oldFixture = "{ method_id: 'met_a', title: 'Metode A', description: 'Undersøker A.' }";
+          const newFixture = "{ method_id: 'met_a', title: 'Metode A', description: 'Undersøker A.', procedure: ['Avgrens', 'Samle', 'Vurder'], limitations: ['Utvalg', 'Usikkerhet'] }";
+          assert(generalTest.includes(oldFixture), 'Fant ikke metodefixture i generell test');
+          generalTest = generalTest.replace(oldFixture, newFixture);
+          const assertionMarker = "  assert.deepEqual([...model.emners[0].methodIds], ['met_a']);\n";
+          assert(generalTest.includes(assertionMarker), 'Fant ikke metodeassertion i generell test');
+          generalTest = generalTest.replace(assertionMarker, assertionMarker + "  assert.deepEqual([...model.methodsById.get('met_a').procedure], ['Avgrens', 'Samle', 'Vurder']);\n  assert.deepEqual([...model.methodsById.get('met_a').limitations], ['Utvalg', 'Usikkerhet']);\n");
+          fs.writeFileSync(generalTestPath, generalTest);
+
+          const packagePath = 'package.json';
+          const pkg = readJson(packagePath);
+          pkg.scripts['audit:natur:quality'] = 'node scripts/audit-natur-subject-quality.mjs && node scripts/audit-natur-fagkart-quality.mjs';
+          pkg.scripts['test:natur:quality'] = 'node --test tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs';
+          writeJson(packagePath, pkg);
+
+          const reportReadme = 'reports/fagverk/README.md';
+          let readme = fs.readFileSync(reportReadme, 'utf8');
+          for (const line of ['- `natur-quality-audit.json` — emne-, metode-, quiz- og merkesidekvalitet for Natur & miljø.', '- `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 60 Natur-hooks og 35 emnemappings.']) {
+            if (!readme.includes(line)) readme = `${readme.trimEnd()}\n${line}\n`;
+          }
+          fs.writeFileSync(reportReadme, readme);
+          NODE
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate and validate quality reports
+        run: |
+          node scripts/audit-natur-subject-quality.mjs --write-report --no-check-report
+          node scripts/audit-natur-fagkart-quality.mjs --write-report --no-check-report
+          node scripts/audit-natur-subject-quality.mjs
+          node scripts/audit-natur-fagkart-quality.mjs
+          node --test tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs
+          node scripts/audit-fagverk-natur-pilot.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-natur-pilot.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node --test tests/fagverk-natur-pilot.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs
+          npm run typecheck:web
+      - name: Commit quality lift
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/natur data/fagverk reports/fagverk js/fagverk-subject-core.js js/fagverk.js scripts/audit-natur-subject-quality.mjs scripts/audit-natur-fagkart-quality.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/fagverk-general-engine.test.mjs package.json
+          git commit -m 'Gi hele Natur-faget et faglig kvalitetsløft'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
