@@ -15,6 +15,7 @@ jobs:
     env:
       TARGET_BRANCH: agent/nationaltheatret-people-batch-8-v1
       GH_TOKEN: ${{ github.token }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -57,6 +58,6 @@ jobs:
               cat /tmp/b8-test.log
               echo '```'
             } > /tmp/comment.md
-            gh pr comment 4416 --body-file /tmp/comment.md
+            gh pr comment "$PR_NUMBER" --body-file /tmp/comment.md
             exit "$status"
           fi
