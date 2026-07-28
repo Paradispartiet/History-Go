@@ -6,11 +6,13 @@ on:
       - 'fagverk.html'
       - 'fagverk-sted.html'
       - 'data/fagverk/**'
+      - 'data/places/**'
       - 'data/fag/politikk/merke_politikk.html'
       - 'data/fag/politikk/politikk_runtime_manifest.json'
       - 'data/fag/politikk/*canonical_v4_5.json'
       - 'js/fagverk.js'
       - 'js/fagverk-sted.js'
+      - 'js/fagverk-place-theme.js'
       - 'js/fagverk-canonical-integration.js'
       - 'js/fagverk-place-canonical-integration.js'
       - 'js/politikk-fag-model.js'
@@ -26,12 +28,16 @@ on:
       - 'css/fagverk-sted.css'
       - 'css/fagverk-canonical.css'
       - 'css/fagverk-premium.css'
+      - 'css/fagverk-place-category-themes.css'
       - 'css/politikk-fagportal.css'
       - 'css/header-learning-menu.css'
       - 'css/place-learning-surface.css'
       - 'docs/FAGVERK.md'
+      - 'docs/FAGVERK_PLACE_DESIGN.md'
+      - 'scripts/audit-place-images.mjs'
       - 'tests/fagverk-content.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
+      - 'tests/fagverk-place-category-design.test.mjs'
       - 'tests/fagverk-link-audit.test.mjs'
       - 'tests/place-learning-surface.test.js'
       - 'tests/politikk-fag-integration.test.mjs'
@@ -44,10 +50,12 @@ permissions:
 
 jobs:
   validate:
-    name: Validate canonical subject, textbook, design, navigation and links
+    name: Validate canonical subject, textbook, category design, images and links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -57,17 +65,30 @@ jobs:
           node --check js/politikk-fagportal.js
           node --check js/fagverk.js
           node --check js/fagverk-sted.js
+          node --check js/fagverk-place-theme.js
           node --check js/fagverk-canonical-integration.js
           node --check js/fagverk-place-canonical-integration.js
           node --check js/ui/header-menu.js
           node --check js/ui/place-learning-surface.js
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
-      - name: Validate canonical politics, textbook data, design links and place integration
+          node --check scripts/audit-place-images.mjs
+      - name: Validate canonical politics, textbook data, category design, links and place integration
         run: |
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-content.test.mjs
           node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-place-category-design.test.mjs
           node --test tests/fagverk-link-audit.test.mjs
           node --test tests/place-learning-surface.test.js
           node tests/header-search-menu.test.js
+      - name: Require valid images on new and changed places
+        run: node scripts/audit-place-images.mjs --mode=changed
+      - name: Build full place image backlog report
+        run: node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+      - name: Upload place image backlog
+        uses: actions/upload-artifact@v4
+        with:
+          name: place-image-audit
+          path: reports/place-image-audit.json
+          if-no-files-found: error
