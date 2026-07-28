@@ -21,30 +21,31 @@
   const DEF_BY_ID = new Map(VISUAL_ROUND_DEFS.map(def => [def.id, def]));
 
   // Prioritet = 4-runders kjerne først, deretter de to normale utvidelsene.
-  // De siste to er reservevalg ved eksplisitt kuratering.
+  // Brands er ikke en generell aktørkategori. Den ligger bare høyt der eksisterende
+  // bedrift-/merkeinnhold faktisk er et naturlig kategoriutgangspunkt.
   const CATEGORY_ROUND_PRIORITIES = Object.freeze({
     historie:   ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
     historisk:  ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
-    kunst:      ["badges", "works", "people", "details", "brands", "spots", "objects", "nature"],
-    politikk:   ["badges", "people", "brands", "spots", "objects", "details", "works", "nature"],
-    musikk:     ["badges", "people", "works", "brands", "objects", "spots", "details", "nature"],
-    litteratur: ["badges", "people", "works", "objects", "spots", "brands", "details", "nature"],
-    sport:      ["badges", "people", "brands", "spots", "objects", "details", "works", "nature"],
+    kunst:      ["badges", "works", "people", "details", "spots", "objects", "brands", "nature"],
+    politikk:   ["badges", "people", "spots", "details", "objects", "works", "brands", "nature"],
+    musikk:     ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
+    litteratur: ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
+    sport:      ["badges", "people", "objects", "spots", "details", "brands", "works", "nature"],
     natur:      ["badges", "nature", "spots", "details", "people", "objects", "works", "brands"],
-    vitenskap:  ["badges", "people", "objects", "brands", "spots", "details", "nature", "works"],
-    filosofi:   ["badges", "people", "works", "spots", "objects", "brands", "details", "nature"],
+    vitenskap:  ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
+    filosofi:   ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],
 
     // Legacy place-kategorier beholdes som presentasjonskompatibilitet. De er ikke
     // en ny badge-taksonomi og endrer ingen eksisterende Brands-data.
-    by:         ["badges", "spots", "details", "people", "works", "objects", "brands", "nature"],
-    lekeplass:  ["badges", "spots", "objects", "nature", "details", "people", "brands", "works"],
-    trening:    ["badges", "people", "spots", "objects", "brands", "details", "nature", "works"],
-    media:      ["badges", "people", "works", "objects", "brands", "spots", "details", "nature"],
-    psykologi:  ["badges", "people", "works", "objects", "spots", "brands", "details", "nature"],
-    religion:   ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
-    subkultur:  ["badges", "people", "works", "details", "spots", "objects", "brands", "nature"],
-    naeringsliv:["badges", "brands", "people", "objects", "spots", "works", "details", "nature"],
-    transport:  ["badges", "spots", "objects", "brands", "details", "people", "works", "nature"]
+    by:          ["badges", "spots", "details", "people", "works", "objects", "brands", "nature"],
+    lekeplass:   ["badges", "spots", "objects", "nature", "details", "people", "brands", "works"],
+    trening:     ["badges", "people", "spots", "objects", "details", "brands", "nature", "works"],
+    media:       ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
+    psykologi:   ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
+    religion:    ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
+    subkultur:   ["badges", "people", "works", "details", "spots", "objects", "brands", "nature"],
+    naeringsliv: ["badges", "brands", "people", "objects", "spots", "works", "details", "nature"],
+    transport:   ["badges", "spots", "objects", "details", "people", "works", "brands", "nature"]
   });
 
   const DEFAULT_PRIORITY = CATEGORY_ROUND_PRIORITIES.by;
@@ -118,11 +119,12 @@
 
   function selectedIds(place) {
     const explicit = explicitRoundIds(place);
-    const target = explicit.length >= 6 ? 6 : 4;
+    const hasValidExplicitSet = explicit.length === 4 || explicit.length === 6;
+    const target = explicit.length === 6 ? 6 : 4;
     const excluded = excludedRoundIds(place);
     const priority = priorityFor(place);
 
-    const seed = explicit.length >= 4
+    const seed = hasValidExplicitSet
       ? ["badges", ...explicit.filter(id => id !== "badges")]
       : priority;
 
@@ -136,7 +138,6 @@
       if (selected.length >= target) break;
     }
 
-    // Badges er obligatorisk. Runtime skal aldri ende på fem rundinger.
     if (!selected.includes("badges")) selected.unshift("badges");
     return unique(selected).slice(0, target);
   }
