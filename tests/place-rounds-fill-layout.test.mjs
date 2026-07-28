@@ -26,21 +26,21 @@ function runtime(count) {
   return { window, grid };
 }
 
-test("4 rundinger bruker størst mulig kvadrat i et 2x2-felt", () => {
+test("4 rundinger bruker størst mulig kvadrat i et fast 2x2-felt", () => {
   const { window, grid } = runtime(4);
   assert.equal(grid.style.getPropertyValue("--hg-round-fill-size"), "105px");
   window.close();
 });
 
-test("6 rundinger bruker størst mulig kvadrat i et 3x2-felt", () => {
+test("andre round counts er ikke canonical layout", () => {
   const { window, grid } = runtime(6);
-  assert.equal(grid.style.getPropertyValue("--hg-round-fill-size"), "103px");
+  assert.equal(grid.style.getPropertyValue("--hg-round-fill-size"), "");
   window.close();
 });
 
-test("layout-CSS fyller sidefeltet og beholder canonical 2x2/3x2", () => {
+test("layout-CSS inneholder bare canonical 2x2-regelen", () => {
   assert.match(cssSource, /\.pc-side-stack\s*\{[\s\S]*width:100%/);
   assert.match(cssSource, /data-round-count="4"[\s\S]*repeat\(2, minmax\(0, 1fr\)\)/);
-  assert.match(cssSource, /data-round-count="6"[\s\S]*repeat\(3, minmax\(0, 1fr\)\)/);
+  assert.doesNotMatch(cssSource, /data-round-count="6"/);
   assert.match(cssSource, /--hg-round-fill-size/);
 });
