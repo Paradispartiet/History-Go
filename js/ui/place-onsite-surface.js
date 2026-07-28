@@ -188,14 +188,18 @@
   }
 
   function handleClick(event) {
-    const button = event.target instanceof Element
-      ? event.target.closest("[data-hg-onsite-action]")
-      : null;
-    if (!(button instanceof HTMLElement)) return;
+    const target = event.target instanceof Element ? event.target : null;
+    const surface = target?.closest?.(`[${SURFACE_ATTR}]`);
+    if (!surface) return;
 
-    event.preventDefault();
+    // Den eldre #pcEventsBox-handleren åpner Kunnskapsmøte på ethvert klikk i
+    // boksen. På den nye flaten skal bare eksplisitte knapper utløse handling.
     event.stopPropagation();
     event.stopImmediatePropagation();
+
+    const button = target.closest("[data-hg-onsite-action]");
+    if (!(button instanceof HTMLElement)) return;
+    event.preventDefault();
 
     const action = text(button.dataset.hgOnsiteAction);
     if (action === "round") return openRoundAction(button);
