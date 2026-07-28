@@ -12,6 +12,8 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 - `natur-pilot-audit.json` — individuell fase-2-evidens for Natur: canonical rekkefølge, 6 fagområder, 35 emner, 30 metoder, 35 mappings og 60 hooks.
+- `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
+- `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 60 Natur-hooks og 35 emner fordelt over 127 hookmappings.
 
 ## Regenerering
 
@@ -20,7 +22,13 @@ node scripts/audit-fagverk-subject-inventory.mjs --write-report
 node scripts/audit-fagverk-subject-inventory.mjs
 node scripts/audit-fagverk-general-engine.mjs --write-report
 node scripts/audit-fagverk-general-engine.mjs
-node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs
+node scripts/audit-fagverk-natur-pilot.mjs --write-report
+node scripts/audit-fagverk-natur-pilot.mjs
+node scripts/audit-natur-subject-quality.mjs --write-report
+node scripts/audit-natur-subject-quality.mjs
+node scripts/audit-natur-fagkart-quality.mjs --write-report
+node scripts/audit-natur-fagkart-quality.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs
 ```
 
 `subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
@@ -43,8 +51,8 @@ Motor-auditen feiler når:
 
 ## Gjeldende produksjonsstatus
 
-Politikk er første fag som er individuelt auditert gjennom den generelle motoren og står derfor `materialized`, `audited` og `structure_ready`. Dette betyr at fagstruktur, dypkoblinger, metoder, progresjonslesing og eksisterende kapitler kan vises gjennom felles runtime. Det betyr ikke at politikk er redaksjonelt `complete`.
+Politikk og Natur er individuelt auditert gjennom den generelle motoren og står `materialized`, `audited` og `structure_ready`. Det betyr at fagstruktur, dypkoblinger, metoder og progresjonslesing kan vises gjennom felles runtime. Det betyr ikke at fagene er redaksjonelt `complete`.
 
-De fire neste toppfagpilotene er `natur`, `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
-- `natur-quality-audit.json` — emne-, metode-, quiz- og merkesidekvalitet for Natur & miljø.
-- `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 60 Natur-hooks og 35 emnemappings.
+Natur har i tillegg permanente kvalitetsgater for unike emnetekster, konkrete metodeprosedyrer og begrensninger, hookspesifikke undersøkelsesgrep, synkroniserte mappings, to ganger sju normale quizåpningsspørsmål og eksplisitt Knowledge-leveranse. Natur har fortsatt ingen ferdigskrevne lærekapitler og skal derfor ikke få status `complete`.
+
+De tre gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
