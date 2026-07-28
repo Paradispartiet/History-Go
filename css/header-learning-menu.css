@@ -1,0 +1,75 @@
+/* Distinct Fagverket and Knowledge entries inside headerMenuButton */
+.header-menu-learning-group{
+  display:grid;
+  grid-column:1/-1;
+  gap:7px;
+  margin:5px 0 2px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.header-menu-section-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:0 4px 2px;
+  color:rgba(255,255,255,.48);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.header-menu-section-label::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,rgba(255,255,255,.13),transparent);
+}
+.header-menu-action-copy{
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  gap:2px;
+}
+.header-menu-action-description{
+  overflow:hidden;
+  color:rgba(255,255,255,.55);
+  font-size:11px;
+  font-weight:560;
+  line-height:1.25;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.header-menu-action--fagverk{
+  border-color:rgba(241,200,75,.28);
+  background:
+    radial-gradient(circle at 90% 20%,rgba(169,137,255,.15),transparent 48%),
+    linear-gradient(110deg,rgba(241,200,75,.13),rgba(255,255,255,.045));
+}
+.header-menu-action--fagverk .header-menu-action-icon{
+  border-color:rgba(241,200,75,.24);
+  background:linear-gradient(145deg,rgba(241,200,75,.18),rgba(169,137,255,.12));
+}
+.header-menu-action--fagverk:hover,
+.header-menu-action--fagverk:focus-visible{
+  border-color:rgba(241,200,75,.55);
+  background:
+    radial-gradient(circle at 90% 20%,rgba(169,137,255,.2),transparent 48%),
+    linear-gradient(110deg,rgba(241,200,75,.19),rgba(255,255,255,.07));
+}
+.header-menu-action--knowledge{
+  border-color:rgba(114,184,255,.2);
+  background:linear-gradient(110deg,rgba(114,184,255,.09),rgba(255,255,255,.04));
+}
+.header-menu-action--knowledge .header-menu-action-icon{
+  border-color:rgba(114,184,255,.2);
+  background:rgba(114,184,255,.1);
+}
+.header-menu-action--knowledge:hover,
+.header-menu-action--knowledge:focus-visible{
+  border-color:rgba(114,184,255,.42);
+  background:linear-gradient(110deg,rgba(114,184,255,.15),rgba(255,255,255,.065));
+}
+@media(max-width:480px){
+  .header-menu-action-description{font-size:10px;}
+}
