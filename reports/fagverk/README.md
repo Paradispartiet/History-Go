@@ -1,48 +1,47 @@
-# Fagverket — Phase 0 baseline
+# Fagverket — inventar, status og runtime-audits
 
-Status: **reproduserbar operativ rapport**  
+Status: **reproduserbare operative rapporter**  
 Canonical kontrakt: [`docs/FAGVERK.md`](../../docs/FAGVERK.md)  
 Maskinlesbart inventar: [`data/fagverk/subject_inventory.json`](../../data/fagverk/subject_inventory.json)  
 Maskinlesbar status: [`data/fagverk/subject_status.json`](../../data/fagverk/subject_status.json)
 
-Denne mappen eier ikke fagarkitekturen eller ferdigstatusenes betydning. Den inneholder den genererte Phase 0-baselinen som kreves av den canonicale fagverkskontrakten.
+Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den inneholder deterministiske rapporter som viser hva repositoryet faktisk kan dokumentere.
 
-## Innhold
+## Rapporter
 
-- `subject-baseline.json` — deterministisk projeksjon av kategorikontrakten, fagmanifestet, inventaret, statusregisteret og portalstatusen.
-- Inventaret klassifiserer alle canonicale fag i fire schemafamilier.
-- Statusregisteret holder navigasjonsstatus, inventarvurdering og redaksjonell status adskilt.
-- Baseline markerer ingen fag som `audited`, `structure_ready`, `chapters_in_progress` eller `complete`.
+- `subject-baseline.json` — levende projeksjon av alle 18 fag, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
+- `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 
 ## Regenerering
 
 ```bash
 node scripts/audit-fagverk-subject-inventory.mjs --write-report
 node scripts/audit-fagverk-subject-inventory.mjs
-node --test tests/fagverk-subject-inventory.test.mjs
+node scripts/audit-fagverk-general-engine.mjs --write-report
+node scripts/audit-fagverk-general-engine.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs
 ```
 
-Første kommando regenererer rapporten. Andre kommando verifiserer at committed rapport er identisk med projeksjonen fra source-filene. Testen kontrollerer fagrekkefølge, kjernefiler, schemafamilier, pilotsett og ærlig status.
+`subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
 
-## Hva auditen blokkerer
+## Hva inventarauditen blokkerer
 
-Auditen feiler blant annet når:
+Auditen feiler når kategori-, manifest-, portal-, inventar- eller statusrekkefølgen avviker; required kjernefiler mangler; schemafamilien ikke samsvarer med manifestet; eller en status hevder mer fremdrift enn navigasjon og audit kan dokumentere.
 
-- kategori-, manifest-, portal-, inventar- eller statusrekkefølgen avviker;
-- et canonicalt fag mangler i én av kildene;
-- `pensum`, `emner`, `fagkart` eller `methods` mangler eller ikke er gyldig JSON;
-- schemafamilien ikke samsvarer med manifestets faktiske signaler;
-- portalstatus og statusregister er usynkronisert;
-- Phase 0 forhåndsgodkjenner et fag som ferdig;
-- den committed baseline-rapporten er utdatert.
+## Hva motor-auditen blokkerer
 
-## Baseline og neste fase
+Motor-auditen feiler når:
 
-Baseline dokumenterer fire adapterfamilier:
+- `fagverk.html` laster politikkspesifikk subject-runtime;
+- `subject` mangler eller får alias-/politikkfallback;
+- required filstier hardkodes utenfor `data/fag/fag_manifest.json`;
+- merkesiden ikke løses gjennom portalregisteret;
+- et materialisert fag mangler fagområder, emner eller metoder;
+- emner peker til ukjente fagområder eller metoder;
+- committed runtime-rapport ikke samsvarer med faktisk kode og data.
 
-1. `standard_canonical`
-2. `foundation_v1`
-3. `by_compatibility`
-4. `technology_scientific_v2_4`
+## Gjeldende produksjonsstatus
 
-Pilotsettet er `by`, `natur`, `religion` og `teknologi`. Politikk er fortsatt den eneste teknisk materialiserte fagsiden, men Phase 0 godkjenner heller ikke politikk som `structure_ready`. Neste produksjonsfase er den generelle subject-resolveren, manifest-first loaderen, adaptergrensen og den normaliserte fagmodellen.
+Politikk er første fag som er individuelt auditert gjennom den generelle motoren og står derfor `materialized`, `audited` og `structure_ready`. Dette betyr at fagstruktur, dypkoblinger, metoder, progresjonslesing og eksisterende kapitler kan vises gjennom felles runtime. Det betyr ikke at politikk er redaksjonelt `complete`.
+
+De fire neste pilotene er `natur`, `religion`, `by` og `teknologi`. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.

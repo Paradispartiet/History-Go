@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_subject_inventory_v1",
-  "version": "1.0.0",
-  "status": "canonical_phase_0_input",
+  "version": "1.1.0",
+  "status": "canonical_phase_1_input",
   "updatedAt": "2026-07-28",
   "owner": "fagverk_subject_inventory",
   "contract": "docs/FAGVERK.md",
@@ -38,137 +38,329 @@
   "migrationDebt": {
     "politicsSpecificRuntimeFiles": [
       "js/politikk-fag-model.js",
-      "js/politikk-fagportal.js",
-      "js/fagverk.js",
-      "fagverk.html"
+      "js/fagverk-canonical-integration.js"
     ],
-    "rule": "Filene er inventert som migreringsgjeld. Fase 0 endrer ikke runtime og skal ikke tolke forekomst som en ferdig generalisering."
+    "rule": "Filene er fortsatt politikkspesifikke compatibility-lag for andre politikkflater. Den generelle fagsiden skal ikke laste dem eller bruke dem som fallback."
   },
   "subjects": [
     {
       "id": "by",
       "schemaFamily": "by_compatibility",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema", "quizPackageSchema", "quizProduction"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "quizPackageSchema",
+        "quizProduction"
+      ],
       "pilot": true
     },
     {
       "id": "historie",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema", "quizPackageSchema", "quizProduction", "version", "scope", "coverageContract", "qualityContract", "caseRequirements", "claims", "sources", "placeEvidence", "profilesManifest"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "quizPackageSchema",
+        "quizProduction",
+        "version",
+        "scope",
+        "coverageContract",
+        "qualityContract",
+        "caseRequirements",
+        "claims",
+        "sources",
+        "placeEvidence",
+        "profilesManifest"
+      ],
       "pilot": false
     },
     {
       "id": "kunst",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "litteratur",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "media",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema", "supplements"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "supplements"
+      ],
       "pilot": false
     },
     {
       "id": "musikk",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "naeringsliv",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema", "quizPackageSchema", "quizProduction", "universityFramework", "businessSchoolExtension"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "quizPackageSchema",
+        "quizProduction",
+        "universityFramework",
+        "businessSchoolExtension"
+      ],
       "pilot": false
     },
     {
       "id": "natur",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": true
     },
     {
       "id": "politikk",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "psykologi",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "religion",
       "schemaFamily": "foundation_v1",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "status", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "status",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": true
     },
     {
       "id": "scenekunst",
       "schemaFamily": "foundation_v1",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "status", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "status",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "sport",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "knowledgePolicy", "knowledgeUnitSchema", "knowledgeArchitecture", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "knowledgePolicy",
+        "knowledgeUnitSchema",
+        "knowledgeArchitecture",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "subkultur",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "vitenskap",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "teknologi",
       "schemaFamily": "technology_scientific_v2_4",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "status", "quizStandard", "quizQuestionSchema", "scientificPackage", "quizPackageSchema", "subjectPathwaySchema", "subjectPathwayPackage", "canonicalModelVersion", "universalCoverage", "geographicProduction"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "status",
+        "quizStandard",
+        "quizQuestionSchema",
+        "scientificPackage",
+        "quizPackageSchema",
+        "subjectPathwaySchema",
+        "subjectPathwayPackage",
+        "canonicalModelVersion",
+        "universalCoverage",
+        "geographicProduction"
+      ],
       "pilot": true
     },
     {
       "id": "filosofi",
       "schemaFamily": "foundation_v1",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "status", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "status",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     },
     {
       "id": "film_tv",
       "schemaFamily": "standard_canonical",
-      "requiredManifestFields": ["pensum", "emner", "fagkart", "methods"],
-      "optionalManifestFields": ["supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+      "requiredManifestFields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optionalManifestFields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
       "pilot": false
     }
   ]
