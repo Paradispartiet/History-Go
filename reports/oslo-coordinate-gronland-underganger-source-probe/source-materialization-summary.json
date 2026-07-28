@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "gronland_underganger",
+  "capturedAt": "2026-07-28",
+  "sourceMaterialization": {
+    "workflowRunId": 30350828545,
+    "artifactId": 8684794327,
+    "artifactName": "gronland-underganger-coordinate-source-probe",
+    "artifactDigest": "sha256:6fbb973e0f817bcab492d3b04a96501fefdb9a6183540f3226bbdce53e6777c8",
+    "bbox": "10.7575,59.9110,10.7640,59.9142",
+    "finding": "The one-time read-only probe captured current OSM geometry for Olafiagangen, Nylandsbrua and the western Grønland T entrances, plus Nominatim and Kartverket SSR identity results. The temporary workflow was removed after source capture."
+  },
+  "officialScope": {
+    "sourceProvider": "municipality",
+    "sourceName": "Oslo kommune – Olafiagangen",
+    "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/olafiagangen/",
+    "finding": "Oslo kommune describes Olafiagangen as a public passage and meeting place between Grønland torg and Akerselva directly under Nylandsbrua. Bymiljøetaten and Bydel Gamle Oslo manage and upgrade the space, including the underside of Nylandsbrua and the route toward the T-bane entrance."
+  },
+  "districtScopeControl": {
+    "sourceProvider": "municipality",
+    "sourceName": "Bydel Gamle Oslo – SuperGrønland and 2024 district resolution",
+    "finding": "Municipal material describes Olafiagangen as an approximately 5000-square-metre urban space between Grønland torg and Akerselva, directly under Nylandsbrua. The district resolution explicitly treats the areas under Nylandsbrua and the underpasses/entrances to Grønland T as one physical improvement zone."
+  },
+  "namedLinearGeometry": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:163145627",
+    "name": "Olafiagangen",
+    "tags": {
+      "highway": "pedestrian",
+      "bicycle": "yes",
+      "surface": "paved",
+      "wikidata": "Q19384398"
+    },
+    "coordinates": [
+      [59.9132821, 10.7592040],
+      [59.9132250, 10.7591406],
+      [59.9132050, 10.7591237],
+      [59.9131973, 10.7591172],
+      [59.9127031, 10.7587873],
+      [59.9125168, 10.7586994]
+    ],
+    "lengthM": 89.8,
+    "derivedMidpoint": {
+      "lat": 59.912904676848626,
+      "lon": 10.758921861315992,
+      "method": "half-length point along the named OSM pedestrian way in local lon*cos(meanLat),lat projection"
+    },
+    "distanceFromLegacyM": 83.2
+  },
+  "kartverketIdentity": {
+    "sourceProvider": "kartverket",
+    "sourceObjectId": "kartverket-ssr:998056",
+    "name": "Olafiagangen",
+    "nameStatus": "vedtatt",
+    "placeStatus": "aktiv",
+    "objectType": "Adressenavn",
+    "representativePoint": {
+      "lat": 59.91329,
+      "lon": 10.75914
+    },
+    "geometry": {
+      "type": "MultiLineString",
+      "coordinates": [
+        [
+          [10.75914, 59.91329],
+          [10.75870, 59.91257]
+        ]
+      ]
+    },
+    "finding": "Kartverket independently confirms Olafiagangen as an active, officially adopted named linear object in Oslo."
+  },
+  "bridgeContext": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:377766487",
+    "name": "Nylandsbrua",
+    "tags": {
+      "man_made": "bridge",
+      "layer": "1"
+    },
+    "nodeCount": 130,
+    "nearestDistanceFromNamedOlafiagangenLineM": 7.5,
+    "finding": "The named Nylandsbrua polygon is immediately adjacent to/over the mapped Olafiagangen pedestrian line. The municipal source, not geometric intersection inference, is authoritative for the statement that Olafiagangen is directly under Nylandsbrua."
+  },
+  "subwayEntranceAnchors": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1221546349",
+      "name": "Grønland",
+      "lat": 59.9126746,
+      "lon": 10.7589679,
+      "tags": {
+        "public_transport": "entrance",
+        "railway": "subway_entrance",
+        "subway": "yes"
+      },
+      "distanceFromAppliedMidpointM": 25.7
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:3409122637",
+      "name": "Grønland",
+      "lat": 59.9129856,
+      "lon": 10.7586106,
+      "tags": {
+        "public_transport": "entrance",
+        "railway": "subway_entrance",
+        "subway": "yes",
+        "wheelchair": "yes"
+      },
+      "distanceFromAppliedMidpointM": 19.5
+    }
+  ],
+  "currentChangeContext": {
+    "finding": "Oslo announced in 2026 that one Grønland T entrance under Nylandsbrua is planned to move by 2028. Subway entrances are therefore secondary current-access anchors only; the stable canonical identity is the named Olafiagangen/Nylandsbrua public-space corridor."
+  },
+  "radiusDecision": {
+    "previousRadiusM": 210,
+    "appliedRadiusM": 130,
+    "finding": "A 130-metre gameplay radius covers the approximately 90-metre named Olafiagangen line, both western Grønland T entrance anchors and the under-bridge public-space core while avoiding the unsupported implication that the record represents a broad 210-metre neighbourhood environment."
+  },
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateChangeRequired": true,
+    "appliedCoordinate": {
+      "lat": 59.912904676848626,
+      "lon": 10.758921861315992,
+      "r": 130
+    },
+    "locatorType": "linear_area",
+    "sourceProvider": "osm",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordStatus": "verified_geometry",
+    "representationLimit": "The record represents the named Olafiagangen under/along Nylandsbrua and the immediately connected Grønland T underpass/entrance transition zone. It does not represent every graffiti surface, tunnel or wall across Grønland and Vaterland."
+  }
+}
