@@ -1,11 +1,14 @@
 # Fagverkets stedssider – kategoridesign og bildekontrakt
 
-Status: canonical v1.1  
-Data: `data/fagverk/category_place_design.json`  
-Runtime: `js/fagverk-place-theme.js`  
-Design: `css/fagverk-place-category-themes.css`  
-Audit: `scripts/audit-place-images.mjs`  
+Status: canonical v1.1
+Data: `data/fagverk/category_place_design.json`
+Runtime: `js/fagverk-place-theme.js`
+Design: `css/fagverk-place-category-themes.css`
+Audit: `scripts/audit-place-images.mjs`
 Materialisert status: `data/places/place_image_backlog_summary.json`
+Overordnet fagsideproduksjon: [`FAGVERK_SUBJECT_PAGE_CONTRACT.md`](./FAGVERK_SUBJECT_PAGE_CONTRACT.md)
+
+Denne kontrakten gjelder stedets fagverksider. Den eier ikke den generelle fagsiden for et helt fag.
 
 ## Grunnregel
 

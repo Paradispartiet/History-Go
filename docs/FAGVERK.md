@@ -1,9 +1,14 @@
 # History Go – fagverk, merker og egne stedssider
 
-Status: canonical politikk-integrasjon v4  
-Runtime: `js/fagverk-forside.js`, `js/politikk-fag-model.js`, `js/politikk-fagportal.js`, `js/fagverk.js`, `js/fagverk-canonical-integration.js`, `js/fagverk-place-canonical-integration.js`, `js/ui/place-learning-canonical.js`  
-Data: `data/fagverk/fagverk_portal.json`, `data/fag/politikk/politikk_runtime_manifest.json`, canonical politikkfiler, `data/fagverk/fagverk_registry.json`, `data/fagverk/<fag>/<kapittel>.json`  
+Status: **operational politikk-implementasjon v4**
+Runtime: `js/fagverk-forside.js`, `js/politikk-fag-model.js`, `js/politikk-fagportal.js`, `js/fagverk.js`, `js/fagverk-canonical-integration.js`, `js/fagverk-place-canonical-integration.js`, `js/ui/place-learning-canonical.js`
+Data: `data/fagverk/fagverk_portal.json`, `data/fag/politikk/politikk_runtime_manifest.json`, canonical politikkfiler, `data/fagverk/fagverk_registry.json`, `data/fagverk/<fag>/<kapittel>.json`
 Sider: `fagverk-forside.html`, `data/fag/politikk/merke_politikk.html`, `fagverk.html?subject=politikk`, `fagverk-sted.html?place=<place_id>`
+
+Canonical kontrakt for bygging og ferdigstilling av alle fagsider: [`FAGVERK_SUBJECT_PAGE_CONTRACT.md`](./FAGVERK_SUBJECT_PAGE_CONTRACT.md)
+Navigasjon og sideroller: [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md)
+
+Dette dokumentet beskriver dagens politikkimplementasjon og eksisterende runtime. Det eier ikke den generelle produksjons- eller ferdigstatusmodellen for alle fag.
 
 ## Én fagmodell, flere tydelige sideroller
 

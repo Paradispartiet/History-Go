@@ -6,6 +6,8 @@ For den kanoniske definisjonen av brukerens personlige Knowledge gjelder også `
 
 Den bindende regelen for fagfilenes geografiske ansvar ligger i `docs/SUBJECT_FILE_CONTRACT.md`: én universell fagmodell per fag, med separate geografiske profiler, cases, claims, kilder, steder, personer og quizlag.
 
+Den bindende produksjons- og ferdigstillingskontrakten for de synlige fagsidene ligger i `docs/FAGVERK_SUBJECT_PAGE_CONTRACT.md`.
+
 ---
 
 ## Grunnprinsipp

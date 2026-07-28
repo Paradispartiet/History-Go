@@ -1,10 +1,12 @@
 # History GO — kontrakt for universelle fagfiler
 
-Status: **canonical og bindende fagfilkontrakt**  
-Eier: History GO fagdata og kunnskapsarkitektur  
+Status: **canonical og bindende fagfilkontrakt**
+Eier: History GO fagdata og kunnskapsarkitektur
 Sist kontrollert: **2026-07-26**
 
 Denne kontrakten definerer skillet mellom universell fagstruktur og geografisk innholdsproduksjon. Den gjelder alle fag, ikke bare Historie.
+
+Hvordan de universelle fagfilene materialiseres som synlige fagsider, lærekapitler, claims og ferdigstatus eies av [`FAGVERK_SUBJECT_PAGE_CONTRACT.md`](./FAGVERK_SUBJECT_PAGE_CONTRACT.md). Denne filen eier fagdataarkitekturen, ikke fagsidens presentasjons- og produksjonsstatus.
 
 ## 1. Kjerneprinsipp
 

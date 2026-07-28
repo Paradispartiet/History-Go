@@ -1,7 +1,7 @@
 # History GO — dataproduksjonskontrakt
 
-Status: **canonical data-production contract**  
-Eier: History GO data/runtime  
+Status: **canonical data-production contract**
+Eier: History GO data/runtime
 Sist kontrollert: **2026-07-28**
 
 Dette dokumentet definerer hvordan nye eller vesentlig endrede History GO-data skal produseres, kontrolleres og settes inn uten å bryte kategori-, place-, people-, badge-, progresjons-, kilde- eller manifestlogikk.
@@ -16,6 +16,7 @@ Relaterte kontrakter:
 - `docs/DOMAIN_CONTRACT.md`
 - `data/categories/category_contract.json`
 - `docs/SUBJECT_FILE_CONTRACT.md`
+- `docs/FAGVERK_SUBJECT_PAGE_CONTRACT.md`
 - `docs/PLACE_STANDARD.md`
 - `docs/PLACE_POPUP_SYSTEM.md`
 - `data/places/README_place_rounds.md`

@@ -200,15 +200,19 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 ### Fag, emner og quiz
 
 1. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — bindende regel om én universell fagmodell per fag og separate geografiske produksjonslag
-2. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner og pensum
-3. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til fagpakkens lag og manifest-resolverte filer
-4. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) — eneste bindende quizproduksjonsprosedyre
-5. [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) — maskinlesbar autoritetsrekkefølge, globale invariants og kategori-profiler
-6. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver, full fagpakke og aktive `quizProduction.targets`
-7. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
-8. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
+2. [`FAGVERK_SUBJECT_PAGE_CONTRACT.md`](./FAGVERK_SUBJECT_PAGE_CONTRACT.md) — bindende kontrakt for generell fagsidemotor, materialisering, claims, reviews og ferdigstatus
+3. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — bindende skille mellom Fagverkforsiden, merkesider og fagsider
+4. [`FAGVERK_PLACE_DESIGN.md`](./FAGVERK_PLACE_DESIGN.md) — bindende kategori-, bilde- og presentasjonskontrakt for stedets egne fagverksider
+4. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner, Knowledge og progresjon
+5. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til fagpakkens lag og manifest-resolverte filer
+6. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver og aktiv canonical fagpakke per fag
+7. [`FAGVERK.md`](./FAGVERK.md) — operativ beskrivelse av dagens politikkimplementasjon
+8. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) — eneste bindende quizproduksjonsprosedyre
+9. [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) — maskinlesbar autoritetsrekkefølge, globale invariants og kategori-profiler
+10. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
+11. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
 
-Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Universell fagdekning og geografisk produksjonsdekning er separate mål. `README/byFagplan.md` er nå bare en compatibility-pointer til disse aktive kildene; den tidligere kombinerte teksten er bevart som historisk snapshot under `README/archive/`.
+Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Bygging og ferdigstilling av de synlige fagsidene styres av `FAGVERK_SUBJECT_PAGE_CONTRACT.md`; en fungerende URL eller grønn schema-kontroll er ikke i seg selv ferdigbevis. Universell fagdekning og geografisk produksjonsdekning er separate mål. `README/byFagplan.md` er nå bare en compatibility-pointer til disse aktive kildene; den tidligere kombinerte teksten er bevart som historisk snapshot under `README/archive/`.
 
 Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere kombinerte quiz-/lærings-/observations-/popup-README-en ligger i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 

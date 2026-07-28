@@ -1,8 +1,11 @@
 # Fagverket – navigasjon og sideroller
 
-Status: canonical navigasjonskontrakt v1  
-Forside: `fagverk-forside.html`  
+Status: canonical navigasjonskontrakt v1
+Forside: `fagverk-forside.html`
 Register: `data/fagverk/fagverk_portal.json`
+Produksjon og ferdigstilling: [`FAGVERK_SUBJECT_PAGE_CONTRACT.md`](./FAGVERK_SUBJECT_PAGE_CONTRACT.md)
+
+Denne filen eier bare navigasjon, adresser og sideroller. Den generelle motoren, statusmodellen, claims, reviews og ferdigkriteriene eies av fagsidekontrakten.
 
 ## Hovedregel
 

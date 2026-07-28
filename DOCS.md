@@ -16,6 +16,7 @@ Det autoritative dokumentasjonskartet ligger i:
 - Dataproduksjon: [`docs/DATA_PRODUCTION_CONTRACT.md`](./docs/DATA_PRODUCTION_CONTRACT.md)
 - Sted-for-sted-produksjon: [`docs/PLACE_PRODUCTION_CHECKLIST.md`](./docs/PLACE_PRODUCTION_CHECKLIST.md)
 - Fag og pensum: [`README/README.pensum.md`](./README/README.pensum.md)
+- Fagsider og fagverk: [`docs/FAGVERK_SUBJECT_PAGE_CONTRACT.md`](./docs/FAGVERK_SUBJECT_PAGE_CONTRACT.md)
 - Rapporter og audits: [`reports/README.md`](./reports/README.md)
 
 ## Regel
