@@ -1,0 +1,41 @@
+name: Temporary local bootstrap export
+
+on:
+  push:
+    branches:
+      - agent/bootstrap-local-history-go
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build sparse main checkout and collect gh
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/bootstrap"
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/Paradispartiet/History-Go.git "$RUNNER_TEMP/bootstrap/History-Go"
+          cd "$RUNNER_TEMP/bootstrap/History-Go"
+          git sparse-checkout set --no-cone '/*' '!/bilder/'
+          git switch main
+          git status -sb
+          git rev-parse HEAD > "$RUNNER_TEMP/bootstrap/main-sha.txt"
+          GH_BIN="$(command -v gh)"
+          cp "$GH_BIN" "$RUNNER_TEMP/bootstrap/gh"
+          chmod 0755 "$RUNNER_TEMP/bootstrap/gh"
+          cd "$RUNNER_TEMP/bootstrap"
+          tar -czf history-go-main-checkout.tar.gz History-Go
+
+      - name: Upload bootstrap artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-go-local-bootstrap
+          path: |
+            ${{ runner.temp }}/bootstrap/gh
+            ${{ runner.temp }}/bootstrap/main-sha.txt
+            ${{ runner.temp }}/bootstrap/history-go-main-checkout.tar.gz
+          if-no-files-found: error
+          retention-days: 1
