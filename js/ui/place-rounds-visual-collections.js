@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/ui/place-rounds-visual-collections.js
 // Presentasjonskontrakt: rundinger er visuelle samlinger, ikke kunnskapsfaner eller handlingsmenyer.
 (function installVisualPlaceRounds(global) {
