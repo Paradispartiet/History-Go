@@ -3,45 +3,52 @@
   "placeId": "kistefos_traesliperi",
   "placeFile": "data/places/naeringsliv/akershus/kistefos_traesliperi/kistefos_traesliperi.json",
   "evidenceStatus": "production_applied",
-  "coordinateDecision": "verified_heritage_entity_coordinate_for_intact_pulp_mill",
+  "coordinateDecision": "retain_verified_historical_anchor_for_intact_pulp_mill",
   "currentCoordinate": {
     "lat": 60.22228888888889,
     "lon": 10.369111111111112,
     "r": 420,
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "geocodeAccuracy": "semantic_anchor",
     "coordStatus": "verified_historical_source",
-    "coordSource": "Riksantikvaren kulturminne 241111; Wikidata Q6417316; Kistefos official industrial museum history",
+    "coordSource": "Riksantikvaren culture heritage object 241111 and 2025 protection decision; Wikidata Q6417316; Kistefos official industrial museum history",
     "coordType": "heritage_entity_coordinate_for_intact_pulp_mill",
-    "coordRole": "industrial_building_anchor",
+    "coordRole": "historical_anchor",
     "sourceObjectId": "riksantikvaren-kulturminne:241111;wikidata:Q6417316",
-    "coordNote": "The canonical marker follows the historic pulp mill and industrial core rather than generic visitor information points."
+    "coordNote": "The canonical marker follows the preserved pulp mill and industrial core as a historical anchor, not generic visitor information points or the complete modern art destination."
   },
-  "previousCoordinate": {
+  "legacyCoordinate": {
     "lat": 60.2245,
     "lon": 10.3715,
     "r": 420,
-    "coordStatus": null,
-    "coordSource": null,
-    "coordType": null,
     "distanceToAppliedCoordinateM": 279.0,
-    "reasonReplaced": "The legacy point lay approximately 279 metres northeast of the historic pulp-mill anchor and lacked a stable source-object role."
+    "reasonReplaced": "The 2026-07-26 production moved the unsupported legacy point approximately 279 metres south-west to the named pulp-mill heritage entity coordinate."
+  },
+  "previousProductionCoordinate": {
+    "lat": 60.22228888888889,
+    "lon": 10.369111111111112,
+    "r": 420,
+    "retained": true,
+    "distanceToCurrentM": 0,
+    "reasonRetained": "The source identity and physical location remain correct. This pass replaces an obsolete custom role with the valid Coordinate Source Contract historical_anchor role."
   },
   "identity": {
-    "currentName": "Kistefos Træsliberi",
-    "resolvedIdentity": "The preserved wood-pulp mill and central technical-industrial core at Kistefossen, distinct from generic Kistefos information points and the wider modern art destination.",
+    "resolvedIdentity": "The preserved Kistefos wood-pulp mill and central technical-industrial core at Kistefossen, distinct from visitor information points, entrances and the wider modern sculpture and art destination.",
     "identityStatus": "resolved",
-    "identityProblem": "The modern Kistefos destination spans an industrial museum, sculpture park, art hall, two riverbanks and several entrances. The canonical record names the historic pulp mill and must therefore anchor to the factory core.",
+    "identityProblem": "Kistefos now spans an industrial museum, protected technical-industrial environment, sculpture park, art hall, two riverbanks and multiple entrances. The canonical record specifically names the historic pulp mill.",
     "locatorTypeCandidate": "historic_site",
     "requiresSplit": false,
-    "splitReason": "The pulp mill is one coherent industrial record. Wider protected and visitor areas remain context rather than separate canonical points in this record."
+    "splitReason": "The pulp mill and immediate production core form one coherent historical place. The larger protected environment and modern visitor destination remain contextual extents."
   },
   "requiredEvidence": [
     "stable heritage and entity identity for the pulp mill",
-    "official industrial history",
-    "official production-core description",
-    "current heritage-protection scope",
+    "official industrial history and production-core description",
+    "current official protection scope",
     "independent physical cross-check",
-    "explicit rejection of generic information points",
-    "radius limitation"
+    "visitor and access context",
+    "valid Coordinate Source Contract values",
+    "explicit radius and representation limits"
   ],
   "evidence": [
     {
@@ -55,24 +62,24 @@
       "reason": "Directly identifies the named pulp mill rather than a visitor information point."
     },
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_museum",
       "sourceName": "Kistefos – Historien om Kistefos",
       "sourceUrl": "https://www.kistefosmuseum.no/industri/kistefos-historie",
       "sourceObjectId": "kistefos:industrial-history",
       "sourceQuality": "official_industrial_history",
-      "finding": "The museum documents establishment in 1889, production from 1890 to 1955 and near-complete preservation of buildings and production equipment.",
+      "finding": "Kistefos documents establishment in 1889, production from 1890 to 1955 and near-complete preservation of buildings and production equipment.",
       "canVerifyCoordinate": false,
       "reason": "Confirms identity and historical scope."
     },
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_museum",
       "sourceName": "Kistefos – Tresliperiet, Levende fabrikk",
       "sourceUrl": "https://www.kistefosmuseum.no/industri/tresliperiet",
       "sourceObjectId": "kistefos:living-factory",
       "sourceQuality": "official_production_core_identity",
-      "finding": "The museum calls the old pulp factory the heart of Kistefos and describes intact production rooms and machinery.",
+      "finding": "The museum identifies the old pulp factory as the heart of Kistefos and describes intact production rooms and machinery.",
       "canVerifyCoordinate": false,
-      "reason": "Confirms that the factory core, not the sculpture park or visitor entrance, is the canonical subject."
+      "reason": "Confirms that the factory core, not the sculpture park, is the canonical subject."
     },
     {
       "sourceProvider": "riksantikvaren",
@@ -80,9 +87,19 @@
       "sourceUrl": "https://riksantikvaren.no/fredninger/freder-kistefos-traesliberi/",
       "sourceObjectId": "riksantikvaren-kulturminne:241111",
       "sourceQuality": "current_official_heritage_identity_and_scope",
-      "finding": "The 2025 protection covers the pulp mill and multiple connected industrial buildings, installations, work areas, roads, water and green structures.",
+      "finding": "The protection decision dated 31 October 2025 covers the pulp mill and connected buildings, installations, former work areas, roads, water and green structures.",
       "canVerifyCoordinate": false,
-      "reason": "Defines the protected industrial complex and confirms the named heritage object."
+      "reason": "Defines the larger protected industrial environment and confirms the heritage object."
+    },
+    {
+      "sourceProvider": "official_museum",
+      "sourceName": "Kistefos – contact and access",
+      "sourceUrl": "https://www.kistefosmuseum.no/om-oss/kontakt-oss",
+      "sourceObjectId": "kistefos:samsmoveien-41n",
+      "sourceQuality": "official_current_address_and_access_context",
+      "finding": "Kistefos lists Samsmoveien 41N, 3520 Jevnaker as its contact address and manages public access through current museum operations.",
+      "canVerifyCoordinate": false,
+      "reason": "Visitor address and access control; not a replacement for the historic mill anchor."
     },
     {
       "sourceProvider": "wikimedia_commons",
@@ -90,9 +107,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kistefoss_Pulp_Mill.jpg",
       "sourceObjectId": "commons:Kistefoss_Pulp_Mill.jpg",
       "sourceQuality": "geotagged_physical_cross_check",
-      "finding": "The photograph is explicitly linked to monument 241111 and was taken at 60.22266, 10.36867, approximately 47.9 metres from the applied anchor.",
+      "finding": "The photograph linked to monument 241111 was taken at 60.22266, 10.36867, approximately 47.9 metres from the applied anchor.",
       "canVerifyCoordinate": false,
-      "reason": "Provides an independent physical cross-check of the factory location."
+      "reason": "Independent physical cross-check of the factory location."
     },
     {
       "sourceProvider": "osm_discovery",
@@ -100,24 +117,23 @@
       "sourceUrl": "https://www.openstreetmap.org/",
       "sourceObjectId": "osm-nodes:6546228596,10983953387",
       "sourceQuality": "wrong_object_class_control",
-      "finding": "Both nearby same-name objects are tourism=information points, not the pulp mill.",
+      "finding": "Both nearby same-name objects are tourism information points rather than the pulp mill.",
       "canVerifyCoordinate": false,
       "reason": "Explicitly rejected as canonical anchors."
     },
     {
       "sourceProvider": "legacy_dataset",
       "sourceName": "Legacy Kistefos Træsliberi point",
-      "sourceUrl": "",
       "sourceObjectId": "legacy:kistefos_traesliperi",
       "sourceQuality": "nearby_but_remote_uncontracted_point",
-      "finding": "The legacy coordinate lies approximately 279 metres northeast of the applied factory anchor.",
+      "finding": "The legacy coordinate lies approximately 279 metres north-east of the retained factory anchor.",
       "canVerifyCoordinate": false,
-      "reason": "Replaced to follow the named heritage factory object."
+      "reason": "Already replaced in the 2026-07-26 production."
     }
   ],
   "addressCandidates": [
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_address",
       "address": {
         "street": "Samsmoveien",
         "number": "41",
@@ -131,7 +147,7 @@
       "canApplyToPlace": true
     },
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_address",
       "address": {
         "street": "Kistefossveien",
         "number": "112",
@@ -141,7 +157,7 @@
       "sourceUrl": "https://www.kistefosmuseum.no/om-oss/kontakt-oss",
       "sourceObjectId": "kistefos:south-access",
       "canApplyToPlace": false,
-      "rejectionReason": "Alternative south visitor access, not the factory coordinate source."
+      "rejectionReason": "Alternative southern visitor access, not the factory coordinate source."
     }
   ],
   "sourceObjectCandidates": [
@@ -186,7 +202,7 @@
       "lat": 60.22228888888889,
       "lon": 10.369111111111112,
       "r": 150,
-      "type": "industrial_building_anchor",
+      "type": "historical_industrial_core_anchor",
       "sourceProvider": "manual_research",
       "sourceObjectId": "riksantikvaren-kulturminne:241111;wikidata:Q6417316",
       "canApplyToPlace": true
@@ -198,19 +214,19 @@
       "sourceObjectId": "legacy:kistefos_traesliperi",
       "lat": 60.2245,
       "lon": 10.3715,
-      "coordRole": "nearby_uncontracted_point",
       "distanceFromAppliedM": 279.0,
       "canApplyToPlace": false
     },
     {
-      "sourceProvider": "wikidata",
-      "sourceObjectId": "wikidata:Q6417316",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-kulturminne:241111;wikidata:Q6417316",
       "lat": 60.22228888888889,
       "lon": 10.369111111111112,
-      "coordRole": "industrial_building_anchor",
-      "distanceFromPreviousM": 279.0,
+      "coordRole": "historical_anchor",
+      "distanceFromLegacyM": 279.0,
       "canApplyToPlace": true,
-      "applied": true
+      "applied": true,
+      "retainedFromPreviousProduction": true
     },
     {
       "sourceProvider": "wikimedia_commons",
@@ -225,17 +241,20 @@
   "rawEvidence": [
     {
       "path": "reports/akershus-coordinate-kistefos-traesliperi-source-probe/source-summary.json",
-      "description": "Persisted factory identity, heritage scope, production-core context, access addresses, physical cross-check and false-candidate controls."
+      "description": "Persisted factory identity, protection scope, production-core context, access address, physical cross-check, false candidates and contract migration."
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Applied the historic pulp-mill anchor and retained the 420-metre radius. Continue with Hakadal Verk."
+    "coordinateChangedInThisPass": false,
+    "contractMigrationRequired": true,
+    "nextAction": "Retained the historic pulp-mill anchor, migrated the custom role to historical_anchor and preserved the 420-metre radius. Continue with hakadal_verk."
   },
   "notes": [
-    "The coordinate moves approximately 279 metres to the factory core.",
-    "Generic Kistefos information points are explicitly rejected.",
-    "The 420-metre radius is not the legal protection polygon or the full modern art destination."
+    "The 279-metre move occurred in the 2026-07-26 production and is preserved.",
+    "This pass changes industrial_building_anchor to the valid historical_anchor contract role.",
+    "Generic Kistefos information points remain explicitly rejected.",
+    "The 420-metre radius is not the legal protection polygon, property boundary or full modern art destination."
   ]
 }
