@@ -5,18 +5,27 @@
   "lon": 10.6396722,
   "r": 260,
   "locatorType": "historic_site",
-  "sourceProvider": "osm",
-  "sourceObjectId": "osm-node:6463616338;ssr:stedsnr:300433",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "lovdata:seiersten-inventar-1002;osm-node:6463616338;ssr:stedsnr:300433",
   "geocodeAccuracy": "semantic_anchor",
   "coordRole": "area_anchor",
   "coordType": "named_military_skanse_site_anchor",
   "coordStatus": "verified_historical_source",
-  "coordSource": "Lovdata – fredning av Seiersten skanse; OpenStreetMap node 6463616338 – Øvre Seiersten skanse",
-  "coordSourceId": "osm-node:6463616338;ssr:stedsnr:300433",
-  "coordSourceUrl": "https://www.openstreetmap.org/node/6463616338",
-  "coordVerifiedAt": "2026-07-26",
-  "coordChangeReason": "Markøren flyttes om lag 424,8 meter fra et uavklart punkt øst for anlegget til det navngitte militære skansepunktet med SSR-stedsnummer 300433.",
-  "coordNote": "Lovdata-forskriften for Oscarsborg festning identifiserer Seiersten skanse som inventarnummer 1002, en infanteriskanse bygget 1898–1900, og fredningen omfatter hele anlegget med dekningsrommenes eksteriør og interiør på gnr./bnr. 70/1. OpenStreetMap node 6463616338 er navngitt Øvre Seiersten skanse, merket landuse=military og har SSR-stedsnummer 300433; punktet 59.6726278, 10.6396722 brukes som area_anchor for selve skansen. Det samlokaliserte turistpunktet Seiersten Festning bekrefter besøksidentiteten, mens node 1793750671 med navnet Seiersten skanse er en informasjonstavle 130 meter øst og avvises som canonical. Legacy-punktet 59.6719, 10.6471 lå omtrent 424,8 meter øst for det militære skansepunktet. Radius 260 meter dekker den lukkede infanteriskansen og de nærmeste dekningsrommene og tilslutningssporene, men er ikke en eksakt fredningspolygon. Veisvingbatteriet, omtrent 390 meter sørvest, er et separat kanonbatteri i samme forsvarssystem og brukes ikke som hovedkoordinat for denne posten.",
+  "coordSource": "Lovdata FOR-2014-04-09-1986, Seiersten inventory 1002; OpenStreetMap node 6463616338 – Øvre Seiersten skanse; SSR place number 300433; Skiforeningen and Lokalhistoriewiki historical controls",
+  "coordSourceId": "lovdata:seiersten-inventar-1002;osm-node:6463616338;ssr:stedsnr:300433",
+  "coordSourceUrl": "https://lovdata.no/dokument/LF/forskrift/2014-04-09-1986",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The 2026-07-26 production already moved the unresolved legacy point approximately 424.8 metres west to the named military skanse point with SSR identity. This pass retains that coordinate and changes sourceProvider from osm to manual_research because verified_historical_source for a historic_site depends on the documented synthesis between Lovdata inventory 1002 and the OSM/SSR physical anchor.",
+  "coordNote": "Lovdata FOR-2014-04-09-1986 identifies Seiersten skanse as inventory 1002, an infantry redoubt built 1898–1900, and protects the complete installation with the shelters’ exteriors and interiors on gnr./bnr. 70/1. OpenStreetMap node 6463616338 at 59.6726278, 10.6396722 is named Øvre Seiersten skanse, tagged landuse=military and linked to SSR place number 300433. The combined legal, historical and physical source chain supports this point as an area anchor for the redoubt. The co-located tourism point is secondary, while information-map node 1793750671 approximately 126.8 metres east is rejected. Veisvingbatteriet is a separate inventory object. Radius 260 metres is gameplay coverage, not the legal protection polygon, cadastral parcel, complete firing sector, connecting-line geometry or access boundary.",
+  "accessContext": {
+    "siteType": "protected_military_fortification_and_recreation_landscape",
+    "publicAccess": "Use established public paths and observe current signs, closures and management rules. Shelters, interiors, earthworks and military or protected structures may be closed, unsafe or subject to restrictions even when the surrounding recreation area is accessible.",
+    "limitations": [
+      "Do not enter closed shelters, magazines, tunnels, fenced areas or protected interiors without explicit permission.",
+      "Do not climb on earthworks or structures where signs, conservation needs or safety conditions prohibit it.",
+      "The gameplay radius is not the fredningspolygon, property boundary, firing sector, connecting-line extent, military boundary or access guarantee."
+    ]
+  },
   "anchors": [
     {
       "id": "ovre_seiersten_skanse_site",
@@ -24,10 +33,11 @@
       "lat": 59.6726278,
       "lon": 10.6396722,
       "r": 110,
-      "type": "area_anchor",
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-node:6463616338;ssr:stedsnr:300433",
-      "note": "Navngitt militært skansepunkt med SSR-identitet; fysisk områdeanker for infanteriskansen, ikke informasjonstavlen øst for anlegget."
+      "type": "historical_military_area_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:seiersten-inventar-1002;osm-node:6463616338;ssr:stedsnr:300433",
+      "canApplyToPlace": true,
+      "note": "Named military skanse point with SSR identity, legally resolved to Seiersten inventory 1002; physical area anchor for the infantry redoubt, not the information map east of the site."
     }
   ],
   "category": "historie",
@@ -84,28 +94,28 @@
       "label": "Lovdata – fredning av Oscarsborg og Seiersten-anleggene",
       "url": "https://lovdata.no/dokument/LF/forskrift/2014-04-09-1986",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "history",
       "label": "Skiforeningen – Seiersten skanse og Veisvingbatteriet",
       "url": "https://www.skiforeningen.no/utimarka/omrader/follomarka/steder/seiersten/",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "history",
       "label": "Lokalhistoriewiki – Seiersten i Frogn",
       "url": "https://lokalhistoriewiki.no/wiki/Seiersten_(Frogn)",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "coordinate_source",
       "label": "OpenStreetMap – Øvre Seiersten skanse",
       "url": "https://www.openstreetmap.org/node/6463616338",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     }
   ]
 }
