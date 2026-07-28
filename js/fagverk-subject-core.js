@@ -133,6 +133,14 @@
         ...list(method?.evidence_forms),
         ...list(method?.materials)
       ]),
+      procedure: unique([
+        ...list(method?.procedure),
+        ...list(method?.steps)
+      ]),
+      limitations: unique([
+        ...list(method?.limitations),
+        ...list(method?.blindspots)
+      ]),
       domainIds: unique([...
         list(method?.coverage_domains),
         ...list(method?.best_for_emne_kinds)
@@ -251,11 +259,12 @@
           list(emne?.conflicts),
           ...list(emne?.critical_distinctions)
         ]),
-        analysisAxes: unique([...
-          list(emne?.analysis_axes),
-          ...list(emne?.akse),
-          ...list(emne?.ideological_dimensions)
-        ]),
+        analysisAxes: list(emne?.analysis_axes).length
+          ? unique(list(emne?.analysis_axes))
+          : unique([...
+              list(emne?.akse),
+              ...list(emne?.ideological_dimensions)
+            ]),
         level: emne?.level ?? null,
         status: firstText(emne?.status, 'active'),
         source: emne

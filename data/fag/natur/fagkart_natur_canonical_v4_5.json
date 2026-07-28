@@ -1,10 +1,10 @@
 {
   "subject_id": "natur",
   "subject_title": "Natur & miljø",
-  "scope": "oslo_og_omegn",
+  "scope": "universal",
   "type": "fagkart",
-  "version": "v4.5-canonical-draft-1",
-  "updated_at": "2026-05-06",
+  "version": "v4.5-canonical",
+  "updated_at": "2026-07-29",
   "canonical_registry_version": "naturpensum_v4_5",
   "purpose": "Kanonisk fagkart for Natur & miljø i History Go. Fagkartet styrer naturfaglige og miljøfaglige emner, metoder, teori, stedstyper, spørsmålsflater og kildekrav. Det skal brukes som styringslag, ikke som erstatning for eksterne kilder om konkrete arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning eller restaurering.",
   "principles": {
@@ -168,10 +168,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med artsfunn med dato og innsats på et konkret sted eller fenomen.",
+            "Hvordan forklarer artens habitatkrav at den finnes, mangler eller endrer forekomst på stedet?",
+            "Kontroller forklaringen mot habitatstruktur og ressurser og sesong, forstyrrelse og bestandsdata."
           ],
           "comparison_pairs": [
             [
@@ -216,7 +215,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Arter og habitat: skill enkeltfunn, habitatbruk og levedyktig bestand; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -224,7 +223,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan forklarer artens habitatkrav at den finnes, mangler eller endrer forekomst på stedet?",
+          "evidence_focus": [
+            "artsfunn med dato og innsats",
+            "habitatstruktur og ressurser",
+            "sesong, forstyrrelse og bestandsdata"
+          ]
         },
         {
           "id": "naringsnett",
@@ -300,10 +305,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med dokumenterte bytte-, beite- og predatorrelasjoner på et konkret sted eller fenomen.",
+            "Hvilke direkte og indirekte næringsforbindelser holder systemet sammen, og hva kan endres når ett ledd svekkes?",
+            "Kontroller forklaringen mot mengde og sesong for sentrale arter og alternative næringskilder og indirekte effekter."
           ],
           "comparison_pairs": [
             [
@@ -348,7 +352,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Næringsnett: skill næringskjede og faktisk næringsnett; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -356,7 +360,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke direkte og indirekte næringsforbindelser holder systemet sammen, og hva kan endres når ett ledd svekkes?",
+          "evidence_focus": [
+            "dokumenterte bytte-, beite- og predatorrelasjoner",
+            "mengde og sesong for sentrale arter",
+            "alternative næringskilder og indirekte effekter"
+          ]
         },
         {
           "id": "pollinering_samspill",
@@ -432,10 +442,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med blomstringstid og planteforekomst på et konkret sted eller fenomen.",
+            "Hvilke planter og pollinatorer møtes i tid og rom, og hvilke ressurser begrenser samspillet?",
+            "Kontroller forklaringen mot pollinatorfunn og besøksobservasjoner og reirplasser, landskapsforbindelser og skjøtsel."
           ],
           "comparison_pairs": [
             [
@@ -480,7 +489,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Pollinering og samspill: skill pollinatorbesøk og dokumentert pollinering; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -488,7 +497,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke planter og pollinatorer møtes i tid og rom, og hvilke ressurser begrenser samspillet?",
+          "evidence_focus": [
+            "blomstringstid og planteforekomst",
+            "pollinatorfunn og besøksobservasjoner",
+            "reirplasser, landskapsforbindelser og skjøtsel"
+          ]
         },
         {
           "id": "jordliv_mikroliv",
@@ -564,10 +579,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med jordprofil, organisk materiale og fuktighet på et konkret sted eller fenomen.",
+            "Hvordan driver mikroorganismer og jordfauna nedbrytning, jordstruktur og næringsomsetning under den synlige vegetasjonen?",
+            "Kontroller forklaringen mot mikrobiologiske eller biologiske indikatorer og nedbrytning, respirasjon og næringsstoffer."
           ],
           "comparison_pairs": [
             [
@@ -612,7 +626,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Jordliv og mikroliv: skill jord som underlag og jord som levende system; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -620,7 +634,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan driver mikroorganismer og jordfauna nedbrytning, jordstruktur og næringsomsetning under den synlige vegetasjonen?",
+          "evidence_focus": [
+            "jordprofil, organisk materiale og fuktighet",
+            "mikrobiologiske eller biologiske indikatorer",
+            "nedbrytning, respirasjon og næringsstoffer"
+          ]
         },
         {
           "id": "fremmede_arter",
@@ -696,10 +716,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med artsidentifikasjon og funnhistorikk på et konkret sted eller fenomen.",
+            "Er arten bare fremmed, eller viser kunnskapsgrunnlaget etablering, spredning og økologisk risiko på stedet?",
+            "Kontroller forklaringen mot spredningsvei og bestandsutvikling og dokumentert påvirkning og risikovurdering."
           ],
           "comparison_pairs": [
             [
@@ -744,7 +763,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Fremmede arter: skill fremmed forekomst og skadegjørende invasjon; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -752,7 +771,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Er arten bare fremmed, eller viser kunnskapsgrunnlaget etablering, spredning og økologisk risiko på stedet?",
+          "evidence_focus": [
+            "artsidentifikasjon og funnhistorikk",
+            "spredningsvei og bestandsutvikling",
+            "dokumentert påvirkning og risikovurdering"
+          ]
         },
         {
           "id": "skogstruktur",
@@ -828,10 +853,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med treslag, diameter og aldersfordeling på et konkret sted eller fenomen.",
+            "Hvordan påvirker sjikt, alder, treslag, død ved og lys skogens habitatkvalitet og utviklingsmuligheter?",
+            "Kontroller forklaringen mot død ved, sjikt og kronedekke og hogsthistorikk, suksesjon og indikatorarter."
           ],
           "comparison_pairs": [
             [
@@ -876,7 +900,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Skogstruktur: skill tredekke og skogøkologisk struktur; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -884,7 +908,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan påvirker sjikt, alder, treslag, død ved og lys skogens habitatkvalitet og utviklingsmuligheter?",
+          "evidence_focus": [
+            "treslag, diameter og aldersfordeling",
+            "død ved, sjikt og kronedekke",
+            "hogsthistorikk, suksesjon og indikatorarter"
+          ]
         },
         {
           "id": "vatmark_habitat",
@@ -960,10 +990,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med vannstand og hydroperiode på et konkret sted eller fenomen.",
+            "Hvilket vannregime, jordsmonn og artsmiljø gjør området til funksjonell våtmark gjennom året?",
+            "Kontroller forklaringen mot våtmarksjord og vegetasjon og amfibier, fugl, insekter og kantsoner."
           ],
           "comparison_pairs": [
             [
@@ -1008,7 +1037,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Våtmark som habitat: skill synlig vannflate og våtmarksfunksjon; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -1016,7 +1045,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilket vannregime, jordsmonn og artsmiljø gjør området til funksjonell våtmark gjennom året?",
+          "evidence_focus": [
+            "vannstand og hydroperiode",
+            "våtmarksjord og vegetasjon",
+            "amfibier, fugl, insekter og kantsoner"
+          ]
         },
         {
           "id": "kantsoner",
@@ -1092,10 +1127,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med kantsonebredde og vegetasjonsstruktur på et konkret sted eller fenomen.",
+            "Hvordan påvirker bredden, vegetasjonen og kontinuiteten i kantsonen vann, erosjon, temperatur og artsliv?",
+            "Kontroller forklaringen mot erosjon, skygge og avrenning og artsbruk, inngrep og brudd i kontinuitet."
           ],
           "comparison_pairs": [
             [
@@ -1140,7 +1174,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Kantsoner: skill smal grønn stripe og funksjonell buffersone; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -1148,7 +1182,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan påvirker bredden, vegetasjonen og kontinuiteten i kantsonen vann, erosjon, temperatur og artsliv?",
+          "evidence_focus": [
+            "kantsonebredde og vegetasjonsstruktur",
+            "erosjon, skygge og avrenning",
+            "artsbruk, inngrep og brudd i kontinuitet"
+          ]
         },
         {
           "id": "suksesjon",
@@ -1224,10 +1264,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med artssammensetning og sjikt på et konkret sted eller fenomen.",
+            "Hvilke arter og strukturer viser hvor vegetasjonen befinner seg i utviklingen etter bruk eller forstyrrelse?",
+            "Kontroller forklaringen mot tid siden forstyrrelse og historiske bilder og jord, lys og etableringsforhold."
           ],
           "comparison_pairs": [
             [
@@ -1272,7 +1311,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Suksesjon: skill sesongendring og langsiktig suksesjon; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -1280,7 +1319,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke arter og strukturer viser hvor vegetasjonen befinner seg i utviklingen etter bruk eller forstyrrelse?",
+          "evidence_focus": [
+            "artssammensetning og sjikt",
+            "tid siden forstyrrelse og historiske bilder",
+            "jord, lys og etableringsforhold"
+          ]
         },
         {
           "id": "naturens_egenverdi",
@@ -1356,10 +1401,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med dokumentert økologisk verdi og sårbarhet på et konkret sted eller fenomen.",
+            "Hvilke naturverdier hevdes å gjelde uavhengig av menneskelig nytte, og hvilke praktiske følger får begrunnelsen?",
+            "Kontroller forklaringen mot etiske premisser i beslutninger og alternativer, tap og irreversible konsekvenser."
           ],
           "comparison_pairs": [
             [
@@ -1404,7 +1448,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Naturens egenverdi: skill egenverdi, rettighet og økosystemtjeneste; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -1412,7 +1456,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke naturverdier hevdes å gjelde uavhengig av menneskelig nytte, og hvilke praktiske følger får begrunnelsen?",
+          "evidence_focus": [
+            "dokumentert økologisk verdi og sårbarhet",
+            "etiske premisser i beslutninger",
+            "alternativer, tap og irreversible konsekvenser"
+          ]
         }
       ],
       "best_place_types": [
@@ -1573,10 +1623,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med nedbørfelt og vannføringsdata på et konkret sted eller fenomen.",
+            "Hvordan kobler nedbørfelt, vannføring, sediment, kantsoner og organismer elven fra kilde til utløp?",
+            "Kontroller forklaringen mot sedimenttransport og vannkvalitet og kantsoner, vandringshindre og artsdata."
           ],
           "comparison_pairs": [
             [
@@ -1621,7 +1670,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Elv som system: skill enkelt elvepunkt og sammenhengende vassdrag; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -1629,7 +1678,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan kobler nedbørfelt, vannføring, sediment, kantsoner og organismer elven fra kilde til utløp?",
+          "evidence_focus": [
+            "nedbørfelt og vannføringsdata",
+            "sedimenttransport og vannkvalitet",
+            "kantsoner, vandringshindre og artsdata"
+          ]
         },
         {
           "id": "bekkeapning",
@@ -1705,10 +1760,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med historisk og nytt bekkeløp på et konkret sted eller fenomen.",
+            "Hva gjenopprettes hydrologisk og økologisk når en lukket bekk åpnes, og hva forblir teknisk konstruert?",
+            "Kontroller forklaringen mot vannføring, flomvei og infiltrasjon og habitat, temperatur, kantvegetasjon og drift."
           ],
           "comparison_pairs": [
             [
@@ -1753,7 +1807,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Bekkeåpning: skill synlig kanal og restaurert bekk; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -1761,7 +1815,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hva gjenopprettes hydrologisk og økologisk når en lukket bekk åpnes, og hva forblir teknisk konstruert?",
+          "evidence_focus": [
+            "historisk og nytt bekkeløp",
+            "vannføring, flomvei og infiltrasjon",
+            "habitat, temperatur, kantvegetasjon og drift"
+          ]
         },
         {
           "id": "overvann",
@@ -1837,10 +1897,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med nedbør, helning og tette flater på et konkret sted eller fenomen.",
+            "Hvor går regnvannet på tette og åpne flater, og hvor kan volumet infiltreres, forsinkes eller skape skade?",
+            "Kontroller forklaringen mot sluk, flomveier og fordrøyningsvolum og jord, vegetasjon og infiltrasjonskapasitet."
           ],
           "comparison_pairs": [
             [
@@ -1885,7 +1944,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Overvann: skill rask bortledning og lokal vannhåndtering; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -1893,7 +1952,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvor går regnvannet på tette og åpne flater, og hvor kan volumet infiltreres, forsinkes eller skape skade?",
+          "evidence_focus": [
+            "nedbør, helning og tette flater",
+            "sluk, flomveier og fordrøyningsvolum",
+            "jord, vegetasjon og infiltrasjonskapasitet"
+          ]
         },
         {
           "id": "vannkvalitet",
@@ -1969,10 +2034,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med pH, oksygen, næringsstoffer og turbiditet på et konkret sted eller fenomen.",
+            "Hvilke fysiske, kjemiske og biologiske indikatorer beskriver vannets tilstand, og hvordan varierer de med vannføring og tid?",
+            "Kontroller forklaringen mot biologiske kvalitetselementer og nedbør, vannføring, målested og referanse."
           ],
           "comparison_pairs": [
             [
@@ -2017,7 +2081,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Vannkvalitet: skill klart vann og god økologisk tilstand; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -2025,7 +2089,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke fysiske, kjemiske og biologiske indikatorer beskriver vannets tilstand, og hvordan varierer de med vannføring og tid?",
+          "evidence_focus": [
+            "pH, oksygen, næringsstoffer og turbiditet",
+            "biologiske kvalitetselementer",
+            "nedbør, vannføring, målested og referanse"
+          ]
         },
         {
           "id": "sedimenter",
@@ -2101,10 +2171,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med kornstørrelse, lagdeling og mineralinnhold på et konkret sted eller fenomen.",
+            "Hvor kommer sedimentet fra, hvordan transporteres og sorteres det, og hvilke stoffer eller historiske spor lagres i lagene?",
+            "Kontroller forklaringen mot strøm, erosjon og avsetningsmiljø og organisk materiale, forurensning og datering."
           ],
           "comparison_pairs": [
             [
@@ -2149,7 +2218,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Sedimenter: skill sediment som materiale og sediment som miljøarkiv; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -2157,7 +2226,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvor kommer sedimentet fra, hvordan transporteres og sorteres det, og hvilke stoffer eller historiske spor lagres i lagene?",
+          "evidence_focus": [
+            "kornstørrelse, lagdeling og mineralinnhold",
+            "strøm, erosjon og avsetningsmiljø",
+            "organisk materiale, forurensning og datering"
+          ]
         },
         {
           "id": "fjord_okologi",
@@ -2198,7 +2273,8 @@
           },
           "emne_ids": [
             "em_natur_kyst_fjord_og_strand",
-            "em_natur_vannkvalitet_forurensning"
+            "em_natur_vannkvalitet_forurensning",
+            "em_natur_kyst_okosystemer"
           ],
           "best_place_types": [
             "elv",
@@ -2233,10 +2309,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med dybdeprofiler, salt og temperatur på et konkret sted eller fenomen.",
+            "Hvordan styrer dybde, saltholdighet, lys, oksygen og sirkulasjon habitat og næringsnett i fjorden?",
+            "Kontroller forklaringen mot oksygen, næringsstoffer og siktdybde og marine naturtyper, arter og belastning fra land."
           ],
           "comparison_pairs": [
             [
@@ -2281,7 +2356,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Fjordøkologi: skill fjordoverflate og økologien i vannmassene; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -2289,7 +2364,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan styrer dybde, saltholdighet, lys, oksygen og sirkulasjon habitat og næringsnett i fjorden?",
+          "evidence_focus": [
+            "dybdeprofiler, salt og temperatur",
+            "oksygen, næringsstoffer og siktdybde",
+            "marine naturtyper, arter og belastning fra land"
+          ]
         },
         {
           "id": "kretslop_vann_karbon",
@@ -2365,10 +2446,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med vannbalanse og avrenning på et konkret sted eller fenomen.",
+            "Hvordan flyttes vann og karbon mellom vegetasjon, jord, vassdrag og atmosfære, og hvor finnes de viktigste lagrene og lekkasjene?",
+            "Kontroller forklaringen mot karbonlager i jord og vegetasjon og produksjon, respirasjon og eksport."
           ],
           "comparison_pairs": [
             [
@@ -2413,7 +2493,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Vann- og karbonkretsløp: skill stofflager og årlig stoffstrøm; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -2421,7 +2501,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan flyttes vann og karbon mellom vegetasjon, jord, vassdrag og atmosfære, og hvor finnes de viktigste lagrene og lekkasjene?",
+          "evidence_focus": [
+            "vannbalanse og avrenning",
+            "karbonlager i jord og vegetasjon",
+            "produksjon, respirasjon og eksport"
+          ]
         },
         {
           "id": "flom_erosjon",
@@ -2497,10 +2583,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med vannføring, flomnivå og nedbør på et konkret sted eller fenomen.",
+            "Hvordan skaper vannmengde, hastighet, helning og løsmasser flom og erosjon, og hvor flyttes risiko og sediment?",
+            "Kontroller forklaringen mot terreng, jord og erosjonsspor og sikringstiltak, avsetning og effekt nedstrøms."
           ],
           "comparison_pairs": [
             [
@@ -2545,7 +2630,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Flom og erosjon: skill høy vannstand og erosiv kraft; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -2553,7 +2638,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan skaper vannmengde, hastighet, helning og løsmasser flom og erosjon, og hvor flyttes risiko og sediment?",
+          "evidence_focus": [
+            "vannføring, flomnivå og nedbør",
+            "terreng, jord og erosjonsspor",
+            "sikringstiltak, avsetning og effekt nedstrøms"
+          ]
         },
         {
           "id": "vann_som_bygrense",
@@ -2629,10 +2720,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med vannløp, kryssinger og tilgjengelighet på et konkret sted eller fenomen.",
+            "Når fungerer vannløpet som fysisk barriere, økologisk forbindelse eller planmessig grense, og for hvem?",
+            "Kontroller forklaringen mot artsspredning og kantsoner og eiendom, plan og historisk byutvikling."
           ],
           "comparison_pairs": [
             [
@@ -2677,7 +2767,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Vann som bygrense: skill administrativ grense og økologisk sammenheng; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -2685,7 +2775,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Når fungerer vannløpet som fysisk barriere, økologisk forbindelse eller planmessig grense, og for hvem?",
+          "evidence_focus": [
+            "vannløp, kryssinger og tilgjengelighet",
+            "artsspredning og kantsoner",
+            "eiendom, plan og historisk byutvikling"
+          ]
         },
         {
           "id": "mikroplast_kjemi",
@@ -2761,10 +2857,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med partikkeltype, størrelse og polymer på et konkret sted eller fenomen.",
+            "Hvilke partikler og kjemiske stoffer følger mikroplasten fra kilde til sediment, vann og organismer?",
+            "Kontroller forklaringen mot kilder, avrenning og sedimentasjon og tilsetningsstoffer, opptak og effektdata."
           ],
           "comparison_pairs": [
             [
@@ -2809,7 +2904,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Mikroplast og kjemi: skill plastpartikkel og kjemisk eksponering; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -2817,7 +2912,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke partikler og kjemiske stoffer følger mikroplasten fra kilde til sediment, vann og organismer?",
+          "evidence_focus": [
+            "partikkeltype, størrelse og polymer",
+            "kilder, avrenning og sedimentasjon",
+            "tilsetningsstoffer, opptak og effektdata"
+          ]
         }
       ],
       "best_place_types": [
@@ -2977,10 +3078,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med luft-, overflate- og strålingstemperatur på et konkret sted eller fenomen.",
+            "Hvordan skaper overflater, byform, skygge, vegetasjon og vind lokale varmeforskjeller gjennom døgnet?",
+            "Kontroller forklaringen mot materialer, skygge og trekroner og vind, fuktighet, tid og eksponerte grupper."
           ],
           "comparison_pairs": [
             [
@@ -3025,7 +3125,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Urban varme: skill hetebølge og urban varmeøy; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3033,7 +3133,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan skaper overflater, byform, skygge, vegetasjon og vind lokale varmeforskjeller gjennom døgnet?",
+          "evidence_focus": [
+            "luft-, overflate- og strålingstemperatur",
+            "materialer, skygge og trekroner",
+            "vind, fuktighet, tid og eksponerte grupper"
+          ]
         },
         {
           "id": "karbon_energiflyt",
@@ -3108,10 +3214,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med primærproduksjon og biomasse på et konkret sted eller fenomen.",
+            "Hvordan omsettes solenergi og karbon gjennom produksjon, respirasjon, nedbrytning og lagring i økosystemet?",
+            "Kontroller forklaringen mot respirasjon, nedbrytning og jordkarbon og energibudsjett, karbonstrøm og tidshorisont."
           ],
           "comparison_pairs": [
             [
@@ -3156,7 +3261,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Karbon og energiflyt: skill energiflyt og karbonlager; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3164,7 +3269,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan omsettes solenergi og karbon gjennom produksjon, respirasjon, nedbrytning og lagring i økosystemet?",
+          "evidence_focus": [
+            "primærproduksjon og biomasse",
+            "respirasjon, nedbrytning og jordkarbon",
+            "energibudsjett, karbonstrøm og tidshorisont"
+          ]
         },
         {
           "id": "resiliens",
@@ -3239,10 +3350,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med historiske forstyrrelser og respons på et konkret sted eller fenomen.",
+            "Hvilke mekanismer gjør systemet i stand til å motstå eller gjenopprette funksjon etter en bestemt forstyrrelse?",
+            "Kontroller forklaringen mot funksjonelt mangfold og redundans og konnektivitet, tilbakekobling og gjenopprettingstid."
           ],
           "comparison_pairs": [
             [
@@ -3287,7 +3397,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Resiliens: skill motstandskraft og gjenopprettingsevne; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3295,7 +3405,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke mekanismer gjør systemet i stand til å motstå eller gjenopprette funksjon etter en bestemt forstyrrelse?",
+          "evidence_focus": [
+            "historiske forstyrrelser og respons",
+            "funksjonelt mangfold og redundans",
+            "konnektivitet, tilbakekobling og gjenopprettingstid"
+          ]
         },
         {
           "id": "vippepunkter",
@@ -3370,10 +3486,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med belastnings- og tilstandsserier på et konkret sted eller fenomen.",
+            "Hvilke tilbakekoblinger kan føre systemet over en terskel, og hvilke signaler tyder på redusert stabilitet?",
+            "Kontroller forklaringen mot terskelmekanismer og tilbakekoblinger og varians, tregere gjenoppretting og alternative tilstander."
           ],
           "comparison_pairs": [
             [
@@ -3418,7 +3533,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Vippepunkter: skill vanlig variasjon og systemskifte; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3426,7 +3541,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke tilbakekoblinger kan føre systemet over en terskel, og hvilke signaler tyder på redusert stabilitet?",
+          "evidence_focus": [
+            "belastnings- og tilstandsserier",
+            "terskelmekanismer og tilbakekoblinger",
+            "varians, tregere gjenoppretting og alternative tilstander"
+          ]
         },
         {
           "id": "ekstremvaer",
@@ -3501,10 +3622,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med intensitet, varighet og returperiode på et konkret sted eller fenomen.",
+            "Hvordan skiller en ekstrem hendelse seg fra normal variasjon, og hvilke natur- og samfunnsforhold bestemmer konsekvensen?",
+            "Kontroller forklaringen mot eksponering og sårbarhet og skade, økologisk respons og historisk sammenligning."
           ],
           "comparison_pairs": [
             [
@@ -3549,7 +3669,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Ekstremvær: skill værhendelse og langsiktig klimarisiko; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3557,7 +3677,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan skiller en ekstrem hendelse seg fra normal variasjon, og hvilke natur- og samfunnsforhold bestemmer konsekvensen?",
+          "evidence_focus": [
+            "intensitet, varighet og returperiode",
+            "eksponering og sårbarhet",
+            "skade, økologisk respons og historisk sammenligning"
+          ]
         },
         {
           "id": "naturbaserte_losninger",
@@ -3632,10 +3758,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med mål, dimensjonering og naturprosess på et konkret sted eller fenomen.",
+            "Hvilken økologisk prosess skal løsningen bruke, og leverer den dokumentert effekt uten å flytte belastningen?",
+            "Kontroller forklaringen mot før- og ettermålinger av effekt og arealbehov, drift, naturverdi og restrisiko."
           ],
           "comparison_pairs": [
             [
@@ -3680,7 +3805,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Naturbaserte løsninger: skill grønn utforming og fungerende naturbasert løsning; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3688,7 +3813,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilken økologisk prosess skal løsningen bruke, og leverer den dokumentert effekt uten å flytte belastningen?",
+          "evidence_focus": [
+            "mål, dimensjonering og naturprosess",
+            "før- og ettermålinger av effekt",
+            "arealbehov, drift, naturverdi og restrisiko"
+          ]
         },
         {
           "id": "klimahukommelse",
@@ -3763,10 +3894,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med sediment, pollen, årringer eller landformer på et konkret sted eller fenomen.",
+            "Hvilke naturarkiver bevarer spor av tidligere klima, og hvordan dateres og tolkes signalet?",
+            "Kontroller forklaringen mot datering, proxy og kalibrering og regional sammenligning og usikkerhet."
           ],
           "comparison_pairs": [
             [
@@ -3811,7 +3941,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Klimahukommelse: skill proxydata og direkte klimamåling; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3819,7 +3949,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke naturarkiver bevarer spor av tidligere klima, og hvordan dateres og tolkes signalet?",
+          "evidence_focus": [
+            "sediment, pollen, årringer eller landformer",
+            "datering, proxy og kalibrering",
+            "regional sammenligning og usikkerhet"
+          ]
         },
         {
           "id": "sarbarhet",
@@ -3894,10 +4030,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med eksponering og avhengigheter på et konkret sted eller fenomen.",
+            "Hvilke egenskaper gjør mennesker, arter, habitat eller infrastruktur særlig utsatt for en bestemt fare?",
+            "Kontroller forklaringen mot sensitivitet og tilpasningskapasitet og scenario, konsekvens og fordelingsdata."
           ],
           "comparison_pairs": [
             [
@@ -3942,7 +4077,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Sårbarhet: skill eksponering, sårbarhet og risiko; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -3950,7 +4085,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke egenskaper gjør mennesker, arter, habitat eller infrastruktur særlig utsatt for en bestemt fare?",
+          "evidence_focus": [
+            "eksponering og avhengigheter",
+            "sensitivitet og tilpasningskapasitet",
+            "scenario, konsekvens og fordelingsdata"
+          ]
         },
         {
           "id": "vegetasjon_klimatiltak",
@@ -4025,10 +4166,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med art, kronevolum og rotmiljø på et konkret sted eller fenomen.",
+            "Hvordan påvirker vegetasjon skygge, fordampning, vannlagring og karbon, og hvilke forhold begrenser tiltakets effekt?",
+            "Kontroller forklaringen mot temperatur, fuktighet og overvann og etablering, drift, tørke og levetid."
           ],
           "comparison_pairs": [
             [
@@ -4073,7 +4213,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Vegetasjon som klimatiltak: skill plantet areal og levert klimaeffekt; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -4081,7 +4221,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan påvirker vegetasjon skygge, fordampning, vannlagring og karbon, og hvilke forhold begrenser tiltakets effekt?",
+          "evidence_focus": [
+            "art, kronevolum og rotmiljø",
+            "temperatur, fuktighet og overvann",
+            "etablering, drift, tørke og levetid"
+          ]
         },
         {
           "id": "energi_i_okosystemer",
@@ -4156,10 +4302,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med solinnstråling og primærproduksjon på et konkret sted eller fenomen.",
+            "Hvordan kommer energi inn i økosystemet, fordeles mellom trofiske nivåer og tapes som varme?",
+            "Kontroller forklaringen mot biomasse og næringsnivå og respirasjon, effektivitet og sesong."
           ],
           "comparison_pairs": [
             [
@@ -4204,7 +4349,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Energi i økosystemer: skill energiomsetning og stoffkretsløp; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -4212,7 +4357,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan kommer energi inn i økosystemet, fordeles mellom trofiske nivåer og tapes som varme?",
+          "evidence_focus": [
+            "solinnstråling og primærproduksjon",
+            "biomasse og næringsnivå",
+            "respirasjon, effektivitet og sesong"
+          ]
         }
       ],
       "best_place_types": [
@@ -4372,10 +4523,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med feltbestemt bergart og mineraler på et konkret sted eller fenomen.",
+            "Hvilke bergarter og strukturer finnes, hvordan ble de dannet, og hvordan påvirker de terreng, jord og vann?",
+            "Kontroller forklaringen mot berggrunnskart, lag og sprekker og forvitring, jorddannelse og drenering."
           ],
           "comparison_pairs": [
             [
@@ -4420,7 +4570,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Berggrunn: skill bergart, mineral og løsmasser; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -4428,7 +4578,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke bergarter og strukturer finnes, hvordan ble de dannet, og hvordan påvirker de terreng, jord og vann?",
+          "evidence_focus": [
+            "feltbestemt bergart og mineraler",
+            "berggrunnskart, lag og sprekker",
+            "forvitring, jorddannelse og drenering"
+          ]
         },
         {
           "id": "istid_landheving",
@@ -4504,10 +4660,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med skuringsspor, morene og leire på et konkret sted eller fenomen.",
+            "Hvilke spor viser isens erosjon og avsetning, og hvordan har landheving flyttet strandlinjer etter avsmeltingen?",
+            "Kontroller forklaringen mot høyde, strandavsetning og marin grense og datering og regional landhevingshistorie."
           ],
           "comparison_pairs": [
             [
@@ -4552,7 +4707,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Istid og landheving: skill isdannet form og senere landheving; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -4560,7 +4715,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke spor viser isens erosjon og avsetning, og hvordan har landheving flyttet strandlinjer etter avsmeltingen?",
+          "evidence_focus": [
+            "skuringsspor, morene og leire",
+            "høyde, strandavsetning og marin grense",
+            "datering og regional landhevingshistorie"
+          ]
         },
         {
           "id": "dalforer",
@@ -4636,10 +4797,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med tverrprofil, helning og terrengmodell på et konkret sted eller fenomen.",
+            "Hvilke geologiske og hydrologiske prosesser har formet dalføret, og hvordan styrer formen vann, klima og ferdsel?",
+            "Kontroller forklaringen mot berggrunn, løsmasser og erosjon og vannløp, kaldluft og arealbruk."
           ],
           "comparison_pairs": [
             [
@@ -4684,7 +4844,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Dalfører: skill dalføre som landform og dalføre som bykorridor; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -4692,7 +4852,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke geologiske og hydrologiske prosesser har formet dalføret, og hvordan styrer formen vann, klima og ferdsel?",
+          "evidence_focus": [
+            "tverrprofil, helning og terrengmodell",
+            "berggrunn, løsmasser og erosjon",
+            "vannløp, kaldluft og arealbruk"
+          ]
         },
         {
           "id": "vannskiller",
@@ -4768,10 +4934,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med høydekurver og terrengmodell på et konkret sted eller fenomen.",
+            "Hvor deler terrenget avrenningen mellom nedbørfelt, og hvordan er skillet endret av grøfter, veier og ledningsnett?",
+            "Kontroller forklaringen mot bekkeløp, sluk og kunstig drenering og nedbørfelt og vannføringsrespons."
           ],
           "comparison_pairs": [
             [
@@ -4816,7 +4981,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Vannskiller: skill topografisk vannskille og teknisk avløpsgrense; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -4824,7 +4989,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvor deler terrenget avrenningen mellom nedbørfelt, og hvordan er skillet endret av grøfter, veier og ledningsnett?",
+          "evidence_focus": [
+            "høydekurver og terrengmodell",
+            "bekkeløp, sluk og kunstig drenering",
+            "nedbørfelt og vannføringsrespons"
+          ]
         },
         {
           "id": "erosjon",
@@ -4900,10 +5071,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med erosjonskant, spor og materialtype på et konkret sted eller fenomen.",
+            "Hvilket materiale løsnes og transporteres av vann, vind, is eller slitasje, og hvilke forhold styrer hastigheten?",
+            "Kontroller forklaringen mot helning, strøm, vegetasjon og vær og historiske bilder, målinger og avsetning."
           ],
           "comparison_pairs": [
             [
@@ -4948,7 +5118,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Erosjon: skill erosjon, forvitring og massebevegelse; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -4956,7 +5126,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilket materiale løsnes og transporteres av vann, vind, is eller slitasje, og hvilke forhold styrer hastigheten?",
+          "evidence_focus": [
+            "erosjonskant, spor og materialtype",
+            "helning, strøm, vegetasjon og vær",
+            "historiske bilder, målinger og avsetning"
+          ]
         },
         {
           "id": "strandlinjer",
@@ -5032,10 +5208,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med høyde, strandvoll og avsetning på et konkret sted eller fenomen.",
+            "Hvordan er strandlinjen dannet og flyttet av havnivå, landheving, bølger, sediment og inngrep?",
+            "Kontroller forklaringen mot bølgeeksponering, strøm og sedimenttransport og historiske kart, utfylling og erosjon."
           ],
           "comparison_pairs": [
             [
@@ -5080,7 +5255,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Strandlinjer: skill dagens vannkant og geologisk strandlinje; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -5088,7 +5263,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan er strandlinjen dannet og flyttet av havnivå, landheving, bølger, sediment og inngrep?",
+          "evidence_focus": [
+            "høyde, strandvoll og avsetning",
+            "bølgeeksponering, strøm og sedimenttransport",
+            "historiske kart, utfylling og erosjon"
+          ]
         },
         {
           "id": "jordprofiler",
@@ -5164,10 +5345,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med horisont, farge, struktur og tekstur på et konkret sted eller fenomen.",
+            "Hva viser jordas horisonter om materiale, drenering, biologisk aktivitet, forurensning og tidligere arealbruk?",
+            "Kontroller forklaringen mot pH, organisk innhold og fuktighet og lagdeling, røtter, forurensning og referanse."
           ],
           "comparison_pairs": [
             [
@@ -5212,7 +5392,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Jordprofiler: skill jordprofil og løs sedimentpakke; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -5220,7 +5400,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hva viser jordas horisonter om materiale, drenering, biologisk aktivitet, forurensning og tidligere arealbruk?",
+          "evidence_focus": [
+            "horisont, farge, struktur og tekstur",
+            "pH, organisk innhold og fuktighet",
+            "lagdeling, røtter, forurensning og referanse"
+          ]
         },
         {
           "id": "topografi_og_by",
@@ -5296,10 +5482,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med terrengmodell og historiske kart på et konkret sted eller fenomen.",
+            "Hvordan har høyde, helning, søkk og rygger styrt bebyggelse, transport, utsikt, vind og overvann?",
+            "Kontroller forklaringen mot bygning, vei og teknisk terrenginngrep og flomvei, mikroklima og stabilitet."
           ],
           "comparison_pairs": [
             [
@@ -5344,7 +5529,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Topografi og by: skill opprinnelig terreng og konstruert byflate; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -5352,7 +5537,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan har høyde, helning, søkk og rygger styrt bebyggelse, transport, utsikt, vind og overvann?",
+          "evidence_focus": [
+            "terrengmodell og historiske kart",
+            "bygning, vei og teknisk terrenginngrep",
+            "flomvei, mikroklima og stabilitet"
+          ]
         },
         {
           "id": "langsom_tid",
@@ -5428,10 +5619,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med daterte lag, landformer og tidsserier på et konkret sted eller fenomen.",
+            "Hvilke prosesser virker over århundrer eller geologiske tidsrom, og hvordan kan de observeres uten å forveksles med kortvarige hendelser?",
+            "Kontroller forklaringen mot prosessrate og oppholdstid og historisk referanse og usikkerhet."
           ],
           "comparison_pairs": [
             [
@@ -5476,7 +5666,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Langsom tid: skill hendelsestid og geologisk prosesstid; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -5484,7 +5674,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke prosesser virker over århundrer eller geologiske tidsrom, og hvordan kan de observeres uten å forveksles med kortvarige hendelser?",
+          "evidence_focus": [
+            "daterte lag, landformer og tidsserier",
+            "prosessrate og oppholdstid",
+            "historisk referanse og usikkerhet"
+          ]
         },
         {
           "id": "oy_okologi",
@@ -5525,7 +5721,8 @@
           },
           "emne_ids": [
             "em_natur_kyst_fjord_og_strand",
-            "em_natur_arter_habitat_mangfold"
+            "em_natur_arter_habitat_mangfold",
+            "em_natur_kyst_okosystemer"
           ],
           "best_place_types": [
             "ås",
@@ -5560,10 +5757,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med øyareal, avstand og habitatmosaikk på et konkret sted eller fenomen.",
+            "Hvordan påvirker isolasjon, størrelse, kystgradienter og menneskelig bruk arters etablering og økologiske dynamikk på øya?",
+            "Kontroller forklaringen mot artsfunn, kolonisering og lokal utdøing og ferdsel, fremmede arter og kystpåvirkning."
           ],
           "comparison_pairs": [
             [
@@ -5608,7 +5804,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Øyøkologi: skill geografisk øy og økologisk isolasjon; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -5616,7 +5812,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan påvirker isolasjon, størrelse, kystgradienter og menneskelig bruk arters etablering og økologiske dynamikk på øya?",
+          "evidence_focus": [
+            "øyareal, avstand og habitatmosaikk",
+            "artsfunn, kolonisering og lokal utdøing",
+            "ferdsel, fremmede arter og kystpåvirkning"
+          ]
         }
       ],
       "best_place_types": [
@@ -5777,10 +5979,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med arts- og habitatkartlegging på et konkret sted eller fenomen.",
+            "Hvilke arter, habitat og prosesser finnes i det bebygde miljøet, og hvilke urbane forhold skaper eller begrenser dem?",
+            "Kontroller forklaringen mot jord, vann, varme, lys og forstyrrelse og byform, drift og forbindelser."
           ],
           "comparison_pairs": [
             [
@@ -5825,7 +6026,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Bynatur: skill natur i byen og grønn dekor; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -5833,7 +6034,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke arter, habitat og prosesser finnes i det bebygde miljøet, og hvilke urbane forhold skaper eller begrenser dem?",
+          "evidence_focus": [
+            "arts- og habitatkartlegging",
+            "jord, vann, varme, lys og forstyrrelse",
+            "byform, drift og forbindelser"
+          ]
         },
         {
           "id": "gronne_korridorer",
@@ -5909,10 +6116,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med habitatkjerner og mellomområder på et konkret sted eller fenomen.",
+            "Fungerer grøntdraget som forbindelse for bestemte arter eller prosesser, og hvor finnes barrierer og flaskehalser?",
+            "Kontroller forklaringen mot barrierer, avstand og kanteffekt og artsbevegelse og konnektivitetsmodell."
           ],
           "comparison_pairs": [
             [
@@ -5957,7 +6163,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Grønne korridorer: skill sammenhengende grønnfarge og økologisk konnektivitet; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -5965,7 +6171,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Fungerer grøntdraget som forbindelse for bestemte arter eller prosesser, og hvor finnes barrierer og flaskehalser?",
+          "evidence_focus": [
+            "habitatkjerner og mellomområder",
+            "barrierer, avstand og kanteffekt",
+            "artsbevegelse og konnektivitetsmodell"
+          ]
         },
         {
           "id": "park_som_okosystem",
@@ -6041,10 +6253,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med vegetasjonsstruktur og jordmiljø på et konkret sted eller fenomen.",
+            "Hvordan samvirker jord, vegetasjon, vann, drift, mennesker og andre arter i parken som et styrt økosystem?",
+            "Kontroller forklaringen mot vann, mikroklima og artsbruk og klipping, skjøtsel, ferdsel og avfall."
           ],
           "comparison_pairs": [
             [
@@ -6089,7 +6300,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Park som økosystem: skill parkdesign og økologisk funksjon; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -6097,7 +6308,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan samvirker jord, vegetasjon, vann, drift, mennesker og andre arter i parken som et styrt økosystem?",
+          "evidence_focus": [
+            "vegetasjonsstruktur og jordmiljø",
+            "vann, mikroklima og artsbruk",
+            "klipping, skjøtsel, ferdsel og avfall"
+          ]
         },
         {
           "id": "traer_i_by",
@@ -6173,10 +6390,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med treslag, størrelse, alder og tilstand på et konkret sted eller fenomen.",
+            "Hvilke vekstvilkår, arter, alder og krone- og rotforhold avgjør bytrærnes helse og økologiske funksjoner?",
+            "Kontroller forklaringen mot jordvolum, røtter, vann og salt og krone, skygge, habitat og drift."
           ],
           "comparison_pairs": [
             [
@@ -6221,7 +6437,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Trær i by: skill antall plantede trær og levedyktig trebestand; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -6229,7 +6445,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke vekstvilkår, arter, alder og krone- og rotforhold avgjør bytrærnes helse og økologiske funksjoner?",
+          "evidence_focus": [
+            "treslag, størrelse, alder og tilstand",
+            "jordvolum, røtter, vann og salt",
+            "krone, skygge, habitat og drift"
+          ]
         },
         {
           "id": "natur_rekreasjon",
@@ -6305,10 +6527,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med brukstelling, ruter og tilgjengelighet på et konkret sted eller fenomen.",
+            "Hvordan påvirker naturkvalitet, tilgjengelighet og bruksmønster både opplevelse, helse og økologisk belastning?",
+            "Kontroller forklaringen mot opplevelse, støy og trygghet og slitasje, sårbare soner og sesong."
           ],
           "comparison_pairs": [
             [
@@ -6353,7 +6574,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Natur og rekreasjon: skill rekreasjonsverdi og økologisk kvalitet; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -6361,7 +6582,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan påvirker naturkvalitet, tilgjengelighet og bruksmønster både opplevelse, helse og økologisk belastning?",
+          "evidence_focus": [
+            "brukstelling, ruter og tilgjengelighet",
+            "opplevelse, støy og trygghet",
+            "slitasje, sårbare soner og sesong"
+          ]
         },
         {
           "id": "marka_bygrense",
@@ -6437,10 +6664,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med juridisk grense og arealplan på et konkret sted eller fenomen.",
+            "Hvordan virker markagrensen som planregel og økologisk randsone, og hvilke belastninger krysser den?",
+            "Kontroller forklaringen mot skogstruktur, habitat og forbindelser og veier, hogst, ferdsel og utbyggingspress."
           ],
           "comparison_pairs": [
             [
@@ -6485,7 +6711,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Marka og bygrense: skill formell markagrense og naturens faktiske overgangssone; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -6493,7 +6719,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan virker markagrensen som planregel og økologisk randsone, og hvilke belastninger krysser den?",
+          "evidence_focus": [
+            "juridisk grense og arealplan",
+            "skogstruktur, habitat og forbindelser",
+            "veier, hogst, ferdsel og utbyggingspress"
+          ]
         },
         {
           "id": "kolonihage_matjord",
@@ -6569,10 +6801,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med jordprofil, organisk materiale og næring på et konkret sted eller fenomen.",
+            "Hvordan opprettholder jordbruk, kompost, plantevalg og felles drift matjord, artsliv og ressurskretsløp i kolonihagen?",
+            "Kontroller forklaringen mot dyrking, kompost og vannbruk og pollinatorer, plantevariasjon og driftspraksis."
           ],
           "comparison_pairs": [
             [
@@ -6617,7 +6848,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Kolonihage og matjord: skill dyrkingsareal og levende matjord; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -6625,7 +6856,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan opprettholder jordbruk, kompost, plantevalg og felles drift matjord, artsliv og ressurskretsløp i kolonihagen?",
+          "evidence_focus": [
+            "jordprofil, organisk materiale og næring",
+            "dyrking, kompost og vannbruk",
+            "pollinatorer, plantevariasjon og driftspraksis"
+          ]
         },
         {
           "id": "elvekant_korridor",
@@ -6701,10 +6938,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med kantvegetasjon, bredde og kontinuitet på et konkret sted eller fenomen.",
+            "Hvordan fungerer elvekanten samtidig som habitat, spredningsvei, flombuffer og ferdselsrom?",
+            "Kontroller forklaringen mot artsbruk, skygge, erosjon og flom og stier, lys, broer og barrierer."
           ],
           "comparison_pairs": [
             [
@@ -6749,7 +6985,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Elvekant som korridor: skill elvepromenade og økologisk elvekorridor; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -6757,7 +6993,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan fungerer elvekanten samtidig som habitat, spredningsvei, flombuffer og ferdselsrom?",
+          "evidence_focus": [
+            "kantvegetasjon, bredde og kontinuitet",
+            "artsbruk, skygge, erosjon og flom",
+            "stier, lys, broer og barrierer"
+          ]
         },
         {
           "id": "bydyr",
@@ -6833,10 +7075,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med artsfunn, yngling og sesongbruk på et konkret sted eller fenomen.",
+            "Hvilke ressurser, skjul og risikoer gjør byen egnet for enkelte dyr, og hvordan påvirker menneskelig atferd bestanden?",
+            "Kontroller forklaringen mot mat, skjul, lys og byggestruktur og trafikk, avfall, fôring og konfliktdata."
           ],
           "comparison_pairs": [
             [
@@ -6881,7 +7122,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Bydyr: skill tilfeldig dyrebesøk og urban bestand; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -6889,7 +7130,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke ressurser, skjul og risikoer gjør byen egnet for enkelte dyr, og hvordan påvirker menneskelig atferd bestanden?",
+          "evidence_focus": [
+            "artsfunn, yngling og sesongbruk",
+            "mat, skjul, lys og byggestruktur",
+            "trafikk, avfall, fôring og konfliktdata"
+          ]
         },
         {
           "id": "okologisk_friksjon",
@@ -6965,10 +7212,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med konkret aktivitet og påvirkningsspor på et konkret sted eller fenomen.",
+            "Hvor kolliderer menneskelig bruk og teknisk drift med økologiske behov, og hvilke endringer kan redusere konflikten?",
+            "Kontroller forklaringen mot arter, habitat og kritisk tidsperiode og alternativer, avbøting og oppfølging."
           ],
           "comparison_pairs": [
             [
@@ -7013,7 +7259,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Økologisk friksjon: skill generell naturkonflikt og dokumentert økologisk mekanisme; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -7021,7 +7267,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvor kolliderer menneskelig bruk og teknisk drift med økologiske behov, og hvilke endringer kan redusere konflikten?",
+          "evidence_focus": [
+            "konkret aktivitet og påvirkningsspor",
+            "arter, habitat og kritisk tidsperiode",
+            "alternativer, avbøting og oppfølging"
+          ]
         }
       ],
       "best_place_types": [
@@ -7181,10 +7433,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med utslippskilde og stoffidentitet på et konkret sted eller fenomen.",
+            "Hva er kilden, transportveien, miljøkonsentrasjonen og den dokumenterte effekten av forurensningen?",
+            "Kontroller forklaringen mot måling i vann, jord, luft eller biota og eksponering, effekt og referanse."
           ],
           "comparison_pairs": [
             [
@@ -7229,7 +7480,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Forurensning: skill påvist stoff og påvist miljøskade; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -7237,7 +7488,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hva er kilden, transportveien, miljøkonsentrasjonen og den dokumenterte effekten av forurensningen?",
+          "evidence_focus": [
+            "utslippskilde og stoffidentitet",
+            "måling i vann, jord, luft eller biota",
+            "eksponering, effekt og referanse"
+          ]
         },
         {
           "id": "miljogifter",
@@ -7312,10 +7569,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med stoffegenskap, kilde og konsentrasjon på et konkret sted eller fenomen.",
+            "Hvordan lagres, spres og oppkonsentreres persistente giftstoffer, og hvilke organismer eller mennesker eksponeres?",
+            "Kontroller forklaringen mot sediment, biota og næringsnett og toksisitet, eksponering og tid."
           ],
           "comparison_pairs": [
             [
@@ -7360,7 +7616,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Miljøgifter: skill fareegenskap og faktisk risiko; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -7368,7 +7624,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan lagres, spres og oppkonsentreres persistente giftstoffer, og hvilke organismer eller mennesker eksponeres?",
+          "evidence_focus": [
+            "stoffegenskap, kilde og konsentrasjon",
+            "sediment, biota og næringsnett",
+            "toksisitet, eksponering og tid"
+          ]
         },
         {
           "id": "naturinngrep",
@@ -7443,10 +7705,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med førtilstand og naturkartlegging på et konkret sted eller fenomen.",
+            "Hvilke naturarealer, strukturer og prosesser går tapt eller endres av inngrepet, og hvilke alternativer finnes?",
+            "Kontroller forklaringen mot areal, varighet og irreversibilitet og alternativer, avbøting, kompensasjon og samlet belastning."
           ],
           "comparison_pairs": [
             [
@@ -7491,7 +7752,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Naturinngrep: skill midlertidig anleggsspor og varig økologisk tap; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -7499,7 +7760,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke naturarealer, strukturer og prosesser går tapt eller endres av inngrepet, og hvilke alternativer finnes?",
+          "evidence_focus": [
+            "førtilstand og naturkartlegging",
+            "areal, varighet og irreversibilitet",
+            "alternativer, avbøting, kompensasjon og samlet belastning"
+          ]
         },
         {
           "id": "vern",
@@ -7574,10 +7841,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med verneformål og naturverdier på et konkret sted eller fenomen.",
+            "Hva skal vernet beskytte, hvilke regler og tiltak følger av formålet, og viser tilstanden at beskyttelsen virker?",
+            "Kontroller forklaringen mot regelverk, dispensasjon og skjøtsel og tilstand, trussel og overvåking."
           ],
           "comparison_pairs": [
             [
@@ -7622,7 +7888,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Vern: skill formell vernestatus og faktisk naturtilstand; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -7630,7 +7896,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hva skal vernet beskytte, hvilke regler og tiltak følger av formålet, og viser tilstanden at beskyttelsen virker?",
+          "evidence_focus": [
+            "verneformål og naturverdier",
+            "regelverk, dispensasjon og skjøtsel",
+            "tilstand, trussel og overvåking"
+          ]
         },
         {
           "id": "restaurering",
@@ -7705,10 +7977,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med førtilstand, belastning og referanse på et konkret sted eller fenomen.",
+            "Hvilken degraderingsårsak fjernes, hvilken økologisk funksjon skal gjenopprettes, og hvordan måles utviklingen?",
+            "Kontroller forklaringen mot tiltak for prosess, habitat og art og indikator, tidsserie og adaptiv oppfølging."
           ],
           "comparison_pairs": [
             [
@@ -7753,7 +8024,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Restaurering: skill forskjønning og økologisk restaurering; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -7761,7 +8032,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilken degraderingsårsak fjernes, hvilken økologisk funksjon skal gjenopprettes, og hvordan måles utviklingen?",
+          "evidence_focus": [
+            "førtilstand, belastning og referanse",
+            "tiltak for prosess, habitat og art",
+            "indikator, tidsserie og adaptiv oppfølging"
+          ]
         },
         {
           "id": "miljoaktivisme",
@@ -7836,10 +8113,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med krav, argument og dokumentasjonsgrunnlag på et konkret sted eller fenomen.",
+            "Hvordan omsetter miljøbevegelser kunnskap, verdier og kollektiv handling til påvirkning på beslutninger og praksis?",
+            "Kontroller forklaringen mot organisering, aksjonsform og allianser og respons, beslutningsendring og langsiktig effekt."
           ],
           "comparison_pairs": [
             [
@@ -7884,7 +8160,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Miljøaktivisme: skill synlig protest og dokumentert politisk virkning; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -7892,7 +8168,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan omsetter miljøbevegelser kunnskap, verdier og kollektiv handling til påvirkning på beslutninger og praksis?",
+          "evidence_focus": [
+            "krav, argument og dokumentasjonsgrunnlag",
+            "organisering, aksjonsform og allianser",
+            "respons, beslutningsendring og langsiktig effekt"
+          ]
         },
         {
           "id": "talegrenser",
@@ -7967,10 +8249,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med belastnings- og tilstandsdata på et konkret sted eller fenomen.",
+            "Hvilke materielle terskler begrenser belastningen et system kan tåle, og hvor sikker er kunnskapen om grensen?",
+            "Kontroller forklaringen mot dose–respons, terskel og tilbakekobling og usikkerhet, sikkerhetsmargin og føre-var-vurdering."
           ],
           "comparison_pairs": [
             [
@@ -8015,7 +8296,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Tålegrenser: skill politisk mål og økologisk tålegrense; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -8023,7 +8304,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke materielle terskler begrenser belastningen et system kan tåle, og hvor sikker er kunnskapen om grensen?",
+          "evidence_focus": [
+            "belastnings- og tilstandsdata",
+            "dose–respons, terskel og tilbakekobling",
+            "usikkerhet, sikkerhetsmargin og føre-var-vurdering"
+          ]
         },
         {
           "id": "regenerasjon",
@@ -8098,10 +8385,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med frøbank, restbestand og jordtilstand på et konkret sted eller fenomen.",
+            "Hvilke overlevende strukturer og prosesser driver naturlig gjenvekst, og når hindrer belastning eller isolasjon regenerasjonen?",
+            "Kontroller forklaringen mot suksesjon, spredning og konnektivitet og belastningsreduksjon, tid og tilstandsmåling."
           ],
           "comparison_pairs": [
             [
@@ -8146,7 +8432,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Regenerasjon: skill spontan gjenvekst og gjenopprettet økologisk funksjon; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -8154,7 +8440,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke overlevende strukturer og prosesser driver naturlig gjenvekst, og når hindrer belastning eller isolasjon regenerasjonen?",
+          "evidence_focus": [
+            "frøbank, restbestand og jordtilstand",
+            "suksesjon, spredning og konnektivitet",
+            "belastningsreduksjon, tid og tilstandsmåling"
+          ]
         },
         {
           "id": "forvaltning_data",
@@ -8229,10 +8521,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med forvaltningsmål og beslutningsterskel på et konkret sted eller fenomen.",
+            "Hvilke indikatorer og dataserier trenger forvaltningen for å oppdage endring, evaluere tiltak og justere praksis?",
+            "Kontroller forklaringen mot standardiserte indikatorer og metadata og rapportering, datakvalitet og tiltaksevaluering."
           ],
           "comparison_pairs": [
             [
@@ -8277,7 +8568,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Forvaltning og data: skill datainnsamling og beslutningsrelevant overvåking; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -8285,7 +8576,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvilke indikatorer og dataserier trenger forvaltningen for å oppdage endring, evaluere tiltak og justere praksis?",
+          "evidence_focus": [
+            "forvaltningsmål og beslutningsterskel",
+            "standardiserte indikatorer og metadata",
+            "rapportering, datakvalitet og tiltaksevaluering"
+          ]
         },
         {
           "id": "okologisk_rettferdighet",
@@ -8360,10 +8657,9 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_ecosystem_species_water_climate_or_geology",
-            "connect_visible_place_to_ecological_process",
-            "identify_threshold_cycle_disturbance_or_regeneration",
-            "avoid_nature_as_decor"
+            "Start med geografisk fordeling av nytte og belastning på et konkret sted eller fenomen.",
+            "Hvordan fordeles miljøgoder, naturtap og risiko, og hvilke mennesker og ikke-menneskelige verdier får representasjon i beslutningen?",
+            "Kontroller forklaringen mot sårbarhet, tilgang og medvirkning og naturverdier, rettigheter og irreversible tap."
           ],
           "comparison_pairs": [
             [
@@ -8408,7 +8704,7 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning og metoder slik at naturspørsmål ikke blir bare landskapsbeskrivelse eller generell miljømoral.",
+          "rotation_note": "For Økologisk rettferdighet: skill samlet miljøgevinst og rettferdig fordeling; varier sted, kilde og metode før samme hook brukes igjen.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
@@ -8416,7 +8712,13 @@
             "require_external_claim_basis": true,
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
-          }
+          },
+          "focus_question": "Hvordan fordeles miljøgoder, naturtap og risiko, og hvilke mennesker og ikke-menneskelige verdier får representasjon i beslutningen?",
+          "evidence_focus": [
+            "geografisk fordeling av nytte og belastning",
+            "sårbarhet, tilgang og medvirkning",
+            "naturverdier, rettigheter og irreversible tap"
+          ]
         }
       ],
       "best_place_types": [
@@ -8476,5 +8778,6 @@
     "hook_count": 60,
     "canonical_round": "v4.5",
     "emne_prefix_required": "em_natur_"
-  }
+  },
+  "application_scope": "universelt_fagkart_med_geografiske_case_lag"
 }

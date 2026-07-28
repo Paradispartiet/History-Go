@@ -1,14 +1,15 @@
 {
-  "version": "v4.5-canonical-draft-1",
+  "version": "v4.5-canonical",
   "subject_id": "natur",
   "subject_title": "Natur & miljø",
-  "scope": "oslo_og_omegn",
+  "scope": "universal",
   "type": "methods",
-  "purpose": "Metodekatalog for Natur & miljø i History Go. Metodene skal sikre at naturspørsmål starter i konkret art, habitat, økosystem, vassdrag, klima, geologi, grønnstruktur, forurensning, restaurering, forvaltning eller dokumentert naturfaglig kilde før teori brukes som tolkningsramme.",
-  "updated_at": "2026-05-06",
+  "purpose": "Metodekatalog for Natur & miljø. Hver metode beskriver hva den undersøker, hvilket materiale den krever, en etterprøvbar arbeidsprosedyre og begrensninger som må synliggjøres før en konklusjon trekkes.",
+  "updated_at": "2026-07-29",
   "canonical_inputs": {
-    "fagkart": "fagkart_natur_canonical_v4_5.json",
-    "source_theory": "merke_natur (1).html"
+    "pensum": "naturpensum_canonical_v4_5.json",
+    "emner": "emner_natur_canonical_v4_5.json",
+    "fagkart": "fagkart_natur_canonical_v4_5.json"
   },
   "principles": {
     "source_first": true,
@@ -34,16 +35,16 @@
       "method_id": "met_natur_artsovervaking",
       "title": "Artsovervåking",
       "short_label": "Artsovervåking",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, bynatur, grønnstruktur, parker og økologiske korridorer. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Systematisk gjentakelse av artsregistreringer på faste steder og tidspunkt for å oppdage endringer i forekomst, utbredelse, bestand eller reproduksjon over tid.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "urban_okologi_gronnstruktur"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "standardiserte artslister og telledata",
+        "faste prøveflater, transekter eller lyttepunkt",
+        "metadata om tidspunkt, innsats, vær og observatør",
+        "kvalitetssikrede funn og fraværsdata"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -72,13 +73,12 @@
         "våtmark"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva som faktisk ble registrert og med hvilken innsats",
+        "skill bestandstrend fra tilfeldig observasjon",
+        "knytt endringen til habitat, sesong og metode"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Bruk metoden når spørsmålet gjelder dokumentert endring i arter, ikke som erstatning for en generell artsliste.",
+      "rotation_note": "Kombiner med habitat- eller påvirkningsanalyse når årsaken til en trend skal vurderes.",
       "hook_affinities": [
         "bydyr",
         "fremmede_arter"
@@ -101,23 +101,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens målart, indikator eller artsgruppe og velg egnet sesong",
+        "fastsett prøvedesign, innsats og registreringsprotokoll før feltarbeidet",
+        "gjenta målingen på samme måte og vurder oppdagbarhet",
+        "sammenlign tidsserien og dokumenter metodeendringer og usikkerhet"
+      ],
+      "limitations": [
+        "manglende funn betyr ikke nødvendigvis at arten er fraværende",
+        "endret observatør, vær eller innsats kan skape falske trender",
+        "sensitive artsdata kan kreve skjerming"
+      ]
     },
     {
       "method_id": "met_natur_biodiversitetsanalyse",
       "title": "Biodiversitetsanalyse",
       "short_label": "Biodiversitet",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, klima, karbon, energi, sårbarhet og resiliens. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Vurdering av biologisk mangfold gjennom artsrikdom, fordeling, funksjonell variasjon, habitatmangfold og genetiske eller landskapsmessige forhold som påvirker systemets robusthet.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "klima_energi_resiliens",
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "artsforekomster og mengdedata",
+        "funksjonelle grupper og rødliste-/risikostatus",
+        "habitatkart og arealtilstand",
+        "mål på jevnhet, beta-diversitet eller konnektivitet"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -147,13 +158,12 @@
         "restaurert_elv"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilket mangfoldsmål som brukes",
+        "skill artsrikdom fra funksjonell variasjon",
+        "koble tallene til habitat og økologisk betydning"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Metoden skal begrunne hvorfor et mangfoldsmål er relevant, ikke bare telle arter.",
+      "rotation_note": "Roter med økosystemanalyse og artsovervåking for å unngå at biodiversitet reduseres til én indeks.",
       "hook_affinities": [
         "naringsnett",
         "resiliens",
@@ -178,23 +188,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "definer hvilket nivå av mangfold som undersøkes",
+        "velg indikatorer som passer skala og datakvalitet",
+        "sammenlign steder eller perioder med samme innsats",
+        "tolk resultatet sammen med habitatkvalitet og økologisk funksjon"
+      ],
+      "limitations": [
+        "høyt artsantall kan skyldes fremmede eller generalistiske arter",
+        "indekser kan skjule hvilke arter og funksjoner som er tapt",
+        "resultater avhenger sterkt av prøvetakingsinnsats"
+      ]
     },
     {
       "method_id": "met_natur_endrings_og_tidsserieanalyse",
       "title": "Endrings- og tidsserieanalyse",
       "short_label": "Endring/tidsserie",
-      "description": "Analyse av berggrunn, topografi, jord, erosjon og lang naturtid, arter, habitater, økosystemer og biologisk mangfold. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av gjentatte målinger, kart, bilder eller naturarkiver for å skille kortvarig variasjon fra langsiktige trender, brudd og forsinkede responser.",
       "best_for_emne_kinds": [
         "geologi_landskap_tid",
         "okosystem_mangfold_habitat",
         "klima_energi_resiliens"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "standardiserte måleserier",
+        "historiske kart, flyfoto og satellittdata",
+        "sediment-, pollen- eller årringserier",
+        "metadata om metode, dekning og tidsoppløsning"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -224,13 +245,12 @@
         "utsiktspunkt"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva som er trend og hva som er normal variasjon",
+        "identifiser eventuelle metodebrudd",
+        "knytt tidsmønsteret til en testbar prosess"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Bruk tidsserien til å dokumentere endring før årsaksforklaringer introduseres.",
+      "rotation_note": "Kombiner med feltmåling eller historisk kildekritikk når eldre og nyere data kobles.",
       "hook_affinities": [
         "istid_landheving",
         "klimahukommelse",
@@ -257,21 +277,32 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "kontroller at målinger og definisjoner er sammenlignbare",
+        "visualiser trend, sesong og mulige brudd",
+        "test alternative periodiseringer og forklaringer",
+        "vurder datagap, autokorrelasjon og usikkerhet"
+      ],
+      "limitations": [
+        "samtidige trender dokumenterer ikke årsak",
+        "metode- eller sensorbytte kan se ut som miljøendring",
+        "korte serier kan overvurdere tilfeldige svingninger"
+      ]
     },
     {
       "method_id": "met_natur_feltmaling_og_overvaking",
       "title": "Feltmåling og overvåking",
       "short_label": "Feltmåling",
-      "description": "Analyse av forurensning, miljøgifter, vern, restaurering og forvaltning. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Planlagt innsamling av fysiske, kjemiske eller biologiske målinger i felt med kalibrert utstyr, dokumentert prøvested og en protokoll som gjør data sammenlignbare.",
       "best_for_emne_kinds": [
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "temperatur, fuktighet, vannstand eller strøm",
+        "pH, oksygen, ledningsevne eller turbiditet",
+        "feltlogger, koordinater og fotografier",
+        "kalibreringsdata og kvalitetskontroll"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -292,13 +323,12 @@
         "restaurert_elv"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva instrumentet faktisk måler",
+        "etterspør enhet, tidspunkt og kalibrering",
+        "skill måleusikkerhet fra miljøvariasjon"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Målingen må knyttes til et tydelig fagspørsmål og dokumentert protokoll.",
+      "rotation_note": "Roter med tidsserieanalyse slik at feltdata ikke tolkes som trend uten gjentakelse.",
       "hook_affinities": [
         "forvaltning_data"
       ],
@@ -318,22 +348,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "formuler målespørsmål og velg indikator",
+        "kalibrer utstyr og fastsett prøvesteder og tidspunkt",
+        "registrer måling, miljøforhold og avvik samtidig",
+        "kontroller og lagre data med enhet, presisjon og metadata"
+      ],
+      "limitations": [
+        "instrumentfeil og plassering kan dominere signalet",
+        "enkeltmålinger sier lite om variasjon over tid",
+        "feltforhold kan gjøre planlagte steder usammenlignbare"
+      ]
     },
     {
       "method_id": "met_natur_forurensningsanalyse",
       "title": "Forurensningsanalyse",
       "short_label": "Forurensning",
-      "description": "Analyse av vassdrag, hydrologi, vannkvalitet og kretsløp, forurensning, miljøgifter, vern, restaurering og forvaltning. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Sporing av forurensning fra kilde gjennom transportvei og miljømedium til eksponering og mulig effekt på organismer, økosystem eller mennesker.",
       "best_for_emne_kinds": [
         "vann_hydrologi_kretslop",
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "utslipps- og virksomhetsdata",
+        "konsentrasjoner i vann, jord, luft, sediment eller biota",
+        "strømnings-, sprednings- og nedbørdata",
+        "toksikologiske eller økologiske effektdata"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -362,13 +403,12 @@
         "våtmark"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvor stoffet kommer fra og hvor det går",
+        "skill forekomst fra eksponering og effekt",
+        "vurder om tiltaket fjerner kilden eller bare flytter belastningen"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Analysen skal følge hele kjeden kilde–transport–eksponering–effekt.",
+      "rotation_note": "Kombiner med vann-, jord- eller miljørettferdighetsanalyse etter hvilket medium og hvem som berøres.",
       "hook_affinities": [
         "forurensning",
         "mikroplast_kjemi",
@@ -392,22 +432,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "identifiser stoff, kilde og sannsynlig transportvei",
+        "velg prøvesteder som kan skille bakgrunn fra påvirkning",
+        "sammenlign målinger med relevante referanser og effektnivåer",
+        "vurder samlet belastning, usikkerhet og tiltakspunkt"
+      ],
+      "limitations": [
+        "grenseverdi alene beskriver ikke samlet økologisk effekt",
+        "forurensning kan flyttes eller fortynnes uten å fjernes",
+        "ukjente blandingseffekter kan undervurderes"
+      ]
     },
     {
       "method_id": "met_natur_forvaltningsanalyse",
       "title": "Forvaltningsanalyse",
       "short_label": "Forvaltning",
-      "description": "Analyse av forurensning, miljøgifter, vern, restaurering og forvaltning, bynatur, grønnstruktur, parker og økologiske korridorer. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Undersøkelse av hvordan mål, ansvar, regler, kunnskapsgrunnlag, ressurser og oppfølging er organisert for å opprettholde eller forbedre naturtilstand.",
       "best_for_emne_kinds": [
         "miljopavirkning_forvaltning_regenerasjon",
         "urban_okologi_gronnstruktur"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "forvaltningsplaner og vedtak",
+        "verneformål, reguleringer og dispensasjoner",
+        "budsjetter, ansvarskart og tiltaksplaner",
+        "tilstands- og effektmålinger"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -436,13 +487,12 @@
         "tursti"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva målet er og hvem som har ansvar",
+        "skill vedtak fra gjennomføring",
+        "etterspør hvordan effekt måles og praksis justeres"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Metoden vurderer styring og gjennomføring, ikke bare om et område har formell vernestatus.",
+      "rotation_note": "Kombiner med økologisk tilstandsanalyse for å sammenholde styring og naturresultat.",
       "hook_affinities": [
         "forvaltning_data",
         "marka_bygrense",
@@ -467,22 +517,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avklar forvaltningsmål og rettslig ramme",
+        "kartlegg aktører, ansvar og virkemidler",
+        "sammenlign planlagte tiltak med faktisk gjennomføring",
+        "vurder resultat, læring og behov for justering"
+      ],
+      "limitations": [
+        "planstatus sier ikke at tiltak er gjennomført",
+        "mål kan være uklare eller innbyrdes motstridende",
+        "manglende overvåking gjør effekt vanskelig å dokumentere"
+      ]
     },
     {
       "method_id": "met_natur_geologisk_analyse",
       "title": "Geologisk analyse",
       "short_label": "Geologi",
-      "description": "Analyse av berggrunn, topografi, jord, erosjon og lang naturtid, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Tolkning av berggrunn, mineraler, strukturer, løsmasser og geologiske prosesser for å forklare landskapsform, stabilitet, jorddannelse og naturgrunnlag.",
       "best_for_emne_kinds": [
         "geologi_landskap_tid",
         "vann_hydrologi_kretslop"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "berggrunns- og løsmassekart",
+        "feltobservasjoner av lag, sprekker og bergarter",
+        "terrengmodeller og profiler",
+        "dateringer og geologiske rapporter"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -511,13 +572,12 @@
         "våtmark"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilket materiale og hvilken struktur som er observert",
+        "skill landform fra dannelsesprosess",
+        "koble geologi til dagens vann, jord eller risiko"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Start i konkrete geologiske observasjoner før stedets historie forklares.",
+      "rotation_note": "Roter med landskapslesning og jord-/sedimentanalyse for å dekke både form og materiale.",
       "hook_affinities": [
         "berggrunn",
         "erosjon",
@@ -544,23 +604,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "beskriv bergart, struktur og løsmasser uten å tolke først",
+        "koble observasjonene til geologisk prosess og tidsrekkefølge",
+        "sammenlign med kart og regional geologi",
+        "vurder betydning for vann, jord, naturtype og inngrep"
+      ],
+      "limitations": [
+        "overflateobservasjoner kan skjule undergrunnsforhold",
+        "samme landform kan ha flere mulige dannelsesprosesser",
+        "kartskala kan være for grov for lokale beslutninger"
+      ]
     },
     {
       "method_id": "met_natur_habitat_og_biotopanalyse",
       "title": "Habitat- og biotopanalyse",
       "short_label": "Habitat/biotop",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, berggrunn, topografi, jord, erosjon og lang naturtid. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Vurdering av et leveområdes fysiske og biologiske kvaliteter opp mot behovene til bestemte arter eller artsgrupper gjennom livssyklus og sesong.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "geologi_landskap_tid",
         "urban_okologi_gronnstruktur"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "vegetasjonsstruktur, substrat og mikroklima",
+        "tilgang på næring, skjul, hekke- eller yngleplass",
+        "barrierer og forbindelser til andre leveområder",
+        "artsfunn og habitatkart"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -590,13 +661,12 @@
         "skog"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør habitat for hvem og til hvilken livsfase",
+        "etterspør konkrete ressurser og begrensninger",
+        "skill forekomst fra funksjonelt leveområde"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Habitat skal alltid knyttes til en art, gruppe eller økologisk funksjon.",
+      "rotation_note": "Kombiner med artsovervåking når habitatkvalitet skal testes mot faktisk bruk.",
       "hook_affinities": [
         "arter_og_habitat",
         "gronne_korridorer",
@@ -623,13 +693,24 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "velg art eller funksjon som habitatet skal vurderes for",
+        "registrer nødvendige ressurser og begrensende faktorer",
+        "kartlegg kvalitet, størrelse, kant og forbindelser",
+        "vurder sesongbruk, forstyrrelse og forbedringstiltak"
+      ],
+      "limitations": [
+        "et område er ikke godt habitat for alle arter samtidig",
+        "artsfunn kan være tilfeldig bruk og ikke reproduksjon",
+        "habitatkvalitet varierer gjennom sesong og livsstadium"
+      ]
     },
     {
       "method_id": "met_natur_hydrologisk_analyse",
       "title": "Hydrologisk analyse",
       "short_label": "Hydrologi",
-      "description": "Analyse av vassdrag, hydrologi, vannkvalitet og kretsløp, berggrunn, topografi, jord, erosjon og lang naturtid. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av hvordan nedbør, infiltrasjon, grunnvann, avrenning, vannføring og lagring fordeler vann i et nedbørfelt og endres av terreng og arealbruk.",
       "best_for_emne_kinds": [
         "vann_hydrologi_kretslop",
         "geologi_landskap_tid",
@@ -639,10 +720,10 @@
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "nedbør- og vannføringsserier",
+        "nedbørfelt, høyde- og helningsdata",
+        "jord, infiltrasjon og tette flater",
+        "kulverter, bekker, magasiner og flomveier"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -675,13 +756,12 @@
         "industriomrade"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "følg vannet gjennom hele nedbørfeltet",
+        "skill vannstand fra vannføring",
+        "spør hvor vann lagres og hvor risiko flyttes"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Hydrologiske forklaringer skal bygge på vannvei, volum og tid – ikke bare nærhet til vann.",
+      "rotation_note": "Kombiner med vannkvalitets- eller risikoanalyse når vannets innhold eller konsekvens er hovedspørsmålet.",
       "hook_affinities": [
         "dalforer",
         "ekstremvaer",
@@ -715,13 +795,24 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens nedbørfelt og vannveier",
+        "bygg vannbalanse for relevante perioder",
+        "identifiser lagring, forsinkelse og flaskehalser",
+        "test hvordan tiltak eller arealendring påvirker topp og varighet"
+      ],
+      "limitations": [
+        "lokale målinger kan mangle eller ha korte serier",
+        "grunnvann og lekkasjer kan bryte en enkel vannbalanse",
+        "modellresultat avhenger av antakelser om ekstremnedbør"
+      ]
     },
     {
       "method_id": "met_natur_jord_og_sedimentanalyse",
       "title": "Jord- og sedimentanalyse",
       "short_label": "Jord/sediment",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Undersøkelse av jord og sediment gjennom lagdeling, partikkelstørrelse, organisk materiale, vanninnhold, kjemi og biologisk aktivitet for å forklare funksjon og belastning.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "vann_hydrologi_kretslop",
@@ -730,10 +821,10 @@
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "jordprofiler og sedimentkjerner",
+        "kornstørrelse, pH og organisk innhold",
+        "næringsstoffer, metaller og organiske miljøgifter",
+        "mikrobiologiske eller biologiske indikatorer"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -765,13 +856,12 @@
         "industriomrade"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilket lag og hvilken fraksjon som er analysert",
+        "skill totalinnhold fra tilgjengelighet",
+        "koble funn til transport og historisk avsetning"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Prøvens plassering, dybde og behandling er del av resultatet.",
+      "rotation_note": "Roter med forurensnings- eller kretsløpsanalyse avhengig av om belastning eller funksjon undersøkes.",
       "hook_affinities": [
         "jordliv_mikroliv",
         "jordprofiler",
@@ -799,22 +889,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "definer prøvedybde, referanse og romlig design",
+        "ta og oppbevar prøver uten krysskontaminering",
+        "analyser fysiske, kjemiske og biologiske egenskaper",
+        "tolke lag og verdier i lys av transport, historikk og biologisk tilgjengelighet"
+      ],
+      "limitations": [
+        "punktprøver kan overse sterk romlig variasjon",
+        "total konsentrasjon er ikke lik biologisk tilgjengelig dose",
+        "prøvetaking kan blande eller forstyrre lag"
+      ]
     },
     {
       "method_id": "met_natur_klima_og_karbonanalyse",
       "title": "Klima- og karbonanalyse",
       "short_label": "Klima/karbon",
-      "description": "Analyse av klima, karbon, energi, sårbarhet og resiliens, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Kvantitativ vurdering av utslipp, opptak og karbonlagre sammen med energiflyt og klimadrivere, med tydelig systemgrense og tidshorisont.",
       "best_for_emne_kinds": [
         "klima_energi_resiliens",
         "vann_hydrologi_kretslop"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "karbonlagre i vegetasjon, jord og sediment",
+        "utslipps- og aktivitetsdata",
+        "produksjon, respirasjon og nedbrytning",
+        "klimadata og arealendringshistorikk"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -841,13 +942,12 @@
         "våtmark"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør om resultatet gjelder lager eller årlig strøm",
+        "etterspør systemgrense og tidshorisont",
+        "skill karbongevinst fra øvrig naturverdi"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Alle karbonpåstander skal oppgi hva som telles, hvor og over hvilket tidsrom.",
+      "rotation_note": "Kombiner med biodiversitetsanalyse for å unngå at karbon blir eneste mål på naturkvalitet.",
       "hook_affinities": [
         "energi_i_okosystemer",
         "karbon_energiflyt",
@@ -872,21 +972,32 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "sett systemgrense, referanse og tidsperiode",
+        "kartlegg lager og strømmer uten dobbeltelling",
+        "beregn netto endring og viktigste usikkerheter",
+        "sammenlign alternativer og vurder varighet og reversibilitet"
+      ],
+      "limitations": [
+        "kortsiktig opptak kan forveksles med permanent lagring",
+        "systemgrensen kan skjule utslipp utenfor området",
+        "karbonregnskap dekker ikke alle natur- og klimaeffekter"
+      ]
     },
     {
       "method_id": "met_natur_klimamodellering",
       "title": "Klimamodellering",
       "short_label": "Klimamodell",
-      "description": "Analyse av klima, karbon, energi, sårbarhet og resiliens. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Bruk av matematiske modeller og klimascenarioer til å beregne mulige framtidige temperatur-, nedbør-, havnivå- eller ekstremmønstre under eksplisitte antakelser.",
       "best_for_emne_kinds": [
         "klima_energi_resiliens"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "historiske klimaobservasjoner",
+        "globale og regionale klimamodeller",
+        "utslipps- eller konsentrasjonsscenarioer",
+        "nedskalerte sannsynlighetsfordelinger og usikkerhetsintervall"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -907,13 +1018,12 @@
         "skog"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilket scenario og tidsrom resultatet gjelder",
+        "vis spenn mellom modeller fremfor ett tall",
+        "skill modellusikkerhet fra framtidig samfunnsutvikling"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Modellresultat skal presenteres som betingede framtidsbilder, ikke sikre lokale fasiter.",
+      "rotation_note": "Kombiner med risikoanalyse for å oversette klimadata til konkrete konsekvenser.",
       "hook_affinities": [
         "ekstremvaer",
         "vippepunkter"
@@ -935,22 +1045,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "velg variabel, scenario, periode og romlig skala",
+        "kontroller modellens historiske ytelse og skjevheter",
+        "sammenlign flere modeller eller ensembler",
+        "formidle intervall, sannsynlighet og beslutningsrelevant robusthet"
+      ],
+      "limitations": [
+        "lokale ekstremhendelser kan være dårlig representert",
+        "scenario er ikke en prognose med kjent sannsynlighet",
+        "nedskalering kan gi falsk presisjon"
+      ]
     },
     {
       "method_id": "met_natur_konflikt_og_forvaltningsanalyse",
       "title": "Konflikt- og forvaltningsanalyse",
       "short_label": "Konflikt/forvaltning",
-      "description": "Analyse av forurensning, miljøgifter, vern, restaurering og forvaltning, bynatur, grønnstruktur, parker og økologiske korridorer. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Strukturert analyse av aktører, interesser, rettigheter, kunnskapsgrunnlag og handlingsalternativer i en naturkonflikt, med naturverdiene som eksplisitt del av beslutningen.",
       "best_for_emne_kinds": [
         "miljopavirkning_forvaltning_regenerasjon",
         "urban_okologi_gronnstruktur"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "plan- og høringsdokumenter",
+        "rettigheter, lovgrunnlag og vedtak",
+        "naturkartlegging og konsekvensutredning",
+        "aktørposisjoner, alternativer og fordelingsvirkninger"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -979,13 +1100,12 @@
         "tursti"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva som faktisk står på spill økologisk",
+        "skill interesse fra rettighet og ansvar",
+        "etterspør reelle alternativer før kompensasjon"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Konflikten skal analyseres gjennom både naturgrunnlag og beslutningsmakt.",
+      "rotation_note": "Roter med miljørettferdighets- og forvaltningsanalyse for å dekke fordeling og gjennomføring.",
       "hook_affinities": [
         "miljoaktivisme",
         "naturinngrep",
@@ -1011,23 +1131,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "definer konfliktens naturfaglige og beslutningsmessige kjerne",
+        "kartlegg aktører, interesser, rettigheter og makt",
+        "sammenlign alternativer, unngåelse og avbøting",
+        "vurder prosess, fordeling, irreversibilitet og oppfølging"
+      ],
+      "limitations": [
+        "aktørkart kan overse natur som ikke har direkte representant",
+        "kompromiss er ikke alltid økologisk forsvarlig",
+        "offentlige dokumenter kan skjule uformell innflytelse"
+      ]
     },
     {
       "method_id": "met_natur_kretslopsanalyse",
       "title": "Kretsløpsanalyse",
       "short_label": "Kretsløp",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Kartlegging av lagre, strømmer og omsetningsprosesser for vann, karbon, nitrogen, fosfor eller andre stoffer gjennom et avgrenset økologisk system.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "vann_hydrologi_kretslop",
         "klima_energi_resiliens"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "mengder i jord, vann, luft og biomasse",
+        "tilførsel, eksport og intern omsetning",
+        "oppholdstid og prosessrater",
+        "kilder, sluk og massebalanse"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1057,13 +1188,12 @@
         "strand"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvor stoffet kommer fra, lagres og forlater systemet",
+        "skill lager fra strøm",
+        "identifiser hvor menneskelig aktivitet bryter eller akselererer kretsløpet"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Kretsløpet skal avgrenses eksplisitt i stoff, rom og tid.",
+      "rotation_note": "Kombiner med kjemisk eller økosystemanalyse når stoffets virkning skal forklares.",
       "hook_affinities": [
         "jordliv_mikroliv",
         "karbon_energiflyt",
@@ -1086,22 +1216,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens system, stoff og tidsperiode",
+        "identifiser alle vesentlige lagre og strømmer",
+        "sett opp massebalanse og finn manglende ledd",
+        "vurder hvordan inngrep endrer hastighet, lagring og lekkasje"
+      ],
+      "limitations": [
+        "ukjente strømmer kan gjøre balansen tilsynelatende feil",
+        "gjennomsnitt skjuler pulser etter flom eller sesong",
+        "stoffmengde sier ikke alene noe om biologisk effekt"
+      ]
     },
     {
       "method_id": "met_natur_kyst_og_marinsystemanalyse",
       "title": "Kyst- og marinsystemanalyse",
       "short_label": "Kyst/marint",
-      "description": "Analyse av berggrunn, topografi, jord, erosjon og lang naturtid, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av kyst- og fjordsystemer gjennom salt-, dybde-, lys-, temperatur- og oksygengradienter, strømmer, habitater og påvirkning fra land og sjø.",
       "best_for_emne_kinds": [
         "geologi_landskap_tid",
         "vann_hydrologi_kretslop"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "dybdeprofiler og hydrografiske målinger",
+        "kart over bunn, strand og marine naturtyper",
+        "arts- og næringsnettdata",
+        "avrenning, utslipp, høsting og ferdselsdata"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1130,13 +1271,12 @@
         "våtmark"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilken dybde og vannmasse data gjelder",
+        "koble landbasert belastning til marin respons",
+        "skill kystens geologi fra kystens økologi"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Kystanalyse må inkludere undervannssystemet, ikke bare strandlinjen.",
+      "rotation_note": "Kombiner med vannkvalitets- og habitatmetoder når påvirkning eller artsliv står sentralt.",
       "hook_affinities": [
         "fjord_okologi",
         "oy_okologi",
@@ -1160,21 +1300,32 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens vannmasse, habitat og kobling til nedbørfelt",
+        "kartlegg fysiske gradienter og sirkulasjon",
+        "koble forholdene til arter og økologiske prosesser",
+        "vurder samlet påvirkning og sesongvariasjon"
+      ],
+      "limitations": [
+        "overflateobservasjoner sier lite om undervannsforhold",
+        "fjordsystemer påvirkes av kilder langt utenfor stedet",
+        "sterk sesong- og dybdevariasjon krever flere målepunkter"
+      ]
     },
     {
       "method_id": "met_natur_landskapslesning",
       "title": "Landskapslesning",
       "short_label": "Landskap",
-      "description": "Analyse av berggrunn, topografi, jord, erosjon og lang naturtid. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Systematisk tolkning av terreng, landformer, vegetasjonsmønster, vannveier og menneskelige spor for å formulere hypoteser om hvordan landskapet er dannet og endret.",
       "best_for_emne_kinds": [
         "geologi_landskap_tid"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "terrengmodell, kart og profil",
+        "feltobservasjon av form, retning og materiale",
+        "historiske kart og flyfoto",
+        "vannveier, vegetasjonsgrenser og inngrep"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1196,13 +1347,12 @@
         "øy"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva som faktisk kan observeres i formen",
+        "skill beskrivelse fra tolkning",
+        "test landskapshypotesen mot kart eller materiale"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Landskapslesning er en hypoteseinngang og må etterprøves med geologiske eller historiske data.",
+      "rotation_note": "Roter med geologisk og hydrologisk analyse for å unngå rent estetisk landskapsspråk.",
       "hook_affinities": [
         "berggrunn",
         "dalforer",
@@ -1231,23 +1381,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "beskriv synlige mønstre før forklaring",
+        "identifiser mulige geologiske, hydrologiske og menneskelige prosesser",
+        "kontroller hypotesene mot kart og materiale",
+        "sett landskapet inn i en tidsrekkefølge"
+      ],
+      "limitations": [
+        "visuell form alene kan gi feil prosessforklaring",
+        "vegetasjon og bygg kan skjule terrenget",
+        "landskapet kan være resultat av flere overlappende perioder"
+      ]
     },
     {
       "method_id": "met_natur_landskapsokologisk_analyse",
       "title": "Landskapsøkologisk analyse",
       "short_label": "Landskapsøkologi",
-      "description": "Analyse av bynatur, grønnstruktur, parker og økologiske korridorer, arter, habitater, økosystemer og biologisk mangfold. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av habitatmosaikk, arealstørrelse, kant, avstand, barrierer og forbindelser for å forstå hvordan arter og prosesser fungerer på tvers av landskapet.",
       "best_for_emne_kinds": [
         "urban_okologi_gronnstruktur",
         "okosystem_mangfold_habitat",
         "vann_hydrologi_kretslop"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "habitat- og arealdekkekart",
+        "fragmenterings- og konnektivitetsmål",
+        "artsbevegelse og spredningsdata",
+        "barrierer, randsoner og arealendring"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1277,13 +1438,12 @@
         "overvannsanlegg"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør forbindelse for hvilken art eller prosess",
+        "skill arealdekke fra habitatkvalitet",
+        "identifiser flaskehals og skala"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Analysen skal være art- eller prosesspesifikk, ikke bare vise grønne flater.",
+      "rotation_note": "Kombiner med habitatkartlegging eller artsovervåking for å teste funksjonen.",
       "hook_affinities": [
         "bynatur",
         "elvekant_korridor",
@@ -1311,22 +1471,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "definer målart, prosess og relevant skala",
+        "kartlegg habitatkjerner, mellomområder og barrierer",
+        "beregn eller vurder konnektivitet og kanteffekt",
+        "sammenlign tiltak som styrker nettverket"
+      ],
+      "limitations": [
+        "én korridormodell passer ikke alle arter",
+        "kartlagt grønt areal kan ha lav habitatkvalitet",
+        "modellert forbindelse er ikke dokumentert bruk"
+      ]
     },
     {
       "method_id": "met_natur_mikroklimaanalyse",
       "title": "Mikroklimaanalyse",
       "short_label": "Mikroklima",
-      "description": "Analyse av klima, karbon, energi, sårbarhet og resiliens, bynatur, grønnstruktur, parker og økologiske korridorer. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Måling og forklaring av lokale forskjeller i temperatur, stråling, vind, fuktighet og fordampning skapt av terreng, materialer, vegetasjon, vann og byform.",
       "best_for_emne_kinds": [
         "klima_energi_resiliens",
         "urban_okologi_gronnstruktur"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "luft- og overflatetemperatur",
+        "stråling, skygge og vind",
+        "luftfuktighet og jordfuktighet",
+        "materialkart, trekroner og bygeometri"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1354,13 +1525,12 @@
         "tursti"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvor, når og hvordan temperaturen er målt",
+        "skill lufttemperatur fra stråling og overflatetemperatur",
+        "knytt forskjellen til en fysisk mekanisme"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Mikroklimapåstander skal bygge på sammenlignbare målinger og eksponering.",
+      "rotation_note": "Kombiner med risikoanalyse når varmebelastning for mennesker eller arter vurderes.",
       "hook_affinities": [
         "traer_i_by",
         "urban_varme",
@@ -1383,23 +1553,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "velg sammenlignbare målesteder og eksponeringsforhold",
+        "mål flere tider på døgnet og under relevante værtyper",
+        "koble forskjeller til skygge, materiale, vind og evapotranspirasjon",
+        "vurder effekt for mennesker, arter og tiltak"
+      ],
+      "limitations": [
+        "sensorplassering kan skape store skjevheter",
+        "én varm dag beskriver ikke hele mikroklimaet",
+        "lufttemperatur alene fanger ikke opplevd varme"
+      ]
     },
     {
       "method_id": "met_natur_miljoetisk_analyse",
       "title": "Miljøetisk analyse",
       "short_label": "Miljøetikk",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, berggrunn, topografi, jord, erosjon og lang naturtid. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Normativ analyse av hvilke moralske hensyn som gis vekt i beslutninger om arter, økosystemer, naturinngrep og framtidige generasjoner, og hvordan begrunnelsene skiller seg.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "geologi_landskap_tid",
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "begrunnelser i planer, vedtak og debatt",
+        "påstander om nytte, rettigheter og egenverdi",
+        "fordeling av skade og ansvar",
+        "alternativer og irreversible konsekvenser"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1429,13 +1610,12 @@
         "strand"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvem eller hva som teller moralsk",
+        "skill empirisk påstand fra normativ begrunnelse",
+        "vis hvilken verdi som ofres i hvert alternativ"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Etiske argumenter skal knyttes til dokumenterte konsekvenser og tydelige premisser.",
+      "rotation_note": "Kombiner med naturfaglig og forvaltningsmessig analyse slik at verdidiskusjonen ikke løsriver seg fra saken.",
       "hook_affinities": [
         "langsom_tid",
         "naturens_egenverdi",
@@ -1459,21 +1639,32 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "identifiser hvilke berørte mennesker og ikke-menneskelige verdier som inngår",
+        "skill fakta, interesse og normativ premiss",
+        "sammenlign etiske rammer og konsekvenser",
+        "test om begrunnelsen er konsistent på tvers av alternativer"
+      ],
+      "limitations": [
+        "etisk analyse avgjør ikke empiriske uenigheter",
+        "begrepet naturens egenverdi kan brukes uten tydelig konsekvens",
+        "ulike etiske rammer kan gi legitime, motstridende svar"
+      ]
     },
     {
       "method_id": "met_natur_miljorettferdighetsanalyse",
       "title": "Miljørettferdighetsanalyse",
       "short_label": "Miljørettferdighet",
-      "description": "Analyse av forurensning, miljøgifter, vern, restaurering og forvaltning. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av hvordan miljøgoder, belastninger, risiko, medvirkning og anerkjennelse fordeles mellom grupper og steder gjennom en beslutning eller miljøendring.",
       "best_for_emne_kinds": [
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "geografisk fordeling av belastning og naturtilgang",
+        "demografi, sårbarhet og helseindikatorer",
+        "høringer, deltakelse og beslutningsprosesser",
+        "kostnader, gevinster og mulig fortrengning"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1494,13 +1685,12 @@
         "restaurert_elv"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvem som får gevinst og belastning",
+        "skill lik behandling fra likeverdig resultat",
+        "undersøk både fordeling og beslutningsmakt"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Miljøeffekt og sosial fordeling skal vurderes i samme analyse.",
+      "rotation_note": "Kombiner med konflikt- og sosioøkologisk analyse for å forstå aktører og systemvirkninger.",
       "hook_affinities": [
         "okologisk_rettferdighet"
       ],
@@ -1520,21 +1710,32 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "kartlegg hvem som får nytte og hvem som bærer belastning",
+        "vurder eksponering sammen med sosial og helsemessig sårbarhet",
+        "undersøk representasjon og reell innflytelse",
+        "test om tiltak flytter risiko eller skaper nye ulikheter"
+      ],
+      "limitations": [
+        "grove områdedata kan skjule variasjon innen gruppene",
+        "formell deltakelse er ikke det samme som innflytelse",
+        "kategorisering av grupper kan forenkle identitet og erfaring"
+      ]
     },
     {
       "method_id": "met_natur_okologisk_kartlegging",
       "title": "Økologisk kartlegging",
       "short_label": "Økologisk kartlegging",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Felt- og kartbasert registrering av naturtyper, arter, strukturer og tilstand innen et avgrenset område etter en eksplisitt klassifikasjon og dokumentert innsats.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "naturtypepolygoner og lokalitetsbeskrivelser",
+        "artsfunn med koordinat og dato",
+        "struktur-, tilstands- og påvirkningsvariabler",
+        "foto, feltlogg og kartgrunnlag"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1556,13 +1757,12 @@
         "øy"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør etter klassifikasjon, dato og feltinnsats",
+        "skill kartlagt verdi fra fullstendig artsinventar",
+        "synliggjør usikker grense og manglende dekning"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Kartleggingen skal være etterprøvbar i metode, tid, geometri og evidens.",
+      "rotation_note": "Kombiner med habitat- eller biodiversitetsanalyse for å tolke økologisk betydning.",
       "hook_affinities": [
         "arter_og_habitat",
         "pollinering_samspill"
@@ -1584,22 +1784,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens område, formål og klassifikasjon",
+        "planlegg feltdekning etter sesong og terreng",
+        "registrer naturtype, art, struktur, tilstand og påvirkning",
+        "kvalitetssikre geometri, dokumentasjon og usikkerhet"
+      ],
+      "limitations": [
+        "kartleggingsresultat avhenger av sesong og innsats",
+        "klassifikasjoner kan endres og være vanskelige å sammenligne",
+        "kartgrense er en modell og ikke alltid en skarp naturgrense"
+      ]
     },
     {
       "method_id": "met_natur_okosystemanalyse",
       "title": "Økosystemanalyse",
       "short_label": "Økosystem",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, klima, karbon, energi, sårbarhet og resiliens. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Helhetlig analyse av organismer, fysiske forhold, energi, stoffstrømmer og tilbakekoblinger innen et avgrenset økologisk system.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "klima_energi_resiliens"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "arter, bestander og interaksjoner",
+        "energi- og stoffstrømmer",
+        "klima, jord, vann og habitatstruktur",
+        "forstyrrelser, tilbakekoblinger og systemgrenser"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1627,13 +1838,12 @@
         "øy"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva systemet omfatter og hva som står utenfor",
+        "koble komponenter gjennom prosess",
+        "let etter indirekte effekt og tilbakekobling"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Økosystemanalysen skal vise forbindelser og prosesser, ikke bare liste bestanddeler.",
+      "rotation_note": "Roter med kretsløps-, habitat- og nettverksanalyse etter hvilken mekanisme som er sentral.",
       "hook_affinities": [
         "energi_i_okosystemer",
         "naringsnett",
@@ -1657,23 +1867,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens system og sentralt spørsmål",
+        "kartlegg biotiske og abiotiske komponenter",
+        "identifiser strømmer, begrensninger og tilbakekoblinger",
+        "test hvordan en endring påvirker funksjon og stabilitet"
+      ],
+      "limitations": [
+        "systemgrensen er analytisk og kan utelate viktige koblinger",
+        "komplekse nettverk gir ofte flere mulige forklaringer",
+        "mangelfulle data kan gjøre helhetsmodellen spekulativ"
+      ]
     },
     {
       "method_id": "met_natur_okosystemtjenesteanalyse",
       "title": "Økosystemtjenesteanalyse",
       "short_label": "Økosystemtjeneste",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, klima, karbon, energi, sårbarhet og resiliens. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av hvordan økologiske funksjoner gir konkrete goder eller risikoreduksjon for mennesker, hvem som mottar dem og hvilke naturverdier tjenesteperspektivet utelater.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "klima_energi_resiliens",
         "urban_okologi_gronnstruktur"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "økologisk funksjon og tilstand",
+        "mottakere, sted og tidsperiode for nytte",
+        "biofysiske eller økonomiske verdsettingsdata",
+        "alternativer, avhengigheter og fordelingsvirkninger"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1703,13 +1924,12 @@
         "park"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilken prosess som produserer tjenesten",
+        "identifiser hvem som mottar nytten",
+        "vis hva som ikke fanges av pris eller tjenestekategori"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Tjenesten må forankres i dokumentert økologisk funksjon og faktisk mottaker.",
+      "rotation_note": "Kombiner med miljøetisk og biodiversitetsanalyse for å balansere nytte og integritet.",
       "hook_affinities": [
         "naturbaserte_losninger",
         "park_som_okosystem",
@@ -1735,22 +1955,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "identifiser økologisk funksjon før tjenesten navngis",
+        "kartlegg mottaker, leveranseområde og tidsrom",
+        "velg verdsettingsform som passer beslutningen",
+        "synliggjør avhengigheter, tapere og ikke-prissatte verdier"
+      ],
+      "limitations": [
+        "tjenestespråk kan overskygge naturens egenverdi",
+        "verdsetting kan gi inntrykk av enkel utskiftbarhet",
+        "samme funksjon kan gi ulik nytte til ulike grupper"
+      ]
     },
     {
       "method_id": "met_natur_resiliensanalyse",
       "title": "Resiliensanalyse",
       "short_label": "Resiliens",
-      "description": "Analyse av klima, karbon, energi, sårbarhet og resiliens, forurensning, miljøgifter, vern, restaurering og forvaltning. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Vurdering av et systems evne til å motstå, absorbere og gjenopprette funksjon etter forstyrrelse, med vekt på terskler, redundans, mangfold og forbindelser.",
       "best_for_emne_kinds": [
         "klima_energi_resiliens",
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "historiske forstyrrelser og responser",
+        "funksjonell diversitet og reservekapasitet",
+        "terskelindikatorer og tilbakekoblinger",
+        "gjenopprettingstid og tilstandsdata"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1778,13 +2009,12 @@
         "skog"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør resiliens av hva mot hvilken forstyrrelse",
+        "skill motstand fra gjenoppretting",
+        "identifiser reservefunksjon og mulig terskel"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Resiliens må knyttes til en definert funksjon, forstyrrelse og tidsskala.",
+      "rotation_note": "Kombiner med biodiversitets- eller risikoanalyse for å underbygge mekanisme og konsekvens.",
       "hook_affinities": [
         "regenerasjon",
         "resiliens",
@@ -1808,23 +2038,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "definer hvilken funksjon som skal opprettholdes",
+        "identifiser relevante forstyrrelser og sårbare komponenter",
+        "vurder redundans, mangfold, konnektivitet og tilbakekobling",
+        "sammenlign tiltak som øker robusthet uten å låse systemet"
+      ],
+      "limitations": [
+        "stabilitet kan skjule redusert framtidig tilpasningsevne",
+        "resiliens for én funksjon kan svekke andre verdier",
+        "terskler er ofte usikre før de passeres"
+      ]
     },
     {
       "method_id": "met_natur_restaureringsanalyse",
       "title": "Restaureringsanalyse",
       "short_label": "Restaurering",
-      "description": "Analyse av forurensning, miljøgifter, vern, restaurering og forvaltning, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Vurdering av økologisk restaurering fra degraderingsårsak og referanseramme til tiltak, målbare responsindikatorer og langsiktig oppfølging.",
       "best_for_emne_kinds": [
         "miljopavirkning_forvaltning_regenerasjon",
         "vann_hydrologi_kretslop",
         "klima_energi_resiliens"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "historisk og nåværende tilstand",
+        "degraderingskilder og belastningsdata",
+        "referanseøkosystem eller måltilstand",
+        "tiltak, indikatorer og oppfølgingsserier"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1854,13 +2095,12 @@
         "park"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hva som var degradert og hvorfor",
+        "skill restaurering fra forskjønning",
+        "etterspør mål, indikator og oppfølging"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Restaurering skal vurderes som gjenoppretting av prosess og funksjon, ikke bare nytt anlegg.",
+      "rotation_note": "Kombiner med hydrologisk, habitat- eller forvaltningsanalyse etter restaureringstype.",
       "hook_affinities": [
         "bekkeapning",
         "naturbaserte_losninger",
@@ -1885,13 +2125,24 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "fjern eller reduser den viktigste degraderingsårsaken",
+        "definer referanse, mål og akseptabel utviklingsbane",
+        "velg tiltak som gjenoppretter prosess og habitat",
+        "mål respons, juster tiltak og planlegg langsiktig drift"
+      ],
+      "limitations": [
+        "historisk tilstand kan være urealistisk under nytt klima",
+        "synlig grønn vekst er ikke nødvendigvis gjenopprettet funksjon",
+        "kort prosjektperiode kan skjule senere tilbakefall"
+      ]
     },
     {
       "method_id": "met_natur_risiko_og_sarbarhetsanalyse",
       "title": "Risiko- og sårbarhetsanalyse",
       "short_label": "Risiko/sårbarhet",
-      "description": "Analyse av klima, karbon, energi, sårbarhet og resiliens, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Systematisk vurdering av fare, eksponering, sårbarhet og konsekvens for mennesker, natur og infrastruktur under dagens og framtidige forhold.",
       "best_for_emne_kinds": [
         "klima_energi_resiliens",
         "vann_hydrologi_kretslop",
@@ -1900,10 +2151,10 @@
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "farekart og hendelsesstatistikk",
+        "eksponerte mennesker, arter, arealer og anlegg",
+        "sårbarhets- og avhengighetsdata",
+        "scenarioer, konsekvenser og tiltak"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -1935,13 +2186,12 @@
         "naturreservat"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "skill fare fra risiko",
+        "spør hva som er eksponert og hvorfor det er sårbart",
+        "vis restrisiko og hvem tiltaket beskytter"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Risiko skal uttrykkes gjennom både sannsynlighet, konsekvens og sårbarhet.",
+      "rotation_note": "Kombiner med klima-, hydrologisk eller miljørettferdighetsanalyse etter hvilken fare som vurderes.",
       "hook_affinities": [
         "erosjon",
         "flom_erosjon",
@@ -1975,22 +2225,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "definer fare og relevant scenario",
+        "kartlegg hva som er eksponert",
+        "vurder sårbarhet, avhengighet og konsekvens",
+        "sammenlign forebygging, beredskap og tilpasning med restrisiko"
+      ],
+      "limitations": [
+        "lav sannsynlighet kan kombineres med svært stor konsekvens",
+        "framtidig eksponering og sårbarhet er usikker",
+        "risikomatriser kan gi falsk presisjon"
+      ]
     },
     {
       "method_id": "met_natur_sosiookologisk_analyse",
       "title": "Sosioøkologisk analyse",
       "short_label": "Sosioøkologi",
-      "description": "Analyse av bynatur, grønnstruktur, parker og økologiske korridorer, forurensning, miljøgifter, vern, restaurering og forvaltning. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av gjensidige avhengigheter mellom økologiske prosesser, institusjoner, økonomi, praksiser og sosial ulikhet i et felles menneske–natur-system.",
       "best_for_emne_kinds": [
         "urban_okologi_gronnstruktur",
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "økologisk tilstand og ressursstrømmer",
+        "aktører, regler og eierskap",
+        "bruksmønster, økonomiske drivere og kunnskap",
+        "fordeling, konflikt og tilbakekoblinger"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -2019,13 +2280,12 @@
         "tursti"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvordan sosial praksis endrer økologisk prosess og omvendt",
+        "identifiser makt og avhengighet",
+        "se etter tilbakekobling og eksternalisert belastning"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Begge sider av menneske–natur-koblingen må dokumenteres, ikke bare omtales.",
+      "rotation_note": "Roter med konflikt-, forvaltnings- eller økosystemanalyse for større presisjon.",
       "hook_affinities": [
         "kolonihage_matjord",
         "miljoaktivisme",
@@ -2054,23 +2314,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens det koblede systemet og sentrale avhengigheter",
+        "kartlegg økologiske og sosiale komponenter samtidig",
+        "identifiser drivere, makt og tilbakekoblinger",
+        "vurder tiltak for både naturfunksjon og sosial bærekraft"
+      ],
+      "limitations": [
+        "brede systemkart kan bli overflatiske uten konkrete data",
+        "årsaksretning kan være vanskelig å skille",
+        "systemgrensen kan utelate eksterne kostnader"
+      ]
     },
     {
       "method_id": "met_natur_urban_okologi",
       "title": "Urban økologi",
       "short_label": "Urban økologi",
-      "description": "Analyse av bynatur, grønnstruktur, parker og økologiske korridorer, vassdrag, hydrologi, vannkvalitet og kretsløp. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Analyse av byens særegne økosystemer gjennom habitat, arter, vann, varme, jord, forstyrrelse og forbindelser mellom bebygde og grønne arealer.",
       "best_for_emne_kinds": [
         "urban_okologi_gronnstruktur",
         "vann_hydrologi_kretslop",
         "geologi_landskap_tid"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "arealdekke, bygninger og tette flater",
+        "arter, habitat og grønnstruktur",
+        "mikroklima, jord og overvann",
+        "drift, ferdsel, lys, støy og barrierer"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -2100,13 +2371,12 @@
         "overvannsanlegg"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilken urban faktor som former habitatet",
+        "skill grønn estetikk fra funksjon",
+        "koble stedet til det større byøkologiske nettverket"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Urban økologi skal forklare mekanismer mellom byform, drift og levende systemer.",
+      "rotation_note": "Kombiner med mikroklima, landskapsøkologi eller habitatmetode etter hovedprosessen.",
       "hook_affinities": [
         "bekkeapning",
         "bydyr",
@@ -2139,22 +2409,33 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "avgrens byrommet og de økologiske funksjonene",
+        "kartlegg urbane miljøgradienter og habitat",
+        "koble arter og prosesser til byform og drift",
+        "vurder tiltak på både sted- og nettverksnivå"
+      ],
+      "limitations": [
+        "grønt uttrykk er ikke det samme som økologisk funksjon",
+        "byarter kan bruke et sted uten å reprodusere der",
+        "lokale tiltak kan mislykkes uten regional konnektivitet"
+      ]
     },
     {
       "method_id": "met_natur_vannkvalitetsanalyse",
       "title": "Vannkvalitetsanalyse",
       "short_label": "Vannkvalitet",
-      "description": "Analyse av vassdrag, hydrologi, vannkvalitet og kretsløp, forurensning, miljøgifter, vern, restaurering og forvaltning. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Vurdering av vannets fysiske, kjemiske og biologiske tilstand gjennom relevante parametere, tidsvariasjon, referanseforhold og påvirkningskilder i nedbørfeltet.",
       "best_for_emne_kinds": [
         "vann_hydrologi_kretslop",
         "miljopavirkning_forvaltning_regenerasjon"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "temperatur, turbiditet og ledningsevne",
+        "pH, oksygen, næringsstoffer og miljøgifter",
+        "bunndyr, alger, fisk eller andre biologiske indikatorer",
+        "vannføring, nedbør og utslippsdata"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -2183,13 +2464,12 @@
         "våtmark"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvilke parametere som er relevante og hvorfor",
+        "koble resultat til tidspunkt og vannføring",
+        "skill kjemisk måling fra økologisk respons"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Vannkvalitet skal vurderes som flere indikatorer i en hydrologisk sammenheng.",
+      "rotation_note": "Kombiner med hydrologisk og forurensningsanalyse for å finne kilde og transport.",
       "hook_affinities": [
         "elv_som_system",
         "fjord_okologi",
@@ -2216,23 +2496,34 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "definer tilstands- eller påvirkningsspørsmål",
+        "velg parametere, steder og tidspunkt som dekker variasjon",
+        "ta prøver og feltmålinger med kvalitetskontroll",
+        "tolke kjemi og biologi sammen med vannføring og kilder"
+      ],
+      "limitations": [
+        "klart vann kan ha dårlig kjemisk eller økologisk tilstand",
+        "konsentrasjoner varierer sterkt med vannføring",
+        "én parameter kan ikke beskrive samlet vannkvalitet"
+      ]
     },
     {
       "method_id": "met_natur_vegetasjonsanalyse",
       "title": "Vegetasjonsanalyse",
       "short_label": "Vegetasjon",
-      "description": "Analyse av arter, habitater, økosystemer og biologisk mangfold, klima, karbon, energi, sårbarhet og resiliens. Brukes når konkrete naturdata, stedsspor, arter, habitater, vassdrag, klima, geologi, forurensning eller forvaltning kan dokumenteres.",
+      "description": "Systematisk registrering av plantesamfunn, dekning, sjikt, artssammensetning og miljøgradienter for å beskrive vegetasjonstype, tilstand og endring.",
       "best_for_emne_kinds": [
         "okosystem_mangfold_habitat",
         "klima_energi_resiliens",
         "urban_okologi_gronnstruktur"
       ],
       "data_forms": [
-        "art, habitat, økosystem eller naturtype",
-        "vassdrag, bekk, innsjø, våtmark, fjord, park, skog, grøntdrag eller geologisk form",
-        "artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart eller forvaltningskilde",
-        "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon eller tålegrense"
+        "prøveflater og artsdekning",
+        "sjikt, høyde, alder og død ved",
+        "jordfuktighet, lys, pH og forstyrrelse",
+        "kart, foto og gjentatte registreringer"
       ],
       "course_level_fit": [
         "grunnkurs",
@@ -2262,13 +2553,12 @@
         "park"
       ],
       "question_moves": [
-        "start med konkret naturanker",
-        "koble synlig sted til økologisk prosess",
-        "skill naturopplevelse fra naturfaglig analyse",
-        "bruk teori først etter art, habitat, vassdrag, klima, geologi, forurensning eller forvaltning"
+        "spør hvordan prøveflatene er valgt",
+        "skill artssammensetning fra struktur",
+        "koble vegetasjonsmønster til miljøgradient eller forstyrrelse"
       ],
-      "method_use_note": "Metoden styrer spørsmålsformen, men skal ikke levere faktapåstanden alene.",
-      "rotation_note": "Roter med andre naturmetoder slik at quizene ikke blir bare landskapsbeskrivelse, parkfakta eller generell miljømoral.",
+      "method_use_note": "Vegetasjonsdata skal knyttes til prøvedesign, sesong og miljøforhold.",
+      "rotation_note": "Kombiner med jord-, habitat- eller suksesjonsanalyse for å forklare mønsteret.",
       "hook_affinities": [
         "skogstruktur",
         "suksesjon",
@@ -2293,7 +2583,19 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_natur_"
-      }
+      },
+      "procedure": [
+        "velg prøvedesign og riktig fenologisk tidspunkt",
+        "registrer arter, dekning og struktur etter fast skala",
+        "mål eller klassifiser sentrale miljøforhold",
+        "sammenlign vegetasjonen med referanse, gradient eller tidsserie"
+      ],
+      "limitations": [
+        "sesong og artskunnskap påvirker registrert artsliste",
+        "dekning er observatøravhengig",
+        "vegetasjonslikhet betyr ikke nødvendigvis lik jord eller historie"
+      ]
     }
-  ]
+  ],
+  "application_scope": "kan_anvendes_globalt_med_stedsspesifikke_data_og_kilder"
 }

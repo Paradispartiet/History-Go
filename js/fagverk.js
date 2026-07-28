@@ -174,7 +174,7 @@
       <section>
         <h3>Metoder</h3>
         <p class="fagverk-section-intro">Metodene viser hvordan faget undersøker kilder, steder, systemer og observasjoner.</p>
-        <div class="fagverk-general-method-list">${model.methods.map((method) => `<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p>${method.dataForms.length ? `<small>Materiale: ${escapeHtml(method.dataForms.join(' · '))}</small>` : ''}</details>`).join('')}</div>
+        <div class="fagverk-general-method-list">${model.methods.map((method) => `<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p>${method.dataForms.length ? `<h5>Datagrunnlag</h5><ul>${method.dataForms.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}${method.procedure.length ? `<h5>Slik arbeider metoden</h5><ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<h5>Begrensninger</h5><ul>${method.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}</details>`).join('')}</div>
       </section>
       ${model.places.length ? `<section><h3>Steder å utforske</h3><div class="fagverk-case-grid">${model.places.map((place) => `<a class="fagverk-case" href="${escapeHtml(place.route)}"><strong>${escapeHtml(place.title)}</strong><span>${escapeHtml(place.intro)}</span><small>Åpne stedets fagverkside →</small></a>`).join('')}</div></section>` : ''}
     `;
@@ -195,7 +195,7 @@
         return `<a href="${escapeHtml(MODEL.emneUrl(model.subject.id, domain.id, emne.id, { place: placeId }))}"><span><strong>${escapeHtml(emne.title)}</strong><small>${escapeHtml(emne.definition || emne.whyItMatters)}</small></span><b>${Number(row.percent || 0)}%</b></a>`;
       }).join('')}</div>
       ${chapters.length ? `<section><h4>Lærekapitler i fagområdet</h4><div class="fagverk-general-domain-grid">${chapters.map((chapter) => `<a class="fagverk-general-domain-card" href="${escapeHtml(MODEL.chapterUrl(model.subject.id, chapter.id, { domain: domain.id, place: placeId }))}"><span class="fagverk-kicker">Redigert lærestoff</span><strong>${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.subtitle)}</span><small>Les kapittelet →</small></a>`).join('')}</div></section>` : ''}
-      ${methods.length ? `<section><h4>Metoder i fagområdet</h4><div class="fagverk-general-method-list">${methods.map((method) => `<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p></details>`).join('')}</div></section>` : ''}
+      ${methods.length ? `<section><h4>Metoder i fagområdet</h4><div class="fagverk-general-method-list">${methods.map((method) => `<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p>${method.procedure.length ? `<h5>Slik arbeider metoden</h5><ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<h5>Begrensninger</h5><ul>${method.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}</details>`).join('')}</div></section>` : ''}
     `;
     host.hidden = false;
   }
@@ -218,7 +218,7 @@
       <div class="fagverk-canonical-emne-grid">
         <div class="fagverk-canonical-box"><h4>Kjernespørsmål</h4><ul>${emne.keyQuestions.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
         <div class="fagverk-canonical-box"><h4>Begreper</h4><div class="fagverk-canonical-underbadges">${emne.concepts.map((item) => `<span${selected && item.toLocaleLowerCase('nb-NO') === selected ? ' class="is-highlighted"' : ''}>${escapeHtml(item)}</span>`).join('')}</div></div>
-        <div class="fagverk-canonical-box"><h4>Metoder</h4><ul>${methods.map((method) => `<li><strong>${escapeHtml(method.title)}</strong>${method.description ? ` — ${escapeHtml(method.description)}` : ''}</li>`).join('')}${emne.methodLabels.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
+        <div class="fagverk-canonical-box"><h4>Metoder</h4><ul>${methods.map((method) => `<li><details><summary><strong>${escapeHtml(method.title)}</strong></summary>${method.description ? `<p>${escapeHtml(method.description)}</p>` : ''}${method.procedure.length ? `<ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<p><strong>Begrensninger:</strong> ${escapeHtml(method.limitations.join(' · '))}</p>` : ''}</details></li>`).join('')}${emne.methodLabels.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
         <div class="fagverk-canonical-box"><h4>Analytiske skiller</h4><ul>${[...emne.conflicts, ...emne.analysisAxes].map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
       </div>
       ${relevantChapters.length ? `<section><h4>Relevante lærekapitler</h4><div class="fagverk-general-domain-grid">${relevantChapters.map((chapter) => `<a class="fagverk-general-domain-card" href="${escapeHtml(MODEL.chapterUrl(model.subject.id, chapter.id, { domain: emne.domainId, emne: emne.id, place: placeId }))}"><span class="fagverk-kicker">Redigert lærestoff</span><strong>${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.subtitle)}</span><small>Les kapittelet →</small></a>`).join('')}</div></section>` : ''}

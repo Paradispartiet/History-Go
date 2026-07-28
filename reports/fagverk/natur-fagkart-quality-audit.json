@@ -1,0 +1,34 @@
+{
+  "schema": "history_go_natur_fagkart_quality_audit_v1",
+  "version": "1.0.0",
+  "status": "passed",
+  "generatedFrom": {
+    "pensum": "data/fag/natur/naturpensum_canonical_v4_5.json",
+    "emner": "data/fag/natur/emner_natur_canonical_v4_5.json",
+    "methods": "data/fag/natur/methods_natur_canonical_v4_5.json",
+    "fagkart": "data/fag/natur/fagkart_natur_canonical_v4_5.json",
+    "mappings": "data/fag/natur/emnemapping_natur_canonical_v4_5.json",
+    "report": "reports/fagverk/natur-fagkart-quality-audit.json"
+  },
+  "summary": {
+    "categoryCount": 6,
+    "hookCount": 60,
+    "uniqueFocusQuestions": 60,
+    "uniqueQuestionMoveSets": 60,
+    "uniqueRotationNotes": 60,
+    "hookEmneReferences": 122,
+    "hookMethodReferences": 120,
+    "mappedEmneCount": 35,
+    "mappingCount": 127,
+    "uniqueMappingUseNotes": 127
+  },
+  "gates": {
+    "universalScope": true,
+    "canonicalCategoryReferences": true,
+    "allHookReferencesResolved": true,
+    "hookSpecificLearningFocus": true,
+    "hookSpecificQuestionMoves": true,
+    "mappingCategoryAndTitleSync": true,
+    "mappingEvidenceAndUseNotes": true
+  }
+}
