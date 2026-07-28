@@ -21,6 +21,29 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
   };
 })();
 
+// app.js starter sin loadScriptOnce-kjede fra DOMContentLoaded. Scripts som allerede
+// står i dokumentet på dette tidspunktet har fullført parser-/head-lastingen, men de
+// har historisk ikke fått data-hg-loaded. Da kan loadScriptOnce registrere en ny
+// load-listener etter at load-eventet allerede har skjedd og vente for alltid.
+// Marker kun ekte, eksekverende scripts; de bevisste post-ready-placeholderne holdes utenfor.
+(function markExistingScriptsLoadedBeforeAppBoot() {
+  const mark = () => {
+    for (const script of Array.from(document.scripts || [])) {
+      if (!script.getAttribute("src")) continue;
+      if (script.dataset.hgPostReadyPlaceholder === "1") continue;
+      if (script.type === "application/x-history-go-deferred") continue;
+      script.dataset.hgLoaded = "1";
+    }
+    window.__HG_EXISTING_SCRIPTS_MARKED_LOADED__ = true;
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mark, { once: true });
+  } else {
+    mark();
+  }
+})();
+
 // index.html har en legacy post-ready-kjede som ellers begynner å laste mange
 // sekundære scripts idet hg:appReady fyres. På iPad/Safari kan den synkrone
 // script-eksekveringen treffe akkurat når onboardingen lukkes og gjøre UI-et
@@ -82,6 +105,7 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
       const next = () => {
         if (done) return;
         done = true;
+        script.dataset.hgLoaded = "1";
         setTimeout(() => loadAt(index + 1), 40);
       };
 
