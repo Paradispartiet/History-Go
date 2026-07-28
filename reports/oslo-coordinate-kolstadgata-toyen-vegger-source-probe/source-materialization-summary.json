@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kolstadgata_toyen_vegger",
+  "capturedAt": "2026-07-28",
+  "sourceMaterialization": {
+    "workflowRunId": 30352529384,
+    "artifactId": 8685448990,
+    "artifactName": "kolstadgata-coordinate-source-probe",
+    "artifactDigest": "sha256:489c5690f45ff2b760918582f3c4b3ea4fb2a27f253453a4a181ef40f3dd3ea3",
+    "bbox": "10.7735,59.9120,10.7825,59.9168",
+    "finding": "The one-time read-only probe captured current OSM geometry for Kolstadgata, exact Kartverket address objects for Kolstadgata 1, 7 and 15, the Kartverket SSR street identity and a Nominatim cross-check for Kolstadgata 15. The temporary workflow was removed after source capture."
+  },
+  "municipalPublicSpaceContext": {
+    "sourceProvider": "municipality",
+    "sourceName": "Oslo kommune – Midlertidig skog i Kolstadgata",
+    "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/midlertidig-skog-i-kolstadgata/",
+    "finding": "Oslo kommune treats Kolstadgata as a defined public-space project area and states that the street is to receive a permanent upgrade. The temporary project tests how the street area can function as public space rather than ordinary carriageway."
+  },
+  "kolstadgata7ArtContext": {
+    "sourceProvider": "municipality",
+    "sourceName": "Oslo kommune – Tøyen endrer boligmarkedet",
+    "sourceUrl": "https://magasin.oslo.kommune.no/byplan/toyen-endrer-boligmarkedet",
+    "finding": "Oslo kommune documents an art project made with children living in Kolstadgata 7 and describes the building as part of the local Tøyen urban-development and community context."
+  },
+  "muralAnchor": {
+    "sourceProvider": "manual_research",
+    "sourceName": "Kolstadgata 15 – Jason mural",
+    "sourceUrl": "https://www.likeroslo.no/gatekunst-pa-toyen/",
+    "address": "Kolstadgata 15, Oslo",
+    "year": 2013,
+    "finding": "The large Jason motif was painted on the gable wall at Kolstadgata 15 in 2013 through Urban Samtidskunst. Independent local and tourism sources identify the same mural and address."
+  },
+  "streetIdentity": {
+    "sourceProvider": "kartverket",
+    "sourceObjectId": "kartverket-ssr:996398",
+    "name": "Kolstadgata",
+    "nameStatus": "godkjent og prioritert",
+    "placeStatus": "aktiv",
+    "objectType": "Adressenavn",
+    "geometryType": "MultiLineString",
+    "finding": "Kartverket independently confirms Kolstadgata as one active officially named street object in Oslo."
+  },
+  "appliedRoute": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-ways:355173203,785046180;kartverket-ssr:996398",
+    "name": "Kolstadgata 1–15 wall and public-space axis",
+    "coordinates": [
+      [59.9141752, 10.7736511],
+      [59.9141114, 10.7736924],
+      [59.9140252, 10.7738356],
+      [59.9139216, 10.7740207],
+      [59.9137838, 10.7742754],
+      [59.9137074, 10.7744123],
+      [59.91357585943619, 10.774648258407565]
+    ],
+    "lengthM": 87.5,
+    "derivedMidpoint": {
+      "lat": 59.913866905366774,
+      "lon": 10.774121793781443,
+      "method": "half-length point along the source-backed Kolstadgata frontage route in local lon*cos(meanLat),lat projection"
+    },
+    "distanceFromPreviousM": 230.3,
+    "derivationNote": "The route starts on the named residential street beside the Kolstadgata 1 frontage, follows OSM way 355173203 and way 785046180, and ends at the orthogonal projection of the midpoint between the exact Kolstadgata 15A and 15B address points onto the named street geometry. No building-wall position is invented."
+  },
+  "addressControls": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13840:1",
+      "address": "Kolstadgata 1, 0652 Oslo",
+      "lat": 59.91419388196801,
+      "lon": 10.773215674420667,
+      "distanceFromAppliedMidpointM": 62.2,
+      "finding": "Current municipal activity-house/public-space anchor at the western end of the documented Kolstadgata community axis."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13840:7",
+      "address": "Kolstadgata 7, 0652 Oslo",
+      "lat": 59.91391789697803,
+      "lon": 10.773701763840386,
+      "distanceFromAppliedMidpointM": 24.1,
+      "finding": "Exact address for the municipal housing and art-project anchor documented by Oslo kommune."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13840:15A",
+      "address": "Kolstadgata 15A, 0652 Oslo",
+      "lat": 59.91351433470854,
+      "lon": 10.774324123425956,
+      "distanceFromAppliedMidpointM": 40.8,
+      "finding": "One of the exact address points for the building carrying the documented Jason mural."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13840:15B",
+      "address": "Kolstadgata 15B, 0652 Oslo",
+      "lat": 59.91344838160333,
+      "lon": 10.774553119623407,
+      "distanceFromAppliedMidpointM": 52.4,
+      "finding": "Second exact address point controlling the Kolstadgata 15 mural building frontage."
+    }
+  ],
+  "scopeDecision": {
+    "previousProblem": "The record was a diffuse editorial environment with no stable geometry or finite anchor set.",
+    "resolvedScope": "The source-backed Kolstadgata 1–15 public-space and wall axis, using the named street as stable infrastructure and addresses 1, 7 and 15 as documented community/art anchors.",
+    "representationLimit": "The record does not claim that every changing mural, tag or side-passage wall on Tøyen belongs to one geometry. Transient wall art remains content evidence; the stable coordinate follows the named street frontage."
+  },
+  "radiusDecision": {
+    "previousRadiusM": 170,
+    "appliedRadiusM": 120,
+    "finding": "A 120-metre radius covers the approximately 87.5-metre 1–15 route, the exact 1/7/15 address controls and immediate wall/public-space context while narrowing the former unsupported broader Tøyen proxy."
+  },
+  "futureChangeContext": {
+    "finding": "Oslo kommune is actively transforming parts of Kolstadgata into a more permanent public-space/schoolyard environment. The named street/public-space identity remains stable enough for current production, but geometry should be re-audited after the permanent rebuild is completed."
+  },
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateChangeRequired": true,
+    "appliedCoordinate": {
+      "lat": 59.913866905366774,
+      "lon": 10.774121793781443,
+      "r": 120
+    },
+    "locatorType": "route",
+    "sourceProvider": "osm",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordStatus": "verified_geometry"
+  }
+}
