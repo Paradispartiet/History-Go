@@ -1,9 +1,9 @@
 {
   "id": "kolstadgata_toyen_vegger",
   "name": "Kolstadgata veggmiljø",
-  "lat": 59.9142,
-  "lon": 10.7782,
-  "r": 170,
+  "lat": 59.913866905366774,
+  "lon": 10.774121793781443,
+  "r": 120,
   "category": "subkultur",
   "year": 2016,
   "desc": "Veggmiljø på Tøyen med lokale muraler, tags og skiftende gateuttrykk.",
@@ -18,15 +18,113 @@
   "visual": {
     "designCode": "subculture_miniature"
   },
-  "locatorType": "linear_area",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "history-go-research:subculture-anchors-20260725:kolstadgata_toyen_vegger",
-  "geocodeAccuracy": "approximate",
-  "coordRole": "area_anchor",
-  "coordType": "unverified_area_anchor",
-  "coordStatus": "needs_source",
-  "coordSource": "manual_research",
-  "coordSourceId": "history-go-research:subculture-anchors-20260725:kolstadgata_toyen_vegger",
-  "coordSourceUrl": "reports/oslo-coordinate-subculture-anchors-research-20260725/summary.json",
-  "coordNote": "Canonical scope is a diffuse editorial environment spanning multiple changing walls, passages or street segments. The record contains no source-backed geometry, stable named physical object or explicit anchor set that matches the whole scope. Dagens koordinat beholdes kun som redaksjonell proxy og skal ikke tolkes som dokumentert fysisk sentrum. Define an explicit geometry or a finite set of source-backed anchors for the complete canonical scope; otherwise retain as needs_source and do not present the current midpoint as verified."
+  "locatorType": "route",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-ways:355173203,785046180;kartverket-ssr:996398",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "coordType": "kolstadgata_1_15_public_space_wall_route_midpoint",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap ways 355173203 and 785046180 – Kolstadgata; Kartverket SSR 996398 and exact addresses Kolstadgata 1, 7 and 15; Oslo kommune public-space and Kolstadgata 7 art context; documented Jason mural at Kolstadgata 15",
+  "coordSourceId": "osm-ways:355173203,785046180;kartverket-ssr:996398",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/355173203",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The unsupported editorial proxy is moved approximately 230.3 metres west to the deterministic half-length point of the source-backed Kolstadgata 1–15 street-front route. The radius is reduced from 170 to 120 metres because exact address controls and documented public-space/art anchors now resolve the formerly diffuse Tøyen wall environment to a finite named street axis.",
+  "coordNote": "The canonical geometry follows the named Kolstadgata street frontage from the Kolstadgata 1 community/public-space end through Kolstadgata 7 to the documented mural building at Kolstadgata 15. OpenStreetMap ways 355173203 and 785046180 provide the street geometry, while Kartverket SSR 996398 independently confirms the active Kolstadgata street identity. Oslo kommune documents Kolstadgata as an actively developed public-space environment and an art/community project involving residents at Kolstadgata 7. The Jason mural at Kolstadgata 15 is independently documented as a stable wall-art anchor. The applied coordinate is the deterministic half-length point of the approximately 87.5-metre source-backed route. Changing murals, tags and paste-ups remain cultural-content evidence rather than coordinate sources. The 120-metre radius is not the extent of all Tøyen street art, a property boundary, schoolyard/construction boundary or access guarantee. Because Kolstadgata is under active public-space transformation, the route geometry should be re-audited after the permanent rebuild is completed.",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [10.7736511, 59.9141752],
+      [10.7736924, 59.9141114],
+      [10.7738356, 59.9140252],
+      [10.7740207, 59.9139216],
+      [10.7742754, 59.9137838],
+      [10.7744123, 59.9137074],
+      [10.774648258407565, 59.91357585943619]
+    ]
+  },
+  "accessContext": {
+    "siteType": "public_street_and_evolving_neighbourhood_art_environment",
+    "publicAccess": "The canonical geometry follows ordinary public street space. Kolstadgata is undergoing staged public-space changes, and current traffic, construction, schoolyard, event and maintenance conditions can alter circulation.",
+    "limitations": [
+      "Use ordinary public street and pedestrian space; do not enter private courtyards, residential properties, school areas or construction zones without normal public access or permission.",
+      "Murals, tags, paste-ups and other wall expressions can change independently of the stable street geometry.",
+      "The 120-metre gameplay radius is not a property, schoolyard, construction, road-closure or access boundary."
+    ]
+  },
+  "anchors": [
+    {
+      "id": "kolstadgata_1_public_space_anchor",
+      "name": "Kolstadgata 1 – community/public-space anchor",
+      "lat": 59.91419388196801,
+      "lon": 10.773215674420667,
+      "r": 35,
+      "type": "label_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13840:1",
+      "canApplyToPlace": false,
+      "note": "Western source-backed community/public-space control for the Kolstadgata axis."
+    },
+    {
+      "id": "kolstadgata_7_art_anchor",
+      "name": "Kolstadgata 7 – community art anchor",
+      "lat": 59.91391789697803,
+      "lon": 10.773701763840386,
+      "r": 35,
+      "type": "label_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13840:7",
+      "canApplyToPlace": false,
+      "note": "Exact address for the municipal housing/community art context documented by Oslo kommune."
+    },
+    {
+      "id": "kolstadgata_15_jason_mural_anchor",
+      "name": "Kolstadgata 15 – Jason mural frontage",
+      "lat": 59.913481358155936,
+      "lon": 10.774438621524681,
+      "r": 40,
+      "type": "label_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13840:15A,15B",
+      "canApplyToPlace": false,
+      "note": "Midpoint between the exact 15A and 15B address points for the building carrying the documented Jason mural; address control only, not an invented wall centroid."
+    }
+  ],
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Oslo kommune – Midlertidig skog i Kolstadgata",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/midlertidig-skog-i-kolstadgata/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "official",
+      "label": "Oslo kommune – Kolstadgata 7 og bomiljø",
+      "url": "https://magasin.oslo.kommune.no/byplan/toyen-endrer-boligmarkedet",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "reference",
+      "label": "Mer av Oslo – gatekunst på Tøyen og Jason i Kolstadgata 15",
+      "url": "https://meravoslo.no/nyheter/opplev-gatekunst-i-oslo?rq=gatekunst",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Kolstadgata route segment",
+      "url": "https://www.openstreetmap.org/way/355173203",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "reference",
+      "label": "Kartverket SSR – Kolstadgata, stedsnummer 996398",
+      "url": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Kolstadgata&utkoordsys=4258",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    }
+  ]
 }
