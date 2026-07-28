@@ -1,4 +1,4 @@
-import test from "node:test";
+import test, { afterEach } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -7,6 +7,12 @@ import { JSDOM } from "jsdom";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const source = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds-visual-collections.js"), "utf8");
+const activeWindows = new Set();
+
+afterEach(() => {
+  for (const window of activeWindows) window.close();
+  activeWindows.clear();
+});
 
 const BASE_ICONS = [
   "pcPeopleIcon",
@@ -47,6 +53,7 @@ function createRuntime(place, globals = {}) {
   });
 
   const { window } = dom;
+  activeWindows.add(window);
   window.PLACES = [place];
   window.BADGES = [{ id: place.category, name: place.category, image: `badges/${place.category}.png` }];
   window.HGPlaceRounds = {};
@@ -55,11 +62,6 @@ function createRuntime(place, globals = {}) {
   window.document.dispatchEvent(new window.Event("DOMContentLoaded", { bubbles: true }));
   window.HGVisualPlaceRounds.apply(place);
   return window;
-}
-
-function addPreview(window, id, src = `${id}.jpg`) {
-  const icon = window.document.getElementById(id);
-  icon.innerHTML = `<img src="${src}" alt="">`;
 }
 
 test("canonical palette is exactly the eight agreed visual rounds", () => {
