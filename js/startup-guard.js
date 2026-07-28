@@ -8,7 +8,7 @@
 
   const SCRIPT_TIMEOUT_MS = 8000;
   const FETCH_TIMEOUT_MS = 8000;
-  const STARTUP_DEADLINE_MS = 22000;
+  const STARTUP_DIAGNOSTIC_MS = 22000;
   const deferredScripts = [];
   const trace = window.__HG_BOOT_TRACE__ = window.__HG_BOOT_TRACE__ || { startedAt: Date.now(), pendingScript: null, deferred: [], timeouts: [] };
 
@@ -101,28 +101,25 @@
     }
   }
 
-  function showStartupFailure() {
-    const body = document.body;
-    if (!body || body.classList.contains("hg-loaded")) return;
-    body.classList.add("hg-loaded", "hg-load-failed", "hg-startup-timeout");
-    window.__HG_APP_READY__ = false;
-    if (document.getElementById("hgStartupGuardFailure")) return;
-    const panel = document.createElement("div");
-    panel.id = "hgStartupGuardFailure";
-    panel.setAttribute("role", "alert");
-    panel.style.cssText = ["position:fixed","left:50%","top:50%","transform:translate(-50%,-50%)","z-index:2147483647","width:min(460px,calc(100vw - 28px))","box-sizing:border-box","padding:18px","border:1px solid rgba(255,255,255,.25)","border-radius:16px","background:rgba(5,8,13,.97)","color:#fff","font:600 14px/1.4 system-ui,-apple-system,sans-serif"].join(";");
-    const pending = trace.pendingScript ? ` Ventet sist på: ${trace.pendingScript}` : "";
-    panel.innerHTML = `<strong style="display:block;font-size:16px;margin-bottom:6px">History Go stoppet under oppstart</strong><span style="opacity:.78">Den evige loaderen er brutt.${pending}</span>`;
-    document.body.appendChild(panel);
+  function recordSlowStartup() {
+    if (window.__HG_APP_READY__ === true || document.body?.classList.contains("hg-loaded")) return;
+    trace.slowAt = Date.now();
+    trace.slowPendingScript = trace.pendingScript;
+    console.warn("[startup-guard] treg oppstart; lar appen fortsette", {
+      pendingScript: trace.pendingScript,
+      timeouts: trace.timeouts.slice(-5),
+      deferredCount: deferredScripts.length
+    });
   }
 
   window.addEventListener("hg:appReady", () => {
     trace.readyAt = Date.now();
     document.getElementById("hgStartupGuardFailure")?.remove();
+    document.body?.classList.remove("hg-load-failed", "hg-startup-timeout");
     flushDeferredScripts();
   }, { once: true });
 
-  const armDeadline = () => setTimeout(showStartupFailure, STARTUP_DEADLINE_MS);
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", armDeadline, { once: true });
-  else armDeadline();
+  const armDiagnostic = () => setTimeout(recordSlowStartup, STARTUP_DIAGNOSTIC_MS);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", armDiagnostic, { once: true });
+  else armDiagnostic();
 })();
