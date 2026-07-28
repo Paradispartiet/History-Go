@@ -9,6 +9,8 @@
   "use strict";
 
   const KEY = "hg_unlocks_v1";
+  const PLACE_COLLECTION_KEY = "places_collected";
+
   function dispatchProfileUpdate() {
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
   }
@@ -29,6 +31,37 @@
     } catch {}
   }
 
+  function loadCollectedPlaces() {
+    try {
+      const x = JSON.parse(localStorage.getItem(PLACE_COLLECTION_KEY) || "{}");
+      if (!x || typeof x !== "object" || Array.isArray(x)) return {};
+      return x;
+    } catch {
+      return {};
+    }
+  }
+
+  function recordCollectedPlace(placeId, source = "quiz") {
+    const id = normId(placeId);
+    if (!id) return false;
+
+    const collected = loadCollectedPlaces();
+    if (collected[id]) return false;
+
+    collected[id] = {
+      source: normId(source) || "quiz",
+      ts: Date.now()
+    };
+
+    try {
+      localStorage.setItem(PLACE_COLLECTION_KEY, JSON.stringify(collected));
+      dispatchProfileUpdate();
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   function asArr(x) {
     if (!x) return [];
     if (Array.isArray(x)) return x.filter(Boolean).map(String);
@@ -44,12 +77,10 @@
     return Array.from(set);
   }
 
-  // normaliser ID-strenger lett (ikke “smart”, bare trim)
   function normId(s) {
     return String(s || "").trim();
   }
 
-  // recordFromQuiz({ quizId, categoryId, item, targetId })
   function recordFromQuiz({ quizId, categoryId, item, targetId }) {
     const db = load();
 
@@ -78,50 +109,13 @@
       categoryChanged = true;
     }
 
-    // ---- hent ting fra item (støtter flere feltnavn) ----
-    const hooks =
-      item?.topic_hook ||
-      item?.topic_hooks ||
-      item?.hook ||
-      item?.hooks ||
-      item?.emne_hook ||
-      item?.topicHook ||
-      "";
+    const hooks = item?.topic_hook || item?.topic_hooks || item?.hook || item?.hooks || item?.emne_hook || item?.topicHook || "";
+    const concepts = item?.core_concepts || item?.concepts || item?.keywords || "";
+    const thinkers = item?.thinkers || item?.canon_thinkers || item?.canon?.thinkers || item?.canonThinkers || "";
+    const knowledgeIds = item?.knowledge_ids || item?.knowledgeIds || item?.knowledge || [];
+    const triviaIds = item?.trivia_ids || item?.triviaIds || item?.trivia || [];
+    const emneIds = item?.emne_id || item?.emneId || item?.emne_ids || item?.related_emner || item?.relatedEmner || [];
 
-    const concepts =
-      item?.core_concepts ||
-      item?.concepts ||
-      item?.keywords ||
-      "";
-
-    const thinkers =
-      item?.thinkers ||
-      item?.canon_thinkers ||
-      item?.canon?.thinkers ||
-      item?.canonThinkers ||
-      "";
-
-    const knowledgeIds =
-      item?.knowledge_ids ||
-      item?.knowledgeIds ||
-      item?.knowledge ||
-      [];
-
-    const triviaIds =
-      item?.trivia_ids ||
-      item?.triviaIds ||
-      item?.trivia ||
-      [];
-
-    const emneIds =
-      item?.emne_id ||
-      item?.emneId ||
-      item?.emne_ids ||
-      item?.related_emner ||
-      item?.relatedEmner ||
-      [];
-
-    // ---- merge (unik) ----
     const nextHooks = uniqPush(row.hooks, hooks);
     const nextConcepts = uniqPush(row.concepts, concepts);
     const nextThinkers = uniqPush(row.thinkers, thinkers);
@@ -144,7 +138,6 @@
     row.trivia_ids = nextTriviaIds;
     row.emne_ids = nextEmneIds;
 
-    // ---- “global index” for rask UI ----
     db.index = db.index || { hooks: [], concepts: [], thinkers: [] };
     const beforeIndexHooks = Array.isArray(db.index.hooks) ? db.index.hooks.length : 0;
     const beforeIndexConcepts = Array.isArray(db.index.concepts) ? db.index.concepts.length : 0;
@@ -164,19 +157,24 @@
       dispatchProfileUpdate();
     }
 
-    // ping UI
     try { window.dispatchEvent(new CustomEvent("hg:unlocks")); } catch {}
   }
 
   window.HGUnlocks = {
     key: KEY,
+    placeCollectionKey: PLACE_COLLECTION_KEY,
     load,
+    loadCollectedPlaces,
+    recordCollectedPlace,
     recordFromQuiz
   };
 
-  // NextUp progression is an optional extension that patches HGNavigator when it
-  // becomes available. Loading it here keeps the extension close to quiz/progress
-  // boot without making the main app entry depend on another ordering branch.
+  window.addEventListener("hg:target-unlock", (event) => {
+    const detail = /** @type {CustomEvent} */ (event).detail || {};
+    if (detail?.kind !== "place") return;
+    recordCollectedPlace(detail.id, "quiz");
+  });
+
   if (!document.querySelector('script[data-hg-nextup-progression="1"]')) {
     const script = document.createElement("script");
     script.src = "js/nextUpProgression.js";
@@ -188,8 +186,6 @@
     document.head.appendChild(script);
   }
 
-  // The v4 ranked list can omit one of the original four cards even though the
-  // legacy fields still contain it. This bridge merges those core cards back in.
   if (!document.querySelector('script[data-hg-nextup-core-cards="1"]')) {
     const script = document.createElement("script");
     script.src = "js/nextUpCoreCards.js";
