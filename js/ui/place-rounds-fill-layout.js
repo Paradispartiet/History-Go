@@ -1,6 +1,6 @@
 // @ts-nocheck
 // js/ui/place-rounds-fill-layout.js
-// Maksimerer 4/6-rundingsgridet i feltet ved siden av frontImage uten MutationObserver-loop.
+// Canonical PlaceCard layout: nøyaktig fire rundinger i et 2x2-felt.
 (function installPlaceRoundsFillLayout(global) {
   "use strict";
 
@@ -17,21 +17,18 @@
   function layout() {
     const grid = document.querySelector("#placeCard .pc-icons-quad");
     if (!grid) return;
-
     const count = Number(grid.dataset.roundCount || 0);
-    if (count !== 4 && count !== 6) {
+    if (count !== 4) {
       grid.style.removeProperty("--hg-round-fill-size");
       return;
     }
-
-    const cols = count === 4 ? 2 : 3;
+    const cols = 2;
     const rows = 2;
     const gap = numericGap(grid);
     const rect = grid.getBoundingClientRect();
     const width = rect.width || grid.clientWidth || 0;
     const height = rect.height || grid.clientHeight || 0;
     if (width <= 0 || height <= 0) return;
-
     const byWidth = (width - gap * (cols - 1)) / cols;
     const byHeight = (height - gap * (rows - 1)) / rows;
     const size = Math.max(1, Math.floor(Math.min(byWidth, byHeight)));
@@ -52,19 +49,14 @@
   function bind() {
     const grid = document.querySelector("#placeCard .pc-icons-quad");
     if (!grid) return false;
-
     if (!attrObserver && typeof global.MutationObserver === "function") {
-      // Kun canonical count-attributtet observeres. Ingen subtree/childList-observasjon,
-      // så layouten kan ikke trigge rundingsrendereren i en selvforsterkende loop.
       attrObserver = new global.MutationObserver(scheduleLayout);
       attrObserver.observe(grid, { attributes: true, attributeFilter: ["data-round-count"] });
     }
-
     if (!resizeObserver && typeof global.ResizeObserver === "function") {
       resizeObserver = new global.ResizeObserver(scheduleLayout);
       resizeObserver.observe(grid);
     }
-
     scheduleLayout();
     return true;
   }
@@ -82,7 +74,6 @@
   global.HGPlaceRoundsFillLayout = { layout, scheduleLayout };
   global.addEventListener?.("resize", scheduleLayout, { passive: true });
   ["hg:appReady", "hg:place-selected", "hg:placesUpdated"].forEach(name => global.addEventListener?.(name, scheduleLayout));
-
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })(window);
