@@ -403,6 +403,16 @@
     return true;
   }
 
+  function waitForBackgroundIdle() {
+    return new Promise((resolve) => {
+      if (typeof window.requestIdleCallback === "function") {
+        window.requestIdleCallback(() => resolve(), { timeout: 900 });
+      } else {
+        setTimeout(resolve, 80);
+      }
+    });
+  }
+
   async function bootBackground() {
     if (backgroundStarted) return;
     backgroundStarted = true;
@@ -410,28 +420,35 @@
     if (!criticalDone) await bootCritical();
 
     const tasks = [
-      runSafeAsync("loadRelationsBackground", loadRelationsBackground),
-      runSafeAsync("loadWonderkammerBackground", loadWonderkammerBackground),
-      runSafeAsync("tags", async () => {
+      ["loadRelationsBackground", loadRelationsBackground],
+      ["loadWonderkammerBackground", loadWonderkammerBackground],
+      ["tags", async () => {
         window.TAGS = await fetchJSON("data/tags.json", { cache: "default" }) || [];
         emit("hg:tags-ready", { count: Array.isArray(window.TAGS) ? window.TAGS.length : 0 });
-      }),
-      runSafeAsync("loadPeopleBackground", loadPeopleBackground),
-      runSafeAsync("DataHub.loadNature", () => window.DataHub?.loadNature?.()),
-      runSafeAsync("DataHub.loadLesespor", () => window.DataHub?.loadLesespor?.({ cache: "default" })),
-      runSafeAsync("HGStories.init", () => window.HGStories?.init?.()),
-      runSafeAsync("HGEvents.init", () => window.HGEvents?.init?.()),
-      runSafeAsync("HGBrands.init", () => window.HGBrands?.init?.())
+      }],
+      ["loadPeopleBackground", loadPeopleBackground],
+      ["DataHub.loadNature", () => window.DataHub?.loadNature?.()],
+      ["DataHub.loadLesespor", () => window.DataHub?.loadLesespor?.({ cache: "default" })],
+      ["HGStories.init", () => window.HGStories?.init?.()],
+      ["HGEvents.init", () => window.HGEvents?.init?.()],
+      ["HGBrands.init", () => window.HGBrands?.init?.()]
     ];
 
-    await Promise.allSettled(tasks);
+    // Store JSON-kilder skal ikke parses og indekseres samtidig på Safari/iPadOS.
+    // Én jobb per idle-periode holder kart, router og touch-respons levende.
+    for (const [label, task] of tasks) {
+      await waitForBackgroundIdle();
+      await runSafeAsync(label, task);
+    }
 
+    await waitForBackgroundIdle();
     runSafe("initQuizEngine", initQuizEngine);
 
     await runSafeAsync("ensureBadgesLoaded", () =>
       typeof ensureBadgesLoaded === "function" ? ensureBadgesLoaded() : undefined
     );
 
+    await waitForBackgroundIdle();
     runSafe("wire", () => typeof window.wire === "function" ? window.wire() : undefined);
     runSafe("renderCollection", () => typeof renderCollection === "function" ? renderCollection() : undefined);
     runSafe("renderGallery", () => typeof window.renderGallery === "function" ? window.renderGallery() : undefined);
