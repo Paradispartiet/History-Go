@@ -51,7 +51,6 @@ jobs:
               result = source.replace(old, new) if count is None else source.replace(old, new, count)
               write(path, result)
 
-          # 1. Canonical category contract: 17 top subjects, one combined Science & Technology badge.
           contract_path = 'data/categories/category_contract.json'
           contract = load(contract_path)
           contract['version'] = '1.6'
@@ -62,72 +61,28 @@ jobs:
               contract.setdefault('aliases', {})[alias] = 'vitenskap'
           contract.setdefault('labels', {})['vitenskap'] = 'Vitenskap & teknologi'
           contract['labels'].pop('teknologi', None)
-          contract.setdefault('decisions', {})['vitenskap'] = (
-              'Vitenskap & teknologi er én canonical toppkategori. Den omfatter empirisk og formell '
-              'kunnskapsproduksjon, naturvitenskap, medisin, matematikk, modeller og vitenskapelige '
-              'institusjoner, samt teknologi, ingeniørfag og IT: maskiner, materialer, energi, elektronikk, '
-              'programvare, algoritmer, data, nettverk, robotikk, cybersikkerhet og digital infrastruktur. '
-              'Teknologi er en faglig spesialisering under vitenskap, ikke et eget toppmerke. Bedriften som '
-              'virksomhet hører primært til næringsliv; den tekniske løsningen hører til Vitenskap & teknologi.'
-          )
+          contract.setdefault('decisions', {})['vitenskap'] = ('Vitenskap & teknologi er én canonical toppkategori. Den omfatter empirisk og formell kunnskapsproduksjon, naturvitenskap, medisin, matematikk, modeller og vitenskapelige institusjoner, samt teknologi, ingeniørfag og IT: maskiner, materialer, energi, elektronikk, programvare, algoritmer, data, nettverk, robotikk, cybersikkerhet og digital infrastruktur. Teknologi er en faglig spesialisering under vitenskap, ikke et eget toppmerke. Bedriften som virksomhet hører primært til næringsliv; den tekniske løsningen hører til Vitenskap & teknologi.')
           contract['decisions'].pop('teknologi', None)
           dump(contract_path, contract)
 
-          # 2. Badge ownership and legacy redirect metadata.
           badge_index = load('data/badges/index.json')
           badge_index['files'] = [item for item in badge_index['files'] if item != 'data/badges/teknologi.json']
           dump('data/badges/index.json', badge_index)
-
           science_badge = load('data/badges/vitenskap.json')
           science_badge['name'] = 'Vitenskap & teknologi'
-          science_badge['description'] = (
-              'For dem som undersøker, forklarer og bygger verden gjennom observasjon, måling, testing, '
-              'beregning, ingeniørkunst og etterprøvbar kunnskap – fra naturvitenskap og medisin til '
-              'teknologi, IT, programvare og digital infrastruktur.'
-          )
-          science_badge['sub'] = [
-              'naturvitenskap',
-              'teknologi',
-              'teknologi_og_ingeniorfag',
-              'informasjonsteknologi',
-              'data_programvare_og_algoritmer',
-              'nettverk_og_digital_infrastruktur',
-              'elektronikk_robotikk_og_automatisering',
-              'medisin',
-              'matematikk',
-              'psykologi_og_hjerne',
-              'forskning_og_metode',
-              'vitenskapshistorie',
-              'vitenskaps_og_teknologihistorie',
-              'klima_og_miljovitenskap',
-              'astronomi_og_fysikk',
-              'kjemi_og_materialvitenskap'
-          ]
+          science_badge['description'] = 'For dem som undersøker, forklarer og bygger verden gjennom observasjon, måling, testing, beregning, ingeniørkunst og etterprøvbar kunnskap – fra naturvitenskap og medisin til teknologi, IT, programvare og digital infrastruktur.'
+          science_badge['sub'] = ['naturvitenskap','teknologi','teknologi_og_ingeniorfag','informasjonsteknologi','data_programvare_og_algoritmer','nettverk_og_digital_infrastruktur','elektronikk_robotikk_og_automatisering','medisin','matematikk','psykologi_og_hjerne','forskning_og_metode','vitenskapshistorie','vitenskaps_og_teknologihistorie','klima_og_miljovitenskap','astronomi_og_fysikk','kjemi_og_materialvitenskap']
           dump('data/badges/vitenskap.json', science_badge)
-
           technology_badge = load('data/badges/teknologi.json')
           technology_badge['status'] = 'legacy_redirect'
           technology_badge['canonicalBadgeId'] = 'vitenskap'
-          technology_badge['description'] = (
-              'Teknologi er bevart som en faglig spesialisering under merket Vitenskap & teknologi. '
-              'Denne filen er bare et migreringsanker og registreres ikke som et eget toppmerke.'
-          )
+          technology_badge['description'] = 'Teknologi er bevart som en faglig spesialisering under merket Vitenskap & teknologi. Denne filen er bare et migreringsanker og registreres ikke som et eget toppmerke.'
           dump('data/badges/teknologi.json', technology_badge)
 
-          # 3. Keep the full technology package as a nested specialization under Science.
           manifest_path = 'data/fag/fag_manifest.json'
           manifest = load(manifest_path)
           technology = manifest.pop('teknologi')
-          specialization = {
-              'id': 'teknologi',
-              'label': 'Teknologi',
-              'canonicalParentSubject': 'vitenskap',
-              'badgeId': 'vitenskap',
-              'schemaFamily': 'technology_scientific_v2_4',
-              'routeStatus': 'planned',
-              'route': '',
-              **technology
-          }
+          specialization = {'id':'teknologi','label':'Teknologi','canonicalParentSubject':'vitenskap','badgeId':'vitenskap','schemaFamily':'technology_scientific_v2_4','routeStatus':'planned','route':'',**technology}
           specialization['status'] = 'canonical_scientific_specialization'
           manifest['vitenskap']['specializations'] = {'teknologi': specialization}
           dump(manifest_path, manifest)
@@ -135,13 +90,8 @@ jobs:
           quiz_registry = load('data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json')
           quiz_registry['version'] = '3.4'
           quiz_registry['category_profiles'].pop('teknologi', None)
-          quiz_registry['subject_specialization_profiles'] = {
-              'vitenskap': {
-                  'teknologi': 'data/fag/teknologi/supersetQUIZMAL_teknologi.json'
-              }
-          }
+          quiz_registry['subject_specialization_profiles'] = {'vitenskap': {'teknologi': 'data/fag/teknologi/supersetQUIZMAL_teknologi.json'}}
           dump('data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json', quiz_registry)
-
           quiz_manifest = load('data/quiz/manifest.json')
           for entry in quiz_manifest.get('subjectPackages', []):
               if entry.get('subjectId') == 'teknologi':
@@ -149,40 +99,24 @@ jobs:
                   entry['specializationId'] = 'teknologi'
           dump('data/quiz/manifest.json', quiz_manifest)
 
-          # 4. Portal, inventory and status expose only 17 top-level subjects.
           portal = load('data/fagverk/fagverk_portal.json')
           portal['categories'] = [item for item in portal['categories'] if item.get('id') != 'teknologi']
           for item in portal['categories']:
-              if item.get('id') == 'vitenskap':
-                  item['label'] = 'Vitenskap & teknologi'
+              if item.get('id') == 'vitenskap': item['label'] = 'Vitenskap & teknologi'
           dump('data/fagverk/fagverk_portal.json', portal)
-
           inventory = load('data/fagverk/subject_inventory.json')
           inventory['version'] = '1.2.0'
           inventory['subjects'] = [item for item in inventory['subjects'] if item.get('id') != 'teknologi']
           family = inventory.get('schemaFamilies', {}).get('technology_scientific_v2_4')
-          if isinstance(family, dict):
-              family['description'] = 'Utvidet teknologivitenskapelig schemafamilie brukt som nested spesialisering under vitenskap.'
+          if isinstance(family, dict): family['description'] = 'Utvidet teknologivitenskapelig schemafamilie brukt som nested spesialisering under vitenskap.'
           for item in inventory['subjects']:
               if item.get('id') == 'vitenskap':
                   item['pilot'] = True
                   optional = list(item.get('optionalManifestFields', []))
-                  if 'specializations' not in optional:
-                      optional.append('specializations')
+                  if 'specializations' not in optional: optional.append('specializations')
                   item['optionalManifestFields'] = optional
-                  item['specializations'] = [{
-                      'id': 'teknologi',
-                      'schemaFamily': 'technology_scientific_v2_4',
-                      'requiredManifestFields': ['pensum', 'emner', 'fagkart', 'methods'],
-                      'optionalManifestFields': [
-                          'supersetQuizMal', 'quizStandard', 'quizQuestionSchema', 'scientificPackage',
-                          'quizPackageSchema', 'subjectPathwaySchema', 'subjectPathwayPackage',
-                          'canonicalModelVersion', 'universalCoverage', 'geographicProduction'
-                      ],
-                      'pilot': True
-                  }]
+                  item['specializations'] = [{'id':'teknologi','schemaFamily':'technology_scientific_v2_4','requiredManifestFields':['pensum','emner','fagkart','methods'],'optionalManifestFields':['supersetQuizMal','quizStandard','quizQuestionSchema','scientificPackage','quizPackageSchema','subjectPathwaySchema','subjectPathwayPackage','canonicalModelVersion','universalCoverage','geographicProduction'],'pilot':True}]
           dump('data/fagverk/subject_inventory.json', inventory)
-
           status = load('data/fagverk/subject_status.json')
           status['version'] = '1.2.0'
           status['subjects'] = [item for item in status['subjects'] if item.get('id') != 'teknologi']
@@ -191,63 +125,34 @@ jobs:
                   item['nextGate'] = 'phase_2_pilot'
                   item['note'] = 'Vitenskap er fase-2-pilot og bærer Teknologi som canonical nested spesialisering.'
           dump('data/fagverk/subject_status.json', status)
-
           design = load('data/fagverk/category_place_design.json')
           design['version'] = '1.2.0'
-          for alias in ['technology', 'teknologi', 'tech', 'it', 'informasjonsteknologi']:
-              design.setdefault('aliases', {})[alias] = 'vitenskap'
+          for alias in ['technology','teknologi','tech','it','informasjonsteknologi']: design.setdefault('aliases', {})[alias] = 'vitenskap'
           science_design = design['categories']['vitenskap']
           science_design['label'] = 'Vitenskap & teknologi'
-          science_design['imageDirection'] = (
-              'Vis laboratorium, observatorium, samling, feltsted, verksted, maskin, teknisk anlegg eller '
-              'digital infrastruktur. Illustrasjoner av et begrep, logoer eller produktbilder teller ikke '
-              'alene som bilde av stedet.'
-          )
-          science_design['contentPriority'] = [
-              'problem_oppdagelse_og_design',
-              'metode_instrument_og_system',
-              'institusjon_personer_og_ingeniorarbeid',
-              'virkning_risiko_og_usikkerhet'
-          ]
+          science_design['imageDirection'] = 'Vis laboratorium, observatorium, samling, feltsted, verksted, maskin, teknisk anlegg eller digital infrastruktur. Illustrasjoner av et begrep, logoer eller produktbilder teller ikke alene som bilde av stedet.'
+          science_design['contentPriority'] = ['problem_oppdagelse_og_design','metode_instrument_og_system','institusjon_personer_og_ingeniorarbeid','virkning_risiko_og_usikkerhet']
           dump('data/fagverk/category_place_design.json', design)
 
-          # 5. Runtime registries normalize legacy technology IDs to Science.
           domain_path = 'js/DomainRegistry.js'
           domain = read(domain_path)
           domain = domain.replace('"scenekunst", "sport", "subkultur", "vitenskap", "teknologi",\n    "filosofi", "film_tv"', '"scenekunst", "sport", "subkultur", "vitenskap",\n    "filosofi", "film_tv"')
-          domain = domain.replace('"technology": "teknologi"', '"technology": "vitenskap"')
-          domain = domain.replace('"tech": "teknologi"', '"tech": "vitenskap"')
-          domain = domain.replace('"it": "teknologi"', '"it": "vitenskap"')
-          domain = domain.replace('"informasjonsteknologi": "teknologi"', '"informasjonsteknologi": "vitenskap"')
+          for key in ['technology','tech','it','informasjonsteknologi']: domain = domain.replace(f'"{key}": "teknologi"', f'"{key}": "vitenskap"')
           domain = domain.replace('    "technology": "vitenskap",\n', '    "technology": "vitenskap",\n    "teknologi": "vitenskap",\n')
           write(domain_path, domain)
 
           categories_path = 'js/core/categories.ts'
           categories = read(categories_path)
-          categories = categories.replace(
-              '  { id: "vitenskap", name: "Vitenskap", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },\n'
-              '  { id: "teknologi", name: "Teknologi", icon: "⚙️", color: "#E07A1F", secondaryColor: "#252A31", scope: "runtime_domain" },',
-              '  { id: "vitenskap", name: "Vitenskap & teknologi", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain", aliases: ["Vitenskap", "Teknologi", "Technology", "Tech", "IT", "Informasjonsteknologi"] },'
-          )
+          categories = categories.replace('  { id: "vitenskap", name: "Vitenskap", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },\n  { id: "teknologi", name: "Teknologi", icon: "⚙️", color: "#E07A1F", secondaryColor: "#252A31", scope: "runtime_domain" },', '  { id: "vitenskap", name: "Vitenskap & teknologi", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain", aliases: ["Vitenskap", "Teknologi", "Technology", "Tech", "IT", "Informasjonsteknologi"] },')
           marker = 'function norm(value: unknown): string {\n  return String(value ?? "").trim();\n}\n'
           insertion = marker + '\nconst CATEGORY_ID_ALIASES: Readonly<Record<string, string>> = Object.freeze({\n  teknologi: "vitenskap",\n  technology: "vitenskap",\n  tech: "vitenskap",\n  it: "vitenskap",\n  informasjonsteknologi: "vitenskap"\n});\n\nfunction canonicalCategoryId(value: unknown): string {\n  const normalized = norm(value).toLowerCase();\n  return CATEGORY_ID_ALIASES[normalized] || normalized;\n}\n'
-          if marker not in categories:
-              raise RuntimeError('Fant ikke norm-funksjonen i categories.ts')
+          if marker not in categories: raise RuntimeError('Fant ikke norm-funksjonen i categories.ts')
           categories = categories.replace(marker, insertion)
           categories = categories.replace('const category = CAT_BY_ID[norm(categoryId)];', 'const category = CAT_BY_ID[canonicalCategoryId(categoryId)];')
           categories = categories.replace('const id = norm(categoryId).toLowerCase().replace(/[^a-z0-9_]+/g, "-");', 'const id = canonicalCategoryId(categoryId).replace(/[^a-z0-9_]+/g, "-");')
-          categories = categories.replace(
-              '  const normalizedTag = norm(tag);\n  if (!normalizedTag) return null;\n  if (CAT_BY_ID[normalizedTag]) return normalizedTag;',
-              '  const normalizedTag = norm(tag);\n  if (!normalizedTag) return null;\n  const canonicalTag = canonicalCategoryId(normalizedTag);\n  if (CAT_BY_ID[canonicalTag]) return canonicalTag;'
-          )
-          categories = categories.replace(
-              '    const categoryId = norm(entry.cat ?? entry.category ?? entry.categoryId ?? entry.category_id);\n    if (categoryId && CAT_BY_ID[categoryId]) return categoryId;',
-              '    const categoryId = canonicalCategoryId(entry.cat ?? entry.category ?? entry.categoryId ?? entry.category_id);\n    if (categoryId && CAT_BY_ID[categoryId]) return categoryId;'
-          )
-          categories = categories.replace(
-              '  const normalizedDisplay = norm(display).toLowerCase();\n  if (!normalizedDisplay) return null;\n  if (CAT_BY_ID[normalizedDisplay]) return normalizedDisplay;',
-              '  const normalizedDisplay = norm(display).toLowerCase();\n  if (!normalizedDisplay) return null;\n  const canonicalDisplay = canonicalCategoryId(normalizedDisplay);\n  if (CAT_BY_ID[canonicalDisplay]) return canonicalDisplay;'
-          )
+          categories = categories.replace('  const normalizedTag = norm(tag);\n  if (!normalizedTag) return null;\n  if (CAT_BY_ID[normalizedTag]) return normalizedTag;', '  const normalizedTag = norm(tag);\n  if (!normalizedTag) return null;\n  const canonicalTag = canonicalCategoryId(normalizedTag);\n  if (CAT_BY_ID[canonicalTag]) return canonicalTag;')
+          categories = categories.replace('    const categoryId = norm(entry.cat ?? entry.category ?? entry.categoryId ?? entry.category_id);\n    if (categoryId && CAT_BY_ID[categoryId]) return categoryId;', '    const categoryId = canonicalCategoryId(entry.cat ?? entry.category ?? entry.categoryId ?? entry.category_id);\n    if (categoryId && CAT_BY_ID[categoryId]) return categoryId;')
+          categories = categories.replace('  const normalizedDisplay = norm(display).toLowerCase();\n  if (!normalizedDisplay) return null;\n  if (CAT_BY_ID[normalizedDisplay]) return normalizedDisplay;', '  const normalizedDisplay = norm(display).toLowerCase();\n  if (!normalizedDisplay) return null;\n  const canonicalDisplay = canonicalCategoryId(normalizedDisplay);\n  if (CAT_BY_ID[canonicalDisplay]) return canonicalDisplay;')
           write(categories_path, categories)
 
           policy_path = 'tools/placeSchemaPolicy.mts'
@@ -256,663 +161,204 @@ jobs:
           policy = policy.replace('export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = ["film"] as const;', 'export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = ["film", "teknologi"] as const;')
           write(policy_path, policy)
 
-          # 6. Generic badge page resolves old technology links and aggregates preserved points.
-          write('js/merke-fallback.js', r'''// @ts-nocheck
-          (function installGenericBadgePage(global){
-            'use strict';
-            const text=(value)=>String(value==null?'':value).trim();
-            const esc=(value)=>String(value==null?'':value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
-            const fetchJson=async(url)=>{const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw new Error(`${response.status} ${url}`);return response.json();};
-            function resolveBadgeId(rawId,contract){const raw=text(rawId);if((contract.runtimeCategories||[]).includes(raw))return raw;const alias=text(contract.aliases?.[raw]);return (contract.runtimeCategories||[]).includes(alias)?alias:'';}
-            function pointsFor(id,contract){try{const merits=JSON.parse(localStorage.getItem('merits_by_category')||'{}');const ids=new Set([id,...Object.entries(contract.aliases||{}).filter(([,target])=>target===id).map(([alias])=>alias)]);return [...ids].reduce((sum,key)=>sum+Number(merits?.[key]?.points||0),0);}catch{return 0;}}
-            function tierState(tiers,points){let current={label:'Nybegynner',threshold:0};let next=null;for(const tier of tiers){const threshold=Number(tier?.threshold||0);if(points>=threshold)current=tier;else if(!next)next=tier;}return {current,next};}
-            function renderSubjectAction(id,portal){const actions=document.getElementById('genericBadgeActions');const item=(portal.categories||[]).find((row)=>text(row.id)===id);if(!actions||!item)return;const target=text(item.subjectPage);if(target){actions.insertAdjacentHTML('afterbegin',`<a href="${esc(target)}">Åpne faget →</a>`);}else{actions.insertAdjacentHTML('afterbegin',`<span class="is-pending" aria-disabled="true">Faget bygges</span>`);}}
-            async function init(){const params=new URLSearchParams(global.location.search);const requestedId=text(params.get('badge'));const loading=document.getElementById('genericBadgeLoading');const content=document.getElementById('genericBadgeContent');const error=document.getElementById('genericBadgeError');try{const [contract,portal]=await Promise.all([fetchJson('data/categories/category_contract.json'),fetchJson('data/fagverk/fagverk_portal.json')]);const id=resolveBadgeId(requestedId,contract);if(!id)throw new Error(`Ukjent merke: ${requestedId||'(mangler id)'}`);if(requestedId!==id)history.replaceState(null,'',`merke.html?badge=${encodeURIComponent(id)}`);const badge=await fetchJson(`data/badges/${encodeURIComponent(id)}.json`);const points=pointsFor(id,contract);const tiers=Array.isArray(badge.tiers)?badge.tiers:[];const state=tierState(tiers,points);document.title=`${text(badge.name)||contract.labels?.[id]||id} – History Go`;document.getElementById('genericBadgeTitle').textContent=text(badge.name)||contract.labels?.[id]||id;document.getElementById('genericBadgeDescription').textContent=text(badge.description)||'Merkeprofil i History Go.';const image=document.getElementById('genericBadgeImage');image.innerHTML=badge.image?`<img src="${esc(badge.image)}" alt="">`:`<span aria-hidden="true">${esc(badge.icon||'◆')}</span>`;document.getElementById('genericBadgeProgress').innerHTML=`<div><strong>${points} poeng</strong><span>${esc(text(state.current?.label)||'Nybegynner')}</span></div><div><strong>${state.next?Math.max(0,Number(state.next.threshold||0)-points):'Fullført'}</strong><span>${state.next?`poeng til ${esc(state.next.label)}`:'øverste nivå nådd'}</span></div>`;document.getElementById('genericBadgeTiers').innerHTML=tiers.map((tier)=>`<article class="generic-badge-tier${points>=Number(tier.threshold||0)?' is-earned':''}"><strong>${esc(tier.label)}</strong><span>${Number(tier.threshold||0)} poeng</span></article>`).join('');renderSubjectAction(id,portal);loading.hidden=true;content.hidden=false;error.hidden=true;}catch(err){loading.hidden=true;content.hidden=true;error.hidden=false;error.textContent=`Merkesiden kunne ikke lastes: ${err.message}`;console.error('[generic-badge]',err);}}
-            if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-          })(window);
-          '''.replace('          ', ''))
-
-          # 7. Permanent inventory audit understands nested specializations.
-          write('scripts/audit-fagverk-subject-inventory.mjs', r'''#!/usr/bin/env node
-          import fs from 'node:fs';
-          import path from 'node:path';
-          import { fileURLToPath } from 'node:url';
-          import { isDeepStrictEqual } from 'node:util';
-
-          const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-          const PATHS = Object.freeze({
-            categories: 'data/categories/category_contract.json',
-            manifest: 'data/fag/fag_manifest.json',
-            portal: 'data/fagverk/fagverk_portal.json',
-            inventory: 'data/fagverk/subject_inventory.json',
-            status: 'data/fagverk/subject_status.json',
-            report: 'reports/fagverk/subject-baseline.json'
-          });
-          const CORE_FIELDS = Object.freeze(['pensum', 'emner', 'fagkart', 'methods']);
-          const ALLOWED_FAMILIES = new Set(['standard_canonical', 'foundation_v1', 'by_compatibility', 'technology_scientific_v2_4']);
-
-          const absolute = (relativePath) => path.join(ROOT, relativePath);
-          function readJson(relativePath) {
-            let raw;
-            try { raw = fs.readFileSync(absolute(relativePath), 'utf8'); }
-            catch (error) { throw new Error(`Kan ikke lese ${relativePath}: ${error.message}`); }
-            try { return JSON.parse(raw); }
-            catch (error) { throw new Error(`Ugyldig JSON i ${relativePath}: ${error.message}`); }
-          }
-          function assert(condition, message) { if (!condition) throw new Error(message); }
-          function assertExactOrder(actual, expected, label) {
-            assert(Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => value === expected[index]), `${label} må følge canonical rekkefølge. Forventet ${JSON.stringify(expected)}, fikk ${JSON.stringify(actual)}`);
-          }
-          function resolveFagPointer(pointer) {
-            assert(typeof pointer === 'string' && pointer.trim(), `Ugyldig fagfilpeker: ${JSON.stringify(pointer)}`);
-            return path.posix.normalize(path.posix.join('data/fag', pointer));
-          }
-          function classifySubject(subjectId, manifestEntry) {
-            if (subjectId === 'by') return 'by_compatibility';
-            if (manifestEntry.status === 'active_foundation') return 'foundation_v1';
-            return 'standard_canonical';
-          }
-          function countBy(items, field, allowedValues) {
-            const counts = Object.fromEntries(allowedValues.map((value) => [value, 0]));
-            for (const item of items) {
-              assert(Object.hasOwn(counts, item[field]), `${item.id}: ukjent ${field} ${JSON.stringify(item[field])}`);
-              counts[item[field]] += 1;
-            }
-            return counts;
-          }
-          function normalizeCoreFiles(manifestEntry) { return Object.fromEntries(CORE_FIELDS.map((field) => [field, manifestEntry[field]])); }
-          function specializationRows(categories, manifest, inventory) {
-            const inventoryById = new Map(inventory.subjects.map((item) => [item.id, item]));
-            return categories.fagSubjects.flatMap((parentSubjectId) => {
-              const manifestSpecs = manifest[parentSubjectId]?.specializations || {};
-              const inventorySpecs = inventoryById.get(parentSubjectId)?.specializations || [];
-              return inventorySpecs.map((item) => ({
-                parentSubjectId,
-                id: item.id,
-                schemaFamily: item.schemaFamily,
-                coreFiles: normalizeCoreFiles(manifestSpecs[item.id] || {}),
-                optionalManifestFields: item.optionalManifestFields || [],
-                pilot: Boolean(item.pilot)
-              }));
-            });
-          }
-
-          export function buildBaselineReport({ categories, manifest, inventory, status }) {
-            const statusById = new Map(status.subjects.map((item) => [item.id, item]));
-            const inventoryById = new Map(inventory.subjects.map((item) => [item.id, item]));
-            const subjectRows = categories.fagSubjects.map((subjectId) => {
-              const manifestEntry = manifest[subjectId];
-              const inventoryEntry = inventoryById.get(subjectId);
-              const statusEntry = statusById.get(subjectId);
-              return {
-                id: subjectId,
-                schemaFamily: inventoryEntry.schemaFamily,
-                coreFiles: normalizeCoreFiles(manifestEntry),
-                optionalManifestFields: inventoryEntry.optionalManifestFields,
-                navigationStatus: statusEntry.navigationStatus,
-                assessmentStatus: statusEntry.assessmentStatus,
-                editorialStatus: statusEntry.editorialStatus,
-                pilot: inventoryEntry.pilot,
-                specializations: (inventoryEntry.specializations || []).map((item) => ({
-                  id: item.id,
-                  schemaFamily: item.schemaFamily,
-                  coreFiles: normalizeCoreFiles(manifestEntry.specializations?.[item.id] || {}),
-                  optionalManifestFields: item.optionalManifestFields || [],
-                  pilot: Boolean(item.pilot)
-                }))
-              };
-            });
-            const specializations = specializationRows(categories, manifest, inventory);
-            const allFamilies = [...subjectRows.map((item) => item.schemaFamily), ...specializations.map((item) => item.schemaFamily)];
-            return {
-              schema: 'history_go_fagverk_subject_baseline_report_v1',
-              version: '1.2.0',
-              status: 'living_inventory_baseline',
-              generatedFrom: { inventory: PATHS.inventory, status: PATHS.status, categories: PATHS.categories, manifest: PATHS.manifest, portal: PATHS.portal },
-              summary: {
-                subjectCount: subjectRows.length,
-                specializationCount: specializations.length,
-                schemaFamilyCount: new Set(allFamilies).size,
-                requiredCoreFileCount: (subjectRows.length + specializations.length) * CORE_FIELDS.length,
-                navigation: countBy(status.subjects, 'navigationStatus', status.rules.navigationStatuses),
-                assessment: countBy(status.subjects, 'assessmentStatus', status.rules.assessmentStatuses),
-                editorial: countBy(status.subjects, 'editorialStatus', status.rules.editorialStatuses),
-                pilotSubjects: subjectRows.filter((item) => item.pilot).map((item) => item.id).sort(),
-                pilotSpecializations: specializations.filter((item) => item.pilot).map((item) => `${item.parentSubjectId}/${item.id}`).sort()
-              },
-              migrationDebt: inventory.migrationDebt,
-              subjects: subjectRows
-            };
-          }
-
-          function validateStatusProgression(subjectId, statusEntry, portalEntry) {
-            assert(statusEntry.navigationStatus === portalEntry.subjectStatus, `${subjectId}: portal- og statusregister er usynkronisert`);
-            if (statusEntry.navigationStatus === 'planned') {
-              assert(!portalEntry.subjectPage, `${subjectId}: planned fag kan ikke ha aktiv subjectPage`);
-              assert(statusEntry.editorialStatus === 'not_started', `${subjectId}: planned fag kan ikke ha redaksjonell ferdigstatus`);
-              assert(statusEntry.assessmentStatus !== 'audited', `${subjectId}: audited fag må materialiseres i samme godkjente endring`);
-            } else {
-              assert(portalEntry.subjectPage === `fagverk.html?subject=${subjectId}`, `${subjectId}: materialized fag må bruke canonical subjectPage`);
-            }
-            if (statusEntry.assessmentStatus === 'audited') {
-              assert(statusEntry.navigationStatus === 'materialized', `${subjectId}: audited krever materialized`);
-              assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(statusEntry.editorialStatus), `${subjectId}: audited krever minst structure_ready`);
-            }
-            if (statusEntry.assessmentStatus === 'blocked') assert(statusEntry.editorialStatus === 'not_started', `${subjectId}: blocked kan ikke ha redaksjonell ferdigstatus`);
-            if (statusEntry.editorialStatus !== 'not_started') assert(statusEntry.navigationStatus === 'materialized' && statusEntry.assessmentStatus === 'audited', `${subjectId}: redaksjonell fremdrift krever materialized + audited`);
-          }
-
-          function auditCoreFiles(ownerId, manifestEntry, coreFileAudit) {
-            for (const field of CORE_FIELDS) {
-              const pointer = manifestEntry[field];
-              assert(typeof pointer === 'string' && pointer.length > 0, `${ownerId}: mangler manifestfeltet ${field}`);
-              const relativePath = resolveFagPointer(pointer);
-              assert(fs.existsSync(absolute(relativePath)), `${ownerId}: required ${field}-fil finnes ikke: ${relativePath}`);
-              readJson(relativePath);
-              coreFileAudit.push({ ownerId, field, path: relativePath });
-            }
-          }
-
-          export function auditRepository({ writeReport = false, checkReport = true } = {}) {
-            const categories = readJson(PATHS.categories);
-            const manifest = readJson(PATHS.manifest);
-            const portal = readJson(PATHS.portal);
-            const inventory = readJson(PATHS.inventory);
-            const status = readJson(PATHS.status);
-            assert(Array.isArray(categories.fagSubjects), 'category_contract.json mangler fagSubjects');
-            const canonicalSubjects = categories.fagSubjects;
-            assert(canonicalSubjects.length === 17, `Fagverket skal ha 17 toppfag, fikk ${canonicalSubjects.length}`);
-            assert(!canonicalSubjects.includes('teknologi'), 'Teknologi kan ikke være canonical toppfag');
-            assert(categories.aliases?.teknologi === 'vitenskap', 'teknologi-aliaset må peke til vitenskap');
-            assertExactOrder(categories.runtimeCategories, canonicalSubjects, 'runtimeCategories');
-            assertExactOrder(Object.keys(manifest), canonicalSubjects, 'fag_manifest.json');
-            assertExactOrder(inventory.subjects.map((item) => item.id), canonicalSubjects, 'subject_inventory.json');
-            assertExactOrder(status.subjects.map((item) => item.id), canonicalSubjects, 'subject_status.json');
-            assertExactOrder(portal.categories.map((item) => item.id), canonicalSubjects, 'fagverk_portal.json');
-
-            const inventoryById = new Map(inventory.subjects.map((item) => [item.id, item]));
-            const statusById = new Map(status.subjects.map((item) => [item.id, item]));
-            const portalById = new Map(portal.categories.map((item) => [item.id, item]));
-            const coreFileAudit = [];
-            let specializationCount = 0;
-
-            for (const subjectId of canonicalSubjects) {
-              const manifestEntry = manifest[subjectId];
-              const inventoryEntry = inventoryById.get(subjectId);
-              const statusEntry = statusById.get(subjectId);
-              const portalEntry = portalById.get(subjectId);
-              assert(manifestEntry && inventoryEntry && statusEntry && portalEntry, `${subjectId}: mangler manifest, inventory, status eller portal`);
-              assert(ALLOWED_FAMILIES.has(inventoryEntry.schemaFamily), `${subjectId}: ukjent schemaFamily`);
-              assert(inventoryEntry.schemaFamily === classifySubject(subjectId, manifestEntry), `${subjectId}: schemaFamily samsvarer ikke med manifestet`);
-              assert(Array.isArray(inventoryEntry.requiredManifestFields) && CORE_FIELDS.every((field) => inventoryEntry.requiredManifestFields.includes(field)), `${subjectId}: inventory mangler required core-felt`);
-              assert(Array.isArray(inventoryEntry.optionalManifestFields), `${subjectId}: optionalManifestFields må være array`);
-              assert(typeof inventoryEntry.pilot === 'boolean', `${subjectId}: pilot må være boolean`);
-              assert(status.rules.navigationStatuses.includes(statusEntry.navigationStatus), `${subjectId}: ugyldig navigationStatus`);
-              assert(status.rules.assessmentStatuses.includes(statusEntry.assessmentStatus), `${subjectId}: ugyldig assessmentStatus`);
-              assert(status.rules.editorialStatuses.includes(statusEntry.editorialStatus), `${subjectId}: ugyldig editorialStatus`);
-              validateStatusProgression(subjectId, statusEntry, portalEntry);
-              auditCoreFiles(subjectId, manifestEntry, coreFileAudit);
-
-              const manifestSpecs = manifestEntry.specializations || {};
-              const inventorySpecs = inventoryEntry.specializations || [];
-              assert(Object.keys(manifestSpecs).length === inventorySpecs.length, `${subjectId}: manifest og inventory har ulikt antall spesialiseringer`);
-              for (const spec of inventorySpecs) {
-                const entry = manifestSpecs[spec.id];
-                assert(entry, `${subjectId}/${spec.id}: mangler manifestoppføring`);
-                assert(entry.canonicalParentSubject === subjectId, `${subjectId}/${spec.id}: feil parent subject`);
-                assert(entry.badgeId === subjectId, `${subjectId}/${spec.id}: spesialiseringen kan ikke eie eget toppmerke`);
-                assert(entry.status === 'canonical_scientific_specialization', `${subjectId}/${spec.id}: feil spesialiseringsstatus`);
-                assert(ALLOWED_FAMILIES.has(spec.schemaFamily), `${subjectId}/${spec.id}: ukjent schemaFamily`);
-                assert(entry.schemaFamily === spec.schemaFamily, `${subjectId}/${spec.id}: schemaFamily er usynkronisert`);
-                assert(Array.isArray(spec.requiredManifestFields) && CORE_FIELDS.every((field) => spec.requiredManifestFields.includes(field)), `${subjectId}/${spec.id}: mangler required core-felt`);
-                assert(typeof spec.pilot === 'boolean', `${subjectId}/${spec.id}: pilot må være boolean`);
-                auditCoreFiles(`${subjectId}/${spec.id}`, entry, coreFileAudit);
-                specializationCount += 1;
-              }
-            }
-
-            assert(specializationCount === 1, `Forventet én nested spesialisering, fikk ${specializationCount}`);
-            assert(manifest.vitenskap.specializations?.teknologi, 'Vitenskap mangler Teknologi-spesialiseringen');
-            for (const debtPath of inventory.migrationDebt?.politicsSpecificRuntimeFiles ?? []) assert(fs.existsSync(absolute(debtPath)), `Inventert politikkspesifikk runtimefil finnes ikke: ${debtPath}`);
-
-            const report = buildBaselineReport({ categories, manifest, inventory, status });
-            if (writeReport) {
-              fs.mkdirSync(path.dirname(absolute(PATHS.report)), { recursive: true });
-              fs.writeFileSync(absolute(PATHS.report), `${JSON.stringify(report, null, 2)}\n`);
-            }
-            if (checkReport) {
-              const committed = readJson(PATHS.report);
-              assert(isDeepStrictEqual(committed, report), `${PATHS.report} er utdatert. Kjør node scripts/audit-fagverk-subject-inventory.mjs --write-report`);
-            }
-            return { report, coreFileAudit, subjectCount: canonicalSubjects.length, specializationCount };
-          }
-
-          function main() {
-            const args = new Set(process.argv.slice(2));
-            try {
-              const result = auditRepository({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-              console.log(`Fagverk inventar OK: ${result.subjectCount} toppfag, ${result.specializationCount} spesialisering, ${result.coreFileAudit.length} required kjernefiler, ${result.report.summary.schemaFamilyCount} schemafamilier.`);
-            } catch (error) {
-              console.error(`Fagverk inventar FEIL: ${error.message}`);
-              process.exitCode = 1;
-            }
-          }
-
-          if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
-          '''.replace('          ', ''))
-
-          write('tests/fagverk-subject-inventory.test.mjs', r'''import test from 'node:test';
-          import assert from 'node:assert/strict';
-          import fs from 'node:fs';
-          import path from 'node:path';
-          import { fileURLToPath } from 'node:url';
-          import { auditRepository, buildBaselineReport } from '../scripts/audit-fagverk-subject-inventory.mjs';
-
-          const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-          const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
-
-          test('inventaret dekker 17 toppfag, Teknologi-spesialiseringen og alle required core-filer', () => {
-            const result = auditRepository();
-            assert.equal(result.subjectCount, 17);
-            assert.equal(result.specializationCount, 1);
-            assert.equal(result.coreFileAudit.length, 72);
-            assert.equal(result.report.summary.schemaFamilyCount, 4);
-          });
-
-          test('statusregisteret tillater bare dokumentert fremdrift gjennom materialized og audited', () => {
-            const status = readJson('data/fagverk/subject_status.json');
-            const portal = readJson('data/fagverk/fagverk_portal.json');
-            const portalById = new Map(portal.categories.map((item) => [item.id, item]));
-            for (const subject of status.subjects) {
-              const portalEntry = portalById.get(subject.id);
-              assert.equal(subject.navigationStatus, portalEntry.subjectStatus);
-              if (subject.editorialStatus !== 'not_started') {
-                assert.equal(subject.navigationStatus, 'materialized');
-                assert.equal(subject.assessmentStatus, 'audited');
-              }
-              if (subject.navigationStatus === 'planned') {
-                assert.equal(subject.editorialStatus, 'not_started');
-                assert.equal(portalEntry.subjectPage, '');
-              }
-            }
-          });
-
-          test('politikk er første audited structure-ready fag etter generell motor', () => {
-            const status = readJson('data/fagverk/subject_status.json');
-            const politics = status.subjects.find((subject) => subject.id === 'politikk');
-            assert.equal(politics.navigationStatus, 'materialized');
-            assert.equal(politics.assessmentStatus, 'audited');
-            assert.equal(politics.editorialStatus, 'structure_ready');
-            assert.equal(status.subjects.filter((subject) => subject.assessmentStatus === 'audited').length, 1);
-          });
-
-          test('baseline report er en deterministisk projeksjon av eide kilder', () => {
-            const categories = readJson('data/categories/category_contract.json');
-            const manifest = readJson('data/fag/fag_manifest.json');
-            const inventory = readJson('data/fagverk/subject_inventory.json');
-            const status = readJson('data/fagverk/subject_status.json');
-            const committed = readJson('reports/fagverk/subject-baseline.json');
-            assert.deepEqual(committed, buildBaselineReport({ categories, manifest, inventory, status }));
-          });
-
-          test('pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfag', () => {
-            const inventory = readJson('data/fagverk/subject_inventory.json');
-            const manifest = readJson('data/fag/fag_manifest.json');
-            const pilots = inventory.subjects.filter((subject) => subject.pilot);
-            assert.deepEqual(pilots.map((subject) => subject.id).sort(), ['by', 'natur', 'religion', 'vitenskap']);
-            const technology = inventory.subjects.find((subject) => subject.id === 'vitenskap').specializations.find((item) => item.id === 'teknologi');
-            assert.equal(technology.schemaFamily, 'technology_scientific_v2_4');
-            assert.equal(technology.pilot, true);
-            assert.ok(manifest.vitenskap.specializations.teknologi);
-            assert.equal(manifest.teknologi, undefined);
-            assert.equal(new Set([...pilots.map((subject) => subject.schemaFamily), technology.schemaFamily]).size, 4);
-          });
-          '''.replace('          ', ''))
-
-          # 8. Lock the category decision in a dedicated permanent test.
-          write('tests/vitenskap-teknologi-category-contract.test.mjs', r'''import test from 'node:test';
-          import assert from 'node:assert/strict';
-          import fs from 'node:fs';
-          import path from 'node:path';
-          import { fileURLToPath } from 'node:url';
-
-          const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-          const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
-          const readJson = (relativePath) => JSON.parse(read(relativePath));
-
-          test('Vitenskap og Teknologi deler ett canonical toppmerke', () => {
-            const contract = readJson('data/categories/category_contract.json');
-            const badgeIndex = readJson('data/badges/index.json');
-            const scienceBadge = readJson('data/badges/vitenskap.json');
-            assert.equal(contract.runtimeCategories.length, 17);
-            assert.deepEqual(contract.runtimeCategories, contract.fagSubjects);
-            assert.ok(contract.runtimeCategories.includes('vitenskap'));
-            assert.ok(!contract.runtimeCategories.includes('teknologi'));
-            for (const alias of ['technology', 'teknologi', 'tech', 'it', 'informasjonsteknologi']) assert.equal(contract.aliases[alias], 'vitenskap');
-            assert.equal(contract.labels.vitenskap, 'Vitenskap & teknologi');
-            assert.equal(scienceBadge.id, 'vitenskap');
-            assert.equal(scienceBadge.name, 'Vitenskap & teknologi');
-            assert.ok(scienceBadge.sub.includes('teknologi'));
-            assert.ok(!badgeIndex.files.includes('data/badges/teknologi.json'));
-          });
-
-          test('den komplette Teknologi-pakken er bevart som nested spesialisering', () => {
-            const manifest = readJson('data/fag/fag_manifest.json');
-            const registry = readJson('data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json');
-            const specialization = manifest.vitenskap.specializations.teknologi;
-            assert.equal(manifest.teknologi, undefined);
-            assert.equal(specialization.canonicalParentSubject, 'vitenskap');
-            assert.equal(specialization.badgeId, 'vitenskap');
-            assert.equal(specialization.status, 'canonical_scientific_specialization');
-            assert.equal(specialization.canonicalModelVersion, '2.4');
-            assert.deepEqual(specialization.universalCoverage, { status: 'complete', areas: 12, topics: 48, methods: 35, modules: 12 });
-            assert.equal(registry.category_profiles.teknologi, undefined);
-            assert.equal(registry.subject_specialization_profiles.vitenskap.teknologi, 'data/fag/teknologi/supersetQUIZMAL_teknologi.json');
-          });
-
-          test('runtimekildene normaliserer legacy teknologi-id til vitenskap', () => {
-            const domainRegistry = read('js/DomainRegistry.js');
-            const categorySource = read('js/core/categories.ts');
-            const placePolicy = read('tools/placeSchemaPolicy.mts');
-            assert.match(domainRegistry, /"teknologi": "vitenskap"/);
-            assert.doesNotMatch(domainRegistry, /"vitenskap", "teknologi"/);
-            assert.match(categorySource, /teknologi: "vitenskap"/);
-            assert.doesNotMatch(categorySource, /id: "teknologi"[^\n]*runtime_domain/);
-            assert.match(placePolicy, /LEGACY_OR_SECONDARY_PLACE_CATEGORIES = \["film", "teknologi"\]/);
-          });
-          '''.replace('          ', ''))
-
-          # 9. Technology validators now verify a specialization, not a top category or badge.
-          for validator in ['tools/validate-teknologi-foundation.mjs', 'tools/validate-teknologi-quality-v2_1.mjs']:
-              source = read(validator)
-              source = source.replace('badge: "data/badges/teknologi.json"', 'badge: "data/badges/vitenskap.json"')
-              source = source.replace('requireCondition(contract.runtimeCategories.includes("teknologi"), "teknologi mangler som runtimekategori");', 'requireCondition(!contract.runtimeCategories.includes("teknologi"), "teknologi skal ikke være egen runtimekategori");')
-              source = source.replace('requireCondition(contract.fagSubjects.includes("teknologi"), "teknologi mangler som fag");', 'requireCondition(!contract.fagSubjects.includes("teknologi"), "teknologi skal ikke være eget toppfag");')
-              source = source.replace('requireCondition(contract.labels?.teknologi === "Teknologi", "feil teknologilabel");', 'requireCondition(contract.aliases?.teknologi === "vitenskap", "teknologi-aliaset peker ikke til vitenskap");')
-              source = source.replace('requireCondition(contract.labels?.vitenskap === "Vitenskap", "vitenskap er ikke skilt ut");', 'requireCondition(contract.labels?.vitenskap === "Vitenskap & teknologi", "feil felleslabel");')
-              source = source.replace('requireCondition(badge.id === "teknologi" && badge.name === "Teknologi", "badge har feil identitet");', 'requireCondition(badge.id === "vitenskap" && badge.name === "Vitenskap & teknologi", "fellesbadget har feil identitet");')
-              source = source.replace('requireCondition(manifest.teknologi?.status === "canonical_scientific_subject", "manifestet markerer ikke Teknologi som vitenskapelig fag");', 'requireCondition(manifest.vitenskap?.specializations?.teknologi?.status === "canonical_scientific_specialization", "manifestet markerer ikke Teknologi som vitenskapelig spesialisering");')
-              source = source.replace('requireCondition(manifest.teknologi?.scientificPackage === "teknologi/teknologi_scientific_v2/index.json", "manifestet mangler scientificPackage");', 'requireCondition(manifest.vitenskap?.specializations?.teknologi?.scientificPackage === "teknologi/teknologi_scientific_v2/index.json", "spesialiseringen mangler scientificPackage");')
-              source = source.replace('separate_runtime_category: contract.runtimeCategories.includes("teknologi")', 'nested_under_vitenskap: !contract.runtimeCategories.includes("teknologi") && manifest.vitenskap?.specializations?.teknologi?.canonicalParentSubject === "vitenskap"')
-              source = source.replace('canonical_scientific_subject: manifest.teknologi?.status === "canonical_scientific_subject"', 'canonical_scientific_specialization: manifest.vitenskap?.specializations?.teknologi?.status === "canonical_scientific_specialization"')
-              write(validator, source)
-
-          canonical_validator = read('tools/validate-teknologi-canonical-v2_4.mjs')
-          canonical_validator = canonical_validator.replace('const technology = manifest.teknologi || {};', 'const technology = manifest.vitenskap?.specializations?.teknologi || {};')
-          canonical_validator = canonical_validator.replace('const subjectEntry = arr(quizManifest.subjectPackages).find((entry) => entry.subjectId === "teknologi");', 'const subjectEntry = arr(quizManifest.subjectPackages).find((entry) => entry.subjectId === "teknologi" && entry.parentSubjectId === "vitenskap" && entry.specializationId === "teknologi");')
-          write('tools/validate-teknologi-canonical-v2_4.mjs', canonical_validator)
-
-          builder_path = 'tools/build-teknologi-canonical-v2_4.mjs'
-          builder = read(builder_path)
-          old_manifest_block = '''manifest.teknologi = {
-            ...manifest.teknologi,
-            pensum: "teknologi/teknologipensum_canonical_v2_4.json",
-            emner: "teknologi/emner_teknologi_canonical_v2_4.json",
-            fagkart: "teknologi/fagkart_teknologi_canonical_v2_4.json",
-            methods: "teknologi/methods_teknologi_canonical_v2_4.json",
-            quizPackageSchema: "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
-            subjectPathwaySchema: "../quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
-            subjectPathwayPackage: "../quiz/teknologi/teknologi_subject_pathways_v1.json",
-            status: "canonical_scientific_subject",
-            canonicalModelVersion: "2.4",
-            scientificPackage: "teknologi/teknologi_scientific_v2/index.json",
-            universalCoverage: { status: "complete", areas: 12, topics: 48, methods: 35, modules: 12 },
-            geographicProduction: { status: "separate", rule: "Lokale steder, personer, claims, kilder og stedsquizer produseres i geografiske lag." }
-          };'''
-          new_manifest_block = '''manifest.vitenskap.specializations = {
-            ...(manifest.vitenskap.specializations || {}),
-            teknologi: {
-              ...(manifest.vitenskap.specializations?.teknologi || {}),
-              id: "teknologi",
-              label: "Teknologi",
-              canonicalParentSubject: "vitenskap",
-              badgeId: "vitenskap",
-              schemaFamily: "technology_scientific_v2_4",
-              routeStatus: "planned",
-              route: "",
-              pensum: "teknologi/teknologipensum_canonical_v2_4.json",
-              emner: "teknologi/emner_teknologi_canonical_v2_4.json",
-              fagkart: "teknologi/fagkart_teknologi_canonical_v2_4.json",
-              methods: "teknologi/methods_teknologi_canonical_v2_4.json",
-              supersetQuizMal: "teknologi/supersetQUIZMAL_teknologi.json",
-              quizStandard: "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-              quizQuestionSchema: "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
-              quizPackageSchema: "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
-              subjectPathwaySchema: "../quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
-              subjectPathwayPackage: "../quiz/teknologi/teknologi_subject_pathways_v1.json",
-              status: "canonical_scientific_specialization",
-              canonicalModelVersion: "2.4",
-              scientificPackage: "teknologi/teknologi_scientific_v2/index.json",
-              universalCoverage: { status: "complete", areas: 12, topics: 48, methods: 35, modules: 12 },
-              geographicProduction: { status: "separate", rule: "Lokale steder, personer, claims, kilder og stedsquizer produseres i geografiske lag." }
-            }
-          };'''
-          if old_manifest_block not in builder:
-              raise RuntimeError('Fant ikke manifestblokken i teknologi-builderen')
-          builder = builder.replace(old_manifest_block, new_manifest_block)
-          builder = builder.replace('  status: "active"\n});', '  status: "active",\n  parentSubjectId: "vitenskap",\n  specializationId: "teknologi"\n});')
-          builder = builder.replace(
-              'templateRegistry.canonical_files = { ...templateRegistry.canonical_files, subject_pathway_schema: OUTPUTS.subjectSchema };',
-              'templateRegistry.canonical_files = { ...templateRegistry.canonical_files, subject_pathway_schema: OUTPUTS.subjectSchema };\n'
-              'templateRegistry.category_profiles = { ...templateRegistry.category_profiles };\n'
-              'delete templateRegistry.category_profiles.teknologi;\n'
-              'templateRegistry.subject_specialization_profiles = {\n'
-              '  ...(templateRegistry.subject_specialization_profiles || {}),\n'
-              '  vitenskap: { ...(templateRegistry.subject_specialization_profiles?.vitenskap || {}), teknologi: "data/fag/teknologi/supersetQUIZMAL_teknologi.json" }\n'
-              '};'
-          )
-          builder = builder.replace('Status: **canonical subject model**', 'Status: **canonical scientific specialization under Vitenskap & teknologi**')
-          builder = builder.replace('V2-pakken er nå eneste faglige sannhet som manifestets pensum-, emne-, fagkart- og metodepekere resolver.', 'V2-pakken er bevart som Teknologi-spesialiseringen under manifestets canonicale Vitenskap-fag og eier sine pensum-, emne-, fagkart- og metodepekere.')
-          write(builder_path, builder)
-
-          # 10. Category governance and quiz governance explicitly lock the nested model.
-          governance_path = 'scripts/audit-category-governance.mjs'
-          governance = read(governance_path)
-          anchor = 'if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });\n'
-          addition = anchor + '''if (contract.runtimeCategories.includes("teknologi") || contract.fagSubjects.includes("teknologi")) failures.push({ name: "teknologi", reason: "must be a specialization under vitenskap, not a top category" });
-          for (const alias of ["technology", "teknologi", "tech", "it", "informasjonsteknologi"]) {
-            if (contract.aliases?.[alias] !== "vitenskap") failures.push({ name: "teknologi alias", alias, expected: "vitenskap", actual: contract.aliases?.[alias] });
-          }
-          if (contract.labels?.vitenskap !== "Vitenskap & teknologi") failures.push({ name: "vitenskap label", reason: "must include technology" });
-          const technologySpecialization = manifest.vitenskap?.specializations?.teknologi;
-          if (technologySpecialization?.canonicalParentSubject !== "vitenskap" || technologySpecialization?.badgeId !== "vitenskap") failures.push({ name: "teknologi specialization", reason: "missing canonical parent or shared badge" });
-          if (templateRegistry.category_profiles?.teknologi) failures.push({ name: "teknologi quiz profile", reason: "must not be registered as a top category profile" });
-          if (templateRegistry.subject_specialization_profiles?.vitenskap?.teknologi !== "data/fag/teknologi/supersetQUIZMAL_teknologi.json") failures.push({ name: "teknologi quiz specialization", reason: "missing nested specialization profile" });
-          '''.replace('          ', '')
-          if anchor not in governance:
-              raise RuntimeError('Fant ikke governance-anker')
-          governance = governance.replace(anchor, addition)
-          write(governance_path, governance)
-
-          quiz_audit_path = 'scripts/audit-quiz-template-governance.mjs'
-          quiz_audit = read(quiz_audit_path)
-          audit_anchor = '  for (const [categoryId, entry] of Object.entries(manifest)) {'
-          # The existing top-category loop remains unchanged; add specialization checks after it.
-          after_loop = '''  }
-          }
-
-          if (registry) {'''
-          specialization_check = '''  }
-          }
-
-          const specializationProfiles = registry.subject_specialization_profiles || {};
-          for (const [parentSubjectId, specializations] of Object.entries(specializationProfiles)) {
-            for (const [specializationId, profilePath] of Object.entries(specializations || {})) {
-              const entry = manifest[parentSubjectId]?.specializations?.[specializationId];
-              if (!entry) {
-                failures.push({ parentSubjectId, specializationId, file: registryPath, reason: "specialization profile has no manifest owner" });
-                continue;
-              }
-              if (`data/fag/${entry.supersetQuizMal}` !== profilePath) failures.push({ parentSubjectId, specializationId, file: registryPath, reason: "specialization profile path differs from manifest" });
-              if (!(await exists(profilePath))) failures.push({ parentSubjectId, specializationId, file: profilePath, reason: "specialization profile does not exist" });
-            }
-          }
-
-          if (registry) {'''
-          if after_loop not in quiz_audit:
-              raise RuntimeError('Fant ikke innsettingspunkt i quiz-auditen')
-          quiz_audit = quiz_audit.replace(after_loop, specialization_check, 1)
-          quiz_audit = quiz_audit.replace('profilesChecked: checkedProfiles.length,', 'profilesChecked: checkedProfiles.length,\n  specializationProfilesChecked: Object.values(registry?.subject_specialization_profiles || {}).reduce((sum, value) => sum + Object.keys(value || {}).length, 0),')
-          write(quiz_audit_path, quiz_audit)
-
-          # 11. Documentation now states the corrected category and pilot model.
-          domain_contract = '''# History GO — domenekontrakt
-
-          Status: **canonical og bindende kategoribeslutning**  
-          Eier: History GO data/runtime  
-          Sist kontrollert: **2026-07-28**
-
-          Maskinlesbar sannhetskilde:
-
-          ```text
-          data/categories/category_contract.json
-          ```
-
-          Runtime-, UI- og redaksjonelle filer skal samsvare med maskinkontrakten. `scripts/audit-category-governance.mjs` håndhever samsvaret.
-
-          ## 1. Kjerneprinsipp
-
-          Ett toppdomene har én runtime-id, én fag-id og ett toppmerke. Runtime-id og fag-id er identiske for alle canonicale toppkategorier. Store spesialiseringer kan eie egne fagpakker, metoder, emner og quizforløp uten å bli egne toppmerker.
-
-          Samme kategoriidentitet skal være konsistent i `place.category`, `merits_by_category`, badge-id, quiz `categoryId`, fagmanifest, quizregister, DomainRegistry, kategori-UI og place-valideringspolicy.
-
-          ## 2. Canonicale toppkategorier
-
-          | Runtime-id | Fag-id | Visningsnavn |
-          |---|---|---|
-          | `by` | `by` | By & arkitektur |
-          | `historie` | `historie` | Historie |
-          | `kunst` | `kunst` | Kunst |
-          | `litteratur` | `litteratur` | Litteratur |
-          | `media` | `media` | Medier |
-          | `musikk` | `musikk` | Musikk |
-          | `naeringsliv` | `naeringsliv` | Økonomi og næringsliv |
-          | `natur` | `natur` | Natur & miljø |
-          | `politikk` | `politikk` | Politikk & samfunn |
-          | `psykologi` | `psykologi` | Psykologi |
-          | `religion` | `religion` | Religion |
-          | `scenekunst` | `scenekunst` | Scenekunst |
-          | `sport` | `sport` | Sport & lek |
-          | `subkultur` | `subkultur` | Subkultur |
-          | `vitenskap` | `vitenskap` | Vitenskap & teknologi |
-          | `filosofi` | `filosofi` | Filosofi |
-          | `film_tv` | `film_tv` | Film & TV |
-
-          Ved tvil gjelder `data/categories/category_contract.json`.
-
-          ## 3. Vitenskap & teknologi
-
-          `vitenskap` er det samlede toppdomenet og toppmerket for:
-
-          - empirisk og formell kunnskapsproduksjon;
-          - observasjon, måling, eksperiment, matematikk og modeller;
-          - naturvitenskap, medisin, klima- og miljøvitenskap;
-          - vitenskapelige institusjoner, instrumenter og historie;
-          - teknologi, ingeniørfag og design;
-          - maskiner, energi, materialer og produksjon;
-          - elektronikk, sensorer, robotikk og automatisering;
-          - datamaskiner, operativsystemer, programvare, data og algoritmer;
-          - kunstig intelligens, nettverk, cybersikkerhet og digital infrastruktur;
-          - teknologihistorie, standarder, vedlikehold, etikk og risiko.
-
-          Teknologi er en **canonical faglig spesialisering under `vitenskap`**. Den komplette V2.4-pakken ligger fortsatt under `data/fag/teknologi/`, men registreres i `fag_manifest.json` som `vitenskap.specializations.teknologi`. Den eier ikke en toppkategori eller et eget toppmerke.
-
-          `technology`, `teknologi`, `tech`, `it` og `informasjonsteknologi` normaliseres til `vitenskap`. Interne `em_tek_*`, `met_tek_*`, teknologiquizer og teknologiressurser beholdes som stabile spesialiserings-ID-er.
-
-          Grenseflater:
-
-          - Bedriften som virksomhet, marked og eierskap hører normalt til `naeringsliv`; teknologiens mekanisme, arkitektur og tekniske løsning hører til `vitenskap`.
-          - Medieinnhold og journalistikk hører til `media`; plattformens programvare, algoritmer og nettverk hører til `vitenskap`.
-          - Arkitektur, byrom og areal hører til `by`; byggets tekniske systemer kan gi `vitenskap` som primær eller sekundær kategori.
-          - Naturfenomenet eller økosystemet hører til `natur`; måling, forskning og konstruerte løsninger kan høre til `vitenskap`.
-          - Vitenskaps- og teknologifilosofi hører til `filosofi` når argumentet står i sentrum.
-
-          ## 4. Andre låste domenebeslutninger
-
-          `filosofi` er selvstendig runtime- og fagkategori for argumentasjon, epistemologi, metafysikk, etikk, politisk filosofi, estetikk, fenomenologi, idéhistorie og vitenskaps- og teknologifilosofi.
-
-          `kultur` er ikke toppkategori. `film_tv`, `media`, `religion`, `scenekunst`, `kunst` og `musikk` er selvstendige domener.
-
-          `populaerkultur` og `popkultur` er ikke canonicale toppkategorier. Populærkultur brukes som tagg, linse og mediefaglig analysefelt.
-
-          `sosial_laering` er et non-place progression badge og skal ikke forekomme i runtime-kategorilister eller fagmanifest.
-
-          ## 5. Primær og sekundær badgebruk
-
-          Hvert sted har én primær kategori. `secondaryBadgeIds` uttrykker reell tverrfaglighet og erstatter ikke primærbeslutningen.
-
-          Eksempler:
-
-          - Et laboratorium eller forskningsinstitutt er normalt `vitenskap`.
-          - Et datasenter er normalt `vitenskap`, eventuelt med `naeringsliv` eller `by` sekundært.
-          - Et teknologiselskap er `naeringsliv` når virksomheten står i sentrum og `vitenskap` når det tekniske systemet står i sentrum.
-          - Et teknisk museum kan være `vitenskap`, med `historie` sekundært.
-          - En institusjon for teknologifilosofi er normalt `filosofi`, med `vitenskap` sekundært.
-
-          ## 6. Fileierskap
-
-          - Canonical maskinkontrakt: `data/categories/category_contract.json`
-          - Alias og runtimekonvertering: `js/DomainRegistry.js`
-          - Kategori-UI: `js/core/categories.ts`
-          - Badges: `data/badges/index.json` og `data/badges/<runtime-id>.json`
-          - Fag- og quizregister: `data/fag/fag_manifest.json` og `data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`
-          - Place-validering: `tools/placeSchemaPolicy.mts`
-
-          ## 7. Migreringsregel
-
-          Legacy `teknologi`-verdier kan finnes i steder, quizhistorikk og lokale lag mens migreringen pågår. De skal normaliseres til `vitenskap` ved runtime- og importgrenser. Interne spesialiserings-ID-er skal ikke masseomdøpes.
-
-          Nye toppkategorier krever oppdatering av maskinkontrakt, DomainRegistry, badges, fagmanifest, quizprofilregister, kategori-UI, place-policy og denne kontrakten i samme endring. Kjør `npm run audit:categories`.
-          '''
-          write('docs/DOMAIN_CONTRACT.md', domain_contract.replace('          ', ''))
-
-          fagverk_path = 'docs/FAGVERK.md'
-          fagverk = read(fagverk_path)
-          fagverk = fagverk.replace('canonical og bindende fagverkskontrakt v5', 'canonical og bindende fagverkskontrakt v6')
-          fagverk = fagverk.replace('kopieres og omskrives atten ganger', 'kopieres og omskrives sytten ganger')
-          fagverk = fagverk.replace('fagverk.html?subject=teknologi\n', 'fagverk.html?subject=vitenskap&specialization=teknologi\n')
-          fagverk = fagverk.replace('vitenskap\nteknologi\nfilosofi', 'vitenskap\nfilosofi')
-          baseline_note = 'Denne listen er en kontrollert baseline, ikke en ny kategori-sannhetskilde.'
-          fagverk = fagverk.replace(baseline_note, 'Teknologi er ikke et eget toppfag. Den komplette fagpakken registreres som `vitenskap.specializations.teknologi` og skal vises som en spesialisering inne i Vitenskap & teknologi.\n\n' + baseline_note)
-          fagverk = fagverk.replace('4. `teknologi` — utvidet vitenskapelig pakke.', '4. `vitenskap` — standard vitenskapelig fagpakke med den utvidede `teknologi`-pakken som nested spesialisering.')
-          fagverk = fagverk.replace('Pilotfasen er godkjent først når alle fire bruker samme renderer uten fagspesifikke DOM-kopier.', 'Pilotfasen er godkjent først når alle fire toppfag bruker samme renderer, og Teknologi-spesialiseringen kan normaliseres gjennom samme modell uten å opprette en attende toppside eller fagspesifikk DOM-kopi.')
-          write(fagverk_path, fagverk)
-
-          docs_test_path = 'tests/fagverk-documentation-contract.test.mjs'
-          docs_test = read(docs_test_path).replace('/canonical og bindende fagverkskontrakt v5/i', '/canonical og bindende fagverkskontrakt v6/i')
-          write(docs_test_path, docs_test)
-
-          reports_readme_path = 'reports/fagverk/README.md'
-          reports_readme = read(reports_readme_path)
-          reports_readme = reports_readme.replace('alle 18 fag, fire schemafamilier, 72 required kjernefiler', '17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler')
-          reports_readme = reports_readme.replace('De fire neste pilotene er `natur`, `religion`, `by` og `teknologi`.', 'De fire neste toppfagpilotene er `natur`, `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten.')
-          write(reports_readme_path, reports_readme)
-
-          historical_report = 'reports/teknologi-eget-fag-og-badge.md'
-          if (ROOT / historical_report in []:
-              pass
-          if (ROOT / historical_report).exists():
-              report = read(historical_report)
-              notice = '> **Status 2026-07-28:** Denne beslutningen er erstattet. Teknologi er nå en canonical spesialisering under toppmerket **Vitenskap & teknologi**. Rapporten beholdes som historikk.\n\n'
-              if not report.startswith('> **Status 2026-07-28:**'):
-                  write(historical_report, notice + report)
-
-          # 12. Keep generated builder output and tests aligned.
-          general_test_path = 'tests/fagverk-general-engine.test.mjs'
-          general_test = read(general_test_path)
-          general_test = general_test.replace("test('teknologiadapter bruker vitenskapelig fagkart og focus-koblinger'", "test('nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-koblinger'")
-          resolver_old = "  assert.throws(() => CORE.resolveCanonicalSubjectId('historie', categories, manifest), /Ukjent canonical/);"
-          resolver_new = resolver_old + "\n  assert.throws(() => CORE.resolveCanonicalSubjectId('teknologi', { fagSubjects: ['vitenskap'] }, { vitenskap: { specializations: { teknologi: {} } } }), /Ukjent canonical/);"
-          general_test = general_test.replace(resolver_old, resolver_new)
-          write(general_test_path, general_test)
-
-          workflow_path = '.github/workflows/fagverk.yml'
-          workflow = read(workflow_path)
-          workflow = workflow.replace("      - 'tests/fagverk-general-engine.test.mjs'", "      - 'tests/fagverk-general-engine.test.mjs'\n      - 'tests/vitenskap-teknologi-category-contract.test.mjs'")
-          workflow = workflow.replace('          node --test tests/fagverk-general-engine.test.mjs', '          node --test tests/fagverk-general-engine.test.mjs\n          node --test tests/vitenskap-teknologi-category-contract.test.mjs')
-          write(workflow_path, workflow)
-
-          # Ensure the temporary workflow does not survive the final commit.
+          write('js/merke-fallback.js', """// @ts-nocheck
+(function installGenericBadgePage(global){
+  'use strict';
+  const text=(value)=>String(value==null?'':value).trim();
+  const esc=(value)=>String(value==null?'':value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('\\"','&quot;').replaceAll(\"'\",'&#039;');
+  const fetchJson=async(url)=>{const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw new Error(`${response.status} ${url}`);return response.json();};
+  function resolveBadgeId(rawId,contract){const raw=text(rawId);if((contract.runtimeCategories||[]).includes(raw))return raw;const alias=text(contract.aliases?.[raw]);return (contract.runtimeCategories||[]).includes(alias)?alias:'';}
+  function pointsFor(id,contract){try{const merits=JSON.parse(localStorage.getItem('merits_by_category')||'{}');const ids=new Set([id,...Object.entries(contract.aliases||{}).filter(([,target])=>target===id).map(([alias])=>alias)]);return [...ids].reduce((sum,key)=>sum+Number(merits?.[key]?.points||0),0);}catch{return 0;}}
+  function tierState(tiers,points){let current={label:'Nybegynner',threshold:0};let next=null;for(const tier of tiers){const threshold=Number(tier?.threshold||0);if(points>=threshold)current=tier;else if(!next)next=tier;}return {current,next};}
+  function renderSubjectAction(id,portal){const actions=document.getElementById('genericBadgeActions');const item=(portal.categories||[]).find((row)=>text(row.id)===id);if(!actions||!item)return;const target=text(item.subjectPage);if(target){actions.insertAdjacentHTML('afterbegin',`<a href=\"${esc(target)}\">Åpne faget →</a>`);}else{actions.insertAdjacentHTML('afterbegin',`<span class=\"is-pending\" aria-disabled=\"true\">Faget bygges</span>`);}}
+  async function init(){const params=new URLSearchParams(global.location.search);const requestedId=text(params.get('badge'));const loading=document.getElementById('genericBadgeLoading');const content=document.getElementById('genericBadgeContent');const error=document.getElementById('genericBadgeError');try{const [contract,portal]=await Promise.all([fetchJson('data/categories/category_contract.json'),fetchJson('data/fagverk/fagverk_portal.json')]);const id=resolveBadgeId(requestedId,contract);if(!id)throw new Error(`Ukjent merke: ${requestedId||'(mangler id)'}`);if(requestedId!==id)history.replaceState(null,'',`merke.html?badge=${encodeURIComponent(id)}`);const badge=await fetchJson(`data/badges/${encodeURIComponent(id)}.json`);const points=pointsFor(id,contract);const tiers=Array.isArray(badge.tiers)?badge.tiers:[];const state=tierState(tiers,points);document.title=`${text(badge.name)||contract.labels?.[id]||id} – History Go`;document.getElementById('genericBadgeTitle').textContent=text(badge.name)||contract.labels?.[id]||id;document.getElementById('genericBadgeDescription').textContent=text(badge.description)||'Merkeprofil i History Go.';const image=document.getElementById('genericBadgeImage');image.innerHTML=badge.image?`<img src=\"${esc(badge.image)}\" alt=\"\">`:`<span aria-hidden=\"true\">${esc(badge.icon||'◆')}</span>`;document.getElementById('genericBadgeProgress').innerHTML=`<div><strong>${points} poeng</strong><span>${esc(text(state.current?.label)||'Nybegynner')}</span></div><div><strong>${state.next?Math.max(0,Number(state.next.threshold||0)-points):'Fullført'}</strong><span>${state.next?`poeng til ${esc(state.next.label)}`:'øverste nivå nådd'}</span></div>`;document.getElementById('genericBadgeTiers').innerHTML=tiers.map((tier)=>`<article class=\"generic-badge-tier${points>=Number(tier.threshold||0)?' is-earned':''}\"><strong>${esc(tier.label)}</strong><span>${Number(tier.threshold||0)} poeng</span></article>`).join('');renderSubjectAction(id,portal);loading.hidden=true;content.hidden=false;error.hidden=true;}catch(err){loading.hidden=true;content.hidden=true;error.hidden=false;error.textContent=`Merkesiden kunne ikke lastes: ${err.message}`;console.error('[generic-badge]',err);}}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})(window);
+""")
+
+          write('scripts/audit-fagverk-subject-inventory.mjs', """#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const PATHS=Object.freeze({categories:'data/categories/category_contract.json',manifest:'data/fag/fag_manifest.json',portal:'data/fagverk/fagverk_portal.json',inventory:'data/fagverk/subject_inventory.json',status:'data/fagverk/subject_status.json',report:'reports/fagverk/subject-baseline.json'});
+const CORE_FIELDS=Object.freeze(['pensum','emner','fagkart','methods']);
+const ALLOWED_FAMILIES=new Set(['standard_canonical','foundation_v1','by_compatibility','technology_scientific_v2_4']);
+const absolute=(p)=>path.join(ROOT,p);
+function readJson(p){let raw;try{raw=fs.readFileSync(absolute(p),'utf8');}catch(e){throw new Error(`Kan ikke lese ${p}: ${e.message}`);}try{return JSON.parse(raw);}catch(e){throw new Error(`Ugyldig JSON i ${p}: ${e.message}`);}}
+function assert(c,m){if(!c)throw new Error(m);}
+function assertExactOrder(a,e,l){assert(Array.isArray(a)&&a.length===e.length&&a.every((v,i)=>v===e[i]),`${l} må følge canonical rekkefølge. Forventet ${JSON.stringify(e)}, fikk ${JSON.stringify(a)}`);}
+function resolveFagPointer(p){assert(typeof p==='string'&&p.trim(),`Ugyldig fagfilpeker: ${JSON.stringify(p)}`);return path.posix.normalize(path.posix.join('data/fag',p));}
+function classifySubject(id,e){if(id==='by')return'by_compatibility';if(e.status==='active_foundation')return'foundation_v1';return'standard_canonical';}
+function countBy(items,field,allowed){const counts=Object.fromEntries(allowed.map(v=>[v,0]));for(const item of items){assert(Object.hasOwn(counts,item[field]),`${item.id}: ukjent ${field} ${JSON.stringify(item[field])}`);counts[item[field]]+=1;}return counts;}
+const normalizeCoreFiles=(e)=>Object.fromEntries(CORE_FIELDS.map(f=>[f,e[f]]));
+function specializationRows(categories,manifest,inventory){const ib=new Map(inventory.subjects.map(i=>[i.id,i]));return categories.fagSubjects.flatMap(parent=>{const ms=manifest[parent]?.specializations||{};return(ib.get(parent)?.specializations||[]).map(item=>({parentSubjectId:parent,id:item.id,schemaFamily:item.schemaFamily,coreFiles:normalizeCoreFiles(ms[item.id]||{}),optionalManifestFields:item.optionalManifestFields||[],pilot:Boolean(item.pilot)}));});}
+export function buildBaselineReport({categories,manifest,inventory,status}){const sb=new Map(status.subjects.map(i=>[i.id,i]));const ib=new Map(inventory.subjects.map(i=>[i.id,i]));const subjects=categories.fagSubjects.map(id=>{const me=manifest[id],ie=ib.get(id),se=sb.get(id);return{id,schemaFamily:ie.schemaFamily,coreFiles:normalizeCoreFiles(me),optionalManifestFields:ie.optionalManifestFields,navigationStatus:se.navigationStatus,assessmentStatus:se.assessmentStatus,editorialStatus:se.editorialStatus,pilot:ie.pilot,specializations:(ie.specializations||[]).map(item=>({id:item.id,schemaFamily:item.schemaFamily,coreFiles:normalizeCoreFiles(me.specializations?.[item.id]||{}),optionalManifestFields:item.optionalManifestFields||[],pilot:Boolean(item.pilot)}))};});const specs=specializationRows(categories,manifest,inventory);const families=[...subjects.map(i=>i.schemaFamily),...specs.map(i=>i.schemaFamily)];return{schema:'history_go_fagverk_subject_baseline_report_v1',version:'1.2.0',status:'living_inventory_baseline',generatedFrom:{inventory:PATHS.inventory,status:PATHS.status,categories:PATHS.categories,manifest:PATHS.manifest,portal:PATHS.portal},summary:{subjectCount:subjects.length,specializationCount:specs.length,schemaFamilyCount:new Set(families).size,requiredCoreFileCount:(subjects.length+specs.length)*CORE_FIELDS.length,navigation:countBy(status.subjects,'navigationStatus',status.rules.navigationStatuses),assessment:countBy(status.subjects,'assessmentStatus',status.rules.assessmentStatuses),editorial:countBy(status.subjects,'editorialStatus',status.rules.editorialStatuses),pilotSubjects:subjects.filter(i=>i.pilot).map(i=>i.id).sort(),pilotSpecializations:specs.filter(i=>i.pilot).map(i=>`${i.parentSubjectId}/${i.id}`).sort()},migrationDebt:inventory.migrationDebt,subjects};}
+function validateStatusProgression(id,s,p){assert(s.navigationStatus===p.subjectStatus,`${id}: portal- og statusregister er usynkronisert`);if(s.navigationStatus==='planned'){assert(!p.subjectPage,`${id}: planned fag kan ikke ha aktiv subjectPage`);assert(s.editorialStatus==='not_started',`${id}: planned fag kan ikke ha redaksjonell ferdigstatus`);assert(s.assessmentStatus!=='audited',`${id}: audited fag må materialiseres i samme godkjente endring`);}else assert(p.subjectPage===`fagverk.html?subject=${id}`,`${id}: materialized fag må bruke canonical subjectPage`);if(s.assessmentStatus==='audited'){assert(s.navigationStatus==='materialized',`${id}: audited krever materialized`);assert(['structure_ready','chapters_in_progress','complete'].includes(s.editorialStatus),`${id}: audited krever minst structure_ready`);}if(s.assessmentStatus==='blocked')assert(s.editorialStatus==='not_started',`${id}: blocked kan ikke ha redaksjonell ferdigstatus`);if(s.editorialStatus!=='not_started')assert(s.navigationStatus==='materialized'&&s.assessmentStatus==='audited',`${id}: redaksjonell fremdrift krever materialized + audited`);}
+function auditCoreFiles(owner,e,a){for(const field of CORE_FIELDS){const pointer=e[field];assert(typeof pointer==='string'&&pointer.length>0,`${owner}: mangler manifestfeltet ${field}`);const rel=resolveFagPointer(pointer);assert(fs.existsSync(absolute(rel)),`${owner}: required ${field}-fil finnes ikke: ${rel}`);readJson(rel);a.push({ownerId:owner,field,path:rel});}}
+export function auditRepository({writeReport=false,checkReport=true}={}){const categories=readJson(PATHS.categories),manifest=readJson(PATHS.manifest),portal=readJson(PATHS.portal),inventory=readJson(PATHS.inventory),status=readJson(PATHS.status);const canonical=categories.fagSubjects;assert(canonical.length===17,`Fagverket skal ha 17 toppfag, fikk ${canonical.length}`);assert(!canonical.includes('teknologi'),'Teknologi kan ikke være canonical toppfag');assert(categories.aliases?.teknologi==='vitenskap','teknologi-aliaset må peke til vitenskap');assertExactOrder(categories.runtimeCategories,canonical,'runtimeCategories');assertExactOrder(Object.keys(manifest),canonical,'fag_manifest.json');assertExactOrder(inventory.subjects.map(i=>i.id),canonical,'subject_inventory.json');assertExactOrder(status.subjects.map(i=>i.id),canonical,'subject_status.json');assertExactOrder(portal.categories.map(i=>i.id),canonical,'fagverk_portal.json');const ib=new Map(inventory.subjects.map(i=>[i.id,i])),sb=new Map(status.subjects.map(i=>[i.id,i])),pb=new Map(portal.categories.map(i=>[i.id,i]));const audit=[];let specializationCount=0;for(const id of canonical){const me=manifest[id],ie=ib.get(id),se=sb.get(id),pe=pb.get(id);assert(me&&ie&&se&&pe,`${id}: mangler manifest, inventory, status eller portal`);assert(ALLOWED_FAMILIES.has(ie.schemaFamily),`${id}: ukjent schemaFamily`);assert(ie.schemaFamily===classifySubject(id,me),`${id}: schemaFamily samsvarer ikke med manifestet`);assert(Array.isArray(ie.requiredManifestFields)&&CORE_FIELDS.every(f=>ie.requiredManifestFields.includes(f)),`${id}: inventory mangler required core-felt`);assert(Array.isArray(ie.optionalManifestFields),`${id}: optionalManifestFields må være array`);assert(typeof ie.pilot==='boolean',`${id}: pilot må være boolean`);validateStatusProgression(id,se,pe);auditCoreFiles(id,me,audit);const ms=me.specializations||{},is=ie.specializations||[];assert(Object.keys(ms).length===is.length,`${id}: manifest og inventory har ulikt antall spesialiseringer`);for(const spec of is){const e=ms[spec.id];assert(e,`${id}/${spec.id}: mangler manifestoppføring`);assert(e.canonicalParentSubject===id,`${id}/${spec.id}: feil parent subject`);assert(e.badgeId===id,`${id}/${spec.id}: spesialiseringen kan ikke eie eget toppmerke`);assert(e.status==='canonical_scientific_specialization',`${id}/${spec.id}: feil spesialiseringsstatus`);assert(ALLOWED_FAMILIES.has(spec.schemaFamily),`${id}/${spec.id}: ukjent schemaFamily`);assert(e.schemaFamily===spec.schemaFamily,`${id}/${spec.id}: schemaFamily er usynkronisert`);auditCoreFiles(`${id}/${spec.id}`,e,audit);specializationCount+=1;}}assert(specializationCount===1,`Forventet én nested spesialisering, fikk ${specializationCount}`);assert(manifest.vitenskap.specializations?.teknologi,'Vitenskap mangler Teknologi-spesialiseringen');for(const p of inventory.migrationDebt?.politicsSpecificRuntimeFiles??[])assert(fs.existsSync(absolute(p)),`Inventert politikkspesifikk runtimefil finnes ikke: ${p}`);const report=buildBaselineReport({categories,manifest,inventory,status});if(writeReport){fs.mkdirSync(path.dirname(absolute(PATHS.report)),{recursive:true});fs.writeFileSync(absolute(PATHS.report),`${JSON.stringify(report,null,2)}\n`);}if(checkReport){const committed=readJson(PATHS.report);assert(isDeepStrictEqual(committed,report),`${PATHS.report} er utdatert. Kjør node scripts/audit-fagverk-subject-inventory.mjs --write-report`);}return{report,coreFileAudit:audit,subjectCount:canonical.length,specializationCount};}
+function main(){const args=new Set(process.argv.slice(2));try{const r=auditRepository({writeReport:args.has('--write-report'),checkReport:!args.has('--no-check-report')});console.log(`Fagverk inventar OK: ${r.subjectCount} toppfag, ${r.specializationCount} spesialisering, ${r.coreFileAudit.length} required kjernefiler, ${r.report.summary.schemaFamilyCount} schemafamilier.`);}catch(e){console.error(`Fagverk inventar FEIL: ${e.message}`);process.exitCode=1;}}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main();
+""")
+
+          write('tests/fagverk-subject-inventory.test.mjs', """import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { auditRepository, buildBaselineReport } from '../scripts/audit-fagverk-subject-inventory.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const readJson=(p)=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
+test('inventaret dekker 17 toppfag, Teknologi-spesialiseringen og alle required core-filer',()=>{const r=auditRepository();assert.equal(r.subjectCount,17);assert.equal(r.specializationCount,1);assert.equal(r.coreFileAudit.length,72);assert.equal(r.report.summary.schemaFamilyCount,4);});
+test('statusregisteret tillater bare dokumentert fremdrift gjennom materialized og audited',()=>{const s=readJson('data/fagverk/subject_status.json'),p=readJson('data/fagverk/fagverk_portal.json'),pb=new Map(p.categories.map(i=>[i.id,i]));for(const x of s.subjects){const e=pb.get(x.id);assert.equal(x.navigationStatus,e.subjectStatus);if(x.editorialStatus!=='not_started'){assert.equal(x.navigationStatus,'materialized');assert.equal(x.assessmentStatus,'audited');}if(x.navigationStatus==='planned'){assert.equal(x.editorialStatus,'not_started');assert.equal(e.subjectPage,'');}}});
+test('politikk er første audited structure-ready fag etter generell motor',()=>{const s=readJson('data/fagverk/subject_status.json'),p=s.subjects.find(x=>x.id==='politikk');assert.equal(p.navigationStatus,'materialized');assert.equal(p.assessmentStatus,'audited');assert.equal(p.editorialStatus,'structure_ready');assert.equal(s.subjects.filter(x=>x.assessmentStatus==='audited').length,1);});
+test('baseline report er en deterministisk projeksjon av eide kilder',()=>{const categories=readJson('data/categories/category_contract.json'),manifest=readJson('data/fag/fag_manifest.json'),inventory=readJson('data/fagverk/subject_inventory.json'),status=readJson('data/fagverk/subject_status.json'),committed=readJson('reports/fagverk/subject-baseline.json');assert.deepEqual(committed,buildBaselineReport({categories,manifest,inventory,status}));});
+test('pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfag',()=>{const i=readJson('data/fagverk/subject_inventory.json'),m=readJson('data/fag/fag_manifest.json'),pilots=i.subjects.filter(x=>x.pilot);assert.deepEqual(pilots.map(x=>x.id).sort(),['by','natur','religion','vitenskap']);const t=i.subjects.find(x=>x.id==='vitenskap').specializations.find(x=>x.id==='teknologi');assert.equal(t.schemaFamily,'technology_scientific_v2_4');assert.equal(t.pilot,true);assert.ok(m.vitenskap.specializations.teknologi);assert.equal(m.teknologi,undefined);assert.equal(new Set([...pilots.map(x=>x.schemaFamily),t.schemaFamily]).size,4);});
+""")
+
+          write('tests/vitenskap-teknologi-category-contract.test.mjs', """import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
+const readJson=(p)=>JSON.parse(read(p));
+test('Vitenskap og Teknologi deler ett canonical toppmerke',()=>{const c=readJson('data/categories/category_contract.json'),i=readJson('data/badges/index.json'),b=readJson('data/badges/vitenskap.json');assert.equal(c.runtimeCategories.length,17);assert.deepEqual(c.runtimeCategories,c.fagSubjects);assert.ok(c.runtimeCategories.includes('vitenskap'));assert.ok(!c.runtimeCategories.includes('teknologi'));for(const a of ['technology','teknologi','tech','it','informasjonsteknologi'])assert.equal(c.aliases[a],'vitenskap');assert.equal(c.labels.vitenskap,'Vitenskap & teknologi');assert.equal(b.id,'vitenskap');assert.equal(b.name,'Vitenskap & teknologi');assert.ok(b.sub.includes('teknologi'));assert.ok(!i.files.includes('data/badges/teknologi.json'));});
+test('den komplette Teknologi-pakken er bevart som nested spesialisering',()=>{const m=readJson('data/fag/fag_manifest.json'),r=readJson('data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json'),s=m.vitenskap.specializations.teknologi;assert.equal(m.teknologi,undefined);assert.equal(s.canonicalParentSubject,'vitenskap');assert.equal(s.badgeId,'vitenskap');assert.equal(s.status,'canonical_scientific_specialization');assert.equal(s.canonicalModelVersion,'2.4');assert.deepEqual(s.universalCoverage,{status:'complete',areas:12,topics:48,methods:35,modules:12});assert.equal(r.category_profiles.teknologi,undefined);assert.equal(r.subject_specialization_profiles.vitenskap.teknologi,'data/fag/teknologi/supersetQUIZMAL_teknologi.json');});
+test('runtimekildene normaliserer legacy teknologi-id til vitenskap',()=>{const d=read('js/DomainRegistry.js'),c=read('js/core/categories.ts'),p=read('tools/placeSchemaPolicy.mts');assert.match(d,/\"teknologi\": \"vitenskap\"/);assert.doesNotMatch(d,/\"vitenskap\", \"teknologi\"/);assert.match(c,/teknologi: \"vitenskap\"/);assert.doesNotMatch(c,/id: \"teknologi\"[^\\n]*runtime_domain/);assert.match(p,/LEGACY_OR_SECONDARY_PLACE_CATEGORIES = \\[\"film\", \"teknologi\"\\]/);});
+""")
+
+          for validator in ['tools/validate-teknologi-foundation.mjs','tools/validate-teknologi-quality-v2_1.mjs']:
+              source=read(validator)
+              replacements={
+                'badge: "data/badges/teknologi.json"':'badge: "data/badges/vitenskap.json"',
+                'requireCondition(contract.runtimeCategories.includes("teknologi"), "teknologi mangler som runtimekategori");':'requireCondition(!contract.runtimeCategories.includes("teknologi"), "teknologi skal ikke være egen runtimekategori");',
+                'requireCondition(contract.fagSubjects.includes("teknologi"), "teknologi mangler som fag");':'requireCondition(!contract.fagSubjects.includes("teknologi"), "teknologi skal ikke være eget toppfag");',
+                'requireCondition(contract.labels?.teknologi === "Teknologi", "feil teknologilabel");':'requireCondition(contract.aliases?.teknologi === "vitenskap", "teknologi-aliaset peker ikke til vitenskap");',
+                'requireCondition(contract.labels?.vitenskap === "Vitenskap", "vitenskap er ikke skilt ut");':'requireCondition(contract.labels?.vitenskap === "Vitenskap & teknologi", "feil felleslabel");',
+                'requireCondition(badge.id === "teknologi" && badge.name === "Teknologi", "badge har feil identitet");':'requireCondition(badge.id === "vitenskap" && badge.name === "Vitenskap & teknologi", "fellesbadget har feil identitet");',
+                'requireCondition(manifest.teknologi?.status === "canonical_scientific_subject", "manifestet markerer ikke Teknologi som vitenskapelig fag");':'requireCondition(manifest.vitenskap?.specializations?.teknologi?.status === "canonical_scientific_specialization", "manifestet markerer ikke Teknologi som vitenskapelig spesialisering");',
+                'requireCondition(manifest.teknologi?.scientificPackage === "teknologi/teknologi_scientific_v2/index.json", "manifestet mangler scientificPackage");':'requireCondition(manifest.vitenskap?.specializations?.teknologi?.scientificPackage === "teknologi/teknologi_scientific_v2/index.json", "spesialiseringen mangler scientificPackage");',
+                'separate_runtime_category: contract.runtimeCategories.includes("teknologi")':'nested_under_vitenskap: !contract.runtimeCategories.includes("teknologi") && manifest.vitenskap?.specializations?.teknologi?.canonicalParentSubject === "vitenskap"',
+                'canonical_scientific_subject: manifest.teknologi?.status === "canonical_scientific_subject"':'canonical_scientific_specialization: manifest.vitenskap?.specializations?.teknologi?.status === "canonical_scientific_specialization"'}
+              for old,new in replacements.items(): source=source.replace(old,new)
+              write(validator,source)
+          cv=read('tools/validate-teknologi-canonical-v2_4.mjs').replace('const technology = manifest.teknologi || {};','const technology = manifest.vitenskap?.specializations?.teknologi || {};').replace('const subjectEntry = arr(quizManifest.subjectPackages).find((entry) => entry.subjectId === "teknologi");','const subjectEntry = arr(quizManifest.subjectPackages).find((entry) => entry.subjectId === "teknologi" && entry.parentSubjectId === "vitenskap" && entry.specializationId === "teknologi");')
+          write('tools/validate-teknologi-canonical-v2_4.mjs',cv)
+
+          builder_path='tools/build-teknologi-canonical-v2_4.mjs'
+          builder=read(builder_path)
+          start=builder.index('manifest.teknologi = {')
+          end=builder.index('\n};',start)+3
+          nested='''manifest.vitenskap.specializations = {\n  ...(manifest.vitenskap.specializations || {}),\n  teknologi: {\n    ...(manifest.vitenskap.specializations?.teknologi || {}),\n    id: "teknologi",\n    label: "Teknologi",\n    canonicalParentSubject: "vitenskap",\n    badgeId: "vitenskap",\n    schemaFamily: "technology_scientific_v2_4",\n    routeStatus: "planned",\n    route: "",\n    pensum: "teknologi/teknologipensum_canonical_v2_4.json",\n    emner: "teknologi/emner_teknologi_canonical_v2_4.json",\n    fagkart: "teknologi/fagkart_teknologi_canonical_v2_4.json",\n    methods: "teknologi/methods_teknologi_canonical_v2_4.json",\n    supersetQuizMal: "teknologi/supersetQUIZMAL_teknologi.json",\n    quizStandard: "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",\n    quizQuestionSchema: "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",\n    quizPackageSchema: "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",\n    subjectPathwaySchema: "../quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",\n    subjectPathwayPackage: "../quiz/teknologi/teknologi_subject_pathways_v1.json",\n    status: "canonical_scientific_specialization",\n    canonicalModelVersion: "2.4",\n    scientificPackage: "teknologi/teknologi_scientific_v2/index.json",\n    universalCoverage: { status: "complete", areas: 12, topics: 48, methods: 35, modules: 12 },\n    geographicProduction: { status: "separate", rule: "Lokale steder, personer, claims, kilder og stedsquizer produseres i geografiske lag." }\n  }\n};'''
+          builder=builder[:start]+nested+builder[end:]
+          builder=builder.replace('  status: "active"\n});','  status: "active",\n  parentSubjectId: "vitenskap",\n  specializationId: "teknologi"\n});')
+          builder=builder.replace('templateRegistry.canonical_files = { ...templateRegistry.canonical_files, subject_pathway_schema: OUTPUTS.subjectSchema };','templateRegistry.canonical_files = { ...templateRegistry.canonical_files, subject_pathway_schema: OUTPUTS.subjectSchema };\ntemplateRegistry.category_profiles = { ...templateRegistry.category_profiles };\ndelete templateRegistry.category_profiles.teknologi;\ntemplateRegistry.subject_specialization_profiles = {\n  ...(templateRegistry.subject_specialization_profiles || {}),\n  vitenskap: { ...(templateRegistry.subject_specialization_profiles?.vitenskap || {}), teknologi: "data/fag/teknologi/supersetQUIZMAL_teknologi.json" }\n};')
+          builder=builder.replace('Status: **canonical subject model**','Status: **canonical scientific specialization under Vitenskap & teknologi**').replace('V2-pakken er nå eneste faglige sannhet som manifestets pensum-, emne-, fagkart- og metodepekere resolver.','V2-pakken er bevart som Teknologi-spesialiseringen under manifestets canonicale Vitenskap-fag og eier sine pensum-, emne-, fagkart- og metodepekere.')
+          write(builder_path,builder)
+
+          gp='scripts/audit-category-governance.mjs'
+          g=read(gp)
+          anchor='if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });\n'
+          addition=anchor+'if (contract.runtimeCategories.includes("teknologi") || contract.fagSubjects.includes("teknologi")) failures.push({ name: "teknologi", reason: "must be a specialization under vitenskap, not a top category" });\nfor (const alias of ["technology", "teknologi", "tech", "it", "informasjonsteknologi"]) { if (contract.aliases?.[alias] !== "vitenskap") failures.push({ name: "teknologi alias", alias, expected: "vitenskap", actual: contract.aliases?.[alias] }); }\nif (contract.labels?.vitenskap !== "Vitenskap & teknologi") failures.push({ name: "vitenskap label", reason: "must include technology" });\nconst technologySpecialization = manifest.vitenskap?.specializations?.teknologi;\nif (technologySpecialization?.canonicalParentSubject !== "vitenskap" || technologySpecialization?.badgeId !== "vitenskap") failures.push({ name: "teknologi specialization", reason: "missing canonical parent or shared badge" });\nif (templateRegistry.category_profiles?.teknologi) failures.push({ name: "teknologi quiz profile", reason: "must not be registered as a top category profile" });\nif (templateRegistry.subject_specialization_profiles?.vitenskap?.teknologi !== "data/fag/teknologi/supersetQUIZMAL_teknologi.json") failures.push({ name: "teknologi quiz specialization", reason: "missing nested specialization profile" });\n'
+          if anchor not in g: raise RuntimeError('Fant ikke governance-anker')
+          write(gp,g.replace(anchor,addition))
+
+          qa='scripts/audit-quiz-template-governance.mjs'
+          q=read(qa)
+          point='  }\n}\n\nif (registry) {'
+          check='''  }\n}\n\nconst specializationProfiles = registry.subject_specialization_profiles || {};\nfor (const [parentSubjectId, specializations] of Object.entries(specializationProfiles)) {\n  for (const [specializationId, profilePath] of Object.entries(specializations || {})) {\n    const entry = manifest[parentSubjectId]?.specializations?.[specializationId];\n    if (!entry) { failures.push({ parentSubjectId, specializationId, file: registryPath, reason: "specialization profile has no manifest owner" }); continue; }\n    if (`data/fag/${entry.supersetQuizMal}` !== profilePath) failures.push({ parentSubjectId, specializationId, file: registryPath, reason: "specialization profile path differs from manifest" });\n    if (!(await exists(profilePath))) failures.push({ parentSubjectId, specializationId, file: profilePath, reason: "specialization profile does not exist" });\n  }\n}\n\nif (registry) {'''
+          if point not in q: raise RuntimeError('Fant ikke innsettingspunkt i quiz-auditen')
+          q=q.replace(point,check,1).replace('profilesChecked: checkedProfiles.length,','profilesChecked: checkedProfiles.length,\n  specializationProfilesChecked: Object.values(registry?.subject_specialization_profiles || {}).reduce((sum, value) => sum + Object.keys(value || {}).length, 0),')
+          write(qa,q)
+
+          write('docs/DOMAIN_CONTRACT.md', """# History GO — domenekontrakt
+
+Status: **canonical og bindende kategoribeslutning**  
+Eier: History GO data/runtime  
+Sist kontrollert: **2026-07-28**
+
+Maskinlesbar sannhetskilde: `data/categories/category_contract.json`.
+
+Runtime-, UI- og redaksjonelle filer skal samsvare med maskinkontrakten. `scripts/audit-category-governance.mjs` håndhever samsvaret.
+
+## Kjerneprinsipp
+
+Ett toppdomene har én runtime-id, én fag-id og ett toppmerke. Store spesialiseringer kan eie egne fagpakker, metoder, emner og quizforløp uten å bli egne toppmerker.
+
+## Canonicale toppkategorier
+
+| Runtime-id | Fag-id | Visningsnavn |
+|---|---|---|
+| `by` | `by` | By & arkitektur |
+| `historie` | `historie` | Historie |
+| `kunst` | `kunst` | Kunst |
+| `litteratur` | `litteratur` | Litteratur |
+| `media` | `media` | Medier |
+| `musikk` | `musikk` | Musikk |
+| `naeringsliv` | `naeringsliv` | Økonomi og næringsliv |
+| `natur` | `natur` | Natur & miljø |
+| `politikk` | `politikk` | Politikk & samfunn |
+| `psykologi` | `psykologi` | Psykologi |
+| `religion` | `religion` | Religion |
+| `scenekunst` | `scenekunst` | Scenekunst |
+| `sport` | `sport` | Sport & lek |
+| `subkultur` | `subkultur` | Subkultur |
+| `vitenskap` | `vitenskap` | Vitenskap & teknologi |
+| `filosofi` | `filosofi` | Filosofi |
+| `film_tv` | `film_tv` | Film & TV |
+
+## Vitenskap & teknologi
+
+`vitenskap` er det samlede toppdomenet for empirisk og formell kunnskapsproduksjon, naturvitenskap, medisin, matematikk, modeller, vitenskapelige institusjoner, teknologi, ingeniørfag, maskiner, materialer, energi, elektronikk, programvare, algoritmer, data, kunstig intelligens, nettverk, robotikk, cybersikkerhet og digital infrastruktur.
+
+Teknologi er en **canonical faglig spesialisering under `vitenskap`**. Den komplette V2.4-pakken ligger under `data/fag/teknologi/`, men registreres i `fag_manifest.json` som `vitenskap.specializations.teknologi`. Den eier ikke en toppkategori eller et eget toppmerke.
+
+`technology`, `teknologi`, `tech`, `it` og `informasjonsteknologi` normaliseres til `vitenskap`. Interne `em_tek_*`, `met_tek_*`, teknologiquizer og teknologiressurser beholdes som stabile spesialiserings-ID-er.
+
+Grenseflater:
+
+- Bedriften som virksomhet, marked og eierskap hører normalt til `naeringsliv`; teknologiens mekanisme, arkitektur og tekniske løsning hører til `vitenskap`.
+- Medieinnhold og journalistikk hører til `media`; plattformens programvare, algoritmer og nettverk hører til `vitenskap`.
+- Arkitektur, byrom og areal hører til `by`; byggets tekniske systemer kan gi `vitenskap` som primær eller sekundær kategori.
+- Naturfenomenet eller økosystemet hører til `natur`; måling, forskning og konstruerte løsninger kan høre til `vitenskap`.
+- Vitenskaps- og teknologifilosofi hører til `filosofi` når argumentet står i sentrum.
+
+## Andre låste beslutninger
+
+`filosofi` er selvstendig runtime- og fagkategori. `kultur` er ikke toppkategori. `populaerkultur` og `popkultur` brukes som tagg, linse og mediefaglig analysefelt. `sosial_laering` er et non-place progression badge.
+
+## Primær og sekundær badgebruk
+
+Hvert sted har én primær kategori. `secondaryBadgeIds` uttrykker reell tverrfaglighet. Et datasenter, teknisk museum eller teknisk system bruker `vitenskap`; et teknologiselskap bruker `naeringsliv` når virksomheten står i sentrum.
+
+## Fileierskap og migrering
+
+- Canonical maskinkontrakt: `data/categories/category_contract.json`
+- Alias og runtimekonvertering: `js/DomainRegistry.js`
+- Kategori-UI: `js/core/categories.ts`
+- Badges: `data/badges/index.json`
+- Fag- og quizregister: `data/fag/fag_manifest.json` og `data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`
+- Place-validering: `tools/placeSchemaPolicy.mts`
+
+Legacy `teknologi`-verdier kan finnes i steder, quizhistorikk og lokale lag mens migreringen pågår. De normaliseres til `vitenskap` ved runtime- og importgrenser. Interne spesialiserings-ID-er skal ikke masseomdøpes.
+""")
+
+          fp='docs/FAGVERK.md'
+          f=read(fp).replace('canonical og bindende fagverkskontrakt v5','canonical og bindende fagverkskontrakt v6').replace('kopieres og omskrives atten ganger','kopieres og omskrives sytten ganger').replace('fagverk.html?subject=teknologi\n','fagverk.html?subject=vitenskap&specialization=teknologi\n').replace('vitenskap\nteknologi\nfilosofi','vitenskap\nfilosofi').replace('4. `teknologi` — utvidet vitenskapelig pakke.','4. `vitenskap` — standard vitenskapelig fagpakke med den utvidede `teknologi`-pakken som nested spesialisering.')
+          note='Denne listen er en kontrollert baseline, ikke en ny kategori-sannhetskilde.'
+          f=f.replace(note,'Teknologi er ikke et eget toppfag. Den komplette fagpakken registreres som `vitenskap.specializations.teknologi` og skal vises som en spesialisering inne i Vitenskap & teknologi.\n\n'+note).replace('Pilotfasen er godkjent først når alle fire bruker samme renderer uten fagspesifikke DOM-kopier.','Pilotfasen er godkjent først når alle fire toppfag bruker samme renderer, og Teknologi-spesialiseringen kan normaliseres gjennom samme modell uten å opprette en attende toppside eller fagspesifikk DOM-kopi.')
+          write(fp,f)
+          dt='tests/fagverk-documentation-contract.test.mjs';write(dt,read(dt).replace('/canonical og bindende fagverkskontrakt v5/i','/canonical og bindende fagverkskontrakt v6/i'))
+          rr='reports/fagverk/README.md';r=read(rr).replace('alle 18 fag, fire schemafamilier, 72 required kjernefiler','17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler').replace('De fire neste pilotene er `natur`, `religion`, `by` og `teknologi`.','De fire neste toppfagpilotene er `natur`, `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten.');write(rr,r)
+          hr=ROOT/'reports/teknologi-eget-fag-og-badge.md'
+          if hr.exists():
+              old=read(str(hr));notice='> **Status 2026-07-28:** Denne beslutningen er erstattet. Teknologi er nå en canonical spesialisering under toppmerket **Vitenskap & teknologi**. Rapporten beholdes som historikk.\n\n'
+              if not old.startswith('> **Status 2026-07-28:**'): write(str(hr),notice+old)
+          gt='tests/fagverk-general-engine.test.mjs';g=read(gt).replace("test('teknologiadapter bruker vitenskapelig fagkart og focus-koblinger'","test('nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-koblinger'");write(gt,g)
+          wf='.github/workflows/fagverk.yml';w=read(wf).replace("      - 'tests/fagverk-general-engine.test.mjs'","      - 'tests/fagverk-general-engine.test.mjs'\n      - 'tests/vitenskap-teknologi-category-contract.test.mjs'").replace('          node --test tests/fagverk-general-engine.test.mjs','          node --test tests/fagverk-general-engine.test.mjs\n          node --test tests/vitenskap-teknologi-category-contract.test.mjs');write(wf,w)
           PY
       - name: Install dependencies
         run: npm ci
