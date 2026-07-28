@@ -43,20 +43,20 @@
     "/js/ui/caravan-panel.js"
   ];
 
-  const POST_READY_BODY_SCRIPTS = new Set([
-    "/History-Go/js/debug/HGTestMode.js",
-    "/History-Go/js/i18n.js",
-    "/History-Go/dist/web/knowledge.js",
-    "/History-Go/dist/web/hgInsights.js",
-    "/History-Go/dist/web/knowledgeV2.js",
-    "/History-Go/js/hgSocialGuards.js",
-    "/History-Go/js/knowledgeMatch.js",
-    "/History-Go/js/progress/profileProgressReader.js",
-    "/History-Go/js/ui/place-card-status-surface.js",
-    "/History-Go/js/ui/header-menu.js",
-    "/History-Go/js/ui/psychology-room-entry.js",
-    "/History-Go/js/ui/badges.js"
-  ]);
+  const POST_READY_BODY_SCRIPT_SUFFIXES = [
+    "/js/debug/HGTestMode.js",
+    "/js/i18n.js",
+    "/dist/web/knowledge.js",
+    "/dist/web/hgInsights.js",
+    "/dist/web/knowledgeV2.js",
+    "/js/hgSocialGuards.js",
+    "/js/knowledgeMatch.js",
+    "/js/progress/profileProgressReader.js",
+    "/js/ui/place-card-status-surface.js",
+    "/js/ui/header-menu.js",
+    "/js/ui/psychology-room-entry.js",
+    "/js/ui/badges.js"
+  ];
 
   function isNonCriticalScript(script) {
     const url = normalizeUrl(script?.src);
@@ -67,7 +67,7 @@
   function isPacedBodyScript(script) {
     const url = normalizeUrl(script?.src);
     if (!url || url.origin !== location.origin) return false;
-    return POST_READY_BODY_SCRIPTS.has(url.pathname);
+    return POST_READY_BODY_SCRIPT_SUFFIXES.some((suffix) => url.pathname.endsWith(suffix));
   }
 
   function scheduleIdle(task) {
