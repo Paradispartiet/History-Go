@@ -1,0 +1,34 @@
+{
+  "schema": "history_go_fagverk_subject_status_v1",
+  "version": "1.0.0",
+  "status": "canonical_phase_0_baseline",
+  "updatedAt": "2026-07-28",
+  "owner": "fagverk_subject_status",
+  "contract": "docs/FAGVERK.md",
+  "rules": {
+    "navigationStatuses": ["planned", "materialized"],
+    "assessmentStatuses": ["pending", "audited", "blocked"],
+    "editorialStatuses": ["not_started", "structure_ready", "chapters_in_progress", "complete"],
+    "baselineRule": "Fase 0 markerer ingen fag som audited, structure_ready eller complete uten individuell grønn evidens."
+  },
+  "subjects": [
+    {"id":"by","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_2_pilot"},
+    {"id":"historie","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"kunst","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"litteratur","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"media","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"musikk","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"naeringsliv","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"natur","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_2_pilot"},
+    {"id":"politikk","navigationStatus":"materialized","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_1_general_engine"},
+    {"id":"psykologi","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"religion","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_2_pilot"},
+    {"id":"scenekunst","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"sport","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"subkultur","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"vitenskap","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"teknologi","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_2_pilot"},
+    {"id":"filosofi","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"},
+    {"id":"film_tv","navigationStatus":"planned","assessmentStatus":"pending","editorialStatus":"not_started","nextGate":"phase_3_materialization"}
+  ]
+}
