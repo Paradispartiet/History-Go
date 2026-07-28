@@ -26,7 +26,19 @@ jobs:
       - name: Syntax-check one-time runner
         run: node --check scripts/one-time-fagverk-subject-page-contract.mjs
       - name: Materialize canonical documentation
-        run: node scripts/one-time-fagverk-subject-page-contract.mjs
+        run: |
+          node scripts/one-time-fagverk-subject-page-contract.mjs
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'docs/README.md';
+          let source = fs.readFileSync(file, 'utf8');
+          if (!source.includes('FAGVERK_PLACE_DESIGN.md')) {
+            const marker = '3. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — bindende skille mellom Fagverkforsiden, merkesider og fagsider';
+            if (!source.includes(marker)) throw new Error('Mangler FAGVERK_NAVIGATION-markør i docs/README.md');
+            source = source.replace(marker, `${marker}\n4. [\`FAGVERK_PLACE_DESIGN.md\`](./FAGVERK_PLACE_DESIGN.md) — bindende kategori-, bilde- og presentasjonskontrakt for stedets egne fagverksider`);
+            fs.writeFileSync(file, source, 'utf8');
+          }
+          NODE
       - name: Install and build documentation tooling
         run: |
           npm ci --no-audit --no-fund
