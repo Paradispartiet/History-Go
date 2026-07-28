@@ -1,11 +1,9 @@
 name: One-time Oscarsborg coordinate source probe
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/coordinate-oscarsborg-festning-20260728
-    paths:
-      - .github/workflows/coordinate-oscarsborg-source-probe.yml
+      - main
 
 permissions:
   contents: read
