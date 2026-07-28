@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hausmannsgate_aksen",
+  "capturedAt": "2026-07-28",
+  "sourceMaterialization": {
+    "workflowRunId": 30351791326,
+    "artifactId": 8685160898,
+    "artifactName": "hausmannsgate-axis-coordinate-source-probe",
+    "artifactDigest": "sha256:2ae23a4a85a59be8d54a1ca1a084ec06023adce71a2ace63309589c45a188606",
+    "bbox": "10.7480,59.9175,10.7545,59.9206",
+    "finding": "The one-time read-only probe captured current OSM street/building geometry around Hauskvartalet, exact Kartverket address objects for Hausmanns gate 34, 40 and 42, and the Kartverket SSR identity for Hausmanns gate. The temporary workflow was removed after source capture."
+  },
+  "officialQuarterScope": {
+    "sourceProvider": "municipality",
+    "sourceName": "Oslo kommune – Byøkologi og kultur i Hauskvartalet",
+    "sourceUrl": "https://magasin.oslo.kommune.no/byplan/oslos-forste-byokologiske-kulturkvartal-tar-form",
+    "finding": "Oslo kommune describes Hauskvartalet as a by-ecological culture quarter containing Hausmania and adjacent cultural and residential functions. The municipal description explicitly places Hausmannsgate 40 and 42 inside the quarter and treats Hausmania as a core cultural actor."
+  },
+  "streetSegment": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:129061331",
+    "name": "Hausmanns gate",
+    "tags": {
+      "highway": "secondary",
+      "name": "Hausmanns gate",
+      "oneway": "yes",
+      "sidewalk": "separate",
+      "surface": "asphalt",
+      "wikidata": "Q11974526"
+    },
+    "coordinates": [
+      [59.9191197, 10.7518504],
+      [59.9192022, 10.7517740],
+      [59.9192637, 10.7517113],
+      [59.9193300, 10.7516296],
+      [59.9193519, 10.7515980],
+      [59.9193958, 10.7515383],
+      [59.9194698, 10.7514140]
+    ],
+    "lengthM": 46.2,
+    "derivedMidpoint": {
+      "lat": 59.91930402696448,
+      "lon": 10.75166160598796,
+      "method": "half-length point along OSM way 129061331 in local lon*cos(meanLat),lat projection"
+    },
+    "distanceFromLegacyM": 49.3,
+    "finding": "This named street segment runs directly along the Hauskvartalet frontage from the Hausmania/Hausmanns gate 34 end toward Hausmanns gate 40 and 42. It gives the editorial axis a finite physical route without collapsing it into the Hausmania building or Brenneriveien/Ingens gate."
+  },
+  "kartverketStreetIdentity": {
+    "sourceProvider": "kartverket",
+    "sourceObjectId": "kartverket-ssr:995873",
+    "name": "Hausmanns gate",
+    "nameStatus": "godkjent og prioritert",
+    "placeStatus": "aktiv",
+    "objectType": "Adressenavn",
+    "geometryType": "MultiLineString",
+    "finding": "Kartverket independently confirms Hausmanns gate as one active named street object in Oslo. The production coordinate uses only the OSM subsegment along Hauskvartalet rather than a midpoint for the entire street."
+  },
+  "addressControls": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
+      "address": "Hausmanns gate 34, 0182 Oslo",
+      "lat": 59.919148209457326,
+      "lon": 10.751977548509613,
+      "distanceFromStreetSegmentM": 7.8,
+      "finding": "Exact address for the existing Hausmania canonical place; used as the western quarter-frontage control, not as a replacement for the route marker."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:40",
+      "address": "Hausmanns gate 40, 0182 Oslo",
+      "lat": 59.919303875414755,
+      "lon": 10.751753198638816,
+      "distanceFromStreetSegmentM": 4.3,
+      "finding": "Exact address control inside the Hauskvartalet frontage."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:42A",
+      "address": "Hausmanns gate 42A, 0182 Oslo",
+      "lat": 59.91941347762521,
+      "lon": 10.751615863914031,
+      "distanceFromStreetSegmentM": 6.8,
+      "finding": "One of the current 42A/B/C address points controlling the eastern quarter-frontage end of the route segment."
+    }
+  ],
+  "duplicateControls": {
+    "hausmania": {
+      "placeId": "hausmania",
+      "coordinate": [59.919148209457326, 10.751977548509613],
+      "finding": "Hausmania is already a separate canonical building at Hausmanns gate 34. The route record must therefore represent the street frontage/axis rather than the cultural institution itself."
+    },
+    "brenneriveien_ingens_gate": {
+      "placeId": "brenneriveien_ingens_gate",
+      "finding": "Brenneriveien/Ingens gate is already a separate Akerselva-side subculture area. The Hausmannsgate axis is limited to the Hausmanns gate frontage and is not extended east into that canonical area."
+    }
+  },
+  "radiusDecision": {
+    "previousRadiusM": 240,
+    "appliedRadiusM": 100,
+    "finding": "A 100-metre gameplay radius covers the 46.2-metre Hauskvartalet street-front segment and its immediate side-wall/entrance context while avoiding the previous unsupported implication that a broad 240-metre neighbourhood environment is one coordinate object."
+  },
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateChangeRequired": true,
+    "appliedCoordinate": {
+      "lat": 59.91930402696448,
+      "lon": 10.75166160598796,
+      "r": 100
+    },
+    "locatorType": "route",
+    "sourceProvider": "osm",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordStatus": "verified_geometry",
+    "representationLimit": "The record represents the Hausmanns gate frontage through Hauskvartalet, approximately the segment controlled by addresses 34–42. It does not replace the separate Hausmania building or Brenneriveien/Ingens gate area and does not claim all changing street-art surfaces in nearby side streets."
+  }
+}
