@@ -30,7 +30,6 @@
     scenekunst:["badges","people","works","spots","objects","details","brands","nature"], subkultur:["badges","people","works","details","spots","objects","brands","nature"],
     naeringsliv:["badges","brands","people","objects","spots","details","works","nature"], transport:["badges","spots","objects","details","people","works","brands","nature"]
   });
-  const LEGACY_IDS = ["pcForNaIcon","pcFortellingerIcon","pcLeksikonIcon","pcPlayIcon","pcTrainingIcon","pcTasksIcon","pcWonderkammerIcon","pcStoriesIcon","pcRoutesIcon","pcCivicationStoreIcon"];
   const s = value => String(value == null ? "" : value).trim();
   const arr = value => Array.isArray(value) ? value : [];
   const uniq = values => [...new Set(arr(values).map(s).filter(Boolean))];
@@ -153,24 +152,58 @@
   function apply(place=currentPlace()) {
     const card=document.getElementById("placeCard"); if (!card) return; ensureDom(); bindBadge();
     for (const def of DEFS.filter(d=>["objects","details","spots"].includes(d.id))) { renderCustom(place,def); bindCustom(def); }
-    const selected=place ? selectedIds(place) : [], state=place ? readiness(place,selected) : {complete:false,missingImages:[]}, allowed=new Set(selected);
+    const selected=place ? selectedIds(place) : [], state=place ? readiness(place,selected) : {complete:false,missingImages:[]}, allowedIds=new Set(selected.map(id=>BY_ID.get(id)?.iconId).filter(Boolean));
     card.dataset.roundMode="visual-collections"; card.dataset.roundCount=String(selected.length || 0); card.dataset.roundReadiness=state.complete?"ready":"incomplete"; card.dataset.roundMissingImages=state.missingImages.join(",");
-    for (const def of DEFS) { const icon=document.getElementById(def.iconId); if (!icon) continue; const show=allowed.has(def.id); if (icon.hidden !== !show) icon.hidden=!show; icon.setAttribute("aria-hidden",show?"false":"true"); icon.style.order=show?String(selected.indexOf(def.id)):""; }
-    for (const id of LEGACY_IDS) { const icon=document.getElementById(id); if (!icon) continue; if (!icon.hidden) icon.hidden=true; icon.setAttribute("aria-hidden","true"); icon.style.order=""; }
-    const grid=card.querySelector(".pc-icons-quad"); if (grid) { grid.dataset.roundMode="visual-collections"; grid.dataset.roundCount=String(selected.length || 0); grid.style.gridTemplateColumns=selected.length === 4 ? "repeat(2, var(--place-card-orb-size))" : "repeat(3, var(--place-card-orb-size))"; grid.style.gridTemplateRows="repeat(2, var(--place-card-orb-size))"; }
+    const grid=card.querySelector(".pc-icons-quad");
+    if (grid) {
+      // Canonical kontrakt: gridet eies av visual-rounds. Alle andre .pc-round
+      // (legacy, handlinger eller plugin-innslag) skal ut av selve rundingsgridet.
+      grid.querySelectorAll(".pc-round").forEach(icon => {
+        const show=allowedIds.has(icon.id);
+        if (icon.hidden !== !show) icon.hidden=!show;
+        icon.setAttribute("aria-hidden",show?"false":"true");
+        icon.dataset.roundSurface=show?"visual-collection":"moved-out-of-round-grid";
+        const def=DEFS.find(item=>item.iconId === icon.id);
+        icon.style.order=show && def ? String(selected.indexOf(def.id)) : "";
+      });
+      grid.dataset.roundMode="visual-collections";
+      grid.dataset.roundCount=String(selected.length || 0);
+      grid.style.gridTemplateColumns=selected.length === 4 ? "repeat(2, var(--place-card-orb-size))" : "repeat(3, var(--place-card-orb-size))";
+      grid.style.gridTemplateRows="repeat(2, var(--place-card-orb-size))";
+    }
   }
   function scheduleApply() {
     if (scheduled) return; scheduled=true;
     const run=()=>{ scheduled=false; apply(); };
     if (typeof global.requestAnimationFrame === "function") global.requestAnimationFrame(run); else global.setTimeout(run,0);
   }
-  function patchApi() {
-    const api=global.HGPlaceRounds; if (!api || api.__visualCollectionsPatchedV4) return;
-    api.getVisual=place=>selectedIds(place).map(id=>BY_ID.get(id)).filter(Boolean); api.applyVisual=apply; api.visualIds=[...IDS]; api.visualRegistry=[...DEFS]; api.visualPriorities=PRIORITIES; api.recommendVisual=recommend; api.getVisualReadiness=readiness; api.__visualCollectionsPatchedV4=true;
+  function patchOpenPlaceCard() {
+    const original=global.openPlaceCard;
+    if (typeof original !== "function") return false;
+    if (original.__visualRoundsPatchedV5) return true;
+    const patched=async function openPlaceCardWithCanonicalRounds(...args) {
+      const result=await original.apply(this,args);
+      scheduleApply();
+      return result;
+    };
+    patched.__visualRoundsPatchedV5=true;
+    patched.__visualRoundsOriginal=original;
+    global.openPlaceCard=patched;
+    return true;
   }
-  function init() { ensureDom(); patchApi(); bindBadge(); scheduleApply(); }
+  function patchApi() {
+    const api=global.HGPlaceRounds; if (!api || api.__visualCollectionsPatchedV5) return;
+    api.getVisual=place=>selectedIds(place).map(id=>BY_ID.get(id)).filter(Boolean); api.applyVisual=apply; api.visualIds=[...IDS]; api.visualRegistry=[...DEFS]; api.visualPriorities=PRIORITIES; api.recommendVisual=recommend; api.getVisualReadiness=readiness; api.__visualCollectionsPatchedV5=true;
+  }
+  function init() {
+    ensureDom(); patchApi(); bindBadge(); patchOpenPlaceCard(); scheduleApply();
+    if (typeof global.openPlaceCard !== "function") {
+      let attempts=0;
+      const timer=global.setInterval(()=>{ attempts+=1; if (patchOpenPlaceCard() || attempts >= 80) global.clearInterval(timer); },100);
+    }
+  }
 
   global.HGVisualPlaceRounds={ ids:[...IDS], registry:[...DEFS], priorities:PRIORITIES, get:selectedIds, recommend, readiness, isImageReady:imageReady, getItems:customItems, apply };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded",init,{once:true}); else init();
-  ["hg:appReady","hg:place-selected","hg:places-ready","hg:placesUpdated","hg:visitedUpdated","updateProfile"].forEach(name=>global.addEventListener?.(name,scheduleApply));
+  ["hg:appReady","hg:place-selected","hg:places-ready","hg:placesUpdated","hg:visitedUpdated","updateProfile"].forEach(name=>global.addEventListener?.(name,()=>{ patchOpenPlaceCard(); scheduleApply(); }));
 })(window);
