@@ -1,7 +1,7 @@
 // @ts-nocheck
 // js/ui/place-onsite-surface.js
-// Canonical "På stedet"-flate under PlaceCard-rundingene.
-// Synlighet styres av data/categories/place_onsite_contract.json.
+// Fast hovedrad: Events | Avtal å møtes | Kunnskapsmøte | Mer.
+// Kategori-/stedstypeavhengige handlinger vises bare i Mer-popupen.
 (function installPlaceOnSiteSurface(global) {
   "use strict";
 
@@ -9,6 +9,7 @@
   const POLICY_ATTR = "data-hg-onsite-policy";
   const BOUND_FLAG = "__HG_PLACE_ONSITE_SURFACE_BOUND__";
   const POLICY_URL = "data/categories/place_onsite_contract.json";
+  const CORE_ACTIONS = ["events", "social-meet", "knowledge-meet"];
   let observer = null;
   let policyVersion = "fallback";
   let policy = {
@@ -111,6 +112,10 @@
       .map(([actionId]) => actionId);
   }
 
+  function extraActions(place, events) {
+    return visibleActions(place, events).filter(actionId => !CORE_ACTIONS.includes(actionId));
+  }
+
   function renderPlayProfile(place) {
     const profile = place?.play_profile && typeof place.play_profile === "object" ? place.play_profile : null;
     if (!profile) return '<div class="pc-empty">Ingen lek registrert for denne lekeplassen ennå</div>';
@@ -124,17 +129,33 @@
   }
 
   function button(actionId, placeId, count = 0) {
-    const def = policy.actions?.[actionId] || {};
-    const roundId = actionId === "play" ? "play" : "";
-    const className = actionId === "events" ? " pc-onsite-action-event" : actionId === "knowledge-meet" ? " pc-onsite-action-knowledge" : "";
-    return `<button class="pc-onsite-action${className}" type="button" data-hg-onsite-action="${esc(actionId)}" data-place-id="${esc(placeId)}"${roundId ? ` data-round-id="${roundId}"` : ""}><span class="pc-onsite-action-icon">${esc(def.icon || "•")}</span><span class="pc-onsite-action-label">${esc(def.label || actionId)}</span>${count > 0 ? `<span class="pc-onsite-action-count">${count}</span>` : ""}</button>`;
+    const isMore = actionId === "more";
+    const def = isMore ? { label: "Mer", icon: "•••" } : (policy.actions?.[actionId] || {});
+    const className = actionId === "events" ? " pc-onsite-action-event" : actionId === "knowledge-meet" ? " pc-onsite-action-knowledge" : actionId === "more" ? " pc-onsite-action-more" : "";
+    return `<button class="pc-onsite-action${className}" type="button" data-hg-onsite-action="${esc(actionId)}" data-place-id="${esc(placeId)}"><span class="pc-onsite-action-icon">${esc(def.icon || "•")}</span><span class="pc-onsite-action-label">${esc(def.label || actionId)}</span>${count > 0 && actionId === "events" ? `<span class="pc-onsite-action-count">${count}</span>` : ""}</button>`;
   }
 
   function renderSurface(place) {
     const placeId = text(place?.id);
     const events = eventsForPlace(placeId, socialForPlace(placeId));
-    const buttons = visibleActions(place, events).map(actionId => button(actionId, placeId, actionDataCount(actionId, place, events)));
-    return `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}" ${POLICY_ATTR}="${esc(policyVersion)}"><div class="pc-onsite-actions" role="group" aria-label="Funksjoner på stedet">${buttons.join("")}</div></div>`;
+    const buttons = [
+      button("events", placeId, events.length),
+      button("social-meet", placeId),
+      button("knowledge-meet", placeId),
+      button("more", placeId)
+    ];
+    return `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}" ${POLICY_ATTR}="${esc(policyVersion)}"><div class="pc-onsite-actions" role="group" aria-label="Stedsfunksjoner">${buttons.join("")}</div></div>`;
+  }
+
+  function renderMoreContent(place) {
+    const placeId = text(place?.id);
+    const events = eventsForPlace(placeId, socialForPlace(placeId));
+    const extras = extraActions(place, events);
+    if (!extras.length) return '<div class="pc-empty">Ingen flere funksjoner for dette stedet.</div>';
+    return `<div class="pc-onsite-more-list">${extras.map(actionId => {
+      const def = policy.actions?.[actionId] || {};
+      return `<button type="button" class="pc-onsite-more-action" data-hg-onsite-more-action="${esc(actionId)}"><span>${esc(def.icon || "•")}</span><strong>${esc(def.label || actionId)}</strong></button>`;
+    }).join("")}</div>`;
   }
 
   function decorate(force = false) {
@@ -176,8 +197,22 @@
     global.showToast?.("Kunnskapsmøte er ikke lastet ennå");
   }
 
+  function openMore() {
+    const place = currentPlace();
+    if (!place) return;
+    global.showPlaceCardRoundPopup?.({ title:"Mer", subtitle:text(place?.name || place?.title), html:renderMoreContent(place), place, kind:"more" });
+  }
+
   function handleClick(event) {
     const target = event.target instanceof Element ? event.target : null;
+    const moreAction = target?.closest?.("[data-hg-onsite-more-action]");
+    if (moreAction instanceof HTMLElement) {
+      event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation();
+      const action = text(moreAction.dataset.hgOnsiteMoreAction);
+      if (action === "play") return openPlay();
+      return;
+    }
+
     const surface = target?.closest?.(`[${SURFACE_ATTR}]`);
     if (!surface) return;
     const buttonEl = target.closest("[data-hg-onsite-action]");
@@ -186,10 +221,10 @@
     const action = text(buttonEl.dataset.hgOnsiteAction);
     const placeId = text(buttonEl.dataset.placeId || currentPlace()?.id);
     if (!placeId) return;
-    if (action === "play") return openPlay();
     if (action === "events") return openEvents(placeId);
     if (action === "social-meet") return openSocialMeet(placeId);
     if (action === "knowledge-meet") return openKnowledgeMeet(placeId);
+    if (action === "more") return openMore();
   }
 
   async function loadPolicy() {
@@ -220,7 +255,7 @@
     decorate(); observe(); loadPolicy();
   }
 
-  global.HGPlaceOnSiteSurface = { decorate, renderSurface, renderPlayProfile, renderEventContent, resolvedPolicy, visibleActions };
+  global.HGPlaceOnSiteSurface = { decorate, renderSurface, renderPlayProfile, renderEventContent, renderMoreContent, resolvedPolicy, visibleActions, extraActions };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true }); else init();
   ["hg:appReady","hg:place-selected","hg:placesUpdated"].forEach(name => global.addEventListener?.(name, decorate));
 })(window);
