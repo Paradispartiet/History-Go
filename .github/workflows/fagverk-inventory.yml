@@ -1,0 +1,47 @@
+name: Fagverk Phase 0 inventory
+
+on:
+  pull_request:
+    paths:
+      - 'data/categories/category_contract.json'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fag/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/subject-baseline.json'
+      - 'scripts/audit-fagverk-subject-inventory.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - '.github/workflows/fagverk-inventory.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/categories/category_contract.json'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fag/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/subject-baseline.json'
+      - 'scripts/audit-fagverk-subject-inventory.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - '.github/workflows/fagverk-inventory.yml'
+
+jobs:
+  audit:
+    name: Validate all-subject inventory and baseline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax check inventory audit
+        run: node --check scripts/audit-fagverk-subject-inventory.mjs
+      - name: Run Phase 0 regression tests
+        run: node --test --test-reporter=spec tests/fagverk-subject-inventory.test.mjs
+      - name: Verify committed baseline
+        run: node scripts/audit-fagverk-subject-inventory.mjs
