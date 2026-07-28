@@ -1,0 +1,149 @@
+name: Run Nationaltheatret People batch 7 v1 finalizer
+
+on:
+  pull_request:
+    branches:
+      - agent/tmp-nationaltheatret-people-batch-7-runner
+
+permissions:
+  contents: write
+
+concurrency:
+  group: run-nationaltheatret-people-batch-7-v1-finalizer
+  cancel-in-progress: true
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_BRANCH: agent/nationaltheatret-people-batch-7-v1
+    steps:
+      - name: Checkout runner
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout target and capture handwritten files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$TARGET_BRANCH" main
+          git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
+          source_files=(
+            data/people/litteratur/oslo/nationaltheatret/andrea_braein_hovig.json
+            data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json
+            data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json
+            data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json
+            data/people/claims/litteratur/oslo/nationaltheatret/andrea_braein_hovig.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/bjorn_skagestad.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/bjorn_saether.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.claims.json
+            reports/people-factuality-audit-nationaltheatret-batch-7-v1.md
+            tests/nationaltheatret-factuality-audit-people-batch-7-v1.test.mjs
+          )
+          rm -rf /tmp/batch7-source
+          mkdir -p /tmp/batch7-source
+          for file in "${source_files[@]}"; do
+            test -f "$file"
+            cp --parents "$file" /tmp/batch7-source
+          done
+
+      - name: Apply batch to fresh main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard origin/main
+          git clean -fdx
+          cp -a /tmp/batch7-source/. .
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/check-people.sh')
+          text = path.read_text(encoding='utf-8')
+          marker = 'echo "== People check complete =="'
+          block = 'echo "== Nationaltheatret People factuality batch 7 v1 =="\nnode --test tests/nationaltheatret-factuality-audit-people-batch-7-v1.test.mjs\n\n'
+          if block not in text:
+              if marker not in text:
+                  raise SystemExit('People check marker not found')
+              text = text.replace(marker, block + marker)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Batch 7 regression test
+        run: node --test tests/nationaltheatret-factuality-audit-people-batch-7-v1.test.mjs
+
+      - name: People Profile Canonical audit
+        run: npm run audit:people-profile-canonical
+
+      - name: Factuality contract
+        run: npm run test:factuality-contract
+
+      - name: Typecheck and build tools
+        run: npm run typecheck:tools && npm run build:tools
+
+      - name: Typecheck and build scripts
+        run: npm run typecheck:scripts && npm run build:scripts
+
+      - name: Regenerate Civication People index
+        run: npm run civication:history-people:build
+
+      - name: Regenerate People readiness
+        run: npm run audit:people-popup-readiness
+
+      - name: Full People gate
+        run: bash scripts/check-people.sh
+
+      - name: Existing Nationaltheatret ensemble test
+        run: node tests/nationaltheatret-ensemble-people-v2.test.js
+
+      - name: Isolate final 14-file commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=(
+            data/people/litteratur/oslo/nationaltheatret/andrea_braein_hovig.json
+            data/people/litteratur/oslo/nationaltheatret/bjorn_skagestad.json
+            data/people/litteratur/oslo/nationaltheatret/bjorn_saether.json
+            data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json
+            data/people/claims/litteratur/oslo/nationaltheatret/andrea_braein_hovig.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/bjorn_skagestad.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/bjorn_saether.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.claims.json
+            reports/people-factuality-audit-nationaltheatret-batch-7-v1.md
+            tests/nationaltheatret-factuality-audit-people-batch-7-v1.test.mjs
+            scripts/check-people.sh
+            data/Civication/historyPeople_index.json
+            reports/people-popup-readiness.json
+            reports/people-popup-readiness.md
+          )
+
+          git diff --check -- "${expected[@]}"
+          rm -rf /tmp/batch7-final
+          mkdir -p /tmp/batch7-final
+          for file in "${expected[@]}"; do
+            test -f "$file"
+            cp --parents "$file" /tmp/batch7-final
+          done
+
+          git fetch origin main
+          git reset --hard origin/main
+          git clean -fdx
+          cp -a /tmp/batch7-final/. .
+          git add -- "${expected[@]}"
+          mapfile -t actual < <(git diff --cached --name-only | sort)
+          mapfile -t wanted < <(printf '%s\n' "${expected[@]}" | sort)
+          diff -u <(printf '%s\n' "${wanted[@]}") <(printf '%s\n' "${actual[@]}")
+          git diff --cached --check
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Audit Nationaltheatret People batch 7 under canonical v1'
+          git push --force origin HEAD:"$TARGET_BRANCH"
