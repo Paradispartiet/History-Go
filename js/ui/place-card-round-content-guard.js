@@ -12,6 +12,9 @@
     "pcNatureList",
     "pcWorksList",
     "pcBadgesList",
+    "pcObjectsList",
+    "pcDetailsList",
+    "pcSpotsList",
     "pcTasksList",
     "pcCivicationStoreList",
     "pcBrandsList",
@@ -37,7 +40,10 @@
     const registryIds = Array.isArray(window.HGPlaceRounds?.registry)
       ? window.HGPlaceRounds.registry.map(def => def?.listId)
       : [];
-    return unique([...registryIds, ...FALLBACK_ROUND_LIST_IDS]);
+    const visualRegistryIds = Array.isArray(window.HGVisualPlaceRounds?.registry)
+      ? window.HGVisualPlaceRounds.registry.map(def => def?.listId)
+      : [];
+    return unique([...registryIds, ...visualRegistryIds, ...FALLBACK_ROUND_LIST_IDS]);
   }
 
   function hideInlineRoundLists() {
