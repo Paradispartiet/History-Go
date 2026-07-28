@@ -46,6 +46,25 @@
     return `fagverk.html?${params.toString()}`;
   }
 
+  function placePageUrl(placeId) {
+    return `fagverk-sted.html?place=${encodeURIComponent(text(placeId))}`;
+  }
+
+  async function hydrateChapter(chapter) {
+    const files = list(chapter?.moduleFiles);
+    if (!files.length) return chapter;
+    const modules = await Promise.all(files.map(fetchJson));
+    const merged = { ...chapter };
+    for (const module of modules) {
+      for (const [key, value] of Object.entries(module || {})) {
+        if (Array.isArray(value)) merged[key] = [...list(merged[key]), ...value];
+        else if (value && typeof value === 'object') merged[key] = { ...(merged[key] || {}), ...value };
+        else if (value != null) merged[key] = value;
+      }
+    }
+    return merged;
+  }
+
   function renderChapterNav(registry, subjectId, chapterId, placeId) {
     const host = document.getElementById('fagverkChapterNav');
     const subject = registry?.subjects?.[subjectId];
@@ -59,25 +78,34 @@
     }).join('');
   }
 
-  function renderPlaceContext(registry, placeId, subjectId, chapterId) {
+  function renderPlaceContext(registry, placeId) {
     const host = document.getElementById('fagverkPlaceContext');
     if (!host) return;
-    const placeLink = registry?.placeLinks?.[placeId];
-    if (!placeLink) {
+    const normalized = text(placeId);
+    if (!normalized) {
       host.hidden = true;
       return;
     }
-    const concepts = list(placeLink.concepts).slice(0, 8);
+    const placeLink = registry?.placeLinks?.[normalized] || {};
+    const title = text(placeLink.title) || normalized.replaceAll('_', ' ');
     host.innerHTML = `
-      <p class="fagverk-kicker">Knyttet til sted</p>
-      <h2>${escapeHtml(placeId === 'regjeringskvartalet' ? 'Regjeringskvartalet' : placeId)}</h2>
-      <p>${escapeHtml(placeLink.intro)}</p>
-      <div class="fagverk-place-concepts">
-        ${concepts.map((concept) => `<a href="${escapeHtml(chapterUrl(subjectId, chapterId, { place: placeId, concept }))}">${escapeHtml(concept)}</a>`).join('')}
-      </div>
-      <a class="fagverk-map-link" href="index.html#/place/${encodeURIComponent(placeId)}">Åpne stedet i kartet →</a>
+      <p class="fagverk-kicker">Du kom fra et sted</p>
+      <h2>${escapeHtml(title)}</h2>
+      <p>Fagkapittelet forklarer den generelle kunnskapen. Stedets egen side samler perspektivene rundt akkurat dette stedet.</p>
+      <a class="fagverk-map-link" href="${escapeHtml(placePageUrl(normalized))}">Tilbake til stedets fagverkside →</a>
     `;
     host.hidden = false;
+  }
+
+  function renderDetails(hostId, items, numbered = false) {
+    const host = document.getElementById(hostId);
+    if (!host) return;
+    host.innerHTML = list(items).map((item, index) => `
+      <details class="fagverk-question">
+        <summary>${numbered ? `<span>${index + 1}</span>` : ''}${escapeHtml(item.question)}</summary>
+        <p>${escapeHtml(item.answer)}</p>
+      </details>
+    `).join('');
   }
 
   function renderObjectives(chapter) {
@@ -115,6 +143,31 @@
     }).join('');
   }
 
+  function renderExamples(chapter) {
+    const host = document.getElementById('fagverkExamples');
+    if (!host) return;
+    host.innerHTML = list(chapter.workedExamples).map((example) => `
+      <article class="fagverk-learning-card">
+        <p class="fagverk-kicker">Arbeidseksempel</p>
+        <h4>${escapeHtml(example.title)}</h4>
+        <p>${escapeHtml(example.situation)}</p>
+        <ol>${list(example.analysis).map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
+      </article>
+    `).join('');
+  }
+
+  function renderMisconceptions(chapter) {
+    const host = document.getElementById('fagverkMisconceptions');
+    if (!host) return;
+    host.innerHTML = list(chapter.commonMisconceptions).map((item) => `
+      <article class="fagverk-learning-card fagverk-misconception">
+        <p class="fagverk-kicker">Påstand</p>
+        <h4>${escapeHtml(item.claim)}</h4>
+        <p>${escapeHtml(item.correction)}</p>
+      </article>
+    `).join('');
+  }
+
   function renderConcepts(chapter, selectedConcept) {
     const host = document.getElementById('fagverkConceptGrid');
     if (!host) return;
@@ -134,14 +187,15 @@
     }
   }
 
-  function renderSelfCheck(chapter) {
-    const host = document.getElementById('fagverkSelfCheck');
+  function renderApplication(chapter) {
+    const host = document.getElementById('fagverkApplication');
     if (!host) return;
-    host.innerHTML = list(chapter.selfCheck).map((item, index) => `
-      <details class="fagverk-question">
-        <summary><span>${index + 1}</span>${escapeHtml(item.question)}</summary>
-        <p>${escapeHtml(item.answer)}</p>
-      </details>
+    host.innerHTML = list(chapter.applicationTasks).map((item, index) => `
+      <article class="fagverk-learning-card">
+        <p class="fagverk-kicker">Oppgave ${index + 1}</p>
+        <h4>${escapeHtml(item.task)}</h4>
+        <ul>${list(item.prompts).map((prompt) => `<li>${escapeHtml(prompt)}</li>`).join('')}</ul>
+      </article>
     `).join('');
   }
 
@@ -149,10 +203,10 @@
     const host = document.getElementById('fagverkCases');
     if (!host) return;
     host.innerHTML = list(chapter.relatedPlaces).map((place) => `
-      <a class="fagverk-case" href="index.html#/place/${encodeURIComponent(text(place.id))}">
+      <a class="fagverk-case" href="${escapeHtml(placePageUrl(place.id))}">
         <strong>${escapeHtml(place.name)}</strong>
         <span>${escapeHtml(place.role)}</span>
-        <small>Åpne sted →</small>
+        <small>Åpne stedets fagverkside →</small>
       </a>
     `).join('');
   }
@@ -183,7 +237,7 @@
       const chapters = list(subject.chapters);
       const chapterMeta = chapters.find((chapter) => text(chapter.id) === requestedChapter) || chapters[0];
       if (!chapterMeta) throw new Error(`Faget ${subjectId} har ingen kapitler.`);
-      const chapter = await fetchJson(chapterMeta.file);
+      const chapter = await hydrateChapter(await fetchJson(chapterMeta.file));
 
       document.title = `${chapter.title} – History Go Fagverk`;
       document.getElementById('fagverkSubjectTitle').textContent = subject.title;
@@ -194,12 +248,16 @@
       document.getElementById('fagverkLead').textContent = chapter.lead;
 
       renderChapterNav(registry, subjectId, chapter.id, placeId);
-      renderPlaceContext(registry, placeId, subjectId, chapter.id);
+      renderPlaceContext(registry, placeId);
+      renderDetails('fagverkDiagnostic', chapter.diagnosticQuestions);
       renderObjectives(chapter);
       renderContents(chapter);
       renderSections(chapter);
+      renderExamples(chapter);
+      renderMisconceptions(chapter);
       renderConcepts(chapter, selectedConcept);
-      renderSelfCheck(chapter);
+      renderApplication(chapter);
+      renderDetails('fagverkSelfCheck', chapter.selfCheck, true);
       renderCases(chapter);
       renderSources(chapter);
 

@@ -12,26 +12,41 @@ test('place-card loader requests the learning surface', () => {
 });
 
 test('relation cards expose whole-card targets and inspectable source links', () => {
-  assert.match(runtime, /class=\"hg-relation-card-main\"/);
+  assert.match(runtime, /class="hg-relation-card-main"/);
   assert.match(runtime, /data-person/);
   assert.match(runtime, /data-place/);
-  assert.match(runtime, /class=\"hg-rel-source-link\"/);
-  assert.match(runtime, /target=\"_blank\"/);
-  assert.match(runtime, /rel=\"noopener noreferrer\"/);
+  assert.match(runtime, /class="hg-rel-source-link"/);
+  assert.match(runtime, /target="_blank"/);
+  assert.match(runtime, /rel="noopener noreferrer"/);
 });
 
-test('place popup receives Fag og begreper with deep links', () => {
+test('alle stedspopuper får inngang til egen fagverkside', () => {
+  assert.match(runtime, /fagverk-sted\.html\?place=/);
+  assert.match(runtime, /Åpne stedets fagverkside/);
+  assert.match(runtime, /Stedet har sin egen fagverkside/);
+  assert.match(runtime, /insertAdjacentHTML\('afterend'/);
+});
+
+test('registrerte steder får begreper, emner og fagsider i tillegg', () => {
   assert.match(runtime, /Fag og begreper/);
   assert.match(runtime, /fagverk\.html\?/);
   assert.match(runtime, /concept/);
   assert.match(runtime, /emne/);
-  assert.match(runtime, /insertAdjacentHTML\('afterend'/);
 });
 
-test('fagverk page exposes chapters, concepts, self-check and sources', () => {
-  assert.match(page, /id=\"fagverkChapterNav\"/);
-  assert.match(page, /id=\"fagverkConceptGrid\"/);
-  assert.match(page, /id=\"fagverkSelfCheck\"/);
-  assert.match(page, /id=\"fagverkSources\"/);
+test('fagverk page exposes pedagogical layers and independent place links', () => {
+  for (const id of [
+    'fagverkDiagnostic',
+    'fagverkExamples',
+    'fagverkMisconceptions',
+    'fagverkConceptGrid',
+    'fagverkApplication',
+    'fagverkSelfCheck',
+    'fagverkCases',
+    'fagverkSources'
+  ]) {
+    assert.match(page, new RegExp(`id="${id}"`));
+  }
+  assert.match(page, /Stedene har egne fagverksider/);
   assert.match(page, /js\/fagverk\.js/);
 });
