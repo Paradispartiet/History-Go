@@ -5,12 +5,19 @@ on:
     paths:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
+      - "js/ui/place-card.js"
       - "css/place-rounds-fill-layout.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/place-card-rounds-runtime-audit.test.js"
       - "data/places/README_place_rounds.md"
+      - "docs/PLACE_PRODUCTION_CHECKLIST.md"
+      - "docs/PLACE_STANDARD.md"
+      - "docs/PLACE_POPUP_SYSTEM.md"
+      - "docs/DATA_PRODUCTION_CONTRACT.md"
+      - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
   push:
@@ -18,12 +25,19 @@ on:
     paths:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
+      - "js/ui/place-card.js"
       - "css/place-rounds-fill-layout.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/place-card-rounds-runtime-audit.test.js"
       - "data/places/README_place_rounds.md"
+      - "docs/PLACE_PRODUCTION_CHECKLIST.md"
+      - "docs/PLACE_STANDARD.md"
+      - "docs/PLACE_POPUP_SYSTEM.md"
+      - "docs/DATA_PRODUCTION_CONTRACT.md"
+      - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
   workflow_dispatch:
@@ -49,5 +63,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test 4/6 visual round contract
-        run: node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
+      - name: Test canonical four-round contract
+        run: |
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
+          node tests/place-card-rounds-runtime-audit.test.js
