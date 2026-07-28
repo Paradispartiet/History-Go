@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "1.0",
+  "capturedAt": "2026-07-28",
+  "rawSource": "GitHub Actions artifact from OpenStreetMap API map bbox and direct objects",
+  "hovedfortet": {
+    "sourceObjectId": "osm-relation:972050",
+    "tags": {
+      "building": "yes",
+      "facebook": "https://www.facebook.com/oscarsborg/",
+      "historic": "fort",
+      "name": "Hovedfortet",
+      "tourism": "attraction",
+      "type": "multipolygon"
+    },
+    "lat": 59.67346966441094,
+    "lon": 10.607055536295166,
+    "derivation": "multipolygon area centroid with inner rings subtracted in lon*cos(meanLat),lat planar space",
+    "distanceFromLegacyM": 287.5,
+    "memberRings": [
+      {
+        "role": "outer",
+        "ways": ["45773536"],
+        "projectedArea": 6.488369592716481e-07,
+        "centroid": {"lat": 59.67346647852981, "lon": 10.607060688380358}
+      },
+      {
+        "role": "inner",
+        "ways": ["45773528"],
+        "projectedArea": 1.7506295080238488e-07,
+        "centroid": {"lat": 59.67348743842444, "lon": 10.607071720630469}
+      },
+      {
+        "role": "inner",
+        "ways": ["1167956876", "1167956875", "1167956877", "1167956878"],
+        "projectedArea": 4.428011379786767e-08,
+        "centroid": {"lat": 59.67335271148929, "lon": 10.60706704452655}
+      }
+    ]
+  },
+  "hovedbatteriet": {
+    "sourceObjectId": "osm-way:528047559",
+    "tags": {
+      "building": "bunker",
+      "landuse": "military",
+      "military": "bunker",
+      "name": "Hovedbatteriet"
+    },
+    "lat": 59.67263765222266,
+    "lon": 10.607828593105598,
+    "derivation": "polygon_centroid",
+    "distanceFromHovedfortetM": 102.2
+  },
+  "torpedobatteriet": {
+    "primarySemanticPoint": {
+      "sourceObjectId": "osm-node:582909472",
+      "lat": 59.6777982,
+      "lon": 10.6077141,
+      "tags": {
+        "historic": "memorial",
+        "mapillary": "2851067735142615",
+        "name": "Torpedobatteriet på Oscarsborg festning"
+      }
+    },
+    "officialInventory": "1018",
+    "officialConstruction": "1898–1901",
+    "clusterObjects": [
+      {"sourceObjectId": "osm-node:6633288112", "lat": 59.677729, "lon": 10.6077962, "tags": {"barrier": "door", "description:no": "Ståldør, buet, bestilt 1901 for 195kr"}},
+      {"sourceObjectId": "osm-node:13369113787", "lat": 59.6772793, "lon": 10.6078188, "tags": {"access": "no", "bunker_type": "observation", "location": "underground", "military": "bunker", "name": "Siktetårn for torpedobatteri"}},
+      {"sourceObjectId": "osm-node:13369113788", "lat": 59.6773396, "lon": 10.6078041, "tags": {"access": "no", "bunker_type": "observation", "location": "underground", "military": "bunker", "name": "Siktetårn for torpedobatteri"}},
+      {"sourceObjectId": "osm-node:13369113789", "lat": 59.6774066, "lon": 10.6078041, "tags": {"access": "no", "bunker_type": "observation", "location": "underground", "military": "bunker", "name": "Siktetårn for torpedobatteri"}},
+      {"sourceObjectId": "osm-way:932328347", "lat": 59.67780528584334, "lon": 10.60774366178671, "tags": {"barrier": "wall"}},
+      {"sourceObjectId": "osm-way:541843919", "lat": 59.677921249240036, "lon": 10.607573432288977, "tags": {"building": "warehouse", "name": "Torpedobatteriverkstedet", "ref:bygningsnr": "149296964"}},
+      {"sourceObjectId": "osm-way:705954825", "lat": 59.6774712, "lon": 10.6077164, "tags": {"highway": "service", "layer": "-1", "surface": "compacted", "tunnel": "yes"}},
+      {"sourceObjectId": "osm-way:705954824", "lat": 59.678032307105205, "lon": 10.60791934382804, "tags": {"building": "bunker", "military": "bunker"}},
+      {"sourceObjectId": "osm-way:705954826", "lat": 59.67805911310282, "lon": 10.608234142557126, "tags": {"building": "bunker", "description:no": "Lager for torpedostridshoder", "military": "bunker"}}
+    ],
+    "distanceFromHovedfortetM": 482.7,
+    "representationNote": "The named memorial point is used only as a semantic secondary anchor for protected inventory 1018; surrounding door, underground tunnel, sight towers, workshop and torpedo-warhead storage cluster physically cross-check the location. No exact underground battery polygon is invented."
+  },
+  "radiusDecision": {
+    "previousRadiusM": 360,
+    "candidateRadiusM": 520,
+    "hovedbatterietDistanceM": 102.2,
+    "torpedobatterietDistanceM": 482.7,
+    "note": "520 m includes Hovedfortet, Hovedbatteriet and the Torpedobatteriet secondary anchor while excluding distant mainland batteries. It is not the legal protected landscape."
+  },
+  "files": {
+    "hovedfortetExtract": "osm-relation-972050-hovedfortet-extract.xml",
+    "hovedbatterietFull": "osm-way-528047559-hovedbatteriet-full.xml",
+    "torpedobatterietClusterExtract": "osm-torpedobatteriet-cluster-extract.xml"
+  },
+  "sha256": {
+    "osm-relation-972050-hovedfortet-extract.xml": "8a6c598637f9ccac19a35932f529821c40688b137f84646f2760b2068ff93942",
+    "osm-way-528047559-hovedbatteriet-full.xml": "3dcc47653fda940fbaad85612536a2f76283959f5f1809190f471ae18aede854",
+    "osm-torpedobatteriet-cluster-extract.xml": "48883b9c6a5bc077339da7b568212f1a523e9d1dd124828616a11efb688ace3d"
+  }
+}
