@@ -23,6 +23,24 @@ export interface PlaceTasksProfile {
   [key: string]: unknown;
 }
 
+export interface PlaceTrainingProfileExercise {
+  id?: string;
+  title?: string;
+  instruction?: string;
+  why?: string;
+  duration_minutes?: number;
+  intensity?: string;
+  [key: string]: unknown;
+}
+
+export interface PlaceTrainingProfile {
+  title?: string;
+  summary?: string;
+  safety?: string;
+  exercises?: PlaceTrainingProfileExercise[];
+  [key: string]: unknown;
+}
+
 export interface PlaceForNaProfile {
   title?: string;
   before?: string;
@@ -71,6 +89,7 @@ export interface Place {
   nature_profile?: PlaceNatureProfile;
   for_na?: PlaceForNaProfile;
   tasks_profile?: PlaceTasksProfile;
+  training_profile?: PlaceTrainingProfile;
   relations?: unknown[];
   people?: unknown[];
   wonderkammer?: unknown;
