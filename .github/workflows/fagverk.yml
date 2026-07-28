@@ -7,6 +7,8 @@ on:
       - 'fagverk.html'
       - 'fagverk-sted.html'
       - 'merke.html'
+      - 'data/categories/category_contract.json'
+      - 'data/fag/fag_manifest.json'
       - 'data/fagverk/**'
       - 'data/places/**'
       - 'data/fag/politikk/merke_politikk.html'
@@ -39,10 +41,18 @@ on:
       - 'css/politikk-merke-role.css'
       - 'css/header-learning-menu.css'
       - 'css/place-learning-surface.css'
+      - 'DOCS.md'
+      - 'README/README.pensum.md'
+      - 'README/fagstrukturREADME.md'
+      - 'docs/FACTUALITY_CONTRACT.md'
+      - 'docs/DATA_PRODUCTION_CONTRACT.md'
+      - 'docs/SUBJECT_FILE_CONTRACT.md'
+      - 'docs/TYPESCRIPT_FIRST_POLICY.md'
       - 'docs/FAGVERK.md'
       - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_PLACE_DESIGN.md'
       - 'scripts/audit-place-images.mjs'
+      - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-content.test.mjs'
       - 'tests/fagverk-portal.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
@@ -59,7 +69,7 @@ permissions:
 
 jobs:
   validate:
-    name: Validate canonical subject, textbook, category design, images and links
+    name: Validate canonical subjects, textbook, category design, images and links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -84,8 +94,10 @@ jobs:
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
           node --check scripts/audit-place-images.mjs
-      - name: Validate canonical politics, textbook data, category design, links and place integration
+          node --check tests/fagverk-documentation-contract.test.mjs
+      - name: Validate canonical subjects, documentation, textbook data, category design, links and place integration
         run: |
+          node --test tests/fagverk-documentation-contract.test.mjs
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-content.test.mjs
           node --test tests/fagverk-portal.test.mjs
