@@ -75,6 +75,33 @@ jobs:
       - uses: actions/checkout@v4
         with:
           show-progress: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            DOCS.md
+            docs/FAGVERK.md
+            docs/FAGVERK_NAVIGATION.md
+            docs/SUBJECT_FILE_CONTRACT.md
+            docs/FACTUALITY_CONTRACT.md
+            docs/DOMAIN_CONTRACT.md
+            docs/DATA_PRODUCTION_CONTRACT.md
+            docs/KNOWLEDGE_ARCHITECTURE.md
+            docs/FAGVERK_PLACE_DESIGN.md
+            docs/TYPESCRIPT_FIRST_POLICY.md
+            docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md
+            README/README.pensum.md
+            README/fagstrukturREADME.md
+            README/README_DEV.md
+            README/TEAM_WORKFLOW.md
+            data/categories/category_contract.json
+            data/fag/fag_manifest.json
+            data/fagverk/fagverk_portal.json
+            data/fagverk/fagverk_registry.json
+            data/knowledge/knowledge_system_policy_v1.json
+            data/knowledge/knowledge_unit_schema_v1.json
+            data/quiz/quiz_knowledge_delivery_contract_v1.json
+            data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md
+            data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json
+            tests/fagverk-documentation-contract.test.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
