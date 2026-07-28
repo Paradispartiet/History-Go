@@ -6,38 +6,38 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `c4b5e760bc85476de2a4569853b4d059219c426b8f3c7c6fe5df67f45ed81cf9`
+Source fingerprint: `68c9ca18197fec400239ee64b3f43482824ddbea311f999ee1bc120beb142984`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
 | Personer | 1370 |
-| Presentasjon complete | 42 |
+| Presentasjon complete | 46 |
 | Presentasjon strong | 341 |
-| Presentasjon partial | 967 |
+| Presentasjon partial | 963 |
 | Presentasjon sparse | 20 |
-| People Profile v1 ready | 4 |
-| Legacy uten v1-claims | 1366 |
+| People Profile v1 ready | 8 |
+| Legacy uten v1-claims | 1362 |
 | Ødelagte bildereferanser | 306 |
 | Eksplisitt initialfallback | 998 |
 | Implisitt initialfallback | 23 |
-| Gjennomsnittspoeng | 64.1 |
+| Gjennomsnittspoeng | 64.2 |
 
 ## Feltdekning
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 60 | 4.4 % |
+| identity | 64 | 4.7 % |
 | popupDesc | 1344 | 98.1 % |
-| lifeData | 42 | 3.1 % |
-| contributionsDeclared | 42 | 3.1 % |
-| educationDeclared | 42 | 3.1 % |
+| lifeData | 45 | 3.3 % |
+| contributionsDeclared | 46 | 3.4 % |
+| educationDeclared | 46 | 3.4 % |
 | practiceDeclared | 1351 | 98.6 % |
 | placeGrounding | 1370 | 100 % |
-| sources | 372 | 27.2 % |
+| sources | 376 | 27.4 % |
 | imageContract | 1064 | 77.7 % |
-| profileStandard | 4 | 0.3 % |
+| profileStandard | 8 | 0.6 % |
 
 ## Kategorier
 
@@ -45,7 +45,7 @@ Source fingerprint: `c4b5e760bc85476de2a4569853b4d059219c426b8f3c7c6fe5df67f45ed
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | sport | 323 | 0 | 23 | 300 | 0 | 0 | 323 | 62.3 |
 | historie | 216 | 1 | 95 | 120 | 0 | 0 | 216 | 64.2 |
-| litteratur | 172 | 24 | 19 | 129 | 0 | 4 | 168 | 67.8 |
+| litteratur | 172 | 28 | 19 | 125 | 0 | 8 | 164 | 68.7 |
 | musikk | 121 | 0 | 14 | 107 | 0 | 0 | 121 | 62.2 |
 | politikk | 106 | 3 | 40 | 63 | 0 | 0 | 106 | 66 |
 | naeringsliv | 81 | 0 | 28 | 34 | 19 | 0 | 81 | 58.4 |
@@ -64,8 +64,8 @@ Source fingerprint: `c4b5e760bc85476de2a4569853b4d059219c426b8f3c7c6fe5df67f45ed
 
 | Primærsted | Uferdige/legacy | Sparse | Partial | Strong | Snitt | Første profiler |
 |---|---:|---:|---:|---:|---:|---|
-| nationaltheatret | 113 | 0 | 92 | 1 | 68.8 | Andrea Bræin Hovig (62; legacy_unreviewed), Bjørn Skagestad (62; legacy_unreviewed), Bjørn Sæther (62; legacy_unreviewed), Carl Fredrik Engelstad (62; legacy_unreviewed), Charles Marowitz (62; legacy_unreviewed) |
 | holmenkollen_nasjonalanlegg | 109 | 0 | 109 | 0 | 61.8 | Kjetil André Aamodt (57; legacy_unreviewed), Lasse Kjus (57; legacy_unreviewed), Marit Bjørgen (57; legacy_unreviewed), Therese Johaug (57; legacy_unreviewed), Adam Małysz (62; legacy_unreviewed) |
+| nationaltheatret | 109 | 0 | 88 | 1 | 69.1 | Charles Marowitz (62; legacy_unreviewed), David Knudsen (62; legacy_unreviewed), Edith Roger (62; legacy_unreviewed), Einar Skavlan (62; legacy_unreviewed), Eindride Eidsvold (62; legacy_unreviewed) |
 | bislett_stadion | 76 | 0 | 76 | 0 | 61.6 | Andreas Thorkildsen (57; legacy_unreviewed), Ingrid Kristiansen (57; legacy_unreviewed), Jakob Ingebrigtsen (57; legacy_unreviewed), Karsten Warholm (57; legacy_unreviewed), Trine Hattestad (57; legacy_unreviewed) |
 | det_norske_teatret | 70 | 0 | 70 | 0 | 62 | Amund Rydland (62; legacy_unreviewed), Ane Dahl Torp (62; legacy_unreviewed), Anton Heiberg (62; legacy_unreviewed), Arne Garborg (62; legacy_unreviewed), Arne Lygre (62; legacy_unreviewed) |
 | ullevaal_stadion | 55 | 0 | 55 | 0 | 61.3 | Ada Hegerberg (57; legacy_unreviewed), Cecilie Leganger (57; legacy_unreviewed), Erling Braut Haaland (57; legacy_unreviewed), Lyn Fotball (57; legacy_unreviewed), Nils Arne Eggen (57; legacy_unreviewed) |
