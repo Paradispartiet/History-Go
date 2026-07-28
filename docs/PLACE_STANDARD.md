@@ -1,48 +1,49 @@
 # History GO — stedstandard
 
-Dette dokumentet definerer hva et History GO-sted bør inneholde, og hvordan vi vurderer om et sted er stub, basis, spillbart, rikt, kampanje eller premium.
+Status: **canonical produktstandard for et History GO-sted**  
+Eier: `place_product_standard`  
+Sist kontrollert: **2026-07-28**
 
-Det bygger på eksisterende kontrakter:
+Dette dokumentet definerer **hva et History GO-sted er og hvilke produktflater et rikt sted kan ha**.
 
+Den konkrete arbeidsrekkefølgen for å ferdigstille ett sted ligger i:
+
+- `docs/PLACE_PRODUCTION_CHECKLIST.md`
+
+Bindende nabokontrakter:
+
+- `docs/FACTUALITY_CONTRACT.md`
 - `docs/DATA_PRODUCTION_CONTRACT.md`
 - `data/places/README_place_rounds.md`
-- `docs/APP_STRUCTURE_INDEX.md`
 - `docs/PLACE_POPUP_SYSTEM.md`
-- `README/quizREADME.md`
-- `data/wonderkammer/README.md`
+- `docs/coordinates/coordinate-source-contract-v1.md`
+- `docs/people-of-places-method.md`
 - `docs/COMPLETION_DEFINITIONS.md`
 - `docs/PROGRESSION_MODEL.md`
 
-Gjelder History GO-spillet. Civication er eget prosjekt og inngår ikke i denne stedstandarden.
+History GO-stedet er navet mellom kart, PlaceCard, fagverk, popupkunnskap, samleobjekter, handlinger, mennesker, quiz, ruter og progresjon.
 
 ---
 
-## 1. Hvorfor stedstandard?
+## 1. Grunnmodell
 
-Steder er navet i History GO.
+Ett fysisk/historisk objekt skal ha ett canonical place-object.
 
-Et sted kan brukes av kart, PlaceCard, quiz, observations, badges, people, Wonderkammer, ruter, Nearby, favoritter, Social Meet og Spotmeeting.
+Harde regler:
 
-Derfor må det være tydelig hva et komplett sted er.
-
----
-
-## 2. Harde dataregler
-
-1. Ett sted skal ha én canonical place object.
-2. Place ID skal ikke dupliseres på tvers av kategorifiler.
-3. `category` er primært badge/domain.
-4. Bruk `underbadge_ids` for underbadges.
-5. Nye places skal ligge i manifest-loadede source-filer under `data/places/<category>/...`.
-6. `data/places/places_index.json` er build-output og skal ikke håndredigeres.
-7. Cross-domain-relevans skal løses med people, relations, quiz, emne_ids, leksikon, Wonderkammer, ruter, works eller overlays — ikke dupliserte place objects.
-8. Progresjonsendrende kode må dispatch’e `updateProfile`.
+1. Place-ID er unik.
+2. Canonical source er manifest-loadet.
+3. `category` er én canonical primærkategori.
+4. Tverrfaglighet uttrykkes gjennom eide koblingssystemer, ikke dupliserte places.
+5. Koordinatet skal representere det faktiske History GO-objektet etter Coordinate Source Contract.
+6. Brukerrettede fakta er source-led.
+7. Genererte indekser er build-output og håndredigeres ikke.
 
 ---
 
-## 3. Minimumsfelt
+## 2. Minimum place-object
 
-Et sted må minst ha:
+Et kart-/basissted trenger minst:
 
 ```js
 {
@@ -55,13 +56,13 @@ Et sted må minst ha:
 }
 ```
 
-Dette gjør stedet synlig og søkbart, men ikke nødvendigvis spillbart.
+Dette gjør ikke automatisk stedet innholdsmessig ferdig.
 
 ---
 
-## 4. Anbefalt komplett sted
+## 3. Felter et rikt sted kan bruke
 
-Et rikt/spillbart sted bør ha:
+Felt brukes når de er relevante og dokumenterte — ikke for completeness.
 
 ```js
 {
@@ -79,7 +80,7 @@ Et rikt/spillbart sted bør ha:
   cardImage,
   frontImage,
   emne_ids,
-  quiz_profile,
+  rounds,
   spatial_profile,
   temporal_profile,
   subplaces,
@@ -89,286 +90,342 @@ Et rikt/spillbart sted bør ha:
   people_ids,
   related_place_ids,
   route_ids,
-  wonder_item_ids,
   tags,
   source_notes
 }
 ```
 
-Feltlisten er en produktstandard, ikke et krav om at alle eksisterende steder må migreres samtidig.
+Canonical data kan også ligge i tilknyttede systemer i stedet for inne i place-recorden: People, Works, Brands, Stories, Leksikon, Før/etter, Lesespor, quiz, observations, routes, events og På stedet-profiler.
 
 ---
 
-## 5. Modenhetsnivåer
+## 4. De tre brukerrettede stedflatene
 
-| Nivå | Navn | Krav | Spillrolle |
-|---|---|---|---|
-| 0 | Stub | id/navn, ofte ufullstendig | peker/referanse |
-| 1 | Basis | koordinat + kategori + korttekst | kartobjekt |
-| 2 | Presentabelt | god PlaceCard/popup-tekst + bilde der mulig | lesbart sted |
-| 3 | Spillbart | quiz/oppgave/observasjon eller annen handling + progresjon | faktisk spillobjekt |
-| 4 | Rikt | emner, people, leksikon/Wonderkammer, relasjoner eller badges | samlingsobjekt |
-| 5 | Kampanje | del av rute med stopp/progresjon/belønning | kampanjested |
-| 6 | Premium | tekst, bilde, quizprofil, people, rute, funn, NextUp/Nearby-verdi og trygg social-kontekst der relevant | fullverdig History GO-sted |
+Stedsarkitekturen har tre tydelige roller.
 
----
+### Rundinger
 
-## 6. Spillbart sted
+Visuelle samlinger av identifiserbare ting med bilder.
 
-Et sted er spillbart når det har:
-
-1. gyldig koordinat og kategori
-2. PlaceCard/popup som kan åpnes
-3. tydelig stedstekst
-4. minst én faktisk spillhandling
-5. progresjon eller learning event
-6. synlig status/belønning i profil, PlaceCard, Wonderkammer/leksikon, rute eller Nearby
-
-Minimum spillflyt:
+Canonical palett:
 
 ```text
-Åpne sted → gjør handling → lagre progresjon/event → vis belønning/status → foreslå neste steg
+Badges
+People
+Works
+Objects
+Details
+Spots
+Nature
+Brands
 ```
 
----
+Et ferdig sted viser nøyaktig **4 eller 6** rundinger. Badges er obligatorisk.
 
-## 7. PlaceCard-standard
+### På stedet
 
-PlaceCard er stedets kontrollrom, men må følge eksisterende appstruktur.
+Hva som skjer eller kan gjøres ved stedet:
 
-`index.html` eier PlaceCard/bottom sheet og quiz modal flow. `MapView` skal koordinere eksisterende DOM/runtime, ikke erstatte place card, kartmotor eller quizmotor.
-Den rike stedspopupen følger den bindende type- og presentasjonskontrakten i `docs/PLACE_POPUP_SYSTEM.md`. PlaceCard skal forbli kompakt; popupen kan vise `popupDesc`, strukturerte mål, delsteder, historiske lag, naturprofil og kildeoversikt når place-dataene faktisk finnes.
+- Events
+- Møter / Social Meet
+- Kunnskapsmøte / Spotmeeting
+- Oppgaver
+- Trening
+- Lek
 
+Quiz, Observer, Notat og Rute kan ha egne handlingsflows.
 
-PlaceCard bør vise:
+### Stedspopup
 
-- navn
-- kategori
-- bilde
-- korttekst/langtekst
-- status/medalje/badge
-- primær handling
-- people
-- works
-- badges
-- før_nå
-- fortellinger
-- leksikon
-- favoritt
-- Social Meet / Spotmeeting der trygg og manuelt initiert
+Kunnskapssiden med fanene:
 
----
+```text
+Om
+Historie
+Fortellinger
+Før/etter
+Nyheter
+Lesespor
+Kilder
+Mer
+```
 
-## 8. PlaceCard-rundinger
-
-`rounds` er UI, ikke kategori- eller progresjonslogikk.
-
-Canonical round IDs styres av `data/places/README_place_rounds.md`.
-
-Viktige regler:
-
-- Nye data trenger normalt ikke sette `rounds`; kategori-profilen bestemmer gridet.
-- `rounds` skal ikke brukes til fagklassifisering.
-- `rundinger` er legacy alias og skal ikke brukes i nye data.
-- `wonderkammer` er ikke egen hovedrunding; Wonderkammer-innhold ligger under `leksikon`-flowen / leksikon-huben.
-- `observations` er ikke egen hovedrunding; observasjoner er handling/flyt utenfor gridet.
-- `tasks` brukes bare når brukeren faktisk kan gjøre en konkret fysisk oppgave på stedet.
-- `før_nå` dekker visuelt/stedlig før/etter-innhold, historiske bilder, dagens bilde og transformasjon.
-- `routes` er ikke PlaceCard-runding; ruter håndteres i egen Rute-knapp/footer, Nearby/Utforsk og ruteflyt.
+Disse tre flatene skal ikke blandes sammen for å fylle UI.
 
 ---
 
-## 9. Tekststandard
+## 5. PlaceCard
+
+PlaceCard er det kompakte kontrollrommet for stedet.
+
+Det skal kunne vise:
+
+- navn og kategori;
+- korrekt stedbilde;
+- kort stedstekst;
+- 4 eller 6 canonical rundinger;
+- På stedet-flaten;
+- relevante handlingsknapper;
+- favoritt/status etter eksisterende runtime.
+
+Kunnskapsartikler skal ikke presses inn i PlaceCard; de hører i stedspopupen.
+
+---
+
+## 6. Badges og fagverk
+
+`category` er primær fag-/badgeidentitet.
+
+`underbadge_ids` brukes for canonical underbadges.
+
+Badges-rundingen er obligatorisk og skal åpne:
+
+```text
+fagverk-sted.html?place=<place_id>
+```
+
+Fagverksiden skal forstå stedet gjennom canonical kategori/emner og skal ikke kreve en parallell place-record.
+
+---
+
+## 7. Rundinger
+
+Canonical kontrakt eies av `data/places/README_place_rounds.md`.
+
+Regler:
+
+- nøyaktig 4 eller 6;
+- `badges` alltid med;
+- alle valgte rundinger er stedsspesifikke;
+- alle valgte rundinger er bildeklare;
+- Nature er valgfri;
+- Brands betyr bedrifter og kjente merker knyttet til stedet;
+- Civication er ikke egen runding;
+- Wonderkammer er ikke egen runding;
+- Leksikon, Fortellinger og Før/etter er popupkunnskap;
+- Tasks/Training/Play er På stedet;
+- sportshendelser, rekorder og mesterskap er kunnskap/historie, ikke Sports-runding;
+- `rounds` er presentasjonskuratering, ikke fagklassifisering.
+
+Den konkrete kategori→rundingmatrisen og ferdigchecken ligger i `PLACE_PRODUCTION_CHECKLIST.md`.
+
+---
+
+## 8. Tekststandard
 
 ### `desc`
 
-Kort tekst. Bør være 1–2 setninger.
+Kort og presis inngang som svarer:
 
-Skal svare på:
-
-- Hva er dette stedet?
-- Hvorfor er det relevant i History GO?
+1. Hva er stedet?
+2. Hvorfor er det relevant i History GO?
 
 ### `popupDesc`
 
-Lengre tekst. Bør gi historisk, kulturell eller faglig kontekst, forklare hvorfor stedet betyr noe, og vise hva spilleren bør legge merke til.
+Lengre kildebelagt forklaring av stedets historiske/faglige betydning og observerbare egenart.
 
-`popupDesc` skal ikke bare være leksikon. Den skal gjøre stedet observerbart og spillbart.
+Regler:
 
----
-
-## 10. Quizstandard
-
-Et spillbart sted bør ha stedsspesifikk quiz eller oppgave.
-
-Quiz bør teste:
-
-- hva stedet er
-- hvorfor det er viktig
-- hva man kan observere
-- hvilket emne/kategori det hører til
-- hvordan det skiller seg fra lignende steder
-
-Quiz skal være source-led:
-
-```text
-external/local source → concrete claim → story unit → question
-```
+- ingen fakta fra gjetning;
+- ingen generisk turisttekst som skjuler hva place-recorden faktisk representerer;
+- ikke dupliser Leksikon/Stories ordrett;
+- stedsspesifisitet foran generell kategoriinformasjon.
 
 ---
 
-## 11. Emnekobling
+## 9. Strukturerte place-profiler
 
-Steder bør kobles til emner via `emne_ids` der dette er støttet.
+### `spatial_profile`
 
-Regel:
+Kildebelagte mål og fysisk form. Gameplay-radius `r` er ikke areal.
 
-- emner er mikro-kunnskap
-- quiz tester emner
-- steder konkretiserer fagkartet
-- observations gjør kunnskap situert
-- courses/pensum tolker erfaring til progresjon
+### `temporal_profile`
 
----
+Få tydelige hovedmilepæler når ett `year` ikke er nok. Detaljert chronology hører i Historie.
 
-## 12. People-kobling
+### `subplaces`
 
-Et rikt sted bør kunne kobles til personer.
+Fysiske deler/soner under hovedstedet. Et subplace blir ikke automatisk et nytt canonical Place og kan være source for Spots.
 
-Personkobling bør svare på:
+### `history_layers`
 
-- hvem er relevant her?
-- hva er relasjonen til stedet?
-- er personen oppdaget eller låst opp her?
-- vises personen i PlaceCard/popup?
-- går personen til profil/samling/Wonderkammer?
+Kort historisk lagdeling til Historie-fanen.
 
-Dataregel:
+### `nature_profile`
 
-- Ikke dupliser people.
-- Bruk manifest-loadede people-filer.
-- `placeId` er primær place.
-- `places[]` kan inneholde flere relevante anchors.
-- Alle references må peke til eksisterende places.
+Landskap, naturtype, habitat, sesong og observerbare naturtrekk til Om. Dette er ikke automatisk Nature-runding.
+
+### `source_summary`
+
+Brukerrettede sikre kilder til Kilder-fanen; interne audits skal ikke lekke hit.
 
 ---
 
-## 13. Wonderkammer / leksikon-kobling
+## 10. Stedstyper og researchprioritet
 
-Wonderkammer-funn bør være konkrete stedsskatter.
+Typeprofil er researchguide, ikke krav om kunstig feltdekning.
 
-Bruk regelen fra Wonderkammer-README:
-
-```text
-først tingen → så undringen → så handlingen → så samlingen
-```
-
-Nye Wonderkammer-entries bør helst være `actual_site_treasure`.
-
-I PlaceCard skal dette primært vises via `leksikon`-flowen/huben, ikke som egen canonical `wonderkammer`-runding.
-
----
-
-## 14. Rute-kobling
-
-Et sted kan være del av én eller flere ruter.
-
-For rute-klare steder bør data/kontrakt kunne svare på:
-
-- hvilken rute?
-- hvilket stopp?
-- obligatorisk eller valgfritt?
-- online, fysisk eller begge?
-- hvilken handling fullfører stoppet?
-- hvilken belønning/progresjon gis?
+| Stedstype | Viktige spørsmål |
+| --- | --- |
+| Park / grøntområde | areal, topografi, geologi, delsteder, landskap, historiske lag, natur |
+| Gate / vei / allé | start/slutt, lengde, segmenter, kryss, adresser, infrastruktur, navnehistorie |
+| Bygning | arkitekt, byggeår, stil, materialer, konstruksjon, høyde, etasjer, bruk, vern |
+| Torg / plass / byrom | avgrensning, areal, fasader, monumenter, bruk, ombygging |
+| Elv / bekk / innsjø / kyst | lengde/vannflate, kilde/utløp, natur, regulering, industri, restaurering |
+| Rute / sti | start/slutt, lengde, etapper, høydeprofil, underlag, sesong, sikkerhet |
+| Institusjon / anlegg | grunnlagt, funksjon, bygninger, samlinger, saler, aktører, milepæler |
+| Kulturminne / monument / kunstverk | opphavsperson, år, materiale, mål, motiv, plassering, vern |
+| Arkeologisk / historisk lokalitet | datering, synlige strukturer, funn, undersøkelser, vern |
+| Bydel / strøk / område | avgrensning, delområder, hovedakser, landskap, utviklingsfaser, møteplasser |
+| Idrettsanlegg | åpning, kapasitet, banemål, konstruksjon, hjemmebrukere, historiske hendelser |
+| Industrielt / teknisk sted | funksjon, driftsperiode, maskiner, energi, størrelse, råvarer, transport, gjenbruk |
 
 ---
 
-## 15. Nearby / NextUp-kobling
+## 11. People
 
-Et godt sted bør kunne anbefales fordi det:
+People-koblinger følger `docs/people-of-places-method.md`.
 
-- ligger nær spilleren eller offentlig hjemsted
-- er ufullført
-- inngår i aktiv rute
-- låser opp person/funn
-- gir kategori-progresjon
-- er favoritt
-- passer valgt interesse
+Et rikt sted bør undersøkes for relevante:
 
-Nearby skal ikke bare sortere avstand. Det skal gi spilleren neste gode handling.
+- grunnleggere/initiativtakere;
+- arkitekter/kunstnere/skapere;
+- eiere/ledere;
+- beboere/arbeidende;
+- utøvere/forskere/politikere/aktivister med særskilt dokumentert forbindelse;
+- eponymer/minnepersoner.
 
----
-
-## 16. Social Meet / Spotmeeting-kobling
-
-Et sted kan være Spotmeeting-kontekst hvis:
-
-1. brukeren starter flowen manuelt
-2. context er trygt og forklarbart
-3. det ikke brukes live-posisjon, nearby people, distance ranking eller public visit history
-4. meldingen er preset-only
-5. privacy guards godkjenner handlingen
+En kjent person med svak forbindelse er dårligere enn ingen People-kobling.
 
 ---
 
-## 17. Offentlig hjemsted
+## 12. Works, Objects, Details og Spots
 
-Et sted kan brukes som offentlig hjemsted hvis:
+### Works
 
-- det er et eksisterende History GO-sted
-- det ikke er privat adresse
-- det har lat/lon/radius
-- brukeren kan endre det
-- synlighet/privacy er tydelig
+Selvstendige skapte verk med dokumentert stedskobling.
 
----
+### Objects
 
-## 18. Sted QA
+Fysiske identifiserbare ting: artefakter, funn, maskiner, kjøretøy, instrumenter, drakter, produkter, dokumentobjekter osv.
 
-Før et sted regnes som spillbart, sjekk:
+### Details
 
-1. JSON parser.
-2. Place ID er unik.
-3. Source-filen er manifest-loadet.
-4. `category` er gyldig canonical domain.
-5. `underbadge_ids` finnes i relevant badgefil hvis brukt.
-6. Koordinat og radius gir mening.
-7. PlaceCard åpner.
-8. Quiz/oppgave/observasjon starter.
-9. Quiz-target peker til eksisterende place/person.
-10. People references peker til eksisterende people/places.
-11. Wonderkammer-entries validerer hvis brukt.
-12. Rute references validerer hvis brukt.
-13. `places_index.json` regenereres fra source ved behov.
-14. Progresjonsendring trigger `updateProfile`.
+Små fysiske ting brukeren kan oppdage: skilt, symboler, inskripsjoner, ornamenter, skadespor og andre konkrete detaljer.
+
+### Spots
+
+Fysiske delpunkter: rom, porter, tårn, broer, scener, tribuner, tunneler, bunkere, utsiktspunkter osv.
+
+Alle er visuelle samletyper og skal ha bildeklart innhold når de velges som runding.
 
 ---
 
-## 19. Sted er ferdig når
+## 13. Nature
 
-Et sted kan kalles ferdig når:
+Nature-rundingen brukes bare når stedet har dokumenterte naturentiteter/fenomener som gir selvstendig samleverdi.
 
-- det har canonical data
-- det har god PlaceCard
-- det har en tydelig handling
-- det gir status/belønning
-- det kan vises i profil/Nearby/Wonderkammer/rute der relevant
-- det bryter ikke data-, quiz-, place-rounds-, social- eller privacy-kontrakter
+Det er ikke nok at stedet står ute eller har et tre i nærheten.
 
-Kort sagt:
+Minneskilt, plaketter, bygg og urbane steder skal ikke få Nature som filler.
 
-> Et History GO-sted er ikke bare et punkt på kartet. Det er et spillobjekt med handling, mening, progresjon og koblinger.
+`nature_profile` i Om og Nature-rundingen er to forskjellige roller.
 
+---
 
-## Minneskilt og plaketter: ingen automatisk Nature
+## 14. Brands
 
-For canonical steder der selve gameplay-objektet er et blått skilt, minneskilt, minneplakett eller en tilsvarende liten minnemarkør, gjelder en fast produksjonsregel:
+Brands beholder eksisterende datamodell og betydning:
 
-- sett `rounds_exclude: ["nature"]`;
-- ikke opprett `nature_profile`;
-- ikke bruk tilfeldig bynatur, vær, trær, fasadematerialer eller omgivelsesbeskrivelser som fyllstoff;
-- ikke erstatt Nature med en annen irrelevant handlingsrunding bare for å beholde ni ikoner;
-- fyll i stedet de faglig relevante rundingene rundt personen, historien, verket, minnet, aktørene og før/nå-laget.
+> **bedrifter og kjente merker med dokumentert kobling til stedet**
 
-Denne regelen gjelder minnemarkøren som stedstype uavhengig av om primærkategorien er historie, politikk, litteratur, populærkultur eller et annet kulturfag.
+Brands er ikke generell aktørkategori og skal ikke brukes som restplass for klubber, institusjoner, skilt eller objekter.
+
+Eksisterende canonical Brands skal gjenbrukes.
+
+---
+
+## 15. Wonderkammer og Civication
+
+Wonderkammer er legacy-migreringsgrunnlag, ikke ny produksjonsmodell eller runding.
+
+Legacy entries flyttes etter faktisk type til Objects, Details, Spots, People, Works, Nature, På stedet, relations/NextUp, Historie eller Stories.
+
+Civication Store er eget spillsystem, ikke en runding. Et Store-element kan også være et Object når det er en virkelig fysisk, stedsspesifikk og visuelt kvalifisert ting.
+
+---
+
+## 16. Quiz og handlinger
+
+Et sted bør vurderes for faktisk spillhandling, men handling skal være relevant og trygg.
+
+Quiz skal være source-led og stedsspesifikk.
+
+`tasks_profile`, `training_profile` og `play_profile` presenteres under På stedet når de passer.
+
+Quiz, Observer, Notat og Rute er egne flows og skal ikke gjøres til rundinger.
+
+---
+
+## 17. Ruter, Nearby og NextUp
+
+Et sted kan inngå i ruter og anbefalingsflyt når koblingen faktisk gir mening.
+
+Kontroller:
+
+- route-ID/stopp;
+- relations/related place;
+- Nearby-presentasjon;
+- søk/aliaser;
+- at NextUp peker til et faglig/geografisk meningsfullt neste steg.
+
+Ikke opprett koblinger bare for completeness.
+
+---
+
+## 18. Social Meet / Spotmeeting
+
+Et sted kan være kontekst for sosial flyt bare gjennom eksisterende privacy- og sikkerhetsgrenser.
+
+Steddata skal ikke introdusere live-posisjon, nearby people, offentlig besøkshistorikk eller andre nye eksponeringsflater.
+
+---
+
+## 19. Modenhetsnivåer
+
+| Nivå | Navn | Kjennetegn |
+| --- | --- | --- |
+| 0 | Stub | referanse/ufullstendig objekt |
+| 1 | Basis | identitet + koordinat + kategori + korttekst |
+| 2 | Presentabelt | god PlaceCard/popup og korrekt bilde der tilgjengelig |
+| 3 | Spillbart | minst én reell handling/læringsflow + eksisterende progresjonskobling |
+| 4 | Rikt | relevante samlinger, kunnskapsfaner, fagkoblinger og relasjoner |
+| 5 | Kampanje | aktiv rolle i rute/kampanjeflyt |
+| 6 | Premium | helhetlig, kildebelagt, visuelt og spillmessig rikt sted uten kunstig filler |
+
+Modenhet er ikke faktaverifikasjon. Et rikt feltsett med svake kilder er ikke et ferdig sted.
+
+---
+
+## 20. Ferdigdefinisjon
+
+Et sted er ferdig i sted-for-sted-produksjonen når:
+
+- canonical identitet/source er avklart;
+- faktapåstander er kildekontrollert;
+- koordinatet er riktig representasjon;
+- kategori/badges/fagverk er riktig;
+- PlaceCard har korrekt tekst/bilde;
+- alle åtte popupfaner er vurdert;
+- nøyaktig 4 eller 6 bildeklare rundinger er kuratert;
+- På stedet og øvrige handlinger er vurdert;
+- People/Works/Brands/relations/Leksikon og legacy Wonderkammer er vurdert;
+- relevante bilder er identitetskontrollert;
+- data/UI/referanser/CI er kontrollert;
+- PR-en gjelder dette stedet og er merget.
+
+Den bindende, kopierbare sluttlisten er:
+
+- `docs/PLACE_PRODUCTION_CHECKLIST.md`
+
+> **Et History GO-sted er ikke ferdig fordi det har mange felt. Det er ferdig når hele den relevante stedsflaten er kontrollert, alt publisert innhold er dokumenterbart, og ingenting er fylt kunstig bare for å se komplett ut.**
