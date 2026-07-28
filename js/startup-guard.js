@@ -76,6 +76,7 @@
     let timer = null;
     const finish = () => {
       settled = true;
+      node.dataset.hgLoaded = "1";
       if (trace.pendingScript === label) trace.pendingScript = null;
       if (timer) clearTimeout(timer);
     };
@@ -89,16 +90,54 @@
     return nativeAppendChild.call(this, node);
   };
 
+  function scheduleIdle(task) {
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(task, { timeout: 1000 });
+    } else {
+      setTimeout(task, 32);
+    }
+  }
+
   function flushDeferredScripts() {
     const scripts = deferredScripts.splice(0);
-    for (const script of scripts) {
-      try {
-        script.dataset.hgDeferredBoot = "0";
-        nativeAppendChild.call(document.head, script);
-      } catch (error) {
-        console.warn("[startup-guard] deferred script load failed", script.src, error);
+    trace.deferredFlushStartedAt = Date.now();
+    trace.deferredFlushCount = scripts.length;
+
+    const loadNext = (index) => {
+      if (index >= scripts.length) {
+        trace.deferredFlushFinishedAt = Date.now();
+        return;
       }
-    }
+
+      scheduleIdle(() => {
+        const script = scripts[index];
+        const label = normalizeUrl(script?.src)?.pathname || String(script?.src || "");
+        let advanced = false;
+        let fallbackTimer = null;
+        const advance = () => {
+          if (advanced) return;
+          advanced = true;
+          if (fallbackTimer) clearTimeout(fallbackTimer);
+          scheduleIdle(() => loadNext(index + 1));
+        };
+
+        try {
+          script.dataset.hgDeferredBoot = "0";
+          script.addEventListener("load", advance, { once: true });
+          script.addEventListener("error", advance, { once: true });
+          fallbackTimer = setTimeout(() => {
+            trace.timeouts.push({ type: "deferred-script", url: label, ts: Date.now() });
+            advance();
+          }, SCRIPT_TIMEOUT_MS);
+          nativeAppendChild.call(document.head, script);
+        } catch (error) {
+          console.warn("[startup-guard] deferred script load failed", script.src, error);
+          advance();
+        }
+      });
+    };
+
+    loadNext(0);
   }
 
   function recordSlowStartup() {
