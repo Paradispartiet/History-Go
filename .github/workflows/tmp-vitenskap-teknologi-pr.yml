@@ -26,12 +26,11 @@ jobs:
         run: |
           python3 <<'RUNNER'
           import pathlib
-          import textwrap
           workflow = pathlib.Path('.github/workflows/tmp-vitenskap-teknologi-merge.yml').read_text(encoding='utf-8')
           marker = "python3 <<'PY'\n"
           start = workflow.index(marker) + len(marker)
           end = workflow.index('\n          PY', start)
-          source = textwrap.dedent(workflow[start:end])
+          source = '\n'.join(line[10:] if line.startswith('          ') else line for line in workflow[start:end].splitlines())
           exec(compile(source, 'vitenskap-teknologi-migration.py', 'exec'))
           RUNNER
       - name: Install dependencies
