@@ -1,4 +1,4 @@
-name: Fagverk Phase 0 inventory
+name: Fagverk subject inventory
 
 on:
   pull_request:
@@ -30,7 +30,7 @@ on:
 
 jobs:
   audit:
-    name: Validate all-subject inventory and baseline
+    name: Validate all-subject inventory and living baseline
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
           node-version: '20'
       - name: Syntax check inventory audit
         run: node --check scripts/audit-fagverk-subject-inventory.mjs
-      - name: Run Phase 0 regression tests
+      - name: Run subject inventory regression tests
         run: node --test --test-reporter=spec tests/fagverk-subject-inventory.test.mjs
-      - name: Verify committed baseline
+      - name: Verify committed living baseline
         run: node scripts/audit-fagverk-subject-inventory.mjs
