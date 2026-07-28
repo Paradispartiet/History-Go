@@ -7,12 +7,13 @@ PlaceCard-rundinger er små, visuelle samlingsinnganger. De skal ikke brukes som
 
 ## Hovedregel
 
-> **Rundinger viser ting brukeren kan se, bla i, åpne eller samle. Stedspopupen viser kunnskap om stedet.**
+> **Rundinger viser ting brukeren kan se, bla i, åpne eller samle. Stedspopupen viser kunnskap om stedet. På stedet viser hva man kan gjøre og hva som skjer her.**
 
-Dette skiller to produktroller:
+Dette skiller tre produktroller:
 
 - **PlaceCard-rundinger** = visuelle samlinger av entiteter eller objekter;
-- **stedspopupfaner** = artikkel, historie, Stories, før/etter, nyheter, Lesespor, kilder og øvrig stedskunnskap.
+- **stedspopupfaner** = artikkel, historie, Stories, før/etter, nyheter, Lesespor, kilder og øvrig stedskunnskap;
+- **På stedet** = events, møter/kunnskapsmøter og konkrete handlinger på eller knyttet til stedet.
 
 Den tidligere 3×3-modellen blandet entiteter, kunnskapsflater, tidsvisninger og handlinger i samme grid. Den modellen er nå compatibility-input, ikke produktkontrakten.
 
@@ -91,9 +92,9 @@ Disse eldre rundingene beskriver handling, ikke en visuell samling:
 
 De skal derfor ikke vises i det canonical visuelle runding-gridet.
 
-Eksisterende `tasks_profile`, `training_profile` og eventuelle `play_profile` beholdes som source-data og vises i overgangsmodellen under **Mer → Gjør på stedet**. En senere egen handlingsflate kan overta uten å endre dataformatene.
+Eksisterende `tasks_profile`, `training_profile` og eventuelle `play_profile` beholdes som source-data og vises under **På stedet → Gjør på stedet**. Samme flate kan også vise events, vanlige møteinnganger og Kunnskapsmøte.
 
-Quiz, Observer, Notat, Rute og andre konkrete handlinger kan fortsatt ha egne knapper/flows. De skal ikke gjøres til visuelle samleobjekter.
+Quiz, Observer, Notat og Rute kan fortsatt ha egne tydelige handlingsknapper/flows. De skal ikke gjøres til visuelle samleobjekter bare for å fylle runding-gridet.
 
 ## Wonderkammer
 
@@ -105,7 +106,7 @@ Repoet inneholder historisk tre ulike Wonderkammer-idéer:
 2. aktivitets-/leke-/treningssoner med `activityText`, alder og instruksjoner;
 3. nyere stedsspesifikke kuriositeter og `actual_site_treasure`-oppføringer.
 
-Disse skal ikke blandes i én runding. Den aktive Wonderkammer-kontrakten dokumenteres i `data/wonderkammer/wonderkammer.md`. Generiske aktivitetsoppføringer skal migreres til handlingsoverflater; relasjons-/navigasjonsinnhold skal bruke relations/NextUp; bare den konsoliderte Wonderkammer-typen kan eventuelt bli en visuell runding senere.
+Disse skal ikke blandes i én runding. Den aktive Wonderkammer-kontrakten dokumenteres i `data/wonderkammer/wonderkammer.md`. Generiske aktivitetsoppføringer skal migreres til På stedet/handlingsflater; relasjons-/navigasjonsinnhold skal bruke relations/NextUp; bare den konsoliderte Wonderkammer-typen kan eventuelt bli en visuell samling senere.
 
 ## `rounds` og `rounds_exclude`
 
@@ -132,11 +133,14 @@ Eksempel:
 
 Den eldre PlaceCard-runtimekoden kjenner fortsatt flere historiske round-ID-er og kategori-profiler. `js/ui/place-rounds-visual-collections.js` er presentasjonsgrensen som snevrer den brukerrettede flaten inn til canonical visuelle samlinger uten å slette legacy-data.
 
+`js/ui/place-onsite-surface.js` overtar presentasjonen av handlinger, møter/kunnskapsmøter og events under `#pcEventsBox` / **På stedet**.
+
 Det betyr:
 
 - gammel JSON trenger ikke massemigreres for at UI-et skal bli ryddig;
 - legacy round-ID-er kan fortsatt leses under migrering;
 - brukerflaten viser bare relevante visuelle rundinger;
+- handlinger forsvinner ikke når de tas ut av runding-gridet;
 - source-data kan migreres separat og kontrollert senere.
 
 ## Kuratoriske kvalitetsporter
@@ -149,7 +153,7 @@ En foreslått ny runding består testen når svaret på alle disse er ja:
 4. Er koblingen til stedet dokumentert og stedsspesifikk?
 5. Gir samlingen mening selv om stedspopupens brødtekst ikke vises?
 
-Hvis nei, skal innholdet normalt inn i stedspopupen eller en egen handlingsflyt.
+Hvis nei, skal innholdet normalt inn i stedspopupen eller **På stedet**.
 
 ## Minneskilt og små markører
 
@@ -157,7 +161,8 @@ Tidligere regel om å ekskludere tilfeldig natur på minneskilt gjelder fortsatt
 
 ## Filer
 
-- Presentasjonsruntime: `js/ui/place-rounds-visual-collections.js`
+- Presentasjonsruntime for rundinger: `js/ui/place-rounds-visual-collections.js`
+- På stedet-runtime: `js/ui/place-onsite-surface.js`
 - Legacy round registry og source-renderere: `js/ui/place-card.js`
 - Popupfaner: `js/ui/place-popup-tabs.js`
 - Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
