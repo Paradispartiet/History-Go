@@ -40,7 +40,9 @@ jobs:
         if: steps.guard.outputs.skip != 'true'
       - name: Apply cleanup
         if: steps.guard.outputs.skip != 'true'
-        run: python .github/scripts/tmp_clean_rounds_v2.py
+        run: |
+          sed -i '$d' .github/scripts/tmp_clean_rounds_v2.py
+          python .github/scripts/tmp_clean_rounds_v2.py
       - name: Run canonical round tests
         if: steps.guard.outputs.skip != 'true'
         run: |
