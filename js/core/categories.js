@@ -4,8 +4,7 @@
   var CATEGORY_LIST = [
     { id: "historie", name: "Historie", icon: "\u{1F3DB}\uFE0F", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
     { id: "religion", name: "Religion", icon: "\u{1F6D0}", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
-    { id: "vitenskap", name: "Vitenskap", icon: "\u{1F52C}", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
-    { id: "teknologi", name: "Teknologi", icon: "⚙️", color: "#E07A1F", secondaryColor: "#252A31", scope: "runtime_domain" },
+    { id: "vitenskap", name: "Vitenskap & teknologi", icon: "\u{1F52C}", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain", aliases: ["Vitenskap", "Teknologi", "Technology", "Tech", "IT", "Informasjonsteknologi"] },
     { id: "filosofi", name: "Filosofi", icon: "\u03A6", color: "#7A5FD0", secondaryColor: "#3E2E73", scope: "runtime_domain" },
     { id: "kunst", name: "Kunst", icon: "\u{1F3A8}", color: "#0057B8", secondaryColor: "#D71920", scope: "runtime_domain" },
     { id: "scenekunst", name: "Scenekunst", icon: "\u{1F3AD}", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
@@ -33,27 +32,39 @@
   function norm(value) {
     return String(value != null ? value : "").trim();
   }
+  var CATEGORY_ID_ALIASES = Object.freeze({
+    teknologi: "vitenskap",
+    technology: "vitenskap",
+    tech: "vitenskap",
+    it: "vitenskap",
+    informasjonsteknologi: "vitenskap"
+  });
+  function canonicalCategoryId(value) {
+    const normalized = norm(value).toLowerCase();
+    return CATEGORY_ID_ALIASES[normalized] || normalized;
+  }
   function catColor(categoryId) {
-    const category = CAT_BY_ID[norm(categoryId)];
+    const category = CAT_BY_ID[canonicalCategoryId(categoryId)];
     return (category == null ? void 0 : category.color) || "#6c757d";
   }
   function catSecondaryColor(categoryId) {
-    const category = CAT_BY_ID[norm(categoryId)];
+    const category = CAT_BY_ID[canonicalCategoryId(categoryId)];
     return (category == null ? void 0 : category.secondaryColor) || (category == null ? void 0 : category.color) || "#6c757d";
   }
   function catClass(categoryId) {
-    const id = norm(categoryId).toLowerCase().replace(/[^a-z0-9_]+/g, "-");
+    const id = canonicalCategoryId(categoryId).replace(/[^a-z0-9_]+/g, "-");
     return id ? `cat-${id}` : "cat-unknown";
   }
   function tagToCat(tag) {
     var _a, _b, _c;
     const normalizedTag = norm(tag);
     if (!normalizedTag) return null;
-    if (CAT_BY_ID[normalizedTag]) return normalizedTag;
+    const canonicalTag = canonicalCategoryId(normalizedTag);
+    if (CAT_BY_ID[canonicalTag]) return canonicalTag;
     const registry = win.TAGS_REGISTRY;
     const entry = registry && typeof registry === "object" ? registry[normalizedTag] : null;
     if (entry && typeof entry === "object") {
-      const categoryId = norm((_c = (_b = (_a = entry.cat) != null ? _a : entry.category) != null ? _b : entry.categoryId) != null ? _c : entry.category_id);
+      const categoryId = canonicalCategoryId((_c = (_b = (_a = entry.cat) != null ? _a : entry.category) != null ? _b : entry.categoryId) != null ? _c : entry.category_id);
       if (categoryId && CAT_BY_ID[categoryId]) return categoryId;
     }
     return null;
@@ -61,7 +72,8 @@
   function catIdFromDisplay(display) {
     const normalizedDisplay = norm(display).toLowerCase();
     if (!normalizedDisplay) return null;
-    if (CAT_BY_ID[normalizedDisplay]) return normalizedDisplay;
+    const canonicalDisplay = canonicalCategoryId(normalizedDisplay);
+    if (CAT_BY_ID[canonicalDisplay]) return canonicalDisplay;
     if (CAT_BY_NAME[normalizedDisplay]) return CAT_BY_NAME[normalizedDisplay].id;
     for (const category of CATEGORY_LIST) {
       if (category.name.toLowerCase() === normalizedDisplay) return category.id;

@@ -37,8 +37,7 @@ const win = window as RuntimeWindow;
 const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "historie", name: "Historie", icon: "🏛️", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
   { id: "religion", name: "Religion", icon: "🛐", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
-  { id: "vitenskap", name: "Vitenskap", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
-  { id: "teknologi", name: "Teknologi", icon: "⚙️", color: "#E07A1F", secondaryColor: "#252A31", scope: "runtime_domain" },
+  { id: "vitenskap", name: "Vitenskap & teknologi", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain", aliases: ["Vitenskap", "Teknologi", "Technology", "Tech", "IT", "Informasjonsteknologi"] },
   { id: "filosofi", name: "Filosofi", icon: "Φ", color: "#7A5FD0", secondaryColor: "#3E2E73", scope: "runtime_domain" },
   { id: "kunst", name: "Kunst", icon: "🎨", color: "#0057B8", secondaryColor: "#D71920", scope: "runtime_domain" },
   { id: "scenekunst", name: "Scenekunst", icon: "🎭", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
@@ -70,30 +69,44 @@ function norm(value: unknown): string {
   return String(value ?? "").trim();
 }
 
+const CATEGORY_ID_ALIASES: Readonly<Record<string, string>> = Object.freeze({
+  teknologi: "vitenskap",
+  technology: "vitenskap",
+  tech: "vitenskap",
+  it: "vitenskap",
+  informasjonsteknologi: "vitenskap"
+});
+
+function canonicalCategoryId(value: unknown): string {
+  const normalized = norm(value).toLowerCase();
+  return CATEGORY_ID_ALIASES[normalized] || normalized;
+}
+
 function catColor(categoryId: unknown): string {
-  const category = CAT_BY_ID[norm(categoryId)];
+  const category = CAT_BY_ID[canonicalCategoryId(categoryId)];
   return category?.color || "#6c757d";
 }
 
 function catSecondaryColor(categoryId: unknown): string {
-  const category = CAT_BY_ID[norm(categoryId)];
+  const category = CAT_BY_ID[canonicalCategoryId(categoryId)];
   return category?.secondaryColor || category?.color || "#6c757d";
 }
 
 function catClass(categoryId: unknown): string {
-  const id = norm(categoryId).toLowerCase().replace(/[^a-z0-9_]+/g, "-");
+  const id = canonicalCategoryId(categoryId).replace(/[^a-z0-9_]+/g, "-");
   return id ? `cat-${id}` : "cat-unknown";
 }
 
 function tagToCat(tag: unknown): string | null {
   const normalizedTag = norm(tag);
   if (!normalizedTag) return null;
-  if (CAT_BY_ID[normalizedTag]) return normalizedTag;
+  const canonicalTag = canonicalCategoryId(normalizedTag);
+  if (CAT_BY_ID[canonicalTag]) return canonicalTag;
 
   const registry = win.TAGS_REGISTRY;
   const entry = registry && typeof registry === "object" ? registry[normalizedTag] : null;
   if (entry && typeof entry === "object") {
-    const categoryId = norm(entry.cat ?? entry.category ?? entry.categoryId ?? entry.category_id);
+    const categoryId = canonicalCategoryId(entry.cat ?? entry.category ?? entry.categoryId ?? entry.category_id);
     if (categoryId && CAT_BY_ID[categoryId]) return categoryId;
   }
 
@@ -103,7 +116,8 @@ function tagToCat(tag: unknown): string | null {
 function catIdFromDisplay(display: unknown): string | null {
   const normalizedDisplay = norm(display).toLowerCase();
   if (!normalizedDisplay) return null;
-  if (CAT_BY_ID[normalizedDisplay]) return normalizedDisplay;
+  const canonicalDisplay = canonicalCategoryId(normalizedDisplay);
+  if (CAT_BY_ID[canonicalDisplay]) return canonicalDisplay;
   if (CAT_BY_NAME[normalizedDisplay]) return CAT_BY_NAME[normalizedDisplay].id;
 
   for (const category of CATEGORY_LIST) {

@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_subject_baseline_report_v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "living_inventory_baseline",
   "generatedFrom": {
     "inventory": "data/fagverk/subject_inventory.json",
@@ -10,20 +10,21 @@
     "portal": "data/fagverk/fagverk_portal.json"
   },
   "summary": {
-    "subjectCount": 18,
+    "subjectCount": 17,
+    "specializationCount": 1,
     "schemaFamilyCount": 4,
     "requiredCoreFileCount": 72,
     "navigation": {
-      "planned": 17,
+      "planned": 16,
       "materialized": 1
     },
     "assessment": {
-      "pending": 17,
+      "pending": 16,
       "audited": 1,
       "blocked": 0
     },
     "editorial": {
-      "not_started": 17,
+      "not_started": 16,
       "structure_ready": 1,
       "chapters_in_progress": 0,
       "complete": 0
@@ -32,7 +33,10 @@
       "by",
       "natur",
       "religion",
-      "teknologi"
+      "vitenskap"
+    ],
+    "pilotSpecializations": [
+      "vitenskap/teknologi"
     ]
   },
   "migrationDebt": {
@@ -62,7 +66,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": true
+      "pilot": true,
+      "specializations": []
     },
     {
       "id": "historie",
@@ -92,7 +97,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "kunst",
@@ -111,7 +117,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "litteratur",
@@ -130,7 +137,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "media",
@@ -150,7 +158,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "musikk",
@@ -169,7 +178,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "naeringsliv",
@@ -192,7 +202,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "natur",
@@ -211,7 +222,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": true
+      "pilot": true,
+      "specializations": []
     },
     {
       "id": "politikk",
@@ -230,7 +242,8 @@
       "navigationStatus": "materialized",
       "assessmentStatus": "audited",
       "editorialStatus": "structure_ready",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "psykologi",
@@ -249,7 +262,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "religion",
@@ -269,7 +283,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": true
+      "pilot": true,
+      "specializations": []
     },
     {
       "id": "scenekunst",
@@ -289,7 +304,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "sport",
@@ -311,7 +327,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "subkultur",
@@ -330,7 +347,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "vitenskap",
@@ -344,39 +362,38 @@
       "optionalManifestFields": [
         "supersetQuizMal",
         "quizStandard",
-        "quizQuestionSchema"
-      ],
-      "navigationStatus": "planned",
-      "assessmentStatus": "pending",
-      "editorialStatus": "not_started",
-      "pilot": false
-    },
-    {
-      "id": "teknologi",
-      "schemaFamily": "technology_scientific_v2_4",
-      "coreFiles": {
-        "pensum": "teknologi/teknologipensum_canonical_v2_4.json",
-        "emner": "teknologi/emner_teknologi_canonical_v2_4.json",
-        "fagkart": "teknologi/fagkart_teknologi_canonical_v2_4.json",
-        "methods": "teknologi/methods_teknologi_canonical_v2_4.json"
-      },
-      "optionalManifestFields": [
-        "supersetQuizMal",
-        "status",
-        "quizStandard",
         "quizQuestionSchema",
-        "scientificPackage",
-        "quizPackageSchema",
-        "subjectPathwaySchema",
-        "subjectPathwayPackage",
-        "canonicalModelVersion",
-        "universalCoverage",
-        "geographicProduction"
+        "specializations"
       ],
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": true
+      "pilot": true,
+      "specializations": [
+        {
+          "id": "teknologi",
+          "schemaFamily": "technology_scientific_v2_4",
+          "coreFiles": {
+            "pensum": "teknologi/teknologipensum_canonical_v2_4.json",
+            "emner": "teknologi/emner_teknologi_canonical_v2_4.json",
+            "fagkart": "teknologi/fagkart_teknologi_canonical_v2_4.json",
+            "methods": "teknologi/methods_teknologi_canonical_v2_4.json"
+          },
+          "optionalManifestFields": [
+            "supersetQuizMal",
+            "quizStandard",
+            "quizQuestionSchema",
+            "scientificPackage",
+            "quizPackageSchema",
+            "subjectPathwaySchema",
+            "subjectPathwayPackage",
+            "canonicalModelVersion",
+            "universalCoverage",
+            "geographicProduction"
+          ],
+          "pilot": true
+        }
+      ]
     },
     {
       "id": "filosofi",
@@ -396,7 +413,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     },
     {
       "id": "film_tv",
@@ -415,7 +433,8 @@
       "navigationStatus": "planned",
       "assessmentStatus": "pending",
       "editorialStatus": "not_started",
-      "pilot": false
+      "pilot": false,
+      "specializations": []
     }
   ]
 }

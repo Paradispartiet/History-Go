@@ -6,14 +6,14 @@
   const CANONICAL = [
     "by", "historie", "kunst", "litteratur", "media", "musikk",
     "naeringsliv", "natur", "politikk", "psykologi", "religion",
-    "scenekunst", "sport", "subkultur", "vitenskap", "teknologi",
+    "scenekunst", "sport", "subkultur", "vitenskap",
     "filosofi", "film_tv"
   ];
 
   const RUNTIME_CATEGORY_IDS = [
     "by", "historie", "kunst", "litteratur", "media", "musikk",
     "naeringsliv", "natur", "politikk", "psykologi", "religion",
-    "scenekunst", "sport", "subkultur", "vitenskap", "teknologi",
+    "scenekunst", "sport", "subkultur", "vitenskap",
     "filosofi", "film_tv"
   ];
 
@@ -22,10 +22,11 @@
     "philosophy": "filosofi",
     "sci": "vitenskap",
     "science": "vitenskap",
-    "technology": "teknologi",
-    "tech": "teknologi",
-    "it": "teknologi",
-    "informasjonsteknologi": "teknologi",
+    "technology": "vitenskap",
+    "teknologi": "vitenskap",
+    "tech": "vitenskap",
+    "it": "vitenskap",
+    "informasjonsteknologi": "vitenskap",
     "teater": "scenekunst",
     "theatre": "scenekunst",
     "theater": "scenekunst",
@@ -41,10 +42,11 @@
     "philosophy": "filosofi",
     "science": "vitenskap",
     "sci": "vitenskap",
-    "technology": "teknologi",
-    "tech": "teknologi",
-    "it": "teknologi",
-    "informasjonsteknologi": "teknologi",
+    "technology": "vitenskap",
+    "teknologi": "vitenskap",
+    "tech": "vitenskap",
+    "it": "vitenskap",
+    "informasjonsteknologi": "vitenskap",
     "teater": "scenekunst",
     "theatre": "scenekunst",
     "theater": "scenekunst",

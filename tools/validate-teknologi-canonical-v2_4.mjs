@@ -43,7 +43,7 @@ const [manifest, scientificIndex, pensum, emner, fagkart, methods, subjectPackag
 const areaEntries = await Promise.all(arr(scientificIndex.area_files).map(async (file) => ({ file, doc: await readJson(file) })));
 const areaFileById = new Map(areaEntries.map(({ file, doc }) => [doc.area_id, file]));
 
-const technology = manifest.teknologi || {};
+const technology = manifest.vitenskap?.specializations?.teknologi || {};
 requireCondition(technology.pensum === "teknologi/teknologipensum_canonical_v2_4.json", "manifestet resolver ikke V2.4-pensum");
 requireCondition(technology.emner === "teknologi/emner_teknologi_canonical_v2_4.json", "manifestet resolver ikke V2.4-emner");
 requireCondition(technology.fagkart === "teknologi/fagkart_teknologi_canonical_v2_4.json", "manifestet resolver ikke V2.4-fagkart");
@@ -89,7 +89,7 @@ for (const topic of topics) {
 }
 requireCondition(!hookIds.has("hook_tek_tek_teknologihistorie_samfunn_risiko_feil"), "legacy typo-hook finnes fortsatt i canonical fagkart");
 
-const subjectEntry = arr(quizManifest.subjectPackages).find((entry) => entry.subjectId === "teknologi");
+const subjectEntry = arr(quizManifest.subjectPackages).find((entry) => entry.subjectId === "teknologi" && entry.parentSubjectId === "vitenskap" && entry.specializationId === "teknologi");
 requireCondition(subjectEntry?.file === paths.subjectPackage, "quizmanifestet mangler Teknologi subject package");
 requireCondition(!arr(quizManifest.files).includes(paths.subjectPackage), "subject package er feilregistrert som vanlig quizfil");
 requireCondition(!arr(quizManifest.sets).some((entry) => entry?.file === paths.subjectPackage), "subject package er feilregistrert som stedssett");

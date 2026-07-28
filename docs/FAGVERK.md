@@ -1,6 +1,6 @@
 # History GO — canonical kontrakt for Fagverket og alle fagsider
 
-Status: **canonical og bindende fagverkskontrakt v5**
+Status: **canonical og bindende fagverkskontrakt v6**
 Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`
 Gjelder: alle canonicale fag i `data/categories/category_contract.json`
 Sist kontrollert: **2026-07-28**
@@ -25,7 +25,7 @@ Dokumentet eier **ikke** selve fagdefinisjonene, pensuminnholdet, quizreglene, K
 
 > **History GO skal ha én felles fagsidemotor, én normalisert runtime-modell og én manifest-resolvert canonical fagpakke per fag.**
 
-Det skal ikke bygges én separat teknisk fagside per kategori, og politikksiden skal ikke kopieres og omskrives atten ganger.
+Det skal ikke bygges én separat teknisk fagside per kategori, og politikksiden skal ikke kopieres og omskrives sytten ganger.
 
 Alle fag åpnes gjennom samme sidekontrakt:
 
@@ -38,7 +38,7 @@ Eksempler:
 ```text
 fagverk.html?subject=natur
 fagverk.html?subject=historie
-fagverk.html?subject=teknologi
+fagverk.html?subject=vitenskap&specialization=teknologi
 fagverk.html?subject=kunst
 ```
 
@@ -195,10 +195,11 @@ scenekunst
 sport
 subkultur
 vitenskap
-teknologi
 filosofi
 film_tv
 ```
+
+Teknologi er ikke et eget toppfag. Den komplette fagpakken registreres som `vitenskap.specializations.teknologi` og skal vises som en spesialisering inne i Vitenskap & teknologi.
 
 Denne listen er en kontrollert baseline, ikke en ny kategori-sannhetskilde. Ved endring gjelder `category_contract.json`, kategori-auditen og fagmanifestet.
 
@@ -572,9 +573,9 @@ Pilotene skal dekke de viktigste schemafamiliene:
 1. `natur` — standard canonical v4.5-fagpakke;
 2. `religion` — foundation-pakke;
 3. `by` — modul-/kursbasert compatibility-pakke;
-4. `teknologi` — utvidet vitenskapelig pakke.
+4. `vitenskap` — standard vitenskapelig fagpakke med den utvidede `teknologi`-pakken som nested spesialisering.
 
-Pilotfasen er godkjent først når alle fire bruker samme renderer uten fagspesifikke DOM-kopier.
+Pilotfasen er godkjent først når alle fire toppfag bruker samme renderer, og Teknologi-spesialiseringen kan normaliseres gjennom samme modell uten å opprette en attende toppside eller fagspesifikk DOM-kopi.
 
 ### Fase 3 — strukturell materialisering av alle fag
 

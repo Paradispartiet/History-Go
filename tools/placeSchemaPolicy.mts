@@ -4,11 +4,11 @@
 export const OFFICIAL_HISTORY_GO_CATEGORIES = [
   "by", "historie", "kunst", "litteratur", "media", "musikk",
   "naeringsliv", "natur", "politikk", "psykologi", "religion",
-  "scenekunst", "sport", "subkultur", "vitenskap", "teknologi",
+  "scenekunst", "sport", "subkultur", "vitenskap",
   "filosofi", "film_tv"
 ] as const;
 
-export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = ["film"] as const;
+export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = ["film", "teknologi"] as const;
 export const REQUIRED_PLACE_FIELDS = ["id", "name", "category", "lat", "lon"] as const;
 export const RECOMMENDED_PLACE_FIELDS = ["r", "year", "desc"] as const;
 export const OPTIONAL_PLACE_FIELDS = [

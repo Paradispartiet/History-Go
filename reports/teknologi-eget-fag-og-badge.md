@@ -1,3 +1,5 @@
+> **Status 2026-07-28:** Denne beslutningen er erstattet. Teknologi er nå en canonical spesialisering under toppmerket **Vitenskap & teknologi**. Rapporten beholdes som historikk.
+
 # Teknologi som eget fag og badge
 
 Status: **grunnlag etablert og validert**

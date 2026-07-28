@@ -3,178 +3,23 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
-
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const PATHS = Object.freeze({
-  categories: 'data/categories/category_contract.json',
-  manifest: 'data/fag/fag_manifest.json',
-  portal: 'data/fagverk/fagverk_portal.json',
-  inventory: 'data/fagverk/subject_inventory.json',
-  status: 'data/fagverk/subject_status.json',
-  report: 'reports/fagverk/subject-baseline.json'
-});
-const CORE_FIELDS = Object.freeze(['pensum', 'emner', 'fagkart', 'methods']);
-const ALLOWED_FAMILIES = new Set(['standard_canonical', 'foundation_v1', 'by_compatibility', 'technology_scientific_v2_4']);
-
-const absolute = (relativePath) => path.join(ROOT, relativePath);
-function readJson(relativePath) {
-  let raw;
-  try { raw = fs.readFileSync(absolute(relativePath), 'utf8'); }
-  catch (error) { throw new Error(`Kan ikke lese ${relativePath}: ${error.message}`); }
-  try { return JSON.parse(raw); }
-  catch (error) { throw new Error(`Ugyldig JSON i ${relativePath}: ${error.message}`); }
-}
-function assert(condition, message) { if (!condition) throw new Error(message); }
-function assertExactOrder(actual, expected, label) {
-  assert(Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => value === expected[index]), `${label} må følge canonical rekkefølge. Forventet ${JSON.stringify(expected)}, fikk ${JSON.stringify(actual)}`);
-}
-function resolveFagPointer(pointer) {
-  assert(typeof pointer === 'string' && pointer.trim(), `Ugyldig fagfilpeker: ${JSON.stringify(pointer)}`);
-  return path.posix.normalize(path.posix.join('data/fag', pointer));
-}
-function classifySubject(subjectId, manifestEntry) {
-  if (subjectId === 'by') return 'by_compatibility';
-  if (subjectId === 'teknologi' || manifestEntry.scientificPackage) return 'technology_scientific_v2_4';
-  if (manifestEntry.status === 'active_foundation') return 'foundation_v1';
-  return 'standard_canonical';
-}
-function countBy(items, field, allowedValues) {
-  const counts = Object.fromEntries(allowedValues.map((value) => [value, 0]));
-  for (const item of items) {
-    assert(Object.hasOwn(counts, item[field]), `${item.id}: ukjent ${field} ${JSON.stringify(item[field])}`);
-    counts[item[field]] += 1;
-  }
-  return counts;
-}
-function normalizeCoreFiles(manifestEntry) { return Object.fromEntries(CORE_FIELDS.map((field) => [field, manifestEntry[field]])); }
-
-export function buildBaselineReport({ categories, manifest, inventory, status }) {
-  const statusById = new Map(status.subjects.map((item) => [item.id, item]));
-  const inventoryById = new Map(inventory.subjects.map((item) => [item.id, item]));
-  const subjectRows = categories.fagSubjects.map((subjectId) => {
-    const manifestEntry = manifest[subjectId];
-    const inventoryEntry = inventoryById.get(subjectId);
-    const statusEntry = statusById.get(subjectId);
-    return {
-      id: subjectId,
-      schemaFamily: inventoryEntry.schemaFamily,
-      coreFiles: normalizeCoreFiles(manifestEntry),
-      optionalManifestFields: inventoryEntry.optionalManifestFields,
-      navigationStatus: statusEntry.navigationStatus,
-      assessmentStatus: statusEntry.assessmentStatus,
-      editorialStatus: statusEntry.editorialStatus,
-      pilot: inventoryEntry.pilot
-    };
-  });
-  return {
-    schema: 'history_go_fagverk_subject_baseline_report_v1',
-    version: '1.1.0',
-    status: 'living_inventory_baseline',
-    generatedFrom: { inventory: PATHS.inventory, status: PATHS.status, categories: PATHS.categories, manifest: PATHS.manifest, portal: PATHS.portal },
-    summary: {
-      subjectCount: subjectRows.length,
-      schemaFamilyCount: new Set(subjectRows.map((item) => item.schemaFamily)).size,
-      requiredCoreFileCount: subjectRows.length * CORE_FIELDS.length,
-      navigation: countBy(status.subjects, 'navigationStatus', status.rules.navigationStatuses),
-      assessment: countBy(status.subjects, 'assessmentStatus', status.rules.assessmentStatuses),
-      editorial: countBy(status.subjects, 'editorialStatus', status.rules.editorialStatuses),
-      pilotSubjects: subjectRows.filter((item) => item.pilot).map((item) => item.id).sort()
-    },
-    migrationDebt: inventory.migrationDebt,
-    subjects: subjectRows
-  };
-}
-
-function validateStatusProgression(subjectId, statusEntry, portalEntry) {
-  assert(statusEntry.navigationStatus === portalEntry.subjectStatus, `${subjectId}: portal- og statusregister er usynkronisert`);
-  if (statusEntry.navigationStatus === 'planned') {
-    assert(!portalEntry.subjectPage, `${subjectId}: planned fag kan ikke ha aktiv subjectPage`);
-    assert(statusEntry.editorialStatus === 'not_started', `${subjectId}: planned fag kan ikke ha redaksjonell ferdigstatus`);
-    assert(statusEntry.assessmentStatus !== 'audited', `${subjectId}: audited fag må materialiseres i samme godkjente endring`);
-  } else {
-    assert(portalEntry.subjectPage === `fagverk.html?subject=${subjectId}`, `${subjectId}: materialized fag må bruke canonical subjectPage`);
-  }
-  if (statusEntry.assessmentStatus === 'audited') {
-    assert(statusEntry.navigationStatus === 'materialized', `${subjectId}: audited krever materialized`);
-    assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(statusEntry.editorialStatus), `${subjectId}: audited krever minst structure_ready`);
-  }
-  if (statusEntry.assessmentStatus === 'blocked') {
-    assert(statusEntry.editorialStatus === 'not_started', `${subjectId}: blocked kan ikke ha redaksjonell ferdigstatus`);
-  }
-  if (statusEntry.editorialStatus !== 'not_started') {
-    assert(statusEntry.navigationStatus === 'materialized' && statusEntry.assessmentStatus === 'audited', `${subjectId}: redaksjonell fremdrift krever materialized + audited`);
-  }
-}
-
-export function auditRepository({ writeReport = false, checkReport = true } = {}) {
-  const categories = readJson(PATHS.categories);
-  const manifest = readJson(PATHS.manifest);
-  const portal = readJson(PATHS.portal);
-  const inventory = readJson(PATHS.inventory);
-  const status = readJson(PATHS.status);
-  assert(Array.isArray(categories.fagSubjects), 'category_contract.json mangler fagSubjects');
-  const canonicalSubjects = categories.fagSubjects;
-  assert(canonicalSubjects.length > 0, 'Canonical fagliste er tom');
-  assertExactOrder(categories.runtimeCategories, canonicalSubjects, 'runtimeCategories');
-  assertExactOrder(Object.keys(manifest), canonicalSubjects, 'fag_manifest.json');
-  assertExactOrder(inventory.subjects.map((item) => item.id), canonicalSubjects, 'subject_inventory.json');
-  assertExactOrder(status.subjects.map((item) => item.id), canonicalSubjects, 'subject_status.json');
-  assertExactOrder(portal.categories.map((item) => item.id), canonicalSubjects, 'fagverk_portal.json');
-
-  const inventoryById = new Map(inventory.subjects.map((item) => [item.id, item]));
-  const statusById = new Map(status.subjects.map((item) => [item.id, item]));
-  const portalById = new Map(portal.categories.map((item) => [item.id, item]));
-  const coreFileAudit = [];
-
-  for (const subjectId of canonicalSubjects) {
-    const manifestEntry = manifest[subjectId];
-    const inventoryEntry = inventoryById.get(subjectId);
-    const statusEntry = statusById.get(subjectId);
-    const portalEntry = portalById.get(subjectId);
-    assert(manifestEntry && inventoryEntry && statusEntry && portalEntry, `${subjectId}: mangler manifest, inventory, status eller portal`);
-    assert(ALLOWED_FAMILIES.has(inventoryEntry.schemaFamily), `${subjectId}: ukjent schemaFamily`);
-    assert(inventoryEntry.schemaFamily === classifySubject(subjectId, manifestEntry), `${subjectId}: schemaFamily samsvarer ikke med manifestet`);
-    assert(Array.isArray(inventoryEntry.requiredManifestFields) && CORE_FIELDS.every((field) => inventoryEntry.requiredManifestFields.includes(field)), `${subjectId}: inventory mangler required core-felt`);
-    assert(Array.isArray(inventoryEntry.optionalManifestFields), `${subjectId}: optionalManifestFields må være array`);
-    assert(typeof inventoryEntry.pilot === 'boolean', `${subjectId}: pilot må være boolean`);
-    assert(status.rules.navigationStatuses.includes(statusEntry.navigationStatus), `${subjectId}: ugyldig navigationStatus`);
-    assert(status.rules.assessmentStatuses.includes(statusEntry.assessmentStatus), `${subjectId}: ugyldig assessmentStatus`);
-    assert(status.rules.editorialStatuses.includes(statusEntry.editorialStatus), `${subjectId}: ugyldig editorialStatus`);
-    validateStatusProgression(subjectId, statusEntry, portalEntry);
-
-    for (const field of CORE_FIELDS) {
-      const pointer = manifestEntry[field];
-      assert(typeof pointer === 'string' && pointer.length > 0, `${subjectId}: mangler manifestfeltet ${field}`);
-      const relativePath = resolveFagPointer(pointer);
-      assert(fs.existsSync(absolute(relativePath)), `${subjectId}: required ${field}-fil finnes ikke: ${relativePath}`);
-      readJson(relativePath);
-      coreFileAudit.push({ subjectId, field, path: relativePath });
-    }
-  }
-
-  for (const debtPath of inventory.migrationDebt?.politicsSpecificRuntimeFiles ?? []) assert(fs.existsSync(absolute(debtPath)), `Inventert politikkspesifikk runtimefil finnes ikke: ${debtPath}`);
-
-  const report = buildBaselineReport({ categories, manifest, inventory, status });
-  if (writeReport) {
-    fs.mkdirSync(path.dirname(absolute(PATHS.report)), { recursive: true });
-    fs.writeFileSync(absolute(PATHS.report), `${JSON.stringify(report, null, 2)}\n`);
-  }
-  if (checkReport) {
-    const committed = readJson(PATHS.report);
-    assert(isDeepStrictEqual(committed, report), `${PATHS.report} er utdatert. Kjør node scripts/audit-fagverk-subject-inventory.mjs --write-report`);
-  }
-  return { report, coreFileAudit, subjectCount: canonicalSubjects.length };
-}
-
-function main() {
-  const args = new Set(process.argv.slice(2));
-  try {
-    const result = auditRepository({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Fagverk inventar OK: ${result.subjectCount} fag, ${result.coreFileAudit.length} required kjernefiler, ${result.report.summary.schemaFamilyCount} schemafamilier.`);
-  } catch (error) {
-    console.error(`Fagverk inventar FEIL: ${error.message}`);
-    process.exitCode = 1;
-  }
-}
-
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const PATHS=Object.freeze({categories:'data/categories/category_contract.json',manifest:'data/fag/fag_manifest.json',portal:'data/fagverk/fagverk_portal.json',inventory:'data/fagverk/subject_inventory.json',status:'data/fagverk/subject_status.json',report:'reports/fagverk/subject-baseline.json'});
+const CORE_FIELDS=Object.freeze(['pensum','emner','fagkart','methods']);
+const ALLOWED_FAMILIES=new Set(['standard_canonical','foundation_v1','by_compatibility','technology_scientific_v2_4']);
+const absolute=(p)=>path.join(ROOT,p);
+function readJson(p){let raw;try{raw=fs.readFileSync(absolute(p),'utf8');}catch(e){throw new Error(`Kan ikke lese ${p}: ${e.message}`);}try{return JSON.parse(raw);}catch(e){throw new Error(`Ugyldig JSON i ${p}: ${e.message}`);}}
+function assert(c,m){if(!c)throw new Error(m);}
+function assertExactOrder(a,e,l){assert(Array.isArray(a)&&a.length===e.length&&a.every((v,i)=>v===e[i]),`${l} må følge canonical rekkefølge. Forventet ${JSON.stringify(e)}, fikk ${JSON.stringify(a)}`);}
+function resolveFagPointer(p){assert(typeof p==='string'&&p.trim(),`Ugyldig fagfilpeker: ${JSON.stringify(p)}`);return path.posix.normalize(path.posix.join('data/fag',p));}
+function classifySubject(id,e){if(id==='by')return'by_compatibility';if(e.status==='active_foundation')return'foundation_v1';return'standard_canonical';}
+function countBy(items,field,allowed){const counts=Object.fromEntries(allowed.map(v=>[v,0]));for(const item of items){assert(Object.hasOwn(counts,item[field]),`${item.id}: ukjent ${field} ${JSON.stringify(item[field])}`);counts[item[field]]+=1;}return counts;}
+const normalizeCoreFiles=(e)=>Object.fromEntries(CORE_FIELDS.map(f=>[f,e[f]]));
+function specializationRows(categories,manifest,inventory){const ib=new Map(inventory.subjects.map(i=>[i.id,i]));return categories.fagSubjects.flatMap(parent=>{const ms=manifest[parent]?.specializations||{};return(ib.get(parent)?.specializations||[]).map(item=>({parentSubjectId:parent,id:item.id,schemaFamily:item.schemaFamily,coreFiles:normalizeCoreFiles(ms[item.id]||{}),optionalManifestFields:item.optionalManifestFields||[],pilot:Boolean(item.pilot)}));});}
+export function buildBaselineReport({categories,manifest,inventory,status}){const sb=new Map(status.subjects.map(i=>[i.id,i]));const ib=new Map(inventory.subjects.map(i=>[i.id,i]));const subjects=categories.fagSubjects.map(id=>{const me=manifest[id],ie=ib.get(id),se=sb.get(id);return{id,schemaFamily:ie.schemaFamily,coreFiles:normalizeCoreFiles(me),optionalManifestFields:ie.optionalManifestFields,navigationStatus:se.navigationStatus,assessmentStatus:se.assessmentStatus,editorialStatus:se.editorialStatus,pilot:ie.pilot,specializations:(ie.specializations||[]).map(item=>({id:item.id,schemaFamily:item.schemaFamily,coreFiles:normalizeCoreFiles(me.specializations?.[item.id]||{}),optionalManifestFields:item.optionalManifestFields||[],pilot:Boolean(item.pilot)}))};});const specs=specializationRows(categories,manifest,inventory);const families=[...subjects.map(i=>i.schemaFamily),...specs.map(i=>i.schemaFamily)];return{schema:'history_go_fagverk_subject_baseline_report_v1',version:'1.2.0',status:'living_inventory_baseline',generatedFrom:{inventory:PATHS.inventory,status:PATHS.status,categories:PATHS.categories,manifest:PATHS.manifest,portal:PATHS.portal},summary:{subjectCount:subjects.length,specializationCount:specs.length,schemaFamilyCount:new Set(families).size,requiredCoreFileCount:(subjects.length+specs.length)*CORE_FIELDS.length,navigation:countBy(status.subjects,'navigationStatus',status.rules.navigationStatuses),assessment:countBy(status.subjects,'assessmentStatus',status.rules.assessmentStatuses),editorial:countBy(status.subjects,'editorialStatus',status.rules.editorialStatuses),pilotSubjects:subjects.filter(i=>i.pilot).map(i=>i.id).sort(),pilotSpecializations:specs.filter(i=>i.pilot).map(i=>`${i.parentSubjectId}/${i.id}`).sort()},migrationDebt:inventory.migrationDebt,subjects};}
+function validateStatusProgression(id,s,p){assert(s.navigationStatus===p.subjectStatus,`${id}: portal- og statusregister er usynkronisert`);if(s.navigationStatus==='planned'){assert(!p.subjectPage,`${id}: planned fag kan ikke ha aktiv subjectPage`);assert(s.editorialStatus==='not_started',`${id}: planned fag kan ikke ha redaksjonell ferdigstatus`);assert(s.assessmentStatus!=='audited',`${id}: audited fag må materialiseres i samme godkjente endring`);}else assert(p.subjectPage===`fagverk.html?subject=${id}`,`${id}: materialized fag må bruke canonical subjectPage`);if(s.assessmentStatus==='audited'){assert(s.navigationStatus==='materialized',`${id}: audited krever materialized`);assert(['structure_ready','chapters_in_progress','complete'].includes(s.editorialStatus),`${id}: audited krever minst structure_ready`);}if(s.assessmentStatus==='blocked')assert(s.editorialStatus==='not_started',`${id}: blocked kan ikke ha redaksjonell ferdigstatus`);if(s.editorialStatus!=='not_started')assert(s.navigationStatus==='materialized'&&s.assessmentStatus==='audited',`${id}: redaksjonell fremdrift krever materialized + audited`);}
+function auditCoreFiles(owner,e,a){for(const field of CORE_FIELDS){const pointer=e[field];assert(typeof pointer==='string'&&pointer.length>0,`${owner}: mangler manifestfeltet ${field}`);const rel=resolveFagPointer(pointer);assert(fs.existsSync(absolute(rel)),`${owner}: required ${field}-fil finnes ikke: ${rel}`);readJson(rel);a.push({ownerId:owner,field,path:rel});}}
+export function auditRepository({writeReport=false,checkReport=true}={}){const categories=readJson(PATHS.categories),manifest=readJson(PATHS.manifest),portal=readJson(PATHS.portal),inventory=readJson(PATHS.inventory),status=readJson(PATHS.status);const canonical=categories.fagSubjects;assert(canonical.length===17,`Fagverket skal ha 17 toppfag, fikk ${canonical.length}`);assert(!canonical.includes('teknologi'),'Teknologi kan ikke være canonical toppfag');assert(categories.aliases?.teknologi==='vitenskap','teknologi-aliaset må peke til vitenskap');assertExactOrder(categories.runtimeCategories,canonical,'runtimeCategories');assertExactOrder(Object.keys(manifest),canonical,'fag_manifest.json');assertExactOrder(inventory.subjects.map(i=>i.id),canonical,'subject_inventory.json');assertExactOrder(status.subjects.map(i=>i.id),canonical,'subject_status.json');assertExactOrder(portal.categories.map(i=>i.id),canonical,'fagverk_portal.json');const ib=new Map(inventory.subjects.map(i=>[i.id,i])),sb=new Map(status.subjects.map(i=>[i.id,i])),pb=new Map(portal.categories.map(i=>[i.id,i]));const audit=[];let specializationCount=0;for(const id of canonical){const me=manifest[id],ie=ib.get(id),se=sb.get(id),pe=pb.get(id);assert(me&&ie&&se&&pe,`${id}: mangler manifest, inventory, status eller portal`);assert(ALLOWED_FAMILIES.has(ie.schemaFamily),`${id}: ukjent schemaFamily`);assert(ie.schemaFamily===classifySubject(id,me),`${id}: schemaFamily samsvarer ikke med manifestet`);assert(Array.isArray(ie.requiredManifestFields)&&CORE_FIELDS.every(f=>ie.requiredManifestFields.includes(f)),`${id}: inventory mangler required core-felt`);assert(Array.isArray(ie.optionalManifestFields),`${id}: optionalManifestFields må være array`);assert(typeof ie.pilot==='boolean',`${id}: pilot må være boolean`);validateStatusProgression(id,se,pe);auditCoreFiles(id,me,audit);const ms=me.specializations||{},is=ie.specializations||[];assert(Object.keys(ms).length===is.length,`${id}: manifest og inventory har ulikt antall spesialiseringer`);for(const spec of is){const e=ms[spec.id];assert(e,`${id}/${spec.id}: mangler manifestoppføring`);assert(e.canonicalParentSubject===id,`${id}/${spec.id}: feil parent subject`);assert(e.badgeId===id,`${id}/${spec.id}: spesialiseringen kan ikke eie eget toppmerke`);assert(e.status==='canonical_scientific_specialization',`${id}/${spec.id}: feil spesialiseringsstatus`);assert(ALLOWED_FAMILIES.has(spec.schemaFamily),`${id}/${spec.id}: ukjent schemaFamily`);assert(e.schemaFamily===spec.schemaFamily,`${id}/${spec.id}: schemaFamily er usynkronisert`);auditCoreFiles(`${id}/${spec.id}`,e,audit);specializationCount+=1;}}assert(specializationCount===1,`Forventet én nested spesialisering, fikk ${specializationCount}`);assert(manifest.vitenskap.specializations?.teknologi,'Vitenskap mangler Teknologi-spesialiseringen');for(const p of inventory.migrationDebt?.politicsSpecificRuntimeFiles??[])assert(fs.existsSync(absolute(p)),`Inventert politikkspesifikk runtimefil finnes ikke: ${p}`);const report=buildBaselineReport({categories,manifest,inventory,status});if(writeReport){fs.mkdirSync(path.dirname(absolute(PATHS.report)),{recursive:true});fs.writeFileSync(absolute(PATHS.report),`${JSON.stringify(report,null,2)}
+`);}if(checkReport){const committed=readJson(PATHS.report);assert(isDeepStrictEqual(committed,report),`${PATHS.report} er utdatert. Kjør node scripts/audit-fagverk-subject-inventory.mjs --write-report`);}return{report,coreFileAudit:audit,subjectCount:canonical.length,specializationCount};}
+function main(){const args=new Set(process.argv.slice(2));try{const r=auditRepository({writeReport:args.has('--write-report'),checkReport:!args.has('--no-check-report')});console.log(`Fagverk inventar OK: ${r.subjectCount} toppfag, ${r.specializationCount} spesialisering, ${r.coreFileAudit.length} required kjernefiler, ${r.report.summary.schemaFamilyCount} schemafamilier.`);}catch(e){console.error(`Fagverk inventar FEIL: ${e.message}`);process.exitCode=1;}}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main();
