@@ -24,12 +24,13 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
 // Startup guard must be active before app.js begins its sequential boot chain.
 (function loadStartupGuardEarly() {
   if (window.__HG_STARTUP_GUARD_INSTALLED__) return;
+  const guardSrc = "js/startup-guard.js?v=20260728-freezefix1";
   if (document.readyState === "loading") {
-    document.write('<script src="js/startup-guard.js"></' + 'script>');
+    document.write('<script src="' + guardSrc + '"></' + 'script>');
     return;
   }
   const script = document.createElement("script");
-  script.src = "js/startup-guard.js";
+  script.src = guardSrc;
   script.async = false;
   document.head.appendChild(script);
 })();
