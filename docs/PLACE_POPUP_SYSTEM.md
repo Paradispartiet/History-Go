@@ -204,18 +204,18 @@ Fysiske Objects/Details/Spots skal ikke parkeres permanent i Mer bare fordi rikt
 
 ## 13. På stedet
 
-På stedet ligger i PlaceCard under rundingene og er en fast handlingsbar. Disse fire funksjonene skal alltid være synlige:
+På stedet er **ikke en fast knapperekke**. Synlighet eies av den canonical kategori-/stedstype-kontrakten:
 
-- **Events**;
-- **Social Meet / Avtal å møtes**;
-- **Kunnskapsmøte / Spotmeeting**;
-- **Lek**.
+- `docs/PLACE_ONSITE_SYSTEM.md`;
+- `data/categories/place_onsite_contract.json`.
 
-Manglende stedsspesifikt innhold skal ikke skjule en knapp. Knappen åpner i stedet en tydelig tom/ikke tilgjengelig-flate.
+Policyen har tre moduser: `always`, `whenData` og `never`. Canonical kategori bestemmer grunnpolicyen, mens fysisk stedstype kan overstyre den.
+
+Bredt tilgjengelige møteflater er **Social Meet / Avtal å møtes** og **Kunnskapsmøte / Spotmeeting**. Events er kategori- og datastyrt. **Lek vises bare for faktiske lekeplasser/lekeparker**, uavhengig av hvilken overordnet kategori stedet tilhører.
 
 `tasks_profile` / Oppgaver er ikke en del av History GO-produktet og skal ikke produseres eller presenteres.
 
-`training_profile` er heller ikke en generell På stedet-handling. Trening er type-spesifikt innhold og vises i **stedspopupen for sportssteder** når relevant.
+`training_profile` er ikke en generell På stedet-handling. Trening er type-spesifikt innhold og vises i **stedspopupen for sportssteder** når relevant.
 
 Quiz, Observer, Notat og Rute beholder egne flows utenfor På stedet-baren.
 
