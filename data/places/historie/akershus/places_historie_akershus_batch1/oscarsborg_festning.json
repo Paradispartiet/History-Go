@@ -1,14 +1,69 @@
 {
   "id": "oscarsborg_festning",
   "name": "Oscarsborg festning",
-  "lat": 59.676,
-  "lon": 10.606,
-  "r": 360,
-  "coordType": "historic_fortress_core_area",
-  "coordStatus": "needs_manual_map_check",
-  "coordSource": "source_audit_pending_raw_core_geometry",
-  "coordVerifiedAt": null,
-  "coordNote": "Legacy-punktet beholdes midlertidig som et plausibelt områdepunkt for besøkskjernen på Kaholmene. Offisielle kilder viser at Oscarsborg er et spredt festnings- og vernelandskap over flere øyer og fastlandsposisjoner, slik at verneområdet ikke kan reduseres til én centroid. To generiske OSM-navnepunkter ligger omtrent 281–290 meter sør for legacy-punktet, men har uavklart fysisk rolle og mangler lagret rågeometri. Før verifisering må det hentes rå geometri for den sentrale besøkskjernen og relevante sekundære delobjekter, med eksplisitt fleranker- og radiusbeslutning. Ingen kartforhåndsvisning, fotokoordinat eller nearest/first-hit-kandidat skal brukes som produksjonsfasit.",
+  "lat": 59.67346966441094,
+  "lon": 10.607055536295166,
+  "r": 520,
+  "locatorType": "historic_site",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "lovdata:oscarsborg-inventory-1;osm-relation:972050",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "historical_anchor",
+  "coordType": "historic_main_fort_multipolygon_centroid",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Lovdata FOR-2014-04-09-1986 inventory 1 – Hovedfortet; Forsvarsbygg Oscarsborg landsverneplan; OpenStreetMap relation 972050 – Hovedfortet; Riksantikvaren Oscarsborg protection scope",
+  "coordSourceId": "lovdata:oscarsborg-inventory-1;osm-relation:972050",
+  "coordSourceUrl": "https://www.openstreetmap.org/relation/972050",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The rounded legacy point is moved approximately 287.5 metres south to the deterministic centroid of the named Hovedfortet multipolygon on Søndre Kaholmen. The gameplay radius increases from 360 to 520 metres so the central fort, Hovedbatteriet and the Torpedobatteriet secondary anchor remain inside one Kaholmene visitor-core record without absorbing remote mainland batteries.",
+  "coordNote": "Lovdata identifies Hovedfortet as protected inventory 1, built 1849–1856, and Forsvarsbygg describes Søndre Kaholmen as the central and oldest part of Oscarsborg. OpenStreetMap relation 972050 is a named Hovedfortet multipolygon tagged historic=fort and building=yes. Its outer and inner rings were materialized from a read-only source artifact and yield the deterministic centroid 59.67346966441094, 10.607055536295166. Hovedbatteriet way 528047559 lies approximately 102.2 metres away. The protected Torpedobatteriet, inventory 1018, is represented by a semantic secondary anchor approximately 482.7 metres north, physically cross-checked by its 1901 door, underground tunnel, sight towers, workshop and torpedo-warhead storage cluster. The 520-metre radius represents the key Kaholmene visitor and 9 April core; it is not the legal protection landscape, cadastral boundary, firing sector, underwater geometry or a claim that remote batteries such as Kopås, Seiersten, Heer, Nesset or Håøya are inside the canonical place circle.",
+  "accessContext": {
+    "siteType": "protected_public_fortress_museum_and_island_defence_landscape",
+    "publicAccess": "Oscarsborg is a public fortress destination reached by ferry. Outdoor access, museum and building access, guided areas, events and transport conditions can differ by season and operation; current signs and operator information take precedence.",
+    "limitations": [
+      "Do not enter closed bunkers, tunnels, magazines, technical rooms, fenced areas or protected interiors without explicit permission.",
+      "Respect ferry operations, quays, museum rules, conservation barriers, steep terrain and water-edge hazards.",
+      "The gameplay radius is not the legal protection polygon, property boundary, military firing sector, underwater installation geometry or access guarantee."
+    ]
+  },
+  "anchors": [
+    {
+      "id": "oscarsborg_hovedfortet",
+      "name": "Hovedfortet – Søndre Kaholmen",
+      "lat": 59.67346966441094,
+      "lon": 10.607055536295166,
+      "r": 150,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1;osm-relation:972050",
+      "canApplyToPlace": true,
+      "note": "Deterministic multipolygon centroid for the protected Hovedfortet, used as the canonical marker for the central fortress core."
+    },
+    {
+      "id": "oscarsborg_hovedbatteriet",
+      "name": "Hovedbatteriet – 9 April artillery anchor",
+      "lat": 59.67263765222266,
+      "lon": 10.607828593105598,
+      "r": 100,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "osm-way:528047559;forsvarsbygg:oscarsborg-hovedbatteriet",
+      "canApplyToPlace": false,
+      "note": "Secondary anchor for the principal 28 cm gun battery on Søndre Kaholmen; not a replacement for the complete fortress marker."
+    },
+    {
+      "id": "oscarsborg_torpedobatteriet",
+      "name": "Torpedobatteriet – Nordre Kaholmen",
+      "lat": 59.6777982,
+      "lon": 10.6077141,
+      "r": 110,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1018;osm-node:582909472",
+      "canApplyToPlace": false,
+      "note": "Semantic secondary anchor for protected inventory 1018. The underground battery is cross-checked by the nearby door, tunnel, sight towers, workshop and torpedo-storage objects; no exact subsurface polygon is invented."
+    }
+  ],
   "category": "historie",
   "fylke": "akershus",
   "kommune": "Frogn",
@@ -55,6 +110,50 @@
       "blaker_skanse",
       "trandumskogen"
     ],
-    "notes": "Skal spørres som beslutnings- og konsekvenssted i krigshistorien. Canonical-punktet er fortsatt uverifisert og skal senere inngå i en dokumentert flerankermodell."
-  }
+    "notes": "Skal spørres som beslutnings- og konsekvenssted i krigshistorien. Canonical følger Hovedfortet på Søndre Kaholmen, mens Hovedbatteriet og Torpedobatteriet er eksplisitte sekundærankre for 9. april-funksjonene."
+  },
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Forsvarsbygg – Oscarsborg festning",
+      "url": "https://www.forsvarsbygg.no/no/festningene/finn-din-festning/oscarsborg-festning/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "official",
+      "label": "Forsvarsbygg – landsverneplan for Oscarsborg",
+      "url": "https://www.forsvarsbygg.no/no/verneplaner/landsverneplan-for-forsvaret/ostlandet/oscarsborg-festning/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "heritage",
+      "label": "Lovdata – fredning av Oscarsborg festning",
+      "url": "https://lovdata.no/forskrift/2014-04-09-1986",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "heritage",
+      "label": "Riksantikvaren – Oscarsborg festning fredet",
+      "url": "https://www.riksantikvaren.no/fredninger/oscarsborg-festning-fredet/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Hovedfortet",
+      "url": "https://www.openstreetmap.org/relation/972050",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Hovedbatteriet",
+      "url": "https://www.openstreetmap.org/way/528047559",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    }
+  ]
 }
