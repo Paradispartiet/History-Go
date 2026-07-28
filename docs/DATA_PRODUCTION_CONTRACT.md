@@ -1,7 +1,7 @@
 # History GO — dataproduksjonskontrakt
 
-Status: **canonical data-production contract**  
-Eier: `history_go_data_production`  
+Status: **canonical data-production contract**
+Eier: `history_go_data_production`
 Sist kontrollert: **2026-07-28**
 
 Dette dokumentet eier de **tverrgående reglene** for hvordan History GO-data produseres, aktiveres og kobles sammen. Det skal ikke duplisere subsystemenes detaljoppskrifter.
@@ -29,6 +29,7 @@ For full sted-for-sted arbeidsrekkefølge brukes:
 | Coordinate evidence | `docs/coordinates/coordinate-evidence-files-v1.md` |
 | Nature | `README/nature_mapping_workflow.md` |
 | Fagverk-navigasjon | `docs/FAGVERK_NAVIGATION.md` |
+| Fagsidearkitektur og ferdigstilling | `docs/FAGVERK.md` |
 | Completion | `docs/COMPLETION_DEFINITIONS.md` |
 | Progresjon/read-model | `docs/PROGRESSION_MODEL.md` |
 | Historiske ruter | `docs/README_HistoryGo_Historiske_Ruter.md` |

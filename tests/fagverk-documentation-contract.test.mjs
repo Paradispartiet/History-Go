@@ -10,13 +10,16 @@ const readJson = (relativePath) => JSON.parse(read(relativePath));
 
 const MASTER = 'docs/FAGVERK.md';
 const NAVIGATION = 'docs/FAGVERK_NAVIGATION.md';
+const PLACE_DESIGN = 'docs/FAGVERK_PLACE_DESIGN.md';
+const DOCUMENTATION_REGISTRY = 'docs/documentation_registry.json';
 
 const requiredReferences = [
+  DOCUMENTATION_REGISTRY,
   'docs/FACTUALITY_CONTRACT.md',
   'docs/DOMAIN_CONTRACT.md',
   'data/categories/category_contract.json',
   'docs/SUBJECT_FILE_CONTRACT.md',
-  'docs/FAGVERK_NAVIGATION.md',
+  NAVIGATION,
   'README/README.pensum.md',
   'README/fagstrukturREADME.md',
   'docs/DATA_PRODUCTION_CONTRACT.md',
@@ -26,7 +29,12 @@ const requiredReferences = [
   'data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md',
   'data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json',
   'data/quiz/quiz_knowledge_delivery_contract_v1.json',
-  'docs/FAGVERK_PLACE_DESIGN.md',
+  'docs/PROGRESSION_MODEL.md',
+  PLACE_DESIGN,
+  'docs/PLACE_PRODUCTION_CHECKLIST.md',
+  'docs/PLACE_STANDARD.md',
+  'docs/COMPLETION_DEFINITIONS.md',
+  'docs/HISTORY_GO_PRODUCT_MAP.md',
   'docs/TYPESCRIPT_FIRST_POLICY.md',
   'docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md',
   'README/README_DEV.md',
@@ -87,6 +95,27 @@ test('the canonical subject baseline matches category contract and fag manifest'
   }
 });
 
+test('documentation registry gives the fagverk contracts explicit and unique roles', () => {
+  const registry = readJson(DOCUMENTATION_REGISTRY);
+  const byPath = new Map(registry.documents.map((entry) => [entry.path, entry]));
+  const master = byPath.get(MASTER);
+  const navigation = byPath.get(NAVIGATION);
+  const placeDesign = byPath.get(PLACE_DESIGN);
+
+  assert.equal(master?.status, 'canonical');
+  assert.ok(master?.owns.includes('fagverk_subject_page_architecture'));
+  assert.ok(master?.owns.includes('fagverk_subject_page_production'));
+  assert.equal(navigation?.status, 'canonical');
+  assert.ok(navigation?.owns.includes('fagverk_navigation_contract'));
+  assert.equal(placeDesign?.status, 'canonical');
+  assert.ok(placeDesign?.owns.includes('fagverk_place_design_contract'));
+
+  const subjectIndex = registry.priority_order.indexOf('docs/SUBJECT_FILE_CONTRACT.md');
+  const fagverkIndex = registry.priority_order.indexOf(MASTER);
+  assert.ok(subjectIndex >= 0);
+  assert.equal(fagverkIndex, subjectIndex + 1);
+});
+
 test('navigation remains narrow and delegates production architecture to FAGVERK.md', () => {
   const navigation = read(NAVIGATION);
 
@@ -99,13 +128,19 @@ test('navigation remains narrow and delegates production architecture to FAGVERK
   assert.match(navigation, /materialized/);
 });
 
-test('repository and subject-file documentation point to the canonical master contract', () => {
+test('repository and subject documentation point to the canonical master contract', () => {
   const docsEntry = read('DOCS.md');
+  const docsMap = read('docs/README.md');
   const subjectContract = read('docs/SUBJECT_FILE_CONTRACT.md');
+  const pensum = read('README/README.pensum.md');
 
   assert.match(docsEntry, /docs\/FAGVERK\.md/);
   assert.ok(subjectContract.includes('(./FAGVERK.md)'), 'Subject contract must link to FAGVERK.md');
   assert.match(subjectContract, /skal ikke brukes som konkurrerende fagsidekontrakt/i);
+  assert.ok(docsMap.includes('(./FAGVERK.md)'));
+  assert.ok(docsMap.includes('(./FAGVERK_NAVIGATION.md)'));
+  assert.ok(docsMap.includes('(./FAGVERK_PLACE_DESIGN.md)'));
+  assert.match(pensum, /docs\/FAGVERK\.md/);
 });
 
 test('portal status remains honest at the documentation baseline', () => {

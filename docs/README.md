@@ -200,13 +200,17 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 ### Fag, emner og quiz
 
 1. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — bindende regel om én universell fagmodell per fag og separate geografiske produksjonslag
-2. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner og pensum
-3. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til fagpakkens lag og manifest-resolverte filer
-4. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) — eneste bindende quizproduksjonsprosedyre
-5. [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) — maskinlesbar autoritetsrekkefølge, globale invariants og kategori-profiler
-6. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver, full fagpakke og aktive `quizProduction.targets`
-7. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
-8. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
+2. [`FAGVERK.md`](./FAGVERK.md) — canonical arkitektur, produksjonsrekkefølge, status og ferdigkrav for alle fagsider
+3. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — bindende skille mellom Fagverkforsiden, merkesider, fagsider og stedssider
+4. [`FAGVERK_PLACE_DESIGN.md`](./FAGVERK_PLACE_DESIGN.md) — kategori-, bilde- og presentasjonskontrakt for stedets egne fagverksider
+5. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner, Knowledge og progresjon
+6. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til fagpakkens lag og manifest-resolverte filer
+7. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) — eneste bindende quizproduksjonsprosedyre
+8. [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) — maskinlesbar autoritetsrekkefølge, globale invariants og kategori-profiler
+9. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver, full fagpakke og aktive `quizProduction.targets`
+10. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
+11. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
+
 
 Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Universell fagdekning og geografisk produksjonsdekning er separate mål. `README/byFagplan.md` er nå bare en compatibility-pointer til disse aktive kildene; den tidligere kombinerte teksten er bevart som historisk snapshot under `README/archive/`.
 

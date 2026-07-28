@@ -44,9 +44,16 @@ on:
       - 'DOCS.md'
       - 'README/README.pensum.md'
       - 'README/fagstrukturREADME.md'
+      - 'docs/README.md'
+      - 'docs/documentation_registry.json'
       - 'docs/FACTUALITY_CONTRACT.md'
       - 'docs/DATA_PRODUCTION_CONTRACT.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
+      - 'docs/PROGRESSION_MODEL.md'
+      - 'docs/PLACE_PRODUCTION_CHECKLIST.md'
+      - 'docs/PLACE_STANDARD.md'
+      - 'docs/COMPLETION_DEFINITIONS.md'
+      - 'docs/HISTORY_GO_PRODUCT_MAP.md'
       - 'docs/TYPESCRIPT_FIRST_POLICY.md'
       - 'docs/FAGVERK.md'
       - 'docs/FAGVERK_NAVIGATION.md'
@@ -78,6 +85,8 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             DOCS.md
+            docs/README.md
+            docs/documentation_registry.json
             docs/FAGVERK.md
             docs/FAGVERK_NAVIGATION.md
             docs/SUBJECT_FILE_CONTRACT.md
@@ -85,7 +94,12 @@ jobs:
             docs/DOMAIN_CONTRACT.md
             docs/DATA_PRODUCTION_CONTRACT.md
             docs/KNOWLEDGE_ARCHITECTURE.md
+            docs/PROGRESSION_MODEL.md
             docs/FAGVERK_PLACE_DESIGN.md
+            docs/PLACE_PRODUCTION_CHECKLIST.md
+            docs/PLACE_STANDARD.md
+            docs/COMPLETION_DEFINITIONS.md
+            docs/HISTORY_GO_PRODUCT_MAP.md
             docs/TYPESCRIPT_FIRST_POLICY.md
             docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md
             README/README.pensum.md
@@ -113,10 +127,12 @@ jobs:
         run: node --test --test-name-pattern="points to every relevant" tests/fagverk-documentation-contract.test.mjs
       - name: Validate canonical subject baseline
         run: node --test --test-name-pattern="baseline matches" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate documentation registry ownership
+        run: node --test --test-name-pattern="documentation registry gives" tests/fagverk-documentation-contract.test.mjs
       - name: Validate narrow navigation ownership
         run: node --test --test-name-pattern="navigation remains narrow" tests/fagverk-documentation-contract.test.mjs
       - name: Validate documentation entry pointers
-        run: node --test --test-name-pattern="repository and subject-file" tests/fagverk-documentation-contract.test.mjs
+        run: node --test --test-name-pattern="repository and subject documentation" tests/fagverk-documentation-contract.test.mjs
       - name: Validate honest portal status
         run: node --test --test-name-pattern="portal status remains honest" tests/fagverk-documentation-contract.test.mjs
 
