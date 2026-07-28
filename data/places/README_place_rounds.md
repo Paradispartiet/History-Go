@@ -196,9 +196,11 @@ Eksisterende Brands-oppføringer er source of truth og skal ikke omklassifiseres
 
 Denne kontrakten skal ikke bruke Brands som restkategori for institusjoner, lag, skilt, objekter eller andre ting som passer bedre i en annen runding.
 
+Når et sted allerede har reelle Brands-oppføringer, skal runtime kunne prioritere Brands foran en tom anbefalt runding. Matrisen nedenfor skal altså ikke brukes til å skjule eksisterende, relevant Brands-innhold.
+
 ## Gruppering av tidligere kandidater
 
-Den brede idélisten skal normalt foldes inn i hovedrundingene, ikke bli nye rundinger:
+Den brede idélisten skal normalt foldes inn i hovedrundingene, ikke bli nye rundinger.
 
 ### Under `objects`
 
@@ -279,7 +281,7 @@ Følgende kan ha bilder, men hovedrollen er kunnskap, hendelse eller handling og
 Eksempel sport:
 
 - spiller → `people`
-- klubbmerke som allerede er canonical Brand → `brands`
+- eksisterende bedrift-/merkeoppføring → `brands`
 - drakt eller pokal → `objects`
 - tribune eller baneelement → `spots`
 - rekordtavle eller fysisk markering → `details`
@@ -287,19 +289,21 @@ Eksempel sport:
 
 ## Badge-kategorier og rundingsmatrise
 
-Badges er kategoriankeret. Tabellen viser kategoriens **4-runders kjerne** og de to normale utvidelsene til **6 rundinger**.
+Badges er kategoriankeret. Tabellen viser kategoriens **4-runders kjerne** og to naturlige utvidelser når stedet har nok faktisk visuelt innhold.
 
-| Badge/kategori | 4-runders kjerne | Utvid til 6 med |
+| Badge/kategori | 4-runders kjerne | Naturlig utvidelse mot 6 |
 | --- | --- | --- |
 | **Historie** | Badges · People · Objects · Spots | Details · Works |
-| **Kunst** | Badges · Works · People · Details | Brands · Spots |
-| **Politikk & samfunn** | Badges · People · Brands · Spots | Objects · Details |
-| **Musikk** | Badges · People · Works · Brands | Objects · Spots |
-| **Litteratur & poesi** | Badges · People · Works · Objects | Spots · Brands |
-| **Sport & lek** | Badges · People · Brands · Spots | Objects · Details |
+| **Kunst** | Badges · Works · People · Details | Spots · Objects |
+| **Politikk & samfunn** | Badges · People · Spots · Details | Objects · Works |
+| **Musikk** | Badges · People · Works · Objects | Spots · Details |
+| **Litteratur & poesi** | Badges · People · Works · Objects | Spots · Details |
+| **Sport & lek** | Badges · People · Objects · Spots | Details · Works |
 | **Natur & miljø** | Badges · Nature · Spots · Details | People · Objects |
-| **Vitenskap** | Badges · People · Objects · Brands | Spots · Details |
-| **Filosofi** | Badges · People · Works · Spots | Objects · Brands |
+| **Vitenskap** | Badges · People · Objects · Spots | Details · Works |
+| **Filosofi** | Badges · People · Works · Spots | Objects · Details |
+
+Brands er bevisst ikke tvunget inn i generiske kategori-defaults. Et sted med eksisterende Brands-data kan bruke Brands i stedet for en svak eller tom anbefalt samling.
 
 Dette er prioritering, ikke en ordre om å produsere kunstig innhold. Hvis en av de foreslåtte samlingene ikke gir mening for stedet, brukes neste relevante runding i kategoriens prioriteringsliste.
 
@@ -307,17 +311,19 @@ Nature skal for eksempel ikke presses inn i Historie, Kunst eller Politikk bare 
 
 ## Prioriteringsrekkefølge
 
-Runtime kan bruke følgende rekkefølge ved kuratering og fallback:
+Runtime bruker kategoriens rekkefølge sammen med faktisk eksisterende rundingsinnhold:
 
 - **Historie:** Badges → People → Objects → Spots → Details → Works → Brands → Nature
-- **Kunst:** Badges → Works → People → Details → Brands → Spots → Objects → Nature
-- **Politikk:** Badges → People → Brands → Spots → Objects → Details → Works → Nature
-- **Musikk:** Badges → People → Works → Brands → Objects → Spots → Details → Nature
-- **Litteratur:** Badges → People → Works → Objects → Spots → Brands → Details → Nature
-- **Sport:** Badges → People → Brands → Spots → Objects → Details → Works → Nature
+- **Kunst:** Badges → Works → People → Details → Spots → Objects → Brands → Nature
+- **Politikk:** Badges → People → Spots → Details → Objects → Works → Brands → Nature
+- **Musikk:** Badges → People → Works → Objects → Spots → Details → Brands → Nature
+- **Litteratur:** Badges → People → Works → Objects → Spots → Details → Brands → Nature
+- **Sport:** Badges → People → Objects → Spots → Details → Brands → Works → Nature
 - **Natur:** Badges → Nature → Spots → Details → People → Objects → Works → Brands
-- **Vitenskap:** Badges → People → Objects → Brands → Spots → Details → Nature → Works
-- **Filosofi:** Badges → People → Works → Spots → Objects → Brands → Details → Nature
+- **Vitenskap:** Badges → People → Objects → Spots → Details → Works → Brands → Nature
+- **Filosofi:** Badges → People → Works → Spots → Objects → Details → Brands → Nature
+
+Hvis en lavere prioritert runding allerede har reelt innhold mens en høyere prioritert runding er tom, kan den eksisterende samlingen løftes inn i 4-rundersvisningen. Dette er særlig viktig for eksisterende Brands-data.
 
 ## `rounds` og `rounds_exclude`
 
@@ -348,15 +354,17 @@ Eksempel med seks:
 ```json
 {
   "id": "eksempel_kunststed",
-  "rounds": ["badges", "works", "people", "details", "brands", "spots"]
+  "rounds": ["badges", "works", "people", "details", "spots", "objects"]
 }
 ```
 
+Hvis et sted allerede har gode Brands-oppføringer kan Brands eksplisitt erstatte en av de valgfrie rundingene.
+
 ## Wonderkammer
 
-`wonderkammer` er ikke lenger en canonical PlaceCard-runding.
+`wonderkammer` er ikke lenger en canonical PlaceCard-runding eller ny produksjonsmodell.
 
-Begrepet har historisk dekket navigasjon, aktiviteter og actual-site-treasures. Disse skal migreres etter faktisk innhold:
+Begrepet har historisk dekket navigasjon, aktiviteter og actual-site-treasures. Disse migreres etter faktisk innhold:
 
 - fysisk gjenstand → `objects`;
 - liten fysisk detalj/spor → `details`;
@@ -406,6 +414,7 @@ Den:
 - håndhever fire eller seks synlige slots i ny kuratering;
 - bruker Badge som obligatorisk faglig inngang;
 - oppretter kompatibilitetsflater for `objects`, `details` og `spots`;
+- prioriterer eksisterende reelt rundingsinnhold foran tomme standardvalg;
 - kan lese eksisterende Civication Store-objekter som Object-kilde uten å endre Store-data;
 - skjuler gamle ikke-visuelle rundinger;
 - lar legacy source-data migreres separat.
