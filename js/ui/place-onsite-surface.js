@@ -15,6 +15,12 @@
     .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 
+  function removeLegacyActionNodes() {
+    ["pcTasksIcon", "pcTasksList", "pcTrainingIcon", "pcTrainingList"].forEach(id => {
+      document.getElementById(id)?.remove();
+    });
+  }
+
   function currentPlace() {
     const id = text(document.getElementById("placeCard")?.dataset?.currentPlaceId);
     if (!id) return null;
@@ -135,6 +141,7 @@
   }
 
   function init() {
+    removeLegacyActionNodes();
     if (!global[BOUND_FLAG]) { document.addEventListener("click", handleClick, true); global[BOUND_FLAG] = true; }
     decorate(); observe();
   }
