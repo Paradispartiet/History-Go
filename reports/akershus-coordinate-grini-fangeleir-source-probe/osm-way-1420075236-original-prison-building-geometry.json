@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "1.0",
+  "capturedAt": "2026-07-28",
+  "sourceArtifact": {
+    "artifactId": 8684349286,
+    "name": "grini-coordinate-source-probe",
+    "digest": "sha256:4ef61dce08fdbc557579373ed0083d0df5ae85843a7c27de0206277b01853f85",
+    "bbox": "10.5790,59.9510,10.5965,59.9605"
+  },
+  "building": {
+    "sourceObjectId": "osm-way:1420075236",
+    "tags": {
+      "building": "yes"
+    },
+    "nodeCount": 41,
+    "closed": true,
+    "coordinates": [
+      [59.9548691, 10.582537],
+      [59.9548711, 10.5827422],
+      [59.9545602, 10.5827542],
+      [59.9545606, 10.5827903],
+      [59.9545337, 10.5827914],
+      [59.9545338, 10.5828024],
+      [59.954369, 10.5828097],
+      [59.9543687, 10.5827908],
+      [59.9543462, 10.5827918],
+      [59.9543458, 10.5827583],
+      [59.9542728, 10.5827618],
+      [59.9542755, 10.5829877],
+      [59.9542959, 10.5829867],
+      [59.9542968, 10.5830628],
+      [59.954205, 10.5830673],
+      [59.9542041, 10.5829938],
+      [59.9542421, 10.582992],
+      [59.9542393, 10.5827627],
+      [59.9540339, 10.5827727],
+      [59.9540363, 10.5829708],
+      [59.9539867, 10.5829732],
+      [59.9539853, 10.5828528],
+      [59.9538522, 10.5828593],
+      [59.9538536, 10.5829792],
+      [59.9538068, 10.5829814],
+      [59.9538023, 10.5826123],
+      [59.9540307, 10.5826012],
+      [59.9540303, 10.5825672],
+      [59.9540597, 10.5825657],
+      [59.9540601, 10.5825983],
+      [59.9543694, 10.5825834],
+      [59.9543715, 10.5825706],
+      [59.9544053, 10.5825694],
+      [59.9544033, 10.5822409],
+      [59.9544909, 10.582238],
+      [59.9544928, 10.5825664],
+      [59.9545316, 10.5825651],
+      [59.9545317, 10.5825777],
+      [59.9548438, 10.5825663],
+      [59.9548435, 10.5825379],
+      [59.9548691, 10.582537]
+    ],
+    "derivedCentroid": {
+      "lat": 59.954295776884884,
+      "lon": 10.582680030345253,
+      "method": "polygon centroid in lon*cos(meanLat),lat planar space"
+    },
+    "approximateFootprintAreaM2": 3378,
+    "identification": {
+      "officialHistory": "MiA states that Grini began in the original Ila prison building and that the main building is now Ila fengsel og forvaringsanstalt.",
+      "currentInstitution": "Kriminalomsorgen lists Ila fengsel og forvaringsanstalt at Jøssingveien 33, 1359 Eiksmarka.",
+      "addressCrossCheck": {
+        "sourceProvider": "kartverket",
+        "sourceObjectId": "geonorge-address:Jøssingveien-33",
+        "lat": 59.954506038554115,
+        "lon": 10.58271591642294,
+        "distanceFromCentroidM": 23.5
+      },
+      "interiorCrossCheck": {
+        "sourceObjectId": "osm-way:1470255130",
+        "name": "Fallskjermen",
+        "tags": {
+          "historic": "yes",
+          "indoor": "room",
+          "fixme": "Unøyaktig posisjon"
+        },
+        "centroid": {
+          "lat": 59.954447254986555,
+          "lon": 10.582640771814834
+        },
+        "finding": "The mapped Fallskjermen room lies inside way 1420075236. Historical sources place Fallskjermen in the original Grini prison building. Its mapped position is used only as an identity cross-check, not as an independent coordinate source."
+      }
+    }
+  },
+  "currentPrisonBoundary": {
+    "sourceObjectId": "osm-way:375269932",
+    "name": "Ila fengsel og forvaringsanstalt",
+    "tags": {
+      "amenity": "prison",
+      "wikidata": "Q1785282"
+    },
+    "note": "Current secure-prison boundary is operational context only and must never be interpreted as the 1941–1945 camp perimeter."
+  },
+  "visitorAnchor": {
+    "sourceObjectId": "osm-node:5446566958",
+    "name": "Grini museum",
+    "lat": 59.9557896,
+    "lon": 10.5847011,
+    "distanceFromBuildingCentroidM": 200.6,
+    "officialAddress": {
+      "street": "Jøssingveien",
+      "number": "31",
+      "postcode": "1359",
+      "city": "Eiksmarka",
+      "kartverketPoint": {
+        "lat": 59.95552747619229,
+        "lon": 10.584786409648313
+      }
+    },
+    "representationNote": "MiA states that the current museum is in an authentic prisoner barrack moved after the war and located just outside the original camp. It is the public visitor anchor, not the historical camp centre."
+  },
+  "legacyCoordinate": {
+    "lat": 59.9565,
+    "lon": 10.5909,
+    "distanceFromBuildingCentroidM": 519.1,
+    "reasonRejected": "No documented relationship to the main building, appeal area, barracks or surviving wartime components."
+  },
+  "unreferencedEntityCandidate": {
+    "sourceObjectId": "wikidata:Q637411",
+    "lat": 59.95343333333334,
+    "lon": 10.582547222222223,
+    "distanceFromBuildingCentroidM": 96.2,
+    "reasonRejected": "Nearby but coordinate statement lacks cited derivation and feature role."
+  }
+}
