@@ -185,4 +185,7 @@ node --test tests/nationaltheatret-factuality-audit-people-batch-7-v1.test.mjs
 echo "== Nationaltheatret People factuality batch 8 v1 =="
 node --test tests/nationaltheatret-factuality-audit-people-batch-8-v1.test.mjs
 
+echo "== Nationaltheatret People factuality batch 9 v1 =="
+node --test tests/nationaltheatret-factuality-audit-people-batch-9-v1.test.mjs
+
 echo "== People check complete =="
