@@ -38,8 +38,8 @@
     filosofi:   ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],
     film_tv:    ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],
 
-    // Legacy place-kategorier beholdes som presentasjonskompatibilitet. De er ikke
-    // en ny badge-taksonomi og endrer ingen eksisterende Brands-data.
+    // Full canonical place-kategoridekning beholdes eksplisitt. I tillegg finnes
+    // noen legacy presentasjonskategorier; ingen av dem endrer Brands-semantikken.
     by:          ["badges", "works", "spots", "details", "people", "objects", "brands", "nature"],
     lekeplass:   ["badges", "spots", "objects", "nature", "details", "people", "brands", "works"],
     trening:     ["badges", "people", "spots", "objects", "details", "brands", "nature", "works"],

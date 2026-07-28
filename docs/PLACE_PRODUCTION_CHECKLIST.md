@@ -637,6 +637,24 @@ Selv hvis People ikke velges som runding, skal personkoblinger vurderes.
 - [ ] Nearby viser riktig navn/kategori/bilde og åpner korrekt PlaceCard;
 - [ ] place-search finner stedet på forventede navn/aliaser;
 
+### Søk, aliaser og i18n
+
+- [ ] canonical navn er riktig;
+- [ ] relevante aliaser/navnevarianter er vurdert;
+- [ ] stedets i18n-/oversettelsesdata er kontrollert når datasettet støtter dette;
+- [ ] ingen oversettelse eller alias endrer stedets fysiske identitet;
+- [ ] relevant i18n-place-gate kjøres når slike data endres.
+
+### Offentlig hjemsted
+
+Vurderes eksplisitt, men er ikke krav for alle steder.
+
+- [ ] stedet er et eksisterende canonical History GO-sted;
+- [ ] det er ikke en privat adresse;
+- [ ] lat/lon/radius er egnet for offentlig representasjon;
+- [ ] privacy/synlighet følger eksisterende hjemstedsmodell;
+- [ ] markér N/A når stedet ikke skal ha denne rollen.
+
 ---
 
 ## 25. Leksikon
@@ -718,6 +736,7 @@ En valgt runding uten bildeklart innhold er **ikke produksjonsklar**, selv om JS
 - [ ] category er gyldig.
 - [ ] underbadge IDs er gyldige.
 - [ ] emne IDs er gyldige.
+- [ ] i18n/alias-data er gyldige når de endres.
 - [ ] coordinate contract passerer.
 - [ ] People references finnes.
 - [ ] Works references finnes.

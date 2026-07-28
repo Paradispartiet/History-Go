@@ -381,6 +381,12 @@ Kontroller:
 
 Ikke opprett koblinger bare for completeness.
 
+Søk/aliaser og i18n skal også kontrolleres når stedets datasett bruker dette.
+
+### Offentlig hjemsted
+
+Et place kan brukes som offentlig hjemsted bare når det er et eksisterende canonical History GO-sted, ikke er en privat adresse, har egnet koordinat/radius og følger eksisterende privacy-/synlighetsmodell. Dette vurderes per sted og kan være N/A.
+
 ---
 
 ## 18. Social Meet / Spotmeeting
