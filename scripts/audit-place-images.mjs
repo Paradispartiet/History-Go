@@ -10,6 +10,8 @@ const args=new Set(process.argv.slice(2));
 const mode=(process.argv.find((arg)=>arg.startsWith('--mode='))||'--mode=all').split('=')[1];
 const reportArg=process.argv.find((arg)=>arg.startsWith('--report='));
 const reportPath=reportArg?path.resolve(ROOT,reportArg.split('=').slice(1).join('=')):null;
+const summaryArg=process.argv.find((arg)=>arg.startsWith('--verify-summary='));
+const summaryPath=summaryArg?path.resolve(ROOT,summaryArg.split('=').slice(1).join('=')):null;
 const strict=args.has('--strict');
 const IMAGE_FIELDS=['popupImage','cardImage','image'];
 
@@ -76,6 +78,12 @@ function changedFiles(){
   try{return new Set(execFileSync('git',['diff','--name-only',`origin/${base}...HEAD`],{cwd:ROOT,encoding:'utf8'}).split(/\r?\n/).map(text).filter(Boolean));}
   catch{return new Set();}
 }
+function verifySummary(report,file){
+  const saved=readJson(file);
+  const expected={totalPlaces:report.totalPlaces,validLocal:report.summary.local,validRemote:report.summary.remote,missing:report.summary.missing,invalidLocalPath:report.summary.invalid,remaining:report.summary.missing+report.summary.invalid};
+  const actual={totalPlaces:saved.totalPlaces,validLocal:saved.summary?.validLocal,validRemote:saved.summary?.validRemote,missing:saved.summary?.missing,invalidLocalPath:saved.summary?.invalidLocalPath,remaining:saved.summary?.remaining};
+  if(JSON.stringify(actual)!==JSON.stringify(expected))throw new Error(`Bildebacklog-summary er utdatert. Forventet ${JSON.stringify(expected)}, fant ${JSON.stringify(actual)}`);
+}
 
 const entries=loadEntries();
 const allRows=entries.map(inspect);
@@ -86,6 +94,7 @@ const byCategory={};
 for(const row of allRows){const bucket=byCategory[row.category]||(byCategory[row.category]={total:0,local:0,remote:0,missing:0,invalid:0});bucket.total+=1;bucket[row.status]+=1;}
 const report={schema:'history_go_place_image_audit_v1',generatedAt:new Date().toISOString(),mode,totalPlaces:entries.length,checkedPlaces:inspected.length,summary:{local:allRows.filter((row)=>row.status==='local').length,remote:allRows.filter((row)=>row.status==='remote').length,missing:allRows.filter((row)=>row.status==='missing').length,invalid:allRows.filter((row)=>row.status==='invalid').length},byCategory,failures:allRows.filter((row)=>row.status==='missing'||row.status==='invalid')};
 if(reportPath){fs.mkdirSync(path.dirname(reportPath),{recursive:true});fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');}
+if(summaryPath)verifySummary(report,summaryPath);
 console.log(`Place image audit: ${report.totalPlaces} steder · ${report.summary.local} lokale · ${report.summary.remote} eksterne · ${report.summary.missing} mangler · ${report.summary.invalid} ugyldige`);
 if(failures.length){for(const row of failures.slice(0,80))console.error(`- ${row.id} [${row.category}] ${row.sourceFile}: ${row.reason}${row.value?` (${row.value})`:''}`);if(failures.length>80)console.error(`… og ${failures.length-80} til`);}
 if((mode==='changed'||strict)&&failures.length)process.exitCode=1;
