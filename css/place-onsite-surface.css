@@ -1,0 +1,111 @@
+/* ============================================================
+   PLACE ON-SITE SURFACE
+   Events, møter/kunnskapsmøter og handlinger under rundingene.
+   ============================================================ */
+
+body.hg-app #placeCard .pc-onsite-surface{
+  display:grid;
+  gap:8px;
+  min-width:0;
+  padding:4px 0 0;
+}
+
+body.hg-app #placeCard .pc-onsite-section{
+  display:grid;
+  gap:6px;
+  min-width:0;
+  padding:8px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  background:rgba(0,0,0,.14);
+}
+
+body.hg-app #placeCard .pc-onsite-section-title{
+  color:rgba(255,255,255,.62);
+  font-size:10px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+body.hg-app #placeCard .pc-onsite-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:5px;
+}
+
+body.hg-app #placeCard .pc-onsite-action{
+  min-width:0;
+  min-height:30px;
+  padding:6px 8px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  font:inherit;
+  font-size:10px;
+  line-height:1.15;
+  font-weight:800;
+  text-align:center;
+  cursor:pointer;
+}
+
+body.hg-app #placeCard .pc-onsite-action:hover,
+body.hg-app #placeCard .pc-onsite-action:focus-visible{
+  border-color:rgba(247,226,163,.42);
+  background:rgba(247,226,163,.10);
+  outline:none;
+}
+
+body.hg-app #placeCard .pc-onsite-action span{
+  margin-left:3px;
+  color:rgba(255,255,255,.55);
+  font-size:9px;
+}
+
+body.hg-app #placeCard .pc-onsite-list{
+  display:grid;
+  gap:5px;
+}
+
+body.hg-app #placeCard .pc-onsite-event{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:7px;
+  align-items:center;
+  min-width:0;
+  padding:5px 6px;
+  border-radius:9px;
+  background:rgba(255,255,255,.035);
+}
+
+body.hg-app #placeCard .pc-onsite-event strong{
+  min-width:0;
+  overflow:hidden;
+  color:rgba(255,255,255,.88);
+  font-size:10px;
+  line-height:1.2;
+  font-weight:800;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+body.hg-app #placeCard .pc-onsite-event span,
+body.hg-app #placeCard .pc-onsite-more{
+  color:rgba(255,255,255,.48);
+  font-size:9px;
+  line-height:1.2;
+}
+
+body.hg-app #placeCard .pc-onsite-meetings .pc-onsite-action[data-hg-onsite-action="knowledge-meet"]{
+  border-color:rgba(247,226,163,.28);
+  background:rgba(247,226,163,.09);
+  color:#f7e2a3;
+}
+
+@media (max-width:520px){
+  body.hg-app #placeCard .pc-onsite-actions{
+    grid-template-columns:1fr;
+  }
+}
