@@ -148,18 +148,32 @@
     navigate(DEFAULT_ROUTE, { replace: true });
   }
 
+  function signalReady() {
+    window.__HG_ROUTER_STARTED__ = true;
+    try {
+      window.dispatchEvent(new CustomEvent("hg:routerReady", {
+        detail: { ready: true, route: parseHash(location.hash), ts: Date.now() }
+      }));
+    } catch {}
+  }
+
   function start() {
-    if (started) return;
+    if (started) {
+      signalReady();
+      return;
+    }
     started = true;
 
     window.addEventListener("hashchange", render);
 
     if (!location.hash) {
       navigate(DEFAULT_ROUTE, { replace: true });
+      signalReady();
       return;
     }
 
     render();
+    signalReady();
   }
 
   /** @type {AppRouterApi} */
