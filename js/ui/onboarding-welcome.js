@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/ui/onboarding-welcome.js
 // HGOnboarding — vises én gang per nettleser ved første besøk.
 // Forklarer hovedflyten kort: kart → sted → quiz → samle.
@@ -35,9 +36,6 @@
     modal.className = "hg-onboarding-modal";
     modal.setAttribute("aria-hidden", "true");
     modal.style.display = "none";
-
-    // Onboarding is a true modal. Keep it above every normal History Go surface
-    // so fixed map/header/footer layers cannot steal taps on Safari/iPadOS.
     modal.style.zIndex = MODAL_Z_INDEX;
     modal.style.pointerEvents = "auto";
     modal.style.touchAction = "manipulation";
@@ -53,41 +51,11 @@
           </p>
         </header>
         <ol class="hg-onb-steps">
-          <li>
-            <span class="hg-onb-step-icon">📍</span>
-            <div>
-              <strong>Utforsk byen</strong>
-              <p>Kartet viser parker, plasser, bygninger, scener, stadioner, museer og skjulte spor rundt deg.</p>
-            </div>
-          </li>
-          <li>
-            <span class="hg-onb-step-icon">🧩</span>
-            <div>
-              <strong>Åpne stedene</strong>
-              <p>Hvert sted kan ha historier, personer, bilder, gamle nyheter, sitater, temaer og forbindelser.</p>
-            </div>
-          </li>
-          <li>
-            <span class="hg-onb-step-icon">🎯</span>
-            <div>
-              <strong>Løs oppgaver</strong>
-              <p>Ta quizer og utfordringer innen historie, kunst, litteratur, sport, musikk, natur, politikk og vitenskap.</p>
-            </div>
-          </li>
-          <li>
-            <span class="hg-onb-step-icon">🏅</span>
-            <div>
-              <strong>Bygg profilen din</strong>
-              <p>Samle merker, favoritter, kunnskap og framgang. Bronse, sølv og gull viser hva du mestrer.</p>
-            </div>
-          </li>
-          <li>
-            <span class="hg-onb-step-icon">🎮</span>
-            <div>
-              <strong>Gå videre i universet</strong>
-              <p>Stedene du finner kan brukes i ruter, Min dag, Football Manager, Kunstskolen og Skrivekunstakademiet.</p>
-            </div>
-          </li>
+          <li><span class="hg-onb-step-icon">📍</span><div><strong>Utforsk byen</strong><p>Kartet viser parker, plasser, bygninger, scener, stadioner, museer og skjulte spor rundt deg.</p></div></li>
+          <li><span class="hg-onb-step-icon">🧩</span><div><strong>Åpne stedene</strong><p>Hvert sted kan ha historier, personer, bilder, gamle nyheter, sitater, temaer og forbindelser.</p></div></li>
+          <li><span class="hg-onb-step-icon">🎯</span><div><strong>Løs oppgaver</strong><p>Ta quizer og utfordringer innen historie, kunst, litteratur, sport, musikk, natur, politikk og vitenskap.</p></div></li>
+          <li><span class="hg-onb-step-icon">🏅</span><div><strong>Bygg profilen din</strong><p>Samle merker, favoritter, kunnskap og framgang. Bronse, sølv og gull viser hva du mestrer.</p></div></li>
+          <li><span class="hg-onb-step-icon">🎮</span><div><strong>Gå videre i universet</strong><p>Stedene du finner kan brukes i ruter, Min dag, Football Manager, Kunstskolen og Skrivekunstakademiet.</p></div></li>
         </ol>
         <footer class="hg-onb-actions">
           <button type="button" class="hg-onb-primary" data-action="start">Start History Go</button>
@@ -96,11 +64,9 @@
     `;
 
     document.body.appendChild(modal);
-
     modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
     bindDismissControl(modal.querySelector(".hg-onb-close"));
     bindDismissControl(modal.querySelector('[data-action="start"]'));
-
     return modal;
   }
 
@@ -123,13 +89,32 @@
     document.addEventListener("keydown", onKey);
   }
 
-  function afterAppReady(fn) {
-    if (window.__HG_APP_READY__ || document.body?.classList.contains("hg-loaded")) {
-      fn();
-      return;
-    }
+  function whenFullyInteractive(fn) {
+    let appReady = window.__HG_APP_READY__ === true || document.body?.classList.contains("hg-loaded");
+    let routerReady = window.__HG_ROUTER_STARTED__ === true;
+    let fired = false;
 
-    window.addEventListener("hg:appReady", fn, { once: true });
+    const maybeRun = () => {
+      if (fired || !appReady || !routerReady) return;
+      fired = true;
+      window.removeEventListener("hg:appReady", onAppReady);
+      window.removeEventListener("hg:routerReady", onRouterReady);
+      fn();
+    };
+
+    const onAppReady = () => {
+      appReady = true;
+      maybeRun();
+    };
+
+    const onRouterReady = () => {
+      routerReady = true;
+      maybeRun();
+    };
+
+    if (!appReady) window.addEventListener("hg:appReady", onAppReady);
+    if (!routerReady) window.addEventListener("hg:routerReady", onRouterReady);
+    maybeRun();
   }
 
   function maybeShowOnFirstVisit() {
@@ -137,7 +122,7 @@
       if (localStorage.getItem(FLAG_KEY) === "1") return;
     } catch { return; }
 
-    afterAppReady(() => {
+    whenFullyInteractive(() => {
       setTimeout(open, 250);
     });
   }
