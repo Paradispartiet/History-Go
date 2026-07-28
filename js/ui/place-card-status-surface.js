@@ -44,11 +44,12 @@
     // eksisterende systemer (Leksikon, Stories, Lesespor, før/nå osv.).
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js", "__HG_PLACE_POPUP_TABS_SCRIPT_REQUESTED__");
-    ensureScript("js/ui/place-popup-actions.js", "__HG_PLACE_POPUP_ACTIONS_SCRIPT_REQUESTED__");
 
-    // PlaceCard-rundingene snevres inn til visuelle samlinger. Kunnskaps- og
-    // handlingsflater flyttes til popupfaner eller egne handlingsflater.
+    // PlaceCard-rundingene snevres inn til visuelle samlinger. Kunnskapsflater
+    // flyttes til popupfaner, mens handlinger/møter/events samles under På stedet.
     ensureScript("js/ui/place-rounds-visual-collections.js", "__HG_VISUAL_PLACE_ROUNDS_SCRIPT_REQUESTED__");
+    ensureStylesheet("css/place-onsite-surface.css");
+    ensureScript("js/ui/place-onsite-surface.js", "__HG_PLACE_ONSITE_SURFACE_SCRIPT_REQUESTED__");
   }
 
   function loadPlaceLearningSurface() {
