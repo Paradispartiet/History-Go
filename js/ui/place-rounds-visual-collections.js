@@ -1,7 +1,8 @@
 // @ts-nocheck
 // js/ui/place-rounds-visual-collections.js
 // Canonical presentasjonskontrakt: rundinger er visuelle samlinger. Nye/reviderte
-// steder bruker nøyaktig fire eller seks rundinger, og Badges er alltid med.
+// steder bruker nøyaktig fire eller seks rundinger, Badges er alltid med, og
+// produksjonsklare rundinger skal ha et faktisk visuelt preview.
 (function installVisualPlaceRounds(global) {
   "use strict";
 
@@ -21,8 +22,8 @@
   const DEF_BY_ID = new Map(VISUAL_ROUND_DEFS.map(def => [def.id, def]));
 
   // Prioritet = 4-runders kjerne først, deretter de to normale utvidelsene.
-  // Brands er ikke en generell aktørkategori. Den ligger bare høyt der eksisterende
-  // bedrift-/merkeinnhold faktisk er et naturlig kategoriutgangspunkt.
+  // Brands er ikke en generell aktørkategori; eksisterende Brands-data avgjør
+  // om Brands løftes foran en ellers tom anbefalt samling.
   const CATEGORY_ROUND_PRIORITIES = Object.freeze({
     historie:   ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
     historisk:  ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
@@ -49,7 +50,6 @@
   });
 
   const DEFAULT_PRIORITY = CATEGORY_ROUND_PRIORITIES.by;
-
   const LEGACY_NON_VISUAL_ICON_IDS = Object.freeze([
     "pcForNaIcon",
     "pcFortellingerIcon",
@@ -83,10 +83,14 @@
     return [...new Set((Array.isArray(values) ? values : []).map(s).filter(Boolean))];
   }
 
+  function array(value) {
+    return Array.isArray(value) ? value : [];
+  }
+
   function currentPlace() {
     const id = s(document.getElementById("placeCard")?.dataset?.currentPlaceId);
     if (!id) return null;
-    return (Array.isArray(global.PLACES) ? global.PLACES : []).find(place => s(place?.id) === id) || null;
+    return array(global.PLACES).find(place => s(place?.id) === id) || null;
   }
 
   function normalizeCategory(placeOrCategory) {
@@ -105,9 +109,14 @@
     return unique(declared).filter(id => VISUAL_SET.has(id));
   }
 
+  function hasValidExplicitSet(place) {
+    const explicit = explicitRoundIds(place);
+    return (explicit.length === 4 || explicit.length === 6) && explicit.includes("badges");
+  }
+
   function excludedRoundIds(place) {
     return new Set(
-      unique(Array.isArray(place?.rounds_exclude) ? place.rounds_exclude : [])
+      unique(array(place?.rounds_exclude))
         .filter(id => VISUAL_SET.has(id) && id !== "badges")
     );
   }
@@ -117,22 +126,42 @@
     return priorityFor(placeOrCategory).slice(0, target);
   }
 
+  function imageFor(item) {
+    if (!item || typeof item !== "object") return "";
+    return s(item.imageCard || item.image || item.img || item.photo || item.thumbnail || item.cover || item.logo);
+  }
+
+  function hasImage(items) {
+    return array(items).some(item => imageFor(item));
+  }
+
+  function iconHasImage(id) {
+    const def = DEF_BY_ID.get(id);
+    if (!def) return false;
+    const img = document.getElementById(def.iconId)?.querySelector("img[src]");
+    return Boolean(s(img?.getAttribute("src")));
+  }
+
   function civicationSourceFor(place) {
     const id = s(place?.id);
     return [
-      ...(Array.isArray(global.CIVICATION_STORE_BY_PLACE?.[id]) ? global.CIVICATION_STORE_BY_PLACE[id] : []),
-      ...(Array.isArray(place?.civication_store) ? place.civication_store : []),
-      ...(Array.isArray(place?.civicationStore) ? place.civicationStore : []),
-      ...(Array.isArray(place?.civication_items) ? place.civication_items : []),
-      ...(Array.isArray(place?.civicationItems) ? place.civicationItems : []),
-      ...(Array.isArray(place?.civication_store_items) ? place.civication_store_items : []),
-      ...(Array.isArray(place?.civicationStoreItems) ? place.civicationStoreItems : [])
+      ...array(global.CIVICATION_STORE_BY_PLACE?.[id]),
+      ...array(place?.civication_store),
+      ...array(place?.civicationStore),
+      ...array(place?.civication_items),
+      ...array(place?.civicationItems),
+      ...array(place?.civication_store_items),
+      ...array(place?.civicationStoreItems)
     ];
   }
 
-  function imageFor(item) {
-    if (!item || typeof item !== "object") return "";
-    return s(item.imageCard || item.image || item.img || item.photo || item.thumbnail || item.cover || item.logo || item.icon);
+  function isPhysicalCivicationObject(item) {
+    if (!item || typeof item !== "object" || !imageFor(item)) return false;
+    const placeSpecific = s(item.placeSpecificReason || item.place_specific_reason);
+    const physicalEvidence = s(
+      item.historicalFunction || item.historical_function || item.material || item.objectType || item.object_type || item.kind || item.type
+    );
+    return Boolean(placeSpecific || physicalEvidence || item.physical === true || item.isPhysical === true || item.is_physical === true);
   }
 
   function normalizeVisualItem(item, index, sourceKind) {
@@ -170,76 +199,103 @@
 
     if (id === "objects") {
       sources = [
-        ...((Array.isArray(place.objects) ? place.objects : []).map(item => [item, "objects"])),
-        ...((Array.isArray(place.artifacts) ? place.artifacts : []).map(item => [item, "artifacts"])),
-        ...(civicationSourceFor(place).map(item => [item, "civication"]))
+        ...array(place.objects).map(item => [item, "objects"]),
+        ...array(place.artifacts).map(item => [item, "artifacts"]),
+        ...civicationSourceFor(place)
+          .filter(isPhysicalCivicationObject)
+          .map(item => [item, "civication"])
       ];
     } else if (id === "details") {
       sources = [
-        ...((Array.isArray(place.details) ? place.details : []).map(item => [item, "details"])),
-        ...((Array.isArray(place.visual_details) ? place.visual_details : []).map(item => [item, "details"])),
-        ...((Array.isArray(place.site_details) ? place.site_details : []).map(item => [item, "details"]))
+        ...array(place.details).map(item => [item, "details"]),
+        ...array(place.visual_details).map(item => [item, "details"]),
+        ...array(place.site_details).map(item => [item, "details"])
       ];
     } else if (id === "spots") {
       sources = [
-        ...((Array.isArray(place.spots) ? place.spots : []).map(item => [item, "spots"])),
-        ...((Array.isArray(place.subplaces) ? place.subplaces : []).map(item => [item, "subplaces"])),
-        ...((Array.isArray(place.subPlaces) ? place.subPlaces : []).map(item => [item, "subplaces"]))
+        ...array(place.spots).map(item => [item, "spots"]),
+        ...array(place.subplaces).map(item => [item, "subplaces"]),
+        ...array(place.subPlaces).map(item => [item, "subplaces"])
       ];
     }
 
     return dedupeItems(sources.map(([item, sourceKind], index) => normalizeVisualItem(item, index, sourceKind)));
   }
 
-  function hasPreferredSource(place, id) {
-    if (!place) return false;
-    if (id === "badges") return Boolean(s(place.category));
-    if (id === "people") {
-      return (Array.isArray(place.people) && place.people.length > 0)
-        || Boolean(document.querySelector("#pcPeopleIcon img[src]"));
-    }
-    if (id === "works") return Array.isArray(place.works) && place.works.length > 0;
-    if (["objects", "details", "spots"].includes(id)) return customItems(place, id).length > 0;
+  function badgeHasImage(place) {
+    if (iconHasImage("badges")) return true;
+    const category = s(place?.category);
+    if (!category) return false;
+    const badge = array(global.BADGES).find(item => s(item?.id) === category);
+    return Boolean(imageFor(badge));
+  }
+
+  function brandsHaveImage(place) {
+    if (iconHasImage("brands")) return true;
+    const placeId = s(place?.id);
+    const raw = [
+      ...array(place?.brands),
+      ...array(place?.brand_ids),
+      ...array(global.BRANDS_BY_PLACE?.[placeId])
+    ];
+    return raw.some(item => {
+      if (item && typeof item === "object") return Boolean(imageFor(item));
+      const resolved = global.HGBrands?.getById?.(item);
+      return Boolean(resolved && imageFor(resolved));
+    });
+  }
+
+  function isRoundImageReady(place, id) {
+    if (!place || !VISUAL_SET.has(id)) return false;
+    if (id === "badges") return badgeHasImage(place);
+    if (id === "people") return iconHasImage("people") || hasImage(place.people);
+    if (id === "works") return iconHasImage("works") || hasImage(place.works);
+    if (["objects", "details", "spots"].includes(id)) return customItems(place, id).some(item => Boolean(item.image));
     if (id === "nature") {
-      return (Array.isArray(place.flora) && place.flora.length > 0)
-        || (Array.isArray(place.fauna) && place.fauna.length > 0)
-        || (Array.isArray(place.nature) && place.nature.length > 0)
-        || Boolean(document.querySelector("#pcNatureIcon img[src]"));
+      return iconHasImage("nature") || hasImage([
+        ...array(place.nature),
+        ...array(place.flora),
+        ...array(place.fauna)
+      ]);
     }
-    if (id === "brands") {
-      const placeId = s(place.id);
-      return (Array.isArray(place.brands) && place.brands.length > 0)
-        || (Array.isArray(place.brand_ids) && place.brand_ids.length > 0)
-        || (Array.isArray(global.BRANDS_BY_PLACE?.[placeId]) && global.BRANDS_BY_PLACE[placeId].length > 0)
-        || Boolean(document.querySelector("#pcBrandsIcon img[src]"));
-    }
+    if (id === "brands") return brandsHaveImage(place);
     return false;
   }
 
   function selectedIds(place) {
     const explicit = explicitRoundIds(place);
-    const hasValidExplicitSet = explicit.length === 4 || explicit.length === 6;
-    const target = explicit.length === 6 ? 6 : 4;
+    if (hasValidExplicitSet(place)) return explicit;
+
     const excluded = excludedRoundIds(place);
     const priority = priorityFor(place);
+    const preferred = priority.filter(id => id === "badges" || isRoundImageReady(place, id));
+    const target = preferred.length >= 6 ? 6 : 4;
 
-    const seed = hasValidExplicitSet
-      ? ["badges", ...explicit.filter(id => id !== "badges")]
-      : priority;
+    // Ekskluderte valg ligger sist. 4/6-layouten har høyere prioritet enn en
+    // ugyldig konfigurasjon som forsøker å ekskludere så mange at færre enn fire gjenstår.
+    const nonExcluded = priority.filter(id => id === "badges" || !excluded.has(id));
+    const excludedFallback = priority.filter(id => id !== "badges" && excluded.has(id));
+    const candidates = unique([
+      ...preferred.filter(id => id === "badges" || !excluded.has(id)),
+      ...nonExcluded,
+      ...excludedFallback,
+      ...VISUAL_ROUND_IDS
+    ]);
 
-    const candidates = unique([...seed, ...priority, ...VISUAL_ROUND_IDS])
-      .filter(id => id === "badges" || !excluded.has(id));
-
-    const ordered = hasValidExplicitSet
-      ? candidates
-      : unique([
-          ...candidates.filter(id => id === "badges" || hasPreferredSource(place, id)),
-          ...candidates.filter(id => id !== "badges" && !hasPreferredSource(place, id))
-        ]);
-
-    const selected = ordered.slice(0, target);
+    const selected = candidates.slice(0, target);
     if (!selected.includes("badges")) selected.unshift("badges");
     return unique(selected).slice(0, target);
+  }
+
+  function readinessFor(place, ids = selectedIds(place)) {
+    const selected = unique(ids);
+    const missingImages = selected.filter(id => !isRoundImageReady(place, id));
+    return {
+      selected,
+      ready: selected.filter(id => !missingImages.includes(id)),
+      missingImages,
+      complete: (selected.length === 4 || selected.length === 6) && missingImages.length === 0
+    };
   }
 
   function ensureCustomRoundDom() {
@@ -397,9 +453,12 @@
     bindBadgeNavigation();
 
     const selected = place ? selectedIds(place) : [];
+    const readiness = place ? readinessFor(place, selected) : { complete: false, missingImages: [] };
     const allowed = new Set(selected);
     card.dataset.roundMode = "visual-collections";
     card.dataset.roundCount = String(selected.length || 0);
+    card.dataset.roundReadiness = readiness.complete ? "ready" : "incomplete";
+    card.dataset.roundMissingImages = readiness.missingImages.join(",");
 
     for (const def of VISUAL_ROUND_DEFS) {
       const icon = document.getElementById(def.iconId);
@@ -408,6 +467,7 @@
       if (icon.hidden === shouldShow) icon.hidden = !shouldShow;
       icon.setAttribute("aria-hidden", shouldShow ? "false" : "true");
       icon.dataset.roundSurface = shouldShow ? "visual-collection" : "visual-collection-inactive";
+      icon.dataset.visualReady = place && isRoundImageReady(place, def.id) ? "true" : "false";
       icon.style.order = shouldShow ? String(selected.indexOf(def.id)) : "";
     }
 
@@ -425,14 +485,15 @@
       grid.dataset.roundMode = "visual-collections";
       grid.dataset.roundCount = String(selected.length || 0);
       grid.style.gridTemplateColumns = selected.length === 4
-        ? "repeat(2, minmax(0, 1fr))"
-        : "repeat(3, minmax(0, 1fr))";
+        ? "repeat(2, var(--place-card-orb-size))"
+        : "repeat(3, var(--place-card-orb-size))";
+      grid.style.gridTemplateRows = "repeat(2, var(--place-card-orb-size))";
     }
   }
 
   function patchPublicRoundApi() {
     const api = global.HGPlaceRounds;
-    if (!api || api.__visualCollectionsPatchedV2) return;
+    if (!api || api.__visualCollectionsPatchedV3) return;
 
     api.getVisual = place => selectedIds(place).map(id => DEF_BY_ID.get(id)).filter(Boolean);
     api.applyVisual = place => applyVisualPolicy(place);
@@ -440,7 +501,8 @@
     api.visualRegistry = [...VISUAL_ROUND_DEFS];
     api.visualPriorities = CATEGORY_ROUND_PRIORITIES;
     api.recommendVisual = (placeOrCategory, count = 4) => recommendedIds(placeOrCategory, count);
-    api.__visualCollectionsPatchedV2 = true;
+    api.getVisualReadiness = place => readinessFor(place);
+    api.__visualCollectionsPatchedV3 = true;
   }
 
   function observe() {
@@ -469,6 +531,9 @@
     priorities: CATEGORY_ROUND_PRIORITIES,
     get: selectedIds,
     recommend: recommendedIds,
+    readiness: readinessFor,
+    isImageReady: isRoundImageReady,
+    getItems: customItems,
     apply: applyVisualPolicy
   };
 
