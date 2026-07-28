@@ -126,19 +126,52 @@ Minimumskrav:
 
 En søkemotor-snutt, løs forside eller uinspiserbar referanse kan ikke alene gi status `verified`.
 
-## 8. `desc`
+## 8. `desc`: en leksikalsk ingress
 
-`desc` er et konsentrert, faktabasert hovedsammendrag.
+`desc` er ikke en komprimert innholdsfortegnelse. Den er stedets leksikalske ingress: en kort, sammenhengende åpning som gir leseren ett tydelig hovedpoeng og lyst til å lese videre.
 
-Veiledende målramme:
+Det finnes ingen hard ord- eller setningsgrense. Mange gode `desc` vil naturlig ligge rundt 35–90 ord og én til tre setninger, men flyt og stoffvalg er viktigere enn tallet.
 
-- ofte 40–80 ord;
-- ofte 2–4 setninger;
-- normalt minst fire konkrete fakta når kildegrunnlaget tillater det.
+### Styrende idé
 
-Dette er redaksjonell veiledning, ikke en hard ordport. `desc` skal være så kort som mulig uten å miste stedets identitet, viktigste tidslag og særpreg.
+Før skrivingen skal redaktøren kunne fullføre setningen:
 
-Unngå åpninger som «Stedet viser hvordan …», «Stedet symboliserer …» og «Stedet gjør det mulig å forstå …».
+> Det viktigste leseren skal forstå etter denne ingressen, er at …
+
+Bare fakta som tjener denne styrende ideen, hører hjemme i `desc`. Resten skal utsettes til `popupDesc`.
+
+### Anbefalt bevegelse
+
+1. Første setning identifiserer stedet og etablerer hovedbetydningen eller den sentrale historiske bevegelsen.
+2. Neste setning utdyper med ett konkret spenn, brudd eller særpreg.
+3. En tredje setning brukes bare når den fullfører samme tanke; den skal ikke åpne en ny miniatyrartikkel.
+
+Setningene skal normalt følge kjent–ny-prinsippet: begynn med stedet eller en allerede etablert idé, og legg ny eller viktig informasjon mot slutten.
+
+### Ikke skriv en kronologisk inventarliste
+
+Unngå:
+
+- rekker av navn, årstall, bygg eller hendelser;
+- konstruksjoner som «fra A via B og C til D» når hvert ledd introduserer et nytt tema;
+- tre setninger som hver forsøker å oppsummere en ny epoke;
+- mer informasjon enn syntaksen kan bære naturlig;
+- abstrakte betydningsord uten et konkret stedlig hovedpoeng.
+
+En ingress kan inneholde få fakta og likevel være presis. Faktatetthet må aldri forveksles med oppramsing.
+
+### Redaksjonell test
+
+Før godkjenning skal `desc` bestå disse spørsmålene:
+
+- Kan hovedpoenget gjengis i én enkel setning?
+- Henger setning 2 naturlig sammen med setning 1?
+- Har hvert navn og hvert årstall en nødvendig funksjon i ingressens hovedidé?
+- Kan en detalj flyttes til `popupDesc` uten at identiteten eller hovedpoenget går tapt? Da skal den normalt flyttes.
+- Høres teksten ut som en åpning når den leses høyt, eller som stikkord presset inn i helsetninger?
+- Lover ingressen en artikkel som `popupDesc` faktisk leverer?
+
+Unngå også generiske åpninger som «Stedet viser hvordan …», «Stedet symboliserer …» og «Stedet gjør det mulig å forstå …».
 
 ## 9. `popupDesc`: stoffstyrt stedartikkel
 

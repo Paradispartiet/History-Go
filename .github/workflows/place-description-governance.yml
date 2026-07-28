@@ -9,6 +9,8 @@ on:
       - 'scripts/upgrade-place-description-protocol-v4_2.mjs'
       - 'tests/place-description-production-v4_2.test.mjs'
       - 'tests/place-description-length-policy.test.mjs'
+      - 'tests/place-description-ingress-policy.test.mjs'
+      - 'docs/PLACE_DESCRIPTION_INGRESS_GUIDE.md'
       - 'reports/place-description-revision-protocol*.md'
       - '.github/workflows/place-description-governance.yml'
   workflow_dispatch:
@@ -41,6 +43,7 @@ jobs:
         run: |
           node --test tests/place-description-production-v4_2.test.mjs
           node --test tests/place-description-length-policy.test.mjs
+          node --test tests/place-description-ingress-policy.test.mjs
 
       - name: Validate all committed production packets
         run: node scripts/validate-place-description-production-v4_2_policy.mjs --all --report reports/place-description-validation-v4_2.json
