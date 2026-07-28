@@ -1,36 +1,19 @@
-# History GO — Profile Progress Reader runtime
+# History GO — profile progress og place collection runtime
 
-Status: **operational read-only runtime-guide**  
-Kodeeier: [`../js/progress/profileProgressReader.js`](../js/progress/profileProgressReader.js)  
-Entrypoint: [`../index.html`](../index.html)  
-Mål-/adaptermodell: [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md)  
-Sist kontrollert: **2026-07-26**
+Status: **operational read-only/runtime guide**  
+Progress reader: `js/progress/profileProgressReader.js`  
+Place collection: `js/profile-place-collection.js`  
+Mål-/adaptermodell: `docs/PROGRESSION_MODEL.md`  
+Sist kontrollert: **2026-07-28**
 
-`HGProfileProgressReader` gjør eksisterende progresjonslesing tilgjengelig for index-flater som PlaceCard, Nearby og ruter. `index.html` laster helperen før modul-entryen `js/app.js`.
+Dette dokumentet beskriver to implementerte, men forskjellige profilrelaterte read-lag:
 
-Den er:
+1. `HGProfileProgressReader` — generell read-only progresjonshelper for flere eksisterende state-kilder.
+2. `HGProfilePlaceCollection` — profilens place-samling, som holder fysisk visit og quiz collection adskilt og viser unionen.
 
-- en faktisk runtime-helper;
-- read-only;
-- en avgrenset implementert del av mål-/adaptermodellen i `PROGRESSION_MODEL.md`.
+Ingen av dem er en ny global sannhetskilde.
 
-Den er ikke:
-
-- en ny progresjonsmodell;
-- en ny lagringssannhet;
-- en migrering;
-- en erstatning for `profile.js`, Knowledge, learning log, badges eller route-state.
-
-## Runtime boundary
-
-Koden:
-
-- leser eksisterende localStorage/globaler;
-- skriver ingenting;
-- migrerer ingenting;
-- rendrer ingen DOM;
-- endrer ikke gameplay;
-- skal brukes av nye UI-pass for å unngå duplisert progresjonslesing.
+## 1. `HGProfileProgressReader`
 
 Global:
 
@@ -38,94 +21,167 @@ Global:
 window.HGProfileProgressReader
 ```
 
-## Sources
+Helperen:
 
-Helperen leser:
+- leser eksisterende localStorage/globaler;
+- skriver ingenting;
+- migrerer ingenting;
+- rendrer ingen DOM;
+- gir UI en defensiv read-only adapter.
 
-- `visited_places`
-- `people_collected`
-- `quiz_progress`
-- `merits_by_category`
-- `hg_unlocked_music_objects_v1`
-- `hg_favorite_place_ids_v1`
-- `hg_groundhopper_stats_v1`
-- `hg_unlocks_v1`
-- `window.HGLearningLog.getQuizHistory()` der tilgjengelig
-- `window.HGFavoritePlaces` der tilgjengelig
-- `window.HGAhaMusic` der tilgjengelig
+Den kan lese kilder som:
 
-Hvis en kilde mangler eller har ugyldig lokal JSON, returnerer helperen defensiv fallback. Den reparerer eller skriver ikke kilden.
+- `visited_places`;
+- `people_collected`;
+- quiz progress/history;
+- merits;
+- favoritter;
+- music unlocks;
+- unlock-state;
+- groundhopper-state;
+- learning-log quizhistorikk der tilgjengelig.
 
-## Public methods
+Den reparerer ikke ugyldig state; den returnerer defensiv fallback.
 
-```js
-HGProfileProgressReader.getVisitedPlaceIds()
-HGProfileProgressReader.getVisitedPlaceIdList()
-HGProfileProgressReader.getCollectedPeopleIds()
-HGProfileProgressReader.getCollectedPeopleIdList()
-HGProfileProgressReader.getQuizHistory()
-HGProfileProgressReader.getCompletedQuizUnitIds()
-HGProfileProgressReader.getCompletedQuizUnitIdList()
-HGProfileProgressReader.getCompletedQuizUnitCount()
-HGProfileProgressReader.getMeritsByCategory()
-HGProfileProgressReader.getFavoritePlaceIds()
-HGProfileProgressReader.getFavoritePlaceIdList()
-HGProfileProgressReader.isFavoritePlace(placeId)
-HGProfileProgressReader.getMusicUnlockRows()
-HGProfileProgressReader.getMusicUnlockSummary()
-HGProfileProgressReader.getUnlockState()
-HGProfileProgressReader.getGroundhopperStats()
-HGProfileProgressReader.getPlaceProgressSummary(placeId, { category })
-HGProfileProgressReader.getProfileProgressSummary()
-```
+## 2. Progress Reader API
 
-## Place summary
+Den implementerte helperen eksponerer metoder for blant annet:
 
-```js
-const status = window.HGProfileProgressReader.getPlaceProgressSummary(place.id, {
-  category: place.category
-});
-```
+- visited place IDs;
+- collected People IDs;
+- quiz history/fullførte units;
+- merits per kategori;
+- favorittsteder;
+- unlock state;
+- Groundhopper;
+- place progress summary;
+- samlet profile summary.
 
-Den implementerte summaryen kan lese:
+Den faktiske kildekoden eier den presise offentlige API-listen.
+
+## 3. `getPlaceProgressSummary`
+
+Denne helperen har en **smal compatibility/read-summary**, ikke hele canonical progresjonsmodellen.
+
+Den kan beregne signaler som:
 
 - besøkt;
 - quiz fullført;
 - favoritt;
 - category merit-info;
-- beregnet status `unknown`, `visited`, `quiz_completed` eller `completed`;
-- neste handling `open`, `quiz` eller `completed`.
+- helper-spesifikke statusnavn;
+- neste handling.
 
-Den bredere status- og datamodellen i `PROGRESSION_MODEL.md` er fortsatt en mål-/adaptermodell. Felter som ikke finnes i helperens kode skal ikke fremstilles som implementert.
+Hvis helperen bruker navn som `completed`, betyr det bare helperens implementerte beregning. Det skal ikke brukes til å viske ut forskjellen mellom:
 
-## Profile summary
+- fysisk visit;
+- quiz collection;
+- spillerens brede canonical completion.
 
-`getProfileProgressSummary()` samler:
+`docs/COMPLETION_DEFINITIONS.md` eier begrepsbetydningen.
 
-- besøkte place-id-er og antall;
-- collected people-id-er og antall;
-- fullførte quiz-unit-id-er og antall;
-- favorittsteder og antall;
-- merits per kategori;
-- music unlock summary;
-- unlock-state;
-- groundhopper-stats.
+## 4. Place collection er et separat read-lag
 
-## Do not use for
+`HGProfileProgressReader.getVisitedPlaceIds()` er **ikke** hele profilsamlingen av steder.
+
+Den nye place-samlingen eies av:
+
+```js
+window.HGProfilePlaceCollection
+```
+
+og leser separat:
+
+```text
+visited_places
+places_collected
+```
+
+Der:
+
+- `visited_places` = fysisk besøkte steder;
+- `places_collected` = quiz-/target-unlocked places.
+
+## 5. Profilens samlede place-liste
+
+`HGProfilePlaceCollection.getCollectedPlaceIds()` bygger unionen:
+
+```text
+fysisk besøkte places ∪ quiz-samlede places
+```
+
+Kilden bevares semantisk:
+
+- fysisk besøkt kan vises som `Besøkt`;
+- quiz-samlet kan vises som `Quiz`.
+
+Dette gjør det mulig å vise begge i profilsamlingen uten å hevde at quiz collection er fysisk visit.
+
+## 6. Place collection API
+
+Den implementerte helperen eksponerer blant annet:
+
+```js
+HGProfilePlaceCollection.getVisitedPlaceIds()
+HGProfilePlaceCollection.getQuizCollectedPlaceIds()
+HGProfilePlaceCollection.getCollectedPlaceIds()
+HGProfilePlaceCollection.getCollectedSource(placeId)
+HGProfilePlaceCollection.install()
+HGProfilePlaceCollection.refresh()
+```
+
+Den kan oppdatere place collection, timeline og collection-card-flater når profilen er klar.
+
+## 7. Skriveeierskap
+
+Disse read-lagene skal ikke blandes med write-eiere.
+
+- fysisk visit-write eies av physical visit-runtime;
+- `places_collected` write eies av place target-unlock i `js/hg_unlocks.js`;
+- People collection følger eksisterende People/unlock-state;
+- quizresultater følger quizmotoren;
+- favoritt følger favorittsystemet.
+
+Read-model skal aldri reparere state ved å skrive tilbake.
+
+## 8. Profile summary
+
+`HGProfileProgressReader` kan fortsatt gi et bredt profilsummary av state-kilder den faktisk kjenner.
+
+`HGProfilePlaceCollection` kompletterer dette for **place collection**, men gjør ikke automatisk alle nye collection-felter tilgjengelige gjennom den eldre progress reader-API-en.
+
+UI som trenger «samlede steder» skal derfor bruke den implementerte place collection-readmodellen, ikke anta at visited-listen alene er profilsamlingen.
+
+## 9. Forholdet til canonical modeller
+
+- `docs/COMPLETION_DEFINITIONS.md` eier hva besøkt/samlet/fullført betyr.
+- `docs/PROGRESSION_MODEL.md` eier samlet adaptermodell.
+- `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md` eier runtimegrensen mellom quiz, place collection og fysisk visit.
+- denne filen dokumenterer de implementerte profil-readhelperne.
+
+Planlagte felter i `PROGRESSION_MODEL.md` er ikke implementert bare fordi de står der.
+
+## 10. Do not use for
+
+Ikke bruk disse helperne til:
 
 - ny storage-key;
 - migrering;
 - backend-sync;
-- route-state som egen sannhet;
+- fysisk visit-write;
+- quiz-write;
 - badge-/merit-writes;
-- å erstatte `HGLearningLog`;
-- å erstatte `profile.js`;
-- å hevde at hele `PROGRESSION_MODEL.md` er implementert.
+- å erstatte learning log;
+- å hevde at hele progresjonsmodellen er implementert;
+- å slå sammen «visited» og «collected» semantisk.
 
-## Ownership rule
+## 11. Endringsregel
 
-`PROFILE_PROGRESS_READER_RUNTIME.md` eier bare dokumentasjonen av den implementerte read-only helperen. `PROGRESSION_MODEL.md` eier mål-/adaptermodellen, eksisterende storage-eiere eier sine data, og runtimekoden eier den faktiske API-flaten.
+Denne guiden skal oppdateres i samme PR når noen av disse endres:
 
-## Change rule
-
-Når den offentlige API-flaten, source keys eller summary-semantikken i `profileProgressReader.js` endres, skal denne guiden oppdateres i samme PR.
+- public API i `profileProgressReader.js`;
+- kildene den leser;
+- public API i `profile-place-collection.js`;
+- `visited_places`/`places_collected`-unionen;
+- source-labeling for collected places;
+- hvilken profilflate som renderer collection-state.
