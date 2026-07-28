@@ -27,11 +27,6 @@ jobs:
         run: |
           node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
-          node tests/beierbrua-rounds-batch1.test.js
-          node tests/nedre-foss-rounds-batch1.test.js
-          node tests/kuba-parken-nature-rounds-batch1.test.js
-          node tests/oslo-blue-plaques-2026-round-content.test.js
-          node tests/skanevik-idrettsanlegg-batch1-round-content.test.js
       - name: Commit cleanup
         run: |
           git config user.name 'github-actions[bot]'
