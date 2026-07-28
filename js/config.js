@@ -16,10 +16,22 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     if (typeof window.__HG_REAL_SHOW_TOAST__ === "function") {
       return window.__HG_REAL_SHOW_TOAST__(...args);
     }
-
     queue.push(args);
     return undefined;
   };
+})();
+
+// Startup guard must be active before app.js begins its sequential boot chain.
+(function loadStartupGuardEarly() {
+  if (window.__HG_STARTUP_GUARD_INSTALLED__) return;
+  if (document.readyState === "loading") {
+    document.write('<script src="js/startup-guard.js"></' + 'script>');
+    return;
+  }
+  const script = document.createElement("script");
+  script.src = "js/startup-guard.js";
+  script.async = false;
+  document.head.appendChild(script);
 })();
 
 // Load city packages from the central registry without coupling them to an
@@ -64,17 +76,11 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     document.head.appendChild(script);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", load, { once: true });
-  } else {
-    load();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", load, { once: true });
+  else load();
 })();
 
-// People-popup V2 is a presentation override. The runtime may load early because
-// it polls until popup-utils has installed the legacy popup functions. Styling is
-// appended only after the document is parsed, so it comes after popups.css and
-// popup-polish.css and can reliably own the V2 layout.
+// People-popup V2 is a presentation override.
 (function loadPersonPopupV2Runtime() {
   function ensureStyle() {
     if (document.querySelector('link[data-hg-person-popup-v2-style="1"]')) return;
@@ -85,11 +91,8 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     document.head.appendChild(link);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", ensureStyle, { once: true });
-  } else {
-    ensureStyle();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ensureStyle, { once: true });
+  else ensureStyle();
 
   if (document.querySelector('script[data-hg-person-popup-v2-runtime="1"]')) return;
   const script = document.createElement("script");
