@@ -2,60 +2,262 @@
   "schemaVersion": "1.0",
   "placeId": "hausmannsgate_aksen",
   "placeFile": "data/places/subkultur/oslo/places_subkultur/hausmannsgate_aksen.json",
-  "evidenceStatus": "research_complete_needs_source",
-  "coordinateDecision": "keep_current_point_as_unverified_editorial_proxy",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_hauskvartalet_hausmanns_gate_34_42_route_segment",
   "currentCoordinate": {
+    "lat": 59.91930402696448,
+    "lon": 10.75166160598796,
+    "r": 100,
+    "locatorType": "route",
+    "sourceProvider": "osm",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 129061331 – Hausmanns gate; Kartverket SSR 995873 and exact addresses 34, 40 and 42; Oslo kommune – Hauskvartalet",
+    "coordType": "hauskvartalet_hausmanns_gate_34_42_route_midpoint",
+    "coordRole": "line_anchor",
+    "sourceObjectId": "osm-way:129061331;kartverket-ssr:995873",
+    "coordNote": "The canonical point is the deterministic half-length point of the 46.2-metre named Hausmanns gate segment along the Hauskvartalet frontage. It represents the street axis, not Hausmania as a building and not the separate Brenneriveien/Ingens gate area."
+  },
+  "previousCoordinate": {
     "lat": 59.9189,
     "lon": 10.7513,
     "r": 240,
     "coordStatus": "needs_source",
     "coordSource": "manual_research",
     "coordType": "unverified_area_anchor",
-    "coordNote": "Canonical scope is a diffuse editorial environment spanning multiple changing walls, passages or street segments. The record contains no source-backed geometry, stable named physical object or explicit anchor set that matches the whole scope. Dagens koordinat beholdes kun som redaksjonell proxy og skal ikke tolkes som dokumentert fysisk sentrum. Define an explicit geometry or a finite set of source-backed anchors for the complete canonical scope; otherwise retain as needs_source and do not present the current midpoint as verified."
+    "distanceToAppliedCoordinateM": 49.3,
+    "reasonReplaced": "The old point was an unsupported editorial proxy for a diffuse environment. A finite named street segment and official frontage controls now resolve the canonical axis."
   },
   "identity": {
     "currentName": "Hausmannsgate-aksen",
-    "resolvedIdentity": "Hausmannsgate-aksen som redaksjonelt definert, diffust subkulturmiljø",
-    "identityStatus": "resolved_broad_area",
-    "identityProblem": "Canonical scope is a diffuse editorial environment spanning multiple changing walls, passages or street segments. The record contains no source-backed geometry, stable named physical object or explicit anchor set that matches the whole scope.",
+    "resolvedIdentity": "The Hausmanns gate street frontage through Hauskvartalet, approximately the named street segment along Hausmanns gate 34, 40 and 42, used as a stable physical axis for changing posters, stencils, facade marks and DIY visual culture.",
+    "identityStatus": "resolved_finite_route",
+    "identityProblem": "The editorial description referred broadly to Hausmannsgate and side streets, but Hausmania and Brenneriveien/Ingens gate already exist as separate canonical places. Verification therefore requires a route geometry that represents the street frontage without duplicating either neighbour.",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
-    "splitReason": ""
+    "splitReason": "The street-front segment provides one coherent route identity. Individual venues and the Akerselva-side Brenneriveien area remain separate canonical places."
   },
   "requiredEvidence": [
-    "eksplisitt kildegeometri eller et avgrenset sett med fysiske ankre for hele canonical scope"
+    "stable named street geometry",
+    "official street-name identity",
+    "exact address controls for the Hauskvartalet frontage",
+    "municipal quarter-scope evidence",
+    "explicit duplicate control against Hausmania and Brenneriveien/Ingens gate",
+    "reproducible route midpoint",
+    "radius and access limits"
   ],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "History Go subculture anchor research",
-      "sourceUrl": "reports/oslo-coordinate-subculture-anchors-research-20260725/summary.json",
-      "sourceObjectId": "history-go-research:subculture-anchors-20260725:hausmannsgate_aksen",
-      "sourceQuality": "canonical_scope_audit",
-      "finding": "Canonical scope is a diffuse editorial environment spanning multiple changing walls, passages or street segments. The record contains no source-backed geometry, stable named physical object or explicit anchor set that matches the whole scope.",
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 129061331 – Hausmanns gate",
+      "sourceUrl": "https://www.openstreetmap.org/way/129061331",
+      "sourceObjectId": "osm-way:129061331",
+      "sourceQuality": "named_current_street_segment_geometry",
+      "finding": "Way 129061331 is a named Hausmanns gate road segment approximately 46.2 metres long. It runs along the frontage controlled by Hausmanns gate 34, 40 and 42. The deterministic half-length point is 59.91930402696448, 10.75166160598796.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides the finite stable route geometry that the earlier scope audit lacked."
+    },
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket SSR – Hausmanns gate",
+      "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Hausmanns%20gate&utkoordsys=4258",
+      "sourceObjectId": "kartverket-ssr:995873",
+      "sourceQuality": "official_active_street_name_identity",
+      "finding": "Kartverket returns one active Hausmanns gate place-name object in Oslo, stedsnummer 995873, with approved and prioritized Norwegian spelling and MultiLineString street geometry.",
+      "canVerifyCoordinate": true,
+      "reason": "Officially confirms the named street identity independently of OSM."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Hausmanns gate 34",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
+      "sourceQuality": "exact_frontage_address_control",
+      "finding": "Hausmanns gate 34 is at 59.919148209457326, 10.751977548509613, approximately 7.8 metres from the applied route geometry. This is the existing Hausmania canonical address.",
       "canVerifyCoordinate": false,
-      "reason": "Midtpunktet kan ikke gjøres verified uten kildebelagt geometri eller ankre."
+      "reason": "Controls the western Hauskvartalet frontage while preventing the route record from replacing the Hausmania building place."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Hausmanns gate 40",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:40",
+      "sourceQuality": "exact_frontage_address_control",
+      "finding": "Hausmanns gate 40 is at 59.919303875414755, 10.751753198638816, approximately 4.3 metres from the named street segment.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the central Hauskvartalet frontage."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Hausmanns gate 42A/B/C",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:42A",
+      "sourceQuality": "exact_frontage_address_control",
+      "finding": "The current 42A/B/C address family lies along the eastern end of the same street frontage; 42A is approximately 6.8 metres from the route segment.",
+      "canVerifyCoordinate": false,
+      "reason": "Controls the eastern Hauskvartalet frontage."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Byøkologi og kultur i Hauskvartalet",
+      "sourceUrl": "https://magasin.oslo.kommune.no/byplan/oslos-forste-byokologiske-kulturkvartal-tar-form",
+      "sourceObjectId": "oslo-kommune:hauskvartalet",
+      "sourceQuality": "official_quarter_scope_and_cultural_context",
+      "finding": "Oslo kommune describes Hauskvartalet as a culture quarter whose actors include Hausmania and whose development includes Hausmannsgate 40 and 42 and adjacent culture functions.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines why the 34–42 street frontage is the relevant finite axis rather than an arbitrary segment of the full street."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Hausmannsgate axis editorial proxy",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:hausmannsgate_aksen",
+      "sourceQuality": "unsupported_editorial_proxy",
+      "finding": "The previous coordinate 59.9189, 10.7513 lies approximately 49.3 metres from the applied route midpoint and had no source-backed geometry or finite anchor set.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced by the finite named street segment."
     }
   ],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [],
-  "geometryCandidates": [],
-  "coordinateCandidates": [
+  "addressCandidates": [
     {
-      "lat": 59.9189,
-      "lon": 10.7513,
-      "coordRole": "line_anchor",
-      "sourceObjectId": "history-go-research:subculture-anchors-20260725:hausmannsgate_aksen",
+      "sourceProvider": "official_address",
+      "address": {"street":"Hausmanns gate","number":"34","postcode":"0182","city":"Oslo","country":"NO"},
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
+      "canApplyToPlace": false,
+      "rejectionReason": "Existing Hausmania building canonical; frontage control only."
+    },
+    {
+      "sourceProvider": "official_address",
+      "address": {"street":"Hausmanns gate","number":"40","postcode":"0182","city":"Oslo","country":"NO"},
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:40",
+      "canApplyToPlace": false,
+      "rejectionReason": "Frontage control, not a route replacement."
+    },
+    {
+      "sourceProvider": "official_address",
+      "address": {"street":"Hausmanns gate","number":"42A","postcode":"0182","city":"Oslo","country":"NO"},
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:42A",
+      "canApplyToPlace": false,
+      "rejectionReason": "Frontage control, not a route replacement."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:129061331;kartverket-ssr:995873",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
+      "canApplyToPlace": false,
+      "rejectionReason": "Hausmania building anchor already exists separately."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hausmannsgate_aksen",
+      "canApplyToPlace": false,
+      "rejectionReason": "Unsupported editorial proxy."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:129061331",
+      "geometryType": "LineString",
+      "geometryRole": "hauskvartalet_street_front_route",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:995873",
+      "geometryType": "MultiLineString",
+      "geometryRole": "full_street_identity_cross_check",
       "canApplyToPlace": false
     }
   ],
+  "anchors": [
+    {
+      "id": "hausmannsgate_route_midpoint",
+      "name": "Hausmannsgate-aksen – Hauskvartalet frontage midpoint",
+      "lat": 59.91930402696448,
+      "lon": 10.75166160598796,
+      "r": 50,
+      "type": "line_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:129061331;kartverket-ssr:995873",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "hausmannsgate_34_frontage_control",
+      "name": "Hausmanns gate 34 – Hausmania frontage",
+      "lat": 59.919148209457326,
+      "lon": 10.751977548509613,
+      "r": 30,
+      "type": "label_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:34",
+      "canApplyToPlace": false
+    },
+    {
+      "id": "hausmannsgate_42_frontage_control",
+      "name": "Hausmanns gate 42 – Hauskvartalet frontage",
+      "lat": 59.91941347762521,
+      "lon": 10.751615863914031,
+      "r": 30,
+      "type": "label_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:42A",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hausmannsgate_aksen",
+      "lat": 59.9189,
+      "lon": 10.7513,
+      "coordRole": "unsupported_editorial_proxy",
+      "distanceFromAppliedM": 49.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:129061331;kartverket-ssr:995873",
+      "lat": 59.91930402696448,
+      "lon": 10.75166160598796,
+      "coordRole": "line_anchor",
+      "distanceFromPreviousM": 49.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/oslo-coordinate-subculture-anchors-research-20260725/summary.json",
+      "description": "Earlier scope audit that blocked verification until a source-backed geometry or finite anchor set existed."
+    },
+    {
+      "path": "reports/oslo-coordinate-hausmannsgate-aksen-source-probe/source-materialization-summary.json",
+      "description": "2026-07-28 OSM route geometry, official address controls, Kartverket street identity, municipal Hauskvartalet scope, duplicate controls, artifact digest and radius decision."
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Canonical scope is a diffuse editorial environment spanning multiple changing walls, passages or street segments. The record contains no source-backed geometry, stable named physical object or explicit anchor set that matches the whole scope.",
-    "nextAction": "Define an explicit geometry or a finite set of source-backed anchors for the complete canonical scope; otherwise retain as needs_source and do not present the current midpoint as verified."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "coordinateChangedInThisPass": true,
+    "radiusChangedInThisPass": true,
+    "previousRadiusM": 240,
+    "appliedRadiusM": 100,
+    "nextAction": "Applied the named Hausmanns gate 34–42 frontage segment midpoint as the canonical route anchor, kept Hausmania and Brenneriveien/Ingens gate separate, and narrowed the radius to the finite Hauskvartalet street axis. Continue with kolstadgata_toyen_vegger."
   },
   "notes": [
-    "Canonical scope is a diffuse editorial environment spanning multiple changing walls, passages or street segments. The record contains no source-backed geometry, stable named physical object or explicit anchor set that matches the whole scope. Dagens koordinat beholdes kun som redaksjonell proxy og skal ikke tolkes som dokumentert fysisk sentrum. Define an explicit geometry or a finite set of source-backed anchors for the complete canonical scope; otherwise retain as needs_source and do not present the current midpoint as verified.",
-    "Research report: reports/oslo-coordinate-subculture-anchors-research-20260725/summary.json"
+    "The canonical point moves approximately 49.3 metres to the named Hausmanns gate route segment.",
+    "The radius decreases from 240 to 100 metres because the diffuse editorial scope is now resolved to a finite 46.2-metre street-front route.",
+    "Hausmania remains a separate building canonical at Hausmanns gate 34.",
+    "Brenneriveien/Ingens gate remains a separate Akerselva-side area canonical.",
+    "Changing posters, graffiti and stencils are content evidence, not coordinate sources."
   ]
 }
