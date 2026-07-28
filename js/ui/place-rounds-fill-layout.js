@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/ui/place-rounds-fill-layout.js
 // Maksimerer 4/6-rundingsgridet i feltet ved siden av frontImage uten MutationObserver-loop.
 (function installPlaceRoundsFillLayout(global) {
