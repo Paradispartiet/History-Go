@@ -41,6 +41,10 @@ The marker represents the church building, not the entire churchyard or Kirkebak
 - no gameplay requires entry to locked, operational or grave areas
 - the 240-metre radius is not a building, cemetery, rectory, property, protection, ceremony or access boundary
 
+## Governance scope
+
+The canonical `desc` and `popupDesc` fields remain unchanged from `main`. This PR changes coordinate production metadata and evidence only, so it remains isolated from the separate place-description v4.2 workflow.
+
 ## Production files
 
 1. `data/places/historie/ostfold/places_historie_ostfold_batch6/skiptvet_kirke.json`
