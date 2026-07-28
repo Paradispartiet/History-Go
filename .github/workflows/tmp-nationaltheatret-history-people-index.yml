@@ -1,0 +1,44 @@
+name: Temporary Nationaltheatret history people index sync
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sync-index:
+    if: github.event.pull_request.head.ref == 'agent/nationaltheatret-people-curation'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Rebuild deterministic Civication history People index
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run civication:history-people:build
+          git status --short
+          changed="$(git status --short | awk '{print $2}')"
+          test "$changed" = 'data/Civication/historyPeople_index.json'
+          npm run civication:history-people:check
+      - name: Commit generated index only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/Civication/historyPeople_index.json
+          git diff --cached --name-only
+          test "$(git diff --cached --name-only)" = 'data/Civication/historyPeople_index.json'
+          git commit -m 'Sync Civication history People index'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
