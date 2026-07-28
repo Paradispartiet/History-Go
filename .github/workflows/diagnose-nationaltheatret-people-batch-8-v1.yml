@@ -1,0 +1,62 @@
+name: Diagnose Nationaltheatret People batch 8 v1
+
+on:
+  pull_request:
+    branches:
+      - agent/tmp-nationaltheatret-people-batch-8-runner
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_BRANCH: agent/nationaltheatret-people-batch-8-v1
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct batch on fresh main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$TARGET_BRANCH" main
+          git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
+          files=(
+            data/people/litteratur/oslo/nationaltheatret/charles_marowitz.json
+            data/people/litteratur/oslo/nationaltheatret/david_knudsen.json
+            data/people/litteratur/oslo/nationaltheatret/edith_roger.json
+            data/people/litteratur/oslo/nationaltheatret/einar_skavlan.json
+            data/people/claims/litteratur/oslo/nationaltheatret/charles_marowitz.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/david_knudsen.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/edith_roger.claims.json
+            data/people/claims/litteratur/oslo/nationaltheatret/einar_skavlan.claims.json
+            reports/people-factuality-audit-nationaltheatret-batch-8-v1.md
+            tests/nationaltheatret-factuality-audit-people-batch-8-v1.test.mjs
+          )
+          rm -rf /tmp/b8
+          mkdir -p /tmp/b8
+          for file in "${files[@]}"; do cp --parents "$file" /tmp/b8; done
+          git reset --hard origin/main
+          git clean -fdx
+          cp -a /tmp/b8/. .
+      - name: Run and report batch test
+        shell: bash
+        run: |
+          set +e
+          node --test tests/nationaltheatret-factuality-audit-people-batch-8-v1.test.mjs > /tmp/b8-test.log 2>&1
+          status=$?
+          if [ "$status" -ne 0 ]; then
+            {
+              echo 'Batch 8 regression test failed:'
+              echo
+              echo '```text'
+              cat /tmp/b8-test.log
+              echo '```'
+            } > /tmp/comment.md
+            gh pr comment 4416 --body-file /tmp/comment.md
+            exit "$status"
+          fi
