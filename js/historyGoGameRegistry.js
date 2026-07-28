@@ -68,38 +68,7 @@
     return response.json();
   }
 
-  function loadProfilePolishStyles() {
-    if (typeof document.getElementById !== "function") return;
-    if (document.getElementById("hgProfilePolishStyles")) return;
-    if (typeof document.createElement !== "function" || !document.head?.appendChild) return;
-
-    const link = document.createElement("link");
-    link.id = "hgProfilePolishStyles";
-    link.rel = "stylesheet";
-    link.href = "css/profile-polish.css";
-    document.head.appendChild(link);
-  }
-
-  // profile.html already loads this small profile-only registry bootstrap before
-  // profile.js. Use it to attach the collection read model without changing the
-  // physical-only visit/map runtime.
-  function loadProfilePlaceCollectionPatch() {
-    if (typeof document.getElementById !== "function" || !document.getElementById("collectionGrid")) return;
-    if (document.querySelector?.('script[data-hg-profile-place-collection="1"]')) return;
-    if (typeof document.createElement !== "function" || !document.head?.appendChild) return;
-
-    const script = document.createElement("script");
-    script.src = "js/profile-place-collection.js";
-    script.async = false;
-    script.dataset.hgProfilePlaceCollection = "1";
-    script.onerror = () => console.warn("[ProfilePlaceCollection] kunne ikke laste profilutvidelsen");
-    document.head.appendChild(script);
-  }
-
   window.HGGameRegistry = { loadGameRegistry, normalizeProfileGamesTab, renderGameRegistry, registryPath: REGISTRY_PATH };
-
-  loadProfilePolishStyles();
-  loadProfilePlaceCollectionPatch();
 
   document.addEventListener("DOMContentLoaded", () => {
     normalizeProfileGamesTab();
