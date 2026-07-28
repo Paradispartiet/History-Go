@@ -1,9 +1,9 @@
 {
   "id": "gronland_underganger",
   "name": "Grønland underganger",
-  "lat": 59.9128,
-  "lon": 10.7604,
-  "r": 210,
+  "lat": 59.912904676848626,
+  "lon": 10.758921861315992,
+  "r": 130,
   "category": "subkultur",
   "year": 2008,
   "desc": "Underganger og tekniske flater ved Grønland der tagging og gategrafikk preger byrommet.",
@@ -19,14 +19,94 @@
     "designCode": "subculture_miniature"
   },
   "locatorType": "linear_area",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "history-go-research:subculture-anchors-20260725:gronland_underganger",
-  "geocodeAccuracy": "approximate",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:163145627;kartverket-ssr:998056",
+  "geocodeAccuracy": "semantic_anchor",
   "coordRole": "area_anchor",
-  "coordType": "unverified_area_anchor",
-  "coordStatus": "needs_source",
-  "coordSource": "manual_research",
-  "coordSourceId": "history-go-research:subculture-anchors-20260725:gronland_underganger",
-  "coordSourceUrl": "reports/oslo-coordinate-subculture-anchors-research-20260725/summary.json",
-  "coordNote": "Canonical scope is a diffuse editorial environment spanning multiple changing walls, passages or street segments. The record contains no source-backed geometry, stable named physical object or explicit anchor set that matches the whole scope. Dagens koordinat beholdes kun som redaksjonell proxy og skal ikke tolkes som dokumentert fysisk sentrum. Define an explicit geometry or a finite set of source-backed anchors for the complete canonical scope; otherwise retain as needs_source and do not present the current midpoint as verified."
+  "coordType": "named_olafiagangen_under_nylandsbrua_multi_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 163145627 – Olafiagangen; Kartverket SSR 998056 – Olafiagangen; Oslo kommune – Olafiagangen; Bydel Gamle Oslo – undergangene til Grønland T og området under Nylandsbrua",
+  "coordSourceId": "osm-way:163145627;kartverket-ssr:998056",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/163145627",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The unsupported editorial proxy is moved approximately 83.2 metres west to the deterministic half-length point of the named Olafiagangen pedestrian geometry. The radius is reduced from 210 to 130 metres because municipal sources now provide a finite public-space scope under Nylandsbrua and at the immediately connected Grønland T underpasses rather than a broad undefined Grønland/Vaterland environment.",
+  "coordNote": "Oslo kommune describes Olafiagangen as a public passage and meeting place between Grønland torg and Akerselva directly under Nylandsbrua. Bydel Gamle Oslo explicitly treats the areas under Nylandsbrua and the underpasses to Grønland T as one physical improvement zone. OpenStreetMap way 163145627 and Kartverket SSR place 998056 independently identify Olafiagangen as a named linear object. The applied coordinate is the deterministic half-length point of the approximately 89.8-metre OSM pedestrian line. The two western Grønland T entrances lie approximately 25.7 and 19.5 metres from this point and are retained as secondary current-access anchors. The record therefore represents the Olafiagangen/Nylandsbrua passage and immediately connected T-bane transition zone; it does not claim that every graffiti wall, tunnel or technical surface across Grønland and Vaterland is inside one canonical geometry. One T-bane entrance under the bridge is planned to move by 2028, so entrance nodes are operational context rather than the stable primary identity.",
+  "accessContext": {
+    "siteType": "public_pedestrian_passage_under_bridge_and_transit_access_zone",
+    "publicAccess": "Olafiagangen is a public urban space managed by Oslo kommune. Current construction, T-bane operations, barriers, events, maintenance and safety measures can temporarily change access and circulation.",
+    "limitations": [
+      "Use ordinary public pedestrian routes and respect temporary construction barriers, transit operations and municipal signs.",
+      "Do not enter technical rooms, service areas, track areas, closed passages or infrastructure spaces that are not publicly accessible.",
+      "Graffiti and paste-ups are transient surface evidence; their presence does not define the coordinate or guarantee that a particular work remains visible.",
+      "The 130-metre gameplay radius is not a property, road, bridge, station, construction or access boundary."
+    ]
+  },
+  "anchors": [
+    {
+      "id": "gronland_underganger_olafiagangen",
+      "name": "Olafiagangen – under Nylandsbrua",
+      "lat": 59.912904676848626,
+      "lon": 10.758921861315992,
+      "r": 70,
+      "type": "line_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:163145627;kartverket-ssr:998056",
+      "canApplyToPlace": true,
+      "note": "Half-length point of the named Olafiagangen pedestrian geometry; stable primary anchor for the under-bridge passage environment."
+    },
+    {
+      "id": "gronland_t_west_entrance",
+      "name": "Grønland T – west entrance",
+      "lat": 59.9126746,
+      "lon": 10.7589679,
+      "r": 35,
+      "type": "entrance",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1221546349",
+      "canApplyToPlace": false,
+      "note": "Secondary current transit anchor approximately 25.7 metres from the canonical point; not the stable identity of the subculture place."
+    },
+    {
+      "id": "gronland_t_northwest_entrance",
+      "name": "Grønland T – northwest accessible entrance",
+      "lat": 59.9129856,
+      "lon": 10.7586106,
+      "r": 35,
+      "type": "entrance",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:3409122637",
+      "canApplyToPlace": false,
+      "note": "Secondary current transit anchor approximately 19.5 metres from the canonical point; entrance configurations may change during the planned station upgrade."
+    }
+  ],
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Oslo kommune – Olafiagangen",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/olafiagangen/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Olafiagangen",
+      "url": "https://www.openstreetmap.org/way/163145627",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Nylandsbrua",
+      "url": "https://www.openstreetmap.org/way/377766487",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "reference",
+      "label": "Kartverket SSR – Olafiagangen, stedsnummer 998056",
+      "url": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Olafiagangen&utkoordsys=4258",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
+    }
+  ]
 }
