@@ -11,18 +11,21 @@ Start i `index.json`. Alle referanser er relative til denne katalogen.
 - `domain_catalog_v2.json`: åtte vitenskapelige domener
 - `modules_v2/*.json`: 48 forskningsmessig avgrensede temaer og 48 evidens- og metodebundne spørsmålsplaner
 - `source_dossier_contract_v1.json`: kumulativ kilde-, proveniens- og styringskontrakt
-- `scholarly_source_registries_v1/*.json`: analyse- og etnomusikologiregistre
+- `scholarly_source_registries_v1/*.json`: analyse-, etnomusikologi- og framføringsregistre
 - `scholarly_source_registries_v2/*.json`: konsoliderte historiske registre
 - `source_dossiers_v1/musikalsk_analyse_lyd_struktur/*.json`: seks analysedossierer
 - `source_dossiers_v1/etnomusikologi_kultur_samfunn/*.json`: seks dossierer med etiske styringsporter
+- `source_dossiers_v1/framforing_praksis_samspill/*.json`: seks dossierer med framførings-, kontekst- og rettighetsporter
 - `source_dossiers_v2/historisk_musikkvitenskap_historiografi/*.json`: seks styrkede historiedossierer
 
-Kildepakken dekker nå tre domener, ni registre, atten temadossierer og 56 unike forskningspublikasjoner. Alle allerede mergede analyse-, historie- og etnomusikkilder er bevart; historiedelen er konsolidert til 26 unike kilder fordelt på fire registre.
+Kildepakken dekker nå fire domener, tretten registre, 24 temadossierer og 76 unike forskningspublikasjoner. Alle allerede mergede analyse-, historie- og etnomusikkilder er bevart. Framføringsdomenet legger til 20 verifiserte kilder fordelt på fortolkning og metode, kropp og samspill, rom og publikum samt notasjon og muntlighet.
 
-Kildedossierene er ikke pensumlister og ikke systematiske litteraturgjennomganger. Detaljpåstander krever relevant fulltekst, presis lokator og et identifisert direkte musikk-, felt- eller kildeobjekt.
+Kildedossierene er ikke pensumlister og ikke systematiske litteraturgjennomganger. Detaljpåstander krever relevant fulltekst, presis lokator og et identifisert direkte musikk-, felt-, framførings- eller kildeobjekt.
 
 Historiedossierene skiller katalogmetadata fra evidens i selve objektet og krever arkiv-, utgave-, opptaks-, institusjons- eller sirkulasjonskjede etter kildetypen. Etnomusikkdossierene blokkerer spørsmål når samtykke, deltaker- eller fellesskapsmyndighet, språk, risiko, tilbakeføring, gjenbruk eller sensitivitet ikke er avklart.
 
+Framføringsdossierene skiller verk, arrangement, framføringshendelse, prøve, opptak, master, utgivelse og etterredigert versjon. De krever dokumentert multimodal synkronisering, scene- og teknisk kontekst, deltaker- og opptaksrettigheter og et eksplisitt skille mellom aktørforklaring, observerbar hendelse, måling og analytisk kategori. Gest, samtidighet, applaus eller akustiske mål kan ikke alene dokumentere intensjon, ledelse, felles mening eller estetisk kvalitet.
+
 Aktiv emnerevisjon: `musikkvitenskap-emnemigrasjon-v2-2026-07-27`
 
-Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-tre-domener-v4-2026-07-28`
+Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-fire-domener-v5-2026-07-28`
