@@ -15,23 +15,39 @@
     return String(value == null ? "" : value).trim();
   }
 
-  function loadPlacePopupV2() {
-    if (!document.querySelector('link[href="css/place-popup-v2.css"]')) {
-      const stylesheet = document.createElement("link");
-      stylesheet.rel = "stylesheet";
-      stylesheet.href = "css/place-popup-v2.css";
-      document.head.appendChild(stylesheet);
-    }
+  function ensureStylesheet(href) {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = href;
+    document.head.appendChild(stylesheet);
+  }
 
-    if (global.__HG_PLACE_POPUP_V2_SCRIPT_REQUESTED__) return;
-    if (global.__HG_PLACE_POPUP_V2_INSTALLED__) return;
-    if (document.querySelector('script[src="js/ui/place-popup-v2.js"]')) return;
-
-    global.__HG_PLACE_POPUP_V2_SCRIPT_REQUESTED__ = true;
+  function ensureScript(src, flagName) {
+    if (flagName && global[flagName]) return;
+    if (document.querySelector(`script[src="${src}"]`)) return;
+    if (flagName) global[flagName] = true;
     const script = document.createElement("script");
-    script.src = "js/ui/place-popup-v2.js";
+    script.src = src;
     script.defer = true;
     document.body.appendChild(script);
+  }
+
+  function loadPlacePopupV2() {
+    ensureStylesheet("css/place-popup-v2.css");
+    if (!global.__HG_PLACE_POPUP_V2_INSTALLED__) {
+      ensureScript("js/ui/place-popup-v2.js", "__HG_PLACE_POPUP_V2_SCRIPT_REQUESTED__");
+    }
+
+    // Fanearkitekturen er et eget presentasjonslag over V2. Den poller trygt
+    // dersom V2 ikke er installert ennå, og source-data blir liggende i sine
+    // eksisterende systemer (Leksikon, Stories, Lesespor, før/nå osv.).
+    ensureStylesheet("css/place-popup-tabs.css");
+    ensureScript("js/ui/place-popup-tabs.js", "__HG_PLACE_POPUP_TABS_SCRIPT_REQUESTED__");
+
+    // PlaceCard-rundingene snevres inn til visuelle samlinger. Kunnskaps- og
+    // handlingsflater flyttes til popupfaner eller egne handlingsflater.
+    ensureScript("js/ui/place-rounds-visual-collections.js", "__HG_VISUAL_PLACE_ROUNDS_SCRIPT_REQUESTED__");
   }
 
   function loadPlaceLearningSurface() {
