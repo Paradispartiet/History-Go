@@ -1,0 +1,63 @@
+name: Temporary Fagverk Natur PR migration
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Execute embedded Natur migration
+        shell: bash
+        run: |
+          python3 <<'PY'
+          import pathlib
+          source = pathlib.Path('.github/workflows/tmp-fagverk-natur-pilot.yml').read_text(encoding='utf-8')
+          marker = "          node <<'NODE'\n"
+          start = source.index(marker) + len(marker)
+          end = source.index('\n          NODE', start)
+          body = '\n'.join(line[10:] if line.startswith('          ') else line for line in source[start:end].splitlines())
+          pathlib.Path('/tmp/fagverk-natur-pilot.cjs').write_text(body, encoding='utf-8')
+          PY
+          node /tmp/fagverk-natur-pilot.cjs
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate deterministic reports
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-natur-pilot.mjs --write-report --no-check-report
+      - name: Validate Natur pilot
+        run: |
+          node --check scripts/audit-fagverk-natur-pilot.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-natur-pilot.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-natur-pilot.test.mjs
+          node --test tests/fagverk-portal.test.mjs
+          node --test tests/fagverk-documentation-contract.test.mjs
+          npm run typecheck:web
+      - name: Commit materialized pilot
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_portal.json data/fagverk/subject_status.json 'data/fag/natur/merke_natur (1).html' scripts/audit-fagverk-natur-pilot.mjs tests/fagverk-natur-pilot.test.mjs reports/fagverk/README.md reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json reports/fagverk/natur-pilot-audit.json
+          git commit -m "Materialiser Natur som første fase-2-pilot"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
