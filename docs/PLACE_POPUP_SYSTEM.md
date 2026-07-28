@@ -2,49 +2,213 @@
 
 Status: **canonical**  
 Eier: `place_popup_presentation_contract`  
-Runtime: `js/ui/place-popup-v2.js`  
-Design: `css/place-popup-v2.css`  
-Sist kontrollert: **2026-07-26**
+Basisruntime: `js/ui/place-popup-v2.js`  
+Faner: `js/ui/place-popup-tabs.js`  
+Handlingsovergang: `js/ui/place-popup-actions.js`  
+Design: `css/place-popup-v2.css` + `css/place-popup-tabs.css`  
+Sist kontrollert: **2026-07-28**
 
-Dette dokumentet definerer hvordan den rike stedspopupen skal bygges, hvilke strukturerte place-felt den kan lese, og hvordan ulike stedstyper skal presenteres uten at alle steder presses inn i samme mal.
+Stedspopupen er den komplette brukerrettede kunnskapsflaten for ett canonical History GO-sted. PlaceCard er fortsatt stedets kompakte kontrollrom; rundingene er visuelle samlinger av ting. Brukeren skal ikke måtte åpne en egen «Leksikon»-runding for å komme til stedets artikkel, historie, kilder eller videre lesning.
 
-## 1. Rolle og avgrensning
+## 1. Produktgrense
 
-PlaceCard er stedets kompakte kontrollrom. Stedspopupen er stedets fordypningsflate.
+Stedspopupen skal samle og presentere eksisterende canonical data uten å opprette en ny stedssannhet.
 
-Stedspopupen skal:
+Source of truth ligger fortsatt i de systemene som eier dataene:
 
-- vise `popupDesc` som hovedartikkel;
-- bruke `desc` som kort ingress når tekstene er forskjellige;
-- gjøre stedets fysiske utstrekning, innhold og historiske lag forståelige;
-- vise type-spesifikke nøkkeltall når de er kildebelagt og strukturert;
-- gjenbruke canonical people, relations, stories, events, Wonderkammer og knowledge;
-- skjule tomme seksjoner;
-- fungere på mobil, iPad og desktop;
-- aldri opprette en parallell place-identitet.
+- manifest-lastede place-filer eier stedets identitet, `desc`, `popupDesc` og strukturerte place-profiler;
+- Leksikon-data eier leksikonartikkel, `chronology`, historiske bruksspor, notiser, språk og `externalLinks` der disse finnes;
+- Stories-systemet eier canonical Stories;
+- Lesespor-systemet eier Lesespor;
+- `for_na` eier før/etter-innhold;
+- source summaries og `externalLinks` eier brukerrettede kildereferanser;
+- observations, knowledge og actions eies fortsatt av sine eksisterende systemer.
 
-Canonical stedssannhet ligger fortsatt i det manifest-lastede place-objektet. Popupen er en presentasjon av disse dataene, ikke et eget stedssystem.
+Popupen **aggregerer** disse dataene. Den skal ikke kopiere dem inn i én gigantisk place-fil.
 
-## 2. Fast informasjonsrekkefølge
+## 2. Fast popupstruktur
 
-Alle stedstyper følger samme overordnede rytme:
+Header og hero er stedets faste ramme. Under hero ligger en horisontalt scrollbar fanestripe.
 
-1. **Header** — kategori, navn, år og stedstype.
-2. **Hero** — hovedbilde med kontrollert fallback.
-3. **Kort fortalt** — `desc` når den ikke er identisk med hovedartikkelen.
-4. **Nøkkelfakta** — bare felter med faktiske verdier.
-5. **Om stedet** — hele `popupDesc`, avsnittsbevart.
-6. **Type-spesifikke seksjoner** — mål, delsteder, historiske lag, natur, arkitektur eller annen relevant struktur.
-7. **Se etter på stedet** — observerbare særtrekk fra `quiz_profile`.
-8. **Koblinger** — people, relations, Wonderkammer, knowledge, events og stories.
-9. **Kilder** — kildeoversikt når `source_summary.safe_sources` finnes.
-10. **Observasjoner** — bare når brukeren faktisk har observasjoner.
+Canonical faner:
 
-Tom informasjon skal ikke erstattes av bokser med «ingen … ennå». Fravær av data skal gi en renere popup, ikke mer støy.
+1. **Om**
+2. **Historie**
+3. **Fortellinger**
+4. **Før/etter**
+5. **Nyheter**
+6. **Lesespor**
+7. **Kilder**
+8. **Mer**
 
-## 3. Felles feltkontrakt
+På mobil skal fanene være én horisontal stripe som kan scrolles. De skal ikke pakkes til et tett flerraders menygrid.
 
-### 3.1 `spatial_profile`
+Fanene bruker semantisk `tablist` / `tab` / `tabpanel`, `aria-selected`, `aria-controls` og tastaturnavigasjon med venstre/høyre/Home/End.
+
+## 3. Om
+
+**Om** forklarer hva stedet er.
+
+Typisk innhold:
+
+- `popupDesc` som hovedartikkel;
+- `desc` som kort ingress når den avviker fra hovedartikkelen;
+- nøkkelfakta;
+- leksikonets hovedartikkel når den tilfører dokumentert innhold utover `popupDesc`;
+- leksikonets `facts`;
+- `spatial_profile`;
+- `temporal_profile`-hoveddata;
+- `subplaces`;
+- bygd miljø og funksjon;
+- `nature_profile` som beskrivelse av stedets landskap/naturkarakter;
+- type-spesifikke fysiske seksjoner;
+- «Se etter på stedet» når dette er et kjennetegn ved stedet, ikke et Wonderkammer- eller oppgaveobjekt.
+
+**People er ikke en lang sekundær katalog i Om.** Personer eies brukerrettet av People-rundingen som visuell samling. Relasjoner kan fortsatt ligge under Mer når de gir forklarende verdi.
+
+## 4. Historie
+
+**Historie** er tidslinje- og kontekstflaten.
+
+Den kan samle:
+
+- Leksikon `chronology`;
+- place `history_layers`;
+- leksikonoppføringer klassifisert som historie / bruksspor;
+- dokumenterte historiske hendelser og samfunnslag;
+- relevante historiske arrangementer.
+
+### Chronology-regel
+
+`chronology` svarer på **hva skjedde når**. Den skal ikke gjøres om til Stories bare for å fylle Fortellinger-fanen.
+
+En kort milepæl som «1969 — Y-blokka sto ferdig» hører hjemme her. En sammenhengende fortelling om kunst, arkitektur og strid hører hjemme i Stories.
+
+## 5. Fortellinger
+
+**Fortellinger** renderer canonical Stories fra Stories-systemet.
+
+Reglene i `docs/STORIES_DATA_GOVERNANCE.md` gjelder:
+
+- Stories skal ha egen narrativ verdi;
+- de skal ikke være en parallell chronology;
+- flere chronology-punkter kan inngå i én Story;
+- teknisk `episode_v1`-gyldighet erstatter ikke den narrative storytesten.
+
+Eldre `article.stories` fra Leksikon kan vises som legacy-spor når de ikke dupliserer canonical Stories, men nye fortellinger skal produseres i Stories-systemet.
+
+## 6. Før/etter
+
+**Før/etter** overtar brukerrollen til den tidligere `før_nå`-rundingen.
+
+Source-data beholdes i `place.for_na`.
+
+Fanen kan vise:
+
+- historisk bilde;
+- dagens bilde;
+- `before`;
+- `now`;
+- `change`;
+- konkrete ting brukeren kan sammenligne i dagens landskap;
+- egne kilder for før/etter-materialet.
+
+Før/etter handler om **samme sted gjennom tid** og er derfor en stedspopupfane, ikke en samling av separate entiteter.
+
+## 7. Nyheter
+
+**Nyheter** er egen fane og skal holde korte presse-/notisspor adskilt fra hovedartikkel og Stories.
+
+To hovedseksjoner:
+
+### Gamle nyheter
+
+Historiske avisnotiser, eldre mediesaker, moralpanikker, lokale konflikter og andre arkivbaserte nyhetsspor.
+
+Runtimeklassifikasjon omfatter blant annet historiske `historical_news`, `gamle_nyheter`, avisnotiser og tilsvarende typer.
+
+### Nyere notiser
+
+Nyere lokalsaker og korte hendelsesspor, for eksempel drift, brann, politi, arrangement eller annen dokumentert samtidshendelse.
+
+Notiser skal behandles proporsjonalt. En liten lokalsak skal ikke omskrives til en stor Story bare fordi den finnes i nyhetsarkivet.
+
+## 8. Lesespor
+
+**Lesespor** er egen fane.
+
+Når fanen åpnes fra et bestemt sted, skal den bare vise tekster hvis `place_ids` eksplisitt inneholder dette stedet.
+
+Den stedsspesifikke fanen skal prioritere åpne, direkte lesbare tekster. Oppføringer som eksplisitt er merket som betalingsmur, abonnement eller tilsvarende skal ikke vises i denne flaten.
+
+Den globale Lesespor-samlingen kan fortsatt eksistere separat; stedspopupen er bare et stedsspesifikt utsnitt.
+
+Lesespor-data flyttes ikke inn i place-filen.
+
+## 9. Kilder
+
+**Kilder** er egen fane.
+
+Den kan samle:
+
+- `place.source_summary.safe_sources`;
+- andre brukerrettede source-summary-strenger;
+- place `externalLinks`;
+- Leksikon-artiklenes `externalLinks`;
+- før/etter-kilder;
+- offisielle nettsider, arkiv, databaser, statistikk og andre eksplisitt kuraterte oppslag.
+
+Eksterne lenker skal være HTTPS og åpnes sikkert med `target="_blank"` og `rel="noopener noreferrer"`.
+
+Kilder-fanen skal aldri vise interne researchnotater, koordinataudit, hold-back-påstander eller tekniske IDs som vanlig brukerinnhold.
+
+## 10. Mer
+
+**Mer** er den smalere restflaten. Den skal ikke bli et nytt ustrukturert Leksikon.
+
+Tillatt innhold:
+
+- Språkleksikon;
+- observations;
+- knowledge/funfacts der eksisterende unlock-regler tillater det;
+- curated relations som forklarende koblinger;
+- leksikonets tolkning / «legg merke til» / motpunkter;
+- klassifikasjon/tagger når de er brukerrettede;
+- eldre `artifacts` / objekter som ennå ikke er migrert til riktig samlingssystem;
+- overgangsseksjonen **Gjør på stedet**.
+
+### Gjør på stedet
+
+Tidligere handlingsrundinger er ikke visuelle samlinger:
+
+- `tasks`
+- `training`
+- `play`
+
+Eksisterende `tasks_profile`, `training_profile` og eventuelle `play_profile` skal derfor fortsatt være tilgjengelige under **Mer → Gjør på stedet** frem til en egen canonical handlingsflate eventuelt etableres.
+
+## 11. Wonderkammer er midlertidig avgrenset
+
+Wonderkammer skal **ikke** vises automatisk i den nye stedspopupen før den konkurrerende datamodellen er konsolidert.
+
+Repoet har over tid brukt navnet Wonderkammer om minst tre ulike produktidéer:
+
+1. et navigasjonsnett av personer, steder, praksiser og institusjoner;
+2. leke-/trenings-/aktivitetssoner med instruksjoner og alder;
+3. stedsspesifikke kuriositeter, observerbare detaljer og `actual_site_treasure`-samleobjekter.
+
+Disse er ikke én informasjonsarkitektur. Canonical beslutning og migreringsregler ligger i `data/wonderkammer/wonderkammer.md`.
+
+Inntil migreringen er gjennomført:
+
+- ikke opprett nye generic activity-Wonderkammer;
+- ikke bruk Wonderkammer som synonym for relations/NextUp;
+- ikke legg Wonderkammer tilbake under Leksikon eller Mer bare for å bevare gammel navigasjon;
+- eksisterende source-data beholdes for migrering og audit.
+
+## 12. Strukturerte place-felt
+
+### `spatial_profile`
 
 Brukes for kildebelagte mål og fysisk form.
 
@@ -69,17 +233,16 @@ Brukes for kildebelagte mål og fysisk form.
 
 Regler:
 
-- lagre areal i kvadratmeter;
-- lagre lengde og høyde i meter;
+- areal lagres i kvadratmeter;
+- lengde og høyde lagres i meter;
 - `elevation_masl` betyr meter over havet;
 - `height_m` betyr fysisk byggehøyde eller konstruksjonshøyde;
-- popupen formaterer enhetene, mens source-data beholder tallverdiene;
-- estimater må merkes eksplisitt;
-- gameplay-radius `r` er ikke stedets areal eller fysiske utstrekning.
+- popupen formaterer enhetene;
+- gameplay-radius `r` er ikke stedets areal.
 
-### 3.2 `temporal_profile`
+### `temporal_profile`
 
-Brukes for noen få tydelige hovedmilepæler.
+Brukes for få tydelige hovedmilepæler når ett `year` ikke forklarer stedets utvikling.
 
 ```json
 {
@@ -91,170 +254,107 @@ Brukes for noen få tydelige hovedmilepæler.
 }
 ```
 
-`year` kan fortsatt være stedets primære år. `temporal_profile` brukes når ett enkelt år ikke forklarer stedets utvikling.
+Detaljert kronologi hører hjemme i chronology/History-fanen, ikke som stadig flere temporal_profile-felter.
 
-### 3.3 `subplaces`
+### `subplaces`
 
 Brukes når stedet inneholder tydelige delsteder, objekter eller soner.
 
-```json
-{
-  "subplaces": [
-    {
-      "id": "blasen",
-      "name": "Blåsen",
-      "type": "utsiktspunkt_fjellknaus",
-      "summary": "Øverste del av parken."
-    }
-  ]
-}
-```
+Hvis `id`, `place_id` eller `target_id` treffer et eksisterende canonical place, kan kortet åpne det stedet. Et delsted uten egen canonical place-identitet skal ikke automatisk opprettes som nytt sted.
 
-Hvis `id`, `place_id` eller `target_id` treffer et eksisterende canonical place, blir kortet klikkbart. Et delsted uten eget canonical place vises som innhold i moderstedet og skal ikke automatisk opprettes som nytt sted.
+### `history_layers`
 
-### 3.4 `history_layers`
+`history_layers` er en kort lesbar historisk lagdeling og vises i **Historie**. Den er ikke erstatning for `popupDesc` eller canonical `chronology` når detaljert årstidslinje allerede finnes.
 
-Brukes til en lesbar tidslinje, ikke som erstatning for `popupDesc`.
+### `nature_profile`
 
-```json
-{
-  "history_layers": [
-    {
-      "id": "parkopparbeiding",
-      "period": "1890–1900",
-      "sort_order": 50,
-      "title": "Første parkopparbeiding",
-      "summary": "Opparbeidingen ble finansiert av Brændevinssamlaget."
-    }
-  ]
-}
-```
+Beskriver stedets landskap, naturtype, habitat, sesong og observerbare naturtrekk. Dette kan vises i **Om**.
 
-- `period` er brukerrettet tekst;
-- `sort_order` bestemmer visningsrekkefølgen;
-- `summary` skal være konkret og kort;
-- usikre hypoteser skal ikke inn i tidslinjen før kildekravet er oppfylt.
+Nature-rundingen har en annen rolle: den er den visuelle samlingen av naturentiteter/objekter.
 
-### 3.5 `nature_profile`
+### `source_summary`
 
-Popupen kan vise terreng, naturtyper, habitater, observerbare arter, sesong og en kort naturfaglig oppsummering. Artslister skal være stedsspesifikke og kildebelagte. En tilfeldig liste over vanlige byarter er ikke innhold.
+Brukerrettede sikre kilder vises i **Kilder**. Interne audit- eller researchfelt vises ikke.
 
-### 3.6 `source_summary`
+## 13. Typeprofiler
 
-`source_summary.safe_sources` kan vises nederst som en kort kildeoversikt. Popupen skal ikke vise interne research-notater, hold-back-påstander eller tekniske coordinate-notater som vanlig brukerinnhold.
+Typeprofilene fra tidligere kontrakt består som innholdsprioriteringer:
 
-## 4. Stedstypeprofiler
+- park/grøntområde: areal, topografi, geologi, delsteder, landskap og historiske lag;
+- gate/vei/allé: start/slutt, lengde, segmenter, kryss, adresser, infrastruktur og navnehistorie;
+- bygning: arkitekt, byggeår, stil, materialer, konstruksjon, høyde, etasjer, bruk og vern;
+- torg/plass/byrom: areal, avgrensning, fasader, monumenter, bruk og ombygging;
+- elv/bekk/innsjø/kyst: lengde, vannflate, kilde/utløp, natur, regulering, industri og restaurering;
+- rute/sti: start/slutt, lengde, etapper, høydeprofil, underlag, sesong og sikkerhet;
+- institusjon/anlegg: grunnlagt år, funksjon, bygninger, samlinger, saler, aktører og milepæler;
+- kulturminne/monument/kunstverk: opphavsperson, år, materiale, mål, motiv, plassering, vern og restaurering;
+- arkeologisk/historisk lokalitet: datering, synlige strukturer, funn, undersøkelser, vern og hypoteseskille;
+- bydel/strøk/område: avgrensning, delområder, hovedakser, landskap, utviklingsfaser og møteplasser;
+- idrettsanlegg: åpning, kapasitet, banemål, hjemmeaktører, arrangementer, rekorder og konstruksjon;
+- industrielt/teknisk sted: funksjon, driftsperiode, maskiner, energi, størrelse, råvarer, transport og gjenbruk.
 
-Fellesstrukturen er lik, men nøkkeltallene og seksjonene varierer.
+Profilen bestemmer **hva Om og Historie bør prioritere**, ikke hvilke rundinger som må fylles.
 
-### 4.1 Park og grøntområde
+## 14. Presentasjonsregler
 
-Prioriter areal, høyeste punkt, høyde over havet, terrengform, geologi, parkens lengde eller hovedakse, delsteder, utsiktspunkter, lekeområder, kulturminner, historiske lag, naturtyper, arter, ferdigstillelse og større ombygginger. Stensparken er referanseimplementasjonen.
+1. Vis bare dokumentert data fra canonical eller eksplisitt kompatible kilder.
+2. Skjul tomme seksjoner inne i en fane når de ikke tilfører verdi.
+3. En fane kan ha en rolig tomtilstand uten at appen krasjer.
+4. Ikke dupliser samme tekst i `popupDesc`, Leksikon og Stories hvis innholdet er identisk.
+5. Ikke generer chronology fra Stories eller Stories fra chronology i runtime.
+6. Ikke trekk nye fakta automatisk ut av fri tekst.
+7. Ikke vis interne IDs, researchgjeld eller coordinate-notater.
+8. Bevar én intern vertikal scrollflate for popupen.
+9. Header, lukkeknapp og hero skal være forståelige uansett aktiv fane.
+10. Farge skal ikke være eneste aktiv-tab-signal.
 
-### 4.2 Gate, vei og allé
+## 15. Bildelogikk
 
-Prioriter start og slutt, samlet lengde, kartlagte segmenter, viktige kryss og adresser, gatebredde når relevant, kollektivtransport, teknisk infrastruktur, navnehistorie og store ombygginger. Storgata er referanse for lineær utstrekning.
+Hero-bildekandidater prøves fortsatt i denne rekkefølgen:
 
-### 4.3 Bygning
+`popupImage` → `image` → `cardImage` → `imageCard` → `frontImage`.
 
-Prioriter arkitekt, byggeår, stil, materialer, konstruksjon, grunnflate, byggehøyde, etasjer, kapasitet, vernestatus, hovedinngang, bygningsdeler, opprinnelig og nåværende bruk samt større ombygginger.
+Når ingen kandidater virker, skal popupen vise en designet stedflate, ikke et ødelagt bildeikon.
 
-### 4.4 Torg, plass og offentlig byrom
+Før/etter-fanen kan i tillegg bruke egne historiske og nåværende bilder når `for_na` har eksplisitte bildefelt.
 
-Prioriter areal, avgrensning, tilstøtende gater, viktige fasader, monumenter, markeder, demonstrasjoner, seremonier, hverdagsbruk, dekke, møblering og historiske ombygginger.
+## 16. Runtime-arkitektur
 
-### 4.5 Elv, bekk, innsjø og kyststed
+`js/ui/place-popup-v2.js` lager fortsatt basispopupen og eksisterende strukturerte seksjoner.
 
-Prioriter lengde, areal eller vannflate, kilde, utløp, nedbørfelt, høydefall, strømningsretning, broer, fosser, dammer, naturtyper, arter, flom, regulering, industri og restaurering.
+`js/ui/place-popup-tabs.js`:
 
-### 4.6 Rute, sti og historisk ferdselsåre
+- legger på den canonical fanestrukturen;
+- flytter eksisterende V2-seksjoner til riktig fane;
+- laster Leksikon-data read-only;
+- laster canonical Stories;
+- laster stedsspesifikke Lesespor;
+- renderer Før/etter fra `for_na`;
+- grupperer gamle nyheter og nyere notiser;
+- samler brukerrettede kilder;
+- laster Språkleksikon;
+- opprettholder `read_leksikon`-signalet når leksikoninnholdet faktisk finnes.
 
-Prioriter start, slutt, total lengde, etapper, stopp, stigning, høydeprofil, underlag, framkommelighet, ferdselsmåte, vanskelighetsgrad, sesong, sikkerhetsforhold og historisk funksjon.
+`js/ui/place-popup-actions.js` holder eldre handlingsprofiler tilgjengelige under Mer.
 
-### 4.7 Institusjon og anlegg
+`js/ui/place-rounds-visual-collections.js` sørger for at PlaceCard bare viser canonical visuelle samlingsrundinger selv om legacy round registry fortsatt kjenner eldre IDs.
 
-Prioriter grunnlagt år, dagens hovedsted, tidligere adresser, funksjon, bygninger, delanlegg, samlinger, saler, kapasitet, sentrale personer, verk og institusjonelle milepæler. Institusjonen og bygningen skal ikke blandes sammen dersom de har ulik identitet og historie.
+## 17. QA
 
-### 4.8 Kulturminne, monument og kunstverk
+Ved endring av denne arkitekturen skal minst følgende kontrolleres:
 
-Prioriter kunstner, arkitekt eller produsent, år, materiale, mål, teknikk, motiv, inskripsjon, funksjon, plassering i moderstedet, vernestatus, flytting, restaurering og senere bruk.
-
-### 4.9 Arkeologisk område og historisk lokalitet
-
-Prioriter datering, bruksperioder, område, avgrensning, synlige strukturer, funn, undersøkelses- og utgravningshistorie, vernestatus og tydelig skille mellom dokumenterte funn og hypoteser.
-
-### 4.10 Bydel, strøk og større område
-
-Prioriter forståelig avgrensning, areal når det finnes en datert kilde, delområder, hovedakser, landskap, topografi, utviklingsfaser, institusjoner, møteplasser og transport. Demografi skal bare vises med årstall og kilde.
-
-### 4.11 Idrettsanlegg
-
-Prioriter åpnet år, ombygginger, kapasitet, banemål, anleggstype, hjemmeaktører, delanlegg, viktige arrangementer, rekorder, arkitektur og konstruksjon.
-
-### 4.12 Industrielt og teknisk sted
-
-Prioriter produksjon eller teknisk funksjon, driftsperiode, maskiner, konstruksjoner, energikilde, størrelse, kapasitet, ytelse, råvarer, transportforbindelser, arbeidsliv, nedleggelse og gjenbruk.
-
-## 5. Presentasjonsregler
-
-1. Vis bare kildebelagte og strukturerte fakta.
-2. Ikke trekk tall automatisk ut av `popupDesc`.
-3. Ikke bruk coordinate-radius som areal eller fysisk radius.
-4. Ikke vis interne ID-er, sourceObjectId, `coordNote`, auditstatus eller researchgjeld i vanlig popup.
-5. Ikke dupliser samme verdi i flere seksjoner uten en tydelig funksjon.
-6. Type-spesifikke seksjoner skal forsvinne helt når data mangler.
-7. `popupDesc` skal fortsatt følge den bindende tekstkontrakten.
-8. Delsteder skal beskrive faktisk romlig eller funksjonell inndeling.
-9. Historiske lag skal være kronologiske og observerbare der det er mulig.
-10. Naturinnhold skal beskrive stedet, ikke domenet generelt.
-
-## 6. Bildelogikk
-
-Bildekandidater prøves i denne rekkefølgen: `popupImage`, `image`, `cardImage`, `imageCard`, `frontImage`. Når ingen kandidater virker, skal popupen vise en designet stedflate. Et ødelagt bildeikon skal aldri være sluttresultatet.
-
-## 7. Responsivitet og tilgjengelighet
-
-- Popupen skal ha én intern vertikal scrollflate.
-- Lukkeknappen skal være tilgjengelig uten scrolling.
-- Mobil og smal iPad-visning skal bruke én kolonne.
-- Klikkbare delsteder og personer skal være faktiske knapper.
-- Teksten skal være lesbar uten hover.
-- Farge skal ikke være eneste signal.
-- Lange arts- og kildeoversikter skal pakkes uten horisontal sidescroll.
-
-## 8. Stensparken som pilot
-
-Stensparken demonstrerer hele parkprofilen:
-
-- ca. 48 dekar parkareal;
-- ca. 500 meter kalksteinsrygg;
-- Blåsen som høyeste punkt, 81 meter over havet;
-- delsteder som Blåsen, Korpehaugen, Fagerborg kirke og Kjærlighetskarusellen;
-- historiske lag fra middelalderens Sten gård til dagens park;
-- kalkrik tørrbakke, blomstereng og registrert fugleliv;
-- kildeoversikt fra Oslo kommune, Oslo byleksikon og øvrige trygge stedskilder.
-
-Piloten skal ikke bli en Stensparken-spesial i koden. Den bruker de samme generiske feltene som andre parker senere kan fylle.
-
-## 9. QA
-
-Ved endring av popupen eller de strukturerte feltene:
-
-1. kjør `node --check js/ui/place-popup-v2.js`;
-2. kjør popup-regresjonstestene;
-3. parse alle endrede JSON-filer;
-4. kontroller at popupen skjuler tomme seksjoner;
-5. kontroller minst én park, én gate og én bygning;
-6. kontroller mobil/iPad-breddene;
-7. kjør dokumentasjonsstyring når canonical dokumenter eller registry endres;
-8. kjør relevant place-health og manifestkontroll når place-data endres.
-
-## 10. Eierskap
-
-- `docs/PLACE_POPUP_SYSTEM.md` eier presentasjons- og stedstypekontrakten.
-- `docs/PLACE_STANDARD.md` eier modenhets- og produktstandarden for steder.
-- place JSON eier stedets faktiske data.
-- `js/ui/place-popup-v2.js` eier runtime-renderingen.
-- `css/place-popup-v2.css` eier utformingen.
-- `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` eier tekstkravene.
-- coordinate-kontraktene eier koordinatsemantikk og kan ikke overstyres av popupen.
+1. JavaScript-syntaks for nye/endrede UI-filer;
+2. sted med rik Leksikon-data, for eksempel Stensparken;
+3. sted uten Leksikon-data;
+4. sted med Stories;
+5. sted uten Stories;
+6. sted med `for_na`;
+7. sted med gamle nyheter og nyere notiser;
+8. sted med Lesespor;
+9. sted med `externalLinks`;
+10. smal mobilvisning med åtte faner;
+11. tastaturnavigasjon i fanestripen;
+12. at People/Nature/Badges/Works/Civication/Brands fortsatt fungerer som PlaceCard-rundinger;
+13. at Leksikon/Fortellinger/Før-nå/Tasks/Training/Play ikke vises som canonical rundinger;
+14. at Wonderkammer ikke dukker opp som uavklart blandingsflate;
+15. at popupen fortsatt har én vertikal scrollflate.
