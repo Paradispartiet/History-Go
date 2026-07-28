@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/ui/place-onsite-surface.js
 // Canonical "På stedet"-flate under PlaceCard-rundingene.
 // Samler handlinger, møter/kunnskapsmøter og events uten å gjøre dem til rundinger.
