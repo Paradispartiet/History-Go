@@ -1,0 +1,43 @@
+name: Natur subject quality
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/natur/**'
+      - 'data/fagverk/**'
+      - 'js/fagverk-subject-core.js'
+      - 'js/fagverk.js'
+      - 'scripts/audit-natur-subject-quality.mjs'
+      - 'tests/natur-subject-quality.test.mjs'
+      - 'reports/fagverk/natur-quality-audit.json'
+      - '.github/workflows/natur-subject-quality.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/natur/**'
+      - 'data/fagverk/**'
+      - 'js/fagverk-subject-core.js'
+      - 'js/fagverk.js'
+      - 'scripts/audit-natur-subject-quality.mjs'
+      - 'tests/natur-subject-quality.test.mjs'
+      - 'reports/fagverk/natur-quality-audit.json'
+      - '.github/workflows/natur-subject-quality.yml'
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Validate Natur quality contract
+        run: |
+          node --check scripts/audit-natur-subject-quality.mjs
+          node scripts/audit-natur-subject-quality.mjs
+          node --test tests/natur-subject-quality.test.mjs
+          node scripts/audit-fagverk-natur-pilot.mjs
+          node --test tests/fagverk-natur-pilot.test.mjs
+          npm run typecheck:web
