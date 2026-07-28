@@ -5,7 +5,7 @@ Eier: `place_popup_presentation_contract`
 Basisruntime: `js/ui/place-popup-v2.js`  
 Faner: `js/ui/place-popup-tabs.js`  
 På stedet: `js/ui/place-onsite-surface.js`  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-07-29**
 
 Stedspopupen er den komplette brukerrettede **kunnskapsflaten** for ett canonical History GO-sted. PlaceCard er det kompakte kontrollrommet.
 
@@ -25,17 +25,19 @@ Viktige eiergrenser:
 | Stories | `docs/STORIES_DATA_GOVERNANCE.md` |
 | People | `docs/PEOPLE_PROFILE_CANONICAL.md` + `docs/people-of-places-method.md` |
 | Quiz | `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` |
-| Rundinger | `data/places/README_place_rounds.md` |
+| Rundinger | **`data/places/README_place_rounds.md`** |
 | Nature | `README/nature_mapping_workflow.md` |
 | Koordinater | coordinate-kontraktene |
 
 Popupen skal aggregere ferdige canonical data, ikke lage en ny sannhetskilde.
 
+**Denne filen skal ikke kopiere rundingspalett, antall eller rundingsprioritering.** Det finnes én rundingseier: `data/places/README_place_rounds.md`.
+
 ## 2. De tre stedflatene
 
 Tre roller skal holdes adskilt:
 
-1. **Rundinger** = visuelle samlinger av identifiserbare ting.
+1. **Rundinger** = PlaceCards kompakte innganger, definert av rundingkontrakten.
 2. **På stedet** = hva som skjer eller kan gjøres der.
 3. **Stedspopup** = kunnskap om stedet.
 
@@ -102,9 +104,9 @@ All produksjon, claims, setning→claim-mapping, teksthash og review eies av:
 
 Ikke bruk denne filens Om-liste som skriveoppskrift for `popupDesc`.
 
-People skal ikke bli en lang katalog i Om. Personer eies brukerrettet av People-rundingen.
+People skal ikke bli en lang katalog i Om. Persondata eies av People-systemet og presenteres via de brukerflatene runding-/People-kontraktene bestemmer.
 
-`nature_profile` er ikke det samme som Nature-rundingen.
+`nature_profile` er popupdata. Det definerer ikke rundingstype.
 
 ## 6. Historie
 
@@ -120,7 +122,7 @@ Den kan samle:
 
 `chronology` svarer på **hva skjedde når**. En viktig milepæl skal ikke automatisk gjøres om til Story.
 
-Kamper, rekorder, mesterskap og historiske sportsøyeblikk hører normalt her, ikke i en egen Sports-runding.
+Kamper, rekorder, mesterskap og historiske sportsøyeblikk hører normalt her, ikke i en egen runding.
 
 ## 7. Fortellinger
 
@@ -150,7 +152,7 @@ Kan vise:
 - konkrete sammenligningspunkter;
 - kilder.
 
-Før/etter handler om samme sted gjennom tid og er popupkunnskap, ikke runding.
+Før/etter handler om samme sted gjennom tid og er popupkunnskap, ikke en selvstendig rundingsbeslutning.
 
 ## 9. Nyheter
 
@@ -200,7 +202,7 @@ Tillatt kan være:
 
 Handlinger skal ikke ligge her.
 
-Fysiske Objects/Details/Spots skal ikke parkeres permanent i Mer bare fordi riktig rundingsdata mangler.
+At `objects`, `details`, `spots` eller andre strukturer finnes i place-data betyr ikke at popupen eller denne filen bestemmer om de er rundinger. Rundingidentiteten eies bare av rundingkontrakten.
 
 ## 13. På stedet
 
@@ -219,27 +221,25 @@ Bredt tilgjengelige møteflater er **Social Meet / Avtal å møtes** og **Kunnsk
 
 Quiz, Observer, Notat og Rute beholder egne flows utenfor På stedet-baren.
 
+### Events
+
+Tidsbundne forestillinger, oppsetninger, konserter, visninger og andre arrangementer ved stedet er **Events i På stedet**, ikke stedskunnskap forkledd som rundinger.
+
+Historiske events kan i tillegg omtales i Historie eller Stories når de har selvstendig historisk/narrativ verdi.
+
 ## 14. Rundinger
 
 Canonical rundingkontrakt:
 
-- `data/places/README_place_rounds.md`.
+- **`data/places/README_place_rounds.md`**.
 
-Palett:
-
-```text
-badges · people · works · objects · details · spots · nature · brands
-```
-
-Et ferdig sted viser 4 eller 6 bildeklare samlinger. Badges er obligatorisk. Nature er valgfri. Brands beholder sin eksisterende betydning: bedrifter og kjente merker med dokumentert stedskobling.
-
-Rundingkontrakten eier også canonical dataform for nye `objects`, `details` og `spots`.
+Denne popupkontrakten har med hensikt **ingen egen palett, antallsregel, prioriteringsmatrise eller migreringsliste for rundinger**. Hvis en slik regel trengs, skal den endres i rundingkontrakten – ikke kopieres hit.
 
 ## 15. Wonderkammer
 
 Wonderkammer er legacy migreringsgrunnlag, ikke en ny popupflate eller runding.
 
-Legacy-innhold migreres etter faktisk type til Objects, Details, Spots, People, Works, Nature, På stedet, relations/NextUp, Historie eller Stories.
+Legacy-innhold klassifiseres etter faktisk identitet og flyttes til riktig canonical eier. Popup-systemet skal ikke bruke Wonderkammer som snarvei til å definere nye rundinger.
 
 Nye Wonderkammer-entries skal ikke produseres gjennom popup-systemet.
 
@@ -255,7 +255,7 @@ Få hovedmilepæler når ett `year` ikke er nok. Detaljert chronology hører i H
 
 ### `subplaces`
 
-Reelle delsteder/soner. De kan være compatibility-kilde for Spots, men nye rent visuelle Spot-kort bruker normalt `place.spots` etter rundingkontrakten.
+Reelle delsteder/soner. De er place-struktur, ikke automatisk rundingsinnhold.
 
 ### `history_layers`
 
@@ -263,7 +263,7 @@ Kort historisk lagdeling til Historie; ikke erstatning for canonical chronology.
 
 ### `nature_profile`
 
-Landskap/naturtype/habitat/sesong til Om. Ikke automatisk Nature-runding.
+Landskap/naturtype/habitat/sesong til Om. Rundingspresentasjon bestemmes separat av rundingkontrakten.
 
 ### `source_summary`
 
