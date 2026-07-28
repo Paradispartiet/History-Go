@@ -3,16 +3,20 @@ name: Fagverk and place learning
 on:
   pull_request:
     paths:
+      - 'fagverk-forside.html'
       - 'fagverk.html'
       - 'fagverk-sted.html'
+      - 'merke.html'
       - 'data/fagverk/**'
       - 'data/places/**'
       - 'data/fag/politikk/merke_politikk.html'
       - 'data/fag/politikk/politikk_runtime_manifest.json'
       - 'data/fag/politikk/*canonical_v4_5.json'
+      - 'js/fagverk-forside.js'
       - 'js/fagverk.js'
       - 'js/fagverk-sted.js'
       - 'js/fagverk-place-theme.js'
+      - 'js/merke-fallback.js'
       - 'js/fagverk-canonical-integration.js'
       - 'js/fagverk-place-canonical-integration.js'
       - 'js/politikk-fag-model.js'
@@ -23,19 +27,24 @@ on:
       - 'js/ui/place-learning-surface.js'
       - 'js/ui/place-learning-canonical.js'
       - 'js/ui/place-card-status-surface.js'
+      - 'css/fagverk-forside.css'
       - 'css/fagverk.css'
       - 'css/fagverk-learning-v2.css'
       - 'css/fagverk-sted.css'
       - 'css/fagverk-canonical.css'
       - 'css/fagverk-premium.css'
       - 'css/fagverk-place-category-themes.css'
+      - 'css/merke-fallback.css'
       - 'css/politikk-fagportal.css'
+      - 'css/politikk-merke-role.css'
       - 'css/header-learning-menu.css'
       - 'css/place-learning-surface.css'
       - 'docs/FAGVERK.md'
+      - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_PLACE_DESIGN.md'
       - 'scripts/audit-place-images.mjs'
       - 'tests/fagverk-content.test.mjs'
+      - 'tests/fagverk-portal.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
       - 'tests/fagverk-place-category-design.test.mjs'
       - 'tests/fagverk-link-audit.test.mjs'
@@ -63,9 +72,11 @@ jobs:
         run: |
           node --check js/politikk-fag-model.js
           node --check js/politikk-fagportal.js
+          node --check js/fagverk-forside.js
           node --check js/fagverk.js
           node --check js/fagverk-sted.js
           node --check js/fagverk-place-theme.js
+          node --check js/merke-fallback.js
           node --check js/fagverk-canonical-integration.js
           node --check js/fagverk-place-canonical-integration.js
           node --check js/ui/header-menu.js
@@ -77,6 +88,7 @@ jobs:
         run: |
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-content.test.mjs
+          node --test tests/fagverk-portal.test.mjs
           node --test tests/fagverk-place-pages.test.mjs
           node --test tests/fagverk-place-category-design.test.mjs
           node --test tests/fagverk-link-audit.test.mjs

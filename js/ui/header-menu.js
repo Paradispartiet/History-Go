@@ -113,10 +113,10 @@
     if (!document.getElementById("btnFagverk")) {
       group.appendChild(createLearningLink({
         id: "btnFagverk",
-        href: "fagverk.html?subject=politikk",
+        href: "fagverk-forside.html",
         iconText: "📖",
         labelText: "Fagverket",
-        description: "Læreboka: fagområder, emner og kapitler",
+        description: "Velg mellom merkesider og fagsider",
         modifier: "header-menu-action--fagverk"
       }));
     }
