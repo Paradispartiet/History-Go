@@ -1,11 +1,19 @@
 {
   "schemaVersion": "1.0",
   "placeId": "hadeland_glassverk",
-  "capturedAt": "2026-07-26",
+  "capturedAt": "2026-07-28",
   "legacyCoordinate": {
     "lat": 60.23813,
     "lon": 10.39785,
     "r": 360
+  },
+  "previousProductionCoordinate": {
+    "lat": 60.23765,
+    "lon": 10.39719,
+    "r": 360,
+    "appliedAt": "2026-07-26",
+    "retained": true,
+    "distanceFromLegacyM": 64.6
   },
   "appliedObject": {
     "sourceProvider": "osm",
@@ -14,28 +22,33 @@
     "name": "Hadeland Glassverk",
     "lat": 60.23765,
     "lon": 10.39719,
-    "coordinateUse": "named_glassworks_and_visitor_complex_anchor",
-    "distanceFromLegacyM": 64.6,
-    "finding": "The stable named Hadeland Glassverk point lies within the production and visitor complex and provides a place-specific anchor for the whole institution rather than one shop, park feature or assumed workshop centroid."
+    "coordinateUse": "institutional_area_anchor",
+    "finding": "The stable named Hadeland Glassverk point remains the correct semantic anchor for the complete production, museum and visitor institution."
   },
   "officialVisitorContext": {
-    "sourceProvider": "glassworks",
+    "sourceProvider": "official_site",
     "sourceName": "Hadeland Glassverk – opening hours and visitor information",
     "sourceUrl": "https://www.hadeland.com/pages/apningstider-for-hadeland-glassverk",
     "address": "Glassverksveien 9, 3520 Jevnaker",
-    "finding": "The official visitor page identifies the site as a living experience centre with shops, dining, activities, museum and glassblowing at Glassverksveien 9."
+    "finding": "The current official visitor page identifies a living experience centre with production viewing, museum, activities, shops and dining, all subject to changing opening schedules."
+  },
+  "officialAreaMap": {
+    "sourceProvider": "official_site",
+    "sourceName": "Hadeland Glassverk – site map",
+    "sourceUrl": "https://www.hadeland.com/bli-kjent-pa-glassverket",
+    "finding": "The official map treats Glasshytta, museum, shops, dining and other visitor functions as components of one named glassworks environment."
   },
   "officialIndustrialIdentity": {
-    "sourceProvider": "glassworks",
+    "sourceProvider": "official_site",
     "sourceName": "Hadeland Glassverk – history",
     "sourceUrl": "https://www.hadeland.com/pages/historien-om-hadeland-glassverk-levende-norsk-design-siden-1762",
     "finding": "The official history identifies the glassworks as founded in 1762 at Jevnaker by Randsfjorden and describes the development from bottles and household glass to design and art glass."
   },
   "productionCoreContext": {
-    "sourceProvider": "glassworks",
+    "sourceProvider": "official_site",
     "sourceName": "Hadeland Glassverk – historical walk",
     "sourceUrl": "https://www.hadeland.com/historisk-vandring",
-    "finding": "The official site calls Glasshytta the heart of the operation and documents continuing glass production, glassblowing, grinding and polishing. No stable building geometry for Glasshytta was captured, so it is retained as functional context rather than used as an invented coordinate."
+    "finding": "The official site calls Glasshytta the heart of the operation and documents continuing glassblowing, grinding and polishing. No stable separately named building geometry was captured, so the institution anchor is retained instead of inventing a Glasshytta centroid."
   },
   "areaCrossCheck": {
     "sourceProvider": "osm",
@@ -46,28 +59,44 @@
     "lon": 10.39634,
     "objectClass": "leisure=park",
     "distanceFromAppliedM": 82.5,
-    "finding": "The named park object confirms the wider public complex around the glassworks but is not the industrial institution or production building itself."
+    "finding": "The named park polygon confirms the wider public environment but cannot represent the living industrial institution alone."
   },
   "independentEntityCrossCheck": {
     "sourceProvider": "wikidata",
     "sourceObjectId": "wikidata:Q2194066",
     "sourceUrl": "https://www.wikidata.org/wiki/Q2194066",
-    "finding": "Wikidata independently identifies Hadeland Glassverk as a glassworks and company founded in 1762 at Jevnaker, but its coordinate is too coarse for production use."
+    "finding": "Wikidata independently identifies Hadeland Glassverk as a glassworks and company founded in 1762 at Jevnaker."
+  },
+  "contractDecision": {
+    "previousInvalidValues": {
+      "locatorType": "industrial_site",
+      "geocodeAccuracy": "named_point",
+      "coordRole": "industrial_visitor_complex_anchor"
+    },
+    "appliedValues": {
+      "locatorType": "institutional_area",
+      "sourceProvider": "osm",
+      "geocodeAccuracy": "semantic_anchor",
+      "coordRole": "area_anchor",
+      "coordStatus": "verified_geometry"
+    },
+    "finding": "The source object and coordinate remain correct; the previous semantic labels were outside the Coordinate Source Contract v1 enum and are replaced with valid institutional-area anchor values."
   },
   "radiusDecision": {
     "appliedRadiusM": 360,
-    "finding": "The retained radius covers the named glassworks point, the nearby public park and the central production, museum and visitor complex."
+    "finding": "The retained radius covers the central production, museum, park and visitor environment without claiming a property, heritage, production, safety or access boundary."
   },
   "decision": {
     "canBecomeVerified": true,
-    "coordinateChangeRequired": true,
+    "coordinateChangeRequired": false,
+    "contractMigrationRequired": true,
     "appliedCoordinate": {
       "lat": 60.23765,
       "lon": 10.39719,
       "r": 360
     },
-    "coordStatus": "verified",
-    "coordRole": "industrial_visitor_complex_anchor",
-    "representationLimit": "The marker represents the named glassworks institution and central visitor-production complex. The radius is not a property boundary, legal heritage polygon, exact industrial-site geometry or claim that the park or one retail building represents the full works."
+    "coordStatus": "verified_geometry",
+    "coordRole": "area_anchor",
+    "representationLimit": "The marker represents the named glassworks institution and central visitor-production complex. Glasshytta, the museum, park, retail buildings and dining venues remain components."
   }
 }
