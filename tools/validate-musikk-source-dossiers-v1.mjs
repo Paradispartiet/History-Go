@@ -24,13 +24,17 @@ ok(index.status==="canonical_scientific_subject","indeks har vitenskapelig statu
 ok(pkg.status==="canonical_scientific_subject","fagpakke har vitenskapelig status");
 ok(contract.status==="canonical_source_dossier_contract","kildekontrakt er canonical");
 ok(index.source_revision===contract.revision&&pkg.source_revision===contract.revision,"samlet kilderevisjon er konsistent");
-ok(index.source_batches.length===4,"fire kildebatcher er aktive");
+ok(index.source_batches.length===5,"fem kildebatcher er aktive");
 ok(index.source_batches.every(batch=>contract.supported_batch_revisions.includes(batch.revision)),"alle batchrevisjoner støttes");
 ok(contract.hard_rules.catalog_metadata_is_not_object_evidence===true,"katalogmetadata er ikke objektevidens");
 ok(contract.hard_rules.restricted_material_overrides_question_generation===true,"restriktivt materiale overstyrer spørsmål");
 ok(contract.hard_rules.public_access_is_not_reuse_permission===true,"offentlig tilgang er ikke gjenbrukstillatelse");
 ok(contract.hard_rules.performance_context_and_rights_required_before_question_release===true,"framføringskontekst og rettigheter kreves");
 ok(contract.hard_rules.single_modality_cannot_establish_intention_leadership_or_shared_meaning===true,"én modalitet kan ikke etablere intensjon, ledelse eller felles mening");
+ok(contract.hard_rules.technology_version_and_provenance_required_before_question_release===true,"teknologiversjon og proveniens kreves");
+ok(contract.hard_rules.benchmark_result_cannot_generalize_beyond_evaluation_design===true,"benchmark kan ikke generaliseres utenfor evalueringsdesign");
+ok(contract.hard_rules.audible_similarity_is_not_sampling_or_rights_proof===true,"hørbar likhet er ikke sampling- eller rettighetsbevis");
+ok(contract.hard_rules.platform_interface_is_not_algorithmic_effect_evidence===true,"plattformgrensesnitt er ikke algoritmisk effektbevis");
 
 const registryPaths=index.source_batches.flatMap(batch=>batch.registry_files);
 const dossierPaths=index.source_batches.flatMap(batch=>batch.dossier_files);
@@ -44,7 +48,8 @@ const hosts=new Set([
   "online.ucpress.edu","www.ucpress.edu","www.cambridge.org","press.uchicago.edu",
   "www.hup.harvard.edu","www.press.umich.edu","press.umich.edu","www.press.uillinois.edu",
   "manchesteruniversitypress.co.uk","www.dukeupress.edu","www.bloomsbury.com",
-  "www.upress.umn.edu","datascience.codata.org","link.springer.com","www.weslpress.org"
+  "www.upress.umn.edu","datascience.codata.org","link.springer.com","www.weslpress.org",
+  "journals.sagepub.com","www.sciencedirect.com","www.frontiersin.org"
 ]);
 const types=new Set(["scholarly_monograph","edited_scholarly_volume","peer_reviewed_article","scholarly_chapter"]);
 let totalRegistries=0,totalDossierFiles=0,totalSources=0,totalDossiers=0,totalScopes=0;
@@ -167,6 +172,20 @@ for(const batch of index.source_batches){
       for(const field of ["object_and_version_identity","multimodal_alignment","participant_and_recording_rights","venue_and_technical_context","comparison_or_sampling_design","actor_account_and_analytic_category_separation"])
         ok(strings(gate[field])&&gate[field].length>=2,`${dossier.emne_id} dokumenterer ${field}`);
     }
+
+    if(batch.domain_id==="lydmedier_teknologi_beregning"){
+      const requirement=contract.domain_specific_requirements.lydmedier_teknologi_beregning;
+      for(const field of contract.technology_dossier_required_fields)
+        ok(Object.hasOwn(dossier,field),`${dossier.emne_id} har teknologifelt ${field}`);
+      ok(dossier.technology_object_identity_requirements.length>=8,`${dossier.emne_id} har teknologiidentitet`);
+      ok(dossier.technology_evidence_chain_requirements.length>=3,`${dossier.emne_id} har teknologievidenskjede`);
+      const gate=dossier.technology_research_governance_gate;
+      for(const field of requirement.required_gate_fields)
+        ok(Object.hasOwn(gate,field),`${dossier.emne_id} har teknologiportfelt ${field}`);
+      ok(gate.required_before_question_release===true&&gate.question_release_rule==="blocked_unless_version_provenance_evaluation_and_rights_resolved",`${dossier.emne_id} blokkerer uavklart versjon, proveniens, evaluering eller rettighet`);
+      for(const field of ["recording_or_system_version_identity","file_code_and_environment_identity","dataset_and_annotation_provenance","evaluation_design_and_baselines","rights_licenses_and_access","institutional_platform_context","error_bias_and_generalization"])
+        ok(strings(gate[field])&&gate[field].length>=2,`${dossier.emne_id} dokumenterer ${field}`);
+    }
   }
   ok(used.size===sources.length,`${batch.batch_id} bruker alle kilder`);
 }
@@ -174,7 +193,7 @@ for(const batch of index.source_batches){
 ok(new Set(globalSourceIds).size===globalSourceIds.length,"kilde-ID-er er globalt unike");
 ok(new Set(globalDossierIds).size===globalDossierIds.length,"dossier-ID-er er globalt unike");
 ok(globalUsed.size===globalSourceIds.length,"alle aktive kilder brukes");
-ok(index.summary.source_dossier_domain_count===4&&pkg.summary.source_dossier_domain_count===4,"fire kildedomener eksponeres");
+ok(index.summary.source_dossier_domain_count===5&&pkg.summary.source_dossier_domain_count===5,"fem kildedomener eksponeres");
 ok(index.summary.source_dossier_topic_count===totalDossiers&&pkg.summary.source_dossier_topic_count===totalDossiers,"alle dossierer telles");
 ok(index.summary.verified_scholarly_source_record_count===totalSources&&pkg.summary.verified_scholarly_source_record_count===totalSources,"alle kilder telles");
 ok(pkg.active_source_manifest==="musikkvitenskap_canonical_v1/index.json#files.source_dossiers","fagpakken bruker manifest");
@@ -184,13 +203,13 @@ for(const [label,value] of Object.entries({contract,index,pkg}))
 for(const file of [...registryPaths,...dossierPaths])
   ok(keys(read(path.join(BASE,file))).filter(key=>forbidden.has(key)).length===0,`${file} har ingen undervisningsnøkler`);
 
-console.log("MUSIKKVITENSKAP KILDEGRUNNLAG – FIRE DOMENER V5");
+console.log("MUSIKKVITENSKAP KILDEGRUNNLAG – FEM DOMENER V6");
 console.log(`Kildedomener: ${index.source_batches.length}`);
 console.log(`Kilderegistre: ${totalRegistries}`);
 console.log(`Temadossierfiler: ${totalDossierFiles}`);
 console.log(`Temadossierer: ${totalDossiers}`);
 console.log(`Verifiserte forskningskilder: ${totalSources}`);
 console.log(`Søkeavgrensninger: ${totalScopes}`);
-console.log("Spørsmålsregel: direkte objekt, historisk kildekjede, etisk styringsport eller framføringsport etter domene");
+console.log("Spørsmålsregel: direkte objekt, historisk kildekjede, etisk port, framføringsport eller teknologi-/reproduserbarhetsport etter domene");
 console.log(`RESULTAT ${fail===0?"PASS":"FAIL"}: ${pass} PASS, ${fail} FAIL`);
 process.exit(fail===0?0:1);
