@@ -1,0 +1,71 @@
+name: Temporary Vitenskap teknologi PR migration
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Execute embedded migration
+        shell: bash
+        run: |
+          python3 <<'RUNNER'
+          import pathlib
+          import textwrap
+          workflow = pathlib.Path('.github/workflows/tmp-vitenskap-teknologi-merge.yml').read_text(encoding='utf-8')
+          marker = "python3 <<'PY'\n"
+          start = workflow.index(marker) + len(marker)
+          end = workflow.index('\n          PY', start)
+          source = textwrap.dedent(workflow[start:end])
+          exec(compile(source, 'vitenskap-teknologi-migration.py', 'exec'))
+          RUNNER
+      - name: Install dependencies
+        run: npm ci
+      - name: Build browser mirrors
+        run: npm run build:web
+      - name: Generate deterministic reports
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+      - name: Validate contracts and runtimes
+        run: |
+          npm run typecheck:web
+          node scripts/audit-category-governance.mjs
+          node scripts/audit-quiz-template-governance.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node --test tests/fagverk-documentation-contract.test.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
+          node tools/build-teknologi-canonical-v2_4.mjs --check
+          node tools/validate-teknologi-foundation.mjs
+          node tools/validate-teknologi-quality-v2_1.mjs
+          node tools/validate-teknologi-ontology-v2_2.mjs
+          node tools/validate-teknologi-evidence-v2_3.mjs
+          node tools/validate-teknologi-canonical-v2_4.mjs
+      - name: Commit migration
+        shell: bash
+        run: |
+          rm .github/workflows/tmp-vitenskap-teknologi-merge.yml
+          rm .github/workflows/tmp-vitenskap-teknologi-pr.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Samle Teknologi under Vitenskap og teknologi"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
