@@ -1,0 +1,68 @@
+name: Temporary Natur quality migration runner
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Extract and run corrected migration
+        run: |
+          python3 <<'PY'
+          import pathlib
+          source = pathlib.Path('.github/workflows/tmp-natur-quality-migration.yml').read_text(encoding='utf-8')
+          marker = "          node <<'NODE'\n"
+          start = source.index(marker) + len(marker)
+          end = source.index('\n          NODE', start)
+          body = '\n'.join(line[10:] if line.startswith('          ') else line for line in source[start:end].splitlines())
+          old = "const marker = '      domainIds: unique([\\n';"
+          new = "const marker = '      domainIds: unique([...\\n';"
+          if old not in body:
+              raise SystemExit('Fant ikke core-marker i migreringskoden')
+          body = body.replace(old, new)
+          pathlib.Path('/tmp/natur-quality-migrate.cjs').write_text(body, encoding='utf-8')
+          PY
+          node /tmp/natur-quality-migrate.cjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate and validate quality reports
+        run: |
+          node scripts/audit-natur-subject-quality.mjs --write-report --no-check-report
+          node scripts/audit-natur-fagkart-quality.mjs --write-report --no-check-report
+          node scripts/audit-natur-subject-quality.mjs
+          node scripts/audit-natur-fagkart-quality.mjs
+          node --test tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs
+          node scripts/audit-fagverk-natur-pilot.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-natur-pilot.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node --test tests/fagverk-natur-pilot.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs
+          npm run typecheck:web
+      - name: Commit quality lift
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/natur data/fagverk reports/fagverk js/fagverk-subject-core.js js/fagverk.js scripts/audit-natur-subject-quality.mjs scripts/audit-natur-fagkart-quality.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/fagverk-general-engine.test.mjs package.json
+          git commit -m 'Gi hele Natur-faget et faglig kvalitetsløft'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
