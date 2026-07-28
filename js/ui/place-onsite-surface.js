@@ -70,6 +70,48 @@
     return out;
   }
 
+  function renderTasksProfile(place) {
+    const profile = place?.tasks_profile && typeof place.tasks_profile === "object" ? place.tasks_profile : null;
+    if (!profile) return '<div class="pc-empty">Ingen oppgaver ennå</div>';
+    const tasks = list(profile.tasks).filter(Boolean);
+    return `
+      <article class="pc-tasks-card">
+        <h2 class="pc-tasks-title">${esc(profile.title || "Oppgaver")}</h2>
+        ${text(profile.summary) ? `<p class="pc-tasks-summary">${esc(profile.summary)}</p>` : ""}
+        ${tasks.length ? `<ol class="pc-tasks-list">${tasks.map(task => `
+          <li class="pc-task-item"${text(task?.id) ? ` data-task-id="${esc(task.id)}"` : ""}>
+            ${text(task?.title) ? `<h3 class="pc-task-title">${esc(task.title)}</h3>` : ""}
+            ${text(task?.instruction || task?.desc) ? `<p class="pc-task-instruction">${esc(task.instruction || task.desc)}</p>` : ""}
+            ${text(task?.why) ? `<p class="pc-task-why"><strong>Hvorfor:</strong> ${esc(task.why)}</p>` : ""}
+          </li>`).join("")}</ol>` : ""}
+      </article>
+    `;
+  }
+
+  function renderTrainingProfile(place) {
+    const profile = place?.training_profile && typeof place.training_profile === "object" ? place.training_profile : null;
+    if (!profile) return '<div class="pc-empty">Ingen treningsopplegg ennå</div>';
+    const exercises = list(profile.exercises).filter(Boolean);
+    return `
+      <article class="pc-tasks-card pc-training-card">
+        <h2 class="pc-tasks-title">${esc(profile.title || "Trening")}</h2>
+        ${text(profile.summary) ? `<p class="pc-tasks-summary">${esc(profile.summary)}</p>` : ""}
+        ${text(profile.safety) ? `<p class="pc-task-why"><strong>Trygghet:</strong> ${esc(profile.safety)}</p>` : ""}
+        ${exercises.length ? `<ol class="pc-tasks-list">${exercises.map(exercise => {
+          const duration = Number(exercise?.duration_minutes);
+          const meta = [Number.isFinite(duration) && duration > 0 ? `${duration} min` : "", text(exercise?.intensity)].filter(Boolean).join(" · ");
+          return `
+            <li class="pc-task-item"${text(exercise?.id) ? ` data-training-id="${esc(exercise.id)}"` : ""}>
+              ${text(exercise?.title) ? `<h3 class="pc-task-title">${esc(exercise.title)}</h3>` : ""}
+              ${meta ? `<div class="pc-relation-chip">${esc(meta)}</div>` : ""}
+              ${text(exercise?.instruction || exercise?.desc) ? `<p class="pc-task-instruction">${esc(exercise.instruction || exercise.desc)}</p>` : ""}
+              ${text(exercise?.why) ? `<p class="pc-task-why"><strong>Hvorfor:</strong> ${esc(exercise.why)}</p>` : ""}
+            </li>`;
+        }).join("")}</ol>` : ""}
+      </article>
+    `;
+  }
+
   function renderEvents(events) {
     if (!events.length) return "";
     const visible = events.slice(0, 3);
@@ -135,8 +177,6 @@
     const existing = box.querySelector(`[${SURFACE_ATTR}]`);
     if (existing?.getAttribute(SURFACE_ATTR) === placeId) return;
 
-    // PlaceCard sin nåværende kompakte Kunnskapsmøte-preview erstattes av den
-    // komplette På stedet-flaten. Header og + beholdes.
     [...box.children].forEach(child => {
       if (!child.classList?.contains("pc-events-head")) child.remove();
     });
@@ -148,7 +188,9 @@
     const def = global.HGPlaceRounds?.byId?.[roundId];
     const listEl = def?.listId ? document.getElementById(def.listId) : null;
     const place = currentPlace();
-    const html = text(listEl?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
+    let html = text(listEl?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
+    if (roundId === "tasks") html = renderTasksProfile(place);
+    if (roundId === "training") html = renderTrainingProfile(place);
     if (typeof global.showPlaceCardRoundPopup === "function") {
       global.showPlaceCardRoundPopup({
         title: def?.label || roundId,
@@ -193,8 +235,6 @@
     const surface = target?.closest?.(`[${SURFACE_ATTR}]`);
     if (!surface) return;
 
-    // Den eldre #pcEventsBox-handleren åpner Kunnskapsmøte på ethvert klikk i
-    // boksen. På den nye flaten skal bare eksplisitte knapper utløse handling.
     event.stopPropagation();
     event.stopImmediatePropagation();
 
@@ -226,7 +266,7 @@
     observe();
   }
 
-  global.HGPlaceOnSiteSurface = { decorate, renderSurface };
+  global.HGPlaceOnSiteSurface = { decorate, renderSurface, renderTasksProfile, renderTrainingProfile };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
