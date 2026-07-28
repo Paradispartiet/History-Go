@@ -5,12 +5,74 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#05070c">
   <title>History Go – Fagverk</title>
-  <link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/fagverk.css"><link rel="stylesheet" href="css/fagverk-learning-v2.css"><link rel="stylesheet" href="css/fagverk-canonical.css"><link rel="stylesheet" href="css/fagverk-premium.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fagverk.css">
+  <link rel="stylesheet" href="css/fagverk-learning-v2.css">
+  <link rel="stylesheet" href="css/fagverk-canonical.css">
+  <link rel="stylesheet" href="css/fagverk-premium.css">
+  <link rel="stylesheet" href="css/fagverk-general.css">
 </head>
 <body class="hg-fagverk-page">
   <a class="fagverk-skip-link" href="#fagverkMain">Hopp til læreverket</a>
-  <header class="fagverk-topbar"><a class="fagverk-brand" href="index.html" aria-label="Tilbake til History Go"><img src="bilder/logo_historygo.PNG" alt="History Go"></a><nav aria-label="Fagverknavigasjon"><a href="fagverk-forside.html">Fagverkforsiden</a><a href="data/fag/politikk/merke_politikk.html">Politikkmerket</a><a href="emner.html">Min progresjon</a><a href="index.html">Kartet</a></nav></header>
-  <main id="fagverkMain" class="fagverk-shell"><aside class="fagverk-sidebar" aria-label="Fagområder og kapitler"><p class="fagverk-kicker">Fag</p><h1 id="fagverkSubjectTitle">Politikk og samfunn</h1><p id="fagverkSubjectDescription" class="fagverk-subject-description"></p><div id="fagverkSubjectProgress" class="fagverk-canonical-progress"></div><div id="fagverkDomainNav" class="fagverk-canonical-domain-nav"></div><div id="fagverkChapterNav" class="fagverk-chapter-nav"></div><div id="fagverkPlaceContext" class="fagverk-place-context" hidden></div></aside><article class="fagverk-article" aria-live="polite"><div id="fagverkLoading" class="fagverk-loading">Laster læreverket …</div><div id="fagverkContent" hidden><header class="fagverk-hero"><p id="fagverkChapterKicker" class="fagverk-kicker"></p><h2 id="fagverkChapterTitle"></h2><p id="fagverkChapterSubtitle" class="fagverk-subtitle"></p><p id="fagverkLead" class="fagverk-lead"></p></header><section id="fagverkCanonicalDomain" class="fagverk-canonical-domain" hidden></section><section id="fagverkCanonicalEmne" class="fagverk-canonical-emne" hidden></section><section class="fagverk-diagnostic" aria-labelledby="fagverkDiagnosticTitle"><h3 id="fagverkDiagnosticTitle">Før du begynner</h3><p class="fagverk-section-intro">Bruk spørsmålene til å oppdage hva du allerede vet – og hva kapittelet må forklare.</p><div id="fagverkDiagnostic"></div></section><section class="fagverk-objectives" aria-labelledby="fagverkObjectivesTitle"><h3 id="fagverkObjectivesTitle">Dette skal du kunne</h3><ul id="fagverkObjectives"></ul></section><nav id="fagverkContents" class="fagverk-contents" aria-label="Innhold"></nav><div id="fagverkSections"></div><section class="fagverk-examples" aria-labelledby="fagverkExamplesTitle"><h3 id="fagverkExamplesTitle">Arbeidseksempler</h3><div id="fagverkExamples" class="fagverk-learning-grid"></div></section><section class="fagverk-misconceptions" aria-labelledby="fagverkMisconceptionsTitle"><h3 id="fagverkMisconceptionsTitle">Vanlige misforståelser</h3><div id="fagverkMisconceptions" class="fagverk-learning-grid"></div></section><section class="fagverk-concepts" aria-labelledby="fagverkConceptsTitle"><h3 id="fagverkConceptsTitle">Begreper</h3><div id="fagverkConceptGrid" class="fagverk-concept-grid"></div></section><section class="fagverk-application" aria-labelledby="fagverkApplicationTitle"><h3 id="fagverkApplicationTitle">Bruk faget</h3><div id="fagverkApplication" class="fagverk-learning-grid"></div></section><section class="fagverk-selfcheck" aria-labelledby="fagverkSelfCheckTitle"><h3 id="fagverkSelfCheckTitle">Sjekk hva du har forstått</h3><div id="fagverkSelfCheck"></div></section><section class="fagverk-cases" aria-labelledby="fagverkCasesTitle"><h3 id="fagverkCasesTitle">Steder å utforske videre</h3><p class="fagverk-section-intro">Stedene har egne fagverksider. De er ikke kapitler i faget, men selvstendige innganger der flere faglige perspektiver møtes.</p><div id="fagverkCases" class="fagverk-case-grid"></div></section><section class="fagverk-sources" aria-labelledby="fagverkSourcesTitle"><h3 id="fagverkSourcesTitle">Kilder og videre lesning</h3><ul id="fagverkSources"></ul></section></div><div id="fagverkError" class="fagverk-error" hidden></div></article></main>
-  <script src="js/learningLog.js"></script><script src="dist/web/knowledge.js"></script><script src="dist/web/hgInsights.js"></script><script src="dist/web/emnerLoader.js"></script><script src="js/dataHub.js"></script><script src="js/politikk-fag-model.js"></script><script src="js/fagverk.js"></script><script src="js/fagverk-canonical-integration.js"></script>
+  <header class="fagverk-topbar">
+    <a class="fagverk-brand" href="index.html" aria-label="Tilbake til History Go"><img src="bilder/logo_historygo.PNG" alt="History Go"></a>
+    <nav aria-label="Fagverknavigasjon">
+      <a href="fagverk-forside.html">Fagverkforsiden</a>
+      <a id="fagverkBadgeLink" href="fagverk-forside.html" hidden>Åpne merket</a>
+      <a href="emner.html">Min progresjon</a>
+      <a href="index.html">Kartet</a>
+    </nav>
+  </header>
+  <main id="fagverkMain" class="fagverk-shell">
+    <aside class="fagverk-sidebar" aria-label="Fagområder og kapitler">
+      <p class="fagverk-kicker">Fag</p>
+      <h1 id="fagverkSubjectTitle">Laster fag …</h1>
+      <p id="fagverkSubjectDescription" class="fagverk-subject-description"></p>
+      <div id="fagverkSubjectProgress" class="fagverk-canonical-progress"></div>
+      <div id="fagverkDomainNav" class="fagverk-canonical-domain-nav"></div>
+      <div id="fagverkChapterNav" class="fagverk-chapter-nav"></div>
+      <div id="fagverkPlaceContext" class="fagverk-place-context" hidden></div>
+    </aside>
+    <article class="fagverk-article" aria-live="polite">
+      <div id="fagverkLoading" class="fagverk-loading">Laster læreverket …</div>
+      <div id="fagverkContent" hidden>
+        <header class="fagverk-hero">
+          <p id="fagverkChapterKicker" class="fagverk-kicker"></p>
+          <h2 id="fagverkChapterTitle"></h2>
+          <p id="fagverkChapterSubtitle" class="fagverk-subtitle"></p>
+          <p id="fagverkLead" class="fagverk-lead"></p>
+        </header>
+        <section id="fagverkSubjectOverview" class="fagverk-general-overview" hidden></section>
+        <section id="fagverkCanonicalDomain" class="fagverk-canonical-domain" hidden></section>
+        <section id="fagverkCanonicalEmne" class="fagverk-canonical-emne" hidden></section>
+        <section id="fagverkMethods" class="fagverk-general-methods" hidden></section>
+        <section class="fagverk-diagnostic" aria-labelledby="fagverkDiagnosticTitle">
+          <h3 id="fagverkDiagnosticTitle">Før du begynner</h3>
+          <p class="fagverk-section-intro">Bruk spørsmålene til å oppdage hva du allerede vet – og hva kapittelet må forklare.</p>
+          <div id="fagverkDiagnostic"></div>
+        </section>
+        <section class="fagverk-objectives" aria-labelledby="fagverkObjectivesTitle"><h3 id="fagverkObjectivesTitle">Dette skal du kunne</h3><ul id="fagverkObjectives"></ul></section>
+        <nav id="fagverkContents" class="fagverk-contents" aria-label="Innhold"></nav>
+        <div id="fagverkSections"></div>
+        <section class="fagverk-examples" aria-labelledby="fagverkExamplesTitle"><h3 id="fagverkExamplesTitle">Arbeidseksempler</h3><div id="fagverkExamples" class="fagverk-learning-grid"></div></section>
+        <section class="fagverk-misconceptions" aria-labelledby="fagverkMisconceptionsTitle"><h3 id="fagverkMisconceptionsTitle">Vanlige misforståelser</h3><div id="fagverkMisconceptions" class="fagverk-learning-grid"></div></section>
+        <section class="fagverk-concepts" aria-labelledby="fagverkConceptsTitle"><h3 id="fagverkConceptsTitle">Begreper</h3><div id="fagverkConceptGrid" class="fagverk-concept-grid"></div></section>
+        <section class="fagverk-application" aria-labelledby="fagverkApplicationTitle"><h3 id="fagverkApplicationTitle">Bruk faget</h3><div id="fagverkApplication" class="fagverk-learning-grid"></div></section>
+        <section class="fagverk-selfcheck" aria-labelledby="fagverkSelfCheckTitle"><h3 id="fagverkSelfCheckTitle">Sjekk hva du har forstått</h3><div id="fagverkSelfCheck"></div></section>
+        <section class="fagverk-cases" aria-labelledby="fagverkCasesTitle"><h3 id="fagverkCasesTitle">Steder å utforske videre</h3><p class="fagverk-section-intro">Stedene har egne fagverksider. De er ikke kapitler i faget, men selvstendige innganger der flere faglige perspektiver møtes.</p><div id="fagverkCases" class="fagverk-case-grid"></div></section>
+        <section class="fagverk-sources" aria-labelledby="fagverkSourcesTitle"><h3 id="fagverkSourcesTitle">Kilder og videre lesning</h3><ul id="fagverkSources"></ul></section>
+      </div>
+      <div id="fagverkError" class="fagverk-error" hidden></div>
+    </article>
+  </main>
+  <script src="js/learningLog.js"></script>
+  <script src="dist/web/knowledge.js"></script>
+  <script src="dist/web/hgInsights.js"></script>
+  <script src="dist/web/emnerLoader.js"></script>
+  <script src="js/dataHub.js"></script>
+  <script src="js/fagverk-subject-core.js"></script>
+  <script src="js/fagverk-subject-model.js"></script>
+  <script src="js/fagverk.js"></script>
 </body>
 </html>

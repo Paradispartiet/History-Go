@@ -34,7 +34,7 @@ test('materialiserte fagsider har gyldige mål',()=>{
   }
 });
 
-test('politikk har tydelig separat merkeside og fagside',()=>{
+test('politikk har separat merkeside og går gjennom den generelle fagsiden',()=>{
   const politics=portal.categories.find((item)=>item.id==='politikk');
   assert.equal(politics.badgePage,'data/fag/politikk/merke_politikk.html');
   assert.equal(politics.subjectPage,'fagverk.html?subject=politikk');
@@ -42,6 +42,9 @@ test('politikk har tydelig separat merkeside og fagside',()=>{
   const subjectHtml=read('fagverk.html');
   assert.match(badgeHtml,/Politikkmerket/);
   assert.match(badgeHtml,/Politikkfaget/);
-  assert.match(subjectHtml,/Politikkmerket/);
+  assert.match(subjectHtml,/id="fagverkBadgeLink"/);
   assert.match(subjectHtml,/Fagverkforsiden/);
+  assert.match(subjectHtml,/js\/fagverk-subject-model\.js/);
+  assert.doesNotMatch(subjectHtml,/Politikkmerket/);
+  assert.doesNotMatch(subjectHtml,/js\/politikk-fag-model\.js/);
 });

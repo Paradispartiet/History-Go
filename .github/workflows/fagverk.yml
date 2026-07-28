@@ -11,10 +11,13 @@ on:
       - 'data/fag/fag_manifest.json'
       - 'data/fagverk/**'
       - 'data/places/**'
+      - 'data/badges/**'
       - 'data/fag/politikk/merke_politikk.html'
       - 'data/fag/politikk/politikk_runtime_manifest.json'
       - 'data/fag/politikk/*canonical_v4_5.json'
       - 'js/fagverk-forside.js'
+      - 'js/fagverk-subject-core.js'
+      - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
       - 'js/fagverk-sted.js'
       - 'js/fagverk-place-theme.js'
@@ -35,6 +38,7 @@ on:
       - 'css/fagverk-sted.css'
       - 'css/fagverk-canonical.css'
       - 'css/fagverk-premium.css'
+      - 'css/fagverk-general.css'
       - 'css/fagverk-place-category-themes.css'
       - 'css/merke-fallback.css'
       - 'css/politikk-fagportal.css'
@@ -59,16 +63,22 @@ on:
       - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_PLACE_DESIGN.md'
       - 'scripts/audit-place-images.mjs'
+      - 'scripts/audit-fagverk-subject-inventory.mjs'
+      - 'scripts/audit-fagverk-general-engine.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-content.test.mjs'
       - 'tests/fagverk-portal.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
       - 'tests/fagverk-place-category-design.test.mjs'
       - 'tests/fagverk-link-audit.test.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/place-learning-surface.test.js'
       - 'tests/politikk-fag-integration.test.mjs'
       - 'tests/header-search-menu.test.js'
+      - 'reports/fagverk/**'
       - '.github/workflows/fagverk.yml'
+      - '.github/workflows/fagverk-general-engine.yml'
   workflow_dispatch:
 
 permissions:
@@ -149,6 +159,8 @@ jobs:
           node-version: '20'
       - name: Syntax check runtimes
         run: |
+          node --check js/fagverk-subject-core.js
+          node --check js/fagverk-subject-model.js
           node --check js/politikk-fag-model.js
           node --check js/politikk-fagportal.js
           node --check js/fagverk-forside.js
@@ -163,8 +175,14 @@ jobs:
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
           node --check scripts/audit-place-images.mjs
+          node --check scripts/audit-fagverk-subject-inventory.mjs
+          node --check scripts/audit-fagverk-general-engine.mjs
       - name: Validate canonical subjects, textbook data, category design, links and place integration
         run: |
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-content.test.mjs
           node --test tests/fagverk-portal.test.mjs

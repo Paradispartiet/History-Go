@@ -1,0 +1,50 @@
+{
+  "schema": "history_go_fagverk_general_engine_audit_v1",
+  "version": "1.0.0",
+  "status": "phase_1_general_engine",
+  "generatedFrom": {
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "html": "fagverk.html",
+    "core": "js/fagverk-subject-core.js",
+    "model": "js/fagverk-subject-model.js",
+    "page": "js/fagverk.js"
+  },
+  "summary": {
+    "materializedSubjectCount": 1,
+    "materializedSubjects": [
+      "politikk"
+    ],
+    "adapterFamiliesExercised": [
+      "standard_canonical"
+    ],
+    "politicsFallbacks": 0,
+    "subjectPageLegacyDependencies": 0
+  },
+  "materializedSubjects": [
+    {
+      "id": "politikk",
+      "schemaFamily": "standard_canonical",
+      "adapter": "standard",
+      "domainCount": 13,
+      "emneCount": 123,
+      "methodCount": 71,
+      "mappingCount": 123,
+      "hookCount": 152,
+      "chapterCount": 2,
+      "placeCount": 1,
+      "badgePage": "data/fag/politikk/merke_politikk.html",
+      "subjectPage": "fagverk.html?subject=politikk",
+      "assessmentStatus": "audited",
+      "editorialStatus": "structure_ready"
+    }
+  ],
+  "remainingPoliticsSpecificRuntimeFiles": [
+    "js/politikk-fag-model.js",
+    "js/fagverk-canonical-integration.js"
+  ]
+}

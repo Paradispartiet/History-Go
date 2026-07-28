@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "updatedAt": "2026-07-28",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -19,8 +19,22 @@
         "note": "Emnetitler, definisjoner, begreper, fagområder og metodekoblinger skal leses fra canonical politikkdata. Registryet eier bare ferdigskrevne lærekapitler og stedsspesifikk kuratering."
       },
       "chapters": [
-        {"id": "forvaltning", "title": "Offentlig forvaltning", "subtitle": "Fra politiske vedtak til regler, tjenester og myndighetsutøvelse", "file": "data/fagverk/politikk/forvaltning.json"},
-        {"id": "parlamentarisme", "title": "Parlamentarisme", "subtitle": "Forholdet mellom Stortinget, regjeringen og det politiske ansvaret", "file": "data/fagverk/politikk/parlamentarisme.json"}
+        {
+          "id": "forvaltning",
+          "title": "Offentlig forvaltning",
+          "subtitle": "Fra politiske vedtak til regler, tjenester og myndighetsutøvelse",
+          "file": "data/fagverk/politikk/forvaltning.json",
+          "primary_domain_id": "styring_institusjoner_forvaltning",
+          "emne_ids": ["em_pol_politi_sikkerhet_makt"]
+        },
+        {
+          "id": "parlamentarisme",
+          "title": "Parlamentarisme",
+          "subtitle": "Forholdet mellom Stortinget, regjeringen og det politiske ansvaret",
+          "file": "data/fagverk/politikk/parlamentarisme.json",
+          "primary_domain_id": "demokrati_representasjon_offentlighet",
+          "emne_ids": ["em_pol_mediert_offentlighet", "em_pol_parlamentarisme_maktbalanse"]
+        }
       ]
     }
   },
