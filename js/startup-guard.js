@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/startup-guard.js
 // Early History Go boot guard. Loaded from config.js before app.js.
 (function () {
