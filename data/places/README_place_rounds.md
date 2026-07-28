@@ -4,7 +4,7 @@ Status: **eneste autoritative rundingskontrakt**
 Eier: `place_rounds_contract`  
 Runtime: `js/ui/place-rounds-visual-collections.js`  
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-07-29**
 
 Denne filen er det eneste dokumentet som bestemmer **hva som er en PlaceCard-runding, hvor mange rundinger et sted har og hvilke rundinger som brukes**. Andre dokumenter og schemaer skal peke hit og skal ikke vedlikeholde egne rundingslister.
 
@@ -29,6 +29,8 @@ badges · people · objects · brands
 - `objects` = Gjenstander;
 - `brands` = bedrifter/kjente merker med dokumentert stedskobling.
 
+**Vanlige steder skal aldri ha Kart-runding.** `map` er ikke del av den vanlige profilen og kan ikke introduseres gjennom legacy `rounds`, aliaser eller fallback.
+
 ## 3. Natursteder
 
 Canonical natursteder bruker dette faste settet:
@@ -41,20 +43,39 @@ På natursteder erstatter **Flora** og **Fauna** People og Gjenstander. Naturste
 
 ### Kart på natursteder
 
-`map` er et **eget turkart eller detaljert stedskart** for naturstedet.
+`map` er et **eget tur-/naturkart** for naturstedet. Et vanlig detaljkart, et generisk bykart eller History GOs hovedkart med mer zoom er ikke tilstrekkelig.
 
-Kartet skal være mer detaljert enn History GOs generelle hovedkart og skal, når relevant og kildegrunnlaget tillater det, vise stedsspesifikke naturelementer som for eksempel:
+For norske natursteder er canonical førsteversjon:
 
-- stier, turtraséer og innfallsporter;
-- vann, bekker, våtmark eller strandsoner;
-- terreng/topografi og tydelige landskapsformer;
-- vernegrenser eller naturtypeflater;
-- utsiktspunkter, observasjonssoner eller andre dokumenterte naturpunkter;
-- andre relevante naturelementer som faktisk hører til stedet.
+1. **Kartverkets `toporaster` WMTS** som turkartgrunnlag;
+2. **Kartverkets Nasjonale database for turruter / Turrutebasen WMS** som eget rutelag for registrerte fotruter, sykkelruter, skiløyper og andre ruter;
+3. **Miljødirektoratets Naturtyper på land (NiN)** som valgfritt naturfaglig kartlag.
 
-**Et generisk hovedkart som bare zoomes inn på place-koordinaten oppfyller ikke kart-rundingen.** Runtime skal ikke bruke dette som fallback.
+Runtime-eier er `js/ui/nature-detailed-map.js` gjennom `HGNatureDetailedMap`. Kartflaten er separat fra History GOs ordinære `window.map` og skal aldri delegere til eller manipulere hovedkartet.
 
-Artsmappingen som eies av `README/nature_mapping_workflow.md` og `js/nature_place_map_bridge.js` er kilde for Flora/Fauna-koblinger. Den er **ikke** i seg selv et turkart eller detaljkart.
+Kartet skal, når kildene faktisk har data, kunne vise:
+
+- turkartets terreng, vann og topografiske detaljer;
+- registrerte turruter fra Turrutebasen;
+- stedets canonical koordinat som orienteringsanker;
+- kartlagte NiN-naturtyper som et valgfritt faglag.
+
+Det skal **ikke**:
+
+- finnes på vanlige steder;
+- bruke hovedkartet som fallback;
+- dikte opp manglende stier, ruter, turmål, vernegrenser eller artslokaliteter;
+- vise presise artsobservasjoner uten at presisjon og sensitive funn er eksplisitt håndtert.
+
+Artsmappingen som eies av `README/nature_mapping_workflow.md` og `js/nature_place_map_bridge.js` er kilde for Flora/Fauna-koblinger. Den er **ikke** i seg selv turkartet. Artskart kan brukes som fagkilde/ekstern kartinngang, men er ikke automatisk punktlag i History GO.
+
+Kartkilder i førsteversjonen:
+
+- `https://cache.kartverket.no/` — Kartverkets offisielle WMTS; `toporaster` er turkartlaget;
+- `https://wms.geonorge.no/skwms1/wms.friluftsruter2` — Turrutebasen WMS;
+- `https://kart.miljodirektoratet.no/arcgis/services/naturtyper_nin/MapServer/WMSServer` — Naturtyper på land (NiN).
+
+Kildekreditering og lisenskrav skal beholdes i kartflaten.
 
 ## 4. Hele canonical rundingspoolen
 
@@ -159,6 +180,6 @@ Et sted er rundingsklart når:
 2. rundingssettet er den faste profilen for vanlig sted eller natursted;
 3. previewene er reelle og egnede;
 4. People-preview filtrerer ikke People-popupen;
-5. naturstedets kart er et faktisk tur-/detaljkart og ikke generisk hovedkart-zoom;
+5. naturstedets Kart åpner et faktisk tur-/naturkart med turkartgrunnlag og Turrutebasen, ikke generisk hovedkart-zoom;
 6. Flora/Fauna bruker canonical naturdata;
 7. relevante rundings-/datagater passerer.
