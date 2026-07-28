@@ -15,7 +15,7 @@ const CORE = sandbox.HGFagverkSubjectCore;
 
 const methods = {
   methods: [
-    { method_id: 'met_a', title: 'Metode A', description: 'Undersøker A.' },
+    { method_id: 'met_a', title: 'Metode A', description: 'Undersøker A.', procedure: ['Avgrens', 'Samle', 'Vurder'], limitations: ['Utvalg', 'Usikkerhet'] },
     { method_id: 'met_b', title: 'Metode B', description: 'Undersøker B.' }
   ]
 };
@@ -59,6 +59,8 @@ test('standard canonical adapter bruker pensumdomener og canonicale id-er', () =
   assert.equal(model.domains.length, 1);
   assert.equal(model.emners[0].domainId, 'natur_a');
   assert.deepEqual([...model.emners[0].methodIds], ['met_a']);
+  assert.deepEqual([...model.methodsById.get('met_a').procedure], ['Avgrens', 'Samle', 'Vurder']);
+  assert.deepEqual([...model.methodsById.get('met_a').limitations], ['Utvalg', 'Usikkerhet']);
 });
 
 test('foundation-adapter henter fagområder fra fagkart uten å gjøre kursmoduler til renderer', () => {

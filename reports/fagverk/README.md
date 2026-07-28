@@ -46,3 +46,5 @@ Motor-auditen feiler når:
 Politikk er første fag som er individuelt auditert gjennom den generelle motoren og står derfor `materialized`, `audited` og `structure_ready`. Dette betyr at fagstruktur, dypkoblinger, metoder, progresjonslesing og eksisterende kapitler kan vises gjennom felles runtime. Det betyr ikke at politikk er redaksjonelt `complete`.
 
 De fire neste toppfagpilotene er `natur`, `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
+- `natur-quality-audit.json` — emne-, metode-, quiz- og merkesidekvalitet for Natur & miljø.
+- `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 60 Natur-hooks og 35 emnemappings.

@@ -133,6 +133,14 @@
         ...list(method?.evidence_forms),
         ...list(method?.materials)
       ]),
+      procedure: unique([
+        ...list(method?.procedure),
+        ...list(method?.steps)
+      ]),
+      limitations: unique([
+        ...list(method?.limitations),
+        ...list(method?.blindspots)
+      ]),
       domainIds: unique([...
         list(method?.coverage_domains),
         ...list(method?.best_for_emne_kinds)

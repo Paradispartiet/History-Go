@@ -1,9 +1,9 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "natur",
-  "title": "Natur",
+  "title": "Natur & miljø",
   "governance": {
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
@@ -13,11 +13,13 @@
   },
   "required_emne_prefix": "em_natur_",
   "content_priorities": [
-    "arter og artskjennetegn",
-    "habitat, biotop og naturtype",
-    "økologiske samspill og næringsnett",
-    "geologi, terreng, vann og jord",
-    "sesong, feltobservasjon, påvirkning og vern"
+    "arter, artskjennetegn, bestand og habitatkrav",
+    "økologiske samspill, næringsnett og funksjon",
+    "vannvei, hydrologi, vannkvalitet og kretsløp",
+    "berggrunn, løsmasser, terreng og landskapsprosess",
+    "vær, klima, energi, karbon, sårbarhet og resiliens",
+    "urban økologi, grønnstruktur og brukspress",
+    "forurensning, vern, restaurering, overvåking og forvaltning"
   ],
   "essential_concepts": [
     "habitat",
@@ -36,19 +38,35 @@
     "dokumentert feltobservasjon"
   ],
   "category_rules": [
-    "Start med dokumentert stoff fra kategorien, ikke med emneetiketten.",
-    "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata.",
+    "Start med dokumentert stoff fra stedet eller fenomenet, ikke med emneetiketten.",
+    "De første 14 spørsmålene skal være to sett med sju normale spørsmål før spesielle metode-, sammenhengs- eller teoriformater brukes.",
+    "Spør direkte om hva, hvem, hvor, når, hvordan eller hvilken dokumentert forskjell som er relevant.",
+    "Skill enkeltobservasjon fra bestand, enkeltmåling fra trend og grønt uttrykk fra økologisk funksjon.",
+    "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata, men unngå at riktig svar bare er det som høres mest akademisk ut.",
     "Bruk bare emne_id som finnes i kategoriens emnefil.",
     "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."
   ],
   "example_question": {
     "question": "Hva kalles rollen en art har i økosystemet, inkludert hva den lever av og hvor den finnes?",
-    "options": ["Økologisk nisje", "Taksonomisk orden", "Berggrunnstype"],
+    "options": [
+      "Økologisk nisje",
+      "Taksonomisk orden",
+      "Berggrunnstype"
+    ],
     "answer": "Økologisk nisje",
     "question_type": "concept",
     "knowledge": "En økologisk nisje beskriver artens levemåte, ressursbruk og samspill med miljøet og andre arter.",
-    "emne_id": "em_natur_<velg_gyldig_emne>",
-    "source": ["<konkret_kilde>"],
+    "emne_id": "em_natur_okosystem_nettverk",
+    "source": [
+      "konkret, inspectable fagkilde skal oppgis i produksjonsquizen"
+    ],
     "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
+  },
+  "normal_question_opening": {
+    "sets": 2,
+    "questions_per_set": 7,
+    "total": 14,
+    "mode": "normal_before_special_formats",
+    "rule": "De første to settene skal bestå av sju naturlige kunnskapsspørsmål hver. Spørsmålene skal starte i dokumentert sted, art, materiale, prosess, måling eller tiltak – ikke i emnenavn, teoretiker eller akademisk formulering."
   }
 }
