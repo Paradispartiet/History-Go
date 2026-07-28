@@ -3,45 +3,53 @@
   "placeId": "losby_gods",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch4/losby_gods.json",
   "evidenceStatus": "production_applied",
-  "coordinateDecision": "verified_named_losby_gods_building_complex_anchor",
+  "coordinateDecision": "retain_verified_named_losby_gods_complex_as_institutional_area_anchor",
   "currentCoordinate": {
     "lat": 59.88680008666081,
     "lon": 10.983017201931101,
     "r": 340,
+    "locatorType": "institutional_area",
+    "sourceProvider": "osm",
+    "geocodeAccuracy": "semantic_anchor",
     "coordStatus": "verified_geometry",
-    "coordSource": "OpenStreetMap way 819618193 – Losby Gods; Lørenskog kommune – Godset på Losby",
+    "coordSource": "OpenStreetMap way 819618193 – Losby Gods; Kartverket Losbyveien 270; Lørenskog municipality; Losby Gods historical and visitor pages",
     "coordType": "named_losby_gods_building_complex_area_anchor",
     "coordRole": "area_anchor",
     "sourceObjectId": "osm-way:819618193;building-ref:12444672",
-    "coordNote": "OpenStreetMap way 819618193 er den navngitte bygningsgeometrien for Losby Gods, merket building=hotel og tourism=hotel, med bygningsnummer 12444672. Den deterministisk beregnede polygoncentroiden er 59.88680008666081, 10.983017201931101. Kartverkets adresse-API returnerer ett eksakt objekt for Losbyveien 270 med representasjonspunkt 59.88686319648732, 10.983615156991803, matrikkel 3222-91/16 og adressekode 6150, omtrent 34,1 meter fra bygningscentroiden. Lørenskog kommune og Losby Gods dokumenterer den eldste godsbygningen som et jaktslott fra midten av 1800-tallet, i et større skog-, sagbruks-, husmanns-, arbeids- og jaktlandskap med røtter tilbake til 1500-tallet. Den navngitte bygningsgeometrien omfatter dagens historiske hotellkompleks med både den eldre godsbygningen og nyere utbygging; centroiden brukes derfor som fysisk area_anchor for hele Losby Gods-miljøet og hevdes ikke å være sentrum i den opprinnelige 1850-fløyen, sagbrukene eller den fulle skogeiendommen. Hotellets publiserte GPS-punkt ligger omtrent 177,6 meter fra centroiden og fungerer som adkomst-/navigasjonspunkt. Losbyveien 1 ligger omtrent 3,7 km fra godset og er kun oppgitt som et navigasjonsråd for å komme inn på riktig vei; adressen avvises som canonical. Radius 340 meter dekker hovedanlegget, parken og det nærmeste gods- og arbeidslandskapet, men er ikke en eiendoms-, golfbane- eller skogbrukspolygon."
+    "coordNote": "The named present-day manor and hotel polygon is retained as a semantic area anchor for Losby Gods as an institution and estate environment. It is not represented as the exact original manor wing, sawmill site or full forest-property geometry."
   },
-  "previousCoordinate": {
+  "legacyCoordinate": {
     "lat": 59.88685,
     "lon": 10.98411,
     "r": 340,
-    "coordStatus": null,
-    "coordSource": null,
-    "coordType": null,
     "distanceToAppliedCoordinateM": 61.2,
-    "reasonReplaced": "Legacy-punktet lå ved østsiden av det riktige anlegget, men manglet navngitt geometri, adresseidentitet og kildekontrakt."
+    "reasonReplaced": "The 2026-07-26 production moved the nearby uncontracted eastern point approximately 61.2 metres west to the deterministic centroid of the named Losby Gods building geometry."
+  },
+  "previousProductionCoordinate": {
+    "lat": 59.88680008666081,
+    "lon": 10.983017201931101,
+    "r": 340,
+    "retained": true,
+    "distanceToCurrentM": 0,
+    "reasonRetained": "The source geometry, centroid and address controls remain correct. This pass changes locatorType from historic_site to institutional_area so the OSM-based verified geometry conforms to Coordinate Source Contract v1."
   },
   "identity": {
-    "currentName": "Losby Gods",
-    "resolvedIdentity": "Det historiske gods- og hotellkomplekset ved Losbyveien 270, brukt som fysisk anker for det bredere skog-, sagbruks-, husmanns-, jakt- og godslandskapet",
+    "resolvedIdentity": "The named historic manor and present-day hotel complex at Losbyveien 270, used as the physical anchor for the broader Losby estate, forestry, sawmill, worker, hunting and recreation landscape.",
     "identityStatus": "resolved",
-    "identityProblem": "Den navngitte OSM-wayen omfatter både den eldre godsbygningen og moderne hotellutbygging. Geometrien kan derfor forankre hele komplekset, men må ikke fremstilles som en eksakt polygon for 1850-jaktslottet eller den historiske skogeiendommen.",
-    "locatorTypeCandidate": "historic_site",
+    "identityProblem": "The named OSM polygon includes the older manor component and modern hotel additions. It can anchor the coherent Losby institution, but must not be treated as exact geometry for the mid-nineteenth-century manor or the historic forest property.",
+    "locatorTypeCandidate": "institutional_area",
     "requiresSplit": false,
-    "splitReason": "Godsbygget, parken og den nærmeste driftskjernen representerer ett fysisk Losby Gods-miljø. Sagbruk, husmannsplasser og skogseiendom inngår i historien, men trenger ikke alternative canonical koordinater i denne posten."
+    "splitReason": "The manor, hotel, park and immediate estate core form one coherent named institution. Sawmills, smallholdings and the wider forest estate remain historical context rather than competing canonical coordinates."
   },
   "requiredEvidence": [
-    "navngitt gods- og hotellgeometri",
-    "offisiell postadresse",
-    "offisiell historie for hovedbygning og skogbruk",
-    "dokumentert forskjell mellom godsbygning og moderne hotellutvidelse",
-    "dokumentert navigasjonspunkt",
-    "eksplisitt avvisning av Losbyveien 1 som fysisk godsadresse",
-    "eksplisitt skille mellom bygningsanker og skogeiendom"
+    "named manor and hotel geometry",
+    "official current address",
+    "municipal and operator history for manor and estate",
+    "explicit distinction between old manor and modern hotel additions",
+    "documented routing and access point",
+    "explicit rejection of Losbyveien 1 as physical address",
+    "valid Coordinate Source Contract values",
+    "explicit access and radius limitations"
   ],
   "evidence": [
     {
@@ -50,9 +58,9 @@
       "sourceUrl": "https://www.openstreetmap.org/way/819618193",
       "sourceObjectId": "osm-way:819618193;building-ref:12444672",
       "sourceQuality": "named_hotel_and_manor_building_geometry",
-      "finding": "Way 819618193 er navngitt Losby Gods, tagget building=hotel og tourism=hotel og har bygningsnummer 12444672. Den beregnede polygoncentroiden er 59.88680008666081, 10.983017201931101.",
+      "finding": "Way 819618193 is named Losby Gods, tagged building=hotel and tourism=hotel and has national building reference 12444672. Its deterministic polygon centroid is 59.88680008666081, 10.983017201931101.",
       "canVerifyCoordinate": true,
-      "reason": "Gir den reproduserbare navngitte bygningsgeometrien som fysisk area_anchor for gods- og hotellkomplekset."
+      "reason": "Provides reproducible named geometry for the applied institutional area anchor."
     },
     {
       "sourceProvider": "official_address",
@@ -60,19 +68,19 @@
       "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
       "sourceObjectId": "geonorge-adresser-v1:3222:6150:270",
       "sourceQuality": "official_postal_address_representation_point",
-      "finding": "Kartverket returnerer ett eksakt objekt for Losbyveien 270: kommunenummer 3222, gårds- og bruksnummer 91/16, adressekode 6150, postnummer 1475 og representasjonspunkt 59.88686319648732, 10.983615156991803.",
-      "canVerifyCoordinate": true,
-      "reason": "Bekrefter at den navngitte bygningsgeometrien representerer godset på korrekt postadresse."
+      "finding": "Kartverket returns one exact Losbyveien 270 object with municipality 3222, farm/use number 91/16, address code 6150 and representation point 59.88686319648732, 10.983615156991803, approximately 34.1 metres from the centroid.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the physical and postal identity of the named complex."
     },
     {
       "sourceProvider": "municipality",
-      "sourceName": "Lørenskog kommune – Godset på Losby",
+      "sourceName": "Lørenskog municipality – Godset på Losby",
       "sourceUrl": "https://www.lorenskog.kommune.no/tjenester/kultur-idrett-og-fritid/kultur/kunst-museum-og-kulturminner/kulturminner/kulturminner-i-lorenskog/godset-pa-losby.121726.aspx",
       "sourceObjectId": "lorenskog-kommune:godset-pa-losby",
       "sourceQuality": "official_manor_building_and_estate_history",
-      "finding": "Kommunen beskriver den eldste hotellfløyen som et jaktslott fra midten av 1800-tallet og dokumenterer sammenslåingen av Losby, Østmork og Vestmork, sagbrukshistorien fra 1500-tallet, husmannsplassene, arbeiderboligene og skogøkonomien.",
-      "canVerifyCoordinate": true,
-      "reason": "Fastslår den historiske identiteten som den navngitte bygningsgeometrien fysisk forankrer."
+      "finding": "The municipality documents the oldest hotel section as a mid-nineteenth-century hunting lodge and places it within a broader history of sixteenth-century sawmills, forestry, smallholdings, workers and estate ownership.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the broader historical identity that the present-day named complex physically anchors."
     },
     {
       "sourceProvider": "manual_research",
@@ -80,9 +88,9 @@
       "sourceUrl": "https://www.losbygods.no/historien/",
       "sourceObjectId": "losby-gods:historien",
       "sourceQuality": "operator_history_of_estate_workers_and_later_hotel",
-      "finding": "Godset dokumenterer sagbruk og skogdrift fra 1500-tallet, husmenn og tjenestefolk, Christiania-eiere, jakt og selskapsliv, modernisering etter 1960 og restaurering og hotellutbygging i 1997–1999.",
-      "canVerifyCoordinate": true,
-      "reason": "Knytter dagens navngitte hotellkompleks til det historiske gods- og arbeidslandskapet uten å redusere stedet til moderne hotellbruk."
+      "finding": "The operator documents forestry and sawmill history, smallholders and servants, Christiania owners, hunting and hospitality, modernization and the 1997–1999 restoration and hotel expansion.",
+      "canVerifyCoordinate": false,
+      "reason": "Links the current institution to the historic estate economy without reducing the place to hotel use."
     },
     {
       "sourceProvider": "manual_research",
@@ -90,29 +98,29 @@
       "sourceUrl": "https://www.losbygods.no/om-hotellet/",
       "sourceObjectId": "losby-gods:old-manor-and-modern-hotel-complex",
       "sourceQuality": "operator_building_phase_identity",
-      "finding": "Hotellet beskriver det moderne anlegget som bygget i tilknytning til den over 160 år gamle hovedbygningen, restaurert og påbygget i 1997–1999.",
+      "finding": "The operator describes the modern complex as built in connection with the more than 160-year-old main building and restored and expanded in 1997–1999.",
       "canVerifyCoordinate": false,
-      "reason": "Begrunner hvorfor OSM-wayen representerer et sammensatt bygningskompleks og ikke bare den opprinnelige godsfløyen."
+      "reason": "Confirms that the OSM way is a composite present-day complex rather than pure nineteenth-century geometry."
     },
     {
       "sourceProvider": "manual_research",
-      "sourceName": "Losby Gods – Kontakt",
+      "sourceName": "Losby Gods – Contact",
       "sourceUrl": "https://www.losbygods.no/kontakt/",
       "sourceObjectId": "losby-gods:losbyveien-270",
       "sourceQuality": "current_operator_postal_address",
-      "finding": "Losby Gods oppgir Losbyveien 270, 1475 Finstadjordet som sin adresse.",
+      "finding": "Losby Gods publishes Losbyveien 270, 1475 Finstadjordet as its current address.",
       "canVerifyCoordinate": false,
-      "reason": "Kryssjekker Kartverkets offisielle adresseobjekt og dagens institusjonsidentitet."
+      "reason": "Cross-checks the Kartverket address object and current institutional identity."
     },
     {
       "sourceProvider": "manual_research",
-      "sourceName": "Losby Gods – Veibeskrivelse",
+      "sourceName": "Losby Gods – Directions",
       "sourceUrl": "https://www.losbygods.no/om-hotellet/veibeskrivelse/",
       "sourceObjectId": "losby-gods:published-routing-gps",
       "sourceQuality": "operator_published_access_point",
-      "finding": "Hotellet publiserer GPS-punkt 59.888312527778, 10.981993666667 og ber bilister bruke Losbyveien 1 i navigasjon før de følger Losbyveien til enden. GPS-punktet ligger omtrent 177,6 meter fra bygningscentroiden.",
+      "finding": "The hotel publishes GPS point 59.888312527778, 10.981993666667 and advises drivers to enter Losbyveien 1 before following Losbyveien to the end. The GPS point is approximately 177.6 metres from the applied centroid.",
       "canVerifyCoordinate": false,
-      "reason": "Dokumenterer adkomstlogikken, men punktet er et navigasjonsanker og ikke canonical godskoordinat."
+      "reason": "Access evidence only; it is not the canonical building-complex coordinate."
     },
     {
       "sourceProvider": "official_address",
@@ -120,9 +128,9 @@
       "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
       "sourceObjectId": "geonorge-adresser-v1:3222:6150:1",
       "sourceQuality": "routing_hint_address_not_estate",
-      "finding": "Kartverket plasserer Losbyveien 1 på 59.917657201604136, 10.95790898724187, omtrent 3 705,8 meter fra bygningscentroiden.",
+      "finding": "Kartverket places Losbyveien 1 approximately 3.7 kilometres from the applied centroid.",
       "canVerifyCoordinate": false,
-      "reason": "Avvises som canonical fordi hotellet selv bruker adressen kun som et navigasjonsråd for riktig innkjøring."
+      "reason": "Rejected as canonical because it is only a routing hint."
     },
     {
       "sourceProvider": "osm",
@@ -130,19 +138,18 @@
       "sourceUrl": "https://nominatim.openstreetmap.org/search?q=Losby+Gods%2C+L%C3%B8renskog%2C+Norway&format=jsonv2",
       "sourceObjectId": "nominatim:osm-way-819618193",
       "sourceQuality": "named_object_geometry_and_point_cross_check",
-      "finding": "Nominatim returnerer way 819618193 som Losby Gods, type hotel, med representasjonspunkt 59.8868735, 10.9839841 og komplett polygongeometri.",
+      "finding": "Nominatim resolves way 819618193 as Losby Gods, type hotel, with representative point 59.8868735, 10.9839841 and complete polygon geometry.",
       "canVerifyCoordinate": false,
-      "reason": "Kryssjekker navn og geometri; canonical bruker centroiden beregnet fra rå OSM-geometri."
+      "reason": "Named-object cross-check; canonical uses the deterministic raw-geometry centroid."
     },
     {
       "sourceProvider": "legacy_dataset",
       "sourceName": "Legacy Losby Gods point",
-      "sourceUrl": "",
       "sourceObjectId": "legacy:losby_gods",
       "sourceQuality": "nearby_uncontracted_eastern_building_point",
-      "finding": "Forrige koordinat 59.88685, 10.98411 ligger omtrent 61,2 meter øst for den beregnede bygningscentroiden og manglet kildekontrakt.",
+      "finding": "The former coordinate 59.88685, 10.98411 lies approximately 61.2 metres east of the retained centroid and lacked a source contract.",
       "canVerifyCoordinate": false,
-      "reason": "Erstattes av den navngitte og reproduserbare bygningsgeometrien."
+      "reason": "Already replaced in the 2026-07-26 production."
     }
   ],
   "addressCandidates": [
@@ -171,29 +178,33 @@
       "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
       "sourceObjectId": "geonorge-adresser-v1:3222:6150:1",
       "canApplyToPlace": false,
-      "rejectionReason": "Routing-hint address approximately 3.7 km from the estate, not the physical hotel/manor address."
+      "rejectionReason": "Routing-hint address approximately 3.7 kilometres from the estate, not the physical hotel/manor address."
     }
   ],
   "sourceObjectCandidates": [
     {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:819618193;building-ref:12444672",
-      "canApplyToPlace": true
+      "canApplyToPlace": true,
+      "applied": true
     },
     {
       "sourceProvider": "official_address",
       "sourceObjectId": "geonorge-adresser-v1:3222:6150:270",
-      "canApplyToPlace": true
+      "canApplyToPlace": true,
+      "appliedAsCrossCheck": true
     },
     {
       "sourceProvider": "manual_research",
       "sourceObjectId": "losby-gods:published-routing-gps",
-      "canApplyToPlace": false
+      "canApplyToPlace": false,
+      "rejectionReason": "Published access and navigation point, not the canonical complex coordinate."
     },
     {
       "sourceProvider": "legacy_dataset",
       "sourceObjectId": "legacy:losby_gods",
-      "canApplyToPlace": false
+      "canApplyToPlace": false,
+      "rejectionReason": "Nearby uncontracted eastern point already replaced."
     }
   ],
   "geometryCandidates": [
@@ -201,7 +212,7 @@
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:819618193",
       "geometryType": "Polygon",
-      "geometryRole": "named_historic_hotel_and_manor_complex",
+      "geometryRole": "named_manor_hotel_institutional_area_anchor",
       "canApplyToPlace": true,
       "applied": true
     }
@@ -213,7 +224,7 @@
       "lat": 59.88680008666081,
       "lon": 10.983017201931101,
       "r": 110,
-      "type": "area_anchor",
+      "type": "institutional_area_anchor",
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:819618193;building-ref:12444672",
       "canApplyToPlace": true
@@ -225,7 +236,6 @@
       "sourceObjectId": "legacy:losby_gods",
       "lat": 59.88685,
       "lon": 10.98411,
-      "coordRole": "nearby_uncontracted_eastern_building_point",
       "distanceFromAppliedM": 61.2,
       "canApplyToPlace": false
     },
@@ -235,9 +245,10 @@
       "lat": 59.88680008666081,
       "lon": 10.983017201931101,
       "coordRole": "area_anchor",
-      "distanceFromPreviousM": 61.2,
+      "distanceFromLegacyM": 61.2,
       "canApplyToPlace": true,
-      "applied": true
+      "applied": true,
+      "retainedFromPreviousProduction": true
     },
     {
       "sourceProvider": "official_address",
@@ -295,19 +306,21 @@
     },
     {
       "path": "reports/akershus-coordinate-losby-gods-source-probe/source-summary.txt",
-      "description": "Deterministic address, polygon-centroid, routing-point and distance summary."
+      "description": "Deterministic address, polygon-centroid, routing-point, distance and contract-migration summary."
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Applied the named Losby Gods building-complex centroid as the physical anchor for the historically documented estate and forest-work landscape. Batch 4 is complete; continue with the next active coordinate manifest record."
+    "coordinateChangedInThisPass": false,
+    "contractMigrationRequired": true,
+    "nextAction": "Retained the named Losby Gods building-complex centroid, migrated historic_site to institutional_area and preserved the 340-metre radius. Akershus batch 4 remains complete; continue with the first unresolved active-manifest record."
   },
   "notes": [
-    "The named OSM geometry includes the old manor and later hotel additions; it is not an exact polygon for the original 1850 wing.",
-    "Losbyveien 270 is the real postal address; Losbyveien 1 is only a routing hint and is approximately 3.7 km away.",
-    "The published GPS point is an access/navigation point and not the canonical building coordinate.",
-    "The 340-metre radius covers the building, park and nearest estate environment at gameplay scale but not the full forest property or sawmill network.",
-    "The coordinate correction is approximately 61.2 metres."
+    "The 61.2-metre move occurred in the 2026-07-26 production and is preserved.",
+    "This pass changes locatorType from historic_site to institutional_area because OSM supplies the physical polygon while municipal and operator sources define the broader historical estate identity.",
+    "Losbyveien 270 is the physical address; Losbyveien 1 remains a routing hint approximately 3.7 kilometres away.",
+    "The published GPS point is an access point and not the canonical complex coordinate.",
+    "The 340-metre radius is not a property, historic-estate, golf, forest-management, heritage or access boundary."
   ]
 }
