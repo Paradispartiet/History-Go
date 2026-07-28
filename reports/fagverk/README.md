@@ -11,6 +11,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 
 - `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
+- `natur-pilot-audit.json` — individuell fase-2-evidens for Natur: canonical rekkefølge, 6 fagområder, 35 emner, 30 metoder, 35 mappings og 60 hooks.
 
 ## Regenerering
 
