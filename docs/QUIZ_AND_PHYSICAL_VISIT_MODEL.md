@@ -1,124 +1,200 @@
-# History GO — quiz og fysisk besøksstatus
+# History GO — quiz, samling og fysisk besøksstatus
 
 Status: **operational runtimeguide**  
-Canonical ferdigmodell: [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md)  
-Runtime: [`../js/quiz/quizAccess.ts`](../js/quiz/quizAccess.ts), [`../js/visits/physicalVisits.ts`](../js/visits/physicalVisits.ts) og [`../js/ui/placeVisitButton.ts`](../js/ui/placeVisitButton.ts)  
-Regresjonstest: [`../tests/quiz-physical-visit-separation.test.js`](../tests/quiz-physical-visit-separation.test.js)  
-Sist kontrollert: **2026-07-26**
+Canonical ferdigmodell: `docs/COMPLETION_DEFINITIONS.md`  
+Fysisk visit: `js/visits/physicalVisits.ts` og `js/ui/placeVisitButton.ts`  
+Quiz-adapter: `js/quiz/quizAccess.ts`  
+Place unlock/samling: `js/hg_unlocks.js`  
+Profil place-samling: `js/profile-place-collection.js`  
+Sist kontrollert: **2026-07-28**
 
-Dette dokumentet beskriver den implementerte runtimegrensen mellom digital quiztilgang og fysisk besøksregistrering. Den brede produktbetydningen av fullført, besøkt, utforsket og mestret eies fortsatt av `COMPLETION_DEFINITIONS.md`.
+Dette dokumentet beskriver den implementerte grensen mellom **digital quiz**, **quiz-basert place-samling** og **fysisk besøksregistrering**.
 
-## Autoritetsrekkefølge
+> **Quiz kan samle et sted uten å registrere fysisk besøk. Fysisk besøkt og samlet er forskjellige akser.**
 
-1. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical produktmodell for ferdigtilstander på tvers av History GO.
-2. [`../js/progress/placeProgress.ts`](../js/progress/placeProgress.ts) — smal place-progress-snapshotmodell.
-3. [`../js/quiz/quizAccess.ts`](../js/quiz/quizAccess.ts) — digital quiztilgang uten fysisk besøkswrite.
-4. [`../js/visits/physicalVisits.ts`](../js/visits/physicalVisits.ts) — fysisk visit service, legacy-persistensadapter og posisjonsgate.
-5. [`../js/ui/placeVisitButton.ts`](../js/ui/placeVisitButton.ts) — PlaceCard-knappens tilstand og handling.
-6. [`../js/ui/place-card-quizcards-patch.ts`](../js/ui/place-card-quizcards-patch.ts) — installasjon og kobling av delene i browser-runtime.
-7. [`../tests/quiz-physical-visit-separation.test.js`](../tests/quiz-physical-visit-separation.test.js) — regressjonsbevis for at quiz ikke skriver fysisk besøksstatus.
-8. Dette dokumentet — menneskelesbar runtimeguide.
+## 1. Autoritetsrekkefølge
 
-Ved konflikt gjelder canonical ferdigmodell, kildekode og tester foran denne teksten.
+1. `docs/COMPLETION_DEFINITIONS.md` — produktbetydningen av besøkt/samlet/fullført.
+2. faktisk runtime og tester.
+3. `js/visits/physicalVisits.ts` — fysisk visit.
+4. `js/quiz/quizAccess.ts` — digital quiztilgang uten fysisk visit-write.
+5. `js/hg_unlocks.js` — target-unlocks og `places_collected`.
+6. `js/profile-place-collection.js` — profilsamling som union av visited + quiz-collected.
+7. `js/progress/placeProgress.ts` — smal beregnet place-snapshotmodell.
+8. denne menneskelesbare guiden.
 
-## Implementert nå
+Ved konflikt gjelder kode/tester foran denne teksten.
 
-### Digital quiz er uavhengig av fysisk besøk
+## 2. Digital quiz er uavhengig av fysisk besøk
 
-Quiz-adapteren patcher `QuizEngine.init()` og gir motoren:
+Quiz-adapteren gjør at eldre besøksgate ikke blokkerer digital quiz og deaktiverer quiz-veien som tidligere kunne skrive besøksstatus.
 
-- en `getVisited()`-visning som svarer `true` for enhver place-nøkkel, slik at en eldre besøksgate ikke blokkerer digital quiz;
-- en `saveVisitedFromQuiz()`-funksjon som returnerer `false` og ikke skriver til fysisk besøksdata.
+Derfor:
 
-Hvis `QuizEngine` installeres senere, patcher runtime setter-pathen når motoren blir tilgjengelig. Ved installasjon av besøksmodellen erstattes også `window.saveVisitedFromQuiz` med en deaktivert kompatibilitetsfunksjon som returnerer `false`.
+- quiz kan åpnes digitalt;
+- quizåpning er ikke fysisk besøk;
+- quizfullføring er ikke fysisk besøk;
+- quiz skal ikke skrive fysisk visited-state.
 
-Quizåpning eller quizfullføring er derfor ikke et fysisk besøk og skal ikke skrive til `window.visited` gjennom denne adapteren.
+Regresjonsgrensen kontrolleres av quiz/visit-testene.
 
-### Fysisk besøksservice
+## 3. Fysisk besøksservice
 
-Før quiz-skriveveien deaktiveres, fanger integrasjonen den eksisterende legacy-funksjonen for fysisk besøkslagring. `window.HGPhysicalVisits` eksponerer:
+`HGPhysicalVisits` eier fysisk besøksregistrering.
 
-- `isVisited(placeId)`
-- `record(place)`
-- `toProgress(placeId, input)`
+Den:
 
-`record(place)` normaliserer place-ID-en, er idempotent for et allerede registrert sted, kaller den fangede fysiske persistensfunksjonen og kontrollerer deretter at `window.visited[placeId]` faktisk er satt. Ved et nytt vellykket besøk sendes `hg:physicalVisitRegistered` med `placeId` og tidsstempel.
+- normaliserer place-ID;
+- bruker fysisk persistens;
+- krever godkjent posisjonsgate utenom testmodus;
+- er idempotent for allerede besøkt sted;
+- sender fysisk visit-event ved nytt vellykket besøk.
 
-Servicen returnerer eksplisitte feil for manglende place-ID, utilgjengelig persistens eller mislykket persistens. Den oppretter ikke selv et nytt lagringsformat.
+Et fysisk besøk skal kunne leses som fysisk besøkt i relevant PlaceCard/read-model.
 
-### Posisjonsgate
+## 4. Posisjonsgate
 
-`getPhysicalVisitGate()` godkjenner besøk på to måter:
+Fysisk besøk krever nåværende posisjon og minst ett gyldig avstandsmål, med mindre eksplisitt testmodus brukes.
 
-- `TEST_MODE` gir en eksplisitt utviklingsbypass;
-- ellers kreves nåværende posisjon, `distMeters()` og minst ett mål fra `getPlaceDistanceTargets(place)`.
+Gaten skiller blant annet mellom:
 
-Hvert mål bruker egen radius eller stedets fallbackradius, som er 150 meter når ingen annen radius finnes. Resultatet skiller mellom manglende posisjon, manglende anker og for stor avstand.
+- manglende posisjon;
+- manglende anker;
+- for stor avstand;
+- godkjent fysisk nærhet.
 
-### PlaceCard-knappen
+Stedets koordinat/radius skal derfor være korrekt etter coordinate-kontraktene.
 
-PlaceCard-kontrolleren bruker den fysiske besøksservicen og gaten. Den viser blant annet:
+## 5. PlaceCard-knappen
 
-- `Henter posisjon…`
-- `Gå nærmere` eller gjenværende meter
-- `Registrer besøk`
-- `Registrer besøk (test)` i testmodus
-- `Besøkt ✅` når stedet allerede er registrert
+Visit-knappen kan vise tilstander som:
 
-Ved godkjent registrering pulseres kartmarkøren dersom helperen finnes, og brukeren får en lokal bekreftelse. Knappen kan ikke brukes til å registrere besøk uten godkjent gate, bortsett fra testmodus.
+- `Henter posisjon…`;
+- `Gå nærmere`;
+- `Registrer besøk`;
+- `Registrer besøk (test)`;
+- `Besøkt ✅`.
 
-### Smal place-progress read-model
+Knappen skal ikke markere et quiz-samlet, men fysisk ubesøkt sted som `Besøkt`.
 
-`window.HGPlaceProgress.createSnapshot()` bygger en beregnet snapshot med statusene:
+## 6. Quiz-basert place-samling
 
-- `unopened`
-- `opened`
-- `visited`
-- `quiz_completed`
-- `explored`
-- `mastered`
+Place-samling gjennom quiz eies **ikke** av fysisk visit-tjenesten.
 
-`explored` betyr i denne smale modellen både quiz fullført og fysisk besøkt. `mastered` krever i tillegg at kalleren sender `extraPlaceActionCompleted: true`.
+Når et faktisk place-target unlock utløses, kan `js/hg_unlocks.js` registrere stedet i:
 
-Snapshoten lagrer ikke selv progresjon. Den leser input og fysisk besøksstatus og returnerer en beregnet tilstand.
+```text
+places_collected
+```
 
-## Ikke garantert eller tildelt av dette subsystemet
+Denne write-pathen er separat fra:
 
-Denne runtimegrensen tildeler eller vedlikeholder ikke i seg selv:
+```text
+visited_places
+```
 
-- første eller siste besøksdato;
-- besøksantall eller reiselogg;
-- Groundhopper-progresjon;
-- fysisk eller digital ruteprogresjon;
-- observations eller learning-log-events;
-- badges, stedsmerker, poeng eller meritpoeng;
-- people-unlocks eller samlingsobjekter;
-- varig lagring av `extraPlaceActionCompleted` eller `mastered`;
-- quizresultat, quizhistorikk eller øvrige quizbelønninger.
+Et target-unlock betyr derfor:
 
-Andre subsystemer kan lese legacy `visited`-store eller lytte til `hg:physicalVisitRegistered`. Slike downstream-effekter er ikke direkte atferd i denne modulen uten egen dokumentert runtime og test.
+```text
+quiz-unlock → samlet sted
+```
 
-## Forholdet til canonical ferdigmodell
+ikke:
 
-`COMPLETION_DEFINITIONS.md` eier den brede betydningen av stedshandlinger og ferdigtilstander. I denne besøksruntimeen betyr `visited` et fysisk registrert besøk gjennom fysisk gate og kompatibel fysisk persistens. Det betyr ikke bare at PlaceCard er åpnet eller at en quiz er fullført.
+```text
+quiz-unlock → fysisk besøkt sted
+```
 
-De seks statusene i `HGPlaceProgress` er en smal adapter/read-model. De erstatter ikke canonical statusoversikt med blant annet `discovered`, `checked_in`, `quiz_attempted`, `observed` og `completed`.
+Det er særlig viktig at legacy «perfect quiz/all configured sets»-unlock ikke brukes som fysisk besøksbevis.
 
-## Validering
+## 7. Profilens place-samling
+
+`js/profile-place-collection.js` leser minst to place-kilder:
+
+```text
+visited_places
+places_collected
+```
+
+Profilens samlede place-liste er unionen av disse.
+
+Kildelabelen kan fortsatt skille:
+
+- `Besøkt` for fysisk visit;
+- `Quiz` for quiz-samlet place.
+
+Dermed kan profilen vise begge som samlet uten å forfalske hva spilleren faktisk gjorde.
+
+## 8. Smal `HGPlaceProgress`
+
+`HGPlaceProgress.createSnapshot()` er en smal beregnet adapter og kan bruke egne statusnavn som `unopened`, `opened`, `visited`, `quiz_completed`, `explored` og `mastered`.
+
+Disse statusene:
+
+- lagrer ikke automatisk ny state;
+- erstatter ikke skillet mellom fysisk visit og quiz collection;
+- er ikke en full canonical spillerstate-modell.
+
+`explored` og `mastered` må derfor forstås innenfor denne helperens egne inputregler, ikke som bevis for at alle completion-/belønningssystemer er implementert.
+
+## 9. Ikke garantert av fysisk visit-subsystemet
+
+Fysisk visit-tjenesten tildeler ikke automatisk:
+
+- quizresultat;
+- quiz collection;
+- People unlock;
+- badge/merit;
+- Bronse/Sølv/Gull;
+- route completion;
+- observations;
+- generiske Objects/Details/Spots-unlocks.
+
+Andre subsystemer kan reagere på fysisk visit-event, men slike downstream-effekter må ha egen dokumentert runtime/test.
+
+## 10. Ikke garantert av quiz collection
+
+`places_collected` betyr ikke automatisk:
+
+- fysisk visit;
+- fysisk check-in;
+- rutevisit;
+- mastery;
+- badge/merit;
+- People-/Object-unlock utover det target-unlock-systemet faktisk skriver.
+
+## 11. Forholdet til completion/progresjon
+
+Canonical begreper eies av:
+
+- `docs/COMPLETION_DEFINITIONS.md`.
+
+Samlet read-model eies av:
+
+- `docs/PROGRESSION_MODEL.md`.
+
+Denne guiden dokumenterer bare runtimegrensen mellom quiz, place-collection og fysisk visit.
+
+## 12. Validering
+
+Relevante kontroller omfatter minst:
 
 ```bash
-npm run build:scripts
-node dist/scripts/check-documentation-governance.mjs
 node --test tests/quiz-physical-visit-separation.test.js
+node --test tests/quiz-place-collection.test.js
+node --test tests/profile-place-collection.test.js
 npm run typecheck:web
 ```
 
-## Historisk snapshot
+Bruk faktiske package-scripts når navnene er registrert der; filtestene over uttrykker kontraktene som skal holdes grønne.
 
-Pre-consolidation-dokumentet er bevart byte-identisk i:
+## 13. Endringsregel
 
-```txt
-reports/archive/2026-07/quiz-physical-visits/QUIZ_AND_PHYSICAL_VISIT_MODEL_PRE_CONSOLIDATION_2026-07-26.md
-```
+Når noen av disse grensene endres, skal denne guiden oppdateres i samme PR:
 
-Snapshotet dokumenterer den tidligere brede målmodellen, men skal ikke brukes som bevis for at downstream-belønninger er implementert av quiz-/besøksmodulen.
+- fysisk visited-write;
+- quiz-adapterens visit-separasjon;
+- `places_collected`;
+- target-unlock for places;
+- profile collection union/kildelabel;
+- offentlig API i de aktuelle runtimehelperne.

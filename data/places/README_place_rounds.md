@@ -1,166 +1,186 @@
-# PlaceCard-rundinger (`rounds`)
+# History GO — canonical PlaceCard-rundinger
 
-Status: **canonical presentasjonskontrakt**  
+Status: **canonical produksjons- og presentasjonskontrakt**  
+Eier: `place_rounds_contract`  
+Runtime: `js/ui/place-rounds-visual-collections.js`  
+Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`  
 Sist kontrollert: **2026-07-28**
 
-PlaceCard-rundinger er små, visuelle samlingsinnganger. De skal ikke være en ekstra meny for all kunnskap eller alle handlinger ved et sted.
+PlaceCard-rundinger er små, visuelle samlingsinnganger. De skal representere **identifiserbare ting med et meningsfullt bilde**, ikke bli en ekstra meny for all kunnskap eller alle handlinger ved et sted.
 
-Sted-for-sted-produksjonsrekkefølge:
+> **Rundinger viser ting brukeren kan se, åpne og samle. Stedspopupen viser kunnskap om stedet. På stedet viser hva man kan gjøre og hva som skjer her.**
 
-- `docs/PLACE_PRODUCTION_CHECKLIST.md`
+## 1. Layout
 
----
+Et ferdig PlaceCard viser nøyaktig **4 eller 6** rundinger.
 
-## Hovedregel
+- fire = 2 × 2;
+- seks = 3 × 2;
+- fem vises aldri;
+- `badges` er obligatorisk;
+- hver valgt runding skal ha reelt stedsspesifikt og bildeklart innhold;
+- tekst-only placeholder, tom compatibility-rad eller fallback-emoji gjør ikke en runding produksjonsklar;
+- ikke produser filler for å nå seks.
 
-> **Rundinger viser identifiserbare ting med et meningsfullt visuelt uttrykk. Stedspopupen viser kunnskap om stedet. På stedet viser hva man kan gjøre og hva som skjer her.**
+Hvis bare fire samlinger er sterke nok, brukes fire.
 
-Tre produktroller holdes adskilt:
+## 2. Canonical palett
 
-- **Rundinger** = visuelle samlinger av entiteter, verk, objekter eller fysiske stedselementer.
-- **Stedspopup** = Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder og Mer.
-- **På stedet** = events, møter/kunnskapsmøter og handlinger som oppgaver, lek og trening.
+```text
+badges
+people
+works
+objects
+details
+spots
+nature
+brands
+```
 
-Den gamle 3×3-/ni-rundersmodellen er avviklet.
+`rounds` er presentasjonskuratering, ikke fagklassifisering eller spillerprogress.
 
----
+## 3. `badges`
 
-## Layout: nøyaktig 4 eller 6
+Badges viser stedets canonical hovedkategori og relevante underbadges.
 
-Et ferdig PlaceCard viser **nøyaktig fire eller seks rundinger**.
+- hovedkategori kommer fra `place.category`;
+- underbadges kommer fra `underbadge_ids`;
+- klikk åpner `fagverk-sted.html?place=<place_id>`;
+- navigasjonsrollen mellom Merket og Faget eies av `docs/FAGVERK_NAVIGATION.md`.
 
-- Fire er standard.
-- Seks brukes når stedet faktisk har seks sterke visuelle samlinger.
-- Fem vises aldri.
-- `badges` er obligatorisk.
-- Innhold skal aldri konstrueres bare for å fylle layouten.
+Badge-rundingen skal bruke faktisk badgegrafikk, ikke en filler-emoji som produksjonsbilde.
 
-En tom compatibility-rad, tekst-only placeholder eller fallback-emoji gjør ikke en runding produksjonsklar. Valgt runding skal ha reelt stedsspesifikt og bildeklart innhold.
+## 4. `people`
 
----
+Navngitte personer med dokumentert konkret stedstilknytning og egnet portrett/bilde.
 
-## Canonical rundingpalett
+People skal gjenbruke canonical People-records. Nye/reviderte koblinger følger:
 
-Paletten består av åtte rundinger:
+- `docs/people-of-places-method.md`;
+- `docs/PEOPLE_PROFILE_CANONICAL.md`;
+- `docs/PEOPLE_IMAGES.md`.
 
-1. `badges`
-2. `people`
-3. `works`
-4. `objects`
-5. `details`
-6. `spots`
-7. `nature`
-8. `brands`
+En tilfeldig kjent person, gjest eller generell bransjetilknytning er ikke nok.
 
-Et sted bruker fire eller seks av disse. Ingen plass skal ha alle av plikt.
+## 5. `works`
 
----
-
-## `badges`
-
-Badges viser stedets faglige hovedkategori og relevante underbadges.
-
-- hovedbadget kommer fra `place.category`;
-- rundingen er obligatorisk;
-- klikk åpner `fagverk-sted.html?place=<place_id>`.
-
-Badges er den visuelle inngangen fra stedet til fagområde, emner og progresjon.
-
----
-
-## `people`
-
-Navngitte personer med dokumentert, konkret stedstilknytning.
-
-Typiske roller:
-
-- grunnleggere;
-- arkitekter/kunstnere/skapere;
-- eiere/ledere;
-- beboere/arbeidende;
-- utøvere/forskere/politikere/aktivister med særskilt dokumentert forbindelse;
-- personer som et fysisk minne uttrykkelig gjelder.
-
-Personen skal bruke canonical People-record, ikke lokal kopi.
-
-Rundingen er visuell: korrekt portrett/bilde skal kunne brukes.
-
----
-
-## `works`
-
-Identifiserbare verk og produksjoner som er skapt som verk.
+Identifiserbare verk og produksjoner skapt som verk.
 
 Eksempler:
 
-- maleri og skulptur;
-- bok og dikt;
-- sang og album;
+- billedkunst og skulptur;
+- litterære verk;
+- musikkverk/album;
 - film;
 - fotografisk verk;
-- forestilling;
+- scenisk verk;
 - arkitekturverk;
 - selvstendig street art.
 
-Skillet mot Objects:
+Skille mot Objects:
 
 - en bok som verk → `works`;
 - et bestemt originalmanuskript → `objects`.
 
-Kamper, rekorder, mesterskap, sportsresultater og generelle historiske hendelser er ikke Works. De hører i stedspopupens kunnskapsflater, normalt Historie.
+Historiske hendelser, kamper, rekorder og mesterskap er ikke Works; de hører normalt i popupens Historie.
 
----
-
-## `objects`
+## 6. `objects`
 
 Fysiske, identifiserbare gjenstander med dokumentert stedstilknytning.
 
-Kan blant annet romme:
+Typiske undertyper:
 
-- artefakter;
-- arkeologiske funn;
-- maskiner;
+- artefakt;
+- arkeologisk funn;
+- maskin;
 - kjøretøy;
 - våpen;
-- instrumenter;
-- klær/drakter;
-- pokaler/medaljer;
-- produkter;
-- dokumentobjekter;
-- relikvier;
-- museumsgjenstander;
+- instrument;
+- klær/drakt;
+- pokal/medalje;
+- produkt;
+- dokumentobjekt;
+- relikvie;
+- museumsgjenstand;
 - teknisk utstyr.
 
-Et Object kan samtidig være et Civication-element når det faktisk er en fysisk, stedsspesifikk og visuelt kvalifisert ting.
+### Canonical dataform for nye/reviderte place-data
 
-> **Objects beskriver hva tingen er. Civication beskriver hva spillet kan gjøre med den.**
+Bruk **`place.objects`**.
 
-Ikke alle Objects skal kunne kjøpes.
+Et minimumselement er:
 
----
+```json
+{
+  "id": "stabil_lokal_eller_canonical_id",
+  "title": "Navn på gjenstanden",
+  "image": "bilder/...",
+  "description": "Kort stedsspesifikk forklaring"
+}
+```
 
-## `details`
+Krav:
+
+- `id` skal være stabil og unik innen relevant eierflate;
+- `title`/navn skal identifisere selve tingen;
+- `image` skal vise riktig ting;
+- `description` skal forklare hvorfor akkurat denne tingen hører til stedet;
+- faktiske påstander skal være kildebelagt gjennom stedets/eierens canonical evidenssystem;
+- ikke opprett nye ustandardiserte kildefelt bare fordi runtime ikke renderer kilder i rundingen.
+
+### Compatibility
+
+Runtime kan lese eldre `place.artifacts` og enkelte fysisk kvalifiserte Civication-elementer. Dette er compatibility/migreringskilder.
+
+**Nye Objects skal normalt legges i `place.objects`, ikke `artifacts`.**
+
+Et Object kan samtidig være et Civication-element når det er en virkelig, fysisk, stedsspesifikk og visuelt kvalifisert ting.
+
+```text
+Objects = hva tingen er
+Civication = kjøp/eierskap/bruk i Civication
+```
+
+## 7. `details`
 
 Små, konkrete og visuelt oppdagbare detaljer ved stedet.
 
 Eksempler:
 
 - skilt;
-- symboler/våpenskjold;
-- inskripsjoner;
-- ornamenter/relieffer;
-- steinhuggermerker;
-- materialskifter;
-- dokumenterte skadespor;
+- symbol/våpenskjold;
+- inskripsjon;
+- ornament/relieff;
+- steinhuggermerke;
+- materialskifte;
+- dokumentert skadespor;
 - industrispor;
-- små rester etter tidligere konstruksjoner;
-- små graffiti-/street-art-detaljer som ikke er selvstendige Works.
+- liten rest etter tidligere konstruksjon;
+- liten graffiti-/street-art-detalj som ikke er et selvstendig Work.
 
-Details skal få brukeren til å se nærmere på stedet.
+### Canonical dataform
 
----
+Bruk **`place.details`** for nye/reviderte detaljer som skal vises som rundingskort.
 
-## `spots`
+```json
+{
+  "id": "stabil_detail_id",
+  "title": "Hva brukeren skal se etter",
+  "image": "bilder/...",
+  "description": "Hva detaljen er og hvorfor den er relevant"
+}
+```
+
+Compatibility-aliaser som runtime kan lese:
+
+```text
+visual_details
+site_details
+```
+
+Disse skal ikke være førstevalg i ny produksjon.
+
+## 8. `spots`
 
 Konkrete fysiske delpunkter eller delsteder innenfor et større canonical sted.
 
@@ -180,267 +200,180 @@ Eksempler:
 - ruin;
 - fysisk delområde.
 
-Spots kan bygge på `subplaces`, men skal ikke automatisk bli egne globale Places.
-
 Praktisk skille:
 
-- **Object** = en ting.
-- **Detail** = noe lite du ser på eller oppdager.
-- **Spot** = et fysisk punkt/delsted du går bort til.
+```text
+Object = en ting
+Detail = noe lite du ser på eller oppdager
+Spot = et fysisk punkt/delsted du går bort til
+```
 
----
+### Canonical dataform
 
-## `nature`
+Bruk **`place.spots`** for nye/reviderte rundingskort når elementet primært er et fysisk delpunkt.
 
-Konkrete naturentiteter og naturfenomener med dokumentert stedstilknytning.
+```json
+{
+  "id": "stabil_spot_id",
+  "title": "Navn på delpunktet",
+  "image": "bilder/...",
+  "description": "Kort forklaring av delpunktets rolle"
+}
+```
+
+`subplaces` er et eget strukturert place-felt og kan brukes som compatibility-kilde for Spots. Ikke opprett nytt globalt Place bare for å fylle en Spots-runding.
+
+Nye rent visuelle Spot-kort skal normalt bruke `place.spots`; bruk `subplaces` når dataene faktisk skal uttrykke struktur/soner utover rundingspresentasjonen.
+
+## 9. `nature`
+
+Konkrete naturentiteter eller naturfenomener med dokumentert stedstilknytning.
 
 Eksempler:
 
-- arter;
+- art;
 - dyr;
-- planter/trær;
-- bergarter/mineraler;
-- fossiler;
-- geologiske formasjoner;
-- andre konkrete naturspor.
+- plante/tre;
+- bergart/mineral;
+- fossil;
+- geologisk formasjon;
+- annet konkret naturspor.
 
-Nature er **helt valgfri** utenfor steder der naturen faktisk er relevant.
+Nature er helt valgfri utenfor steder der naturen faktisk er relevant. Et teater, bygg, minnesmerke eller plakett skal ikke få Nature fordi det tilfeldigvis finnes vegetasjon i nærheten.
 
-Et teater, bygg, minnesmerke eller plakett skal ikke få Nature fordi det finnes vegetasjon i nærheten.
+Nature-produksjon følger `README/nature_mapping_workflow.md` og aktive naturdata. `nature_profile` i popupens Om-fane er ikke det samme som Nature-rundingen.
 
-`nature_profile` i popupens Om-fane og Nature-rundingen har forskjellige roller.
+## 10. `brands`
 
----
-
-## `brands`
-
-Brands beholder sin eksisterende betydning og datamodell.
+Brands beholder eksisterende betydning og datamodell.
 
 > **Brands er bedrifter og kjente merker med dokumentert kobling til stedet.**
 
 Regler:
 
-- gjenbruk eksisterende canonical Brand når den finnes;
+- gjenbruk eksisterende canonical Brand;
 - eksisterende Brands-data er source of truth;
-- logo/brandbilde skal kunne brukes visuelt;
+- korrekt logo/brandbilde skal kunne brukes;
 - Brands er ikke generell aktørkategori;
-- ikke putt lag, institusjoner, organisasjoner, skilt, objekter eller andre ting i Brands bare fordi de mangler annen plass;
-- rundingsarbeid skal ikke omskrive eksisterende Brands-semantikk.
+- ikke legg lag, institusjoner, organisasjoner, skilt, Objects eller andre ting i Brands bare fordi de mangler annen plass;
+- rundingsarbeid skal ikke omskrive eksisterende Brands-semantikk eller Brands-data.
 
----
+## 11. Tidligere kandidater er undertyper
 
-## Tidligere kandidater er undertyper, ikke nye rundinger
+Ikke opprett egne rundingstyper for disse uten en ny canonical beslutning.
 
-### Under `objects`
+### Objects
 
-Artifacts, Finds, Machines, Vehicles, Products, Food products, Documents, Costumes, Relics, Instruments, Weapons og Trophies.
+Artifacts, Finds, Machines, Vehicles, Products, Food products, Documents, Costumes, Relics, Instruments, Weapons, Trophies.
 
-### Under `details`
+### Details
 
-Signs, Symbols, Inscriptions, Ornamentation, Traces, små arkitekturdetaljer og små graffiti-/street-art-detaljer.
+Signs, Symbols, Inscriptions, Ornamentation, Traces, små arkitekturdetaljer, små graffiti-/street-art-detaljer.
 
-### Under `spots`
+### Spots
 
-Architecture components, Subplaces, Rooms, Viewpoints, Structures, porter, tårn, tunneler, broer, tribuner og andre fysiske delpunkter.
+Architecture components, Subplaces, Rooms, Viewpoints, Structures, porter, tårn, tunneler, broer, tribuner.
 
-### Under `nature`
+### Nature
 
-Species, Animals, Plants, Trees, Geology, Fossils og Natural formations.
+Species, Animals, Plants, Trees, Geology, Fossils, Natural formations.
 
-### Under `works`
+### Works
 
-Billedkunst, skulptur, litteratur, musikk, film, fotografiske verk, arkitekturverk, sceniske verk og selvstendige street-art-verk.
+Billedkunst, skulptur, litteratur, musikk, film, fotografiske verk, arkitekturverk, sceniske verk, selvstendig street art.
 
----
+## 12. Ikke rundinger
 
-## Ikke rundinger
-
-Følgende kan ha bilder, men hovedrollen deres er kunnskap, hendelse eller handling:
+Følgende kan ha bilder, men hovedrollen er kunnskap, hendelse eller handling:
 
 - historiske events;
-- kamper;
-- løp/stevner som hendelser;
-- rekorder;
-- mesterskap;
+- kamper/løp/stevner som hendelser;
+- rekorder/mesterskap;
 - chronology;
 - Stories;
 - nyheter;
 - kart som kunnskapsmateriale;
 - statistikk;
 - quiz;
-- oppgaver;
-- lek;
-- trening.
+- tasks/play/training.
 
-Disse hører i stedspopupen, På stedet eller egne handlingsflows.
+De hører i popupen, På stedet eller egne flows. Det finnes derfor ikke en egen Sports-runding.
 
-Det finnes derfor ikke en egen Sports-runding.
+## 13. Kategori → rundingmatrise
 
-Sportseksempel:
-
-- spiller → `people`;
-- drakt/pokal → `objects`;
-- tribune/baneelement → `spots`;
-- rekordtavle/fysisk markering → `details`;
-- kunst/arkitekturverk → `works`;
-- kamp/rekord/mesterskap → Historie;
-- bedrift/kjent merke med canonical Brand → `brands`.
-
----
-
-# Kategori → rundingmatrise
-
-Canonical kategorier eies av `data/categories/category_contract.json`.
-
-Matrisen er **produksjonsprioritet**, ikke tvang. Ferdige steder kurateres etter faktisk dokumentert, bildeklart innhold.
+Matrisen er **prioritet**, ikke tvang. Faktisk dokumentert, bildeklart innhold avgjør.
 
 | Canonical kategori | 4-runders kjerne | Normal utvidelse til 6 |
 | --- | --- | --- |
-| `by` — By & arkitektur | Badges · Works · Spots · Details | People · Objects |
+| `by` | Badges · Works · Spots · Details | People · Objects |
 | `historie` | Badges · People · Objects · Spots | Details · Works |
 | `kunst` | Badges · Works · People · Details | Spots · Objects |
 | `litteratur` | Badges · People · Works · Objects | Spots · Details |
 | `media` | Badges · People · Works · Objects | Spots · Details |
 | `musikk` | Badges · People · Works · Objects | Spots · Details |
-| `naeringsliv` — Økonomi og næringsliv | Badges · Brands · People · Objects | Spots · Details |
-| `natur` — Natur & miljø | Badges · Nature · Spots · Details | People · Objects |
-| `politikk` — Politikk & samfunn | Badges · People · Spots · Details | Objects · Works |
+| `naeringsliv` | Badges · Brands · People · Objects | Spots · Details |
+| `natur` | Badges · Nature · Spots · Details | People · Objects |
+| `politikk` | Badges · People · Spots · Details | Objects · Works |
 | `psykologi` | Badges · People · Works · Objects | Spots · Details |
 | `religion` | Badges · People · Works · Objects | Spots · Details |
 | `scenekunst` | Badges · People · Works · Spots | Objects · Details |
-| `sport` — Sport & lek | Badges · People · Objects · Spots | Details · Works |
+| `sport` | Badges · People · Objects · Spots | Details · Works |
 | `subkultur` | Badges · People · Works · Details | Spots · Objects |
 | `vitenskap` | Badges · People · Objects · Spots | Details · Works |
 | `teknologi` | Badges · Objects · People · Spots | Details · Works |
 | `filosofi` | Badges · People · Works · Spots | Objects · Details |
-| `film_tv` — Film & TV | Badges · People · Works · Spots | Objects · Details |
+| `film_tv` | Badges · People · Works · Spots | Objects · Details |
 
-### Erstatningsregel
-
-Hvis en foreslått samling er irrelevant eller mangler godt visuelt innhold:
+Erstatningsregel:
 
 1. ikke lag filler;
-2. gå videre til neste relevante canonical runding;
-3. eksisterende Brands kan brukes når stedet faktisk har bedrift/kjent merke-kobling;
-4. Nature brukes bare ved reell, stedsspesifikk natur;
-5. ferdig place må ende på fire eller seks reelle bildeklare samlinger.
+2. hopp over irrelevant/tom samling;
+3. bruk neste relevante canonical runding;
+4. eksisterende Brands brukes bare ved reell Brand-kobling;
+5. Nature brukes bare ved reell natur;
+6. stopp på fire eller seks.
 
-For den detaljerte sted-for-sted-sjekken brukes `docs/PLACE_PRODUCTION_CHECKLIST.md`.
+## 14. `rounds` og compatibility
 
----
+For nye/reviderte steder brukes `place.rounds`.
 
-## `rounds` og `rounds_exclude`
+Krav:
 
-`place.rounds` er eksplisitt kuratering.
+- bare canonical IDs;
+- `badges` med;
+- nøyaktig 4 eller 6 unike IDs.
 
-For nye eller reviderte steder:
+`rounds_exclude` kan hoppe over en ellers naturlig valgfri runding; `badges` kan ikke ekskluderes.
 
-- bruk bare IDs fra den åtte-runders paletten;
-- inkluder `badges`;
-- bruk nøyaktig fire eller seks unike IDs;
-- fire er standard;
-- seks brukes når seks samlinger er sterke og bildeklare;
-- `rounds_exclude` kan hoppe over en ellers naturlig valgfri runding;
-- `badges` kan ikke ekskluderes;
-- `rundinger` er legacy alias og skal ikke brukes i nye data.
+`rundinger` er legacy alias og skal ikke brukes i ny produksjon.
 
-Eksempel, fire:
+Eksempel:
 
 ```json
 {
-  "id": "eksempel_sted",
   "rounds": ["badges", "people", "objects", "spots"]
 }
 ```
 
-Eksempel, seks:
+## 15. Wonderkammer
 
-```json
-{
-  "id": "eksempel_kunststed",
-  "rounds": ["badges", "works", "people", "details", "spots", "objects"]
-}
-```
+Wonderkammer er legacy migreringsgrunnlag, ikke ny runding eller ny produksjonsmodell.
 
----
+Legacy-data klassifiseres etter faktisk innhold til Objects, Details, Spots, People, Works, Nature, På stedet, relations/NextUp, Historie eller Stories.
 
-## Wonderkammer
+Nye Wonderkammer-entries skal ikke produseres i sted-for-sted-arbeidet.
 
-Wonderkammer er ikke lenger canonical PlaceCard-runding eller ny produksjonsmodell.
+## 16. Produksjonsgate
 
-Legacy-data migreres etter faktisk innhold:
+En runding kan krysses av som ferdig når:
 
-- fysisk gjenstand → `objects`;
-- liten detalj/spor → `details`;
-- fysisk delsted → `spots`;
-- person → `people`;
-- verk → `works`;
-- natur → `nature`;
-- handling → På stedet;
-- navigasjon → relations/NextUp;
-- chronology/hendelse → Historie.
+1. typen er canonical;
+2. stedskoblingen er dokumentert;
+3. elementene har riktig identitet;
+4. visuelt materiale viser riktig entitet/ting;
+5. canonical datakilde/felt brukes for ny produksjon;
+6. compatibility-data er ikke feilaktig behandlet som ny standard;
+7. PlaceCard viser riktig 2 × 2 eller 3 × 2 uten tomme/falske samlinger;
+8. relevant governance/CI passerer.
 
-Legacy-data beholdes til destinasjonen er validert. Se `data/wonderkammer/wonderkammer.md`.
-
----
-
-## Civication
-
-Civication Store / Thingstore er ikke canonical runding.
-
-Store-data og kjøps-/eierskapslogikk består. En virkelig stedsspesifikk fysisk ting kan også presenteres gjennom `objects`.
-
----
-
-## Flyttet ut av runding-gridet
-
-Kunnskap:
-
-- Leksikon → popup;
-- Fortellinger/Stories → Fortellinger;
-- `for_na` → Før/etter;
-- chronology/historiske hendelser → Historie.
-
-Handlinger:
-
-- `play`;
-- `training`;
-- `tasks`.
-
-Disse vises under På stedet eller i egne flows.
-
-Quiz, Observer, Notat og Rute kan ha egne knapper/flows.
-
----
-
-## Runtime og kompatibilitet
-
-`js/ui/place-rounds-visual-collections.js` er brukerrettet presentasjonsgrense.
-
-Den:
-
-- begrenser paletten til de åtte canonical rundingene;
-- håndhever 4/6-presentasjon;
-- gjør Badges obligatorisk;
-- kobler Badges til fagverksiden;
-- gir visuelle samlingsflater for Objects, Details og Spots;
-- bruker faktisk bilde/readiness som kvalitetsgrense;
-- holder Civication/Wonderkammer og andre legacy-rundinger ute av canonical grid;
-- markerer ufullstendige legacy-steder som ikke visuelt produksjonsklare.
-
-Legacy registry i `js/ui/place-card.js` er compatibility-input, ikke produktkontrakten.
-
----
-
-## Produksjonsklar runding
-
-En runding er produksjonsklar når:
-
-1. den representerer identifiserbare ting/entiteter/verk/fysiske delsteder;
-2. elementene har dokumentert stedskobling;
-3. samlingen har reelt visuelt materiale;
-4. previewbildet viser riktig innhold;
-5. samlingen gir mening uten popupens brødtekst;
-6. den ligger i riktig hovedgruppe i stedet for å opprette en ny smal runding.
-
-Hvis ikke, skal innholdet normalt til en annen runding, stedspopupen eller På stedet.
+For full stedproduksjon brukes `docs/PLACE_PRODUCTION_CHECKLIST.md`.
