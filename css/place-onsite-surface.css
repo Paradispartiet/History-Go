@@ -1,40 +1,23 @@
 /* ============================================================
    PLACE ON-SITE SURFACE
-   Category/place-type driven actions. Layout contract: one row.
+   Fast hovedrad: Events | Avtal å møtes | Kunnskapsmøte | Mer
    ============================================================ */
 
 body.hg-app #placeCard .pc-events-quad{
   max-height:none;
-  min-height:64px;
-  padding:10px 12px;
+  min-height:60px;
+  padding:8px;
   border:2px solid rgba(255,255,255,.28);
   background:rgba(12,12,10,.88);
   box-shadow:0 8px 24px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.04);
-  display:grid;
-  grid-template-columns:auto minmax(0,1fr);
-  align-items:center;
-  gap:10px;
+  display:block;
   width:100%;
   min-width:0;
   overflow:visible;
 }
 
 body.hg-app #placeCard .pc-events-head{
-  display:flex;
-  align-items:center;
-  min-width:0;
-  min-height:42px;
-  padding:0;
-  border:0;
-}
-
-body.hg-app #placeCard .pc-events-title{
-  font-size:16px;
-  line-height:1;
-  font-weight:900;
-  letter-spacing:.01em;
-  color:#fff;
-  white-space:nowrap;
+  display:none !important;
 }
 
 body.hg-app #placeCard .pc-events-add{
@@ -49,8 +32,7 @@ body.hg-app #placeCard .pc-onsite-surface{
 
 body.hg-app #placeCard .pc-onsite-actions{
   display:grid;
-  grid-auto-flow:column;
-  grid-auto-columns:minmax(0,1fr);
+  grid-template-columns:repeat(4,minmax(0,1fr));
   align-items:stretch;
   gap:6px;
   width:100%;
@@ -129,6 +111,30 @@ body.hg-app #placeCard .pc-onsite-action-knowledge{
   background:rgba(247,226,163,.10);
 }
 
+body.hg-app #placeCard .pc-onsite-action-more{
+  grid-template-columns:auto minmax(0,1fr);
+}
+
+body.hg-app #placeCard .pc-onsite-more-list{
+  display:grid;
+  gap:8px;
+}
+
+body.hg-app #placeCard .pc-onsite-more-action{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  min-height:44px;
+  padding:9px 12px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font:inherit;
+  text-align:left;
+}
+
 body.hg-app #placeCard .pc-onsite-event-popup{
   display:grid;
   gap:8px;
@@ -165,13 +171,7 @@ body.hg-app #placeCard .pc-onsite-event span{
 
 @media (max-width:700px){
   body.hg-app #placeCard .pc-events-quad{
-    grid-template-columns:auto minmax(0,1fr);
-    gap:6px;
-    padding:7px 8px;
-  }
-
-  body.hg-app #placeCard .pc-events-title{
-    font-size:13px;
+    padding:6px;
   }
 
   body.hg-app #placeCard .pc-onsite-actions{
@@ -181,23 +181,23 @@ body.hg-app #placeCard .pc-onsite-event span{
   body.hg-app #placeCard .pc-onsite-action{
     min-height:38px;
     gap:3px;
-    padding:5px 5px;
+    padding:5px;
   }
 
   body.hg-app #placeCard .pc-onsite-action-icon{
-    width:17px;
-    height:17px;
+    width:16px;
+    height:16px;
     font-size:14px;
   }
 
   body.hg-app #placeCard .pc-onsite-action-label{
-    font-size:10px;
+    font-size:9.5px;
   }
 
   body.hg-app #placeCard .pc-onsite-action-count{
-    min-width:17px;
-    height:17px;
+    min-width:16px;
+    height:16px;
     padding:0 3px;
-    font-size:8.5px;
+    font-size:8px;
   }
 }
