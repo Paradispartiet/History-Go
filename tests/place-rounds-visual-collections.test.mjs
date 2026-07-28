@@ -14,52 +14,28 @@ afterEach(() => {
   activeWindows.clear();
 });
 
-const BASE_ICONS = [
-  "pcPeopleIcon",
-  "pcNatureIcon",
-  "pcBadgesIcon",
-  "pcWorksIcon",
-  "pcBrandsIcon",
-  "pcForNaIcon",
-  "pcFortellingerIcon",
-  "pcLeksikonIcon",
-  "pcPlayIcon",
-  "pcTrainingIcon",
-  "pcTasksIcon",
-  "pcCivicationStoreIcon"
-];
-
-const BASE_LISTS = [
-  "pcPeopleList",
-  "pcNatureList",
-  "pcBadgesList",
-  "pcWorksList",
-  "pcBrandsList"
-];
-
-function nodeArray(value) {
-  return Array.from(value || []);
-}
-
 function createRuntime(place, globals = {}) {
-  const icons = BASE_ICONS.map(id => `<div id="${id}" class="pc-round" hidden></div>`).join("");
-  const lists = BASE_LISTS.map(id => `<div id="${id}"></div>`).join("");
   const dom = new JSDOM(`<!doctype html><body>
     <div id="placeCard" data-current-place-id="${place.id}">
       <div class="pc-body">
-        <div class="pc-icons-quad">${icons}</div>
-        ${lists}
+        <div class="pc-icons-quad">
+          <div id="pcBadgesIcon" class="pc-round"></div>
+          <div id="pcPeopleIcon" class="pc-round"></div>
+          <div id="pcWorksIcon" class="pc-round"></div>
+          <div id="pcNatureIcon" class="pc-round"></div>
+          <div id="pcBrandsIcon" class="pc-round"></div>
+        </div>
+        <div id="pcBadgesList"></div>
+        <div id="pcPeopleList"></div>
       </div>
+      <button id="pcClose"></button>
     </div>
-  </body>`, {
-    url: "https://history-go.test/",
-    runScripts: "outside-only"
-  });
+  </body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
 
   const { window } = dom;
   activeWindows.add(window);
   window.PLACES = [place];
-  window.BADGES = [{ id: place.category, name: place.category, image: `badges/${place.category}.png` }];
+  window.BADGES = [{ id: place.category, image: "badge.png" }];
   window.HGPlaceRounds = {};
   Object.assign(window, globals);
   window.eval(source);
@@ -68,162 +44,57 @@ function createRuntime(place, globals = {}) {
   return window;
 }
 
-test("canonical palette is exactly the eight agreed visual rounds", () => {
+test("canonical round registry contains only the six supported round types", () => {
   const window = createRuntime({ id: "p1", category: "historie" });
-  assert.deepEqual(
-    nodeArray(window.HGVisualPlaceRounds.ids),
-    ["badges", "people", "works", "objects", "details", "spots", "nature", "brands"]
-  );
+  assert.deepEqual(Array.from(window.HGVisualPlaceRounds.ids), ["badges", "people", "objects", "flora", "fauna", "map"]);
 });
 
-test("text-only Objects do not count as image-ready", () => {
+test("ordinary places always use exactly badges, people, objects and map", () => {
   const place = {
     id: "p2",
-    category: "historie",
-    objects: [{ id: "obj1", title: "Objekt uten bilde" }]
-  };
-  const window = createRuntime(place);
-  assert.equal(window.HGVisualPlaceRounds.isImageReady(place, "objects"), false);
-
-  place.objects.push({ id: "obj2", title: "Objekt med bilde", image: "objects/obj2.jpg" });
-  window.HGVisualPlaceRounds.apply(place);
-  assert.equal(window.HGVisualPlaceRounds.isImageReady(place, "objects"), true);
-});
-
-test("Civication contributes to Objects only for a visual physical/place-specific item", () => {
-  const place = { id: "p3", category: "historie" };
-  const window = createRuntime(place, {
-    CIVICATION_STORE_BY_PLACE: {
-      p3: [
-        "legacy_string",
-        { id: "digital", title: "Digital ting", image: "digital.jpg" },
-        { id: "physical", title: "Fysisk ting", image: "physical.jpg", placeSpecificReason: "Finnes på stedet" }
-      ]
-    }
-  });
-
-  const ids = Array.from(window.HGVisualPlaceRounds.getItems(place, "objects"), item => item.id);
-  assert.deepEqual(ids, ["physical"]);
-});
-
-test("automatic selection expands to six only when six strong visual collections exist", () => {
-  const place = {
-    id: "p4",
-    category: "historie",
+    category: "scenekunst",
+    rounds: ["badges", "works", "brands", "nature", "people", "objects"],
     people: [{ id: "person", image: "person.jpg" }],
-    works: [{ id: "work", image: "work.jpg" }],
-    objects: [{ id: "object", image: "object.jpg" }],
-    details: [{ id: "detail", image: "detail.jpg" }],
-    spots: [{ id: "spot", image: "spot.jpg" }]
+    objects: [{ id: "object", title: "Objekt", image: "object.jpg" }]
   };
   const window = createRuntime(place);
-  assert.deepEqual(
-    nodeArray(window.HGVisualPlaceRounds.get(place)),
-    ["badges", "people", "objects", "spots", "details", "works"]
-  );
-  assert.equal(window.HGVisualPlaceRounds.readiness(place).complete, true);
+  assert.deepEqual(Array.from(window.HGVisualPlaceRounds.get(place)), ["badges", "people", "objects", "map"]);
+  assert.equal(window.document.querySelector(".pc-icons-quad").dataset.roundCount, "4");
 });
 
-test("automatic selection stays at four when only four strong visual collections exist", () => {
-  const place = {
-    id: "p5",
-    category: "historie",
-    people: [{ id: "person", image: "person.jpg" }],
-    objects: [{ id: "object", image: "object.jpg" }],
-    spots: [{ id: "spot", image: "spot.jpg" }]
-  };
-  const window = createRuntime(place);
-  assert.deepEqual(nodeArray(window.HGVisualPlaceRounds.get(place)), ["badges", "people", "objects", "spots"]);
-  assert.equal(window.HGVisualPlaceRounds.readiness(place).complete, true);
-});
-
-test("incomplete legacy data keeps the 4-slot design but is explicitly marked not production-ready", () => {
-  const place = {
-    id: "p6",
-    category: "historie",
-    people: [{ id: "person", image: "person.jpg" }]
-  };
-  const window = createRuntime(place);
-  const selected = nodeArray(window.HGVisualPlaceRounds.get(place));
-  const readiness = window.HGVisualPlaceRounds.readiness(place);
-
-  assert.equal(selected.length, 4);
-  assert.equal(readiness.complete, false);
-  assert.ok(readiness.missingImages.length >= 1);
-  assert.equal(window.document.getElementById("placeCard").dataset.roundReadiness, "incomplete");
-});
-
-test("a valid explicit six-round set is preserved and Badges is mandatory", () => {
-  const place = {
-    id: "p7",
-    category: "kunst",
-    rounds: ["badges", "works", "people", "details", "spots", "objects"]
-  };
-  const window = createRuntime(place);
-  assert.deepEqual(nodeArray(window.HGVisualPlaceRounds.get(place)), place.rounds);
-
-  const invalid = {
-    id: "p8",
-    category: "kunst",
-    rounds: ["works", "people", "details", "spots"]
-  };
-  window.PLACES = [invalid];
-  window.document.getElementById("placeCard").dataset.currentPlaceId = invalid.id;
-  assert.ok(nodeArray(window.HGVisualPlaceRounds.get(invalid)).includes("badges"));
-});
-
-test("4-round and 6-round layouts are true 2x2 and 3x2 grids", () => {
-  const four = {
-    id: "p9",
-    category: "historie",
-    people: [{ image: "person.jpg" }],
-    objects: [{ image: "object.jpg" }],
-    spots: [{ image: "spot.jpg" }]
-  };
-  const window = createRuntime(four);
-  const grid = window.document.querySelector(".pc-icons-quad");
-  assert.equal(grid.style.gridTemplateColumns, "repeat(2, var(--place-card-orb-size))");
-  assert.equal(grid.style.gridTemplateRows, "repeat(2, var(--place-card-orb-size))");
-
-  const six = {
-    id: "p10",
-    category: "historie",
-    people: [{ image: "person.jpg" }],
-    works: [{ image: "work.jpg" }],
-    objects: [{ image: "object.jpg" }],
-    details: [{ image: "detail.jpg" }],
-    spots: [{ image: "spot.jpg" }]
-  };
-  window.PLACES = [six];
-  grid.parentElement.closest("#placeCard").dataset.currentPlaceId = six.id;
-  window.HGVisualPlaceRounds.apply(six);
-  assert.equal(grid.style.gridTemplateColumns, "repeat(3, var(--place-card-orb-size))");
-  assert.equal(grid.style.gridTemplateRows, "repeat(2, var(--place-card-orb-size))");
-});
-
-test("existing Brands with a real logo remain image-ready without changing Brands semantics", () => {
-  const place = { id: "p11", category: "naeringsliv", brand_ids: ["brand_a"] };
+test("nature places always replace people and objects with flora and fauna", () => {
+  const place = { id: "p3", category: "natur", flora: ["f1"], fauna: ["a1"] };
   const window = createRuntime(place, {
-    HGBrands: {
-      getById(id) {
-        return id === "brand_a" ? { id, name: "Brand A", logo: "brands/a.png" } : null;
-      }
-    }
+    FLORA: [{ id: "f1", name: "Blåveis", image: "flora.jpg", _kind: "flora" }],
+    FAUNA: [{ id: "a1", name: "Ekorn", image: "fauna.jpg", _kind: "fauna" }]
   });
-  assert.equal(window.HGVisualPlaceRounds.isImageReady(place, "brands"), true);
+  assert.deepEqual(Array.from(window.HGVisualPlaceRounds.get(place)), ["badges", "flora", "fauna", "map"]);
+  assert.equal(window.document.getElementById("pcPeopleIcon").hidden, true);
+  assert.equal(window.document.getElementById("pcObjectsIcon").hidden, true);
+  assert.equal(window.document.getElementById("pcFloraIcon").hidden, false);
+  assert.equal(window.document.getElementById("pcFaunaIcon").hidden, false);
 });
 
+test("map round is always present and collapses PlaceCard", () => {
+  let collapsed = 0;
+  const place = { id: "p4", category: "historie" };
+  const window = createRuntime(place, { collapsePlaceCard: () => { collapsed += 1; } });
+  const mapIcon = window.document.getElementById("pcMapIcon");
+  assert.equal(mapIcon.hidden, false);
+  mapIcon.dispatchEvent(new window.MouseEvent("click", { bubbles: true }));
+  assert.equal(collapsed, 1);
+});
 
-test("all canonical place categories have explicit round priorities", () => {
-  const contract = JSON.parse(
-    fs.readFileSync(path.join(__dirname, "../data/categories/category_contract.json"), "utf8")
-  );
-  const window = createRuntime({ id: "p12", category: "historie" });
-  const priorities = window.HGVisualPlaceRounds.priorities;
+test("legacy round declarations cannot leak into the four-slot grid", () => {
+  const place = { id: "p5", category: "by", rounds: ["works", "nature", "brands", "details", "spots", "badges"] };
+  const window = createRuntime(place);
+  const visible = [...window.document.querySelectorAll(".pc-icons-quad .pc-round")].filter(el => !el.hidden).map(el => el.id).sort();
+  assert.deepEqual(visible, ["pcBadgesIcon", "pcMapIcon", "pcObjectsIcon", "pcPeopleIcon"].sort());
+});
 
-  for (const category of contract.runtimeCategories) {
-    assert.ok(Array.isArray(priorities[category]), `missing explicit round priority for ${category}`);
-    assert.equal(priorities[category][0], "badges", `${category} must keep Badges first`);
-    assert.equal(new Set(priorities[category]).size, priorities[category].length, `${category} has duplicate rounds`);
-  }
+test("people preview remains presentation only", () => {
+  const place = { id: "p6", category: "historie", people: [{ id: "a", image: "a.jpg" }, { id: "b", image: "b.jpg" }] };
+  const window = createRuntime(place);
+  assert.deepEqual(Array.from(window.HGVisualPlaceRounds.get(place)), ["badges", "people", "objects", "map"]);
+  assert.equal(window.HGVisualPlaceRounds.get(place).includes("people"), true);
 });
