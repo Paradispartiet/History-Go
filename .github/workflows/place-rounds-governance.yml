@@ -6,13 +6,17 @@ on:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
       - "js/ui/place-card.js"
+      - "js/ui/popup-utils.js"
       - "css/place-rounds-fill-layout.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
       - "tests/place-card-rounds-runtime-audit.test.js"
+      - "tests/place-people-ids-runtime.test.js"
+      - "tests/nationaltheatret-people-curation.test.js"
       - "data/places/README_place_rounds.md"
+      - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "docs/PLACE_PRODUCTION_CHECKLIST.md"
       - "docs/PLACE_STANDARD.md"
       - "docs/PLACE_POPUP_SYSTEM.md"
@@ -26,13 +30,17 @@ on:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
       - "js/ui/place-card.js"
+      - "js/ui/popup-utils.js"
       - "css/place-rounds-fill-layout.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
       - "tests/place-card-rounds-runtime-audit.test.js"
+      - "tests/place-people-ids-runtime.test.js"
+      - "tests/nationaltheatret-people-curation.test.js"
       - "data/places/README_place_rounds.md"
+      - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "docs/PLACE_PRODUCTION_CHECKLIST.md"
       - "docs/PLACE_STANDARD.md"
       - "docs/PLACE_POPUP_SYSTEM.md"
@@ -67,3 +75,5 @@ jobs:
         run: |
           node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
+          node tests/place-people-ids-runtime.test.js
+          node tests/nationaltheatret-people-curation.test.js
