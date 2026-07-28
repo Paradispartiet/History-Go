@@ -45,8 +45,10 @@ function htmlReferences(file) {
 }
 
 for (const page of [
+  'fagverk-forside.html',
   'fagverk.html',
   'fagverk-sted.html',
+  'merke.html',
   'data/fag/politikk/merke_politikk.html'
 ]) {
   test(`${page} har bare gyldige lokale lenker og ressurser`, () => {
@@ -99,11 +101,24 @@ test('fagverkregisterets kapitler, moduler og eksterne kilder er gyldige', () =>
 
 test('headerens to læringsinnganger peker til forskjellige eksisterende sider', () => {
   const header = read('js/ui/header-menu.js');
-  assert.match(header, /id:\s*"btnFagverk"[\s\S]*?href:\s*"fagverk\.html\?subject=politikk"/);
+  assert.match(header, /id:\s*"btnFagverk"[\s\S]*?href:\s*"fagverk-forside\.html"/);
   assert.match(header, /id:\s*"btnKnowledge"[\s\S]*?href:\s*"knowledge\.html"/);
-  assert.ok(exists('fagverk.html'));
+  assert.ok(exists('fagverk-forside.html'));
   assert.ok(exists('knowledge.html'));
-  assert.notEqual('fagverk.html?subject=politikk', 'knowledge.html');
+  assert.notEqual('fagverk-forside.html', 'knowledge.html');
+});
+
+test('fagverkportalen skiller merkesider fra materialiserte fagsider', () => {
+  const portal = json('data/fagverk/fagverk_portal.json');
+  for (const item of portal.categories || []) {
+    assert.ok(item.badgePage, `${item.id}: badgePage`);
+    assert.ok(exists(cleanLocalReference(item.badgePage)), `${item.id}: ${item.badgePage}`);
+    if (item.subjectStatus === 'materialized') {
+      assert.ok(item.subjectPage, `${item.id}: subjectPage`);
+      assert.ok(exists(cleanLocalReference(item.subjectPage)), `${item.id}: ${item.subjectPage}`);
+      assert.notEqual(item.badgePage, item.subjectPage, `${item.id}: merke og fag må være ulike mål`);
+    }
+  }
 });
 
 test('alle hardkodede fagverkruter i politikkmodellen har eksisterende mål', () => {
