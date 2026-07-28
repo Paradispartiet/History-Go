@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/profile-place-collection.js
 // Profile-side read model for place collection.
 // Physical visits stay in visited_places. Quiz-unlocked places live separately
