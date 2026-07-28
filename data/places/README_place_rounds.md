@@ -20,16 +20,18 @@ Et ferdig PlaceCard viser nøyaktig **4 eller 6** rundinger.
 - `badges` er obligatorisk;
 - hver valgt runding skal ha reelt stedsspesifikt og bildeklart innhold;
 - tekst-only placeholder, tom compatibility-rad eller fallback-emoji gjør ikke en runding produksjonsklar;
-- ikke produser filler for å nå seks.
+- ikke produser filler for å nå seks;
+- rundingen er bare en **visuell inngang**: preview-bildet skal aldri brukes til å avgrense eller redefinere innholdet som ligger bak rundingen.
 
 Hvis bare fire samlinger er sterke nok, brukes fire.
+
+Ved sted-for-sted-produksjon skal valget mellom **4 og 6** være eksplisitt redaksjonelt avklart. Hvis antallet ikke allerede er bestemt, skal det spørres før rundingssettet låses.
 
 ## 2. Canonical palett
 
 ```text
 badges
 people
-works
 objects
 details
 spots
@@ -62,29 +64,30 @@ People skal gjenbruke canonical People-records. Nye/reviderte koblinger følger:
 
 En tilfeldig kjent person, gjest eller generell bransjetilknytning er ikke nok.
 
-## 5. `works`
+### People-rundingen er en inngang, ikke et filter
 
-Identifiserbare verk og produksjoner skapt som verk.
+Bildet i People-rundingen er et **representativt preview for syns skyld**. Det kan vise én egnet person, men skal ikke tolkes som at bare denne personen eller et lite kuratert utvalg finnes bak rundingen.
 
-Eksempler:
+- preview-bildet styrer ikke hvilke People-records som vises etter klikk;
+- People-popupen skal fortsatt bruke alle canonical personer med gyldig stedstilknytning etter People-kontrakten;
+- ikke innfør stedsspesifikke personfiltre, `people_ids`-overstyring eller tilsvarende bare for å kontrollere rundingspreviewet;
+- et eventuelt redaksjonelt avgrenset People-sett er en egen produkt-/databeslutning og må ikke oppstå som bieffekt av rundingsarbeid.
 
-- billedkunst og skulptur;
-- litterære verk;
-- musikkverk/album;
-- film;
-- fotografisk verk;
-- scenisk verk;
-- arkitekturverk;
-- selvstendig street art.
+### Verk hører under personen
 
-Skille mot Objects:
+`works` er **ikke en canonical PlaceCard-runding for nye/reviderte steder**. Verk som uttrykker en persons produksjon skal i stedet ligge i personens profil/popup, for eksempel:
 
-- en bok som verk → `works`;
-- et bestemt originalmanuskript → `objects`.
+- forfatter → bibliografi;
+- filmskaper/skuespiller → filmografi eller relevante produksjoner/roller;
+- komponist/musiker → komposisjoner/diskografi;
+- kunstner → kunstnerisk produksjon;
+- arkitekt → arkitekturverk/prosjekter.
 
-Historiske hendelser, kamper, rekorder og mesterskap er ikke Works; de hører normalt i popupens Historie.
+Dette er personinnhold. Det skal ikke opprettes en egen `works`-runding på PlaceCard for å vise det.
 
-## 6. `objects`
+Legacy `works` i place-data/runtime er migrerings-/compatibility-gjeld og skal ikke brukes som ny canonical runding.
+
+## 5. `objects`
 
 Fysiske, identifiserbare gjenstander med dokumentert stedstilknytning.
 
@@ -102,7 +105,11 @@ Typiske undertyper:
 - dokumentobjekt;
 - relikvie;
 - museumsgjenstand;
-- teknisk utstyr.
+- teknisk utstyr;
+- billedkunstverk;
+- skulptur/statue;
+- installasjon/offentlig kunst;
+- fysisk stedsspesifikk street art.
 
 ### Canonical dataform for nye/reviderte place-data
 
@@ -134,6 +141,8 @@ Runtime kan lese eldre `place.artifacts` og enkelte fysisk kvalifiserte Civicati
 
 **Nye Objects skal normalt legges i `place.objects`, ikke `artifacts`.**
 
+Et fysisk kunstverk ved stedet er et Object når det behandles som en identifiserbar ting på stedet. Det gjelder for eksempel et maleri, en skulptur, en installasjon eller et annet fysisk kunstobjekt. At objektet samtidig er et «verk» i kunsthistorisk forstand gjør det ikke til en egen Works-runding.
+
 Et Object kan samtidig være et Civication-element når det er en virkelig, fysisk, stedsspesifikk og visuelt kvalifisert ting.
 
 ```text
@@ -141,7 +150,7 @@ Objects = hva tingen er
 Civication = kjøp/eierskap/bruk i Civication
 ```
 
-## 7. `details`
+## 6. `details`
 
 Små, konkrete og visuelt oppdagbare detaljer ved stedet.
 
@@ -156,7 +165,7 @@ Eksempler:
 - dokumentert skadespor;
 - industrispor;
 - liten rest etter tidligere konstruksjon;
-- liten graffiti-/street-art-detalj som ikke er et selvstendig Work.
+- liten graffiti-/street-art-detalj som ikke behandles som et selvstendig fysisk Object.
 
 ### Canonical dataform
 
@@ -180,7 +189,7 @@ site_details
 
 Disse skal ikke være førstevalg i ny produksjon.
 
-## 8. `spots`
+## 7. `spots`
 
 Konkrete fysiske delpunkter eller delsteder innenfor et større canonical sted.
 
@@ -225,7 +234,7 @@ Bruk **`place.spots`** for nye/reviderte rundingskort når elementet primært er
 
 Nye rent visuelle Spot-kort skal normalt bruke `place.spots`; bruk `subplaces` når dataene faktisk skal uttrykke struktur/soner utover rundingspresentasjonen.
 
-## 9. `nature`
+## 8. `nature`
 
 Konkrete naturentiteter eller naturfenomener med dokumentert stedstilknytning.
 
@@ -243,7 +252,7 @@ Nature er helt valgfri utenfor steder der naturen faktisk er relevant. Et teater
 
 Nature-produksjon følger `README/nature_mapping_workflow.md` og aktive naturdata. `nature_profile` i popupens Om-fane er ikke det samme som Nature-rundingen.
 
-## 10. `brands`
+## 9. `brands`
 
 Brands beholder eksisterende betydning og datamodell.
 
@@ -258,7 +267,7 @@ Regler:
 - ikke legg lag, institusjoner, organisasjoner, skilt, Objects eller andre ting i Brands bare fordi de mangler annen plass;
 - rundingsarbeid skal ikke omskrive eksisterende Brands-semantikk eller Brands-data.
 
-## 11. Tidligere kandidater er undertyper
+## 10. Tidligere kandidater er undertyper
 
 Ikke opprett egne rundingstyper for disse uten en ny canonical beslutning.
 
@@ -278,14 +287,11 @@ Architecture components, Subplaces, Rooms, Viewpoints, Structures, porter, tårn
 
 Species, Animals, Plants, Trees, Geology, Fossils, Natural formations.
 
-### Works
+## 11. Ikke rundinger
 
-Billedkunst, skulptur, litteratur, musikk, film, fotografiske verk, arkitekturverk, sceniske verk, selvstendig street art.
+Følgende kan ha bilder, men er ikke canonical PlaceCard-rundinger:
 
-## 12. Ikke rundinger
-
-Følgende kan ha bilder, men hovedrollen er kunnskap, hendelse eller handling:
-
+- `works` som egen place-runding; personverk hører under People-profil/popup;
 - historiske events;
 - kamper/løp/stevner som hendelser;
 - rekorder/mesterskap;
@@ -297,43 +303,52 @@ Følgende kan ha bilder, men hovedrollen er kunnskap, hendelse eller handling:
 - quiz;
 - tasks/play/training.
 
-De hører i popupen, På stedet eller egne flows. Det finnes derfor ikke en egen Sports-runding.
+### Forestillinger og oppsetninger = Events i «På stedet»
 
-## 13. Kategori → rundingmatrise
+En forestilling, teateroppsetning, konsert, visning eller annen tidsbundet produksjon som skjer ved stedet er et **Event** og skal ligge under **Events i «På stedet»-baren**. Den skal ikke legges i People, Objects eller en Works-runding.
 
-Matrisen er **prioritet**, ikke tvang. Faktisk dokumentert, bildeklart innhold avgjør.
+En historisk forestilling/oppsetning kan i tillegg omtales i Historie eller Stories når den utgjør en dokumentert historisk episode. Det endrer ikke identiteten til selve forestillingen: **event-objektet er fortsatt et Event**.
 
-| Canonical kategori | 4-runders kjerne | Normal utvidelse til 6 |
-| --- | --- | --- |
-| `by` | Badges · Works · Spots · Details | People · Objects |
-| `historie` | Badges · People · Objects · Spots | Details · Works |
-| `kunst` | Badges · Works · People · Details | Spots · Objects |
-| `litteratur` | Badges · People · Works · Objects | Spots · Details |
-| `media` | Badges · People · Works · Objects | Spots · Details |
-| `musikk` | Badges · People · Works · Objects | Spots · Details |
-| `naeringsliv` | Badges · Brands · People · Objects | Spots · Details |
-| `natur` | Badges · Nature · Spots · Details | People · Objects |
-| `politikk` | Badges · People · Spots · Details | Objects · Works |
-| `psykologi` | Badges · People · Works · Objects | Spots · Details |
-| `religion` | Badges · People · Works · Objects | Spots · Details |
-| `scenekunst` | Badges · People · Works · Spots | Objects · Details |
-| `sport` | Badges · People · Objects · Spots | Details · Works |
-| `subkultur` | Badges · People · Works · Details | Spots · Objects |
-| `vitenskap` | Badges · People · Objects · Spots | Details · Works |
-| `teknologi` | Badges · Objects · People · Spots | Details · Works |
-| `filosofi` | Badges · People · Works · Spots | Objects · Details |
-| `film_tv` | Badges · People · Works · Spots | Objects · Details |
+De øvrige elementene hører i popupen, På stedet eller egne flows. Det finnes derfor ikke en egen Sports-runding.
 
-Erstatningsregel:
+## 12. Kategori → rundingprioritet
 
-1. ikke lag filler;
-2. hopp over irrelevant/tom samling;
-3. bruk neste relevante canonical runding;
-4. eksisterende Brands brukes bare ved reell Brand-kobling;
-5. Nature brukes bare ved reell natur;
-6. stopp på fire eller seks.
+Tabellen under angir **prioritet mellom canonical rundingstyper**, ikke hvor mange rundinger et konkret sted skal ha. Antallet **4 eller 6 skal avklares eksplisitt per sted**.
 
-## 14. `rounds` og compatibility
+`works` er fjernet fra canonical rundingspalett. Tidligere prioriteringer er derfor normalisert ved å la neste relevante visuelle samling rykke frem; dette er ikke en instruks om å produsere filler.
+
+| Canonical kategori | Prioritet blant aktuelle rundinger |
+| --- | --- |
+| `by` | Badges · Spots · Details · People · Objects · Brands · Nature |
+| `historie` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `kunst` | Badges · People · Details · Spots · Objects · Brands · Nature |
+| `litteratur` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `media` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `musikk` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `naeringsliv` | Badges · Brands · People · Objects · Spots · Details · Nature |
+| `natur` | Badges · Nature · Spots · Details · People · Objects · Brands |
+| `politikk` | Badges · People · Spots · Details · Objects · Brands · Nature |
+| `psykologi` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `religion` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `scenekunst` | Badges · People · Spots · Objects · Details · Brands · Nature |
+| `sport` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `subkultur` | Badges · People · Details · Spots · Objects · Brands · Nature |
+| `vitenskap` | Badges · People · Objects · Spots · Details · Brands · Nature |
+| `teknologi` | Badges · Objects · People · Spots · Details · Brands · Nature |
+| `filosofi` | Badges · People · Spots · Objects · Details · Brands · Nature |
+| `film_tv` | Badges · People · Spots · Objects · Details · Brands · Nature |
+
+Utvalgsregel:
+
+1. avklar først om stedet skal ha fire eller seks rundinger;
+2. ikke lag filler;
+3. hopp over irrelevant/tom samling;
+4. bruk neste relevante canonical runding;
+5. eksisterende Brands brukes bare ved reell Brand-kobling;
+6. Nature brukes bare ved reell natur;
+7. lås bare et 4- eller 6-sett som faktisk har dokumentert, bildeklart innhold.
+
+## 13. `rounds` og compatibility
 
 For nye/reviderte steder brukes `place.rounds`.
 
@@ -355,15 +370,15 @@ Eksempel:
 }
 ```
 
-## 15. Wonderkammer
+## 14. Wonderkammer
 
 Wonderkammer er legacy migreringsgrunnlag, ikke ny runding eller ny produksjonsmodell.
 
-Legacy-data klassifiseres etter faktisk innhold til Objects, Details, Spots, People, Works, Nature, På stedet, relations/NextUp, Historie eller Stories.
+Legacy-data klassifiseres etter faktisk innhold til Objects, Details, Spots, People, Nature, På stedet, relations/NextUp, Historie eller Stories. Personverk flyttes til relevant People-profil/popup; forestillinger/oppsetninger og andre tidsbundne produksjoner flyttes til Events i På stedet.
 
 Nye Wonderkammer-entries skal ikke produseres i sted-for-sted-arbeidet.
 
-## 16. Produksjonsgate
+## 15. Produksjonsgate
 
 En runding kan krysses av som ferdig når:
 
