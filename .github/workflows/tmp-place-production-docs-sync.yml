@@ -1,0 +1,139 @@
+name: TEMP place production docs sync
+
+on:
+  push:
+    branches:
+      - agent/place-production-checklist-20260728
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/place-production-checklist-20260728
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Patch documentation registry, index and category round priorities
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+
+          # Register the canonical one-place workflow.
+          reg_path = root / 'docs/documentation_registry.json'
+          reg = json.loads(reg_path.read_text())
+          checklist = 'docs/PLACE_PRODUCTION_CHECKLIST.md'
+          if checklist not in reg.get('priority_order', []):
+              anchor = 'docs/DATA_PRODUCTION_CONTRACT.md'
+              idx = reg['priority_order'].index(anchor) + 1 if anchor in reg['priority_order'] else len(reg['priority_order'])
+              reg['priority_order'].insert(idx, checklist)
+          if not any(d.get('path') == checklist for d in reg.get('documents', [])):
+              reg['documents'].append({
+                  'path': checklist,
+                  'status': 'canonical',
+                  'role': 'Bindende sted-for-sted produksjonsoppskrift, kontrollrekkefølge og sluttcheck for canonical Places',
+                  'owns': ['place_by_place_production_workflow'],
+                  'last_verified': '2026-07-28'
+              })
+          for d in reg.get('documents', []):
+              if d.get('path') in {
+                  'docs/PLACE_STANDARD.md',
+                  'docs/DATA_PRODUCTION_CONTRACT.md',
+                  'docs/PLACE_POPUP_SYSTEM.md',
+                  'data/places/README_place_rounds.md'
+              }:
+                  d['last_verified'] = '2026-07-28'
+          reg['last_verified'] = '2026-07-28'
+          reg_path.write_text(json.dumps(reg, ensure_ascii=False, indent=2) + '\n')
+
+          # Make the workflow discoverable from the human documentation map.
+          readme_path = root / 'docs/README.md'
+          text = readme_path.read_text()
+          needle = '6. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted\n'
+          insert = needle + '7. [`PLACE_PRODUCTION_CHECKLIST.md`](./PLACE_PRODUCTION_CHECKLIST.md) — canonical sted-for-sted produksjonsoppskrift og sluttcheck\n'
+          if 'PLACE_PRODUCTION_CHECKLIST.md' not in text:
+              if needle not in text:
+                  raise SystemExit('Fant ikke PLACE_STANDARD-linjen i docs/README.md')
+              text = text.replace(needle, insert, 1)
+              # Keep numbering readable for the two following place/people items.
+              text = text.replace('7. [`PLACE_POPUP_SYSTEM.md`', '8. [`PLACE_POPUP_SYSTEM.md`', 1)
+              text = text.replace('8. [`PEOPLE_PROFILE_CANONICAL.md`', '9. [`PEOPLE_PROFILE_CANONICAL.md`', 1)
+              text = text.replace('9. [`PEOPLE_POPUP_SYSTEM.md`', '10. [`PEOPLE_POPUP_SYSTEM.md`', 1)
+          text = text.replace('Sist kontrollert: **2026-07-27**', 'Sist kontrollert: **2026-07-28**', 1)
+          readme_path.write_text(text)
+
+          docs_entry = root / 'DOCS.md'
+          text = docs_entry.read_text()
+          anchor = '- Dataproduksjon: [`docs/DATA_PRODUCTION_CONTRACT.md`](./docs/DATA_PRODUCTION_CONTRACT.md)\n'
+          new_line = '- Sted-for-sted-produksjon: [`docs/PLACE_PRODUCTION_CHECKLIST.md`](./docs/PLACE_PRODUCTION_CHECKLIST.md)\n'
+          if new_line not in text:
+              if anchor not in text:
+                  raise SystemExit('Fant ikke dataproduksjonslinjen i DOCS.md')
+              text = text.replace(anchor, anchor + new_line, 1)
+          docs_entry.write_text(text)
+
+          # Keep runtime fallback priorities aligned with the full canonical category contract.
+          js_path = root / 'js/ui/place-rounds-visual-collections.js'
+          js = js_path.read_text()
+          js = js.replace(
+              '    by:          ["badges", "spots", "details", "people", "works", "objects", "brands", "nature"],',
+              '    by:          ["badges", "works", "spots", "details", "people", "objects", "brands", "nature"],'
+          )
+          js = js.replace(
+              '    naeringsliv: ["badges", "brands", "people", "objects", "spots", "works", "details", "nature"],',
+              '    naeringsliv: ["badges", "brands", "people", "objects", "spots", "details", "works", "nature"],'
+          )
+          if '    scenekunst:' not in js:
+              js = js.replace(
+                  '    religion:    ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],\n',
+                  '    religion:    ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],\n'
+                  '    scenekunst:  ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],\n'
+              )
+          if '    teknologi:' not in js:
+              js = js.replace(
+                  '    vitenskap:  ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],\n',
+                  '    vitenskap:  ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],\n'
+                  '    teknologi:  ["badges", "objects", "people", "spots", "details", "works", "brands", "nature"],\n'
+              )
+          if '    film_tv:' not in js:
+              js = js.replace(
+                  '    filosofi:   ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],\n',
+                  '    filosofi:   ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],\n'
+                  '    film_tv:    ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],\n'
+              )
+          js_path.write_text(js)
+
+          # Permanent regression check: no canonical category may silently fall back.
+          test_path = root / 'tests/place-rounds-visual-collections.test.mjs'
+          tests = test_path.read_text()
+          marker = 'all canonical place categories have explicit round priorities'
+          if marker not in tests:
+              tests += '''\n\ntest("all canonical place categories have explicit round priorities", () => {\n  const contract = JSON.parse(\n    fs.readFileSync(path.join(__dirname, "../data/categories/category_contract.json"), "utf8")\n  );\n  const window = createRuntime({ id: "p12", category: "historie" });\n  const priorities = window.HGVisualPlaceRounds.priorities;\n\n  for (const category of contract.runtimeCategories) {\n    assert.ok(Array.isArray(priorities[category]), `missing explicit round priority for ${category}`);\n    assert.equal(priorities[category][0], "badges", `${category} must keep Badges first`);\n    assert.equal(new Set(priorities[category]).size, priorities[category].length, `${category} has duplicate rounds`);\n  }\n});\n'''
+          test_path.write_text(tests)
+          PY
+
+      - name: Self-remove temporary workflow and commit result
+        shell: bash
+        run: |
+          rm .github/workflows/tmp-place-production-docs-sync.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/documentation_registry.json docs/README.md DOCS.md js/ui/place-rounds-visual-collections.js tests/place-rounds-visual-collections.test.mjs .github/workflows/tmp-place-production-docs-sync.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "docs: register place production workflow and complete round category coverage"
+          git push origin HEAD:agent/place-production-checklist-20260728
