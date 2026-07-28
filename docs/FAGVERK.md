@@ -1,8 +1,8 @@
 # History GO — canonical kontrakt for Fagverket og alle fagsider
 
-Status: **canonical og bindende fagverkskontrakt v5**  
-Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`  
-Gjelder: alle canonicale fag i `data/categories/category_contract.json`  
+Status: **canonical og bindende fagverkskontrakt v5**
+Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`
+Gjelder: alle canonicale fag i `data/categories/category_contract.json`
 Sist kontrollert: **2026-07-28**
 
 Dette er den **eneste samlede kontrakten** for hvordan History GO bygger, materialiserer, kvalitetssikrer og ferdigstiller fagsidene i Fagverket.
@@ -50,19 +50,24 @@ Fagspesifikke adaptere er tillatt når source-formatet faktisk avviker, men adap
 
 Arbeid med Fagverket skal starte i denne rekkefølgen:
 
-1. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — faktisitet, inspectable kilder, påstandssporing og forbud mot gjetting.
-2. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) og [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — canonical fag-ID-er, rekkefølge, visningsnavn og kategoriavgrensning.
-3. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — én universell fagmodell per fag og separate geografiske produksjonslag.
-4. **Dette dokumentet** — fagsidearkitektur, materialisering, status, produksjonsrekkefølge og ferdigkrav.
-5. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — den smale navigasjonskontrakten for portal, merkesider, fagsider, dypkoblinger og stedssider.
-6. [`../README/README.pensum.md`](../README/README.pensum.md) — forholdet mellom merke, fagkart, emner, quiz, Knowledge, learning log og pensumprogresjon.
-7. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til manifest-resolverte fagpakker og filstruktur.
-8. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — produksjon og integrasjon av canonical data.
-9. [`KNOWLEDGE_ARCHITECTURE.md`](./KNOWLEDGE_ARCHITECTURE.md), [`../data/knowledge/knowledge_system_policy_v1.json`](../data/knowledge/knowledge_system_policy_v1.json) og [`../data/knowledge/knowledge_unit_schema_v1.json`](../data/knowledge/knowledge_unit_schema_v1.json) — Knowledge-eierskap og kunnskapsenheter.
-10. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md), [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) og [`../data/quiz/quiz_knowledge_delivery_contract_v1.json`](../data/quiz/quiz_knowledge_delivery_contract_v1.json) — quizproduksjon, kategori-profiler og kunnskapsleveranse.
-11. [`FAGVERK_PLACE_DESIGN.md`](./FAGVERK_PLACE_DESIGN.md) — kategoridesign og bildekrav for fagverkets stedssider.
-12. [`TYPESCRIPT_FIRST_POLICY.md`](./TYPESCRIPT_FIRST_POLICY.md) og [`HISTORY_GO_TECHNICAL_ARCHITECTURE.md`](./HISTORY_GO_TECHNICAL_ARCHITECTURE.md) — språkvalg, runtime-eierskap og målarkitektur.
-13. [`../README/README_DEV.md`](../README/README_DEV.md) og [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — kjøring, validering, branch-, PR- og mergeflyt.
+1. [`documentation_registry.json`](./documentation_registry.json) — dokumentstatus, canonicalt eierskap og prioritet.
+2. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — faktisitet, inspectable kilder, påstandssporing og forbud mot gjetting.
+3. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) og [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — canonical fag-ID-er, rekkefølge, visningsnavn og kategoriavgrensning.
+4. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — én universell fagmodell per fag og separate geografiske produksjonslag.
+5. **Dette dokumentet** — fagsidearkitektur, materialisering, status, produksjonsrekkefølge og ferdigkrav.
+6. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — den smale navigasjonskontrakten for portal, merkesider, fagsider, dypkoblinger og stedssider.
+7. [`../README/README.pensum.md`](../README/README.pensum.md) — forholdet mellom merke, fagkart, emner, quiz, Knowledge, learning log og pensumprogresjon.
+8. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til manifest-resolverte fagpakker og filstruktur.
+9. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — produksjon og integrasjon av canonical data.
+10. [`KNOWLEDGE_ARCHITECTURE.md`](./KNOWLEDGE_ARCHITECTURE.md), [`../data/knowledge/knowledge_system_policy_v1.json`](../data/knowledge/knowledge_system_policy_v1.json) og [`../data/knowledge/knowledge_unit_schema_v1.json`](../data/knowledge/knowledge_unit_schema_v1.json) — Knowledge-eierskap og kunnskapsenheter.
+11. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md), [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) og [`../data/quiz/quiz_knowledge_delivery_contract_v1.json`](../data/quiz/quiz_knowledge_delivery_contract_v1.json) — quizproduksjon, kategori-profiler og kunnskapsleveranse.
+12. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — progresjons-read-model og grensen mot eide lagringskilder.
+13. [`FAGVERK_PLACE_DESIGN.md`](./FAGVERK_PLACE_DESIGN.md) — kategoridesign og bildekrav for fagverkets stedssider.
+14. [`PLACE_PRODUCTION_CHECKLIST.md`](./PLACE_PRODUCTION_CHECKLIST.md) og [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — produksjon og ferdigstilling av konkrete steder som fagsiden lenker til.
+15. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) og [`HISTORY_GO_PRODUCT_MAP.md`](./HISTORY_GO_PRODUCT_MAP.md) — overordnede ferdigbegreper og produktprioritet.
+16. [`TYPESCRIPT_FIRST_POLICY.md`](./TYPESCRIPT_FIRST_POLICY.md) og [`HISTORY_GO_TECHNICAL_ARCHITECTURE.md`](./HISTORY_GO_TECHNICAL_ARCHITECTURE.md) — språkvalg, runtime-eierskap og målarkitektur.
+17. [`../README/README_DEV.md`](../README/README_DEV.md) og [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — kjøring, validering, branch-, PR- og mergeflyt.
+
 
 Ved konflikt gjelder dokumentet som eier det aktuelle ansvarsområdet. Ingen lokal README, runtime-adapter eller fagside kan overstyre canonical kategori-, faktisitets-, fagfil-, quiz- eller Knowledge-kontrakt.
 
