@@ -1,175 +1,812 @@
-# History Go – fagverk, merker og egne stedssider
+# History GO — canonical kontrakt for Fagverket og alle fagsider
 
-Status: canonical politikk-integrasjon v4  
-Runtime: `js/fagverk-forside.js`, `js/politikk-fag-model.js`, `js/politikk-fagportal.js`, `js/fagverk.js`, `js/fagverk-canonical-integration.js`, `js/fagverk-place-canonical-integration.js`, `js/ui/place-learning-canonical.js`  
-Data: `data/fagverk/fagverk_portal.json`, `data/fag/politikk/politikk_runtime_manifest.json`, canonical politikkfiler, `data/fagverk/fagverk_registry.json`, `data/fagverk/<fag>/<kapittel>.json`  
-Sider: `fagverk-forside.html`, `data/fag/politikk/merke_politikk.html`, `fagverk.html?subject=politikk`, `fagverk-sted.html?place=<place_id>`
+Status: **canonical og bindende fagverkskontrakt v5**  
+Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`  
+Gjelder: alle canonicale fag i `data/categories/category_contract.json`  
+Sist kontrollert: **2026-07-28**
 
-## Én fagmodell, flere tydelige sideroller
+Dette er den **eneste samlede kontrakten** for hvordan History GO bygger, materialiserer, kvalitetssikrer og ferdigstiller fagsidene i Fagverket.
 
-History Go skal ikke bruke «fagverk», «merke» og «fag» som navn på den samme flaten.
+Dokumentet eier:
+
+- den felles fagsidearkitekturen;
+- skillet mellom fagverkforside, merkeside, fagside og stedsside;
+- den normaliserte runtime-modellen som alle fag skal vises gjennom;
+- produksjonsrekkefølgen fra planlagt fag til fullverdig læreverk;
+- statusbetydningene for teknisk materialisering og redaksjonell ferdigstillelse;
+- minimumskravene til fagområder, emner, metoder, kapitler, progresjon, steder, kilder og QA;
+- PR- og batchreglene for å ferdigstille alle fagsidene uten parallelle systemer.
+
+Dokumentet eier **ikke** selve fagdefinisjonene, pensuminnholdet, quizreglene, Knowledge-lagringen, kategori-ID-ene eller faktapåstandene. Disse eies av kildene som er listet nedenfor.
+
+---
+
+## 1. Absolutt hovedregel
+
+> **History GO skal ha én felles fagsidemotor, én normalisert runtime-modell og én manifest-resolvert canonical fagpakke per fag.**
+
+Det skal ikke bygges én separat teknisk fagside per kategori, og politikksiden skal ikke kopieres og omskrives atten ganger.
+
+Alle fag åpnes gjennom samme sidekontrakt:
+
+```text
+fagverk.html?subject=<subject_id>
+```
+
+Eksempler:
+
+```text
+fagverk.html?subject=natur
+fagverk.html?subject=historie
+fagverk.html?subject=teknologi
+fagverk.html?subject=kunst
+```
+
+Fagspesifikke adaptere er tillatt når source-formatet faktisk avviker, men adapteren skal ende i samme normaliserte modell og samme semantiske UI.
+
+---
+
+## 2. Bindende leserekkefølge og dokumenteierskap
+
+Arbeid med Fagverket skal starte i denne rekkefølgen:
+
+1. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — faktisitet, inspectable kilder, påstandssporing og forbud mot gjetting.
+2. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) og [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — canonical fag-ID-er, rekkefølge, visningsnavn og kategoriavgrensning.
+3. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — én universell fagmodell per fag og separate geografiske produksjonslag.
+4. **Dette dokumentet** — fagsidearkitektur, materialisering, status, produksjonsrekkefølge og ferdigkrav.
+5. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — den smale navigasjonskontrakten for portal, merkesider, fagsider, dypkoblinger og stedssider.
+6. [`../README/README.pensum.md`](../README/README.pensum.md) — forholdet mellom merke, fagkart, emner, quiz, Knowledge, learning log og pensumprogresjon.
+7. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — operativ guide til manifest-resolverte fagpakker og filstruktur.
+8. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — produksjon og integrasjon av canonical data.
+9. [`KNOWLEDGE_ARCHITECTURE.md`](./KNOWLEDGE_ARCHITECTURE.md), [`../data/knowledge/knowledge_system_policy_v1.json`](../data/knowledge/knowledge_system_policy_v1.json) og [`../data/knowledge/knowledge_unit_schema_v1.json`](../data/knowledge/knowledge_unit_schema_v1.json) — Knowledge-eierskap og kunnskapsenheter.
+10. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md), [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) og [`../data/quiz/quiz_knowledge_delivery_contract_v1.json`](../data/quiz/quiz_knowledge_delivery_contract_v1.json) — quizproduksjon, kategori-profiler og kunnskapsleveranse.
+11. [`FAGVERK_PLACE_DESIGN.md`](./FAGVERK_PLACE_DESIGN.md) — kategoridesign og bildekrav for fagverkets stedssider.
+12. [`TYPESCRIPT_FIRST_POLICY.md`](./TYPESCRIPT_FIRST_POLICY.md) og [`HISTORY_GO_TECHNICAL_ARCHITECTURE.md`](./HISTORY_GO_TECHNICAL_ARCHITECTURE.md) — språkvalg, runtime-eierskap og målarkitektur.
+13. [`../README/README_DEV.md`](../README/README_DEV.md) og [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — kjøring, validering, branch-, PR- og mergeflyt.
+
+Ved konflikt gjelder dokumentet som eier det aktuelle ansvarsområdet. Ingen lokal README, runtime-adapter eller fagside kan overstyre canonical kategori-, faktisitets-, fagfil-, quiz- eller Knowledge-kontrakt.
+
+---
+
+## 3. Entydige sideroller
+
+Fagverket består av fire forskjellige produktflater:
 
 ```text
 FAGVERKFORSIDEN
-alle canonicale fagområder
+alle canonicale fag
         │
         ├── MERKESIDEN
-        │   badge, undermerker, poeng, nivå, quiz og steder
+        │   spill, badge, undermerker, poeng, nivå, quiz og steder
         │
         └── FAGSIDEN
-            pensum, fagkart, emner, metoder og lærekapitler
+            fagstruktur, pensum, fagområder, emner, metoder og lærekapitler
                     │
-                    └── STEDSSIDENE
-                        konkrete steder koblet gjennom emne_ids og underbadge_ids
+                    └── STEDSSIDEN
+                        konkret sted koblet til fag gjennom canonical ID-er
 ```
 
-De to fagspesifikke inngangene kan bruke de samme canonicale dataene, men de har forskjellige oppgaver og forskjellige adresser.
+### 3.1 Fagverkforsiden
 
-## Fagverkforsiden
-
-`fagverk-forside.html` er målet for **Fagverket** i hovedmenyen. Headeren skal aldri sende brukeren direkte til politikk eller et annet enkeltfag.
-
-Forsiden leser:
-
-- canonical fagrekkefølge og visningsnavn fra `data/categories/category_contract.json`;
-- navigasjonsmål og materialiseringsstatus fra `data/fagverk/fagverk_portal.json`;
-- navn, ikon, bilde, beskrivelse, nivåer og poeng fra badgefilene og brukerens merit-lagring.
-
-Hvert fagkort skiller eksplisitt mellom:
-
-- **Åpne merket** – spill- og progresjonssiden;
-- **Åpne faget** – læresiden.
-
-En planlagt fagside skal vises som ikke-klikkbar status. Portalen skal aldri sende brukeren til en side som bare ender i «ukjent fag».
-
-## Politikkmerket
-
-`data/fag/politikk/merke_politikk.html` er merkesiden for Politikk & samfunn.
-
-Den viser:
-
-- politikkmerket, poeng og nivå;
-- undermerker;
-- politikkquiz og politikksteder;
-- emne- og fagområdedekning som progresjonsoversikt;
-- tydelige lenker videre til politikkfaget.
-
-Siden kan vise hvordan merket er koblet til canonicale fagområder og emner. Den er likevel ikke selve fagsiden og skal merkes som **Politikkmerket** i toppfelt, sidetittel og navigasjon.
-
-## Politikkfaget
-
-`fagverk.html?subject=politikk` er fagsiden og læreverket for politikk.
-
-Den har to nivåer:
-
-1. Canonicale fagområdesider finnes dynamisk for alle tretten politikkdomener.
-2. Fullverdige lærekapitler gir sammenhengende, redigert lærestoff der kapitler er materialisert.
-
-Et canonicalt emne kan åpnes med:
+Adresse:
 
 ```text
-fagverk.html?subject=politikk&domain=<domain_id>&emne=<emne_id>
+fagverk-forside.html
 ```
 
-De fullverdige kapitlene beholder ingress, forkunnskapsspørsmål, læringsmål, sammenhengende seksjoner, arbeidseksempler, misoppfatninger, begreper, anvendelsesoppgaver, kontrollspørsmål, selvstendige stedssider og inspectable kilder.
+Rolle:
 
-`emner.html` beholder rollen som brukerens tverrfaglige progresjonsoversikt. Det er ikke en erstatning for læreverket.
+- felles inngang fra headerens **Fagverket**;
+- viser alle canonicale fag i canonical rekkefølge;
+- skiller eksplisitt mellom **Åpne merket** og **Åpne faget**;
+- viser ikke en klikkbar fagsidelenke før siden er teknisk materialisert.
 
-## Eierforhold
+### 3.2 Merkesiden
 
-### Kategorikontrakten eier
+Rolle:
 
-- canonical fag-ID-er;
-- canonical rekkefølge;
-- visningsnavn for fagene.
+- fagets spill- og progresjonsidentitet;
+- badge, undermerker, poeng og nivå;
+- quizaktivitet og relevante steder;
+- kan vise fagområdedekning som progresjonsoversikt;
+- skal lenke tydelig videre til fagsiden når den finnes.
 
-### Fagverkportalregisteret eier
+Merkesiden er ikke læreverket og skal ikke omtales som fagsiden.
 
-- lenken til hvert fags merkeside;
-- lenken til materialiserte fagsider;
-- statusen `materialized` eller `planned`.
+### 3.3 Fagsiden
 
-Registeret skal ikke kopiere pensum, emner, badgeinnhold eller progresjon.
+Adresse:
 
-### Badgefilen eier
+```text
+fagverk.html?subject=<subject_id>
+```
 
-- merkenavn, ikon, bilde og farger;
-- beskrivelse;
-- poenggrenser og nivåer;
-- listen over undermerke-ID-er.
+Rolle:
 
-### Canonicale politikkfiler eier
+- presenterer den universelle fagmodellen;
+- viser fagområder, emner, begreper, metoder og progresjon;
+- viser redigerte lærekapitler der de finnes;
+- kobler videre til stedssider uten å kopiere stedets innhold inn i faget.
 
-- tretten fagområder;
-- 123 emner;
-- emnetitler, definisjoner og begreper;
-- metoder, hooks og mappinger;
-- quiz- og kildekrav.
+### 3.4 Stedssiden
 
-### Runtime-manifestet eier
-
-- filpekere til source of truth;
-- koblingen mellom undermerker og fagområder;
-- koblingen mellom canonicale fagområder/emner og eksisterende lærekapitler;
-- canonicale ruter mellom politikkmerket, politikkfaget, progresjon og stedssider.
-
-### Fagverkregisteret eier
-
-- hvilke ferdigskrevne lærekapitler som finnes;
-- stedsspesifikke ekstra emne-ID-er;
-- kuraterte linser og spørsmål for enkelte steder.
-
-Fagverkregisteret skal ikke håndkopiere emnetitler, definisjoner eller begrepslister fra politikkfaget.
-
-## Egne stedssider
-
-Alle canonicale steder har en stabil sideadresse:
+Adresse:
 
 ```text
 fagverk-sted.html?place=<place_id>
 ```
 
-For politikksteder brukes begge koblingene:
+Rolle:
+
+- viser hvordan ett konkret sted kobles til fag, undermerker og emner;
+- bruker canonical `underbadge_ids`, `emne_ids`, steder, personer, Works, kilder og andre eide systemer;
+- er selvstendig og kan være tverrfaglig;
+- skal ikke reduseres til et kopiert «casekapittel» i én fagside.
+
+---
+
+## 4. Source of truth og eiermatrise
+
+| Ansvar | Autoritativ kilde |
+|---|---|
+| Canonical fag-ID-er, rekkefølge og labels | `data/categories/category_contract.json` |
+| Fagets aktive filpekere | `data/fag/fag_manifest.json` |
+| Universell fagstruktur | fagets `pensum`, `emner`, `fagkart`, `methods` og tilhørende canonical filer |
+| Merkenavn, bilde, ikon, nivåer og undermerker | `data/badges/<subject_id>.json` og aktive badgekilder |
+| Fagverkportalens navigasjonsmål | `data/fagverk/fagverk_portal.json` |
+| Ferdigskrevne lærekapitler | `data/fagverk/fagverk_registry.json` og `data/fagverk/<subject_id>/<chapter_id>.json` |
+| Fagsidens tekniske renderer | `fagverk.html` og felles Fagverk-runtime |
+| Stedssider | `fagverk-sted.html`, canonical place-data og fagverkets stedssideruntime |
+| Brukerens Knowledge | canonical Knowledge-policy, schema og runtime |
+| Quizregler og quizleveranse | canonical quizkontrakter og aktive quizmanifester |
+| Faktapåstander og kilder | canonical source-data og inspectable kildeevidens |
+| Dokumentstatus og prioritet | `docs/documentation_registry.json` |
+
+`data/fagverk/fagverk_portal.json` skal bare eie navigasjon og teknisk materialiseringsstatus. Det skal aldri kopiere pensum, emner, metoder, badgeinnhold eller brukerprogresjon.
+
+`data/fag/fag_manifest.json` er filresolveren. Runtime skal ikke opprette en parallell hardkodet liste over fagfilstier.
+
+---
+
+## 5. Canonical fagomfang
+
+Fagsidemotoren skal støtte alle fag-ID-er som til enhver tid finnes i `category_contract.json` og `fag_manifest.json`.
+
+Ved innføringen av denne kontrakten omfatter programmet:
 
 ```text
-underbadge_ids → merke, undermerker og spillprogresjon
-emne_ids       → fagområder, emner, begreper, quiz og læreverk
+by
+historie
+kunst
+litteratur
+media
+musikk
+naeringsliv
+natur
+politikk
+psykologi
+religion
+scenekunst
+sport
+subkultur
+vitenskap
+teknologi
+filosofi
+film_tv
 ```
 
-Stedssiden viser artikkel, relevante undermerker, emneprogresjon, faglige linser, canonicale fagområder, fullverdige lærekapitler, emner, begreper, kilder og lenke tilbake til kartet.
+Denne listen er en kontrollert baseline, ikke en ny kategori-sannhetskilde. Ved endring gjelder `category_contract.json`, kategori-auditen og fagmanifestet.
 
-Et sted skal ikke bygges inn som et kapittel eller et «case» i selve faget. Fagområdet kan lenke til stedet, men stedets historie og tverrfaglige perspektiver eies av stedets egen side.
+`popkultur`/`populaerkultur` er ikke en egen toppkategori når kategorikontrakten behandler feltet som underfelt eller legacy-alias. Fagsidemotoren skal ikke gjeninnføre avviklede toppdomener gjennom lokal hardkoding.
 
-## Stedspopup
+---
 
-Seksjonen **Fag og begreper** åpner alltid stedets egen fagverkside. For politikksteder viser popupen også relevante undermerker, canonicale fagområder, fullverdige lærekapitler, emner og begreper. Tilknytningskort og separate kildelenker beholder den eksisterende interaksjonsmodellen.
+## 6. Felles runtimearkitektur
 
-## Emnelaster
-
-Den felles loaderen skal peke politikk direkte til:
+Fagsiden skal bygges som denne kjeden:
 
 ```text
-data/fag/politikk/emner_politikk_canonical_v4_5.json
+subject fra URL
+      ↓
+data/categories/category_contract.json
+      ↓
+data/fagverk/fagverk_portal.json
+      ↓
+data/fag/fag_manifest.json
+      ↓
+subject-adapter
+      ↓
+normalisert fagmodell
+      ↓
+felles renderer
+      ↓
+fagområde, emne, kapittel, progresjon og stedskoblinger
 ```
 
-Både `js/emnerLoader.ts` og `dist/web/emnerLoader.js` skal være synkronisert.
+### 6.1 URL-gate
 
-## QA
+`subject` skal:
 
-```bash
-node --check js/fagverk-forside.js
-node --check js/merke-fallback.js
-node --check js/politikk-fag-model.js
-node --check js/politikk-fagportal.js
-node --check js/fagverk.js
-node --check js/fagverk-canonical-integration.js
-node --check js/fagverk-place-canonical-integration.js
-node --check js/ui/place-learning-canonical.js
-node --test tests/fagverk-portal.test.mjs
-node --test tests/politikk-fag-integration.test.mjs
-node --test tests/fagverk-content.test.mjs
-node --test tests/fagverk-place-pages.test.mjs
-node --test tests/fagverk-link-audit.test.mjs
-node --test tests/place-learning-surface.test.js
-node tests/header-search-menu.test.js
+- være en eksplisitt canonical ID;
+- finnes i kategorikontrakten;
+- finnes i fagmanifestet;
+- være markert teknisk materialisert før portalen tilbyr lenken;
+- feile tydelig og uten falskt fallbackinnhold når kontrakten ikke er oppfylt.
+
+### 6.2 Manifest-first
+
+Runtime skal først lese `data/fag/fag_manifest.json` og deretter de filene manifestet peker til.
+
+Forbudt:
+
+- hardkodede filstier per fag i hovedrendereren;
+- kopierte fagdata i `data/fagverk/`;
+- egne komplette HTML-filer per kategori;
+- skjulte aliaser som omgår kategorikontrakten;
+- fallback til politikkdata når et annet fag mangler filer.
+
+### 6.3 Adaptere
+
+Adaptere normaliserer reelle schemaforskjeller. De skal ikke endre faglig betydning eller skape manglende innhold.
+
+Følgende inputfamilier må minst håndteres:
+
+1. **Standard canonical fagpakker** — pensum, emner, fagkart og methods i den etablerte canonicale modellen.
+2. **Foundation-pakker** — aktive v1-fag med mindre faglig omfang, men samme presentasjonskontrakt.
+3. **By-pakken** — eksisterende modul-/kursstruktur og compatibility-felt som må oversettes eksplisitt.
+4. **Teknologi-pakken** — canonical vitenskapelig pakke med egne moduler og utvidet dekningsmodell.
+
+Politikkadapteren kan beholdes under migrering, men politikk skal være en referanseimplementasjon, ikke en permanent særmotor.
+
+---
+
+## 7. Normalisert fagmodell
+
+Alle adaptere skal levere samme semantiske modell til rendereren:
+
+```js
+{
+  subject: {
+    id,
+    title,
+    description,
+    badge,
+    routes
+  },
+  summary: {
+    domainCount,
+    emneCount,
+    methodCount,
+    mappingCount,
+    hookCount
+  },
+  domains: [],
+  emners: [],
+  methods: [],
+  mappings: [],
+  chapters: [],
+  places: [],
+  progress: {}
+}
 ```
+
+### 7.1 Minimumsfelt
+
+`subject` skal gi stabil identitet og ruter.
+
+`domains` skal minst kunne gi:
+
+- canonical ID;
+- label;
+- definisjon eller faglig beskrivelse;
+- emne-ID-er;
+- relevante metode-ID-er når source har dem.
+
+`emners` skal minst kunne gi:
+
+- canonical `emne_id`;
+- `subject_id`;
+- fagområde/domain;
+- tittel;
+- definisjon;
+- hvorfor emnet betyr noe;
+- begreper;
+- faglige spørsmål eller tilsvarende analyseinnganger når source har dem.
+
+`methods` skal minst kunne gi:
+
+- canonical metode-ID;
+- navn;
+- beskrivelse eller formål;
+- gyldige koblinger til emner/fagområder når source definerer dem.
+
+`chapters` skal bare inneholde faktisk materialiserte, registerførte lærekapitler.
+
+`progress` er avledet brukerstatus. Det er aldri del av de universelle fagfilene.
+
+### 7.2 Ingen språklig utfylling
+
+Adapter eller renderer skal ikke konstruere definisjoner, metodeforklaringer, emneinnhold eller kilder når source mangler dem.
+
+Manglende felt skal:
+
+- utelates;
+- vises som ærlig manglende status når produktet trenger en statusflate;
+- aldri fylles med generell, plausibel eller politikkavledet tekst.
+
+---
+
+## 8. Fast innholdsstruktur på alle fagsider
+
+Alle teknisk materialiserte fagsider skal ha samme semantiske hovedstruktur.
+
+### 8.1 Fagets identitet
+
+Skal vise:
+
+- fagets canonicale navn;
+- fagets badgeidentitet;
+- kort fagbeskrivelse fra eiet source;
+- antall fagområder, emner, metoder, mappings og hooks når de finnes.
+
+### 8.2 Din progresjon
+
+Skal vise avledet status for:
+
+- poeng og nivå;
+- fullførte eller dekkede emner;
+- dekning per fagområde;
+- relevante fullførte quizer;
+- eventuelle Knowledge-signaler som den canonicale progresjonsmodellen faktisk støtter.
+
+Fagsiden skal ikke opprette ny progresjonsstorage.
+
+### 8.3 Fagområder
+
+Skal vise alle canonicale fagområder i source-definert rekkefølge med:
+
+- navn;
+- definisjon eller faglig avgrensning;
+- antall emner;
+- relevante metoder;
+- brukerens beregnede dekning.
+
+### 8.4 Emnesider
+
+Canonical dypkobling:
+
+```text
+fagverk.html?subject=<subject_id>&domain=<domain_id>&emne=<emne_id>
+```
+
+Emnesiden skal, når source støtter det, vise:
+
+- definisjon;
+- hvorfor emnet betyr noe;
+- kjernebegreper;
+- nøkkelspørsmål;
+- metoder;
+- konflikter, akser eller analytiske skiller;
+- relevante kapitler;
+- relevante steder;
+- relevant quiz- og Knowledge-progresjon.
+
+### 8.5 Metoder
+
+Metoder skal ikke være en løs navneliste. Presentasjonen skal forklare, fra canonical source:
+
+- hva metoden undersøker;
+- hva slags materiale eller observasjon den bruker;
+- hvilke fagområder og emner den er koblet til;
+- hvilke konkrete steder den kan anvendes på når dokumenterte mappings finnes.
+
+### 8.6 Lærekapitler
+
+Fullverdige kapitler skal være redigerte læringstekster, ikke renderer-genererte sammendrag av emnefilene.
+
+### 8.7 Steder å utforske
+
+Fagsiden kan lenke til steder som er koblet gjennom canonicale fag- og emne-ID-er.
+
+Stedet skal åpnes på egen side. Fagsiden skal ikke kopiere hele stedets historie, popupDesc, Stories eller tverrfaglige innhold inn i ett fagkapittel.
+
+---
+
+## 9. Lærekapittelkontrakt
+
+Et materialisert lærekapittel skal ligge i den eide fagverkstrukturen og registreres i `data/fagverk/fagverk_registry.json`.
+
+Et fullverdig kapittel skal minst ha:
+
+- stabil `chapter_id`;
+- `subject_id`;
+- ett primært canonicalt fagområde;
+- eksplisitte `emne_ids`;
+- tittel og ingress;
+- forkunnskapsspørsmål;
+- læringsmål;
+- flere sammenhengende, redigerte seksjoner;
+- arbeidseksempler;
+- vanlige misoppfatninger;
+- begreper;
+- anvendelsesoppgaver;
+- kontrollspørsmål eller selvtest;
+- relevante stedssider;
+- inspectable kilder;
+- påstandssporing som tilfredsstiller `FACTUALITY_CONTRACT.md`.
+
+### 9.1 Kapitler skal ikke kopiere canonicale emneobjekter
+
+Fagfilen eier emnedefinisjonen. Kapittelet skal forklare, sammenstille, eksemplifisere og lære bort.
+
+Forbudt:
+
+- å kopiere hele emneobjekter inn i kapittelfilen;
+- å opprette nye lokale emne-ID-er bare for kapittelet;
+- å bruke renderer-generert tekst som redigert lærestoff;
+- å legge inn påstander uten inspectable kilde;
+- å bruke steder som filler for å nå et ønsket antall eksempler.
+
+---
+
+## 10. To uavhengige statusakser
+
+Teknisk materialisering og redaksjonell ferdigstillelse er forskjellige ting og skal aldri blandes.
+
+### 10.1 Navigasjonsstatus
+
+Eies av `data/fagverk/fagverk_portal.json`.
+
+Gyldige betydninger:
+
+- `planned` — fagsiden tilbys ikke som klikkbar lenke;
+- `materialized` — den generelle fagsidemotoren kan laste og vise faget uten feil.
+
+`materialized` betyr ikke at læreverket er ferdigskrevet.
+
+### 10.2 Redaksjonell status
+
+Skal måle innholdets faktiske dybde:
+
+- `not_started` — ingen godkjent strukturell fagsidegjennomgang;
+- `structure_ready` — alle canonicale fagområder, emner og metoder kan vises korrekt;
+- `chapters_in_progress` — strukturen er komplett, men ikke alle fagområder har fullverdige kapitler;
+- `complete` — alle ferdigkrav i denne kontrakten er oppfylt.
+
+Redaksjonell status skal materialiseres i et eget maskinlesbart statusregister når implementasjonsprogrammet starter. Den skal ikke presses inn i portalens navigasjonsfelt eller badgefilene.
+
+### 10.3 Forbudte statuspåstander
+
+Det er ikke lov å kalle et fag:
+
+- komplett fordi URL-en åpnes;
+- kildeverifisert fordi schema og CI er grønne;
+- heldekkende fordi det finnes mange lokale steder;
+- ferdig fordi alle emner vises som kort;
+- et læreverk fordi rendereren kan gjengi definisjoner.
+
+---
+
+## 11. Krav til `structure_ready`
+
+Et fag kan først settes til `structure_ready` når:
+
+1. `subject_id` finnes i kategori- og fagmanifestkontrakten;
+2. alle required manifestpekere finnes og kan lastes;
+3. fagets adapter leverer den normaliserte modellen;
+4. alle canonicale fagområder vises i riktig rekkefølge;
+5. alle aktive emner vises og peker til gyldig fagområde;
+6. alle viste metode-ID-er finnes;
+7. mappings peker bare til eksisterende objekter;
+8. fagets badge- og merkesidelenke løses gjennom eide registre;
+9. progresjon leses uten ny lokal storage;
+10. dypkobling til fagområde og emne fungerer;
+11. sideinnholdet inneholder ingen politikkspesifikk resttekst;
+12. siden har tydelig lenke tilbake til fagverkforsiden og riktig merkeside;
+13. alle permanente tester og audits er grønne.
+
+---
+
+## 12. Krav til `complete`
+
+Et fag kan først settes til `complete` når alle krav til `structure_ready` er oppfylt og:
+
+1. hvert canonicalt fagområde har minst ett fullverdig, redaksjonelt godkjent lærekapittel;
+2. kapitlene dekker fagområdets sentrale aktive emner på en dokumentert måte;
+3. alle faktapåstander har inspectable kildegrunnlag;
+4. hvert kapittel har læringsmål, eksempler, misoppfatninger, oppgaver og kontrollspørsmål;
+5. metodepresentasjonen er faglig konkret, ikke bare en navneliste;
+6. relevante stedskoblinger er canonicale og kildebelagte;
+7. quiz- og Knowledge-koblinger bruker eksisterende kontrakter og ID-er;
+8. full fag-, link-, schema-, TypeScript-, browser- og dokumentasjonsaudit passerer;
+9. det finnes ingen uavklarte duplikater, døde ruter, ukjente IDs eller lokale fagkopier;
+10. statusregisteret er synkronisert med faktisk materialisert innhold.
+
+`complete` er en streng publiseringsstatus, ikke en fremdriftsmarkør.
+
+---
+
+## 13. Implementasjonsprogram
+
+Programmet skal gjennomføres i faste faser.
+
+### Fase 0 — baseline og inventar
+
+Før runtime endres:
+
+- les kategori- og fagmanifestet;
+- inventer alle aktive fagpakker og schemafamilier;
+- registrer required og optional sourcefelt per fag;
+- identifiser politikkspesifikk hardkoding;
+- mål hvilke fag som allerede kan normaliseres;
+- dokumenter manglende filer, ugyldige referanser og schemaavvik;
+- opprett maskinlesbar strukturell og redaksjonell status uten å markere utestede fag som klare.
+
+Leveranse: én reproduserbar baseline-rapport og permanent audit, ikke en håndskrevet statusliste.
+
+### Fase 1 — generell fagsidemotor
+
+Bygg:
+
+- generell subject-resolver;
+- manifest-first loader;
+- adaptergrense;
+- normalisert fagmodell;
+- generell renderer;
+- generell badge-/merkesideresolver;
+- generelle dypkoblinger;
+- feilflate som aldri faller tilbake til politikkinnhold;
+- permanent all-subject audit.
+
+Politikk skal fortsette å fungere gjennom den nye grensen før andre fag materialiseres.
+
+### Fase 2 — fire representativt ulike piloter
+
+Pilotene skal dekke de viktigste schemafamiliene:
+
+1. `natur` — standard canonical v4.5-fagpakke;
+2. `religion` — foundation-pakke;
+3. `by` — modul-/kursbasert compatibility-pakke;
+4. `teknologi` — utvidet vitenskapelig pakke.
+
+Pilotfasen er godkjent først når alle fire bruker samme renderer uten fagspesifikke DOM-kopier.
+
+### Fase 3 — strukturell materialisering av alle fag
+
+De resterende fagene materialiseres ett fag om gangen.
+
+For hvert fag:
+
+- adapter og normalisering;
+- strukturell audit;
+- UI- og lenkekontroll;
+- oppdatering fra `planned` til `materialized` først etter grønn gate;
+- `structure_ready` bare når alle krav i kapittel 11 er oppfylt.
+
+Det skal ikke åpnes en stor masse-PR som setter alle fag til materialized uten individuell evidens.
+
+### Fase 4 — redaksjonell kapittelproduksjon
+
+Arbeidet gjøres fag for fag og fagområde for fagområde:
+
+```text
+fagområde
+  → kapittelbrief
+  → claims og kilder
+  → redigert lærestoff
+  → emne- og metodekoblinger
+  → steder og eksempler
+  → oppgaver og kontrollspørsmål
+  → audit
+  → merge
+```
+
+Ett fag skal få sammenhengende fremdrift før produksjonen spres tilfeldig over alle kategorier.
+
+### Fase 5 — fullføring og frysing
+
+Når et fag når `complete`:
+
+- materialiser full dekningsrapport;
+- frys et eksplisitt inventar av fagområder, emner, metoder og kapitler;
+- koble status til permanent CI;
+- behold mulighet for kildekorrigering og faglig revisjon;
+- unngå at en kvalitetsfrys blir tolket som garanti mot fremtidige feil.
+
+---
+
+## 14. Fag-for-fag arbeidskort
+
+Kopier dette inn i hver strukturelle fag-PR:
+
+```text
+Fag: <subject_id>
+
+[ ] Finnes i category_contract.json
+[ ] Finnes i data/fag/fag_manifest.json
+[ ] Badgekilde og merkeside er løst
+[ ] Pensum kan lastes
+[ ] Emner kan lastes
+[ ] Fagkart kan lastes
+[ ] Methods kan lastes
+[ ] Eventuelle mappings/hooks kan lastes
+[ ] Schemafamilie er identifisert
+[ ] Adapter leverer normalisert modell
+[ ] Alle fagområder er med
+[ ] Alle aktive emner har gyldig fagområde
+[ ] Alle viste metode-ID-er finnes
+[ ] Ingen politikkspesifikk resttekst
+[ ] Fagforside fungerer
+[ ] Domain-dypkobling fungerer
+[ ] Emne-dypkobling fungerer
+[ ] Riktig merkesidelenke fungerer
+[ ] Stedssider åpnes separat
+[ ] Progresjon bruker eksisterende read-model
+[ ] Portalstatus er fortsatt planned før grønn gate
+[ ] Permanente tester og audits er grønne
+[ ] Portalstatus settes til materialized i samme godkjente PR
+[ ] Redaksjonell status er ærlig
+```
+
+Kopier dette inn i hver kapittel-PR:
+
+```text
+Fag: <subject_id>
+Fagområde: <domain_id>
+Kapittel: <chapter_id>
+
+[ ] Canonical emne-ID-er er valgt
+[ ] Kapittelbrief er godkjent
+[ ] Faktapåstander er registrert og kildebelagt
+[ ] Avviste/usikre detaljer er dokumentert
+[ ] Læringsmål er konkrete
+[ ] Sammenhengende seksjoner er redigert
+[ ] Arbeidseksempler er dokumenterte
+[ ] Misoppfatninger er faglig reelle
+[ ] Begreper peker til canonicale objekter
+[ ] Oppgaver og kontrollspørsmål er med
+[ ] Steder er relevante og canonicale
+[ ] Kapittelet er registrert i fagverkregisteret
+[ ] Ingen emneobjekter er kopiert inn
+[ ] Kilde- og fagverkaudit er grønn
+```
+
+---
+
+## 15. PR- og batchregel
+
+### 15.1 Fundament
+
+Den generelle motoren, adaptergrensen, statusmodellen og permanent audit skal inn i én avgrenset foundation-PR.
+
+### 15.2 Strukturelle fag-PR-er
+
+Standard er ett fag per PR.
+
+En PR skal ikke kombinere:
+
+- flere urelaterte fagadaptere;
+- stor redaksjonell kapittelproduksjon;
+- endringer i kategoriarkitektur;
+- quizproduksjon for mange steder;
+- redesign av merkesidene.
+
+### 15.3 Kapittel-PR-er
+
+Standard er ett fagområde eller en liten sammenhengende kapittelgruppe per PR.
+
+Hver PR skal ha:
+
+- tydelig source of truth;
+- eksakt filinventar;
+- kilde- og claimoversikt;
+- dokumentert dekningsendring;
+- ren diff;
+- relevante tester;
+- låst head-SHA ved merge.
+
+### 15.4 Ingen falsk fremdrift
+
+Det er ikke fremdrift å:
+
+- opprette tomme kapittelfiler;
+- vise emnekort uten fungerende dypkobling;
+- sette status til materialized før siden kan lastes;
+- duplisere politikkrendereren;
+- skrive generiske introduksjoner uten kilder;
+- øke coverage-tall ved å senke kravene.
+
+---
+
+## 16. Permanente kvalitetsporter
+
+Fagverk-workflowen skal etter hvert håndheve minst:
+
+### 16.1 Kategori og manifest
+
+- alle canonicale fag finnes i fagmanifestet;
+- ingen ukjente eller avviklede toppdomener materialiseres;
+- alle required filpekere finnes;
+- `subject_id` stemmer med manifestnøkkelen;
+- badge- og portalreferanser er gyldige.
+
+### 16.2 Normalisert modell
+
+- alle adaptere leverer samme kontrakt;
+- domain- og emne-ID-er er unike;
+- alle aktive emner har gyldig fagområde;
+- alle metode- og mappingreferanser kan løses;
+- ingen adapter produserer oppdiktet fallbacktekst.
+
+### 16.3 Sider og lenker
+
+- alle `materialized` fag åpnes;
+- alle `planned` fag er ikke-klikkbare i portalen;
+- merkeside og fagside er forskjellige mål;
+- domain- og emnedypkoblinger virker;
+- stedssider åpnes separat;
+- ingen fagside har hardkodet politikkmerkeside.
+
+### 16.4 Kapitler
+
+- alle registrerte kapittelfiler finnes;
+- alle chapter-, subject-, domain- og emne-ID-er er gyldige;
+- required læringsfelt finnes;
+- inspectable kilder finnes;
+- `complete` krever full fagområdedekning;
+- emnedefinisjoner og begrepslister er ikke håndkopiert som parallelle sannheter.
+
+### 16.5 Dokumentasjon
+
+- dette dokumentet finnes og beholder canonical status;
+- navigasjonsdokumentet peker hit for full produksjonsarkitektur;
+- dokumentasjonskartet og den korte repo-inngangen peker hit;
+- alle eksplisitte dokument- og datareferanser i denne kontrakten finnes;
+- politikkspesifikk implementasjonsstatus kan ikke igjen bli omtalt som kontrakt for alle fag.
+
+---
+
+## 17. Nåværende baseline
+
+Ved innføringen av denne kontrakten er:
+
+- fagverkforsiden materialisert;
+- merke- og fagsider skilt som produktroller;
+- politikk teknisk materialisert som fagside;
+- de øvrige fagene fortsatt `planned` i portalregisteret;
+- politikkens runtime delvis fagspesifikk;
+- bare et begrenset antall fullverdige lærekapitler materialisert.
+
+Dette er en tidsbundet baseline. Gjeldende navigasjonsstatus leses alltid fra `data/fagverk/fagverk_portal.json`, og redaksjonell status skal leses fra det maskinregisteret som etableres i fase 0.
+
+---
+
+## 18. Hele programmet er ferdig når
+
+Fagverksprogrammet kan først omtales som ferdig når:
+
+1. alle canonicale fag bruker samme fagsidemotor;
+2. alle fag er teknisk materialisert og individuelt auditert;
+3. alle fag har korrekt merke-, fagområde-, emne-, metode-, progresjons- og stedspresentasjon;
+4. alle fagområder i alle fag har fullverdige redigerte lærekapitler;
+5. alle brukerrettede faktapåstander er kildebelagte;
+6. quiz og Knowledge bruker canonicale ID-er og eide systemer;
+7. ingen kategori har en parallell HTML-, data- eller progresjonsarkitektur;
+8. alle navigation-, data-, content-, TypeScript-, browser-, link- og dokumentasjonsporter er grønne;
+9. teknisk og redaksjonell status er maskinlesbar, etterprøvbar og synkronisert;
+10. portalens **Åpne faget** leder til et reelt læreverk for hvert canonicalt fag.
+
+---
+
+## 19. Endringsregel
+
+Endringer i fagsidearkitektur, statusbetydning, produksjonsrekkefølge eller ferdigkrav skal gjøres her først.
+
+Andre dokumenter kan:
+
+- eie smalere kontrakter;
+- peke hit;
+- beskrive implementasjonsstatus;
+- dokumentere ett fag eller ett subsystem.
+
+De skal ikke opprette et konkurrerende samlet regelverk for hvordan alle fagsidene bygges.
