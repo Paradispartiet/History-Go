@@ -21,19 +21,6 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
   };
 })();
 
-// Startup guard must be active before app.js begins its sequential boot chain.
-(function loadStartupGuardEarly() {
-  if (window.__HG_STARTUP_GUARD_INSTALLED__) return;
-  if (document.readyState === "loading") {
-    document.write('<script src="js/startup-guard.js"></' + 'script>');
-    return;
-  }
-  const script = document.createElement("script");
-  script.src = "js/startup-guard.js";
-  script.async = false;
-  document.head.appendChild(script);
-})();
-
 // Load city packages from the central registry without coupling them to an
 // existing city-specific manifest.
 (function loadCityPackageRuntime() {
