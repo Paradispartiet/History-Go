@@ -169,7 +169,7 @@ Beholdt eksplisitt:
 
 - place-entries før batch: 6
 - fullt behandlet og fjernet fra legacy: 5
-- migrerte canonical onsite-items: 11
+- migrerte canonical onsite-items: 12
 - rejected med eksplisitt begrunnelse: 2
 - deferred med eksplisitt begrunnelse: 1 place-entry / 3 legacy-items
 - slettet uten canonical migrering eller dokumentert beslutning: 0
