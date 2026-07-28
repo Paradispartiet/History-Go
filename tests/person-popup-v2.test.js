@@ -272,6 +272,28 @@ test("renders the Rådhus political and municipal profiles with contributions an
   }
 });
 
+
+test("deduplicates source URLs and keeps the named external-link label", async () => {
+  const { window, captured } = createHarness({ hasQuiz: false });
+  window.showPersonPopup({
+    id: "source_person",
+    name: "Kildeperson",
+    popupDesc: "Biografi.",
+    externalLinks: [
+      { label: "Sceneweb – Kildeperson", url: "https://sceneweb.no/nb/artist/1/Kildeperson" }
+    ],
+    source_urls: [
+      "https://sceneweb.no/nb/artist/1/Kildeperson",
+      "https://snl.no/Kildeperson"
+    ]
+  });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal((captured.html.match(/https:\/\/sceneweb\.no\/nb\/artist\/1\/Kildeperson/g) || []).length, 1);
+  assert.match(captured.html, />Sceneweb – Kildeperson</);
+  assert.doesNotMatch(captured.html, />sceneweb\.no</);
+  assert.match(captured.html, />snl\.no</);
+});
+
 test("removes quiz action and empty sections when data is absent", async () => {
   const { window, captured, quizButton } = createHarness({ hasQuiz: false });
 

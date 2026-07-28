@@ -353,11 +353,21 @@
     });
     list(person?.source_urls).forEach(url => entries.push({ label: text(url), url: text(url) }));
 
-    const seen = new Set();
+    const seenUrls = new Set();
+    const seenLabels = new Set();
     return entries.filter(entry => {
-      const key = `${entry.url}|${entry.label}`;
-      if (!entry.label || seen.has(key)) return false;
-      seen.add(key);
+      const label = text(entry?.label);
+      const url = safeHttpUrl(entry?.url);
+      if (!label) return false;
+      if (url) {
+        const key = url.replace(/\/+$/, "").toLowerCase();
+        if (seenUrls.has(key)) return false;
+        seenUrls.add(key);
+        return true;
+      }
+      const key = label.toLowerCase();
+      if (seenLabels.has(key)) return false;
+      seenLabels.add(key);
       return true;
     });
   }

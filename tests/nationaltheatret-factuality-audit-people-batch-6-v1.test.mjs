@@ -120,6 +120,15 @@ test('the four profiles publish only the selected direct contributions', () => {
   ]);
 });
 
+
+test('Bjarte Hjelmeland includes public personal context and Wikipedia further reading', () => {
+  const profile = readProfile('bjarte_hjelmeland');
+  assert.match(profile.popupDesc, /vokste opp i Sund på Sotra/);
+  assert.match(profile.popupDesc, /homofil.*kristen tro/s);
+  assert.match(profile.popupDesc, /forlovet med Lars-Erik Syversen/);
+  assert.ok(profile.externalLinks.some((link) => link.label === 'Wikipedia – Bjarte Hjelmeland'));
+});
+
 test('batch 6 audit records scope, conflict and no-padding rule', () => {
   const report = fs.readFileSync(
     path.join(ROOT, 'reports/people-factuality-audit-nationaltheatret-batch-6-v1.md'),
