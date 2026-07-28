@@ -80,8 +80,8 @@
     const icon=document.getElementById(def.iconId), list=document.getElementById(def.listId); if (!icon || !list) return;
     if (def.id === "map") {
       const preview = await Promise.resolve(global.HGNatureDetailedMap?.getPreview?.(place)).catch(()=>"");
-      icon.innerHTML = preview ? `<img src="${esc(preview)}" class="pc-person-img" alt="Detaljert naturkart">` : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span></div>`;
-      list.innerHTML = `<div class="pc-empty">Detaljert naturkart åpnes fra kart-rundingen.</div>`;
+      icon.innerHTML = preview ? `<img src="${esc(preview)}" class="pc-person-img" alt="Turkart">` : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span></div>`;
+      list.innerHTML = `<div class="pc-empty">Tur- og naturkart åpnes fra Kart-rundingen.</div>`;
       icon.dataset.roundReady = preview || typeof global.HGNatureDetailedMap?.openPlace === "function" ? "true" : "false";
       return;
     }
@@ -97,7 +97,7 @@
       subtitle:s(place?.name || place?.title),
       kind:"nature-map",
       place,
-      html:'<div class="pc-empty">Detaljert tur-/naturkart er ikke produsert for dette stedet ennå. History GO bruker ikke det generelle hovedkartet som fallback her.</div>'
+      html:'<div class="pc-empty">Tur-/naturkartet er ikke lastet for dette naturstedet. History GO bruker aldri det generelle hovedkartet som fallback for Kart-rundingen.</div>'
     });
   }
   async function openNatureMap(place) {
@@ -110,7 +110,7 @@
   function bindCustom(def) {
     const icon=document.getElementById(def.iconId); if (!icon || icon.dataset.canonicalRoundBound === "1") return; icon.dataset.canonicalRoundBound="1";
     const open=async event=>{
-      if(event?.type==="keydown"&&!["Enter"," "].includes(event.key))return;
+      if(event?.type==="keydown"&&!['Enter',' '].includes(event.key))return;
       event?.preventDefault?.();event?.stopPropagation?.();
       const place=currentPlace();if(!place)return;
       if(def.id==="map"){await openNatureMap(place);return;}
@@ -139,5 +139,5 @@
 
   global.HGVisualPlaceRounds={ids:DEFS.map(def=>def.id),registry:[...DEFS],standardRounds:[...GENERAL_ROUNDS],natureRounds:[...NATURE_ROUNDS],get:selectedIds,apply};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
-  ["hg:appReady","hg:place-selected","hg:places-ready","hg:placesUpdated","updateProfile"].forEach(name=>global.addEventListener?.(name,()=>{patchOpenPlaceCard();scheduleApply();}));
+  ["hg:appReady","hg:place-selected","hg:places-ready","hg:placesUpdated","updateProfile","hg:nature-detailed-map-ready"].forEach(name=>global.addEventListener?.(name,()=>{patchOpenPlaceCard();scheduleApply();}));
 })(window);
