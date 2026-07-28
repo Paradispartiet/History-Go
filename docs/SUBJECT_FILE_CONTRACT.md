@@ -2,9 +2,11 @@
 
 Status: **canonical og bindende fagfilkontrakt**  
 Eier: History GO fagdata og kunnskapsarkitektur  
-Sist kontrollert: **2026-07-26**
+Sist kontrollert: **2026-07-28**
 
 Denne kontrakten definerer skillet mellom universell fagstruktur og geografisk innholdsproduksjon. Den gjelder alle fag, ikke bare Historie.
+
+Materialisering, felles renderer, adaptere, status, produksjonsrekkefølge og ferdigkrav for alle fagsider eies av [`FAGVERK.md`](./FAGVERK.md). Navigasjonsadresser og sideroller eies av [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md). Denne filen eier fagdataarkitekturen og skal ikke brukes som konkurrerende fagsidekontrakt.
 
 ## 1. Kjerneprinsipp
 
@@ -119,6 +121,8 @@ Manifestet skal peke til én canonical fagpakke per `subjectId`. Geografiske pro
 
 Runtime, quizproduksjon og Knowledge skal bruke canonical fag-ID-er uavhengig av geografi. En geografisk profil kan avgrense eller prioritere lokalt innhold, men kan ikke overstyre canonical fagobjekters definisjoner eller identitet.
 
+Fagsidemotoren skal løse disse filene manifest-first og normalisere reelle schemaforskjeller uten å kopiere fagdata. Den bindende side- og produksjonsarkitekturen ligger i `docs/FAGVERK.md`.
+
 ## 10. Produksjonsregel
 
 Før en ny fagfil eller geografisk variant opprettes:
@@ -130,6 +134,7 @@ Før en ny fagfil eller geografisk variant opprettes:
 5. Ikke kopier hele fagpakker for å få lokal dekning.
 6. Registrer aktive filer i riktig manifest.
 7. Kjør relevante fag-, Knowledge-, quiz- og dokumentasjonsporter.
+8. Følg `docs/FAGVERK.md` når endringen materialiserer eller ferdigstiller en fagside.
 
 ## 11. Beslutningstest
 
@@ -152,6 +157,8 @@ Ikke:
 ```text
 ett komplett fag per land
 ```
+
+Fagsiden er en presentasjon av den universelle fagpakken gjennom den felles motoren. Den er ikke en ny fagpakke.
 
 ## 13. Casekrav, profiler og evidensregistre
 
