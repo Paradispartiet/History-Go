@@ -1,0 +1,24 @@
+name: Run People personal information documentation finalizer
+
+on:
+  pull_request:
+    branches:
+      - agent/tmp-people-docs-personal-info-runner
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/people-docs-personal-info-source-presentation
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Run isolated finalizer
+        run: bash scripts/tmp-finalize-people-docs-personal-info.sh
