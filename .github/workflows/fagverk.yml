@@ -17,6 +17,7 @@ on:
       - 'js/politikk-fagportal.js'
       - 'js/emnerLoader.ts'
       - 'dist/web/emnerLoader.js'
+      - 'js/ui/header-menu.js'
       - 'js/ui/place-learning-surface.js'
       - 'js/ui/place-learning-canonical.js'
       - 'js/ui/place-card-status-surface.js'
@@ -24,13 +25,17 @@ on:
       - 'css/fagverk-learning-v2.css'
       - 'css/fagverk-sted.css'
       - 'css/fagverk-canonical.css'
+      - 'css/fagverk-premium.css'
       - 'css/politikk-fagportal.css'
+      - 'css/header-learning-menu.css'
       - 'css/place-learning-surface.css'
       - 'docs/FAGVERK.md'
       - 'tests/fagverk-content.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
+      - 'tests/fagverk-link-audit.test.mjs'
       - 'tests/place-learning-surface.test.js'
       - 'tests/politikk-fag-integration.test.mjs'
+      - 'tests/header-search-menu.test.js'
       - '.github/workflows/fagverk.yml'
   workflow_dispatch:
 
@@ -39,7 +44,7 @@ permissions:
 
 jobs:
   validate:
-    name: Validate canonical subject, textbook, place pages and UI links
+    name: Validate canonical subject, textbook, design, navigation and links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -54,12 +59,15 @@ jobs:
           node --check js/fagverk-sted.js
           node --check js/fagverk-canonical-integration.js
           node --check js/fagverk-place-canonical-integration.js
+          node --check js/ui/header-menu.js
           node --check js/ui/place-learning-surface.js
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
-      - name: Validate canonical politics, textbook data and place integration
+      - name: Validate canonical politics, textbook data, design links and place integration
         run: |
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-content.test.mjs
           node --test tests/fagverk-place-pages.test.mjs
+          node --test tests/fagverk-link-audit.test.mjs
           node --test tests/place-learning-surface.test.js
+          node tests/header-search-menu.test.js
