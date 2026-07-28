@@ -1,57 +1,105 @@
 {
   "schemaVersion": "1.0",
   "placeId": "grini_fangeleir",
-  "capturedAt": "2026-07-26",
+  "capturedAt": "2026-07-28",
+  "sourceMaterialization": {
+    "workflowRunId": 30349699245,
+    "artifactId": 8684349286,
+    "artifactName": "grini-coordinate-source-probe",
+    "artifactDigest": "sha256:4ef61dce08fdbc557579373ed0083d0df5ae85843a7c27de0206277b01853f85",
+    "bbox": "10.5790,59.9510,10.5965,59.9605",
+    "finding": "The one-time read-only probe captured current OSM geometry around Ila/Grini and exact Kartverket address objects for Jøssingveien 33 and 31. The temporary workflow was removed after source capture."
+  },
   "officialHistory": {
-    "sourceProvider": "museum",
+    "sourceProvider": "manual_research",
     "sourceName": "Grinimuseet – Om Grini fangeleir",
     "sourceUrl": "https://mia.no/grinimuseet/om-grini-fangeleir",
-    "finding": "The camp began in the unfinished Ila women's prison and expanded from 1942 into a barracks camp of more than thirty buildings around the original prison complex. Nearly 20,000 people were registered during the occupation."
+    "finding": "MiA documents that Grini fangeleir was established on 14 June 1941 in the original Ila women's-prison building. As the prisoner population grew, forest around the building was cleared and more than thirty barracks were built from 1942. MiA states that Ila fengsel og forvaringsanstalt occupies the original main building today."
   },
-  "museumScope": {
-    "sourceProvider": "museum",
-    "sourceName": "Grinimuseet – museum and visitor information",
-    "sourceUrl": "https://mia.no/grinimuseet/velkommen-til-grinimuseet",
-    "address": "Jøssingveien 31, 1359 Eiksmarka",
+  "historicalPlanControl": {
+    "sourceProvider": "manual_research",
+    "sourceName": "Lokalhistoriewiki – Grini fangeleir and Griniboken camp plan",
+    "sourceUrl": "https://lokalhistoriewiki.no/Grini_fangeleir",
+    "finding": "The wartime plan marks the original prison building as a masonry structure and shows the appeal area and expanded barracks compound around it. A 1945 appeal photograph is described as taken from the fourth floor of the original prison building toward the large appeal area. The source identifies the original building as today's Ila institution and places Fallskjermen inside it."
+  },
+  "appliedBuilding": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:1420075236",
+    "lat": 59.954295776884884,
+    "lon": 10.582680030345253,
+    "nodeCount": 41,
+    "geometryType": "Polygon",
+    "derivation": "deterministic polygon centroid in lon*cos(meanLat),lat planar space",
+    "finding": "The surviving original prison building is represented by a 41-node closed building polygon at the current Ila site. Its centroid provides a physically reproducible anchor for the documented historical camp core rather than a guessed perimeter centre."
+  },
+  "addressCrossCheck": {
+    "sourceProvider": "official_address",
+    "sourceName": "Kartverket Address API – Jøssingveien 33",
+    "sourceObjectId": "geonorge-address:Jøssingveien-33",
+    "address": "Jøssingveien 33, 1359 Eiksmarka",
+    "lat": 59.954506038554115,
+    "lon": 10.58271591642294,
+    "distanceFromAppliedM": 23.5,
+    "finding": "The exact official address point for Ila lies approximately 23.5 metres from the applied building centroid. Kriminalomsorgen independently publishes the same visitor address for the current high-security prison."
+  },
+  "interiorIdentityCrossCheck": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:1470255130",
+    "name": "Fallskjermen",
+    "lat": 59.954447254986555,
+    "lon": 10.582640771814834,
+    "finding": "The mapped historical room lies inside building way 1420075236. Historical sources place Fallskjermen in the original prison building. OSM marks the room position as approximate, so it is identity QA only and not a production coordinate source."
+  },
+  "museumVisitorAnchor": {
+    "sourceProvider": "osm",
     "sourceObjectId": "osm-node:5446566958",
-    "lat": 59.95579,
-    "lon": 10.5847,
-    "distanceFromLegacyM": 354.1,
-    "finding": "The current museum is located in an authentic prisoner barrack. MiA states that the barrack was moved back to Grini and stands just outside the original camp location. It is therefore a visitor anchor, not a centroid for the wartime camp."
+    "name": "Grini museum",
+    "lat": 59.9557896,
+    "lon": 10.5847011,
+    "distanceFromAppliedM": 200.6,
+    "officialAddress": "Jøssingveien 31, 1359 Eiksmarka",
+    "finding": "MiA states that the current museum occupies an authentic prisoner barrack moved after the war and now located just outside the original camp site. The museum is therefore retained as the public visitor anchor, not the canonical historical coordinate."
   },
-  "historicalEntityCandidate": {
-    "sourceProvider": "wikidata",
-    "sourceName": "Wikidata Q637411 – Grini detention camp",
-    "sourceUrl": "https://www.wikidata.org/wiki/Q637411",
-    "lat": 59.95343333333334,
-    "lon": 10.582547222222223,
-    "distanceFromLegacyM": 576.7,
-    "distanceFromMuseumM": 288.2,
-    "finding": "Wikidata publishes a coordinate for the historical camp, but the statement has no cited coordinate reference and no documented derivation from the camp layout. It remains a candidate only."
+  "currentPrisonContext": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:375269932",
+    "name": "Ila fengsel og forvaringsanstalt",
+    "finding": "The current secure-prison boundary surrounds the applied historical building anchor. It is operational access context only and is never used as historical camp geometry."
   },
   "legacyCoordinate": {
     "lat": 59.9565,
     "lon": 10.5909,
     "r": 240,
-    "finding": "The current marker lies east of the museum and the Wikidata historical point. It has no source object or documented relationship to the prison building, barracks camp, parade ground or preserved remains."
+    "distanceFromAppliedM": 519.1,
+    "finding": "The provisional legacy point has no documented relationship to the original building, appeal area, barracks or preserved wartime features and is replaced."
   },
-  "rejectedCandidate": {
-    "sourceProvider": "osm_discovery",
-    "sourceObjectId": "osm-node:6465581140",
-    "lat": 59.9495,
-    "lon": 10.62951,
-    "finding": "An OSM-derived index labels a farm/locality point as Grini detention camp. The object class and location are inconsistent with the documented Ila/Grini camp and museum area and are rejected."
+  "historicalEntityCandidate": {
+    "sourceProvider": "wikidata",
+    "sourceObjectId": "wikidata:Q637411",
+    "lat": 59.95343333333334,
+    "lon": 10.582547222222223,
+    "distanceFromAppliedM": 96.2,
+    "finding": "The Wikidata point is geographically close to the historical core but remains unsuitable as a production coordinate because its coordinate statement has no cited derivation or feature role."
   },
-  "historicalMapContext": {
-    "sourceProvider": "local_history",
-    "sourceName": "Bærumhistorie – Grini fangeleir and current-area map",
-    "sourceUrl": "https://barumhistorie.no/Eiksmarka%20web/Grini%20fangeleir.html",
-    "finding": "A wartime camp diagram and current topographic comparison show that the historical site was a broad compound containing the main prison building, parade ground, barracks, workshops, farms and perimeter functions. The images are useful for scope analysis but are not georeferenced production geometry."
+  "radiusDecision": {
+    "previousRadiusM": 240,
+    "appliedRadiusM": 360,
+    "museumDistanceM": 200.6,
+    "finding": "The radius increases to 360 metres so the inaccessible historical anchor, public museum visitor anchor and immediate documented camp-core landscape can function as one History Go place. The circle is deliberately not presented as the 1941–1945 perimeter."
+  },
+  "accessDecision": {
+    "finding": "The canonical historical anchor lies inside today's active high-security Ila prison. History Go must never instruct users to approach or cross the prison security perimeter. Public interpretation is routed through Grinimuseet and ordinary lawful public access."
   },
   "decision": {
-    "canBecomeVerified": false,
-    "coordinateChangeRequiredNow": false,
-    "coordinateDecision": "needs_georeferenced_historical_camp_geometry",
-    "nextAction": "Acquire or georeference an authoritative camp plan against the current Ila site, identify the main prison/parade-ground core and surviving original elements, then select a historical area anchor and separate museum visitor anchor."
+    "canBecomeVerified": true,
+    "coordinateChangeRequired": true,
+    "appliedCoordinate": {
+      "lat": 59.954295776884884,
+      "lon": 10.582680030345253,
+      "r": 360
+    },
+    "coordStatus": "verified_historical_source",
+    "coordRole": "historical_anchor",
+    "representationLimit": "The marker is the surviving original prison building used as a stable historical camp-core anchor. It is not the centroid or perimeter of the full wartime barracks camp."
   }
 }
