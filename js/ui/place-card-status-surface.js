@@ -44,6 +44,7 @@
     // eksisterende systemer (Leksikon, Stories, Lesespor, før/nå osv.).
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js", "__HG_PLACE_POPUP_TABS_SCRIPT_REQUESTED__");
+    ensureScript("js/ui/place-popup-actions.js", "__HG_PLACE_POPUP_ACTIONS_SCRIPT_REQUESTED__");
 
     // PlaceCard-rundingene snevres inn til visuelle samlinger. Kunnskaps- og
     // handlingsflater flyttes til popupfaner eller egne handlingsflater.
