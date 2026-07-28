@@ -107,8 +107,18 @@ jobs:
           node-version: '20'
       - name: Syntax check documentation contract test
         run: node --check tests/fagverk-documentation-contract.test.mjs
-      - name: Validate documentation ownership and subject baseline
-        run: node --test --test-reporter=spec tests/fagverk-documentation-contract.test.mjs
+      - name: Validate master contract identity
+        run: node --test --test-name-pattern="explicit canonical all-subject" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate referenced owners and sources
+        run: node --test --test-name-pattern="points to every relevant" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate canonical subject baseline
+        run: node --test --test-name-pattern="baseline matches" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate narrow navigation ownership
+        run: node --test --test-name-pattern="navigation remains narrow" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate documentation entry pointers
+        run: node --test --test-name-pattern="repository and subject-file" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate honest portal status
+        run: node --test --test-name-pattern="portal status remains honest" tests/fagverk-documentation-contract.test.mjs
 
   validate:
     name: Validate canonical subjects, textbook, category design, images and links
