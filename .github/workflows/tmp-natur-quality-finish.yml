@@ -1,0 +1,115 @@
+name: Temporary Natur quality finish
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  finish:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Finish operational quality fields
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const writeJson = (p, v) => fs.writeFileSync(p, `${JSON.stringify(v, null, 2)}\n`);
+          const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
+
+          const emnePath = 'data/fag/natur/emner_natur_canonical_v4_5.json';
+          const emners = readJson(emnePath);
+          for (const emne of emners) {
+            const distinctions = emne.critical_distinctions || [];
+            const questions = emne.key_questions || [];
+            assert(distinctions.length >= 2 && questions.length === 3, `${emne.emne_id}: mangler redaksjonelt grunnlag`);
+            emne.analysis_axes = [...distinctions];
+            emne.quiz_angles = [
+              `Start i dokumentert materiale som kan besvare: ${questions[0]}`,
+              `Koble observasjonen til prosess og sammenheng gjennom: ${questions[1]}`,
+              `Avslutt med endring, tiltak eller konsekvens: ${questions[2]}`
+            ];
+            emne.blindspots = [
+              `Ikke forveksle ${distinctions[0]}.`,
+              `Ikke bruk ${emne.title} som forklaring uten stedsspesifikt materiale, metode og kilde.`
+            ];
+            emne.generator_use_note = `Bruk ${emne.title} først når produksjonsmaterialet kan besvare minst ett av emnets tre kjernespørsmål og oppgi relevant metode og inspectable kilde.`;
+            emne.theory_progression_note = `Introduser teori etter at konkret evidens for ${emne.title.toLocaleLowerCase('nb-NO')} er etablert; teorien skal forklare eller utfordre funnet, ikke erstatte det.`;
+          }
+          writeJson(emnePath, emners);
+
+          const methodsPath = 'data/fag/natur/methods_natur_canonical_v4_5.json';
+          const methods = readJson(methodsPath);
+          methods.canonical_inputs = {
+            pensum: 'naturpensum_canonical_v4_5.json',
+            emner: 'emner_natur_canonical_v4_5.json',
+            fagkart: 'fagkart_natur_canonical_v4_5.json'
+          };
+          for (const method of methods.methods || []) {
+            method.procedure = (method.procedure || []).map((step) => step === 'tolke resultatet sammen med habitatkvalitet og økologisk funksjon' ? 'tolk resultatet sammen med habitatkvalitet og økologisk funksjon' : step);
+          }
+          writeJson(methodsPath, methods);
+
+          const quizPath = 'data/fag/natur/supersetQUIZMAL_natur.json';
+          const quiz = readJson(quizPath);
+          quiz.knowledge_delivery = {
+            required: true,
+            rule: 'Hvert produksjonsspørsmål skal levere en kort, konkret forklaring som knytter riktig svar til dokumentert naturfaglig materiale, emne_id og inspectable kilde.',
+            minimum: ['hva som er riktig', 'hvilken prosess eller forskjell svaret viser', 'hvilket emne og hvilke begreper kunnskapen tilhører', 'kilde eller kildepeker'],
+            forbidden: ['generisk miljømoral', 'forklaring bygget bare fra emnenavn', 'teoretiker som erstatning for faktagrunnlag']
+          };
+          writeJson(quizPath, quiz);
+
+          const corePath = 'js/fagverk-subject-core.js';
+          let core = fs.readFileSync(corePath, 'utf8');
+          const oldAxes = "        analysisAxes: unique([...\n          list(emne?.analysis_axes),\n          ...list(emne?.akse),\n          ...list(emne?.ideological_dimensions)\n        ]),";
+          const newAxes = "        analysisAxes: list(emne?.analysis_axes).length\n          ? unique(list(emne?.analysis_axes))\n          : unique([...\n              list(emne?.akse),\n              ...list(emne?.ideological_dimensions)\n            ]),";
+          assert(core.includes(oldAxes), 'Fant ikke gammel analysisAxes-normalisering');
+          core = core.replace(oldAxes, newAxes);
+          fs.writeFileSync(corePath, core);
+
+          const auditPath = 'scripts/audit-natur-subject-quality.mjs';
+          let audit = fs.readFileSync(auditPath, 'utf8');
+          const auditMarker = "    assert((emne.critical_distinctions || []).length >= 2, `${id}: mangler kritiske skiller`);\n";
+          assert(audit.includes(auditMarker), 'Fant ikke emneauditens innsettingspunkt');
+          audit = audit.replace(auditMarker, auditMarker + "    assert(isDeepStrictEqual(emne.analysis_axes, emne.critical_distinctions), `${id}: synlige analyseakser er ikke emnespesifikke`);\n    assert((emne.quiz_angles || []).length === 3, `${id}: mangler tre operative quizvinkler`);\n    assert((emne.blindspots || []).length === 2, `${id}: mangler emnespesifikke blindsoner`);\n");
+          const reportGate = "      noDuplicateEmneLearningText: true,\n";
+          assert(audit.includes(reportGate), 'Fant ikke rapportgatens innsettingspunkt');
+          audit = audit.replace(reportGate, reportGate + "      emneSpecificVisibleAnalysis: true,\n      emneSpecificQuizAndBlindspots: true,\n");
+          const quizAudit = "  assert((quiz.category_rules || []).some((r) => r.includes('stedet eller fenomenet')), 'Quizprofilen mangler konkretitetsregel');\n";
+          assert(audit.includes(quizAudit), 'Fant ikke quizauditens innsettingspunkt');
+          audit = audit.replace(quizAudit, quizAudit + "  assert(quiz.knowledge_delivery?.required === true, 'Quizprofilen mangler Knowledge-leveranse');\n  assert(!JSON.stringify({ emner, methods }).includes('miljørettpferdig'), 'Naturpakken inneholder kjent språkfeil');\n");
+          fs.writeFileSync(auditPath, audit);
+          NODE
+      - run: npm ci
+      - name: Regenerate and validate
+        run: |
+          node scripts/audit-natur-subject-quality.mjs --write-report --no-check-report
+          node scripts/audit-natur-fagkart-quality.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-natur-pilot.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node scripts/audit-natur-subject-quality.mjs
+          node scripts/audit-natur-fagkart-quality.mjs
+          node scripts/audit-fagverk-natur-pilot.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node --test tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/fagverk-natur-pilot.test.mjs tests/fagverk-general-engine.test.mjs
+          npm run typecheck:web
+      - name: Commit finishing quality pass
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/natur js/fagverk-subject-core.js scripts/audit-natur-subject-quality.mjs reports/fagverk
+          git commit -m 'Fullfør operativ kvalitet i Natur-faget'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
