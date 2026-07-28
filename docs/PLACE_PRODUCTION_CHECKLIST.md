@@ -2,17 +2,17 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-07-29**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
-Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egne produksjonskontrakter. Når et punkt nedenfor sier **LES FØRST**, skal den navngitte kontrakten faktisk leses og følges før data produseres eller godkjennes.
+Det er en **ruterings- og sjekkliste**, ikke en kopi av subsystemenes egne produksjonskontrakter. Når et punkt sier **LES FØRST**, skal den navngitte kontrakten faktisk leses og følges.
 
 > **Ett sted ferdig før neste. Manglende relevant innhold er bedre enn filler. Glemt kontroll er ikke godkjent.**
 
 ---
 
-# 0. Autoritetskart — les riktig oppskrift før du produserer
+# 0. Autoritetskart
 
 | Område | Autoritativ produksjons-/runtimekontrakt |
 | --- | --- |
@@ -23,6 +23,7 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Description-produksjonspakke | `data/places/regler/place_description_production_v4_2.schema.json` |
 | Stedspopup / åtte faner | **`docs/PLACE_POPUP_SYSTEM.md`** |
 | PlaceCard-rundinger | **`data/places/README_place_rounds.md`** |
+| På stedet | **`docs/PLACE_ONSITE_SYSTEM.md`** + `data/categories/place_onsite_contract.json` |
 | Kategori / canonical kategori-ID-er | `data/categories/category_contract.json` |
 | Fagverk / merke vs fag / navigasjon | `docs/FAGVERK_NAVIGATION.md` |
 | People–sted-koblinger | **`docs/people-of-places-method.md`** |
@@ -41,20 +42,21 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Spotmeeting | `docs/HG_SPOTMEETING.md` |
 | Social Meet-identitet | `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md` |
 
-Ved konflikt gjelder den canonical kontrakten som eier subsystemet, sammen med strengeste relevante faktisitetsregel.
+Ved konflikt gjelder kontrakten som **eier subsystemet**, sammen med strengeste relevante faktisitetsregel.
 
-## Absolutt regel for detaljproduksjon
+## Absolutt regel mot duplisert governance
 
-Denne filen kan si **at** Quiz, Story, People, `popupDesc`, Nature osv. skal vurderes. Den andre kontrakten bestemmer **hvordan** det produseres.
+Denne filen sier **hva som skal kontrolleres**. Eierkontrakten sier **hvordan det produseres**.
 
 Det er derfor ikke lov å:
 
-- skrive en quiz bare ut fra punktene i denne filen;
+- skrive quiz fra denne sjekklisten i stedet for quizkontrakten;
 - skrive `desc`/`popupDesc` uten Place Description-protokollen;
-- lage en People-record uten People Profile-kontrakten;
-- lage en Story uten Stories governance;
-- velge rundinger uten rundingkontrakten;
-- endre koordinat uten coordinate-kontraktene.
+- lage People-record uten People-kontraktene;
+- lage Story uten Stories governance;
+- definere eller velge rundinger fra denne filen;
+- endre koordinat uten coordinate-kontraktene;
+- kopiere subsystemets paletter/matriser/regler hit «for enkelhets skyld».
 
 ---
 
@@ -67,7 +69,7 @@ PLACE ID:
 NAVN:
 CANONICAL SOURCE-FIL:
 MANIFEST:
-HVA REPRESENTerer PLACE-OBJEKTET:
+HVA REPRESENTERER PLACE-OBJEKTET:
 PRIMÆRKATEGORI:
 UNDERBADGES:
 EMNE_IDS:
@@ -75,10 +77,8 @@ STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
-MÅL FOR RUNDINGER: 4 / 6
-VALGTE RUNDINGER:
+RUNDINGSPROFIL: vanlig / natur
 PEOPLE-KANDIDATER:
-WORKS-KANDIDATER:
 BRANDS SOM ALLEREDE FINNES:
 ROUTE/RELATION-KOBLINGER:
 QUIZ-STATUS:
@@ -87,7 +87,7 @@ VIKTIGSTE KILDER:
 AVVIST/UVISST INNHOLD:
 ```
 
-Arbeidskortet skal gjøre det tydelig **hva stedet er, hvor canonical sannhet ligger, hvilke subsystemer som er relevante og hvilke kontrakter som skal brukes**.
+Arbeidskortet skal tydeliggjøre **hva stedet er, hvor canonical sannhet ligger og hvilke subsystemer som er relevante**.
 
 ---
 
@@ -104,17 +104,13 @@ Sjekk:
 
 - [ ] søk repoet etter place-ID;
 - [ ] søk fullt navn, gamle navn, aliaser og stavevarianter;
-- [ ] bekreft at samme fysiske/historiske objekt ikke allerede finnes som et annet canonical place;
-- [ ] finn manifest-loadet source-fil som faktisk eier stedet;
-- [ ] aggregate-/legacyfil er ikke feilaktig edit-target;
-- [ ] definer place-objektet i én presis setning;
-- [ ] skill bygg/institusjon, område/enkeltobjekt, minnested/hendelsessted, historisk/dagens objekt der det er relevant.
+- [ ] samme fysiske/historiske objekt finnes ikke allerede som annet canonical place;
+- [ ] manifest-loadet source-fil er identifisert;
+- [ ] aggregate-/legacyfil er ikke feil edit-target;
+- [ ] place-objektet kan defineres i én presis setning;
+- [ ] bygg/institusjon, område/enkeltobjekt, minnested/hendelsessted og historisk/dagens objekt er skilt når relevant.
 
-### Stoppgate
-
-Ikke produser videre hvis place-identiteten eller source of truth er uklar.
-
----
+**Stopp:** Ikke produser videre hvis place-identiteten eller source of truth er uklar.
 
 ## 2. Bygg kildegrunnlaget før teksten
 
@@ -125,18 +121,16 @@ Ikke produser videre hvis place-identiteten eller source of truth er uklar.
 - [ ] registrer hvilken kilde som støtter hvilken påstand;
 - [ ] skill fakta fra tolkning;
 - [ ] registrer konflikter og usikkerhet;
-- [ ] bruk ikke eksisterende History GO-tekst som eneste kilde;
-- [ ] bruk aldri språkmodell som faktakilde;
-- [ ] utelat påstander som ikke kan verifiseres;
-- [ ] samtidige/nåtidsopplysninger får fersk kontroll.
+- [ ] eksisterende History GO-tekst brukes ikke som eneste kilde;
+- [ ] språkmodell brukes aldri som faktakilde;
+- [ ] uverifiserbare påstander utelates;
+- [ ] nåtidsopplysninger får fersk kontroll.
 
 Minimum for vesentlige fakta:
 
 ```text
 påstand → konkret kilde → konkret kildeplassering → kontrollstatus
 ```
-
----
 
 ## 3. Koordinat, anker, radius og geometry
 
@@ -147,23 +141,16 @@ påstand → konkret kilde → konkret kildeplassering → kontrollstatus
 - `docs/coordinates/coordinate-evidence-files-v1.md`
 
 - [ ] `lat`/`lon` representerer riktig fysisk/historisk objekt;
-- [ ] korrekt `locatorType`;
-- [ ] korrekt `coordRole`;
-- [ ] korrekt `sourceProvider` og stabil source-identitet;
-- [ ] `geocodeAccuracy` er riktig;
-- [ ] `coordStatus` er ærlig;
+- [ ] `locatorType`, `coordRole`, `sourceProvider` og source-identitet er riktige;
+- [ ] `geocodeAccuracy` og `coordStatus` er ærlige;
 - [ ] historisk/flyttet/revet objekt bruker historisk evidens når nødvendig;
-- [ ] gate/park/elv/område/linje bruker egnet anker/geometry, ikke tilfeldig adressepunkt;
+- [ ] gate/park/elv/område/linje bruker egnet anker/geometry;
 - [ ] `r` er gameplay-radius, ikke påstått areal;
 - [ ] coordinate-evidence finnes når kontrakten krever det;
-- [ ] relevant coordinate gate/audit kjøres ved endring;
+- [ ] relevante coordinate gates kjøres;
 - [ ] kartet kontrolleres visuelt.
 
-### Stoppgate
-
-Usikker koordinat skal ikke merkes `verified`.
-
----
+**Stopp:** Usikker koordinat skal ikke merkes `verified`.
 
 ## 4. Kategori, Badges, underbadges, emner og fagverk
 
@@ -172,53 +159,39 @@ Usikker koordinat skal ikke merkes `verified`.
 - `data/categories/category_contract.json`
 - `docs/FAGVERK_NAVIGATION.md`
 
-- [ ] `category` er canonical og uttrykker primær fagidentitet;
-- [ ] ikke dupliser place i andre kategorier for å uttrykke tverrfaglighet;
+- [ ] `category` er canonical primærkategori;
+- [ ] place dupliseres ikke i andre kategorier for å uttrykke tverrfaglighet;
 - [ ] `underbadge_ids` vurdert og alle ID-er finnes;
 - [ ] `emne_ids` vurdert;
-- [ ] Badges-rundingen er med;
-- [ ] riktig badgegrafikk finnes;
-- [ ] Badges åpner `fagverk-sted.html?place=<place_id>`;
-- [ ] stedets fagverkside viser riktig sted, kategori og relevante fag-/emnekoblinger;
+- [ ] badgegrafikk og fagverksnavigasjon fungerer;
 - [ ] merke- og fagsider blandes ikke sammen.
 
----
+Rundingens badge-presentasjon eies av rundingkontrakten og gjentas ikke her.
 
 ## 5. `desc` og `popupDesc`
 
 **LES FØRST — obligatorisk:** `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`
 
-Dette punktet kan **ikke** godkjennes bare fordi teksten ser god ut.
-
-For nytt eller revidert sted:
-
-- [ ] produksjonspakke finnes under `data/places/production/<place_id>.json` når standarden krever det;
+- [ ] produksjonspakke finnes når standarden krever det;
 - [ ] identitetsport er `resolved`;
-- [ ] stabile claims er opprettet;
+- [ ] stabile claims finnes;
 - [ ] hver claim har inspectable kilde og `sourceLocation`;
-- [ ] sterke påstander følger den strengere evidensregelen;
-- [ ] nåtidsclaims har korrekt temporal status/fersk kontroll;
-- [ ] `desc` er en leksikalsk ingress, ikke inventarliste;
-- [ ] `popupDesc` er en stoffstyrt, selvstendig stedartikkel;
-- [ ] `popupDesc` har vesentlig mer innhold enn `desc`;
+- [ ] sterke påstander følger streng evidensregel;
+- [ ] nåtidsclaims har korrekt temporal status;
+- [ ] `desc` er leksikalsk ingress;
+- [ ] `popupDesc` er full stedartikkel;
 - [ ] setning→claim-kobling er komplett;
-- [ ] teksthash samsvarer med godkjent tekst;
-- [ ] faktareview er utført;
-- [ ] redaksjonell review er utført;
-- [ ] production status er den ferdigstatusen Place Description-kontrakten tillater;
-- [ ] place-description validator/governance passerer.
+- [ ] teksthash samsvarer;
+- [ ] faktareview og redaksjonell review er utført;
+- [ ] canonical validator/governance passerer.
 
-### Viktig
-
-Ikke bruk en lokal «kortere» popupDesc-regel fra denne sjekklisten. **Place Description-kontrakten eier produksjonsformen.**
-
----
+Denne sjekklisten eier ikke en alternativ skriveoppskrift.
 
 ## 6. Strukturerte place-profiler
 
 **LES FØRST:** `docs/PLACE_STANDARD.md`
 
-Vurder etter stedstype, uten filler:
+Vurder bare det stedstypen faktisk støtter:
 
 - [ ] `spatial_profile`;
 - [ ] `temporal_profile`;
@@ -226,22 +199,9 @@ Vurder etter stedstype, uten filler:
 - [ ] `history_layers`;
 - [ ] `nature_profile`;
 - [ ] `source_summary`;
-- [ ] øvrige type-spesifikke strukturer som aktiv standard/schema støtter.
+- [ ] øvrige type-spesifikke strukturer i aktiv standard/schema.
 
-Kontroller spesielt der relevant:
-
-- park/grøntområde: areal, landskap, topografi, natur, delsteder;
-- gate/vei: avgrensning, segment, kryss, navnehistorie;
-- bygning: arkitekt, år, stil, materialer, bruk, vern;
-- torg/byrom: avgrensning, fasader, monumenter, ombygging;
-- vann/kyst: løp/vannflate, regulering, natur, industri;
-- institusjon/anlegg: funksjon, saler, bygninger, samlinger, milepæler;
-- kulturminne/kunstverk: opphav, år, materiale, motiv, vern;
-- arkeologisk lokalitet: datering, synlige strukturer, funn, undersøkelser;
-- idrettsanlegg: åpning, kapasitet, konstruksjon, historiske brukere/hendelser;
-- industri/teknologi: funksjon, drift, maskiner, energi, råvarer, transport, gjenbruk.
-
-`nature_profile` i Om betyr ikke automatisk Nature-runding.
+Feltets eksistens avgjør ikke om det er en runding. Rundingidentitet eies separat.
 
 ---
 
@@ -263,46 +223,40 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 - [ ] chronology vurdert;
 - [ ] `history_layers` vurdert;
 - [ ] daterte bruksendringer/hendelser vurdert;
-- [ ] sportsrekorder/mesterskap ligger her når verdien er historisk kunnskap.
+- [ ] rekorder/mesterskap ligger her når verdien er historisk kunnskap.
 
 ### Fortellinger
 **LES FØRST:** `docs/STORIES_DATA_GOVERNANCE.md`
-
-- [ ] eksisterende canonical Stories søkt opp;
+- [ ] eksisterende canonical Stories søkt;
 - [ ] chronology er ikke automatisk Story;
-- [ ] ny/vesentlig omskrevet Story følger aktiv storyprofil og manifest;
+- [ ] ny/revidert Story følger aktiv profil og manifest;
 - [ ] narrativ verdi, aktører, handling, tid/sted og kilder er reelle;
-- [ ] `npm run check:stories` / relevant gate passerer.
+- [ ] relevant story-gate passerer.
 
 ### Før/etter
 - [ ] `for_na` vurdert;
-- [ ] historisk og dagens bilde viser samme meningsfulle stedssammenligning;
+- [ ] historisk og dagens bilde viser samme meningsfulle sammenligning;
 - [ ] `before`, `now`, `change` er konkrete og kildebelagte.
 
 ### Nyheter
-- [ ] historiske og nyere notiser vurdert;
-- [ ] proporsjonalitet beholdes;
+- [ ] historiske/nyere notiser vurdert;
 - [ ] nåtidsnotiser er ferskt kontrollert;
-- [ ] notis gjøres ikke til Story uten narrativ grunn.
+- [ ] liten notis blåses ikke opp til Story.
 
 ### Lesespor
 - [ ] eksisterende Lesespor søkt;
 - [ ] `place_ids` peker eksplisitt til stedet;
-- [ ] stedsspesifikk åpen flate viser bare egnet direkte lesbart materiale.
+- [ ] åpen flate viser bare egnet direkte lesbart materiale.
 
 ### Kilder
-- [ ] `source_summary.safe_sources` / aktiv kildeflate vurdert;
-- [ ] place- og Leksikon-`externalLinks` vurdert;
-- [ ] Før/etter-kilder vurdert;
-- [ ] brukerrettede lenker er relevante, HTTPS og dedupliserte;
+- [ ] brukerrettede sikre kilder vurdert;
+- [ ] place-/Leksikon-/Før-etter-lenker vurdert;
+- [ ] lenker er relevante, HTTPS og dedupliserte;
 - [ ] interne audits/researchnotater lekker ikke ut.
 
 ### Mer
-- [ ] Språkleksikon vurdert;
-- [ ] observations/knowledge/funfacts vurdert;
-- [ ] curated relations vurdert;
-- [ ] «legg merke til»-momenter vurdert;
-- [ ] Mer brukes ikke som søppelskuff for handlinger eller fysiske Objects/Details/Spots.
+- [ ] smalere relevant kunnskap vurdert;
+- [ ] Mer brukes ikke som søppelskuff for handlinger eller innhold som eies av andre systemer.
 
 Alle åtte får status: **ferdig** eller **N/A**.
 
@@ -310,80 +264,39 @@ Alle åtte får status: **ferdig** eller **N/A**.
 
 # DEL D — RUNDINGER
 
-## 8. Velg nøyaktig 4 eller 6 visuelle samlinger
+## 8. Verifiser canonical rundingsprofil
 
-**LES FØRST — obligatorisk:** `data/places/README_place_rounds.md`
+**LES FØRST — obligatorisk:** **`data/places/README_place_rounds.md`**
 
-Canonical palett:
+Denne sjekklisten vedlikeholder med hensikt **ingen egen rundingspalett, antallsregel eller prioriteringsmatrise**.
 
-`Badges · People · Works · Objects · Details · Spots · Nature · Brands`
+Kontroller bare at eierkontrakten er fulgt:
 
-- [ ] `badges` alltid med;
-- [ ] eksplisitt `rounds` har 4 eller 6 unike canonical IDs;
-- [ ] kategoriens prioriteringsmatrise er brukt som guide, ikke tvang;
-- [ ] hver valgt runding har reelt stedsspesifikt innhold;
-- [ ] hver valgt runding har reelt bilde/preview;
-- [ ] ingen tekst-placeholder/fallback-emoji teller som bildeklart;
-- [ ] aldri filler for å nå 4 eller 6;
-- [ ] har stedet bare fire sterke samlinger, velg fire;
-- [ ] fem vises aldri;
-- [ ] Nature velges bare ved ekte stedsspesifikk natur;
-- [ ] Civication er ikke runding;
-- [ ] Wonderkammer er ikke runding;
-- [ ] historiske hendelser/rekorder/mesterskap er kunnskap, ikke Sports-runding.
+- [ ] riktig canonical profil brukes for stedets type;
+- [ ] runtime viser nøyaktig den profilen kontrakten bestemmer;
+- [ ] legacy `rounds`/`rundinger`/prioritetslogikk kan ikke overstyre profilen;
+- [ ] preview er presentasjon og filtrerer ikke canonical innhold;
+- [ ] naturstedets eventuelle spesialflater følger rundingkontrakten;
+- [ ] relevante rundingstester/governance passerer.
 
-### People-runding
-Følg People-kontraktene i DEL F.
-
-### Works
-- [ ] selvstendig verkidentitet;
-- [ ] dokumentert stedskobling;
-- [ ] korrekt verkbilde/cover.
-
-### Objects
-- [ ] fysisk identifiserbar ting;
-- [ ] dokumentert stedstilknytning;
-- [ ] konkret bilde av tingen;
-- [ ] artefakt/funn/maskin/kjøretøy/våpen/instrument/drakt/pokal/produkt/dokumentobjekt osv. klassifiseres her når det passer.
-
-### Details
-- [ ] liten fysisk oppdagbar detalj;
-- [ ] eget nærbilde/tydelig bilde;
-- [ ] skilt/symbol/inskripsjon/ornament/spor osv. er faktisk til stede.
-
-### Spots
-- [ ] konkret fysisk delpunkt under hovedstedet;
-- [ ] eget bilde;
-- [ ] ikke opprett nytt globalt Place bare fordi det er et godt Spot.
-
-### Nature
-**LES FØRST når Nature produseres:** `README/nature_mapping_workflow.md`
-
-- [ ] canonical arts-/natur-ID-er;
-- [ ] dokumentert stedskobling/mapping;
-- [ ] arts-/fenomenidentitet kontrollert;
-- [ ] Nature-data og quiz-unlocks holdes i sine respektive eiersystemer.
-
-### Brands
-**Brands betyr fortsatt bare bedrifter og kjente merker med dokumentert stedskobling.**
-
-- [ ] søk eksisterende Brands-data først;
-- [ ] gjenbruk canonical Brand-ID;
-- [ ] korrekt logo/brandbilde;
-- [ ] ikke bruk Brands som restkategori for klubber, institusjoner, personer, skilt eller objekter;
-- [ ] ikke opprett Brand bare for rundinglayout.
+Hvis du trenger å vite **hvilke rundinger som finnes eller hva de betyr**, les eierfilen. Ikke kopier svaret hit.
 
 ---
 
-# DEL E — PÅ STEDET OG SPILLHANDLINGER
+# DEL E — PÅ STEDET OG LÆRINGSFLATER
 
 ## 9. På stedet
 
-**LES FØRST:** `docs/PLACE_POPUP_SYSTEM.md`
+**LES FØRST:**
+
+- `docs/PLACE_ONSITE_SYSTEM.md`
+- `data/categories/place_onsite_contract.json`
+- `docs/PLACE_POPUP_SYSTEM.md`
 
 ### Events
 - [ ] canonical event skjer faktisk ved stedet;
-- [ ] historiske hendelser er ikke blandet inn som dagens event.
+- [ ] tidsbundne forestillinger/oppsetninger/konserter behandles som Events;
+- [ ] historisk omtale i Historie/Stories endrer ikke event-identiteten.
 
 ### Møter
 Når Social Meet/Spotmeeting brukes:
@@ -394,56 +307,35 @@ Når Social Meet/Spotmeeting brukes:
 
 - [ ] stedet er egnet offentlig møtekontekst;
 - [ ] privacy-/sikkerhetsgrenser respekteres;
-- [ ] ingen live-posisjon, nearby people eller offentlig besøkshistorikk lekker fra place-data.
+- [ ] live-posisjon, nearby people eller offentlig besøkshistorikk lekker ikke fra place-data.
 
-### Gjør på stedet
-- [ ] `tasks_profile` vurdert;
-- [ ] `training_profile` vurdert;
-- [ ] `play_profile` vurdert;
-- [ ] handlingen er reelt mulig på stedet;
-- [ ] sikkerhet og fysisk gjennomførbarhet vurdert;
-- [ ] gammel Wonderkammer-aktivitet flyttes hit bare når den faktisk er en handling.
-
----
+### Andre handlinger
+- [ ] kategori-/stedstypepolicyen følges;
+- [ ] Lek vises bare der canonical onsite-policy tillater det;
+- [ ] `tasks_profile` brukes ikke som nytt History GO-produkt;
+- [ ] trening behandles som type-spesifikt sportsinnhold etter aktiv popup-/onsite-kontrakt.
 
 ## 10. Quiz
 
-**LES FØRST — obligatorisk før en quiz lages eller revideres:**  
-`data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`
+**LES FØRST — obligatorisk:** `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`
 
-Denne sjekklisten skal **ikke** brukes som quizoppskrift.
+Denne sjekklisten er ikke quizoppskrift.
 
-Ved relevant stedquiz:
-
-- [ ] `categoryId` og `targetId` er fastslått;
-- [ ] `data/fag/fag_manifest.json` brukes som filresolver;
-- [ ] alle `required_inputs` for kategorien er faktisk lest;
-- [ ] målstedets `source_brief` er brukt/oppdatert etter quizkontrakten;
-- [ ] eksterne kilder er lest og reviewstatus dokumentert;
-- [ ] påstandsbank bygges før spørsmål skrives;
-- [ ] faglig utvalg/metoder/emner/teorihooks vurderes etter kontrakten;
-- [ ] adaptiv quizprofil velges ut fra dokumentert stoffmengde;
-- [ ] normalåpning og settplan følger canonical quizregler;
-- [ ] spørsmål er source-led, ikke konstruert fra ønsket emneetikett;
-- [ ] `production_context` lagres når kontrakten krever det;
-- [ ] quiz-schema/package/integrity audits passerer;
-- [ ] Knowledge-koblinger genereres/synkroniseres etter quizkontrakten;
-- [ ] quiz må ikke registrere fysisk besøk.
-
-Status: **ferdig** eller **N/A**.
-
----
+- [ ] relevant quiz finnes eller er eksplisitt N/A;
+- [ ] `categoryId` og `targetId` er korrekte;
+- [ ] manifest/required inputs er fulgt;
+- [ ] eksterne kilder driver synlig faktainnhold etter quizkontrakten;
+- [ ] progresjon, teori/method-binding og andre relevante gates passerer.
 
 ## 11. Observer, Notat og Rute
 
 ### Observer
 - [ ] faktisk observerbart fenomen;
 - [ ] korrekt lens/observation-data;
-- [ ] dupliserer ikke bare en Detail som tekst;
 - [ ] learning-log-eierskap beholdes.
 
 ### Notat
-- [ ] notatflow fungerer fra stedet der produktet støtter dette.
+- [ ] notatflow fungerer der produktet støtter dette.
 
 ### Rute
 Når historisk rute berøres: **LES FØRST:** `docs/README_HistoryGo_Historiske_Ruter.md`
@@ -455,13 +347,13 @@ Når historisk rute berøres: **LES FØRST:** `docs/README_HistoryGo_Historiske_
 
 ---
 
-# DEL F — PEOPLE, WORKS, BRANDS OG RELASJONER
+# DEL F — PEOPLE, BRANDS OG RELASJONER
 
 ## 12. People–sted-koblinger
 
 **LES FØRST — obligatorisk:** `docs/people-of-places-method.md`
 
-Selv om People ikke velges som runding, skal relevante personer vurderes.
+Relevante personer vurderes uavhengig av om stedets aktuelle rundingsprofil viser People.
 
 Researchrekkefølge:
 
@@ -480,14 +372,15 @@ Researchrekkefølge:
 
 ### Hvis personprofil opprettes eller revideres
 
-**LES FØRST — obligatorisk:** `docs/PEOPLE_PROFILE_CANONICAL.md`
+**LES FØRST:** `docs/PEOPLE_PROFILE_CANONICAL.md`
 
 - [ ] identitetsport;
-- [ ] claims-fil;
-- [ ] felt→claim-paritet;
+- [ ] claims-/source-paritet;
 - [ ] faktareview;
 - [ ] redaksjonell review;
 - [ ] canonical validator/gate.
+
+Personens egne verk/bibliografi/filmografi/diskografi/arkitekturverk behandles i personens eide profilmodell – ikke som en egen PlaceCard-runding.
 
 ### Hvis People-bilde produseres eller endres
 
@@ -498,15 +391,13 @@ Researchrekkefølge:
 - [ ] attribusjon lagret;
 - [ ] canonical lokal bildefil brukes etter aktiv pipeline.
 
----
+## 13. Fysiske gjenstander og Brands
 
-## 13. Works og Brands
-
-### Works
-- [ ] søk eksisterende canonical verk først;
-- [ ] dokumenter den konkrete verk–sted-koblingen;
-- [ ] skill verk fra fysisk eksemplar (`works` vs `objects`);
-- [ ] bilde/cover identifisert korrekt.
+### Fysiske gjenstander
+- [ ] fysisk identitet er kontrollert;
+- [ ] konkret stedstilknytning er dokumentert;
+- [ ] fysisk kunstverk/skulptur/installasjon behandles som gjenstand etter eierkontrakten;
+- [ ] tidsbundet forestilling/oppsetning behandles ikke som gjenstand.
 
 ### Brands
 - [ ] søk eksisterende Brands-data;
@@ -515,15 +406,13 @@ Researchrekkefølge:
 - [ ] korrekt logo;
 - [ ] ingen omklassifisering av andre aktørtyper til Brands.
 
----
-
 ## 14. Leksikon, relations, NextUp, Nearby, søk og i18n
 
 - [ ] eksisterende Leksikon-record søkt;
 - [ ] hovedartikkel/facts/chronology er kildebelagt;
 - [ ] Leksikon og `popupDesc` dupliserer ikke unødvendig;
 - [ ] `related_place_ids` / relations er meningsfulle;
-- [ ] NextUp gir et reelt neste steg der systemet bruker det;
+- [ ] NextUp gir reelt neste steg der systemet bruker det;
 - [ ] Nearby viser riktig navn, kategori og bilde;
 - [ ] Nearby åpner riktig PlaceCard;
 - [ ] place-search finner canonical navn og relevante aliaser;
@@ -531,12 +420,10 @@ Researchrekkefølge:
 - [ ] alias/oversettelse endrer ikke objektets identitet.
 
 ### Offentlig hjemsted
-
-- [ ] vurder eksplisitt;
 - [ ] bare canonical History GO-place;
 - [ ] aldri privat adresse;
 - [ ] egnet koordinat/radius;
-- [ ] eksisterende privacy/synlighetsmodell følges;
+- [ ] privacy/synlighetsmodell følges;
 - [ ] ellers N/A.
 
 ---
@@ -546,98 +433,67 @@ Researchrekkefølge:
 ## 15. Fysisk besøk / innsjekk
 
 **LES FØRST:**
-
 - `docs/COMPLETION_DEFINITIONS.md`
 - `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md`
 
-- [ ] PlaceCard viser korrekt fysisk besøksknapp/status;
-- [ ] avstandsgate bruker riktig place-anker/radius;
-- [ ] for langt unna gir riktig tilstand;
-- [ ] gyldig fysisk registrering gir `Besøkt` etter eksisterende runtime;
-- [ ] quizåpning eller quizfullføring skriver ikke fysisk besøksstatus;
-- [ ] place-data lager ikke et nytt konkurrerende visit-storageformat.
-
----
+- [ ] fysisk besøk bruker eksisterende canonical visit-state;
+- [ ] radius/ankere fungerer;
+- [ ] quizåpning/fullføring skriver ikke fysisk besøksstatus;
+- [ ] place-data lager ikke konkurrerende visit-storageformat.
 
 ## 16. Favoritt og place-progress
 
 **LES FØRST:** `docs/PROFILE_PROGRESS_READER_RUNTIME.md`
 
-- [ ] favorittstatus kan leses riktig for stedet;
+- [ ] favorittstatus leses riktig;
 - [ ] favorittmarkering bruker eksisterende eier/runtime;
-- [ ] PlaceCard/Nearby/profil er konsistente om favoritt der flatene viser den;
-- [ ] besøkt-status leses riktig;
-- [ ] quiz-fullført-status leses riktig;
-- [ ] beregnet place-progress/next action er riktig der runtime viser det;
+- [ ] place-progress/next action er riktig der runtime viser det;
 - [ ] ingen ny lokal progresjonsstate opprettes i place-data.
-
----
 
 ## 17. Profil, miniProfile, unlocks og belønninger
 
 **LES FØRST:** `docs/COMPLETION_DEFINITIONS.md`
 
-Vurder alle effekter stedet faktisk skal ha:
+Vurder bare effekter som faktisk har implementert eier:
 
-- [ ] besøkt sted synlig i relevante profilflater;
-- [ ] quizstatus/progresjon kan leses;
-- [ ] eventuell People-unlock fungerer;
-- [ ] eventuell Object/funn/samlings-unlock fungerer;
-- [ ] eventuell badge/merit/kategoriprogresjon fungerer;
-- [ ] Bronse/Sølv/Gull vurderes bare der eksisterende runtime/data faktisk støtter dette;
-- [ ] belønning hevdes ikke implementert bare fordi produktmodellen beskriver den;
-- [ ] `updateProfile` dispatches der den eide runtimekontrakten krever det;
-- [ ] Next action etter handling er meningsfull;
-- [ ] samme spillerstatus leses konsistent i PlaceCard, Nearby og profil/miniProfile der de viser den.
+- [ ] profil/miniProfile;
+- [ ] unlocks;
+- [ ] badge/achievement;
+- [ ] People/nature/andre unlocks;
+- [ ] downstream-effekter er testet og ikke antatt.
 
-### Viktig
-
-Fysisk besøksmodul garanterer **ikke automatisk** badge, stedsmerke, People-unlock eller samlingsobjekt. Slike downstream-effekter må ha egen implementert eier og test.
+Fysisk besøk garanterer ikke automatisk andre belønninger uten eksplisitt implementasjon.
 
 ---
 
 # DEL H — LEGACY WONDERKAMMER
 
-## 18. Klassifiser legacy-innhold, men produser ikke nytt Wonderkammer for stedet
+## 18. Klassifiser legacy-innhold, produser ikke nytt Wonderkammer
 
 Hvis legacy Wonderkammer finnes:
 
-- [ ] fysisk ting → Objects;
-- [ ] liten fysisk detalj/spor → Details;
-- [ ] fysisk delsted → Spots;
-- [ ] person → People;
-- [ ] verk → Works;
-- [ ] natur → Nature;
-- [ ] handling → På stedet;
-- [ ] navigasjon → relations/NextUp;
-- [ ] chronology/hendelse → Historie;
-- [ ] narrativ episode → Story bare hvis Story-kontrakten består;
-- [ ] gammel entry slettes ikke før canonical erstatning er validert.
+- [ ] vurder hvert element etter faktisk identitet;
+- [ ] flytt bare når riktig canonical eier er kjent;
+- [ ] ikke bruk Wonderkammer som ny place-produksjonsmodell;
+- [ ] ikke la legacy-felt definere rundinger.
 
-Civication Store beholdes som eget spillsystem. Det er ikke en PlaceCard-runding.
+Civication Store beholdes som eget spillsystem og skal ikke gis rundingidentitet bare fordi data finnes der.
 
 ---
 
 # DEL I — BILDER
 
-## 19. Hovedbilder og rundingsbilder
+## 19. Bilder
 
 For hvert bilde som publiseres:
 
-- [ ] viser riktig sted/person/verk/objekt/detail/spot/art/brand;
+- [ ] viser riktig sted/person/gjenstand/art/brand;
 - [ ] nabosted, feil bygg, feil avdeling eller navnelik entitet er utelukket;
-- [ ] fil/URL eksisterer og laster;
-- [ ] crop/aspect ratio fungerer i aktuell flate;
-- [ ] historisk bilde presenteres som historisk;
-- [ ] illustrasjon presenteres ikke som dokumentarfoto;
-- [ ] attribusjon/lisens lagres der datamodellen krever det;
-- [ ] hver valgt runding har minst ett faktisk bildeklart preview;
-- [ ] Objects/Details/Spots viser det konkrete elementet, ikke bare generisk hovedbilde;
-- [ ] People-bilder følger `docs/PEOPLE_IMAGES.md`.
-
-### Stoppgate
-
-En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON/CI er grønn.
+- [ ] utsnitt og kvalitet er egnet;
+- [ ] lisens/bruksvilkår er kontrollert;
+- [ ] attribusjon lagres der datamodellen krever det;
+- [ ] People-bilder følger `docs/PEOPLE_IMAGES.md`;
+- [ ] rundingspreview følger rundingkontrakten og brukes aldri som datafilter.
 
 ---
 
@@ -649,21 +505,10 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] place-ID unik;
 - [ ] source-fil er manifest-loadet;
 - [ ] genererte indekser regenereres fra source, aldri håndredigeres;
-- [ ] category gyldig;
-- [ ] underbadge-ID-er gyldige;
-- [ ] emne-ID-er gyldige;
-- [ ] coordinate contract passerer;
-- [ ] description-production/claim-paritet passerer ved tekstendring;
-- [ ] People-referanser finnes;
-- [ ] Works-referanser finnes;
-- [ ] Brands-referanser finnes og beholder Brands-semantikk;
-- [ ] Story-referanser/manifest passerer;
-- [ ] quiz targets/production package passerer;
-- [ ] route-referanser finnes;
+- [ ] refererte People/Story/Quiz/Brand/nature-ID-er finnes;
+- [ ] kategori/emne/underbadge-referanser validerer;
 - [ ] i18n/alias-data validerer når berørt;
 - [ ] ingen duplikat-ID-er introdusert.
-
----
 
 ## 21. UI-QA — åpne akkurat stedet
 
@@ -671,60 +516,38 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] Nearby/Søk åpner riktig sted;
 - [ ] PlaceCard åpner uten feil;
 - [ ] navn/kategori/hovedbilde/`desc` riktige;
-- [ ] `popupDesc`/popup åpner riktig;
-- [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
-- [ ] nøyaktig 4 eller 6 rundinger;
-- [ ] 4 = 2×2, 6 = 3×2;
-- [ ] alle valgte rundinger har korrekte bilder;
-- [ ] Badges åpner riktig sted/fagverk;
-- [ ] People/Works/Objects/Details/Spots/Nature/Brands åpner riktig innhold;
-- [ ] Brands viser bare riktige bedrifter/kjente merker;
-- [ ] Nature vises bare når relevant;
-- [ ] Civication/Wonderkammer vises ikke som canonical runding;
-- [ ] På stedet ligger under rundingene;
-- [ ] visit-knapp/status fungerer;
-- [ ] favorittstatus fungerer;
-- [ ] quiz fungerer uten å skrive fysisk besøk;
-- [ ] relevante unlocks/belønninger kan leses i riktige flater;
-- [ ] tomme/irrelevante flater skjules eller har korrekt tomtilstand;
-- [ ] ingen gammel 3×3-/ni-runderslogikk lekker gjennom.
-
----
+- [ ] canonical rundingsprofil er riktig;
+- [ ] ingen legacy-rundinger lekker inn;
+- [ ] vanlige steder og natursteder følger sine respektive rundingskontrakter;
+- [ ] naturspesialflater testes på et faktisk natursted;
+- [ ] På stedet følger category/type-policy;
+- [ ] popupens åtte faner fungerer;
+- [ ] tomme/irrelevante flater skjules eller har korrekt tomtilstand.
 
 ## 22. Innholds-QA
 
 - [ ] alle nye brukerrettede påstander har inspectable støtte;
-- [ ] `desc`/`popupDesc` følger Place Description-kontrakten, ikke bare denne listen;
+- [ ] `desc`/`popupDesc` følger Place Description-kontrakten;
 - [ ] datoer/år/roller/tall kontrollert;
 - [ ] People-koblinger følger People of Places;
-- [ ] nye/reviderte People følger People Profile-kontrakten;
 - [ ] Stories følger Stories governance;
-- [ ] Quiz følger Quiz Production Canonical;
-- [ ] Nature følger naturmappingens eierskap og evidens;
-- [ ] bilder identitetskontrollert;
-- [ ] Brands er ikke utvidet semantisk;
-- [ ] rundingsinnhold er ikke filler;
+- [ ] quiz følger quizkontrakten;
+- [ ] naturdata følger naturmapping;
+- [ ] rundingspresentasjon følger bare rundingkontrakten;
 - [ ] avvist/usikkert innhold er fortsatt utelatt.
-
----
 
 ## 23. CI / repository-gates
 
 Kjør gates som faktisk eier endringene. Typiske:
 
 - [ ] Data checks / Places gate;
-- [ ] Place description governance når `desc`/`popupDesc`/produksjonspakke berøres;
-- [ ] Place rounds governance;
-- [ ] Fagverk and place learning ved relevante place/fagverk/bildeendringer;
-- [ ] coordinate gate ved koordinatendring;
-- [ ] People profile / People of Places / People image gates når People berøres;
+- [ ] Place description governance når tekst/produksjonspakke berøres;
+- [ ] People gates når People berøres;
 - [ ] Stories gate når Stories berøres;
-- [ ] quiz/category governance når Quiz/kategori berøres;
-- [ ] Nature gate når naturmapping berøres;
-- [ ] TypeScript guard når runtime/schema berøres;
-- [ ] øvrige subsystemgates for faktisk berørte filer.
-
-**Grønn CI erstatter aldri faktakontroll eller manuell UI-kontroll.**
+- [ ] quiz gates når quiz berøres;
+- [ ] nature gates når naturdata berøres;
+- [ ] round governance/tests når rundingsruntime eller presentasjon berøres;
+- [ ] TypeScript/build/smoke når runtime berøres.
 
 ---
 
@@ -732,23 +555,19 @@ Kjør gates som faktisk eier endringene. Typiske:
 
 ## 24. Ett-sted-PR
 
-- [ ] PR-en gjelder ett place;
-- [ ] avhengige People/Works/Story/Quiz/Objects/Details/Spots-data er med bare når nødvendig for dette stedet;
+- [ ] PR-en gjelder ett place eller én eksplisitt governance-/runtimeopprydding;
+- [ ] avhengige data er med bare når nødvendig for oppgaven;
 - [ ] neste sted er ikke blandet inn;
 - [ ] sluttdiffen har bare forventede filer;
-- [ ] branch er à jour med `main`;
 - [ ] reviewtråder er løst;
-- [ ] alle relevante gates er grønne på uendret head-SHA;
-- [ ] manuell sted-QA er utført på samme innhold;
-- [ ] merge bruker låst/forventet head-SHA.
-
-Ikke start neste sted før dette stedet er merget eller eksplisitt stoppet/blokkert med dokumentert grunn.
+- [ ] CI er grønn;
+- [ ] head-SHA er kontrollert før merge.
 
 ---
 
 # DEL L — ENDELIG FERDIGDEFINISJON
 
-Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant eller eksplisitt **N/A**:
+Et sted er **sted-produksjon ferdig** først når hvert relevant punkt er sant eller eksplisitt **N/A**:
 
 ### Identitet og fakta
 - [ ] canonical place/source/manifest avklart;
@@ -765,7 +584,6 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] category;
 - [ ] underbadges;
 - [ ] emner;
-- [ ] Badges;
 - [ ] fagverk-sted.
 
 ### Tekst
@@ -784,32 +602,25 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] Mer / N/A.
 
 ### Rundinger
-- [ ] nøyaktig 4 eller 6;
-- [ ] Badges med;
-- [ ] People vurdert;
-- [ ] Works vurdert;
-- [ ] Objects vurdert;
-- [ ] Details vurdert;
-- [ ] Spots vurdert;
-- [ ] Nature vurdert;
-- [ ] Brands vurdert som **bedrifter/kjente merker**;
-- [ ] alle valgte bildeklare.
+- [ ] `data/places/README_place_rounds.md` er lest;
+- [ ] canonical profil er korrekt;
+- [ ] ingen legacy rundingsregel påvirker presentasjonen;
+- [ ] preview filtrerer ikke innhold;
+- [ ] rundingstester/governance passerer.
 
 ### På stedet / læring
 - [ ] Events / N/A;
 - [ ] Møter / N/A;
-- [ ] Tasks / N/A;
-- [ ] Training / N/A;
-- [ ] Play / N/A;
-- [ ] Quiz etter canonical quizprosedyre / N/A;
+- [ ] øvrige onsite-flater følger aktiv policy;
+- [ ] Quiz / N/A;
 - [ ] Observer / N/A;
 - [ ] Notat / N/A;
 - [ ] Rute / N/A.
 
-### Relasjoner
+### Relasjoner og øvrige systemer
 - [ ] People;
-- [ ] Works;
 - [ ] Brands;
+- [ ] fysiske gjenstander der relevant;
 - [ ] Leksikon;
 - [ ] Relations/NextUp;
 - [ ] Nearby/Søk;
@@ -823,136 +634,14 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] favoritt;
 - [ ] place-progress;
 - [ ] profil/miniProfile;
-- [ ] People/Object/andre unlocks / N/A;
-- [ ] badge/merit/Bronse–Sølv–Gull / N/A;
-- [ ] Next action;
-- [ ] status konsistent på relevante flater.
+- [ ] eventuelle unlocks/belønninger har eksplisitt eier.
 
-### Bilder
+### Bilder og QA
 - [ ] hovedbilder;
-- [ ] rundingspreview;
-- [ ] identitet;
-- [ ] lisens/attribusjon der relevant.
+- [ ] subsystembilder;
+- [ ] lisens/attribusjon;
+- [ ] data-QA;
+- [ ] UI-QA;
+- [ ] relevante CI-gates.
 
-### QA / merge
-- [ ] data validerer;
-- [ ] subsystemkontrakter er fulgt;
-- [ ] UI manuelt kontrollert;
-- [ ] relevant CI grønn;
-- [ ] ren ett-sted-diff;
-- [ ] merge ferdig.
-
----
-
-# KOPIERBAR STATUSMAL PER STED
-
-```markdown
-## <place_id> — produksjonsstatus
-
-### A. Source og identitet
-- [ ] canonical object
-- [ ] manifest/source
-- [ ] duplikatsøk
-- [ ] identitetssetning
-
-### B. Fakta og koordinat
-- [ ] kilder lest / claims
-- [ ] koordinat/anker
-- [ ] radius/geometry
-- [ ] coordinate evidence/gate
-
-### C. Fag
-- [ ] category
-- [ ] underbadges
-- [ ] emne_ids
-- [ ] Badges
-- [ ] fagverk-sted
-
-### D. desc / popupDesc
-LES: data/places/regler/PLACE_DESCRIPTION_CANONICAL.md
-- [ ] production package
-- [ ] claims
-- [ ] desc
-- [ ] popupDesc
-- [ ] sentence→claim
-- [ ] faktareview
-- [ ] redaksjonell review
-- [ ] validator
-
-### E. Popup
-LES: docs/PLACE_POPUP_SYSTEM.md
-- [ ] Om
-- [ ] Historie
-- [ ] Fortellinger / N/A
-- [ ] Før/etter / N/A
-- [ ] Nyheter / N/A
-- [ ] Lesespor / N/A
-- [ ] Kilder
-- [ ] Mer / N/A
-
-### F. Rundinger
-LES: data/places/README_place_rounds.md
-Mål: [ ] 4  [ ] 6
-- [ ] Badges
-- [ ] People
-- [ ] Works
-- [ ] Objects
-- [ ] Details
-- [ ] Spots
-- [ ] Nature
-- [ ] Brands
-For hver valgt: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flow
-
-### G. People / Stories / Quiz
-- [ ] People of Places lest og vurdert
-- [ ] People Profile Canonical brukt ved People-endring / N/A
-- [ ] Stories Governance brukt ved Story / N/A
-- [ ] Quiz Production Canonical brukt ved Quiz / N/A
-
-### H. På stedet
-- [ ] Events / N/A
-- [ ] Møter / N/A
-- [ ] Tasks / N/A
-- [ ] Training / N/A
-- [ ] Play / N/A
-- [ ] Observer / N/A
-- [ ] Notat / N/A
-- [ ] Rute / N/A
-
-### I. Relasjoner
-- [ ] Works
-- [ ] Brands
-- [ ] Leksikon
-- [ ] Relations / NextUp
-- [ ] Nearby / Søk
-- [ ] alias / i18n
-- [ ] hjemsted / N/A
-- [ ] Wonderkammer legacy / N/A
-
-### J. Spillerstatus
-- [ ] fysisk besøk
-- [ ] quiz skriver ikke fysisk visit
-- [ ] favoritt
-- [ ] place-progress
-- [ ] profil / miniProfile
-- [ ] unlocks / N/A
-- [ ] badge/merit/nivå / N/A
-- [ ] next action
-
-### K. Bilder og slutt-QA
-- [ ] hovedbilder
-- [ ] rundingsbilder
-- [ ] identitet/attribusjon
-- [ ] JSON/referanser
-- [ ] 4/6-layout
-- [ ] popupfaner
-- [ ] relevant CI
-- [ ] ren slutt-diff
-- [ ] merge
-```
-
----
-
-## Hovedprinsippet
-
-> **Vi ferdigstiller ikke et sted ved å fylle flest mulig felt. Vi ferdigstiller det ved å følge riktig subsystemkontrakt for hvert relevant lag, produsere bare dokumenterbart innhold, teste hele spillerflaten og lukke stedet før vi går videre til det neste.**
+**Sluttregel:** Denne sjekklisten skal aldri bli en ny kilde til subsystemregler. Når detaljene endres, oppdateres eierkontrakten og denne filen beholder bare routing/gate.
