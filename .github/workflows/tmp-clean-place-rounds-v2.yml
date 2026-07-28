@@ -40,9 +40,29 @@ jobs:
         if: steps.guard.outputs.skip != 'true'
       - name: Apply cleanup
         if: steps.guard.outputs.skip != 'true'
+        shell: bash
         run: |
           sed -i '$d' .github/scripts/tmp_clean_rounds_v2.py
+          sed -i '/# Hard guards mot ny dokumentasjonsdrift\./,$d' .github/scripts/tmp_clean_rounds_v2.py
           python .github/scripts/tmp_clean_rounds_v2.py
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('docs/PLACE_PRODUCTION_CHECKLIST.md')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('- [ ] nøyaktig 4 eller 6 rundinger;', '- [ ] rundingssettet følger canonical rundingskontrakt;')
+          s=s.replace('- [ ] 4 = 2×2, 6 = 3×2;', '- [ ] fire rundinger vises som 2×2;')
+          s=s.replace('- [ ] People/Works/Objects/Details/Spots/Nature/Brands åpner riktig innhold;', '- [ ] de fire canonical rundingene åpner riktig innhold;')
+          s=s.replace('- [ ] Nature vises bare når relevant;', '- [ ] natursteder bruker den canonical naturprofilen;')
+          s=s.replace('- [ ] nøyaktig 4 eller 6;', '- [ ] rundingssettet følger canonical rundingskontrakt;')
+          s=re.sub(r'### Rundinger\n(?:- \[ \].*\n)+', '### Rundinger\n- [ ] `data/places/README_place_rounds.md` er fulgt;\n- [ ] stedet viser nøyaktig fire canonical rundinger;\n- [ ] preview og innhold følger rundingskontrakten.\n', s, count=1)
+          p.write_text(s,encoding='utf-8')
+          owners=['data/places/README_place_rounds.md','docs/PLACE_PRODUCTION_CHECKLIST.md','docs/PLACE_STANDARD.md','docs/PLACE_POPUP_SYSTEM.md','docs/DATA_PRODUCTION_CONTRACT.md','docs/HISTORY_GO_PRODUCT_MAP.md','schemas/place.ts']
+          for f in owners:
+              t=Path(f).read_text(encoding='utf-8')
+              if re.search(r'4 eller 6|fire eller seks|3.?×.?2|3.?x.?2|seks rundinger',t,re.I):
+                  raise SystemExit(f'Stale 4/6-regel står igjen i {f}')
+          PY
       - name: Run canonical round tests
         if: steps.guard.outputs.skip != 'true'
         run: |
