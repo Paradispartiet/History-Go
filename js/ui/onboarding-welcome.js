@@ -10,6 +10,21 @@
 
   const FLAG_KEY = "hg_onboarding_shown_v1";
   const MODAL_ID = "hgOnboardingModal";
+  const MODAL_Z_INDEX = "2147483646";
+
+  function bindDismissControl(control) {
+    if (!control) return;
+
+    const dismiss = (event) => {
+      try { event?.preventDefault?.(); } catch {}
+      try { event?.stopPropagation?.(); } catch {}
+      close();
+    };
+
+    control.addEventListener("click", dismiss);
+    control.addEventListener("pointerup", dismiss);
+    control.addEventListener("touchend", dismiss, { passive: false });
+  }
 
   function build() {
     let modal = document.getElementById(MODAL_ID);
@@ -20,6 +35,12 @@
     modal.className = "hg-onboarding-modal";
     modal.setAttribute("aria-hidden", "true");
     modal.style.display = "none";
+
+    // Onboarding is a true modal. Keep it above every normal History Go surface
+    // so fixed map/header/footer layers cannot steal taps on Safari/iPadOS.
+    modal.style.zIndex = MODAL_Z_INDEX;
+    modal.style.pointerEvents = "auto";
+    modal.style.touchAction = "manipulation";
 
     modal.innerHTML = `
       <div class="hg-onb-inner" role="dialog" aria-modal="true">
@@ -77,8 +98,8 @@
     document.body.appendChild(modal);
 
     modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
-    modal.querySelector(".hg-onb-close").addEventListener("click", close);
-    modal.querySelector('[data-action="start"]').addEventListener("click", close);
+    bindDismissControl(modal.querySelector(".hg-onb-close"));
+    bindDismissControl(modal.querySelector('[data-action="start"]'));
 
     return modal;
   }
@@ -96,7 +117,8 @@
 
   function open() {
     const m = build();
-    m.style.display = "";
+    m.style.display = "flex";
+    m.style.pointerEvents = "auto";
     m.setAttribute("aria-hidden", "false");
     document.addEventListener("keydown", onKey);
   }
