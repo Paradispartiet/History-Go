@@ -16,26 +16,37 @@
     "country": "NO"
   },
   "geocodeAccuracy": "semantic_anchor",
-  "coordRole": "industrial_building_anchor",
+  "coordRole": "historical_anchor",
   "coordType": "heritage_entity_coordinate_for_intact_pulp_mill",
   "coordStatus": "verified_historical_source",
-  "coordSource": "Riksantikvaren kulturminne 241111; Wikidata Q6417316; Kistefos official industrial museum history",
+  "coordSource": "Riksantikvaren kulturminne 241111 and 2025 protection decision; Wikidata Q6417316; Kistefos official industrial history, living-factory and visitor pages",
   "coordSourceId": "riksantikvaren-kulturminne:241111;wikidata:Q6417316",
   "coordSourceUrl": "https://www.wikidata.org/wiki/Q6417316",
-  "coordVerifiedAt": "2026-07-26",
-  "coordChangeReason": "Legacy-punktet flyttes omtrent 279 meter sørvest til tresliperiets egen kulturminne- og entitetskoordinat i den bevarte fabrikkjernen.",
-  "coordNote": "Wikidata Q6417316 publiserer 60.22228888888889, 10.369111111111112 for Kistefos Træsliberi og knytter objektet til Kulturminne-ID 241111. Kistefos beskriver den gamle tremassefabrikken som hjertet i anlegget og dokumenterer at produksjonslokaler, maskiner og inventar er bevart nærmest komplett. Riksantikvaren identifiserer tresliperiet som et sammensatt teknisk-industrielt kulturmiljø ved Randselva og fredet anlegget 31. oktober 2025. Fredningen omfatter blant annet Tresliperiet, Smia/verkstedet, Fyrhuset, tømmerfløtingsanlegget, saghusruinen, tidligere arbeidsarealer og forbindende veier, vann- og grøntarealer. En geotagget Wikimedia-fotografi av selve tresliperiet, koblet til kulturminne 241111, er tatt omtrent 47,9 meter fra anvendt punkt og fungerer som fysisk krysskontroll. OSM-node 6546228596 og 10983953387 er generelle turistinformasjonspunkter med navnet Kistefos og avvises som canonical anker. Museet oppgir Samsmoveien 41N som kontaktadresse og Kistefossveien 112 som alternativ sørlig adkomst; adressene brukes som besøkskontekst og ikke som erstatning for fabrikkankeret. Radius 420 meter beholdes for tresliperiet, støttebygninger, kraft- og elvekontekst og den sentrale industrimuseumsflaten, men er ikke fredningspolygon, eiendomsgrense eller full avgrensning av dagens kunst- og skulpturdestinasjon.",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The 2026-07-26 production already moved the unsupported legacy point approximately 279 metres south-west to the pulp mill's heritage-entity coordinate. This pass retains that physical anchor and migrates its obsolete custom coordinate role to the valid historical_anchor contract value.",
+  "coordNote": "The retained point at 60.22228888888889, 10.369111111111112 follows Wikidata entity Q6417316 for Kistefos Træsliberi and its link to Kulturminne ID 241111. Riksantikvaren's protection decision dated 31 October 2025 confirms a larger technical-industrial cultural environment including Tresliperiet, Smia/verkstedet, Fyrhuset, log-floating installations, work areas, roads, water and green structures. The canonical marker represents the preserved pulp-mill core as a historical anchor, not a generic visitor information point, one entrance, the complete protection geometry or the entire modern art destination. Radius 420 metres is a gameplay extent, not a property, protection, museum, access or safety boundary.",
+  "accessContext": {
+    "siteType": "protected_industrial_museum_and_active_art_destination",
+    "publicAccess": "Access follows Kistefos season, tickets, museum opening, guided tours, event operations and temporary closures. The historic machinery, industrial interiors, riverbanks and protected structures may have supervised or restricted access.",
+    "visitorAddress": "Samsmoveien 41N, 3520 Jevnaker",
+    "limitations": [
+      "Do not enter machinery, workshop, power, storage, river-edge or staff areas outside public routes or without permission.",
+      "Respect moving demonstrations, protected interiors, artworks, guided groups, barriers and river or terrain hazards.",
+      "The gameplay radius is not the 2025 protection polygon, property boundary, museum boundary, artwork boundary, access boundary or safety zone."
+    ]
+  },
   "anchors": [
     {
       "id": "kistefos_traesliperi_industrial_core",
-      "name": "Kistefos Træsliberi – bevart fabrikkjerne",
+      "name": "Kistefos Træsliberi – preserved factory core",
       "lat": 60.22228888888889,
       "lon": 10.369111111111112,
       "r": 150,
-      "type": "industrial_building_anchor",
+      "type": "historical_industrial_core_anchor",
       "sourceProvider": "manual_research",
       "sourceObjectId": "riksantikvaren-kulturminne:241111;wikidata:Q6417316",
-      "note": "Kulturminne- og entitetskoordinat for det intakte tresliperiet; representerer fabrikkjernen, ikke hele fredningsområdet eller den moderne skulpturparken."
+      "canApplyToPlace": true,
+      "note": "Heritage-entity coordinate for the intact pulp-mill core; the wider protected industrial environment and modern sculpture destination remain contextual extents."
     }
   ],
   "category": "naeringsliv",
@@ -61,42 +72,42 @@
       "label": "Kistefos – Historien om Kistefos",
       "url": "https://www.kistefosmuseum.no/industri/kistefos-historie",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "official",
       "label": "Kistefos – Tresliperiet, Levende fabrikk",
       "url": "https://www.kistefosmuseum.no/industri/tresliperiet",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "official",
       "label": "Kistefos – kontakt og adkomst",
       "url": "https://www.kistefosmuseum.no/om-oss/kontakt-oss",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "heritage",
       "label": "Riksantikvaren – Freder Kistefos Træsliberi",
       "url": "https://riksantikvaren.no/fredninger/freder-kistefos-traesliberi/",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "heritage",
       "label": "Riksantikvaren – Kistefos Træsliberi",
       "url": "https://www.riksantikvaren.no/prosjekter/bevaringsprogramma/tekniske-og-industrielle-kulturminner/kistefos-traesliberi/",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "coordinate_source",
       "label": "Wikidata – Kistefos Træsliberi",
       "url": "https://www.wikidata.org/wiki/Q6417316",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     }
   ],
   "quiz_profile": {
