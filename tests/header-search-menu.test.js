@@ -167,7 +167,8 @@ function testMenuLabelsDescribeTheirRealDestinations() {
   assert.doesNotMatch(index, /Lås opp testmodus/);
   assert.doesNotMatch(index, /id="openToggle"/);
   assert.doesNotMatch(index, /id="btnUnlockAll"/);
-  assert.match(index, /<script src="js\/debug\/HGTestMode\.js"><\/script>/);
+  assert.doesNotMatch(index, /<script src="js\/debug\/HGTestMode\.js"><\/script>/);
+  assert.match(index, /window\.addEventListener\("hg:appReady"[\s\S]*"js\/debug\/HGTestMode\.js"/);
 }
 
 function testFagverketAndKnowledgeAreDistinctMenuDestinations() {
