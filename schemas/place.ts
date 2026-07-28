@@ -61,6 +61,23 @@ export interface PlaceSportProfile {
   [key: string]: unknown;
 }
 
+export interface PlaceVisualRoundItem {
+  id?: string;
+  title?: string;
+  name?: string;
+  label?: string;
+  description?: string;
+  desc?: string;
+  summary?: string;
+  image?: string;
+  imageCard?: string;
+  img?: string;
+  photo?: string;
+  thumbnail?: string;
+  cover?: string;
+  [key: string]: unknown;
+}
+
 export interface Place {
   id: string;
   name?: string;
@@ -93,19 +110,40 @@ export interface Place {
   relations?: unknown[];
   people?: unknown[];
   wonderkammer?: unknown;
+
+  /** Fysiske, identifiserbare gjenstander. Civication-egenskaper kan ligge på samme objekt. */
+  objects?: PlaceVisualRoundItem[];
+  /** Små visuelle detaljer som skilt, symboler, inskripsjoner, ornamenter og fysiske spor. */
+  details?: PlaceVisualRoundItem[];
+  visual_details?: PlaceVisualRoundItem[];
+  site_details?: PlaceVisualRoundItem[];
+  /** Fysiske delpunkter/delsteder som ikke nødvendigvis er egne canonical Places. */
+  spots?: PlaceVisualRoundItem[];
+  subplaces?: PlaceVisualRoundItem[];
+  subPlaces?: PlaceVisualRoundItem[];
+  /** Legacy fysisk objektfelt som kan brukes som Objects-kilde under migrering. */
+  artifacts?: PlaceVisualRoundItem[];
+
   /**
-   * Legacy/kuratorisk metadata for PlaceCard-rundinger. PlaceCard-gridet er
-   * nå fast og viser 9 canonical rundinger fra kategoriens profil, for eksempel:
-   * people, tasks, badges, works, civication, brands, før_nå, fortellinger,
-   * leksikon. `rounds`/`rundinger` kan fortsatt brukes som manuell override,
-   * men må bruke canonical IDs. Runtime støtter fortsatt legacy aliases for
-   * bakoverkompatibilitet: routes -> før_nå, lexicon -> leksikon,
-   * stories/story -> fortellinger, wonderkammer -> leksikon, football/music ->
-   * works. Nye data trenger normalt ikke å sette `rounds`. Se js/ui/place-card.js.
+   * Canonical PlaceCard-rundinger er visuelle samlinger. Paletten er:
+   * badges, people, works, objects, details, spots, nature, brands.
+   *
+   * Nye/reviderte steder skal vise nøyaktig 4 eller 6 rundinger. `badges` er
+   * obligatorisk og leder til stedets fagverkside. `rounds`/`rundinger` brukes
+   * til eksplisitt kuratering; hvis feltet mangler bruker presentasjonslaget
+   * kategoriens 4-runders kjerneprofil. Seks rundinger er en eksplisitt utvidelse
+   * når stedet har seks reelle visuelle samlinger.
+   *
+   * Leksikon/Stories/Før-etter og handlinger er ikke rundinger. Wonderkammer og
+   * Civication er heller ikke canonical rundinger; fysiske Store-objekter kan
+   * presenteres gjennom Objects uten at Store-dataene flyttes.
+   * Se data/places/README_place_rounds.md og js/ui/place-rounds-visual-collections.js.
    */
   rounds?: string[];
   /** Alias for `rounds` (legacy). Foretrekk `rounds` i nye data. */
   rundinger?: string[];
+  /** Kan fjerne en valgfri standardrunding; `badges` kan ikke ekskluderes. */
+  rounds_exclude?: string[];
   /** Legacy nature fields: arrays of flora/fauna ids attached to a place. */
   flora?: string[];
   fauna?: string[];

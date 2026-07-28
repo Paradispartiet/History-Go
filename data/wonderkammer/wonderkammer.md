@@ -1,54 +1,37 @@
 # History GO — Wonderkammer
 
-Status: **canonical konsolideringskontrakt**  
+Status: **legacy migreringskontrakt**  
 Sist kontrollert: **2026-07-28**
 
-Wonderkammer har hatt flere konkurrerende betydninger i repoet. Denne kontrakten rydder begrepet og definerer hva nye Wonderkammer-data skal være.
+Wonderkammer har hatt flere konkurrerende betydninger i repoet. Det skal ikke lenger være en egen canonical PlaceCard-runding eller en ny produksjonsmodell.
 
-## 1. Canonical definisjon
+## Beslutning
 
-> **Wonderkammer er en kuratert samling av konkrete, stedsspesifikke kuriositeter, detaljer, spor og «skatter» som brukeren kan oppdage ved et faktisk sted.**
+> **Det skal ikke produseres nye Wonderkammer-entries. Eksisterende Wonderkammer-data beholdes som migreringsgrunnlag til hver entry er flyttet til riktig canonical system.**
 
-Et Wonderkammer-element skal gjøre brukeren mer oppmerksom på noe som finnes, har eksistert eller kan leses fysisk på akkurat dette stedet.
+Den nye visuelle PlaceCard-paletten er dokumentert i `data/places/README_place_rounds.md`.
 
-Typiske eksempler:
+Fysiske ting som tidligere kunne blitt kalt Wonderkammer skal nå klassifiseres etter hva de faktisk er:
 
-- en arkitektonisk detalj;
-- et uvanlig materiale eller konstruksjonsspor;
-- et konkret historisk lag;
-- et fysisk minnespor;
-- en særpreget romlig relasjon;
-- et skjult eller oversett objekt;
-- en stedsspesifikk kuriositet;
-- et dokumentert tidligere bruksspor som kan forstås gjennom det fysiske stedet.
+- fysisk gjenstand → `objects`;
+- liten synlig detalj eller fysisk spor → `details`;
+- konkret delpunkt/delsted → `spots`;
+- person → `people`;
+- verk → `works`;
+- naturentitet → `nature`;
+- eksisterende Brand-oppføring → `brands`;
+- handling → **På stedet**;
+- navigasjon → relations/NextUp;
+- chronology/hendelse → **Historie**;
+- narrativ fortelling → Stories når storykontrakten er oppfylt.
 
-Den nyere `actual_site_treasure`-modellen ligger nærmest denne definisjonen.
+## Hvorfor Wonderkammer pensjoneres
 
-## 2. Hva Wonderkammer ikke er
+Repoet inneholder historisk minst tre forskjellige Wonderkammer-modeller som ikke bør fortsette under ett navn.
 
-Wonderkammer er ikke:
+### 1. Navigasjons-Wonderkammer
 
-- en generell kunnskapsartikkel;
-- en chronology;
-- en Story;
-- en liste over personer eller steder å klikke videre til;
-- et synonym for relations eller NextUp;
-- en aktivitetsbank;
-- et treningsprogram;
-- en lekeplassguide;
-- et sett med generiske «hva kan man gjøre her?»-tekster;
-- Civication Store / Thingstore;
-- en restkategori for innhold som ikke passer andre steder.
-
-Hvis innholdet først og fremst forklarer, tidsfester, trener, instruerer eller navigerer, hører det normalt hjemme et annet sted.
-
-## 3. Audit: tre historiske Wonderkammer-modeller
-
-Repoet inneholder minst tre ulike generasjoner.
-
-### A. Navigasjons-Wonderkammer
-
-Den tidlige kontrakten brukte typer som:
+Tidlige data brukte blant annet:
 
 - `place`
 - `person`
@@ -57,201 +40,137 @@ Den tidlige kontrakten brukte typer som:
 - `work`
 - `trace`
 
-Målet var at brukeren skulle føle «her kan jeg gå videre», med flere klikk gjennom et kuratert nettverk.
+Hovedverdien var «gå videre til X».
 
-Denne ideen overlapper nå med:
+**Canonical destinasjon:** relations/NextUp eller den relevante People/Works/Brands-/stedskoblingen.
 
-- canonical relations;
-- NextUp / Fortsett reisen;
-- People-rundingen;
-- Brands-rundingen;
-- Works-rundingen;
-- stedskoblinger og ruter.
+Eksisterende Brands-data og Brands-oppføringer skal ikke omskrives som del av denne migreringen.
 
-**Beslutning:** Navigasjonsgrafen er ikke lenger canonical Wonderkammer. Nye Wonderkammer-data skal ikke produseres som generelle pekere til andre entiteter.
+### 2. Aktivitets-Wonderkammer
 
-Eksisterende navigasjonsdata beholdes som migreringsgrunnlag til de er flyttet til riktig relasjons-/navigasjonssystem.
+Senere data brukte blant annet:
 
-### B. Aktivitets-Wonderkammer
+- `play_zone`
+- `open_play_area`
+- `exploration_zone`
+- `activity`
+- `activityText`
+- `ageHint`
+- `adultRole`
+- `microMission`
+- trenings- og lekeinstruksjoner
 
-Senere data brukte Wonderkammer til blant annet:
-
-- `play_zone`;
-- `open_play_area`;
-- `exploration_zone`;
-- `activity`;
-- `activityText`;
-- `ageHint`;
-- `adultRole`;
-- `microMission`;
-- trenings- og lekeinstruksjoner.
-
-Dette er den modellen som gjør Wonderkammer til en «undrings-/gjør noe her»-flate.
-
-**Beslutning:** Denne modellen er ikke canonical Wonderkammer.
+**Canonical destinasjon:**
 
 - lek → `play_profile` / **På stedet → Gjør på stedet**;
 - trening → `training_profile` / **På stedet → Gjør på stedet**;
 - oppgaver → `tasks_profile` / **På stedet → Gjør på stedet**;
-- observasjon → observations / Observer-flow;
-- generelle familieaktiviteter → egen handlings-/ruteproduktflate når relevant.
+- observasjonshandling → Observer-flow eller annen riktig handlingsflate.
 
-Aktivitetsdata skal migreres gradvis; de skal ikke slettes blindt.
+### 3. `actual_site_treasure`
 
-### C. Actual-site-treasure / kuriositets-Wonderkammer
+Nyere Wonderkammer-produksjon brukte blant annet:
 
-Nyere produksjon har brukt felt som:
+- `treasureScope: "actual_site_treasure"`
+- `treasureTitle`
+- `treasureType`
+- `cabinetCategory`
+- `curiosity`
+- `whereToFind`
+- `whatToNotice`
+- `material`
+- `rarity`
+- `collectible`
+- `collectionNote`
 
-- `treasureScope: "actual_site_treasure"`;
-- `treasureTitle`;
-- `treasureType`;
-- `cabinetCategory`;
-- `curiosity`;
-- `whereToFind`;
-- `whatToNotice`;
-- `material`;
-- `rarity`;
-- `collectible`;
-- `collectionNote`.
+Denne modellen var nærmest den nye rundingarkitekturen, men inneholdt flere forskjellige objekttyper.
 
-Denne modellen er fysisk, stedsspesifikk og samlingsorientert.
+**Canonical destinasjon avgjøres entry for entry:**
 
-**Beslutning:** Dette er basis for canonical Wonderkammer videre.
+- kanon, maskin, funn, instrument, dokumentobjekt → `objects`;
+- inskripsjon, skilt, ornament, skadespor → `details`;
+- port, tårn, tunnel, rom, utsiktspunkt → `spots`;
+- selvstendig kunstverk → `works`;
+- art eller naturfenomen → `nature`.
 
-## 4. Canonical Wonderkammer-element
+Det skal ikke opprettes en ny restkategori kalt Wonderkammer for det som ikke passer andre steder.
 
-Et nytt Wonderkammer-element bør normalt ha:
+## Objects og Civication
 
-```json
-{
-  "id": "wk_sted_objekt",
-  "title": "Kort tydelig tittel",
-  "type": "architectural_feature",
-  "description": "Hva dette faktisk er.",
-  "placeSpecificDetail": "Hvorfor akkurat dette stedet er nødvendig.",
-  "treasureTitle": "Samletittel",
-  "treasureType": "detalj",
-  "treasureScope": "actual_site_treasure",
-  "cabinetCategory": "artificialia",
-  "curiosity": "Én dokumentert kuriositet.",
-  "whereToFind": "Hvor på stedet brukeren kan finne det.",
-  "whatToNotice": "Hva brukeren konkret kan legge merke til.",
-  "rarity": "uvanlig",
-  "collectible": "stedsobservasjon",
-  "collectionNote": "Du samlet ...",
-  "sourceNote": "Kort kilde-/proveniensnotat"
-}
-```
+Civication Store / Thingstore består som spillsystem, men er ikke en egen canonical PlaceCard-runding.
 
-Ikke alle felt er alltid nødvendige, men følgende prinsipper er obligatoriske:
+Når et Store-element også representerer en virkelig stedsspesifikk gjenstand kan det presenteres gjennom `objects` uten at Store-dataene flyttes eller dupliseres.
 
-1. fysisk eller historisk konkret objekt/spor;
-2. tydelig stedsspesifisitet;
-3. ingen generisk aktivitetstekst som hovedinnhold;
-4. ingen ren navigasjonslenke som hovedinnhold;
-5. ingen erstatning for Story, chronology eller Leksikon;
-6. dokumenterbar påstand.
+Skillet er:
 
-## 5. `whatToDo` er ikke hovedidentiteten
+- `objects` beskriver **hva den fysiske tingen er**;
+- Civication beskriver **kjøp, eierskap og bruk i spillet**.
 
-Noen nyere `actual_site_treasure`-oppføringer har `whatToDo`, for eksempel «gå rundt», «se mot», «følg med blikket».
+Ikke alle Objects skal være kjøpbare.
 
-Dette kan beholdes som en **mikrohandling for observasjon**, men bare når den tjener selve kuriositeten.
-
-Godt:
-
-> «Se på skjøten mellom to murpartier og legg merke til skiftet i stein.»
-
-Ikke godt:
-
-> «Løp opp bakken tre ganger og ta tiden.»
-
-Det siste er trening og hører hjemme under På stedet.
-
-## 6. Forholdet til andre systemer
-
-### Leksikon / stedspopup
-
-Leksikon forklarer. Wonderkammer peker ut en konkret kuriositet eller detalj.
-
-### Historie / chronology
-
-Historie tidsfester og kontekstualiserer. Wonderkammer kan vise et fysisk spor etter historien, men skal ikke bli en tidslinje.
-
-### Stories
-
-Stories forteller. Wonderkammer samler konkrete ting/spor. En sterk Story kan forklare hvorfor et Wonderkammer-objekt er viktig, men de skal ikke duplisere hverandre.
-
-### People / Brands / Works
-
-Hvis hovedverdien er en navngitt person, institusjon eller et canonical verk, bruk den relevante visuelle samlingen i stedet for å kopiere objektet inn i Wonderkammer.
-
-### Relations / NextUp
-
-Hvis hovedverdien er «gå videre til X», bruk relations/NextUp. Wonderkammer er ikke navigasjonsgraf.
-
-### På stedet
-
-Hvis hovedverdien er «gjør X», bruk **På stedet**.
-
-### Civication Store
-
-Hvis objektet primært er et spillobjekt som kan kjøpes/samles/brukes i Civication, hører det i Civication Store. Wonderkammer kan beskrive den virkelige kuriositeten, men skal ikke være butikkdata.
-
-## 7. UI-status
-
-Wonderkammer er midlertidig **ikke** en canonical PlaceCard-runding og vises ikke automatisk i den nye stedspopupen mens datamigreringen pågår.
-
-Dette er med vilje: dagens `data/wonderkammer/index.json` laster både navigasjons-, aktivitets- og treasure-generasjoner i samme runtime.
-
-Før Wonderkammer får ny brukerflate skal dataene klassifiseres og legacy-typene skilles ut.
-
-## 8. Migreringsregler
+## Migreringsregler
 
 For hver eksisterende Wonderkammer-entry:
 
-1. identifiser hvilken av de tre modellene den tilhører;
-2. behold `actual_site_treasure`/stedsspesifikke kuriositeter som Wonderkammer-kandidater;
-3. flytt aktivitet/lek/trening/oppgave til riktig På stedet-profil;
-4. flytt navigasjonspekere til relations/NextUp/People/Brands/Works;
-5. flytt chronology-aktige oppføringer til Historie når hovedverdien er dato/hendelse;
-6. flytt narrative historier til Stories bare hvis de består storytesten;
-7. behold provenance/kildegrunnlag gjennom migreringen;
-8. slett først legacy-entry når ny canonical representasjon er validert.
+1. identifiser hvilken historisk modell entryen tilhører;
+2. identifiser hva entryen faktisk representerer;
+3. velg én canonical destinasjon;
+4. behold kilde/provenance gjennom migreringen;
+5. ikke kopier samme element inn i flere rundinger uten en eksplisitt semantisk grunn;
+6. slett legacy-entry først når den nye representasjonen er validert;
+7. ikke endre eksisterende Brands-oppføringer som del av Wonderkammer-migreringen.
 
-## 9. Produksjonsstopp for legacy-typer
+## Produksjonsstopp
 
-Fra denne revisjonen skal det ikke produseres nye Wonderkammer-entries der hovedtypen er:
+Fra denne revisjonen skal det ikke produseres nye data med Wonderkammer som målmodell.
+
+Dette gjelder både:
 
 - generisk lek;
 - trening;
 - aktivitet;
 - oppgave;
-- ren person-/sted-/institusjonspeker;
-- generisk «utforsk dette stedet»-tekst uten konkret skatt/spor.
+- navigasjonspekere;
+- `actual_site_treasure`;
+- generisk «utforsk dette stedet»-tekst;
+- tilfeldige kuriositeter uten klassifisert canonical destinasjon.
 
-Eksisterende filer kan fortsatt være aktive inntil migrering er gjennomført.
+## Kvalitetsregel for fysisk innhold
 
-## 10. Kvalitetstest
+Fysiske Wonderkammer-kandidater som migreres til `objects`, `details` eller `spots` skal:
 
-Et nytt Wonderkammer-element er godt nok når:
+- være stedsspesifikke;
+- være identifiserbare;
+- kunne dokumenteres;
+- ha eller kunne få et meningsfullt visuelt bilde/kort;
+- ikke bare være en hendelse, artikkel eller handling;
+- plasseres i den smaleste riktige av de tre hovedgruppene.
 
-- det ikke kunne vært flyttet til et tilfeldig annet sted uten å miste mening;
-- brukeren kan finne, se eller forstå et konkret spor/objekt;
-- teksten beskriver selve kuriositeten før den foreslår handling;
-- den ikke dupliserer en bedre People/Works/Brands/Story/History-representasjon;
-- kilden eller provenance kan etterprøves;
-- det føles som noe man **oppdager og samler**, ikke noe man må lese ferdig eller gjennomføre som treningsøkt.
+Praktisk skille:
 
-## 11. Neste migreringsarbeid
+- **Objects:** en ting;
+- **Details:** noe lite du ser på eller oppdager;
+- **Spots:** et fysisk punkt/delsted du går bort til.
 
-`data/wonderkammer/index.json` må auditeres fil for fil og klassifiseres i minst:
+## UI-status
 
-- `canonical_treasure_candidate`;
-- `migrate_to_actions`;
-- `migrate_to_relations_navigation`;
-- `migrate_to_history`;
-- `migrate_to_other_collection`;
-- `reject_or_duplicate`.
+Wonderkammer skal ikke vises som canonical PlaceCard-runding.
 
-Dette bør gjøres som en egen databatch etter at den nye popup-/rundingsarkitekturen er stabil, slik at ingen legacy-data mistes ved UI-endringen.
+Legacy DOM-hooks kan bestå midlertidig for bakoverkompatibilitet, men brukerrettet rundingpresentasjon skal skjule dem.
+
+## Neste migreringsarbeid
+
+`data/wonderkammer/index.json` må fortsatt auditeres fil for fil. En nyttig migreringsklassifikasjon er:
+
+- `migrate_to_objects`
+- `migrate_to_details`
+- `migrate_to_spots`
+- `migrate_to_people`
+- `migrate_to_works`
+- `migrate_to_nature`
+- `migrate_to_relations_navigation`
+- `migrate_to_actions`
+- `migrate_to_history`
+- `reject_or_duplicate`
+
+Ingen legacy-data skal masseslettes bare fordi Wonderkammer ikke lenger er en produktflate.
