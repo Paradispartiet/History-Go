@@ -80,7 +80,8 @@ window.getPlaceRounds = getPlaceRounds;'''
       - name: Verify targeted round tests
         run: |
           node --check js/ui/place-card.js
-          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
+          node --check js/ui/nature-place-map.js
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-place-map.test.mjs
 
       - name: Commit cleanup and remove one-shot workflow
         run: |
