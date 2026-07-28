@@ -115,7 +115,7 @@ badges · people · works · objects · details · spots · nature · brands
 For nye/reviderte places:
 
 - `badges` er obligatorisk;
-- ferdig sted viser nøyaktig 4 eller 6;
+- rundingssettet følger `data/places/README_place_rounds.md`;
 - valgt samling skal være stedsspesifikk og bildeklart;
 - `rounds` brukes som canonical kurateringsfelt;
 - nye Objects bruker normalt `place.objects`;

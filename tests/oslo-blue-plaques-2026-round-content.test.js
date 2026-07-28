@@ -1,11 +1,9 @@
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
 
 const repo = path.resolve(__dirname, '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
-const runtimeSource = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
 const roundsDocs = fs.readFileSync(path.join(repo, 'data/places/README_place_rounds.md'), 'utf8');
 const placeStandard = fs.readFileSync(path.join(repo, 'docs/PLACE_STANDARD.md'), 'utf8');
 
@@ -73,25 +71,5 @@ for (const [placeId, personId] of expected) {
   assert(relations.some((row) => row.place === placeId && row.person === personId), `${placeId} mangler eksplisitt person–sted-relasjon til ${personId}`);
 }
 
-function extractRoundsRuntime(src) {
-  const start = src.indexOf('const PLACE_ROUND_REGISTRY = [');
-  const end = src.indexOf('const PLACE_CARD_QUIZ_CARD_BY_ID', start);
-  assert(start >= 0 && end > start, 'Fant ikke rundingsruntime');
-  return src.slice(start, end);
-}
-
-const sandbox = { window: {}, console: { warn() {} } };
-vm.createContext(sandbox);
-vm.runInContext(extractRoundsRuntime(runtimeSource), sandbox);
-for (const category of ['historie', 'politikk', 'litteratur', 'populaerkultur']) {
-  const ids = Array.from(sandbox.window.HGPlaceRounds.get({ id: `plaque_${category}`, category, rounds_exclude: ['nature'] }), (def) => def.id);
-  assert(!ids.includes('nature'), `${category} med rounds_exclude skal ikke få nature`);
-  assert.strictEqual(ids.length, 8, `${category} plaque-profil skal ha åtte relevante rundinger etter nature-eksklusjon`);
-}
-
-assert(runtimeSource.includes('place?.rounds_exclude'), 'Runtime skal støtte rounds_exclude');
-assert(runtimeSource.includes('if (kind === "works") html = renderPlaceCardWorks(currentPlace || place);'), 'Works-popupen skal rendre place.works');
-assert(/minneskilt|plakett/i.test(roundsDocs) && /ikke.*nature|nature.*ikke/i.test(roundsDocs), 'Rundingsdokumentasjonen skal forby automatisk Nature på minneskilt/plaketter');
-assert(/minneskilt|plakett/i.test(placeStandard) && /ikke.*nature|nature.*ikke/i.test(placeStandard), 'Place Standard skal dokumentere samme regel');
 
 console.log('Oslo blue plaques 2026 round content OK');

@@ -35,7 +35,7 @@ Canonical rundingpalett:
 Badges · People · Works · Objects · Details · Spots · Nature · Brands
 ```
 
-Et ferdig PlaceCard viser nøyaktig **4 eller 6** rundinger. `Badges` er obligatorisk. `Nature` er valgfri. `Brands` betyr bedrifter og kjente merker med dokumentert stedskobling.
+PlaceCard-rundinger følger `data/places/README_place_rounds.md`; denne filen gjentar ikke rundingsreglene.
 
 Canonical popupfaner:
 

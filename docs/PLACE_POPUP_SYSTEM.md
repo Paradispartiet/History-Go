@@ -200,7 +200,7 @@ Tillatt kan være:
 
 Handlinger skal ikke ligge her.
 
-Fysiske Objects/Details/Spots skal ikke parkeres permanent i Mer bare fordi riktig rundingsdata mangler.
+Fysiske stedselementer skal ikke parkeres permanent i Mer bare fordi riktig presentasjonsflate mangler.
 
 ## 13. På stedet
 
@@ -221,25 +221,13 @@ Quiz, Observer, Notat og Rute beholder egne flows utenfor På stedet-baren.
 
 ## 14. Rundinger
 
-Canonical rundingkontrakt:
-
-- `data/places/README_place_rounds.md`.
-
-Palett:
-
-```text
-badges · people · works · objects · details · spots · nature · brands
-```
-
-Et ferdig sted viser 4 eller 6 bildeklare samlinger. Badges er obligatorisk. Nature er valgfri. Brands beholder sin eksisterende betydning: bedrifter og kjente merker med dokumentert stedskobling.
-
-Rundingkontrakten eier også canonical dataform for nye `objects`, `details` og `spots`.
+Rundingsmodellen eies **kun** av `data/places/README_place_rounds.md`. Popup-kontrakten gjentar ikke palett, profiler, antall eller naturkartkrav.
 
 ## 15. Wonderkammer
 
 Wonderkammer er legacy migreringsgrunnlag, ikke en ny popupflate eller runding.
 
-Legacy-innhold migreres etter faktisk type til Objects, Details, Spots, People, Works, Nature, På stedet, relations/NextUp, Historie eller Stories.
+Legacy-innhold migreres etter faktisk type til subsystemet som eier innholdet. Personverk hører i People-profilen, fysiske kunstverk kan være Objects, og tidsbundne produksjoner hører i Events/På stedet.
 
 Nye Wonderkammer-entries skal ikke produseres gjennom popup-systemet.
 

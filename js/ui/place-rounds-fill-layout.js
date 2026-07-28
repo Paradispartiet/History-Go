@@ -1,6 +1,6 @@
 // @ts-nocheck
 // js/ui/place-rounds-fill-layout.js
-// Maksimerer 4/6-rundingsgridet i feltet ved siden av frontImage uten MutationObserver-loop.
+// Maksimerer det faste fire-rundingsgridet i feltet ved siden av frontImage uten MutationObserver-loop.
 (function installPlaceRoundsFillLayout(global) {
   "use strict";
 
@@ -19,12 +19,12 @@
     if (!grid) return;
 
     const count = Number(grid.dataset.roundCount || 0);
-    if (count !== 4 && count !== 6) {
+    if (count !== 4) {
       grid.style.removeProperty("--hg-round-fill-size");
       return;
     }
 
-    const cols = count === 4 ? 2 : 3;
+    const cols = 2;
     const rows = 2;
     const gap = numericGap(grid);
     const rect = grid.getBoundingClientRect();
