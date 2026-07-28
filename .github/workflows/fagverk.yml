@@ -7,6 +7,8 @@ on:
       - 'fagverk.html'
       - 'fagverk-sted.html'
       - 'merke.html'
+      - 'data/categories/category_contract.json'
+      - 'data/fag/fag_manifest.json'
       - 'data/fagverk/**'
       - 'data/places/**'
       - 'data/fag/politikk/merke_politikk.html'
@@ -39,10 +41,18 @@ on:
       - 'css/politikk-merke-role.css'
       - 'css/header-learning-menu.css'
       - 'css/place-learning-surface.css'
+      - 'DOCS.md'
+      - 'README/README.pensum.md'
+      - 'README/fagstrukturREADME.md'
+      - 'docs/FACTUALITY_CONTRACT.md'
+      - 'docs/DATA_PRODUCTION_CONTRACT.md'
+      - 'docs/SUBJECT_FILE_CONTRACT.md'
+      - 'docs/TYPESCRIPT_FIRST_POLICY.md'
       - 'docs/FAGVERK.md'
       - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_PLACE_DESIGN.md'
       - 'scripts/audit-place-images.mjs'
+      - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-content.test.mjs'
       - 'tests/fagverk-portal.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
@@ -58,8 +68,61 @@ permissions:
   contents: read
 
 jobs:
+  documentation-contract:
+    name: Validate canonical fagverk documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            DOCS.md
+            docs/FAGVERK.md
+            docs/FAGVERK_NAVIGATION.md
+            docs/SUBJECT_FILE_CONTRACT.md
+            docs/FACTUALITY_CONTRACT.md
+            docs/DOMAIN_CONTRACT.md
+            docs/DATA_PRODUCTION_CONTRACT.md
+            docs/KNOWLEDGE_ARCHITECTURE.md
+            docs/FAGVERK_PLACE_DESIGN.md
+            docs/TYPESCRIPT_FIRST_POLICY.md
+            docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md
+            README/README.pensum.md
+            README/fagstrukturREADME.md
+            README/README_DEV.md
+            README/TEAM_WORKFLOW.md
+            data/categories/category_contract.json
+            data/fag/fag_manifest.json
+            data/fagverk/fagverk_portal.json
+            data/fagverk/fagverk_registry.json
+            data/knowledge/knowledge_system_policy_v1.json
+            data/knowledge/knowledge_unit_schema_v1.json
+            data/quiz/quiz_knowledge_delivery_contract_v1.json
+            data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md
+            data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json
+            tests/fagverk-documentation-contract.test.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax check documentation contract test
+        run: node --check tests/fagverk-documentation-contract.test.mjs
+      - name: Validate master contract identity
+        run: node --test --test-name-pattern="explicit canonical all-subject" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate referenced owners and sources
+        run: node --test --test-name-pattern="points to every relevant" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate canonical subject baseline
+        run: node --test --test-name-pattern="baseline matches" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate narrow navigation ownership
+        run: node --test --test-name-pattern="navigation remains narrow" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate documentation entry pointers
+        run: node --test --test-name-pattern="repository and subject-file" tests/fagverk-documentation-contract.test.mjs
+      - name: Validate honest portal status
+        run: node --test --test-name-pattern="portal status remains honest" tests/fagverk-documentation-contract.test.mjs
+
   validate:
-    name: Validate canonical subject, textbook, category design, images and links
+    name: Validate canonical subjects, textbook, category design, images and links
+    needs: documentation-contract
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -84,7 +147,7 @@ jobs:
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
           node --check scripts/audit-place-images.mjs
-      - name: Validate canonical politics, textbook data, category design, links and place integration
+      - name: Validate canonical subjects, textbook data, category design, links and place integration
         run: |
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-content.test.mjs

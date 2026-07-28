@@ -15,6 +15,8 @@ Det autoritative dokumentasjonskartet ligger i:
 - Produktkart og ferdigstillelse: [`docs/HISTORY_GO_PRODUCT_MAP.md`](./docs/HISTORY_GO_PRODUCT_MAP.md)
 - Dataproduksjon: [`docs/DATA_PRODUCTION_CONTRACT.md`](./docs/DATA_PRODUCTION_CONTRACT.md)
 - Sted-for-sted-produksjon: [`docs/PLACE_PRODUCTION_CHECKLIST.md`](./docs/PLACE_PRODUCTION_CHECKLIST.md)
+- Universelle fagfiler: [`docs/SUBJECT_FILE_CONTRACT.md`](./docs/SUBJECT_FILE_CONTRACT.md)
+- Fagverket og ferdigstilling av alle fagsider: [`docs/FAGVERK.md`](./docs/FAGVERK.md)
 - Fag og pensum: [`README/README.pensum.md`](./README/README.pensum.md)
 - Rapporter og audits: [`reports/README.md`](./reports/README.md)
 
