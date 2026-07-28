@@ -1,392 +1,229 @@
 # History GO — progresjonsmodell
 
-Dette dokumentet beskriver hvordan History GO bør samle og lese progresjon på tvers av eksisterende systemer.
+Status: **canonical read-model / adaptermodell**  
+Eier: `history_go_progress_read_model`  
+Sist kontrollert: **2026-07-28**
 
-Det skal ikke innføre en ny parallell sannhet som erstatter dagens `quiz_history`, `knowledge_universe`, `trivia_universe`, `hg_learning_log_v1`, badges/merits, route-state eller profile snapshots. Det definerer en **samlet read-model / adaptermodell** som eksisterende og framtidig UI kan lese fra.
+Dette dokumentet beskriver hvordan History GO skal **lese progresjon på tvers av eksisterende lagring**. Det skal ikke opprette en ny parallell sannhetskilde.
 
 Leses sammen med:
 
 - `docs/COMPLETION_DEFINITIONS.md`
 - `docs/HISTORY_GO_PRODUCT_MAP.md`
-- `README/quizREADME.md`
-- `README/README.pensum.md`
-- `README/fagstrukturREADME.md`
+- `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md`
+- `docs/PROFILE_PROGRESS_READER_RUNTIME.md`
 - `docs/DATA_PRODUCTION_CONTRACT.md`
-- `docs/APP_STRUCTURE_INDEX.md`
 
-Gjelder History GO-spillet. Civication er eget prosjekt og inngår ikke i denne progresjonsmodellen.
+## 1. Prinsipp: adapter først, ny lagring sist
 
----
+History GO har allerede flere aktive state-kilder:
 
-## 1. Hvorfor felles progresjon?
-
-History GO har mange eksisterende progresjonsspor:
-
-- quiz-historikk
-- knowledge/trivia
-- learning log
-- observations
-- badges/merits
-- profile summary
-- route-state
-- place visited-state
-- people/relations
-- Wonderkammer
-- Social Meet / Spotmeeting local/demo state
-
-Uten samlet lesemodell blir hvert system sin egen øy.
-
-Felles modell skal gjøre at:
-
-- PlaceCard vet hva brukeren har gjort på stedet.
-- Profilen viser riktig status.
-- Wonderkammer/leksikon viser opplåste funn.
-- Nearby anbefaler riktig neste sted.
-- Ruter vet hvilke stopp som er fullført.
-- Badges kan beregnes konsekvent.
-- Social Meet / Spotmeeting kan bruke trygg, kontekstbundet status.
-- Lokal lagring kan fungere før backend er komplett.
-
----
-
-## 2. Eksisterende lagring som må respekteres
-
-Denne modellen må bygge på eksisterende nøkler og motorer.
-
-| Lagring / motor | Rolle |
-|---|---|
-| `quiz_history` | quizforsøk og fullførte quizzer |
-| `knowledge_universe` | tekstlig kunnskap låst opp via quiz |
-| `trivia_universe` | funfacts/mikrobelønninger |
-| `hg_learning_log_v1` | append-only learning events, quiz/observations/emne hits |
-| `HGObservations` | observasjons-events til learning log |
-| `HGCourses.compute` | beregner kurs-/diplomstatus fra emner/logg |
-| `DomainHealthReport` | validerer domener/filer |
-| `QuizAudit` | validerer quiz-targets mot places/people |
-| badges/merits | eksisterende badge-/meritstatus |
-| route-state | eksisterende rutevisning/aktivering der implementert |
-| profile update event | `window.dispatchEvent(new Event("updateProfile"))` |
+- `visited_places` — fysisk besøkte steder;
+- `places_collected` — quiz-/target-unlocked places;
+- `people_collected` — People-samling der eksisterende runtime bruker den;
+- `quiz_history` — quizforsøk/resultater;
+- `knowledge_universe`;
+- `trivia_universe`;
+- `hg_learning_log_v1`;
+- badges/merits;
+- route-state;
+- favoritter;
+- profil-/read-model-adaptere.
 
 Regel:
 
-> Ikke flytt data til ny nøkkel uten migrering. Første steg er read-model, ikke ny sannhetskilde.
+> Ikke flytt eksisterende state til en ny nøkkel bare for å gjøre modellen penere. Første steg er alltid å lese og normalisere eksisterende state.
 
----
+## 2. Ikke bruk én statusstige for alt
 
-## 3. Read-model, ikke erstatning
+Stedprogresjon består av flere uavhengige akser.
 
-Første felles progresjonsmodell bør være en beregnet/aggregert read-model.
-
-Forslag til navn hvis den materialiseres:
-
-```js
-history_go_progress_read_model_v1
-```
-
-Denne kan bygges fra eksisterende lagring:
-
-```js
-{
-  version: 1,
-  updatedAt,
-  sources: {
-    quizHistory: true,
-    knowledgeUniverse: true,
-    triviaUniverse: true,
-    learningLog: true,
-    badges: true,
-    routes: true,
-    profile: true
-  },
-  player: {},
-  places: {},
-  quizzes: {},
-  badges: {},
-  people: {},
-  wonder: {},
-  routes: {},
-  favorites: {},
-  categories: {},
-  socialMeet: {},
-  spotmeetings: {}
-}
-```
-
-Dette er produktmodell/read-model. Runtime source of truth for hvert felt må fortsatt følge eksisterende kontrakter.
-
----
-
-## 4. Place progress
-
-Place progress bør beregnes fra:
-
-- åpnet PlaceCard/popup
-- visited-state
-- innsjekk der det finnes
-- quiz_history
-- observations i `hg_learning_log_v1`
-- badges/merits
-- route-state
-- Wonderkammer/leksikon-unlocks
-- favorites
-
-Forslag til read-model:
+En read-model bør derfor heller uttrykke:
 
 ```js
 places: {
   [placeId]: {
     placeId,
     category,
-    discoveredAt,
-    openedAt,
-    visitedAt,
-    checkedInAt,
-    observedAt,
-    completedAt,
-    masteredAt,
-    status,
-    medal,
-    quizIds: [],
-    badgeIds: [],
-    unlockedPeople: [],
-    unlockedWonderItems: [],
-    routeIds: [],
+    opened: false,
+    physicalVisited: false,
+    quizAttempted: false,
+    quizCompleted: false,
+    quizCollected: false,
+    collected: false,
+    observed: false,
     favorite: false,
+    routeIds: [],
+    badgeIds: [],
     updatedAt
   }
 }
 ```
 
-Gyldige read-model-statuser:
+Ikke la `collected` bety fysisk besøkt, og ikke la `visited` bety quizfullført.
 
-- `unknown`
-- `discovered`
-- `opened`
-- `visited`
-- `checked_in`
-- `quiz_attempted`
-- `quiz_completed`
-- `observed`
-- `completed`
-- `mastered`
+## 3. Place collection
 
----
+Implementert profilsamling skiller mellom to kilder:
+
+```text
+visited_places    = fysisk besøkte steder
+places_collected  = quiz-/target-unlocked places
+```
+
+Profilens samlede place-liste er unionen:
+
+```text
+collected places = visited_places ∪ places_collected
+```
+
+Read-model bør bevare kilden, for eksempel:
+
+```js
+{
+  physicalVisited: true,
+  quizCollected: false,
+  collected: true,
+  collectionSources: ["visit"]
+}
+```
+
+eller:
+
+```js
+{
+  physicalVisited: false,
+  quizCollected: true,
+  collected: true,
+  collectionSources: ["quiz"]
+}
+```
+
+Quiz skal aldri skrive `visited_places`.
+
+## 4. Fysisk visit
+
+Fysisk visit eies av visit-runtime og `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md`.
+
+Read-model kan lese fysisk besøksstatus, men skal ikke rekonstruere eller gjette den fra:
+
+- quiz;
+- åpnet PlaceCard;
+- collected-state;
+- ruteprogresjon;
+- favoritt.
 
 ## 5. Quiz progress
 
-Quiz progress bør lese fra eksisterende quizmotor og `quiz_history`.
+Quizprogress leses fra eksisterende quizmotor og `quiz_history`.
+
+En normalisert read-model kan uttrykke:
 
 ```js
 quizzes: {
   [quizId]: {
     quizId,
-    placeId,
-    personId,
-    categoryId,
+    targetType,
+    targetId,
     attempts,
     bestScore,
     lastScore,
+    attempted,
     completed,
     perfect,
-    attemptedAt,
-    completedAt,
     relatedEmner: [],
-    coreConcepts: [],
     updatedAt
   }
 }
 ```
 
-Quiz completion bør fortsatt utløse eksisterende hooks:
+Quiz kan utløse eksisterende Knowledge/trivia/learning-log/badge/unlock-hooks. Når et place-target faktisk låses opp, kan runtime skrive `places_collected`.
 
-- knowledge save
-- trivia save
-- learning log event
-- badge/merit update
-- `updateProfile`
-
-Reward-popupen må ikke overskrives av ny popup i samme tick.
-
----
+Produksjon av quiz eies av `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`.
 
 ## 6. Learning progress
 
-Learning progress er ikke det samme som knowledge.
+Learning progress er ikke det samme som Knowledge.
 
 Eksisterende skille:
 
-- `knowledge_universe` = tekstlig kunnskap / låst opp kunnskapsinnhold
-- `hg_learning_log_v1` = append-only events for quiz/observations/emne hits
-- courses/pensum = beregner progresjon fra emner/logg
+- `knowledge_universe` = tekstlig kunnskapsinnhold;
+- `trivia_universe` = trivia/mikrobelønninger;
+- `hg_learning_log_v1` = append-only læringshendelser;
+- courses/pensum = beregnet progresjon fra emner/logg der implementert.
 
-Read-model kan oppsummere:
+Learning log skal ikke muteres for å rette visning. UI skal bruke en bedre read-model.
 
-```js
-learning: {
-  conceptsSeen: [],
-  emneHits: [],
-  observationsCount,
-  quizEventCount,
-  courseSummaries: {
-    [subjectId]: {
-      percent,
-      done,
-      total,
-      modules: [],
-      diploma
-    }
-  }
-}
-```
+## 7. Badges / merits
 
-Regel:
+Badge-/meritstatus skal leses fra eksisterende badge-/meritsystemer.
 
-> Learning log er append-only. Ikke muter historikk for å rette visning; bygg bedre read-model.
+Read-model må respektere:
 
----
-
-## 7. Badge / merits progress
-
-```js
-badges: {
-  [badgeId]: {
-    badgeId,
-    type,
-    category,
-    underbadgeIds: [],
-    sourceType,
-    sourceId,
-    earnedAt,
-    level,
-    visibleInProfile
-  }
-}
-```
-
-Badge-read-model må respektere:
-
-- `category` som primært domain/badge
-- `underbadge_ids` som underbadgefelt
-- eksisterende badgefiler
-- ingen oppfunnede category-felt før schema/runtime støtter det
-
----
+- `category` som stedets primære canonical kategori;
+- `underbadge_ids` som canonical underbadges;
+- eksisterende badgefiler og faktisk runtime;
+- ingen globale Bronse/Sølv/Gull-regler som ikke er implementert.
 
 ## 8. People progress
 
-People progress bør lese fra manifest-loadede people-filer og eksisterende relation-indekser.
+People-data og People-progress er forskjellige lag.
+
+En read-model kan uttrykke eksisterende spillerstatus som:
 
 ```js
 people: {
   [personId]: {
     personId,
-    discoveredAt,
-    unlockedAt,
-    collectedAt,
-    completedAt,
+    discovered: false,
+    unlocked: false,
+    collected: false,
+    completed: false,
     sourcePlaceIds: [],
     sourceRouteIds: [],
-    relationIds: [],
-    wonderItemIds: [],
-    status,
     updatedAt
   }
 }
 ```
 
-Gyldige statuser:
+Ikke generer People-progress bare fordi personen finnes i en PlaceCard-runding.
 
-- `unknown`
-- `discovered`
-- `unlocked`
-- `collected`
-- `completed`
+## 9. Objects, Details, Spots, Works, Nature og Brands
 
-Personer må ikke dupliseres. `placeId` og `places[]` må peke til eksisterende places.
+Disse er canonical innholdstyper, men det finnes ikke automatisk én felles spillerpersistens for alle.
 
----
+Read-model kan senere aggregere unlocks/samling når faktisk runtime finnes, men skal ikke opprette generiske `object_collected`- eller tilsvarende sannhetskilder uten eksplisitt implementasjon og migreringsplan.
 
-## 9. Wonderkammer progress
+Civication-state holdes separat fra History GO-progresjon.
 
-Wonderkammer er innholdstype/samling. I PlaceCard skal Wonderkammer-innhold primært ligge under `leksikon`-flowen, ikke som egen canonical runding.
+## 10. Wonderkammer
 
-Read-model:
+Wonderkammer er legacy og skal **ikke** ha en egen ny `wonder`-gren i canonical progresjonsmodellen.
 
-```js
-wonder: {
-  [itemId]: {
-    itemId,
-    title,
-    type,
-    treasureScope,
-    sourceType,
-    sourceId,
-    unlockedAt,
-    collectedAt,
-    category,
-    placeIds: [],
-    personIds: [],
-    routeIds: [],
-    visible: true
-  }
-}
+Fjern/ikke innfør nye felter som:
+
+```text
+wonder
+wonderItemIds
+unlockedWonderItems
+wonderItemCount
 ```
 
-Nye entries bør bruke Wonderkammer-standarden:
+for ny stedproduksjon.
 
-- faktisk ting først
-- undring
-- handling
-- samling
-- `actual_site_treasure` foran `category_object`
+Legacy Wonderkammer-data migreres til de systemene innholdet faktisk tilhører.
 
----
+## 11. Ruter
 
-## 10. Route progress
+Route progress leses fra den enkelte rutemotorens state.
 
-Ruter har minst to spor:
+Historiske ruter skiller online og fysisk spor. Dagens runtime garanterer ikke GPS-basert fysisk rutesamling bare fordi `physical.enabled` finnes i data.
 
-- vanlige ruter: geografisk rekkefølge av steder
-- historiske ruter: narrativ reise + fysisk samling
+Se `docs/README_HistoryGo_Historiske_Ruter.md`.
 
-Read-model:
+## 12. Favoritter
 
-```js
-routes: {
-  [routeId]: {
-    routeId,
-    type,
-    status,
-    startedAt,
-    completedAt,
-    masteredAt,
-    onlineStatus,
-    physicalStatus,
-    currentStopId,
-    stopProgress: {},
-    badgeIds: [],
-    wonderItemIds: [],
-    updatedAt
-  }
-}
-```
-
-Historiske ruter kan ha statuser:
-
-- ikke startet
-- påbegynt online
-- fullført online
-- delvis samlet fysisk
-- fullført fysisk
-- komplett historisk rute
-
-Ruteprogresjon skal kunne oppdatere profil og eventuelt Wonderkammer.
-
----
-
-## 11. Favorites
-
-Favoritter bør være lesbare for Nearby og profil.
+Favoritt er en egen akse og skal være lesbar av relevante flater.
 
 ```js
 favorites: {
@@ -397,219 +234,81 @@ favorites: {
 }
 ```
 
-Minimum v1:
+Favoritt skal ikke påvirke besøksstatus eller completion uten en eksplisitt regel.
 
-- favoritt steder
-- visning i Nearby
-- visning i profil
-- fjern favoritt
+## 13. Category / fag-progresjon
 
----
+Kategori- og fagprogresjon bør i hovedsak beregnes fra eksisterende kilder, ikke kopieres til nye ad-hoc felt.
 
-## 12. Category progress
-
-Kategori-progresjon bør i stor grad være beregnet, ikke nødvendigvis permanent lagret.
-
-```js
-categories: {
-  [categoryId]: {
-    categoryId,
-    discoveredCount,
-    openedCount,
-    visitedCount,
-    completedPlaceCount,
-    completedQuizCount,
-    badgeCount,
-    routeCount,
-    completedRouteCount,
-    unlockedPeopleCount,
-    wonderItemCount,
-    coursePercent,
-    level,
-    percent,
-    updatedAt
-  }
-}
-```
-
-Må respektere fagarkitekturen:
+Relevant kjede:
 
 ```text
-Merke → Fagkart/fagplan → Emner → Quiz/steder/observasjon → Learning log → Courses/pensum → UI
+Merke / kategori
+→ fagområde og emner
+→ quiz / steder / observasjon
+→ learning log / eksisterende state
+→ beregnet progresjon
+→ UI
 ```
 
-Emner er mikro-kunnskap. Quiz/observations er handling. Pensum/courses tolker erfaring til progresjon.
+Navigasjonsrollene mellom Merket og Faget eies av `docs/FAGVERK_NAVIGATION.md`.
 
----
+## 14. Home place
 
-## 13. Home place
+Offentlig hjemsted er en spillerpreferanse/read-model-kobling og skal alltid peke til et eksisterende History GO-sted, aldri privat adresse.
 
-Offentlig hjemsted bør være del av player-read-model.
+Det kan brukes av Nearby, ruter, anbefalinger, profil og privacy-sikre sosiale flater.
+
+## 15. Social Meet / Spotmeeting
+
+Sosial state holdes adskilt fra place-visits og offentlig progresjon.
+
+Social Meet/Spotmeeting skal ikke gjøre live location, besøkslogg eller GPS-distance offentlig.
+
+Se deres egne privacy-/runtimekontrakter.
+
+## 16. Profiloppdatering
+
+Når eksisterende progresjonsendrende runtime krever det, skal `updateProfile` dispatches slik at profil/read-model kan oppdatere seg.
+
+En write er ikke ferdig integrert hvis:
+
+1. state lagres;
+2. men relevant profil/read-model ikke kan lese endringen.
+
+## 17. Forslag til samlet read-model
+
+Hvis en samlet read-model materialiseres, skal den være beregnet og kildesporbar:
 
 ```js
-homePlace: {
-  placeId,
-  name,
-  category,
-  lat,
-  lon,
-  radius,
-  selectedAt,
-  visibility
+history_go_progress_read_model_v1 = {
+  version: 1,
+  updatedAt,
+  sources: {},
+  places: {},
+  quizzes: {},
+  learning: {},
+  badges: {},
+  people: {},
+  routes: {},
+  favorites: {},
+  categories: {},
+  homePlace: {},
+  socialMeet: {},
+  spotmeetings: {}
 }
 ```
 
-Regel:
+Hvert felt skal kunne forklares med hvilken eksisterende state-kilde som bærer sannheten.
 
-- Må være et eksisterende History GO-sted.
-- Skal ikke være privat adresse.
-- Skal kunne brukes av Nearby, ruter, anbefalinger, profil, Social Meet og Spotmeeting.
+## 18. Autoritetsregel
 
----
+Ved konflikt gjelder:
 
-## 14. Social Meet read-model
+1. faktisk persistens/runtime og tester;
+2. subsystemets canonical runtimekontrakt;
+3. `COMPLETION_DEFINITIONS.md` for begrepsbetydning;
+4. denne read-model-kontrakten;
+5. eldre roadmap-/arkivmateriale.
 
-Social Meet må følge privacy-kontrakten.
-
-```js
-socialMeet: {
-  publicProfilePreview: {},
-  matches: {},
-  invites: {},
-  circles: {},
-  blocks: {},
-  reports: {}
-}
-```
-
-Må aldri bruke:
-
-- live location
-- nearby people
-- public visit history
-- public activity feed
-- followers/following
-- free chat
-- GPS-distance ranking
-
-Social Meet-signaler skal være knowledge-based og forklarbare.
-
----
-
-## 15. Spotmeeting read-model
-
-Spotmeeting er del av Social Meet.
-
-```js
-spotmeetings: {
-  [meetingId]: {
-    meetingId,
-    contextType,
-    contextId,
-    title,
-    reason,
-    sourceSurface,
-    createdAt,
-    status,
-    presetMessageId,
-    participantIds: [],
-    visibility,
-    updatedAt
-  }
-}
-```
-
-Tillatte context types:
-
-- `place`
-- `quiz`
-- `route`
-- `observation`
-- `topic`
-- `circle`
-
-Gyldige statuser:
-
-- `pending`
-- `accepted`
-- `completed`
-- `declined`
-- `cancelled`
-
----
-
-## 16. Oppdateringsflyt ved quiz
-
-Når en spiller fullfører quiz på et sted, bør read-model kunne se dette:
-
-1. QuizEngine fullfører quiz.
-2. `quiz_history` oppdateres.
-3. Knowledge/trivia hooks kjøres.
-4. `hg_learning_log_v1` får relevant event der implementert.
-5. Badge/merit-regler evalueres.
-6. People-unlocks evalueres der data finnes.
-7. Wonderkammer/leksikon-unlocks evalueres der data finnes.
-8. Ruteprogresjon evalueres der stedet er rutestopp.
-9. Kategori-/course-progress beregnes.
-10. `updateProfile` dispatches.
-11. Nearby/NextUp får bedre anbefalingsgrunnlag.
-
----
-
-## 17. Lokal først, backend senere
-
-Progresjon skal fungere lokalt før backend er komplett.
-
-Krav:
-
-- tåle reload
-- tåle offline der data er cachet
-- kunne eksporteres/importeres der slik funksjon finnes
-- kunne migreres til konto/sync senere
-
-Backend skal støtte produktmodellen og eksisterende lagringskontrakter, ikke introdusere en konkurrerende progresjonssannhet.
-
----
-
-## 18. Migrering
-
-Alle endringer i faktisk lagringsformat må ha:
-
-- versjonsnummer
-- migreringsfunksjon
-- fallback for gamle data
-- dokumentert endring
-
-Ikke endre localStorage-nøkler uten migrering.
-
----
-
-## 19. Første implementerbare minimum
-
-Progression Read Model v1 bør starte som leselag over eksisterende data:
-
-- places
-- quizzes
-- badges/merits
-- favorites
-- routes
-- people
-- wonder
-- categories/course summary
-- homePlace
-
-Social Meet og Spotmeeting kan leses inn etterpå, men må følge privacy-kontrakten.
-
----
-
-## 20. Suksesskriterium
-
-Etter Progression Read Model v1 skal dette være sant:
-
-- PlaceCard viser riktig status.
-- Profil viser riktig status.
-- Wonderkammer/leksikon viser opplåste funn.
-- Nearby anbefaler basert på faktisk progresjon.
-- Ruter oppdateres når steder/stopp fullføres.
-- Reload mister ikke progresjon.
-- Backend kan kobles på uten å endre produktlogikken.
+Dette dokumentet beskriver hvordan vi leser state sammen. Det skal aldri brukes som argument for å hevde at planlagte write-paths eller unlocks allerede finnes.
