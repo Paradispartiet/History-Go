@@ -4,7 +4,7 @@
   "lat": 60.23765,
   "lon": 10.39719,
   "r": 360,
-  "locatorType": "industrial_site",
+  "locatorType": "institutional_area",
   "sourceProvider": "osm",
   "sourceObjectId": "osm-node:559688012",
   "address": {
@@ -14,27 +14,38 @@
     "city": "Jevnaker",
     "country": "NO"
   },
-  "geocodeAccuracy": "named_point",
-  "coordRole": "industrial_visitor_complex_anchor",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
   "coordType": "named_glassworks_institution_point",
-  "coordStatus": "verified",
-  "coordSource": "OpenStreetMap node 559688012 – Hadeland Glassverk; Hadeland Glassverk official visitor and history pages",
-  "coordSourceId": "osm-node:559688012",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap node 559688012 – Hadeland Glassverk; Hadeland Glassverk official visitor map, visitor address, history and Glasshytta pages; Wikidata Q2194066",
+  "coordSourceId": "osm-node:559688012;official-address:Glassverksveien-9;wikidata:Q2194066",
   "coordSourceUrl": "https://www.openstreetmap.org/node/559688012",
-  "coordVerifiedAt": "2026-07-26",
-  "coordChangeReason": "Legacy-punktet flyttes omtrent 64,6 meter til det stabile navngitte glassverks- og besøksobjektet inne i det sentrale anlegget.",
-  "coordNote": "OpenStreetMap node 559688012 er det stabile navngitte objektet for Hadeland Glassverk ved 60.23765, 10.39719 og brukes som canonical anker for den samlede industri-, produksjons-, museums- og besøksinstitusjonen. Hadeland Glassverks offisielle sider oppgir Glassverksveien 9, 3520 Jevnaker som besøksadresse, dokumenterer grunnleggelsen i 1762 og beskriver Glasshytta som hjertet i den levende produksjonen. Ingen stabil separat bygningsgeometri for Glasshytta er fanget i kildegrunnlaget, så det konstrueres ikke en antatt produksjonscentroid. Den navngitte parkflaten OpenStreetMap way 693083889 ligger omtrent 82,5 meter fra anvendt punkt og brukes som områdekontroll, men representerer ikke alene glassverket eller produksjonsmiljøet. Legacy-punktet 60.23813, 10.39785 lå omtrent 64,6 meter nordøst for det navngitte institusjonsankeret og erstattes. Radius 360 meter beholdes for det sentrale produksjons-, museums-, park- og besøksmiljøet, men er ikke en eiendomsgrense, fredningspolygon, eksakt industrianleggsgeometri eller påstand om at én butikk eller park representerer hele verket.",
+  "coordVerifiedAt": "2026-07-28",
+  "coordChangeReason": "The coordinate already moved approximately 64.6 metres from the unsupported legacy point in the 2026-07-26 production. This pass retains the stable named institution point and migrates its coordinate metadata to valid Coordinate Source Contract v1 values.",
+  "coordNote": "OpenStreetMap node 559688012 at 60.23765, 10.39719 is retained as the semantic area anchor for Hadeland Glassverk as one living production, museum and visitor institution. The official site identifies Glasshytta as the operational heart, but the reviewed sources still do not expose a stable separately named building geometry that should replace the institutional anchor. The named park polygon is only an area cross-check. Radius 360 metres covers the central works and visitor environment but is not a property, heritage, production, access or legal boundary.",
+  "accessContext": {
+    "siteType": "living_industrial_production_museum_and_visitor_complex",
+    "publicAccess": "The outdoor visitor environment, shops, dining, museum, activities and Glasshytta follow current opening hours, production schedules, tickets, guided-tour conditions and event operations.",
+    "visitorAddress": "Glassverksveien 9, 3520 Jevnaker",
+    "limitations": [
+      "Do not enter production, furnace, cold-working, storage or staff areas outside public routes or without permission.",
+      "Respect heat, glass, machinery, demonstrations, queues, guided groups and temporary event or safety barriers.",
+      "The gameplay radius is not a property, heritage, production, fire-safety, visitor-access or legal boundary."
+    ]
+  },
   "anchors": [
     {
       "id": "hadeland_glassverk_named_complex",
-      "name": "Hadeland Glassverk – navngitt verks- og besøksanker",
+      "name": "Hadeland Glassverk – named works and visitor anchor",
       "lat": 60.23765,
       "lon": 10.39719,
       "r": 150,
-      "type": "industrial_visitor_complex_anchor",
+      "type": "institutional_area_anchor",
       "sourceProvider": "osm",
       "sourceObjectId": "osm-node:559688012",
-      "note": "Stabilt navngitt punkt for den samlede glassverksinstitusjonen; Glasshytta er produksjonskjerne i formidlingen, men får ikke en konstruert separat koordinat uten stabil geometri."
+      "canApplyToPlace": true,
+      "note": "Stable named point for the complete glassworks institution. Glasshytta remains the documented production core but is not assigned an invented separate coordinate."
     }
   ],
   "category": "naeringsliv",
@@ -59,35 +70,42 @@
       "label": "Hadeland Glassverk – åpningstider og besøk",
       "url": "https://www.hadeland.com/pages/apningstider-for-hadeland-glassverk",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "official",
       "label": "Hadeland Glassverk – historien",
       "url": "https://www.hadeland.com/pages/historien-om-hadeland-glassverk-levende-norsk-design-siden-1762",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "official",
       "label": "Hadeland Glassverk – historisk vandring",
       "url": "https://www.hadeland.com/historisk-vandring",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
+    },
+    {
+      "type": "official",
+      "label": "Hadeland Glassverk – områdekart",
+      "url": "https://www.hadeland.com/bli-kjent-pa-glassverket",
+      "lang": "nb",
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "coordinate_source",
       "label": "OpenStreetMap – Hadeland Glassverk",
       "url": "https://www.openstreetmap.org/node/559688012",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     },
     {
       "type": "reference",
       "label": "Wikidata – Hadeland Glassverk",
       "url": "https://www.wikidata.org/wiki/Q2194066",
       "lang": "nb",
-      "verifiedAt": "2026-07-26"
+      "verifiedAt": "2026-07-28"
     }
   ],
   "quiz_profile": {
