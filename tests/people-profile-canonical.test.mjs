@@ -130,6 +130,11 @@ test('canonical People production files are registered and machine-readable', ()
   assert.match(docs, /Faktareview/);
   assert.match(docs, /Redaksjonell review/);
   assert.match(docs, /legacy_unreviewed/);
+  assert.match(docs, /Personlig informasjon og privatliv/);
+  assert.match(docs, /ikke et annet navn på flere karriereopplysninger/);
+  assert.match(docs, /personen skal selv ha gjort opplysningen offentlig/);
+  assert.match(docs, /privat adresse, kontaktinformasjon/);
+  assert.match(docs, /Personlig informasjon skal ikke kamufleres/);
 
   assert.equal(templates.version, '1.0.0');
   assert.equal(templates.fieldSemantics.education.allowEmpty, true);

@@ -8,7 +8,7 @@ Canonical data: `data/people/manifest.json`
 Readiness-audit: `tools/audit-people-popup-readiness.mts`
 Faktisitetskontrakt: `docs/FACTUALITY_CONTRACT.md`
 Profilproduksjon: `docs/PEOPLE_PROFILE_CANONICAL.md`
-Sist kontrollert: **2026-07-27**
+Sist kontrollert: **2026-07-28**
 
 Dette dokumentet definerer hvordan people-popupen skal presentere en canonical person, hvilke felt den kan lese, hvordan ulike persontyper skal fylles, og hvordan manglende informasjon skal håndteres uten tomme bokser eller oppdiktede data.
 
@@ -98,6 +98,8 @@ Regler:
 ```
 
 `popupDesc` skal være en selvstendig, faktabasert biografi. Avsnittstallet bestemmes av stoffets naturlige struktur; tre avsnitt er ikke et krav. Biografien skal formidle dokumenterte livsdata, handlinger, verk, institusjoner og stedstilknytninger uten å forklare hvorfor redaksjonen valgte personen eller hva spilleren skal lære.
+
+Når claim-dekket personlig informasjon finnes, kan `popupDesc` ha ett eller flere tydelige avsnitt om personbakgrunn og privatliv etter reglene i `PEOPLE_PROFILE_CANONICAL.md`. Personlig informasjon skal presenteres som personlig biografi, ikke omskrives til eller skjules som mer karrierehistorie.
 
 ### 3.3 Livsdata
 
@@ -229,6 +231,11 @@ Popupen kan også lese `sources` og `source_urls`, men nye komplette profiler b�
 - kildeantall alene er ikke verifikasjon: hver dato, rolle, produksjon og stedskobling må faktisk støttes av kildematerialet;
 - en generell biografiside kan ikke brukes som bevis for et verk eller en produksjon den ikke omtaler;
 - PR- eller researchmaterialet skal dokumentere hvilke kilder som støtter hvilke grupper av påstander.
+- popupen dedupliserer kilder på normalisert URL, ikke på kombinasjonen URL og label;
+- dersom samme URL finnes i både `externalLinks` og `source_urls`, skal den navngitte `externalLinks`-oppføringen beholdes og den bare domenemerkede fallbacken utelates;
+- `source_urls` er en kompatibilitetsfallback og skal ikke skape ekstra rader som bare viser `sceneweb.no`, `snl.no` eller andre domenenavn når en lesbar lenke allerede finnes;
+- Wikipedia kan registreres som `type: "further_reading"`, men skal normalt ikke være eneste faktakilde eller eneste claim-bevis;
+- en Wikipedia-lenke skal ha en lesbar label, for eksempel `Wikipedia – Personnavn`, og skal vises som videre lesning, ikke som institusjonell verifikasjon.
 
 ### 3.9 Bilder og initialfallback
 

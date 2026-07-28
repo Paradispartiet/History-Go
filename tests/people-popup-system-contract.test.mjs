@@ -15,6 +15,10 @@ test('canonical people popup documentation owns the active presentation contract
   assert.match(docs, /tools\/audit-people-popup-readiness\.mts/);
   assert.match(docs, /FACTUALITY_CONTRACT\.md/);
   assert.match(docs, /PEOPLE_PROFILE_CANONICAL\.md/);
+  assert.match(docs, /normalisert URL/);
+  assert.match(docs, /navngitte `externalLinks`-oppføringen beholdes/);
+  assert.match(docs, /Wikipedia kan registreres som `type: "further_reading"`/);
+  assert.match(docs, /Personlig informasjon skal presenteres som personlig biografi/);
   assert.match(docs, /En språkmodell er aldri en faktakilde/i);
   assert.match(docs, /complete.*betyr ikke.*source_verified/is);
   assert.match(docs, /Quizknappen skal aldri være en fullbredde gul bannerknapp/);
