@@ -30,7 +30,7 @@
     politikk:   ["badges", "people", "spots", "details", "objects", "works", "brands", "nature"],
     musikk:     ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
     litteratur: ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
-    sport:      ["badges", "people", "objects", "spots", "details", "brands", "works", "nature"],
+    sport:      ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
     natur:      ["badges", "nature", "spots", "details", "people", "objects", "works", "brands"],
     vitenskap:  ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
     filosofi:   ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],
@@ -356,6 +356,21 @@
     }
   }
 
+  function stripLegacySportRowsFromWorks(place) {
+    if (!place?.sport_profile) return;
+    const worksEl = document.getElementById("pcWorksList");
+    if (!worksEl) return;
+    const legacySportChips = new Set(["Sport", "Arena", "Klubb / lag"]);
+    worksEl.querySelectorAll(".pc-relation-card").forEach(card => {
+      const chip = s(card.querySelector(".pc-relation-chip")?.textContent);
+      if (legacySportChips.has(chip)) card.remove();
+    });
+    const remaining = s(worksEl.textContent);
+    if (!remaining || remaining === "Ingen verk eller prestasjoner ennå") {
+      worksEl.innerHTML = '<div class="pc-empty">Ingen verk ennå</div>';
+    }
+  }
+
   function bindBadgeNavigation() {
     if (badgeNavigationBound) return;
     badgeNavigationBound = true;
@@ -378,6 +393,7 @@
 
     ensureCustomRoundDom();
     renderCustomRounds(place);
+    stripLegacySportRowsFromWorks(place);
     bindBadgeNavigation();
 
     const selected = place ? selectedIds(place) : [];
