@@ -91,7 +91,7 @@ test('navigation remains narrow and delegates production architecture to FAGVERK
   const navigation = read(NAVIGATION);
 
   assert.match(navigation, /eier bare navigasjon, adresser og sideroller/i);
-  assert.match(navigation, /\[FAGVERK\.md\]\(\.\/FAGVERK\.md\)/);
+  assert.ok(navigation.includes('(./FAGVERK.md)'), 'Navigation must link to FAGVERK.md');
   assert.match(navigation, /fagverk-forside\.html/);
   assert.match(navigation, /fagverk\.html\?subject=<subject_id>/);
   assert.match(navigation, /fagverk-sted\.html\?place=<place_id>/);
@@ -104,7 +104,7 @@ test('repository and subject-file documentation point to the canonical master co
   const subjectContract = read('docs/SUBJECT_FILE_CONTRACT.md');
 
   assert.match(docsEntry, /docs\/FAGVERK\.md/);
-  assert.match(subjectContract, /\[FAGVERK\.md\]\(\.\/FAGVERK\.md\)/);
+  assert.ok(subjectContract.includes('(./FAGVERK.md)'), 'Subject contract must link to FAGVERK.md');
   assert.match(subjectContract, /skal ikke brukes som konkurrerende fagsidekontrakt/i);
 });
 
