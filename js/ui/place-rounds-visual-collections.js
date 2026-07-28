@@ -117,57 +117,17 @@
     return priorityFor(placeOrCategory).slice(0, target);
   }
 
-  function selectedIds(place) {
-    const explicit = explicitRoundIds(place);
-    const hasValidExplicitSet = explicit.length === 4 || explicit.length === 6;
-    const target = explicit.length === 6 ? 6 : 4;
-    const excluded = excludedRoundIds(place);
-    const priority = priorityFor(place);
-
-    const seed = hasValidExplicitSet
-      ? ["badges", ...explicit.filter(id => id !== "badges")]
-      : priority;
-
-    const candidates = unique([...seed, ...priority, ...VISUAL_ROUND_IDS]);
-    const selected = [];
-
-    for (const id of candidates) {
-      if (!VISUAL_SET.has(id)) continue;
-      if (id !== "badges" && excluded.has(id)) continue;
-      if (!selected.includes(id)) selected.push(id);
-      if (selected.length >= target) break;
-    }
-
-    if (!selected.includes("badges")) selected.unshift("badges");
-    return unique(selected).slice(0, target);
-  }
-
-  function ensureCustomRoundDom() {
-    const card = document.getElementById("placeCard");
-    const grid = card?.querySelector(".pc-icons-quad");
-    const body = card?.querySelector(".pc-body");
-    if (!card || !grid || !body) return;
-
-    for (const def of VISUAL_ROUND_DEFS.filter(def => ["objects", "details", "spots"].includes(def.id))) {
-      if (!document.getElementById(def.iconId)) {
-        const icon = document.createElement("div");
-        icon.id = def.iconId;
-        icon.className = "pc-round";
-        icon.hidden = true;
-        icon.setAttribute("role", "button");
-        icon.setAttribute("tabindex", "0");
-        icon.setAttribute("aria-label", def.label);
-        grid.appendChild(icon);
-      }
-
-      if (!document.getElementById(def.listId)) {
-        const list = document.createElement("div");
-        list.id = def.listId;
-        list.hidden = true;
-        list.setAttribute("aria-hidden", "true");
-        body.appendChild(list);
-      }
-    }
+  function civicationSourceFor(place) {
+    const id = s(place?.id);
+    return [
+      ...(Array.isArray(global.CIVICATION_STORE_BY_PLACE?.[id]) ? global.CIVICATION_STORE_BY_PLACE[id] : []),
+      ...(Array.isArray(place?.civication_store) ? place.civication_store : []),
+      ...(Array.isArray(place?.civicationStore) ? place.civicationStore : []),
+      ...(Array.isArray(place?.civication_items) ? place.civication_items : []),
+      ...(Array.isArray(place?.civicationItems) ? place.civicationItems : []),
+      ...(Array.isArray(place?.civication_store_items) ? place.civication_store_items : []),
+      ...(Array.isArray(place?.civicationStoreItems) ? place.civicationStoreItems : [])
+    ];
   }
 
   function imageFor(item) {
@@ -204,19 +164,6 @@
     });
   }
 
-  function civicationSourceFor(place) {
-    const id = s(place?.id);
-    return [
-      ...(Array.isArray(global.CIVICATION_STORE_BY_PLACE?.[id]) ? global.CIVICATION_STORE_BY_PLACE[id] : []),
-      ...(Array.isArray(place?.civication_store) ? place.civication_store : []),
-      ...(Array.isArray(place?.civicationStore) ? place.civicationStore : []),
-      ...(Array.isArray(place?.civication_items) ? place.civication_items : []),
-      ...(Array.isArray(place?.civicationItems) ? place.civicationItems : []),
-      ...(Array.isArray(place?.civication_store_items) ? place.civication_store_items : []),
-      ...(Array.isArray(place?.civicationStoreItems) ? place.civicationStoreItems : [])
-    ];
-  }
-
   function customItems(place, id) {
     if (!place) return [];
     let sources = [];
@@ -242,6 +189,85 @@
     }
 
     return dedupeItems(sources.map(([item, sourceKind], index) => normalizeVisualItem(item, index, sourceKind)));
+  }
+
+  function hasPreferredSource(place, id) {
+    if (!place) return false;
+    if (id === "badges") return Boolean(s(place.category));
+    if (id === "people") {
+      return (Array.isArray(place.people) && place.people.length > 0)
+        || Boolean(document.querySelector("#pcPeopleIcon img[src]"));
+    }
+    if (id === "works") return Array.isArray(place.works) && place.works.length > 0;
+    if (["objects", "details", "spots"].includes(id)) return customItems(place, id).length > 0;
+    if (id === "nature") {
+      return (Array.isArray(place.flora) && place.flora.length > 0)
+        || (Array.isArray(place.fauna) && place.fauna.length > 0)
+        || (Array.isArray(place.nature) && place.nature.length > 0)
+        || Boolean(document.querySelector("#pcNatureIcon img[src]"));
+    }
+    if (id === "brands") {
+      const placeId = s(place.id);
+      return (Array.isArray(place.brands) && place.brands.length > 0)
+        || (Array.isArray(place.brand_ids) && place.brand_ids.length > 0)
+        || (Array.isArray(global.BRANDS_BY_PLACE?.[placeId]) && global.BRANDS_BY_PLACE[placeId].length > 0)
+        || Boolean(document.querySelector("#pcBrandsIcon img[src]"));
+    }
+    return false;
+  }
+
+  function selectedIds(place) {
+    const explicit = explicitRoundIds(place);
+    const hasValidExplicitSet = explicit.length === 4 || explicit.length === 6;
+    const target = explicit.length === 6 ? 6 : 4;
+    const excluded = excludedRoundIds(place);
+    const priority = priorityFor(place);
+
+    const seed = hasValidExplicitSet
+      ? ["badges", ...explicit.filter(id => id !== "badges")]
+      : priority;
+
+    const candidates = unique([...seed, ...priority, ...VISUAL_ROUND_IDS])
+      .filter(id => id === "badges" || !excluded.has(id));
+
+    const ordered = hasValidExplicitSet
+      ? candidates
+      : unique([
+          ...candidates.filter(id => id === "badges" || hasPreferredSource(place, id)),
+          ...candidates.filter(id => id !== "badges" && !hasPreferredSource(place, id))
+        ]);
+
+    const selected = ordered.slice(0, target);
+    if (!selected.includes("badges")) selected.unshift("badges");
+    return unique(selected).slice(0, target);
+  }
+
+  function ensureCustomRoundDom() {
+    const card = document.getElementById("placeCard");
+    const grid = card?.querySelector(".pc-icons-quad");
+    const body = card?.querySelector(".pc-body");
+    if (!card || !grid || !body) return;
+
+    for (const def of VISUAL_ROUND_DEFS.filter(def => ["objects", "details", "spots"].includes(def.id))) {
+      if (!document.getElementById(def.iconId)) {
+        const icon = document.createElement("div");
+        icon.id = def.iconId;
+        icon.className = "pc-round";
+        icon.hidden = true;
+        icon.setAttribute("role", "button");
+        icon.setAttribute("tabindex", "0");
+        icon.setAttribute("aria-label", def.label);
+        grid.appendChild(icon);
+      }
+
+      if (!document.getElementById(def.listId)) {
+        const list = document.createElement("div");
+        list.id = def.listId;
+        list.hidden = true;
+        list.setAttribute("aria-hidden", "true");
+        body.appendChild(list);
+      }
+    }
   }
 
   function renderCustomCollection(place, def) {
