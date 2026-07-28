@@ -4,13 +4,19 @@ on:
   pull_request:
     paths:
       - 'fagverk.html'
+      - 'fagverk-sted.html'
       - 'data/fagverk/**'
       - 'js/fagverk.js'
+      - 'js/fagverk-sted.js'
       - 'js/ui/place-learning-surface.js'
       - 'js/ui/place-card-status-surface.js'
       - 'css/fagverk.css'
+      - 'css/fagverk-learning-v2.css'
+      - 'css/fagverk-sted.css'
       - 'css/place-learning-surface.css'
+      - 'docs/FAGVERK.md'
       - 'tests/fagverk-content.test.mjs'
+      - 'tests/fagverk-place-pages.test.mjs'
       - 'tests/place-learning-surface.test.js'
       - '.github/workflows/fagverk.yml'
   workflow_dispatch:
@@ -20,7 +26,7 @@ permissions:
 
 jobs:
   validate:
-    name: Validate learning content and UI links
+    name: Validate learning content, place pages and UI links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,9 +36,11 @@ jobs:
       - name: Syntax check runtimes
         run: |
           node --check js/fagverk.js
+          node --check js/fagverk-sted.js
           node --check js/ui/place-learning-surface.js
           node --check js/ui/place-card-status-surface.js
-      - name: Validate textbook data and popup integration
+      - name: Validate textbook data, independent place pages and popup integration
         run: |
           node --test tests/fagverk-content.test.mjs
+          node --test tests/fagverk-place-pages.test.mjs
           node --test tests/place-learning-surface.test.js

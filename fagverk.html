@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/fagverk.css">
+  <link rel="stylesheet" href="css/fagverk-learning-v2.css">
 </head>
 <body class="hg-fagverk-page">
   <header class="fagverk-topbar">
@@ -38,6 +39,12 @@
           <p id="fagverkLead" class="fagverk-lead"></p>
         </header>
 
+        <section class="fagverk-diagnostic" aria-labelledby="fagverkDiagnosticTitle">
+          <h3 id="fagverkDiagnosticTitle">Før du begynner</h3>
+          <p class="fagverk-section-intro">Bruk spørsmålene til å oppdage hva du allerede vet – og hva kapittelet må forklare.</p>
+          <div id="fagverkDiagnostic"></div>
+        </section>
+
         <section class="fagverk-objectives" aria-labelledby="fagverkObjectivesTitle">
           <h3 id="fagverkObjectivesTitle">Dette skal du kunne</h3>
           <ul id="fagverkObjectives"></ul>
@@ -46,9 +53,24 @@
         <nav id="fagverkContents" class="fagverk-contents" aria-label="Innhold"></nav>
         <div id="fagverkSections"></div>
 
+        <section class="fagverk-examples" aria-labelledby="fagverkExamplesTitle">
+          <h3 id="fagverkExamplesTitle">Arbeidseksempler</h3>
+          <div id="fagverkExamples" class="fagverk-learning-grid"></div>
+        </section>
+
+        <section class="fagverk-misconceptions" aria-labelledby="fagverkMisconceptionsTitle">
+          <h3 id="fagverkMisconceptionsTitle">Vanlige misforståelser</h3>
+          <div id="fagverkMisconceptions" class="fagverk-learning-grid"></div>
+        </section>
+
         <section class="fagverk-concepts" aria-labelledby="fagverkConceptsTitle">
           <h3 id="fagverkConceptsTitle">Begreper</h3>
           <div id="fagverkConceptGrid" class="fagverk-concept-grid"></div>
+        </section>
+
+        <section class="fagverk-application" aria-labelledby="fagverkApplicationTitle">
+          <h3 id="fagverkApplicationTitle">Bruk faget</h3>
+          <div id="fagverkApplication" class="fagverk-learning-grid"></div>
         </section>
 
         <section class="fagverk-selfcheck" aria-labelledby="fagverkSelfCheckTitle">
@@ -57,7 +79,8 @@
         </section>
 
         <section class="fagverk-cases" aria-labelledby="fagverkCasesTitle">
-          <h3 id="fagverkCasesTitle">Steder som gjør faget konkret</h3>
+          <h3 id="fagverkCasesTitle">Steder å utforske videre</h3>
+          <p class="fagverk-section-intro">Stedene har egne fagverksider. De er ikke kapitler i faget, men selvstendige innganger der flere faglige perspektiver møtes.</p>
           <div id="fagverkCases" class="fagverk-case-grid"></div>
         </section>
 

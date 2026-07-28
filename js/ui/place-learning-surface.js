@@ -197,6 +197,10 @@
     return `fagverk.html?${params.toString()}`;
   }
 
+  function placePageUrl(placeId) {
+    return `fagverk-sted.html?place=${encodeURIComponent(text(placeId))}`;
+  }
+
   function learningModel(registry, place) {
     const placeId = text(place?.id);
     const direct = registry?.placeLinks?.[placeId] || {};
@@ -211,7 +215,9 @@
       ...list(direct.concepts),
       ...emner.flatMap((emne) => list(emne.concepts))
     ]);
-    const subject = text(emner.find((emne) => emne.subject)?.subject || place?.category || 'politikk');
+    const category = text(place?.category);
+    const fallback = text(registry?.placePage?.fallbackSubjectByCategory?.[category]);
+    const subject = text(emner.find((emne) => emne.subject)?.subject || direct.subject || fallback);
     return {
       placeId,
       subject,
@@ -224,22 +230,22 @@
 
   function renderLearningSection(registry, place) {
     const model = learningModel(registry, place);
+    if (!model.placeId) return '';
     const subject = registry?.subjects?.[model.subject];
-    if (!subject || (!model.chapters.length && !model.emner.length && !model.concepts.length)) return '';
-    const chapterMap = new Map(list(subject.chapters).map((chapter) => [text(chapter.id), chapter]));
+    const chapterMap = new Map(list(subject?.chapters).map((chapter) => [text(chapter.id), chapter]));
     const chapters = model.chapters.map((id) => chapterMap.get(id)).filter(Boolean);
-    const defaultChapter = text(chapters[0]?.id || subject.chapters?.[0]?.id);
+    const defaultChapter = text(chapters[0]?.id || subject?.chapters?.[0]?.id);
 
     return `<section class="hg-section hg-place-section hg-place-learning-section">
       <div class="hg-place-learning-heading">
         <div>
-          <p class="hg-place-learning-eyebrow">${escapeHtml(subject.title)}</p>
+          <p class="hg-place-learning-eyebrow">Stedets kunnskapslag</p>
           <h3>Fag og begreper</h3>
         </div>
-        <a class="hg-place-learning-all" href="${escapeAttr(chapterUrl(model.subject, defaultChapter, { place: model.placeId }))}">Åpne fagverket →</a>
+        <a class="hg-place-learning-all" href="${escapeAttr(placePageUrl(model.placeId))}">Åpne stedets fagverkside →</a>
       </div>
-      ${model.intro ? `<p class="hg-place-learning-intro">${escapeHtml(model.intro)}</p>` : ''}
-      ${model.concepts.length ? `<div class="hg-place-learning-concepts">
+      ${model.intro ? `<p class="hg-place-learning-intro">${escapeHtml(model.intro)}</p>` : '<p class="hg-place-learning-intro">Stedet har sin egen fagverkside der stedstekst, faglige linser, begreper og videre lesning samles.</p>'}
+      ${model.concepts.length && subject && defaultChapter ? `<div class="hg-place-learning-concepts">
         ${model.concepts.slice(0, 16).map((concept) => `<a href="${escapeAttr(chapterUrl(model.subject, defaultChapter, { place: model.placeId, concept }))}">${escapeHtml(concept)}</a>`).join('')}
       </div>` : ''}
       ${chapters.length ? `<div class="hg-place-learning-chapters">
@@ -247,10 +253,10 @@
           <span>Fagside</span>
           <strong>${escapeHtml(chapter.title)}</strong>
           <p>${escapeHtml(chapter.subtitle)}</p>
-          <small>Les kapittelet →</small>
+          <small>Les faget →</small>
         </a>`).join('')}
       </div>` : ''}
-      ${model.emner.length ? `<div class="hg-place-learning-emner">
+      ${model.emner.length && subject && defaultChapter ? `<div class="hg-place-learning-emner">
         <h4>Relevante emner</h4>
         ${model.emner.map((emne) => `<a href="${escapeAttr(chapterUrl(model.subject, emne.chapter || defaultChapter, { place: model.placeId, emne: emne.id }))}">${escapeHtml(emne.title)}</a>`).join('')}
       </div>` : ''}
@@ -310,6 +316,7 @@
   global.HGPlaceLearningSurface = {
     loadRegistry,
     renderLearningSection,
-    renderRelationCard
+    renderRelationCard,
+    placePageUrl
   };
 })(window);

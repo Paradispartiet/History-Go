@@ -1,0 +1,113 @@
+.fagverk-place-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 5rem;
+}
+
+.fagverk-place-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 38%);
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 2rem;
+}
+
+.fagverk-place-hero-copy,
+.fagverk-place-image {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 22px;
+  background: rgba(255,255,255,.035);
+}
+
+.fagverk-place-hero-copy {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.fagverk-place-hero h1 {
+  margin: .25rem 0 .5rem;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  line-height: .98;
+}
+
+.fagverk-place-meta {
+  color: var(--muted, #aeb4c0);
+}
+
+.fagverk-place-lead {
+  max-width: 72ch;
+  font-size: 1.12rem;
+  line-height: 1.65;
+}
+
+.fagverk-place-image {
+  width: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.fagverk-place-actions a {
+  display: inline-flex;
+  margin-top: 1rem;
+  padding: .75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  text-decoration: none;
+}
+
+.fagverk-place-shell section {
+  margin: 2rem 0;
+}
+
+.fagverk-place-shell section > h2 {
+  margin-bottom: .75rem;
+}
+
+.fagverk-place-article {
+  max-width: 82ch;
+}
+
+.fagverk-place-article p {
+  font-size: 1.04rem;
+  line-height: 1.75;
+}
+
+.fagverk-place-questions ol {
+  display: grid;
+  gap: .7rem;
+  padding-left: 1.4rem;
+  max-width: 82ch;
+}
+
+.fagverk-place-questions li {
+  padding-left: .35rem;
+  line-height: 1.55;
+}
+
+.fagverk-place-concept-list,
+.fagverk-place-emne-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: .75rem;
+}
+
+.fagverk-place-concept-list a,
+.fagverk-place-concept-list span,
+.fagverk-place-emne-list a,
+.fagverk-place-emne-list span {
+  padding: .55rem .8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.15);
+  text-decoration: none;
+  background: rgba(255,255,255,.035);
+}
+
+@media (max-width: 760px) {
+  .fagverk-place-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .fagverk-place-image {
+    min-height: 220px;
+  }
+}

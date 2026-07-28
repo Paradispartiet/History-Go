@@ -1,7 +1,18 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "1.0.0",
-  "updatedAt": "2026-07-27",
+  "version": "1.1.0",
+  "updatedAt": "2026-07-28",
+  "placePage": {
+    "route": "fagverk-sted.html?place={placeId}",
+    "genericForAllCanonicalPlaces": true,
+    "title": "Stedets fagverkside",
+    "description": "Hvert canonical sted får en egen fagverkside som samler stedstekst, relevante fagkapitler, begreper, emner og videre utforskning.",
+    "fallbackSubjectByCategory": {
+      "politikk": "politikk",
+      "historie": "politikk",
+      "by": "politikk"
+    }
+  },
   "subjects": {
     "politikk": {
       "title": "Politikk og samfunn",
@@ -27,49 +38,92 @@
       "title": "Byråkrati og forvaltning",
       "subject": "politikk",
       "chapter": "forvaltning",
-      "concepts": ["offentlig forvaltning", "byråkrati", "departement", "direktorat", "embetsverk", "delegasjon"]
+      "concepts": [
+        "offentlig forvaltning",
+        "byråkrati",
+        "departement",
+        "direktorat",
+        "embetsverk",
+        "delegasjon"
+      ]
     },
     "em_pol_institusjoner_styring": {
       "title": "Institusjoner og styring",
       "subject": "politikk",
       "chapter": "forvaltning",
-      "concepts": ["institusjon", "styring", "etatsstyring", "myndighet", "ansvar"]
+      "concepts": [
+        "institusjon",
+        "styring",
+        "etatsstyring",
+        "myndighet",
+        "ansvar"
+      ]
     },
     "em_pol_administrativ_makt": {
       "title": "Administrativ makt",
       "subject": "politikk",
       "chapter": "forvaltning",
-      "concepts": ["administrativ makt", "skjønn", "klassifikasjon", "iverksetting"]
+      "concepts": [
+        "administrativ makt",
+        "skjønn",
+        "klassifikasjon",
+        "iverksetting"
+      ]
     },
     "em_pol_parlamentarisme_maktbalanse": {
       "title": "Parlamentarisme og maktbalanse",
       "subject": "politikk",
       "chapter": "parlamentarisme",
-      "concepts": ["parlamentarisme", "mistillit", "kabinettsspørsmål", "maktfordeling", "politisk ansvar"]
+      "concepts": [
+        "parlamentarisme",
+        "mistillit",
+        "kabinettsspørsmål",
+        "maktfordeling",
+        "politisk ansvar"
+      ]
     },
     "em_pol_demokrati_representasjon": {
       "title": "Demokrati og representasjon",
       "subject": "politikk",
       "chapter": "parlamentarisme",
-      "concepts": ["representasjon", "folkesuverenitet", "flertall", "opposisjon"]
+      "concepts": [
+        "representasjon",
+        "folkesuverenitet",
+        "flertall",
+        "opposisjon"
+      ]
     },
     "em_pol_politi_sikkerhet_makt": {
       "title": "Politi, sikkerhet og makt",
       "subject": "politikk",
       "chapter": "forvaltning",
-      "concepts": ["beredskap", "samordning", "sikkerhetsforvaltning", "ansvar"]
+      "concepts": [
+        "beredskap",
+        "samordning",
+        "sikkerhetsforvaltning",
+        "ansvar"
+      ]
     },
     "em_pol_mediert_offentlighet": {
       "title": "Mediert offentlighet",
       "subject": "politikk",
       "chapter": "parlamentarisme",
-      "concepts": ["offentlighet", "opplysningsplikt", "politisk kommunikasjon", "ansvarliggjøring"]
+      "concepts": [
+        "offentlighet",
+        "opplysningsplikt",
+        "politisk kommunikasjon",
+        "ansvarliggjøring"
+      ]
     }
   },
   "placeLinks": {
     "regjeringskvartalet": {
-      "intro": "Regjeringskvartalet er et konkret inngangspunkt til hvordan utøvende makt, departementer, embetsverk, sikkerhet og parlamentarisk ansvar virker sammen.",
-      "chapters": ["forvaltning", "parlamentarisme"],
+      "title": "Regjeringskvartalet",
+      "intro": "Regjeringskvartalet har sin egen fagverkside. Der undersøkes stedet gjennom arkitektur, statsforvaltning, parlamentarisk ansvar, sikkerhet, offentlighet og minne – uten at stedet gjøres til et kapittel i selve faget.",
+      "chapters": [
+        "forvaltning",
+        "parlamentarisme"
+      ],
       "emneIds": [
         "em_pol_byrakrati_forvaltning",
         "em_pol_institusjoner_styring",
@@ -89,6 +143,39 @@
         "mistillit",
         "opplysningsplikt",
         "politisk ansvar"
+      ],
+      "lenses": [
+        {
+          "id": "historie",
+          "title": "Historie",
+          "prompt": "Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?"
+        },
+        {
+          "id": "arkitektur",
+          "title": "Arkitektur og by",
+          "prompt": "Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?"
+        },
+        {
+          "id": "forvaltning",
+          "title": "Forvaltning",
+          "prompt": "Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?"
+        },
+        {
+          "id": "parlamentarisme",
+          "title": "Parlamentarisme",
+          "prompt": "Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?"
+        },
+        {
+          "id": "sikkerhet-minne",
+          "title": "Sikkerhet og minne",
+          "prompt": "Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?"
+        }
+      ],
+      "guidingQuestions": [
+        "Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?",
+        "Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?",
+        "Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?",
+        "Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"
       ]
     }
   }
