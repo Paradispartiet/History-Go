@@ -84,8 +84,8 @@ jobs:
           node tests/header-search-menu.test.js
       - name: Require valid images on new and changed places
         run: node scripts/audit-place-images.mjs --mode=changed
-      - name: Build full place image backlog report
-        run: node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+      - name: Build and verify full place image backlog
+        run: node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
       - name: Upload place image backlog
         uses: actions/upload-artifact@v4
         with:
