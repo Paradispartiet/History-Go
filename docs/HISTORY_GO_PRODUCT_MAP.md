@@ -1,655 +1,210 @@
-# History GO — produktkart og ferdigstillelseskart
+# History GO — produktkart
 
-Dette dokumentet er styringskartet for å gjøre History GO ferdig som spillbar app.
+Status: **canonical produktkart**  
+Eier: `history_go_product_map`  
+Sist kontrollert: **2026-07-28**
 
-Det gjelder **History GO-spillet**: kart, steder, PlaceCard, innsjekk, quiz, badges, profil, people/relations, Wonderkammer, Nearby, favoritter, ruter, natur/sport/musikk/kunst/by/litteratur/politikk/vitenskap/næringsliv/subkultur, HG Social og Spotmeeting.
+Dette dokumentet beskriver hvilke hovedflater History GO består av og hvordan de henger sammen. Det er et produktkart, ikke en detaljoppskrift for hvert subsystem.
 
-**Civication er eget prosjekt** og er ikke del av dette ferdigstillelseskartet. Eventuelle koblinger mellom History GO og Civication skal behandles som integrasjon senere, ikke som del av History GO-hovedløypen.
+For sted-for-sted produksjon brukes `docs/PLACE_PRODUCTION_CHECKLIST.md`. Når et subsystem skal produseres, gjelder subsystemets egen canonical kontrakt.
 
----
-
-## Kort status
-
-History GO mangler ikke først og fremst flere ideer. Det mangler ferdigstillelseskart.
-
-Prosjektet har allerede et stort spillgrunnlag:
-
-- stort stedunivers
-- kartbasert grunnspill
-- mange kategorier
-- PlaceCard / stedkort
-- quiz / badges
-- profil / miniProfile / NextUp
-- people / relations
-- Wonderkammer
-- Nearby / favoritter
-- ruter påbegynt
-- HG Social-kontrakt
-- privacy guards
-- Spotmeeting-produktflyt
-- mye Oslo-data
-
-History GO er derfor ikke en liten prototype. Det er et stort spillunivers med mange bygde systemer, men uten ferdig produktforsegling.
-
-Den viktigste oppgaven nå er å samle systemene til ett spill om oppdagelse, læring og samling:
+## 1. Hovedløkken
 
 ```text
-Kart → Sted / PlaceCard → Oppdagelse / innsjekk → Læring → Samling i profil → Wonderkammer-fordypning → Neste nysgjerrighet
+Kart / Nearby / Søk
+→ Sted / PlaceCard
+→ Kunnskap eller handling
+→ Samling / progresjon
+→ Profil / NextUp / rute
+→ neste sted
 ```
 
-Steder er navet. Profilen er spillerkortet, samlingen og progresjonsflaten. Wonderkammer er et eget fordypnings- og kuriositetsrom, ikke spillerens hovedsamling. Ruter er valgfrie læringsløp. Social og Spotmeeting skal handle om steder, ruter, funn og trygg offentlig møtebruk.
+Stedet er navet. Profilen er spillerens samlings- og progresjonsflate. Fagverket organiserer faglig sammenheng. Ruter organiserer valgfrie læringsløp. Social Meet og Spotmeeting er kontekstbundne sosiale flater.
 
----
+## 2. De tre stedflatene
 
-## Hva mangler?
+Et History GO-sted har tre tydelig forskjellige brukerroller:
 
-### A. Ferdig lærings- og samlingsmodell
+1. **Rundinger** — visuelle samlingsinnganger til identifiserbare ting.
+2. **Stedspopup** — kunnskap om stedet.
+3. **På stedet** — hva som skjer eller kan gjøres der.
 
-Det største som mangler er en praktisk definisjon av hva History GO er som spill.
+Canonical rundingpalett:
 
-History GO skal ikke først og fremst bygges rundt runder som skal fullføres. Spillet skal bygges rundt oppdagelse, samling og gradvis kunnskapsvekst.
+```text
+Badges · People · Works · Objects · Details · Spots · Nature · Brands
+```
 
-Målet for spilleren er ikke å bli ferdig med byen. Målet er å forstå stadig mer av den.
+Et ferdig PlaceCard viser nøyaktig **4 eller 6** rundinger. `Badges` er obligatorisk. `Nature` er valgfri. `Brands` betyr bedrifter og kjente merker med dokumentert stedskobling.
 
-Avklaringer som må låses:
+Canonical popupfaner:
 
-- Hva betyr det å oppdage et sted?
-- Hva betyr det å lære noe på et sted?
-- Hva betyr det å samle et sted, en person, et funn, et badge eller en kunnskap?
-- Hva betyr bronse, sølv og gull som kunnskapsnivåer?
-- Hva er forskjellen på sted, person, rute, badge, oppdrag, profilfunn og Wonderkammer-fordypning?
-- Hva er minimum et sted må ha for å gi spilleren verdi?
-- Hva skjer etter at spilleren har lært noe eller samlet noe?
-- Hvordan påvirker handlingen profil, ruter, social og Spotmeeting?
-- Hva skal åpne en Wonderkammer-fordypning, og hvordan skiller den seg fra profilens samling?
+```text
+Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer
+```
 
-Uten dette blir History GO mange funksjoner. Med dette blir det et åpent lærings- og samlingsspill.
+På stedet omfatter blant annet Events, Social Meet, Spotmeeting/Kunnskapsmøte, Tasks, Training og Play når disse faktisk er relevante og implementert.
 
----
+Eiere:
 
-### B. Felles progresjonssystem
+- `docs/PLACE_STANDARD.md`
+- `data/places/README_place_rounds.md`
+- `docs/PLACE_POPUP_SYSTEM.md`
+- `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
-History GO trenger én samlet progresjonsmodell på tvers av systemene.
+## 3. Samling og fysisk besøk er forskjellige ting
 
-Minimum:
+History GO skal ikke bruke «samlet» og «besøkt» som synonymer.
 
-- `discoveredPlaces`
-- `visitedPlaces`
-- `checkedInPlaces`
-- `learnedPlaces`
-- `masteredPlaces`
-- `attemptedQuizzes`
-- `completedQuizzes`
-- `earnedBadges`
-- `unlockedPeople`
-- `collectedFinds`
-- `unlockedWonderEntries`
-- `favoritePlaces`
-- `activeRoutes`
-- `completedRoutes`
-- `homePlace`
-- `socialActivity`
-- `spotmeetings`
-- `categoryProgress`
+Implementert runtime skiller nå:
 
-Dette er ryggraden. Alt annet bør lese fra eller skrive til denne modellen.
+- `visited_places` — fysisk besøksstatus;
+- `places_collected` — steder samlet gjennom quiz/target-unlock;
+- profilsamlingen — unionen av fysisk besøkte og quiz-samlede steder.
 
-Viktig produktregel:
+Dermed gjelder:
 
-> Profilen viser samlingen og progresjonen. Wonderkammer viser fordypningene, kuriositetene og de skjulte kunnskapsrommene.
+> En quiz kan samle et sted uten å registrere fysisk besøk. Et fysisk besøk kan gjøre stedet synlig i profilsamlingen uten å være et quiz-unlock.
 
----
+Den smale runtimegrensen eies av `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md` og faktisk kode. Samlet progresjonslesing beskrives i `docs/PROGRESSION_MODEL.md`.
 
-### C. Ferdig startflyt
+## 4. Profil
 
-Appen må ha en tydelig førstegangsopplevelse.
+Profilen er spillerens hovedflate for samling og status.
 
-Ikke fordi noe skal fjernes, men fordi spilleren må forstå hvor hun er og hva hun kan gjøre.
+Den kan vise, der runtime støtter det:
 
-Førstegangsopplevelsen bør avklare:
+- samlede steder;
+- fysisk besøkte steder;
+- quiz-/læringsstatus;
+- People;
+- badges/merits;
+- favoritter;
+- ruteprogresjon;
+- offentlig hjemsted;
+- relevante NextUp-signaler.
 
-1. Velkommen til History GO
-2. Velg offentlig hjemsted
-3. Se steder i nærheten
-4. Velg første sted
-5. Sjekk inn eller oppdag stedet
-6. Lær noe gjennom tekst, quiz, oppgave, person eller funn
-7. Få første badge, personkort eller profilfunn
-8. Se profilen oppdatert
-9. Åpne eventuell Wonderkammer-fordypning
-10. Få neste anbefalte sted, tema eller rute
+En belønning eller status som hevdes å være implementert skal kunne leses igjen i en faktisk brukerflate eller read-model. Planlagt progresjon skal ikke omtales som ferdig runtime.
 
----
+## 5. Quiz og læring
 
-### D. Ferdig PlaceCard-standard
+Quiz er en egen produksjons- og runtimeflate. Nye eller fullt reviderte quizer følger kun:
 
-PlaceCard er hovedgrensesnittet for steder.
+- `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`
 
-Et komplett PlaceCard bør kunne vise:
+Quiz kan påvirke blant annet:
 
-- stedets navn
-- kategori
-- bilde / cardImage
-- kort forklaring
-- lang forklaring
-- innsjekkstatus
-- quizstatus
-- badge / kunnskapsnivå
-- personer / relasjoner
-- relaterte steder
-- ruter som inkluderer stedet
-- profilfunn
-- Wonderkammer-koblinger / fordypning
-- favorittstatus
-- social-aktivitet
-- Spotmeeting-mulighet
-- kategori-spesifikke handlinger, for eksempel naturfunn, sportshistorie eller kunstobservasjon
-
-Normen bør være: hvert sted må ha en tydelig læringshandling og en tydelig progresjonseffekt.
-
----
-
-### E. Ferdig profil
-
-Profilen må være spillerens hovedkort, samling og progresjonsflate.
+- `quiz_history`;
+- Knowledge/trivia;
+- `hg_learning_log_v1`;
+- badge/merit-hooks;
+- target-unlocks;
+- `places_collected` når et place-target faktisk låses opp;
+- profiloppdatering.
 
-Den skal vise:
+Quiz skal aldri skrive fysisk besøksstatus.
 
-- hvem spilleren er i History GO
-- oppdagede steder
-- besøkte steder
-- sjekkede steder
-- lærte / mestrede steder
-- badges
-- kategoriprogresjon
-- låste og opplåste personer
-- profilfunn
-- aktive og fullførte ruter
-- favoritter
-- offentlig hjemsted
-- social-status
-- Spotmeeting-status
-- neste anbefalte mål
-
-Profilen er ikke bare en konto- eller innstillingsside. Den er spillerens samling, status og identitet i History GO.
-
-Hvis en belønning ikke vises i profilen, føles den ikke som en del av spillerens progresjon.
-
----
+## 6. People
 
-### F. Ferdig Wonderkammer
+People er canonical entiteter, ikke lokale kopier inne i places.
 
-Wonderkammer er ikke spillerens hovedsamling. Samlingen ligger på profilsiden.
+Produksjon og stedskobling eies av:
 
-Wonderkammer er et eget kunnskapsrom: et kuriositetskammer der steder, personer, hendelser, objekter, ideer og rare forbindelser kan åpnes som fordypning.
+- `docs/PEOPLE_PROFILE_CANONICAL.md`;
+- `docs/people-of-places-method.md`;
+- `docs/PEOPLE_IMAGES.md`.
 
-Wonderkammer bør brukes til:
+People kan oppdages, låses opp eller samles etter faktisk runtime, men produktkartet oppfinner ikke nye unlock-regler.
 
-- merkelige historiske koblinger
-- skjulte lag ved steder
-- objekter og funn med fortelling
-- sitater, spor og fragmenter
-- «visste du at»-kunnskap
-- tematiske rom
-- små historiske mysterier
-- koblinger mellom steder, personer og epoker
-- kulturhistoriske, vitenskapelige eller kunstneriske perspektiver
-- byens hemmelige skuffer
-
-Wonderkammer bør kunne filtrere eller strukturere fordypninger etter:
-
-- Alle
-- Steder
-- Personer
-- Funn
-- Tema
-- Kategorier
-- Epoker
-- Ruter
-- Kuriositeter
+## 7. Fagverk og Badges
 
-Wonderkammer er ikke ekstra pynt og ikke en kopi av profilen. Det er stedet der kunnskapen får dybde, overraskelse og egen atmosfære.
+`category` er stedets primære canonical fag-/badgeidentitet. `underbadge_ids` brukes til underklassifisering.
 
----
+Badges-rundingen går til stedets fagverkside. Navigasjonsrollene mellom Merket og Faget eies av:
 
-### G. Ferdige ruter
+- `docs/FAGVERK_NAVIGATION.md`.
 
-Ruter gjør History GO til et spill med organiserte læringsløp.
+Fagverket organiserer kunnskap og progresjon; det erstatter ikke stedets popup eller canonical place-data.
 
-En rute er ikke hovedmålet i seg selv. En rute er en måte å sette steder, personer, funn og kunnskap i sammenheng.
+## 8. Ruter
 
-En rute bør ha:
+Ruter er organiserte læringsløp gjennom steder og/eller tekstlige etapper.
 
-- navn
-- tema
-- startsted
-- 3–8 stopp
-- anbefalt rekkefølge
-- kartlinje
-- progresjon
-- læringshandling per stopp
-- sluttspørsmål, sluttbadge eller profilfunn
-- visning i profil
-- eventuell Wonderkammer-fordypning
-
-Tidlige ruter som bør finnes:
+Historiske ruter eies av:
 
-- Litterære Oslo
-- Akerselva industri
-- Demokratiruten
-- Byutvikling og gentrifisering
-- Kunst ved fjorden
-- Oslo øst og arbeiderhistorie
-- Fotballbyen Oslo
-- Vitenskap i sentrum
-- Natur i byen
-- Subkultur og scener
-- Musikkbyen Oslo
+- `docs/README_HistoryGo_Historiske_Ruter.md`;
+- `data/routes/historical/schema_historical_route.json`;
+- `data/routes/historical/manifest.json`.
 
----
+Ikke erklær GPS-samling, fysisk route-fullføring, badges eller oppgaveporter som implementert hvis runtimeguiden uttrykkelig sier at de ikke er det.
 
-### H. Ferdig Nearby / favoritter
+## 9. Nearby, favoritter og NextUp
 
-Nearby bør være spillets svar på: Hva kan jeg oppdage nå?
+Nearby og NextUp skal hjelpe spilleren å finne neste relevante steg basert på eksisterende, lesbar status.
 
-Nearby bør prioritere:
+Relevante signaler kan være:
 
-- nærmeste uoppdagede sted
-- nærmeste sted i aktiv rute
-- sted med ufullført quiz
-- sted som låser opp person
-- sted som styrker en kategori
-- sted som passer valgt interesse
-- favoritter i nærheten
-- kort tur / lang tur
-- ute / inne / regnværsvennlig der data finnes
+- nærhet;
+- favoritt;
+- ikke åpnet / ikke besøkt;
+- quizstatus;
+- aktiv rute;
+- kategori/faglig relevans;
+- offentlig hjemsted;
+- faktisk implementerte unlocks.
 
-Nearby bør bruke spilltekst:
+De skal ikke finne på fremdrift som ikke kan spores til eksisterende data/runtime.
 
-- Du mangler ett sted for sølv i Litteratur.
-- Dette stedet låser opp en person.
-- Dette stedet er del av Akerselva-ruten.
-- Du har vært her, men ikke tatt quiz.
-- Dette ligger nær ditt offentlige hjemsted.
+## 10. Social Meet og Spotmeeting
 
----
+Social Meet og Spotmeeting skal være kontekstbundne og privacy-sikre. De skal ikke bygge på offentlig live-posisjon, offentlig besøkshistorikk eller fri GPS-discovery av andre brukere.
 
-### I. People / relations som unlock-system
+Eiere:
 
-People skal ikke bare være data. De skal være personer spilleren møter gjennom byen.
+- `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`;
+- `docs/HG_SPOTMEETING.md`;
+- tilhørende backend/runtimekontrakter.
 
-Personer bør kunne ha:
+## 11. Wonderkammer er legacy
 
-- personkort
-- steder
-- relasjoner
-- tidslinje
-- kategori
-- låst / ulåst status
-- sitat / funn
-- kobling til ruter
-- kobling til profil
-- eventuell kobling til Wonderkammer-fordypning
+Wonderkammer er **ikke** lenger en canonical PlaceCard-runding eller en ny produksjonsmodell for History GO-steder.
 
-Eksempler:
+Eksisterende Wonderkammer-data behandles som migreringsgrunnlag og klassifiseres etter faktisk innhold:
 
-- Nationaltheatret låser opp dramatikere og teaterhistorie.
-- Vår Frelsers gravlund låser opp kulturpersoner.
-- Nasjonalbiblioteket låser opp forfatterarkiver.
-- Ullevaal låser opp fotballhistorie.
-- MUNCH låser opp kunsthistorie.
-- Observatoriet låser opp vitenskapshistorie.
+- fysisk gjenstand → `Objects`;
+- liten detalj/spor → `Details`;
+- fysisk delsted → `Spots`;
+- person → `People`;
+- verk → `Works`;
+- natur → `Nature`;
+- handling → På stedet;
+- navigasjon → relations/NextUp;
+- chronology/hendelse → Historie;
+- narrativ episode → Stories når storykontrakten er oppfylt.
 
-Dette gjør History GO til et samlespill, ikke bare et kart.
+Gamle Wonderkammer-dokumenter kan beskrive historisk design eller compatibility-data, men eier ikke ny stedproduksjon, completion eller progresjon.
 
----
+## 12. Civication
 
-### J. HG Social
+Civication er et separat prosjekt/spillsystem.
 
-Social er ikke ferdig før det har faktisk brukeropplevelse.
+Et fysisk Civication-element kan vises gjennom `Objects` når det samtidig er en virkelig, stedsspesifikk og visuelt kvalifisert gjenstand. Det gjør ikke Civication til en History GO-runding eller generell objektmodell.
 
-HG Social bør handle om:
+```text
+Objects = hva tingen er
+Civication = kjøp/eierskap/bruk i Civication
+```
 
-- steder
-- ruter
-- funn
-- profiler
-- favoritter
-- felles aktivitet
-- trygg deling
+## 13. Autoritetsregel
 
-Det bør ikke bygges som generell sosial feed først. Det skal være sosialitet rundt History GO-objekter.
+Dette produktkartet bestemmer **hvilke roller systemene har**. Det bestemmer ikke detaljproduksjonen.
 
-Mangler som bør fullføres:
+Ved konflikt gjelder i denne rekkefølgen:
 
-- venner / relasjoner
-- offentlig profil
-- aktivitetsfeed rundt steder og funn
-- delte funn
-- felles ruter
-- blokkeringsflyt i UI
-- rapportering / moderering i UI
-- tydelig visning av hva andre kan se
-- backend-login / sync senere
+1. canonical schema/manifest/source-data for subsystemet;
+2. implementert runtime og tester;
+3. subsystemets canonical produksjons-/runtimekontrakt;
+4. dette produktkartet;
+5. eldre roadmap-, rapport- og arkivmateriale.
 
----
-
-### K. Spotmeeting
-
-Spotmeeting skal være stedbasert møtefunksjon.
-
-Det bør bety:
-
-> Jeg vil møte noen ved et offentlig History GO-sted for å gjøre en rute, et funn, en samtale eller en aktivitet.
-
-Mangler som bør fullføres:
-
-- live invitasjoner
-- lagring
-- kalender / tid
-- deltakerstatus
-- privacy-regler
-- kobling til offentlig History GO-sted
-- varsler
-- kansellering / endring
-- backend senere
-- trygghetsflyt
-
-Spotmeeting skal ikke være tilfeldig møteapp. Det er en trygg stedmodus inne i History GO.
-
----
-
-### L. Backend / login / sync
-
-For full release trengs:
-
-- konto
-- login
-- sky-sync av progresjon
-- brukerprofil
-- venner
-- social-data
-- Spotmeeting-data
-- moderation / reporting
-- backup
-- eksport / import
-- GDPR og personvern rundt posisjon
-
-Men lokal singleplayer-progresjon kan og bør fungere før backend er komplett.
-
----
-
-## Hva bør fullføres først?
-
-Prioritet:
-
-1. Felles progresjonssystem
-2. PlaceCard-standard
-3. Profil som samling og progresjonsflate
-4. Wonderkammer som fordypningsrom
-5. Nearby / favoritter
-6. Ruter
-7. Innholdsstandard per kategori
-8. Innholdshull i svake kategorier
-9. HG Social
-10. Spotmeeting
-11. Backend / login / sync
-
-Dette er ikke kutt. Det er rekkefølge.
-
----
-
-## Kategorier og spillrolle
-
-| Kategori | Spillrolle |
-|---|---|
-| Historie | tidslag, hendelser, minnesteder, før/nå-kontraster |
-| Litteratur | forfattere, tekster, steder, sitater, bokkultur |
-| Kunst | kunstverk, museer, kunstnere, teknikker, visuell observasjon |
-| Musikk | artister, scener, studioer, sjangre, konserthistorie |
-| Sport | klubber, arenaer, spillere, prestasjoner, supporter- og breddekultur |
-| Natur | arter, observasjoner, økologi, parker, marka, sesonger |
-| By | byutvikling, arkitektur, mobilitet, nabolag, sosial geografi |
-| Politikk | institusjoner, demokrati, protest, makt, offentlighet |
-| Næringsliv | industri, handel, teknologi, arbeid, modernisering |
-| Vitenskap | forskere, institusjoner, metoder, instrumenter, oppdagelser |
-| Subkultur | scener, alternative miljøer, skate, graffiti, punk, rave, kulturhus |
-
-Kategoriene bør dele grunnsystem, men ha ulik spillfølelse.
-
----
-
-## Innholdsbalanse
-
-History GO har mye bredde, men kategoriene er ujevnt modne.
-
-Prioritert innholdsutjevning:
-
-1. Musikk
-2. Natur
-3. Sport
-4. Kunst
-5. Vitenskap
-6. Politikk
-7. Subkultur
-8. Næringsliv
-9. Litteratur
-10. By
-
-By og litteratur virker sterkest som datagrunnlag. De svakere kategoriene bør løftes for at History GO skal føles som et bredt kultur-, natur-, sport- og kunnskapsspill.
-
----
-
-## Stedskvalitet
-
-Et History GO-sted bør ha modenhetsnivå.
-
-| Nivå | Betydning |
-|---|---|
-| Stub | finnes bare som peker |
-| Basis | kart + kort tekst |
-| Spillbart | innsjekk + quiz + badge |
-| Rikt | personer + emner + profilfunn + Wonderkammer-koblinger |
-| Læringsløp | del av rute + full progresjon |
-| Premium | bilde, lang tekst, quizprofil, personkort, rute, funn og fordypning |
-
-Målet er ikke at alle steder skal være Premium med én gang. Målet er at appen vet hva hvert sted kan gjøre.
-
----
-
-## Belønningsøkonomi
-
-Forslag til belønningsstige:
-
-- Stedsmerke: sted oppdaget, besøkt eller mestret
-- Kategorimerke: flere steder i kategori lært / mestret
-- Rutemerke: rute gjennomført
-- Personkort: person låst opp
-- Profilfunn: objekt, historisk spor, kuriositet eller særskilt kobling som legges i spillerens samling
-- Wonderkammer-åpning: fordypning, mysterium, kobling eller kunnskapsrom som åpnes
-- Diplom: større prøve eller kategorinivå
-- Tittel: samlet nivå
-
-Bronse / sølv / gull bør konkretiseres slik:
-
-- Bronse: oppdaget, besøkt eller sjekket inn
-- Sølv: hovedfortelling forstått og quiz / læringshandling fullført
-- Gull: sted koblet til person, funn, ruteoppgave eller dypere kunnskap
-
-Et sted er derfor ikke «ferdig» i absolutt forstand. Det kan alltid få flere lag senere. Men spilleren kan oppnå et synlig mestringsnivå som viser hvor godt stedet er utforsket.
-
----
-
-## Offentlig hjemsted
-
-History GO bør bruke offentlig hjemsted som lokal startposisjon.
-
-Regel:
-
-> Hjemsted skal være et offentlig History GO-sted, ikke privat adresse.
-
-Lagre:
-
-- `placeId`
-- navn
-- kategori
-- lat / lon
-- radius
-- valgt dato
-- synlighet / privacy
-
-Brukes til:
-
-- Nearby
-- anbefalinger
-- ruter
-- profilidentitet
-- trygg social / Spotmeeting
-- lokale starter
-
----
-
-## Privacy for stedbasert sosialitet
-
-Siden History GO bruker ekte steder, gjelder denne produktregelen:
-
-> Sosiale funksjoner skal bare bruke offentlige History GO-steder, aldri private adresser.
-
-Dette gjelder:
-
-- hjemsted
-- Spotmeeting
-- ruter med venner
-- offentlig profil
-- delte funn
-- social feed
-
-Brukeren må forstå:
-
-- hvem kan se besøkte steder?
-- hvem kan se favoritter?
-- hvem kan se hjemsted?
-- ser noen min live-posisjon?
-- hvem kan invitere meg?
-- hvordan blokkerer eller rapporterer jeg?
-
----
-
-## Lokal vs live status
-
-History GO skal være spillbart lokalt selv når backend ikke er ferdig.
-
-Produktet bør skille mellom:
-
-- lagret på denne enheten
-- synkronisert med konto
-- kan eksporteres/importeres
-- krever login
-- live sosial funksjon
-- mock/local sosial funksjon
-
-Dette skal vises ryddig, ikke som debugstøy.
-
----
-
-## Innholdsproduksjonsløype
-
-For hvert sted:
-
-1. Velg sted
-2. Sjekk koordinat og radius
-3. Skriv korttekst
-4. Skriv langtekst
-5. Legg bilde og kortbilde
-6. Knytt til emner
-7. Lag 3–5 quizspørsmål
-8. Knytt person / profilfunn der relevant
-9. Legg til Wonderkammer-fordypning der relevant
-10. Legg til rute der relevant
-11. Test PlaceCard
-12. Test quiz
-13. Test profil-belønning
-14. Test Wonderkammer-fordypning
-
-Dette er den redaksjonelle løypen som gjør steder ferdige uten kaos.
-
----
-
-## Redaksjonelt dashboard som mangler
-
-History GO bør ha intern oversikt over modenhet.
-
-Eksempel:
-
-| Kategori | Steder | Spillbare | Med quiz | Med bilde | Med rute | Med person | Prioritet |
-|---|---:|---:|---:|---:|---:|---:|---|
-| By | høy | høy | middels | høy | lav | middels | 1 |
-| Litteratur | høy | middels | middels | høy | lav | høy | 1 |
-| Kunst | middels | lav | lav | middels | lav | middels | 2 |
-| Natur | lav | lav | lav | lav | lav | lav | 1 |
-| Musikk | svært lav | lav | lav | lav | lav | lav | 1 |
-| Sport | lav | lav | lav | lav | lav | lav | 1 |
-
-Et slikt dashboard bør gjøre det lett å se hva som faktisk mangler.
-
----
-
-## Hva bør ikke prioriteres først?
-
-Dette bør vente til kjerneløypen er strammere:
-
-- flere store nye moduser
-- flere sideprosjekter
-- mer generell AHA-integrasjon
-- avansert multiplayer
-- avansert AI-anbefaling
-- full App Store-pakke
-- stor backend før lokal progresjon er stabil
-- tusenvis av nye steder før de første 100–200 er gode
-- komplisert sosial feed før stedbaserte handlinger fungerer
-- flere dokumenter før README-strukturen er ryddet
-
-Dette betyr ikke at noe skal bort. Det betyr at ferdigstillelse må ha rekkefølge.
-
----
-
-## Definisjonen av progresjon
-
-Den viktigste mangelen er én felles definisjon av progresjon:
-
-- oppdaget sted
-- besøkt / sjekket sted
-- lært sted
-- mestret sted
-- gjennomført rute
-- utviklet kategori
-- opplåst person
-- samlet profilfunn
-- åpnet Wonderkammer-fordypning
-- endret profilnivå
-- gjennomført social-handling
-- gjennomført Spotmeeting
-
-Når dette er definert, kan alle systemene kobles.
-
----
-
-## Arbeidsregel
-
-History GO skal ikke gjøres mindre.
-
-History GO skal gjøres ferdig.
-
-Det betyr:
-
-- ikke skjul hovedsystemer som produktstrategi
-- ikke bygg videre tilfeldig
-- ikke la hvert system være sin egen øy
-- koble alt til steder, progresjon, profil og relevante fordypninger
-- la profilen være samlingen
-- la Wonderkammer være fordypningsrommet
-- fullfør grunnmodellen før nye store lag bygges
-
-Kjernesetning:
-
-> History GO er ikke et lite spill som må kuttes ned. Det er et stort lærings- og samlingsspill som må få ferdig progresjon, ferdige belønninger og ferdige koblinger mellom systemene.
+Planlagt funksjonalitet skal alltid merkes som planlagt og må aldri beskrives som implementert bare fordi den finnes i et dokument.

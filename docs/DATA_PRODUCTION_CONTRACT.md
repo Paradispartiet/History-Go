@@ -1,410 +1,269 @@
 # History GO — dataproduksjonskontrakt
 
 Status: **canonical data-production contract**  
-Eier: History GO data/runtime  
+Eier: `history_go_data_production`  
 Sist kontrollert: **2026-07-28**
 
-Dette dokumentet definerer hvordan nye eller vesentlig endrede History GO-data skal produseres, kontrolleres og settes inn uten å bryte kategori-, place-, people-, badge-, progresjons-, kilde- eller manifestlogikk.
+Dette dokumentet eier de **tverrgående reglene** for hvordan History GO-data produseres, aktiveres og kobles sammen. Det skal ikke duplisere subsystemenes detaljoppskrifter.
 
 For full sted-for-sted arbeidsrekkefølge brukes:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
-Relaterte kontrakter:
+## 1. Autoritetskart
 
-- `docs/FACTUALITY_CONTRACT.md`
-- `docs/DOMAIN_CONTRACT.md`
-- `data/categories/category_contract.json`
-- `docs/SUBJECT_FILE_CONTRACT.md`
-- `docs/PLACE_STANDARD.md`
-- `docs/PLACE_POPUP_SYSTEM.md`
-- `data/places/README_place_rounds.md`
-- `docs/people-of-places-method.md`
-- `docs/coordinates/coordinate-source-contract-v1.md`
-- `README/SYSTEM_REGISTRY.md`
+| Område | Canonical eier |
+| --- | --- |
+| Faktisitet | `docs/FACTUALITY_CONTRACT.md` |
+| Stedstandard | `docs/PLACE_STANDARD.md` |
+| `desc` / `popupDesc` | `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` |
+| Stedspopup | `docs/PLACE_POPUP_SYSTEM.md` |
+| Rundinger | `data/places/README_place_rounds.md` |
+| Kategorier | `data/categories/category_contract.json` |
+| Quiz | `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` |
+| People–sted | `docs/people-of-places-method.md` |
+| People-profiler | `docs/PEOPLE_PROFILE_CANONICAL.md` |
+| People-bilder | `docs/PEOPLE_IMAGES.md` |
+| Stories | `docs/STORIES_DATA_GOVERNANCE.md` |
+| Koordinater | `docs/coordinates/coordinate-source-contract-v1.md` |
+| Coordinate evidence | `docs/coordinates/coordinate-evidence-files-v1.md` |
+| Nature | `README/nature_mapping_workflow.md` |
+| Fagverk-navigasjon | `docs/FAGVERK_NAVIGATION.md` |
+| Completion | `docs/COMPLETION_DEFINITIONS.md` |
+| Progresjon/read-model | `docs/PROGRESSION_MODEL.md` |
+| Historiske ruter | `docs/README_HistoryGo_Historiske_Ruter.md` |
 
-Runtime source of truth er de faktiske source-dataene, manifestene, loaderne og valideringen.
+Når et detaljspørsmål eies av en av disse filene, skal denne kontrakten **peke dit**, ikke lage en konkurrerende mini-standard.
 
----
+## 2. Faktisitet er første port
 
-## 0. Faktisitet og kildeverifikasjon
+All brukerrettet dataproduksjon følger `FACTUALITY_CONTRACT.md`.
 
-All brukerrettet dataproduksjon styres av `FACTUALITY_CONTRACT.md`.
-
-- Ikke dikt, gjett, interpoler eller fyll ut manglende fakta.
+- Ikke dikt, gjett eller fyll ut manglende fakta.
 - En språkmodell er ikke en faktakilde.
 - Eksisterende History GO-tekst er ikke alene bevis for samme påstand.
-- Hver publisert faktapåstand skal kunne spores til en inspectable kilde som faktisk støtter den.
+- Kilder skal støtte den konkrete påstanden, ikke bare omtale samme emne.
 - Manglende informasjon skal forbli manglende.
-- Kildekonflikter skal dokumenteres; uløste konflikter skal normalt ikke publiseres som sikre fakta.
-- Schema, readiness, grønn CI eller `verifiedAt` beviser ikke faktisitetskontroll.
+- Kildekonflikter dokumenteres; uløste konflikter publiseres normalt ikke som sikre fakta.
+- Schema, grønn CI eller `verifiedAt` beviser ikke faktisitetskontroll alene.
 
-Produksjon skal stoppe når kildegrunnlaget er utilstrekkelig.
+Produksjon stopper når kildegrunnlaget ikke bærer innholdet.
 
----
+## 3. Ett place-ID — ett canonical place-object
 
-## 1. Ett place-ID — ett canonical place-object
-
-Et place-ID skal ikke dupliseres på tvers av kategorier eller filer.
+Et place-ID skal ikke dupliseres på tvers av filer eller kategorier.
 
 Arbeidsregel:
 
-1. Søk hele `data/places/**` etter ID, navn og navnevarianter.
-2. Finn manifest-loadet source-fil.
-3. Hvis stedet finnes, oppdater eksisterende canonical object.
-4. Hvis primærkategori er feil, ta en eksplisitt kategoribeslutning før flytting.
-5. Tverrfaglighet løses gjennom badges/emner, people, works, quiz, relations, Stories, Leksikon, ruter og andre eide systemer — ikke dupliserte places.
+1. søk etter ID, navn og navnevarianter;
+2. finn manifest-loadet source-fil;
+3. oppdater eksisterende canonical object når stedet allerede finnes;
+4. ta eksplisitt kategoribeslutning før eventuell flytting;
+5. uttrykk tverrfaglighet gjennom badges/emner, People, Works, quiz, Stories, Leksikon, relations og ruter — ikke dupliserte Places.
 
-`data/places/places_index.json` er build-output og skal aldri håndredigeres.
+Genererte indekser håndredigeres ikke.
 
-Når et datasett er splittet til én fil per sted, skal den manifest-loadede per-place-filen redigeres. Et beholdt aggregate er ikke automatisk aktiv source of truth.
+## 4. Manifestet aktiverer data
 
----
+En fil som finnes i repoet er ikke automatisk aktiv runtime-data.
 
-## 2. `category` er primær fag-/badgeidentitet
+For hvert subsystem skal canonical manifest-/loaderkjede følges.
 
-Hvert place har én canonical primærkategori.
+For Places eier `data/places/manifest.json` den globale aktiveringen. Når et datasett er splittet til per-place-filer, redigeres den manifest-loadede per-place-filen, ikke et beholdt aggregate.
 
-Gyldige runtimekategorier eies av:
+Samme prinsipp gjelder blant annet People, Quiz, Stories og Routes.
 
-```text
-data/categories/category_contract.json
-```
+## 5. Kategori og underbadges
+
+`category` er én canonical primærkategori og skal bruke ID fra:
+
+- `data/categories/category_contract.json`.
+
+`underbadge_ids` brukes til canonical underklassifisering.
 
 Ikke opprett lokale parallelle kategorifelter for å uttrykke tverrfaglighet.
 
-Eksempel:
+## 6. `desc` og `popupDesc`
 
-```json
-"category": "politikk"
-```
+Denne dataproduksjonskontrakten eier **ikke** hvordan teksten skrives eller faktagodkjennes.
 
-Ved kategorivalg skal canonical kategori-ID brukes, ikke visningsnavn eller legacy-alias.
+All ny eller vesentlig revidert stedstekst følger:
 
----
+- `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`;
+- `data/places/regler/place_description_production_v4_2.schema.json`;
+- tilhørende validator.
 
-## 3. `underbadge_ids` er canonical underbadgefelt
+Det betyr identitetsport, inspectable kilder, claims, setning→claim-paritet, teksthash, faktareview og redaksjonell review.
 
-Bruk `underbadge_ids` for relevant underklassifisering.
+Ikke produser `desc`/`popupDesc` fra en løs stedstype-mal eller læringsmål alene.
 
-Alle verdier må finnes i korrekt badgefil.
+## 7. Rundinger
 
-Eksempel:
+Rundinger er visuell presentasjon, ikke kategori- eller progresjonslogikk.
 
-```json
-"underbadge_ids": [
-  "arbeiderbevegelse",
-  "aktivisme_og_protest"
-]
-```
+Canonical eier:
 
-Ikke opprett planleggingsfelt eller lokale aliaslister i place-data.
+- `data/places/README_place_rounds.md`.
 
----
-
-## 4. Rundinger er visuell presentasjon, ikke fagklassifisering
-
-Canonical rundingkontrakt eies av:
+Paletten er:
 
 ```text
-data/places/README_place_rounds.md
+badges · people · works · objects · details · spots · nature · brands
 ```
 
-Canonical rundingpalett er:
-
-```text
-badges
-people
-works
-objects
-details
-spots
-nature
-brands
-```
-
-Harde regler for nye/reviderte places:
+For nye/reviderte places:
 
 - `badges` er obligatorisk;
-- ferdig sted viser nøyaktig **4 eller 6** rundinger;
-- bruk bare canonical IDs;
-- valgt runding skal ha reelt stedsspesifikt og bildeklart innhold;
-- ikke bruk rundinger til fagklassifisering;
-- ikke produser filler for å nå layouten;
-- Nature er valgfri og skal ikke presses inn;
-- Brands beholder betydningen **bedrifter og kjente merker knyttet til stedet**;
-- Civication Store er ikke egen runding;
-- Wonderkammer er ikke egen runding;
-- Leksikon, Stories, Før/etter og handlinger er ikke rundinger;
-- `rundinger` er legacy alias; bruk `rounds` i nye/reviderte data.
+- ferdig sted viser nøyaktig 4 eller 6;
+- valgt samling skal være stedsspesifikk og bildeklart;
+- `rounds` brukes som canonical kurateringsfelt;
+- nye Objects bruker normalt `place.objects`;
+- nye Details bruker normalt `place.details`;
+- nye Spots bruker normalt `place.spots`;
+- legacy aliases brukes bare som compatibility/migreringskilder;
+- Nature er valgfri;
+- Brands betyr fortsatt bedrifter og kjente merker med dokumentert stedskobling;
+- Civication Store er ikke runding;
+- Wonderkammer er ikke ny runding eller ny produksjonsmodell.
 
-Kategoriens rundingprioritet og sted-for-sted kuratering ligger i `PLACE_PRODUCTION_CHECKLIST.md` og `README_place_rounds.md`.
+## 8. People
 
----
+People-data skal gå gjennom canonical People-system.
 
-## 5. Places skal inn gjennom manifest-loadede source-filer
+Følg:
 
-Nye places skal ligge i riktig source-fil under `data/places/**` og være aktivert gjennom canonical manifestkjede.
+- `docs/people-of-places-method.md` for stedskobling;
+- `docs/PEOPLE_PROFILE_CANONICAL.md` for ny/revidert profil;
+- `docs/PEOPLE_IMAGES.md` for personbilder;
+- `data/people/manifest.json` for aktivering.
 
-Standardregel:
+Søk etter eksisterende canonical person før ny record opprettes. Ikke flytt primæranker uten egen vurdering.
 
-```text
-data/places/manifest.json
-```
-
-eier global runtimeaktivering.
-
-Hvis source-filen ikke er manifest-loadet, er dataene ikke canonical runtime-data.
-
-Genererte indekser skal regenereres fra source, aldri håndredigeres.
-
----
-
-## 6. People skal inn gjennom canonical People-system
-
-Nye eller endrede People følger:
-
-- `docs/people-of-places-method.md`
-- `docs/PEOPLE_PROFILE_CANONICAL.md`
-- `data/people/manifest.json`
-
-Regler:
-
-- søk etter eksisterende person før ny record;
-- ikke dupliser samme person i flere kategorifiler;
-- person–sted-kobling må ha konkret inspectable kilde;
-- `placeId` er primæranker i standard-schema;
-- `places` kan inneholde flere dokumenterte steder;
-- flytt ikke primæranker uten egen vurdering;
-- bruk aktivt schema for datasettet; ikke normaliser legacy-varianter lokalt uten migrering.
-
----
-
-## 7. Works, Brands og andre canonical entiteter skal gjenbrukes
+## 9. Works, Brands og andre entiteter
 
 Før ny entitet opprettes:
 
-1. søk etter canonical ID;
-2. søk etter navn/navnevarianter;
-3. kontroller om eksisterende record kan få ny dokumentert place-kobling;
-4. opprett ny record bare når det faktisk er en ny canonical entitet.
+1. søk canonical ID;
+2. søk navn/navnevarianter;
+3. vurder om eksisterende record kan få ny dokumentert place-kobling;
+4. opprett bare ny record når det faktisk er en ny canonical entitet.
 
 ### Brands
 
 Brands er **bedrifter og kjente merker med dokumentert kobling til stedet**.
 
-- Ikke bruk Brands som generell organisasjons-/institusjons-/lag-restkategori.
-- Ikke endre eksisterende Brands-semantikk for å fylle en PlaceCard-runding.
-- Gjenbruk eksisterende canonical Brand når den finnes.
+Brands skal ikke brukes som generell restkategori for lag, institusjoner, organisasjoner, skilt eller objekter.
 
 ### Works
 
-Sportsresultater, rekorder og historiske hendelser er ikke Works. De hører normalt i stedspopupens Historie/kunnskapsflate.
+Historiske hendelser, sportsresultater, rekorder og mesterskap er ikke Works. De hører normalt i stedspopupens Historie/kunnskapsflate.
 
----
+## 10. Popup og kunnskapsdata
 
-## 8. Wonderkammer er legacy-migreringsgrunnlag
+Popupen aggregerer eide systemer; den skal ikke føre til at alt kopieres inn i place-filen.
 
-Det skal ikke produseres nye Wonderkammer-entries.
+Presentasjon og faner eies av:
 
-Eksisterende entries klassifiseres etter hva de faktisk er:
+- `docs/PLACE_POPUP_SYSTEM.md`.
 
-- fysisk gjenstand → `objects`;
-- liten fysisk detalj/spor → `details`;
-- fysisk delsted → `spots`;
-- person → `people`;
-- verk → `works`;
-- naturentitet → `nature`;
-- handling → På stedet;
-- navigasjon → relations/NextUp;
-- chronology/hendelse → Historie;
-- narrativ episode → Stories bare hvis storykontrakten er oppfylt.
-
-Legacy-data slettes først når canonical destinasjon er validert.
-
----
-
-## 9. Civication er ikke stedets generelle objektmodell
-
-Civication Store / Thingstore består som eget spillsystem.
-
-Et Civication-element kan presenteres via `objects` bare når det også representerer en virkelig, fysisk, stedsspesifikk og visuelt kvalifisert gjenstand.
-
-Skillet er:
-
-```text
-Objects = hva tingen er
-Civication = kjøp/eierskap/bruk i spillet
-```
-
-Ikke alle Objects skal være kjøpbare.
-
----
-
-## 10. Place-popup og kunnskapsdata skal bli i eide systemer
-
-Stedspopupen aggregerer canonical data; den skal ikke føre til at alt kopieres inn i place-filen.
-
-Eierskap:
+Typisk eierskap:
 
 - place source → identitet, `desc`, `popupDesc`, place-profiler;
-- Leksikon → artikkel, facts, chronology, nyhetsspor, externalLinks;
-- Stories → canonical Stories;
+- Leksikon → artikkel, facts, chronology, nyhetsspor, `externalLinks`;
+- Stories → Stories;
 - `for_na` → Før/etter;
 - Lesespor → Lesespor;
-- source summaries / external links → Kilder;
-- observations/knowledge → egne systemer;
-- tasks/training/play/events/møter → På stedet/eide systemer.
+- source summaries / eksterne lenker → Kilder;
+- tasks/training/play/events/møter → På stedet;
+- observations/Knowledge → sine egne systemer.
 
-Popupfanene er:
+## 11. Quiz
 
-```text
-Om
-Historie
-Fortellinger
-Før/etter
-Nyheter
-Lesespor
-Kilder
-Mer
-```
+Quiz skal ikke produseres fra denne kontrakten.
 
----
+Den eneste bindende produksjonsprosedyren er:
 
-## 11. Koordinater følger Coordinate Source Contract
+- `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`.
+
+Quizfile/set-pakke er ikke aktiv før korrekt quiz-manifest/load-kjede inkluderer den.
+
+Quiz kan påvirke kunnskap/progresjon/unlocks, men skal aldri registrere fysisk besøksstatus.
+
+## 12. Stories
+
+Nye eller vesentlig omskrevne Stories følger:
+
+- `docs/STORIES_DATA_GOVERNANCE.md`.
+
+Chronology og Stories har forskjellige roller. Ikke lag Story bare fordi et chronology-punkt er viktig.
+
+## 13. Koordinater
 
 Nye eller vesentlig endrede koordinater følger:
 
-- `docs/coordinates/coordinate-source-contract-v1.md`
-- `docs/coordinates/coordinate-evidence-files-v1.md`
+- `docs/coordinates/README.md`;
+- `docs/coordinates/coordinate-source-contract-v1.md`;
+- `docs/coordinates/coordinate-evidence-files-v1.md`.
 
-Regler inkluderer blant annet:
+Koordinatet skal representere riktig fysisk/historisk objekt, ikke bare et nærliggende kjent punkt.
 
-- address-first for relevante aktive norske adresseobjekter;
-- korrekt `locatorType`, `sourceProvider`, `sourceObjectId`/adresse, `geocodeAccuracy`, `coordRole`, `coordType`, `coordNote` og status;
-- `manual_map_check` alene kan ikke gi `verified`;
-- historiske steder krever historisk kilde/representasjon når dagens adresse ikke beviser objektet;
-- lineære/arealbaserte steder må representeres som det de faktisk er.
+## 14. Nature
 
----
+Nature-mapping følger:
 
-## 12. Politikkdata er manifestdrevet
+- `README/nature_mapping_workflow.md`.
 
-Politikk skal ikke ha en parallell datastruktur.
+Nature-rundingen er valgfri og skal ikke fylles fordi et sted tilfeldigvis har vegetasjon i nærheten. Naturkoblinger skal være dokumenterte og canonical.
 
-Aktive place-filer i splittede datasett redigeres i manifest-loadede per-place-filer, ikke i beholdte aggregates.
+## 15. Wonderkammer
 
-For Oslo politikk har per-place-strukturen vært brukt under:
+Wonderkammer er legacy migreringsgrunnlag.
 
-```text
-data/places/politikk/oslo/places_politikk/<place_id>.json
-```
+Det skal ikke produseres nye Wonderkammer-entries som del av den canonical sted-for-sted-modellen.
 
-Den globale runtimeautoriteten er fortsatt `data/places/manifest.json`.
+Legacy-data klassifiseres etter faktisk innhold til Objects, Details, Spots, People, Works, Nature, På stedet, relations/NextUp, Historie eller Stories.
 
-Aktiv people-/badge-struktur skal hentes fra manifest og canonical badgefil, ikke fra statiske lister i dokumentasjonen.
+## 16. Civication
 
-Historisk viktig ID-kompatibilitet skal ikke brytes uten eksplisitt migrering, for eksempel canonical ID-er som allerede er etablert i runtime.
+Civication Store / Thingstore er et separat spillsystem.
 
----
+Et Civication-element kan presenteres via Objects når det samtidig er en virkelig, fysisk, stedsspesifikk og visuelt kvalifisert gjenstand.
 
-## 13. Tverrfaglige steder
+Ikke alle Objects skal være kjøpbare.
 
-Et sted kan være relevant for mange fag, men har ett canonical place-object og én primær `category`.
+## 17. Spillerstatus og progresjon
 
-Tverrfaglighet uttrykkes gjennom relevante eide systemer, blant annet:
+Produksjonsdata skal ikke forveksles med spillerstate.
 
-- `underbadge_ids`;
-- `emne_ids`;
-- people;
-- works;
-- quiz;
-- relations;
-- Stories;
-- Leksikon;
-- ruter;
-- observations/knowledge;
-- andre eksplisitt støttede overlays.
+Aktuell runtime skiller blant annet:
 
-Ikke dupliser place-objectet.
+- `visited_places` — fysisk besøk;
+- `places_collected` — quiz-/target-unlocked places;
+- profilsamling — unionen av besøkte og quiz-samlede places.
 
----
+Completion og read-model eies av:
 
-## 14. Quiz er source-led
+- `docs/COMPLETION_DEFINITIONS.md`;
+- `docs/PROGRESSION_MODEL.md`;
+- `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md`.
 
-Quizinnhold skal bygges:
+## 18. Routes og andre subsystemer
 
-```text
-ekstern/lokal kilde → konkret påstand → lærings-/story-enhet → spørsmål
-```
+Rutedata, social, meetings, observations og andre subsystemer følger sine egne canonical schemaer, manifests og kontrakter.
 
-Canonical fagfiler kan brukes til å velge emne, metode, teori og progresjonsplassering, men skal ikke automatisk bli den synlige faktateksten.
+Ikke opprett lokale place-felt som kopierer subsystem-state bare for å gjøre place-recorden «komplett».
 
-Quizfasit, alternativer og forklaringer er brukerrettede fakta og følger faktisitetskontrakten.
+## 19. Produksjonsgate
 
----
+En dataproduksjonsendring er først klar når:
 
-## 15. Bilder er også faktapåstander
+1. riktig canonical eierfil er endret;
+2. alle referanser peker til eksisterende canonical IDs;
+3. nødvendig manifest/load-kjede er korrekt;
+4. brukerrettede fakta er kildestøttet;
+5. subsystemets egen produksjonskontrakt er fulgt;
+6. relevante bilder/visuelle identiteter er kontrollert;
+7. relevante audits/tester passerer;
+8. diffen inneholder bare tilsiktet scope.
 
-Et bilde kan hevde identitet like sterkt som tekst.
-
-Ved place-/People-/Works-/Objects-/Details-/Spots-/Nature-/Brands-produksjon skal det kontrolleres at:
-
-- bildet viser riktig objekt/person/sted/art/brand;
-- historisk bilde ikke presenteres som dagens situasjon;
-- attribusjon/kilde kan etterprøves der modellen lagrer dette;
-- generert bilde ikke presenteres som dokumentarfoto eller virkelig personportrett;
-- en visuell runding ikke regnes som produksjonsklar på tekst alene.
-
----
-
-## 16. Historie: profil- og evidenslag
-
-Historie bruker separat profil- og evidenslag for konkrete geografiske cases.
-
-Universelle emner eier `case_requirement_ids`; profiler eier casekandidater/mappings; claim-, source- og place-evidence-registre eier dokumenterte påstander og kildegrunnlag.
-
-Dette laget erstatter ikke canonical place source eller place-faktisitetskontrollen.
-
----
-
-## 17. Validering før merge
-
-Før data merges skal minst følgende være kontrollert når relevant:
-
-1. JSON parser.
-2. Ingen duplisert place-ID.
-3. Ingen duplisert person-/work-/brand-ID.
-4. Manifest/source er riktig.
-5. `category` er canonical.
-6. `underbadge_ids` eksisterer.
-7. `emne_ids` eksisterer.
-8. People place-referanser eksisterer.
-9. Quiz targets eksisterer.
-10. Works/Brands/route/Story-referanser eksisterer.
-11. Genererte indekser er regenerert fra source.
-12. Nye/endrede fakta er kildekontrollert påstand for påstand.
-13. Bilder er identitetskontrollert.
-14. Place-rundinger følger 4/6-kontrakten og er bildeklare.
-15. Relevant coordinate-gate passerer ved koordinatendring.
-16. Relevant People/Stories/Nature/category/quiz/system-gate passerer ved endring av disse dataene.
-17. Progresjonsendrende kode bruker eksisterende eier og dispatch/adapter etter kontrakten.
-18. Slutt-diffen inneholder bare forventede filer.
-
-Grønn CI beviser bare det kontrollene faktisk tester; den erstatter ikke source review.
-
----
-
-## 18. Dataarbeidsprinsipp
-
-> **Fiks source of truth.**
-
-Ikke løs dataproblemer med runtimefiltre, hardkodede unntak eller midlertidig UI-logikk når canonical data er feil.
-
-Source-first betyr at kilden åpnes og leses **før** påstanden skrives; det betyr ikke å skrive en plausibel tekst og legge ved en URL etterpå.
-
-For stedproduksjon gjelder i tillegg:
-
-> **Ett sted ferdig før neste.**
-
-Den operative sjekklisten er `docs/PLACE_PRODUCTION_CHECKLIST.md`.
+For et komplett sted gjelder i tillegg hele `docs/PLACE_PRODUCTION_CHECKLIST.md`.
