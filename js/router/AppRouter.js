@@ -24,7 +24,9 @@
     return encodeURIComponent(String(value || "").trim());
   }
 
-  function mapPath() { return "#/map"; }
+  function mapPath() {
+    return "#/map";
+  }
 
   /** @param {unknown} placeId */
   function placePath(placeId) {
@@ -51,7 +53,11 @@
     const raw = normalizeHash(hash || location.hash || DEFAULT_ROUTE);
     const clean = raw.startsWith("#") ? raw.slice(1) : raw;
     const parts = clean.split("/").filter(Boolean).map(decodeURIComponent);
-    return { raw, name: parts[0] || "map", params: parts.slice(1) };
+    return {
+      raw,
+      name: parts[0] || "map",
+      params: parts.slice(1)
+    };
   }
 
   /** @param {string} hash
@@ -60,41 +66,85 @@
   function navigate(hash, { replace = false } = {}) {
     const next = normalizeHash(hash);
     const current = location.hash ? normalizeHash(location.hash) : "";
-    if (current === next) { render(); return false; }
-    if (replace) { history.replaceState(null, "", next); render(); return true; }
+
+    if (current === next) {
+      render();
+      return false;
+    }
+
+    if (replace) {
+      history.replaceState(null, "", next);
+      render();
+      return true;
+    }
+
     location.hash = next;
     return true;
   }
 
   /** @param {NavigateOptions} [options] */
-  function toMap(options = {}) { return navigate(mapPath(), options); }
-  /** @param {unknown} placeId @param {NavigateOptions} [options] */
-  function toPlace(placeId, options = {}) { return navigate(placePath(placeId), options); }
-  /** @param {unknown} targetId @param {NavigateOptions} [options] */
-  function toQuiz(targetId, options = {}) { return navigate(quizPath(targetId), options); }
-  /** @param {unknown} debateId @param {NavigateOptions} [options] */
-  function toDebate(debateId, options = {}) { return navigate(debatePath(debateId), options); }
+  function toMap(options = {}) {
+    return navigate(mapPath(), options);
+  }
+
+  /** @param {unknown} placeId
+   * @param {NavigateOptions} [options]
+   */
+  function toPlace(placeId, options = {}) {
+    return navigate(placePath(placeId), options);
+  }
+
+  /** @param {unknown} targetId
+   * @param {NavigateOptions} [options]
+   */
+  function toQuiz(targetId, options = {}) {
+    return navigate(quizPath(targetId), options);
+  }
+
+  /** @param {unknown} debateId
+   * @param {NavigateOptions} [options]
+   */
+  function toDebate(debateId, options = {}) {
+    return navigate(debatePath(debateId), options);
+  }
 
   function render() {
     const route = parseHash(location.hash);
-    if (route.name === "" || route.name === "map") { window.HGMapView?.showMap?.(); return; }
+
+    if (route.name === "" || route.name === "map") {
+      window.HGMapView?.showMap?.();
+      return;
+    }
+
     if (route.name === "place") {
       const ok = window.HGMapView?.openPlace?.(route.params[0]);
       if (!ok) window.HGMapView?.showMap?.();
       return;
     }
+
     if (route.name === "quiz") {
       const ok = window.HGMapView?.openQuiz?.(route.params[0]);
       if (!ok) window.HGMapView?.showMap?.();
       return;
     }
+
     if (route.name === "debate") {
       const ok = window.HGMapView?.openDebate?.(route.params[0]);
       if (!ok) window.HGMapView?.showMap?.();
       return;
     }
-    if (route.name === "profile") { window.location.href = "profile.html"; return; }
-    if (route.name === "civication") { window.location.href = "Civication.html"; return; }
+
+    // #/profile is not an internal index view. Full profile lives on profile.html.
+    if (route.name === "profile") {
+      window.location.href = "profile.html";
+      return;
+    }
+
+    if (route.name === "civication") {
+      window.location.href = "Civication.html";
+      return;
+    }
+
     navigate(DEFAULT_ROUTE, { replace: true });
   }
 
@@ -113,19 +163,33 @@
       return;
     }
     started = true;
+
     window.addEventListener("hashchange", render);
+
     if (!location.hash) {
       navigate(DEFAULT_ROUTE, { replace: true });
       signalReady();
       return;
     }
+
     render();
     signalReady();
   }
 
   /** @type {AppRouterApi} */
   window.HGAppRouter = {
-    start, navigate, render, parseHash, normalizeHash, mapPath, placePath, quizPath,
-    debatePath, toMap, toPlace, toQuiz, toDebate
+    start,
+    navigate,
+    render,
+    parseHash,
+    normalizeHash,
+    mapPath,
+    placePath,
+    quizPath,
+    debatePath,
+    toMap,
+    toPlace,
+    toQuiz,
+    toDebate
   };
 })();
