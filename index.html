@@ -19,14 +19,9 @@
     console.error("[REAL UNHANDLED REJECTION]");
     console.error("reason:", e.reason);
 
-    // Prøv å få tekst/stack hvis det finnes
     try { console.error("reason.message:", e.reason && e.reason.message); } catch {}
     try { console.error("reason.stack:", e.reason && e.reason.stack); } catch {}
-
-    // Safari kan ha “tomme” objekter -> dump keys
     try { console.error("reason keys:", e.reason ? Object.keys(e.reason) : null); } catch {}
-
-    // Viktig: hindrer dobbel logging/noise
     e.preventDefault();
   });
 
@@ -34,8 +29,8 @@
     console.error("[WINDOW ERROR]", e.message, e.filename, e.lineno, e.colno);
     console.error(e.error && e.error.stack);
   });
-</script>
-    
+ </script>
+     
   <!-- CSS -->
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
@@ -144,7 +139,6 @@
         </div>
 
         <div class="header-menu-actions" aria-label="Sekundære headerverktøy">
-          <!-- Civication inngang -->
           <a href="/History-Go/Civication.html"
              class="header-menu-action header-menu-action--featured civication-nav-link"
              role="menuitem"
@@ -205,7 +199,6 @@
 
 </header>
 
-  <!-- utforsk-toggle: åpner/lukker nearby-draweren -->
   <button id="nearbyExploreToggle"
           type="button"
           aria-controls="nearbyListContainer"
@@ -214,7 +207,6 @@
     <span data-i18n="ui.static.explore">Utforsk</span>
   </button>
 
-  <!-- nearbylistcontainer (Utforsk-drawer, lukket som standard) -->
   <div id="nearbyListContainer" class="leftpanel is-drawer-closed">
 
     <div class="leftpanel-head">
@@ -229,32 +221,11 @@
         </div>
 
         <div class="nearby-tabs" role="tablist" aria-label="Utforsk" data-hg-i18n-aria-label="ui.static.explore">
-
-          <button class="nearby-tab is-active"
-                  data-leftmode="nearby"
-                  data-i18n="ui.tabs.places"
-                  type="button">Steder</button>
-
-          <button class="nearby-tab"
-                  data-leftmode="people"
-                  data-i18n="ui.tabs.people"
-                  type="button">Folk</button>
-
-          <button class="nearby-tab"
-                  data-leftmode="nature"
-                  data-i18n="ui.tabs.nature"
-                  type="button">Natur</button>
-
-          <button class="nearby-tab"
-                  data-leftmode="routes"
-                  data-i18n="ui.tabs.routes"
-                  type="button">Ruter</button>
-
-          <button class="nearby-tab"
-                  data-leftmode="badges"
-                  data-i18n="ui.tabs.badges"
-                  type="button">Merker</button>
-
+          <button class="nearby-tab is-active" data-leftmode="nearby" data-i18n="ui.tabs.places" type="button">Steder</button>
+          <button class="nearby-tab" data-leftmode="people" data-i18n="ui.tabs.people" type="button">Folk</button>
+          <button class="nearby-tab" data-leftmode="nature" data-i18n="ui.tabs.nature" type="button">Natur</button>
+          <button class="nearby-tab" data-leftmode="routes" data-i18n="ui.tabs.routes" type="button">Ruter</button>
+          <button class="nearby-tab" data-leftmode="badges" data-i18n="ui.tabs.badges" type="button">Merker</button>
         </div>
       </div>
 
@@ -269,49 +240,28 @@
     </div>
   </div>
 
-  <!--
-    APP-SHELL: det skalerte design-canvaset (900x1230) som ViewportManager
-    transformerer. Kun de interne lagene som skal skaleres ligger her inne.
-    #mapLayer, header.site-header, #nearbyListContainer og footer.app-footer
-    er bevisst full-bleed UTENFOR app-shell: app-shell får transform, og en
-    transformert forfar gjør position:fixed-barn relative til seg selv – da
-    ville de full-bleed lagene mistet 100vw/100vh-forankringen til viewporten.
-  -->
   <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <div class="app-shell">
-
-    <!-- MAIN APP -->
     <main>
       <section id="panel" class="panel hidden"></section>
     </main>
+  </div>
 
-  </div><!-- /.app-shell -->
-
-  <!-- PLACE CARD -->
 <div id="placeCard" aria-hidden="true">
-  <button id="pcCollapseBtn"
-          class="pc-collapse-btn"
-          aria-label="Minimer" data-hg-i18n-aria-label="ui.attr.minimize">▾</button>
+  <button id="pcCollapseBtn" class="pc-collapse-btn" aria-label="Minimer" data-hg-i18n-aria-label="ui.attr.minimize">▾</button>
 
   <div class="pc-body">
-
-    <!-- Tekst øverst -->
     <div class="pc-text">
       <div class="pc-title-row"><h2 id="pcTitle"></h2><button id="pcFavorite" class="pc-favorite-btn" type="button" aria-label="Legg til favoritt" title="Legg til favoritt">☆</button></div>
       <div id="pcMeta" class="pc-meta"></div>
       <p id="pcDesc" class="pc-desc"></p>
     </div>
 
-  <!-- 2x2 Grid -->
   <div class="pc-grid">
-
-    <!-- 1: FrontcardImage -->
     <div class="pc-frontcard" id="pcFrontCardFlip" role="button" tabindex="0" aria-label="Vis quizkort" data-hg-i18n-aria-label="ui.attr.showQuizCard">
       <div class="pc-card-flip-inner">
-        <div class="pc-card-face pc-card-face-front">
-          <img id="pcFrontImage" src="" alt="">
-        </div>
+        <div class="pc-card-face pc-card-face-front"><img id="pcFrontImage" src="" alt=""></div>
         <div class="pc-card-face pc-card-face-back">
           <div id="pcQuizCardBack" class="pc-quiz-card-back" aria-live="polite">
             <img id="pcQuizCardImage" class="pc-quiz-card-image" src="" alt="">
@@ -321,9 +271,7 @@
       </div>
     </div>
 
-    <!-- 3: Ikon-kvadrat -->
     <div class="pc-side-stack">
-      <!-- Rundingene fylles fra kategoriens faste 3x3-profil. -->
       <div class="pc-quad pc-icons-quad">
         <div id="pcPeopleIcon" class="pc-round" hidden></div>
         <div id="pcNatureIcon" class="pc-round" hidden></div>
@@ -340,15 +288,14 @@
       </div>
     </div>
 
-    <!-- 4: På stedet -->
     <div class="pc-quad pc-events-quad" id="pcEventsBox" aria-label="Det som skjer her" data-hg-i18n-aria-label="ui.attr.onSite">
       <div class="pc-events-head">
         <span class="pc-events-title" data-i18n="ui.static.onSite">På stedet</span>
         <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til" data-hg-i18n-aria-label="ui.attr.add">＋</button>
       </div>
     </div>
-
   </div>
+
     <div id="pcLesespor"></div>
     <div id="pcPeopleList"></div>
     <div id="pcNatureList"></div>
@@ -365,12 +312,8 @@
    </div>
  </div>
 
-  <!-- FOOTER -->
   <footer class="site-footer app-footer" aria-label="Status og spillvalg">
-    <div id="pcMini" class="pc-mini" aria-hidden="true">
-      <img id="pcMiniImg" src="" alt="">
-    </div>
-
+    <div id="pcMini" class="pc-mini" aria-hidden="true"><img id="pcMiniImg" src="" alt=""></div>
     <div class="app-actions" aria-label="Stedshandlinger">
       <button id="pcInfo" class="pc-action pc-action-text" type="button" aria-label="Mer info" title="Mer info">Mer info</button>
       <button id="pcQuiz" class="pc-action pc-action-primary" type="button" aria-label="Ta quiz" title="Ta quiz">Ta quiz</button>
@@ -380,26 +323,38 @@
     </div>
   </footer>
 
-  <!-- App scripts -->
-  <script src="js/debug/HGTestMode.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="dist/web/knowledge.js"></script>
-  <script src="dist/web/hgInsights.js"></script>
-  <script src="dist/web/knowledgeV2.js"></script>
-  <script src="js/hgSocialGuards.js"></script>
-  <script src="js/knowledgeMatch.js"></script>
-  <script src="js/progress/profileProgressReader.js"></script>
-  <script src="js/ui/place-card-status-surface.js"></script>
-  <script src="js/ui/header-menu.js"></script>
-  <script src="js/ui/psychology-room-entry.js"></script>
+  <!-- Ikke-kritiske scripts får aldri blokkere app-entry. -->
   <script>
     window.addEventListener("hg:appReady", () => {
-      if (document.querySelector('script[src="js/ui/badges.js"]')) return;
-      const script = document.createElement("script");
-      script.src = "js/ui/badges.js";
-      document.body.appendChild(script);
+      const scripts = [
+        "js/debug/HGTestMode.js",
+        "js/i18n.js",
+        "dist/web/knowledge.js",
+        "dist/web/hgInsights.js",
+        "dist/web/knowledgeV2.js",
+        "js/hgSocialGuards.js",
+        "js/knowledgeMatch.js",
+        "js/progress/profileProgressReader.js",
+        "js/ui/place-card-status-surface.js",
+        "js/ui/header-menu.js",
+        "js/ui/psychology-room-entry.js",
+        "js/ui/badges.js"
+      ];
+      let chain = Promise.resolve();
+      for (const src of scripts) {
+        chain = chain.then(() => new Promise((resolve) => {
+          if (document.querySelector(`script[src="${src}"]`)) return resolve();
+          const script = document.createElement("script");
+          script.src = src;
+          script.async = false;
+          script.onload = resolve;
+          script.onerror = () => { console.warn("[post-ready script] kunne ikke laste", src); resolve(); };
+          document.body.appendChild(script);
+        }));
+      }
     }, { once: true });
   </script>
-  <script type="module" src="./js/app.js"></script>
+
+  <script type="module" src="./js/app.js?v=20260728-bootfix1"></script>
 </body>
 </html>
