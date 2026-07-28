@@ -16,12 +16,20 @@ fs.writeFileSync(temp, Buffer.from(archive, "base64"));
 execFileSync("tar", ["-xzf", temp, "-C", "."], { stdio: "inherit" });
 fs.unlinkSync(temp);
 
-for (const name of parts) fs.unlinkSync(`scripts/${name}`);
-for (const file of [
-  "scripts/fagverk-phase1-bootstrap.mjs",
-  ".github/workflows/fagverk-phase1-bootstrap.yml"
-]) {
-  if (fs.existsSync(file)) fs.unlinkSync(file);
+// GitHub Actions-tokenet kan ikke skrive workflowfiler. De materialiseres
+// separat med repo-connectoren etter at den øvrige Phase 1-committen er pushet.
+execFileSync("git", [
+  "checkout", "HEAD", "--",
+  ".github/workflows/fagverk.yml",
+  ".github/workflows/fagverk-inventory.yml"
+], { stdio: "inherit" });
+if (fs.existsSync(".github/workflows/fagverk-general-engine.yml")) {
+  fs.unlinkSync(".github/workflows/fagverk-general-engine.yml");
 }
 
-console.log("Materialiserte Phase 1-filer.");
+for (const name of parts) fs.unlinkSync(`scripts/${name}`);
+if (fs.existsSync("scripts/fagverk-phase1-bootstrap.mjs")) {
+  fs.unlinkSync("scripts/fagverk-phase1-bootstrap.mjs");
+}
+
+console.log("Materialiserte Phase 1-filer uten workflowendringer.");
