@@ -3,8 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
-const ROOT=path.resolve(path.dirname(new URL(import.meta.url).pathname),'..');
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const args=new Set(process.argv.slice(2));
 const mode=(process.argv.find((arg)=>arg.startsWith('--mode='))||'--mode=all').split('=')[1];
 const reportArg=process.argv.find((arg)=>arg.startsWith('--report='));
@@ -55,7 +56,9 @@ function localAssetPath(value){
   if(/^https?:\/\//i.test(clean))return{kind:'remote',path:clean};
   if(/^data:/i.test(clean)||/^blob:/i.test(clean))return{kind:'invalid',path:clean};
   clean=clean.replace(/^https?:\/\/[^/]+\/History-Go\//i,'').replace(/^\/History-Go\//,'').replace(/^\.\//,'').replace(/^\//,'');
-  return{kind:'local',path:path.resolve(ROOT,clean)};
+  const resolved=path.resolve(ROOT,clean);
+  if(resolved!==ROOT&&!resolved.startsWith(`${ROOT}${path.sep}`))return{kind:'invalid',path:resolved};
+  return{kind:'local',path:resolved};
 }
 function inspect(entry){
   const id=text(entry.place?.id)||'(mangler id)';
@@ -64,7 +67,7 @@ function inspect(entry){
   if(!candidate.value)return{id,category,sourceFile:entry.sourceFile,status:'missing',field:'',value:'',reason:'Ingen popupImage, cardImage eller image'};
   const asset=localAssetPath(candidate.value);
   if(asset.kind==='remote')return{id,category,sourceFile:entry.sourceFile,status:'remote',field:candidate.field,value:candidate.value,reason:''};
-  if(asset.kind==='invalid')return{id,category,sourceFile:entry.sourceFile,status:'invalid',field:candidate.field,value:candidate.value,reason:'Inline/blob-bilder er ikke inspectable stedsressurser'};
+  if(asset.kind==='invalid')return{id,category,sourceFile:entry.sourceFile,status:'invalid',field:candidate.field,value:candidate.value,reason:'Bildepekeren er ikke en inspectable stedsressurs'};
   if(!fs.existsSync(asset.path))return{id,category,sourceFile:entry.sourceFile,status:'invalid',field:candidate.field,value:candidate.value,reason:'Lokal bildefil finnes ikke'};
   return{id,category,sourceFile:entry.sourceFile,status:'local',field:candidate.field,value:candidate.value,reason:''};
 }
@@ -75,12 +78,13 @@ function changedFiles(){
 }
 
 const entries=loadEntries();
+const allRows=entries.map(inspect);
 const changed=mode==='changed'?changedFiles():null;
-const inspected=entries.map(inspect).filter((row)=>!changed||changed.has(row.sourceFile));
+const inspected=allRows.filter((row)=>!changed||changed.has(row.sourceFile));
 const failures=inspected.filter((row)=>row.status==='missing'||row.status==='invalid');
 const byCategory={};
-for(const row of entries.map(inspect)){const bucket=byCategory[row.category]||(byCategory[row.category]={total:0,local:0,remote:0,missing:0,invalid:0});bucket.total+=1;bucket[row.status]+=1;}
-const report={schema:'history_go_place_image_audit_v1',generatedAt:new Date().toISOString(),mode,totalPlaces:entries.length,checkedPlaces:inspected.length,summary:{local:entries.map(inspect).filter((row)=>row.status==='local').length,remote:entries.map(inspect).filter((row)=>row.status==='remote').length,missing:entries.map(inspect).filter((row)=>row.status==='missing').length,invalid:entries.map(inspect).filter((row)=>row.status==='invalid').length},byCategory,failures:entries.map(inspect).filter((row)=>row.status==='missing'||row.status==='invalid')};
+for(const row of allRows){const bucket=byCategory[row.category]||(byCategory[row.category]={total:0,local:0,remote:0,missing:0,invalid:0});bucket.total+=1;bucket[row.status]+=1;}
+const report={schema:'history_go_place_image_audit_v1',generatedAt:new Date().toISOString(),mode,totalPlaces:entries.length,checkedPlaces:inspected.length,summary:{local:allRows.filter((row)=>row.status==='local').length,remote:allRows.filter((row)=>row.status==='remote').length,missing:allRows.filter((row)=>row.status==='missing').length,invalid:allRows.filter((row)=>row.status==='invalid').length},byCategory,failures:allRows.filter((row)=>row.status==='missing'||row.status==='invalid')};
 if(reportPath){fs.mkdirSync(path.dirname(reportPath),{recursive:true});fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');}
 console.log(`Place image audit: ${report.totalPlaces} steder · ${report.summary.local} lokale · ${report.summary.remote} eksterne · ${report.summary.missing} mangler · ${report.summary.invalid} ugyldige`);
 if(failures.length){for(const row of failures.slice(0,80))console.error(`- ${row.id} [${row.category}] ${row.sourceFile}: ${row.reason}${row.value?` (${row.value})`:''}`);if(failures.length>80)console.error(`… og ${failures.length-80} til`);}
