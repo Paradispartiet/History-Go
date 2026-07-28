@@ -37,6 +37,7 @@ jobs:
           audit_end = body.index(tail, audit_start)
           escaped = body[audit_start:audit_end].replace('`', '\\`')
           body = body[:audit_start] + escaped + body[audit_end:]
+          body = body.replace('const actualDomainOrder = model.domains.map((domain) => domain.id);', 'const actualDomainOrder = [...model.domains].map((domain) => domain.id);')
           pathlib.Path('/tmp/fagverk-natur-pilot.cjs').write_text(body, encoding='utf-8')
           PY
           node /tmp/fagverk-natur-pilot.cjs
