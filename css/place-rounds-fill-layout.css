@@ -1,4 +1,4 @@
-/* PlaceCard-rundinger: fyll hele feltet ved siden av frontImage uten å deformere sirklene. */
+/* PlaceCard-rundinger: canonical 2x2-felt ved siden av frontImage. */
 #placeCard .pc-side-stack{
   width:100%;
   max-width:100%;
@@ -28,13 +28,7 @@
   grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
 }
 
-#placeCard .pc-icons-quad[data-round-count="6"]{
-  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
-  grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
-}
-
-#placeCard .pc-icons-quad[data-round-count="4"] .pc-round:not([hidden]),
-#placeCard .pc-icons-quad[data-round-count="6"] .pc-round:not([hidden]){
+#placeCard .pc-icons-quad[data-round-count="4"] .pc-round:not([hidden]){
   width:var(--hg-round-fill-size, var(--place-card-orb-size));
   height:var(--hg-round-fill-size, var(--place-card-orb-size));
   min-width:var(--hg-round-fill-size, var(--place-card-orb-size));
