@@ -1,24 +1,41 @@
 // Header menu: keeps secondary topbar tools out of the fixed header row while
 // preserving the original DOM ids/event hooks for search, map mode and panels.
 (function () {
-  function ensureLesesporStyles() {
-    const existing = document.querySelector('link[data-hg-lesespor-styles="1"], link[href*="css/lesespor.css"]');
+  function ensureStylesheet({ selector, href, dataKey }) {
+    const existing = document.querySelector(selector);
     if (existing) return existing;
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = new URL("css/lesespor.css?v=20260721-2", document.baseURI).href;
-    link.dataset.hgLesesporStyles = "1";
+    link.href = new URL(href, document.baseURI).href;
+    if (dataKey) link.dataset[dataKey] = "1";
     link.addEventListener("error", () => {
-      console.warn("[Lesespor] Kunne ikke laste css/lesespor.css");
+      console.warn(`[HeaderMenu] Kunne ikke laste ${href}`);
     }, { once: true });
     document.head.appendChild(link);
     return link;
   }
 
+  function ensureLesesporStyles() {
+    return ensureStylesheet({
+      selector: 'link[data-hg-lesespor-styles="1"], link[href*="css/lesespor.css"]',
+      href: "css/lesespor.css?v=20260721-2",
+      dataKey: "hgLesesporStyles"
+    });
+  }
+
+  function ensureLearningMenuStyles() {
+    return ensureStylesheet({
+      selector: 'link[data-hg-header-learning-styles="1"], link[href*="css/header-learning-menu.css"]',
+      href: "css/header-learning-menu.css?v=20260728-1",
+      dataKey: "hgHeaderLearningStyles"
+    });
+  }
+
   // Start CSS-innlastingen med en gang scriptet evalueres. Tidligere ble den først
-  // startet ved DOMContentLoaded, som gjorde Lesespor avhengig av lastrekkefølge/cache.
+  // startet ved DOMContentLoaded, som gjorde menyflater avhengige av lastrekkefølge/cache.
   ensureLesesporStyles();
+  ensureLearningMenuStyles();
 
   function promoteMinDayToHeader() {
     const minDayButton = document.getElementById("btnMinDag");
@@ -41,39 +58,87 @@
     if (label) label.textContent = "Lesespor";
   }
 
-  function ensureKnowledgeMenuEntry() {
-    const actions = document.querySelector("#headerMenuPanel .header-menu-actions");
-    if (!actions || document.getElementById("btnKnowledge")) return;
-
+  function createLearningLink({ id, href, iconText, labelText, description, modifier }) {
     const link = document.createElement("a");
-    link.id = "btnKnowledge";
-    link.href = "knowledge.html";
-    link.className = "header-menu-action";
+    link.id = id;
+    link.href = new URL(href, document.baseURI).href;
+    link.className = `header-menu-action ${modifier}`;
     link.setAttribute("role", "menuitem");
-    link.setAttribute("aria-label", "Knowledge");
-    link.title = "Knowledge";
+    link.setAttribute("aria-label", `${labelText}: ${description}`);
+    link.title = `${labelText} – ${description}`;
 
     const icon = document.createElement("span");
     icon.className = "header-menu-action-icon";
     icon.setAttribute("aria-hidden", "true");
-    icon.textContent = "💡";
+    icon.textContent = iconText;
+
+    const copy = document.createElement("span");
+    copy.className = "header-menu-action-copy";
 
     const label = document.createElement("span");
     label.className = "header-menu-action-label";
-    label.textContent = "Knowledge";
+    label.textContent = labelText;
 
-    link.append(icon, label);
+    const sublabel = document.createElement("span");
+    sublabel.className = "header-menu-action-description";
+    sublabel.textContent = description;
 
-    const routesButton = document.getElementById("btnKaravane");
-    if (routesButton?.parentElement === actions) actions.insertBefore(link, routesButton);
-    else actions.appendChild(link);
+    copy.append(label, sublabel);
+    link.append(icon, copy);
+    return link;
+  }
+
+  function ensureLearningMenuEntries() {
+    const actions = document.querySelector("#headerMenuPanel .header-menu-actions");
+    if (!actions) return;
+
+    let group = document.getElementById("headerLearningMenuGroup");
+    if (!group) {
+      group = document.createElement("div");
+      group.id = "headerLearningMenuGroup";
+      group.className = "header-menu-learning-group";
+      group.setAttribute("role", "group");
+      group.setAttribute("aria-label", "Læring");
+
+      const heading = document.createElement("p");
+      heading.className = "header-menu-section-label";
+      heading.textContent = "Læring";
+      group.appendChild(heading);
+
+      const routesButton = document.getElementById("btnKaravane");
+      if (routesButton?.parentElement === actions) actions.insertBefore(group, routesButton);
+      else actions.appendChild(group);
+    }
+
+    if (!document.getElementById("btnFagverk")) {
+      group.appendChild(createLearningLink({
+        id: "btnFagverk",
+        href: "fagverk.html?subject=politikk",
+        iconText: "📖",
+        labelText: "Fagverket",
+        description: "Læreboka: fagområder, emner og kapitler",
+        modifier: "header-menu-action--fagverk"
+      }));
+    }
+
+    if (!document.getElementById("btnKnowledge")) {
+      group.appendChild(createLearningLink({
+        id: "btnKnowledge",
+        href: "knowledge.html",
+        iconText: "💡",
+        labelText: "Knowledge",
+        description: "Det du har lært, samlet og forstått",
+        modifier: "header-menu-action--knowledge"
+      }));
+    }
   }
 
   function initHeaderMenu() {
     ensureLesesporStyles();
+    ensureLearningMenuStyles();
     promoteMinDayToHeader();
     setLesesporMenuLabel();
-    ensureKnowledgeMenuEntry();
+    ensureLearningMenuEntries();
 
     const root = document.getElementById("headerMenu");
     const button = document.getElementById("headerMenuButton");
@@ -90,18 +155,10 @@
     }
 
     const headerMenuApi = {
-      open() {
-        setOpen(true);
-      },
-      close() {
-        setOpen(false);
-      },
-      toggle() {
-        setOpen(panel.hidden);
-      },
-      isOpen() {
-        return !panel.hidden;
-      }
+      open() { setOpen(true); },
+      close() { setOpen(false); },
+      toggle() { setOpen(panel.hidden); },
+      isOpen() { return !panel.hidden; }
     };
     window.HGHeaderMenu = headerMenuApi;
 
@@ -114,8 +171,8 @@
       event.stopPropagation();
     });
 
-    document.getElementById("btnLesespor")?.addEventListener("click", () => {
-      headerMenuApi.close();
+    ["btnLesespor", "btnFagverk", "btnKnowledge"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("click", () => headerMenuApi.close());
     });
 
     document.addEventListener("click", (event) => {

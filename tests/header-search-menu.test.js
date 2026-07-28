@@ -67,6 +67,7 @@ function testHeaderMenuApi() {
   const documentListeners = new Map();
   const document = {
     readyState: "complete",
+    baseURI: "https://example.test/History-Go/index.html",
     querySelector(selector) {
       return String(selector).startsWith("link[") ? fakeElement() : null;
     },
@@ -79,7 +80,7 @@ function testHeaderMenuApi() {
   };
   const window = {};
 
-  runScript("js/ui/header-menu.js", { window, document, console });
+  runScript("js/ui/header-menu.js", { window, document, console, URL });
 
   assert.equal(typeof window.HGHeaderMenu?.close, "function");
   window.HGHeaderMenu.open();
@@ -162,15 +163,29 @@ function testSearchWidthRules() {
 function testMenuLabelsDescribeTheirRealDestinations() {
   const index = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
 
-  assert.match(index, /class="header-menu-action[^\"]*civication-nav-link"[\s\S]*aria-label="Civication"[\s\S]*<span class="header-menu-action-label">Civication<\/span>/);
+  assert.match(index, /class="header-menu-action[^"]*civication-nav-link"[\s\S]*aria-label="Civication"[\s\S]*<span class="header-menu-action-label">Civication<\/span>/);
   assert.doesNotMatch(index, /Lås opp testmodus/);
   assert.doesNotMatch(index, /id="openToggle"/);
   assert.doesNotMatch(index, /id="btnUnlockAll"/);
   assert.match(index, /<script src="js\/debug\/HGTestMode\.js"><\/script>/);
 }
 
+function testFagverketAndKnowledgeAreDistinctMenuDestinations() {
+  const header = fs.readFileSync(path.join(repoRoot, "js/ui/header-menu.js"), "utf8");
+  const styles = fs.readFileSync(path.join(repoRoot, "css/header-learning-menu.css"), "utf8");
+
+  assert.match(header, /id:\s*"btnFagverk"[\s\S]*href:\s*"fagverk\.html\?subject=politikk"[\s\S]*labelText:\s*"Fagverket"[\s\S]*description:\s*"Læreboka: fagområder, emner og kapitler"/);
+  assert.match(header, /id:\s*"btnKnowledge"[\s\S]*href:\s*"knowledge\.html"[\s\S]*labelText:\s*"Knowledge"[\s\S]*description:\s*"Det du har lært, samlet og forstått"/);
+  assert.match(header, /header-menu-learning-group/);
+  assert.match(styles, /\.header-menu-action--fagverk/);
+  assert.match(styles, /\.header-menu-action--knowledge/);
+  assert.ok(fs.existsSync(path.join(repoRoot, "fagverk.html")));
+  assert.ok(fs.existsSync(path.join(repoRoot, "knowledge.html")));
+}
+
 testHeaderMenuApi();
 testPlaceSelectionClosesWholeMenu();
 testSearchWidthRules();
 testMenuLabelsDescribeTheirRealDestinations();
+testFagverketAndKnowledgeAreDistinctMenuDestinations();
 console.log("header search menu tests passed");

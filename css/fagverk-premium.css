@@ -1,0 +1,524 @@
+/* History Go Fagverk – premium editorial design layer */
+:root{
+  --hg-learn-bg:#05070c;
+  --hg-learn-ink:#f6f3ed;
+  --hg-learn-muted:#aab1bd;
+  --hg-learn-line:rgba(255,255,255,.12);
+  --hg-learn-line-strong:rgba(255,255,255,.2);
+  --hg-learn-panel:rgba(17,21,31,.9);
+  --hg-learn-panel-deep:rgba(8,11,18,.96);
+  --hg-learn-gold:#f1c84b;
+  --hg-learn-gold-soft:rgba(241,200,75,.14);
+  --hg-learn-violet:#a989ff;
+  --hg-learn-blue:#72b8ff;
+  --hg-learn-shadow:0 30px 90px rgba(0,0,0,.46);
+  --hg-learn-radius-xl:34px;
+  --hg-learn-radius-lg:24px;
+  --hg-learn-radius-md:17px;
+}
+
+.hg-fagverk-page,
+.politikk-fagportal-page{
+  color:var(--hg-learn-ink);
+  background:
+    radial-gradient(circle at 8% -8%,rgba(169,137,255,.18),transparent 34rem),
+    radial-gradient(circle at 92% 8%,rgba(241,200,75,.12),transparent 30rem),
+    radial-gradient(circle at 50% 105%,rgba(42,116,185,.13),transparent 42rem),
+    linear-gradient(180deg,#080a10 0%,var(--hg-learn-bg) 48%,#030509 100%);
+  background-attachment:fixed;
+}
+
+.hg-fagverk-page::before,
+.politikk-fagportal-page::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.22;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom,black,transparent 78%);
+}
+
+.fagverk-skip-link{
+  position:fixed;
+  top:10px;
+  left:10px;
+  z-index:1000;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#fff;
+  color:#05070c;
+  font-weight:850;
+  text-decoration:none;
+  transform:translateY(-160%);
+  transition:transform .16s ease;
+}
+.fagverk-skip-link:focus{transform:none;}
+
+.fagverk-topbar,
+.politikk-topbar{
+  min-height:76px;
+  padding:10px clamp(16px,4vw,58px);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  background:rgba(5,7,12,.82);
+  box-shadow:0 12px 44px rgba(0,0,0,.2);
+  backdrop-filter:blur(24px) saturate(1.2);
+  -webkit-backdrop-filter:blur(24px) saturate(1.2);
+}
+
+.fagverk-brand,
+.politikk-brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  text-decoration:none;
+}
+.fagverk-brand::after,
+.politikk-brand::after{
+  content:"Fagverket";
+  padding-left:13px;
+  border-left:1px solid rgba(255,255,255,.17);
+  color:rgba(255,255,255,.74);
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.fagverk-brand img,
+.politikk-brand img{
+  width:126px;
+  max-height:48px;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.42));
+}
+
+.fagverk-topbar nav,
+.politikk-topbar nav{gap:8px;}
+.fagverk-topbar nav a,
+.politikk-topbar nav a{
+  display:inline-flex;
+  align-items:center;
+  min-height:38px;
+  padding:8px 13px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.035);
+  color:rgba(246,243,237,.74);
+  font-size:12px;
+  font-weight:780;
+  text-decoration:none;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease,color .18s ease;
+}
+.fagverk-topbar nav a:hover,
+.politikk-topbar nav a:hover,
+.fagverk-topbar nav a:focus-visible,
+.politikk-topbar nav a:focus-visible{
+  transform:translateY(-1px);
+  border-color:rgba(241,200,75,.42);
+  background:rgba(241,200,75,.09);
+  color:#fff;
+  outline:none;
+}
+
+.fagverk-shell{
+  grid-template-columns:minmax(270px,350px) minmax(0,940px);
+  gap:34px;
+  width:min(1400px,100%);
+  padding:34px clamp(16px,4vw,58px) 100px;
+}
+.fagverk-sidebar{
+  top:108px;
+  gap:17px;
+  padding:25px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(169,137,255,.15),transparent 18rem),
+    linear-gradient(155deg,rgba(24,29,42,.97),rgba(7,10,16,.98));
+  box-shadow:var(--hg-learn-shadow);
+}
+.fagverk-sidebar::before{
+  content:"";
+  display:block;
+  width:52px;
+  height:4px;
+  margin-bottom:2px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--hg-learn-gold),var(--hg-learn-violet));
+}
+.fagverk-sidebar h1{
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
+  font-size:clamp(30px,3vw,40px);
+  line-height:.98;
+  letter-spacing:-.045em;
+}
+.fagverk-subject-description{font-size:14px;line-height:1.65;}
+
+.fagverk-kicker,
+.politikk-kicker{
+  color:var(--hg-learn-gold);
+  letter-spacing:.18em;
+}
+
+.fagverk-chapter-link,
+.fagverk-canonical-domain-nav a{
+  position:relative;
+  overflow:hidden;
+  border-color:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.035);
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+.fagverk-chapter-link::before,
+.fagverk-canonical-domain-nav a::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:3px;
+  background:linear-gradient(var(--hg-learn-gold),var(--hg-learn-violet));
+  opacity:0;
+}
+.fagverk-chapter-link:hover,
+.fagverk-chapter-link.is-active,
+.fagverk-canonical-domain-nav a:hover,
+.fagverk-canonical-domain-nav a.is-active{
+  transform:translateX(2px);
+  border-color:rgba(241,200,75,.34);
+  background:linear-gradient(110deg,rgba(241,200,75,.1),rgba(169,137,255,.07));
+}
+.fagverk-chapter-link:hover::before,
+.fagverk-chapter-link.is-active::before,
+.fagverk-canonical-domain-nav a:hover::before,
+.fagverk-canonical-domain-nav a.is-active::before{opacity:1;}
+
+.fagverk-hero{
+  position:relative;
+  overflow:hidden;
+  min-height:380px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:clamp(30px,6vw,68px);
+  border-radius:var(--hg-learn-radius-xl);
+  border-color:rgba(255,255,255,.14);
+  background:
+    radial-gradient(circle at 88% 10%,rgba(241,200,75,.24),transparent 20rem),
+    radial-gradient(circle at 5% 95%,rgba(169,137,255,.18),transparent 24rem),
+    linear-gradient(145deg,#1b2130 0%,#0b0e15 72%);
+  box-shadow:var(--hg-learn-shadow);
+}
+.fagverk-hero::after{
+  content:"HG / LÆREVERK";
+  position:absolute;
+  top:24px;
+  right:28px;
+  color:rgba(255,255,255,.11);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.22em;
+}
+.fagverk-hero h2{
+  max-width:12ch;
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
+  font-size:clamp(44px,7vw,82px);
+  line-height:.91;
+  letter-spacing:-.065em;
+  text-wrap:balance;
+}
+.fagverk-subtitle{color:#ffe487;}
+.fagverk-lead{max-width:68ch;color:rgba(246,243,237,.88);}
+
+.fagverk-objectives,
+.fagverk-concepts,
+.fagverk-selfcheck,
+.fagverk-cases,
+.fagverk-sources,
+.fagverk-canonical-progress,
+.fagverk-canonical-emne,
+.fagverk-canonical-domain{
+  border-color:rgba(255,255,255,.11);
+  border-radius:var(--hg-learn-radius-lg);
+  background:linear-gradient(150deg,rgba(19,24,35,.94),rgba(8,11,17,.95));
+  box-shadow:0 20px 58px rgba(0,0,0,.22);
+}
+.fagverk-section{
+  position:relative;
+  border-color:rgba(255,255,255,.11);
+  border-radius:28px;
+  background:linear-gradient(155deg,rgba(20,25,37,.96),rgba(8,11,17,.97));
+  box-shadow:0 20px 60px rgba(0,0,0,.22);
+}
+.fagverk-section>h3,
+.fagverk-place-shell section>h2,
+.politikk-section h2{
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
+  letter-spacing:-.035em;
+}
+.fagverk-prose{
+  color:rgba(246,243,237,.88);
+  font-size:clamp(16px,1.35vw,18px);
+  line-height:1.88;
+}
+.fagverk-prose p:first-child::first-letter{
+  float:left;
+  margin:.08em .12em 0 0;
+  color:var(--hg-learn-gold);
+  font-family:ui-serif,Georgia,serif;
+  font-size:3.3em;
+  line-height:.78;
+}
+.fagverk-keypoints{
+  border-left:0;
+  border:1px solid rgba(241,200,75,.22);
+  border-radius:18px;
+  background:linear-gradient(120deg,rgba(241,200,75,.11),rgba(169,137,255,.05));
+}
+.fagverk-concept,
+.fagverk-question,
+.fagverk-case,
+.fagverk-learning-card,
+.fagverk-canonical-box{
+  border-color:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.035);
+  box-shadow:0 12px 28px rgba(0,0,0,.14);
+}
+.fagverk-concept:hover,
+.fagverk-case:hover,
+.fagverk-learning-card:hover{
+  border-color:rgba(241,200,75,.34);
+  transform:translateY(-2px);
+}
+.fagverk-question summary{padding:17px;}
+.fagverk-sources a{
+  border-color:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.03);
+}
+
+/* Place textbook pages */
+.fagverk-place-shell{
+  width:min(1240px,calc(100% - 2rem));
+  padding:34px 0 100px;
+}
+.fagverk-place-hero{
+  min-height:470px;
+  gap:18px;
+  margin-bottom:30px;
+}
+.fagverk-place-hero-copy,
+.fagverk-place-image{
+  border-color:rgba(255,255,255,.13);
+  border-radius:30px;
+  box-shadow:var(--hg-learn-shadow);
+}
+.fagverk-place-hero-copy{
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:clamp(28px,5vw,58px);
+  background:
+    radial-gradient(circle at 82% 12%,rgba(169,137,255,.2),transparent 18rem),
+    linear-gradient(145deg,rgba(25,30,44,.98),rgba(7,10,16,.98));
+}
+.fagverk-place-hero-copy::after{
+  content:"STED / FAG / SAMMENHENG";
+  position:absolute;
+  top:25px;
+  right:28px;
+  color:rgba(255,255,255,.1);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.22em;
+}
+.fagverk-place-hero h1{
+  max-width:12ch;
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
+  font-size:clamp(46px,7vw,84px);
+  line-height:.9;
+  letter-spacing:-.06em;
+}
+.fagverk-place-image{min-height:470px;filter:saturate(.86) contrast(1.04);}
+.fagverk-place-meta{color:var(--hg-learn-gold);font-weight:800;letter-spacing:.03em;}
+.fagverk-place-lead{color:rgba(246,243,237,.86);font-size:clamp(17px,1.6vw,21px);}
+.fagverk-place-actions a{
+  border-color:rgba(241,200,75,.32);
+  background:var(--hg-learn-gold-soft);
+  color:#ffe790;
+  font-weight:850;
+}
+.fagverk-place-shell section{
+  padding:clamp(22px,4vw,36px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:26px;
+  background:linear-gradient(150deg,rgba(18,23,34,.92),rgba(7,10,16,.94));
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
+.fagverk-place-article{max-width:none;}
+.fagverk-place-article>div{max-width:82ch;}
+.fagverk-place-article p{font-size:clamp(16px,1.25vw,18px);line-height:1.86;color:rgba(246,243,237,.87);}
+.fagverk-place-questions ol{counter-reset:hg-question;list-style:none;padding:0;}
+.fagverk-place-questions li{
+  counter-increment:hg-question;
+  display:grid;
+  grid-template-columns:36px minmax(0,1fr);
+  gap:12px;
+  align-items:start;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.fagverk-place-questions li::before{
+  content:counter(hg-question);
+  display:grid;
+  place-items:center;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:linear-gradient(145deg,var(--hg-learn-gold),#d69d2f);
+  color:#171008;
+  font-weight:900;
+}
+
+/* Politics subject portal */
+.politikk-shell{width:min(1500px,100%);padding:clamp(22px,4vw,62px) clamp(16px,4vw,58px) 110px;}
+.politikk-hero{gap:18px;margin-bottom:28px;}
+.politikk-hero-copy,
+.politikk-badge-progress{
+  position:relative;
+  overflow:hidden;
+  border-color:rgba(255,255,255,.13);
+  border-radius:32px;
+  background:
+    radial-gradient(circle at 86% 10%,rgba(169,137,255,.22),transparent 20rem),
+    linear-gradient(145deg,rgba(25,31,47,.97),rgba(7,10,16,.98));
+  box-shadow:var(--hg-learn-shadow);
+}
+.politikk-hero-copy{min-height:440px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(32px,6vw,72px);}
+.politikk-hero-copy::after{
+  content:"POLITIKK / SAMFUNN";
+  position:absolute;
+  top:28px;
+  right:30px;
+  color:rgba(255,255,255,.1);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.22em;
+}
+.politikk-hero h1{
+  max-width:10ch;
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
+  font-size:clamp(52px,8vw,100px);
+  line-height:.86;
+  letter-spacing:-.07em;
+}
+.politikk-lead{color:rgba(246,243,237,.86);font-size:clamp(17px,1.5vw,21px);}
+.politikk-summary{gap:8px;}
+.politikk-summary div{
+  border-color:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.035);
+}
+.politikk-summary strong{font-size:1.5rem;color:#fff;}
+.politikk-badge-progress{align-content:center;padding:30px;}
+.politikk-badge-progress img{filter:drop-shadow(0 20px 36px rgba(0,0,0,.45));}
+.politikk-section{
+  border-color:rgba(255,255,255,.1);
+  border-radius:30px;
+  background:linear-gradient(150deg,rgba(17,22,33,.92),rgba(7,10,16,.95));
+  box-shadow:0 22px 70px rgba(0,0,0,.2);
+}
+.politikk-section-head{align-items:start;}
+.politikk-section-head h2{font-size:clamp(30px,4vw,48px);}
+.politikk-card,
+.politikk-domain-card,
+.politikk-emne-group,
+.politikk-list article,
+.politikk-place-list a{
+  border-color:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.032);
+  box-shadow:0 14px 32px rgba(0,0,0,.14);
+}
+.politikk-card,
+.politikk-domain-card{border-radius:20px;padding:21px;}
+.politikk-card:hover,
+.politikk-domain-card:hover,
+.politikk-place-list a:hover{
+  border-color:rgba(169,137,255,.44);
+  background:linear-gradient(120deg,rgba(169,137,255,.09),rgba(241,200,75,.045));
+  transform:translateY(-3px);
+}
+.politikk-domain-number{font-family:ui-serif,Georgia,serif;font-size:5rem;color:rgba(255,255,255,.055);}
+.politikk-progress-track{height:6px;background:rgba(255,255,255,.08);}
+.politikk-progress-track span{background:linear-gradient(90deg,var(--hg-learn-violet),var(--hg-learn-gold));}
+.politikk-chip-row a,
+.politikk-concept-grid a,
+.fagverk-place-concept-list a,
+.fagverk-place-emne-list a{
+  border-color:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.035);
+  transition:transform .16s ease,border-color .16s ease,background .16s ease;
+}
+.politikk-chip-row a:hover,
+.politikk-concept-grid a:hover,
+.fagverk-place-concept-list a:hover,
+.fagverk-place-emne-list a:hover{
+  transform:translateY(-1px);
+  border-color:rgba(241,200,75,.4);
+  background:rgba(241,200,75,.09);
+}
+.politikk-toolbar input{
+  min-height:48px;
+  border-color:rgba(255,255,255,.13);
+  background:rgba(0,0,0,.25);
+  box-shadow:0 10px 30px rgba(0,0,0,.14) inset;
+}
+.politikk-toolbar input:focus{outline:2px solid rgba(169,137,255,.55);outline-offset:2px;}
+
+:where(.hg-fagverk-page,.politikk-fagportal-page) a:focus-visible,
+:where(.hg-fagverk-page,.politikk-fagportal-page) button:focus-visible,
+:where(.hg-fagverk-page,.politikk-fagportal-page) summary:focus-visible{
+  outline:2px solid var(--hg-learn-gold);
+  outline-offset:3px;
+}
+
+@media(max-width:980px){
+  .fagverk-shell{grid-template-columns:1fr;}
+  .fagverk-sidebar{position:relative;top:auto;max-height:none;}
+  .fagverk-canonical-domain-nav{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .politikk-hero{grid-template-columns:1fr;}
+  .politikk-badge-progress{grid-template-columns:100px minmax(0,1fr);}
+}
+
+@media(max-width:720px){
+  .fagverk-topbar,
+  .politikk-topbar{align-items:flex-start;flex-direction:column;gap:8px;}
+  .fagverk-brand::after,
+  .politikk-brand::after{font-size:10px;}
+  .fagverk-topbar nav,
+  .politikk-topbar nav{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px;}
+  .fagverk-topbar nav a,
+  .politikk-topbar nav a{flex:0 0 auto;}
+  .fagverk-shell{padding:18px 12px 70px;}
+  .fagverk-sidebar{padding:20px;border-radius:24px;}
+  .fagverk-canonical-domain-nav{grid-template-columns:1fr;}
+  .fagverk-hero{min-height:330px;padding:28px 22px;border-radius:25px;}
+  .fagverk-hero h2{font-size:clamp(42px,14vw,64px);}
+  .fagverk-prose p:first-child::first-letter{float:none;margin:0;font-size:inherit;color:inherit;}
+  .fagverk-place-shell{width:min(100% - 20px,1240px);padding-top:18px;}
+  .fagverk-place-hero{min-height:0;}
+  .fagverk-place-hero-copy{min-height:380px;padding:28px 22px;}
+  .fagverk-place-hero h1{font-size:clamp(46px,15vw,72px);}
+  .fagverk-place-image{min-height:260px;max-height:390px;}
+  .fagverk-place-shell section{padding:22px 18px;border-radius:22px;}
+  .politikk-shell{padding:18px 10px 80px;}
+  .politikk-hero-copy{min-height:400px;padding:30px 22px;}
+  .politikk-hero h1{font-size:clamp(50px,17vw,78px);}
+  .politikk-section{padding:22px 16px;border-radius:24px;}
+  .politikk-summary{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .politikk-badge-progress{grid-template-columns:78px minmax(0,1fr);padding:22px 18px;}
+  .politikk-badge-progress img{width:78px;height:78px;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important;}
+}
