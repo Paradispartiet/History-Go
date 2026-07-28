@@ -18,6 +18,7 @@ on:
       - 'tests/fagverk-place-pages.test.mjs'
       - 'tests/place-learning-surface.test.js'
       - 'tmp/fagverk-upgrade/**'
+      - 'tmp/fagverk-upgrade-v2/**'
       - '.github/workflows/fagverk.yml'
   workflow_dispatch:
 
@@ -39,9 +40,10 @@ jobs:
           node-version: '22'
       - name: Reconstruct package
         run: |
-          cat tmp/fagverk-upgrade/chunk-*.b64 | tr -d '\n\r' | base64 --decode > /tmp/fagverk-upgrade.tar.gz
-          tar -tzf /tmp/fagverk-upgrade.tar.gz
-          tar -xzf /tmp/fagverk-upgrade.tar.gz -C .
+          cat tmp/fagverk-upgrade-v2/chunk-*.b64 | tr -d '\n\r' | base64 --decode > /tmp/fagverk-upgrade-v2.tar.gz
+          echo '3f1a3aa97c57e7a2e07ba404846129d6a123de1ec579279f31a22221b752d8c7  /tmp/fagverk-upgrade-v2.tar.gz' | sha256sum -c -
+          tar -tzf /tmp/fagverk-upgrade-v2.tar.gz
+          tar -xzf /tmp/fagverk-upgrade-v2.tar.gz -C .
       - name: Validate materialized fagverk
         run: |
           node --check js/fagverk.js
@@ -53,7 +55,7 @@ jobs:
           node --test tests/place-learning-surface.test.js
       - name: Remove all temporary materialization files
         run: |
-          rm -rf tmp/fagverk-upgrade tmp/ignore tmp/ignore2 tmp/ignore3
+          rm -rf tmp/fagverk-upgrade tmp/fagverk-upgrade-v2 tmp/ignore tmp/ignore2 tmp/ignore3
           rm -f .github/workflows/tmp-materialize-fagverk-upgrade.yml
           git checkout origin/main -- .github/workflows/fagverk.yml
       - name: Commit tested non-workflow files
