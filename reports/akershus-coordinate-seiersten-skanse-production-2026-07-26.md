@@ -1,67 +1,53 @@
 # Seiersten skanse coordinate production
 
-Date: 2026-07-26
-
 ## Result
 
-`seiersten_skanse` has been moved from an unresolved point east of the fortification to the named military site for Øvre Seiersten skanse.
+- Place: `seiersten_skanse`
+- Legacy coordinate: `59.6719, 10.6471`
+- Retained production coordinate: `59.6726278, 10.6396722`
+- Original displacement from legacy: approximately `424.8 m`
+- Coordinate change in this pass: `0 m`
+- Radius: retained at `260 m`
+- Status: `verified_historical_source`
+- Coordinate Source Contract role: `area_anchor`
+- Locator type: `historic_site`
+- Accuracy: `semantic_anchor`
+- Source provider: `manual_research`
+- Applied identity: Lovdata inventory `1002`, OSM node `6463616338`, SSR place number `300433`
 
-- Previous coordinate: `59.6719, 10.6471`
-- Applied coordinate: `59.6726278, 10.6396722`
-- Displacement: approximately `424.8 m`
-- Applied source object: OpenStreetMap node `6463616338`
-- SSR place number: `300433`
-- Coordinate status: `verified_historical_source`
-- Coordinate role: `area_anchor`
-- Radius: `260 m`
+## Why the coordinate is retained
+
+The 2026-07-26 production already moved the unresolved legacy point approximately 424.8 metres west to the named military point for Øvre Seiersten skanse. The point remains the strongest available physical anchor because it is named, military-classified and linked to a national SSR place identity.
+
+This pass does not invent another coordinate movement. It repairs the Coordinate Source Contract source classification. A `historic_site` with `verified_historical_source` must use `manual_research` or `historical_map` as the primary source provider. Here the coordinate is not supported by OSM alone: manual research resolves the OSM/SSR point to Seiersten inventory 1002 in the Lovdata protection regulation and distinguishes it from adjacent defence works and information objects.
 
 ## Canonical identity
 
-The canonical record represents the protected closed infantry redoubt built at Seiersten in 1898–1900 as part of the landward defence of Oscarsborg and the Drøbak Sound approach.
+The record represents the protected closed infantry redoubt built at Seiersten in 1898–1900 as part of the landward defence of Oscarsborg and the Drøbak Sound approach.
 
 It does not represent:
 
-- the information map named Seiersten skanse east of the redoubt;
+- the information map east of the redoubt;
 - Follo museum or the wider recreation area;
-- Veisvingbatteriet, which is a separate artillery battery;
+- Veisvingbatteriet, which is inventory 1001 and a separate artillery battery;
+- the southern or northern connecting lines, inventories 1003 and 1004;
 - Oscarsborg Fortress itself;
-- the complete legal preservation polygon for all Seiersten defence works.
+- the complete legal protection polygon for the Seiersten defence system.
 
-## Official historical identity
+## Official legal and historical identity
 
-The legal protection regulation for Oscarsborg Fortress and associated installations identifies Seiersten skanse as inventory number `1002`.
+Lovdata regulation `FOR-2014-04-09-1986` identifies:
 
-The regulation states:
-
+- inventory: `1002`;
+- name: Seiersten skanse;
 - original function: infantry redoubt;
 - construction period: `1898–1900`;
-- protected scope: the entire installation, including the exteriors and interiors of the shelters;
-- cadastral identity: farm/use number `70/1`.
+- protected scope: the complete installation, including the exteriors and interiors of the shelters;
+- cadastral identity: `70/1`.
 
-The same regulation separately inventories:
+The regulation separately inventories the ammunition magazine, Veisvingbatteriet and both connecting lines. This separation is essential to the coordinate decision. citeturn343179search0turn343179search2
 
-- ammunition magazine 31;
-- Veisvingbatteriet, inventory 1001;
-- Seiersten skanse, inventory 1002;
-- the southern and northern connecting lines, inventory 1003 and 1004.
-
-This legal object separation is important: the canonical place must anchor the infantry redoubt itself rather than collapse the whole defence system into one marker.
-
-## Physical and tactical form
-
-Skiforeningen describes Seiersten as a closed redoubt built in 1898–1900 with:
-
-- approximately 300 metres of combined firing line;
-- firing sectors toward the fjord, Drøbak and the inland approaches;
-- positions for infantry and field guns;
-- 24 shelters;
-- ammunition storage;
-- mobilization in 1905 and a short period of manning during the First World War;
-- no combat use.
-
-The place therefore represents a real landward fortification with earthworks, shelters and tactical orientation, not merely a commemorative point.
-
-## Applied OSM/SSR anchor
+## Applied physical anchor
 
 OpenStreetMap node `6463616338` is:
 
@@ -70,93 +56,24 @@ OpenStreetMap node `6463616338` is:
 - linked to SSR place number `300433`;
 - located at `59.6726278, 10.6396722`.
 
-This is the strongest available physical site identity because it combines a named fortification object, military classification and a national place-name reference.
+The co-located attraction point `1763395772` is only a visitor-identity cross-check. Information-map node `1793750671` lies approximately `126.8 m` east of the applied point and remains rejected as canonical.
 
-A co-located tourism object, node `1763395772`, is named `Seiersten Festning` and lies about 1.7 metres from the applied point. It supports visitor identity, but is marked `fixme=incomplete` and is therefore secondary to the SSR-linked military node.
+## Access and representation limits
 
-## Rejected information point
+- Public use must follow established paths, signs, closures and current management rules.
+- Shelters, interiors, magazines, tunnels, fenced areas and protected structures may be closed or require explicit permission.
+- The marker represents the infantry redoubt through a documented historical-area anchor.
+- The `260 m` radius is not the legal protection polygon, property boundary, firing sector, connecting-line extent, military boundary or access guarantee.
 
-OpenStreetMap node `1793750671` is named `Seiersten skanse`, but its tags are:
-
-```json
-{
-  "tourism": "information",
-  "information": "map"
-}
-```
-
-It lies at `59.6726272, 10.6419304`, approximately `126.8 m` east of the applied military point. It represents an information map and must not be used as the canonical coordinate for the redoubt itself.
-
-## Legacy-point assessment
-
-The former coordinate `59.6719, 10.6471` lies approximately `424.8 m` east of the applied military point.
-
-It had no source contract and could not be tied to:
-
-- the protected infantry redoubt;
-- the SSR-linked military site;
-- the co-located attraction point;
-- an exact defence-work component.
-
-The correction is therefore a substantial physical relocation rather than only a provenance upgrade.
-
-## Veisvingbatteriet boundary
-
-Veisvingbatteriet is a separately inventoried artillery battery, constructed in 1894–1896 and located roughly 390 metres southwest of Seiersten skanse.
-
-It belongs to the same broader defence system but must remain distinct from the infantry-redoubt record. The canonical marker and 260-metre gameplay radius are not intended to absorb Veisvingbatteriet as though it were part of the same physical object.
-
-## Radius decision
-
-The existing radius of `260 m` is retained to support gameplay coverage of the closed infantry redoubt, its nearest shelters, earthworks and connection traces.
-
-The radius must not be interpreted as:
-
-- the exact legal protection boundary;
-- the complete historical firing sector;
-- the full southern and northern connecting lines;
-- the location of Veisvingbatteriet;
-- a cadastral parcel.
-
-## Source matrix
-
-| Source | Role | Coordinate authority |
-|---|---|---|
-| Lovdata protection regulation | Official legal identity, dates, scope and inventory separation | Establishes what the marker must represent |
-| OSM node 6463616338 / SSR 300433 | Named military site | Primary applied area anchor |
-| OSM node 1763395772 | Co-located visitor attraction | Secondary identity cross-check |
-| OSM node 1793750671 | Information map east of site | Explicitly rejected as canonical |
-| Skiforeningen | Detailed physical, tactical and mobilization history | Supports site interpretation and radius |
-| Lokalhistoriewiki | Independent local site and land-history cross-check | Contextual support |
-| Legacy coordinate | Unresolved eastern point | Rejected |
-
-## Raw source material
-
-The one-time source workflow persisted:
-
-- `reports/akershus-coordinate-seiersten-skanse-source-probe/osm-node-6463616338.xml`
-- `reports/akershus-coordinate-seiersten-skanse-source-probe/osm-node-1763395772.xml`
-- `reports/akershus-coordinate-seiersten-skanse-source-probe/osm-node-1793750671.xml`
-- `reports/akershus-coordinate-seiersten-skanse-source-probe/nominatim-seiersten-objects.json`
-- `reports/akershus-coordinate-seiersten-skanse-source-probe/osm-seiersten-bbox.xml`
-- `reports/akershus-coordinate-seiersten-skanse-source-probe/source-summary.txt`
-
-The temporary workflow removed itself before the production diff was finalized.
-
-## Changed files
+## Files
 
 - `data/places/historie/akershus/places_historie_akershus_batch4/seiersten_skanse.json`
 - `data/coordinate-evidence/akershus/historie/seiersten_skanse.json`
+- `reports/akershus-coordinate-seiersten-skanse-source-probe/source-summary.txt`
 - `reports/akershus-coordinate-seiersten-skanse-production-2026-07-26.md`
-- the six raw-source files listed above
 
-## Sources
+The previously persisted raw OSM and Nominatim probe files remain unchanged as underlying evidence.
 
-- https://lovdata.no/dokument/LF/forskrift/2014-04-09-1986
-- https://www.skiforeningen.no/utimarka/omrader/follomarka/steder/seiersten/
-- https://lokalhistoriewiki.no/wiki/Seiersten_(Frogn)
-- https://www.openstreetmap.org/node/6463616338
+## Next manifest item
 
-## Next record
-
-Continue with `raelingen_bygdetun`, the next place in the active Akershus batch-4 sequence.
+Continue with `raelingen_bygdetun` after this contract migration passes review and data checks.
