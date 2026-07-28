@@ -1,93 +1,133 @@
-# History Go – fagverk og egne stedssider
+# History Go – fagverk, merker og egne stedssider
 
-Status: canonical pilot v2  
-Runtime: `js/fagverk.js`, `js/fagverk-sted.js`, `js/ui/place-learning-surface.js`  
-Data: `data/fagverk/fagverk_registry.json`, `data/fagverk/<fag>/<kapittel>.json`  
-Sider: `fagverk.html`, `fagverk-sted.html?place=<place_id>`
+Status: canonical politikk-integrasjon v3  
+Runtime: `js/politikk-fag-model.js`, `js/politikk-fagportal.js`, `js/fagverk-canonical-integration.js`, `js/fagverk-place-canonical-integration.js`, `js/ui/place-learning-canonical.js`  
+Data: `data/fag/politikk/politikk_runtime_manifest.json`, canonical politikkfiler, `data/fagverk/fagverk_registry.json`, `data/fagverk/<fag>/<kapittel>.json`  
+Sider: `data/fag/politikk/merke_politikk.html`, `fagverk.html`, `fagverk-sted.html?place=<place_id>`
 
-## Grunnskille
+## Én fagmodell, flere visninger
 
-History Go har nå to forskjellige kunnskapsflater:
+Politikk skal ikke bestå av parallelle, usynkroniserte teorisider.
 
-1. **Fagsider** forklarer generell og overførbar kunnskap.
-2. **Stedets fagverkside** undersøker ett konkret sted gjennom flere faglige linser.
+```text
+POLITIKKMERKET
+badge, undermerker, poeng og nivå
+        │
+        ▼
+CANONICAL POLITIKKFAG
+pensum → fagkart → emner → metoder → mapping
+        │
+        ├── quiz og spørsmålsproduksjon
+        ├── emne- og kursprogresjon
+        └── fagverkstruktur
+                │
+                ▼
+FAGVERK
+redigerte lærekapitler og dynamiske fagområde-/emnevisninger
+                │
+                ▼
+STEDSSIDENE
+konkrete steder koblet gjennom emne_ids og underbadge_ids
+```
 
-Et sted skal ikke bygges inn som et kapittel eller et «case» i selve faget. Fagkapitlet kan lenke til relevante steder, men stedets historie, spørsmål, begreper og tverrfaglige perspektiver eies av stedets egen side.
+`data/fag/politikk/politikk_runtime_manifest.json` er runtime-kontrakten som peker til alle autoritative kilder. UI skal lese denne kontrakten i stedet for å hardkode filstier eller kopiere emnetitler og begreper.
 
-## Fagsider
+## Politikkforsiden
 
-`fagverk.html` viser et sammenhengende læreverk. Et kapittel skal ha:
+`data/fag/politikk/merke_politikk.html` er forsiden for hele politikkfaget. Den viser brukerens politikkmerke, alle elleve undermerker, koblingen til tretten canonicale fagområder, fullverdige lærekapitler, alle 123 emner og emnedekning, politikkquiz, politikksteder og et begrepsregister generert fra canonicale emner.
 
-- en tydelig ingress;
-- forkunnskapsspørsmål;
-- læringsmål;
-- sammenhengende seksjoner;
-- hovedpoenger;
-- arbeidseksempler;
-- vanlige misforståelser;
-- begrepsregister;
-- anvendelsesoppgaver;
-- kontrollspørsmål;
-- lenker til selvstendige stedssider;
-- inspectable kilder.
+Den gamle statiske «full teori»-teksten er erstattet. Fagforsiden presenterer faktisk runtime-data og progresjon.
 
-`emner.html` beholder rollen som progresjonsoversikt og skal ikke være en erstatning for læreverket.
+## Eierforhold
+
+### Badgefilen eier
+
+- merkenavn, ikon og farger;
+- poenggrenser og nivåer;
+- listen over undermerke-ID-er.
+
+### Canonicale politikkfiler eier
+
+- tretten fagområder;
+- 123 emner;
+- emnetitler, definisjoner og begreper;
+- metoder, hooks og mappinger;
+- quiz- og kildekrav.
+
+### Runtime-manifestet eier
+
+- filpekere til source of truth;
+- koblingen mellom undermerker og fagområder;
+- koblingen mellom canonicale fagområder/emner og eksisterende lærekapitler;
+- canonicale ruter mellom politikkforside, fagverk, progresjon og stedssider.
+
+### Fagverkregisteret eier
+
+- hvilke ferdigskrevne lærekapitler som finnes;
+- stedsspesifikke ekstra emne-ID-er;
+- kuraterte linser og spørsmål for enkelte steder.
+
+Fagverkregisteret skal ikke håndkopiere emnetitler, definisjoner eller begrepslister fra politikkfaget.
+
+## Fagverket
+
+`fagverk.html` har to nivåer:
+
+1. Canonicale fagområdesider finnes dynamisk for alle tretten politikkdomener.
+2. Fullverdige lærekapitler gir sammenhengende, redigert lærestoff der kapitler er materialisert.
+
+Et canonicalt emne kan åpnes med:
+
+```text
+fagverk.html?subject=politikk&domain=<domain_id>&emne=<emne_id>
+```
+
+De fullverdige kapitlene beholder ingress, forkunnskapsspørsmål, læringsmål, sammenhengende seksjoner, arbeidseksempler, misoppfatninger, begreper, anvendelsesoppgaver, kontrollspørsmål, selvstendige stedssider og inspectable kilder.
+
+`emner.html` beholder rollen som brukerens tverrfaglige progresjonsoversikt. Det er ikke en erstatning for læreverket.
 
 ## Egne stedssider
 
-Alle canonical steder har en stabil sideadresse:
+Alle canonicale steder har en stabil sideadresse:
 
 ```text
 fagverk-sted.html?place=<place_id>
 ```
 
-Siden lastes generisk fra canonical place-data. Det betyr at et sted har sin egen fagverkside også før det har fått en kuratert oppføring i `fagverk_registry.json`.
+For politikksteder brukes begge koblingene:
 
-En stedsside viser:
+```text
+underbadge_ids → merke, undermerker og spillprogresjon
+emne_ids       → fagområder, emner, begreper, quiz og læreverk
+```
 
-- stedets navn, kategori, periode og adresse;
-- `desc` som inngang og `popupDesc` som stedartikkel;
-- faglige linser;
-- spørsmål å ta med til stedet;
-- relevante fagsider;
-- begreper og emner;
-- inspectable eksterne stedskilder når de finnes;
-- lenke tilbake til kartet.
+Stedssiden viser artikkel, relevante undermerker, emneprogresjon, faglige linser, canonicale fagområder, fullverdige lærekapitler, emner, begreper, kilder og lenke tilbake til kartet.
 
-`placeLinks` i registryet tilfører kuraterte linser, spørsmål, begreper og kapittelkoblinger. Det erstatter ikke canonical place-data.
-
-## Regjeringskvartalet
-
-Regjeringskvartalet er første kuraterte stedsside. Stedet kobles til offentlig forvaltning og parlamentarisme, men er fjernet som eget casekapittel fra begge fagtekstene.
-
-Stedssiden undersøker blant annet:
-
-- den historiske samlingen av statsforvaltningen;
-- arkitektur, kunst og byrom;
-- regjering, departementer og embetsverk;
-- forbindelsen til Stortingets vedtak og kontroll;
-- sikkerhet, åpenhet og minne etter 22. juli.
+Et sted skal ikke bygges inn som et kapittel eller et «case» i selve faget. Fagområdet kan lenke til stedet, men stedets historie og tverrfaglige perspektiver eies av stedets egen side.
 
 ## Stedspopup
 
-Seksjonen **Fag og begreper** skal alltid kunne åpne stedets egen fagverkside.
+Seksjonen **Fag og begreper** åpner alltid stedets egen fagverkside. For politikksteder viser popupen også relevante undermerker, canonicale fagområder, fullverdige lærekapitler, emner og begreper. Tilknytningskort og separate kildelenker beholder den eksisterende interaksjonsmodellen.
 
-For steder med registrerte fagkoblinger viser popupen i tillegg:
+## Emnelaster
 
-- relevante begreper;
-- relevante emner;
-- relevante fagkapitler.
+Den felles loaderen skal peke politikk direkte til:
 
-Tilknytningskort og separate kildelenker beholder den eksisterende interaksjonsmodellen.
+```text
+data/fag/politikk/emner_politikk_canonical_v4_5.json
+```
+
+Både `js/emnerLoader.ts` og `dist/web/emnerLoader.js` skal være synkronisert.
 
 ## QA
 
-Kjør:
-
 ```bash
-node --check js/fagverk.js
-node --check js/fagverk-sted.js
-node --check js/ui/place-learning-surface.js
+node --check js/politikk-fag-model.js
+node --check js/politikk-fagportal.js
+node --check js/fagverk-canonical-integration.js
+node --check js/fagverk-place-canonical-integration.js
+node --check js/ui/place-learning-canonical.js
+node --test tests/politikk-fag-integration.test.mjs
 node --test tests/fagverk-content.test.mjs
 node --test tests/fagverk-place-pages.test.mjs
 node --test tests/place-learning-surface.test.js
