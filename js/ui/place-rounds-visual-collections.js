@@ -34,18 +34,21 @@
     sport:      ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
     natur:      ["badges", "nature", "spots", "details", "people", "objects", "works", "brands"],
     vitenskap:  ["badges", "people", "objects", "spots", "details", "works", "brands", "nature"],
+    teknologi:  ["badges", "objects", "people", "spots", "details", "works", "brands", "nature"],
     filosofi:   ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],
+    film_tv:    ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],
 
     // Legacy place-kategorier beholdes som presentasjonskompatibilitet. De er ikke
     // en ny badge-taksonomi og endrer ingen eksisterende Brands-data.
-    by:          ["badges", "spots", "details", "people", "works", "objects", "brands", "nature"],
+    by:          ["badges", "works", "spots", "details", "people", "objects", "brands", "nature"],
     lekeplass:   ["badges", "spots", "objects", "nature", "details", "people", "brands", "works"],
     trening:     ["badges", "people", "spots", "objects", "details", "brands", "nature", "works"],
     media:       ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
     psykologi:   ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
     religion:    ["badges", "people", "works", "objects", "spots", "details", "brands", "nature"],
+    scenekunst:  ["badges", "people", "works", "spots", "objects", "details", "brands", "nature"],
     subkultur:   ["badges", "people", "works", "details", "spots", "objects", "brands", "nature"],
-    naeringsliv: ["badges", "brands", "people", "objects", "spots", "works", "details", "nature"],
+    naeringsliv: ["badges", "brands", "people", "objects", "spots", "details", "works", "nature"],
     transport:   ["badges", "spots", "objects", "details", "people", "works", "brands", "nature"]
   });
 
