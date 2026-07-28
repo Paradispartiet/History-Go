@@ -214,7 +214,7 @@
   // unlocked by quiz completion (legacy perfect quiz or all configured sets).
   // Keep that collectible state separate from physical visit persistence.
   window.addEventListener("hg:target-unlock", (event) => {
-    const detail = event?.detail || {};
+    const detail = /** @type {CustomEvent} */ (event).detail || {};
     if (detail?.kind !== "place") return;
     recordCollectedPlace(detail.id, "quiz");
   });
