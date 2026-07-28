@@ -1,0 +1,51 @@
+/* PlaceCard-rundinger: fyll hele feltet ved siden av frontImage uten å deformere sirklene. */
+#placeCard .pc-side-stack{
+  width:100%;
+  max-width:100%;
+  height:var(--place-card-media-height);
+  min-height:var(--place-card-media-height);
+  align-self:stretch;
+  justify-self:stretch;
+  align-items:stretch;
+  justify-content:stretch;
+}
+
+#placeCard .pc-icons-quad{
+  width:100%;
+  max-width:100%;
+  height:100%;
+  min-height:0;
+  box-sizing:border-box;
+  justify-content:space-between;
+  align-content:space-between;
+  justify-items:center;
+  align-items:center;
+  gap:var(--pc-round-gap);
+}
+
+#placeCard .pc-icons-quad[data-round-count="4"]{
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
+}
+
+#placeCard .pc-icons-quad[data-round-count="6"]{
+  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
+}
+
+#placeCard .pc-icons-quad[data-round-count="4"] .pc-round:not([hidden]),
+#placeCard .pc-icons-quad[data-round-count="6"] .pc-round:not([hidden]){
+  width:var(--hg-round-fill-size, var(--place-card-orb-size));
+  height:var(--hg-round-fill-size, var(--place-card-orb-size));
+  min-width:var(--hg-round-fill-size, var(--place-card-orb-size));
+  min-height:var(--hg-round-fill-size, var(--place-card-orb-size));
+  max-width:var(--hg-round-fill-size, var(--place-card-orb-size));
+  max-height:var(--hg-round-fill-size, var(--place-card-orb-size));
+  flex-basis:var(--hg-round-fill-size, var(--place-card-orb-size));
+}
+
+body.hg-app.hg-phone #placeCard .pc-side-stack,
+body.hg-app.hg-phone #placeCard .pc-icons-quad{
+  width:100%;
+  max-width:100%;
+}
