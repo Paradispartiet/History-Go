@@ -10,6 +10,8 @@
   const FETCH_TIMEOUT_MS = 8000;
   const STARTUP_DIAGNOSTIC_MS = 22000;
   const deferredScripts = [];
+  const pacedBodyScripts = [];
+  let pacedBodyFlushActive = false;
   const trace = window.__HG_BOOT_TRACE__ = window.__HG_BOOT_TRACE__ || { startedAt: Date.now(), pendingScript: null, deferred: [], timeouts: [] };
 
   function normalizeUrl(value) {
@@ -41,21 +43,58 @@
     "/js/ui/caravan-panel.js"
   ];
 
+  const POST_READY_BODY_SCRIPTS = new Set([
+    "/History-Go/js/debug/HGTestMode.js",
+    "/History-Go/js/i18n.js",
+    "/History-Go/dist/web/knowledge.js",
+    "/History-Go/dist/web/hgInsights.js",
+    "/History-Go/dist/web/knowledgeV2.js",
+    "/History-Go/js/hgSocialGuards.js",
+    "/History-Go/js/knowledgeMatch.js",
+    "/History-Go/js/progress/profileProgressReader.js",
+    "/History-Go/js/ui/place-card-status-surface.js",
+    "/History-Go/js/ui/header-menu.js",
+    "/History-Go/js/ui/psychology-room-entry.js",
+    "/History-Go/js/ui/badges.js"
+  ]);
+
   function isNonCriticalScript(script) {
     const url = normalizeUrl(script?.src);
     if (!url || url.origin !== location.origin) return false;
     return NON_CRITICAL_PATTERNS.some((pattern) => url.pathname.includes(pattern));
   }
 
+  function isPacedBodyScript(script) {
+    const url = normalizeUrl(script?.src);
+    if (!url || url.origin !== location.origin) return false;
+    return POST_READY_BODY_SCRIPTS.has(url.pathname);
+  }
+
+  function scheduleIdle(task) {
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(task, { timeout: 1000 });
+    } else {
+      setTimeout(task, 32);
+    }
+  }
+
   const nativeAppendChild = Node.prototype.appendChild;
   Node.prototype.appendChild = function guardedAppendChild(node) {
     const isHeadScript = this === document.head && node?.tagName === "SCRIPT" && node.src;
-    if (!isHeadScript) return nativeAppendChild.call(this, node);
+    const isBodyScript = this === document.body && node?.tagName === "SCRIPT" && node.src;
+    if (!isHeadScript && !isBodyScript) return nativeAppendChild.call(this, node);
 
     const url = normalizeUrl(node.src);
     const label = url ? url.pathname : String(node.src || "");
 
-    if (window.__HG_APP_READY__ !== true && isNonCriticalScript(node)) {
+    if (isBodyScript && window.__HG_APP_READY__ === true && isPacedBodyScript(node)) {
+      pacedBodyScripts.push(node);
+      trace.postReadyBodyQueued = (trace.postReadyBodyQueued || 0) + 1;
+      flushPacedBodyScripts();
+      return node;
+    }
+
+    if (isHeadScript && window.__HG_APP_READY__ !== true && isNonCriticalScript(node)) {
       node.dataset.hgDeferredBoot = "1";
       node.async = false;
       deferredScripts.push(node);
@@ -90,12 +129,32 @@
     return nativeAppendChild.call(this, node);
   };
 
-  function scheduleIdle(task) {
-    if (typeof window.requestIdleCallback === "function") {
-      window.requestIdleCallback(task, { timeout: 1000 });
-    } else {
-      setTimeout(task, 32);
-    }
+  function flushPacedBodyScripts() {
+    if (pacedBodyFlushActive || !pacedBodyScripts.length) return;
+    pacedBodyFlushActive = true;
+
+    scheduleIdle(() => {
+      const script = pacedBodyScripts.shift();
+      if (!script) {
+        pacedBodyFlushActive = false;
+        return;
+      }
+
+      let finished = false;
+      let fallbackTimer = null;
+      const next = () => {
+        if (finished) return;
+        finished = true;
+        if (fallbackTimer) clearTimeout(fallbackTimer);
+        pacedBodyFlushActive = false;
+        scheduleIdle(flushPacedBodyScripts);
+      };
+
+      script.addEventListener("load", next, { once: true });
+      script.addEventListener("error", next, { once: true });
+      fallbackTimer = setTimeout(next, SCRIPT_TIMEOUT_MS);
+      nativeAppendChild.call(document.body, script);
+    });
   }
 
   function flushDeferredScripts() {
