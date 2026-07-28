@@ -62,29 +62,13 @@ jobs:
           test('kontrakten viser til de sentrale autoritetene', () => {
             const contract = read(contractPath);
             for (const reference of [
-              'documentation_registry.json',
-              'FACTUALITY_CONTRACT.md',
-              'HISTORY_GO_TECHNICAL_ARCHITECTURE.md',
-              'DOMAIN_CONTRACT.md',
-              'category_contract.json',
-              'SUBJECT_FILE_CONTRACT.md',
-              'README.pensum.md',
-              'fagstrukturREADME.md',
-              'FAGVERK_NAVIGATION.md',
-              'FAGVERK.md',
-              'DATA_PRODUCTION_CONTRACT.md',
-              'KNOWLEDGE_ARCHITECTURE.md',
-              'QUIZ_PRODUCTION_CANONICAL.md',
-              'QUIZ_TEMPLATE_REGISTRY_V2.json',
-              'PLACE_PRODUCTION_CHECKLIST.md',
-              'PLACE_STANDARD.md',
-              'FAGVERK_PLACE_DESIGN.md',
-              'COMPLETION_DEFINITIONS.md',
-              'HISTORY_GO_PRODUCT_MAP.md',
-              'TYPESCRIPT_FIRST_POLICY.md',
-              'TEAM_WORKFLOW.md',
-              'data/fag/fag_manifest.json',
-              'data/fagverk/fagverk_portal.json',
+              'documentation_registry.json', 'FACTUALITY_CONTRACT.md', 'HISTORY_GO_TECHNICAL_ARCHITECTURE.md',
+              'DOMAIN_CONTRACT.md', 'category_contract.json', 'SUBJECT_FILE_CONTRACT.md', 'README.pensum.md',
+              'fagstrukturREADME.md', 'FAGVERK_NAVIGATION.md', 'FAGVERK.md', 'DATA_PRODUCTION_CONTRACT.md',
+              'KNOWLEDGE_ARCHITECTURE.md', 'QUIZ_PRODUCTION_CANONICAL.md', 'QUIZ_TEMPLATE_REGISTRY_V2.json',
+              'PLACE_PRODUCTION_CHECKLIST.md', 'PLACE_STANDARD.md', 'FAGVERK_PLACE_DESIGN.md',
+              'COMPLETION_DEFINITIONS.md', 'HISTORY_GO_PRODUCT_MAP.md', 'TYPESCRIPT_FIRST_POLICY.md',
+              'TEAM_WORKFLOW.md', 'data/fag/fag_manifest.json', 'data/fagverk/fagverk_portal.json',
               'data/fagverk/fagverk_registry.json'
             ]) assert.ok(contract.includes(reference), reference);
           });
@@ -110,14 +94,9 @@ jobs:
 
           test('dokumentasjonsinngangene peker til fagsidekontrakten', () => {
             for (const file of [
-              'DOCS.md',
-              'docs/README.md',
-              'docs/FAGVERK.md',
-              'docs/FAGVERK_NAVIGATION.md',
-              'docs/FAGVERK_PLACE_DESIGN.md',
-              'docs/SUBJECT_FILE_CONTRACT.md',
-              'docs/DATA_PRODUCTION_CONTRACT.md',
-              'README/README.pensum.md'
+              'DOCS.md', 'docs/README.md', 'docs/FAGVERK.md', 'docs/FAGVERK_NAVIGATION.md',
+              'docs/FAGVERK_PLACE_DESIGN.md', 'docs/SUBJECT_FILE_CONTRACT.md',
+              'docs/DATA_PRODUCTION_CONTRACT.md', 'README/README.pensum.md'
             ]) assert.ok(read(file).includes('FAGVERK_SUBJECT_PAGE_CONTRACT.md'), file);
           });
 
@@ -128,18 +107,10 @@ jobs:
             assert.ok(workflow.includes('node --test tests/fagverk-documentation-contract.test.mjs'));
           });
           TEST
-          for file in \
-            DOCS.md \
-            README/README.pensum.md \
-            docs/README.md \
-            docs/FAGVERK_SUBJECT_PAGE_CONTRACT.md \
-            docs/FAGVERK.md \
-            docs/FAGVERK_NAVIGATION.md \
-            docs/FAGVERK_PLACE_DESIGN.md \
-            docs/SUBJECT_FILE_CONTRACT.md \
-            docs/DATA_PRODUCTION_CONTRACT.md; do
+          for file in DOCS.md README/README.pensum.md docs/README.md docs/FAGVERK_SUBJECT_PAGE_CONTRACT.md docs/FAGVERK.md docs/FAGVERK_NAVIGATION.md docs/FAGVERK_PLACE_DESIGN.md docs/SUBJECT_FILE_CONTRACT.md docs/DATA_PRODUCTION_CONTRACT.md; do
             sed -i 's/[[:space:]]\+$//' "$file"
           done
+          rm .github/workflows/one-time-fagverk-subject-page-contract.yml
       - name: Install and build documentation tooling
         run: |
           npm ci --no-audit --no-fund
@@ -158,15 +129,14 @@ jobs:
         run: |
           node -e "JSON.parse(require('fs').readFileSync('docs/documentation_registry.json','utf8'))"
           git diff --check
-      - name: Remove one-time runner and commit durable result
+      - name: Commit durable result
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git restore --worktree --staged dist 2>/dev/null || true
+          git restore --worktree --staged dist .github/workflows/fagverk.yml 2>/dev/null || true
           git rm scripts/one-time-fagverk-subject-page-contract.mjs
-          git rm .github/workflows/one-time-fagverk-subject-page-contract.yml
           git add \
             DOCS.md \
             README/README.pensum.md \
@@ -178,7 +148,6 @@ jobs:
             docs/FAGVERK_PLACE_DESIGN.md \
             docs/SUBJECT_FILE_CONTRACT.md \
             docs/DATA_PRODUCTION_CONTRACT.md \
-            .github/workflows/fagverk.yml \
             tests/fagverk-documentation-contract.test.mjs \
             reports/documentation-governance/inventory.json
           git diff --cached --check
