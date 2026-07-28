@@ -2,7 +2,7 @@
 
 Status: **canonical dokumentasjonsinngang**
 Register: [`documentation_registry.json`](./documentation_registry.json)
-Sist kontrollert: **2026-07-27**
+Sist kontrollert: **2026-07-28**
 
 Dette dokumentet svarer på tre spørsmål:
 
@@ -49,9 +49,10 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 4. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — operativ mål-/adaptermodell for samlet progresjonslesing; erstatter ikke runtime-lagring
 5. [`PROFILE_PROGRESS_READER_RUNTIME.md`](./PROFILE_PROGRESS_READER_RUNTIME.md) — implementert read-only helper for eksisterende progresjonskilder
 6. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
-7. [`PLACE_POPUP_SYSTEM.md`](./PLACE_POPUP_SYSTEM.md) — canonical presentasjons- og stedstypekontrakt for den rike stedspopupen
-8. [`PEOPLE_PROFILE_CANONICAL.md`](./PEOPLE_PROFILE_CANONICAL.md) — canonical claim-first produksjons-, review- og ferdigstatuskontrakt for People
-9. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical runtime-, presentasjons- og fallbackkontrakt for den rike people-popupen
+7. [`PLACE_PRODUCTION_CHECKLIST.md`](./PLACE_PRODUCTION_CHECKLIST.md) — canonical sted-for-sted produksjonsoppskrift og sluttcheck
+8. [`PLACE_POPUP_SYSTEM.md`](./PLACE_POPUP_SYSTEM.md) — canonical presentasjons- og stedstypekontrakt for den rike stedspopupen
+9. [`PEOPLE_PROFILE_CANONICAL.md`](./PEOPLE_PROFILE_CANONICAL.md) — canonical claim-first produksjons-, review- og ferdigstatuskontrakt for People
+10. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical runtime-, presentasjons- og fallbackkontrakt for den rike people-popupen
 
 Compatibility-filer som bare videresender eldre lenker:
 

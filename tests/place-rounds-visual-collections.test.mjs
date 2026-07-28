@@ -212,3 +212,18 @@ test("existing Brands with a real logo remain image-ready without changing Brand
   });
   assert.equal(window.HGVisualPlaceRounds.isImageReady(place, "brands"), true);
 });
+
+
+test("all canonical place categories have explicit round priorities", () => {
+  const contract = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../data/categories/category_contract.json"), "utf8")
+  );
+  const window = createRuntime({ id: "p12", category: "historie" });
+  const priorities = window.HGVisualPlaceRounds.priorities;
+
+  for (const category of contract.runtimeCategories) {
+    assert.ok(Array.isArray(priorities[category]), `missing explicit round priority for ${category}`);
+    assert.equal(priorities[category][0], "badges", `${category} must keep Badges first`);
+    assert.equal(new Set(priorities[category]).size, priorities[category].length, `${category} has duplicate rounds`);
+  }
+});
