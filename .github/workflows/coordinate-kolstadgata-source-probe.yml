@@ -1,0 +1,50 @@
+name: One-time Kolstadgata coordinate source probe
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize Kolstadgata street and address sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/kolstadgata"
+          mkdir -p "$OUT"
+          UA='History-Go coordinate research (Paradispartiet/History-Go)'
+
+          curl --fail --silent --show-error --location --user-agent "$UA" \
+            'https://api.openstreetmap.org/api/0.6/map?bbox=10.7735,59.9120,10.7825,59.9168' \
+            | tee "$OUT/osm-kolstadgata-bbox.xml" >/dev/null
+
+          for n in 1 7 15; do
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get 'https://ws.geonorge.no/adresser/v1/sok' \
+              --data-urlencode "sok=Kolstadgata $n Oslo" --data 'treffPerSide=30' \
+              | tee "$OUT/geonorge-kolstadgata-$n.json" >/dev/null
+          done
+
+          curl --fail --silent --show-error --location --user-agent "$UA" \
+            --get 'https://api.kartverket.no/stedsnavn/v1/sted' \
+            --data-urlencode 'sok=Kolstadgata' --data 'utkoordsys=4258' --data 'treffPerSide=50' --data 'side=1' \
+            | tee "$OUT/kartverket-ssr-kolstadgata.json" >/dev/null
+
+          curl --fail --silent --show-error --location --user-agent "$UA" \
+            --get 'https://nominatim.openstreetmap.org/search' \
+            --data-urlencode 'q=Kolstadgata 15, Oslo, Norway' \
+            --data 'format=jsonv2' --data 'polygon_geojson=1' --data 'extratags=1' --data 'namedetails=1' --data 'limit=20' \
+            | tee "$OUT/nominatim-kolstadgata-15.json" >/dev/null
+
+      - name: Upload raw source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kolstadgata-coordinate-source-probe
+          path: ${{ runner.temp }}/kolstadgata
