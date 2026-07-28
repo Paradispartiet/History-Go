@@ -2,7 +2,6 @@ const assert = require('assert');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
 
 const repo = path.resolve(__dirname, '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
@@ -59,13 +58,5 @@ assert(manifestRow);
 const hash = crypto.createHash('sha256').update(fs.readFileSync(path.join(repo, placePath))).digest('hex');
 assert.strictEqual(manifestRow.sha256, hash);
 
-const runtime = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
-const start = runtime.indexOf('const PLACE_ROUND_REGISTRY = [');
-const end = runtime.indexOf('const PLACE_CARD_QUIZ_CARD_BY_ID', start);
-const sandbox = { window: {}, console: { warn() {} } };
-vm.createContext(sandbox);
-vm.runInContext(runtime.slice(start, end), sandbox);
-const rounds = Array.from(sandbox.window.HGPlaceRounds.get(place), (def) => def.id);
-assert.deepStrictEqual(rounds, ['people', 'works', 'badges', 'før_nå', 'civication', 'brands', 'nature', 'fortellinger', 'leksikon']);
 
 console.log('Nedre Foss rounds batch 1 OK');

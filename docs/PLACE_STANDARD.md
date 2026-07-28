@@ -126,15 +126,7 @@ Denne stedstandarden fastslår bare rollen:
 
 ### Rundinger
 
-Visuelle samlingsinnganger til identifiserbare ting.
-
-Canonical palett:
-
-```text
-Badges · People · Works · Objects · Details · Spots · Nature · Brands
-```
-
-Et ferdig sted viser nøyaktig 4 eller 6. `Badges` er obligatorisk.
+Rundingsmodellen eies **kun** av `data/places/README_place_rounds.md`. Denne filen vedlikeholder ikke egen palett, profil eller antallsregel.
 
 ### På stedet
 
@@ -168,7 +160,7 @@ Det skal kunne vise, når relevant og implementert:
 - navn og kategori;
 - korrekt stedbilde;
 - `desc`;
-- 4 eller 6 rundinger;
+- rundingssett etter canonical rundingskontrakt;
 - På stedet;
 - handlingsknapper;
 - favoritt;
@@ -197,7 +189,7 @@ Detaljreglene eies av `data/places/README_place_rounds.md`.
 
 For ny/revidert stedproduksjon:
 
-- `rounds` = eksplisitt 4/6-kuratering;
+- `rounds` = legacy presentasjonsfelt; rundingsvalg eies av canonical rundingskontrakt;
 - `objects` = nye Object-kort;
 - `details` = nye Detail-kort;
 - `spots` = nye Spot-kort;

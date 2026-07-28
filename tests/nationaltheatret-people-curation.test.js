@@ -5,7 +5,8 @@ const repo = path.resolve(__dirname, '..');
 const readJson = rel => JSON.parse(fs.readFileSync(path.join(repo, rel), 'utf8'));
 const place = readJson('data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json');
 const expectedIds = ['henrik_bull', 'bjorn_bjornson', 'johanne_dybwad'];
-assert.deepStrictEqual(place.people_ids, expectedIds, 'Nationaltheatret must expose exactly the curated People set');
+assert(!Object.prototype.hasOwnProperty.call(place, 'people_ids'), 'Nationaltheatret must not use people_ids to filter the People popup');
+assert(!Object.prototype.hasOwnProperty.call(place, 'rounds'), 'Nationaltheatret must use the canonical fixed round profile, not a local legacy rounds list');
 
 const manifest = readJson('data/people/manifest.json');
 const allPeople = [];
@@ -29,4 +30,4 @@ for (const id of expectedIds) {
   assert(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/.test(person.imageMeta.sourcePage || ''), `${id} must retain the Commons source page`);
   assert.strictEqual(person.imageMeta.reviewStatus, 'manually_approved', `${id} image must be manually approved`);
 }
-console.log('Nationaltheatret curated People set OK');
+console.log('Nationaltheatret People images and unfiltered round contract OK');

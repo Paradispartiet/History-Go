@@ -75,7 +75,7 @@ STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
-MÅL FOR RUNDINGER: 4 / 6
+MÅL FOR RUNDINGER: 4
 VALGTE RUNDINGER:
 PEOPLE-KANDIDATER:
 WORKS-KANDIDATER:
@@ -310,68 +310,16 @@ Alle åtte får status: **ferdig** eller **N/A**.
 
 # DEL D — RUNDINGER
 
-## 8. Velg nøyaktig 4 eller 6 visuelle samlinger
+## 8. Kontroller PlaceCard-rundingene
 
 **LES FØRST — obligatorisk:** `data/places/README_place_rounds.md`
 
-Canonical palett:
+Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **Rundingskontrakten eier hele rundingsmodellen.**
 
-`Badges · People · Works · Objects · Details · Spots · Nature · Brands`
-
-- [ ] `badges` alltid med;
-- [ ] eksplisitt `rounds` har 4 eller 6 unike canonical IDs;
-- [ ] kategoriens prioriteringsmatrise er brukt som guide, ikke tvang;
-- [ ] hver valgt runding har reelt stedsspesifikt innhold;
-- [ ] hver valgt runding har reelt bilde/preview;
-- [ ] ingen tekst-placeholder/fallback-emoji teller som bildeklart;
-- [ ] aldri filler for å nå 4 eller 6;
-- [ ] har stedet bare fire sterke samlinger, velg fire;
-- [ ] fem vises aldri;
-- [ ] Nature velges bare ved ekte stedsspesifikk natur;
-- [ ] Civication er ikke runding;
-- [ ] Wonderkammer er ikke runding;
-- [ ] historiske hendelser/rekorder/mesterskap er kunnskap, ikke Sports-runding.
-
-### People-runding
-Følg People-kontraktene i DEL F.
-
-### Works
-- [ ] selvstendig verkidentitet;
-- [ ] dokumentert stedskobling;
-- [ ] korrekt verkbilde/cover.
-
-### Objects
-- [ ] fysisk identifiserbar ting;
-- [ ] dokumentert stedstilknytning;
-- [ ] konkret bilde av tingen;
-- [ ] artefakt/funn/maskin/kjøretøy/våpen/instrument/drakt/pokal/produkt/dokumentobjekt osv. klassifiseres her når det passer.
-
-### Details
-- [ ] liten fysisk oppdagbar detalj;
-- [ ] eget nærbilde/tydelig bilde;
-- [ ] skilt/symbol/inskripsjon/ornament/spor osv. er faktisk til stede.
-
-### Spots
-- [ ] konkret fysisk delpunkt under hovedstedet;
-- [ ] eget bilde;
-- [ ] ikke opprett nytt globalt Place bare fordi det er et godt Spot.
-
-### Nature
-**LES FØRST når Nature produseres:** `README/nature_mapping_workflow.md`
-
-- [ ] canonical arts-/natur-ID-er;
-- [ ] dokumentert stedskobling/mapping;
-- [ ] arts-/fenomenidentitet kontrollert;
-- [ ] Nature-data og quiz-unlocks holdes i sine respektive eiersystemer.
-
-### Brands
-**Brands betyr fortsatt bare bedrifter og kjente merker med dokumentert stedskobling.**
-
-- [ ] søk eksisterende Brands-data først;
-- [ ] gjenbruk canonical Brand-ID;
-- [ ] korrekt logo/brandbilde;
-- [ ] ikke bruk Brands som restkategori for klubber, institusjoner, personer, skilt eller objekter;
-- [ ] ikke opprett Brand bare for rundinglayout.
+- [ ] stedet følger canonical rundingskontrakt;
+- [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell;
+- [ ] preview brukes ikke som innholdsfilter;
+- [ ] gammel place-spesifikk `rounds`-kuratering brukes ikke som ny standard.
 
 ---
 
@@ -455,7 +403,7 @@ Når historisk rute berøres: **LES FØRST:** `docs/README_HistoryGo_Historiske_
 
 ---
 
-# DEL F — PEOPLE, WORKS, BRANDS OG RELASJONER
+# DEL F — PEOPLE, BRANDS OG RELASJONER
 
 ## 12. People–sted-koblinger
 
@@ -500,20 +448,17 @@ Researchrekkefølge:
 
 ---
 
-## 13. Works og Brands
+## 13. Brands
 
-### Works
-- [ ] søk eksisterende canonical verk først;
-- [ ] dokumenter den konkrete verk–sted-koblingen;
-- [ ] skill verk fra fysisk eksemplar (`works` vs `objects`);
-- [ ] bilde/cover identifisert korrekt.
-
-### Brands
 - [ ] søk eksisterende Brands-data;
 - [ ] gjenbruk eksisterende ID;
 - [ ] dokumenter bedrift-/merke–sted-koblingen;
 - [ ] korrekt logo;
 - [ ] ingen omklassifisering av andre aktørtyper til Brands.
+
+Personverk håndteres i People-profilen etter People-kontrakten, ikke som PlaceCard-runding.
+
+---
 
 ---
 
@@ -673,13 +618,13 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] navn/kategori/hovedbilde/`desc` riktige;
 - [ ] `popupDesc`/popup åpner riktig;
 - [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
-- [ ] nøyaktig 4 eller 6 rundinger;
-- [ ] 4 = 2×2, 6 = 3×2;
+- [ ] rundingssettet følger `data/places/README_place_rounds.md`;
+- [ ] fire rundinger vises som 2×2;
 - [ ] alle valgte rundinger har korrekte bilder;
 - [ ] Badges åpner riktig sted/fagverk;
-- [ ] People/Works/Objects/Details/Spots/Nature/Brands åpner riktig innhold;
+- [ ] de fire canonical rundingene åpner riktig innhold;
 - [ ] Brands viser bare riktige bedrifter/kjente merker;
-- [ ] Nature vises bare når relevant;
+- [ ] natursteder bruker den canonical naturprofilen;
 - [ ] Civication/Wonderkammer vises ikke som canonical runding;
 - [ ] På stedet ligger under rundingene;
 - [ ] visit-knapp/status fungerer;
@@ -784,16 +729,9 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] Mer / N/A.
 
 ### Rundinger
-- [ ] nøyaktig 4 eller 6;
-- [ ] Badges med;
-- [ ] People vurdert;
-- [ ] Works vurdert;
-- [ ] Objects vurdert;
-- [ ] Details vurdert;
-- [ ] Spots vurdert;
-- [ ] Nature vurdert;
-- [ ] Brands vurdert som **bedrifter/kjente merker**;
-- [ ] alle valgte bildeklare.
+- [ ] `data/places/README_place_rounds.md` er fulgt;
+- [ ] stedet viser nøyaktig fire canonical rundinger;
+- [ ] preview og innhold følger rundingskontrakten.
 
 ### På stedet / læring
 - [ ] Events / N/A;

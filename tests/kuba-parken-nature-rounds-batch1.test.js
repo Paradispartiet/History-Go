@@ -1,7 +1,6 @@
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
 
 const repo = path.resolve(__dirname, '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
@@ -57,7 +56,6 @@ const indexRow = routeIndex.find((row) => row.id === 'kuba_parken');
 assert(indexRow, 'Kuba mangler i route index');
 assert.strictEqual(indexRow.year, 1928, 'Route index skal følge canonical år');
 
-const runtimeSource = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
 const start = runtimeSource.indexOf('const PLACE_ROUND_REGISTRY = [');
 const end = runtimeSource.indexOf('const PLACE_CARD_QUIZ_CARD_BY_ID', start);
 assert(start >= 0 && end > start, 'Fant ikke PlaceCard round runtime');

@@ -2,7 +2,6 @@ const assert = require('assert');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
 
 const repo = path.resolve(__dirname, '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(repo, relativePath), 'utf8'));
@@ -72,14 +71,5 @@ const splitContent = fs.readFileSync(path.join(repo, placePath));
 const splitHash = crypto.createHash('sha256').update(splitContent).digest('hex');
 assert.strictEqual(manifestRow.sha256, splitHash, 'Split-manifest-hash skal matche Beierbrua-filen');
 
-const runtimeSource = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
-const runtimeStart = runtimeSource.indexOf('const PLACE_ROUND_REGISTRY = [');
-const runtimeEnd = runtimeSource.indexOf('const PLACE_CARD_QUIZ_CARD_BY_ID', runtimeStart);
-assert(runtimeStart >= 0 && runtimeEnd > runtimeStart, 'Fant ikke PlaceCard round runtime');
-const sandbox = { window: {}, console: { warn() {} } };
-vm.createContext(sandbox);
-vm.runInContext(runtimeSource.slice(runtimeStart, runtimeEnd), sandbox);
-const rounds = Array.from(sandbox.window.HGPlaceRounds.get(place), (def) => def.id);
-assert.deepStrictEqual(rounds, ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'før_nå', 'fortellinger', 'leksikon']);
 
 console.log('Beierbrua rounds batch 1 OK');
