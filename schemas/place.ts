@@ -7,22 +7,6 @@ export interface PlaceNatureProfile {
   [key: string]: unknown;
 }
 
-
-export interface PlaceTasksProfileTask {
-  id?: string;
-  title?: string;
-  instruction?: string;
-  why?: string;
-  [key: string]: unknown;
-}
-
-export interface PlaceTasksProfile {
-  title?: string;
-  summary?: string;
-  tasks?: PlaceTasksProfileTask[];
-  [key: string]: unknown;
-}
-
 export interface PlaceTrainingProfileExercise {
   id?: string;
   title?: string;
@@ -105,7 +89,6 @@ export interface Place {
   quiz_profile?: Record<string, unknown>;
   nature_profile?: PlaceNatureProfile;
   for_na?: PlaceForNaProfile;
-  tasks_profile?: PlaceTasksProfile;
   training_profile?: PlaceTrainingProfile;
   relations?: unknown[];
   people?: unknown[];
