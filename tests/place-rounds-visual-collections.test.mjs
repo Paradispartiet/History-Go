@@ -37,6 +37,10 @@ const BASE_LISTS = [
   "pcBrandsList"
 ];
 
+function nodeArray(value) {
+  return Array.from(value || []);
+}
+
 function createRuntime(place, globals = {}) {
   const icons = BASE_ICONS.map(id => `<div id="${id}" class="pc-round" hidden></div>`).join("");
   const lists = BASE_LISTS.map(id => `<div id="${id}"></div>`).join("");
@@ -67,7 +71,7 @@ function createRuntime(place, globals = {}) {
 test("canonical palette is exactly the eight agreed visual rounds", () => {
   const window = createRuntime({ id: "p1", category: "historie" });
   assert.deepEqual(
-    window.HGVisualPlaceRounds.ids,
+    nodeArray(window.HGVisualPlaceRounds.ids),
     ["badges", "people", "works", "objects", "details", "spots", "nature", "brands"]
   );
 });
@@ -98,7 +102,7 @@ test("Civication contributes to Objects only for a visual physical/place-specifi
     }
   });
 
-  const ids = window.HGVisualPlaceRounds.getItems(place, "objects").map(item => item.id);
+  const ids = Array.from(window.HGVisualPlaceRounds.getItems(place, "objects"), item => item.id);
   assert.deepEqual(ids, ["physical"]);
 });
 
@@ -114,7 +118,7 @@ test("automatic selection expands to six only when six strong visual collections
   };
   const window = createRuntime(place);
   assert.deepEqual(
-    window.HGVisualPlaceRounds.get(place),
+    nodeArray(window.HGVisualPlaceRounds.get(place)),
     ["badges", "people", "objects", "spots", "details", "works"]
   );
   assert.equal(window.HGVisualPlaceRounds.readiness(place).complete, true);
@@ -129,7 +133,7 @@ test("automatic selection stays at four when only four strong visual collections
     spots: [{ id: "spot", image: "spot.jpg" }]
   };
   const window = createRuntime(place);
-  assert.deepEqual(window.HGVisualPlaceRounds.get(place), ["badges", "people", "objects", "spots"]);
+  assert.deepEqual(nodeArray(window.HGVisualPlaceRounds.get(place)), ["badges", "people", "objects", "spots"]);
   assert.equal(window.HGVisualPlaceRounds.readiness(place).complete, true);
 });
 
@@ -140,7 +144,7 @@ test("incomplete legacy data keeps the 4-slot design but is explicitly marked no
     people: [{ id: "person", image: "person.jpg" }]
   };
   const window = createRuntime(place);
-  const selected = window.HGVisualPlaceRounds.get(place);
+  const selected = nodeArray(window.HGVisualPlaceRounds.get(place));
   const readiness = window.HGVisualPlaceRounds.readiness(place);
 
   assert.equal(selected.length, 4);
@@ -156,7 +160,7 @@ test("a valid explicit six-round set is preserved and Badges is mandatory", () =
     rounds: ["badges", "works", "people", "details", "spots", "objects"]
   };
   const window = createRuntime(place);
-  assert.deepEqual(window.HGVisualPlaceRounds.get(place), place.rounds);
+  assert.deepEqual(nodeArray(window.HGVisualPlaceRounds.get(place)), place.rounds);
 
   const invalid = {
     id: "p8",
@@ -165,7 +169,7 @@ test("a valid explicit six-round set is preserved and Badges is mandatory", () =
   };
   window.PLACES = [invalid];
   window.document.getElementById("placeCard").dataset.currentPlaceId = invalid.id;
-  assert.ok(window.HGVisualPlaceRounds.get(invalid).includes("badges"));
+  assert.ok(nodeArray(window.HGVisualPlaceRounds.get(invalid)).includes("badges"));
 });
 
 test("4-round and 6-round layouts are true 2x2 and 3x2 grids", () => {
