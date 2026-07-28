@@ -5,12 +5,25 @@ on:
     paths:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
+      - "js/ui/nature-place-map.js"
+      - "js/ui/place-card.js"
+      - "js/ui/popup-utils.js"
       - "css/place-rounds-fill-layout.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/nature-place-map.test.mjs"
+      - "tests/place-card-rounds-runtime-audit.test.js"
+      - "tests/place-people-ids-runtime.test.js"
+      - "tests/nationaltheatret-people-curation.test.js"
       - "data/places/README_place_rounds.md"
+      - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+      - "docs/PLACE_PRODUCTION_CHECKLIST.md"
+      - "docs/PLACE_STANDARD.md"
+      - "docs/PLACE_POPUP_SYSTEM.md"
+      - "docs/DATA_PRODUCTION_CONTRACT.md"
+      - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
   push:
@@ -18,21 +31,129 @@ on:
     paths:
       - "js/ui/place-rounds-visual-collections.js"
       - "js/ui/place-rounds-fill-layout.js"
+      - "js/ui/nature-place-map.js"
+      - "js/ui/place-card.js"
+      - "js/ui/popup-utils.js"
       - "css/place-rounds-fill-layout.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/nature-place-map.test.mjs"
+      - "tests/place-card-rounds-runtime-audit.test.js"
+      - "tests/place-people-ids-runtime.test.js"
+      - "tests/nationaltheatret-people-curation.test.js"
       - "data/places/README_place_rounds.md"
+      - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+      - "docs/PLACE_PRODUCTION_CHECKLIST.md"
+      - "docs/PLACE_STANDARD.md"
+      - "docs/PLACE_POPUP_SYSTEM.md"
+      - "docs/DATA_PRODUCTION_CONTRACT.md"
+      - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  # BEGIN ONE-SHOT LEGACY ROUND CLEANUP
+  cleanup-legacy-round-registry:
+    if: github.event_name == 'pull_request' && github.head_ref == 'agent/place-rounds-canonical-four-cleanup'
+    name: Remove legacy PlaceCard round registry
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/place-rounds-canonical-four-cleanup
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Remove duplicate legacy registry
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('js/ui/place-card.js')
+          text = path.read_text()
+          start_marker = '// ============================================================\n// PLACE ROUNDS — kategori-profiler med manuelle overstyringer'
+          end_marker = 'window.getPlaceRounds = getPlaceRounds;'
+          start = text.find(start_marker)
+          end = text.find(end_marker, start)
+          if start < 0 or end < 0:
+              raise SystemExit('legacy round registry sentinels not found')
+          end += len(end_marker)
+          replacement = '''// ============================================================
+// PLACE ROUNDS — compatibility bridge only
+// ------------------------------------------------------------
+// Canonical round identity and presentation are owned only by
+// data/places/README_place_rounds.md and
+// js/ui/place-rounds-visual-collections.js.
+// Do not add another registry, palette, category matrix or count here.
+// ============================================================
+function getPlaceRounds(place) {
+  const api = window.HGVisualPlaceRounds;
+  if (!api || typeof api.get !== "function") return [];
+  const byId = new Map((api.registry || []).map(def => [def.id, def]));
+  return api.get(place).map(id => byId.get(id)).filter(Boolean);
+}
+
+function applyPlaceRounds(place) {
+  window.HGVisualPlaceRounds?.apply?.(place);
+}
+
+window.HGPlaceRounds = {
+  get: getPlaceRounds,
+  apply: applyPlaceRounds,
+  canonicalOwner: "data/places/README_place_rounds.md"
+};
+window.getPlaceRounds = getPlaceRounds;'''
+          path.write_text(text[:start] + replacement + text[end:])
+          PY
+
+      - name: Remove this one-shot job but keep permanent governance
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('.github/workflows/place-rounds-governance.yml')
+          text = path.read_text()
+          text = text.replace('permissions:\n  contents: write', 'permissions:\n  contents: read', 1)
+          start = text.index('  # BEGIN ONE-SHOT LEGACY ROUND CLEANUP\n')
+          end = text.index('  # END ONE-SHOT LEGACY ROUND CLEANUP\n', start) + len('  # END ONE-SHOT LEGACY ROUND CLEANUP\n')
+          text = text.replace("    if: github.head_ref != 'agent/place-rounds-canonical-four-cleanup' || github.event_name != 'pull_request'\n", "", 1)
+          path.write_text(text[:start] + text[end:])
+          PY
+
+      - name: Verify canonical round and nature-map contract
+        run: |
+          node --check js/ui/place-card.js
+          node --check js/ui/nature-place-map.js
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-place-map.test.mjs
+          node tests/place-card-rounds-runtime-audit.test.js
+
+      - name: Commit clean final state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/ui/place-card.js .github/workflows/place-rounds-governance.yml
+          git commit -m "Remove legacy PlaceCard round registry"
+          git push origin HEAD:agent/place-rounds-canonical-four-cleanup
+  # END ONE-SHOT LEGACY ROUND CLEANUP
+
   visual-rounds:
+    if: github.head_ref != 'agent/place-rounds-canonical-four-cleanup' || github.event_name != 'pull_request'
     name: Visual round contract
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -49,5 +170,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test 4/6 visual round contract
-        run: node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
+      - name: Test canonical four-round contract
+        run: |
+          node --check js/ui/nature-place-map.js
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-place-map.test.mjs
+          node tests/place-card-rounds-runtime-audit.test.js
+          node tests/place-people-ids-runtime.test.js
+          node tests/nationaltheatret-people-curation.test.js
