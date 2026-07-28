@@ -31,6 +31,12 @@ jobs:
           start = source.index(marker) + len(marker)
           end = source.index('\n          NODE', start)
           body = '\n'.join(line[10:] if line.startswith('          ') else line for line in source[start:end].splitlines())
+          outer = "const auditScript = `"
+          tail = "`;\nfs.writeFileSync('scripts/audit-fagverk-natur-pilot.mjs'"
+          audit_start = body.index(outer) + len(outer)
+          audit_end = body.index(tail, audit_start)
+          escaped = body[audit_start:audit_end].replace('`', '\\`')
+          body = body[:audit_start] + escaped + body[audit_end:]
           pathlib.Path('/tmp/fagverk-natur-pilot.cjs').write_text(body, encoding='utf-8')
           PY
           node /tmp/fagverk-natur-pilot.cjs
