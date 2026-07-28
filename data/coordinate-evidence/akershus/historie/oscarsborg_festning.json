@@ -2,121 +2,251 @@
   "schemaVersion": "1.0",
   "placeId": "oscarsborg_festning",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/oscarsborg_festning.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_core_geometry_and_multi_anchor_policy",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_hovedfortet_core_with_hovedbatteriet_and_torpedobatteriet_secondary_anchors",
   "currentCoordinate": {
+    "lat": 59.67346966441094,
+    "lon": 10.607055536295166,
+    "r": 520,
+    "locatorType": "historic_site",
+    "sourceProvider": "manual_research",
+    "geocodeAccuracy": "geometric_center",
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Lovdata inventory 1 – Hovedfortet; Forsvarsbygg landsverneplan; OpenStreetMap relation 972050 – Hovedfortet; Riksantikvaren protection scope",
+    "coordType": "historic_main_fort_multipolygon_centroid",
+    "coordRole": "historical_anchor",
+    "sourceObjectId": "lovdata:oscarsborg-inventory-1;osm-relation:972050",
+    "coordNote": "The canonical point is the deterministic multipolygon centroid of Hovedfortet on Søndre Kaholmen. Hovedbatteriet and the protected Torpedobatteriet on Nordre Kaholmen are retained as explicit secondary historical anchors inside the enlarged 520-metre gameplay radius."
+  },
+  "previousCoordinate": {
     "lat": 59.676,
     "lon": 10.606,
     "r": 360,
     "coordStatus": "needs_manual_map_check",
     "coordSource": "source_audit_pending_raw_core_geometry",
     "coordType": "historic_fortress_core_area",
-    "coordNote": "Legacy point retained as a plausible Kaholmene core-area marker until raw central geometry and a multi-anchor policy are available."
+    "distanceToAppliedCoordinateM": 287.5,
+    "reasonReplaced": "The rounded legacy point was plausible for the space between the Kaholmene but had no stable source identity or deterministic derivation. Raw geometry now supports Hovedfortet as the central historic and visitor-core anchor."
   },
   "identity": {
     "currentName": "Oscarsborg festning",
-    "resolvedIdentity": "The dispersed historic fortress destination in Drøbaksundet, with a public visitor core on the Kaholmene and several related historic components.",
+    "resolvedIdentity": "The dispersed historic fortress system in Drøbaksundet, represented canonically by Hovedfortet on Søndre Kaholmen with Hovedbatteriet and Torpedobatteriet as secondary anchors for the decisive island-core functions.",
     "identityStatus": "resolved",
-    "identityProblem": "The name can refer to the visitor core, both Kaholmene or a much wider protected historic landscape. These scopes cannot be represented honestly by one unqualified point.",
+    "identityProblem": "Oscarsborg spans more than one hundred protected objects across the Kaholmene, other islands and mainland positions. A single legal-area centroid would misrepresent the destination, while one generic point cannot express the decisive 9 April functions.",
     "locatorTypeCandidate": "historic_site",
     "requiresSplit": false,
-    "splitReason": "The record may remain one destination if a central core marker and documented secondary anchors are used. Distant components may later justify separate canonical records."
+    "splitReason": "The Kaholmene visitor core can remain one canonical destination through a main Hovedfortet marker and role-specific secondary anchors. Remote mainland batteries such as Seiersten are already separate or remain contextual candidates."
   },
   "requiredEvidence": [
-    "raw authoritative or named geometry for the public visitor core",
-    "deterministic point derivation for the central historic area",
-    "raw geometry for the most important secondary components",
-    "explicit policy distinguishing the visitor-core marker from the complete protected landscape",
-    "radius and secondary-anchor justification",
-    "visual QA before any candidate is promoted"
+    "official legal identity for Hovedfortet",
+    "official fortress scope and Kaholmene core hierarchy",
+    "materialized Hovedfortet multipolygon geometry",
+    "deterministic multipolygon centroid derivation",
+    "materialized Hovedbatteriet geometry",
+    "official Torpedobatteriet inventory identity",
+    "physical Torpedobatteriet cluster cross-check without invented underground polygon",
+    "explicit rejection of generic fortress points as canonical",
+    "explicit separation of remote mainland batteries",
+    "radius and access limitations"
   ],
   "evidence": [
     {
-      "sourceProvider": "forsvarsbygg",
-      "sourceName": "Forsvarsbygg – Oscarsborg festning",
-      "sourceUrl": "https://www.forsvarsbygg.no/no/festningene/finn-din-festning/oscarsborg-festning/",
-      "sourceObjectId": "forsvarsbygg:oscarsborg-festning",
-      "sourceQuality": "official_destination_identity_and_history",
-      "finding": "The official page identifies Oscarsborg as the public fortress destination in Drøbaksundet and documents its national historical significance.",
-      "canVerifyCoordinate": false,
-      "reason": "No reusable representation point or visitor-core geometry is exposed in the captured material."
+      "sourceProvider": "manual_research",
+      "sourceName": "Lovdata – protection regulation for Oscarsborg Fortress",
+      "sourceUrl": "https://lovdata.no/forskrift/2014-04-09-1986",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1",
+      "sourceQuality": "official_legal_hovedfort_identity_and_scope",
+      "finding": "The regulation identifies inventory 1 as Hovedfortet with the coastal-fort sections, built 1849–1856, and protects all parts of the fort exterior and interior on gnr./bnr. 75/1.",
+      "canVerifyCoordinate": true,
+      "reason": "Defines the protected historical object represented by the canonical OSM geometry."
     },
     {
-      "sourceProvider": "forsvarsbygg",
+      "sourceProvider": "manual_research",
       "sourceName": "Forsvarsbygg – landsverneplan for Oscarsborg",
       "sourceUrl": "https://www.forsvarsbygg.no/no/verneplaner/landsverneplan-for-forsvaret/ostlandet/oscarsborg-festning/",
       "sourceObjectId": "forsvarsbygg-landsverneplan:oscarsborg",
-      "sourceQuality": "official_component_and_spatial_scope",
-      "finding": "The official establishment spans several islands and mainland positions, while the central visitor and historic elements are concentrated on the Kaholmene.",
+      "sourceQuality": "official_core_hierarchy_and_spatial_scope",
+      "finding": "Forsvarsbygg describes Søndre Kaholmen as containing the central and oldest parts of Oscarsborg, with Hovedfortet and Hovedbatteriet, while Nordre Kaholmen contains the Torpedobatteriet and other installations.",
       "canVerifyCoordinate": false,
-      "reason": "Establishes the need for a core marker plus secondary anchors."
+      "reason": "Supports Hovedfortet as the central canonical anchor and the multi-anchor island model."
     },
     {
-      "sourceProvider": "riksantikvaren",
-      "sourceName": "Riksantikvaren – fredning av Oscarsborg festning",
-      "sourceUrl": "https://riksantikvaren.no/fredning/oscarsborg-festning/",
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 972050 – Hovedfortet",
+      "sourceUrl": "https://www.openstreetmap.org/relation/972050",
+      "sourceObjectId": "osm-relation:972050",
+      "sourceQuality": "named_historic_fort_multipolygon_geometry",
+      "finding": "Relation 972050 is named Hovedfortet and tagged building=yes, historic=fort, tourism=attraction and type=multipolygon. Materialized outer and inner rings yield centroid 59.67346966441094, 10.607055536295166.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides the stable named physical geometry and deterministic point derivation required by the prior source audit."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 528047559 – Hovedbatteriet",
+      "sourceUrl": "https://www.openstreetmap.org/way/528047559",
+      "sourceObjectId": "osm-way:528047559",
+      "sourceQuality": "named_main_battery_bunker_geometry",
+      "finding": "The named Hovedbatteriet bunker polygon has centroid 59.67263765222266, 10.607828593105598, approximately 102.2 metres from Hovedfortet.",
+      "canVerifyCoordinate": false,
+      "reason": "Secondary 9 April artillery anchor; it does not replace the complete fortress-core marker."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lovdata – Oscarsborg inventory 1018 Torpedobatteri",
+      "sourceUrl": "https://lovdata.no/forskrift/2014-04-09-1986",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1018",
+      "sourceQuality": "official_legal_torpedo_battery_identity",
+      "finding": "The regulation identifies inventory 1018 as Torpedobatteri, built 1898–1901, with exterior and interior protected on gnr./bnr. 75/1.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the protected underground secondary component without implying an unsupported surface polygon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Materialized Torpedobatteriet OSM cluster",
+      "sourceUrl": "https://www.openstreetmap.org/node/582909472",
+      "sourceObjectId": "osm-node:582909472;osm-nodes:6633288112,13369113787,13369113788,13369113789;osm-ways:541843919,705954825,705954824,705954826,932328347",
+      "sourceQuality": "named_semantic_point_with_physical_underground_cluster_cross_check",
+      "finding": "The named Torpedobatteriet memorial point at 59.6777982, 10.6077141 lies inside a physical cluster containing a 1901 steel door, underground service tunnel, three torpedo-battery sight towers, the Torpedobatteriverkstedet, a bunker and a bunker described as storage for torpedo warheads.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports a semantic secondary anchor for protected inventory 1018 while explicitly avoiding invented underground geometry."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren – Oscarsborg festning fredet",
+      "sourceUrl": "https://www.riksantikvaren.no/fredninger/oscarsborg-festning-fredet/",
       "sourceObjectId": "riksantikvaren:oscarsborg-festning-fredning",
-      "sourceQuality": "official_legal_protection_scope",
-      "finding": "The protected historic landscape contains more than one hundred objects across islands and mainland areas.",
+      "sourceQuality": "official_legal_landscape_scope_control",
+      "finding": "The protection covers more than one hundred objects across Nordre and Søndre Kaholmen, Jetéen, Nesset, Bergholmen, Husvik, Kopås, Seiersten, Kringerud, Heer and selected Håøya installations.",
       "canVerifyCoordinate": false,
-      "reason": "The legal scope is too broad to use as one gameplay marker or radius."
+      "reason": "Demonstrates why neither the 520-metre gameplay circle nor one area centroid can represent the complete legal fortress landscape."
     },
     {
-      "sourceProvider": "osm_discovery",
-      "sourceName": "Named Oscarsborg point and component candidates",
+      "sourceProvider": "osm",
+      "sourceName": "Generic Oscarsborg named points",
       "sourceUrl": "https://www.openstreetmap.org/",
-      "sourceObjectId": "osm-nodes:6463615980,582909475;osm-ways:528047559,540187471,156619353,513833331,520242521",
-      "sourceQuality": "discovery_candidates_without_raw_capture",
-      "finding": "Two generic named points and several named component objects were discovered. They support a multi-anchor model but do not define the central destination marker.",
+      "sourceObjectId": "osm-nodes:6463615980,582909475",
+      "sourceQuality": "same_name_points_without_required_geometry_role",
+      "finding": "The two generic same-name points lie near Hovedfortet but do not provide the deterministic geometry or explicit object role now available from relation 972050.",
       "canVerifyCoordinate": false,
-      "reason": "Raw source data, deterministic geometry and role-specific derivations are missing."
+      "reason": "Rejected as canonical in favor of the named Hovedfortet multipolygon."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Kopåsbatteriet remote context",
+      "sourceUrl": "https://www.openstreetmap.org/way/520242521",
+      "sourceObjectId": "osm-way:520242521",
+      "sourceQuality": "remote_mainland_battery_context",
+      "finding": "Kopåsbatteriet is approximately 920 metres from Hovedfortet and lies outside the 520-metre Kaholmene core radius.",
+      "canVerifyCoordinate": false,
+      "reason": "Important 9 April context, but geographically separate from the canonical island-core circle."
     },
     {
       "sourceProvider": "legacy_dataset",
       "sourceName": "Legacy Oscarsborg festning point",
       "sourceUrl": "",
       "sourceObjectId": "legacy:oscarsborg_festning",
-      "sourceQuality": "plausible_uncontracted_core_area_point",
-      "finding": "The legacy point appears spatially plausible for the Kaholmene visitor core but has no stable source identity or derivation.",
+      "sourceQuality": "rounded_uncontracted_inter_island_core_point",
+      "finding": "The legacy coordinate 59.676, 10.606 is approximately 287.5 metres north-west of the Hovedfortet centroid and had no stable source identity or deterministic derivation.",
       "canVerifyCoordinate": false,
-      "reason": "Retain temporarily; plausibility alone cannot promote it to verified."
+      "reason": "Replaced now that the required raw core geometry and multi-anchor policy are available."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "osm_discovery",
-      "sourceObjectId": "osm-nodes:6463615980,582909475",
-      "canApplyToPlace": false,
-      "rejectionReason": "Generic named points with unresolved physical roles."
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1;osm-relation:972050",
+      "canApplyToPlace": true,
+      "applied": true
     },
     {
-      "sourceProvider": "osm_discovery",
+      "sourceProvider": "osm",
       "sourceObjectId": "osm-way:528047559",
       "canApplyToPlace": false,
-      "rejectionReason": "Important secondary component, not the complete destination."
+      "rejectionReason": "Hovedbatteriet is a decisive secondary component but narrower than the full island-core destination."
     },
     {
-      "sourceProvider": "osm_discovery",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1018;osm-node:582909472",
+      "canApplyToPlace": false,
+      "rejectionReason": "Torpedobatteriet is a decisive secondary component on Nordre Kaholmen, not the canonical center of the whole fortress destination."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-nodes:6463615980,582909475",
+      "canApplyToPlace": false,
+      "rejectionReason": "Generic named points superseded by the deterministic Hovedfortet geometry."
+    },
+    {
+      "sourceProvider": "osm",
       "sourceObjectId": "osm-way:520242521",
       "canApplyToPlace": false,
-      "rejectionReason": "Distant mainland component outside the island-core radius."
+      "rejectionReason": "Remote mainland battery approximately 920 metres from Hovedfortet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:oscarsborg_festning",
+      "canApplyToPlace": false,
+      "rejectionReason": "Rounded point with no stable source identity or derivation."
     }
   ],
   "geometryCandidates": [
     {
-      "sourceProvider": "osm_discovery",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:972050",
+      "geometryType": "MultiPolygon",
+      "geometryRole": "protected_hovedfort_canonical_geometry",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
       "sourceObjectId": "osm-way:528047559",
       "geometryType": "Polygon",
-      "geometryRole": "secondary_anchor_candidate",
+      "geometryRole": "hovedbatteriet_secondary_anchor_geometry",
       "canApplyToPlace": false
     },
     {
-      "sourceProvider": "osm_discovery",
-      "sourceObjectId": "osm-way:520242521",
-      "geometryType": "Polygon",
-      "geometryRole": "remote_context_or_separate_place_candidate",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1018",
+      "geometryType": "underground_protected_object_without_exact_surface_polygon",
+      "geometryRole": "torpedobatteriet_secondary_semantic_anchor",
       "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "oscarsborg_hovedfortet",
+      "name": "Hovedfortet – Søndre Kaholmen",
+      "lat": 59.67346966441094,
+      "lon": 10.607055536295166,
+      "r": 150,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1;osm-relation:972050",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "oscarsborg_hovedbatteriet",
+      "name": "Hovedbatteriet – 9 April artillery anchor",
+      "lat": 59.67263765222266,
+      "lon": 10.607828593105598,
+      "r": 100,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "osm-way:528047559;forsvarsbygg:oscarsborg-hovedbatteriet",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "oscarsborg_torpedobatteriet",
+      "name": "Torpedobatteriet – Nordre Kaholmen",
+      "lat": 59.6777982,
+      "lon": 10.6077141,
+      "r": 110,
+      "type": "historical_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1018;osm-node:582909472",
+      "canApplyToPlace": true
     }
   ],
   "coordinateCandidates": [
@@ -125,47 +255,88 @@
       "sourceObjectId": "legacy:oscarsborg_festning",
       "lat": 59.676,
       "lon": 10.606,
-      "coordRole": "unverified_core_area_point",
+      "coordRole": "rounded_uncontracted_inter_island_core_point",
+      "distanceFromAppliedM": 287.5,
       "canApplyToPlace": false
     },
     {
-      "sourceProvider": "osm_discovery",
-      "sourceObjectId": "osm-node:6463615980",
-      "lat": 59.67353,
-      "lon": 10.60708,
-      "coordRole": "generic_named_point_candidate",
-      "distanceFromCurrentM": 281.3,
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1;osm-relation:972050",
+      "lat": 59.67346966441094,
+      "lon": 10.607055536295166,
+      "coordRole": "historical_anchor",
+      "distanceFromPreviousM": 287.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:528047559",
+      "lat": 59.67263765222266,
+      "lon": 10.607828593105598,
+      "coordRole": "hovedbatteriet_secondary_historical_anchor",
+      "distanceFromAppliedM": 102.2,
       "canApplyToPlace": false
     },
     {
-      "sourceProvider": "osm_discovery",
-      "sourceObjectId": "osm-node:582909475",
-      "lat": 59.67346,
-      "lon": 10.60716,
-      "coordRole": "generic_named_point_candidate",
-      "distanceFromCurrentM": 289.8,
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:oscarsborg-inventory-1018;osm-node:582909472",
+      "lat": 59.6777982,
+      "lon": 10.6077141,
+      "coordRole": "torpedobatteriet_secondary_historical_anchor",
+      "distanceFromAppliedM": 482.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:520242521",
+      "lat": 59.67235,
+      "lon": 10.62329,
+      "coordRole": "remote_kopas_battery_context",
+      "distanceFromAppliedM": 920.0,
       "canApplyToPlace": false
     }
   ],
   "rawEvidence": [
     {
       "path": "reports/akershus-coordinate-oscarsborg-source-probe/official-source-summary.json",
-      "description": "Persisted official identity, spatial-scope and legal-scope findings."
+      "description": "Persisted official identity, spatial-scope and legal-scope findings from the pre-production audit."
     },
     {
       "path": "reports/akershus-coordinate-oscarsborg-source-probe/osm-candidate-summary.json",
-      "description": "Persisted OSM-derived discovery candidates and explicit source limitations; not raw geometry."
+      "description": "Persisted discovery candidates from the pre-materialization audit; superseded for canonical selection by the 2026-07-28 geometry materialization."
+    },
+    {
+      "path": "reports/akershus-coordinate-oscarsborg-source-probe/source-materialization-summary.json",
+      "description": "Actions-artifact digest, deterministic Hovedfortet and Hovedbatteriet derivations, Torpedobatteriet physical cluster and radius decision."
+    },
+    {
+      "path": "reports/akershus-coordinate-oscarsborg-source-probe/osm-relation-972050-hovedfortet-geometry.json",
+      "description": "Materialized Hovedfortet multipolygon rings and deterministic centroid derived from the raw OSM artifact."
+    },
+    {
+      "path": "reports/akershus-coordinate-oscarsborg-source-probe/osm-way-528047559-hovedbatteriet-full.xml",
+      "description": "Raw OpenStreetMap full geometry for the named Hovedbatteriet bunker way."
+    },
+    {
+      "path": "reports/akershus-coordinate-oscarsborg-source-probe/torpedobatteriet-materialized-cluster.json",
+      "description": "Protected inventory 1018 identity and materialized surface/underground cross-check cluster for the Torpedobatteriet secondary anchor."
     }
   ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "The destination scope is resolved, but raw visitor-core geometry and exact secondary-component geometry have not yet been captured.",
-    "nextAction": "Capture raw central-area geometry and the relevant secondary-component objects. Then retain or replace the legacy core point using a documented derivation and add secondary anchors without forcing distant components into the island radius."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "coordinateChangedInThisPass": true,
+    "radiusChangedInThisPass": true,
+    "previousRadiusM": 360,
+    "appliedRadiusM": 520,
+    "nextAction": "Applied Hovedfortet as the canonical historical anchor, retained Hovedbatteriet and Torpedobatteriet as secondary anchors, and excluded remote mainland batteries from the Kaholmene core radius. Continue with trandumskogen."
   },
   "notes": [
-    "Canonical coordinates and radius are unchanged, but canonical now exposes needs_manual_map_check metadata.",
-    "No generic named point is promoted merely because it contains the fortress name.",
-    "The protected legal landscape is too broad to use as a single marker or gameplay circle.",
-    "Photo geotags and map-preview points must not be used as production geometry."
+    "The canonical point moves approximately 287.5 metres from the rounded legacy point to Hovedfortet.",
+    "The radius increases to 520 metres because Hovedbatteriet is 102.2 metres and Torpedobatteriet is 482.7 metres from Hovedfortet.",
+    "The 520-metre circle is a gameplay representation of the key Kaholmene core, not the legal protected landscape.",
+    "No exact underground polygon is invented for the Torpedobatteriet.",
+    "Kopås, Seiersten, Heer, Nesset, Håøya and other remote components remain outside the canonical island-core circle."
   ]
 }
