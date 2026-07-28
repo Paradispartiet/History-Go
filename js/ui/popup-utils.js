@@ -335,6 +335,22 @@ function getPeopleForPlace(placeId) {
     .map(p => /** @type {readonly [any, any]} */ ([_s(p?.id), p]))
     .filter(([id]) => id);
   const peopleById = new Map(peopleEntries);
+
+  const placesArr = Array.isArray(window.PLACES)
+    ? window.PLACES
+    : (typeof PLACES !== "undefined" && Array.isArray(PLACES) ? PLACES : []);
+  const place = placesArr.find(item => _s(item?.id) === pid);
+
+  // Canonical explicit curation wins when the field exists, including [].
+  if (place && Array.isArray(place.people_ids)) {
+    const curatedSeen = new Set();
+    return place.people_ids
+      .map(_s)
+      .filter(id => id && !curatedSeen.has(id) && curatedSeen.add(id))
+      .map(id => peopleById.get(id))
+      .filter(Boolean);
+  }
+
   const seen = new Set();
   const out = [];
 
