@@ -68,8 +68,22 @@ permissions:
   contents: read
 
 jobs:
+  documentation-contract:
+    name: Validate canonical fagverk documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax check documentation contract test
+        run: node --check tests/fagverk-documentation-contract.test.mjs
+      - name: Validate documentation ownership and subject baseline
+        run: node --test --test-reporter=spec tests/fagverk-documentation-contract.test.mjs
+
   validate:
     name: Validate canonical subjects, textbook, category design, images and links
+    needs: documentation-contract
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -94,10 +108,8 @@ jobs:
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
           node --check scripts/audit-place-images.mjs
-          node --check tests/fagverk-documentation-contract.test.mjs
-      - name: Validate canonical subjects, documentation, textbook data, category design, links and place integration
+      - name: Validate canonical subjects, textbook data, category design, links and place integration
         run: |
-          node --test tests/fagverk-documentation-contract.test.mjs
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-content.test.mjs
           node --test tests/fagverk-portal.test.mjs
