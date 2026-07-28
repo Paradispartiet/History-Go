@@ -1,10 +1,11 @@
 # Fagverkets stedssider – kategoridesign og bildekontrakt
 
-Status: canonical v1  
+Status: canonical v1.1  
 Data: `data/fagverk/category_place_design.json`  
 Runtime: `js/fagverk-place-theme.js`  
 Design: `css/fagverk-place-category-themes.css`  
-Audit: `scripts/audit-place-images.mjs`
+Audit: `scripts/audit-place-images.mjs`  
+Materialisert status: `data/places/place_image_backlog_summary.json`
 
 ## Grunnregel
 
@@ -19,13 +20,13 @@ Alle fagverksider for steder bruker den samme semantiske grunnstrukturen. Katego
 
 Dette gir særpreg uten å bryte navigasjon, tilgjengelighet, lenker eller datamodell.
 
-## Canonicale kategorier
+## Designprofiler og aliaser
 
-Kontrakten dekker:
+Kontrakten har egne profiler for:
 
-`by`, `historie`, `kunst`, `litteratur`, `musikk`, `naeringsliv`, `natur`, `politikk`, `popkultur`, `psykologi`, `sport`, `subkultur` og `vitenskap`.
+`by`, `historie`, `kunst`, `scenekunst`, `litteratur`, `musikk`, `naeringsliv`, `natur`, `politikk`, `popkultur`, `psykologi`, `religion`, `sport`, `subkultur` og `vitenskap`.
 
-Eksplisitte aliaser kan peke eldre ID-er til canonical kategori. Nye aliaser skal aldri opprettes implisitt i runtime.
+Legacy-ID-ene `media`, `film_tv`, `film` og `populaerkultur` bruker den eksplisitte profilen `popkultur`. Nye aliaser skal aldri opprettes implisitt i runtime.
 
 ## Eksempler på forskjeller
 
@@ -33,6 +34,8 @@ Eksplisitte aliaser kan peke eldre ID-er til canonical kategori. Nye aliaser ska
 - **Natur** bruker grønt og jordtoner, sann fargegjengivelse og prioriterer naturtype, arter, sesong og forvaltning.
 - **Politikk** bruker fiolett og gull, institusjonell typografi og prioriterer makt, beslutning, offentlighet og rett.
 - **Musikk** bruker sceneorientert displaytypografi, rosa/blå aksent og prioriterer scene, lyd, produksjon og publikum.
+- **Scenekunst** prioriterer scene, rom, framføring, institusjon og publikum.
+- **Religion og livssyn** prioriterer sted, ritual, fellesskap, arkitektur og mangfold.
 - **Næringsliv** bruker industriell typografi, oransje/stål og prioriterer produksjon, arbeid, eierskap og infrastruktur.
 - **Subkultur** bruker gateorientert displaytypografi og dokumentariske nærbilder av reelle møtesteder, skilt og rom.
 
@@ -57,12 +60,28 @@ Logo, bokomslag, filmplakat, artistportrett, politikerportrett, artsportrett ell
 
 Mål for nye bilder er landskapsformat, helst 16:9 eller 4:3 og omtrent 1200 piksler eller mer i bredde. Dette er et kvalitetsmål, ikke en grunn til å avvise et ellers viktig og lovlig dokumentasjonsbilde.
 
+## Målt utgangspunkt 28. juli 2026
+
+Full-repo-auditen fant:
+
+- 1431 aktive steder;
+- 51 gyldige lokale bildepekere;
+- 0 eksterne bildepekere;
+- 1343 steder uten bildefelt;
+- 37 steder med lokal bildepeker til en fil som ikke finnes;
+- 1380 steder som gjenstår før full bildeport kan slås på.
+
+Dette er materialisert i `data/places/place_image_backlog_summary.json`. Summaryen verifiseres mot en ny full audit i CI og kan derfor ikke bli stående med gamle tall når bildebatcher merges.
+
 ## Audit og overgang
 
-Auditkommando:
+Full audit og rapport:
 
 ```bash
-node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+node scripts/audit-place-images.mjs \
+  --mode=all \
+  --report=reports/place-image-audit.json \
+  --verify-summary=data/places/place_image_backlog_summary.json
 ```
 
 Den rapporterer:
@@ -71,7 +90,8 @@ Den rapporterer:
 - eksterne gyldige bildepekere;
 - steder uten bilde;
 - ugyldige eller manglende lokale filer;
-- status per kategori.
+- status per kategori;
+- alle place-ID-er som inngår i produksjonskøen.
 
 Hard kontroll for nye og endrede steder:
 
@@ -79,7 +99,15 @@ Hard kontroll for nye og endrede steder:
 node scripts/audit-place-images.mjs --mode=changed
 ```
 
-Et nytt eller endret sted kan ikke merges uten gyldig bilde. Hele eksisterende etterslep ligger i auditrapporten og skal fylles i kontrollerte produksjonsbatcher. Når rapporten når null mangler og null ugyldige, skal full-repo-kontrollen kjøres med `--strict`.
+Et nytt eller endret sted kan ikke merges uten gyldig bilde. Hele eksisterende etterslep skal fylles i kontrollerte produksjonsbatcher. Når rapporten når null mangler og null ugyldige, skal full-repo-kontrollen kjøres med `--strict`.
+
+Prioritert produksjonsrekkefølge:
+
+1. reparer de 37 ugyldige lokale bildepekerne;
+2. fyll politikksteder og steder som allerede har egne fagverksider;
+3. fyll steder med ferdig `popupDesc` men uten bilde;
+4. ta natur og scenekunst som egne kategoribatcher;
+5. fullfør resten etter kilde- og rettighetsgrunnlag.
 
 ## Runtime ved manglende bilde
 
