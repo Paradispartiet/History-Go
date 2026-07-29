@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "profile_historie_sapmi_nordlige_kontaktsoner",
+  "subject_id": "historie",
+  "canonical_subject_version": "v5.8",
+  "status": "active_production_profile",
+  "geography": {
+    "geography_id": "geo_sapmi_nordlige_kontaktsoner",
+    "type": "transregional_contact_zone_profile",
+    "labels": {
+      "nb": "Nordlige Sápmi-kontaktsoner",
+      "en": "Northern Sápmi contact zones"
+    },
+    "present_day_country_codes": [
+      "NO",
+      "SE",
+      "FI",
+      "RU"
+    ],
+    "pilot_place_scope": [
+      "Bjarkøy i Sør-Troms",
+      "Vågar i Lofoten"
+    ],
+    "boundary_model": "Profilen er en analytisk kontaktgeografi, ikke et historisk eller moderne territorialkrav. Pilotcasene ligger i dagens Norge, mens Sápmi og middelalderens handels-, skatte- og mobilitetsrom krysset senere statsgrenser."
+  },
+  "contract": {
+    "universal_subject_contract": "docs/SUBJECT_FILE_CONTRACT.md",
+    "architecture_contract": "docs/SUBJECT_FILE_CONTRACT.md#13-casekrav-profiler-og-evidensregistre",
+    "case_requirements_file": "data/fag/historie/case_requirements_historie_canonical_v1.json",
+    "claims_file": "data/fag/historie/claims_historie_canonical_v1.json",
+    "sources_file": "data/fag/historie/sources_historie_canonical_v1.json",
+    "place_evidence_file": "data/fag/historie/place_evidence_historie_v1.json",
+    "data_production_contract": "docs/DATA_PRODUCTION_CONTRACT.md#historie-profil-og-evidenslag"
+  },
+  "production_coverage": {
+    "total_subject_emner": 230,
+    "emner_with_profile_case_candidates": 5,
+    "emne_link_ratio_percent": 2.2,
+    "cases_total": 2,
+    "claims_total": 6,
+    "sources_total": 3,
+    "evidence_links_total": 6,
+    "verified_cases_total": 2,
+    "minimum_cases_total": 2,
+    "minimum_verified_cases": 2,
+    "minimum_evidence_links": 6,
+    "minimum_mappings": 5,
+    "status": "COMPLETE",
+    "completion_scope": "theory_specific_multi_case_evidence_foundation",
+    "interpretation": "Profilen er komplett for den avgrensede teori-evidensjobben om samiske kontaktsoner. Den er ikke en heldekkende Sápmi-profil og pilotsteder i dagens Norge kan ikke alene representere hele Sápmi."
+  },
+  "cases": [
+    {
+      "case_id": "case_his_bjarkoy_samisk_norron_skatt_og_hovdingnettverk",
+      "label": "Bjarkøy: samisk–norrøn skatt, handel og høvdingnettverk",
+      "geography_id": "geo_sapmi_nordlige_kontaktsoner",
+      "geography_scope": "contact_zone_case",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "bjarkoy_tore_hund"
+      ],
+      "emne_ids": [
+        "em_his_kilder_taushet_blindsoner",
+        "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "em_his_statlig_kapasitet_skatt_infrastruktur"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/sami_contact_zones_medieval_v1.json",
+        "created_at": "2026-07-29"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_sami_contact_zones_medieval_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "sami_or_minority_anchored_sources_with_explicit_literary_and_geographic_limitations"
+      }
+    },
+    {
+      "case_id": "case_his_vagar_samisk_norron_handel_og_kongelig_monopol",
+      "label": "Vågar: samisk–norrøn handel, tørrfisk og kongelig monopol",
+      "geography_id": "geo_sapmi_nordlige_kontaktsoner",
+      "geography_scope": "contact_zone_case",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "vagar_lofoten_storvagan"
+      ],
+      "emne_ids": [
+        "em_his_kilder_taushet_blindsoner",
+        "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "em_his_statlig_kapasitet_skatt_infrastruktur"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/sami_contact_zones_medieval_v1.json",
+        "created_at": "2026-07-29"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_sami_contact_zones_medieval_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "sami_or_minority_anchored_sources_with_explicit_literary_and_geographic_limitations"
+      }
+    }
+  ],
+  "emne_case_mappings": [
+    {
+      "emne_id": "em_his_kilder_taushet_blindsoner",
+      "case_ids": [
+        "case_his_bjarkoy_samisk_norron_skatt_og_hovdingnettverk",
+        "case_his_vagar_samisk_norron_handel_og_kongelig_monopol"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_source_comparison"
+      ]
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+      "case_ids": [
+        "case_his_bjarkoy_samisk_norron_skatt_og_hovdingnettverk",
+        "case_his_vagar_samisk_norron_handel_og_kongelig_monopol"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ]
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+      "case_ids": [
+        "case_his_vagar_samisk_norron_handel_og_kongelig_monopol"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_comparative_scale"
+      ]
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+      "case_ids": [
+        "case_his_bjarkoy_samisk_norron_skatt_og_hovdingnettverk",
+        "case_his_vagar_samisk_norron_handel_og_kongelig_monopol"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale"
+      ]
+    },
+    {
+      "emne_id": "em_his_statlig_kapasitet_skatt_infrastruktur",
+      "case_ids": [
+        "case_his_bjarkoy_samisk_norron_skatt_og_hovdingnettverk",
+        "case_his_vagar_samisk_norron_handel_og_kongelig_monopol"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict"
+      ]
+    }
+  ]
+}

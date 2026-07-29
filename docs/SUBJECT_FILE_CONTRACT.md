@@ -167,3 +167,5 @@ Universelle emner kan definere geografinøytrale `case_requirement_ids`. Kravene
 Konkrete cases skal ligge i geografiske profiler. Claims, kilder og stedsevidens skal ligge i canonical registre med stabile ID-er og referanser til universelle emne-ID-er.
 
 Den operative Historie-kontrakten håndheves av de canonical casekrav-, profil-, claim-, kilde- og stedsevidensregistrene samt de permanente validatorene.
+
+Aktive geografiske profiler skal løses manifest-first fra `data/fag/profiles/manifest.json`. Hver case og evidenskobling skal ha entydig profileier og samsvarende `geography_id`; mappings kan ikke referere til cases som eies av en annen profil.
