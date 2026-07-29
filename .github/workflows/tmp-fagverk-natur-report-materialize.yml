@@ -1,0 +1,39 @@
+name: TMP materialize Nature Fagverk reports
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/tmp-fagverk-natur-report-materialize.yml'
+      - 'data/fagverk/**'
+      - 'data/fag/natur/**'
+      - 'scripts/audit-fagverk-*.mjs'
+      - 'js/fagverk-subject-core.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Regenerate deterministic reports
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-natur-pilot.mjs --write-report
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-natur-pilot.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fagverk-natur-generated-reports
+          path: |
+            reports/fagverk/subject-baseline.json
+            reports/fagverk/general-engine-audit.json
+            reports/fagverk/natur-pilot-audit.json
+          if-no-files-found: error
