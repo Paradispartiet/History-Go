@@ -1,0 +1,26 @@
+{
+  "schema": "history_go_politikk_thinker_integrity_audit_v1",
+  "version": "1.0.0",
+  "status": "passed",
+  "generatedFrom": {
+    "registry": "data/fag/politikk/politikk_thinker_names.json",
+    "emner": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+    "fagkart": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+    "mappings": "data/fag/politikk/emnemapping_politikk_canonical_v4_5.json",
+    "report": "reports/fagverk/politikk-thinker-integrity-audit.json"
+  },
+  "summary": {
+    "registryCount": 107,
+    "usedThinkerCount": 107,
+    "verifiedPairCount": 2198,
+    "emneCount": 123,
+    "mappingRowCount": 123
+  },
+  "gates": {
+    "everyThinkerIdHasCanonicalName": true,
+    "everyDisplayNameMatchesId": true,
+    "arrayLengthsMatch": true,
+    "noRawIdAsDisplayName": true,
+    "noUnusedRegistryEntries": true
+  }
+}
