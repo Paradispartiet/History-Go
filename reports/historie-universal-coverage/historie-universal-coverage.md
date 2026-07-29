@@ -122,7 +122,7 @@ Historien må dekke både institusjonelle makthavere og grupper som ofte forsvin
 | Canonical claim-register | ✅ PASS | data/fag/historie/claims_historie_canonical_v1.json |
 | Canonical kilderegister | ✅ PASS | data/fag/historie/sources_historie_canonical_v1.json |
 | Sted–emne–claim-evidens | ✅ PASS | data/fag/historie/place_evidence_historie_v1.json |
-| Teoriobjekter med dokumentert evidensgrunnlag | ❌ GAP | 26 % (59/230) |
+| Teoriobjekter med dokumentert evidensgrunnlag | ❌ GAP | 27 % (61/230) |
 
 ## Prioriterte faglige gap
 
