@@ -1,4 +1,4 @@
-name: Fagverk Natur pilot
+name: Fagverk Natur complete
 
 on:
   pull_request:
@@ -21,6 +21,14 @@ on:
       - 'tests/fagverk-natur-pilot.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-natur-pilot.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/natur/**'
+      - 'data/fagverk/**'
+      - 'scripts/audit-fagverk-natur-pilot.mjs'
+      - 'tests/fagverk-natur-pilot.test.mjs'
+      - 'reports/fagverk/**'
   workflow_dispatch:
 
 permissions:
@@ -28,7 +36,7 @@ permissions:
 
 jobs:
   validate:
-    name: Validate materialized Natur subject
+    name: Validate complete Nature subject
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,7 +49,7 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-natur-pilot.mjs
-      - name: Validate Fagverk and Natur contracts
+      - name: Validate Fagverk and Nature contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
