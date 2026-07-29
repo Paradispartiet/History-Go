@@ -1,0 +1,210 @@
+{
+  "schema": "history_go_fagverk_place_content_contract_v1",
+  "version": "1.0.0",
+  "updatedAt": "2026-07-29",
+  "principles": {
+    "sharedPageStructure": true,
+    "categorySpecificQuestionOrder": true,
+    "placeSpecificClaimsOnly": true,
+    "noInventedFactsFromTemplates": true,
+    "curatedCopyMustNameItsSourceBasis": true,
+    "genericSectionsAreInvestigationFramesNotClaims": true,
+    "popupDescRemainsCanonicalLongPlaceArticle": true,
+    "minimumGuidingQuestions": 4,
+    "minimumCuratedSections": 4,
+    "preferredCuratedSections": 5
+  },
+  "statusLevels": {
+    "base": "Stedet har artikkel og en kategoritilpasset undersøkelsesramme.",
+    "structured": "Stedet har stedsspesifikke emner, kjennetegn og spørsmål hentet fra canonicale stedsdata.",
+    "curated": "Stedet har en egen redigert dossierfil med tese, seksjoner, forbindelser og kildegrunnlag."
+  },
+  "aliases": {
+    "film": "popkultur",
+    "film_tv": "popkultur",
+    "media": "popkultur",
+    "populaerkultur": "popkultur"
+  },
+  "profiles": {
+    "by": {
+      "label": "By",
+      "articleTitle": "Stedet i byen",
+      "pageQuestion": "Hvordan virker stedet som del av en større bystruktur?",
+      "sections": [
+        {"id": "sted_og_struktur", "kicker": "Bystruktur", "title": "Sted, form og sammenheng", "purpose": "Forklar hva slags byelement stedet er, hvorfor det ligger her og hvilke fysiske sammenhenger det inngår i.", "prompts": ["Hva er den romlige hovedformen?", "Hvilke gater, akser, knutepunkter eller landskap binder stedet til byen?"], "evidenceFields": ["locatorType", "address", "quiz_profile.place_type", "quiz_profile.signature_features"]},
+        {"id": "bruk_og_bevegelse", "kicker": "Hverdagsliv", "title": "Bruk, ferdsel og opphold", "purpose": "Vis hvordan mennesker faktisk beveger seg gjennom, oppholder seg i eller organiserer hverdagen rundt stedet.", "prompts": ["Hvem bruker stedet, når og til hva?", "Hva gjør det lett eller vanskelig å oppholde seg her?"], "evidenceFields": ["quiz_profile.primary_angles", "quiz_profile.must_include", "layers", "rounds"]},
+        {"id": "historiske_lag", "kicker": "Tidslag", "title": "Hvordan stedet ble til", "purpose": "Skill mellom etablering, senere ombygginger og dagens funksjon.", "prompts": ["Hvilket skifte endret stedet mest?", "Hvilke eldre lag er fortsatt synlige?"], "evidenceFields": ["year", "period", "popupDesc"]},
+        {"id": "planlegging_og_konflikt", "kicker": "Makt og valg", "title": "Planlegging, interesser og konflikt", "purpose": "Undersøk hvem som kunne bestemme over areal, utforming og bruk, og hvilke interesser som møttes.", "prompts": ["Hvem planla eller finansierte?", "Hvilke hensyn stod mot hverandre?"], "evidenceFields": ["quiz_profile.must_include", "quiz_profile.avoid_angles", "emne_ids", "underbadge_ids"]},
+        {"id": "les_stedet", "kicker": "På stedet", "title": "Hva du kan undersøke selv", "purpose": "Gi konkrete, sikre observasjoner av skala, materialer, siktlinjer, strømmer og grenser.", "prompts": ["Hvor endrer rommet karakter?", "Hva kan observeres uten å kjenne historien på forhånd?"], "evidenceFields": ["anchors", "coordNote", "quiz_profile.signature_features"]}
+      ]
+    },
+    "historie": {
+      "label": "Historie",
+      "articleTitle": "Stedets historiske lag",
+      "pageQuestion": "Hvordan kan ett sted romme flere tidsperioder, funksjoner og historiske fortolkninger?",
+      "sections": [
+        {"id": "kronologi", "kicker": "Tidslinje", "title": "Fra etablering til dagens sted", "purpose": "Bygg en kronologi med tydelige brudd, ikke en løs liste av årstall.", "prompts": ["Hva var stedet først?", "Når skiftet funksjonen eller maktforholdet?"], "evidenceFields": ["year", "period", "popupDesc"]},
+        {"id": "aktorer", "kicker": "Mennesker og institusjoner", "title": "Hvem formet stedet?", "purpose": "Vis hvem som handlet, bestemte, arbeidet, bodde, ble rammet eller senere fortalte historien.", "prompts": ["Hvem hadde handlekraft?", "Hvem blir lett borte i den vanlige fortellingen?"], "evidenceFields": ["people", "quiz_profile.primary_angles", "quiz_profile.must_include", "relations"]},
+        {"id": "brudd_og_kontinuitet", "kicker": "Historisk analyse", "title": "Brudd, kontinuitet og gjenbruk", "purpose": "Forklar hva som faktisk endret seg, og hva som overlevde gjennom nye regimer eller funksjoner.", "prompts": ["Hva fortsatte selv om stedet fikk ny bruk?", "Hva ble fysisk eller symbolsk brutt?"], "evidenceFields": ["popupDesc", "quiz_profile.signature_features", "quiz_profile.contrast_targets"]},
+        {"id": "kilder_og_spor", "kicker": "Kildearbeid", "title": "Sporene som gjør historien etterprøvbar", "purpose": "Knytt fortellingen til bygninger, landskap, dokumenter, minnesmerker og kilder.", "prompts": ["Hvilke spor kan ses?", "Hvilke påstander krever dokumentkilder?"], "evidenceFields": ["externalLinks", "coordSource", "anchors", "popupDesc"]},
+        {"id": "historiebruk", "kicker": "Ettertid", "title": "Hvordan stedet brukes til å fortelle historie", "purpose": "Vis hvordan museum, vern, minne, turisme eller politikk former dagens lesning.", "prompts": ["Hva framheves i dag?", "Hvilke alternative fortellinger kunne vært synlige?"], "evidenceFields": ["quiz_profile.question_families", "quiz_profile.avoid_angles", "underbadge_ids"]}
+      ]
+    },
+    "kunst": {
+      "label": "Kunst",
+      "articleTitle": "Kunst, sted og arbeidsprosess",
+      "pageQuestion": "Hvordan oppstår kunstnerisk mening mellom verk, arbeidssted, landskap og institusjon?",
+      "sections": [
+        {"id": "verk_og_materiale", "kicker": "Kunstverk", "title": "Verk, motiv og materiale", "purpose": "Knytt stedet til konkrete verk, motiver, medier eller materialer uten å gjøre siden til en løs kunstnerbiografi.", "prompts": ["Hvilke verk eller motiv er stedstilknyttet?", "Hva kan stedet forklare om materialvalget?"], "evidenceFields": ["layers.kunst", "quiz_profile.signature_features", "tags"]},
+        {"id": "kunstner_og_produksjon", "kicker": "Arbeidsprosess", "title": "Hvordan kunsten ble produsert", "purpose": "Vis arbeidsrom, rutiner, samarbeid, økonomi og teknikker.", "prompts": ["Hva slags arbeid kunne utføres her?", "Hvilke praktiske vilkår påvirket kunsten?"], "evidenceFields": ["popupDesc", "quiz_profile.primary_angles", "quiz_profile.must_include"]},
+        {"id": "rom_og_landskap", "kicker": "Sted", "title": "Rommet eller landskapet som medskaper", "purpose": "Undersøk hvordan utsyn, interiør, natur eller arkitektur virker inn på uttrykket.", "prompts": ["Hva ved omgivelsene blir motiv eller metode?", "Hvordan endrer stedet møtet med verkene?"], "evidenceFields": ["locatorType", "popupDesc", "quiz_profile.signature_features"]},
+        {"id": "mottakelse_og_institusjon", "kicker": "Kunstliv", "title": "Visning, bevaring og offentlighet", "purpose": "Forklar hvem som gjorde kunsten tilgjengelig, og hvordan hjem eller arbeidssted senere ble kulturinstitusjon.", "prompts": ["Hvem bevarer og formidler?", "Hvordan har ettertiden endret stedet?"], "evidenceFields": ["externalLinks", "quiz_profile.question_families", "underbadge_ids"]},
+        {"id": "se_etter", "kicker": "På stedet", "title": "Hva du bør se etter", "purpose": "Pek ut stedsspesifikke detaljer i rom, utsyn, materialer eller presentasjon.", "prompts": ["Hvilken detalj knytter liv og verk sammen?", "Hva er originalt, rekonstruert eller kuratert?"], "evidenceFields": ["quiz_profile.signature_features", "quiz_profile.avoid_angles"]}
+      ]
+    },
+    "scenekunst": {
+      "label": "Scenekunst",
+      "articleTitle": "Scene, rom og framføring",
+      "pageQuestion": "Hvordan former scenen, teknikken, institusjonen og publikum det som kan framføres?",
+      "sections": [
+        {"id": "scene_og_rom", "kicker": "Scenerom", "title": "Arkitektur og scenemaskin", "purpose": "Forklar sceneform, sal, siktlinjer, akustikk, kulisser og tekniske muligheter.", "prompts": ["Hva slags scene er dette?", "Hvordan styrer rommet blikk og bevegelse?"], "evidenceFields": ["quiz_profile.signature_features", "popupDesc", "locatorType"]},
+        {"id": "verk_og_framforing", "kicker": "Praksis", "title": "Hva som ble og blir framført", "purpose": "Knytt stedet til repertoar, framføringsformer og skiftende bruk.", "prompts": ["Hvilke uttrykk passer rommet?", "Hvordan har bruken endret seg?"], "evidenceFields": ["popupDesc", "quiz_profile.question_families"]},
+        {"id": "arbeid_og_institusjon", "kicker": "Bak scenen", "title": "Organisering, arbeid og økonomi", "purpose": "Synliggjør selskap, teknikere, utøvere, eiere og institusjonelle rammer.", "prompts": ["Hvem holdt virksomheten i gang?", "Hva krevde vedlikehold og produksjon?"], "evidenceFields": ["quiz_profile.must_include", "externalLinks", "tags"]},
+        {"id": "publikum_og_offentlighet", "kicker": "Publikum", "title": "Hvem fikk delta?", "purpose": "Undersøk adgang, sosial organisering, billettsystem, representasjon og dagens tilgjengelighet.", "prompts": ["Hvem var publikum?", "Hvordan påvirker vern dagens adgang?"], "evidenceFields": ["externalLinks", "popupDesc", "quiz_profile.avoid_angles"]},
+        {"id": "les_scenen", "kicker": "På stedet", "title": "Se rommet som en framføring", "purpose": "Gi konkrete observasjoner av sceneåpning, nivåer, kulisser, publikumsplassering og spor etter bruk.", "prompts": ["Hvor går grensen mellom scene og sal?", "Hvilke tekniske spor er synlige?"], "evidenceFields": ["anchors", "quiz_profile.signature_features"]}
+      ]
+    },
+    "litteratur": {
+      "label": "Litteratur",
+      "articleTitle": "Sted, språk og litterær offentlighet",
+      "pageQuestion": "Hvordan påvirker hjem, landskap, klasse og institusjoner litteraturen og minnet om den?",
+      "sections": [
+        {"id": "sted_og_tekst", "kicker": "Litterært sted", "title": "Forbindelsen mellom sted og tekst", "purpose": "Knytt stedet til motiver, språk, erfaringer eller verk uten å hevde direkte påvirkning uten kilder.", "prompts": ["Hva ved stedet er dokumentert relevant for forfatterskapet?", "Hva er senere tolkning?"], "evidenceFields": ["popupDesc", "quiz_profile.signature_features", "tags"]},
+        {"id": "forfatter_og_miljo", "kicker": "Livsvilkår", "title": "Hjem, oppvekst og sosialt miljø", "purpose": "Vis hvordan familie, klasse, arbeid, utdanning og lokalmiljø rammet inn skrivingen.", "prompts": ["Hvilke livsvilkår kan dokumenteres?", "Hvordan skiller stedet seg fra en ren minnebiografi?"], "evidenceFields": ["quiz_profile.primary_angles", "quiz_profile.must_include", "popupDesc"]},
+        {"id": "verk_og_motiv", "kicker": "Lesning", "title": "Motiver, sjangre og spørsmål", "purpose": "Pek mot konkrete lesemåter og verk der kildene tillater det.", "prompts": ["Hvilke motiver kan undersøkes?", "Hva bør leseren kontrollere i selve teksten?"], "evidenceFields": ["tags", "layers", "emne_ids"]},
+        {"id": "offentlighet_og_mottakelse", "kicker": "Etterliv", "title": "Utgivelse, omdømme og minnearbeid", "purpose": "Forklar hvordan forfatterskapet ble formidlet og hvordan stedet senere ble bevart eller iscenesatt.", "prompts": ["Hvem gjorde stedet til litteraturminne?", "Hva velger dagens formidling å framheve?"], "evidenceFields": ["externalLinks", "quiz_profile.question_families", "quiz_profile.avoid_angles"]},
+        {"id": "les_stedet", "kicker": "På stedet", "title": "Hva stedet kan tilføre en lesning", "purpose": "Foreslå konkrete observasjoner av rom, landskap, avstander og sosial organisering.", "prompts": ["Hva ser du her som ikke finnes på boksiden?", "Hva må fortsatt leses i teksten?"], "evidenceFields": ["locatorType", "quiz_profile.signature_features"]}
+      ]
+    },
+    "musikk": {
+      "label": "Musikk",
+      "articleTitle": "Lyd, scene og musikkmiljø",
+      "pageQuestion": "Hvordan oppstår et musikksted gjennom rom, teknologi, arbeid, artister og publikum?",
+      "sections": [
+        {"id": "scene_og_lyd", "kicker": "Lydrom", "title": "Rom, akustikk og teknikk", "purpose": "Forklar hvordan rommet og utstyret former lyden og framføringen.", "prompts": ["Hva slags lyd tåler eller favoriserer rommet?", "Hvordan har teknologien endret stedet?"], "evidenceFields": ["quiz_profile.signature_features", "popupDesc"]},
+        {"id": "artister_og_miljo", "kicker": "Musikkmiljø", "title": "Artister, sjangre og nettverk", "purpose": "Vis dokumenterte forbindelser mellom stedet, utøvere, arrangører og miljøer.", "prompts": ["Hvem brukte stedet?", "Hvilke nettverk gjorde scenen viktig?"], "evidenceFields": ["people", "relations", "tags", "quiz_profile.primary_angles"]},
+        {"id": "produksjon", "kicker": "Bak lyden", "title": "Arbeid, økonomi og produksjon", "purpose": "Synliggjør booking, lydarbeid, øving, opptak, finansiering og drift.", "prompts": ["Hvilket usynlig arbeid kreves?", "Hvordan ble virksomheten finansiert?"], "evidenceFields": ["quiz_profile.must_include", "externalLinks"]},
+        {"id": "publikum_og_subkultur", "kicker": "Deltakelse", "title": "Publikum, identitet og tilhørighet", "purpose": "Undersøk hvem som følte eierskap til stedet og hvilke grenser eller normer som oppstod.", "prompts": ["Hvem var scenen for?", "Hva skilte miljøet fra andre steder?"], "evidenceFields": ["underbadge_ids", "quiz_profile.question_families", "quiz_profile.contrast_targets"]},
+        {"id": "lytt_til_stedet", "kicker": "På stedet", "title": "Hva du kan lytte og se etter", "purpose": "Gi sikre observasjoner av rom, lydlekkasje, sceneplassering, inngang og publikumsflyt.", "prompts": ["Hvor sitter eller står publikum?", "Hvilke spor etter produksjon er synlige?"], "evidenceFields": ["locatorType", "quiz_profile.signature_features"]}
+      ]
+    },
+    "naeringsliv": {
+      "label": "Næringsliv",
+      "articleTitle": "Produksjon, arbeid og økonomi",
+      "pageQuestion": "Hvordan kobler stedet naturressurser, teknologi, arbeid, kapital og samfunn?",
+      "sections": [
+        {"id": "produksjon_og_teknologi", "kicker": "Produksjon", "title": "Hva som ble produsert – og hvordan", "purpose": "Forklar råstoff, prosess, teknologi og infrastruktur konkret.", "prompts": ["Hva gikk inn i produksjonen?", "Hvilke tekniske sprang endret den?"], "evidenceFields": ["quiz_profile.signature_features", "popupDesc", "tags"]},
+        {"id": "arbeid_og_organisering", "kicker": "Arbeidsliv", "title": "Arbeid, kompetanse og risiko", "purpose": "Synliggjør arbeidsdeling, kunnskap, migrasjon, sikkerhet og hverdagsliv.", "prompts": ["Hvem gjorde arbeidet?", "Hvilke ferdigheter og farer fulgte produksjonen?"], "evidenceFields": ["quiz_profile.primary_angles", "quiz_profile.must_include", "people"]},
+        {"id": "marked_og_eierskap", "kicker": "Økonomi og makt", "title": "Eierskap, stat og marked", "purpose": "Undersøk hvem som kontrollerte virksomheten, hvordan inntekter ble fordelt og hvilke regler som gjaldt.", "prompts": ["Hvem eide eller styrte?", "Hvordan hang virksomheten sammen med stat eller marked?"], "evidenceFields": ["popupDesc", "emne_ids", "underbadge_ids"]},
+        {"id": "sted_og_infrastruktur", "kicker": "Industrilandskap", "title": "Hvorfor virksomheten lå her", "purpose": "Knytt lokalisering til energi, råstoff, transport, vann, arbeidskraft eller politiske beslutninger.", "prompts": ["Hvilken ressurs gjorde stedet mulig?", "Hvilken infrastruktur bandt det til omverdenen?"], "evidenceFields": ["locatorType", "coordNote", "anchors", "quiz_profile.signature_features"]},
+        {"id": "virkninger", "kicker": "Konsekvenser", "title": "Hva produksjonen forandret", "purpose": "Vis virkninger for by, natur, sosial struktur, kunnskap og senere kulturminnebruk.", "prompts": ["Hva vokste fram rundt virksomheten?", "Hvilke kostnader eller spor ble igjen?"], "evidenceFields": ["popupDesc", "quiz_profile.contrast_targets", "externalLinks"]}
+      ]
+    },
+    "natur": {
+      "label": "Natur",
+      "articleTitle": "Naturtypen og landskapet",
+      "pageQuestion": "Hvordan virker geologi, vann, klima, arter og menneskelig bruk sammen på dette stedet?",
+      "sections": [
+        {"id": "naturtype_og_terreng", "kicker": "Landskap", "title": "Naturtype, geologi og terreng", "purpose": "Forklar den fysiske prosessen som har formet stedet og skill naturdannelse fra senere historie.", "prompts": ["Hvilken geologisk eller hydrologisk prosess er sentral?", "Hva er naturlig, og hva er menneskeskapt?"], "evidenceFields": ["locatorType", "coordNote", "popupDesc", "anchors"]},
+        {"id": "arter_og_samspill", "kicker": "Økologi", "title": "Arter, habitater og samspill", "purpose": "Beskriv dokumenterte naturtyper og økologiske forbindelser uten å gjette artsforekomster.", "prompts": ["Hvilke habitater er dokumentert?", "Hvilke artsdata mangler fortsatt?"], "evidenceFields": ["species", "flora", "fauna", "tags", "layers.natur"]},
+        {"id": "sesong_og_observasjon", "kicker": "Feltarbeid", "title": "Hva som kan observeres – og når", "purpose": "Gi trygge, ikke-forstyrrende observasjoner og vis hvordan sesong påvirker stedet.", "prompts": ["Hva endres gjennom året?", "Hvor kan man observere sikkert og lovlig?"], "evidenceFields": ["anchors", "coordNote", "quiz_profile.must_include"]},
+        {"id": "forvaltning_og_pavirkning", "kicker": "Natur og samfunn", "title": "Inngrep, bruk og forvaltning", "purpose": "Undersøk kraft, transport, friluftsliv, vern, forurensning eller skjøtsel der det er dokumentert.", "prompts": ["Hvilke inngrep former naturen nå?", "Hvem har ansvar for forvaltningen?"], "evidenceFields": ["externalLinks", "popupDesc", "quiz_profile.primary_angles"]},
+        {"id": "sikker_feltlesning", "kicker": "På stedet", "title": "Slik leser du stedet uten å skade eller risikere", "purpose": "Skill kartanker fra besøksanker og gjør sikkerhets- og adgangsgrenser tydelige.", "prompts": ["Hvor er sikkert observasjonspunkt?", "Hvilke områder skal ikke brukes som ferdselsmål?"], "evidenceFields": ["anchors", "coordNote", "quiz_profile.avoid_angles"]}
+      ]
+    },
+    "politikk": {
+      "label": "Politikk",
+      "articleTitle": "Institusjon, makt og offentlighet",
+      "pageQuestion": "Hvordan blir makt, beslutninger, ansvar og konflikt synlige på dette stedet?",
+      "sections": [
+        {"id": "institusjon_og_makt", "kicker": "Institusjon", "title": "Hva slags makt utøves her?", "purpose": "Skill mellom politisk ledelse, forvaltning, rett, kontroll, interessekamp og symbolsk representasjon.", "prompts": ["Hvilken institusjonell rolle har stedet?", "Hvem kan beslutte, gjennomføre eller kontrollere?"], "evidenceFields": ["underbadge_ids", "emne_ids", "quiz_profile.place_type", "quiz_profile.must_include"]},
+        {"id": "beslutning_og_ansvar", "kicker": "Styring", "title": "Fra beslutning til ansvar", "purpose": "Vis hvordan saker, vedtak, administrasjon og ansvar beveger seg gjennom institusjoner.", "prompts": ["Hvor kommer beslutningene fra?", "Hvordan kan ansvar etterprøves?"], "evidenceFields": ["emne_ids", "popupDesc", "quiz_profile.primary_angles"]},
+        {"id": "offentlighet_og_konflikt", "kicker": "Demokrati", "title": "Offentlighet, interesser og konflikt", "purpose": "Undersøk hvordan medier, protest, forhandling, adgang og symboler former stedets politiske rolle.", "prompts": ["Hvem kan se, møte eller utfordre makten?", "Hva blir gjort synlig eller usynlig?"], "evidenceFields": ["quiz_profile.question_families", "quiz_profile.contrast_targets", "externalLinks"]},
+        {"id": "historie_og_rett", "kicker": "Historiske rammer", "title": "Hvordan institusjonen ble til", "purpose": "Forklar historiske brudd, lovgrunnlag, ombygginger og hendelser som endret stedets funksjon.", "prompts": ["Hvilket brudd endret institusjonen mest?", "Hvilke eldre lag eller rettslige rammer består?"], "evidenceFields": ["year", "period", "popupDesc"]},
+        {"id": "les_makten", "kicker": "På stedet", "title": "Hva du kan se etter", "purpose": "Gi konkrete observasjoner av adgang, sikring, akser, møteplasser, symboler og avstand mellom institusjon og offentlig rom.", "prompts": ["Hvor møter institusjonen byen?", "Hva viser åpenhet, autoritet eller kontroll?"], "evidenceFields": ["anchors", "coordNote", "quiz_profile.signature_features"]}
+      ]
+    },
+    "popkultur": {
+      "label": "Popkultur",
+      "articleTitle": "Produksjon, representasjon og publikum",
+      "pageQuestion": "Hvordan blir stedet brukt, omformet og gjenkjent gjennom film, TV, medier og populærkultur?",
+      "sections": [
+        {"id": "verk_og_format", "kicker": "Verk", "title": "Hva stedet er knyttet til", "purpose": "Identifiser konkrete verk, formater eller hendelser uten å gjøre antakelser fra visuell likhet alene.", "prompts": ["Hvilket verk eller format er dokumentert?", "Hva er faktisk spilt inn eller formidlet her?"], "evidenceFields": ["tags", "popupDesc", "quiz_profile.signature_features"]},
+        {"id": "produksjon_og_distribusjon", "kicker": "Bak mediet", "title": "Hvordan uttrykket ble produsert og distribuert", "purpose": "Vis opptak, visning, publisering, teknologi, arbeid og institusjoner.", "prompts": ["Hva skjedde fysisk på stedet?", "Hvordan nådde verket publikum?"], "evidenceFields": ["quiz_profile.primary_angles", "externalLinks", "relations"]},
+        {"id": "sted_og_representasjon", "kicker": "Bilde av stedet", "title": "Hvordan stedet blir framstilt", "purpose": "Skill det virkelige stedet fra rollen det spiller i fortellingen eller mediet.", "prompts": ["Spiller stedet seg selv?", "Hva er utelatt, omdøpt eller iscenesatt?"], "evidenceFields": ["popupDesc", "quiz_profile.avoid_angles"]},
+        {"id": "publikum_og_mottakelse", "kicker": "Etterliv", "title": "Fans, minne og kulturell betydning", "purpose": "Undersøk hvordan publikum, turisme, nostalgi eller debatt har gitt stedet et nytt liv.", "prompts": ["Hvem oppsøker stedet på grunn av verket?", "Hvordan har betydningen endret seg?"], "evidenceFields": ["quiz_profile.question_families", "underbadge_ids"]},
+        {"id": "sammenlign", "kicker": "På stedet", "title": "Virkelig sted og mediebilde", "purpose": "Gi konkrete sammenligninger mellom rom, kameravinkel, utsnitt og dagens bruk.", "prompts": ["Hva kjenner du igjen?", "Hva finnes utenfor bildet?"], "evidenceFields": ["locatorType", "quiz_profile.signature_features"]}
+      ]
+    },
+    "psykologi": {
+      "label": "Psykologi",
+      "articleTitle": "Miljø, erfaring og psykologisk praksis",
+      "pageQuestion": "Hvordan former fysiske og institusjonelle omgivelser erfaring, atferd og behandling?",
+      "sections": [
+        {"id": "miljo_og_atferd", "kicker": "Miljøpsykologi", "title": "Hvordan rommet påvirker handling", "purpose": "Undersøk dokumenterte forbindelser mellom utforming, kontroll, trygghet, orientering og sosial atferd.", "prompts": ["Hvilke handlinger inviterer rommet til?", "Hva begrenser eller muliggjør det?"], "evidenceFields": ["popupDesc", "quiz_profile.signature_features"]},
+        {"id": "institusjon_og_praksis", "kicker": "Praksis", "title": "Institusjon, behandling eller arbeid", "purpose": "Forklar hvilken praksis stedet rommet og hvordan den var organisert.", "prompts": ["Hva slags profesjonell praksis foregikk?", "Hvem hadde definisjonsmakt?"], "evidenceFields": ["quiz_profile.primary_angles", "emne_ids"]},
+        {"id": "begreper_og_metoder", "kicker": "Fag", "title": "Psykologiske begreper og metoder", "purpose": "Knytt stedet til presise begreper og metoder uten å diagnostisere personer eller grupper.", "prompts": ["Hvilke begreper forklarer praksisen?", "Hvilke data eller observasjoner ble brukt?"], "evidenceFields": ["emne_ids", "tags", "layers"]},
+        {"id": "etikk_og_erfaring", "kicker": "Etikk", "title": "Makt, samtykke og levd erfaring", "purpose": "Synliggjør pasienter, brukere, ansatte, rettigheter og etiske konflikter.", "prompts": ["Hvem kunne samtykke eller protestere?", "Hvilke erfaringer mangler i kildene?"], "evidenceFields": ["externalLinks", "quiz_profile.avoid_angles"]},
+        {"id": "observer_miljoet", "kicker": "På stedet", "title": "Les miljøet uten å psykologisere", "purpose": "Foreslå observasjoner av rom, adgang, lyd, lys og organisering uten spekulative slutninger om mennesker.", "prompts": ["Hva kan faktisk observeres?", "Hva ville være en ubegrunnet tolkning?"], "evidenceFields": ["locatorType", "coordNote"]}
+      ]
+    },
+    "religion": {
+      "label": "Religion og livssyn",
+      "articleTitle": "Ritual, fellesskap og hellig sted",
+      "pageQuestion": "Hvordan skapes religiøs og livssynsmessig betydning gjennom rom, ritual, institusjon og bruk?",
+      "sections": [
+        {"id": "sted_og_ritual", "kicker": "Ritual", "title": "Rommet i bruk", "purpose": "Forklar dokumenterte ritualer, kalender, bevegelse og bruk av rommet uten å redusere tradisjonen til arkitektur.", "prompts": ["Hva skjer her, og når?", "Hvordan organiserer rommet ritualet?"], "evidenceFields": ["popupDesc", "tags", "quiz_profile.signature_features"]},
+        {"id": "institusjon_og_fellesskap", "kicker": "Fellesskap", "title": "Menighet, organisasjon og hverdagsliv", "purpose": "Vis hvem som forvalter stedet og hvilke sosiale funksjoner det har.", "prompts": ["Hvem bruker og vedlikeholder stedet?", "Hvilke aktiviteter ligger utenfor gudstjenesten?"], "evidenceFields": ["externalLinks", "relations", "quiz_profile.primary_angles"]},
+        {"id": "arkitektur_og_symbol", "kicker": "Uttrykk", "title": "Arkitektur, gjenstander og symboler", "purpose": "Knytt synlige elementer til dokumentert bruk og fortolkning.", "prompts": ["Hvilke symboler eller gjenstander har funksjon?", "Hva er historisk lag og hva er nåtidig bruk?"], "evidenceFields": ["popupDesc", "quiz_profile.signature_features"]},
+        {"id": "historie_og_mangfold", "kicker": "Historie", "title": "Endring, konflikt og mangfold", "purpose": "Undersøk reformer, flytting, minoriteter, makt og endringer i bruk.", "prompts": ["Hvilket historisk skifte var viktigst?", "Hvilke grupper eller tradisjoner blir lett oversett?"], "evidenceFields": ["year", "period", "quiz_profile.question_families"]},
+        {"id": "besok_med_respekt", "kicker": "På stedet", "title": "Observasjon, adgang og respekt", "purpose": "Gi konkrete råd om å skille offentlig tilgjengelighet, ritualtid, privat praksis og kulturminnebruk.", "prompts": ["Når er stedet åpent?", "Hva bør ikke forstyrres eller fotograferes uten samtykke?"], "evidenceFields": ["externalLinks", "coordNote"]}
+      ]
+    },
+    "sport": {
+      "label": "Sport",
+      "articleTitle": "Arena, praksis og fellesskap",
+      "pageQuestion": "Hvordan kobler stedet fysisk aktivitet, organisasjon, publikum, prestasjon og identitet?",
+      "sections": [
+        {"id": "arena_og_anlegg", "kicker": "Anlegg", "title": "Banen, løypa eller arenaen", "purpose": "Forklar fysisk utforming, regler, kapasitet og tekniske krav.", "prompts": ["Hva gjør anlegget egnet for aktiviteten?", "Hvordan har det blitt bygget om?"], "evidenceFields": ["locatorType", "quiz_profile.signature_features", "popupDesc"]},
+        {"id": "idrett_og_praksis", "kicker": "Aktivitet", "title": "Trening, konkurranse og ferdighet", "purpose": "Vis hva utøvere faktisk gjør og hvilke ferdigheter eller regler som organiserer praksisen.", "prompts": ["Hvilke handlinger og regler er sentrale?", "Hvordan varierer trening og konkurranse?"], "evidenceFields": ["quiz_profile.primary_angles", "tags"]},
+        {"id": "klubb_og_fellesskap", "kicker": "Organisering", "title": "Klubb, frivillighet og publikum", "purpose": "Synliggjør organisasjoner, arbeid, supporterkultur, medlemskap og lokal tilhørighet.", "prompts": ["Hvem holder stedet i gang?", "Hvordan skapes tilhørighet?"], "evidenceFields": ["relations", "underbadge_ids", "quiz_profile.question_families"]},
+        {"id": "historie_og_prestasjon", "kicker": "Historie", "title": "Hendelser, prestasjoner og endring", "purpose": "Knytt historiske hendelser til stedet uten å redusere siden til resultatlister.", "prompts": ["Hvilken hendelse endret stedets betydning?", "Hvordan har idretten eller anlegget endret seg?"], "evidenceFields": ["year", "popupDesc", "quiz_profile.must_include"]},
+        {"id": "les_arenaen", "kicker": "På stedet", "title": "Hva anlegget forteller", "purpose": "Gi observasjoner av sikt, avstand, innganger, tribuner, banemål og forholdet mellom utøver og publikum.", "prompts": ["Hvor styres bevegelsen?", "Hva viser skillet mellom scene og bakrom?"], "evidenceFields": ["anchors", "coordNote"]}
+      ]
+    },
+    "subkultur": {
+      "label": "Subkultur",
+      "articleTitle": "Miljø, stil og egenorganisering",
+      "pageQuestion": "Hvordan blir et sted viktig gjennom praksis, tegn, nettverk, grenser og motstand?",
+      "sections": [
+        {"id": "miljo_og_stil", "kicker": "Uttrykk", "title": "Tegn, stil og estetikk", "purpose": "Knytt synlige uttrykk til dokumentert miljø og praksis uten å behandle stil som hele kulturen.", "prompts": ["Hvilke tegn har intern betydning?", "Hva er iscenesettelse for utenforstående?"], "evidenceFields": ["tags", "popupDesc", "quiz_profile.signature_features"]},
+        {"id": "fellesskap_og_praksis", "kicker": "Hverdagsliv", "title": "Hva mennesker gjorde sammen", "purpose": "Vis møter, produksjon, læring, arrangementer, omsorg eller politisk arbeid.", "prompts": ["Hvilke praksiser bandt miljøet sammen?", "Hvordan ble kunnskap overført?"], "evidenceFields": ["quiz_profile.primary_angles", "relations", "people"]},
+        {"id": "rom_og_grenser", "kicker": "Territorium", "title": "Adgang, eierskap og grenser", "purpose": "Undersøk hvem som kontrollerte rommet og hvordan miljøet forholdt seg til naboer, myndigheter og kommersialisering.", "prompts": ["Hvem kunne komme inn?", "Hvilke fysiske eller sosiale grenser fantes?"], "evidenceFields": ["locatorType", "coordNote", "quiz_profile.must_include"]},
+        {"id": "konflikt_og_endring", "kicker": "Historie", "title": "Motstand, konflikt og transformasjon", "purpose": "Forklar konflikter og endringer uten å romantisere eller kriminalisere miljøet som helhet.", "prompts": ["Hva stod konflikten om?", "Hvordan endret miljøet eller stedet seg?"], "evidenceFields": ["popupDesc", "quiz_profile.avoid_angles", "externalLinks"]},
+        {"id": "les_sporene", "kicker": "På stedet", "title": "Hva som er igjen – og hva som er borte", "purpose": "Gi observasjoner av vegger, skilt, innganger, plakater, bruksspor og senere omforming.", "prompts": ["Hvilke spor er autentiske?", "Hva er minne, rekonstruksjon eller ny bruk?"], "evidenceFields": ["quiz_profile.signature_features", "anchors"]}
+      ]
+    },
+    "vitenskap": {
+      "label": "Vitenskap",
+      "articleTitle": "Problem, metode og kunnskapsinstitusjon",
+      "pageQuestion": "Hvordan ble kunnskap produsert, kontrollert, lært og brukt på dette stedet?",
+      "sections": [
+        {"id": "problem_og_oppdagelse", "kicker": "Forskningsspørsmål", "title": "Problemet stedet skulle løse", "purpose": "Forklar hvilket praktisk eller teoretisk problem som gjorde kunnskapsarbeidet nødvendig.", "prompts": ["Hva trengte man å vite?", "Hvilken usikkerhet eller ressurs stod i sentrum?"], "evidenceFields": ["popupDesc", "quiz_profile.signature_features"]},
+        {"id": "metode_og_instrument", "kicker": "Metode", "title": "Måling, analyse og instrumenter", "purpose": "Vis hvordan observasjon, beregning, eksperiment, samling eller teknisk praksis produserte kunnskap.", "prompts": ["Hvilke metoder ble brukt?", "Hva kunne instrumentene gjøre synlig?"], "evidenceFields": ["emne_ids", "methods", "quiz_profile.primary_angles"]},
+        {"id": "institusjon_og_personer", "kicker": "Kunnskapsmiljø", "title": "Utdanning, ekspertise og institusjon", "purpose": "Synliggjør lærere, elever, eksperter, stat, finansiering og arbeidsdeling.", "prompts": ["Hvem ble utdannet eller ansatt?", "Hvem bestemte hva som telte som gyldig kunnskap?"], "evidenceFields": ["people", "relations", "popupDesc", "quiz_profile.must_include"]},
+        {"id": "virkning_og_usikkerhet", "kicker": "Kunnskap i samfunnet", "title": "Bruk, konsekvenser og grenser", "purpose": "Undersøk hvordan kunnskapen ble brukt, hvem den tjente og hva som fortsatt var usikkert.", "prompts": ["Hva ble kunnskapen brukt til?", "Hvilke begrensninger eller kostnader fulgte den?"], "evidenceFields": ["quiz_profile.question_families", "quiz_profile.contrast_targets", "externalLinks"]},
+        {"id": "les_kunnskapsstedet", "kicker": "På stedet", "title": "Hva bygningen eller landskapet forteller om kunnskap", "purpose": "Gi observasjoner av undervisningsrom, instrumentplasser, samlinger, arbeidsflyt og forbindelse til praksisfeltet.", "prompts": ["Hvordan er læring og arbeid organisert i rommet?", "Hva mangler uten tilgang til dokumenter eller instrumenter?"], "evidenceFields": ["locatorType", "coordNote", "quiz_profile.signature_features"]}
+      ]
+    }
+  }
+}
