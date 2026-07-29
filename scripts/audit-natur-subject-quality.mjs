@@ -39,8 +39,8 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
 
   assert(pensum.scope === 'universal', 'Naturpensum skal ha universelt fagomfang');
   assert(methodsDoc.scope === 'universal', 'Naturmetodene skal ha universelt fagomfang');
-  assert(emner.length === 35, `Forventet 35 Natur-emner, fikk ${emner.length}`);
-  assert(methods.length === 30, `Forventet 30 Natur-metoder, fikk ${methods.length}`);
+  assert(emner.length === 53, `Forventet 53 Natur-emner etter biologi fase 1, fikk ${emner.length}`);
+  assert(methods.length === 39, `Forventet 39 Natur-metoder etter biologi fase 1, fikk ${methods.length}`);
   assert(mappings.length === emner.length, 'Hvert Natur-emne skal ha én canonical mapping');
   assert(unique(pensum.domains.map((d) => d.question_role)), 'Fagområdene har kopierte question_role-tekster');
 
