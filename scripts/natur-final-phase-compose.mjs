@@ -97,6 +97,23 @@ export function composeNaturFinal({ pensum, emners, methodsDoc, fagkart, mapping
   for (const category of categories) {
     for (const hook of category.topic_hooks || []) hookIndex.set(hook.id, { category, hook });
   }
+
+  const normalizedBaseMappings = clone(mappings).map((row) => ({
+    ...row,
+    mappings: (row.mappings || []).map((mapping) => {
+      const indexed = hookIndex.get(mapping.topic_hook);
+      if (!indexed) return mapping;
+      return {
+        ...mapping,
+        fagkart_kategori: indexed.category.id,
+        fagkart_kategori_tittel: indexed.category.title,
+        topic_hook_tittel: indexed.hook.title,
+        preferred_question_moves: clone(indexed.hook.preferred_question_moves || []),
+        evidence_focus: clone(indexed.hook.evidence_focus || [])
+      };
+    })
+  }));
+
   const overlayMappings = (overlay.mappings || []).map((row) => ({
     emne_id: row.emne_id,
     mappings: (row.hook_ids || []).map((hookId) => {
@@ -115,7 +132,7 @@ export function composeNaturFinal({ pensum, emners, methodsDoc, fagkart, mapping
       };
     })
   }));
-  const nextMappings = [...clone(mappings), ...overlayMappings];
+  const nextMappings = [...normalizedBaseMappings, ...overlayMappings];
 
   let nextRegistry = registry ? clone(registry) : null;
   if (nextRegistry?.subjects?.natur) {
