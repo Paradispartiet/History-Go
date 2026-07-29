@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "profile_historie_sapmi_ruija_statsdannelse",
+  "subject_id": "historie",
+  "canonical_subject_version": "v5.8",
+  "status": "active_production_profile",
+  "geography": {
+    "geography_id": "geo_no_sapmi_ruija_statsdannelse",
+    "type": "transregional_state_minority_relations_profile",
+    "labels": {
+      "nb": "Sápmi og Ruija: språk, institusjoner og statsdannelse",
+      "en": "Sápmi and Ruija: language, institutions and state formation"
+    },
+    "present_day_country_codes": [
+      "NO"
+    ],
+    "pilot_place_scope": [
+      "Čoarvemátta i Guovdageaidnu/Kautokeino",
+      "Eidsvolls plass i Oslo",
+      "Stortinget som nasjonal institusjon"
+    ],
+    "boundary_model": "Profilen følger relasjoner mellom staten og samiske, kvenske/norskfinske og skogfinske aktører på tvers av dagens kommunegrenser. Sápmi og Ruija brukes som historiske og kulturelle relasjonsrom, ikke som utskiftbare territorier eller som én homogen minoritetsgeografi."
+  },
+  "contract": {
+    "universal_subject_contract": "docs/SUBJECT_FILE_CONTRACT.md",
+    "architecture_contract": "docs/SUBJECT_FILE_CONTRACT.md#13-casekrav-profiler-og-evidensregistre",
+    "case_requirements_file": "data/fag/historie/case_requirements_historie_canonical_v1.json",
+    "claims_file": "data/fag/historie/claims_historie_canonical_v1.json",
+    "sources_file": "data/fag/historie/sources_historie_canonical_v1.json",
+    "place_evidence_file": "data/fag/historie/place_evidence_historie_v1.json",
+    "data_production_contract": "docs/DATA_PRODUCTION_CONTRACT.md#historie-profil-og-evidenslag"
+  },
+  "production_coverage": {
+    "total_subject_emner": 230,
+    "emner_with_profile_case_candidates": 6,
+    "emne_link_ratio_percent": 2.6,
+    "cases_total": 3,
+    "claims_total": 9,
+    "sources_total": 11,
+    "evidence_links_total": 9,
+    "verified_cases_total": 3,
+    "minimum_cases_total": 2,
+    "minimum_verified_cases": 2,
+    "minimum_evidence_links": 6,
+    "minimum_mappings": 6,
+    "status": "COMPLETE",
+    "completion_scope": "theory_specific_multi_case_evidence_foundation",
+    "interpretation": "Profilen er komplett for de to avgrensede teoriene om nasjonsbygging, språk, institusjoner, fornorsking og medlemskapsgrenser. Tre steder dokumenterer ikke alle samiske, kvenske/norskfinske, skogfinske eller andre minoritetserfaringer."
+  },
+  "cases": [
+    {
+      "case_id": "case_his_beaivvas_coarvematta_sami_language_school_institutions",
+      "label": "Čoarvemátta: samisk språk, skole, reindriftskunnskap og teater",
+      "geography_id": "geo_no_sapmi_ruija_statsdannelse",
+      "geography_scope": "sami_institution_case",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "beaivvas_coarvematta"
+      ],
+      "emne_ids": [
+        "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+        "em_his_sprak_religion_institusjoner"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/sapmi_ruija_state_formation_v1.json",
+        "created_at": "2026-07-29"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_sapmi_ruija_state_formation_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "sami_and_minority_anchored_sources_paired_with_official_decision_sources_and_explicit_effect_limits"
+      }
+    },
+    {
+      "case_id": "case_his_eidsvolls_plass_sami_rights_mobilization",
+      "label": "Eidsvolls plass: samisk rettighetsmobilisering og minoritetsdialog",
+      "geography_id": "geo_no_sapmi_ruija_statsdannelse",
+      "geography_scope": "state_minority_public_space_case",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "eidsvolls_plass"
+      ],
+      "emne_ids": [
+        "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+        "em_his_minoritetshistorie",
+        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/sapmi_ruija_state_formation_v1.json",
+        "created_at": "2026-07-29"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_sapmi_ruija_state_formation_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "sami_and_minority_anchored_sources_paired_with_official_decision_sources_and_explicit_effect_limits"
+      }
+    },
+    {
+      "case_id": "case_his_stortinget_fornorskning_reconciliation",
+      "label": "Stortinget: fornorskingsvedtak, medlemskapsgrenser og institusjonelt oppgjør",
+      "geography_id": "geo_no_sapmi_ruija_statsdannelse",
+      "geography_scope": "national_state_institution_case",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "stortinget"
+      ],
+      "emne_ids": [
+        "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+        "em_his_minoritetshistorie",
+        "em_his_sprak_religion_institusjoner",
+        "em_his_statsborgerskap_status_rettigheter"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/sapmi_ruija_state_formation_v1.json",
+        "created_at": "2026-07-29"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_sapmi_ruija_state_formation_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "sami_and_minority_anchored_sources_paired_with_official_decision_sources_and_explicit_effect_limits"
+      }
+    }
+  ],
+  "emne_case_mappings": [
+    {
+      "emne_id": "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+      "case_ids": [
+        "case_his_beaivvas_coarvematta_sami_language_school_institutions",
+        "case_his_eidsvolls_plass_sami_rights_mobilization",
+        "case_his_stortinget_fornorskning_reconciliation"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ]
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+      "case_ids": [
+        "case_his_beaivvas_coarvematta_sami_language_school_institutions",
+        "case_his_eidsvolls_plass_sami_rights_mobilization",
+        "case_his_stortinget_fornorskning_reconciliation"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison"
+      ]
+    },
+    {
+      "emne_id": "em_his_minoritetshistorie",
+      "case_ids": [
+        "case_his_eidsvolls_plass_sami_rights_mobilization",
+        "case_his_stortinget_fornorskning_reconciliation"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ]
+    },
+    {
+      "emne_id": "em_his_sprak_religion_institusjoner",
+      "case_ids": [
+        "case_his_beaivvas_coarvematta_sami_language_school_institutions",
+        "case_his_stortinget_fornorskning_reconciliation"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_comparative_scale"
+      ]
+    },
+    {
+      "emne_id": "em_his_statsborgerskap_status_rettigheter",
+      "case_ids": [
+        "case_his_stortinget_fornorskning_reconciliation"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison"
+      ]
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+      "case_ids": [
+        "case_his_eidsvolls_plass_sami_rights_mobilization"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict"
+      ]
+    }
+  ]
+}

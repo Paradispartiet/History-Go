@@ -28,11 +28,11 @@ Et teoriobjekt kan registreres som `evidence_ready` i piloten bare når det har:
 
 `evidence_ready` betyr at teoriobjektet har et kontrollerbart evidensgrunnlag som består den gjeldende kontrakten. Det betyr ikke at teorien er bevist, universelt gyldig eller uttømmende dokumentert. Teorier brukes til å organisere og prøve fortolkninger; de er ikke historiske fakta i seg selv.
 
-De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akershus. Samiske kontaktsoner i middelalderen V1 innfører en egen manifeststyrt profil for nordlige kontaktsoner i Sápmi. Hvert objekt står fortsatt med `universalization_status: provisional_not_universal`: profilene dokumenterer stedsspesifikke anvendelser, ikke universell gyldighet. Senere batcher må fortsette å utvide periode-, geografi-, aktør- og kildetypebredden uten å senke tersklene.
+De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akershus. Samiske kontaktsoner i middelalderen V1 innfører en egen manifeststyrt profil for nordlige kontaktsoner i Sápmi. Sápmi og Ruija statsdannelse V1 innfører en egen profil for relasjonene mellom samiske og kvenske/norskfinske institusjoner, offentlig mobilisering og nasjonale beslutningsorganer. Hvert objekt står fortsatt med `universalization_status: provisional_not_universal`: profilene dokumenterer stedsspesifikke anvendelser, ikke universell gyldighet. Senere batcher må fortsette å utvide periode-, geografi-, aktør- og kildetypebredden uten å senke tersklene.
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 57 av 230 etter at embetsstat, demokratisering og kommunalt selvstyre V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 59 av 230 etter at Sápmi og Ruija statsdannelse V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -47,6 +47,8 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Middelalderby og Oslo-evidens V1: **2** nye kvalifiserende teoriobjekter, **6** nye claims og **4** utvidede validerte cases.
 - Svartedauden og senmiddelalderens omforming V1: **1** nytt kvalifiserende teoriobjekt, **4** nye claims, **1** nyvalidert case og **1** utvidet case.
 - Samiske kontaktsoner i middelalderen V1: **1** nytt kvalifiserende teoriobjekt, **6** nye claims, **2** nyvaliderte cases, **3** nye kilder og **1** ny geografiprofil.
-- Totalt: **57 av 230** teoriobjekter (**24.8 %**).
+- Embetsstat, demokratisering og kommunalt selvstyre V1: **2** nye kvalifiserende teoriobjekter, **5** nye claims og **2** utvidede cases.
+- Sápmi og Ruija statsdannelse V1: **2** nye kvalifiserende teoriobjekter, **9** nye claims, **3** nyvaliderte cases, **11** nye kilder og **1** ny geografiprofil.
+- Totalt: **59 av 230** teoriobjekter (**25.7 %**).
 - Universell status: **INCOMPLETE**.
-- Gjenstående teoriobjekter: **175**.
+- Gjenstående teoriobjekter: **171**.
