@@ -47,20 +47,21 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
     categoryDescription:categories.decisions?.natur, schemaFamily:inventoryEntry.schemaFamily,
     manifestEntry, portalEntry, inventoryEntry, statusEntry, registry, badge, source });
 
+  const actualDomainOrder = [...model.domains].map((domain) => String(domain.id));
   assert(model.subject.status.editorial === 'chapters_in_progress', 'Natur har feil redaksjonell status');
-  assert(isDeepStrictEqual(model.domains.map((d) => d.id), ORDER), 'Natur har feil canonical domenerekkefølge');
+  assert(isDeepStrictEqual(actualDomainOrder, ORDER), 'Natur har feil canonical domenerekkefølge');
   assert(model.summary.domainCount === 12 && model.summary.emneCount === 35, 'Natur har feil domene- eller emnetall');
   assert(model.summary.methodCount === 30 && model.summary.mappingCount === 35 && model.summary.hookCount === 60, 'Natur sitt eksisterende miljølag er ikke bevart');
   assert(model.chapters.length === 6, 'Natur skal bevare seks redigerte miljøkapitler');
 
-  const chapterByDomain = new Map(model.chapters.map((chapter) => [chapter.primaryDomainId, chapter]));
+  const chapterByDomain = new Map([...model.chapters].map((chapter) => [chapter.primaryDomainId, chapter]));
   const chapters = CHAPTER_DOMAINS.map((domainId) => {
     const domain = model.domainsById.get(domainId), chapterMeta = chapterByDomain.get(domainId);
     assert(domain && chapterMeta, `${domainId}: mangler kapittel eller domene`);
     assert(fs.existsSync(abs(chapterMeta.source.file)), `${domainId}: kapittelfilen finnes ikke`);
     const chapter = json(chapterMeta.source.file);
     assert(chapter.schema === 'history_go_fagverk_chapter_v1' && chapter.subject === 'natur', `${domainId}: ugyldig kapittel`);
-    assert(new Set(chapterMeta.emneIds).size === domain.emneIds.length && domain.emneIds.every((id) => chapterMeta.emneIds.includes(id)), `${domainId}: kapittelets emnedekning er usynkron`);
+    assert(new Set([...chapterMeta.emneIds]).size === domain.emneIds.length && [...domain.emneIds].every((id) => chapterMeta.emneIds.includes(id)), `${domainId}: kapittelets emnedekning er usynkron`);
     assert((chapter.sections || []).length >= 5 && (chapter.sources || []).length >= 3, `${domainId}: kapittelet mangler pedagogiske lag eller kilder`);
     return { id: chapter.id, primaryDomainId: domainId, coverageRole: domain.source.coverage_status,
       emneCount: domain.emneIds.length, sectionCount: chapter.sections.length,
