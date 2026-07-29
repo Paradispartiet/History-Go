@@ -7,6 +7,7 @@ on:
       - 'data/fagverk/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk.js'
+      - 'scripts/materialize-natur-biology-phase-1.mjs'
       - 'scripts/audit-natur-subject-quality.mjs'
       - 'scripts/audit-natur-fagkart-quality.mjs'
       - 'scripts/audit-natur-universal-coverage.mjs'
@@ -27,6 +28,7 @@ on:
       - 'data/fagverk/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk.js'
+      - 'scripts/materialize-natur-biology-phase-1.mjs'
       - 'scripts/audit-natur-subject-quality.mjs'
       - 'scripts/audit-natur-fagkart-quality.mjs'
       - 'scripts/audit-natur-universal-coverage.mjs'
@@ -53,6 +55,7 @@ jobs:
       - run: npm ci
       - name: Validate Natur quality and universal coverage
         run: |
+          node --check scripts/materialize-natur-biology-phase-1.mjs
           node --check scripts/audit-natur-subject-quality.mjs
           node --check scripts/audit-natur-fagkart-quality.mjs
           node --check scripts/audit-natur-universal-coverage.mjs
