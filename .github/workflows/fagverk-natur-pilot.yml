@@ -1,4 +1,4 @@
-name: Fagverk Natur complete
+name: Fagverk Natur coverage
 
 on:
   pull_request:
@@ -15,9 +15,11 @@ on:
       - 'js/fagverk.js'
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
+      - 'scripts/audit-natur-universal-coverage.mjs'
       - 'scripts/audit-fagverk-natur-pilot.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
+      - 'tests/natur-universal-coverage.test.mjs'
       - 'tests/fagverk-natur-pilot.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-natur-pilot.yml'
@@ -26,9 +28,12 @@ on:
     paths:
       - 'data/fag/natur/**'
       - 'data/fagverk/**'
+      - 'scripts/audit-natur-universal-coverage.mjs'
       - 'scripts/audit-fagverk-natur-pilot.mjs'
+      - 'tests/natur-universal-coverage.test.mjs'
       - 'tests/fagverk-natur-pilot.test.mjs'
       - 'reports/fagverk/**'
+      - '.github/workflows/fagverk-natur-pilot.yml'
   workflow_dispatch:
 
 permissions:
@@ -36,8 +41,8 @@ permissions:
 
 jobs:
   validate:
-    # Filename is retained for workflow continuity; this is the permanent complete gate.
-    name: Validate complete Nature subject
+    # Filnavnet beholdes for workflow-kontinuitet; porten validerer nå ærlig fagdekning og videre utbygging.
+    name: Validate Nature coverage and expansion status
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,12 +51,15 @@ jobs:
           node-version: '24'
       - name: Validate syntax and deterministic reports
         run: |
+          node --check scripts/audit-natur-universal-coverage.mjs
           node --check scripts/audit-fagverk-natur-pilot.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-natur-universal-coverage.mjs
           node scripts/audit-fagverk-natur-pilot.mjs
       - name: Validate Fagverk and Nature contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/natur-universal-coverage.test.mjs
           node --test tests/fagverk-natur-pilot.test.mjs
