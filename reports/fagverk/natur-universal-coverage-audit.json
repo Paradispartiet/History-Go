@@ -1,7 +1,7 @@
 {
   "schema": "history_go_natur_universal_coverage_audit_v1",
   "version": "1.0.0",
-  "status": "passed_with_required_gaps",
+  "status": "passed_with_remaining_gaps",
   "generatedFrom": {
     "pensum": "data/fag/natur/naturpensum_canonical_v4_5.json",
     "contract": "data/fag/natur/natur_universal_coverage_contract_v1.json",
@@ -15,26 +15,24 @@
   },
   "summary": {
     "canonicalDomainCount": 12,
-    "materializedDomainCount": 5,
+    "materializedDomainCount": 8,
     "partialDomainCount": 1,
-    "requiredGapDomainCount": 6,
-    "materializedEmneCount": 35,
-    "materializedMethodCount": 30,
-    "materializedMappingCount": 35,
-    "registeredChapterCount": 6,
+    "requiredGapDomainCount": 3,
+    "materializedEmneCount": 53,
+    "materializedMethodCount": 39,
+    "materializedMappingCount": 53,
+    "registeredChapterCount": 9,
     "editorialStatus": "chapters_in_progress"
   },
   "requiredGapDomains": [
-    "artskunnskap_systematikk",
     "evolusjon_biologisk_mangfold",
-    "botanikk_vegetasjon",
-    "zoologi_dyreliv",
     "sopp_lav_mikroorganismer",
     "organismebiologi_fysiologi"
   ],
   "gates": {
     "twelveDomainTargetLocked": true,
-    "biologyGapsExplicit": true,
+    "biologyPhaseOneMaterialized": true,
+    "remainingBiologyGapsExplicit": true,
     "innerGeologyGapExplicit": true,
     "noFalseCompletionClaim": true,
     "existingEnvironmentLayerPreserved": true,
