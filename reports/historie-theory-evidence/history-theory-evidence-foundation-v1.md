@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **57**
-- Andel med dokumentert evidensgrunnlag: **24.8 %**
+- Validerte pilotobjekter: **59**
+- Andel med dokumentert evidensgrunnlag: **25.7 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -72,6 +72,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane | 6 | 2 | 3 | 6 | evidence_ready |
 | Embetsstat og demokratisering: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
 | Embetsstat og kommunalt selvstyre: forklarings- og kildebane | 3 | 2 | 2 | 3 | evidence_ready |
+| Nasjon, språk, skole og institusjoner: forklarings- og kildebane | 8 | 3 | 11 | 8 | evidence_ready |
+| Eksklusjon, fornorskning og statsborgerskap: forklarings- og kildebane | 6 | 2 | 8 | 6 | evidence_ready |
 
 ## Kontraktsgrense
 
