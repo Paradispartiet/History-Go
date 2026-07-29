@@ -198,7 +198,7 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
 
   const chapterByDomain = new Map(model.chapters.map((chapter) => [chapter.primaryDomainId, chapter]));
   assert(chapterByDomain.size === 6, 'Hvert Natur-kapittel må ha unikt primary_domain_id');
-  const chapterSummary = model.domains.map((domain) => {
+  const chapterSummary = [...model.domains].map((domain) => {
     const chapter = chapterByDomain.get(domain.id);
     assert(chapter, `Fagområdet ${domain.id} mangler redigert kapittel`);
     return inspectChapter(chapter.source, domain, model);
@@ -257,16 +257,17 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
       politicsResiduals: 0
     }
   };
+  const plainReport = JSON.parse(JSON.stringify(report));
 
   if (writeReport) {
     fs.mkdirSync(path.dirname(absolute(PATHS.report)), { recursive: true });
-    fs.writeFileSync(absolute(PATHS.report), `${JSON.stringify(report, null, 2)}\n`);
+    fs.writeFileSync(absolute(PATHS.report), `${JSON.stringify(plainReport, null, 2)}\n`);
   }
   if (checkReport) {
     const committed = readJson(PATHS.report);
-    assert(isDeepStrictEqual(committed, report), `${PATHS.report} er utdatert`);
+    assert(isDeepStrictEqual(committed, plainReport), `${PATHS.report} er utdatert`);
   }
-  return { report, model };
+  return { report: plainReport, model };
 }
 
 function main() {
