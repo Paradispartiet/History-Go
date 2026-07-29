@@ -1,6 +1,6 @@
 // @ts-nocheck
 // js/ui/place-rounds-fill-layout.js
-// Maksimerer det faste fire-rundingsgridet i feltet ved siden av frontImage uten MutationObserver-loop.
+// Maksimerer de tre canonical rundingene i én horisontal rad ved siden av frontImage.
 (function installPlaceRoundsFillLayout(global) {
   "use strict";
 
@@ -19,13 +19,12 @@
     if (!grid) return;
 
     const count = Number(grid.dataset.roundCount || 0);
-    if (count !== 4) {
+    if (count !== 3) {
       grid.style.removeProperty("--hg-round-fill-size");
       return;
     }
 
-    const cols = 2;
-    const rows = 2;
+    const cols = 3;
     const gap = numericGap(grid);
     const rect = grid.getBoundingClientRect();
     const width = rect.width || grid.clientWidth || 0;
@@ -33,8 +32,7 @@
     if (width <= 0 || height <= 0) return;
 
     const byWidth = (width - gap * (cols - 1)) / cols;
-    const byHeight = (height - gap * (rows - 1)) / rows;
-    const size = Math.max(1, Math.floor(Math.min(byWidth, byHeight)));
+    const size = Math.max(1, Math.floor(Math.min(byWidth, height)));
     grid.style.setProperty("--hg-round-fill-size", `${size}px`);
   }
 
@@ -54,8 +52,6 @@
     if (!grid) return false;
 
     if (!attrObserver && typeof global.MutationObserver === "function") {
-      // Kun canonical count-attributtet observeres. Ingen subtree/childList-observasjon,
-      // så layouten kan ikke trigge rundingsrendereren i en selvforsterkende loop.
       attrObserver = new global.MutationObserver(scheduleLayout);
       attrObserver.observe(grid, { attributes: true, attributeFilter: ["data-round-count"] });
     }
