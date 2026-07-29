@@ -93,7 +93,29 @@ export function composeNaturFinal({ pensum, emners, methodsDoc, fagkart, mapping
     canonical_round: 'v5.3'
   };
 
-  const nextMappings = [...clone(mappings), ...clone(overlay.mappings || [])];
+  const hookIndex = new Map();
+  for (const category of categories) {
+    for (const hook of category.topic_hooks || []) hookIndex.set(hook.id, { category, hook });
+  }
+  const overlayMappings = (overlay.mappings || []).map((row) => ({
+    emne_id: row.emne_id,
+    mappings: (row.hook_ids || []).map((hookId) => {
+      const indexed = hookIndex.get(hookId);
+      if (!indexed) throw new Error(`${row.emne_id}: overlay peker til ukjent hook ${hookId}`);
+      const recommended = unique([...(row.method_ids || []), ...(indexed.hook.recommended_method_ids || [])]);
+      return {
+        fagkart_kategori: indexed.category.id,
+        fagkart_kategori_tittel: indexed.category.title,
+        topic_hook: indexed.hook.id,
+        topic_hook_tittel: indexed.hook.title,
+        preferred_question_moves: clone(indexed.hook.preferred_question_moves || []),
+        evidence_focus: clone(indexed.hook.evidence_focus || []),
+        recommended_method_ids: recommended,
+        use_note: `Canonical v5.3-sluttfasekobling for ${row.emne_id}: bruk ${indexed.hook.title} når dokumentert materiale støtter dette læringsfokuset, og behold metode- og kildeusikkerhet eksplisitt.`
+      };
+    })
+  }));
+  const nextMappings = [...clone(mappings), ...overlayMappings];
 
   let nextRegistry = registry ? clone(registry) : null;
   if (nextRegistry?.subjects?.natur) {
