@@ -54,6 +54,8 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   assert(manifestEntry && portalEntry && inventoryEntry && statusEntry, 'Historie mangler i manifest, portal, inventar eller status');
   assert(portalEntry.subjectStatus === 'materialized', 'Historie er ikke materialized i portalen');
   assert(portalEntry.subjectPage === 'fagverk.html?subject=historie', 'Historie har feil canonical fagsiderute');
+  assert(portalEntry.badgePage === PATHS.badgePage, 'Historie har feil canonical merkesiderute');
+  assert(fs.existsSync(absolute(portalEntry.badgePage)), 'Historie-merkesiden finnes ikke');
   assert(statusEntry.navigationStatus === 'materialized', 'Historie har usynkron navigasjonsstatus');
   assert(statusEntry.assessmentStatus === 'audited', 'Historie er ikke individuelt audited');
   assert(statusEntry.editorialStatus === 'structure_ready', 'Historie er ikke structure_ready');
@@ -151,10 +153,6 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
 
   const theoryEvidence = universalCoverage.production?.checks?.find((check) => check.id === 'theory_evidence_readiness');
   assert(theoryEvidence, 'Heldedekningsrapporten mangler theory_evidence_readiness');
-
-  const badgePage = read(PATHS.badgePage);
-  assert(badgePage.includes('../../../fagverk.html?subject=historie'), 'Historie-merkesiden lenker ikke til fagsiden');
-  assert(badgePage.includes('../../../fagverk-forside.html'), 'Historie-merkesiden lenker ikke til Fagverkforsiden');
   assert(!JSON.stringify(model.subject).toLocaleLowerCase('nb-NO').includes('politikk'), 'Historie-modellen inneholder politikkspesifikk resttekst');
 
   const report = {
