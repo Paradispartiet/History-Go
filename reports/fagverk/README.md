@@ -12,9 +12,9 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 - `historie-subject-audit.json` — individuell strukturaudit for Historie gjennom standard canonical-adapteren.
-- `natur-pilot-audit.json` — individuell strukturevidens for Natur, inkludert canonical rekkefølge, universell domenedekning og registrerte lærekapitler.
+- `natur-pilot-audit.json` — individuell utbyggingsevidens for Natur: canonical tolvdelsrekkefølge, 53 emner, 39 metoder, 53 mappingrader, 90 hooks og 9 redigerte lærekapitler.
 - `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
-- `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for Natur-hooks, emner og hookmappings.
+- `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 90 Natur-hooks og 53 emner, inkludert egne fagkartlag for artskunnskap, botanikk og zoologi.
 - `natur-universal-coverage-audit.json` — dokumenterer hvilke biologiske og geologiske fagområder som må materialiseres før Natur kan bli redaksjonelt komplett.
 - `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle forekomster er synkronisert.
@@ -71,7 +71,7 @@ Motor-auditen feiler når:
 
 Historie står `materialized`, `audited` og `chapters_in_progress`. Tre av 23 fagområder har registrerte fullverdige kapitler: historisk tid og periodisering, kilder/arkiv/spor og makt/stat/institusjoner. Tjue fagområder, universell theory-evidence og full publiseringsaudit gjenstår.
 
-Natur står `materialized`, `audited` og `chapters_in_progress`. Seks redigerte kapitler dekker det eksisterende økologi-, miljø-, vann-, klima-, landskaps- og bynaturlaget. Den universelle modellen har tolv fagområder; artskunnskap og systematikk, evolusjon og biologisk mangfold, botanikk, zoologi, sopp/lav/mikroorganismer, organismebiologi/fysiologi og deler av indre geologi og naturhistorie må materialiseres før faget kan stå `complete`.
+Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinnelige miljøkapitlene er bevart, og artskunnskap/systematikk, botanikk og zoologi er materialisert med egne emner, metoder, mappinger, fagkart og kapitler. Ni kapitler dekker nå alle 53 materialiserte emner. Evolusjon, sopp/lav/mikroorganismer, organismebiologi/fysiologi og geologiens indre prosesser står fortsatt som eksplisitte hull før faget kan bli `complete`.
 
 Politikk står `materialized`, `audited` og `chapters_in_progress`. Fire av tretten fagområder har registrerte kapitler, mens ni fortsatt mangler fullverdig hovedkapittel. `Regimer og institusjoner` og `Valg, partier og velgeratferd` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. Faget har i tillegg permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
