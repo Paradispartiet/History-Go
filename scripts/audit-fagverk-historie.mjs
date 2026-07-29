@@ -111,7 +111,7 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
     'his_forste_verdenskrig_mellomkrig',
     'his_kald_krig_etterkrig'
   ];
-  const actualDomainOrder = model.domains.map((domain) => domain.id);
+  const actualDomainOrder = [...model.domains].map((domain) => domain.id);
 
   assert(model.subject.id === 'historie', 'Normalisert subject-id er feil');
   assert(model.subject.title === 'Historie', `Uventet Historie-tittel: ${model.subject.title}`);
