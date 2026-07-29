@@ -39,8 +39,8 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
 
   assert(pensum.scope === 'universal', 'Naturpensum skal ha universelt fagomfang');
   assert(methodsDoc.scope === 'universal', 'Naturmetodene skal ha universelt fagomfang');
-  assert(emner.length === 65, `Forventet 65 Natur-emner etter biologi fase 2, fikk ${emner.length}`);
-  assert(methods.length === 45, `Forventet 45 Natur-metoder etter biologi fase 2, fikk ${methods.length}`);
+  assert(emner.length === 77, `Forventet 77 Natur-emner etter sluttfasen, fikk ${emner.length}`);
+  assert(methods.length === 51, `Forventet 51 Natur-metoder etter sluttfasen, fikk ${methods.length}`);
   assert(mappings.length === emner.length, 'Hvert Natur-emne skal ha én canonical mapping');
   assert(unique(pensum.domains.map((d) => d.question_role)), 'Fagområdene har kopierte question_role-tekster');
 
@@ -98,11 +98,12 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
   assert(!JSON.stringify({ emner, methods }).includes('miljørettpferdig'), 'Naturpakken inneholder kjent språkfeil');
   assert(!badge.includes('full teoretisk beskrivelse') && !badge.includes('fulle interne teorien'), 'Merkesiden fremstår fortsatt som intern teorifil');
   assert(badge.includes('fagverk.html?subject=natur'), 'Merkesiden mangler fagsidelenke');
+  assert(badge.includes('77 materialiserte emner, 51 metoder og tolv redigerte kapitler'), 'Merkesiden mangler sluttfasens produksjonstall');
   for (const domain of pensum.domains) assert(badge.includes(domain.label), `Merkesiden omtaler ikke fagområdet ${domain.label}`);
 
   const report = {
     schema: 'history_go_natur_subject_quality_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: 'passed',
     generatedFrom: P,
     summary: {
@@ -128,7 +129,8 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
       emneSpecificQuizAndBlindspots: true,
       methodProceduresAndLimits: true,
       twoTimesSevenNormalQuizOpening: true,
-      publicFacingBadgePage: true
+      publicFacingBadgePage: true,
+      finalPhaseCountsVisible: true
     }
   };
   if (writeReport) {
