@@ -10,14 +10,17 @@ on:
       - 'scripts/audit-politikk-thinker-integrity.mjs'
       - 'scripts/audit-politikk-chapter-regimer-institusjoner.mjs'
       - 'scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs'
+      - 'scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs'
       - 'tests/politikk-subject-quality.test.mjs'
       - 'tests/politikk-thinker-integrity.test.mjs'
       - 'tests/politikk-chapter-regimer-institusjoner.test.mjs'
       - 'tests/politikk-chapter-valg-partier-velgeratferd.test.mjs'
+      - 'tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs'
       - 'reports/fagverk/politikk-quality-audit.json'
       - 'reports/fagverk/politikk-thinker-integrity-audit.json'
       - 'reports/fagverk/politikk-regimer-institusjoner-audit.json'
       - 'reports/fagverk/politikk-valg-partier-velgeratferd-audit.json'
+      - 'reports/fagverk/politikk-offentlig-politikk-beslutning-implementering-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
   push:
     branches: [main]
@@ -29,14 +32,17 @@ on:
       - 'scripts/audit-politikk-thinker-integrity.mjs'
       - 'scripts/audit-politikk-chapter-regimer-institusjoner.mjs'
       - 'scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs'
+      - 'scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs'
       - 'tests/politikk-subject-quality.test.mjs'
       - 'tests/politikk-thinker-integrity.test.mjs'
       - 'tests/politikk-chapter-regimer-institusjoner.test.mjs'
       - 'tests/politikk-chapter-valg-partier-velgeratferd.test.mjs'
+      - 'tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs'
       - 'reports/fagverk/politikk-quality-audit.json'
       - 'reports/fagverk/politikk-thinker-integrity-audit.json'
       - 'reports/fagverk/politikk-regimer-institusjoner-audit.json'
       - 'reports/fagverk/politikk-valg-partier-velgeratferd-audit.json'
+      - 'reports/fagverk/politikk-offentlig-politikk-beslutning-implementering-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
 
 jobs:
@@ -55,11 +61,13 @@ jobs:
           node --check scripts/audit-politikk-thinker-integrity.mjs
           node --check scripts/audit-politikk-chapter-regimer-institusjoner.mjs
           node --check scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs
+          node --check scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs
           node scripts/audit-politikk-subject-quality.mjs
           node scripts/audit-politikk-thinker-integrity.mjs
           node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
           node scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs
-          node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs
+          node scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs
+          node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs

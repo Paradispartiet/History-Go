@@ -20,6 +20,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle forekomster er synkronisert.
 - `politikk-regimer-institusjoner-audit.json` — kapittelgate for 15 emner, 16 metoder, tre redigerte moduler, 29 sporede claims og 16 inspectable kilder.
 - `politikk-valg-partier-velgeratferd-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 23 inspectable kilder.
+- `politikk-offentlig-politikk-beslutning-implementering-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 21 bærende kilder.
 
 ## Regenerering
 
@@ -46,7 +47,9 @@ node scripts/audit-politikk-chapter-regimer-institusjoner.mjs --write-report
 node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
 node scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs --write-report
 node scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs
-node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs
+node scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs --write-report
+node scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs
 ```
 
 `subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
@@ -73,6 +76,6 @@ Historie står `materialized`, `audited` og `chapters_in_progress`. Tre av 23 fa
 
 Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinnelige miljøkapitlene og biologifase 1 er bevart. Evolusjon/biologisk mangfold og organismebiologi/fysiologi er nå materialisert med egne emner, metoder, mappinger, fagkart og kapitler. Elleve kapitler dekker alle 65 materialiserte emner. Sopp/lav/mikroorganismer og geologiens indre prosesser står fortsatt som eksplisitte hull før faget kan bli `complete`.
 
-Politikk står `materialized`, `audited` og `chapters_in_progress`. Fire av tretten fagområder har registrerte kapitler, mens ni fortsatt mangler fullverdig hovedkapittel. `Regimer og institusjoner` og `Valg, partier og velgeratferd` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. Faget har i tillegg permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
+Politikk står `materialized`, `audited` og `chapters_in_progress`. Fem av tretten fagområder har registrerte kapitler, mens åtte fortsatt mangler fullverdig hovedkapittel. `Regimer og institusjoner`, `Valg, partier og velgeratferd` og `Offentlig politikk, beslutning og implementering` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. Faget har i tillegg permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
 De gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
