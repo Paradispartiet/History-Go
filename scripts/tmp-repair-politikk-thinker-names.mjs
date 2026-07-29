@@ -15,7 +15,7 @@ const properName = (value) => {
 };
 const readJson = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
 const writeJson = (path, value) => fs.writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
-const readMainJson = (path) => JSON.parse(execFileSync('git', ['show', `origin/main:${path}`], { encoding: 'utf8' }));
+const readMainJson = (path) => JSON.parse(execFileSync('git', ['show', `origin/main:${path}`], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
 const walk = (value, visit) => {
   if (Array.isArray(value)) return value.forEach((item) => walk(item, visit));
   if (!value || typeof value !== 'object') return;
@@ -37,12 +37,8 @@ const add = (id, name) => {
 
 walk(original.fagkart, (object) => {
   if (object.id && object.name) add(object.id, object.name);
-  if (Array.isArray(object.thinker_ids) && Array.isArray(object.tenkere)) {
-    object.thinker_ids.forEach((id, index) => add(id, object.tenkere[index]));
-  }
-  if (Array.isArray(object.norwegian_thinker_ids) && Array.isArray(object.norwegian_thinkers)) {
-    object.norwegian_thinker_ids.forEach((id, index) => add(id, object.norwegian_thinkers[index]));
-  }
+  if (Array.isArray(object.thinker_ids) && Array.isArray(object.tenkere)) object.thinker_ids.forEach((id, index) => add(id, object.tenkere[index]));
+  if (Array.isArray(object.norwegian_thinker_ids) && Array.isArray(object.norwegian_thinkers)) object.norwegian_thinker_ids.forEach((id, index) => add(id, object.norwegian_thinkers[index]));
 });
 for (const emne of original.emner) {
   (emne.canonical_thinker_ids || []).forEach((id, index) => add(id, emne.canonical_thinkers?.[index]));
@@ -50,12 +46,8 @@ for (const emne of original.emner) {
 }
 walk(original.mappings, (object) => {
   if (object.id && object.name) add(object.id, object.name);
-  if (Array.isArray(object.thinker_ids) && Array.isArray(object.tenkere)) {
-    object.thinker_ids.forEach((id, index) => add(id, object.tenkere[index]));
-  }
-  if (Array.isArray(object.norwegian_thinker_ids) && Array.isArray(object.norwegian_thinkers)) {
-    object.norwegian_thinker_ids.forEach((id, index) => add(id, object.norwegian_thinkers[index]));
-  }
+  if (Array.isArray(object.thinker_ids) && Array.isArray(object.tenkere)) object.thinker_ids.forEach((id, index) => add(id, object.tenkere[index]));
+  if (Array.isArray(object.norwegian_thinker_ids) && Array.isArray(object.norwegian_thinkers)) object.norwegian_thinker_ids.forEach((id, index) => add(id, object.norwegian_thinkers[index]));
 });
 
 const overrides = {
