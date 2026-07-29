@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **59**
-- Andel med dokumentert evidensgrunnlag: **25.7 %**
+- Validerte pilotobjekter: **61**
+- Andel med dokumentert evidensgrunnlag: **26.5 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -74,6 +74,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Embetsstat og kommunalt selvstyre: forklarings- og kildebane | 3 | 2 | 2 | 3 | evidence_ready |
 | Nasjon, språk, skole og institusjoner: forklarings- og kildebane | 8 | 3 | 11 | 8 | evidence_ready |
 | Eksklusjon, fornorskning og statsborgerskap: forklarings- og kildebane | 6 | 2 | 8 | 6 | evidence_ready |
+| Fabrikk, arbeidsprosess og organisering | 5 | 2 | 3 | 5 | evidence_ready |
+| Arbeidstid, lønn og ferdighet | 6 | 3 | 5 | 6 | evidence_ready |
 
 ## Kontraktsgrense
 

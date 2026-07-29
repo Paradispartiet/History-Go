@@ -41,12 +41,12 @@
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 104,
-    "claims_total": 110,
-    "sources_total": 87,
-    "evidence_links_total": 110,
+    "claims_total": 117,
+    "sources_total": 90,
+    "evidence_links_total": 117,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 23,
+    "verified_cases_total": 25,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -1218,9 +1218,11 @@
       "label": "Hjula Væveri",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "voienfossen"
+      ],
       "emne_ids": [
         "em_his_arbeiderbevegelse_folkedannelse",
         "em_his_arbeidsmiljo_risiko_helse",
@@ -1232,10 +1234,22 @@
         "em_his_industriby_1900",
         "em_his_kjonn_arbeidsdeling_lonn"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_industry_factory_work_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -1985,22 +1999,38 @@
       "label": "Nydalen",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "nydalen"
+      ],
       "emne_ids": [
         "em_his_arbeiderbevegelse_folkedannelse",
+        "em_his_arbeidstid_lonn_ferdighet",
         "em_his_arbeidsvandring_rekruttering",
         "em_his_avindustrialisering_ombruk_industriarv",
         "em_his_fabrikk_arbeidsorganisering",
         "em_his_industri_produksjon_energi",
         "em_his_industriby_1900",
+        "em_his_kjonn_arbeidsdeling_lonn",
         "em_his_sosialhistorie_hverdagsliv"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_industry_factory_work_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -3151,6 +3181,7 @@
       "emne_ids": [
         "em_his_arbeid_nettverk_naring",
         "em_his_arbeiderbevegelse_folkedannelse",
+        "em_his_arbeidstid_lonn_ferdighet",
         "em_his_kildekritikk_arkiv_spor",
         "em_his_minoritetshistorie",
         "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
@@ -3181,9 +3212,10 @@
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_explicit_limitations",
         "additional_batch_ids": [
+          "history_industry_factory_work_evidence_v1",
           "history_source_method_families_evidence_v1"
         ],
-        "scope_expanded_at": "2026-07-27"
+        "scope_expanded_at": "2026-07-29"
       }
     }
   ],
@@ -7210,6 +7242,49 @@
       ],
       "qualified_theory_ids": [
         "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming"
+      ]
+    },
+    {
+      "batch_id": "history_industry_factory_work_evidence_v1",
+      "status": "validated",
+      "validated_at": "2026-07-29",
+      "newly_verified_case_ids": [
+        "case_his_hjula_vaeveri",
+        "case_his_nydalen"
+      ],
+      "expanded_case_ids": [
+        "case_his_youngstorget"
+      ],
+      "claim_ids": [
+        "claim_his_nydalen_british_machine_installation_worker_training_1845_1847",
+        "claim_his_nydalen_management_split_production_economy_1845_1867",
+        "claim_his_nydalen_departments_gendered_tasks_1867_1900",
+        "claim_his_hjula_english_factory_system_training_1855",
+        "claim_his_hjula_turbine_65_hp_400_looms_1855",
+        "claim_his_hjula_low_paid_women_workforce_1880s",
+        "claim_his_hjula_wage_supplement_material_stop_1914_1918",
+        "claim_his_youngstorget_mayday_1890_eight_hour_demand"
+      ],
+      "source_ids": [
+        "src_his_arbark_eight_hour_day_1890",
+        "src_his_arbark_mayday_history",
+        "src_his_nbl_adam_hiorth",
+        "src_his_snl_hjula_vaeveri",
+        "src_his_snl_nydalens_compagnie"
+      ],
+      "evidence_ids": [
+        "evidence_his_industry_factory_work_01",
+        "evidence_his_industry_factory_work_02",
+        "evidence_his_industry_factory_work_03",
+        "evidence_his_industry_factory_work_04",
+        "evidence_his_industry_factory_work_05",
+        "evidence_his_industry_factory_work_06",
+        "evidence_his_industry_factory_work_07",
+        "evidence_his_youngstorget_01"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_fabrikk_arbeidsorganisering",
+        "theory_his_arbeidstid_lonn_ferdighet"
       ]
     }
   ]
