@@ -1,7 +1,7 @@
 {
-  "schema": "history_go_fagverk_natur_pilot_audit_v1",
+  "schema": "history_go_fagverk_natur_complete_audit_v1",
   "version": "1.0.0",
-  "status": "phase_2_natur_pilot_passed",
+  "status": "natur_editorial_complete",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -23,7 +23,8 @@
     "badgePage": "data/fag/natur/merke_natur (1).html",
     "subjectPage": "fagverk.html?subject=natur",
     "assessmentStatus": "audited",
-    "editorialStatus": "structure_ready"
+    "editorialStatus": "complete",
+    "nextGate": "editorial_maintenance"
   },
   "summary": {
     "domainCount": 6,
@@ -31,7 +32,8 @@
     "methodCount": 30,
     "mappingCount": 35,
     "hookCount": 60,
-    "chapterCount": 0,
+    "chapterCount": 6,
+    "coveredEmneCount": 35,
     "placeCount": 0
   },
   "canonicalDomainOrder": [
@@ -42,6 +44,92 @@
     "urban_okologi_gronnstruktur",
     "miljopavirkning_forvaltning_regenerasjon"
   ],
+  "chapters": [
+    {
+      "id": "okosystem_mangfold_habitat",
+      "primaryDomainId": "okosystem_mangfold_habitat",
+      "emneCount": 11,
+      "objectiveCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "exampleCount": 2,
+      "misconceptionCount": 3,
+      "conceptCount": 8,
+      "taskCount": 3,
+      "selfCheckCount": 5,
+      "sourceCount": 3
+    },
+    {
+      "id": "vann_hydrologi_kretslop",
+      "primaryDomainId": "vann_hydrologi_kretslop",
+      "emneCount": 4,
+      "objectiveCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "exampleCount": 2,
+      "misconceptionCount": 3,
+      "conceptCount": 8,
+      "taskCount": 3,
+      "selfCheckCount": 5,
+      "sourceCount": 3
+    },
+    {
+      "id": "klima_energi_resiliens",
+      "primaryDomainId": "klima_energi_resiliens",
+      "emneCount": 4,
+      "objectiveCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "exampleCount": 2,
+      "misconceptionCount": 3,
+      "conceptCount": 8,
+      "taskCount": 3,
+      "selfCheckCount": 5,
+      "sourceCount": 3
+    },
+    {
+      "id": "geologi_landskap_tid",
+      "primaryDomainId": "geologi_landskap_tid",
+      "emneCount": 4,
+      "objectiveCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "exampleCount": 2,
+      "misconceptionCount": 3,
+      "conceptCount": 8,
+      "taskCount": 3,
+      "selfCheckCount": 5,
+      "sourceCount": 3
+    },
+    {
+      "id": "urban_okologi_gronnstruktur",
+      "primaryDomainId": "urban_okologi_gronnstruktur",
+      "emneCount": 6,
+      "objectiveCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "exampleCount": 2,
+      "misconceptionCount": 3,
+      "conceptCount": 8,
+      "taskCount": 3,
+      "selfCheckCount": 5,
+      "sourceCount": 3
+    },
+    {
+      "id": "miljopavirkning_forvaltning_regenerasjon",
+      "primaryDomainId": "miljopavirkning_forvaltning_regenerasjon",
+      "emneCount": 6,
+      "objectiveCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "exampleCount": 2,
+      "misconceptionCount": 3,
+      "conceptCount": 8,
+      "taskCount": 3,
+      "selfCheckCount": 5,
+      "sourceCount": 3
+    }
+  ],
   "gates": {
     "manifestFirst": true,
     "normalizedModel": true,
@@ -51,7 +139,11 @@
     "mappingsResolved": true,
     "canonicalMappingFileComplete": true,
     "badgeAndSubjectRoutes": true,
-    "noGeneratedChapters": true,
+    "oneEditedChapterPerDomain": true,
+    "allEmnersCoveredExactlyOnce": true,
+    "pedagogicalLayersComplete": true,
+    "inspectableSourcesPresent": true,
+    "editorialStatusComplete": true,
     "politicsResiduals": 0
   }
 }
