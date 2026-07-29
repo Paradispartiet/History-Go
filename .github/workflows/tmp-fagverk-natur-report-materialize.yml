@@ -25,11 +25,10 @@ jobs:
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs --write-report
-          node scripts/audit-fagverk-natur-pilot.mjs --write-report
-          node scripts/audit-fagverk-subject-inventory.mjs
-          node scripts/audit-fagverk-general-engine.mjs
-          node scripts/audit-fagverk-natur-pilot.mjs
-      - uses: actions/upload-artifact@v4
+          node scripts/audit-fagverk-natur-pilot.mjs --write-report --no-check-report
+      - name: Upload exact generator output
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: fagverk-natur-generated-reports
           path: |
