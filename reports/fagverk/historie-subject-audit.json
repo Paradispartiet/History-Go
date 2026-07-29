@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_historie_subject_audit_v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "phase_4_historie_chapters_in_progress",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
@@ -11,6 +11,7 @@
     "status": "data/fagverk/subject_status.json",
     "registry": "data/fagverk/fagverk_registry.json",
     "badgePage": "data/fag/historie/merke_historie (1).html",
+    "theoryEvidence": "data/fag/historie/theory_evidence_historie_canonical_v1.json",
     "universalCoverage": "reports/historie-universal-coverage/historie-universal-coverage.json",
     "report": "reports/fagverk/historie-subject-audit.json"
   },
@@ -30,9 +31,9 @@
     "methodCount": 105,
     "mappingCount": 230,
     "hookCount": 230,
-    "chapterCount": 1,
-    "chapterDomainCount": 1,
-    "remainingChapterDomains": 22,
+    "chapterCount": 2,
+    "chapterDomainCount": 2,
+    "remainingChapterDomains": 21,
     "placeCount": 0
   },
   "chapters": [
@@ -44,7 +45,23 @@
       "misconceptionCount": 5,
       "taskCount": 4,
       "selfCheckCount": 7,
-      "sourceCount": 6
+      "sourceCount": 6,
+      "claimReferenceCount": 4,
+      "sourceReferenceCount": 4,
+      "theoryEvidenceReferenceCount": 1
+    },
+    {
+      "id": "kilder_arkiv_spor",
+      "domainId": "his_kilder_arkiv_spor",
+      "sectionCount": 11,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "taskCount": 4,
+      "selfCheckCount": 7,
+      "sourceCount": 7,
+      "claimReferenceCount": 8,
+      "sourceReferenceCount": 6,
+      "theoryEvidenceReferenceCount": 5
     }
   ],
   "universalCoverage": {
@@ -91,6 +108,7 @@
     "historyExtensionPointersResolved": true,
     "badgeAndSubjectRoutes": true,
     "registeredChaptersValidated": true,
+    "chapterEvidenceReferencesResolved": true,
     "honestCompletionBoundary": true,
     "historyPlaceFallbackResolved": true,
     "politicsResiduals": 0
