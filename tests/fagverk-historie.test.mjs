@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditHistorySubject } from '../scripts/audit-fagverk-historie.mjs';
 
-test('Historie er materialisert med fire redaksjonelle kapitler', () => {
+test('Historie er materialisert med fem redaksjonelle kapitler', () => {
   const { report } = auditHistorySubject();
   assert.equal(report.subject.id, 'historie');
   assert.equal(report.subject.adapter, 'standard');
@@ -14,9 +14,9 @@ test('Historie er materialisert med fire redaksjonelle kapitler', () => {
     methodCount: 105,
     mappingCount: 230,
     hookCount: 230,
-    chapterCount: 4,
-    chapterDomainCount: 4,
-    remainingChapterDomains: 19,
+    chapterCount: 5,
+    chapterDomainCount: 5,
+    remainingChapterDomains: 18,
     placeCount: 0
   });
 });
@@ -76,6 +76,21 @@ test('alle Historie-kapitlene oppfyller kapittel- og evidensporten', () => {
       sourceReferenceCount: 26,
       theoryEvidenceReferenceCount: 10,
       tracedParagraphCount: 33,
+      productionBriefValidated: true
+    },
+    {
+      id: '1814_statsdannelse',
+      domainId: 'his_1814_statsdannelse',
+      sectionCount: 12,
+      workedExampleCount: 2,
+      misconceptionCount: 5,
+      taskCount: 4,
+      selfCheckCount: 7,
+      sourceCount: 32,
+      claimReferenceCount: 33,
+      sourceReferenceCount: 32,
+      theoryEvidenceReferenceCount: 10,
+      tracedParagraphCount: 36,
       productionBriefValidated: true
     }
   ]);
