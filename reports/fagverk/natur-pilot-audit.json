@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_natur_expansion_audit_v1",
   "version": "1.0.0",
-  "status": "natur_environment_layer_complete_subject_expanding",
+  "status": "natur_biology_phase_1_materialized_subject_expanding",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -19,18 +19,19 @@
     "adapter": "standard",
     "assessmentStatus": "audited",
     "editorialStatus": "chapters_in_progress",
-    "nextGate": "materialize_biology_and_inner_geology_domains",
+    "nextGate": "materialize_evolution_microbiology_fysiology_and_inner_geology",
     "subjectPage": "fagverk.html?subject=natur",
     "badgePage": "data/fag/natur/merke_natur (1).html"
   },
   "summary": {
     "domainCount": 12,
-    "materializedEmneCount": 35,
-    "materializedMethodCount": 30,
-    "materializedMappingCount": 35,
-    "materializedHookCount": 60,
-    "existingChapterCount": 6,
-    "requiredGapDomainCount": 6,
+    "materializedEmneCount": 53,
+    "materializedMethodCount": 39,
+    "materializedMappingCount": 53,
+    "materializedHookCount": 90,
+    "registeredChapterCount": 9,
+    "preservedEnvironmentChapterCount": 6,
+    "requiredGapDomainCount": 3,
     "partialDomainCount": 1,
     "placeCount": 0
   },
@@ -48,8 +49,11 @@
     "urban_okologi_gronnstruktur",
     "miljopavirkning_forvaltning_regenerasjon"
   ],
-  "existingChapterDomains": [
+  "registeredChapterDomains": [
     "okosystem_mangfold_habitat",
+    "artskunnskap_systematikk",
+    "botanikk_vegetasjon",
+    "zoologi_dyreliv",
     "vann_hydrologi_kretslop",
     "klima_energi_resiliens",
     "geologi_landskap_tid",
@@ -57,25 +61,107 @@
     "miljopavirkning_forvaltning_regenerasjon"
   ],
   "requiredGapDomains": [
-    "artskunnskap_systematikk",
     "evolusjon_biologisk_mangfold",
-    "botanikk_vegetasjon",
-    "zoologi_dyreliv",
     "sopp_lav_mikroorganismer",
     "organismebiologi_fysiologi"
   ],
   "chapters": [
-    {"id":"okosystem_mangfold_habitat","primaryDomainId":"okosystem_mangfold_habitat","coverageRole":"materialized_environment_layer","emneCount":11,"sectionCount":5,"paragraphCount":15,"conceptCount":8,"sourceCount":3},
-    {"id":"vann_hydrologi_kretslop","primaryDomainId":"vann_hydrologi_kretslop","coverageRole":"materialized_environment_layer","emneCount":4,"sectionCount":5,"paragraphCount":15,"conceptCount":8,"sourceCount":3},
-    {"id":"klima_energi_resiliens","primaryDomainId":"klima_energi_resiliens","coverageRole":"materialized_environment_layer","emneCount":4,"sectionCount":5,"paragraphCount":15,"conceptCount":8,"sourceCount":3},
-    {"id":"geologi_landskap_tid","primaryDomainId":"geologi_landskap_tid","coverageRole":"partial_materialized","emneCount":4,"sectionCount":5,"paragraphCount":15,"conceptCount":8,"sourceCount":3},
-    {"id":"urban_okologi_gronnstruktur","primaryDomainId":"urban_okologi_gronnstruktur","coverageRole":"materialized_environment_layer","emneCount":6,"sectionCount":5,"paragraphCount":15,"conceptCount":8,"sourceCount":3},
-    {"id":"miljopavirkning_forvaltning_regenerasjon","primaryDomainId":"miljopavirkning_forvaltning_regenerasjon","coverageRole":"materialized_environment_layer","emneCount":6,"sectionCount":5,"paragraphCount":15,"conceptCount":8,"sourceCount":3}
+    {
+      "id": "okosystem_mangfold_habitat",
+      "primaryDomainId": "okosystem_mangfold_habitat",
+      "coverageRole": "materialized_environment_layer",
+      "emneCount": 11,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 8,
+      "sourceCount": 3
+    },
+    {
+      "id": "artskunnskap_systematikk",
+      "primaryDomainId": "artskunnskap_systematikk",
+      "coverageRole": "materialized_biology_layer",
+      "emneCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 10,
+      "sourceCount": 4
+    },
+    {
+      "id": "botanikk_vegetasjon",
+      "primaryDomainId": "botanikk_vegetasjon",
+      "coverageRole": "materialized_biology_layer",
+      "emneCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 10,
+      "sourceCount": 4
+    },
+    {
+      "id": "zoologi_dyreliv",
+      "primaryDomainId": "zoologi_dyreliv",
+      "coverageRole": "materialized_biology_layer",
+      "emneCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 10,
+      "sourceCount": 4
+    },
+    {
+      "id": "vann_hydrologi_kretslop",
+      "primaryDomainId": "vann_hydrologi_kretslop",
+      "coverageRole": "materialized_environment_layer",
+      "emneCount": 4,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 8,
+      "sourceCount": 3
+    },
+    {
+      "id": "klima_energi_resiliens",
+      "primaryDomainId": "klima_energi_resiliens",
+      "coverageRole": "materialized_environment_layer",
+      "emneCount": 4,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 8,
+      "sourceCount": 3
+    },
+    {
+      "id": "geologi_landskap_tid",
+      "primaryDomainId": "geologi_landskap_tid",
+      "coverageRole": "partial_materialized",
+      "emneCount": 4,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 8,
+      "sourceCount": 3
+    },
+    {
+      "id": "urban_okologi_gronnstruktur",
+      "primaryDomainId": "urban_okologi_gronnstruktur",
+      "coverageRole": "materialized_environment_layer",
+      "emneCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 8,
+      "sourceCount": 3
+    },
+    {
+      "id": "miljopavirkning_forvaltning_regenerasjon",
+      "primaryDomainId": "miljopavirkning_forvaltning_regenerasjon",
+      "coverageRole": "materialized_environment_layer",
+      "emneCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 8,
+      "sourceCount": 3
+    }
   ],
   "gates": {
     "canonicalTwelveDomainOrder": true,
     "currentEnvironmentLayerPreserved": true,
-    "existingChaptersInspectable": true,
+    "biologyPhaseOneMaterialized": true,
+    "registeredChaptersInspectable": true,
     "requiredGapsExplicit": true,
     "innerGeologyGapExplicit": true,
     "editorialStatusHonest": true,
