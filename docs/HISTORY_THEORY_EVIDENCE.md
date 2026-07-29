@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 55 av 230 etter at svartedauden og senmiddelalderens omforming V1 samt samiske kontaktsoner i middelalderen V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 57 av 230 etter at embetsstat, demokratisering og kommunalt selvstyre V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -47,6 +47,6 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Middelalderby og Oslo-evidens V1: **2** nye kvalifiserende teoriobjekter, **6** nye claims og **4** utvidede validerte cases.
 - Svartedauden og senmiddelalderens omforming V1: **1** nytt kvalifiserende teoriobjekt, **4** nye claims, **1** nyvalidert case og **1** utvidet case.
 - Samiske kontaktsoner i middelalderen V1: **1** nytt kvalifiserende teoriobjekt, **6** nye claims, **2** nyvaliderte cases, **3** nye kilder og **1** ny geografiprofil.
-- Totalt: **55 av 230** teoriobjekter (**23.9 %**).
+- Totalt: **57 av 230** teoriobjekter (**24.8 %**).
 - Universell status: **INCOMPLETE**.
 - Gjenstående teoriobjekter: **175**.
