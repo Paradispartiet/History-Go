@@ -17,6 +17,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 60 Natur-hooks og 35 emner fordelt over 127 hookmappings.
 - `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle 2198 forekomster er synkronisert.
+- `politikk-regimer-institusjoner-audit.json` — kapittelgate for 15 emner, 16 metoder, tre redigerte moduler, 29 sporede claims og 16 inspectable kilder.
 
 ## Regenerering
 
@@ -76,3 +77,5 @@ Historie står `materialized`, `audited` og `structure_ready`. Faget er tilgjeng
 Politikk står fortsatt `materialized`, `audited` og `structure_ready`. Faget har permanente kvalitetsgater for full dekning av 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, to ganger sju normale quizåpningsspørsmål, eksplisitt Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner. De to ferdigskrevne kapitlene dekker ennå ikke alle tretten fagområder, så Politikk er ikke redaksjonelt `complete`.
 
 De gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
+
+Politikk står nå `materialized`, `audited` og `chapters_in_progress`: tre av tretten fagområder har registrerte kapitler, mens ti fortsatt mangler fullverdig hovedkapittel. Regimer og institusjoner er det første Politikk-kapittelet med egen brief, påstandsregister og permanent kapittelaudit.
