@@ -34,9 +34,9 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
   const hookIndex = new Map(hooks.map((row) => [row.hook.id, row]));
 
   assert(fagkart.scope === 'universal', 'Natur-fagkartet skal ha universelt fagomfang');
-  assert(categories.length === 9, `Forventet 9 materialiserte fagkartkategorier, fikk ${categories.length}`);
-  assert(hooks.length === 90, `Forventet 90 Natur-hooks etter biologi fase 1, fikk ${hooks.length}`);
-  assert(hookIndex.size === 90, 'Natur-fagkartet har dupliserte hook-id-er');
+  assert(categories.length === 11, `Forventet 11 materialiserte fagkartkategorier, fikk ${categories.length}`);
+  assert(hooks.length === 110, `Forventet 110 Natur-hooks etter biologi fase 2, fikk ${hooks.length}`);
+  assert(hookIndex.size === 110, 'Natur-fagkartet har dupliserte hook-id-er');
   assert(categories.every((c) => pensumDomains.has(c.id)), 'Fagkartkategori mangler i pensum');
 
   const focusQuestions = [];
@@ -69,7 +69,7 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
   assert(unique(questionMoves), 'Natur-hooks har dupliserte spørsmålsbevegelser');
   assert(unique(rotationNotes), 'Natur-hooks har dupliserte rotasjonsnotater');
 
-  assert(mappings.length === 53, `Forventet 53 emnemappings etter biologi fase 1, fikk ${mappings.length}`);
+  assert(mappings.length === 65, `Forventet 65 emnemappings etter biologi fase 2, fikk ${mappings.length}`);
   assert(new Set(mappings.map((row) => row.emne_id)).size === mappings.length, 'Dupliserte emne-rader i mappingregisteret');
   const mappingUseNotes = [];
   let mappingCount = 0;

@@ -1,5 +1,5 @@
 {
-  "version": "v5.1-canonical-biology-phase-1",
+  "version": "v5.2-canonical-biology-phase-2",
   "subject_id": "natur",
   "subject_title": "Natur & miljø",
   "scope": "universal",
@@ -3308,6 +3308,519 @@
       "limitations": [
         "observatøren kan endre atferden eller feilklassifisere korte handlinger",
         "en lokal tidsserie kan ikke uten videre generaliseres til arten eller en adaptiv funksjon"
+      ]
+    },
+    {
+      "method_id": "met_natur_populasjonsgenetisk_analyse",
+      "title": "Populasjonsgenetisk analyse",
+      "short_label": "Populasjonsgenetisk analyse",
+      "description": "Estimerer genetisk variasjon, allelfrekvenser og struktur mellom populasjoner og tester hvilke evolusjonsmekanismer dataene kan støtte.",
+      "best_for_emne_kinds": [
+        "evolusjon_biologisk_mangfold"
+      ],
+      "data_forms": [
+        "genotyper eller sekvenser med prøve-ID",
+        "allel- og genotypefrekvenser",
+        "lokalitet, tidspunkt og populasjonsavgrensning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "evolusjon_biologisk_mangfold"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museumssamling",
+        "naturreservat",
+        "forskningslaboratorium",
+        "artsrik eng",
+        "øy",
+        "fragmentert skog",
+        "elveløp",
+        "fuglekoloni",
+        "pollinatoreng",
+        "fjellgradient",
+        "kysthabitat",
+        "øygruppe",
+        "innsjø",
+        "fjellområde",
+        "fragmentert kulturlandskap",
+        "fossilsamling",
+        "naturhistorisk museum",
+        "pollinatornettverk",
+        "fjord"
+      ],
+      "question_moves": [
+        "avgrens hvilket populasjonsgenetisk analyse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk populasjonsgenetisk analyse når datagrunnlaget og spørsmålet hører til evolusjon biologisk mangfold, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før populasjonsgenetisk analyse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_genetisk_variasjon_mutasjon_rekombinasjon",
+        "em_natur_populasjonsgenetikk_drift_genflyt",
+        "em_natur_naturlig_seksuell_seleksjon_tilpasning",
+        "em_natur_artsdannelse_reproduktiv_isolasjon",
+        "em_natur_koevolusjon_utdoing_makroevolusjon",
+        "em_natur_biogeografi_historisk_utbredelse_mangfold"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "Definer populasjoner, tidsrom og arvelige markører før analysen.",
+        "Kontroller prøvestørrelse, slektskap, manglende data og markørkvalitet.",
+        "Beregn variasjon og frekvenser med usikkerhet for hver populasjon.",
+        "Sammenlign observerte mønstre med forventninger under drift, genflyt og seleksjon.",
+        "Rapporter alternative forklaringer og hvilke nye prøver som kan skille dem."
+      ],
+      "limitations": [
+        "Markører kan være nøytrale og ikke representere funksjonelle egenskaper.",
+        "Populasjonsavgrensning og skjev prøvetaking kan skape kunstig struktur.",
+        "Frekvensendring alene identifiserer ikke hvilken evolusjonsmekanisme som virket."
+      ]
+    },
+    {
+      "method_id": "met_natur_komparativ_evolusjonsanalyse",
+      "title": "Komparativ evolusjonsanalyse",
+      "short_label": "Komparativ evolusjonsanalyse",
+      "description": "Sammenligner egenskaper på tvers av arter eller populasjoner med slektskap, miljø og funksjon som eksplisitte kontrollnivåer.",
+      "best_for_emne_kinds": [
+        "evolusjon_biologisk_mangfold"
+      ],
+      "data_forms": [
+        "fylogenetisk tre med støtte",
+        "standardiserte egenskapsdata",
+        "miljø-, fossil- eller livshistoriedata"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "evolusjon_biologisk_mangfold"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museumssamling",
+        "naturreservat",
+        "forskningslaboratorium",
+        "artsrik eng",
+        "øy",
+        "fragmentert skog",
+        "elveløp",
+        "fuglekoloni",
+        "pollinatoreng",
+        "fjellgradient",
+        "kysthabitat",
+        "øygruppe",
+        "innsjø",
+        "fjellområde",
+        "fragmentert kulturlandskap",
+        "fossilsamling",
+        "naturhistorisk museum",
+        "pollinatornettverk",
+        "fjord"
+      ],
+      "question_moves": [
+        "avgrens hvilket komparativ evolusjonsanalyse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk komparativ evolusjonsanalyse når datagrunnlaget og spørsmålet hører til evolusjon biologisk mangfold, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før komparativ evolusjonsanalyse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_genetisk_variasjon_mutasjon_rekombinasjon",
+        "em_natur_populasjonsgenetikk_drift_genflyt",
+        "em_natur_naturlig_seksuell_seleksjon_tilpasning",
+        "em_natur_artsdannelse_reproduktiv_isolasjon",
+        "em_natur_koevolusjon_utdoing_makroevolusjon",
+        "em_natur_biogeografi_historisk_utbredelse_mangfold"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "Formuler alternative hypoteser om egenskapens opphav eller funksjon.",
+        "Velg sammenlignbare taksa og dokumenter fylogenetisk grunnlag.",
+        "Kod egenskaper og miljøvariable med samme definisjoner.",
+        "Kontroller om likheten følger felles avstamning eller uavhengige endringer.",
+        "Rapporter følsomhet for tre, utvalg, datering og manglende data."
+      ],
+      "limitations": [
+        "Arter er ikke uavhengige datapunkter når de deler evolusjonær historie.",
+        "Korrelasjon mellom egenskap og miljø dokumenterer ikke seleksjonsmekanismen alene.",
+        "Ufullstendig fossil- og artsutvalg kan endre rekonstruerte mønstre."
+      ]
+    },
+    {
+      "method_id": "met_natur_biogeografisk_utbredelsesanalyse",
+      "title": "Biogeografisk utbredelsesanalyse",
+      "short_label": "Biogeografisk utbredelsesanalyse",
+      "description": "Analyserer daterte artsfunn, spredning, barrierer, klima og historiske landskapsendringer for å forklare utbredelsesmønstre.",
+      "best_for_emne_kinds": [
+        "evolusjon_biologisk_mangfold"
+      ],
+      "data_forms": [
+        "georefererte og daterte artsfunn",
+        "registreringsinnsats og fraværsdata",
+        "klima-, høyde-, habitat- og paleogeografiske lag"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "evolusjon_biologisk_mangfold"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museumssamling",
+        "naturreservat",
+        "forskningslaboratorium",
+        "artsrik eng",
+        "øy",
+        "fragmentert skog",
+        "elveløp",
+        "fuglekoloni",
+        "pollinatoreng",
+        "fjellgradient",
+        "kysthabitat",
+        "øygruppe",
+        "innsjø",
+        "fjellområde",
+        "fragmentert kulturlandskap",
+        "fossilsamling",
+        "naturhistorisk museum",
+        "pollinatornettverk",
+        "fjord"
+      ],
+      "question_moves": [
+        "avgrens hvilket biogeografisk utbredelsesanalyse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk biogeografisk utbredelsesanalyse når datagrunnlaget og spørsmålet hører til evolusjon biologisk mangfold, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før biogeografisk utbredelsesanalyse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_genetisk_variasjon_mutasjon_rekombinasjon",
+        "em_natur_populasjonsgenetikk_drift_genflyt",
+        "em_natur_naturlig_seksuell_seleksjon_tilpasning",
+        "em_natur_artsdannelse_reproduktiv_isolasjon",
+        "em_natur_koevolusjon_utdoing_makroevolusjon",
+        "em_natur_biogeografi_historisk_utbredelse_mangfold"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "Avgrens art, tidsperiode, geografisk område og datakilder.",
+        "Rens koordinater og skill dokumentert fravær fra manglende søk.",
+        "Kartlegg funn mot innsats, barrierer, miljø og historiske endringer.",
+        "Test alternative forklaringer som spredning, vikarians og dagens habitat.",
+        "Rapporter skala, skjevhet, ekstrapolasjon og områder uten tilstrekkelige data."
+      ],
+      "limitations": [
+        "Artskart gjenspeiler både utbredelse og hvor noen har lett.",
+        "Dagens miljø kan ikke alene forklare historiske eller disjunkte mønstre.",
+        "Korrelative utbredelsesmodeller viser potensielle sammenhenger, ikke sikker årsak."
+      ]
+    },
+    {
+      "method_id": "met_natur_respirometri_energiomsetning",
+      "title": "Respirometri og energiomsetning",
+      "short_label": "Respirometri og energiomsetning",
+      "description": "Måler oksygenforbruk eller karbondioksidproduksjon over tid for å estimere organismers eller prøvers metabolske rate.",
+      "best_for_emne_kinds": [
+        "organismebiologi_fysiologi"
+      ],
+      "data_forms": [
+        "oksygen- eller karbondioksidtidsserie",
+        "temperatur, masse, aktivitet og kammerdata",
+        "blankprøve og kalibreringsdata"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "organismebiologi_fysiologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "laboratorium",
+        "ferskvann",
+        "jordprøve",
+        "kompost",
+        "dyreobservasjon",
+        "innsjø",
+        "bekk",
+        "fugleobservasjon",
+        "fjæresone",
+        "saltvann",
+        "vinterhabitat",
+        "feltlaboratorium",
+        "fugletårn",
+        "dam",
+        "mørkt skogsmiljø",
+        "beiteområde",
+        "pollinatoreng",
+        "salamanderdam",
+        "fuglekoloni",
+        "høydegradient"
+      ],
+      "question_moves": [
+        "avgrens hvilket respirometri og energiomsetning-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk respirometri og energiomsetning når datagrunnlaget og spørsmålet hører til organismebiologi fysiologi, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før respirometri og energiomsetning brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_energiomsetning_celleanding",
+        "em_natur_gassutveksling_sirkulasjon_transport",
+        "em_natur_osmoregulering_temperaturregulering",
+        "em_natur_sanser_nervesystem_bevegelse",
+        "em_natur_ernaering_fordoyelse_hormoner",
+        "em_natur_reproduksjon_homeostase_toleranse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "Definer organisme, fysiologisk tilstand og måleperiode.",
+        "Kalibrer sensor og mål blankkammerets bakgrunnsendring.",
+        "Kontroller temperatur, kammerstørrelse, masse og aktivitet.",
+        "Beregn gassendring per tid og relevant masse eller individ.",
+        "Rapporter lekkasje, stress, diffusjonsbegrensning og hva målet ikke sier om ATP direkte."
+      ],
+      "limitations": [
+        "Lukket kammer kan endre oksygen, karbondioksid, fukt og stress under forsøket.",
+        "Kroppsmasse og temperatur gjør rå rater lite sammenlignbare.",
+        "Gassutveksling kan påvirkes av fotosyntese, mikrober eller kjemiske prosesser i blandede prøver."
+      ]
+    },
+    {
+      "method_id": "met_natur_komparativ_fysiologisk_maling",
+      "title": "Komparativ fysiologisk måling",
+      "short_label": "Komparativ fysiologisk måling",
+      "description": "Sammenligner en definert fysiologisk variabel mellom arter, livsstadier eller miljøbetingelser med standardisert måling og kontroll.",
+      "best_for_emne_kinds": [
+        "organismebiologi_fysiologi"
+      ],
+      "data_forms": [
+        "temperatur, osmolaritet, puls, ventilasjon eller annen definert variabel",
+        "kroppsstørrelse, livsstadium og miljømetadata",
+        "kalibrering, kontrollgruppe og gjentakelser"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "organismebiologi_fysiologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "laboratorium",
+        "ferskvann",
+        "jordprøve",
+        "kompost",
+        "dyreobservasjon",
+        "innsjø",
+        "bekk",
+        "fugleobservasjon",
+        "fjæresone",
+        "saltvann",
+        "vinterhabitat",
+        "feltlaboratorium",
+        "fugletårn",
+        "dam",
+        "mørkt skogsmiljø",
+        "beiteområde",
+        "pollinatoreng",
+        "salamanderdam",
+        "fuglekoloni",
+        "høydegradient"
+      ],
+      "question_moves": [
+        "avgrens hvilket komparativ fysiologisk måling-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk komparativ fysiologisk måling når datagrunnlaget og spørsmålet hører til organismebiologi fysiologi, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før komparativ fysiologisk måling brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_energiomsetning_celleanding",
+        "em_natur_gassutveksling_sirkulasjon_transport",
+        "em_natur_osmoregulering_temperaturregulering",
+        "em_natur_sanser_nervesystem_bevegelse",
+        "em_natur_ernaering_fordoyelse_hormoner",
+        "em_natur_reproduksjon_homeostase_toleranse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "Velg én fysiologisk variabel og begrunn måleinstrument og enhet.",
+        "Standardiser tid, håndtering, temperatur, masse og livsstadium.",
+        "Mål kontroll og behandling med biologiske gjentakelser.",
+        "Analyser respons, variasjon, restitusjon og mulig terskel.",
+        "Skill kortvarig plastisitet fra akklimatisering og evolusjonær forskjell."
+      ],
+      "limitations": [
+        "Håndtering og måleutstyr kan selv utløse stressrespons.",
+        "Sammenligning mellom arter krever kontroll for størrelse, slektskap og livshistorie.",
+        "Én målevariabel representerer ikke hele organismens fysiologiske tilstand."
+      ]
+    },
+    {
+      "method_id": "met_natur_stimulus_respons_forsok",
+      "title": "Stimulus–respons-forsøk",
+      "short_label": "Stimulus–respons-forsøk",
+      "description": "Tester hvordan en presist definert fysisk eller kjemisk påvirkning endrer sanserespons, bevegelse, hormonell regulering eller annen fysiologisk funksjon.",
+      "best_for_emne_kinds": [
+        "organismebiologi_fysiologi"
+      ],
+      "data_forms": [
+        "standardisert stimulus med intensitet og varighet",
+        "latens, terskel, styrke eller sannsynlighet for respons",
+        "kontrollstimulus, rekkefølge og restitusjon"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "organismebiologi_fysiologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "laboratorium",
+        "ferskvann",
+        "jordprøve",
+        "kompost",
+        "dyreobservasjon",
+        "innsjø",
+        "bekk",
+        "fugleobservasjon",
+        "fjæresone",
+        "saltvann",
+        "vinterhabitat",
+        "feltlaboratorium",
+        "fugletårn",
+        "dam",
+        "mørkt skogsmiljø",
+        "beiteområde",
+        "pollinatoreng",
+        "salamanderdam",
+        "fuglekoloni",
+        "høydegradient"
+      ],
+      "question_moves": [
+        "avgrens hvilket stimulus–respons-forsøk-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk stimulus–respons-forsøk når datagrunnlaget og spørsmålet hører til organismebiologi fysiologi, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før stimulus–respons-forsøk brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_energiomsetning_celleanding",
+        "em_natur_gassutveksling_sirkulasjon_transport",
+        "em_natur_osmoregulering_temperaturregulering",
+        "em_natur_sanser_nervesystem_bevegelse",
+        "em_natur_ernaering_fordoyelse_hormoner",
+        "em_natur_reproduksjon_homeostase_toleranse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "Definer stimulus, forventet reseptor og målbar respons før forsøket.",
+        "Etabler kontroll, randomisert rekkefølge og tilstrekkelig hviletid.",
+        "Mål baseline, stimulusrespons og restitusjon uten å endre flere faktorer samtidig.",
+        "Test dose–respons eller terskel innenfor etisk og fysiologisk forsvarlige grenser.",
+        "Rapporter habituering, stress, individvariasjon og alternative sansekanaler."
+      ],
+      "limitations": [
+        "Gjentatte stimuli kan gi habituering, sensibilisering eller utmattelse.",
+        "Observerbar bevegelse identifiserer ikke automatisk reseptor eller nervebane.",
+        "Sterke stimuli kan måle skade eller flukt i stedet for normal fysiologisk regulering."
       ]
     }
   ],
