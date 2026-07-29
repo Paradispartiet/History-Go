@@ -41,15 +41,21 @@ const requirementsFile = readJson(path.join(h, 'case_requirements_historie_canon
 const claimsFile = readJson(path.join(h, 'claims_historie_canonical_v1.json'));
 const sourcesFile = readJson(path.join(h, 'sources_historie_canonical_v1.json'));
 const evidenceFile = readJson(path.join(h, 'place_evidence_historie_v1.json'));
-const profile = readJson(path.join(root, 'data/fag/profiles/historie/oslo_akershus/profile.json'));
-const profilesManifest = readJson(path.join(root, 'data/fag/profiles/manifest.json'));
+const profilesRoot = path.join(root, 'data/fag/profiles');
+const profilesManifest = readJson(path.join(profilesRoot, 'manifest.json'));
+const profileEntries = A(profilesManifest.profiles).filter((item) => item.subject_id === 'historie');
+const profiles = profileEntries.map((entry) => {
+  const file = path.join(profilesRoot, entry.profile_file);
+  if (!fs.existsSync(file)) fail(`Profile manifest file does not resolve: ${entry.profile_file}`);
+  return { entry, file, profile: readJson(file) };
+});
 
 const requirements = A(requirementsFile.requirements);
 const claims = A(claimsFile.claims);
 const sources = A(sourcesFile.sources);
 const evidence = A(evidenceFile.evidence_links);
-const cases = A(profile.cases);
-const mappings = A(profile.emne_case_mappings);
+const cases = profiles.flatMap(({ profile }) => A(profile.cases));
+const mappings = profiles.flatMap(({ profile }) => A(profile.emne_case_mappings));
 
 const emneIds = uniqueIds(emner, 'emne_id', 'emner');
 const requirementIds = uniqueIds(requirements, 'requirement_id', 'case requirements');
@@ -57,6 +63,8 @@ const claimIds = uniqueIds(claims, 'claim_id', 'claims');
 const sourceIds = uniqueIds(sources, 'source_id', 'sources');
 uniqueIds(evidence, 'evidence_id', 'evidence');
 const caseIds = uniqueIds(cases, 'case_id', 'profile cases');
+const profileById = new Map(profiles.map(({ profile }) => [profile.profile_id, profile]));
+const profileByCaseId = new Map();
 
 if (requirements.length !== 4) fail(`Expected 4 case requirements, got ${requirements.length}`);
 if (emner.some((emne) => Object.prototype.hasOwnProperty.call(emne, 'recommended_oslo_cases'))) {
@@ -68,19 +76,42 @@ for (const emne of emner) {
   for (const id of ids) if (!requirementIds.has(id)) fail(`${emne.emne_id} references unknown case requirement ${id}`);
 }
 
-if (profile.subject_id !== 'historie' || profile.canonical_subject_version !== 'v5.8') {
-  fail('Profile subject/version mismatch');
+if (!profiles.length) fail('No active Historie profiles found in profiles manifest');
+for (const { entry, profile } of profiles) {
+  if (profile.subject_id !== 'historie' || profile.canonical_subject_version !== 'v5.8') {
+    fail(`${profile.profile_id}: profile subject/version mismatch`);
+  }
+  if (entry.profile_id !== profile.profile_id) fail(`${profile.profile_id}: manifest profile_id mismatch`);
+  if (entry.geography_id !== profile.geography?.geography_id) fail(`${profile.profile_id}: manifest geography mismatch`);
+  const architecturePath = String(profile.contract?.architecture_contract || '').split('#')[0];
+  if (!architecturePath || !fs.existsSync(path.join(root, architecturePath))) {
+    fail(`${profile.profile_id}: architecture contract does not resolve: ${profile.contract?.architecture_contract}`);
+  }
+  const profileMappings = A(profile.emne_case_mappings);
+  const profileCases = A(profile.cases);
+  const ownedCaseIds = new Set(profileCases.map((item) => item.case_id));
+  const minimumMappings = Number(profile.production_coverage?.minimum_mappings ?? 1);
+  const minimumCases = Number(profile.production_coverage?.minimum_cases_total ?? 2);
+  if (profileMappings.length < minimumMappings) {
+    fail(`${profile.profile_id}: expected at least ${minimumMappings} emne mappings, got ${profileMappings.length}`);
+  }
+  if (profileCases.length < minimumCases) {
+    fail(`${profile.profile_id}: expected at least ${minimumCases} cases, got ${profileCases.length}`);
+  }
+  for (const mapping of profileMappings) {
+    for (const caseId of A(mapping.case_ids)) {
+      if (!ownedCaseIds.has(caseId)) {
+        fail(`${profile.profile_id}: mapping ${mapping.emne_id} references case ${caseId} owned by another profile`);
+      }
+    }
+  }
+  for (const profileCase of profileCases) {
+    if (profileCase.geography_id !== profile.geography.geography_id) {
+      fail(`${profileCase.case_id}: case geography does not match ${profile.profile_id}`);
+    }
+    profileByCaseId.set(profileCase.case_id, profile);
+  }
 }
-if (profile.geography?.geography_id !== 'geo_no_oslo_akershus') fail('Profile geography mismatch');
-if (!A(profilesManifest.profiles).some((item) => item.profile_id === profile.profile_id)) {
-  fail('Profile missing from profiles manifest');
-}
-const architecturePath = String(profile.contract?.architecture_contract || '').split('#')[0];
-if (!architecturePath || !fs.existsSync(path.join(root, architecturePath))) {
-  fail(`Profile architecture contract does not resolve: ${profile.contract?.architecture_contract}`);
-}
-if (mappings.length < 190) fail(`Expected at least 190 migrated Oslo/Akershus emne mappings, got ${mappings.length}`);
-if (cases.length < 20) fail(`Expected preserved legacy case candidates, got only ${cases.length}`);
 
 for (const mapping of mappings) {
   if (!emneIds.has(mapping.emne_id)) fail(`Profile mapping references unknown emne ${mapping.emne_id}`);
@@ -121,6 +152,12 @@ for (const claim of claims) {
   for (const id of A(claim.source_ids)) if (!sourceIds.has(id)) fail(`${claim.claim_id} references unknown source ${id}`);
   for (const id of A(claim.emne_ids)) if (!emneIds.has(id)) fail(`${claim.claim_id} references unknown emne ${id}`);
   for (const id of A(claim.scope.case_ids)) if (!caseIds.has(id)) fail(`${claim.claim_id} references unknown case ${id}`);
+  for (const id of A(claim.scope.case_ids)) {
+    const owner = profileByCaseId.get(id);
+    if (owner && !A(claim.scope.geography_ids).includes(owner.geography.geography_id)) {
+      fail(`${claim.claim_id} does not declare geography ${owner.geography.geography_id} for case ${id}`);
+    }
+  }
   for (const id of A(claim.scope.place_ids)) if (!canonicalPlaceIds.has(id)) {
     fail(`${claim.claim_id} references non-canonical place ${id}`);
   }
@@ -132,6 +169,10 @@ const evidenceByCase = new Map();
 for (const link of evidence) {
   if (!claimIds.has(link.claim_id)) fail(`${link.evidence_id} references unknown claim ${link.claim_id}`);
   if (!caseIds.has(link.case_id)) fail(`${link.evidence_id} references unknown case ${link.case_id}`);
+  const owner = profileByCaseId.get(link.case_id);
+  if (!profileById.has(link.profile_id)) fail(`${link.evidence_id} references unknown profile ${link.profile_id}`);
+  if (owner?.profile_id !== link.profile_id) fail(`${link.evidence_id} profile does not own case ${link.case_id}`);
+  if (owner?.geography?.geography_id !== link.geography_id) fail(`${link.evidence_id} geography does not match its profile`);
   if (!canonicalPlaceIds.has(link.place_id)) fail(`${link.evidence_id} references non-canonical place ${link.place_id}`);
   for (const id of A(link.source_ids)) if (!sourceIds.has(id)) fail(`${link.evidence_id} references unknown source ${id}`);
   for (const id of A(link.emne_ids)) if (!emneIds.has(id)) fail(`${link.evidence_id} references unknown emne ${id}`);
@@ -141,8 +182,8 @@ for (const link of evidence) {
 }
 
 const verifiedCases = cases.filter((item) => item.evidence_status === 'claim_source_linked');
-if (verifiedCases.length < 10) fail(`Expected at least 10 claim-source-linked cases, got ${verifiedCases.length}`);
-if (evidence.length < 20) fail(`Expected at least 20 evidence links, got ${evidence.length}`);
+if (verifiedCases.length < 10) fail(`Expected at least 10 claim-source-linked cases across active profiles, got ${verifiedCases.length}`);
+if (evidence.length < 20) fail(`Expected at least 20 evidence links across active profiles, got ${evidence.length}`);
 
 for (const profileCase of verifiedCases) {
   const placeIds = A(profileCase.place_ids);
@@ -159,25 +200,41 @@ for (const profileCase of verifiedCases) {
   }
 }
 
-const counts = profile.production_coverage ?? {};
-const expectedCounts = {
-  cases_total: cases.length,
-  verified_cases_total: verifiedCases.length,
-  claims_total: claims.length,
-  sources_total: sources.length,
-  evidence_links_total: evidence.length,
-};
-for (const [key, expected] of Object.entries(expectedCounts)) {
-  if (counts[key] !== expected) fail(`profile.production_coverage.${key}: expected ${expected}, got ${counts[key]}`);
-}
-if (verifiedCases.length >= 10 && evidence.length >= 20 && counts.status !== 'COMPLETE') {
-  fail(`Profile threshold is complete but production_coverage.status=${counts.status}`);
+for (const { profile } of profiles) {
+  const profileCases = A(profile.cases);
+  const profileCaseIds = new Set(profileCases.map((item) => item.case_id));
+  const profileEvidence = evidence.filter((item) => item.profile_id === profile.profile_id);
+  const profileClaimIds = new Set(profileEvidence.map((item) => item.claim_id));
+  const profileSourceIds = new Set(profileEvidence.flatMap((item) => A(item.source_ids)));
+  const profileVerifiedCases = profileCases.filter((item) => item.evidence_status === 'claim_source_linked');
+  const counts = profile.production_coverage ?? {};
+  const expectedCounts = {
+    cases_total: profileCases.length,
+    verified_cases_total: profileVerifiedCases.length,
+    claims_total: profileClaimIds.size,
+    sources_total: profileSourceIds.size,
+    evidence_links_total: profileEvidence.length,
+  };
+  for (const [key, expected] of Object.entries(expectedCounts)) {
+    if (counts[key] !== expected) fail(`${profile.profile_id}.production_coverage.${key}: expected ${expected}, got ${counts[key]}`);
+  }
+  if (profileEvidence.some((item) => !profileCaseIds.has(item.case_id))) {
+    fail(`${profile.profile_id}: evidence contains a case owned by another profile`);
+  }
+  const minimumVerifiedCases = Number(counts.minimum_verified_cases ?? 10);
+  const minimumEvidenceLinks = Number(counts.minimum_evidence_links ?? 20);
+  const thresholdComplete = profileVerifiedCases.length >= minimumVerifiedCases
+    && profileEvidence.length >= minimumEvidenceLinks;
+  if (thresholdComplete !== (counts.status === 'COMPLETE')) {
+    fail(`${profile.profile_id}: threshold completion=${thresholdComplete} but production_coverage.status=${counts.status}`);
+  }
 }
 
 console.log(JSON.stringify({
   status: 'PASS',
   emner: emner.length,
   case_requirements: requirements.length,
+  profiles: profiles.length,
   profile_mappings: mappings.length,
   cases: cases.length,
   verified_cases: verifiedCases.length,

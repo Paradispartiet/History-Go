@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **54**
-- Andel med dokumentert evidensgrunnlag: **23.5 %**
+- Validerte pilotobjekter: **55**
+- Andel med dokumentert evidensgrunnlag: **23.9 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -69,6 +69,7 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Materielle spor og sted som kilde | 4 | 4 | 8 | 4 | evidence_ready |
 | Tidslag og samtidighet i sted | 3 | 3 | 6 | 3 | evidence_ready |
 | Bilder, fotografi og visuelle kilder | 3 | 2 | 2 | 3 | evidence_ready |
+| Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane | 6 | 2 | 3 | 6 | evidence_ready |
 
 ## Kontraktsgrense
 

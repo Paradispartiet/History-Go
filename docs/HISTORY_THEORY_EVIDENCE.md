@@ -28,11 +28,11 @@ Et teoriobjekt kan registreres som `evidence_ready` i piloten bare når det har:
 
 `evidence_ready` betyr at teoriobjektet har et kontrollerbart evidensgrunnlag som består den gjeldende kontrakten. Det betyr ikke at teorien er bevist, universelt gyldig eller uttømmende dokumentert. Teorier brukes til å organisere og prøve fortolkninger; de er ikke historiske fakta i seg selv.
 
-Batchene er `multi_case_geographic_pilot` i Oslo/Akershus. Hvert objekt står derfor samtidig med `universalization_status: provisional_not_universal`. Senere batcher må utvide periode-, geografi-, aktør- og kildetypebredden uten å senke tersklene.
+De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akershus. Samiske kontaktsoner i middelalderen V1 innfører en egen manifeststyrt profil for nordlige kontaktsoner i Sápmi. Hvert objekt står fortsatt med `universalization_status: provisional_not_universal`: profilene dokumenterer stedsspesifikke anvendelser, ikke universell gyldighet. Senere batcher må fortsette å utvide periode-, geografi-, aktør- og kildetypebredden uten å senke tersklene.
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. De tre første batchene etablerte 32 objekter. Politisk kronologi evidens V1 tilfører tre objekter, bevegelsesoffentligheter evidens V1 tilfører fire, og ritual og resepsjon evidens V1 tilfører to objekter på grunnlag av ni nye claims, ni kilder og én nyvalidert case. Produksjonen står dermed på 54 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 55 av 230 etter at svartedauden og senmiddelalderens omforming V1 samt samiske kontaktsoner i middelalderen V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -46,6 +46,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Middelalder sosial-, økonomi- og rettsevidens V1: **5** nye kvalifiserende teoriobjekter, **21** nye claims og **4** nyvaliderte cases; svartedauden holdes tilbake.
 - Middelalderby og Oslo-evidens V1: **2** nye kvalifiserende teoriobjekter, **6** nye claims og **4** utvidede validerte cases.
 - Svartedauden og senmiddelalderens omforming V1: **1** nytt kvalifiserende teoriobjekt, **4** nye claims, **1** nyvalidert case og **1** utvidet case.
-- Totalt: **54 av 230** teoriobjekter (**23.5 %**).
+- Samiske kontaktsoner i middelalderen V1: **1** nytt kvalifiserende teoriobjekt, **6** nye claims, **2** nyvaliderte cases, **3** nye kilder og **1** ny geografiprofil.
+- Totalt: **55 av 230** teoriobjekter (**23.9 %**).
 - Universell status: **INCOMPLETE**.
-- Produksjonsavhengigheter: `reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v6.md`.
+- Gjenstående teoriobjekter: **175**.
