@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { auditHistorySubject } from '../scripts/audit-fagverk-historie.mjs';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 
 test('Historie er materialisert med fem redaksjonelle kapitler', () => {
   const { report } = auditHistorySubject();
@@ -109,4 +115,43 @@ test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', (
   assert.equal(report.universalCoverage.theoryEvidenceQualifying, 59);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
+});
+
+test('1814-kapittelets pedagogiske kort følger renderer-kontrakten', () => {
+  const chapter = readJson('data/fagverk/historie/1814_statsdannelse.json');
+  const modules = chapter.moduleFiles.map(readJson);
+  const workedExamples = modules.flatMap((module) => module.workedExamples || []);
+  const misconceptions = modules.flatMap((module) => module.commonMisconceptions || []);
+  const applicationTasks = modules.flatMap((module) => module.applicationTasks || []);
+  const relatedPlaces = modules.flatMap((module) => module.relatedPlaces || []);
+
+  assert.equal(workedExamples.length, 2);
+  assert.equal(misconceptions.length, 5);
+  assert.equal(applicationTasks.length, 4);
+  assert.equal(relatedPlaces.length, 6);
+
+  for (const example of workedExamples) {
+    assert.equal(typeof example.title, 'string');
+    assert.equal(typeof example.situation, 'string');
+    assert.ok(Array.isArray(example.analysis) && example.analysis.length > 0);
+    assert.equal('steps' in example, false);
+  }
+  for (const misconception of misconceptions) {
+    assert.equal(typeof misconception.claim, 'string');
+    assert.equal(typeof misconception.correction, 'string');
+    assert.equal('misconception' in misconception, false);
+  }
+  for (const task of applicationTasks) {
+    assert.equal(typeof task.task, 'string');
+    assert.ok(Array.isArray(task.prompts) && task.prompts.length > 0);
+    assert.equal('title' in task, false);
+    assert.equal('prompt' in task, false);
+  }
+  for (const place of relatedPlaces) {
+    assert.equal(typeof place.id, 'string');
+    assert.equal(typeof place.name, 'string');
+    assert.equal(typeof place.role, 'string');
+    assert.equal('placeId' in place, false);
+    assert.equal('reason' in place, false);
+  }
 });

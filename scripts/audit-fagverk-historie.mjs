@@ -98,6 +98,18 @@ function assertChapter(chapterRow, model, evidenceRegistries, canonicalDomainsBy
         }
       }
     }
+    for (const example of module.workedExamples || []) {
+      assert(example.title && example.situation && example.analysis?.length > 0, `Arbeidseksempel i ${modulePath} følger ikke renderer-kontrakten title/situation/analysis`);
+    }
+    for (const misconception of module.commonMisconceptions || []) {
+      assert(misconception.claim && misconception.correction, `Misoppfatning i ${modulePath} følger ikke renderer-kontrakten claim/correction`);
+    }
+    for (const task of module.applicationTasks || []) {
+      assert(task.task && task.prompts?.length > 0, `Anvendelsesoppgave i ${modulePath} følger ikke renderer-kontrakten task/prompts`);
+    }
+    for (const place of module.relatedPlaces || []) {
+      assert(place.id && place.name && place.role, `Stedskobling i ${modulePath} følger ikke renderer-kontrakten id/name/role`);
+    }
     workedExampleCount += module.workedExamples?.length || 0;
     misconceptionCount += module.commonMisconceptions?.length || 0;
     taskCount += module.applicationTasks?.length || 0;
