@@ -7,41 +7,296 @@
     "genericForAllCanonicalPlaces": true,
     "title": "Stedets fagverkside",
     "description": "Hvert canonical sted får en egen fagverkside som samler stedstekst, relevante fagområder, lærekapitler, begreper, emner, undermerker og videre utforskning.",
-    "fallbackSubjectByCategory": {"politikk":"politikk","historie":"historie","by":"politikk","natur":"natur"}
+    "fallbackSubjectByCategory": {
+      "politikk": "politikk",
+      "historie": "historie",
+      "by": "politikk",
+      "natur": "natur"
+    }
   },
   "subjects": {
     "politikk": {
       "title": "Politikk og samfunn",
       "description": "Et sammenhengende læreverk om politiske institusjoner, demokrati, valg, rett, offentlig politikk, forvaltning, konflikt, fordeling, internasjonal politikk, politisk økonomi, norsk flernivåstyring og statsvitenskapelige metoder.",
-      "canonicalModel": {"runtimeManifest":"data/fag/politikk/politikk_runtime_manifest.json","sourceOfTruth":true,"note":"Emnetitler, definisjoner, begreper, fagområder og metodekoblinger skal leses fra canonical politikkdata. Registryet eier bare ferdigskrevne lærekapitler og stedsspesifikk kuratering."},
+      "canonicalModel": {
+        "runtimeManifest": "data/fag/politikk/politikk_runtime_manifest.json",
+        "sourceOfTruth": true,
+        "note": "Emnetitler, definisjoner, begreper, fagområder og metodekoblinger skal leses fra canonical politikkdata. Registryet eier bare ferdigskrevne lærekapitler og stedsspesifikk kuratering."
+      },
       "chapters": [
-        {"id":"forvaltning","title":"Offentlig forvaltning","subtitle":"Fra politiske vedtak til regler, tjenester og myndighetsutøvelse","file":"data/fagverk/politikk/forvaltning.json","primary_domain_id":"styring_institusjoner_forvaltning","emne_ids":["em_pol_politi_sikkerhet_makt"]},
-        {"id":"parlamentarisme","title":"Parlamentarisme","subtitle":"Forholdet mellom Stortinget, regjeringen og det politiske ansvaret","file":"data/fagverk/politikk/parlamentarisme.json","primary_domain_id":"demokrati_representasjon_offentlighet","emne_ids":["em_pol_mediert_offentlighet","em_pol_parlamentarisme_maktbalanse"]},
-        {"id":"regimer-og-institusjoner","title":"Regimer og institusjoner","subtitle":"Hvordan statsapparat, maktfordeling og konstitusjonelle regler former politiske utfall","file":"data/fagverk/politikk/regimer-og-institusjoner.json","primary_domain_id":"komparativ_politikk_regimer_institusjoner","emne_ids":["em_pol_statsdannelse_statskapasitet","em_pol_regimer_demokratisering","em_pol_institusjonelle_systemer","em_pol_desentralisering_flerniva","em_pol_institusjonell_endring","em_pol_institusjonsfordypning_parlamentarisme_presidentstyre","em_pol_institusjonsfordypning_flertalls_konsensusdemokrati","em_pol_institusjonsfordypning_enhetsstat_foderalisme","em_pol_institusjonsfordypning_ett_tokammersystem","em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer","em_pol_institusjonsfordypning_mistillit_opplosningsrett","em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet","em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler","em_pol_institusjonsfordypning_utovende_lovgivende_makt","em_pol_institusjonsfordypning_demokratisk_tilbakegang"]},
-        {"id":"valg-partier-velgeratferd","title":"Valg, partier og velgeratferd","subtitle":"Hvordan stemmer blir til mandater, regjeringer og politisk ansvar","file":"data/fagverk/politikk/valg-partier-velgeratferd.json","primary_domain_id":"valg_partier_velgeratferd","emne_ids":["em_pol_valgsystemer","em_pol_partisystemer","em_pol_regjeringsdannelse","em_pol_velgeratferd","em_pol_kampanje_deltakelse_ansvar"]}
+        {
+          "id": "forvaltning",
+          "title": "Offentlig forvaltning",
+          "subtitle": "Fra politiske vedtak til regler, tjenester og myndighetsutøvelse",
+          "file": "data/fagverk/politikk/forvaltning.json",
+          "primary_domain_id": "styring_institusjoner_forvaltning",
+          "emne_ids": [
+            "em_pol_politi_sikkerhet_makt"
+          ]
+        },
+        {
+          "id": "parlamentarisme",
+          "title": "Parlamentarisme",
+          "subtitle": "Forholdet mellom Stortinget, regjeringen og det politiske ansvaret",
+          "file": "data/fagverk/politikk/parlamentarisme.json",
+          "primary_domain_id": "demokrati_representasjon_offentlighet",
+          "emne_ids": [
+            "em_pol_mediert_offentlighet",
+            "em_pol_parlamentarisme_maktbalanse"
+          ]
+        },
+        {
+          "id": "regimer-og-institusjoner",
+          "title": "Regimer og institusjoner",
+          "subtitle": "Hvordan statsapparat, maktfordeling og konstitusjonelle regler former politiske utfall",
+          "file": "data/fagverk/politikk/regimer-og-institusjoner.json",
+          "primary_domain_id": "komparativ_politikk_regimer_institusjoner",
+          "emne_ids": [
+            "em_pol_statsdannelse_statskapasitet",
+            "em_pol_regimer_demokratisering",
+            "em_pol_institusjonelle_systemer",
+            "em_pol_desentralisering_flerniva",
+            "em_pol_institusjonell_endring",
+            "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+            "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+            "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+            "em_pol_institusjonsfordypning_ett_tokammersystem",
+            "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+            "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+            "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+            "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+            "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+            "em_pol_institusjonsfordypning_demokratisk_tilbakegang"
+          ]
+        },
+        {
+          "id": "valg-partier-velgeratferd",
+          "title": "Valg, partier og velgeratferd",
+          "subtitle": "Hvordan stemmer blir til mandater, regjeringer og politisk ansvar",
+          "file": "data/fagverk/politikk/valg-partier-velgeratferd.json",
+          "primary_domain_id": "valg_partier_velgeratferd",
+          "emne_ids": [
+            "em_pol_valgsystemer",
+            "em_pol_partisystemer",
+            "em_pol_regjeringsdannelse",
+            "em_pol_velgeratferd",
+            "em_pol_kampanje_deltakelse_ansvar"
+          ]
+        }
       ]
     },
     "historie": {
       "title": "Historie",
       "description": "Et kildekritisk læreverk om historisk tid, kilder, samfunn, aktører, institusjoner, steder og fortolkninger fra forhistorie til samtid.",
-      "canonicalModel": {"runtimeManifest":"data/fag/fag_manifest.json#historie","sourceOfTruth":true,"note":"Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier bare ferdigskrevne lærekapitler og stedsspesifikk kuratering."},
+      "canonicalModel": {
+        "runtimeManifest": "data/fag/fag_manifest.json#historie",
+        "sourceOfTruth": true,
+        "note": "Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier bare ferdigskrevne lærekapitler og stedsspesifikk kuratering."
+      },
       "chapters": [
-        {"id":"historisk_tid_periodisering","title":"Historisk tid og periodisering","subtitle":"Hvordan kronologi, brudd, kontinuitet og tidsskala former historiske forklaringer","file":"data/fagverk/historie/historisk_tid_periodisering.json","primary_domain_id":"his_tid_periodisering","emne_ids":["em_his_tid_periodisering_epoker","em_his_brudd_kontinuitet","em_his_historiske_lag_i_byrom","em_his_lang_varighet_strukturer","em_his_hendelse_prosess_tidsforlop","em_his_modernisering_1800","em_his_samtidshistorie_brudd","em_his_kronologi_datering_usikkerhet","em_his_anakronisme_historiske_begreper","em_his_samtid_ettertid_fortelling"]},
-        {"id":"kilder_arkiv_spor","title":"Kilder, arkiv og spor","subtitle":"Hvordan fortiden blir dokumenterbar, ordnet og taus","file":"data/fagverk/historie/kilder_arkiv_spor.json","primary_domain_id":"his_kilder_arkiv_spor","emne_ids":["em_his_kildekritikk_arkiv_spor","em_his_spor_materialitet","em_his_ruiner_rester_ombruk","em_his_arkiv_og_dokumentasjon","em_his_kilder_taushet_blindsoner","em_his_taushet_og_manglende_kilder","em_his_dokument_autentisitet","em_his_skrift_hand_lesning","em_his_serielle_kilder_kvantifisering","em_his_visuelle_kilder_fotografi"]},
-        {"id":"makt_stat_institusjoner","title":"Makt, stat og institusjoner","subtitle":"Hvordan myndighet blir organisert, gjennomført og bestridt","file":"data/fagverk/historie/makt_stat_institusjoner.json","primary_domain_id":"his_makt_stat_institusjoner","emne_ids":["em_his_stat_institusjoner","em_his_embetsstat_forvaltning","em_his_styring_krise_kontinuitet","em_his_rett_politi_fengsel","em_his_kontroll_overvakning","em_his_rettsoppgjor","em_his_beslutningskjeder_kompetanse_ansvar","em_his_statlig_kapasitet_skatt_infrastruktur","em_his_rettigheter_borgerskap_forvaltning","em_his_politi_straff_institusjonshverdag"]}
+        {
+          "id": "historisk_tid_periodisering",
+          "title": "Historisk tid og periodisering",
+          "subtitle": "Hvordan kronologi, brudd, kontinuitet og tidsskala former historiske forklaringer",
+          "file": "data/fagverk/historie/historisk_tid_periodisering.json",
+          "primary_domain_id": "his_tid_periodisering",
+          "emne_ids": [
+            "em_his_tid_periodisering_epoker",
+            "em_his_brudd_kontinuitet",
+            "em_his_historiske_lag_i_byrom",
+            "em_his_lang_varighet_strukturer",
+            "em_his_hendelse_prosess_tidsforlop",
+            "em_his_modernisering_1800",
+            "em_his_samtidshistorie_brudd",
+            "em_his_kronologi_datering_usikkerhet",
+            "em_his_anakronisme_historiske_begreper",
+            "em_his_samtid_ettertid_fortelling"
+          ]
+        },
+        {
+          "id": "kilder_arkiv_spor",
+          "title": "Kilder, arkiv og spor",
+          "subtitle": "Hvordan fortiden blir dokumenterbar, ordnet og taus",
+          "file": "data/fagverk/historie/kilder_arkiv_spor.json",
+          "primary_domain_id": "his_kilder_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor",
+            "em_his_spor_materialitet",
+            "em_his_ruiner_rester_ombruk",
+            "em_his_arkiv_og_dokumentasjon",
+            "em_his_kilder_taushet_blindsoner",
+            "em_his_taushet_og_manglende_kilder",
+            "em_his_dokument_autentisitet",
+            "em_his_skrift_hand_lesning",
+            "em_his_serielle_kilder_kvantifisering",
+            "em_his_visuelle_kilder_fotografi"
+          ]
+        },
+        {
+          "id": "makt_stat_institusjoner",
+          "title": "Makt, stat og institusjoner",
+          "subtitle": "Hvordan myndighet blir organisert, gjennomført og bestridt",
+          "file": "data/fagverk/historie/makt_stat_institusjoner.json",
+          "primary_domain_id": "his_makt_stat_institusjoner",
+          "emne_ids": [
+            "em_his_stat_institusjoner",
+            "em_his_embetsstat_forvaltning",
+            "em_his_styring_krise_kontinuitet",
+            "em_his_rett_politi_fengsel",
+            "em_his_kontroll_overvakning",
+            "em_his_rettsoppgjor",
+            "em_his_beslutningskjeder_kompetanse_ansvar",
+            "em_his_statlig_kapasitet_skatt_infrastruktur",
+            "em_his_rettigheter_borgerskap_forvaltning",
+            "em_his_politi_straff_institusjonshverdag"
+          ]
+        }
       ]
     },
     "natur": {
       "title": "Natur & miljø",
-      "description": "Et sammenhengende læreverk om økosystemer, vann, klima, geologi, bynatur, miljøpåvirkning og forvaltning.",
-      "canonicalModel": {"manifest":"data/fag/fag_manifest.json","subjectId":"natur","sourceOfTruth":true,"note":"Emnetitler, definisjoner, fagområder og metodekoblinger leses fra canonical Natur v4.5. Registryet eier de seks redigerte lærekapitlene."},
+      "description": "Et sammenhengende læreverk om økologi, artskunnskap, botanikk, zoologi, vann, klima, geologi, urban natur, miljøpåvirkning og forvaltning.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "subjectId": "natur",
+        "sourceOfTruth": true,
+        "note": "Emnetitler, definisjoner, fagområder og metodekoblinger leses fra canonical Natur v5.1 gjennom de eksisterende kompatibilitetsfilene. Registryet eier ni redigerte lærekapitler."
+      },
       "chapters": [
-        {"id":"okosystem_mangfold_habitat","title":"Økosystem, mangfold og habitat","subtitle":"Fra enkeltfunn til levende systemer","file":"data/fagverk/natur/okosystem_mangfold_habitat.json","primary_domain_id":"okosystem_mangfold_habitat","emne_ids":["em_natur_arter_habitat_mangfold","em_natur_biodiversitet_resiliens","em_natur_fremmede_arter_forstyrrelse","em_natur_jord_sediment_mikroliv","em_natur_kretslop_materie","em_natur_natur_som_aktor","em_natur_okosystem_nettverk","em_natur_okosystemtjenester","em_natur_skog_vegetasjon_suksesjon","em_natur_vatmark_vannspeil_habitat","em_natur_kyst_okosystemer"]},
-        {"id":"vann_hydrologi_kretslop","title":"Vann, hydrologi og kretsløp","subtitle":"Følg vannet gjennom landskapet","file":"data/fagverk/natur/vann_hydrologi_kretslop.json","primary_domain_id":"vann_hydrologi_kretslop","emne_ids":["em_natur_bekkeapning_overvann","em_natur_elver_bekker_vassdrag","em_natur_kjemiske_balanser","em_natur_vannkvalitet_forurensning"]},
-        {"id":"klima_energi_resiliens","title":"Klima, energi og resiliens","subtitle":"Fra værhendelse til langsiktig risiko","file":"data/fagverk/natur/klima_energi_resiliens.json","primary_domain_id":"klima_energi_resiliens","emne_ids":["em_natur_karbon_energi_klima","em_natur_klimatilpasning_risiko","em_natur_urban_varme_klima","em_natur_vippepunkt_sarbarhet"]},
-        {"id":"geologi_landskap_tid","title":"Geologi, landskap og lang tid","subtitle":"Les landskapet som materiale, prosess og historie","file":"data/fagverk/natur/geologi_landskap_tid.json","primary_domain_id":"geologi_landskap_tid","emne_ids":["em_natur_dalforer_vannskiller_topografi","em_natur_geologi_landskapsform","em_natur_kyst_fjord_og_strand","em_natur_lang_tid_klima_historie"]},
-        {"id":"urban_okologi_gronnstruktur","title":"Urban økologi og grønnstruktur","subtitle":"Byen som habitat, nettverk og sosialt landskap","file":"data/fagverk/natur/urban_okologi_gronnstruktur.json","primary_domain_id":"urban_okologi_gronnstruktur","emne_ids":["em_natur_gronnstruktur_korridorer","em_natur_marka_skog_bygrense","em_natur_naturopplevelse_folkehelse","em_natur_sosial_naturforvaltning","em_natur_urban_okologi_byrom","em_natur_friluftsliv_helse"]},
-        {"id":"miljopavirkning_forvaltning_regenerasjon","title":"Miljøpåvirkning, forvaltning og regenerasjon","subtitle":"Fra dokumentert belastning til målbar forbedring","file":"data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json","primary_domain_id":"miljopavirkning_forvaltning_regenerasjon","emne_ids":["em_natur_byutvikling_naturkonflikt","em_natur_forstyrrelse_regenerasjon","em_natur_mikroplast_miljogifter","em_natur_miljodata_overvaking","em_natur_miljorettferdighet","em_natur_vern_forvaltning_politikk"]}
+        {
+          "id": "okosystem_mangfold_habitat",
+          "title": "Økosystem, mangfold og habitat",
+          "subtitle": "Fra enkeltfunn til levende systemer",
+          "file": "data/fagverk/natur/okosystem_mangfold_habitat.json",
+          "primary_domain_id": "okosystem_mangfold_habitat",
+          "emne_ids": [
+            "em_natur_arter_habitat_mangfold",
+            "em_natur_biodiversitet_resiliens",
+            "em_natur_fremmede_arter_forstyrrelse",
+            "em_natur_jord_sediment_mikroliv",
+            "em_natur_kretslop_materie",
+            "em_natur_natur_som_aktor",
+            "em_natur_okosystem_nettverk",
+            "em_natur_okosystemtjenester",
+            "em_natur_skog_vegetasjon_suksesjon",
+            "em_natur_vatmark_vannspeil_habitat",
+            "em_natur_kyst_okosystemer"
+          ]
+        },
+        {
+          "id": "artskunnskap_systematikk",
+          "title": "Artskunnskap og systematikk",
+          "subtitle": "Fra observerbart kjennetegn til etterprøvbar klassifikasjon",
+          "file": "data/fagverk/natur/artskunnskap_systematikk.json",
+          "primary_domain_id": "artskunnskap_systematikk",
+          "emne_ids": [
+            "em_natur_taksonomi_nomenklatur",
+            "em_natur_artsbegreper_avgrensning",
+            "em_natur_fylogeni_slektskap",
+            "em_natur_homologi_analogi_karakterer",
+            "em_natur_bestemmelsesnokler_morfologi",
+            "em_natur_dna_strekkoding_integrativ_taksonomi"
+          ]
+        },
+        {
+          "id": "botanikk_vegetasjon",
+          "title": "Botanikk og vegetasjon",
+          "subtitle": "Fra plantecellen til vegetasjonens mønstre",
+          "file": "data/fagverk/natur/botanikk_vegetasjon.json",
+          "primary_domain_id": "botanikk_vegetasjon",
+          "emne_ids": [
+            "em_natur_plantecelle_vev_organer",
+            "em_natur_rot_stengel_blad_transport",
+            "em_natur_fotosyntese_respirasjon",
+            "em_natur_vekst_hormoner_responser",
+            "em_natur_livssykluser_formering_spredning",
+            "em_natur_plantegrupper_vegetasjonstyper_bestemmelse"
+          ]
+        },
+        {
+          "id": "zoologi_dyreliv",
+          "title": "Zoologi og dyreliv",
+          "subtitle": "Fra kroppsplan og livsstadium til funksjon og atferd",
+          "file": "data/fagverk/natur/zoologi_dyreliv.json",
+          "primary_domain_id": "zoologi_dyreliv",
+          "emne_ids": [
+            "em_natur_dyrerikets_kroppsplaner",
+            "em_natur_virvellose_dyr_mangfold",
+            "em_natur_leddyr_insekter_livssykluser",
+            "em_natur_fisk_amfibier_reptiler",
+            "em_natur_fugler_pattedyr",
+            "em_natur_dyreatferd_formering_tilpasning"
+          ]
+        },
+        {
+          "id": "vann_hydrologi_kretslop",
+          "title": "Vann, hydrologi og kretsløp",
+          "subtitle": "Følg vannet gjennom landskapet",
+          "file": "data/fagverk/natur/vann_hydrologi_kretslop.json",
+          "primary_domain_id": "vann_hydrologi_kretslop",
+          "emne_ids": [
+            "em_natur_bekkeapning_overvann",
+            "em_natur_elver_bekker_vassdrag",
+            "em_natur_kjemiske_balanser",
+            "em_natur_vannkvalitet_forurensning"
+          ]
+        },
+        {
+          "id": "klima_energi_resiliens",
+          "title": "Klima, energi og resiliens",
+          "subtitle": "Fra værhendelse til langsiktig risiko",
+          "file": "data/fagverk/natur/klima_energi_resiliens.json",
+          "primary_domain_id": "klima_energi_resiliens",
+          "emne_ids": [
+            "em_natur_karbon_energi_klima",
+            "em_natur_klimatilpasning_risiko",
+            "em_natur_urban_varme_klima",
+            "em_natur_vippepunkt_sarbarhet"
+          ]
+        },
+        {
+          "id": "geologi_landskap_tid",
+          "title": "Geologi, landskap og lang tid",
+          "subtitle": "Les landskapet som materiale, prosess og historie",
+          "file": "data/fagverk/natur/geologi_landskap_tid.json",
+          "primary_domain_id": "geologi_landskap_tid",
+          "emne_ids": [
+            "em_natur_dalforer_vannskiller_topografi",
+            "em_natur_geologi_landskapsform",
+            "em_natur_kyst_fjord_og_strand",
+            "em_natur_lang_tid_klima_historie"
+          ]
+        },
+        {
+          "id": "urban_okologi_gronnstruktur",
+          "title": "Urban økologi og grønnstruktur",
+          "subtitle": "Byen som habitat, nettverk og sosialt landskap",
+          "file": "data/fagverk/natur/urban_okologi_gronnstruktur.json",
+          "primary_domain_id": "urban_okologi_gronnstruktur",
+          "emne_ids": [
+            "em_natur_gronnstruktur_korridorer",
+            "em_natur_marka_skog_bygrense",
+            "em_natur_naturopplevelse_folkehelse",
+            "em_natur_sosial_naturforvaltning",
+            "em_natur_urban_okologi_byrom",
+            "em_natur_friluftsliv_helse"
+          ]
+        },
+        {
+          "id": "miljopavirkning_forvaltning_regenerasjon",
+          "title": "Miljøpåvirkning, forvaltning og regenerasjon",
+          "subtitle": "Fra dokumentert belastning til målbar forbedring",
+          "file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json",
+          "primary_domain_id": "miljopavirkning_forvaltning_regenerasjon",
+          "emne_ids": [
+            "em_natur_byutvikling_naturkonflikt",
+            "em_natur_forstyrrelse_regenerasjon",
+            "em_natur_mikroplast_miljogifter",
+            "em_natur_miljodata_overvaking",
+            "em_natur_miljorettferdighet",
+            "em_natur_vern_forvaltning_politikk"
+          ]
+        }
       ]
     }
   },
@@ -49,15 +304,47 @@
     "regjeringskvartalet": {
       "title": "Regjeringskvartalet",
       "intro": "Regjeringskvartalet har sin egen fagverkside. Der undersøkes stedet gjennom arkitektur, statsforvaltning, parlamentarisk ansvar, sikkerhet, offentlighet og minne – uten at stedet gjøres til et kapittel i selve faget.",
-      "emneIds": ["em_pol_byrakrati_forvaltning","em_pol_institusjoner_styring","em_pol_administrativ_makt","em_pol_parlamentarisme_maktbalanse","em_pol_politi_sikkerhet_makt","em_pol_mediert_offentlighet"],
-      "lenses": [
-        {"id":"historie","title":"Historie","prompt":"Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?"},
-        {"id":"arkitektur","title":"Arkitektur og by","prompt":"Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?"},
-        {"id":"forvaltning","title":"Forvaltning","prompt":"Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?"},
-        {"id":"parlamentarisme","title":"Parlamentarisme","prompt":"Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?"},
-        {"id":"sikkerhet-minne","title":"Sikkerhet og minne","prompt":"Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?"}
+      "emneIds": [
+        "em_pol_byrakrati_forvaltning",
+        "em_pol_institusjoner_styring",
+        "em_pol_administrativ_makt",
+        "em_pol_parlamentarisme_maktbalanse",
+        "em_pol_politi_sikkerhet_makt",
+        "em_pol_mediert_offentlighet"
       ],
-      "guidingQuestions": ["Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?","Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?","Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?","Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"]
+      "lenses": [
+        {
+          "id": "historie",
+          "title": "Historie",
+          "prompt": "Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?"
+        },
+        {
+          "id": "arkitektur",
+          "title": "Arkitektur og by",
+          "prompt": "Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?"
+        },
+        {
+          "id": "forvaltning",
+          "title": "Forvaltning",
+          "prompt": "Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?"
+        },
+        {
+          "id": "parlamentarisme",
+          "title": "Parlamentarisme",
+          "prompt": "Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?"
+        },
+        {
+          "id": "sikkerhet-minne",
+          "title": "Sikkerhet og minne",
+          "prompt": "Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?"
+        }
+      ],
+      "guidingQuestions": [
+        "Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?",
+        "Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?",
+        "Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?",
+        "Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"
+      ]
     }
   }
 }

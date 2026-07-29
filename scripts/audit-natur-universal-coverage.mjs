@@ -71,14 +71,26 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
   assert(requiredLabels.every((label) => domains.some((domain) => domain.label === label)), 'Naturpensum mangler ett eller flere bindende fagområder');
   assert(requiredLabels.every((label) => badge.includes(label)), 'Merkesiden viser ikke alle tolv fagområder');
 
-  const requiredGapIds = new Set([
+  const materializedBiologyIds = new Set([
     'artskunnskap_systematikk',
-    'evolusjon_biologisk_mangfold',
     'botanikk_vegetasjon',
-    'zoologi_dyreliv',
+    'zoologi_dyreliv'
+  ]);
+  const requiredGapIds = new Set([
+    'evolusjon_biologisk_mangfold',
     'sopp_lav_mikroorganismer',
     'organismebiologi_fysiologi'
   ]);
+  for (const id of materializedBiologyIds) {
+    const domain = domainById.get(id);
+    const contractDomain = contractDomainById.get(id);
+    assert(domain?.coverage_status === 'materialized_biology_layer', `${id}: er ikke materialisert biologilag`);
+    assert((domain.emne_ids || []).length === 6, `${id}: skal ha seks materialiserte emner`);
+    assert((domain.method_ids || []).length === 3, `${id}: skal ha tre egne materialiserte metoder`);
+    assert((domain.hook_ids || []).length === 10, `${id}: skal ha ti egne hooks`);
+    assert(contractDomain?.chapter_status === 'complete_for_current_biology_layer', `${id}: mangler ferdig biologikapittel`);
+    assert(contractDomain?.current_emne_count === 6, `${id}: dekningskontrakten har feil current_emne_count`);
+  }
   for (const id of requiredGapIds) {
     const domain = domainById.get(id);
     assert(domain, `Mangler canonicalt fagområde ${id}`);
@@ -94,19 +106,22 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
   }
 
   const allPensumEmneIds = domains.flatMap((domain) => domain.emne_ids || []);
-  assert(allPensumEmneIds.length === 35, `Forventet 35 materialiserte Natur-emner, fikk ${allPensumEmneIds.length}`);
+  assert(allPensumEmneIds.length === 53, `Forventet 53 materialiserte Natur-emner, fikk ${allPensumEmneIds.length}`);
   assert(unique(allPensumEmneIds), 'Samme Natur-emne ligger i flere fagområder');
   assert(allPensumEmneIds.every((id) => emneIds.has(id)), 'Pensum peker til ukjent Natur-emne');
   assert(emnersEveryMapped(emneIds, mappingIds), 'Ikke alle materialiserte Natur-emner har mapping');
-  assert((methodsDoc.methods || []).length === 30, 'Dagens materialiserte miljølag skal fortsatt ha 30 metoder');
+  assert((methodsDoc.methods || []).length === 39, 'Natur skal ha 39 metoder etter biologi fase 1');
+  assert(isDeepStrictEqual(contract.current_state?.preserved_environment_layer_counts, {
+    emner: 35, methods: 30, mappings: 35, hooks: 60, chapters: 6
+  }), 'Det bevarte miljølagets baseline er endret');
 
   assert(naturStatus?.navigationStatus === 'materialized', 'Natur skal fortsatt være teknisk materialisert');
   assert(naturStatus?.assessmentStatus === 'audited', 'Natur skal fortsatt være individuelt auditert');
   assert(naturStatus?.editorialStatus === 'chapters_in_progress', 'Natur må stå som chapters_in_progress');
-  assert(naturStatus?.nextGate === 'materialize_biology_and_inner_geology_domains', 'Natur har feil neste port');
+  assert(naturStatus?.nextGate === 'materialize_evolution_microbiology_fysiology_and_inner_geology', 'Natur har feil neste port');
   assert(!text(naturStatus?.note).includes('første redaksjonelt komplette'), 'Gammel fullføringspåstand står igjen');
 
-  assert(chapters.length === 6, `Forventet seks eksisterende miljøkapitler, fikk ${chapters.length}`);
+  assert(chapters.length === 9, `Forventet ni registrerte Natur-kapitler, fikk ${chapters.length}`);
   assert(contract.completion_rule?.all_domains_must_have_chapter === true, 'Complete-regelen krever ikke kapittel per fagområde');
   assert(contract.completion_rule?.no_required_gap_domains === true, 'Complete-regelen tillater required_gap');
   assert(contract.completion_rule?.current_result === 'not_complete', 'Dekningskontrakten påstår at Natur er complete');
@@ -115,11 +130,11 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
   const report = {
     schema: 'history_go_natur_universal_coverage_audit_v1',
     version: '1.0.0',
-    status: 'passed_with_required_gaps',
+    status: 'passed_with_remaining_gaps',
     generatedFrom: P,
     summary: {
       canonicalDomainCount: domains.length,
-      materializedDomainCount: domains.filter((domain) => domain.coverage_status === 'materialized_environment_layer').length,
+      materializedDomainCount: domains.filter((domain) => String(domain.coverage_status).startsWith('materialized_')).length,
       partialDomainCount: domains.filter((domain) => domain.coverage_status === 'partial_materialized').length,
       requiredGapDomainCount: domains.filter((domain) => domain.coverage_status === 'required_gap').length,
       materializedEmneCount: allPensumEmneIds.length,
@@ -131,7 +146,8 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
     requiredGapDomains: [...requiredGapIds],
     gates: {
       twelveDomainTargetLocked: true,
-      biologyGapsExplicit: true,
+      biologyPhaseOneMaterialized: true,
+      remainingBiologyGapsExplicit: true,
       innerGeologyGapExplicit: true,
       noFalseCompletionClaim: true,
       existingEnvironmentLayerPreserved: true,
@@ -160,7 +176,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       writeReport: args.has('--write-report'),
       checkReport: !args.has('--no-check-report')
     });
-    console.log(`Natur-dekning OK: ${report.summary.canonicalDomainCount} områder, ${report.summary.requiredGapDomainCount} bindende hull og status ${report.summary.editorialStatus}.`);
+    console.log(`Natur-dekning OK: ${report.summary.canonicalDomainCount} områder, ${report.summary.requiredGapDomainCount} gjenværende hull og status ${report.summary.editorialStatus}.`);
   } catch (error) {
     console.error(`Natur-dekning FEIL: ${error.message}`);
     process.exitCode = 1;

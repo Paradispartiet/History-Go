@@ -1,5 +1,5 @@
 {
-  "version": "v4.5-canonical",
+  "version": "v5.1-canonical-biology-phase-1",
   "subject_id": "natur",
   "subject_title": "Natur & miljø",
   "scope": "universal",
@@ -2594,6 +2594,720 @@
         "sesong og artskunnskap påvirker registrert artsliste",
         "dekning er observatøravhengig",
         "vegetasjonslikhet betyr ikke nødvendigvis lik jord eller historie"
+      ]
+    },
+    {
+      "method_id": "met_natur_taksonomisk_kildekontroll",
+      "title": "Taksonomisk kildekontroll",
+      "short_label": "Taksonomisk kildekontroll",
+      "description": "Sammenstiller akseptert navn, rang, synonymi og revisjonshistorikk fra autoritative navnebaser og original eller revidert taksonomisk litteratur før artsdata sammenlignes.",
+      "best_for_emne_kinds": [
+        "artskunnskap_systematikk"
+      ],
+      "data_forms": [
+        "takson-ID, akseptert navn og autor",
+        "synonymer og navnebruk over tid",
+        "taksonomisk kilde, versjon og kontrolldato",
+        "revisjonsnotat eller originalbeskrivelse"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "artskunnskap_systematikk"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "naturhistorisk museum",
+        "herbarium",
+        "zoologisk samling",
+        "naturreservat",
+        "museumssamling",
+        "kyst",
+        "skog",
+        "fossillokalitet",
+        "forskningslaboratorium",
+        "våtmark",
+        "strand",
+        "park",
+        "ferskvann"
+      ],
+      "question_moves": [
+        "avgrens hvilket taksonomisk kildekontroll-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk taksonomisk kildekontroll når datagrunnlaget og spørsmålet hører til artskunnskap systematikk, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før taksonomisk kildekontroll brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_taksonomi_nomenklatur",
+        "em_natur_artsbegreper_avgrensning",
+        "em_natur_fylogeni_slektskap",
+        "em_natur_homologi_analogi_karakterer",
+        "em_natur_bestemmelsesnokler_morfologi",
+        "em_natur_dna_strekkoding_integrativ_taksonomi"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "avgrens hvilket navne- eller taksonproblem som skal løses",
+        "slå opp samme organisme i minst én autoritativ taksonomisk kilde",
+        "spor synonymi, rangendringer og takson-ID-er",
+        "dokumenter valgt navn, kildeversjon og uløst konflikt"
+      ],
+      "limitations": [
+        "autoritative databaser kan følge ulike taksonomiske vurderinger",
+        "navneendring betyr ikke nødvendigvis at artsforekomsten har endret seg"
+      ]
+    },
+    {
+      "method_id": "met_natur_morfologisk_artsbestemmelse",
+      "title": "Morfologisk artsbestemmelse",
+      "short_label": "Morfologisk artsbestemmelse",
+      "description": "Identifiserer organisme eller organismegruppe gjennom en eksplisitt bestemmelsesnøkkel, dokumenterte morfologiske karakterer og sammenligning med relevante forvekslingsarter.",
+      "best_for_emne_kinds": [
+        "artskunnskap_systematikk"
+      ],
+      "data_forms": [
+        "foto, mål eller preparat av diagnostiske trekk",
+        "bestemmelsesnøkkel med geografisk og taksonomisk omfang",
+        "metadata om livsstadium, kjønn, sted og dato",
+        "referansebeskrivelser eller bestemte belegg"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "artskunnskap_systematikk"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "naturhistorisk museum",
+        "herbarium",
+        "zoologisk samling",
+        "naturreservat",
+        "museumssamling",
+        "kyst",
+        "skog",
+        "fossillokalitet",
+        "forskningslaboratorium",
+        "våtmark",
+        "strand",
+        "park",
+        "ferskvann"
+      ],
+      "question_moves": [
+        "avgrens hvilket morfologisk artsbestemmelse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk morfologisk artsbestemmelse når datagrunnlaget og spørsmålet hører til artskunnskap systematikk, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før morfologisk artsbestemmelse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_taksonomi_nomenklatur",
+        "em_natur_artsbegreper_avgrensning",
+        "em_natur_fylogeni_slektskap",
+        "em_natur_homologi_analogi_karakterer",
+        "em_natur_bestemmelsesnokler_morfologi",
+        "em_natur_dna_strekkoding_integrativ_taksonomi"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "avklar organismegruppe, livsstadium og egnet nøkkel",
+        "følg hvert karaktervalg og dokumenter hva som faktisk observeres",
+        "sammenlign med nærstående arter og noter manglende trekk",
+        "angi laveste sikre taksonomiske nivå og sikkerhetsgrad"
+      ],
+      "limitations": [
+        "variasjon, skade eller feil livsstadium kan skjule diagnostiske trekk",
+        "en nøkkel dekker bare gruppene, området og kunnskapen den ble laget for"
+      ]
+    },
+    {
+      "method_id": "met_natur_dna_strekkodingsanalyse",
+      "title": "DNA-strekkodingsanalyse",
+      "short_label": "DNA-strekkodingsanalyse",
+      "description": "Vurderer artsidentifikasjon fra en standardisert genetisk markør ved å kontrollere prøvens proveniens, sekvenskvalitet, referansebibliotek, alternative treff og samsvar med morfologi.",
+      "best_for_emne_kinds": [
+        "artskunnskap_systematikk"
+      ],
+      "data_forms": [
+        "prøve-ID, vouchere og innsamlingsmetadata",
+        "rå eller kvalitetssikret markørsekvens",
+        "referansetreff med likhet og dekning",
+        "morfologisk og geografisk kontroll"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "artskunnskap_systematikk"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "naturhistorisk museum",
+        "herbarium",
+        "zoologisk samling",
+        "naturreservat",
+        "museumssamling",
+        "kyst",
+        "skog",
+        "fossillokalitet",
+        "forskningslaboratorium",
+        "våtmark",
+        "strand",
+        "park",
+        "ferskvann"
+      ],
+      "question_moves": [
+        "avgrens hvilket dna-strekkodingsanalyse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk dna-strekkodingsanalyse når datagrunnlaget og spørsmålet hører til artskunnskap systematikk, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før dna-strekkodingsanalyse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_taksonomi_nomenklatur",
+        "em_natur_artsbegreper_avgrensning",
+        "em_natur_fylogeni_slektskap",
+        "em_natur_homologi_analogi_karakterer",
+        "em_natur_bestemmelsesnokler_morfologi",
+        "em_natur_dna_strekkoding_integrativ_taksonomi"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "koble prøven entydig til fysisk materiale og metadata",
+        "kontroller sekvenskvalitet, markør og mulige kontaminasjoner",
+        "sammenlign flere referansetreff og deres bestemmelser",
+        "rapporter resultat som bekreftet, foreløpig eller konfliktfylt"
+      ],
+      "limitations": [
+        "referansebibliotek kan være ufullstendig eller inneholde feilbestemte belegg",
+        "én markør kan mangle oppløsning mellom nylig skilte eller hybridiserende arter"
+      ]
+    },
+    {
+      "method_id": "met_natur_planteanatomisk_undersokelse",
+      "title": "Planteanatomisk undersøkelse",
+      "short_label": "Planteanatomisk undersøkelse",
+      "description": "Undersøker planteceller, vev og organer med snitt, mikroskopi, mål og strukturfarge for å koble observerbar anatomi til transport, fotosyntese, støtte og vekst.",
+      "best_for_emne_kinds": [
+        "botanikk_vegetasjon"
+      ],
+      "data_forms": [
+        "planteorgan med dokumentert art og utviklingsstadium",
+        "tverr- eller lengdesnitt med målestokk",
+        "mikroskopibilder av celler og vev",
+        "observasjonsark med struktur og funksjon"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "botanikk_vegetasjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "botanisk hage",
+        "herbarium",
+        "skog",
+        "eng",
+        "våtmark",
+        "tørreng",
+        "bytre",
+        "strand",
+        "veksthus",
+        "park",
+        "skogkant",
+        "blomstereng",
+        "myr",
+        "strandeng",
+        "fjell"
+      ],
+      "question_moves": [
+        "avgrens hvilket planteanatomisk undersøkelse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk planteanatomisk undersøkelse når datagrunnlaget og spørsmålet hører til botanikk vegetasjon, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før planteanatomisk undersøkelse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_plantecelle_vev_organer",
+        "em_natur_rot_stengel_blad_transport",
+        "em_natur_fotosyntese_respirasjon",
+        "em_natur_vekst_hormoner_responser",
+        "em_natur_livssykluser_formering_spredning",
+        "em_natur_plantegrupper_vegetasjonstyper_bestemmelse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "velg organ, art og snittplan ut fra spørsmålet",
+        "lag eller finn et dokumentert preparat og kalibrer målestokk",
+        "identifiser vev etter plassering og cellekarakterer",
+        "sammenlign strukturen med forventet funksjon og alternative arter eller miljøer"
+      ],
+      "limitations": [
+        "preparering og farging kan deformere eller skjule vev",
+        "struktur alene dokumenterer ikke prosesshastighet eller fysiologisk årsak"
+      ]
+    },
+    {
+      "method_id": "met_natur_plantebestemmelse_herbariebelegg",
+      "title": "Plantebestemmelse med herbariebelegg",
+      "short_label": "Plantebestemmelse med herbariebelegg",
+      "description": "Bestemmer planter gjennom reproduktive og vegetative kjennetegn og dokumenterer resultatet med innsamling eller foto, etikettdata, nøkkelspor og kontroll mot herbarium eller artsbeskrivelse.",
+      "best_for_emne_kinds": [
+        "botanikk_vegetasjon"
+      ],
+      "data_forms": [
+        "hele planten eller nødvendige diagnostiske deler",
+        "detaljfoto og mål av blomster, frukt, blad og hår",
+        "lokalitet, dato, habitat og innsamler",
+        "bestemmelsesnøkkel og referansebelegg"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "botanikk_vegetasjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "botanisk hage",
+        "herbarium",
+        "skog",
+        "eng",
+        "våtmark",
+        "tørreng",
+        "bytre",
+        "strand",
+        "veksthus",
+        "park",
+        "skogkant",
+        "blomstereng",
+        "myr",
+        "strandeng",
+        "fjell"
+      ],
+      "question_moves": [
+        "avgrens hvilket plantebestemmelse med herbariebelegg-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk plantebestemmelse med herbariebelegg når datagrunnlaget og spørsmålet hører til botanikk vegetasjon, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før plantebestemmelse med herbariebelegg brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_plantecelle_vev_organer",
+        "em_natur_rot_stengel_blad_transport",
+        "em_natur_fotosyntese_respirasjon",
+        "em_natur_vekst_hormoner_responser",
+        "em_natur_livssykluser_formering_spredning",
+        "em_natur_plantegrupper_vegetasjonstyper_bestemmelse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "vurder om arten kan dokumenteres uten innsamling og følg verne- og etikettregler",
+        "registrer karakterer før materialet tørker eller endrer form",
+        "følg nøkkelen og utelukk forvekslingsarter",
+        "arkiver belegg eller bildeserie med identifikator og sikkerhetsgrad"
+      ],
+      "limitations": [
+        "sterilt materiale kan ofte ikke bestemmes sikkert til art",
+        "innsamling kan være uetisk eller ulovlig for truede arter og små bestander"
+      ]
+    },
+    {
+      "method_id": "met_natur_vegetasjonsrute_gradientanalyse",
+      "title": "Vegetasjonsrute og gradientanalyse",
+      "short_label": "Vegetasjonsrute og gradientanalyse",
+      "description": "Måler artssammensetning, frekvens, dekning og vegetasjonssjikt i standardiserte ruter eller transekter og sammenholder mønsteret med målte miljøgradienter.",
+      "best_for_emne_kinds": [
+        "botanikk_vegetasjon"
+      ],
+      "data_forms": [
+        "artsbestemte rute- eller transektdata",
+        "dekning, frekvens og sjikthøyde",
+        "jordfuktighet, lys, pH, høyde eller forstyrrelse",
+        "kart, prøvedesign og gjentaksmetadata"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "botanikk_vegetasjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "botanisk hage",
+        "herbarium",
+        "skog",
+        "eng",
+        "våtmark",
+        "tørreng",
+        "bytre",
+        "strand",
+        "veksthus",
+        "park",
+        "skogkant",
+        "blomstereng",
+        "myr",
+        "strandeng",
+        "fjell"
+      ],
+      "question_moves": [
+        "avgrens hvilket vegetasjonsrute og gradientanalyse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk vegetasjonsrute og gradientanalyse når datagrunnlaget og spørsmålet hører til botanikk vegetasjon, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før vegetasjonsrute og gradientanalyse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_plantecelle_vev_organer",
+        "em_natur_rot_stengel_blad_transport",
+        "em_natur_fotosyntese_respirasjon",
+        "em_natur_vekst_hormoner_responser",
+        "em_natur_livssykluser_formering_spredning",
+        "em_natur_plantegrupper_vegetasjonstyper_bestemmelse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "formuler gradienthypotese og velg representativt prøvedesign",
+        "registrer arter og dekning med samme skala i alle ruter",
+        "mål miljøvariabler og dokumenter påvirkningshistorie",
+        "analyser samvariasjon og skill gradient fra romlig eller metodisk skjevhet"
+      ],
+      "limitations": [
+        "små ruter kan overse sjeldne eller flekkvis fordelte arter",
+        "korrelasjon langs en gradient beviser ikke hvilken miljøfaktor som er årsak"
+      ]
+    },
+    {
+      "method_id": "met_natur_zoologisk_morfologi",
+      "title": "Zoologisk morfologianalyse",
+      "short_label": "Zoologisk morfologianalyse",
+      "description": "Sammenligner kroppsplan, organer og diagnostiske strukturer hos dyr med mål, illustrasjoner, preparater eller bilder for å bestemme gruppe og tolke funksjon uten å forveksle analogi med slektskap.",
+      "best_for_emne_kinds": [
+        "zoologi_dyreliv"
+      ],
+      "data_forms": [
+        "dokumentert individ, preparat eller bildeserie",
+        "mål av kroppsavsnitt og diagnostiske strukturer",
+        "livsstadium, kjønn, lokalitet og dato",
+        "sammenligningsmateriale og bestemmelseslitteratur"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "zoologi_dyreliv"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "naturhistorisk museum",
+        "fjæresone",
+        "ferskvann",
+        "skogbunn",
+        "strand",
+        "innsjø",
+        "elv",
+        "blomstereng",
+        "skog",
+        "dam",
+        "park",
+        "våtmark",
+        "kyst",
+        "fjell",
+        "fugletårn"
+      ],
+      "question_moves": [
+        "avgrens hvilket zoologisk morfologianalyse-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk zoologisk morfologianalyse når datagrunnlaget og spørsmålet hører til zoologi dyreliv, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før zoologisk morfologianalyse brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_dyrerikets_kroppsplaner",
+        "em_natur_virvellose_dyr_mangfold",
+        "em_natur_leddyr_insekter_livssykluser",
+        "em_natur_fisk_amfibier_reptiler",
+        "em_natur_fugler_pattedyr",
+        "em_natur_dyreatferd_formering_tilpasning"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "avklar hvilke strukturer som svarer på bestemmelses- eller funksjonsspørsmålet",
+        "registrer trekk med målestokk og standardisert orientering",
+        "sammenlign homologe strukturer og relevante forvekslingsgrupper",
+        "rapporter gruppe, funksjonstolkning og gjenværende usikkerhet"
+      ],
+      "limitations": [
+        "fiksering, vinkel og livsstadium kan endre synlige kjennetegn",
+        "funksjon kan ikke alltid utledes sikkert fra form alene"
+      ]
+    },
+    {
+      "method_id": "met_natur_standardisert_faunaobservasjon",
+      "title": "Standardisert faunaobservasjon",
+      "short_label": "Standardisert faunaobservasjon",
+      "description": "Registrerer dyr med fast areal, tidsrom, innsats og observasjonsmåte slik at funn, fravær, aktivitet og livsstadium kan sammenlignes mellom steder eller tidspunkt.",
+      "best_for_emne_kinds": [
+        "zoologi_dyreliv"
+      ],
+      "data_forms": [
+        "arts- eller grupperegistreringer med tid og posisjon",
+        "innsats, observatør, vær og utstyr",
+        "livsstadium, antall og aktivitet",
+        "fraværsdata og oppdagbarhetsnotat"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "zoologi_dyreliv"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "naturhistorisk museum",
+        "fjæresone",
+        "ferskvann",
+        "skogbunn",
+        "strand",
+        "innsjø",
+        "elv",
+        "blomstereng",
+        "skog",
+        "dam",
+        "park",
+        "våtmark",
+        "kyst",
+        "fjell",
+        "fugletårn"
+      ],
+      "question_moves": [
+        "avgrens hvilket standardisert faunaobservasjon-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk standardisert faunaobservasjon når datagrunnlaget og spørsmålet hører til zoologi dyreliv, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før standardisert faunaobservasjon brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_dyrerikets_kroppsplaner",
+        "em_natur_virvellose_dyr_mangfold",
+        "em_natur_leddyr_insekter_livssykluser",
+        "em_natur_fisk_amfibier_reptiler",
+        "em_natur_fugler_pattedyr",
+        "em_natur_dyreatferd_formering_tilpasning"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "definer målgruppe, sesong og egnet observasjonsvindu",
+        "fastsett transekt, punkt, felle eller søketid før registrering",
+        "registrer både funn og standardisert innsats uten å forstyrre dyrene",
+        "vurder oppdagbarhet og sammenlign bare metodisk like datasett"
+      ],
+      "limitations": [
+        "manglende observasjon dokumenterer ikke sikkert fravær",
+        "vær, lyd, vegetasjon og observatører påvirker oppdagbarheten ulikt mellom dyregrupper"
+      ]
+    },
+    {
+      "method_id": "met_natur_atferdsanalyse_felt",
+      "title": "Atferdsanalyse i felt",
+      "short_label": "Atferdsanalyse i felt",
+      "description": "Beskriver dyreatferd med et forhåndsdefinert etogram, individ- eller gruppeutvalg og tidsregistrering for å skille observerte handlinger fra antatt motiv og teste sammenheng med miljøbetingelser.",
+      "best_for_emne_kinds": [
+        "zoologi_dyreliv"
+      ],
+      "data_forms": [
+        "etogram med gjensidig avgrensede atferdskategorier",
+        "fokal-, skann- eller hendelsesregistrering",
+        "individ, gruppe, tid og miljøbetingelser",
+        "observatøravstand og mulig forstyrrelse"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "zoologi_dyreliv"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "naturhistorisk museum",
+        "fjæresone",
+        "ferskvann",
+        "skogbunn",
+        "strand",
+        "innsjø",
+        "elv",
+        "blomstereng",
+        "skog",
+        "dam",
+        "park",
+        "våtmark",
+        "kyst",
+        "fjell",
+        "fugletårn"
+      ],
+      "question_moves": [
+        "avgrens hvilket atferdsanalyse i felt-spørsmål materialet faktisk kan besvare",
+        "dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg",
+        "rapporter resultat, alternative tolkninger og metodisk usikkerhet"
+      ],
+      "method_use_note": "Bruk atferdsanalyse i felt når datagrunnlaget og spørsmålet hører til zoologi dyreliv, ikke som en generell etikett for naturfaglig arbeid.",
+      "rotation_note": "Roter organismegruppe, materiale, livsstadium og sted før atferdsanalyse i felt brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.",
+      "hook_affinities": [],
+      "emne_affinities": [
+        "em_natur_dyrerikets_kroppsplaner",
+        "em_natur_virvellose_dyr_mangfold",
+        "em_natur_leddyr_insekter_livssykluser",
+        "em_natur_fisk_amfibier_reptiler",
+        "em_natur_fugler_pattedyr",
+        "em_natur_dyreatferd_formering_tilpasning"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "naturpensum_v5_1",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "ecosystem_water_climate_or_place_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_ecosystem_water_climate_geology_or_management_case": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_natur_"
+      },
+      "procedure": [
+        "definer atferdskategorier med synlige start- og stoppkriterier",
+        "velg observasjonsutvalg og tidsplan før feltøkten",
+        "registrer handling, kontekst og innsats uten motivtolkning",
+        "analyser tidsbudsjett eller hendelsesrate og test alternative forklaringer"
+      ],
+      "limitations": [
+        "observatøren kan endre atferden eller feilklassifisere korte handlinger",
+        "en lokal tidsserie kan ikke uten videre generaliseres til arten eller en adaptiv funksjon"
       ]
     }
   ],

@@ -3,9 +3,9 @@
   "subject_title": "Natur & miljø",
   "scope": "universal",
   "type": "fagkart",
-  "version": "v4.5-canonical",
+  "version": "v5.1-canonical-biology-phase-1",
   "updated_at": "2026-07-29",
-  "canonical_registry_version": "naturpensum_v4_5",
+  "canonical_registry_version": "naturpensum_v5_1",
   "purpose": "Kanonisk fagkart for Natur & miljø i History Go. Fagkartet styrer naturfaglige og miljøfaglige emner, metoder, teori, stedstyper, spørsmålsflater og kildekrav. Det skal brukes som styringslag, ikke som erstatning for eksterne kilder om konkrete arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning eller restaurering.",
   "principles": {
     "source_first": true,
@@ -1487,6 +1487,4514 @@
         "Ikke spør generisk om natur uten art, habitat, vassdrag, klima, geologi, forurensning, forvaltning, sted eller kilde.",
         "Ikke bruk natur som kategori hvis hovedpoenget egentlig er byarkitektur, historie, sport, kultur, politikk eller næringsliv.",
         "Ikke gjør en park til natur bare fordi den er grønn, uten dokumentert økologisk, biologisk, klimatisk, hydrologisk eller forvaltningsmessig vinkel."
+      ]
+    },
+    {
+      "id": "artskunnskap_systematikk",
+      "title": "Artskunnskap og systematikk",
+      "definition": "Domenet gjør arter og organismegrupper til et selvstendig kunnskapsfelt gjennom klassifikasjon, nomenklatur, artsbegreper, fylogeni, morfologisk identifikasjon, DNA-strekkoding og eksplisitt dokumentasjon av usikkerhet.",
+      "focus": [
+        "taksonomi",
+        "nomenklatur",
+        "artsbegrep",
+        "fylogeni",
+        "bestemmelsesnøkkel",
+        "DNA-strekkoding"
+      ],
+      "question_role": "Start med et dokumentert eksemplar eller en observasjon; skill deretter identifikasjon, navn, klassifikasjon, slektskap og sikkerhetsgrad.",
+      "tagline": "Hvordan organismer identifiseres, navngis, klassifiseres og plasseres i evolusjonære slektskap.",
+      "best_place_types": [
+        "naturhistorisk museum",
+        "herbarium",
+        "zoologisk samling",
+        "naturreservat",
+        "museumssamling",
+        "kyst",
+        "skog",
+        "fossillokalitet",
+        "forskningslaboratorium",
+        "våtmark",
+        "strand",
+        "park",
+        "ferskvann"
+      ],
+      "oslo": {
+        "core_cases": [
+          "naturhistorisk museum",
+          "herbarium",
+          "zoologisk samling",
+          "naturreservat",
+          "museumssamling",
+          "kyst",
+          "skog"
+        ],
+        "place_logic": "Bruk steder bare når organismen, materialet, livsstadiet, metoden og kilden gir dokumenterbar inngang til Artskunnskap og systematikk."
+      },
+      "source_priority": [
+        "bestemt organisme, dokumentert eksemplar, biologisk struktur, prosess eller standardisert observasjon",
+        "autoritativ navnebase, museumssamling, herbarium, faglig artsbeskrivelse, genetisk referanse eller universitetsfaglig kilde",
+        "felt- eller laboratoriedata med prøve-ID, sted, dato, metode og usikkerhet",
+        "sammenligningsmateriale som kan utelukke alternative bestemmelser eller forklaringer",
+        "fagkart, emner og metoder som styring – aldri som faktakilde"
+      ],
+      "anti_patterns": [
+        "Ikke bygg spørsmål fra organismegruppen eller emnenavnet alene.",
+        "Ikke presenter sannsynlig artsbestemmelse som sikker uten diagnostisk belegg.",
+        "Ikke la et generelt stedseksempel erstatte dokumentert biologisk objekt og metode."
+      ],
+      "canon": {
+        "thinkers": [
+          {
+            "id": "charles_darwin",
+            "name": "Charles Darwin",
+            "role": "felles avstamning og variasjon",
+            "tier": "core"
+          },
+          {
+            "id": "carl_linnaeus",
+            "name": "Carl von Linné",
+            "role": "biologisk nomenklatur og klassifikasjon",
+            "tier": "core"
+          },
+          {
+            "id": "willi_hennig",
+            "name": "Willi Hennig",
+            "role": "fylogenetisk systematikk",
+            "tier": "core"
+          },
+          {
+            "id": "ernst_mayr",
+            "name": "Ernst Mayr",
+            "role": "artsbegrep og systematikk",
+            "tier": "core"
+          },
+          {
+            "id": "barbara_mcclintock",
+            "name": "Barbara McClintock",
+            "role": "organisme, utvikling og genetisk evidens",
+            "tier": "core"
+          }
+        ]
+      },
+      "topic_hooks": [
+        {
+          "id": "taksonomiske_nivaer",
+          "title": "Taksonomiske nivåer",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_taksonomi_nomenklatur"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med akseptert taksonomisk hierarki i et konkret og datert materiale.",
+            "Hvordan plasseres organismen fra større gruppe til art uten å forveksle rang med evolusjonær betydning?",
+            "Kontroller forklaringen mot navnekilde og revisjonsdato og gruppekjennetegn på flere nivåer."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Taksonomiske nivåer: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan plasseres organismen fra større gruppe til art uten å forveksle rang med evolusjonær betydning?",
+          "evidence_focus": [
+            "akseptert taksonomisk hierarki",
+            "navnekilde og revisjonsdato",
+            "gruppekjennetegn på flere nivåer"
+          ]
+        },
+        {
+          "id": "vitenskapelige_navn",
+          "title": "Vitenskapelige navn",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_taksonomi_nomenklatur"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med akseptert navn og autor i et konkret og datert materiale.",
+            "Hvilket vitenskapelig navn er gyldig i navnekilden, og hvordan dokumenteres autor, synonymi og navneendring?",
+            "Kontroller forklaringen mot synonymhistorikk og navnekilde med versjon eller dato."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Vitenskapelige navn: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilket vitenskapelig navn er gyldig i navnekilden, og hvordan dokumenteres autor, synonymi og navneendring?",
+          "evidence_focus": [
+            "akseptert navn og autor",
+            "synonymhistorikk",
+            "navnekilde med versjon eller dato"
+          ]
+        },
+        {
+          "id": "artsbegreper",
+          "title": "Artsbegreper",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_artsbegreper_avgrensning"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med reproduksjons- eller populasjonsdata i et konkret og datert materiale.",
+            "Hvilket artsbegrep brukes i den konkrete avgrensningen, og hvilke organismer eller datatyper passer det dårlig for?",
+            "Kontroller forklaringen mot morfologisk variasjon og fylogenetisk eller økologisk evidens."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Artsbegreper: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilket artsbegrep brukes i den konkrete avgrensningen, og hvilke organismer eller datatyper passer det dårlig for?",
+          "evidence_focus": [
+            "reproduksjons- eller populasjonsdata",
+            "morfologisk variasjon",
+            "fylogenetisk eller økologisk evidens"
+          ]
+        },
+        {
+          "id": "fylogenetiske_traer",
+          "title": "Fylogenetiske trær",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fylogeni_slektskap",
+            "em_natur_homologi_analogi_karakterer"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med tre med oppgitt datagrunnlag i et konkret og datert materiale.",
+            "Hvilken felles stamform og hvilke søstergrupper viser treet, og hvilken støtte finnes for forgreningene?",
+            "Kontroller forklaringen mot støtteverdier eller alternative trær og karakter- eller sekvensmatrise."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Fylogenetiske trær: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilken felles stamform og hvilke søstergrupper viser treet, og hvilken støtte finnes for forgreningene?",
+          "evidence_focus": [
+            "tre med oppgitt datagrunnlag",
+            "støtteverdier eller alternative trær",
+            "karakter- eller sekvensmatrise"
+          ]
+        },
+        {
+          "id": "homologi_analogi",
+          "title": "Homologi og analogi",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fylogeni_slektskap",
+            "em_natur_homologi_analogi_karakterer"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med anatomisk posisjon og utvikling i et konkret og datert materiale.",
+            "Er det sammenlignede trekket arvet fra en felles stamform eller utviklet uavhengig under lignende funksjonspress?",
+            "Kontroller forklaringen mot sammenligning på tvers av grupper og fylogenetisk fordeling av trekket."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Homologi og analogi: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Er det sammenlignede trekket arvet fra en felles stamform eller utviklet uavhengig under lignende funksjonspress?",
+          "evidence_focus": [
+            "anatomisk posisjon og utvikling",
+            "sammenligning på tvers av grupper",
+            "fylogenetisk fordeling av trekket"
+          ]
+        },
+        {
+          "id": "bestemmelsesnokler",
+          "title": "Bestemmelsesnøkler",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_bestemmelsesnokler_morfologi"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med nøkkel og dekningsområde i et konkret og datert materiale.",
+            "Hvilke karaktervalg fører gjennom nøkkelen, og hvor kan et ufullstendig eller atypisk eksemplar gi feil vei?",
+            "Kontroller forklaringen mot observerte karaktervalg og livsstadium, kjønn og lokalitet."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Bestemmelsesnøkler: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke karaktervalg fører gjennom nøkkelen, og hvor kan et ufullstendig eller atypisk eksemplar gi feil vei?",
+          "evidence_focus": [
+            "nøkkel og dekningsområde",
+            "observerte karaktervalg",
+            "livsstadium, kjønn og lokalitet"
+          ]
+        },
+        {
+          "id": "diagnostiske_kjennetegn",
+          "title": "Diagnostiske kjennetegn",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_homologi_analogi_karakterer",
+            "em_natur_bestemmelsesnokler_morfologi"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med mål eller detaljfoto i et konkret og datert materiale.",
+            "Hvilke målbare eller avbildbare trekk skiller taksonet fra de nærmeste forvekslingsartene?",
+            "Kontroller forklaringen mot referansebeskrivelse og sammenligningsarter og skillekarakterer."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Diagnostiske kjennetegn: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke målbare eller avbildbare trekk skiller taksonet fra de nærmeste forvekslingsartene?",
+          "evidence_focus": [
+            "mål eller detaljfoto",
+            "referansebeskrivelse",
+            "sammenligningsarter og skillekarakterer"
+          ]
+        },
+        {
+          "id": "dna_strekkoding",
+          "title": "DNA-strekkoding",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_artsbegreper_avgrensning",
+            "em_natur_fylogeni_slektskap",
+            "em_natur_dna_strekkoding_integrativ_taksonomi"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med prøve- og markørmetadata i et konkret og datert materiale.",
+            "Hvor entydig knytter markørsekvensen prøven til kvalitetssikrede referanser, og hvilke alternative treff finnes?",
+            "Kontroller forklaringen mot sekvenskvalitet og treff og verifiserte referansebelegg."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For DNA-strekkoding: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvor entydig knytter markørsekvensen prøven til kvalitetssikrede referanser, og hvilke alternative treff finnes?",
+          "evidence_focus": [
+            "prøve- og markørmetadata",
+            "sekvenskvalitet og treff",
+            "verifiserte referansebelegg"
+          ]
+        },
+        {
+          "id": "artsbestemmelse_usikkerhet",
+          "title": "Usikker artsbestemmelse",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_artsbegreper_avgrensning",
+            "em_natur_bestemmelsesnokler_morfologi",
+            "em_natur_dna_strekkoding_integrativ_taksonomi"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med observerte og manglende trekk i et konkret og datert materiale.",
+            "Hvilket taksonomisk nivå støttes sikkert, og hva må undersøkes før identifikasjonen kan snevres inn?",
+            "Kontroller forklaringen mot alternative bestemmelser og ekspertkontroll eller supplerende prøve."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Usikker artsbestemmelse: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilket taksonomisk nivå støttes sikkert, og hva må undersøkes før identifikasjonen kan snevres inn?",
+          "evidence_focus": [
+            "observerte og manglende trekk",
+            "alternative bestemmelser",
+            "ekspertkontroll eller supplerende prøve"
+          ]
+        },
+        {
+          "id": "referansesamlinger",
+          "title": "Referansesamlinger",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_taksonomi_nomenklatur",
+            "em_natur_dna_strekkoding_integrativ_taksonomi"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog",
+            "fossillokalitet",
+            "forskningslaboratorium",
+            "våtmark",
+            "strand",
+            "park",
+            "ferskvann"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med unik samlingsidentifikator i et konkret og datert materiale.",
+            "Hvordan kan et fysisk belegg, herbariumark eller sekvensvouchere gjøre identifikasjonen etterprøvbar senere?",
+            "Kontroller forklaringen mot proveniens og innsamlingsmetadata og kobling mellom belegg, bilde og sekvens."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "herbarium",
+            "zoologisk samling",
+            "naturreservat",
+            "museumssamling",
+            "kyst",
+            "skog"
+          ],
+          "recommended_method_ids": [
+            "met_natur_taksonomisk_kildekontroll",
+            "met_natur_morfologisk_artsbestemmelse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Referansesamlinger: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan kan et fysisk belegg, herbariumark eller sekvensvouchere gjøre identifikasjonen etterprøvbar senere?",
+          "evidence_focus": [
+            "unik samlingsidentifikator",
+            "proveniens og innsamlingsmetadata",
+            "kobling mellom belegg, bilde og sekvens"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "botanikk_vegetasjon",
+      "title": "Botanikk og vegetasjon",
+      "definition": "Domenet dekker planteceller, vev og organer, fotosyntese, respirasjon, transport, vekstsignaler, formering, generasjonsveksling, plantegrupper, artsbestemmelse og vegetasjon langs miljøgradienter.",
+      "focus": [
+        "planteanatomi",
+        "fotosyntese",
+        "transport",
+        "vekst",
+        "formering",
+        "vegetasjon"
+      ],
+      "question_role": "Undersøk plantens struktur, prosess eller livssyklus før arten og vegetasjonen kobles til voksested, årstid, gradient og forvaltning.",
+      "tagline": "Hvordan planter bygger kropp, fanger energi, formerer seg og danner vegetasjon i ulike miljøer.",
+      "best_place_types": [
+        "botanisk hage",
+        "herbarium",
+        "skog",
+        "eng",
+        "våtmark",
+        "tørreng",
+        "bytre",
+        "strand",
+        "veksthus",
+        "park",
+        "skogkant",
+        "blomstereng",
+        "myr",
+        "strandeng",
+        "fjell"
+      ],
+      "oslo": {
+        "core_cases": [
+          "botanisk hage",
+          "herbarium",
+          "skog",
+          "eng",
+          "våtmark",
+          "tørreng",
+          "bytre"
+        ],
+        "place_logic": "Bruk steder bare når organismen, materialet, livsstadiet, metoden og kilden gir dokumenterbar inngang til Botanikk og vegetasjon."
+      },
+      "source_priority": [
+        "bestemt organisme, dokumentert eksemplar, biologisk struktur, prosess eller standardisert observasjon",
+        "autoritativ navnebase, museumssamling, herbarium, faglig artsbeskrivelse, genetisk referanse eller universitetsfaglig kilde",
+        "felt- eller laboratoriedata med prøve-ID, sted, dato, metode og usikkerhet",
+        "sammenligningsmateriale som kan utelukke alternative bestemmelser eller forklaringer",
+        "fagkart, emner og metoder som styring – aldri som faktakilde"
+      ],
+      "anti_patterns": [
+        "Ikke bygg spørsmål fra organismegruppen eller emnenavnet alene.",
+        "Ikke presenter sannsynlig artsbestemmelse som sikker uten diagnostisk belegg.",
+        "Ikke la et generelt stedseksempel erstatte dokumentert biologisk objekt og metode."
+      ],
+      "canon": {
+        "thinkers": [
+          {
+            "id": "charles_darwin",
+            "name": "Charles Darwin",
+            "role": "felles avstamning og variasjon",
+            "tier": "core"
+          },
+          {
+            "id": "carl_linnaeus",
+            "name": "Carl von Linné",
+            "role": "biologisk nomenklatur og klassifikasjon",
+            "tier": "core"
+          },
+          {
+            "id": "willi_hennig",
+            "name": "Willi Hennig",
+            "role": "fylogenetisk systematikk",
+            "tier": "core"
+          },
+          {
+            "id": "ernst_mayr",
+            "name": "Ernst Mayr",
+            "role": "artsbegrep og systematikk",
+            "tier": "core"
+          },
+          {
+            "id": "barbara_mcclintock",
+            "name": "Barbara McClintock",
+            "role": "organisme, utvikling og genetisk evidens",
+            "tier": "core"
+          }
+        ]
+      },
+      "topic_hooks": [
+        {
+          "id": "plantecelle_vev",
+          "title": "Planteceller og vev",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_plantecelle_vev_organer",
+            "em_natur_fotosyntese_respirasjon"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med mikroskopisk preparat eller snitt i et konkret og datert materiale.",
+            "Hvordan bygger spesialiserte planteceller og vev støtte, lagring, fotosyntese, vekst og transport i organet?",
+            "Kontroller forklaringen mot vevets plassering og celleform og kobling mellom struktur og funksjon."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Planteceller og vev: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan bygger spesialiserte planteceller og vev støtte, lagring, fotosyntese, vekst og transport i organet?",
+          "evidence_focus": [
+            "mikroskopisk preparat eller snitt",
+            "vevets plassering og celleform",
+            "kobling mellom struktur og funksjon"
+          ]
+        },
+        {
+          "id": "rot_opptak",
+          "title": "Rot og opptak",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_plantecelle_vev_organer",
+            "em_natur_rot_stengel_blad_transport",
+            "em_natur_vekst_hormoner_responser"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med rotanatomi og rothår i et konkret og datert materiale.",
+            "Hvordan påvirker rotstruktur, jordfuktighet og mineraltilgang plantens opptak og fordeling av ressurser?",
+            "Kontroller forklaringen mot jordfuktighet og kjemi og vekst- eller næringsrespons."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Rot og opptak: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan påvirker rotstruktur, jordfuktighet og mineraltilgang plantens opptak og fordeling av ressurser?",
+          "evidence_focus": [
+            "rotanatomi og rothår",
+            "jordfuktighet og kjemi",
+            "vekst- eller næringsrespons"
+          ]
+        },
+        {
+          "id": "stengel_transport",
+          "title": "Stengel og transportvev",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_plantecelle_vev_organer",
+            "em_natur_rot_stengel_blad_transport"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med stengelsnitt og ledningsvev i et konkret og datert materiale.",
+            "Hvordan er xylem og floem organisert, og hva viser målingene om vann-, mineral- og sukkertransport?",
+            "Kontroller forklaringen mot transportforsøk eller vannstatus og kilde- og slukvev."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Stengel og transportvev: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan er xylem og floem organisert, og hva viser målingene om vann-, mineral- og sukkertransport?",
+          "evidence_focus": [
+            "stengelsnitt og ledningsvev",
+            "transportforsøk eller vannstatus",
+            "kilde- og slukvev"
+          ]
+        },
+        {
+          "id": "blad_gassutveksling",
+          "title": "Blad og gassutveksling",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_rot_stengel_blad_transport",
+            "em_natur_fotosyntese_respirasjon",
+            "em_natur_vekst_hormoner_responser"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med bladtykkelse og overflate i et konkret og datert materiale.",
+            "Hvordan balanserer bladets oppbygning og spalteåpninger opptak av karbondioksid mot tap av vann?",
+            "Kontroller forklaringen mot spalteåpninger eller konduktans og lys, temperatur, vind og fuktighet."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Blad og gassutveksling: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan balanserer bladets oppbygning og spalteåpninger opptak av karbondioksid mot tap av vann?",
+          "evidence_focus": [
+            "bladtykkelse og overflate",
+            "spalteåpninger eller konduktans",
+            "lys, temperatur, vind og fuktighet"
+          ]
+        },
+        {
+          "id": "fotosyntese_respirasjon",
+          "title": "Fotosyntese og respirasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fotosyntese_respirasjon"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med lys- eller gassmåling i et konkret og datert materiale.",
+            "Hvordan endres plantens brutto fotosyntese, respirasjon og netto karbonbalanse med miljøforholdene?",
+            "Kontroller forklaringen mot temperatur og karbondioksid og brutto- og nettoestimat."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Fotosyntese og respirasjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan endres plantens brutto fotosyntese, respirasjon og netto karbonbalanse med miljøforholdene?",
+          "evidence_focus": [
+            "lys- eller gassmåling",
+            "temperatur og karbondioksid",
+            "brutto- og nettoestimat"
+          ]
+        },
+        {
+          "id": "plantevekst_hormoner",
+          "title": "Vekst og plantehormoner",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_vekst_hormoner_responser"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med vekstpunkt og tidsserie i et konkret og datert materiale.",
+            "Hvilket miljøsignal, vekstvev og regulatorisk system forklarer den observerte vekstretningen eller utviklingsfasen?",
+            "Kontroller forklaringen mot kontrollert signalbehandling og respons i rot, skudd, blad eller frø."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Vekst og plantehormoner: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilket miljøsignal, vekstvev og regulatorisk system forklarer den observerte vekstretningen eller utviklingsfasen?",
+          "evidence_focus": [
+            "vekstpunkt og tidsserie",
+            "kontrollert signalbehandling",
+            "respons i rot, skudd, blad eller frø"
+          ]
+        },
+        {
+          "id": "generasjonsveksling",
+          "title": "Generasjonsveksling",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_livssykluser_formering_spredning"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med livssyklusstadier i et konkret og datert materiale.",
+            "Hvilke haploide og diploide stadier finnes i livssyklusen, og hvor skjer sporedannelse, gametdannelse og befruktning?",
+            "Kontroller forklaringen mot reproduktive strukturer og krav til vann, vind eller dyr."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Generasjonsveksling: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke haploide og diploide stadier finnes i livssyklusen, og hvor skjer sporedannelse, gametdannelse og befruktning?",
+          "evidence_focus": [
+            "livssyklusstadier",
+            "reproduktive strukturer",
+            "krav til vann, vind eller dyr"
+          ]
+        },
+        {
+          "id": "plantehovedgrupper",
+          "title": "Plantenes hovedgrupper",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_livssykluser_formering_spredning",
+            "em_natur_plantegrupper_vegetasjonstyper_bestemmelse"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med karvev eller fravær av karvev i et konkret og datert materiale.",
+            "Hvilke reproduktive og anatomiske trekk skiller moser, karsporeplanter, nakenfrøete og blomsterplanter?",
+            "Kontroller forklaringen mot sporer, pollen, frø eller frukt og representative bestemte eksemplarer."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Plantenes hovedgrupper: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke reproduktive og anatomiske trekk skiller moser, karsporeplanter, nakenfrøete og blomsterplanter?",
+          "evidence_focus": [
+            "karvev eller fravær av karvev",
+            "sporer, pollen, frø eller frukt",
+            "representative bestemte eksemplarer"
+          ]
+        },
+        {
+          "id": "pollinering_frospredning",
+          "title": "Pollinering og frøspredning",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_livssykluser_formering_spredning",
+            "em_natur_plantegrupper_vegetasjonstyper_bestemmelse"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med blomster- eller fruktmorfologi i et konkret og datert materiale.",
+            "Hvilken vektor flytter pollen eller frø, og hvilke trekk og tidsforløp støtter den foreslåtte spredningsmåten?",
+            "Kontroller forklaringen mot besøks- eller fangstdata og spredningsavstand og etableringssteder."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Pollinering og frøspredning: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilken vektor flytter pollen eller frø, og hvilke trekk og tidsforløp støtter den foreslåtte spredningsmåten?",
+          "evidence_focus": [
+            "blomster- eller fruktmorfologi",
+            "besøks- eller fangstdata",
+            "spredningsavstand og etableringssteder"
+          ]
+        },
+        {
+          "id": "vegetasjon_gradienter",
+          "title": "Vegetasjon langs gradienter",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_plantegrupper_vegetasjonstyper_bestemmelse"
+          ],
+          "best_place_types": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre",
+            "strand",
+            "veksthus",
+            "park",
+            "skogkant",
+            "blomstereng",
+            "myr",
+            "strandeng",
+            "fjell"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med standardiserte ruter eller transekt i et konkret og datert materiale.",
+            "Hvordan varierer arter, sjikt og dekning langs en målt gradient i fuktighet, næring, lys, høyde eller forstyrrelse?",
+            "Kontroller forklaringen mot artsbestemmelse og dekning og miljøvariabler og påvirkningshistorie."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "botanisk hage",
+            "herbarium",
+            "skog",
+            "eng",
+            "våtmark",
+            "tørreng",
+            "bytre"
+          ],
+          "recommended_method_ids": [
+            "met_natur_planteanatomisk_undersokelse",
+            "met_natur_plantebestemmelse_herbariebelegg"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Vegetasjon langs gradienter: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan varierer arter, sjikt og dekning langs en målt gradient i fuktighet, næring, lys, høyde eller forstyrrelse?",
+          "evidence_focus": [
+            "standardiserte ruter eller transekt",
+            "artsbestemmelse og dekning",
+            "miljøvariabler og påvirkningshistorie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zoologi_dyreliv",
+      "title": "Zoologi og dyreliv",
+      "definition": "Domenet gir en sammenhengende innføring i dyrerikets kroppsplaner, virvelløse og virveldyr, livssykluser, formering, atferd og funksjonelle tilpasninger.",
+      "focus": [
+        "kroppsplan",
+        "virvelløse dyr",
+        "leddyr",
+        "virveldyr",
+        "livssyklus",
+        "atferd"
+      ],
+      "question_role": "Koble observerbare anatomiske og atferdsmessige trekk til dyregruppe, livsstadium, funksjon, habitat og observasjonsbetingelser.",
+      "tagline": "Hvordan dyrerikets kroppsplaner, livssykluser og atferd skaper et mangfold av funksjonelle løsninger.",
+      "best_place_types": [
+        "naturhistorisk museum",
+        "fjæresone",
+        "ferskvann",
+        "skogbunn",
+        "strand",
+        "innsjø",
+        "elv",
+        "blomstereng",
+        "skog",
+        "dam",
+        "park",
+        "våtmark",
+        "kyst",
+        "fjell",
+        "fugletårn"
+      ],
+      "oslo": {
+        "core_cases": [
+          "naturhistorisk museum",
+          "fjæresone",
+          "ferskvann",
+          "skogbunn",
+          "strand",
+          "innsjø",
+          "elv"
+        ],
+        "place_logic": "Bruk steder bare når organismen, materialet, livsstadiet, metoden og kilden gir dokumenterbar inngang til Zoologi og dyreliv."
+      },
+      "source_priority": [
+        "bestemt organisme, dokumentert eksemplar, biologisk struktur, prosess eller standardisert observasjon",
+        "autoritativ navnebase, museumssamling, herbarium, faglig artsbeskrivelse, genetisk referanse eller universitetsfaglig kilde",
+        "felt- eller laboratoriedata med prøve-ID, sted, dato, metode og usikkerhet",
+        "sammenligningsmateriale som kan utelukke alternative bestemmelser eller forklaringer",
+        "fagkart, emner og metoder som styring – aldri som faktakilde"
+      ],
+      "anti_patterns": [
+        "Ikke bygg spørsmål fra organismegruppen eller emnenavnet alene.",
+        "Ikke presenter sannsynlig artsbestemmelse som sikker uten diagnostisk belegg.",
+        "Ikke la et generelt stedseksempel erstatte dokumentert biologisk objekt og metode."
+      ],
+      "canon": {
+        "thinkers": [
+          {
+            "id": "charles_darwin",
+            "name": "Charles Darwin",
+            "role": "felles avstamning og variasjon",
+            "tier": "core"
+          },
+          {
+            "id": "carl_linnaeus",
+            "name": "Carl von Linné",
+            "role": "biologisk nomenklatur og klassifikasjon",
+            "tier": "core"
+          },
+          {
+            "id": "willi_hennig",
+            "name": "Willi Hennig",
+            "role": "fylogenetisk systematikk",
+            "tier": "core"
+          },
+          {
+            "id": "ernst_mayr",
+            "name": "Ernst Mayr",
+            "role": "artsbegrep og systematikk",
+            "tier": "core"
+          },
+          {
+            "id": "barbara_mcclintock",
+            "name": "Barbara McClintock",
+            "role": "organisme, utvikling og genetisk evidens",
+            "tier": "core"
+          }
+        ]
+      },
+      "topic_hooks": [
+        {
+          "id": "dyrerikets_kroppsplaner",
+          "title": "Dyrerikets kroppsplaner",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_dyrerikets_kroppsplaner",
+            "em_natur_virvellose_dyr_mangfold"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med anatomisk preparat eller dokumentert bilde i et konkret og datert materiale.",
+            "Hvordan viser symmetri, vevslag, kroppshule og utvikling hvilken hovedlinje dyret tilhører?",
+            "Kontroller forklaringen mot utviklings- og vevstrekk og fylogenetisk referanse."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Dyrerikets kroppsplaner: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan viser symmetri, vevslag, kroppshule og utvikling hvilken hovedlinje dyret tilhører?",
+          "evidence_focus": [
+            "anatomisk preparat eller dokumentert bilde",
+            "utviklings- og vevstrekk",
+            "fylogenetisk referanse"
+          ]
+        },
+        {
+          "id": "virvellose_hovedgrupper",
+          "title": "Virvelløse hovedgrupper",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_dyrerikets_kroppsplaner",
+            "em_natur_virvellose_dyr_mangfold",
+            "em_natur_leddyr_insekter_livssykluser"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med kroppsplan og organstruktur i et konkret og datert materiale.",
+            "Hvilke kropps- og organstrekk skiller de undersøkte virvelløse gruppene uten å gjøre virvelløse til én slektskapsgruppe?",
+            "Kontroller forklaringen mot livsstadium og habitat og bestemmelseslitteratur."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Virvelløse hovedgrupper: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke kropps- og organstrekk skiller de undersøkte virvelløse gruppene uten å gjøre virvelløse til én slektskapsgruppe?",
+          "evidence_focus": [
+            "kroppsplan og organstruktur",
+            "livsstadium og habitat",
+            "bestemmelseslitteratur"
+          ]
+        },
+        {
+          "id": "leddyr_insekter",
+          "title": "Leddyr og insekter",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_leddyr_insekter_livssykluser"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med antall bein, antenner og kroppsavsnitt i et konkret og datert materiale.",
+            "Hvilke kroppsavsnitt, vedheng, munndeler og utviklingsstadier bestemmer leddyrgruppe og funksjon?",
+            "Kontroller forklaringen mot munndeler og bevegelsesorganer og egg, nymfe, larve, puppe eller voksen."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Leddyr og insekter: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke kroppsavsnitt, vedheng, munndeler og utviklingsstadier bestemmer leddyrgruppe og funksjon?",
+          "evidence_focus": [
+            "antall bein, antenner og kroppsavsnitt",
+            "munndeler og bevegelsesorganer",
+            "egg, nymfe, larve, puppe eller voksen"
+          ]
+        },
+        {
+          "id": "blotdyr_leddormer",
+          "title": "Bløtdyr og leddormer",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_virvellose_dyr_mangfold"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med ytre og indre anatomi i et konkret og datert materiale.",
+            "Hvordan skiller mantel, fot, segmentering og organsystemer bløtdyr fra leddormer og andre ormelignende dyr?",
+            "Kontroller forklaringen mot segmentering eller mantelstruktur og bevegelse, ernæring og habitat."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Bløtdyr og leddormer: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan skiller mantel, fot, segmentering og organsystemer bløtdyr fra leddormer og andre ormelignende dyr?",
+          "evidence_focus": [
+            "ytre og indre anatomi",
+            "segmentering eller mantelstruktur",
+            "bevegelse, ernæring og habitat"
+          ]
+        },
+        {
+          "id": "fisk_tilpasninger",
+          "title": "Fisk og akvatiske tilpasninger",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fisk_amfibier_reptiler"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med morfologi og artsbestemmelse i et konkret og datert materiale.",
+            "Hvordan støtter gjeller, finner, kroppsform og sanser bevegelse og liv i det aktuelle vannmiljøet?",
+            "Kontroller forklaringen mot vannhastighet, dybde og temperatur og fødesøk, gyting eller vandring."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Fisk og akvatiske tilpasninger: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan støtter gjeller, finner, kroppsform og sanser bevegelse og liv i det aktuelle vannmiljøet?",
+          "evidence_focus": [
+            "morfologi og artsbestemmelse",
+            "vannhastighet, dybde og temperatur",
+            "fødesøk, gyting eller vandring"
+          ]
+        },
+        {
+          "id": "amfibier_livssyklus",
+          "title": "Amfibiers livssyklus",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fisk_amfibier_reptiler"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med egg- eller larvekjennetegn i et konkret og datert materiale.",
+            "Hvordan kobler egg, larve, metamorfose og voksenstadium arten til både vann- og landhabitat?",
+            "Kontroller forklaringen mot vannkvalitet og hydroperiode og voksenhabitat og vandringsvei."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Amfibiers livssyklus: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan kobler egg, larve, metamorfose og voksenstadium arten til både vann- og landhabitat?",
+          "evidence_focus": [
+            "egg- eller larvekjennetegn",
+            "vannkvalitet og hydroperiode",
+            "voksenhabitat og vandringsvei"
+          ]
+        },
+        {
+          "id": "reptiler_amnioter",
+          "title": "Reptiler og amnioter",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fisk_amfibier_reptiler"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med egg- og hudtrekk i et konkret og datert materiale.",
+            "Hvordan reduserer fosterhinner, hud og atferd avhengigheten av vann, og hvilke miljøkrav står fortsatt igjen?",
+            "Kontroller forklaringen mot temperatur og soleplasser og yngle- og overvintringshabitat."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Reptiler og amnioter: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan reduserer fosterhinner, hud og atferd avhengigheten av vann, og hvilke miljøkrav står fortsatt igjen?",
+          "evidence_focus": [
+            "egg- og hudtrekk",
+            "temperatur og soleplasser",
+            "yngle- og overvintringshabitat"
+          ]
+        },
+        {
+          "id": "fugler_funksjon",
+          "title": "Fuglers funksjonelle trekk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fugler_pattedyr",
+            "em_natur_dyreatferd_formering_tilpasning"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med fjærdrakt og kroppsproporsjoner i et konkret og datert materiale.",
+            "Hvordan henger fjær, nebb, vinge, fot og sanser sammen med flukt, næringssøk og habitatbruk?",
+            "Kontroller forklaringen mot nebb, fot og føde og lyd, trekk, hekking eller habitatbruk."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Fuglers funksjonelle trekk: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan henger fjær, nebb, vinge, fot og sanser sammen med flukt, næringssøk og habitatbruk?",
+          "evidence_focus": [
+            "fjærdrakt og kroppsproporsjoner",
+            "nebb, fot og føde",
+            "lyd, trekk, hekking eller habitatbruk"
+          ]
+        },
+        {
+          "id": "pattedyr_funksjon",
+          "title": "Pattedyrs funksjonelle trekk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_fugler_pattedyr",
+            "em_natur_dyreatferd_formering_tilpasning"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med spor, hår eller dokumentert individ i et konkret og datert materiale.",
+            "Hvordan henger hår, tenner, lemmer og sanser sammen med temperaturregulering, føde og aktivitet?",
+            "Kontroller forklaringen mot tannsett og bevegelsesform og døgnaktivitet, yngling og habitat."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Pattedyrs funksjonelle trekk: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan henger hår, tenner, lemmer og sanser sammen med temperaturregulering, føde og aktivitet?",
+          "evidence_focus": [
+            "spor, hår eller dokumentert individ",
+            "tannsett og bevegelsesform",
+            "døgnaktivitet, yngling og habitat"
+          ]
+        },
+        {
+          "id": "dyreatferd_observasjon",
+          "title": "Systematisk atferdsobservasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "felles avstamning og variasjon",
+                "tier": "core"
+              },
+              {
+                "id": "carl_linnaeus",
+                "name": "Carl von Linné",
+                "role": "biologisk nomenklatur og klassifikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "willi_hennig",
+                "name": "Willi Hennig",
+                "role": "fylogenetisk systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsbegrep og systematikk",
+                "tier": "core"
+              },
+              {
+                "id": "barbara_mcclintock",
+                "name": "Barbara McClintock",
+                "role": "organisme, utvikling og genetisk evidens",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_dyrerikets_kroppsplaner",
+            "em_natur_leddyr_insekter_livssykluser",
+            "em_natur_fugler_pattedyr",
+            "em_natur_dyreatferd_formering_tilpasning"
+          ],
+          "best_place_types": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv",
+            "blomstereng",
+            "skog",
+            "dam",
+            "park",
+            "våtmark",
+            "kyst",
+            "fjell",
+            "fugletårn"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med etogram og tidsbudsjett i et konkret og datert materiale.",
+            "Hvilke klart definerte handlinger forekommer, når skjer de, og hvordan varierer de med individ og miljø?",
+            "Kontroller forklaringen mot individ, tidspunkt og observasjonsinnsats og stimuli, avstand og miljøbetingelser."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "carl_linnaeus"
+            ],
+            [
+              "willi_hennig",
+              "ernst_mayr"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "naturhistorisk museum",
+            "fjæresone",
+            "ferskvann",
+            "skogbunn",
+            "strand",
+            "innsjø",
+            "elv"
+          ],
+          "recommended_method_ids": [
+            "met_natur_zoologisk_morfologi",
+            "met_natur_standardisert_faunaobservasjon"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "carl_linnaeus",
+            "willi_hennig",
+            "ernst_mayr",
+            "barbara_mcclintock"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Systematisk atferdsobservasjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke klart definerte handlinger forekommer, når skjer de, og hvordan varierer de med individ og miljø?",
+          "evidence_focus": [
+            "etogram og tidsbudsjett",
+            "individ, tidspunkt og observasjonsinnsats",
+            "stimuli, avstand og miljøbetingelser"
+          ]
+        }
       ]
     },
     {
@@ -8774,9 +13282,9 @@
         "name": "Gro Harlem Brundtland"
       }
     ],
-    "category_count": 6,
-    "hook_count": 60,
-    "canonical_round": "v4.5",
+    "category_count": 9,
+    "hook_count": 90,
+    "canonical_round": "v5.1",
     "emne_prefix_required": "em_natur_"
   },
   "application_scope": "universelt_fagkart_med_geografiske_case_lag"
