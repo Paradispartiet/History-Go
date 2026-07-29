@@ -25,7 +25,7 @@ jobs:
       - name: Apply deterministic Politikk quality lift
         run: |
           node scripts/tmp-migrate-politikk-quality.mjs
-          sed -i 's/all_emners_have_mapping/all_emner_have_mapping/' scripts/audit-politikk-subject-quality.mjs
+          sed -i 's/emners/emner/g' scripts/audit-politikk-subject-quality.mjs
           node scripts/audit-politikk-subject-quality.mjs --write-report --no-check-report
       - name: Validate Politikk quality lift
         run: |
