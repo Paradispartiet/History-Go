@@ -14,6 +14,8 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `natur-pilot-audit.json` — individuell fase-2-evidens for Natur: canonical rekkefølge, 6 fagområder, 35 emner, 30 metoder, 35 mappings og 60 hooks.
 - `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
 - `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 60 Natur-hooks og 35 emner fordelt over 127 hookmappings.
+- `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
+- `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle 2198 forekomster er synkronisert.
 
 ## Regenerering
 
@@ -28,7 +30,11 @@ node scripts/audit-natur-subject-quality.mjs --write-report
 node scripts/audit-natur-subject-quality.mjs
 node scripts/audit-natur-fagkart-quality.mjs --write-report
 node scripts/audit-natur-fagkart-quality.mjs
-node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs
+node scripts/audit-politikk-subject-quality.mjs --write-report
+node scripts/audit-politikk-subject-quality.mjs
+node scripts/audit-politikk-thinker-integrity.mjs --write-report
+node scripts/audit-politikk-thinker-integrity.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs
 ```
 
 `subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
@@ -53,6 +59,8 @@ Motor-auditen feiler når:
 
 Politikk og Natur er individuelt auditert gjennom den generelle motoren og står `materialized`, `audited` og `structure_ready`. Det betyr at fagstruktur, dypkoblinger, metoder og progresjonslesing kan vises gjennom felles runtime. Det betyr ikke at fagene er redaksjonelt `complete`.
 
-Natur har i tillegg permanente kvalitetsgater for unike emnetekster, konkrete metodeprosedyrer og begrensninger, hookspesifikke undersøkelsesgrep, synkroniserte mappings, to ganger sju normale quizåpningsspørsmål og eksplisitt Knowledge-leveranse. Natur har fortsatt ingen ferdigskrevne lærekapitler og skal derfor ikke få status `complete`.
+Natur har permanente kvalitetsgater for unike emnetekster, konkrete metodeprosedyrer og begrensninger, hookspesifikke undersøkelsesgrep, synkroniserte mappings, to ganger sju normale quizåpningsspørsmål og eksplisitt Knowledge-leveranse. Natur har fortsatt ingen ferdigskrevne lærekapitler og skal derfor ikke få status `complete`.
+
+Politikk har permanente kvalitetsgater for full dekning av 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, to ganger sju normale quizåpningsspørsmål, eksplisitt Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner. Politikk beholder sine ferdigskrevne kapitler, men kvalitetsstatusen for hvert kapittel må fortsatt vurderes separat fra struktur- og fagfilstatus.
 
 De tre gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.

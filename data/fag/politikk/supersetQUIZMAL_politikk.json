@@ -1,9 +1,9 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "politikk",
-  "title": "Politikk",
+  "title": "Politikk & samfunn",
   "governance": {
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
@@ -13,11 +13,19 @@
   },
   "required_emne_prefix": "em_pol_",
   "content_priorities": [
-    "institusjoner, verv og beslutningsprosesser",
-    "lover, vedtak og politiske konflikter",
-    "partier, bevegelser og organisasjoner",
-    "makt, representasjon og demokrati",
-    "ideologi, offentlighet og politisk endring"
+    "Styring, institusjoner og forvaltning: Start i en dokumenterbar institusjon, beslutning, regel, ressursstrøm, praksis eller konflikt. Identifiser deretter mekanismen som omsetter vedtak til utfall, test en relevant begrepsdistinksjon og bruk teori bare når den forklarer eller sammenligner mekanismen.",
+    "Demokrati, representasjon og offentlighet: Start i et dokumenterbart valg, mandat, institusjonelt ansvar, offentlig ordskifte, organisasjon, konflikt, symbol eller politisk rom. Identifiser hvem som kan delta eller representere, hvilken mekanisme som omsetter krav til innflytelse, og hvilken demokratisk distinksjon caset faktisk tester.",
+    "Rett, lov og rettssikkerhet: Start i en dokumenterbar lovtekst, dom, forvaltningsavgjørelse, kontrollsak, sanksjon, rettighetskonflikt eller historisk lovendring. Identifiser hjemmel, aktører og kontrollvei, forklar den rettslige mekanismen og test en presis distinksjon før teori eventuelt brukes.",
+    "Fordeling, velferd og ulikhet: Start i ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller dokumenterbart velferdscase. Identifiser deretter fordelingsmekanisme og kritisk distinksjon før teori brukes.",
+    "Konflikt, makt og sivilsamfunn: Start i en ekstern kilde eller et dokumenterbart konfliktcase. Fastslå aktører, krav, ressurser og arena; forklar en konflikt-, makt- eller mobiliseringsmekanisme; test en reell distinksjon; bruk teori bare som forklaring eller sammenligning.",
+    "Normer, identitet og hverdagsliv: Start i en dokumentert lov, regel, tjeneste, praksis, klage, populasjon eller sosial situasjon. Identifiser kategori eller forventning, aktør og håndheving, forklar observerbar konsekvens, test en kritisk distinksjon og bruk teori bare når den presiserer mekanismen.",
+    "Komparativ politikk, regimer og institusjoner: Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+    "Valg, partier og velgeratferd: Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+    "Offentlig politikk, beslutning og implementering: Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+    "Internasjonal politikk, sikkerhet og samarbeid: Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+    "Politisk økonomi, stat og marked: Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+    "Statsvitenskapelig metode og sammenligning: Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+    "Norsk politikk, EØS/EU og flernivåstyring: Start i et dokumenterbart norsk, samisk, kommunalt eller europeisk organ, dokument, budsjett, beslutning eller implementeringsforløp. Navngi nivå og aktører, følg kompetanse- og dokumentkjeden, definer utfallet og test mekanisme og distinksjon før teori brukes."
   ],
   "essential_concepts": [
     "representasjon",
@@ -39,16 +47,111 @@
     "Start med dokumentert stoff fra kategorien, ikke med emneetiketten.",
     "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata.",
     "Bruk bare emne_id som finnes i kategoriens emnefil.",
-    "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."
+    "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk.",
+    "De to første settene skal alltid være 2 × 7 helt normale spørsmål før fordypning og teori.",
+    "Start i dokumenterte politiske fakta, aktører, regler, beslutninger og utfall; ikke i emneetiketten eller teoretikernavnet.",
+    "Ikke bruk generiske holdningsspørsmål om hva spilleren mener politisk.",
+    "Teori skal forklare en mekanisme eller et kritisk skille og skal aldri opptre som navnequiz alene.",
+    "Alle spørsmål skal levere Knowledge med forklaring og kildegrunnlag."
   ],
   "example_question": {
-    "question": "Hva kalles prinsippet om at makten fordeles mellom ulike statlige organer?",
-    "options": ["Maktfordeling", "Partidisiplin", "Direkte forvaltning"],
-    "answer": "Maktfordeling",
-    "question_type": "concept",
-    "knowledge": "Maktfordeling skal hindre at all myndighet samles ett sted og skaper kontroll mellom statsmaktene.",
-    "emne_id": "em_pol_<velg_gyldig_emne>",
-    "source": ["<konkret_kilde>"],
-    "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
+    "question": "Hva innebærer parlamentarisk ansvar for en regjering?",
+    "options": [
+      "Regjeringen må ha eller tåles av et flertall i parlamentet",
+      "Regjeringen velges direkte av domstolene",
+      "Embetsverket kan oppheve valgresultatet"
+    ],
+    "answer": "Regjeringen må ha eller tåles av et flertall i parlamentet",
+    "question_type": "concept_with_institutional_mechanism",
+    "knowledge": "I et parlamentarisk system er regjeringen avhengig av parlamentets tillit eller toleranse. Mistillit kan tvinge regjeringen eller en statsråd til å gå.",
+    "emne_id": "em_pol_parlamentarisme_maktbalanse",
+    "source": [
+      "<offisiell institusjonskilde eller fagfellevurdert statsvitenskapelig kilde>"
+    ],
+    "note": "Eksempelet viser et normalt begrepsspørsmål med mekanisme og Knowledge. Det er ikke en ferdig stedquiz."
+  },
+  "domain_priorities": [
+    {
+      "id": "styring_institusjoner_forvaltning",
+      "label": "Styring, institusjoner og forvaltning",
+      "question_role": "Start i en dokumenterbar institusjon, beslutning, regel, ressursstrøm, praksis eller konflikt. Identifiser deretter mekanismen som omsetter vedtak til utfall, test en relevant begrepsdistinksjon og bruk teori bare når den forklarer eller sammenligner mekanismen."
+    },
+    {
+      "id": "demokrati_representasjon_offentlighet",
+      "label": "Demokrati, representasjon og offentlighet",
+      "question_role": "Start i et dokumenterbart valg, mandat, institusjonelt ansvar, offentlig ordskifte, organisasjon, konflikt, symbol eller politisk rom. Identifiser hvem som kan delta eller representere, hvilken mekanisme som omsetter krav til innflytelse, og hvilken demokratisk distinksjon caset faktisk tester."
+    },
+    {
+      "id": "rett_lov_rettssikkerhet",
+      "label": "Rett, lov og rettssikkerhet",
+      "question_role": "Start i en dokumenterbar lovtekst, dom, forvaltningsavgjørelse, kontrollsak, sanksjon, rettighetskonflikt eller historisk lovendring. Identifiser hjemmel, aktører og kontrollvei, forklar den rettslige mekanismen og test en presis distinksjon før teori eventuelt brukes."
+    },
+    {
+      "id": "fordeling_velferd_ulikhet",
+      "label": "Fordeling, velferd og ulikhet",
+      "question_role": "Start i ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller dokumenterbart velferdscase. Identifiser deretter fordelingsmekanisme og kritisk distinksjon før teori brukes."
+    },
+    {
+      "id": "konflikt_makt_sivilsamfunn",
+      "label": "Konflikt, makt og sivilsamfunn",
+      "question_role": "Start i en ekstern kilde eller et dokumenterbart konfliktcase. Fastslå aktører, krav, ressurser og arena; forklar en konflikt-, makt- eller mobiliseringsmekanisme; test en reell distinksjon; bruk teori bare som forklaring eller sammenligning."
+    },
+    {
+      "id": "normer_identitet_hverdagsliv",
+      "label": "Normer, identitet og hverdagsliv",
+      "question_role": "Start i en dokumentert lov, regel, tjeneste, praksis, klage, populasjon eller sosial situasjon. Identifiser kategori eller forventning, aktør og håndheving, forklar observerbar konsekvens, test en kritisk distinksjon og bruk teori bare når den presiserer mekanismen."
+    },
+    {
+      "id": "komparativ_politikk_regimer_institusjoner",
+      "label": "Komparativ politikk, regimer og institusjoner",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt."
+    },
+    {
+      "id": "valg_partier_velgeratferd",
+      "label": "Valg, partier og velgeratferd",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt."
+    },
+    {
+      "id": "offentlig_politikk_beslutning_implementering",
+      "label": "Offentlig politikk, beslutning og implementering",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt."
+    },
+    {
+      "id": "internasjonal_politikk_sikkerhet_samarbeid",
+      "label": "Internasjonal politikk, sikkerhet og samarbeid",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt."
+    },
+    {
+      "id": "politisk_okonomi_stat_marked",
+      "label": "Politisk økonomi, stat og marked",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt."
+    },
+    {
+      "id": "statsvitenskapelig_metode_og_sammenligning",
+      "label": "Statsvitenskapelig metode og sammenligning",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt."
+    },
+    {
+      "id": "norsk_politikk_eos_flernivastyring",
+      "label": "Norsk politikk, EØS/EU og flernivåstyring",
+      "question_role": "Start i et dokumenterbart norsk, samisk, kommunalt eller europeisk organ, dokument, budsjett, beslutning eller implementeringsforløp. Navngi nivå og aktører, følg kompetanse- og dokumentkjeden, definer utfallet og test mekanisme og distinksjon før teori brukes."
+    }
+  ],
+  "normal_question_opening": {
+    "sets": 2,
+    "questions_per_set": 7,
+    "rule": "De to første settene skal bestå av helt normale, konkrete spørsmål om dokumenterte institusjoner, personer, verv, lover, vedtak, valg, konflikter, organisasjoner, fordelingsutfall eller hendelsesforløp.",
+    "exclusions": [
+      "teoretikernavn som svar uten begrep",
+      "generiske holdningsspørsmål",
+      "spørsmål konstruert fra emneetiketten alene",
+      "åpenbart riktige akademiske formuleringer mot dumme distraktorer"
+    ]
+  },
+  "knowledge_delivery": {
+    "required": true,
+    "field": "knowledge",
+    "rule": "Hvert spørsmål skal levere en kort, etterprøvbar forklaring av hvorfor svaret er riktig, hva begrepet eller mekanismen betyr, og hvilken kilde påstanden bygger på.",
+    "minimum": "konkret fakta eller mekanisme + kritisk skille ved behov + kilde"
   }
 }
