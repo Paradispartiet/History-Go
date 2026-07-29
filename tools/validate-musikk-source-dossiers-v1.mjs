@@ -24,7 +24,7 @@ ok(index.status==="canonical_scientific_subject","indeks har vitenskapelig statu
 ok(pkg.status==="canonical_scientific_subject","fagpakke har vitenskapelig status");
 ok(contract.status==="canonical_source_dossier_contract","kildekontrakt er canonical");
 ok(index.source_revision===contract.revision&&pkg.source_revision===contract.revision,"samlet kilderevisjon er konsistent");
-ok(index.source_batches.length===6,"seks kildebatcher er aktive");
+ok(index.source_batches.length===7,"sju kildebatcher er aktive");
 ok(index.source_batches.every(batch=>contract.supported_batch_revisions.includes(batch.revision)),"alle batchrevisjoner støttes");
 ok(contract.hard_rules.catalog_metadata_is_not_object_evidence===true,"katalogmetadata er ikke objektevidens");
 ok(contract.hard_rules.restricted_material_overrides_question_generation===true,"restriktivt materiale overstyrer spørsmål");
@@ -40,6 +40,13 @@ ok(contract.hard_rules.statistical_significance_is_not_effect_size_or_causality=
 ok(contract.hard_rules.self_report_physiology_neural_measure_are_not_interchangeable===true,"selvrapport, fysiologi og nevrale mål er separate evidensformer");
 ok(contract.hard_rules.laboratory_effect_cannot_generalize_without_scope_evidence===true,"laboratorieeffekt krever generaliseringsevidens");
 ok(contract.hard_rules.correlation_prediction_and_causality_must_be_separated===true,"korrelasjon, prediksjon og kausalitet skilles");
+ok(contract.hard_rules.institutional_self_description_is_not_effect_evidence===true,"institusjonell selvbeskrivelse er ikke effektbevis");
+ok(contract.hard_rules.aggregate_market_value_is_not_individual_income_or_labour===true,"aggregert markedsverdi er ikke individuell inntekt eller arbeid");
+ok(contract.hard_rules.standard_contract_is_not_actual_individual_contract===true,"standardkontrakt er ikke faktisk individuell kontrakt");
+ok(contract.hard_rules.funding_allocation_is_not_access_or_effect===true,"støttetildeling er ikke tilgang eller effekt");
+ok(contract.hard_rules.award_ranking_is_not_aesthetic_quality===true,"pris og rangering er ikke estetisk kvalitet");
+ok(contract.hard_rules.registry_or_catalog_absence_is_not_object_absence===true,"register- eller katalogfravær er ikke objektfravær");
+ok(contract.hard_rules.institutional_effect_requires_implementation_chain===true,"institusjonell effekt krever implementeringskjede");
 
 const registryPaths=index.source_batches.flatMap(batch=>batch.registry_files);
 const dossierPaths=index.source_batches.flatMap(batch=>batch.dossier_files);
@@ -55,7 +62,7 @@ const hosts=new Set([
   "manchesteruniversitypress.co.uk","www.dukeupress.edu","www.bloomsbury.com",
   "www.upress.umn.edu","datascience.codata.org","link.springer.com","www.weslpress.org",
   "journals.sagepub.com","www.sciencedirect.com","www.frontiersin.org","journals.plos.org",
-  "www.science.org","www.nature.com"
+  "www.science.org","www.nature.com","www.tandfonline.com"
 ]);
 const types=new Set(["scholarly_monograph","edited_scholarly_volume","peer_reviewed_article","scholarly_chapter"]);
 let totalRegistries=0,totalDossierFiles=0,totalSources=0,totalDossiers=0,totalScopes=0;
@@ -206,6 +213,20 @@ for(const batch of index.source_batches){
       for(const field of ["stimulus_and_version_identity","apparatus_calibration_and_environment","participant_sampling_and_experience","task_measure_and_operationalization","analysis_model_effect_size_uncertainty","exclusions_missingness_multiple_analyses","causal_and_generalization_scope","ethics_consent_and_sensitive_measures"])
         ok(strings(gate[field])&&gate[field].length>=2,`${dossier.emne_id} dokumenterer ${field}`);
     }
+
+    if(batch.domain_id==="institusjoner_okonomi_politikk_offentlighet"){
+      const requirement=contract.domain_specific_requirements.institusjoner_okonomi_politikk_offentlighet;
+      for(const field of contract.institutional_dossier_required_fields)
+        ok(Object.hasOwn(dossier,field),`${dossier.emne_id} har institusjonsfelt ${field}`);
+      ok(dossier.institutional_object_identity_requirements.length>=8,`${dossier.emne_id} har institusjonsidentitet`);
+      ok(dossier.institutional_evidence_chain_requirements.length>=4,`${dossier.emne_id} har institusjonsevidenskjede`);
+      const gate=dossier.institutional_research_governance_gate;
+      for(const field of requirement.required_gate_fields)
+        ok(Object.hasOwn(gate,field),`${dossier.emne_id} har institusjonsportfelt ${field}`);
+      ok(gate.required_before_question_release===true&&gate.question_release_rule==="blocked_unless_institution_rule_resource_implementation_and_outcome_resolved",`${dossier.emne_id} blokkerer uavklart institusjon, regel/ressurs, implementering eller utfall`);
+      for(const field of ["institution_and_decision_identity","actor_role_and_population_scope","financial_contractual_and_rights_provenance","implementation_and_timeline","measurement_and_denominator","comparison_counterfactual_and_alternatives","representation_absence_and_visibility_bias","access_rights_and_sensitive_data"])
+        ok(strings(gate[field])&&gate[field].length>=2,`${dossier.emne_id} dokumenterer ${field}`);
+    }
   }
   ok(used.size===sources.length,`${batch.batch_id} bruker alle kilder`);
 }
@@ -213,7 +234,7 @@ for(const batch of index.source_batches){
 ok(new Set(globalSourceIds).size===globalSourceIds.length,"kilde-ID-er er globalt unike");
 ok(new Set(globalDossierIds).size===globalDossierIds.length,"dossier-ID-er er globalt unike");
 ok(globalUsed.size===globalSourceIds.length,"alle aktive kilder brukes");
-ok(index.summary.source_dossier_domain_count===6&&pkg.summary.source_dossier_domain_count===6,"seks kildedomener eksponeres");
+ok(index.summary.source_dossier_domain_count===7&&pkg.summary.source_dossier_domain_count===7,"sju kildedomener eksponeres");
 ok(index.summary.source_dossier_topic_count===totalDossiers&&pkg.summary.source_dossier_topic_count===totalDossiers,"alle dossierer telles");
 ok(index.summary.verified_scholarly_source_record_count===totalSources&&pkg.summary.verified_scholarly_source_record_count===totalSources,"alle kilder telles");
 ok(pkg.active_source_manifest==="musikkvitenskap_canonical_v1/index.json#files.source_dossiers","fagpakken bruker manifest");
@@ -223,13 +244,13 @@ for(const [label,value] of Object.entries({contract,index,pkg}))
 for(const file of [...registryPaths,...dossierPaths])
   ok(keys(read(path.join(BASE,file))).filter(key=>forbidden.has(key)).length===0,`${file} har ingen undervisningsnøkler`);
 
-console.log("MUSIKKVITENSKAP KILDEGRUNNLAG – SEKS DOMENER V7");
+console.log("MUSIKKVITENSKAP KILDEGRUNNLAG – SJU DOMENER V8");
 console.log(`Kildedomener: ${index.source_batches.length}`);
 console.log(`Kilderegistre: ${totalRegistries}`);
 console.log(`Temadossierfiler: ${totalDossierFiles}`);
 console.log(`Temadossierer: ${totalDossiers}`);
 console.log(`Verifiserte forskningskilder: ${totalSources}`);
 console.log(`Søkeavgrensninger: ${totalScopes}`);
-console.log("Spørsmålsregel: direkte objekt, historisk kildekjede, etisk port, framføringsport, teknologi-/reproduserbarhetsport eller persepsjons-/inferensport etter domene");
+console.log("Spørsmålsregel: direkte objekt, historisk kildekjede, etisk port, framføringsport, teknologi-/reproduserbarhetsport, persepsjons-/inferensport eller institusjons-/implementeringsport etter domene");
 console.log(`RESULTAT ${fail===0?"PASS":"FAIL"}: ${pass} PASS, ${fail} FAIL`);
 process.exit(fail===0?0:1);
