@@ -15,6 +15,7 @@ const PATHS = Object.freeze({
   status: 'data/fagverk/subject_status.json',
   registry: 'data/fagverk/fagverk_registry.json',
   badgePage: 'data/fag/historie/merke_historie (1).html',
+  theoryEvidence: 'data/fag/historie/theory_evidence_historie_canonical_v1.json',
   universalCoverage: 'reports/historie-universal-coverage/historie-universal-coverage.json',
   report: 'reports/fagverk/historie-subject-audit.json'
 });
@@ -31,7 +32,7 @@ function loadCore() {
   return sandbox.HGFagverkSubjectCore;
 }
 
-function assertChapter(chapterRow, model) {
+function assertChapter(chapterRow, model, evidenceRegistries) {
   assert(fs.existsSync(abs(chapterRow.file)), `Registrert kapittelfil mangler: ${chapterRow.file}`);
   assert(model.domainsById.has(chapterRow.primary_domain_id), `Kapittelet peker til ukjent fagområde ${chapterRow.primary_domain_id}`);
   for (const emneId of chapterRow.emne_ids || []) assert(model.emnersById.has(emneId), `Kapittelet peker til ukjent emne ${emneId}`);
@@ -42,12 +43,17 @@ function assertChapter(chapterRow, model) {
   assert(chapter.learningObjectives?.length >= 5, `Kapittelet ${chapterRow.id} mangler konkrete læringsmål`);
   assert(chapter.diagnosticQuestions?.length >= 3, `Kapittelet ${chapterRow.id} mangler forkunnskapsspørsmål`);
   assert(chapter.moduleFiles?.length >= 3, `Kapittelet ${chapterRow.id} mangler modulstruktur`);
+
   let sectionCount = 0;
   let workedExampleCount = 0;
   let misconceptionCount = 0;
   let taskCount = 0;
   let selfCheckCount = 0;
   let sourceCount = 0;
+  const claimIds = [];
+  const sourceIds = [];
+  const theoryEvidenceIds = [];
+
   for (const modulePath of chapter.moduleFiles) {
     assert(fs.existsSync(abs(modulePath)), `Kapittelmodul mangler: ${modulePath}`);
     const module = json(modulePath);
@@ -57,14 +63,37 @@ function assertChapter(chapterRow, model) {
     taskCount += module.applicationTasks?.length || 0;
     selfCheckCount += module.selfCheck?.length || 0;
     sourceCount += module.sources?.length || 0;
+    claimIds.push(...(module.claimIds || []));
+    theoryEvidenceIds.push(...(module.theoryEvidenceIds || []));
+    sourceIds.push(...(module.sources || []).map((source) => source.id).filter(Boolean));
   }
+
   assert(sectionCount >= 8, `Kapittelet ${chapterRow.id} har for få redigerte seksjoner`);
   assert(workedExampleCount >= 2, `Kapittelet ${chapterRow.id} mangler arbeidseksempler`);
   assert(misconceptionCount >= 4, `Kapittelet ${chapterRow.id} mangler reelle misoppfatninger`);
   assert(taskCount >= 3, `Kapittelet ${chapterRow.id} mangler anvendelsesoppgaver`);
   assert(selfCheckCount >= 5, `Kapittelet ${chapterRow.id} mangler selvtest`);
   assert(sourceCount >= 4, `Kapittelet ${chapterRow.id} mangler inspectable kilder`);
-  return { id: chapterRow.id, domainId: chapterRow.primary_domain_id, sectionCount, workedExampleCount, misconceptionCount, taskCount, selfCheckCount, sourceCount };
+  assert(claimIds.length > 0, `Kapittelet ${chapterRow.id} mangler canonical claim-koblinger`);
+  assert(theoryEvidenceIds.length > 0, `Kapittelet ${chapterRow.id} mangler canonical theory-evidence-koblinger`);
+
+  for (const claimId of claimIds) assert(evidenceRegistries.claimIds.has(claimId), `Kapittelet ${chapterRow.id} peker til ukjent claim ${claimId}`);
+  for (const sourceId of sourceIds) assert(evidenceRegistries.sourceIds.has(sourceId), `Kapittelet ${chapterRow.id} peker til ukjent kilde ${sourceId}`);
+  for (const theoryId of theoryEvidenceIds) assert(evidenceRegistries.theoryEvidenceIds.has(theoryId), `Kapittelet ${chapterRow.id} peker til ukjent theory-evidence ${theoryId}`);
+
+  return {
+    id: chapterRow.id,
+    domainId: chapterRow.primary_domain_id,
+    sectionCount,
+    workedExampleCount,
+    misconceptionCount,
+    taskCount,
+    selfCheckCount,
+    sourceCount,
+    claimReferenceCount: claimIds.length,
+    sourceReferenceCount: sourceIds.length,
+    theoryEvidenceReferenceCount: theoryEvidenceIds.length
+  };
 }
 
 export function auditHistorySubject({ writeReport = false, checkReport = true } = {}) {
@@ -100,6 +129,16 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
     const resolved = CORE.resolveManifestPointer(manifestEntry[field]);
     assert(fs.existsSync(abs(resolved)), `Historie mangler manifesttillegget ${field}`);
   }
+  assert(fs.existsSync(abs(PATHS.theoryEvidence)), 'Historie mangler canonical theory-evidence-register');
+
+  const claimRegistry = json(CORE.resolveManifestPointer(manifestEntry.claims));
+  const sourceRegistry = json(CORE.resolveManifestPointer(manifestEntry.sources));
+  const theoryEvidenceRegistry = json(PATHS.theoryEvidence);
+  const evidenceRegistries = {
+    claimIds: new Set((claimRegistry.claims || []).map((claim) => claim.claim_id)),
+    sourceIds: new Set((sourceRegistry.sources || []).map((sourceItem) => sourceItem.source_id)),
+    theoryEvidenceIds: new Set((theoryEvidenceRegistry.entries || []).filter((entry) => entry.status === 'evidence_ready').map((entry) => entry.theory_id))
+  };
 
   const model = CORE.normalizeSubject({
     subjectId: 'historie', categoryLabel: categories.labels.historie, categoryDescription: categories.decisions?.historie,
@@ -126,7 +165,7 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   for (const method of model.methods) assert(method.title && method.description, `Metoden ${method.id} mangler navn eller forklaring`);
 
   const chapterRows = registry.subjects?.historie?.chapters || [];
-  const chapterAudits = chapterRows.map((row) => assertChapter(row, model));
+  const chapterAudits = chapterRows.map((row) => assertChapter(row, model, evidenceRegistries));
   const coveredChapterDomains = [...new Set(chapterRows.map((row) => row.primary_domain_id))];
   if (chapterRows.length > 0) assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Registrerte kapitler krever chapters_in_progress');
 
@@ -139,13 +178,13 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   assert(!JSON.stringify(model.subject).toLocaleLowerCase('nb-NO').includes('politikk'), 'Historie-modellen inneholder politikkspesifikk resttekst');
 
   const report = {
-    schema: 'history_go_fagverk_historie_subject_audit_v1', version: '1.1.0', status: 'phase_4_historie_chapters_in_progress', generatedFrom: PATHS,
+    schema: 'history_go_fagverk_historie_subject_audit_v1', version: '1.2.0', status: 'phase_4_historie_chapters_in_progress', generatedFrom: PATHS,
     subject: { id: model.subject.id, title: model.subject.title, schemaFamily: inventoryEntry.schemaFamily, adapter: model.subject.adapter, badgePage: model.subject.routes.badge, subjectPage: model.subject.routes.subject, assessmentStatus: statusEntry.assessmentStatus, editorialStatus: statusEntry.editorialStatus },
     summary: { domainCount: 23, emneCount: 230, methodCount: 105, mappingCount: 230, hookCount: 230, chapterCount: chapterRows.length, chapterDomainCount: coveredChapterDomains.length, remainingChapterDomains: 23 - coveredChapterDomains.length, placeCount: model.places.length },
     chapters: chapterAudits,
     universalCoverage: { status: universalCoverage.status, coveredCells: universalCoverage.summary?.covered_cells ?? null, totalCells: universalCoverage.summary?.total_cells ?? null, productionGaps: universalCoverage.summary?.production_gaps ?? null, theoryEvidenceQualifying: theoryEvidence.measured?.qualifying ?? null, theoryEvidenceTotal: theoryEvidence.measured?.total ?? null, theoryEvidenceRatio: theoryEvidence.measured?.ratio ?? null },
     canonicalDomainOrder: actualDomainOrder,
-    gates: { manifestFirst: true, normalizedModel: true, canonicalDomainOrder: true, emneReferencesResolved: true, methodReferencesResolved: true, mappingsResolved: true, historyExtensionPointersResolved: true, badgeAndSubjectRoutes: true, registeredChaptersValidated: true, honestCompletionBoundary: true, historyPlaceFallbackResolved: true, politicsResiduals: 0 }
+    gates: { manifestFirst: true, normalizedModel: true, canonicalDomainOrder: true, emneReferencesResolved: true, methodReferencesResolved: true, mappingsResolved: true, historyExtensionPointersResolved: true, badgeAndSubjectRoutes: true, registeredChaptersValidated: true, chapterEvidenceReferencesResolved: true, honestCompletionBoundary: true, historyPlaceFallbackResolved: true, politicsResiduals: 0 }
   };
   if (writeReport) { fs.mkdirSync(path.dirname(abs(PATHS.report)), { recursive: true }); fs.writeFileSync(abs(PATHS.report), `${JSON.stringify(report, null, 2)}\n`); }
   if (checkReport) assert(isDeepStrictEqual(json(PATHS.report), report), `${PATHS.report} er utdatert`);

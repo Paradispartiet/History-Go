@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditHistorySubject } from '../scripts/audit-fagverk-historie.mjs';
 
-test('Historie er materialisert og har startet redaksjonell kapittelproduksjon', () => {
+test('Historie er materialisert med to redaksjonelle kapitler', () => {
   const { report } = auditHistorySubject();
   assert.equal(report.subject.id, 'historie');
   assert.equal(report.subject.adapter, 'standard');
@@ -14,26 +14,45 @@ test('Historie er materialisert og har startet redaksjonell kapittelproduksjon',
     methodCount: 105,
     mappingCount: 230,
     hookCount: 230,
-    chapterCount: 1,
-    chapterDomainCount: 1,
-    remainingChapterDomains: 22,
+    chapterCount: 2,
+    chapterDomainCount: 2,
+    remainingChapterDomains: 21,
     placeCount: 0
   });
 });
 
-test('første Historie-kapittel oppfyller kapittelporten', () => {
+test('begge Historie-kapitlene oppfyller kapittel- og evidensporten', () => {
   const { report } = auditHistorySubject();
-  assert.deepEqual(report.chapters, [{
-    id: 'historisk_tid_periodisering',
-    domainId: 'his_tid_periodisering',
-    sectionCount: 9,
-    workedExampleCount: 2,
-    misconceptionCount: 5,
-    taskCount: 4,
-    selfCheckCount: 7,
-    sourceCount: 6
-  }]);
+  assert.deepEqual(report.chapters, [
+    {
+      id: 'historisk_tid_periodisering',
+      domainId: 'his_tid_periodisering',
+      sectionCount: 9,
+      workedExampleCount: 2,
+      misconceptionCount: 5,
+      taskCount: 4,
+      selfCheckCount: 7,
+      sourceCount: 6,
+      claimReferenceCount: 4,
+      sourceReferenceCount: 4,
+      theoryEvidenceReferenceCount: 1
+    },
+    {
+      id: 'kilder_arkiv_spor',
+      domainId: 'his_kilder_arkiv_spor',
+      sectionCount: 11,
+      workedExampleCount: 2,
+      misconceptionCount: 5,
+      taskCount: 4,
+      selfCheckCount: 7,
+      sourceCount: 7,
+      claimReferenceCount: 8,
+      sourceReferenceCount: 6,
+      theoryEvidenceReferenceCount: 5
+    }
+  ]);
   assert.equal(report.gates.registeredChaptersValidated, true);
+  assert.equal(report.gates.chapterEvidenceReferencesResolved, true);
   assert.equal(report.gates.historyPlaceFallbackResolved, true);
 });
 
