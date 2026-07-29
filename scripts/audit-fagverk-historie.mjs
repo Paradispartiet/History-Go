@@ -32,6 +32,27 @@ function loadCore() {
   return sandbox.HGFagverkSubjectCore;
 }
 
+export function assertHistoryRendererContract(module, modulePath = 'kapittelmodul') {
+  for (const example of module.workedExamples || []) {
+    assert(
+      example.title && example.situation && Array.isArray(example.analysis) && example.analysis.length > 0,
+      `Arbeidseksempel i ${modulePath} følger ikke renderer-kontrakten title/situation/analysis`
+    );
+  }
+  for (const misconception of module.commonMisconceptions || []) {
+    assert(misconception.claim && misconception.correction, `Misoppfatning i ${modulePath} følger ikke renderer-kontrakten claim/correction`);
+  }
+  for (const task of module.applicationTasks || []) {
+    assert(
+      task.task && Array.isArray(task.prompts) && task.prompts.length > 0,
+      `Anvendelsesoppgave i ${modulePath} følger ikke renderer-kontrakten task/prompts`
+    );
+  }
+  for (const place of module.relatedPlaces || []) {
+    assert(place.id && place.name && place.role, `Stedskobling i ${modulePath} følger ikke renderer-kontrakten id/name/role`);
+  }
+}
+
 function assertChapter(chapterRow, model, evidenceRegistries, canonicalDomainsById) {
   assert(fs.existsSync(abs(chapterRow.file)), `Registrert kapittelfil mangler: ${chapterRow.file}`);
   assert(model.domainsById.has(chapterRow.primary_domain_id), `Kapittelet peker til ukjent fagområde ${chapterRow.primary_domain_id}`);
@@ -98,18 +119,7 @@ function assertChapter(chapterRow, model, evidenceRegistries, canonicalDomainsBy
         }
       }
     }
-    for (const example of module.workedExamples || []) {
-      assert(example.title && example.situation && example.analysis?.length > 0, `Arbeidseksempel i ${modulePath} følger ikke renderer-kontrakten title/situation/analysis`);
-    }
-    for (const misconception of module.commonMisconceptions || []) {
-      assert(misconception.claim && misconception.correction, `Misoppfatning i ${modulePath} følger ikke renderer-kontrakten claim/correction`);
-    }
-    for (const task of module.applicationTasks || []) {
-      assert(task.task && task.prompts?.length > 0, `Anvendelsesoppgave i ${modulePath} følger ikke renderer-kontrakten task/prompts`);
-    }
-    for (const place of module.relatedPlaces || []) {
-      assert(place.id && place.name && place.role, `Stedskobling i ${modulePath} følger ikke renderer-kontrakten id/name/role`);
-    }
+    assertHistoryRendererContract(module, modulePath);
     workedExampleCount += module.workedExamples?.length || 0;
     misconceptionCount += module.commonMisconceptions?.length || 0;
     taskCount += module.applicationTasks?.length || 0;

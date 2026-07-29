@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { auditHistorySubject } from '../scripts/audit-fagverk-historie.mjs';
+import { assertHistoryRendererContract, auditHistorySubject } from '../scripts/audit-fagverk-historie.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
@@ -154,4 +154,27 @@ test('1814-kapittelets pedagogiske kort følger renderer-kontrakten', () => {
     assert.equal('placeId' in place, false);
     assert.equal('reason' in place, false);
   }
+});
+
+test('Historie-auditen avviser renderer-lister som ikke er arrays', () => {
+  assert.throws(
+    () => assertHistoryRendererContract({
+      workedExamples: [{
+        title: 'Eksempel',
+        situation: 'Situasjon',
+        analysis: 'Dette er en streng, ikke en liste.'
+      }]
+    }, 'ugyldig-eksempel.json'),
+    /title\/situation\/analysis/
+  );
+
+  assert.throws(
+    () => assertHistoryRendererContract({
+      applicationTasks: [{
+        task: 'Oppgave',
+        prompts: 'Dette er en streng, ikke en liste.'
+      }]
+    }, 'ugyldig-oppgave.json'),
+    /task\/prompts/
+  );
 });
