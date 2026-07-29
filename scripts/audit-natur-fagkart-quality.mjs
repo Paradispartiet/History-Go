@@ -34,10 +34,12 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
   const hookIndex = new Map(hooks.map((row) => [row.hook.id, row]));
 
   assert(fagkart.scope === 'universal', 'Natur-fagkartet skal ha universelt fagomfang');
-  assert(categories.length === 11, `Forventet 11 materialiserte fagkartkategorier, fikk ${categories.length}`);
-  assert(hooks.length === 110, `Forventet 110 Natur-hooks etter biologi fase 2, fikk ${hooks.length}`);
-  assert(hookIndex.size === 110, 'Natur-fagkartet har dupliserte hook-id-er');
+  assert(categories.length === 12, `Forventet 12 materialiserte fagkartkategorier, fikk ${categories.length}`);
+  assert(hooks.length === 136, `Forventet 136 Natur-hooks etter sluttfasen, fikk ${hooks.length}`);
+  assert(hookIndex.size === 136, 'Natur-fagkartet har dupliserte hook-id-er');
   assert(categories.every((c) => pensumDomains.has(c.id)), 'Fagkartkategori mangler i pensum');
+  assert(categoryIds.has('sopp_lav_mikroorganismer'), 'Sopp/lav/mikroorganismer mangler i fagkartet');
+  assert(categoryIds.has('geologi_landskap_tid'), 'Geologi mangler i fagkartet');
 
   const focusQuestions = [];
   const questionMoves = [];
@@ -69,7 +71,7 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
   assert(unique(questionMoves), 'Natur-hooks har dupliserte spørsmålsbevegelser');
   assert(unique(rotationNotes), 'Natur-hooks har dupliserte rotasjonsnotater');
 
-  assert(mappings.length === 65, `Forventet 65 emnemappings etter biologi fase 2, fikk ${mappings.length}`);
+  assert(mappings.length === 77, `Forventet 77 emnemappings etter sluttfasen, fikk ${mappings.length}`);
   assert(new Set(mappings.map((row) => row.emne_id)).size === mappings.length, 'Dupliserte emne-rader i mappingregisteret');
   const mappingUseNotes = [];
   let mappingCount = 0;
@@ -95,7 +97,7 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
 
   const report = {
     schema: 'history_go_natur_fagkart_quality_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: 'passed',
     generatedFrom: P,
     summary: {
@@ -112,12 +114,14 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
     },
     gates: {
       universalScope: true,
+      allTwelveCategoriesMaterialized: true,
       canonicalCategoryReferences: true,
       allHookReferencesResolved: true,
       hookSpecificLearningFocus: true,
       hookSpecificQuestionMoves: true,
       mappingCategoryAndTitleSync: true,
-      mappingEvidenceAndUseNotes: true
+      mappingEvidenceAndUseNotes: true,
+      microbiologyAndInnerGeologyHooksPresent: true
     }
   };
   if (writeReport) {
