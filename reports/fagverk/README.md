@@ -17,6 +17,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 60 Natur-hooks og 35 emner fordelt over 127 hookmappings.
 - `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle 2198 forekomster er synkronisert.
+- `politikk-regimer-institusjoner-audit.json` — kapittelgate for Regimer og institusjoner: 15 emner, 16 metoder, tre redigerte moduler, påstand-for-påstand-sporing, inspectable kilder, oppgaver, selvtest og runtimekoblinger.
 
 ## Regenerering
 
@@ -37,7 +38,9 @@ node scripts/audit-politikk-subject-quality.mjs --write-report
 node scripts/audit-politikk-subject-quality.mjs
 node scripts/audit-politikk-thinker-integrity.mjs --write-report
 node scripts/audit-politikk-thinker-integrity.mjs
-node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs
+node scripts/audit-politikk-chapter-regimer-institusjoner.mjs --write-report
+node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs
 ```
 
 `subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
@@ -59,6 +62,8 @@ Motor-auditen feiler når:
 - committed runtime-rapport ikke samsvarer med faktisk kode og data.
 
 ## Gjeldende produksjonsstatus
+
+Politikk er `materialized`, `audited` og `chapters_in_progress`: tre av tretten fagområder har registrerte kapitler, mens ti fortsatt mangler fullverdig hovedkapittel.
 
 Natur er det første faget som står `materialized`, `audited` og redaksjonelt `complete`. De seks kapitlene følger de seks canonicale fagområdene og dekker alle 35 emner nøyaktig én gang:
 
