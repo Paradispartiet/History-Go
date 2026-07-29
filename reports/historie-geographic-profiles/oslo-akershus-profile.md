@@ -11,15 +11,15 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - Universelle emner: **230**
 - Unike emner med profilkoblinger: **201**
 - Migrerte mappingrecords: **201**
-- Bevarte lokale casekandidater: **103**
+- Bevarte lokale casekandidater: **104**
 
 ## Evidensgrunnlag
 
-- Claims: **101**
-- Kilder: **81**
-- Sted–emne–claim–kildekoblinger: **101**
-- Validerte caser: **22**
-- Validerte caser med minst to evidenskoblinger: **22**
+- Claims: **105**
+- Kilder: **84**
+- Sted–emne–claim–kildekoblinger: **105**
+- Validerte caser: **23**
+- Validerte caser med minst to evidenskoblinger: **23**
 
 ## Validerte caser
 
@@ -44,6 +44,7 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_oslo_radhus`
 - `case_his_regjeringskvartalet`
 - `case_his_stortinget`
+- `case_his_tanum_kirke_og_baerumsgardene`
 - `case_his_youngstorget`
 
 ## Åpne terskelgap
