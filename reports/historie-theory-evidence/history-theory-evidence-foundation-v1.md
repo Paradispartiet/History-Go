@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **55**
-- Andel med dokumentert evidensgrunnlag: **23.9 %**
+- Validerte pilotobjekter: **57**
+- Andel med dokumentert evidensgrunnlag: **24.8 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -70,6 +70,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Tidslag og samtidighet i sted | 3 | 3 | 6 | 3 | evidence_ready |
 | Bilder, fotografi og visuelle kilder | 3 | 2 | 2 | 3 | evidence_ready |
 | Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane | 6 | 2 | 3 | 6 | evidence_ready |
+| Embetsstat og demokratisering: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
+| Embetsstat og kommunalt selvstyre: forklarings- og kildebane | 3 | 2 | 2 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 
