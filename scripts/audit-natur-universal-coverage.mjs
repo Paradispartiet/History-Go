@@ -73,13 +73,13 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
 
   const materializedBiologyIds = new Set([
     'artskunnskap_systematikk',
+    'evolusjon_biologisk_mangfold',
     'botanikk_vegetasjon',
-    'zoologi_dyreliv'
+    'zoologi_dyreliv',
+    'organismebiologi_fysiologi'
   ]);
   const requiredGapIds = new Set([
-    'evolusjon_biologisk_mangfold',
-    'sopp_lav_mikroorganismer',
-    'organismebiologi_fysiologi'
+    'sopp_lav_mikroorganismer'
   ]);
   for (const id of materializedBiologyIds) {
     const domain = domainById.get(id);
@@ -106,22 +106,25 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
   }
 
   const allPensumEmneIds = domains.flatMap((domain) => domain.emne_ids || []);
-  assert(allPensumEmneIds.length === 53, `Forventet 53 materialiserte Natur-emner, fikk ${allPensumEmneIds.length}`);
+  assert(allPensumEmneIds.length === 65, `Forventet 65 materialiserte Natur-emner, fikk ${allPensumEmneIds.length}`);
   assert(unique(allPensumEmneIds), 'Samme Natur-emne ligger i flere fagområder');
   assert(allPensumEmneIds.every((id) => emneIds.has(id)), 'Pensum peker til ukjent Natur-emne');
   assert(emnersEveryMapped(emneIds, mappingIds), 'Ikke alle materialiserte Natur-emner har mapping');
-  assert((methodsDoc.methods || []).length === 39, 'Natur skal ha 39 metoder etter biologi fase 1');
+  assert((methodsDoc.methods || []).length === 45, 'Natur skal ha 45 metoder etter biologi fase 2');
   assert(isDeepStrictEqual(contract.current_state?.preserved_environment_layer_counts, {
     emner: 35, methods: 30, mappings: 35, hooks: 60, chapters: 6
   }), 'Det bevarte miljølagets baseline er endret');
+  assert(isDeepStrictEqual(contract.current_state?.phase_1_biology_layer_counts, {
+    emner: 18, methods: 9, mappings: 18, hooks: 30, chapters: 3
+  }), 'Fase-1-biologilagets baseline er endret');
 
   assert(naturStatus?.navigationStatus === 'materialized', 'Natur skal fortsatt være teknisk materialisert');
   assert(naturStatus?.assessmentStatus === 'audited', 'Natur skal fortsatt være individuelt auditert');
   assert(naturStatus?.editorialStatus === 'chapters_in_progress', 'Natur må stå som chapters_in_progress');
-  assert(naturStatus?.nextGate === 'materialize_evolution_microbiology_fysiology_and_inner_geology', 'Natur har feil neste port');
+  assert(naturStatus?.nextGate === 'materialize_microbiology_and_inner_geology', 'Natur har feil neste port');
   assert(!text(naturStatus?.note).includes('første redaksjonelt komplette'), 'Gammel fullføringspåstand står igjen');
 
-  assert(chapters.length === 9, `Forventet ni registrerte Natur-kapitler, fikk ${chapters.length}`);
+  assert(chapters.length === 11, `Forventet elleve registrerte Natur-kapitler, fikk ${chapters.length}`);
   assert(contract.completion_rule?.all_domains_must_have_chapter === true, 'Complete-regelen krever ikke kapittel per fagområde');
   assert(contract.completion_rule?.no_required_gap_domains === true, 'Complete-regelen tillater required_gap');
   assert(contract.completion_rule?.current_result === 'not_complete', 'Dekningskontrakten påstår at Natur er complete');
@@ -147,6 +150,7 @@ export function auditNaturUniversalCoverage({ writeReport = false, checkReport =
     gates: {
       twelveDomainTargetLocked: true,
       biologyPhaseOneMaterialized: true,
+      biologyPhaseTwoMaterialized: true,
       remainingBiologyGapsExplicit: true,
       innerGeologyGapExplicit: true,
       noFalseCompletionClaim: true,

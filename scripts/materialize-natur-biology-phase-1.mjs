@@ -484,8 +484,10 @@ const THINKERS = [
   { id: 'barbara_mcclintock', name: 'Barbara McClintock', role: 'organisme, utvikling og genetisk evidens', tier: 'core' }
 ];
 
-function buildMethod(spec) {
+function buildMethod(spec, domainSpecs = DOMAIN_SPECS) {
   const [method_id, title, description, domain, data_forms, procedure, limitations] = spec;
+  const domainSpec = domainSpecs.find((entry) => entry.id === domain);
+  assert(domainSpec, `Mangler domenespesifikasjon for metode ${method_id}`);
   return {
     method_id,
     title,
@@ -496,7 +498,7 @@ function buildMethod(spec) {
     course_level_fit: ['grunnkurs', 'mellomnivå', 'avansert'],
     coverage_domains: [domain],
     progression_stage: 'full_ladder',
-    good_for_place_types: DOMAIN_SPECS.find((entry) => entry.id === domain).emners.flatMap((entry) => entry.places).filter((value, index, all) => all.indexOf(value) === index),
+    good_for_place_types: domainSpec.emners.flatMap((entry) => entry.places).filter((value, index, all) => all.indexOf(value) === index),
     question_moves: [
       `avgrens hvilket ${title.toLocaleLowerCase('nb-NO')}-spørsmål materialet faktisk kan besvare`,
       'dokumenter prøve, observasjon, sammenligningsgrunnlag og arbeidssteg',
@@ -505,7 +507,7 @@ function buildMethod(spec) {
     method_use_note: `Bruk ${title.toLocaleLowerCase('nb-NO')} når datagrunnlaget og spørsmålet hører til ${domain.replaceAll('_', ' ')}, ikke som en generell etikett for naturfaglig arbeid.`,
     rotation_note: `Roter organismegruppe, materiale, livsstadium og sted før ${title.toLocaleLowerCase('nb-NO')} brukes på nytt, og kombiner metoden med en uavhengig kontroll når konklusjonen er arts- eller funksjonsspesifikk.`,
     hook_affinities: [],
-    emne_affinities: DOMAIN_SPECS.find((entry) => entry.id === domain).emners.map((entry) => entry.id),
+    emne_affinities: domainSpec.emners.map((entry) => entry.id),
     canonical_status: 'canonical',
     registry_version: 'naturpensum_v5_1',
     canonical_file_role: 'active',
@@ -525,6 +527,7 @@ function buildMethod(spec) {
 }
 
 function buildEmne(domain, spec) {
+  const thinkers = domain.thinkers || THINKERS;
   const concepts = [...spec.concepts];
   const quizAngles = [
     `Start i dokumentert materiale som kan besvare: ${spec.questions[0]}`,
@@ -554,8 +557,8 @@ function buildEmne(domain, spec) {
     ideological_dimensions: [],
     methods: spec.methods,
     analysis_axes: spec.distinctions,
-    canonical_thinkers: THINKERS.map((entry) => entry.name),
-    canonical_thinker_ids: THINKERS.map((entry) => entry.id),
+    canonical_thinkers: thinkers.map((entry) => entry.name),
+    canonical_thinker_ids: thinkers.map((entry) => entry.id),
     norwegian_thinker_ids: [],
     norwegian_thinkers: [],
     related_emners: domain.emners.filter((entry) => entry.id !== spec.id).map((entry) => entry.id),
@@ -592,7 +595,7 @@ function buildEmne(domain, spec) {
     primary_theory_hooks: spec.hooks,
     secondary_theory_hooks: [],
     reserve_theory_hooks: [],
-    theory_diversity_score: THINKERS.length,
+    theory_diversity_score: thinkers.length,
     has_norwegian_theory_path: false,
     theory_surface_priority: 'organism-evidence-first_then_explanation',
     theory_progression_note: 'Introduser forklaringsmodellen etter at organisme, struktur, prosess og usikkerhet er etablert.',
@@ -606,7 +609,7 @@ function buildEmne(domain, spec) {
     pedagogical_track: 'fra_observasjon_og_kjennetegn_til_prosess_slektskap_og_usikkerhet',
     case_spread_score: 5,
     overused_thinker_ids: [],
-    underused_thinker_ids: THINKERS.map((entry) => entry.id),
+    underused_thinker_ids: thinkers.map((entry) => entry.id),
     theory_spread_priority: 'spread_more',
     canonical_status: 'canonical',
     registry_version: 'naturpensum_v5_1',
@@ -639,6 +642,7 @@ function buildEmne(domain, spec) {
 }
 
 function buildCategory(domain) {
+  const thinkers = domain.thinkers || THINKERS;
   const allPlaces = domain.emners.flatMap((entry) => entry.places).filter((value, index, all) => all.indexOf(value) === index);
   const hookToEmners = new Map();
   for (const emne of domain.emners) for (const hook of emne.hooks) {
@@ -666,14 +670,14 @@ function buildCategory(domain) {
       'Ikke presenter sannsynlig artsbestemmelse som sikker uten diagnostisk belegg.',
       'Ikke la et generelt stedseksempel erstatte dokumentert biologisk objekt og metode.'
     ],
-    canon: { thinkers: THINKERS },
+    canon: { thinkers },
     topic_hooks: domain.hooks.map(([id, title, focus_question, evidence_focus]) => {
       const emne_ids = hookToEmners.get(id) || [];
       const recommended_method_ids = domain.methods.slice(0, 2);
       return {
         id,
         title,
-        canon: { thinkers: THINKERS },
+        canon: { thinkers },
         emne_ids,
         best_place_types: allPlaces,
         avoid_place_types: ['sted_uten_dokumentert_biologisk_objekt', 'ren_rekreasjonsarena_uten_faglig_materiale', 'generisk_gront_sted'],
@@ -689,12 +693,12 @@ function buildCategory(domain) {
           focus_question,
           `Kontroller forklaringen mot ${evidence_focus[1]} og ${evidence_focus[2]}.`
         ],
-        comparison_pairs: [['charles_darwin', 'carl_linnaeus'], ['willi_hennig', 'ernst_mayr']],
+        comparison_pairs: domain.comparisonPairs || [['charles_darwin', 'carl_linnaeus'], ['willi_hennig', 'ernst_mayr']],
         norwegian_thinker_ids: [],
         recommended_oslo_cases: allPlaces.slice(0, 7),
         recommended_method_ids,
         overused_thinker_ids: [],
-        underused_thinker_ids: THINKERS.map((entry) => entry.id),
+        underused_thinker_ids: thinkers.map((entry) => entry.id),
         case_spread_score: 5,
         theory_spread_priority: 'spread_more',
         canonical_status: 'canonical',
@@ -723,6 +727,7 @@ function buildCategory(domain) {
 }
 
 function buildMapping(domain, emne, hookIndex) {
+  const thinkers = domain.thinkers || THINKERS;
   return {
     emne_id: emne.id,
     title: emne.title,
@@ -745,8 +750,8 @@ function buildMapping(domain, emne, hookIndex) {
         ecosystem_water_climate_or_place_anchor_required: true,
         documented_ecological_context_required: true,
         use_note: `Bruk ${hook.title} til å undersøke ${emne.title.toLocaleLowerCase('nb-NO')}: ${emne.questions[index] || emne.questions[0]} Dokumenter objekt, metode og sikkerhetsgrad før fasit låses.`,
-        tenkere: THINKERS.map((entry) => entry.name),
-        thinker_ids: THINKERS.map((entry) => entry.id),
+        tenkere: thinkers.map((entry) => entry.name),
+        thinker_ids: thinkers.map((entry) => entry.id),
         norwegian_thinker_ids: [],
         norwegian_thinkers: [],
         comparison_pairs: hook.comparison_pairs,
@@ -1080,4 +1085,18 @@ function main() {
   console.log(`Materialisert Natur biologi fase 1: ${emner.length} emner, ${methodsDoc.methods.length} metoder, ${mappings.length} mappingrader, ${fagkart.meta.hook_count} hooks og ${naturRegistry.chapters.length} kapitler.`);
 }
 
-main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
+
+export {
+  P,
+  abs,
+  readJson,
+  writeJson,
+  assert,
+  buildMethod,
+  buildEmne,
+  buildCategory,
+  buildMapping,
+  chapterDocument,
+  updateDomainRecord
+};

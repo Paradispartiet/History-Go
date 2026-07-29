@@ -3,9 +3,9 @@
   "subject_title": "Natur & miljø",
   "scope": "universal",
   "type": "fagkart",
-  "version": "v5.1-canonical-biology-phase-1",
+  "version": "v5.2-canonical-biology-phase-2",
   "updated_at": "2026-07-29",
-  "canonical_registry_version": "naturpensum_v5_1",
+  "canonical_registry_version": "naturpensum_v5_2",
   "purpose": "Kanonisk fagkart for Natur & miljø i History Go. Fagkartet styrer naturfaglige og miljøfaglige emner, metoder, teori, stedstyper, spørsmålsflater og kildekrav. Det skal brukes som styringslag, ikke som erstatning for eksterne kilder om konkrete arter, habitater, vassdrag, parker, geologi, klima, forurensning, forvaltning eller restaurering.",
   "principles": {
     "source_first": true,
@@ -2973,6 +2973,1560 @@
             "unik samlingsidentifikator",
             "proveniens og innsamlingsmetadata",
             "kobling mellom belegg, bilde og sekvens"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evolusjon_biologisk_mangfold",
+      "title": "Evolusjon og biologisk mangfold",
+      "definition": "Domenet forklarer hvordan arvelig variasjon, mutasjon, seleksjon, drift, genflyt, artsdannelse, koevolusjon, utdøing og historisk utbredelse former biologisk mangfold over tid.",
+      "focus": [
+        "arvelig variasjon",
+        "evolusjonsmekanismer",
+        "tilpasning",
+        "artsdannelse",
+        "makroevolusjon",
+        "biogeografi"
+      ],
+      "question_role": "Skill kilden til arvelig variasjon fra prosessene som endrer genfrekvenser, og test evolusjonære forklaringer mot populasjonsdata, slektskap, miljø og tid.",
+      "tagline": "Hvordan arvelig variasjon og evolusjonære prosesser former arter, slektskap og utbredelse.",
+      "best_place_types": [
+        "museumssamling",
+        "naturreservat",
+        "forskningslaboratorium",
+        "artsrik eng",
+        "øy",
+        "fragmentert skog",
+        "elveløp",
+        "fuglekoloni",
+        "pollinatoreng",
+        "fjellgradient",
+        "kysthabitat",
+        "øygruppe",
+        "innsjø",
+        "fjellområde",
+        "fragmentert kulturlandskap",
+        "fossilsamling",
+        "naturhistorisk museum",
+        "pollinatornettverk",
+        "fjord"
+      ],
+      "oslo": {
+        "core_cases": [
+          "museumssamling",
+          "naturreservat",
+          "forskningslaboratorium",
+          "artsrik eng",
+          "øy",
+          "fragmentert skog",
+          "elveløp"
+        ],
+        "place_logic": "Bruk steder bare når organismen, materialet, livsstadiet, metoden og kilden gir dokumenterbar inngang til Evolusjon og biologisk mangfold."
+      },
+      "source_priority": [
+        "bestemt organisme, dokumentert eksemplar, biologisk struktur, prosess eller standardisert observasjon",
+        "autoritativ navnebase, museumssamling, herbarium, faglig artsbeskrivelse, genetisk referanse eller universitetsfaglig kilde",
+        "felt- eller laboratoriedata med prøve-ID, sted, dato, metode og usikkerhet",
+        "sammenligningsmateriale som kan utelukke alternative bestemmelser eller forklaringer",
+        "fagkart, emner og metoder som styring – aldri som faktakilde"
+      ],
+      "anti_patterns": [
+        "Ikke bygg spørsmål fra organismegruppen eller emnenavnet alene.",
+        "Ikke presenter sannsynlig artsbestemmelse som sikker uten diagnostisk belegg.",
+        "Ikke la et generelt stedseksempel erstatte dokumentert biologisk objekt og metode."
+      ],
+      "canon": {
+        "thinkers": [
+          {
+            "id": "charles_darwin",
+            "name": "Charles Darwin",
+            "role": "naturlig seleksjon og felles avstamning",
+            "tier": "core"
+          },
+          {
+            "id": "alfred_russel_wallace",
+            "name": "Alfred Russel Wallace",
+            "role": "naturlig seleksjon og biogeografi",
+            "tier": "core"
+          },
+          {
+            "id": "ronald_fisher",
+            "name": "Ronald Fisher",
+            "role": "populasjonsgenetikk og seleksjon",
+            "tier": "core"
+          },
+          {
+            "id": "sewall_wright",
+            "name": "Sewall Wright",
+            "role": "genetisk drift og populasjonsstruktur",
+            "tier": "core"
+          },
+          {
+            "id": "ernst_mayr",
+            "name": "Ernst Mayr",
+            "role": "artsdannelse og biologisk artsbegrep",
+            "tier": "core"
+          }
+        ]
+      },
+      "topic_hooks": [
+        {
+          "id": "genetisk_variasjon",
+          "title": "Genetisk variasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_genetisk_variasjon_mutasjon_rekombinasjon",
+            "em_natur_populasjonsgenetikk_drift_genflyt"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med genotype- eller sekvensdata i et konkret og datert materiale.",
+            "Hvilke arvelige varianter finnes i populasjonen, og hvordan er prøve, markør og frekvens dokumentert?",
+            "Kontroller forklaringen mot utvalgsdesign og populasjonsavgrensning og fenotype, miljø og arvelighetsgrunnlag."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Genetisk variasjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke arvelige varianter finnes i populasjonen, og hvordan er prøve, markør og frekvens dokumentert?",
+          "evidence_focus": [
+            "genotype- eller sekvensdata",
+            "utvalgsdesign og populasjonsavgrensning",
+            "fenotype, miljø og arvelighetsgrunnlag"
+          ]
+        },
+        {
+          "id": "mutasjon_rekombinasjon",
+          "title": "Mutasjon og rekombinasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_genetisk_variasjon_mutasjon_rekombinasjon"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med dokumentert variant eller avkomsdata i et konkret og datert materiale.",
+            "Hvilken prosess skapte eller omfordelte varianten, og kan opphav skilles fra variantens senere frekvensendring?",
+            "Kontroller forklaringen mot mutasjonstype eller rekombinasjonsmønster og kontroll mot miljøbetinget variasjon."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Mutasjon og rekombinasjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilken prosess skapte eller omfordelte varianten, og kan opphav skilles fra variantens senere frekvensendring?",
+          "evidence_focus": [
+            "dokumentert variant eller avkomsdata",
+            "mutasjonstype eller rekombinasjonsmønster",
+            "kontroll mot miljøbetinget variasjon"
+          ]
+        },
+        {
+          "id": "naturlig_seleksjon",
+          "title": "Naturlig seleksjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_naturlig_seksuell_seleksjon_tilpasning"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med arvelig egenskapsvariasjon i et konkret og datert materiale.",
+            "Er arvelig variasjon koblet til målbare forskjeller i overlevelse eller reproduksjon under et bestemt miljøpress?",
+            "Kontroller forklaringen mot reproduktiv suksess eller overlevelse og alternative mekanismer som drift og plastisitet."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Naturlig seleksjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Er arvelig variasjon koblet til målbare forskjeller i overlevelse eller reproduksjon under et bestemt miljøpress?",
+          "evidence_focus": [
+            "arvelig egenskapsvariasjon",
+            "reproduktiv suksess eller overlevelse",
+            "alternative mekanismer som drift og plastisitet"
+          ]
+        },
+        {
+          "id": "seksuell_seleksjon",
+          "title": "Seksuell seleksjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_naturlig_seksuell_seleksjon_tilpasning"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med parings- eller konkurransedata i et konkret og datert materiale.",
+            "Hvordan påvirker partnervalg eller konkurranse reproduktiv suksess, og hvilke kostnader følger egenskapen?",
+            "Kontroller forklaringen mot egenskapens arvelighet og overlevelseskostnader og alternative forklaringer."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Seksuell seleksjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan påvirker partnervalg eller konkurranse reproduktiv suksess, og hvilke kostnader følger egenskapen?",
+          "evidence_focus": [
+            "parings- eller konkurransedata",
+            "egenskapens arvelighet",
+            "overlevelseskostnader og alternative forklaringer"
+          ]
+        },
+        {
+          "id": "genetisk_drift",
+          "title": "Genetisk drift",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_populasjonsgenetikk_drift_genflyt"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med allelfrekvenser over tid i et konkret og datert materiale.",
+            "Kan tilfeldig prøvetaking mellom generasjoner forklare frekvensendringen, særlig ved liten populasjon eller flaskehals?",
+            "Kontroller forklaringen mot effektiv populasjonsstørrelse og demografisk historie og usikkerhet."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Genetisk drift: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Kan tilfeldig prøvetaking mellom generasjoner forklare frekvensendringen, særlig ved liten populasjon eller flaskehals?",
+          "evidence_focus": [
+            "allelfrekvenser over tid",
+            "effektiv populasjonsstørrelse",
+            "demografisk historie og usikkerhet"
+          ]
+        },
+        {
+          "id": "genflyt",
+          "title": "Genflyt",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_populasjonsgenetikk_drift_genflyt",
+            "em_natur_artsdannelse_reproduktiv_isolasjon",
+            "em_natur_biogeografi_historisk_utbredelse_mangfold"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med genetisk struktur mellom lokaliteter i et konkret og datert materiale.",
+            "Har migrerende individer faktisk bidratt genetisk til mottakerpopulasjonen?",
+            "Kontroller forklaringen mot reproduksjons- eller avkomsdata og barrierer, avstand og spredningsevne."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Genflyt: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Har migrerende individer faktisk bidratt genetisk til mottakerpopulasjonen?",
+          "evidence_focus": [
+            "genetisk struktur mellom lokaliteter",
+            "reproduksjons- eller avkomsdata",
+            "barrierer, avstand og spredningsevne"
+          ]
+        },
+        {
+          "id": "tilpasning_avveininger",
+          "title": "Tilpasning og avveininger",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_genetisk_variasjon_mutasjon_rekombinasjon",
+            "em_natur_naturlig_seksuell_seleksjon_tilpasning",
+            "em_natur_koevolusjon_utdoing_makroevolusjon"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med funksjons- og fitnessdata i et konkret og datert materiale.",
+            "Hvilken testbar seleksjonshistorie forklarer egenskapen, og hvilke kostnader eller historiske begrensninger finnes?",
+            "Kontroller forklaringen mot sammenligning med alternativer og miljø, slektskap og avveininger."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Tilpasning og avveininger: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilken testbar seleksjonshistorie forklarer egenskapen, og hvilke kostnader eller historiske begrensninger finnes?",
+          "evidence_focus": [
+            "funksjons- og fitnessdata",
+            "sammenligning med alternativer",
+            "miljø, slektskap og avveininger"
+          ]
+        },
+        {
+          "id": "artsdannelse_isolasjon",
+          "title": "Artsdannelse og isolasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_artsdannelse_reproduktiv_isolasjon",
+            "em_natur_koevolusjon_utdoing_makroevolusjon"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med populasjonsgenetikk og slektskap i et konkret og datert materiale.",
+            "Hvilke barrierer reduserer genflyt, og hvor langt har genetisk og reproduktiv divergens kommet?",
+            "Kontroller forklaringen mot pre- og postzygotiske barrierer og geografi, økologi og hybridisering."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Artsdannelse og isolasjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke barrierer reduserer genflyt, og hvor langt har genetisk og reproduktiv divergens kommet?",
+          "evidence_focus": [
+            "populasjonsgenetikk og slektskap",
+            "pre- og postzygotiske barrierer",
+            "geografi, økologi og hybridisering"
+          ]
+        },
+        {
+          "id": "koevolusjon_utdoing",
+          "title": "Koevolusjon og utdøing",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_koevolusjon_utdoing_makroevolusjon",
+            "em_natur_biogeografi_historisk_utbredelse_mangfold"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med sammenlignende arts- eller fossildata i et konkret og datert materiale.",
+            "Viser tids-, slektskaps- eller funksjonsdata gjensidig evolusjonær påvirkning eller tap av en utviklingslinje?",
+            "Kontroller forklaringen mot tidsrekkefølge og gjensidighet og bevarings- og registreringsskjevhet."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Koevolusjon og utdøing: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Viser tids-, slektskaps- eller funksjonsdata gjensidig evolusjonær påvirkning eller tap av en utviklingslinje?",
+          "evidence_focus": [
+            "sammenlignende arts- eller fossildata",
+            "tidsrekkefølge og gjensidighet",
+            "bevarings- og registreringsskjevhet"
+          ]
+        },
+        {
+          "id": "biogeografi_historie",
+          "title": "Biogeografi og historisk utbredelse",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_darwin",
+                "name": "Charles Darwin",
+                "role": "naturlig seleksjon og felles avstamning",
+                "tier": "core"
+              },
+              {
+                "id": "alfred_russel_wallace",
+                "name": "Alfred Russel Wallace",
+                "role": "naturlig seleksjon og biogeografi",
+                "tier": "core"
+              },
+              {
+                "id": "ronald_fisher",
+                "name": "Ronald Fisher",
+                "role": "populasjonsgenetikk og seleksjon",
+                "tier": "core"
+              },
+              {
+                "id": "sewall_wright",
+                "name": "Sewall Wright",
+                "role": "genetisk drift og populasjonsstruktur",
+                "tier": "core"
+              },
+              {
+                "id": "ernst_mayr",
+                "name": "Ernst Mayr",
+                "role": "artsdannelse og biologisk artsbegrep",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_artsdannelse_reproduktiv_isolasjon",
+            "em_natur_biogeografi_historisk_utbredelse_mangfold"
+          ],
+          "best_place_types": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp",
+            "fuglekoloni",
+            "pollinatoreng",
+            "fjellgradient",
+            "kysthabitat",
+            "øygruppe",
+            "innsjø",
+            "fjellområde",
+            "fragmentert kulturlandskap",
+            "fossilsamling",
+            "naturhistorisk museum",
+            "pollinatornettverk",
+            "fjord"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med daterte utbredelsesdata i et konkret og datert materiale.",
+            "Hvordan har spredning, isolasjon, klima og geologisk historie formet den dokumenterte utbredelsen?",
+            "Kontroller forklaringen mot fylogeni eller populasjonsstruktur og historisk klima, geologi og registreringsinnsats."
+          ],
+          "comparison_pairs": [
+            [
+              "charles_darwin",
+              "alfred_russel_wallace"
+            ],
+            [
+              "ronald_fisher",
+              "sewall_wright"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "museumssamling",
+            "naturreservat",
+            "forskningslaboratorium",
+            "artsrik eng",
+            "øy",
+            "fragmentert skog",
+            "elveløp"
+          ],
+          "recommended_method_ids": [
+            "met_natur_populasjonsgenetisk_analyse",
+            "met_natur_komparativ_evolusjonsanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_darwin",
+            "alfred_russel_wallace",
+            "ronald_fisher",
+            "sewall_wright",
+            "ernst_mayr"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Biogeografi og historisk utbredelse: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan har spredning, isolasjon, klima og geologisk historie formet den dokumenterte utbredelsen?",
+          "evidence_focus": [
+            "daterte utbredelsesdata",
+            "fylogeni eller populasjonsstruktur",
+            "historisk klima, geologi og registreringsinnsats"
           ]
         }
       ]
@@ -5993,6 +7547,1571 @@
             "etogram og tidsbudsjett",
             "individ, tidspunkt og observasjonsinnsats",
             "stimuli, avstand og miljøbetingelser"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "organismebiologi_fysiologi",
+      "title": "Organismebiologi og fysiologi",
+      "definition": "Domenet forklarer hvordan celler, vev, organer og organsystemer omsetter energi, utveksler stoff, sanser miljøet og regulerer indre forhold gjennom hele organismens liv.",
+      "focus": [
+        "energiomsetning",
+        "gass og transport",
+        "osmoregulering",
+        "temperatur",
+        "nerve og bevegelse",
+        "hormoner og homeostase"
+      ],
+      "question_role": "Koble målbar fysiologisk funksjon fra celle til hel organisme, og skill reguleringsmekanisme, respons, toleranse og evolusjonær forklaring.",
+      "tagline": "Hvordan organismer skaffer energi, transporterer stoff, sanser, beveger seg og holder indre forhold innenfor tålegrenser.",
+      "best_place_types": [
+        "laboratorium",
+        "ferskvann",
+        "jordprøve",
+        "kompost",
+        "dyreobservasjon",
+        "innsjø",
+        "bekk",
+        "fugleobservasjon",
+        "fjæresone",
+        "saltvann",
+        "vinterhabitat",
+        "feltlaboratorium",
+        "fugletårn",
+        "dam",
+        "mørkt skogsmiljø",
+        "beiteområde",
+        "pollinatoreng",
+        "salamanderdam",
+        "fuglekoloni",
+        "høydegradient"
+      ],
+      "oslo": {
+        "core_cases": [
+          "laboratorium",
+          "ferskvann",
+          "jordprøve",
+          "kompost",
+          "dyreobservasjon",
+          "innsjø",
+          "bekk"
+        ],
+        "place_logic": "Bruk steder bare når organismen, materialet, livsstadiet, metoden og kilden gir dokumenterbar inngang til Organismebiologi og fysiologi."
+      },
+      "source_priority": [
+        "bestemt organisme, dokumentert eksemplar, biologisk struktur, prosess eller standardisert observasjon",
+        "autoritativ navnebase, museumssamling, herbarium, faglig artsbeskrivelse, genetisk referanse eller universitetsfaglig kilde",
+        "felt- eller laboratoriedata med prøve-ID, sted, dato, metode og usikkerhet",
+        "sammenligningsmateriale som kan utelukke alternative bestemmelser eller forklaringer",
+        "fagkart, emner og metoder som styring – aldri som faktakilde"
+      ],
+      "anti_patterns": [
+        "Ikke bygg spørsmål fra organismegruppen eller emnenavnet alene.",
+        "Ikke presenter sannsynlig artsbestemmelse som sikker uten diagnostisk belegg.",
+        "Ikke la et generelt stedseksempel erstatte dokumentert biologisk objekt og metode."
+      ],
+      "canon": {
+        "thinkers": [
+          {
+            "id": "claude_bernard",
+            "name": "Claude Bernard",
+            "role": "indre miljø og regulering",
+            "tier": "core"
+          },
+          {
+            "id": "walter_cannon",
+            "name": "Walter Cannon",
+            "role": "homeostase",
+            "tier": "core"
+          },
+          {
+            "id": "otto_warburg",
+            "name": "Otto Warburg",
+            "role": "celleånding og energiomsetning",
+            "tier": "core"
+          },
+          {
+            "id": "alan_hodgkin",
+            "name": "Alan Hodgkin",
+            "role": "nerveimpulser og membranpotensial",
+            "tier": "core"
+          },
+          {
+            "id": "andrew_huxley",
+            "name": "Andrew Huxley",
+            "role": "nerveledning og muskelaktivering",
+            "tier": "core"
+          }
+        ]
+      },
+      "topic_hooks": [
+        {
+          "id": "energi_celleanding",
+          "title": "Energiomsetning og celleånding",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_energiomsetning_celleanding",
+            "em_natur_gassutveksling_sirkulasjon_transport",
+            "em_natur_ernaering_fordoyelse_hormoner"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med substrat, oksygen- eller karbondioksiddata i et konkret og datert materiale.",
+            "Hvordan omformes kjemisk energi til ATP, varme og arbeid, og hva måler respirometrien faktisk?",
+            "Kontroller forklaringen mot temperatur, masse og aktivitetskontroll og aerobe og anaerobe alternativer."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Energiomsetning og celleånding: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan omformes kjemisk energi til ATP, varme og arbeid, og hva måler respirometrien faktisk?",
+          "evidence_focus": [
+            "substrat, oksygen- eller karbondioksiddata",
+            "temperatur, masse og aktivitetskontroll",
+            "aerobe og anaerobe alternativer"
+          ]
+        },
+        {
+          "id": "gassutveksling",
+          "title": "Gassutveksling",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_gassutveksling_sirkulasjon_transport"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med respirasjonsflate og miljø i et konkret og datert materiale.",
+            "Hvilke gradienter, overflater og ventilasjonsbevegelser bestemmer diffusjonen av oksygen og karbondioksid?",
+            "Kontroller forklaringen mot partialtrykk eller konsentrasjon og ventilasjon, tykkelse og overflateareal."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Gassutveksling: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke gradienter, overflater og ventilasjonsbevegelser bestemmer diffusjonen av oksygen og karbondioksid?",
+          "evidence_focus": [
+            "respirasjonsflate og miljø",
+            "partialtrykk eller konsentrasjon",
+            "ventilasjon, tykkelse og overflateareal"
+          ]
+        },
+        {
+          "id": "sirkulasjon_transport",
+          "title": "Sirkulasjon og transport",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_gassutveksling_sirkulasjon_transport"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med kretsløpstype og transportvæske i et konkret og datert materiale.",
+            "Hvordan flyttes gasser, næring, avfall og signalstoff mellom utvekslingsflate og vev?",
+            "Kontroller forklaringen mot gjennomstrømning og trykk og vevets behov og begrensende ledd."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Sirkulasjon og transport: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan flyttes gasser, næring, avfall og signalstoff mellom utvekslingsflate og vev?",
+          "evidence_focus": [
+            "kretsløpstype og transportvæske",
+            "gjennomstrømning og trykk",
+            "vevets behov og begrensende ledd"
+          ]
+        },
+        {
+          "id": "osmoregulering",
+          "title": "Osmoregulering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_osmoregulering_temperaturregulering"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med osmolaritet og ionekonsentrasjon i et konkret og datert materiale.",
+            "Hvordan reguleres vann og ioner over membraner og utskillelsesorganer i det aktuelle miljøet?",
+            "Kontroller forklaringen mot inntak, tap og aktiv transport og regulator, konformer og energikostnad."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Osmoregulering: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan reguleres vann og ioner over membraner og utskillelsesorganer i det aktuelle miljøet?",
+          "evidence_focus": [
+            "osmolaritet og ionekonsentrasjon",
+            "inntak, tap og aktiv transport",
+            "regulator, konformer og energikostnad"
+          ]
+        },
+        {
+          "id": "temperaturregulering",
+          "title": "Temperaturregulering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_energiomsetning_celleanding",
+            "em_natur_osmoregulering_temperaturregulering",
+            "em_natur_reproduksjon_homeostase_toleranse"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med kropps- og miljøtemperatur over tid i et konkret og datert materiale.",
+            "Hvordan utveksler og produserer organismen varme, og hvilke atferds- og fysiologiske tiltak holder funksjonen innenfor grenser?",
+            "Kontroller forklaringen mot varmeproduksjon og varmeutveksling og aktivitet, kroppsstørrelse og mikrohabitat."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Temperaturregulering: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan utveksler og produserer organismen varme, og hvilke atferds- og fysiologiske tiltak holder funksjonen innenfor grenser?",
+          "evidence_focus": [
+            "kropps- og miljøtemperatur over tid",
+            "varmeproduksjon og varmeutveksling",
+            "aktivitet, kroppsstørrelse og mikrohabitat"
+          ]
+        },
+        {
+          "id": "sansetransduksjon",
+          "title": "Sansetransduksjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_sanser_nervesystem_bevegelse"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med definert stimulus og reseptor i et konkret og datert materiale.",
+            "Hvordan omdanner reseptoren et fysisk eller kjemisk stimulus til et biologisk signal?",
+            "Kontroller forklaringen mot responsstyrke og terskel og kontrollstimulus og alternative sansekanaler."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Sansetransduksjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan omdanner reseptoren et fysisk eller kjemisk stimulus til et biologisk signal?",
+          "evidence_focus": [
+            "definert stimulus og reseptor",
+            "responsstyrke og terskel",
+            "kontrollstimulus og alternative sansekanaler"
+          ]
+        },
+        {
+          "id": "nerve_muskel",
+          "title": "Nerve og muskel",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_sanser_nervesystem_bevegelse"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med membran- eller responssignal i et konkret og datert materiale.",
+            "Hvordan overføres et signal gjennom nevroner og synapser til kontrollert muskelaktivering eller annen bevegelse?",
+            "Kontroller forklaringen mot nervebane og synapse og muskelkraft, bevegelse og belastning."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Nerve og muskel: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan overføres et signal gjennom nevroner og synapser til kontrollert muskelaktivering eller annen bevegelse?",
+          "evidence_focus": [
+            "membran- eller responssignal",
+            "nervebane og synapse",
+            "muskelkraft, bevegelse og belastning"
+          ]
+        },
+        {
+          "id": "fordoyelse_opptak",
+          "title": "Fordøyelse og næringsopptak",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_ernaering_fordoyelse_hormoner"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med fødesammensetning og fordøyelsesstruktur i et konkret og datert materiale.",
+            "Hvordan brytes føden ned, absorberes og fordeles, og hvilket trinn begrenser tilgjengelig energi eller byggestoff?",
+            "Kontroller forklaringen mot enzym, pH og oppholdstid og absorpsjon, transport og utskillelse."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Fordøyelse og næringsopptak: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvordan brytes føden ned, absorberes og fordeles, og hvilket trinn begrenser tilgjengelig energi eller byggestoff?",
+          "evidence_focus": [
+            "fødesammensetning og fordøyelsesstruktur",
+            "enzym, pH og oppholdstid",
+            "absorpsjon, transport og utskillelse"
+          ]
+        },
+        {
+          "id": "hormoner_reproduksjon",
+          "title": "Hormoner og reproduksjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_ernaering_fordoyelse_hormoner",
+            "em_natur_reproduksjon_homeostase_toleranse"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med hormonkonsentrasjon og tidspunkt i et konkret og datert materiale.",
+            "Hvilke hormoner, reseptorer og tilbakekoblinger koordinerer vekst, metabolisme eller reproduksjon?",
+            "Kontroller forklaringen mot målvev og reseptor og tilbakekobling, livsstadium og miljøsignal."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Hormoner og reproduksjon: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilke hormoner, reseptorer og tilbakekoblinger koordinerer vekst, metabolisme eller reproduksjon?",
+          "evidence_focus": [
+            "hormonkonsentrasjon og tidspunkt",
+            "målvev og reseptor",
+            "tilbakekobling, livsstadium og miljøsignal"
+          ]
+        },
+        {
+          "id": "homeostase_toleranse",
+          "title": "Homeostase og toleransegrenser",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "claude_bernard",
+                "name": "Claude Bernard",
+                "role": "indre miljø og regulering",
+                "tier": "core"
+              },
+              {
+                "id": "walter_cannon",
+                "name": "Walter Cannon",
+                "role": "homeostase",
+                "tier": "core"
+              },
+              {
+                "id": "otto_warburg",
+                "name": "Otto Warburg",
+                "role": "celleånding og energiomsetning",
+                "tier": "core"
+              },
+              {
+                "id": "alan_hodgkin",
+                "name": "Alan Hodgkin",
+                "role": "nerveimpulser og membranpotensial",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_huxley",
+                "name": "Andrew Huxley",
+                "role": "nerveledning og muskelaktivering",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_natur_energiomsetning_celleanding",
+            "em_natur_osmoregulering_temperaturregulering",
+            "em_natur_sanser_nervesystem_bevegelse",
+            "em_natur_reproduksjon_homeostase_toleranse"
+          ],
+          "best_place_types": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk",
+            "fugleobservasjon",
+            "fjæresone",
+            "saltvann",
+            "vinterhabitat",
+            "feltlaboratorium",
+            "fugletårn",
+            "dam",
+            "mørkt skogsmiljø",
+            "beiteområde",
+            "pollinatoreng",
+            "salamanderdam",
+            "fuglekoloni",
+            "høydegradient"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_biologisk_objekt",
+            "ren_rekreasjonsarena_uten_faglig_materiale",
+            "generisk_gront_sted"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organism-and-evidence-first",
+          "fact_anchor_required": true,
+          "nature_anchor_required": true,
+          "ecosystem_water_climate_or_place_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hvilken teoretiker passer best",
+            "Hva betyr natur generelt",
+            "Påstand hentet bare fra hooknavnet"
+          ],
+          "preferred_question_moves": [
+            "Start med tidsserie for regulert variabel i et konkret og datert materiale.",
+            "Hvilken variabel reguleres, rundt hvilket funksjonelt område, og når overskrides organismens kompensasjonskapasitet?",
+            "Kontroller forklaringen mot stimulus, kontrollsenter og effektor og stress, akklimatisering, skade og restitusjon."
+          ],
+          "comparison_pairs": [
+            [
+              "claude_bernard",
+              "walter_cannon"
+            ],
+            [
+              "alan_hodgkin",
+              "andrew_huxley"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "laboratorium",
+            "ferskvann",
+            "jordprøve",
+            "kompost",
+            "dyreobservasjon",
+            "innsjø",
+            "bekk"
+          ],
+          "recommended_method_ids": [
+            "met_natur_respirometri_energiomsetning",
+            "met_natur_komparativ_fysiologisk_maling"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "claude_bernard",
+            "walter_cannon",
+            "otto_warburg",
+            "alan_hodgkin",
+            "andrew_huxley"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "spread_more",
+          "canonical_status": "canonical",
+          "registry_version": "naturpensum_v5_1",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "For Homeostase og toleransegrenser: roter organismegruppe, livsstadium, materiale og datakilde; gjenta ikke samme case før et annet bestemmelses- eller forklaringsproblem er prøvd.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_ecosystem_water_climate_or_place_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true
+          },
+          "focus_question": "Hvilken variabel reguleres, rundt hvilket funksjonelt område, og når overskrides organismens kompensasjonskapasitet?",
+          "evidence_focus": [
+            "tidsserie for regulert variabel",
+            "stimulus, kontrollsenter og effektor",
+            "stress, akklimatisering, skade og restitusjon"
           ]
         }
       ]
@@ -13282,9 +16401,9 @@
         "name": "Gro Harlem Brundtland"
       }
     ],
-    "category_count": 9,
-    "hook_count": 90,
-    "canonical_round": "v5.1",
+    "category_count": 11,
+    "hook_count": 110,
+    "canonical_round": "v5.2",
     "emne_prefix_required": "em_natur_"
   },
   "application_scope": "universelt_fagkart_med_geografiske_case_lag"

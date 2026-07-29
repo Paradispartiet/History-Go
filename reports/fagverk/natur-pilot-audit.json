@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_natur_expansion_audit_v1",
   "version": "1.0.0",
-  "status": "natur_biology_phase_1_materialized_subject_expanding",
+  "status": "natur_biology_phase_2_materialized_final_phase_remaining",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -19,19 +19,19 @@
     "adapter": "standard",
     "assessmentStatus": "audited",
     "editorialStatus": "chapters_in_progress",
-    "nextGate": "materialize_evolution_microbiology_fysiology_and_inner_geology",
+    "nextGate": "materialize_microbiology_and_inner_geology",
     "subjectPage": "fagverk.html?subject=natur",
     "badgePage": "data/fag/natur/merke_natur (1).html"
   },
   "summary": {
     "domainCount": 12,
-    "materializedEmneCount": 53,
-    "materializedMethodCount": 39,
-    "materializedMappingCount": 53,
-    "materializedHookCount": 90,
-    "registeredChapterCount": 9,
+    "materializedEmneCount": 65,
+    "materializedMethodCount": 45,
+    "materializedMappingCount": 65,
+    "materializedHookCount": 110,
+    "registeredChapterCount": 11,
     "preservedEnvironmentChapterCount": 6,
-    "requiredGapDomainCount": 3,
+    "requiredGapDomainCount": 1,
     "partialDomainCount": 1,
     "placeCount": 0
   },
@@ -52,8 +52,10 @@
   "registeredChapterDomains": [
     "okosystem_mangfold_habitat",
     "artskunnskap_systematikk",
+    "evolusjon_biologisk_mangfold",
     "botanikk_vegetasjon",
     "zoologi_dyreliv",
+    "organismebiologi_fysiologi",
     "vann_hydrologi_kretslop",
     "klima_energi_resiliens",
     "geologi_landskap_tid",
@@ -61,9 +63,7 @@
     "miljopavirkning_forvaltning_regenerasjon"
   ],
   "requiredGapDomains": [
-    "evolusjon_biologisk_mangfold",
-    "sopp_lav_mikroorganismer",
-    "organismebiologi_fysiologi"
+    "sopp_lav_mikroorganismer"
   ],
   "chapters": [
     {
@@ -87,6 +87,16 @@
       "sourceCount": 4
     },
     {
+      "id": "evolusjon_biologisk_mangfold",
+      "primaryDomainId": "evolusjon_biologisk_mangfold",
+      "coverageRole": "materialized_biology_layer",
+      "emneCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 10,
+      "sourceCount": 5
+    },
+    {
       "id": "botanikk_vegetasjon",
       "primaryDomainId": "botanikk_vegetasjon",
       "coverageRole": "materialized_biology_layer",
@@ -105,6 +115,16 @@
       "paragraphCount": 15,
       "conceptCount": 10,
       "sourceCount": 4
+    },
+    {
+      "id": "organismebiologi_fysiologi",
+      "primaryDomainId": "organismebiologi_fysiologi",
+      "coverageRole": "materialized_biology_layer",
+      "emneCount": 6,
+      "sectionCount": 5,
+      "paragraphCount": 15,
+      "conceptCount": 10,
+      "sourceCount": 5
     },
     {
       "id": "vann_hydrologi_kretslop",
@@ -161,6 +181,7 @@
     "canonicalTwelveDomainOrder": true,
     "currentEnvironmentLayerPreserved": true,
     "biologyPhaseOneMaterialized": true,
+    "biologyPhaseTwoMaterialized": true,
     "registeredChaptersInspectable": true,
     "requiredGapsExplicit": true,
     "innerGeologyGapExplicit": true,

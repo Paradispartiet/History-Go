@@ -1,6 +1,6 @@
 {
   "schema": "history_go_natur_universal_coverage_contract_v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "subject_id": "natur",
   "status": "canonical_binding_coverage_contract",
   "updated_at": "2026-07-29",
@@ -32,16 +32,16 @@
     ],
     "materialized_biology_domains": [
       "artskunnskap_systematikk",
+      "evolusjon_biologisk_mangfold",
       "botanikk_vegetasjon",
-      "zoologi_dyreliv"
+      "zoologi_dyreliv",
+      "organismebiologi_fysiologi"
     ],
     "partial_domains": [
       "geologi_landskap_tid"
     ],
     "required_gap_domains": [
-      "evolusjon_biologisk_mangfold",
-      "sopp_lav_mikroorganismer",
-      "organismebiologi_fysiologi"
+      "sopp_lav_mikroorganismer"
     ],
     "preserved_environment_layer_counts": {
       "emner": 35,
@@ -50,11 +50,18 @@
       "hooks": 60,
       "chapters": 6
     },
-    "current_emne_count": 53,
-    "current_method_count": 39,
-    "current_mapping_count": 53,
-    "current_hook_count": 90,
-    "current_chapter_count": 9,
+    "phase_1_biology_layer_counts": {
+      "emner": 18,
+      "methods": 9,
+      "mappings": 18,
+      "hooks": 30,
+      "chapters": 3
+    },
+    "current_emne_count": 65,
+    "current_method_count": 45,
+    "current_mapping_count": 65,
+    "current_hook_count": 110,
+    "current_chapter_count": 11,
     "editorial_status": "chapters_in_progress"
   },
   "required_domains": [
@@ -140,9 +147,9 @@
     {
       "domain_id": "evolusjon_biologisk_mangfold",
       "label": "Evolusjon og biologisk mangfold",
-      "coverage_status": "required_gap",
-      "current_emne_count": 0,
-      "chapter_status": "not_started",
+      "coverage_status": "materialized_biology_layer",
+      "current_emne_count": 6,
+      "chapter_status": "complete_for_current_biology_layer",
       "required_topics": [
         "genetisk variasjon",
         "mutasjon",
@@ -163,7 +170,36 @@
         "emne- og hookmappinger som løser alle referanser",
         "redigert lærekapittel med inspectable kilder og oppgaver",
         "grønn permanent audit"
-      ]
+      ],
+      "status": "strong",
+      "emne_ids": [
+        "em_natur_genetisk_variasjon_mutasjon_rekombinasjon",
+        "em_natur_populasjonsgenetikk_drift_genflyt",
+        "em_natur_naturlig_seksuell_seleksjon_tilpasning",
+        "em_natur_artsdannelse_reproduktiv_isolasjon",
+        "em_natur_koevolusjon_utdoing_makroevolusjon",
+        "em_natur_biogeografi_historisk_utbredelse_mangfold"
+      ],
+      "emne_count": 6,
+      "method_ids": [
+        "met_natur_populasjonsgenetisk_analyse",
+        "met_natur_komparativ_evolusjonsanalyse",
+        "met_natur_biogeografisk_utbredelsesanalyse"
+      ],
+      "hook_ids": [
+        "genetisk_variasjon",
+        "mutasjon_rekombinasjon",
+        "naturlig_seleksjon",
+        "seksuell_seleksjon",
+        "genetisk_drift",
+        "genflyt",
+        "tilpasning_avveininger",
+        "artsdannelse_isolasjon",
+        "koevolusjon_utdoing",
+        "biogeografi_historie"
+      ],
+      "hook_count": 10,
+      "method_count": 3
     },
     {
       "domain_id": "botanikk_vegetasjon",
@@ -312,9 +348,9 @@
     {
       "domain_id": "organismebiologi_fysiologi",
       "label": "Organismebiologi og fysiologi",
-      "coverage_status": "required_gap",
-      "current_emne_count": 0,
-      "chapter_status": "not_started",
+      "coverage_status": "materialized_biology_layer",
+      "current_emne_count": 6,
+      "chapter_status": "complete_for_current_biology_layer",
       "required_topics": [
         "energiomsetning",
         "celleånding",
@@ -335,7 +371,36 @@
         "emne- og hookmappinger som løser alle referanser",
         "redigert lærekapittel med inspectable kilder og oppgaver",
         "grønn permanent audit"
-      ]
+      ],
+      "status": "strong",
+      "emne_ids": [
+        "em_natur_energiomsetning_celleanding",
+        "em_natur_gassutveksling_sirkulasjon_transport",
+        "em_natur_osmoregulering_temperaturregulering",
+        "em_natur_sanser_nervesystem_bevegelse",
+        "em_natur_ernaering_fordoyelse_hormoner",
+        "em_natur_reproduksjon_homeostase_toleranse"
+      ],
+      "emne_count": 6,
+      "method_ids": [
+        "met_natur_respirometri_energiomsetning",
+        "met_natur_komparativ_fysiologisk_maling",
+        "met_natur_stimulus_respons_forsok"
+      ],
+      "hook_ids": [
+        "energi_celleanding",
+        "gassutveksling",
+        "sirkulasjon_transport",
+        "osmoregulering",
+        "temperaturregulering",
+        "sansetransduksjon",
+        "nerve_muskel",
+        "fordoyelse_opptak",
+        "hormoner_reproduksjon",
+        "homeostase_toleranse"
+      ],
+      "hook_count": 10,
+      "method_count": 3
     },
     {
       "domain_id": "vann_hydrologi_kretslop",

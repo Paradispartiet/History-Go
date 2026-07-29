@@ -1,14 +1,14 @@
 {
-  "version": "v5.1-canonical-biology-phase-1",
+  "version": "v5.2-canonical-biology-phase-2",
   "subject_id": "natur",
   "subject_title": "Natur",
   "scope": "universal",
   "type": "pensum",
-  "canonical_registry_version": "naturpensum_v5_1",
+  "canonical_registry_version": "naturpensum_v5_2",
   "updated_at": "2026-07-29",
   "compatibility_path": "Filnavnet v4_5 beholdes midlertidig fordi manifest, quizproduksjon og eksisterende stedskoblinger peker hit. Innholdet følger v5.0-kontrakten.",
   "purpose": "Universelt Natur-fagverk for History Go. Den canonicale modellen skiller økologi- og miljølaget fra selvstendige biologiske og geologiske kunnskapsfelt. Steder brukes som dokumenterte undersøkelser og eksempler, ikke som grense for faget.",
-  "coverage_statement": "De seks eksisterende kapitlene bevarer det sterke økologi- og miljølaget. Artskunnskap og systematikk, botanikk og zoologi er nå materialisert som selvstendige biologiske fagområder. Natur er fortsatt ikke heldekkende før evolusjon, sopp/lav/mikroorganismer, organismefysiologi og geologiens indre prosesser er fullført.",
+  "coverage_statement": "De seks eksisterende miljøkapitlene og fase-1-kapitlene for artskunnskap, botanikk og zoologi er bevart. Evolusjon og biologisk mangfold samt organismebiologi og fysiologi er nå materialisert. Natur er fortsatt ikke heldekkende før sopp/lav/mikroorganismer og geologiens indre prosesser og naturhistorie er fullført.",
   "canonical_files": {
     "fagkart": "fagkart_natur_canonical_v4_5.json",
     "methods": "methods_natur_canonical_v4_5.json",
@@ -19,13 +19,13 @@
   },
   "summary": {
     "domain_count": 12,
-    "materialized_domain_count": 8,
+    "materialized_domain_count": 10,
     "partial_domain_count": 1,
-    "required_gap_domain_count": 3,
-    "current_emne_count": 53,
-    "current_method_count": 39,
-    "current_mapping_count": 53,
-    "current_topic_hook_count": 90,
+    "required_gap_domain_count": 1,
+    "current_emne_count": 65,
+    "current_method_count": 45,
+    "current_mapping_count": 65,
+    "current_topic_hook_count": 110,
     "all_current_emner_have_mapping": true,
     "all_current_method_refs_valid": true,
     "editorial_complete": false,
@@ -181,8 +181,8 @@
     {
       "domain_id": "evolusjon_biologisk_mangfold",
       "label": "Evolusjon og biologisk mangfold",
-      "coverage_status": "required_gap",
-      "status": "insufficient",
+      "coverage_status": "materialized_biology_layer",
+      "status": "strong",
       "definition": "Domenet skal forklare hvordan genetisk variasjon, mutasjon, naturlig og seksuell seleksjon, drift, genflyt, tilpasning, artsdannelse, utdøing og koevolusjon former livets mangfold over tid.",
       "question_role": "Skill mekanismer som skaper variasjon fra mekanismer som endrer genfrekvenser, og koble evolusjonære forklaringer til slektskap, miljøpress, tidsskala og biogeografi.",
       "required_topics": [
@@ -199,18 +199,40 @@
         "evolusjonære slektskap",
         "biogeografi og historisk utbredelse"
       ],
-      "emne_ids": [],
-      "chapter_status": "not_started",
-      "emne_count": 0,
-      "method_ids": [],
-      "hook_ids": [],
+      "emne_ids": [
+        "em_natur_genetisk_variasjon_mutasjon_rekombinasjon",
+        "em_natur_populasjonsgenetikk_drift_genflyt",
+        "em_natur_naturlig_seksuell_seleksjon_tilpasning",
+        "em_natur_artsdannelse_reproduktiv_isolasjon",
+        "em_natur_koevolusjon_utdoing_makroevolusjon",
+        "em_natur_biogeografi_historisk_utbredelse_mangfold"
+      ],
+      "chapter_status": "complete_for_current_biology_layer",
+      "emne_count": 6,
+      "method_ids": [
+        "met_natur_populasjonsgenetisk_analyse",
+        "met_natur_komparativ_evolusjonsanalyse",
+        "met_natur_biogeografisk_utbredelsesanalyse"
+      ],
+      "hook_ids": [
+        "genetisk_variasjon",
+        "mutasjon_rekombinasjon",
+        "naturlig_seleksjon",
+        "seksuell_seleksjon",
+        "genetisk_drift",
+        "genflyt",
+        "tilpasning_avveininger",
+        "artsdannelse_isolasjon",
+        "koevolusjon_utdoing",
+        "biogeografi_historie"
+      ],
       "canonical_status": "canonical_required_area",
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "hook_count": 0,
-      "method_count": 0
+      "hook_count": 10,
+      "method_count": 3
     },
     {
       "domain_id": "botanikk_vegetasjon",
@@ -363,8 +385,8 @@
     {
       "domain_id": "organismebiologi_fysiologi",
       "label": "Organismebiologi og fysiologi",
-      "coverage_status": "required_gap",
-      "status": "insufficient",
+      "coverage_status": "materialized_biology_layer",
+      "status": "strong",
       "definition": "Domenet skal forklare hvordan organismer opprettholder liv gjennom energiomsetning, respirasjon, transport, vann- og saltbalanse, temperaturregulering, sanser, nervesystem, bevegelse, ernæring og reproduksjon.",
       "question_role": "Forklar funksjonen fra celle og organ til hel organisme, og koble fysiologiske mekanismer til miljøkrav, toleransegrenser, atferd og evolusjonære tilpasninger.",
       "required_topics": [
@@ -381,18 +403,40 @@
         "reproduksjon",
         "homeostase og toleransegrenser"
       ],
-      "emne_ids": [],
-      "chapter_status": "not_started",
-      "emne_count": 0,
-      "method_ids": [],
-      "hook_ids": [],
+      "emne_ids": [
+        "em_natur_energiomsetning_celleanding",
+        "em_natur_gassutveksling_sirkulasjon_transport",
+        "em_natur_osmoregulering_temperaturregulering",
+        "em_natur_sanser_nervesystem_bevegelse",
+        "em_natur_ernaering_fordoyelse_hormoner",
+        "em_natur_reproduksjon_homeostase_toleranse"
+      ],
+      "chapter_status": "complete_for_current_biology_layer",
+      "emne_count": 6,
+      "method_ids": [
+        "met_natur_respirometri_energiomsetning",
+        "met_natur_komparativ_fysiologisk_maling",
+        "met_natur_stimulus_respons_forsok"
+      ],
+      "hook_ids": [
+        "energi_celleanding",
+        "gassutveksling",
+        "sirkulasjon_transport",
+        "osmoregulering",
+        "temperaturregulering",
+        "sansetransduksjon",
+        "nerve_muskel",
+        "fordoyelse_opptak",
+        "hormoner_reproduksjon",
+        "homeostase_toleranse"
+      ],
       "canonical_status": "canonical_required_area",
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "hook_count": 0,
-      "method_count": 0
+      "hook_count": 10,
+      "method_count": 3
     },
     {
       "domain_id": "vann_hydrologi_kretslop",
