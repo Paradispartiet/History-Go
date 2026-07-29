@@ -9,10 +9,16 @@ on:
       - 'js/fagverk.js'
       - 'scripts/audit-natur-subject-quality.mjs'
       - 'scripts/audit-natur-fagkart-quality.mjs'
+      - 'scripts/audit-natur-universal-coverage.mjs'
+      - 'scripts/audit-fagverk-natur-pilot.mjs'
       - 'tests/natur-subject-quality.test.mjs'
       - 'tests/natur-fagkart-quality.test.mjs'
+      - 'tests/natur-universal-coverage.test.mjs'
+      - 'tests/fagverk-natur-pilot.test.mjs'
       - 'reports/fagverk/natur-quality-audit.json'
       - 'reports/fagverk/natur-fagkart-quality-audit.json'
+      - 'reports/fagverk/natur-universal-coverage-audit.json'
+      - 'reports/fagverk/natur-pilot-audit.json'
       - '.github/workflows/natur-subject-quality.yml'
   push:
     branches: [main]
@@ -23,10 +29,16 @@ on:
       - 'js/fagverk.js'
       - 'scripts/audit-natur-subject-quality.mjs'
       - 'scripts/audit-natur-fagkart-quality.mjs'
+      - 'scripts/audit-natur-universal-coverage.mjs'
+      - 'scripts/audit-fagverk-natur-pilot.mjs'
       - 'tests/natur-subject-quality.test.mjs'
       - 'tests/natur-fagkart-quality.test.mjs'
+      - 'tests/natur-universal-coverage.test.mjs'
+      - 'tests/fagverk-natur-pilot.test.mjs'
       - 'reports/fagverk/natur-quality-audit.json'
       - 'reports/fagverk/natur-fagkart-quality-audit.json'
+      - 'reports/fagverk/natur-universal-coverage-audit.json'
+      - 'reports/fagverk/natur-pilot-audit.json'
       - '.github/workflows/natur-subject-quality.yml'
 
 jobs:
@@ -39,13 +51,18 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Validate Natur quality contract
+      - name: Validate Natur quality and universal coverage
         run: |
           node --check scripts/audit-natur-subject-quality.mjs
           node --check scripts/audit-natur-fagkart-quality.mjs
+          node --check scripts/audit-natur-universal-coverage.mjs
+          node --check scripts/audit-fagverk-natur-pilot.mjs
           node scripts/audit-natur-subject-quality.mjs
           node scripts/audit-natur-fagkart-quality.mjs
-          node --test tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs
+          node scripts/audit-natur-universal-coverage.mjs
           node scripts/audit-fagverk-natur-pilot.mjs
-          node --test tests/fagverk-natur-pilot.test.mjs tests/fagverk-general-engine.test.mjs
+          node --test tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/fagverk-natur-pilot.test.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs
           npm run typecheck:web
