@@ -62,9 +62,9 @@ export function auditPolitikkQuality({ writeReport = false, checkReport = true }
   assert(fagkart.scope === 'universal', 'Politikkfagkartet skal ha universelt fagomfang');
   assert(!text(fagkart.version).includes('draft'), 'Politikkfagkartet står fortsatt som draft');
   assert(domains.length === 13, `Forventet 13 politikkfagområder, fikk ${domains.length}`);
-  assert(emners.length === 123, `Forventet 123 Politikk-emner, fikk ${emners.length}`);
+  assert(emner.length === 123, `Forventet 123 Politikk-emner, fikk ${emner.length}`);
   assert(methods.length === 71, `Forventet 71 Politikk-metoder, fikk ${methods.length}`);
-  assert(mappings.length === emners.length, `Forventet én mappingrad per emne, fikk ${mappings.length} for ${emners.length}`);
+  assert(mappings.length === emner.length, `Forventet én mappingrad per emne, fikk ${mappings.length} for ${emner.length}`);
   assert(hookCount === 152, `Forventet 152 fagkart-hooks, fikk ${hookCount}`);
   assert(unique(emneIds), 'Politikk har dupliserte emne-ID-er');
   assert(unique(pensumEmneIds), 'Pensumets domenelister har dupliserte emne-ID-er');
@@ -73,7 +73,7 @@ export function auditPolitikkQuality({ writeReport = false, checkReport = true }
   assert(isDeepStrictEqual(new Set(mappingIds), emneIdSet), 'Mappingfilen dekker ikke nøyaktig de 123 emnene');
 
   const definitions = [], whys = [], questionSets = [], distinctionSets = [];
-  for (const emne of emners) {
+  for (const emne of emner) {
     const id = text(emne.emne_id);
     assert(domainIds.has(text(emne.domain)), `${id}: ukjent domain ${emne.domain}`);
     assert(emne.area_id === emne.domain && emne.logic_family === emne.domain, `${id}: domain, area_id og logic_family er usynkrone`);
@@ -138,10 +138,10 @@ export function auditPolitikkQuality({ writeReport = false, checkReport = true }
   assert(badgePage.includes('fagverk.html?subject=politikk'), 'Merkesiden mangler canonical fagsidelenke');
   assert(registry.subjects?.politikk?.canonicalModel?.sourceOfTruth === true, 'Fagverkregisteret peker ikke til canonical politikkmodell');
 
-  assert(pensum.summary?.emne_count === emners.length, 'Pensumsammendraget har feil emnetall');
+  assert(pensum.summary?.emne_count === emner.length, 'Pensumsammendraget har feil emnetall');
   assert(pensum.summary?.method_count === methods.length, 'Pensumsammendraget har feil metodetall');
   assert(pensum.summary?.mapping_count === mappings.length, 'Pensumsammendraget har feil mappingtall');
-  assert(pensum.summary?.all_emners_have_mapping === true, 'Pensumsammendraget hevder ikke komplett mappingdekning');
+  assert(pensum.summary?.all_emner_have_mapping === true, 'Pensumsammendraget hevder ikke komplett mappingdekning');
 
   const report = {
     schema: 'history_go_politikk_subject_quality_audit_v1',
@@ -150,7 +150,7 @@ export function auditPolitikkQuality({ writeReport = false, checkReport = true }
     generatedFrom: P,
     summary: {
       domainCount: domains.length,
-      emneCount: emners.length,
+      emneCount: emner.length,
       methodCount: methods.length,
       mappingRowCount: mappings.length,
       mappingRelationCount,

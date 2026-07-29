@@ -56,3 +56,4 @@ Politikk og Natur er individuelt auditert gjennom den generelle motoren og står
 Natur har i tillegg permanente kvalitetsgater for unike emnetekster, konkrete metodeprosedyrer og begrensninger, hookspesifikke undersøkelsesgrep, synkroniserte mappings, to ganger sju normale quizåpningsspørsmål og eksplisitt Knowledge-leveranse. Natur har fortsatt ingen ferdigskrevne lærekapitler og skal derfor ikke få status `complete`.
 
 De tre gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
+- `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.

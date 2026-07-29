@@ -1,18 +1,22 @@
 {
   "schema": "history_go_fagverk_registry_v1",
   "version": "1.3.0",
-  "updatedAt": "2026-07-28",
+  "updatedAt": "2026-07-29",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
     "title": "Stedets fagverkside",
     "description": "Hvert canonical sted får en egen fagverkside som samler stedstekst, relevante fagområder, lærekapitler, begreper, emner, undermerker og videre utforskning.",
-    "fallbackSubjectByCategory": {"politikk": "politikk", "historie": "politikk", "by": "politikk"}
+    "fallbackSubjectByCategory": {
+      "politikk": "politikk",
+      "historie": "politikk",
+      "by": "politikk"
+    }
   },
   "subjects": {
     "politikk": {
       "title": "Politikk og samfunn",
-      "description": "Et sammenhengende læreverk om politiske institusjoner, styring, representasjon, forvaltning og demokratisk kontroll.",
+      "description": "Et sammenhengende læreverk om politiske institusjoner, demokrati, valg, rett, offentlig politikk, forvaltning, konflikt, fordeling, internasjonal politikk, politisk økonomi, norsk flernivåstyring og statsvitenskapelige metoder.",
       "canonicalModel": {
         "runtimeManifest": "data/fag/politikk/politikk_runtime_manifest.json",
         "sourceOfTruth": true,
@@ -25,7 +29,9 @@
           "subtitle": "Fra politiske vedtak til regler, tjenester og myndighetsutøvelse",
           "file": "data/fagverk/politikk/forvaltning.json",
           "primary_domain_id": "styring_institusjoner_forvaltning",
-          "emne_ids": ["em_pol_politi_sikkerhet_makt"]
+          "emne_ids": [
+            "em_pol_politi_sikkerhet_makt"
+          ]
         },
         {
           "id": "parlamentarisme",
@@ -33,7 +39,10 @@
           "subtitle": "Forholdet mellom Stortinget, regjeringen og det politiske ansvaret",
           "file": "data/fagverk/politikk/parlamentarisme.json",
           "primary_domain_id": "demokrati_representasjon_offentlighet",
-          "emne_ids": ["em_pol_mediert_offentlighet", "em_pol_parlamentarisme_maktbalanse"]
+          "emne_ids": [
+            "em_pol_mediert_offentlighet",
+            "em_pol_parlamentarisme_maktbalanse"
+          ]
         }
       ]
     }
@@ -42,15 +51,47 @@
     "regjeringskvartalet": {
       "title": "Regjeringskvartalet",
       "intro": "Regjeringskvartalet har sin egen fagverkside. Der undersøkes stedet gjennom arkitektur, statsforvaltning, parlamentarisk ansvar, sikkerhet, offentlighet og minne – uten at stedet gjøres til et kapittel i selve faget.",
-      "emneIds": ["em_pol_byrakrati_forvaltning", "em_pol_institusjoner_styring", "em_pol_administrativ_makt", "em_pol_parlamentarisme_maktbalanse", "em_pol_politi_sikkerhet_makt", "em_pol_mediert_offentlighet"],
-      "lenses": [
-        {"id": "historie", "title": "Historie", "prompt": "Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?"},
-        {"id": "arkitektur", "title": "Arkitektur og by", "prompt": "Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?"},
-        {"id": "forvaltning", "title": "Forvaltning", "prompt": "Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?"},
-        {"id": "parlamentarisme", "title": "Parlamentarisme", "prompt": "Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?"},
-        {"id": "sikkerhet-minne", "title": "Sikkerhet og minne", "prompt": "Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?"}
+      "emneIds": [
+        "em_pol_byrakrati_forvaltning",
+        "em_pol_institusjoner_styring",
+        "em_pol_administrativ_makt",
+        "em_pol_parlamentarisme_maktbalanse",
+        "em_pol_politi_sikkerhet_makt",
+        "em_pol_mediert_offentlighet"
       ],
-      "guidingQuestions": ["Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?", "Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?", "Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?", "Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"]
+      "lenses": [
+        {
+          "id": "historie",
+          "title": "Historie",
+          "prompt": "Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?"
+        },
+        {
+          "id": "arkitektur",
+          "title": "Arkitektur og by",
+          "prompt": "Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?"
+        },
+        {
+          "id": "forvaltning",
+          "title": "Forvaltning",
+          "prompt": "Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?"
+        },
+        {
+          "id": "parlamentarisme",
+          "title": "Parlamentarisme",
+          "prompt": "Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?"
+        },
+        {
+          "id": "sikkerhet-minne",
+          "title": "Sikkerhet og minne",
+          "prompt": "Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?"
+        }
+      ],
+      "guidingQuestions": [
+        "Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?",
+        "Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?",
+        "Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?",
+        "Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"
+      ]
     }
   }
 }
