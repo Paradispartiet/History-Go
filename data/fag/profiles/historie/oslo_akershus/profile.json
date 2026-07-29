@@ -33,20 +33,20 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 22,
+    "validated_cases": 23,
     "unverified_case_candidates": 81
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
-    "cases_total": 103,
-    "claims_total": 101,
-    "sources_total": 81,
-    "evidence_links_total": 101,
+    "cases_total": 104,
+    "claims_total": 105,
+    "sources_total": 84,
+    "evidence_links_total": 105,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 22,
+    "verified_cases_total": 23,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -1729,6 +1729,7 @@
       },
       "validation": {
         "additional_batch_ids": [
+          "history_black_death_late_medieval_transformation_evidence_v1",
           "history_medieval_city_oslo_evidence_v1",
           "history_medieval_social_economic_legal_evidence_v1",
           "history_source_method_families_evidence_v1"
@@ -2735,6 +2736,39 @@
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      }
+    },
+    {
+      "case_id": "case_his_tanum_kirke_og_baerumsgardene",
+      "label": "Tanum kirke og Bærumsgårdene",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "tanum_kirke"
+      ],
+      "emne_ids": [
+        "em_his_lang_varighet_strukturer",
+        "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "em_his_middelalder_kirke_jord_eiendom_og_patronasje"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "source_dossier": "data/fag/historie/source_dossiers/black_death_late_medieval_transformation_v1.json",
+        "created_at": "2026-07-29"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_black_death_late_medieval_transformation_evidence_v1",
+        "validated_at": "2026-07-29",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -7056,7 +7090,7 @@
       "provenance": "recommended_oslo_cases"
     }
   ],
-  "last_updated": "2026-07-27",
+  "last_updated": "2026-07-29",
   "evidence_batches": [
     {
       "batch_id": "history_medieval_social_economic_legal_evidence_v1",
@@ -7146,6 +7180,37 @@
         "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming"
       ]
     },
-    "history_oslo_akershus_evidence_batch_v2"
+    "history_oslo_akershus_evidence_batch_v2",
+    {
+      "batch_id": "history_black_death_late_medieval_transformation_evidence_v1",
+      "status": "validated",
+      "validated_at": "2026-07-29",
+      "newly_verified_case_ids": [
+        "case_his_tanum_kirke_og_baerumsgardene"
+      ],
+      "expanded_case_ids": [
+        "case_his_middelalderbyen_oslo"
+      ],
+      "claim_ids": [
+        "claim_his_baerum_three_quarters_farms_deserted_after_1349",
+        "claim_his_oslo_nikolai_cemetery_expansion_contraction_1349_1400",
+        "claim_his_oslo_osl1_yersinia_pestis_1349_1350",
+        "claim_his_tanum_selective_settlement_continuity_post_plague"
+      ],
+      "source_ids": [
+        "src_his_baerum_cultural_history_black_death",
+        "src_his_niku_oslo_plague_skeleton",
+        "src_his_pnas_medieval_plague_genomes_osl1"
+      ],
+      "evidence_ids": [
+        "evidence_his_black_death_01",
+        "evidence_his_black_death_02",
+        "evidence_his_black_death_03",
+        "evidence_his_black_death_04"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming"
+      ]
+    }
   ]
 }

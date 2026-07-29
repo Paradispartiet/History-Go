@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **53**
-- Andel med dokumentert evidensgrunnlag: **23 %**
+- Validerte pilotobjekter: **54**
+- Andel med dokumentert evidensgrunnlag: **23.5 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -48,6 +48,7 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Lov, ting og jurisdiksjon: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
 | Middelalderens Oslo: forklarings- og kildebane | 3 | 2 | 5 | 3 | evidence_ready |
 | Skriftkultur, diplom og muntlig rett: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
+| Svartedauden og senmiddelalderens omforming: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
 | Landskap som historisk prosess: forklarings- og kildebane | 6 | 4 | 8 | 6 | evidence_ready |
 | Minnested, ritual og offentlig sorg | 6 | 3 | 7 | 6 | evidence_ready |
 | Monument, symbol og makt | 4 | 4 | 6 | 4 | evidence_ready |
