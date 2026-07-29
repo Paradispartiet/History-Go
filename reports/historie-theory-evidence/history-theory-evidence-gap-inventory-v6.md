@@ -3,9 +3,9 @@
 Status: **ACTIVE_PRODUCTION_DEPENDENCY_MAP**
 
 - Teoriobjekter totalt: **230**
-- Kvalifiserende etter middelalder sosial-, økonomi- og rettsevidens V1: **51**
-- Gjenstående: **179**
-- Andel: **22.2 %**
+- Kvalifiserende etter middelalderby og Oslo-evidens V1: **53**
+- Gjenstående: **177**
+- Andel: **23.0 %**
 - Universell status: **INCOMPLETE**
 
 ## Løst i V1
@@ -13,6 +13,7 @@ Status: **ACTIVE_PRODUCTION_DEPENDENCY_MAP**
 - `national_political_chronology`
 - `movement_specific_publics`
 - `source_method_families`
+- `medieval_city_and_oslo_reconstruction`
 
 ## Delvis løst
 

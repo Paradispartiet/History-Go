@@ -1,0 +1,524 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_medieval_city_oslo_evidence_v1",
+  "subject_id": "historie",
+  "domain_id": "his_middelalder_kirke_kongemakt",
+  "status": "materialized",
+  "created_at": "2026-07-29",
+  "purpose": "Kvalifisere middelalderby/kirke og middelalderens Oslo med nye, stedsspesifikke claims som skiller historisk bytopografi fra dagens kulturminnepresentasjon og arkeologisk utvalg.",
+  "theory_ids": [
+    "theory_his_middelalder_by_kirke",
+    "theory_his_middelalder_kirke_middelalderens_oslo"
+  ],
+  "source_ids_used": [
+    "src_his_niku_bispevika_b8b",
+    "src_his_niku_bispevika_syd",
+    "src_his_niku_medieval_city_method",
+    "src_his_niku_middelalderparken_excavations",
+    "src_his_oslo_middelalderbyen_official",
+    "src_his_snl_hallvardskirken",
+    "src_his_snl_mariakirken_oslo"
+  ],
+  "case_ids_used": [
+    "case_his_bjorvika",
+    "case_his_hallvardskatedralen",
+    "case_his_mariakirkeruinen",
+    "case_his_middelalderbyen_oslo"
+  ],
+  "place_ids_used": [
+    "bjorvika",
+    "hallvardskirken_oslo",
+    "mariakirken_ruin_oslo",
+    "middelalder_oslo"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_his_middelalder_oslo_royal_south_ecclesiastical_north_spatial_order",
+      "statement": "Oslo kommune beskriver middelalderbyen omkring 1300 med kongens anlegg og folk i den sørlige delen og kirkens institusjoner og folk i den nordlige delen. Skillet dokumenterer en romlig differensiering mellom kongelig og kirkelig tyngde, ikke to fullstendig adskilte bysamfunn.",
+      "claim_type": "urban_institutional_spatial_order",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "middelalder_oslo"
+        ],
+        "case_ids": [
+          "case_his_middelalderbyen_oslo"
+        ],
+        "temporal": {
+          "from": 1200,
+          "to": 1300
+        }
+      },
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+        "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse"
+      ],
+      "source_ids": [
+        "src_his_oslo_middelalderbyen_official"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Kommunens formulering sammenfatter en kompleks bytopografi pedagogisk. Den må ikke leses som en fast sosial grense eller som om alle kongelige og kirkelige funksjoner lå på hver sin side gjennom hele middelalderen."
+      },
+      "alternative_interpretations": [
+        "Den romlige forskjellen kan leses som institusjonell maktdeling, men også som et overlappende nettverk der hushold, håndverk, ferdsel, havn og religiøs praksis bandt bydelene sammen."
+      ]
+    },
+    {
+      "claim_id": "claim_his_hallvardskirken_bispegard_ecclesiastical_urban_node",
+      "statement": "Hallvardskirken var Oslos domkirke og lå ved bispegården. Sammen dannet anleggene et kirkelig byknutepunkt der gudstjeneste, bispelig administrasjon, jurisdiksjon og representasjon fikk en konkret plass i middelalderbyen.",
+      "claim_type": "ecclesiastical_urban_node",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "hallvardskirken_oslo"
+        ],
+        "case_ids": [
+          "case_his_hallvardskatedralen"
+        ],
+        "temporal": {
+          "from": 1100,
+          "to": 1537
+        }
+      },
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+        "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon"
+      ],
+      "source_ids": [
+        "src_his_snl_hallvardskirken",
+        "src_his_oslo_middelalderbyen_official"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Kildene dokumenterer institusjonenes funksjon og nærhet, men ikke alle daglige ruter, brukere, rettsmøter eller konflikter som utspilte seg i og omkring anleggene."
+      },
+      "alternative_interpretations": [
+        "Katedralen og bispegården kan forstås som et konsentrert maktsentrum, men de var også religiøse, sosiale og praktiske steder som ble brukt av flere grupper enn den geistlige eliten."
+      ]
+    },
+    {
+      "claim_id": "claim_his_mariakirken_kongsgard_harbor_royal_urban_node",
+      "statement": "Mariakirken lå ved Kongsgården og havneområdet i den sørlige delen av middelalderbyen. Koblingen mellom kongelig kirke, residens og sjøforbindelse gjorde stedet til et kongelig byknutepunkt for representasjon, administrasjon og mobilitet.",
+      "claim_type": "royal_urban_node",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "mariakirken_ruin_oslo"
+        ],
+        "case_ids": [
+          "case_his_mariakirkeruinen"
+        ],
+        "temporal": {
+          "from": 1000,
+          "to": 1537
+        }
+      },
+      "emne_ids": [
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse"
+      ],
+      "source_ids": [
+        "src_his_snl_mariakirken_oslo",
+        "src_his_oslo_middelalderbyen_official"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Topografien dokumenterer en kongelig institusjonsklynge, men viser ikke alene hvilke funksjoner som var samtidige, hvor permanent hoffets nærvær var eller hvordan havneaktiviteten ble organisert."
+      },
+      "alternative_interpretations": [
+        "Anlegget kan leses som kongelig kontroll og representasjon, men også som en praktisk kobling mellom liturgi, forsyning, sjøtransport og et skiftende urbant miljø."
+      ]
+    },
+    {
+      "claim_id": "claim_his_middelalderparken_visible_ruins_selected_reconstruction",
+      "statement": "Middelalderparken formidler utvalgte ruiner og en rekonstruert strandlinje, mens arkeologiske undersøkelser dokumenterer kulturlag og strukturer som ikke er synlige i dagens park. Den nåværende landskapsformen er derfor en kuratert inngang til middelalderbyen, ikke et komplett kart over historisk utstrekning eller samtidige bygninger.",
+      "claim_type": "heritage_reconstruction_limitation",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "middelalder_oslo"
+        ],
+        "case_ids": [
+          "case_his_middelalderbyen_oslo"
+        ],
+        "temporal": {
+          "from": 1000,
+          "to": 1624
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_kildekritikk_arkiv_spor",
+        "em_his_middelalder_oslo",
+        "em_his_spor_materialitet"
+      ],
+      "source_ids": [
+        "src_his_oslo_middelalderbyen_official",
+        "src_his_niku_middelalderparken_excavations"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Kildene dokumenterer synlige kulturminner, rekonstruksjon og utgravningsområder, men gir ikke én endelig avgrensning av byen for alle perioder mellom 1000 og 1624."
+      },
+      "alternative_interpretations": [
+        "Parken kan fungere som en presis formidlingsflate for enkelte anlegg og landskapsforhold, selv om den ikke kan brukes som en fullstendig eller samtidig modell av hele middelalderbyen."
+      ]
+    },
+    {
+      "claim_id": "claim_his_middelalder_oslo_excavation_sampling_context_and_in_situ_tradeoff",
+      "statement": "Arkeologiske undersøkelser i middelalderbyen skjer i avgrensede inngrepsområder og må balansere bevaring in situ mot dokumentasjon når kulturlag berøres. Rekonstruksjon av Oslo bygger derfor på selektive snitt med stratigrafi og proveniens, ikke på et sammenhengende, fullt utgravd byareal.",
+      "claim_type": "archaeological_sampling_and_context",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "middelalder_oslo"
+        ],
+        "case_ids": [
+          "case_his_middelalderbyen_oslo"
+        ],
+        "temporal": {
+          "from": 2021,
+          "to": 2025
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_kildekritikk_arkiv_spor",
+        "em_his_middelalder_oslo",
+        "em_his_spor_materialitet"
+      ],
+      "source_ids": [
+        "src_his_niku_medieval_city_method",
+        "src_his_niku_middelalderparken_excavations"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Metodekildene er tydelige om inngrepsstyrt arkeologi og kontekstkrav, men de dekker ikke alle tidligere utgravningskampanjer, dokumentasjonsstandarder eller tapte kulturlag i Oslo."
+      },
+      "alternative_interpretations": [
+        "Selektiv utgravning er en kildebegrensning, men kan samtidig gi svært presise lokale sekvenser når stratigrafi, funn og naturvitenskapelige analyser kombineres."
+      ]
+    },
+    {
+      "claim_id": "claim_his_bjorvika_harbor_stratigraphy_extends_medieval_oslo_reconstruction",
+      "statement": "Bryggefundamenter, skipsvrak, sjøboder og organiske havneavsetninger i Bispevika dokumenterer at rekonstruksjonen av middelalderens Oslo må omfatte sjøfront, transport og materialstrømmer utenfor de mest synlige kirke- og kongsgårdsruinene.",
+      "claim_type": "urban_harbor_stratigraphy",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "bjorvika"
+        ],
+        "case_ids": [
+          "case_his_bjorvika"
+        ],
+        "temporal": {
+          "from": 1200,
+          "to": 1624
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_spor_materialitet"
+      ],
+      "source_ids": [
+        "src_his_niku_bispevika_b8b",
+        "src_his_niku_bispevika_syd"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Havnefunnene spenner over flere århundrer og ulike deponeringsprosesser. De dokumenterer ikke automatisk handelsvolum, vareeierskap eller én stabil strandlinje."
+      },
+      "alternative_interpretations": [
+        "Materialet kan belyse kommersiell sjøhandel, men også lokal forsyning, reparasjon, avfall, administrativ transport og gradvis forskyvning av havnefronten."
+      ]
+    }
+  ],
+  "evidence_links": [
+    {
+      "evidence_id": "evidence_his_medieval_city_oslo_01",
+      "profile_id": "profile_historie_no_oslo_akershus",
+      "geography_id": "geo_no_oslo_akershus",
+      "place_id": "middelalder_oslo",
+      "case_id": "case_his_middelalderbyen_oslo",
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+        "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse"
+      ],
+      "claim_id": "claim_his_middelalder_oslo_royal_south_ecclesiastical_north_spatial_order",
+      "source_ids": [
+        "src_his_oslo_middelalderbyen_official"
+      ],
+      "support_type": "direct_single_source",
+      "validation_status": "validated_case",
+      "limitations_inherited": true,
+      "note": "Middelalderby og Oslo-evidens V1: ny claim–source–case-kobling med eksplisitt skille mellom institusjonell topografi, arkeologisk utvalg, synlig kulturarv og historisk byrekonstruksjon."
+    },
+    {
+      "evidence_id": "evidence_his_medieval_city_oslo_02",
+      "profile_id": "profile_historie_no_oslo_akershus",
+      "geography_id": "geo_no_oslo_akershus",
+      "place_id": "hallvardskirken_oslo",
+      "case_id": "case_his_hallvardskatedralen",
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+        "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon"
+      ],
+      "claim_id": "claim_his_hallvardskirken_bispegard_ecclesiastical_urban_node",
+      "source_ids": [
+        "src_his_snl_hallvardskirken",
+        "src_his_oslo_middelalderbyen_official"
+      ],
+      "support_type": "corroborated",
+      "validation_status": "validated_case",
+      "limitations_inherited": true,
+      "note": "Middelalderby og Oslo-evidens V1: ny claim–source–case-kobling med eksplisitt skille mellom institusjonell topografi, arkeologisk utvalg, synlig kulturarv og historisk byrekonstruksjon."
+    },
+    {
+      "evidence_id": "evidence_his_medieval_city_oslo_03",
+      "profile_id": "profile_historie_no_oslo_akershus",
+      "geography_id": "geo_no_oslo_akershus",
+      "place_id": "mariakirken_ruin_oslo",
+      "case_id": "case_his_mariakirkeruinen",
+      "emne_ids": [
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse"
+      ],
+      "claim_id": "claim_his_mariakirken_kongsgard_harbor_royal_urban_node",
+      "source_ids": [
+        "src_his_snl_mariakirken_oslo",
+        "src_his_oslo_middelalderbyen_official"
+      ],
+      "support_type": "corroborated",
+      "validation_status": "validated_case",
+      "limitations_inherited": true,
+      "note": "Middelalderby og Oslo-evidens V1: ny claim–source–case-kobling med eksplisitt skille mellom institusjonell topografi, arkeologisk utvalg, synlig kulturarv og historisk byrekonstruksjon."
+    },
+    {
+      "evidence_id": "evidence_his_medieval_city_oslo_04",
+      "profile_id": "profile_historie_no_oslo_akershus",
+      "geography_id": "geo_no_oslo_akershus",
+      "place_id": "middelalder_oslo",
+      "case_id": "case_his_middelalderbyen_oslo",
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_kildekritikk_arkiv_spor",
+        "em_his_middelalder_oslo",
+        "em_his_spor_materialitet"
+      ],
+      "claim_id": "claim_his_middelalderparken_visible_ruins_selected_reconstruction",
+      "source_ids": [
+        "src_his_oslo_middelalderbyen_official",
+        "src_his_niku_middelalderparken_excavations"
+      ],
+      "support_type": "corroborated",
+      "validation_status": "validated_case",
+      "limitations_inherited": true,
+      "note": "Middelalderby og Oslo-evidens V1: ny claim–source–case-kobling med eksplisitt skille mellom institusjonell topografi, arkeologisk utvalg, synlig kulturarv og historisk byrekonstruksjon."
+    },
+    {
+      "evidence_id": "evidence_his_medieval_city_oslo_05",
+      "profile_id": "profile_historie_no_oslo_akershus",
+      "geography_id": "geo_no_oslo_akershus",
+      "place_id": "middelalder_oslo",
+      "case_id": "case_his_middelalderbyen_oslo",
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_kildekritikk_arkiv_spor",
+        "em_his_middelalder_oslo",
+        "em_his_spor_materialitet"
+      ],
+      "claim_id": "claim_his_middelalder_oslo_excavation_sampling_context_and_in_situ_tradeoff",
+      "source_ids": [
+        "src_his_niku_medieval_city_method",
+        "src_his_niku_middelalderparken_excavations"
+      ],
+      "support_type": "corroborated",
+      "validation_status": "validated_case",
+      "limitations_inherited": true,
+      "note": "Middelalderby og Oslo-evidens V1: ny claim–source–case-kobling med eksplisitt skille mellom institusjonell topografi, arkeologisk utvalg, synlig kulturarv og historisk byrekonstruksjon."
+    },
+    {
+      "evidence_id": "evidence_his_medieval_city_oslo_06",
+      "profile_id": "profile_historie_no_oslo_akershus",
+      "geography_id": "geo_no_oslo_akershus",
+      "place_id": "bjorvika",
+      "case_id": "case_his_bjorvika",
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_spor_materialitet"
+      ],
+      "claim_id": "claim_his_bjorvika_harbor_stratigraphy_extends_medieval_oslo_reconstruction",
+      "source_ids": [
+        "src_his_niku_bispevika_b8b",
+        "src_his_niku_bispevika_syd"
+      ],
+      "support_type": "corroborated",
+      "validation_status": "validated_case",
+      "limitations_inherited": true,
+      "note": "Middelalderby og Oslo-evidens V1: ny claim–source–case-kobling med eksplisitt skille mellom institusjonell topografi, arkeologisk utvalg, synlig kulturarv og historisk byrekonstruksjon."
+    }
+  ],
+  "theory_entries": [
+    {
+      "theory_id": "theory_his_middelalder_by_kirke",
+      "status": "evidence_ready",
+      "scope_status": "multi_case_geographic_pilot",
+      "universalization_status": "provisional_not_universal",
+      "claim_ids": [
+        "claim_his_middelalder_oslo_royal_south_ecclesiastical_north_spatial_order",
+        "claim_his_hallvardskirken_bispegard_ecclesiastical_urban_node",
+        "claim_his_mariakirken_kongsgard_harbor_royal_urban_node"
+      ],
+      "source_ids": [
+        "src_his_oslo_middelalderbyen_official",
+        "src_his_snl_hallvardskirken",
+        "src_his_snl_mariakirken_oslo"
+      ],
+      "case_ids": [
+        "case_his_hallvardskatedralen",
+        "case_his_mariakirkeruinen",
+        "case_his_middelalderbyen_oslo"
+      ],
+      "place_ids": [
+        "hallvardskirken_oslo",
+        "mariakirken_ruin_oslo",
+        "middelalder_oslo"
+      ],
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+        "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+        "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "em_his_middelalder_oslo"
+      ],
+      "evidence_link_ids": [
+        "evidence_his_medieval_city_oslo_01",
+        "evidence_his_medieval_city_oslo_02",
+        "evidence_his_medieval_city_oslo_03"
+      ],
+      "evidence_dimensions": [
+        "documented_application",
+        "limitation_test",
+        "alternative_interpretation",
+        "multi_case_comparison",
+        "new_claim_place_evidence_foundation",
+        "medieval_urban_spatial_evidence"
+      ],
+      "rationale": "Middelalderbyen, Hallvardskirken med bispegården og Mariakirken med Kongsgården og havna dokumenterer at kongelig og kirkelig makt fikk ulike, men sammenkoblede romlige tyngdepunkter i Oslo. Casene gjør det mulig å prøve hvordan institusjoner, jurisdiksjon, representasjon, ferdsel og sjøkontakt organiserte byen uten å redusere den til enten kirkehistorie eller kongshistorie.",
+      "limitations": [
+        "De tre monumentale institusjonscasene overrepresenterer elitebygg og synlige ruiner og gir svakere tilgang til trehusbebyggelse, hushold, kvinner, barn, tjenestefolk, håndverkere og mennesker uten skriftlig institusjonstilknytning.",
+        "Romlig nærhet og pedagogiske betegnelser som kongens og kirkens del dokumenterer ikke faste sosiale grenser, samtidighet i alle faser eller et konstant konfliktforhold mellom to enhetlige maktblokker."
+      ],
+      "alternative_interpretations": [
+        "Byens institusjonelle topografi kan leses som konkurranse mellom kongemakt og kirke, men også som gjensidig avhengighet der liturgi, administrasjon, handel, forsyning og mobilitet bandt anleggene sammen."
+      ],
+      "disconfirmation_conditions": [
+        "Anvendelsen svekkes dersom dagens ruinplassering behandles som komplett middelalderkart, dersom kongelige og kirkelige aktører gjøres sosialt ensartede, eller dersom romlig nærhet brukes som bevis på konflikt uten daterte hendelses- eller rettskilder."
+      ],
+      "scope_note": "Dette er et fler-case evidensgrunnlag i Oslo/Akershus og er ikke universelt bevis for teoriens gyldighet på tvers av andre middelalderbyer, perioder, geografier, aktørgrupper og kildetyper."
+    },
+    {
+      "theory_id": "theory_his_middelalder_kirke_middelalderens_oslo",
+      "status": "evidence_ready",
+      "scope_status": "multi_case_geographic_pilot",
+      "universalization_status": "provisional_not_universal",
+      "claim_ids": [
+        "claim_his_middelalderparken_visible_ruins_selected_reconstruction",
+        "claim_his_middelalder_oslo_excavation_sampling_context_and_in_situ_tradeoff",
+        "claim_his_bjorvika_harbor_stratigraphy_extends_medieval_oslo_reconstruction"
+      ],
+      "source_ids": [
+        "src_his_niku_bispevika_b8b",
+        "src_his_niku_bispevika_syd",
+        "src_his_niku_medieval_city_method",
+        "src_his_niku_middelalderparken_excavations",
+        "src_his_oslo_middelalderbyen_official"
+      ],
+      "case_ids": [
+        "case_his_bjorvika",
+        "case_his_middelalderbyen_oslo"
+      ],
+      "place_ids": [
+        "bjorvika",
+        "middelalder_oslo"
+      ],
+      "emne_ids": [
+        "em_his_arkeologisk_kontekst_formation",
+        "em_his_kildekritikk_arkiv_spor",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_middelalder_oslo",
+        "em_his_spor_materialitet"
+      ],
+      "evidence_link_ids": [
+        "evidence_his_medieval_city_oslo_04",
+        "evidence_his_medieval_city_oslo_05",
+        "evidence_his_medieval_city_oslo_06"
+      ],
+      "evidence_dimensions": [
+        "documented_application",
+        "limitation_test",
+        "alternative_interpretation",
+        "multi_case_comparison",
+        "new_claim_place_evidence_foundation",
+        "medieval_urban_spatial_evidence"
+      ],
+      "rationale": "Middelalderparken, inngrepsstyrte arkeologiske snitt og havnelagene i Bispevika viser hvordan Oslo må rekonstrueres gjennom daterte og selektive kildesett. Synlige ruiner, stratigrafi, kulturlag, skipsfunn og rekonstruert strandlinje gir ulike utsnitt av byen. Sammen støtter de en flerlaget rekonstruksjon som skiller historisk byutstrekning fra dagens park og kulturminnepresentasjon.",
+      "limitations": [
+        "Utgravningene følger moderne inngrep, bevaringsforhold og forskningshistorie og kan derfor ikke behandles som et representativt eller sammenhengende utvalg av hele middelalderbyen.",
+        "Funn og ruiner spenner over flere hundre år. Å plassere alle dokumenterte bygninger, brygger og aktiviteter i ett samtidig bybilde vil skape en falsk synkronitet og skjule strandforskyvning, ombygging og funksjonsendring."
+      ],
+      "alternative_interpretations": [
+        "Materialet kan brukes til å tegne en stadig mer presis bytopografi, men kan også leses som en historie om moderne utvalg, bevaring, rekonstruksjon og hvilke deler av middelalderbyen som er gjort synlige for publikum."
+      ],
+      "disconfirmation_conditions": [
+        "Anvendelsen svekkes dersom dagens parkgrenser likestilles med historisk bygrense, dersom arkeologiske lag uten sikker datering slås sammen, eller dersom havnefunn automatisk tolkes som kommersiell handel uten funksjons- og proveniensanalyse."
+      ],
+      "scope_note": "Dette er et fler-case evidensgrunnlag i Oslo/Akershus og er ikke universelt bevis for teoriens gyldighet på tvers av andre middelalderbyer, perioder, geografier, aktørgrupper og kildetyper."
+    }
+  ],
+  "production_boundary": {
+    "black_death_deferred": "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming krever fortsatt to stedsspesifikke Oslo/Akershus-caser.",
+    "sami_contact_zones_deferred": "theory_his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen krever ny geografi og samisk-/minoritetsforankrede kilder."
+  }
+}
