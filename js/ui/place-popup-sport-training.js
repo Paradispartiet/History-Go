@@ -53,13 +53,18 @@
     if (global[FLAG]) return true;
     if (!global.__HG_PLACE_POPUP_V2_INSTALLED__ || typeof global.showPlacePopup !== "function") return false;
     const previous = global.showPlacePopup;
-    global.showPlacePopup = function showPlacePopupWithSportTraining(place) {
+    const wrapped = function showPlacePopupWithSportTraining(place) {
       const result = previous.apply(this, arguments);
       const apply = () => inject(place);
       if (result && typeof result.then === "function") result.then(apply, () => {});
       else global.setTimeout(apply, 0);
       return result;
     };
+    // Bevar popup-kontrakten gjennom wrapper-kjeden. place-popup-tabs.js bruker
+    // disse markørene for å vite at den kan dekorere den eksisterende V2-popupen.
+    wrapped.__hgPlacePopupV2 = previous.__hgPlacePopupV2 === true || global.__HG_PLACE_POPUP_V2_INSTALLED__ === true;
+    wrapped.__previous = previous;
+    global.showPlacePopup = wrapped;
     global[FLAG] = true;
     global.HGPlacePopupSportTraining = { render, inject, isSportsPlace };
     return true;

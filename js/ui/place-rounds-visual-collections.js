@@ -14,11 +14,11 @@
     { id:"fauna",   label:"Fauna",       fallbackIcon:"🐾", iconId:"pcFaunaIcon",   listId:"pcFaunaList",   kind:"fauna" }
   ]);
   const BY_ID = new Map(DEFS.map(def => [def.id, def]));
-  const GENERAL_ROUNDS = Object.freeze(["badges", "people", "objects", "brands"]);
-  const NATURE_ROUNDS = Object.freeze(["badges", "map", "flora", "fauna"]);
+  const GENERAL_ROUNDS = Object.freeze(["people", "objects", "brands"]);
+  const NATURE_ROUNDS = Object.freeze(["map", "flora", "fauna"]);
   const s = value => String(value == null ? "" : value).trim();
   const arr = value => Array.isArray(value) ? value : [];
-  const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;");
   let scheduled = false;
   let badgeBound = false;
 
@@ -64,6 +64,15 @@
     const ids = arr(place?.[kind]);
     return ids.map((id,i)=>normalizeItem(registry.find(row=>s(row?.id)===s(id)) || id,i,kind)).filter(Boolean);
   }
+  function ensureBadgePlacement() {
+    const titleRow=document.querySelector("#placeCard .pc-title-row");
+    const badge=document.getElementById("pcBadgesIcon");
+    if (!titleRow || !badge) return;
+    badge.classList.add("pc-title-badge");
+    badge.hidden=false;
+    badge.setAttribute("aria-hidden","false");
+    if (badge.parentElement !== titleRow) titleRow.appendChild(badge);
+  }
   function ensureDom() {
     const card=document.getElementById("placeCard"), grid=card?.querySelector(".pc-icons-quad"), body=card?.querySelector(".pc-body");
     if (!card || !grid || !body) return;
@@ -71,6 +80,7 @@
       if (!document.getElementById(def.iconId)) { const el=document.createElement("div"); el.id=def.iconId; el.className="pc-round"; el.hidden=true; el.setAttribute("role","button"); el.tabIndex=0; el.setAttribute("aria-label",def.label); grid.appendChild(el); }
       if (!document.getElementById(def.listId)) { const el=document.createElement("div"); el.id=def.listId; el.hidden=true; el.setAttribute("aria-hidden","true"); body.appendChild(el); }
     }
+    ensureBadgePlacement();
   }
   function renderRows(items, def) {
     const attr = def.id === "flora" ? "data-flora" : def.id === "fauna" ? "data-fauna" : "data-visual-round-item";
@@ -126,18 +136,18 @@
   }
   async function apply(place=currentPlace()) {
     const card=document.getElementById("placeCard");if(!card||!place)return;
-    ensureDom();bindBadge();
+    ensureDom();bindBadge();ensureBadgePlacement();
     for(const def of DEFS.filter(d=>["objects","map","flora","fauna"].includes(d.id))){await renderCustom(place,def);bindCustom(def);}
     const selected=selectedIds(place);const allowed=new Set(selected.map(id=>BY_ID.get(id)?.iconId).filter(Boolean));const grid=card.querySelector(".pc-icons-quad");
-    card.dataset.roundMode=isNature(place)?"nature-four":"standard-four";card.dataset.roundCount="4";
-    if(grid){grid.querySelectorAll(".pc-round").forEach(icon=>{const show=allowed.has(icon.id);icon.hidden=!show;icon.setAttribute("aria-hidden",show?"false":"true");const def=DEFS.find(item=>item.iconId===icon.id);icon.style.order=show&&def?String(selected.indexOf(def.id)):"";});grid.dataset.roundMode=card.dataset.roundMode;grid.dataset.roundCount="4";grid.style.gridTemplateColumns="repeat(2, var(--place-card-orb-size))";grid.style.gridTemplateRows="repeat(2, var(--place-card-orb-size))";}
+    card.dataset.roundMode=isNature(place)?"nature-three":"standard-three";card.dataset.roundCount="3";
+    if(grid){grid.querySelectorAll(".pc-round").forEach(icon=>{const show=allowed.has(icon.id);icon.hidden=!show;icon.setAttribute("aria-hidden",show?"false":"true");const def=DEFS.find(item=>item.iconId===icon.id);icon.style.order=show&&def?String(selected.indexOf(def.id)):"";});grid.dataset.roundMode=card.dataset.roundMode;grid.dataset.roundCount="3";grid.style.gridTemplateColumns="repeat(3, var(--place-card-orb-size))";grid.style.gridTemplateRows="var(--place-card-orb-size)";}
   }
   function scheduleApply(){if(scheduled)return;scheduled=true;const run=()=>{scheduled=false;apply();};if(typeof global.requestAnimationFrame==="function")global.requestAnimationFrame(run);else global.setTimeout(run,0);}
-  function patchOpenPlaceCard(){const original=global.openPlaceCard;if(typeof original!=="function")return false;if(original.__canonicalFourRoundsPatched)return true;const patched=async function(...args){const result=await original.apply(this,args);scheduleApply();return result;};patched.__canonicalFourRoundsPatched=true;global.openPlaceCard=patched;return true;}
-  function installApi(){const byId=Object.fromEntries(DEFS.map(def=>[def.id,def]));global.HGPlaceRounds={registry:[...DEFS],defaults:[...GENERAL_ROUNDS],profiles:{standard:[...GENERAL_ROUNDS],natur:[...NATURE_ROUNDS]},byId,get:place=>selectedIds(place).map(id=>BY_ID.get(id)),apply,__canonicalFourRounds:true};global.getPlaceRounds=global.HGPlaceRounds.get;}
+  function patchOpenPlaceCard(){const original=global.openPlaceCard;if(typeof original!=="function")return false;if(original.__canonicalThreeRoundsPatched)return true;const patched=async function(...args){const result=await original.apply(this,args);scheduleApply();return result;};patched.__canonicalThreeRoundsPatched=true;global.openPlaceCard=patched;return true;}
+  function installApi(){const byId=Object.fromEntries(DEFS.map(def=>[def.id,def]));global.HGPlaceRounds={registry:[...DEFS],badge:BY_ID.get("badges"),defaults:[...GENERAL_ROUNDS],profiles:{standard:[...GENERAL_ROUNDS],natur:[...NATURE_ROUNDS]},byId,get:place=>selectedIds(place).map(id=>BY_ID.get(id)),apply,__canonicalThreeRounds:true};global.getPlaceRounds=global.HGPlaceRounds.get;}
   function init(){ensureDom();installApi();bindBadge();patchOpenPlaceCard();scheduleApply();if(typeof global.openPlaceCard!=="function"){let attempts=0;const timer=global.setInterval(()=>{attempts+=1;if(patchOpenPlaceCard()||attempts>=80)global.clearInterval(timer);},100);}}
 
-  global.HGVisualPlaceRounds={ids:DEFS.map(def=>def.id),registry:[...DEFS],standardRounds:[...GENERAL_ROUNDS],natureRounds:[...NATURE_ROUNDS],get:selectedIds,apply};
+  global.HGVisualPlaceRounds={ids:DEFS.map(def=>def.id),registry:[...DEFS],badge:BY_ID.get("badges"),standardRounds:[...GENERAL_ROUNDS],natureRounds:[...NATURE_ROUNDS],get:selectedIds,apply};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
   ["hg:appReady","hg:place-selected","hg:places-ready","hg:placesUpdated","updateProfile","hg:nature-detailed-map-ready"].forEach(name=>global.addEventListener?.(name,()=>{patchOpenPlaceCard();scheduleApply();}));
 })(window);
