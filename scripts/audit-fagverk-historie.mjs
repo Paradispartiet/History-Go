@@ -32,7 +32,7 @@ function loadCore() {
   return sandbox.HGFagverkSubjectCore;
 }
 
-function assertChapter(chapterRow, model, evidenceRegistries) {
+function assertChapter(chapterRow, model, evidenceRegistries, canonicalDomainsById) {
   assert(fs.existsSync(abs(chapterRow.file)), `Registrert kapittelfil mangler: ${chapterRow.file}`);
   assert(model.domainsById.has(chapterRow.primary_domain_id), `Kapittelet peker til ukjent fagområde ${chapterRow.primary_domain_id}`);
   for (const emneId of chapterRow.emne_ids || []) assert(model.emnersById.has(emneId), `Kapittelet peker til ukjent emne ${emneId}`);
@@ -44,12 +44,40 @@ function assertChapter(chapterRow, model, evidenceRegistries) {
   assert(chapter.diagnosticQuestions?.length >= 3, `Kapittelet ${chapterRow.id} mangler forkunnskapsspørsmål`);
   assert(chapter.moduleFiles?.length >= 3, `Kapittelet ${chapterRow.id} mangler modulstruktur`);
 
+  let productionBrief = null;
+  if (chapter.productionBriefFile) {
+    assert(fs.existsSync(abs(chapter.productionBriefFile)), `Kapittelbrief mangler: ${chapter.productionBriefFile}`);
+    productionBrief = json(chapter.productionBriefFile);
+    assert(productionBrief.schema === 'history_go_fagverk_chapter_brief_v1', `Kapittelbriefen ${chapterRow.id} har feil schema`);
+    assert(productionBrief.subject === 'historie' && productionBrief.chapterId === chapterRow.id, `Kapittelbriefen ${chapterRow.id} har feil identitet`);
+    assert(productionBrief.primaryDomainId === chapterRow.primary_domain_id, `Kapittelbriefen ${chapterRow.id} har feil fagområde`);
+    assert(
+      isDeepStrictEqual([...(productionBrief.requiredEmneIds || [])].sort(), [...(chapterRow.emne_ids || [])].sort()),
+      `Kapittelbriefen ${chapterRow.id} dekker ikke registrerte emner eksakt`
+    );
+    assert(productionBrief.requiredMethodIds?.length >= 1, `Kapittelbriefen ${chapterRow.id} mangler metoder`);
+    for (const methodId of productionBrief.requiredMethodIds) {
+      assert(model.methodsById.has(methodId), `Kapittelbriefen ${chapterRow.id} peker til ukjent metode ${methodId}`);
+    }
+    const canonicalDomain = canonicalDomainsById.get(chapterRow.primary_domain_id);
+    assert(
+      isDeepStrictEqual([...(productionBrief.requiredMethodIds || [])].sort(), [...(canonicalDomain?.method_ids || [])].sort()),
+      `Kapittelbriefen ${chapterRow.id} dekker ikke canonical domenemetoder eksakt`
+    );
+    assert(productionBrief.editorialRequirements?.paragraphClaimTraceRequired === true, `Kapittelbriefen ${chapterRow.id} krever ikke avsnittssporing`);
+    assert(productionBrief.evidenceBoundary?.length >= 3, `Kapittelbriefen ${chapterRow.id} mangler evidensgrense`);
+    for (const theoryId of productionBrief.requiredTheoryEvidenceIds || []) {
+      assert(evidenceRegistries.theoryEvidenceIds.has(theoryId), `Kapittelbriefen ${chapterRow.id} peker til ukjent theory-evidence ${theoryId}`);
+    }
+  }
+
   let sectionCount = 0;
   let workedExampleCount = 0;
   let misconceptionCount = 0;
   let taskCount = 0;
   let selfCheckCount = 0;
   let sourceCount = 0;
+  let tracedParagraphCount = 0;
   const claimIds = [];
   const sourceIds = [];
   const theoryEvidenceIds = [];
@@ -58,6 +86,18 @@ function assertChapter(chapterRow, model, evidenceRegistries) {
     assert(fs.existsSync(abs(modulePath)), `Kapittelmodul mangler: ${modulePath}`);
     const module = json(modulePath);
     sectionCount += module.sections?.length || 0;
+    for (const section of module.sections || []) {
+      if (productionBrief?.editorialRequirements?.paragraphClaimTraceRequired) {
+        assert(section.paragraphClaimIds?.length === section.paragraphs?.length, `Seksjonen ${section.id} i ${chapterRow.id} mangler komplett avsnittssporing`);
+        for (const paragraphClaimIds of section.paragraphClaimIds) {
+          assert(paragraphClaimIds?.length > 0, `Seksjonen ${section.id} i ${chapterRow.id} har et avsnitt uten claim-spor`);
+          tracedParagraphCount += 1;
+          for (const claimId of paragraphClaimIds) {
+            assert(evidenceRegistries.claimIds.has(claimId), `Seksjonen ${section.id} i ${chapterRow.id} peker til ukjent claim ${claimId}`);
+          }
+        }
+      }
+    }
     workedExampleCount += module.workedExamples?.length || 0;
     misconceptionCount += module.commonMisconceptions?.length || 0;
     taskCount += module.applicationTasks?.length || 0;
@@ -76,6 +116,30 @@ function assertChapter(chapterRow, model, evidenceRegistries) {
   assert(sourceCount >= 4, `Kapittelet ${chapterRow.id} mangler inspectable kilder`);
   assert(claimIds.length > 0, `Kapittelet ${chapterRow.id} mangler canonical claim-koblinger`);
   assert(theoryEvidenceIds.length > 0, `Kapittelet ${chapterRow.id} mangler canonical theory-evidence-koblinger`);
+  if (productionBrief) {
+    assert(sectionCount >= productionBrief.editorialRequirements.minimumSectionCount, `Kapittelet ${chapterRow.id} underskrider briefens seksjonskrav`);
+    assert(workedExampleCount >= productionBrief.editorialRequirements.minimumWorkedExamples, `Kapittelet ${chapterRow.id} underskrider briefens eksempelkrav`);
+    assert(taskCount >= productionBrief.editorialRequirements.minimumApplicationTasks, `Kapittelet ${chapterRow.id} underskrider briefens oppgavekrav`);
+    assert(selfCheckCount >= productionBrief.editorialRequirements.minimumSelfChecks, `Kapittelet ${chapterRow.id} underskrider briefens selvtestkrav`);
+    assert(
+      isDeepStrictEqual([...new Set(theoryEvidenceIds)].sort(), [...new Set(productionBrief.requiredTheoryEvidenceIds || [])].sort()),
+      `Kapittelet ${chapterRow.id} dekker ikke briefens theory-evidence eksakt`
+    );
+    const expectedClaimIds = new Set(
+      productionBrief.requiredTheoryEvidenceIds.flatMap((theoryId) => evidenceRegistries.theoryEvidenceClaimsById.get(theoryId) || [])
+    );
+    const expectedSourceIds = new Set(
+      productionBrief.requiredTheoryEvidenceIds.flatMap((theoryId) => evidenceRegistries.theoryEvidenceSourcesById.get(theoryId) || [])
+    );
+    assert(
+      isDeepStrictEqual([...new Set(claimIds)].sort(), [...expectedClaimIds].sort()),
+      `Kapittelet ${chapterRow.id} dekker ikke alle claims fra briefens theory-evidence eksakt`
+    );
+    assert(
+      isDeepStrictEqual([...new Set(sourceIds)].sort(), [...expectedSourceIds].sort()),
+      `Kapittelet ${chapterRow.id} dekker ikke alle kilder fra briefens theory-evidence eksakt`
+    );
+  }
 
   for (const claimId of claimIds) assert(evidenceRegistries.claimIds.has(claimId), `Kapittelet ${chapterRow.id} peker til ukjent claim ${claimId}`);
   for (const sourceId of sourceIds) assert(evidenceRegistries.sourceIds.has(sourceId), `Kapittelet ${chapterRow.id} peker til ukjent kilde ${sourceId}`);
@@ -92,7 +156,8 @@ function assertChapter(chapterRow, model, evidenceRegistries) {
     sourceCount,
     claimReferenceCount: claimIds.length,
     sourceReferenceCount: sourceIds.length,
-    theoryEvidenceReferenceCount: theoryEvidenceIds.length
+    theoryEvidenceReferenceCount: theoryEvidenceIds.length,
+    ...(productionBrief ? { tracedParagraphCount, productionBriefValidated: true } : {})
   };
 }
 
@@ -134,10 +199,13 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   const claimRegistry = json(CORE.resolveManifestPointer(manifestEntry.claims));
   const sourceRegistry = json(CORE.resolveManifestPointer(manifestEntry.sources));
   const theoryEvidenceRegistry = json(PATHS.theoryEvidence);
+  const readyTheoryEvidenceEntries = (theoryEvidenceRegistry.entries || []).filter((entry) => entry.status === 'evidence_ready');
   const evidenceRegistries = {
     claimIds: new Set((claimRegistry.claims || []).map((claim) => claim.claim_id)),
     sourceIds: new Set((sourceRegistry.sources || []).map((sourceItem) => sourceItem.source_id)),
-    theoryEvidenceIds: new Set((theoryEvidenceRegistry.entries || []).filter((entry) => entry.status === 'evidence_ready').map((entry) => entry.theory_id))
+    theoryEvidenceIds: new Set(readyTheoryEvidenceEntries.map((entry) => entry.theory_id)),
+    theoryEvidenceClaimsById: new Map(readyTheoryEvidenceEntries.map((entry) => [entry.theory_id, entry.claim_ids || []])),
+    theoryEvidenceSourcesById: new Map(readyTheoryEvidenceEntries.map((entry) => [entry.theory_id, entry.source_ids || []]))
   };
 
   const model = CORE.normalizeSubject({
@@ -165,7 +233,8 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   for (const method of model.methods) assert(method.title && method.description, `Metoden ${method.id} mangler navn eller forklaring`);
 
   const chapterRows = registry.subjects?.historie?.chapters || [];
-  const chapterAudits = chapterRows.map((row) => assertChapter(row, model, evidenceRegistries));
+  const canonicalDomainsById = new Map(source.pensum.domains.map((domain) => [domain.domain_id, domain]));
+  const chapterAudits = chapterRows.map((row) => assertChapter(row, model, evidenceRegistries, canonicalDomainsById));
   const coveredChapterDomains = [...new Set(chapterRows.map((row) => row.primary_domain_id))];
   if (chapterRows.length > 0) assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Registrerte kapitler krever chapters_in_progress');
 
@@ -178,13 +247,13 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   assert(!JSON.stringify(model.subject).toLocaleLowerCase('nb-NO').includes('politikk'), 'Historie-modellen inneholder politikkspesifikk resttekst');
 
   const report = {
-    schema: 'history_go_fagverk_historie_subject_audit_v1', version: '1.2.0', status: 'phase_4_historie_chapters_in_progress', generatedFrom: PATHS,
+    schema: 'history_go_fagverk_historie_subject_audit_v1', version: '1.3.0', status: 'phase_4_historie_chapters_in_progress', generatedFrom: PATHS,
     subject: { id: model.subject.id, title: model.subject.title, schemaFamily: inventoryEntry.schemaFamily, adapter: model.subject.adapter, badgePage: model.subject.routes.badge, subjectPage: model.subject.routes.subject, assessmentStatus: statusEntry.assessmentStatus, editorialStatus: statusEntry.editorialStatus },
     summary: { domainCount: 23, emneCount: 230, methodCount: 105, mappingCount: 230, hookCount: 230, chapterCount: chapterRows.length, chapterDomainCount: coveredChapterDomains.length, remainingChapterDomains: 23 - coveredChapterDomains.length, placeCount: model.places.length },
     chapters: chapterAudits,
     universalCoverage: { status: universalCoverage.status, coveredCells: universalCoverage.summary?.covered_cells ?? null, totalCells: universalCoverage.summary?.total_cells ?? null, productionGaps: universalCoverage.summary?.production_gaps ?? null, theoryEvidenceQualifying: theoryEvidence.measured?.qualifying ?? null, theoryEvidenceTotal: theoryEvidence.measured?.total ?? null, theoryEvidenceRatio: theoryEvidence.measured?.ratio ?? null },
     canonicalDomainOrder: actualDomainOrder,
-    gates: { manifestFirst: true, normalizedModel: true, canonicalDomainOrder: true, emneReferencesResolved: true, methodReferencesResolved: true, mappingsResolved: true, historyExtensionPointersResolved: true, badgeAndSubjectRoutes: true, registeredChaptersValidated: true, chapterEvidenceReferencesResolved: true, honestCompletionBoundary: true, historyPlaceFallbackResolved: true, politicsResiduals: 0 }
+    gates: { manifestFirst: true, normalizedModel: true, canonicalDomainOrder: true, emneReferencesResolved: true, methodReferencesResolved: true, mappingsResolved: true, historyExtensionPointersResolved: true, badgeAndSubjectRoutes: true, registeredChaptersValidated: true, chapterEvidenceReferencesResolved: true, productionBriefAndParagraphTraceValidated: chapterAudits.some((chapterAudit) => chapterAudit.productionBriefValidated), honestCompletionBoundary: true, historyPlaceFallbackResolved: true, politicsResiduals: 0 }
   };
   if (writeReport) { fs.mkdirSync(path.dirname(abs(PATHS.report)), { recursive: true }); fs.writeFileSync(abs(PATHS.report), `${JSON.stringify(report, null, 2)}\n`); }
   if (checkReport) assert(isDeepStrictEqual(json(PATHS.report), report), `${PATHS.report} er utdatert`);

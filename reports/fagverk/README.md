@@ -72,7 +72,7 @@ Motor-auditen feiler når:
 
 ## Gjeldende produksjonsstatus
 
-Historie står `materialized`, `audited` og `chapters_in_progress`. Tre av 23 fagområder har registrerte fullverdige kapitler: historisk tid og periodisering, kilder/arkiv/spor og makt/stat/institusjoner. Tjue fagområder, universell theory-evidence og full publiseringsaudit gjenstår.
+Historie står `materialized`, `audited` og `chapters_in_progress`. Fire av 23 fagområder har registrerte fullverdige kapitler: historisk tid og periodisering, kilder/arkiv/spor, makt/stat/institusjoner og middelalder/kirke/kongemakt. Nitten fagområder, universell theory-evidence og full publiseringsaudit gjenstår.
 
 Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinnelige miljøkapitlene og biologifase 1 er bevart. Evolusjon/biologisk mangfold og organismebiologi/fysiologi er nå materialisert med egne emner, metoder, mappinger, fagkart og kapitler. Elleve kapitler dekker alle 65 materialiserte emner. Sopp/lav/mikroorganismer og geologiens indre prosesser står fortsatt som eksplisitte hull før faget kan bli `complete`.
 

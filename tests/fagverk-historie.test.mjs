@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditHistorySubject } from '../scripts/audit-fagverk-historie.mjs';
 
-test('Historie er materialisert med tre redaksjonelle kapitler', () => {
+test('Historie er materialisert med fire redaksjonelle kapitler', () => {
   const { report } = auditHistorySubject();
   assert.equal(report.subject.id, 'historie');
   assert.equal(report.subject.adapter, 'standard');
@@ -14,9 +14,9 @@ test('Historie er materialisert med tre redaksjonelle kapitler', () => {
     methodCount: 105,
     mappingCount: 230,
     hookCount: 230,
-    chapterCount: 3,
-    chapterDomainCount: 3,
-    remainingChapterDomains: 20,
+    chapterCount: 4,
+    chapterDomainCount: 4,
+    remainingChapterDomains: 19,
     placeCount: 0
   });
 });
@@ -62,10 +62,26 @@ test('alle Historie-kapitlene oppfyller kapittel- og evidensporten', () => {
       claimReferenceCount: 8,
       sourceReferenceCount: 7,
       theoryEvidenceReferenceCount: 3
+    },
+    {
+      id: 'middelalder_kirke_kongemakt',
+      domainId: 'his_middelalder_kirke_kongemakt',
+      sectionCount: 11,
+      workedExampleCount: 2,
+      misconceptionCount: 5,
+      taskCount: 4,
+      selfCheckCount: 7,
+      sourceCount: 26,
+      claimReferenceCount: 40,
+      sourceReferenceCount: 26,
+      theoryEvidenceReferenceCount: 10,
+      tracedParagraphCount: 33,
+      productionBriefValidated: true
     }
   ]);
   assert.equal(report.gates.registeredChaptersValidated, true);
   assert.equal(report.gates.chapterEvidenceReferencesResolved, true);
+  assert.equal(report.gates.productionBriefAndParagraphTraceValidated, true);
   assert.equal(report.gates.historyPlaceFallbackResolved, true);
 });
 
