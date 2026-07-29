@@ -25,6 +25,20 @@ jobs:
       - name: Apply deterministic Politikk quality lift
         run: |
           node scripts/tmp-migrate-politikk-quality.mjs
+          node <<'NODE'
+          const fs = require('fs');
+          const pensumPath = 'data/fag/politikk/politikkpensum_canonical_v4_5.json';
+          const emnePath = 'data/fag/politikk/emner_politikk_canonical_v4_5.json';
+          const pensum = JSON.parse(fs.readFileSync(pensumPath, 'utf8'));
+          const emner = JSON.parse(fs.readFileSync(emnePath, 'utf8'));
+          const labels = new Map((pensum.domains || []).map((domain) => [domain.domain_id, domain.label]));
+          for (const emne of emner) {
+            emne.area_id = emne.domain;
+            emne.logic_family = emne.domain;
+            emne.area_label = labels.get(emne.domain) || emne.area_label;
+          }
+          fs.writeFileSync(emnePath, JSON.stringify(emner, null, 2) + '\n');
+          NODE
           sed -i 's/emners/emner/g' scripts/audit-politikk-subject-quality.mjs
           node scripts/audit-politikk-subject-quality.mjs --write-report --no-check-report
       - name: Validate Politikk quality lift
