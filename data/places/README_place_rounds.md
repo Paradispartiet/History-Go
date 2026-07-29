@@ -6,22 +6,25 @@ Runtime: `js/ui/place-rounds-visual-collections.js`
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`  
 Sist kontrollert: **2026-07-29**
 
-Denne filen er det eneste dokumentet som bestemmer **hva som er en PlaceCard-runding, hvor mange rundinger et sted har og hvilke rundinger som brukes**. Andre dokumenter og schemaer skal peke hit og skal ikke vedlikeholde egne rundingslister.
+Denne filen er det eneste dokumentet som bestemmer **hva som er en PlaceCard-runding, hvor badge-rundingen plasseres, hvor mange øvrige rundinger et sted har og hvilke rundinger som brukes**. Andre dokumenter og schemaer skal peke hit og skal ikke vedlikeholde egne rundingslister.
 
 > **Rundingen er en visuell inngang. Previewet er for syns skyld og skal aldri filtrere eller redefinere innholdet bak.**
 
-## 1. Fast regel: alltid fire
+## 1. Fast regel: én badge og tre rundinger
 
-Et PlaceCard viser **alltid nøyaktig fire rundinger** i et 2 × 2-felt.
+Et PlaceCard viser **alltid én badge-runding øverst til høyre ved stedsoverskriften** og **nøyaktig tre øvrige rundinger på én horisontal rad til høyre for `frontImage`**.
 
-Det finnes ikke en 6-, 9- eller 12-rundersvariant.
+De åtte monokrome stedspopup-ikonene ligger rett under de tre rundingene, fortsatt til høyre for `frontImage`. Popup-ikonene er ikke rundinger.
+
+Badge-rundingen teller ikke som en av de tre rundingene i mediefeltet. Det finnes ikke en 4-, 6-, 9- eller 12-rundersvariant i mediefeltet.
 
 ## 2. Vanlige steder
 
-Vanlige steder bruker dette faste settet:
+Vanlige steder bruker dette faste oppsettet:
 
 ```text
-badges · people · objects · brands
+badge ved overskriften: badges
+rundinger ved frontImage: people · objects · brands
 ```
 
 - `badges` = Merker;
@@ -33,10 +36,11 @@ badges · people · objects · brands
 
 ## 3. Natursteder
 
-Canonical natursteder bruker dette faste settet:
+Canonical natursteder bruker dette faste oppsettet:
 
 ```text
-badges · map · flora · fauna
+badge ved overskriften: badges
+rundinger ved frontImage: map · flora · fauna
 ```
 
 På natursteder erstatter **Flora** og **Fauna** People og Gjenstander. Natursteder bruker derfor ikke `people` eller `objects` som PlaceCard-rundinger.
@@ -89,7 +93,7 @@ flora
 fauna
 ```
 
-`map`, `flora` og `fauna` er naturspesifikke rundinger.
+`badges` er badge-rundingen ved overskriften. `map`, `flora` og `fauna` er naturspesifikke rundinger i mediefeltet.
 
 Følgende er uttrykkelig **ikke** rundinger:
 
@@ -109,7 +113,8 @@ Følgende er uttrykkelig **ikke** rundinger:
 - Observer;
 - Notat;
 - Rute;
-- Wonderkammer.
+- Wonderkammer;
+- de åtte monokrome stedspopup-snarveiene.
 
 ## 5. People er en inngang, ikke et filter
 
@@ -155,7 +160,7 @@ Denne kontrakten flytter dem ikke automatisk til en annen UI-flate.
 
 ## 10. Events og forestillinger
 
-En forestilling, teateroppsetning, konsert, visning eller annen tidsbundet produksjon ved stedet er et **Event** og hører under **Events i På stedet-baren**.
+En forestilling, teateroppsetning, konsert, visning eller annen tidsbundet produksjon ved stedet er et **Event** og hører under **Events i handlingsraden**.
 
 Historiske forestillinger kan i tillegg omtales i Historie/Stories når de er dokumenterte historiske episoder. Event-identiteten endres ikke av dette.
 
@@ -163,11 +168,12 @@ Historiske forestillinger kan i tillegg omtales i Historie/Stories når de er do
 
 `place.rounds`, `rundinger` og `rounds_exclude` er legacy presentasjonsgjeld. Nye/reviderte steder skal ikke bruke disse feltene til å finne opp egne rundingssett.
 
-Runtime bruker de to faste profilene i denne kontrakten:
+Runtime bruker én fast badge og to faste tre-rundersprofiler:
 
 ```text
-vanlig: badges · people · objects · brands
-natur:  badges · map · flora · fauna
+badge:  badges
+vanlig: people · objects · brands
+natur:  map · flora · fauna
 ```
 
 Gamle round-ID-er skal ikke få gjenoppstå som canonical typer via aliaser eller fallback.
@@ -176,8 +182,8 @@ Gamle round-ID-er skal ikke få gjenoppstå som canonical typer via aliaser elle
 
 Et sted er rundingsklart når:
 
-1. PlaceCard viser nøyaktig fire rundinger;
-2. rundingssettet er den faste profilen for vanlig sted eller natursted;
+1. PlaceCard viser badge-rundingen ved stedsoverskriften og nøyaktig tre rundinger ved `frontImage`;
+2. tre-runderssettet er den faste profilen for vanlig sted eller natursted;
 3. previewene er reelle og egnede;
 4. People-preview filtrerer ikke People-popupen;
 5. naturstedets Kart åpner et faktisk tur-/naturkart med turkartgrunnlag og Turrutebasen, ikke generisk hovedkart-zoom;
