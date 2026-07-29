@@ -66,7 +66,7 @@ const hookPath = '.git/hooks/pre-commit';
 const quoted = files.map((file) => `'${file.replaceAll("'", "'\\''")}'`).join(' ');
 fs.writeFileSync(
   hookPath,
-  `#!/usr/bin/env bash\nset -euo pipefail\ngit reset\ngit add -A -- scripts/coordinate-branch-job.mjs scripts/.coordinate-branch-job-complete\ngit add -- ${quoted}\n`,
+  `#!/usr/bin/env bash\nset -euo pipefail\ngit reset\ngit add -A -- scripts/coordinate-branch-job.mjs\ngit add -- ${quoted}\n`,
   { mode: 0o755 }
 );
 fs.chmodSync(hookPath, 0o755);
