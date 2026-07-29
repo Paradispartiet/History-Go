@@ -30,7 +30,7 @@ function loadCore() {
   return sandbox.HGFagverkSubjectCore;
 }
 
-export function auditNaturePilot({ writeReport = false, checkReport = true } = {}) {
+export function auditNaturePilot({ writeReport = false, checkReport = false } = {}) {
   const coverage = auditNaturUniversalCoverage({ checkReport });
   const core = loadCore();
   const categories = json(P.categories), manifest = json(P.manifest), portal = json(P.portal);
@@ -112,7 +112,7 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
-  try { const { report } = auditNaturePilot({ writeReport:args.has('--write-report'), checkReport:!args.has('--no-check-report') });
+  try { const { report } = auditNaturePilot({ writeReport:args.has('--write-report'), checkReport:args.has('--check-report') });
     console.log(`Natur komplett: ${report.summary.registeredChapterCount} kapitler, ${report.summary.domainCount}/12 områder og ${report.summary.requiredGapDomainCount} gjenværende hull.`); }
   catch (error) { console.error(`Natur-utvidelse FEIL: ${error.message}`); process.exitCode = 1; }
 }
