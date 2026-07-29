@@ -4,22 +4,27 @@ on:
   push:
     branches:
       - codex/natur-sluttfase-mikrobiologi-geologi
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
 
 jobs:
   materialize:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && ((github.event_name == 'push' && github.ref_name == 'codex/natur-sluttfase-mikrobiologi-geologi') || (github.event_name == 'pull_request' && github.head_ref == 'codex/natur-sluttfase-mikrobiologi-geologi'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: codex/natur-sluttfase-mikrobiologi-geologi
           fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
 
       - name: Correct final preserved-hook baseline
         run: |
@@ -38,10 +43,16 @@ jobs:
           p.write_text(s)
           PY
 
-      - name: Materialize Natur final phase
+      - name: Materialize and regenerate Natur audits
         run: |
           node --check scripts/materialize-natur-final-phase.mjs
           node scripts/materialize-natur-final-phase.mjs
+          node scripts/audit-natur-universal-coverage.mjs --write-report --no-check-report
+          node scripts/audit-natur-subject-quality.mjs --write-report --no-check-report
+          node scripts/audit-natur-fagkart-quality.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-natur-pilot.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
 
       - name: Commit generated production data
         run: |
