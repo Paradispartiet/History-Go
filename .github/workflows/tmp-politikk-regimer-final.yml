@@ -1,0 +1,77 @@
+name: Temporary final Politikk chapter integration
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Copy reviewed Politikk chapter files
+        run: |
+          git fetch origin feature/politikk-regimer-institusjoner-clean
+          git checkout origin/feature/politikk-regimer-institusjoner-clean -- \
+            data/fagverk/politikk/regimer-og-institusjoner.json \
+            data/fagverk/politikk/regimer-og-institusjoner/brief.json \
+            data/fagverk/politikk/regimer-og-institusjoner/claims.json \
+            data/fagverk/politikk/regimer-og-institusjoner/01-grunnlag.json \
+            data/fagverk/politikk/regimer-og-institusjoner/02-fordypning.json \
+            data/fagverk/politikk/regimer-og-institusjoner/03-anvendelse.json \
+            scripts/audit-politikk-chapter-regimer-institusjoner.mjs \
+            tests/politikk-chapter-regimer-institusjoner.test.mjs
+      - name: Integrate with newest main
+        run: |
+          node scripts/tmp-integrate-politikk-regimer-final.mjs
+          node scripts/audit-politikk-chapter-regimer-institusjoner.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+      - name: Validate complete package
+        run: |
+          node --check scripts/audit-politikk-chapter-regimer-institusjoner.mjs
+          node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
+          node --test tests/politikk-chapter-regimer-institusjoner.test.mjs
+          node scripts/audit-politikk-subject-quality.mjs
+          node scripts/audit-politikk-thinker-integrity.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
+          npm run typecheck:web
+      - name: Commit final chapter package
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/fag/politikk/politikk_runtime_manifest.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/politikk/regimer-og-institusjoner.json \
+            data/fagverk/politikk/regimer-og-institusjoner/brief.json \
+            data/fagverk/politikk/regimer-og-institusjoner/claims.json \
+            data/fagverk/politikk/regimer-og-institusjoner/01-grunnlag.json \
+            data/fagverk/politikk/regimer-og-institusjoner/02-fordypning.json \
+            data/fagverk/politikk/regimer-og-institusjoner/03-anvendelse.json \
+            reports/fagverk/README.md \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/subject-baseline.json \
+            reports/fagverk/politikk-regimer-institusjoner-audit.json \
+            scripts/audit-politikk-chapter-regimer-institusjoner.mjs \
+            tests/fagverk-subject-inventory.test.mjs \
+            tests/politikk-chapter-regimer-institusjoner.test.mjs
+          git commit -m "Bygg Politikk-kapittel om regimer og institusjoner"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
