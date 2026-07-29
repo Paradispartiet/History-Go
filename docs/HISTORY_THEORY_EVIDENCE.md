@@ -32,7 +32,7 @@ Batchene er `multi_case_geographic_pilot` i Oslo/Akershus. Hvert objekt står de
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. De tre første batchene etablerte 32 objekter. Politisk kronologi evidens V1 tilfører tre objekter, bevegelsesoffentligheter evidens V1 tilfører fire, og ritual og resepsjon evidens V1 tilfører to objekter på grunnlag av ni nye claims, ni kilder og én nyvalidert case. Produksjonen står dermed på 51 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. De tre første batchene etablerte 32 objekter. Politisk kronologi evidens V1 tilfører tre objekter, bevegelsesoffentligheter evidens V1 tilfører fire, og ritual og resepsjon evidens V1 tilfører to objekter på grunnlag av ni nye claims, ni kilder og én nyvalidert case. Produksjonen står dermed på 53 av 230. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -44,6 +44,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Ritual og resepsjon evidens V1: **2** nye kvalifiserende teoriobjekter, **9** nye claims og **1** nyvalidert case; arkivtaushet holdes tilbake.
 - Kildeformfamilier evidens V1: **5** nye kvalifiserende teoriobjekter, **17** nye claims og **2** nyvaliderte cases.
 - Middelalder sosial-, økonomi- og rettsevidens V1: **5** nye kvalifiserende teoriobjekter, **21** nye claims og **4** nyvaliderte cases; svartedauden holdes tilbake.
-- Totalt: **51 av 230** teoriobjekter (**22.2 %**).
+- Middelalderby og Oslo-evidens V1: **2** nye kvalifiserende teoriobjekter, **6** nye claims og **4** utvidede validerte cases.
+- Totalt: **53 av 230** teoriobjekter (**23.0 %**).
 - Universell status: **INCOMPLETE**.
 - Produksjonsavhengigheter: `reports/historie-theory-evidence/history-theory-evidence-gap-inventory-v6.md`.

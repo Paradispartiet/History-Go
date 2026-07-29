@@ -6,10 +6,10 @@
   "authority_note": "Rapporten identifiserer dokumenterte produksjonsavhengigheter. Den kvalifiserer ingen teori og skal ikke brukes til å omgå teori-evidenskontrakten.",
   "baseline": {
     "total_theories": 230,
-    "qualifying_after_medieval_social_economic_legal_v1": 51,
-    "remaining_theories": 179,
-    "ratio": 0.222,
-    "universal_status": "INCOMPLETE"
+    "remaining_theories": 177,
+    "ratio": 0.23,
+    "universal_status": "INCOMPLETE",
+    "qualifying_after_medieval_city_oslo_v1": 53
   },
   "resolved_categories": [
     {
@@ -189,6 +189,47 @@
         ],
         "note": "Fem kildeformteorier er kvalifisert med eksplisitt produksjon, proveniens/formation, utvalg, metadata, seriebrudd og metodebegrensninger. Muntlig historie er kvalifisert uten å opprette et kunstig emne-ID."
       }
+    },
+    {
+      "category_id": "medieval_city_and_oslo_reconstruction",
+      "status": "resolved_v1_with_new_claim_place_evidence_foundation",
+      "theory_ids": [
+        "theory_his_middelalder_by_kirke",
+        "theory_his_middelalder_kirke_middelalderens_oslo"
+      ],
+      "requirement": "Nye, stedsspesifikke claims som skiller institusjonell topografi, arkeologisk utvalg, havnelag og dagens kulturminnepresentasjon.",
+      "reason": "Eksisterende middelalderclaims dokumenterte enkelthendelser og institusjoner, men kvalifiserte ikke alene teorier om byens romlige helhet eller metodisk rekonstruksjon av Oslo.",
+      "resolution": {
+        "phase_id": "history_medieval_city_oslo_evidence_v1",
+        "qualified_theory_ids": [
+          "theory_his_middelalder_by_kirke",
+          "theory_his_middelalder_kirke_middelalderens_oslo"
+        ],
+        "new_claim_ids": [
+          "claim_his_middelalder_oslo_royal_south_ecclesiastical_north_spatial_order",
+          "claim_his_hallvardskirken_bispegard_ecclesiastical_urban_node",
+          "claim_his_mariakirken_kongsgard_harbor_royal_urban_node",
+          "claim_his_middelalderparken_visible_ruins_selected_reconstruction",
+          "claim_his_middelalder_oslo_excavation_sampling_context_and_in_situ_tradeoff",
+          "claim_his_bjorvika_harbor_stratigraphy_extends_medieval_oslo_reconstruction"
+        ],
+        "source_ids_used": [
+          "src_his_niku_bispevika_b8b",
+          "src_his_niku_bispevika_syd",
+          "src_his_niku_medieval_city_method",
+          "src_his_niku_middelalderparken_excavations",
+          "src_his_oslo_middelalderbyen_official",
+          "src_his_snl_hallvardskirken",
+          "src_his_snl_mariakirken_oslo"
+        ],
+        "expanded_case_ids": [
+          "case_his_bjorvika",
+          "case_his_hallvardskatedralen",
+          "case_his_mariakirkeruinen",
+          "case_his_middelalderbyen_oslo"
+        ],
+        "note": "To teoriobjekter er kvalifisert med nye claims og validerte koblinger. Svartedauden og samiske kontaktsoner står fortsatt som separate produksjonsavhengigheter."
+      }
     }
   ],
   "partially_resolved_categories": [
@@ -354,11 +395,12 @@
   "production_rule": "Neste fase skal velges fra aktive kategorier og først produsere de nye claims, kildene, casene, aktørperspektivene og geografiene som kategorien krever. Gjenbruk alene kvalifiserer ikke et teoriobjekt.",
   "source_fingerprints": {
     "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "564c1b315400c2d0b1767d20fcff39f945cc518dd9f07a66c0ee5f90d46648db",
-    "data/fag/historie/theory_evidence_historie_canonical_v1.json": "02ba86172899410a36c7c41e8218815559304c3f95af392dcb907cb7239c4b0e",
-    "data/fag/historie/claims_historie_canonical_v1.json": "4a789fe5adc3520a63ea0254e5a7945bf63022ef25a59a70edb66dd90d00f9c4",
+    "data/fag/historie/theory_evidence_historie_canonical_v1.json": "01279c3fc51c6047560a1237706fb771c7e258230711ece8c450b3430e1a48a3",
+    "data/fag/historie/claims_historie_canonical_v1.json": "1e9f1e4f272ab0b3e142ccab9b81d016e5b9f16fe46893a3d2d5466a7358d378",
     "data/fag/historie/sources_historie_canonical_v1.json": "f96a1327252b5e038a3c0f2cec5e6090ebbf57fb703b4b898864d1081838a52a",
-    "data/fag/historie/place_evidence_historie_v1.json": "ce1a2029e85be3226c65216d37c24e78a61fe9cdb5b2b608cc6dfeaaa4c46eee",
-    "data/fag/profiles/historie/oslo_akershus/profile.json": "8ed728a414bf1b7003490f094dadd891047b2aa0606cbf00f26801f2dc9ec1a0",
-    "data/fag/historie/source_dossiers/medieval_social_economic_legal_v1.json": "af0bf94b4f39ae5a5dd326b0d9ffa273e255fb6f58399090a62e5a7b687e57d8"
+    "data/fag/historie/place_evidence_historie_v1.json": "56e92399341b825f90d778f89885e8f72971bed7b3a1d3b50e8d5805305e9e3a",
+    "data/fag/profiles/historie/oslo_akershus/profile.json": "bba71c8041f7b5b11802ccaac298ef8f55863333e6b6d356bc382eb67dd4cb1a",
+    "data/fag/historie/source_dossiers/medieval_social_economic_legal_v1.json": "af0bf94b4f39ae5a5dd326b0d9ffa273e255fb6f58399090a62e5a7b687e57d8",
+    "data/fag/historie/source_dossiers/medieval_city_oslo_v1.json": "d3b5fdc72070d6c6777e6c4a0ca616bffcb5644f34fccc011826f03d30c6e369"
   }
 }
