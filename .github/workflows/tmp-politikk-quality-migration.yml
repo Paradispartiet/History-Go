@@ -26,12 +26,16 @@ jobs:
         run: |
           node scripts/tmp-migrate-politikk-quality.mjs
           node scripts/tmp-fix-politikk-quality-after-migration.mjs
+          node scripts/tmp-repair-politikk-thinker-names.mjs
           node scripts/audit-politikk-subject-quality.mjs --write-report --no-check-report
+          node scripts/audit-politikk-thinker-integrity.mjs --write-report --no-check-report
       - name: Validate Politikk quality lift
         run: |
           node --check scripts/audit-politikk-subject-quality.mjs
+          node --check scripts/audit-politikk-thinker-integrity.mjs
           node scripts/audit-politikk-subject-quality.mjs
-          node --test tests/politikk-subject-quality.test.mjs
+          node scripts/audit-politikk-thinker-integrity.mjs
+          node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
@@ -47,6 +51,7 @@ jobs:
             data/fag/politikk/methods_politikk_canonical_v4_5.json \
             data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
             data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/politikk_thinker_names.json \
             data/fag/politikk/supersetQUIZMAL_politikk.json \
             data/fag/politikk/merke_politikk.html \
             data/fag/politikk/politikk_runtime_manifest.json \
@@ -54,6 +59,7 @@ jobs:
             data/fagverk/fagverk_registry.json \
             scripts/audit-politikk-subject-quality.mjs \
             reports/fagverk/politikk-quality-audit.json \
+            reports/fagverk/politikk-thinker-integrity-audit.json \
             reports/fagverk/README.md
-          git commit -m "Gi Politikk-faget et samlet kvalitetsløft"
+          git commit -m "Lås Politikk-tenkere til canonicale navn"
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
