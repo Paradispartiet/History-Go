@@ -164,7 +164,7 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
     'urban_okologi_gronnstruktur',
     'miljopavirkning_forvaltning_regenerasjon'
   ];
-  const actualDomainOrder = model.domains.map((domain) => domain.id);
+  const actualDomainOrder = [...model.domains].map((domain) => domain.id);
   assert(model.subject.id === 'natur', 'Normalisert subject-id er feil');
   assert(model.subject.title === 'Natur & miljø', `Uventet Natur-tittel: ${model.subject.title}`);
   assert(model.subject.adapter === 'standard', 'Natur bruker ikke standard-adapteren');
