@@ -1,0 +1,66 @@
+name: Natur final phase materialization
+
+on:
+  push:
+    branches:
+      - codex/natur-sluttfase-mikrobiologi-geologi
+    paths:
+      - 'scripts/materialize-natur-final-phase.mjs'
+      - 'scripts/materialize-natur-biology-phase-1.mjs'
+      - 'data/fag/natur/**'
+      - 'data/fagverk/**'
+      - '.github/workflows/natur-final-phase-materialize.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: natur-final-phase-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/natur-sluttfase-mikrobiologi-geologi
+          fetch-depth: 0
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate materializer syntax
+        run: node --check scripts/materialize-natur-final-phase.mjs
+
+      - name: Materialize Natur final phase
+        run: node scripts/materialize-natur-final-phase.mjs
+
+      - name: Commit deterministic outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            'data/fag/natur/emner_natur_canonical_v4_5.json' \
+            'data/fag/natur/methods_natur_canonical_v4_5.json' \
+            'data/fag/natur/emnemapping_natur_canonical_v4_5.json' \
+            'data/fag/natur/fagkart_natur_canonical_v4_5.json' \
+            'data/fag/natur/naturpensum_canonical_v4_5.json' \
+            'data/fag/natur/natur_universal_coverage_contract_v1.json' \
+            'data/fag/natur/merke_natur (1).html' \
+            'data/fagverk/fagverk_registry.json' \
+            'data/fagverk/subject_status.json' \
+            'data/fagverk/natur/geologi_landskap_tid.json' \
+            'data/fagverk/natur/sopp_lav_mikroorganismer.json'
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Materialiser Natur sluttfase-data'
+          git push origin HEAD:codex/natur-sluttfase-mikrobiologi-geologi
