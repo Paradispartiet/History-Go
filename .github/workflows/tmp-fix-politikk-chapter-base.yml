@@ -1,0 +1,70 @@
+name: Temporary fix Politikk chapter base
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.event.pull_request.head.ref == 'feature/politikk-regimer-institusjoner-kapittel' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Synchronize status tests and generated reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'tests/fagverk-subject-inventory.test.mjs';
+          const before = fs.readFileSync(path, 'utf8');
+          const after = before
+            .split('\n')
+            .map((line) => line.includes('politikk') && line.includes('structure_ready')
+              ? line.replaceAll('structure_ready', 'chapters_in_progress')
+              : line)
+            .join('\n');
+          if (after === before) throw new Error('Fant ikke Politikk-forventningen structure_ready i inventory-testen');
+          fs.writeFileSync(path, after);
+          NODE
+
+          rm -f \
+            .github/tmp-politikk-refresh-trigger.txt \
+            .github/workflows/tmp-refresh-politikk-regimer.yml \
+            .github/workflows/tmp-fix-politikk-chapter-base.yml
+
+          node scripts/audit-politikk-chapter-regimer-institusjoner.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+
+          node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
+          node scripts/audit-politikk-subject-quality.mjs
+          node scripts/audit-politikk-thinker-integrity.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node --test \
+            tests/politikk-chapter-regimer-institusjoner.test.mjs \
+            tests/politikk-subject-quality.test.mjs \
+            tests/politikk-thinker-integrity.test.mjs \
+            tests/fagverk-subject-inventory.test.mjs \
+            tests/fagverk-general-engine.test.mjs \
+            tests/fagverk-documentation-contract.test.mjs
+          npm run typecheck:web
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Synkroniser Politikk-kapittel med Fagverk-status'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
