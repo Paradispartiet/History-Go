@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "updatedAt": "2026-07-29",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -30,7 +30,9 @@
           "subtitle": "Fra politiske vedtak til regler, tjenester og myndighetsutøvelse",
           "file": "data/fagverk/politikk/forvaltning.json",
           "primary_domain_id": "styring_institusjoner_forvaltning",
-          "emne_ids": ["em_pol_politi_sikkerhet_makt"]
+          "emne_ids": [
+            "em_pol_politi_sikkerhet_makt"
+          ]
         },
         {
           "id": "parlamentarisme",
@@ -38,7 +40,34 @@
           "subtitle": "Forholdet mellom Stortinget, regjeringen og det politiske ansvaret",
           "file": "data/fagverk/politikk/parlamentarisme.json",
           "primary_domain_id": "demokrati_representasjon_offentlighet",
-          "emne_ids": ["em_pol_mediert_offentlighet", "em_pol_parlamentarisme_maktbalanse"]
+          "emne_ids": [
+            "em_pol_mediert_offentlighet",
+            "em_pol_parlamentarisme_maktbalanse"
+          ]
+        },
+        {
+          "id": "regimer-og-institusjoner",
+          "title": "Regimer og institusjoner",
+          "subtitle": "Hvordan statsapparat, maktfordeling og konstitusjonelle regler former politiske utfall",
+          "file": "data/fagverk/politikk/regimer-og-institusjoner.json",
+          "primary_domain_id": "komparativ_politikk_regimer_institusjoner",
+          "emne_ids": [
+            "em_pol_statsdannelse_statskapasitet",
+            "em_pol_regimer_demokratisering",
+            "em_pol_institusjonelle_systemer",
+            "em_pol_desentralisering_flerniva",
+            "em_pol_institusjonell_endring",
+            "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+            "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+            "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+            "em_pol_institusjonsfordypning_ett_tokammersystem",
+            "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+            "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+            "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+            "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+            "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+            "em_pol_institusjonsfordypning_demokratisk_tilbakegang"
+          ]
         }
       ]
     },
@@ -101,12 +130,95 @@
         "note": "Emnetitler, definisjoner, fagområder og metodekoblinger leses fra canonical Natur v4.5. Registryet eier de seks redigerte lærekapitlene."
       },
       "chapters": [
-        {"id":"okosystem_mangfold_habitat","title":"Økosystem, mangfold og habitat","subtitle":"Fra enkeltfunn til levende systemer","file":"data/fagverk/natur/okosystem_mangfold_habitat.json","primary_domain_id":"okosystem_mangfold_habitat","emne_ids":["em_natur_arter_habitat_mangfold","em_natur_biodiversitet_resiliens","em_natur_fremmede_arter_forstyrrelse","em_natur_jord_sediment_mikroliv","em_natur_kretslop_materie","em_natur_natur_som_aktor","em_natur_okosystem_nettverk","em_natur_okosystemtjenester","em_natur_skog_vegetasjon_suksesjon","em_natur_vatmark_vannspeil_habitat","em_natur_kyst_okosystemer"]},
-        {"id":"vann_hydrologi_kretslop","title":"Vann, hydrologi og kretsløp","subtitle":"Følg vannet gjennom landskapet","file":"data/fagverk/natur/vann_hydrologi_kretslop.json","primary_domain_id":"vann_hydrologi_kretslop","emne_ids":["em_natur_bekkeapning_overvann","em_natur_elver_bekker_vassdrag","em_natur_kjemiske_balanser","em_natur_vannkvalitet_forurensning"]},
-        {"id":"klima_energi_resiliens","title":"Klima, energi og resiliens","subtitle":"Fra værhendelse til langsiktig risiko","file":"data/fagverk/natur/klima_energi_resiliens.json","primary_domain_id":"klima_energi_resiliens","emne_ids":["em_natur_karbon_energi_klima","em_natur_klimatilpasning_risiko","em_natur_urban_varme_klima","em_natur_vippepunkt_sarbarhet"]},
-        {"id":"geologi_landskap_tid","title":"Geologi, landskap og lang tid","subtitle":"Les landskapet som materiale, prosess og historie","file":"data/fagverk/natur/geologi_landskap_tid.json","primary_domain_id":"geologi_landskap_tid","emne_ids":["em_natur_dalforer_vannskiller_topografi","em_natur_geologi_landskapsform","em_natur_kyst_fjord_og_strand","em_natur_lang_tid_klima_historie"]},
-        {"id":"urban_okologi_gronnstruktur","title":"Urban økologi og grønnstruktur","subtitle":"Byen som habitat, nettverk og sosialt landskap","file":"data/fagverk/natur/urban_okologi_gronnstruktur.json","primary_domain_id":"urban_okologi_gronnstruktur","emne_ids":["em_natur_gronnstruktur_korridorer","em_natur_marka_skog_bygrense","em_natur_naturopplevelse_folkehelse","em_natur_sosial_naturforvaltning","em_natur_urban_okologi_byrom","em_natur_friluftsliv_helse"]},
-        {"id":"miljopavirkning_forvaltning_regenerasjon","title":"Miljøpåvirkning, forvaltning og regenerasjon","subtitle":"Fra dokumentert belastning til målbar forbedring","file":"data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json","primary_domain_id":"miljopavirkning_forvaltning_regenerasjon","emne_ids":["em_natur_byutvikling_naturkonflikt","em_natur_forstyrrelse_regenerasjon","em_natur_mikroplast_miljogifter","em_natur_miljodata_overvaking","em_natur_miljorettferdighet","em_natur_vern_forvaltning_politikk"]}
+        {
+          "id": "okosystem_mangfold_habitat",
+          "title": "Økosystem, mangfold og habitat",
+          "subtitle": "Fra enkeltfunn til levende systemer",
+          "file": "data/fagverk/natur/okosystem_mangfold_habitat.json",
+          "primary_domain_id": "okosystem_mangfold_habitat",
+          "emne_ids": [
+            "em_natur_arter_habitat_mangfold",
+            "em_natur_biodiversitet_resiliens",
+            "em_natur_fremmede_arter_forstyrrelse",
+            "em_natur_jord_sediment_mikroliv",
+            "em_natur_kretslop_materie",
+            "em_natur_natur_som_aktor",
+            "em_natur_okosystem_nettverk",
+            "em_natur_okosystemtjenester",
+            "em_natur_skog_vegetasjon_suksesjon",
+            "em_natur_vatmark_vannspeil_habitat",
+            "em_natur_kyst_okosystemer"
+          ]
+        },
+        {
+          "id": "vann_hydrologi_kretslop",
+          "title": "Vann, hydrologi og kretsløp",
+          "subtitle": "Følg vannet gjennom landskapet",
+          "file": "data/fagverk/natur/vann_hydrologi_kretslop.json",
+          "primary_domain_id": "vann_hydrologi_kretslop",
+          "emne_ids": [
+            "em_natur_bekkeapning_overvann",
+            "em_natur_elver_bekker_vassdrag",
+            "em_natur_kjemiske_balanser",
+            "em_natur_vannkvalitet_forurensning"
+          ]
+        },
+        {
+          "id": "klima_energi_resiliens",
+          "title": "Klima, energi og resiliens",
+          "subtitle": "Fra værhendelse til langsiktig risiko",
+          "file": "data/fagverk/natur/klima_energi_resiliens.json",
+          "primary_domain_id": "klima_energi_resiliens",
+          "emne_ids": [
+            "em_natur_karbon_energi_klima",
+            "em_natur_klimatilpasning_risiko",
+            "em_natur_urban_varme_klima",
+            "em_natur_vippepunkt_sarbarhet"
+          ]
+        },
+        {
+          "id": "geologi_landskap_tid",
+          "title": "Geologi, landskap og lang tid",
+          "subtitle": "Les landskapet som materiale, prosess og historie",
+          "file": "data/fagverk/natur/geologi_landskap_tid.json",
+          "primary_domain_id": "geologi_landskap_tid",
+          "emne_ids": [
+            "em_natur_dalforer_vannskiller_topografi",
+            "em_natur_geologi_landskapsform",
+            "em_natur_kyst_fjord_og_strand",
+            "em_natur_lang_tid_klima_historie"
+          ]
+        },
+        {
+          "id": "urban_okologi_gronnstruktur",
+          "title": "Urban økologi og grønnstruktur",
+          "subtitle": "Byen som habitat, nettverk og sosialt landskap",
+          "file": "data/fagverk/natur/urban_okologi_gronnstruktur.json",
+          "primary_domain_id": "urban_okologi_gronnstruktur",
+          "emne_ids": [
+            "em_natur_gronnstruktur_korridorer",
+            "em_natur_marka_skog_bygrense",
+            "em_natur_naturopplevelse_folkehelse",
+            "em_natur_sosial_naturforvaltning",
+            "em_natur_urban_okologi_byrom",
+            "em_natur_friluftsliv_helse"
+          ]
+        },
+        {
+          "id": "miljopavirkning_forvaltning_regenerasjon",
+          "title": "Miljøpåvirkning, forvaltning og regenerasjon",
+          "subtitle": "Fra dokumentert belastning til målbar forbedring",
+          "file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json",
+          "primary_domain_id": "miljopavirkning_forvaltning_regenerasjon",
+          "emne_ids": [
+            "em_natur_byutvikling_naturkonflikt",
+            "em_natur_forstyrrelse_regenerasjon",
+            "em_natur_mikroplast_miljogifter",
+            "em_natur_miljodata_overvaking",
+            "em_natur_miljorettferdighet",
+            "em_natur_vern_forvaltning_politikk"
+          ]
+        }
       ]
     }
   },
@@ -114,15 +226,47 @@
     "regjeringskvartalet": {
       "title": "Regjeringskvartalet",
       "intro": "Regjeringskvartalet har sin egen fagverkside. Der undersøkes stedet gjennom arkitektur, statsforvaltning, parlamentarisk ansvar, sikkerhet, offentlighet og minne – uten at stedet gjøres til et kapittel i selve faget.",
-      "emneIds": ["em_pol_byrakrati_forvaltning", "em_pol_institusjoner_styring", "em_pol_administrativ_makt", "em_pol_parlamentarisme_maktbalanse", "em_pol_politi_sikkerhet_makt", "em_pol_mediert_offentlighet"],
-      "lenses": [
-        {"id":"historie","title":"Historie","prompt":"Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?"},
-        {"id":"arkitektur","title":"Arkitektur og by","prompt":"Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?"},
-        {"id":"forvaltning","title":"Forvaltning","prompt":"Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?"},
-        {"id":"parlamentarisme","title":"Parlamentarisme","prompt":"Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?"},
-        {"id":"sikkerhet-minne","title":"Sikkerhet og minne","prompt":"Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?"}
+      "emneIds": [
+        "em_pol_byrakrati_forvaltning",
+        "em_pol_institusjoner_styring",
+        "em_pol_administrativ_makt",
+        "em_pol_parlamentarisme_maktbalanse",
+        "em_pol_politi_sikkerhet_makt",
+        "em_pol_mediert_offentlighet"
       ],
-      "guidingQuestions": ["Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?", "Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?", "Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?", "Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"]
+      "lenses": [
+        {
+          "id": "historie",
+          "title": "Historie",
+          "prompt": "Hvordan har forsøkene på å samle statsforvaltningen endret området over tid?"
+        },
+        {
+          "id": "arkitektur",
+          "title": "Arkitektur og by",
+          "prompt": "Hvordan uttrykker bygninger, kunst og byrom skiftende forestillinger om staten?"
+        },
+        {
+          "id": "forvaltning",
+          "title": "Forvaltning",
+          "prompt": "Hvilke nivåer av politisk ledelse og embetsverk arbeider her, og hva ligger andre steder?"
+        },
+        {
+          "id": "parlamentarisme",
+          "title": "Parlamentarisme",
+          "prompt": "Hvordan henger arbeidet i Regjeringskvartalet sammen med vedtak og kontroll i Stortinget?"
+        },
+        {
+          "id": "sikkerhet-minne",
+          "title": "Sikkerhet og minne",
+          "prompt": "Hvordan balanseres åpenhet, daglig arbeid, sikkerhet og minnet etter 22. juli?"
+        }
+      ],
+      "guidingQuestions": [
+        "Hvorfor ble statsforvaltningen forsøkt samlet akkurat her?",
+        "Hva er forskjellen mellom regjeringen, departementene og resten av statsforvaltningen?",
+        "Hvordan kan arkitektur uttrykke både åpenhet, autoritet og sikkerhet?",
+        "Hvordan beveger en politisk sak seg mellom Regjeringskvartalet og Stortinget?"
+      ]
     }
   }
 }
