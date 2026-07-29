@@ -18,6 +18,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle 2198 forekomster er synkronisert.
 - `politikk-regimer-institusjoner-audit.json` — kapittelgate for 15 emner, 16 metoder, tre redigerte moduler, 29 sporede claims og 16 inspectable kilder.
+- `politikk-valg-partier-velgeratferd-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 23 inspectable kilder.
 
 ## Regenerering
 
@@ -38,7 +39,11 @@ node scripts/audit-politikk-subject-quality.mjs --write-report
 node scripts/audit-politikk-subject-quality.mjs
 node scripts/audit-politikk-thinker-integrity.mjs --write-report
 node scripts/audit-politikk-thinker-integrity.mjs
-node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs
+node scripts/audit-politikk-chapter-regimer-institusjoner.mjs --write-report
+node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
+node scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs --write-report
+node scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs
 ```
 
 `subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
@@ -70,12 +75,10 @@ Natur er det første faget som står `materialized`, `audited` og redaksjonelt `
 5. Urban økologi og grønnstruktur
 6. Miljøpåvirkning, forvaltning og regenerasjon
 
-Hvert kapittel har læringsmål, forkunnskapsspørsmål, fem sammenhengende seksjoner, arbeidseksempler, misoppfatninger, begreper, anvendelsesoppgaver, kontrollspørsmål, relevante steder og inspectable kilder. Natur beholder samtidig de permanente kvalitetsgatene for unike emnetekster, metodeprosedyrer, hooks, mappings, normal quizåpning og Knowledge-leveranse.
+Hvert kapittel har læringsmål, forkunnskapsspørsmål, sammenhengende seksjoner, arbeidseksempler, misoppfatninger, begreper, anvendelsesoppgaver, kontrollspørsmål, relevante steder og inspectable kilder. Natur beholder samtidig de permanente kvalitetsgatene for unike emnetekster, metodeprosedyrer, hooks, mappings, normal quizåpning og Knowledge-leveranse.
 
-Historie står `materialized`, `audited` og `structure_ready`. Faget er tilgjengelig gjennom den generelle motoren, men redigerte kapitler som dekker hele fagområdet gjenstår.
+Historie står `materialized`, `audited` og `chapters_in_progress`. To av 23 fagområder har registrerte fullverdige kapitler; 21 gjenstår, sammen med universell theory-evidence og full publiseringsaudit.
 
-Politikk står fortsatt `materialized`, `audited` og `structure_ready`. Faget har permanente kvalitetsgater for full dekning av 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, to ganger sju normale quizåpningsspørsmål, eksplisitt Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner. De to ferdigskrevne kapitlene dekker ennå ikke alle tretten fagområder, så Politikk er ikke redaksjonelt `complete`.
+Politikk står `materialized`, `audited` og `chapters_in_progress`. Fire av tretten fagområder har registrerte kapitler, mens ni fortsatt mangler fullverdig hovedkapittel. `Regimer og institusjoner` og `Valg, partier og velgeratferd` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. Faget har i tillegg permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
 De gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
-
-Politikk står nå `materialized`, `audited` og `chapters_in_progress`: tre av tretten fagområder har registrerte kapitler, mens ti fortsatt mangler fullverdig hovedkapittel. Regimer og institusjoner er det første Politikk-kapittelet med egen brief, påstandsregister og permanent kapittelaudit.
