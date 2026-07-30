@@ -5,11 +5,12 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const BASE = 'data/fag/musikk/musikkvitenskap_canonical_v1';
 const PACKAGE = 'data/quiz/musikk/musikk_subject_pathways_v1.json';
 const SCHEMA = 'data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json';
 const QUESTION_SCHEMA = 'data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json';
-const MODULE = 'data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json';
-const METHODS = 'data/fag/musikk/musikkvitenskap_canonical_v1/method_protocols_v1.json';
+const CANONICAL_INDEX = `${BASE}/index.json`;
+const METHODS = `${BASE}/method_protocols_v1.json`;
 const SCIENTIFIC_PACKAGE = 'data/fag/musikk/scientific_package.json';
 const STAGES = ['observe', 'explain', 'evaluate_evidence', 'diagnose_failure', 'decide_and_justify'];
 
@@ -76,6 +77,7 @@ function buildConfigs(pkg) {
       evidenceFile,
       evidence,
       gate,
+      domain: text(evidence.domain_id),
       emne: text(evidence.emne_id),
       target: targetFromEmne(text(evidence.emne_id)),
       claim: claimId,
@@ -97,13 +99,24 @@ function main() {
   const pkg = readJson(PACKAGE);
   const schema = readJson(SCHEMA);
   const questionSchema = readJson(QUESTION_SCHEMA);
-  const module = readJson(MODULE);
+  const canonicalIndex = readJson(CANONICAL_INDEX);
   const methods = readJson(METHODS);
   const scientificPackage = readJson(SCIENTIFIC_PACKAGE);
-  const topicById = new Map(list(module.topics).map((item) => [item.emne_id, item]));
+  const canonicalModuleFiles = list(canonicalIndex.files?.canonical_modules);
+  const canonicalModules = canonicalModuleFiles.map((file) => readJson(`${BASE}/${file}`));
+  const topicById = new Map();
+  const canonicalDomainIds = new Set();
+  for (const module of canonicalModules) {
+    const domainId = text(module?.domain?.domain_id);
+    if (domainId) canonicalDomainIds.add(domainId);
+    for (const topic of list(module?.topics)) {
+      if (!topicById.has(topic.emne_id)) topicById.set(topic.emne_id, topic);
+    }
+  }
   const methodIds = new Set(list(methods.protocols).map((item) => item.method_id));
   const configs = buildConfigs(pkg);
   const canonicalTopicCount = Number(scientificPackage.summary?.topic_count || 0);
+  const canonicalDomainCount = Number(scientificPackage.summary?.domain_count || 0);
 
   for (const field of list(schema.required_top_fields)) ok(Object.hasOwn(pkg, field), `pakken mangler toppfelt ${field}`);
   ok(pkg.schema === 'history_go_subject_pathway_package_v1', 'feil package schema');
@@ -113,6 +126,9 @@ function main() {
   ok(pkg.status === 'pilot_active', 'Musikk-pathway skal være pilot_active');
   ok(configs.length >= 1, 'released_evidence_files må inneholde minst ett frigitt evidenstema');
   ok(canonicalTopicCount > 0, 'canonical topic_count mangler i scientific package');
+  ok(canonicalModuleFiles.length === canonicalDomainCount, 'canonical_modules må dekke alle canonicale domener');
+  ok(canonicalDomainIds.size === canonicalDomainCount, 'canonical modules har feil antall unike domener');
+  ok(topicById.size === canonicalTopicCount, 'canonical modules har feil antall unike emner');
   ok(pkg.production_context?.profile === `subject_pathway_pilot_${configs.length}x5`, 'feil pilotprofil');
   ok(pkg.production_context?.blocked_canonical_topic_count === canonicalTopicCount - configs.length, 'blocked_canonical_topic_count er usynkronisert med canonical topic-count og released evidence');
   ok(pkg.production_context?.rights_mode === 'external_link_and_metadata_only', 'rettighetsmodus må være external_link_and_metadata_only');
@@ -136,7 +152,7 @@ function main() {
     const topic = topicById.get(config.emne);
 
     ok(evidence.status === 'question_release_ready', `${config.emne}: upstream fulltekstevidens er ikke question_release_ready`);
-    ok(evidence.domain_id === 'musikalsk_analyse_lyd_struktur', `${config.emne}: evidensfilen ligger i feil domene`);
+    ok(canonicalDomainIds.has(config.domain), `${config.emne}: evidensfilen har ukjent canonicalt domene ${config.domain}`);
     ok(gate.question_release_ready === true, `${config.emne}: upstream direct-object gate er ikke åpen`);
     ok(list(gate.question_ready_claim_ids).length === 1, `${config.emne}: pathway-gaten må frigi nøyaktig ett claim`);
     ok(sameOrder(gate.question_ready_claim_ids, [config.claim]), `${config.emne}: upstream gate frigir ikke forventet claim`);
@@ -155,7 +171,7 @@ function main() {
     ok(config.rightsMode === pkg.production_context?.rights_mode, `${config.emne}: object rights mode avviker fra package rights mode`);
 
     ok(Boolean(topic), `${config.emne}: canonicalt emne mangler`);
-    ok(topic?.domain_id === 'musikalsk_analyse_lyd_struktur', `${config.emne}: emnet ligger i feil domene`);
+    ok(topic?.domain_id === config.domain, `${config.emne}: emnets canonical domain avviker fra evidensfilen`);
     ok(list(topic?.research_object_types).includes(config.objectType), `${config.emne}: emnet tillater ikke ${config.objectType}`);
     ok(list(topic?.method_protocol_ids).includes(config.method), `${config.emne}: emnet tillater ikke ${config.method}`);
     ok(methodIds.has(config.method), `${config.emne}: metoden mangler i method_protocols`);
@@ -167,7 +183,7 @@ function main() {
     const set = setByEmne.get(config.emne) || {};
     for (const field of list(schema.set_contract?.required_fields)) ok(Object.hasOwn(set, field), `${config.emne}: settet mangler felt ${field}`);
     ok(set.phase === 'subject_pathway' && set.target_kind === 'subject_area', `${config.emne}: settet har feil subject-pathway type`);
-    ok(set.targetId === config.target && set.area_id === 'musikalsk_analyse_lyd_struktur', `${config.emne}: settet peker til feil target/domene`);
+    ok(set.targetId === config.target && set.area_id === config.domain, `${config.emne}: settet peker til feil target/domene`);
     ok(set.order === configIndex + 1, `${config.emne}: feil set order`);
     ok(sameOrder(set.sequence, STAGES), `${config.emne}: settsekvensen er ikke canonical femtrinnsrekkefølge`);
     ok(sameOrder(set.question_ready_claim_ids, [config.claim]), `${config.emne}: settet kan ikke frigi andre claims`);
