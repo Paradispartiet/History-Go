@@ -45,6 +45,22 @@ const SET_CONFIGS = Object.freeze([
       return object?.rights?.history_go_use_mode === 'external_link_and_metadata_only'
         && object?.rights?.commercial_compatibility_with_history_go === 'not_resolved';
     }
+  },
+  {
+    emne: 'em_musikk_vit_harmoni_tonalitet_modalitet',
+    target: 'subject_musikk_harmoni_tonalitet_modalitet',
+    evidence: 'data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/harmoni_tonalitet_modalitet.json',
+    claim: 'claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63',
+    object: 'obj_beethoven_tempest_op31_2_dcml_v2_5_17_1',
+    method: 'notasjons_kildeanalyse',
+    objectType: 'notert_kilde',
+    primarySource: 'prod_src_caplin_tempest_exposition_2010',
+    allowedSources: ['prod_src_caplin_tempest_exposition_2010', 'prod_src_hentschel_annotated_piano_corpus_2024', 'obj_beethoven_tempest_op31_2_dcml_v2_5_17_1'],
+    objectUrlPattern: /^https:\/\/github\.com\/DCMLab\/beethoven_piano_sonatas\/blob\/v2\.5\/MS3\/17-1\.mscx/,
+    rightsCheck(object) {
+      return object?.rights?.history_go_use_mode === 'external_link_and_metadata_only'
+        && object?.rights?.commercial_compatibility_with_history_go === 'not_resolved';
+    }
   }
 ]);
 
@@ -103,13 +119,13 @@ function main() {
   ok(pkg.categoryId === 'musikk' && pkg.subject_id === 'musikk', 'pakken må tilhøre musikk');
   ok(pkg.targetId === 'subject_musikk', 'topp-target må være subject_musikk');
   ok(pkg.status === 'pilot_active', 'Musikk-pathway skal være pilot_active');
-  ok(pkg.production_context?.profile === 'subject_pathway_pilot_2x5', 'feil pilotprofil');
-  ok(pkg.production_context?.blocked_canonical_topic_count === 46, 'piloten må eksplisitt holde 46 canonicale temaer blokkert');
+  ok(pkg.production_context?.profile === 'subject_pathway_pilot_3x5', 'feil pilotprofil');
+  ok(pkg.production_context?.blocked_canonical_topic_count === 45, 'piloten må eksplisitt holde 45 canonicale temaer blokkert');
   ok(pkg.production_context?.rights_mode === 'external_link_and_metadata_only', 'rettighetsmodus må være external_link_and_metadata_only');
   ok(sameOrder(pkg.production_context?.released_emne_ids, SET_CONFIGS.map((item) => item.emne)), 'released_emne_ids er usynkronisert');
   ok(sameOrder(pkg.production_context?.question_ready_claim_ids, SET_CONFIGS.map((item) => item.claim)), 'question_ready_claim_ids er usynkronisert');
   ok(sameOrder(pkg.production_context?.direct_object_ids, SET_CONFIGS.map((item) => item.object)), 'direct_object_ids er usynkronisert');
-  ok(list(pkg.production_context?.released_evidence_files).length === SET_CONFIGS.length, 'released_evidence_files må dekke begge settene');
+  ok(list(pkg.production_context?.released_evidence_files).length === SET_CONFIGS.length, 'released_evidence_files må dekke alle settene');
 
   const packageSources = new Map(list(pkg.sources).map((item) => [item.id, item]));
   const expectedSourceIds = unique(SET_CONFIGS.flatMap((item) => item.allowedSources));
