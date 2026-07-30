@@ -106,6 +106,11 @@ test('nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-kobl
 test('materialisert fagside og committed fase-1-rapport passerer full audit', () => {
   const result = auditRepository();
   assert.ok(result.materializedRows.some((row) => row.id === 'politikk'));
+  const musikk = result.materializedRows.find((row) => row.id === 'musikk');
+  assert.ok(musikk);
+  assert.equal(musikk.domainCount, 8);
+  assert.equal(musikk.emneCount, 48);
+  assert.equal(musikk.methodCount, 18);
   assert.equal(result.report.summary.politicsFallbacks, 0);
   assert.equal(result.report.summary.subjectPageLegacyDependencies, 0);
 });
