@@ -1,0 +1,233 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-harmony-v1-2026-07-30",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "musikalsk_analyse_lyd_struktur",
+  "emne_id": "em_musikk_vit_harmoni_tonalitet_modalitet",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/musikalsk_analyse_lyd_struktur/harmoni_tonalitet_modalitet.json",
+  "research_question": "Hvordan organiseres samtidige toner, spenning, retning og tonale sentre?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_caplin_tempest_exposition_2010",
+      "bibliographic_identity": {
+        "creators": ["William E. Caplin"],
+        "year": 2010,
+        "title": "Beethoven’s ‘Tempest’ Exposition: A Response to Janet Schmalfeldt",
+        "publication": "Music Theory Online 16(2)"
+      },
+      "registration_reason": "Åpen fagfellevurdert fulltekst med eksplisitte takt-lokatorer for dominantpedal, tonika-/predominantforløp og konkurrerende kadenslesninger i første sats av Beethovens Op. 31 nr. 2.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://mtosmt.org/classic/mto.10.16.2/mto.10.16.2.caplin.php",
+      "checked_at": "2026-07-30"
+    },
+    {
+      "source_id": "prod_src_hentschel_annotated_piano_corpus_2024",
+      "bibliographic_identity": {
+        "creators": ["Johannes Hentschel", "Yannis Rammos", "Fabian C. Moss", "Markus Neuwirth", "Martin Rohrmeier"],
+        "year": 2024,
+        "title": "An Annotated Corpus of Tonal Piano Music from the Long 19th Century",
+        "publication": "Empirical Musicology Review 18(1), 84–95"
+      },
+      "registration_reason": "Åpen datareport som dokumenterer proveniens, MuseScore-format, harmoniannotasjon, reviewworkflow og Beethoven-sonatenes dekning i DCML-korpuset som brukes som direkte notert objekt.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://phaidra.bruckneruni.at/api/object/o%3A3910/download",
+      "checked_at": "2026-07-30"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_caplin_tempest_exposition_2010",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://mtosmt.org/classic/mto.10.16.2/mto.10.16.2.caplin.php",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "paras. [12]–[14]",
+          "section": "Standing on the dominant and first subordinate-theme problem",
+          "supports": "Caplin lokaliserer halvslutningen i ny toneart ved m.41, en forlenget dominantpedal gjennom m.54, tonika i første omvending ved m.55, naboneapolitanske harmonier, IV ved m.62 og kadensdominant/PAC ved m.63."
+        },
+        {
+          "pages": "paras. [20]–[25]",
+          "section": "Cadential closure and tonic prolongation",
+          "supports": "Caplin argumenterer for at mm.75–87 kan forstås som tonikaforlengelse med dominantiske naboharmonier, avviser en vedvarende kadensprogresjon gjennom passasjen og setter den siste mulige kadensen ved m.75."
+        }
+      ],
+      "rights_and_reuse_note": "Publisher-hosted open HTML was reviewed. History Go stores only bibliographic identity, paraphrased analytical findings and measure locators; article text and analytical examples are not redistributed."
+    },
+    {
+      "source_id": "prod_src_hentschel_annotated_piano_corpus_2024",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://phaidra.bruckneruni.at/api/object/o%3A3910/download",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "84–85",
+          "section": "Abstract; Method — Scores",
+          "supports": "Datareporten dokumenterer 264 annoterte pianosatser i MuseScore 3, kontroll mot public-domain trykkutgaver og metadata for kilde og korreksjon."
+        },
+        {
+          "pages": "85–87",
+          "section": "Annotations; Dataset; Formats and features",
+          "supports": "Annotasjonene er laget og revidert av trente musikkteoretikere gjennom en GitHub-basert reviewprosess; Beethoven-sonatene er dekket og harmoni-/mål-/note-/scoredata bevares i inspeksjonsbare formater."
+        }
+      ],
+      "rights_and_reuse_note": "Institutional open PDF was reviewed under CC BY-NC 4.0. It is used only to verify corpus provenance and review process; no article PDF is redistributed by History Go."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_beethoven_tempest_op31_2_dcml_v2_5_17_1",
+      "object_type": "notert_kilde",
+      "title": "Ludwig van Beethoven, Piano Sonata No. 17 in D minor, Op. 31 No. 2 (‘Tempest’), movement 1 — DCML v2.5 annotated score 17-1",
+      "persistent_url": "https://github.com/DCMLab/beethoven_piano_sonatas/blob/v2.5/MS3/17-1.mscx",
+      "provenance_source_ids": ["prod_src_hentschel_annotated_piano_corpus_2024"],
+      "version_and_identity": {
+        "dataset_version": "v2.5",
+        "zenodo_doi": "10.5281/zenodo.15292707",
+        "zenodo_record": "https://zenodo.org/records/15292707",
+        "archive_file": "DCMLab/beethoven_piano_sonatas-v2.5.zip",
+        "archive_md5": "a842f4e47ac9859d8cf91ebee91b02d6",
+        "score_path": "MS3/17-1.mscx",
+        "harmony_path": "harmonies/17-1.harmonies.tsv",
+        "score_standard": "2.3.0",
+        "measure_count": 228,
+        "annotation_label_count": 352
+      },
+      "locators": [
+        {
+          "locator": "MS3/17-1.mscx + harmonies/17-1.harmonies.tsv, mm. 41–63",
+          "role": "direct score/annotation window for Caplin’s new-key half cadence, extended dominant region and subsequent tonal/cadential path"
+        },
+        {
+          "locator": "MS3/17-1.mscx + harmonies/17-1.harmonies.tsv, mm. 72–88",
+          "role": "direct score/annotation window for the disputed cadential closure and tonic-prolongation reading"
+        }
+      ],
+      "rights": {
+        "license": "CC BY-NC-SA 4.0",
+        "license_source": "DCMLab/beethoven_piano_sonatas v2.5 README",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": null,
+        "modification_allowed": null,
+        "decision": "History Go does not copy, redistribute, render or modify the DCML score or harmony table in this production. It stores identity, version, measure locators and persistent external links only."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63",
+      "statement": "I Caplins formfunksjonelle analyse av første sats i Beethovens «Tempest»-sonate når overgangen en halvslutning i A-moll ved takt 41; en dominantpedal varer gjennom takt 54, før tonika i første omvending ved takt 55, naboneapolitanske harmonier, IV ved takt 62 og en kadensdominant leder til PAC ved takt 63.",
+      "claim_type_id": "score_or_representation_claim",
+      "source_ids": ["prod_src_caplin_tempest_exposition_2010"],
+      "locators": [
+        "Caplin 2010, para. [12], mm. 41–54",
+        "Caplin 2010, para. [12], mm. 55–63"
+      ],
+      "method_protocol_ids": ["notasjons_kildeanalyse"],
+      "object_scope": {
+        "direct_object_id": "obj_beethoven_tempest_op31_2_dcml_v2_5_17_1",
+        "work": "Beethoven, Piano Sonata Op. 31 No. 2 (‘Tempest’), movement 1",
+        "analytical_model": "Caplin’s form-functional analysis",
+        "score_segments": ["mm. 41–54", "mm. 55–63"]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Påstanden gjengir Caplins eksplisitte formfunksjonelle og harmoniske lesning av et avgrenset partitur. Begreper som ‘standing on the dominant’, tonikaforlengelse og kadensfunksjon er analytiske kategorier, ikke rådata i notebildet.",
+      "prohibited_inference": "Analysen kan ikke presenteres som Beethovens dokumenterte intensjon eller som den eneste modelluavhengige beskrivelsen av passasjens tonale og formale struktur.",
+      "reproducibility": {
+        "score_identity_status": "versioned_external_score_verified",
+        "analysis_status": "publisher_fulltext_and_measure_locators_reviewed",
+        "independent_reanalysis": false
+      }
+    },
+    {
+      "claim_id": "claim_musikk_harmony_caplin_tonic_prolongation_cadence_75_87",
+      "statement": "Caplin argumenterer for at takt 75–87 bygger på tonikaforlengelse, der dominantiske harmonier på de svake halvdelene av taktene fungerer som naboharmonier; derfor avviser han en sammenhengende kadensprogresjon gjennom passasjen og behandler takt 75 som den siste levedyktige kandidaten for eksposisjonens avsluttende kadens.",
+      "claim_type_id": "score_or_representation_claim",
+      "source_ids": ["prod_src_caplin_tempest_exposition_2010"],
+      "locators": [
+        "Caplin 2010, paras. [20]–[21], mm. 75–87",
+        "Caplin 2010, paras. [22]–[24], cadence at m. 75 and closing section"
+      ],
+      "method_protocol_ids": ["notasjons_kildeanalyse"],
+      "object_scope": {
+        "direct_object_id": "obj_beethoven_tempest_op31_2_dcml_v2_5_17_1",
+        "work": "Beethoven, Piano Sonata Op. 31 No. 2 (‘Tempest’), movement 1",
+        "analytical_model": "Caplin’s form-functional harmonic reading in dialogue with Schmalfeldt",
+        "score_segments": ["mm. 72–75", "mm. 75–88"]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Caplin presenterer dette eksplisitt som en analytisk argumentasjon mot Schmalfeldts alternative kadenslesning. Passasjen er derfor særlig egnet til å vise at funksjons- og kadensbestemmelse er modell- og tolkningsavhengig.",
+      "prohibited_inference": "Uenighet mellom analyser kan ikke omskrives som at én lesning er empirisk bevist og den andre falsifisert uten en separat, eksplisitt kriterie- og sammenligningsanalyse.",
+      "reproducibility": {
+        "score_identity_status": "versioned_external_score_verified",
+        "analysis_status": "publisher_fulltext_argument_and_measure_locators_reviewed",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_harmony_caplin_function_is_model_dependent",
+      "statement": "Caplins funksjons- og kadensbegreper inngår i en eksplisitt formfunksjonell analyse og står i dialog og delvis konflikt med andre analyser av de samme taktene.",
+      "source_ids": ["prod_src_caplin_tempest_exposition_2010"],
+      "locators": ["Caplin 2010, paras. [12]–[14], [20]–[25]"],
+      "applies_to_claim_ids": [
+        "claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63",
+        "claim_musikk_harmony_caplin_tonic_prolongation_cadence_75_87"
+      ],
+      "release_effect": "Blocks wording that presents Caplin’s formal-harmonic categories as model-free properties or the only legitimate segmentation of the score."
+    },
+    {
+      "boundary_id": "boundary_musikk_harmony_dcml_is_representation_not_validation",
+      "statement": "DCML-annotasjonene og Caplins analyse er separate analytiske representasjoner. History Go bruker DCML som versjonert, inspeksjonsbart objekt, men behandler ikke annotasjonene som uavhengig validering av Caplins funksjonsanalyse.",
+      "source_ids": ["prod_src_caplin_tempest_exposition_2010", "prod_src_hentschel_annotated_piano_corpus_2024"],
+      "locators": ["Caplin 2010, paras. [12], [20]–[25]; Hentschel et al. 2024, pp. 85–87"],
+      "applies_to_claim_ids": [
+        "claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63",
+        "claim_musikk_harmony_caplin_tonic_prolongation_cadence_75_87"
+      ],
+      "release_effect": "Blocks claims that DCML ‘proves’ Caplin’s reading or that agreement between two annotation systems is established without an explicit comparison."
+    },
+    {
+      "boundary_id": "boundary_musikk_harmony_dcml_external_noncommercial_resource",
+      "statement": "DCML v2.5 er publisert under CC BY-NC-SA 4.0. History Go har ikke løst kommersiell lisenskompatibilitet og bruker derfor score- og harmonifilene bare gjennom metadata, målesteds-lokatorer og ekstern lenke.",
+      "source_ids": ["prod_src_hentschel_annotated_piano_corpus_2024"],
+      "locators": ["Hentschel et al. 2024, pp. 84–87; DCML Beethoven v2.5 README license, formats and 17-1 overview"],
+      "applies_to_claim_ids": ["claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63"],
+      "release_effect": "Blocks copying, rendering, redistribution or modification of the DCML score or harmony table inside History Go unless rights are separately resolved."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": ["notert_kilde", "lydopptak"],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_beethoven_tempest_op31_2_dcml_v2_5_17_1",
+    "resolved": [
+      "stable versioned identity for Beethoven Op. 31 No. 2 movement 1 as DCML v2.5 score 17-1",
+      "two measure-range windows linking the direct score object to Caplin’s documented analyses",
+      "rights decision fixed to external_link_and_metadata_only because commercial compatibility of CC BY-NC-SA 4.0 is not resolved"
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": ["claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63"],
+    "question_release_ready": true,
+    "release_rule": "Only the explicitly released Caplin m.41–63 claim may drive a question. The DCML object remains external-link-and-metadata-only; model dependence, alternative-analysis and non-validation boundaries must be preserved."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 2,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 2,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 2,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Dette er én stilhistorisk avgrenset tonal pilot i klassisk-romantisk vestlig kunstmusikk. Den dekker ikke modalitet utenfor denne tradisjonen, andre harmoniteorier eller uavhengig reanalyse av Caplins funksjonslesning."
+  }
+}
