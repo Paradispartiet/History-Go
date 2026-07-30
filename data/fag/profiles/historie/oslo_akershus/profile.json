@@ -40,13 +40,13 @@
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
-    "cases_total": 106,
-    "claims_total": 125,
-    "sources_total": 97,
-    "evidence_links_total": 127,
+    "cases_total": 107,
+    "claims_total": 128,
+    "sources_total": 99,
+    "evidence_links_total": 130,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 28,
+    "verified_cases_total": 29,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -3311,6 +3311,40 @@
         "source_policy": "canonical_registry_with_explicit_limitations",
         "spatial_note": "`helsfyr` er et verifisert område-/kollektivanker og brukes ikke som eksakt fabrikkkoordinat."
       }
+    },
+    {
+      "case_id": "case_his_nationaltheatret",
+      "label": "Nationaltheatret",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "nationaltheatret"
+      ],
+      "emne_ids": [
+        "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+        "em_his_okkupasjon_motstand"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "migrated_from": "data/places/production/nationaltheatret.json + data/people/claims/litteratur/oslo/nationaltheatret/axel_otto_normann.claims.json",
+        "migration_date": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_war_collaboration_grayzones_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`nationaltheatret` brukes som anker for hovedbygningen og den stedbundne teaterinstitusjonen; Nationaltheatret stasjon og streikehendelser i andre byer er ikke del av dette stedspunktet."
+      }
     }
   ],
   "emne_case_mappings": [
@@ -5041,7 +5075,8 @@
         "case_his_grini_fangeleir",
         "case_his_hjemmefrontmuseet",
         "case_his_mollergata_19",
-        "case_his_regjeringskvartalet"
+        "case_his_regjeringskvartalet",
+        "case_his_nationaltheatret"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -5077,7 +5112,8 @@
         "case_his_grini_fangeleir",
         "case_his_hjemmefrontmuseet",
         "case_his_regjeringskvartalet",
-        "case_his_victoria_terrasse"
+        "case_his_victoria_terrasse",
+        "case_his_nationaltheatret"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -5840,7 +5876,8 @@
         "case_his_grini_fangeleir",
         "case_his_mollergata_19",
         "case_his_oscarsborg_festning",
-        "case_his_villa_grande"
+        "case_his_villa_grande",
+        "case_his_nationaltheatret"
       ],
       "case_requirement_ids": [
         "case_req_his_actor_conflict",

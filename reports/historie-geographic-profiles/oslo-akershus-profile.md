@@ -11,15 +11,15 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - Universelle emner: **230**
 - Unike emner med profilkoblinger: **201**
 - Mappingrecords: **201**
-- Casekandidater: **106**
+- Casekandidater: **107**
 
 ## Evidensgrunnlag
 
-- Claims: **125**
-- Kilder: **97**
-- Sted–emne–claim–kildekoblinger: **127**
-- Validerte caser: **28**
-- Validerte caser med minst to evidenskoblinger: **28**
+- Claims: **128**
+- Kilder: **99**
+- Sted–emne–claim–kildekoblinger: **130**
+- Validerte caser: **29**
+- Validerte caser med minst to evidenskoblinger: **29**
 
 ## Validerte caser
 
@@ -44,6 +44,7 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_mariakirkeruinen`
 - `case_his_meteorologisk_institutt`
 - `case_his_middelalderbyen_oslo`
+- `case_his_nationaltheatret`
 - `case_his_norsk_folkemuseum`
 - `case_his_nydalen`
 - `case_his_oslo_radhus`
