@@ -1,0 +1,234 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-form-v1-2026-07-30",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "musikalsk_analyse_lyd_struktur",
+  "emne_id": "em_musikk_vit_form_prosess_improvisasjon",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/musikalsk_analyse_lyd_struktur/form_prosess_improvisasjon.json",
+  "research_question": "Hvordan oppstår større forløp gjennom repetisjon, kontrast, utvikling og sanntidsvalg?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_huguet_post_recapitulatory_beethoven_2024",
+      "bibliographic_identity": {
+        "creators": ["Joan Huguet"],
+        "year": 2024,
+        "title": "Post-Recapitulatory Organization in Beethoven’s Early Sonata-Rondo Finales",
+        "publication": "Music Theory Online 30(3)"
+      },
+      "identifiers": {
+        "doi": "10.30535/mto.30.3.2"
+      },
+      "registration_reason": "Åpen fagfellevurdert fulltekst med eksplisitte takt-lokatorer og formfunksjonell analyse av post-rekapitulatorisk organisering i finalen til Beethovens pianosonate op. 10 nr. 3.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://mtosmt.org/issues/mto.24.30.3/mto.24.30.3.huguet.html",
+      "checked_at": "2026-07-30"
+    },
+    {
+      "source_id": "prod_src_hentschel_annotated_piano_corpus_2024",
+      "bibliographic_identity": {
+        "creators": ["Johannes Hentschel", "Yannis Rammos", "Fabian C. Moss", "Markus Neuwirth", "Martin Rohrmeier"],
+        "year": 2024,
+        "title": "An Annotated Corpus of Tonal Piano Music from the Long 19th Century",
+        "publication": "Empirical Musicology Review 18(1), 84–95"
+      },
+      "registration_reason": "Åpen datareport som dokumenterer proveniens, MuseScore-format, annotasjonsworkflow og review av DCML-korpuset som brukes som versjonert direkte notert objekt.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://phaidra.bruckneruni.at/api/object/o%3A3910/download",
+      "checked_at": "2026-07-30"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_huguet_post_recapitulatory_beethoven_2024",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://mtosmt.org/issues/mto.24.30.3/mto.24.30.3.huguet.html",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "paras. [20]–[21]",
+          "section": "Post-Recapitulatory Prototype 1: Immediate A4; Example 5",
+          "supports": "Huguet klassifiserer finalen i Beethoven op. 10 nr. 3 som immediate-A4-prototypen: komplett A4-refreng i mm. 84–92 med tonika-PAC, etterfulgt av en A-basert coda som når ny I:PAC ved m. 106."
+        },
+        {
+          "pages": "para. [21]",
+          "section": "Piano Sonata in D Major, op. 10, no. 3, iv, mm. 84–113",
+          "supports": "Fordi et komplett, tonalt lukket A4 allerede er oppnådd ved m. 92, analyserer Huguet den påfølgende A-baserte enheten som after-the-end/coda i stedet for en ny åpning av sonata-rondoformen."
+        }
+      ],
+      "rights_and_reuse_note": "Publisher-hosted open HTML was reviewed. History Go stores bibliographic identity, paraphrased analytical findings and measure locators only; article figures, notation examples and audio are not redistributed."
+    },
+    {
+      "source_id": "prod_src_hentschel_annotated_piano_corpus_2024",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://phaidra.bruckneruni.at/api/object/o%3A3910/download",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "84–85",
+          "section": "Abstract; Method — Scores",
+          "supports": "Datareporten dokumenterer det annoterte pianokorpusets MuseScore-format, kildekontroll og metadata for digitale scoreobjekter."
+        },
+        {
+          "pages": "85–87",
+          "section": "Annotations; Dataset; Formats and features",
+          "supports": "Annotasjonene er laget og revidert av trente musikkteoretikere gjennom en GitHub-basert reviewprosess; Beethoven-sonatene inngår i det inspeksjonsbare datasettet."
+        }
+      ],
+      "rights_and_reuse_note": "Institutional open PDF was reviewed under CC BY-NC 4.0. It is used only for corpus provenance and review-process verification."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_beethoven_op10_3_dcml_v2_5_07_4",
+      "object_type": "notert_kilde",
+      "title": "Ludwig van Beethoven, Piano Sonata No. 7 in D major, Op. 10 No. 3, movement 4 (Rondo) — DCML v2.5 score 07-4",
+      "persistent_url": "https://github.com/DCMLab/beethoven_piano_sonatas/blob/v2.5/MS3/07-4.mscx",
+      "provenance_source_ids": ["prod_src_hentschel_annotated_piano_corpus_2024"],
+      "version_and_identity": {
+        "dataset_version": "v2.5",
+        "zenodo_doi": "10.5281/zenodo.15292707",
+        "zenodo_record": "https://zenodo.org/records/15292707",
+        "score_path": "MS3/07-4.mscx",
+        "harmony_path": "harmonies/07-4.harmonies.tsv",
+        "score_standard": "2.3.0",
+        "measure_count": 113,
+        "annotation_label_count": 268
+      },
+      "locators": [
+        {
+          "locator": "MS3/07-4.mscx, mm. 84–92",
+          "role": "direct score window for Huguet’s complete A4 refrain and tonic closure"
+        },
+        {
+          "locator": "MS3/07-4.mscx, mm. 93–113",
+          "role": "direct score window for Huguet’s A-based coda and post-closure continuation, including the I:PAC at m. 106"
+        }
+      ],
+      "rights": {
+        "license": "CC BY-NC-SA 4.0",
+        "license_source": "DCMLab/beethoven_piano_sonatas v2.5 README",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": null,
+        "modification_allowed": null,
+        "decision": "History Go does not copy, redistribute, render or modify the DCML score or annotation tables in this production. It stores identity, version, measure locators and persistent external links only."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_form_huguet_op10_3_a4_close_84_106",
+      "statement": "Huguet analyserer finalen i Beethovens pianosonate op. 10 nr. 3 som en immediate-A4-prototype: et komplett A4-refreng i takt 84–92 avsluttes med tonika-PAC, og den påfølgende A-baserte codaen når en ny I:PAC ved takt 106.",
+      "claim_type_id": "score_or_representation_claim",
+      "source_ids": ["prod_src_huguet_post_recapitulatory_beethoven_2024"],
+      "locators": [
+        "Huguet 2024, Example 5 / para. [21], mm. 84–92",
+        "Huguet 2024, para. [21], mm. 93–113; I:PAC m. 106"
+      ],
+      "method_protocol_ids": ["notasjons_kildeanalyse"],
+      "object_scope": {
+        "direct_object_id": "obj_beethoven_op10_3_dcml_v2_5_07_4",
+        "work": "Beethoven, Piano Sonata Op. 10 No. 3, movement 4 (Rondo)",
+        "analytical_model": "Huguet’s post-recapitulatory sonata-rondo prototype model",
+        "score_segments": ["mm. 84–92", "mm. 93–113"]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "A4, coda og after-the-end er formfunksjonelle analytiske kategorier. Taktlokatorene er etterprøvbare, men funksjonsklassifikasjonen tilhører Huguets eksplisitte modell.",
+      "prohibited_inference": "Påstanden kan ikke omskrives som at partituret alene beviser én universell eller modelluavhengig sonata-rondo-segmentering.",
+      "reproducibility": {
+        "score_identity_status": "versioned_external_score_verified",
+        "analysis_status": "publisher_fulltext_and_measure_locators_reviewed",
+        "independent_reanalysis": false
+      }
+    },
+    {
+      "claim_id": "claim_musikk_form_huguet_op10_3_after_the_end_after_92",
+      "statement": "Fordi Huguets analyse allerede har et komplett, tonalt lukket A4-refreng ved takt 92, klassifiserer han den påfølgende A-baserte enheten som en coda med after-the-end-funksjon som utvikler refrengmaterialet uten å åpne sonata-rondoformen på nytt.",
+      "claim_type_id": "score_or_representation_claim",
+      "source_ids": ["prod_src_huguet_post_recapitulatory_beethoven_2024"],
+      "locators": [
+        "Huguet 2024, para. [21], closure at m. 92",
+        "Huguet 2024, para. [21], post-m. 92 A-based coda through m. 113"
+      ],
+      "method_protocol_ids": ["notasjons_kildeanalyse"],
+      "object_scope": {
+        "direct_object_id": "obj_beethoven_op10_3_dcml_v2_5_07_4",
+        "work": "Beethoven, Piano Sonata Op. 10 No. 3, movement 4 (Rondo)",
+        "analytical_model": "Huguet’s distinction between A4 refrain and sonata-rondo coda",
+        "score_segments": ["mm. 84–92", "mm. 93–113"]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Claimet er en modellbasert funksjonsfortolkning av forholdet mellom lukning og post-rekapitulatorisk fortsettelse, ikke bare en deskriptiv opptelling av tilbakevendende motivmateriale.",
+      "prohibited_inference": "At A-materiale vender tilbake etter takt 92 kan ikke alene brukes som bevis for at enheten er en ny refrengseksjon; klassifikasjonen må knyttes til de eksplisitte formkriteriene.",
+      "reproducibility": {
+        "score_identity_status": "versioned_external_score_verified",
+        "analysis_status": "publisher_fulltext_argument_and_measure_locators_reviewed",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_form_huguet_function_is_model_dependent",
+      "statement": "Huguets kategorier A4, expansion section, coda og after-the-end inngår i en eksplisitt formfunksjonell modell for sonata-rondoens post-rekapitulatoriske rom.",
+      "source_ids": ["prod_src_huguet_post_recapitulatory_beethoven_2024"],
+      "locators": ["Huguet 2024, paras. [15]–[21]"],
+      "applies_to_claim_ids": [
+        "claim_musikk_form_huguet_op10_3_a4_close_84_106",
+        "claim_musikk_form_huguet_op10_3_after_the_end_after_92"
+      ],
+      "release_effect": "Blocks wording that presents the formal-function labels as raw or model-free properties of the score."
+    },
+    {
+      "boundary_id": "boundary_musikk_form_dcml_is_object_not_form_validation",
+      "statement": "DCML 07-4 gir et versjonert, inspeksjonsbart notert objekt. History Go behandler ikke DCMLs metadata eller harmoniannotasjoner som uavhengig validering av Huguets formfunksjonelle segmentering.",
+      "source_ids": ["prod_src_huguet_post_recapitulatory_beethoven_2024", "prod_src_hentschel_annotated_piano_corpus_2024"],
+      "locators": ["Huguet 2024, Example 5 / para. [21]; Hentschel et al. 2024, pp. 85–87"],
+      "applies_to_claim_ids": [
+        "claim_musikk_form_huguet_op10_3_a4_close_84_106",
+        "claim_musikk_form_huguet_op10_3_after_the_end_after_92"
+      ],
+      "release_effect": "Blocks claims that the direct object itself proves the selected formal model or excludes competing segmentations."
+    },
+    {
+      "boundary_id": "boundary_musikk_form_dcml_external_noncommercial_resource",
+      "statement": "DCML v2.5 er publisert under CC BY-NC-SA 4.0. History Go har ikke løst kommersiell lisenskompatibilitet og bruker derfor objektet bare gjennom metadata, målesteds-lokatorer og ekstern lenke.",
+      "source_ids": ["prod_src_hentschel_annotated_piano_corpus_2024"],
+      "locators": ["Hentschel et al. 2024, pp. 84–87; DCML Beethoven v2.5 metadata row 07-4 and README license"],
+      "applies_to_claim_ids": ["claim_musikk_form_huguet_op10_3_a4_close_84_106"],
+      "release_effect": "Blocks copying, rendering, redistribution or modification of the DCML score inside History Go unless rights are separately resolved."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": ["lydopptak", "liveframføring", "notert_kilde"],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_beethoven_op10_3_dcml_v2_5_07_4",
+    "resolved": [
+      "stable versioned identity for Beethoven Op. 10 No. 3 movement 4 as DCML v2.5 score 07-4",
+      "two score windows linking the direct object to Huguet’s documented immediate-A4 and coda analysis",
+      "rights decision fixed to external_link_and_metadata_only because commercial compatibility of CC BY-NC-SA 4.0 is not resolved"
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": ["claim_musikk_form_huguet_op10_3_a4_close_84_106"],
+    "question_release_ready": true,
+    "release_rule": "Only the explicitly released Huguet op. 10 no. 3 claim may drive a question. Model dependence, alternative segmentation and external-only object rights must be preserved."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 2,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 2,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 2,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Denne produksjonen verifiserer form og prosess i ett tidlig Beethoven-sonata-rondo-eksempel. Den dokumenterer ikke improvisasjonsbeslutninger, gruppeinteraksjon eller andre repertoarers formbegreper; slike spørsmål forblir blokkert til egne objekter og aktørnære kilder er verifisert."
+  }
+}
