@@ -24,9 +24,11 @@ const original = fs.readFileSync(absolute, 'utf8');
 const pkg = JSON.parse(original);
 if (pkg.categoryId !== 'musikk' || pkg.subject_id !== 'musikk') throw new Error('Uventet subject-pathway-pakke');
 const sourceById = new Map(list(pkg.sources).map((source) => [clean(source.id), source]));
+if (!list(pkg.sets).length) throw new Error('Musikk pathway må ha minst ett sett');
 
 let questionCount = 0;
-for (const set of list(pkg.sets)) {
+for (const [setIndex, set] of list(pkg.sets).entries()) {
+  if (list(set.questions).length !== 5) throw new Error(`${set.set_id || `sett_${setIndex + 1}`}: forventet 5 spørsmål`);
   for (const question of list(set.questions)) {
     questionCount += 1;
     const concepts = list(question.core_concepts).map(clean).filter(Boolean);
@@ -51,17 +53,18 @@ for (const set of list(pkg.sets)) {
     });
   }
 }
-if (questionCount !== 5) throw new Error(`Forventet 5 pilotspørsmål, fikk ${questionCount}`);
+const expectedQuestionCount = list(pkg.sets).length * 5;
+if (questionCount !== expectedQuestionCount) throw new Error(`Forventet ${expectedQuestionCount} pathway-spørsmål, fikk ${questionCount}`);
 
 const next = jsonText(pkg);
 if (next !== original) {
   if (WRITE) {
     fs.writeFileSync(absolute, next, 'utf8');
-    console.log(`Musikk pathway canonicalisert for ${questionCount} spørsmål.`);
+    console.log(`Musikk pathway canonicalisert for ${pkg.sets.length} sett / ${questionCount} spørsmål.`);
   } else {
     console.error('Musikk pathway er utdatert. Kjør node tools/build-musikk-subject-pathway-v1.mjs --write');
     process.exitCode = 1;
   }
 } else {
-  console.log(`Musikk pathway canonicalisering OK for ${questionCount} spørsmål.`);
+  console.log(`Musikk pathway canonicalisering OK for ${pkg.sets.length} sett / ${questionCount} spørsmål.`);
 }
