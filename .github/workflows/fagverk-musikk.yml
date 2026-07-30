@@ -1,0 +1,56 @@
+name: Fagverk Musikk
+
+on:
+  pull_request:
+    paths:
+      - 'fagverk.html'
+      - 'data/categories/category_contract.json'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fag/musikk/**'
+      - 'data/badges/musikk.json'
+      - 'data/fagverk/**'
+      - 'js/fagverk-subject-core.js'
+      - 'js/fagverk-subject-model.js'
+      - 'js/fagverk.js'
+      - 'scripts/audit-fagverk-subject-inventory.mjs'
+      - 'scripts/audit-fagverk-general-engine.mjs'
+      - 'scripts/audit-fagverk-musikk.mjs'
+      - 'tools/validate-musikk-emner-fagdybde-v2.mjs'
+      - 'tools/validate-musikk-source-dossiers-v1.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - 'tests/fagverk-general-engine.test.mjs'
+      - 'tests/fagverk-musikk.test.mjs'
+      - 'reports/fagverk/**'
+      - 'reports/musikk-canonical-migration/**'
+      - '.github/workflows/fagverk-musikk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate materialized Musikk subject
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate syntax and deterministic reports
+        run: |
+          node --check js/fagverk-subject-model.js
+          node --check scripts/audit-fagverk-general-engine.mjs
+          node --check scripts/audit-fagverk-musikk.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-musikk.mjs
+      - name: Validate Musikk canonical scientific package
+        run: |
+          node tools/validate-musikk-emner-fagdybde-v2.mjs
+          node tools/validate-musikk-source-dossiers-v1.mjs
+      - name: Validate Fagverk contracts
+        run: |
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-musikk.test.mjs
