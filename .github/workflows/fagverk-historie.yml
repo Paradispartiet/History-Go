@@ -18,84 +18,35 @@ on:
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-historie.mjs'
       - 'tools/audit-historie-universal-coverage.mjs'
-      - 'tools/materialize-history-environment-v1.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-historie.test.mjs'
-      - 'tests/history-environment-audit.test.mjs'
       - 'reports/fagverk/**'
       - 'reports/historie-universal-coverage/**'
       - '.github/workflows/fagverk-historie.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  materialize:
-    name: Materialize and validate Miljø/klima evidence
+  validate:
+    name: Validate materialized Historie subject
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: agent/history-environment-evidence-v1
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Materialize production batch
-        run: node tools/materialize-history-environment-v1.mjs
-      - name: Generate deterministic reports and refresh intentional freeze hashes
+      - name: Validate syntax and deterministic reports
         run: |
-          set -euo pipefail
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const file = 'data/fag/historie/theory_evidence_historie_canonical_v1.json';
-          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-          const ids = new Set([
-            'theory_his_miljo_klima_skog_vann_og_naturressurser',
-            'theory_his_miljo_klima_forurensning_og_urban_miljohistorie',
-            'theory_his_miljo_klima_naturforvaltning_og_miljobevegelse',
-            'theory_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet',
-            'theory_his_miljo_klima_urban_natur_helse_og_miljoulikhet'
-          ]);
-          for (const entry of data.entries) {
-            if (ids.has(entry.theory_id) && !entry.scope_note.includes('ikke universelt bevis')) {
-              entry.scope_note += ' Dette pilotgrunnlaget er ikke universelt bevis.';
-            }
-          }
-          fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
-          NODE
-          node tools/validate-historie-profile-evidence.mjs
-          node tools/validate-historie-theory-evidence.mjs
-          node tools/audit-historie-geographic-profile.mjs
-          node tools/audit-historie-universal-coverage.mjs
+          node --check scripts/audit-fagverk-historie.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
-          node scripts/audit-fagverk-historie.mjs --write-report
-          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze --reason="V5.8 freeze refreshed after Miljø/klima V6 evidence batch; canonical claims, sources, place evidence and affected profiles expanded while frozen V5.8 theory definitions remain unchanged."
-      - name: Validate all affected contracts
+          node scripts/audit-fagverk-historie.mjs
+          node tools/audit-historie-universal-coverage.mjs
+      - name: Validate Fagverk and Historie contracts
         run: |
-          set -euo pipefail
-          node tools/validate-historie-profile-evidence.mjs
-          node tools/validate-historie-theory-evidence.mjs --check
-          node tools/audit-historie-geographic-profile.mjs --check
-          node tools/audit-historie-universal-coverage.mjs --check
-          node tools/audit-historie-v5-5-quality-depth.mjs
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-historie.test.mjs
-      - name: Verify clean production shape and push
-        shell: bash
-        run: |
-          set -euo pipefail
-          test ! -e tools/materialize-history-environment-v1.mjs
-          test ! -e tests/history-environment-audit.test.mjs
-          ! grep -q 'materialize-history-environment-v1' .github/workflows/fagverk-historie.yml
-          ! grep -q 'history-environment-audit' .github/workflows/fagverk-historie.yml
-          git status --short
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'Bygg Miljø/klima-evidens V1'
-          git push origin HEAD:agent/history-environment-evidence-v1
