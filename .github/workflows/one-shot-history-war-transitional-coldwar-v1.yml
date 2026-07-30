@@ -1,0 +1,462 @@
+name: One-shot History war transitional justice and Cold War V1
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.ref == 'agent/history-war-transitional-coldwar-evidence-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Materialize canonical evidence batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const write = (p, value) => { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, `${JSON.stringify(value, null, 2)}\n`); };
+          const sorted = (xs) => [...new Set(xs)].sort((a, b) => String(a).localeCompare(String(b), 'nb'));
+          const addUnique = (arr, key, item) => { if (!arr.some((x) => x[key] === item[key])) arr.push(item); };
+          const unionInto = (obj, key, values) => { obj[key] = sorted([...(obj[key] || []), ...values]); };
+
+          const GEO = 'geo_no_oslo_akershus';
+          const PROFILE = 'profile_historie_no_oslo_akershus';
+          const BATCH = 'history_war_transitional_coldwar_evidence_v1';
+          const TRANS_EMNE = 'em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet';
+          const LEGACY_RETT = 'em_his_rettsoppgjor_etterkrig';
+          const GENERAL_RETT = 'em_his_rettsoppgjor';
+          const COMMON_OCC = 'em_his_okkupasjon_motstand';
+          const MOB_EMNE = 'em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse';
+          const LOG_EMNE = 'em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur';
+          const CONTROL_EMNE = 'em_his_kontroll_overvakning';
+          const STATE_EMNE = 'em_his_stat_institusjoner';
+          const DECISION_EMNE = 'em_his_beslutningskjeder_kompetanse_ansvar';
+
+          const claimsPath = 'data/fag/historie/claims_historie_canonical_v1.json';
+          const sourcesPath = 'data/fag/historie/sources_historie_canonical_v1.json';
+          const evidencePath = 'data/fag/historie/place_evidence_historie_v1.json';
+          const theoryPath = 'data/fag/historie/theory_evidence_historie_canonical_v1.json';
+          const profilePath = 'data/fag/profiles/historie/oslo_akershus/profile.json';
+          const dossierPath = 'data/fag/historie/source_dossiers/war_transitional_coldwar_v1.json';
+
+          const claimsFile = read(claimsPath);
+          const sourcesFile = read(sourcesPath);
+          const evidenceFile = read(evidencePath);
+          const theoryFile = read(theoryPath);
+          const profile = read(profilePath);
+
+          const TRANS_THEORY = 'theory_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet';
+          const COLD_THEORY = 'theory_his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat';
+          if (theoryFile.entries.length !== 71) throw new Error(`Expected 71 theory-evidence entries, got ${theoryFile.entries.length}`);
+          if (theoryFile.entries.some((x) => x.theory_id === TRANS_THEORY)) throw new Error('Transitional-justice theory already materialized');
+          if (theoryFile.entries.some((x) => x.theory_id === COLD_THEORY)) throw new Error('Cold-War theory already materialized');
+
+          const CASE_HOY = 'case_his_hoyesteretts_hus';
+          const CASE_GRI = 'case_his_grini_fangeleir';
+          const CASE_STO = 'case_his_stortinget';
+          const CASE_AKE = 'case_his_akershus_festning';
+          const hoy = profile.cases.find((x) => x.case_id === CASE_HOY);
+          const gri = profile.cases.find((x) => x.case_id === CASE_GRI);
+          const sto = profile.cases.find((x) => x.case_id === CASE_STO);
+          const ake = profile.cases.find((x) => x.case_id === CASE_AKE);
+          if (!hoy || hoy.evidence_status !== 'unverified') throw new Error(`Expected unverified Høyesterett case, got ${hoy?.evidence_status}`);
+          for (const [name, c] of [['Grini', gri], ['Stortinget', sto], ['Akershus', ake]]) {
+            if (!c || c.evidence_status !== 'claim_source_linked') throw new Error(`Expected validated ${name} case, got ${c?.evidence_status}`);
+          }
+
+          const sourceDefs = [
+            {
+              source_id: 'src_his_hoyesterett_house_history',
+              title: 'Høgsteretts hus', publisher: 'Norges Høyesterett / domstol.no', source_type: 'official_judicial_building_history',
+              url: 'https://www.domstol.no/no/hoyesterett/om/hoyesteretts-hus/', language: 'nb', geography_ids: [GEO], temporal_scope: { from: 1903, to: 1996 },
+              limitations: [
+                'Bygningshistorikken dokumenterer rettsinstansenes fysiske plassering og husets funksjon, men ikke innholdet eller rettsgrunnlaget i konkrete landssviksaker.',
+                'At Høyesterett hadde rettssal i bygningen sier ikke i seg selv hvilke saker som ble behandlet eller hvilke rettslige vurderinger som ble lagt til grunn.'
+              ],
+              quality: { tier: 'A', rationale: 'Offisiell domstolskilde som dokumenterer Justisbygningens funksjon for byrett, lagmannsrett og Høyesterett og Høyesteretts bruk fram til 1996.' }
+            },
+            {
+              source_id: 'src_his_hoyesterett_postwar_landssvik',
+              title: 'Høyesteretts 200-årsjubileum 30. juni 2015', publisher: 'Norges Høyesterett / domstol.no', source_type: 'official_judicial_history',
+              url: 'https://www.domstol.no/no/hoyesterett/om/publikasjoner/artikler/schei/norges-hoyesteretts-200-ars-jubileum-30.-juni-2015', language: 'nb', geography_ids: [GEO], temporal_scope: { from: 1945, to: 1950 },
+              limitations: [
+                'Jubileumstalen dokumenterer gjenåpningen og landssvikoppgjørets tyngde i de første etterkrigsårene, men er en retrospektiv institusjonshistorisk framstilling og ikke en sak-for-sak-domssamling.',
+                'At landssviksakene preget Høyesterett sier ikke alene hvordan hver sak ble avgjort, hvilke bevis som forelå eller om alle deler av oppgjørets rettsgrunnlag var ukontroversielle.'
+              ],
+              quality: { tier: 'A', rationale: 'Offisiell tale av høyesterettsjustitiarius som eksplisitt daterer Høyesteretts gjenåpning 14. mai 1945 og beskriver de første etterkrigsårene som preget av landssvikoppgjøret.' }
+            },
+            {
+              source_id: 'src_his_snl_landssvikoppgjor_legal_basis',
+              title: 'landssvikoppgjøret', publisher: 'Store norske leksikon', source_type: 'reference_encyclopedia',
+              url: 'https://snl.no/landssvikoppgj%C3%B8ret', language: 'nb', geography_ids: [GEO], temporal_scope: { from: 1944, to: 1962 },
+              limitations: [
+                'Leksikonartikkelen sammenfatter en omfattende rettshistorisk debatt og kan ikke erstatte selve landssvikanordningen, dommene, stortingsdokumentet fra 1962 eller den juridiske faglitteraturen i spørsmål om tilbakevirkning og straffeutmåling.',
+                'At rettsgrunnlaget ble diskutert og at oppgjøret kunne oppleves skjevt dokumenterer kontrovers, ikke at hele oppgjøret var rettsstridig eller illegitimt.'
+              ],
+              quality: { tier: 'B', rationale: 'Redigert faglig oppslagsverk med eksplisitt behandling av landssvikanordningen, tilbakevirkningsdebatten, ulik behandling og den offentlige 1955–1962-granskingen.' }
+            },
+            {
+              source_id: 'src_his_mia_grini_ilebu_postwar',
+              title: 'Om Grini fangeleir', publisher: 'Grinimuseet / MiA – Museene i Akershus', source_type: 'official_museum_history',
+              url: 'https://mia.no/grinimuseet/om-grini-fangeleir', language: 'nb', geography_ids: [GEO], temporal_scope: { from: 1945, to: 1951 },
+              limitations: [
+                'Museets oversikt dokumenterer overtakelsen, navneskiftet til Ilebu og bruk for landssvikfanger fram til 1951, men er ikke et komplett register over de innsattes rettsstatus, dommer, soningstid eller behandling.',
+                'Institusjonell gjenbruk av Grini som Ilebu dokumenterer kontinuitet i anlegget, men betyr ikke at okkupasjonstidens fangeregime og etterkrigstidens rettslige ordning var identiske.'
+              ],
+              quality: { tier: 'A', rationale: 'Offisiell museumskilde som eksplisitt dokumenterer at Grini etter frigjøringen ble overtatt av fengselsvesenet, omdøpt til Ilebu og brukt for landssvikfanger til 1951.' }
+            },
+            {
+              source_id: 'src_his_storting_jewish_property_settlement_1998_99',
+              title: 'Innst. S. nr. 108 (1998–99) – den økonomiske gjennomføringen av oppgjøret', publisher: 'Stortinget', source_type: 'official_parliamentary_record',
+              url: 'https://www.stortinget.no/no/Saker-og-publikasjoner/Publikasjoner/Innstillinger/Stortinget/1998-1999/inns-199899-108/', language: 'nb', geography_ids: [GEO], temporal_scope: { from: 1998, to: 1999 },
+              limitations: [
+                'Innstillingen dokumenterer den parlamentariske utformingen av et senere økonomisk og moralsk oppgjør, men kan ikke alene måle om kompensasjonen tilsvarte de historiske tapene eller reparerte alle rettighetsbrudd.',
+                'Standardiserte og kollektive beløp er politisk vedtatte oppreisningsmekanismer og må ikke tolkes som markedsverdi på beslag, tapte liv eller forfølgelse.'
+              ],
+              quality: { tier: 'A', rationale: 'Primær parlamentarisk kilde til det kollektive oppgjøret på 250 millioner kroner og den individuelle erkjentlighetssummen på inntil 200 000 kroner.' }
+            },
+            {
+              source_id: 'src_his_storting_nato_1949',
+              title: 'Om Stortingets samtykke til å inngå Atlanterhavspakten', publisher: 'Stortinget', source_type: 'official_parliamentary_record',
+              url: 'https://www.stortinget.no/no/Saker-og-publikasjoner/Stortingsforhandlinger/Saksside/?did=DIVL9388&mtid=7&pid=1945-1954&vt=a', language: 'nb', geography_ids: [GEO], temporal_scope: { from: 1949, to: 1949 },
+              limitations: [
+                'Sakssiden dokumenterer Stortingets formelle behandling og samtykke til Atlanterhavspakten, men gir ikke i seg selv et representativt mål på befolkningens trusseloppfatning eller hele den utenrikspolitiske argumentasjonen.',
+                'Alliansevalget dokumenterer en sikkerhetspolitisk institusjonell beslutning; det er ikke alene bevis for bestemte etterretnings-, overvåkings- eller beredskapstiltak senere i den kalde krigen.'
+              ],
+              quality: { tier: 'A', rationale: 'Primær parlamentarisk saksside for Stortingets samtykke til traktaten for det nord-atlantiske område i 1949.' }
+            },
+            {
+              source_id: 'src_his_snl_harens_overkommando_postwar',
+              title: 'Hærens overkommando', publisher: 'Store norske leksikon', source_type: 'reference_encyclopedia',
+              url: 'https://snl.no/H%C3%A6rens_overkommando', language: 'nb', geography_ids: [GEO], temporal_scope: { from: 1945, to: 1970 },
+              limitations: [
+                'Artikkelen dokumenterer kommandostruktur, lokalisering og formelle oppgaver, men gir ikke et komplett bilde av konkrete mobiliseringsplaner, trusselvurderinger, øvelser, ressurser eller sivil beredskap.',
+                'At mobilisering og krigsoperasjoner ble planlagt ved Akershus dokumenterer institusjonalisert beredskap, ikke at krig ble vurdert som umiddelbart forestående til enhver tid.'
+              ],
+              quality: { tier: 'B', rationale: 'Redigert faglig oppslagsverk som eksplisitt dokumenterer etterkrigstidens Hærens overkommando, oppgaven med mobiliserings- og operasjonsplanlegging og lokaliseringen på Akershus festning.' }
+            },
+            {
+              source_id: 'src_his_storting_lund_commission',
+              title: 'Lund-kommisjonen', publisher: 'Stortinget', source_type: 'official_parliamentary_history_and_inquiry',
+              url: 'https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/granskingskommisjoner/lund-kommisjonen/', language: 'nn', geography_ids: [GEO], temporal_scope: { from: 1945, to: 2000 },
+              limitations: [
+                'Stortingets historieside sammenfatter kommisjonens funn og etterfølgende tiltak; full analyse av enkeltsaker krever kommisjonsrapporten, tjenestearkiver og kilder fra overvåkede personer og miljøer.',
+                'At deler av overvåkingen var ulovlig og politisk motivert innebærer ikke at all etterretning, sikkerhetstjeneste eller overvåking i etterkrigstiden var ulovlig eller hadde samme formål.'
+              ],
+              quality: { tier: 'A', rationale: 'Offisiell Stortingskilde som dokumenterer mandatet fra 1994, rapporten i 1996, funn om ulovlig overvåking og Stortingets 1997-beslutning om innsyn og erstatning.' }
+            }
+          ];
+          for (const s of sourceDefs) {
+            s.provenance = { repository_source: dossierPath, extracted_from: [`sources.${s.source_id}`], accessed_at: '2026-07-30' };
+            s.dating = { published_at: null, updated_at: null, accessed_at: '2026-07-30' };
+            addUnique(sourcesFile.sources, 'source_id', s);
+          }
+
+          const claimDefs = [
+            {
+              claim_id: 'claim_his_hoyesterett_reconvened_free_courts_1945',
+              statement: 'Høyesterett kunne tre sammen igjen 14. mai 1945 etter okkupasjonen; den offisielle jubileumshistorikken beskriver dette som gjenopprettelsen av frie og uavhengige domstoler i et fritt Norge.',
+              claim_type: 'postwar_judicial_restoration',
+              scope: { geography_ids: [GEO], place_ids: ['hoyesteretts_hus'], case_ids: [CASE_HOY], temporal: { from: '1945-05-14', to: '1945-05-14' } },
+              emne_ids: [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT, STATE_EMNE], source_ids: ['src_his_hoyesterett_house_history', 'src_his_hoyesterett_postwar_landssvik'], confidence: 'high',
+              uncertainty: { level: 'low', note: 'Dato og institusjonell gjenåpning er eksplisitt dokumentert. Formuleringen om frie domstoler er Høyesteretts egen retrospektive institusjonshistoriske karakteristikk.' },
+              alternative_interpretations: ['Gjenåpningen markerer et tydelig konstitusjonelt brudd med okkupasjonsregimet, men sier ikke i seg selv hvordan alle etterkrigstidens rettslige dilemmaer ble løst.']
+            },
+            {
+              claim_id: 'claim_his_hoyesterett_landssvik_caseload_postwar',
+              statement: 'De første etterkrigsårene var Høyesteretts arbeid sterkt preget av landssvikoppgjøret, med store og tunge saker og en meget stor saksmengde.',
+              claim_type: 'postwar_treason_adjudication_implementation',
+              scope: { geography_ids: [GEO], place_ids: ['hoyesteretts_hus'], case_ids: [CASE_HOY], temporal: { from: 1945, to: 1950 } },
+              emne_ids: [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT], source_ids: ['src_his_hoyesterett_house_history', 'src_his_hoyesterett_postwar_landssvik'], confidence: 'high',
+              uncertainty: { level: 'medium', note: 'Kilden beskriver landssvikoppgjørets institusjonelle tyngde, men angir ikke i denne teksten nøyaktig antall Høyesterettssaker, utfall eller fordeling på lovgrunnlag.' },
+              alternative_interpretations: ['Saksmengden dokumenterer rettsoppgjørets gjennomføring i domstolssystemet, men er ikke i seg selv et mål på oppgjørets rettferdighet eller legitimitet.']
+            },
+            {
+              claim_id: 'claim_his_storting_landssvik_legal_basis_review_1955_1962',
+              statement: 'Landssvikoppgjørets rettslige grunnlag ble senere diskutert, særlig om landssvikanordningen av 15. desember 1944 i realiteten virket tilbake; et offentlig utvalg nedsatt i 1955 leverte i 1962 en omfattende innstilling om rettsoppgjøret som ble trykt som stortingsdokument.',
+              claim_type: 'postwar_legal_basis_review_and_legitimacy_debate',
+              scope: { geography_ids: [GEO], place_ids: ['stortinget'], case_ids: [CASE_STO], temporal: { from: 1955, to: 1962 } },
+              emne_ids: [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT, DECISION_EMNE], source_ids: ['src_his_snl_landssvikoppgjor_legal_basis'], confidence: 'high',
+              uncertainty: { level: 'medium', note: 'SNL dokumenterer debatten og stortingsdokumentet, men claimet avgjør ikke selv om anordningen juridisk sett var grunnlovsstridig eller hvilken vekt de ulike innvendingene bør ha.' },
+              alternative_interpretations: ['Den senere granskingen kan forstås både som legitimerende etterkontroll og som dokumentasjon av reelle rettsstatlige kontroverser; eksistensen av debatt beviser verken full rettsstridighet eller full uproblematiskhet.']
+            },
+            {
+              claim_id: 'claim_his_grini_ilebu_landssvik_prison_1945_1951',
+              statement: 'Etter frigjøringen ble Grini overtatt av fengselsvesenet, fikk navnet Ilebu fengsel og ble brukt for landssvikfanger fram til 1951.',
+              claim_type: 'postwar_detention_institutional_reuse',
+              scope: { geography_ids: [GEO], place_ids: ['grini_fangeleir'], case_ids: [CASE_GRI], temporal: { from: 1945, to: 1951 } },
+              emne_ids: [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT], source_ids: ['src_his_mia_grini_ilebu_postwar'], confidence: 'high',
+              uncertainty: { level: 'low', note: 'Institusjonell overtakelse, navneskift og bruk til 1951 er eksplisitt dokumentert; kilden spesifiserer ikke i denne oversikten hver innsattes rettsstatus eller behandlingsforløp.' },
+              alternative_interpretations: ['Den fysiske gjenbruken viser institusjonell kontinuitet i anlegget, men etterkrigsfangenskapet må analyseres under et annet retts- og myndighetsregime enn den tyske okkupasjonsleiren.']
+            },
+            {
+              claim_id: 'claim_his_storting_jewish_property_redress_1998_1999',
+              statement: 'I oppgjøret etter den økonomiske likvidasjonen av norske jøder foreslo Stortingets innstilling i 1998–99 250 millioner kroner til et kollektivt oppgjør og en individuell erkjentlighetssum på inntil 200 000 kroner for personer rammet av antijødiske tiltak, med ordninger også for ektefeller og livsarvinger.',
+              claim_type: 'later_restitution_collective_and_individual_redress',
+              scope: { geography_ids: [GEO], place_ids: ['stortinget'], case_ids: [CASE_STO], temporal: { from: 1998, to: 1999 } },
+              emne_ids: [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT, STATE_EMNE], source_ids: ['src_his_storting_jewish_property_settlement_1998_99'], confidence: 'high',
+              uncertainty: { level: 'low', note: 'Beløp, målgrupper og saksbehandlingsmodell er eksplisitt dokumentert i innstillingen; claimet sier ikke at ordningen fullt ut kompenserte økonomiske tap, tapte liv eller alle former for forfølgelse.' },
+              alternative_interpretations: ['Oppgjøret kan analyseres som senere reparativ rettferdighet og offentlig erkjennelse, men standardiserte beløp er politiske oppreisningsmekanismer og ikke et mål på den totale historiske skaden.']
+            },
+            {
+              claim_id: 'claim_his_storting_nato_treaty_consent_1949',
+              statement: 'I 1949 behandlet Stortinget og ga samtykke til at Norge inngikk traktaten for det nord-atlantiske område, Atlanterhavspakten.',
+              claim_type: 'cold_war_alliance_parliamentary_choice',
+              scope: { geography_ids: [GEO], place_ids: ['stortinget'], case_ids: [CASE_STO], temporal: { from: 1949, to: 1949 } },
+              emne_ids: [MOB_EMNE, STATE_EMNE, DECISION_EMNE], source_ids: ['src_his_storting_nato_1949'], confidence: 'high',
+              uncertainty: { level: 'low', note: 'Den formelle stortingsbehandlingen er direkte dokumentert; claimet måler ikke hvor ensartet trusseloppfatningen var i partiene eller befolkningen.' },
+              alternative_interpretations: ['NATO-valget kan forstås som strategisk allianseforankring i en ny sikkerhetspolitisk orden, men beslutningen må ikke i seg selv brukes som bevis for konkrete overvåkingspraksiser eller alle senere beredskapstiltak.']
+            },
+            {
+              claim_id: 'claim_his_akershus_postwar_mobilization_operations_planning_1947_1970',
+              statement: 'Etter 1947 hadde forsvarsgrenenes sjefer operativ kommandomyndighet over egne styrker; Hærens overkommando skulle planlegge mobilisering og operasjoner i krig, og de grenvise overkommandoene og Forsvarsstaben var lokalisert på Akershus festning fram mot reorganiseringen rundt 1970.',
+              claim_type: 'cold_war_military_preparedness_institutionalization',
+              scope: { geography_ids: [GEO], place_ids: ['akershus_festning'], case_ids: [CASE_AKE], temporal: { from: 1947, to: 1970 } },
+              emne_ids: [MOB_EMNE, LOG_EMNE, STATE_EMNE, DECISION_EMNE], source_ids: ['src_his_snl_harens_overkommando_postwar'], confidence: 'high',
+              uncertainty: { level: 'medium', note: 'Kilden dokumenterer formell struktur, oppgaver og lokalisering, men ikke de konkrete operative planenes innhold, ressurser, øvelsesfrekvens eller samtidige trusselanslag.' },
+              alternative_interpretations: ['Planleggingsansvaret viser varig institusjonalisert beredskap, men er ikke et direkte mål på hvor sannsynlig myndighetene vurderte krig i hvert enkelt år.']
+            },
+            {
+              claim_id: 'claim_his_storting_lund_illegal_surveillance_oversight_redress_1994_2000',
+              statement: 'Stortinget oppnevnte Lund-kommisjonen i 1994 for å granske påstander om ulovlig overvåking siden 1945; rapporten i 1996 konkluderte med at deler av overvåkingen hadde vært ulovlig, og Stortingets behandling i 1997 førte til begrenset arkivinnsyn og erstatning på inntil 100 000 kroner for ulovlig overvåking, med ordningen satt i kraft fra 2000.',
+              claim_type: 'cold_war_surveillance_democratic_oversight_and_redress',
+              scope: { geography_ids: [GEO], place_ids: ['stortinget'], case_ids: [CASE_STO], temporal: { from: 1994, to: 2000 } },
+              emne_ids: [CONTROL_EMNE, STATE_EMNE, DECISION_EMNE], source_ids: ['src_his_storting_lund_commission'], confidence: 'high',
+              uncertainty: { level: 'medium', note: 'Stortingets historieside sammenfatter kommisjonens hovedfunn og oppfølging; claimet gjør ikke alle former for etterretning, sikkerhetstjeneste eller overvåking fra 1945 til 1990-årene til ulovlig praksis.' },
+              alternative_interpretations: ['Lund-forløpet viser både dokumentert myndighetsoverskridelse og senere demokratisk kontroll/reparasjon; det kan derfor ikke reduseres til at hele sikkerhetsapparatet enten var legitimt eller illegitimt som én samlet kategori.']
+            }
+          ];
+          for (const c of claimDefs) addUnique(claimsFile.claims, 'claim_id', c);
+
+          const reqs = ['case_req_his_temporal_sequence', 'case_req_his_actor_conflict', 'case_req_his_source_comparison', 'case_req_his_comparative_scale'];
+          hoy.status = 'pilot_validated';
+          hoy.evidence_status = 'claim_source_linked';
+          hoy.place_ids = ['hoyesteretts_hus'];
+          unionInto(hoy, 'emne_ids', [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT, STATE_EMNE]);
+          unionInto(hoy, 'case_requirement_ids', reqs);
+          hoy.validation = {
+            status: 'validated_case', batch_id: BATCH, validated_at: '2026-07-30', minimum_evidence_links: 2,
+            source_policy: 'canonical_registry_with_explicit_limitations',
+            spatial_note: '`hoyesteretts_hus` er den historiske Justisbygningen der Høyesterett hadde sin rettssal i tredje etasje fra 1903 til huset ble eksklusivt Høyesterett i 1996; caset forankrer 1945-gjenåpningen og landssvikbehandlingen i den faktiske domstolsbygningen.'
+          };
+          unionInto(gri, 'emne_ids', [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT]);
+          unionInto(sto, 'emne_ids', [TRANS_EMNE, LEGACY_RETT, GENERAL_RETT, MOB_EMNE, CONTROL_EMNE, STATE_EMNE, DECISION_EMNE]);
+          unionInto(ake, 'emne_ids', [MOB_EMNE, LOG_EMNE, STATE_EMNE, DECISION_EMNE]);
+          for (const c of [gri, sto, ake]) {
+            c.validation = c.validation || { status: 'validated_case', batch_id: BATCH, validated_at: '2026-07-30', minimum_evidence_links: 2, source_policy: 'canonical_registry_with_explicit_limitations' };
+            c.validation.additional_batch_ids = sorted([...(c.validation.additional_batch_ids || []), BATCH]);
+            c.validation.scope_expanded_at = '2026-07-30';
+          }
+
+          const addToMapping = (emneId, caseIds) => {
+            const m = profile.emne_case_mappings.find((x) => x.emne_id === emneId);
+            if (!m) throw new Error(`Missing mapping ${emneId}`);
+            m.case_ids = sorted([...(m.case_ids || []), ...caseIds]);
+          };
+          addToMapping(TRANS_EMNE, [CASE_HOY, CASE_GRI, CASE_STO]);
+          addToMapping(LEGACY_RETT, [CASE_HOY, CASE_GRI, CASE_STO]);
+          addToMapping(GENERAL_RETT, [CASE_HOY, CASE_GRI, CASE_STO]);
+          addToMapping(MOB_EMNE, [CASE_STO, CASE_AKE]);
+          addToMapping(LOG_EMNE, [CASE_AKE]);
+          addToMapping(CONTROL_EMNE, [CASE_STO]);
+          addToMapping(STATE_EMNE, [CASE_HOY, CASE_STO, CASE_AKE]);
+          addToMapping(DECISION_EMNE, [CASE_STO, CASE_AKE]);
+
+          const evidenceDefs = claimDefs.map((c, i) => ({
+            evidence_id: `evidence_his_war_transition_cold_${String(i + 1).padStart(2, '0')}`,
+            profile_id: PROFILE,
+            geography_id: GEO,
+            place_id: c.scope.place_ids[0],
+            case_id: c.scope.case_ids[0],
+            emne_ids: c.emne_ids,
+            claim_id: c.claim_id,
+            source_ids: c.source_ids,
+            support_type: c.source_ids.length > 1 ? 'direct_multi_source' : 'direct_single_source',
+            validation_status: 'validated_case',
+            limitations_inherited: true,
+            note: `Direkte sted–claim–kildekobling for ${c.claim_type}; claimets og kildenes eksplisitte avgrensninger gjelder for teoribruk.`
+          }));
+          for (const e of evidenceDefs) addUnique(evidenceFile.evidence_links, 'evidence_id', e);
+
+          const claimMap = new Map(claimsFile.claims.map((x) => [x.claim_id, x]));
+          const evidenceByClaim = new Map();
+          for (const e of evidenceFile.evidence_links) {
+            const rows = evidenceByClaim.get(e.claim_id) || [];
+            rows.push(e);
+            evidenceByClaim.set(e.claim_id, rows);
+          }
+          const makeTheory = ({ theory_id, claim_ids, rationale, limitations, alternative_interpretations, disconfirmation_conditions, evidence_dimensions }) => {
+            const cs = claim_ids.map((id) => claimMap.get(id));
+            if (cs.some((x) => !x)) throw new Error(`Missing claim in ${theory_id}`);
+            return {
+              theory_id,
+              status: 'evidence_ready',
+              scope_status: 'multi_case_geographic_pilot',
+              universalization_status: 'provisional_not_universal',
+              claim_ids,
+              source_ids: sorted(cs.flatMap((c) => c.source_ids || [])),
+              case_ids: sorted(cs.flatMap((c) => c.scope?.case_ids || [])),
+              place_ids: sorted(cs.flatMap((c) => c.scope?.place_ids || [])),
+              emne_ids: sorted(cs.flatMap((c) => c.emne_ids || [])),
+              evidence_link_ids: sorted(cs.flatMap((c) => (evidenceByClaim.get(c.claim_id) || []).map((e) => e.evidence_id))),
+              evidence_dimensions,
+              rationale,
+              limitations,
+              alternative_interpretations,
+              disconfirmation_conditions,
+              scope_note: 'Dette er et fler-case evidensgrunnlag i Oslo/Akershus og er ikke universelt bevis for teoriens gyldighet på tvers av krigsoppgjør, overgangsregimer, alliansesystemer, sikkerhetsinstitusjoner eller geografier.'
+            };
+          };
+
+          addUnique(theoryFile.entries, 'theory_id', makeTheory({
+            theory_id: TRANS_THEORY,
+            claim_ids: claimDefs.slice(0, 5).map((c) => c.claim_id),
+            evidence_dimensions: ['documented_application', 'limitation_test', 'alternative_interpretation', 'multi_case_comparison', 'legal_basis', 'adjudication', 'detention_transition', 'later_redress'],
+            rationale: 'Høyesteretts hus dokumenterer både gjenopprettelsen av den ordinære domstolsordenen i mai 1945 og landssvikoppgjørets faktiske domstolsbelastning. Stortinget tilfører en senere offentlig gjennomgang av rettsgrunnlagskontroversen og, flere tiår senere, et eksplisitt kollektivt og individuelt oppgjør for den økonomiske likvidasjonen av norske jøder. Grini/Ilebu dokumenterer samtidig fysisk institusjonsgjenbruk til landssvikfanger. Sammen skiller casene rettsgrunnlag, domstolsbehandling, internering/soning og senere oppreisning i stedet for å gjøre «rettsoppgjøret» til én enkelt handling.',
+            limitations: [
+              'Casene dokumenterer sentrale deler av det norske etterkrigsoppgjøret, men dekker ikke alle landssviksaker, krigsforbrytersaker, administrative utrenskninger, kjønnede følger, økonomiske samarbeidsformer eller minoriteters ulike erfaringer.',
+              'Rettsgrunnlagsdebatten dokumenterer reell kontrovers om blant annet tilbakevirkning og skjevhet, men teoribruken avgjør ikke at hele landssvikoppgjøret var rettsstridig; tilsvarende viser senere jødisk oppreisning at tidligere restitusjon var utilstrekkelig uten at én erstatningsordning kan måle all historisk skade.'
+            ],
+            alternative_interpretations: [
+              'Den samme sekvensen kan leses både som rask rettsstatlig gjenopprettelse og som et oppgjør med betydelige legitimitets- og fordelingsproblemer; overgangsrettferdighet blir analytisk nyttig nettopp når straff, institusjonell kontinuitet, rettssikkerhetskritikk og senere oppreisning holdes adskilt.'
+            ],
+            disconfirmation_conditions: [
+              'Anvendelsen svekkes dersom etterkrigsinternering behandles som identisk med okkupasjonsfangenskap, dersom manglende dom likestilles med lovlighet, dersom tilbakevirkningsdebatten brukes som bevis på at alle dommer var ulovlige, eller dersom 1998–99-oppgjøret framstilles som full kompensasjon for forfølgelse og tap.'
+            ]
+          }));
+
+          addUnique(theoryFile.entries, 'theory_id', makeTheory({
+            theory_id: COLD_THEORY,
+            claim_ids: claimDefs.slice(5, 8).map((c) => c.claim_id),
+            evidence_dimensions: ['documented_application', 'limitation_test', 'alternative_interpretation', 'multi_case_comparison', 'alliance_choice', 'military_preparedness', 'surveillance_oversight'],
+            rationale: 'Stortingets samtykke til Atlanterhavspakten i 1949 dokumenterer et formelt alliansevalg, mens Hærens overkommando på Akershus dokumenterer at mobilisering og krigsoperasjoner ble gjort til varige planleggingsoppgaver i etterkrigstidens militære ledelse. Lund-kommisjonen og Stortingets oppfølging dokumenterer et annet institusjonelt spor: deler av den politiske overvåkingen siden 1945 ble vurdert som ulovlig og møtt med senere innsyns- og erstatningsordning. Casene skiller dermed allianse, beredskap og overvåking/kontroll framfor å kalle alt én «sikkerhetsstat».',
+            limitations: [
+              'NATO-beslutningen og Hærens formelle planleggingsoppgaver dokumenterer institusjonell sikkerhetspolitikk, men ikke en enhetlig trusseloppfatning i befolkningen eller at alle beredskapstiltak var like nødvendige, omfattende eller permanente.',
+              'Lund-kommisjonens funn gjelder dokumenterte ulovlige og politisk motiverte deler av overvåkingen; de kan ikke generaliseres til at all etterretning, sikkerhetstjeneste eller overvåking gjennom den kalde krigen var ulovlig, og historiesiden erstatter ikke målgruppenes egne kilder eller full arkivkritikk.'
+            ],
+            alternative_interpretations: [
+              'Etterkrigstidens sikkerhetsinstitusjoner kan analyseres som både demokratisk forankret kollektivt forsvar og som arenaer for maktoverskridelser. Teorien må derfor følge konkrete mandat, planer, kontrollordninger og berørte grupper fremfor å anta at all sikkerhetsbygging automatisk utgjør en sikkerhetsstat.'
+            ],
+            disconfirmation_conditions: [
+              'Anvendelsen skal avvises dersom NATO-medlemskap alene brukes som bevis på innenlandsk overvåking, dersom mobiliseringsplanlegging behandles som mål på faktisk krigsfare, eller dersom Lund-funnene gjøres representative for alle sikkerhetsorganer og hele perioden uten separate kilder.'
+            ]
+          }));
+
+          theoryFile.completion.total_theories = 230;
+          theoryFile.completion.qualifying_entries = theoryFile.entries.length;
+          theoryFile.completion.ratio = Math.round((theoryFile.entries.length / 230) * 1000) / 1000;
+          if (theoryFile.entries.length !== 73) throw new Error(`Expected 73 entries after materialization, got ${theoryFile.entries.length}`);
+
+          const profileEvidence = evidenceFile.evidence_links.filter((e) => e.profile_id === PROFILE);
+          const profileClaimIds = new Set(profileEvidence.map((e) => e.claim_id));
+          const profileSourceIds = new Set(profileEvidence.flatMap((e) => e.source_ids || []));
+          const verifiedCases = profile.cases.filter((c) => c.evidence_status === 'claim_source_linked');
+          profile.production_coverage.cases_total = profile.cases.length;
+          profile.production_coverage.verified_cases_total = verifiedCases.length;
+          profile.production_coverage.claims_total = profileClaimIds.size;
+          profile.production_coverage.sources_total = profileSourceIds.size;
+          profile.production_coverage.evidence_links_total = profileEvidence.length;
+          profile.migration_summary.validated_cases = verifiedCases.length;
+          profile.migration_summary.unverified_case_candidates = profile.cases.filter((c) => c.evidence_status === 'unverified').length;
+
+          const dossier = {
+            schema_version: '1.0', dossier_id: BATCH, subject_id: 'historie', geography_id: GEO, status: 'reviewed_source_dossier', accessed_at: '2026-07-30',
+            scope: {
+              qualified_theory_ids: [TRANS_THEORY, COLD_THEORY],
+              case_ids: [CASE_HOY, CASE_GRI, CASE_STO, CASE_AKE],
+              method_rule: 'Overgangsrett skilles i samtids-/etterkrigsrettsgrunnlag, domstolsbehandling, internering/soning, legitimitetskritikk og senere oppreisning. Kald krig skilles i alliansevalg, militær beredskap og overvåking/kontroll. Ingen delkjede gjøres representativ for alle aktører eller hele perioden.'
+            },
+            spatial_anchoring: {
+              hoyesterett: { place_id: 'hoyesteretts_hus', status: 'newly_validated_historical_court_anchor', assessment: 'Justisbygningen/Høyesteretts hus forankrer Høyesteretts gjenåpning og landssvikbehandling i den faktiske domstolsbygningen.' },
+              grini: { place_id: 'grini_fangeleir', status: 'existing_validated_site_extended_to_ilebu', assessment: 'Samme fysiske anlegg dokumenterer overgangen fra tysk fangeleir til Ilebu landssvikfengsel, uten å likestille de to rettsregimene.' },
+              stortinget: { place_id: 'stortinget', status: 'existing_validated_parliamentary_anchor', assessment: 'Stortinget brukes for offentlig rettsoppgjørsgransking, senere jødisk oppreisning, NATO-valget og demokratisk kontroll etter Lund-kommisjonen.' },
+              akershus: { place_id: 'akershus_festning', status: 'existing_validated_military_institution_anchor', assessment: 'Akershus festning brukes for den dokumenterte lokaliseringen av etterkrigstidens forsvarsgrenoverkommandoer og mobiliserings-/operasjonsplanlegging.' }
+            },
+            sources: Object.fromEntries(sourceDefs.map((s) => [s.source_id, { title: s.title, publisher: s.publisher, url: s.url, limitations: s.limitations }])),
+            production_decisions: [
+              'Høyesteretts hus valideres med to separate claims slik at fysisk domstolsgjenåpning og faktisk landssvikbehandling ikke blandes i én påstand.',
+              'Grini/Ilebu brukes som fysisk kontinuitetscase, men okkupasjonsleir og etterkrigsfengsel holdes rettslig og institusjonelt adskilt.',
+              'Stortingets jødiske oppgjør fra 1998–99 brukes som senere oppreisning/restitusjon og ikke som mål på at tidligere tap ble fullt reparert.',
+              'Kaldkrigscaset bruker Stortinget og Akershus i stedet for å opprette Kolsås som nytt place bare for teorien.',
+              'Lund-kommisjonens funn brukes som dokumentert kontroll- og overskridelsesspor, ikke som universell dom over alle sikkerhets- og etterretningsinstitusjoner.'
+            ]
+          };
+
+          write(claimsPath, claimsFile);
+          write(sourcesPath, sourcesFile);
+          write(evidencePath, evidenceFile);
+          write(theoryPath, theoryFile);
+          write(profilePath, profile);
+          write(dossierPath, dossier);
+
+          const docPath = 'docs/HISTORY_THEORY_EVIDENCE.md';
+          let doc = fs.readFileSync(docPath, 'utf8');
+          if (!doc.includes('Produksjonen står på 71 av 230')) throw new Error('Expected 71 production sentence missing');
+          doc = doc.replace('Produksjonen står på 71 av 230 etter at propaganda, sensur, informasjonskontroll, fangenskap, vold og forfølgelse V1 er lagt til.', 'Produksjonen står på 73 av 230 etter at overgangsrettferdighet, rettsoppgjør, kald krig, beredskap og sikkerhetsstat V1 er lagt til.');
+          const oldTail = '- Propaganda, sensur, informasjonskontroll, fangenskap, vold og forfølgelse V1: **2** nye kvalifiserende teoriobjekter, **7** nye claims, **5** nye kilder, **3** nyvaliderte cases og **1** utvidet case.\n- Totalt: **71 av 230** teoriobjekter (**30.9 %**).\n- Universell status: **INCOMPLETE**.\n- Gjenstående teoriobjekter: **159**.';
+          const newTail = '- Propaganda, sensur, informasjonskontroll, fangenskap, vold og forfølgelse V1: **2** nye kvalifiserende teoriobjekter, **7** nye claims, **5** nye kilder, **3** nyvaliderte cases og **1** utvidet case.\n- Overgangsrettferdighet, rettsoppgjør, kald krig, beredskap og sikkerhetsstat V1: **2** nye kvalifiserende teoriobjekter, **8** nye claims, **8** nye kilder, **1** nyvalidert case og **3** utvidede cases.\n- Totalt: **73 av 230** teoriobjekter (**31.7 %**).\n- Universell status: **INCOMPLETE**.\n- Gjenstående teoriobjekter: **157**.';
+          if (!doc.includes(oldTail)) throw new Error('Expected 71 status tail missing');
+          doc = doc.replace(oldTail, newTail);
+          fs.writeFileSync(docPath, doc);
+
+          fs.writeFileSync('docs/HISTORY_WAR_TRANSITIONAL_COLDWAR_EVIDENCE_V1.md', `# Historie — overgangsrettferdighet, rettsoppgjør, kald krig, beredskap og sikkerhetsstat V1\n\nStatus: **VALIDATED EVIDENCE BATCH**\n\nDenne batchen kvalifiserer de to siste teoriobjektene i \`his_krig_okkupasjon_motstand\`:\n\n- \`theory_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet\`\n- \`theory_his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat\`\n\nHistorie forblir eksplisitt \`INCOMPLETE\`, men krig, okkupasjon og motstand går fra 8 av 10 til **10 av 10** kvalifiserte teoriobjekter. Den universelle teorikøen går fra 71 til 73 av 230.\n\n## Overgangsrett\n\nHøyesteretts hus dokumenterer gjenåpningen av Høyesterett 14. mai 1945 og landssvikoppgjørets store saksmengde i de første etterkrigsårene. Et senere offentlig utvalg og stortingsdokument dokumenterer at rettsgrunnlaget fortsatt ble diskutert, blant annet mulig tilbakevirkning og skjev behandling. Grini/Ilebu viser institusjonell gjenbruk til landssvikfanger fram til 1951, mens Stortingets oppgjør i 1998–99 med den økonomiske likvidasjonen av norske jøder tilfører et senere spor av oppreisning og restitusjon.\n\n## Kald krig\n\nStortingets NATO-samtykke i 1949 dokumenterer alliansevalget. Hærens overkommando og Forsvarsstaben på Akershus dokumenterer varig mobiliserings- og operasjonsplanlegging. Lund-kommisjonen og Stortingets oppfølging dokumenterer at deler av den politiske overvåkingen siden 1945 var ulovlig og at dette senere utløste innsyn og erstatningsordning. Allianse, beredskap og overvåking behandles som forskjellige institusjonelle spor.\n\n## Produksjon\n\n- 8 nye canonical Historie-claims\n- 8 nye canonical Historie-kilder\n- 8 nye validerte place–claim–source-koblinger\n- 1 nyvalidert case: Høyesteretts hus\n- 3 utvidede cases: Grini, Stortinget og Akershus festning\n- 2 nye \`evidence_ready\` teoriobjekter\n- teori-evidens: 71 → 73 av 230\n- krig, okkupasjon og motstand: 8 → **10 av 10**\n\n## Evidensgrense\n\n- Høyesteretts gjenåpning og landssvikbehandling dokumenterer rettsstatlig gjennomføring, ikke at alle deler av oppgjøret var ukontroversielle.\n- Debatt om tilbakevirkning dokumenterer rettsgrunnlagskontrovers, ikke at hele oppgjøret var ulovlig.\n- Ilebu er fysisk gjenbruk av Grini, men ikke samme rettsregime som den tyske fangeleiren.\n- Oppreisningen til norske jøder i 1998–99 er en senere reparativ ordning, ikke full måling eller reparasjon av historisk skade.\n- NATO-medlemskap er ikke bevis på ulovlig overvåking.\n- Mobiliseringsplanlegging er ikke et direkte mål på faktisk krigsfare.\n- Lund-kommisjonens funn om ulovlig overvåking kan ikke generaliseres til all sikkerhets- og etterretningsvirksomhet.\n- Oslo/Akershus-casene er ikke universelt bevis for overgangsrett eller sikkerhetsstater i andre land og perioder.\n`);
+
+          const testPath = 'tests/fagverk-historie.test.mjs';
+          let test = fs.readFileSync(testPath, 'utf8');
+          if (!test.includes('assert.equal(report.universalCoverage.theoryEvidenceQualifying, 71);')) throw new Error('Expected 71 regression assertion missing');
+          test = test.replace('assert.equal(report.universalCoverage.theoryEvidenceQualifying, 71);', 'assert.equal(report.universalCoverage.theoryEvidenceQualifying, 73);');
+          fs.writeFileSync(testPath, test);
+          NODE
+
+      - name: Regenerate deterministic History reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-theory-evidence.mjs
+          node tools/audit-historie-geographic-profile.mjs
+          node tools/audit-historie-universal-coverage.mjs
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze --reason='V5.8 freeze reaffirmed after war transitional-justice and Cold-War V6 evidence batch; frozen theory definitions remain unchanged.'
+          node scripts/audit-fagverk-historie.mjs --write-report --no-check-report
+
+      - name: Validate focused History gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-profile-evidence.mjs
+          node tools/validate-historie-theory-evidence.mjs --check
+          node tools/audit-historie-geographic-profile.mjs --check
+          node tools/audit-historie-universal-coverage.mjs --check
+          node tools/audit-historie-v5-5-quality-depth.mjs
+          node scripts/audit-fagverk-historie.mjs
+          node --test tests/fagverk-historie.test.mjs
+
+      - name: Commit clean production output
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/one-shot-history-war-transitional-coldwar-v1.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git status --short
+          git commit -m 'Bygg Historie overgangsrett- og kaldkrigsevidens V1'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
