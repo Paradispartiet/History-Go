@@ -63,25 +63,32 @@ Fire grenser følger claimet:
 
 History Go kan lagre og vise bibliografisk metadata, kildeidentitet, paraphraserte funn og ekstern lenke. Review-tekst eller tilknyttet medieinnhold skal ikke kopieres, rehostes, modifiseres eller embeddes.
 
-## Planlagt additive dekning
+## Validatorresultat
 
-Dersom fulltekstevidensvalidatoren godkjenner den nye fila, skal indeksen gå fra 7 til 8 question-ready temaer med følgende totalsummer:
+Første fullstendige CI-kjøring på den firefil-avgrensede evidensbranchen ga:
 
-- 8 fulltext pilot topics
-- 21 fulltext-reviewed sources
-- 3 canonical fulltext-reviewed sources
-- 18 production source extensions
-- 8 direct objects
-- 15 claim-ready editorial findings
-- 27 inference boundaries
-- 8 question-release-ready topics
-- 8 question-release-ready claims
+- Musikk source dossiers: **6520 PASS / 0 FAIL**
+- Musikk fulltekstevidens: **1330 PASS / 0 FAIL**
+  - 8 emner
+  - 21 fulltekster
+  - 3 canonical fulltekster
+  - 18 produksjonsutvidelser
+  - 8 direct objects
+  - 15 claim-klare funn
+  - 27 slutningsgrenser
+  - 8 question-ready emner / 8 claims
+- Musikk subject pathway: **2069 PASS / 0 FAIL**
+  - fortsatt 7 sett / 35 spørsmål
+  - 7 released pathway-claims
+  - 7 pathway direct objects
+  - 41 temaer fortsatt blokkert i pathwayen
+- Musikk pathway source metadata: **473 PASS / 0 FAIL**
 
-Disse tallene er før CI bare forventet struktur. Faktiske PASS/FAIL-tall skal skrives inn etter validatorens kjøring.
+Dette bekrefter at evidenslaget går 7 → 8 released emner uten at pathwayen åpnes automatisk.
 
 ## Produksjonsgrense
 
-Denne PR-en skal bare endre:
+Denne PR-en endrer bare:
 
 1. `data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/resepsjon_kritikk_opptakshistorie.json`
 2. `data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/index.json`
