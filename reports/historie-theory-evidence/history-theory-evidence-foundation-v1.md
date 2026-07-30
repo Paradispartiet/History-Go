@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **69**
-- Andel med dokumentert evidensgrunnlag: **30 %**
+- Validerte pilotobjekter: **71**
+- Andel med dokumentert evidensgrunnlag: **30.9 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -84,6 +84,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Avindustrialisering, ombruk og industriarv | 4 | 2 | 4 | 4 | evidence_ready |
 | Okkupasjon, samarbeid, tilpasning og motstand: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
 | Motstand, samarbeid, tilpasning og gråsoner: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Propaganda, sensur og informasjonskontroll: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Fangenskap, vold og forfølgelse: forklarings- og kildebane | 4 | 2 | 2 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
