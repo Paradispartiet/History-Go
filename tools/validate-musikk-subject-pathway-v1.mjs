@@ -73,6 +73,17 @@ function stableId(prefix, subjectId, value) {
   const readable = slug(value, prefix === 'ku' ? 24 : 36) || 'item';
   return `${prefix}_${slug(subjectId, 24) || 'unknown'}_${readable}_${digest(`${subjectId}\0${normalize(value)}`)}`;
 }
+function splitClaims(value) {
+  const source = text(value).replace(/\s+/g, ' ');
+  if (!source) return [];
+  const protectedText = source
+    .replace(/\b(bl|ca|dvs|dr|f\.eks|mfl|mr|nr|osv|prof|st)\./gi, (match) => match.replace('.', '∯'))
+    .replace(/(\d)\.(\d)/g, '$1∯$2');
+  return protectedText
+    .split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/)
+    .map((part) => part.replaceAll('∯', '.').trim())
+    .filter((part) => part.length >= 12 && !part.endsWith('?'));
+}
 function sameOrder(actual, expected) {
   return Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => value === expected[index]);
 }
@@ -182,7 +193,7 @@ function main() {
           ok(config.objectUrlPattern.test(text(source.url)), `${label}: direct object må bruke forventet persistent URL`);
         }
       }
-      if (question.claim_id) ok(question.claim_id === config.claim && gate.question_ready_claim_ids.includes(question.claim_id), `${label}: claim_id er ikke frigitt`);
+      if (question.claim_id) ok(question.claim_id === config.claim && list(gate.question_ready_claim_ids).includes(question.claim_id), `${label}: claim_id er ikke frigitt`);
       if (questionIndex < 4) ok(question.claim_id === config.claim, `${label}: de fire forskningsspørsmålene må peke til det frigitte claimet`);
       if (questionIndex === 4) ok(!question.claim_id && question.evidence_type === 'rights_and_reuse_metadata', `${label}: rettighetstrinnet skal bygge på objektmetadata, ikke late som forskningsclaim`);
       const concepts = list(question.core_concepts);
@@ -190,8 +201,11 @@ function main() {
       ok(sameOrder(question.concept_ids, concepts.map((value) => stableId('co', 'musikk', value))), `${label}: concept_ids er ikke deterministiske`);
       ok(sameOrder(question.term_ids, list(question.terms).map((value) => stableId('term', 'musikk', value))), `${label}: term_ids er ikke deterministiske`);
       const summary = text(question.knowledge_payload?.summary);
-      ok(question.primary_knowledge_unit_id === stableId('ku', 'musikk', summary), `${label}: primary knowledge unit id er ikke deterministisk`);
-      ok(sameOrder(question.knowledge_unit_ids, [question.primary_knowledge_unit_id]), `${label}: knowledge_unit_ids er usynkronisert`);
+      const claimsFromSummary = splitClaims(summary);
+      const effectiveClaims = claimsFromSummary.length ? claimsFromSummary : [summary];
+      const expectedKnowledgeIds = effectiveClaims.map((item) => stableId('ku', 'musikk', item));
+      ok(question.primary_knowledge_unit_id === expectedKnowledgeIds[0], `${label}: primary knowledge unit id er ikke deterministisk`);
+      ok(sameOrder(question.knowledge_unit_ids, expectedKnowledgeIds), `${label}: knowledge_unit_ids er usynkronisert med canonical claim splitting`);
       ok(text(question.knowledge_payload?.explanation).length > 40, `${label}: knowledge explanation er for kort`);
       ok(question.feedback_basis === 'source_trace_and_explanation', `${label}: feedback_basis er feil`);
     }
