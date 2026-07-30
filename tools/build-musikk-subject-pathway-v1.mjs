@@ -23,6 +23,7 @@ const absolute = path.join(ROOT, FILE);
 const original = fs.readFileSync(absolute, 'utf8');
 const pkg = JSON.parse(original);
 if (pkg.categoryId !== 'musikk' || pkg.subject_id !== 'musikk') throw new Error('Uventet subject-pathway-pakke');
+const sourceById = new Map(list(pkg.sources).map((source) => [clean(source.id), source]));
 
 let questionCount = 0;
 for (const set of list(pkg.sets)) {
@@ -36,6 +37,18 @@ for (const set of list(pkg.sets)) {
     question.term_ids = terms.map((value) => stableId('term', 'musikk', value));
     question.primary_knowledge_unit_id = stableId('ku', 'musikk', summary);
     question.knowledge_unit_ids = [question.primary_knowledge_unit_id];
+    question.source = list(question.source).map((source) => {
+      const canonical = sourceById.get(clean(source.source_id));
+      if (!canonical) throw new Error(`${question.id || questionCount}: ukjent source_id ${clean(source.source_id)}`);
+      return {
+        ...source,
+        source_type: clean(canonical.type) || 'reference',
+        title: clean(canonical.title) || clean(source.title) || clean(source.source_id),
+        ...(clean(canonical.publisher_or_author) ? { publisher_or_author: clean(canonical.publisher_or_author) } : {}),
+        ...(clean(canonical.date_or_version) ? { date_or_version: clean(canonical.date_or_version) } : {}),
+        ...(clean(canonical.url) ? { url: clean(canonical.url) } : {})
+      };
+    });
   }
 }
 if (questionCount !== 5) throw new Error(`Forventet 5 pilotspørsmål, fikk ${questionCount}`);
@@ -44,11 +57,11 @@ const next = jsonText(pkg);
 if (next !== original) {
   if (WRITE) {
     fs.writeFileSync(absolute, next, 'utf8');
-    console.log(`Musikk pathway-ID-er skrevet for ${questionCount} spørsmål.`);
+    console.log(`Musikk pathway canonicalisert for ${questionCount} spørsmål.`);
   } else {
-    console.error('Musikk pathway-ID-er er utdatert. Kjør node tools/build-musikk-subject-pathway-v1.mjs --write');
+    console.error('Musikk pathway er utdatert. Kjør node tools/build-musikk-subject-pathway-v1.mjs --write');
     process.exitCode = 1;
   }
 } else {
-  console.log(`Musikk pathway-ID-er OK for ${questionCount} spørsmål.`);
+  console.log(`Musikk pathway canonicalisering OK for ${questionCount} spørsmål.`);
 }
