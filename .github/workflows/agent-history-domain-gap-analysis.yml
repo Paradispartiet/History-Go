@@ -1,0 +1,77 @@
+name: Agent History domain gap analysis
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    if: github.event.pull_request.head.ref == 'agent/history-domain-gap-analysis-81'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Compute domain coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/history-domain-gap
+          node <<'NODE'
+          const fs = require('fs');
+          const objects = JSON.parse(fs.readFileSync('data/fag/historie/theory_objects_historie_canonical_v5_5.json','utf8'));
+          const registry = JSON.parse(fs.readFileSync('data/fag/historie/theory_evidence_historie_canonical_v1.json','utf8'));
+          const ready = new Set(registry.entries.filter(e=>e.status==='evidence_ready').map(e=>e.theory_id));
+          const groups = new Map();
+          for (const o of objects) {
+            const scopes = Array.isArray(o.explanatory_scope) ? o.explanatory_scope : [];
+            for (const domain of scopes) {
+              if (!groups.has(domain)) groups.set(domain, []);
+              groups.get(domain).push(o);
+            }
+          }
+          const rows = [...groups.entries()].map(([domain, xs]) => {
+            const readyItems = xs.filter(x=>ready.has(x.theory_id));
+            const missingItems = xs.filter(x=>!ready.has(x.theory_id));
+            return {
+              domain_id: domain,
+              total_theories: xs.length,
+              ready: readyItems.length,
+              missing: missingItems.length,
+              ratio: xs.length ? Number((readyItems.length/xs.length).toFixed(3)) : 0,
+              ready_theory_ids: readyItems.map(x=>x.theory_id).sort(),
+              missing_theories: missingItems.map(x=>({theory_id:x.theory_id,label:x.label})).sort((a,b)=>a.theory_id.localeCompare(b.theory_id))
+            };
+          }).sort((a,b)=>a.missing-b.missing || b.ready-a.ready || a.domain_id.localeCompare(b.domain_id));
+          const report = {
+            generated_at: new Date().toISOString(),
+            total_theory_objects: objects.length,
+            qualifying_entries: ready.size,
+            domains: rows
+          };
+          fs.writeFileSync('/tmp/history-domain-gap/history-domain-gap-81.json', JSON.stringify(report,null,2)+'\n');
+          fs.writeFileSync('/tmp/history-domain-gap/history-domain-gap-81.md', [
+            '# Historie domain gap analysis',
+            '',
+            `Theory objects: ${objects.length}; evidence_ready: ${ready.size}`,
+            '',
+            '| Domain | Ready | Missing |',
+            '|---|---:|---:|',
+            ...rows.map(r=>`| ${r.domain_id} | ${r.ready}/${r.total_theories} | ${r.missing} |`),
+            '',
+            ...rows.map(r=>`## ${r.domain_id}\n\nReady: ${r.ready}/${r.total_theories}. Missing: ${r.missing}.\n\n${r.missing_theories.map(m=>`- ${m.theory_id} — ${m.label}`).join('\n') || '- none'}\n`)
+          ].join('\n'));
+          console.log(JSON.stringify(report,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: history-domain-gap-81
+          path: /tmp/history-domain-gap/
+          retention-days: 1
