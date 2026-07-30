@@ -31,6 +31,7 @@ jobs:
           node tools/validate-historie-theory-evidence.mjs
           node tools/audit-historie-universal-coverage.mjs
           node tools/audit-historie-v5-5-quality-depth.mjs
+          node scripts/audit-fagverk-historie.mjs --write-report --no-check-report
           node scripts/audit-fagverk-historie.mjs
           node tools/validate-historie-theory-evidence.mjs --check
           node tools/audit-historie-geographic-profile.mjs --check
