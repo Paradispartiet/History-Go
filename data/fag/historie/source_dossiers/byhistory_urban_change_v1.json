@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_byhistory_urban_change_evidence_v1",
+  "subject_id": "historie",
+  "geography_id": "geo_no_oslo_akershus",
+  "status": "reviewed_source_dossier",
+  "accessed_at": "2026-07-30",
+  "scope": {
+    "qualified_theory_ids": [
+      "theory_his_byutvidelse_grense_innlemmelse",
+      "theory_his_byfornyelse_bolig_standard",
+      "theory_his_gentrifisering_verdi_befolkning"
+    ],
+    "case_ids": [
+      "case_his_aker_brygge",
+      "case_his_gamle_aker_kirke",
+      "case_his_nydalen",
+      "case_his_oslo_radhus"
+    ],
+    "method_rule": "Byutvidelse skilles fra umiddelbar fysisk urbanisering: administrative grenseendringer og arealhopp dokumenteres som jurisdiksjonsendring. Gentrifisering skilles fra ren ombruk: kildene må vise et eksplisitt sosialt eller eiendomsmarkedsmessig endringsmønster, og manglende individdata om fortrengning skal stå som begrensning."
+  },
+  "spatial_anchoring": {
+    "oslo_aker_boundary": {
+      "place_ids": [
+        "gamle_aker_kirke",
+        "oslo_radhus"
+      ],
+      "status": "existing_validated_institutional_and_historical_anchors",
+      "assessment": "Gamle Aker kirke brukes som historisk Aker-anker og Oslo rådhus som kommunalt institusjonsanker. Ingen av punktene behandles som koordinat for hele den historiske kommunegrensen; claimene gjelder dokumentert jurisdiksjonsendring mellom Aker og Oslo."
+    },
+    "aker_brygge_nydalen": {
+      "place_ids": [
+        "aker_brygge",
+        "nydalen"
+      ],
+      "status": "existing_validated_redevelopment_anchors",
+      "assessment": "Aker Brygge og Nydalen er allerede validerte områdeankre. De brukes til dokumentert omdisponering, eiendomsdrevet funksjonsskifte og bymessig intensivering, men ikke som direkte bevis på individuelle flyttebaner eller tvungen fortrengning."
+    }
+  },
+  "source_anchoring": {
+    "new_source_ids": [
+      "src_his_snl_aker_former_municipality",
+      "src_his_oslo_statbank_population_boundaries",
+      "src_his_snl_oslo_city_description_gentrification",
+      "src_his_oslo_byplan_nydalen_transformation"
+    ],
+    "assessment": "SNL Aker og Oslo kommunes statistikkbank dokumenterer grenseendringer, sammenslåing, areal og demografisk skala. SNLs bybeskrivelse dokumenterer gentrifisering som sosialt endringsmønster og peker ut Aker Brygge/Nydalen som omdisponerings- og opprustingseksempler; Oslo kommunes Nydalen-historikk dokumenterer eiendomsmarked, boligavkastning, planlegging, T-bane og den postindustrielle funksjonsendringen."
+  },
+  "source_snapshots": [
+    {
+      "source_id": "src_his_snl_aker_former_municipality",
+      "title": "Aker",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Aker",
+      "supported_dimensions": [
+        "municipal_boundary_changes",
+        "1948_merger",
+        "area",
+        "population"
+      ],
+      "source_locations": [
+        "Historikk-avsnittet om Aker herred fra 1837, grenseoverføringene i 1859, 1878, 1938, 1946 og 1947 og sammenslåingen med Oslo i 1948",
+        "Avsnittet om herredets fire sognekommuner, 437 km² og 143 163 innbyggere ved sammenslåingen"
+      ],
+      "limitations": [
+        "Leksikonartikkelen sammenfatter kommunalhistorien og erstatter ikke primære grensevedtak, matrikkelkart eller saksdokumenter for hver overføring.",
+        "Areal- og folketall beskriver administrativ skala ved sammenslåingen og viser ikke i seg selv hvor raskt bebyggelse, tjenester eller sosial integrasjon fulgte den nye bygrensen."
+      ]
+    },
+    {
+      "source_id": "src_his_oslo_statbank_population_boundaries",
+      "title": "BEF008: Folkemengden i Oslo/Kristiania, antall personer og årlig endring, 1801–2026",
+      "publisher": "Oslo kommune",
+      "url": "https://statistikkbanken.oslo.kommune.no/statbank/pxweb/no/db1/db1__Befolkning__Folkemengde/OK-BEF008.px/",
+      "supported_dimensions": [
+        "historical_population_series",
+        "1948_merger",
+        "municipal_area_change",
+        "boundary_methodology"
+      ],
+      "source_locations": [
+        "Tabellbeskrivelsen om at Oslo ble slått sammen med Aker i 1948 og at arealet gikk fra 16 878,9 til 453 442 dekar",
+        "Metode- og feilkildeavsnittene om skiftende grenser, eldre folketellinger og datakvalitet"
+      ],
+      "limitations": [
+        "Statistikkserien er konstruert på tvers av historiske grenseendringer og dokumenterer nivåer og metodikk, men ikke den politiske beslutningsprosessen bak sammenslåingen.",
+        "Oslo kommune opplyser at kvaliteten på eldre tall varierer med kildene; tallene bør derfor ikke brukes som presise mikrodata for enkeltområder eller hushold."
+      ]
+    },
+    {
+      "source_id": "src_his_snl_oslo_city_description_gentrification",
+      "title": "Oslo – bybeskrivelse",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Oslo_-_bybeskrivelse",
+      "supported_dimensions": [
+        "gentrification",
+        "industrial_area_redevelopment",
+        "inner_city_population_change",
+        "socioeconomic_composition"
+      ],
+      "source_locations": [
+        "Avsnittet Gentrifisering om omdisponering og opprusting av eldre industri-, samferdsels- og boligstrøk, med Aker Brygge og Nydalen som Oslo-eksempler",
+        "Samme avsnitt om høyere sosiale lag i tidligere lavstatusområder og om befolkningsvekst og endret sosioøkonomisk sammensetning i indre Oslo fra 1990-årene"
+      ],
+      "limitations": [
+        "Leksikonframstillingen er en syntese av brede bymønstre og gir ikke et individ- eller husholdspanel som måler hvem som flyttet, hvem som ble værende eller hvem som eventuelt ble fortrengt.",
+        "Aker Brygge og Nydalen nevnes som eksempler på omdisponering og opprusting; kilden må ikke leses som om graden av gentrifisering, prisvekst eller sosial utskifting er identisk i de to områdene."
+      ]
+    },
+    {
+      "source_id": "src_his_oslo_byplan_nydalen_transformation",
+      "title": "Nydalens omforming",
+      "publisher": "Oslo kommune",
+      "url": "https://magasin.oslo.kommune.no/byplan/nydalens-omforming",
+      "supported_dimensions": [
+        "property_market_change",
+        "planning",
+        "housing_return_shift",
+        "transit_intensification",
+        "postindustrial_mixed_use"
+      ],
+      "source_locations": [
+        "Avsnittene om eiendomshandelen fra 1992, Avantor, kommunedelplanen fra 1990 og senere reguleringsplaner",
+        "Avsnittet Boliger kommer til Nydalen om at boliger ga større avkastning enn næringseiendom og at T-banen muliggjorde høyere utnytting",
+        "Avsnittet Intens transformasjon om om lag 2 200 ansatte ved Christiania Spigerverk mot 20 000 arbeidsplasser og 4 000 boliger etter omformingen"
+      ],
+      "limitations": [
+        "Kommunens retrospektive byplanartikkel beskriver hovedgrep og aktører og gjengir delvis utviklerperspektiver; den er ikke en full saksmappe for hver regulerings- eller investeringsbeslutning.",
+        "Opplysningene om arbeidsplasser, boliger og avkastningsskifte dokumenterer funksjonell og økonomisk omforming, men ikke boligprisserier, leienivå, husholdsinntekter eller direkte fortrengning av bestemte beboere."
+      ]
+    }
+  ],
+  "production_decisions": [
+    "Byutvidelse/grense/innlemmelse får tre nye claims som skiller den flertrinnsvise grensehistorien fra selve 1948-sammenslåingen og fra demografisk/arealmessig skala.",
+    "Gentrifisering/verdi/befolkning kvalifiseres bare fordi SNL dokumenterer et eksplisitt gentrifiserings- og sosialt endringsmønster og Nydalen-kilden dokumenterer eiendomsmarked og avkastningsdrevet funksjonsskifte; adaptiv ombruk alene ville ikke vært tilstrekkelig.",
+    "Ingen claim hevder at administrative grenseendringer automatisk er fysisk urbanisering, eller at dokumentert ombygging automatisk beviser fortrengning.",
+    "Regulering/plan/ekspropriasjon kvalifiseres på plan- og gjennomføringsdimensjonen; batchen dokumenterer ikke ekspropriasjonsvedtak, erstatningsnivå eller klagebehandling og sier dette eksplisitt i teoriens begrensninger."
+  ]
+}
