@@ -1,0 +1,79 @@
+{
+  "schema": "history_go_fagverk_musikk_subject_audit_v1",
+  "version": "1.0.0",
+  "status": "phase_3_musikk_structure_ready",
+  "generatedFrom": {
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "scientificPackage": "data/fag/musikk/scientific_package.json",
+    "scientificIndex": "data/fag/musikk/musikkvitenskap_canonical_v1/index.json",
+    "domainCatalog": "data/fag/musikk/musikkvitenskap_canonical_v1/domain_catalog_v2.json",
+    "methodProtocols": "data/fag/musikk/musikkvitenskap_canonical_v1/method_protocols_v1.json",
+    "modules": [
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/etnomusikologi_kultur_samfunn.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/framforing_praksis_samspill.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/historisk_musikkvitenskap_historiografi.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/institusjoner_okonomi_politikk_offentlighet.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/lydmedier_teknologi_beregning.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/norsk_nordisk_samisk_sted_arkiv.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/persepsjon_kognisjon_akustikk.json"
+    ],
+    "report": "reports/fagverk/musikk-subject-audit.json"
+  },
+  "subject": {
+    "id": "musikk",
+    "title": "Musikkvitenskap",
+    "schemaFamily": "standard_canonical",
+    "adapter": "standard",
+    "subjectPage": "fagverk.html?subject=musikk",
+    "assessmentStatus": "audited",
+    "editorialStatus": "structure_ready",
+    "scientificAuthority": "this_package",
+    "sourceRevision": "musikkvitenskap-kildegrunnlag-atte-domener-v9-2026-07-30"
+  },
+  "summary": {
+    "domainCount": 8,
+    "emneCount": 48,
+    "methodCount": 18,
+    "questionBlueprintCount": 48,
+    "sourceDossierTopicCount": 48,
+    "verifiedScholarlySourceRecordCount": 156,
+    "chapterCount": 0,
+    "placeCount": 0
+  },
+  "canonicalDomainOrder": [
+    "etnomusikologi_kultur_samfunn",
+    "framforing_praksis_samspill",
+    "historisk_musikkvitenskap_historiografi",
+    "institusjoner_okonomi_politikk_offentlighet",
+    "lydmedier_teknologi_beregning",
+    "musikalsk_analyse_lyd_struktur",
+    "norsk_nordisk_samisk_sted_arkiv",
+    "persepsjon_kognisjon_akustikk"
+  ],
+  "authorityBoundary": {
+    "legacyRole": "compatibility_input_for_existing_quiz_and_runtime",
+    "legacyModuleRole": "legacy_source_inventory_not_active_scientific_authority",
+    "scientificAuthority": "this_package",
+    "scenekunstSeparateTopLevelSubject": true,
+    "performanceStudyInScope": true
+  },
+  "gates": {
+    "manifestFirstScientificPackage": true,
+    "activeScientificIndexResolved": true,
+    "canonicalDomainsResolved": true,
+    "canonicalTopicsResolved": true,
+    "canonicalMethodsResolved": true,
+    "questionBlueprintsResolved": true,
+    "allTopicDomainRefsResolved": true,
+    "allTopicMethodRefsResolved": true,
+    "legacyNotScientificAuthority": true,
+    "scenekunstBoundaryPreserved": true,
+    "noGeneratedChapters": true,
+    "bibliographicBasisNotPromotedToFulltextEvidence": true
+  }
+}
