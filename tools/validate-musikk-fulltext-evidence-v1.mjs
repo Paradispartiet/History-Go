@@ -58,7 +58,7 @@ function main() {
   const sourceIds = new Set();
   for (const file of registryFiles) collectSourceIds(readJson(file), sourceIds);
 
-  const claimTypeIds = new Set(list(research.claim_types).map((item) => item.claim_type_id));
+  const claimTypeIds = new Set(list(research.evidence_contract?.claim_types).map((item) => item.claim_type_id));
   const methodIds = new Set(list(methods.protocols).map((item) => item.method_id));
   const topic = list(module.topics).find((item) => item.emne_id === 'em_musikk_vit_rytme_meter_groove_timing');
   ok(Boolean(topic), 'Mangler canonicalt rytme/meter/groove/timing-emne');
