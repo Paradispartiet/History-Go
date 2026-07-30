@@ -51,6 +51,7 @@ test('midlertidig miljø/klima claim-audit',()=>{
     const bundles=[3,4].flatMap(n=>combos(ranked.map(x=>x.claim),n)).map(cs=>summarize(cs,target)).filter(b=>b.qualifies).sort((a,b)=>b.score-a.score||a.claim_ids.join('|').localeCompare(b.claim_ids.join('|'))).slice(0,12);
     report.push({theory_id:target.theory_id,direct_tagged_claims:ranked.filter(x=>A(x.claim.emne_ids).includes(target.emne)).length,top_claims:ranked.slice(0,14).map(({claim,score})=>({claim_id:claim.claim_id,score,statement:claim.statement,claim_type:claim.claim_type,cases:claim.scope?.case_ids,places:claim.scope?.place_ids,sources:claim.source_ids,emne_ids:claim.emne_ids})),top_contract_valid_bundles:bundles});
   }
-  console.log('ENVIRONMENT_AUDIT_JSON_START'); console.log(JSON.stringify(report,null,2)); console.log('ENVIRONMENT_AUDIT_JSON_END');
+  const compact=report.map(r=>({theory_id:r.theory_id,direct_tagged_claims:r.direct_tagged_claims,top_claims:r.top_claims.slice(0,7).map(c=>({claim_id:c.claim_id,score:c.score,statement:c.statement})),top_bundles:r.top_contract_valid_bundles.slice(0,3).map(b=>({score:b.score,claim_ids:b.claim_ids,cases:b.cases,sources:b.sources}))}));
+  console.log('ENVIRONMENT_AUDIT_COMPACT_START'); console.log(JSON.stringify(compact,null,2)); console.log('ENVIRONMENT_AUDIT_COMPACT_END');
   assert.equal(report.length,9);
 });
