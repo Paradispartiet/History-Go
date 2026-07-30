@@ -41,63 +41,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  materialize-analytical-listening:
-    name: Materialize analytical listening pathway
-    if: github.event_name == 'pull_request' && github.head_ref == 'agent/musikk-analytical-listening-subject-pathway-v1' && github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-      - name: Materialize set 6 and canonical Knowledge outputs
-        run: |
-          node tools/build-musikk-analytical-listening-subject-pathway-v1.mjs --write
-          node tools/build-musikk-subject-pathway-v1.mjs --write
-          node tools/build-musikk-subject-pathway-registration-v1.mjs --write
-          npm run knowledge:canonical:write
-          node tools/build-musikk-subject-pathway-v1.mjs --check
-          node tools/build-musikk-subject-pathway-registration-v1.mjs --check
-          node tools/validate-musikk-fulltext-evidence-v1.mjs
-          node tools/validate-musikk-subject-pathway-v1.mjs
-          node tools/validate-musikk-subject-pathway-source-metadata-v1.mjs
-      - name: Guard generated diff and push
-        shell: bash
-        run: |
-          set -euo pipefail
-          git restore -- reports/knowledge-contract-audit.json
-          git status --short
-          unexpected="$(git status --porcelain | awk '{print $2}' | grep -Ev '^(data/quiz/musikk/musikk_subject_pathways_v1\.json|data/fagverk/subject_status\.json|data/knowledge/(concepts|knowledge_units|terms)\.generated\.json|reports/knowledge-id-backfill\.json)$' || true)"
-          if [[ -n "$unexpected" ]]; then
-            echo "Uventede generated-filer:"
-            echo "$unexpected"
-            exit 1
-          fi
-          git add \
-            data/quiz/musikk/musikk_subject_pathways_v1.json \
-            data/fagverk/subject_status.json \
-            data/knowledge/concepts.generated.json \
-            data/knowledge/knowledge_units.generated.json \
-            data/knowledge/terms.generated.json \
-            reports/knowledge-id-backfill.json
-          if git diff --cached --quiet; then
-            echo 'Ingen generated-endringer å committe.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Materialize analytical listening Musikk subject pathway outputs'
-          git push origin HEAD:${{ github.head_ref }}
-
   validate:
     name: Validate materialized Musikk subject
     runs-on: ubuntu-latest
