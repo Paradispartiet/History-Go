@@ -1,0 +1,867 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "norsk-politikk-eos-eu-flernivastyring",
+  "verified_at": "2026-07-30",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "grunnloven",
+      "label": "Lovdata – Kongeriket Norges Grunnlov",
+      "url": "https://lovdata.no/dokument/NL/lov/1814-05-17",
+      "publisher": "Lovdata",
+      "type": "official_law",
+      "source_location": "§§ 3, 15, 26, 49, 75 og 82 om utøvende makt, parlamentarisme, traktater, folkestyre, bevilgning og opplysningsplikt"
+    },
+    {
+      "id": "storting_roles",
+      "label": "Stortinget – Om Stortinget",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "Lovgivende, bevilgende og kontrollerende funksjoner; komiteer og saksbehandling"
+    },
+    {
+      "id": "storting_law",
+      "label": "Stortinget – Lovarbeidet",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Lovarbeidet/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "Kjeden fra lovforslag via komitéinnstilling, debatt og vedtak til sanksjon"
+    },
+    {
+      "id": "storting_control",
+      "label": "Stortinget – Kontrollvirksomheten",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/arbeidet/kontrollvirksomheten/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "Parlamentarisme, informasjonsplikt, spørsmål, kontrollsaker og mistillit"
+    },
+    {
+      "id": "storting_rules",
+      "label": "Stortinget – Forretningsordenen",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Lover-og-instrukser/forretningsorden/",
+      "publisher": "Stortinget",
+      "type": "official_rule",
+      "source_location": "Regler for plenum, komiteer, kontroll og parlamentarisk saksbehandling"
+    },
+    {
+      "id": "embetsverk",
+      "label": "Regjeringen – Forholdet mellom politisk ledelse og embetsverk",
+      "url": "https://www.regjeringen.no/no/dokumenter/om-forholdet-mellom-politisk-ledelse-og-embetsverk/id2626841/?ch=3",
+      "publisher": "Regjeringen",
+      "type": "official_report",
+      "source_location": "Kapittel 2 om departement, politisk ledelse, embetsverk og underliggende etater; kapittel 4 om embetsverkets plikter"
+    },
+    {
+      "id": "strom_minority",
+      "label": "Kaare Strøm – Minority Government and Majority Rule",
+      "url": "https://assets.cambridge.org/97805213/74316/sample/9780521374316ws.pdf",
+      "publisher": "Cambridge University Press",
+      "type": "research_monograph",
+      "source_location": "Book sample, minority government, parliamentary bargaining and majority support"
+    },
+    {
+      "id": "strom_performance",
+      "label": "Kaare Strøm – Party Goals and Government Performance",
+      "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/party-goals-and-government-performance-in-parliamentary-democracies/380BCB0AC226BF678FD614661F49B24B",
+      "publisher": "Cambridge University Press",
+      "type": "peer_reviewed",
+      "source_location": "Abstract og mål på varighet, avgang, maktskifte og valgresultat"
+    },
+    {
+      "id": "valg_results",
+      "label": "Valgdirektoratet – Valgresultater",
+      "url": "https://www.valg.no/om-valg/valgdata/valgresultater/",
+      "publisher": "Valgdirektoratet",
+      "type": "official_data",
+      "source_location": "Offisielle valgresultater og stemmeandeler etter valg og geografi"
+    },
+    {
+      "id": "rokkan_cleavage",
+      "label": "Oxford Handbook – Cleavage Politics",
+      "url": "https://academic.oup.com/book/36108/chapter/313593513",
+      "publisher": "Oxford University Press",
+      "type": "research_handbook",
+      "source_location": "Lipset–Rokkan-rammen om partier som oversettere av samfunnskonflikter til politiske skillelinjer"
+    },
+    {
+      "id": "party_systems",
+      "label": "Oxford Handbook – Party Systems",
+      "url": "https://academic.oup.com/edited-volume/62239/chapter/550772106",
+      "publisher": "Oxford University Press",
+      "type": "research_handbook",
+      "source_location": "Fragmentering, samhandling, polarisering og stabilitet som partisystemdimensjoner"
+    },
+    {
+      "id": "kommuneloven",
+      "label": "Lovdata – Kommuneloven",
+      "url": "https://lovdata.no/dokument/NL/lov/2018-06-22-83",
+      "publisher": "Lovdata",
+      "type": "official_law",
+      "source_location": "§§ 1-1, 2-1, 5-1 og 5-2 om selvstyre, kommunestyre, fylkesting og folkevalgte organer"
+    },
+    {
+      "id": "oslo_governance",
+      "label": "Oslo kommune – Slik styres Oslo",
+      "url": "https://www.oslo.kommune.no/politikk/slik-styres-oslo/",
+      "publisher": "Oslo kommune",
+      "type": "official",
+      "source_location": "Parlamentarisk modell med bystyre og byråd; Oslo som både kommune og fylkeskommune"
+    },
+    {
+      "id": "state_municipal_guide",
+      "label": "Regjeringen – Statlig styring av kommuner og fylkeskommuner",
+      "url": "https://www.regjeringen.no/no/dokumenter/veileder-om-statlig-styring-av-kommuner-og-fylkeskommuner/id2791598/",
+      "publisher": "Regjeringen",
+      "type": "official_guide",
+      "source_location": "Lov, forskrift, økonomi, veiledning, tilsyn, rammefinansiering og lokalt handlingsrom"
+    },
+    {
+      "id": "income_system",
+      "label": "NOU 2022: 10 – Inntektssystemet for kommunene",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2022-10/id2925606/",
+      "publisher": "Regjeringen",
+      "type": "official_report",
+      "source_location": "Fordeling av rammetilskudd, skatteutjevning, kostnadsnøkler og kommunale inntektsforskjeller"
+    },
+    {
+      "id": "multilevel_legitimacy",
+      "label": "Alıca et al. – Does multilevel government increase legitimacy?",
+      "url": "https://www.cambridge.org/core/journals/journal-of-public-policy/article/does-multilevel-government-increase-legitimacy-citizens-preferences-for-subnational-authority-and-acceptance-of-governmental-decisions/D8B4600CE27DFEE99AFE189FBAA88F78",
+      "publisher": "Cambridge University Press",
+      "type": "peer_reviewed",
+      "source_location": "Abstract og norske surveyeksperimenter om nivåpreferanse, institusjonell legitimitet og beslutningsaksept"
+    },
+    {
+      "id": "sami_act",
+      "label": "Lovdata – Sameloven kapittel 4",
+      "url": "https://lovdata.no/lov/1987-06-12-56/kap4",
+      "publisher": "Lovdata",
+      "type": "official_law",
+      "source_location": "§§ 4-1–4-10 om konsultasjonsplikt, varsling, informasjon, god tro, mål og protokoll"
+    },
+    {
+      "id": "sami_consultation",
+      "label": "Regjeringen – Konsultasjonsplikt i samiske saker",
+      "url": "https://www.regjeringen.no/no/tema/urfolk-og-minoriteter/samepolitikk/midtspalte/konsultasjonsplikt-i-samiske-saker/id86931/",
+      "publisher": "Regjeringen",
+      "type": "official",
+      "source_location": "Oppdatert oversikt over statens, fylkeskommuners og kommuners konsultasjonsplikt"
+    },
+    {
+      "id": "josefsen_sami",
+      "label": "Josefsen et al. – The Sámi Parliament in Norway",
+      "url": "https://www.tandfonline.com/doi/full/10.1080/2154896X.2024.2342122",
+      "publisher": "Taylor & Francis",
+      "type": "peer_reviewed",
+      "source_location": "Institutional development, self-determination, consultations and formal agreements"
+    },
+    {
+      "id": "eea_overview",
+      "label": "EFTA – EEA and Relations with the EU",
+      "url": "https://www.efta.int/eea",
+      "publisher": "European Free Trade Association",
+      "type": "institutional_primary",
+      "source_location": "Single market, EEA EFTA participation, decision shaping, agencies and programmes"
+    },
+    {
+      "id": "eea_process",
+      "label": "EFTA – How EU Law Becomes EEA Law",
+      "url": "https://www.efta.int/eealaw",
+      "publisher": "European Free Trade Association",
+      "type": "institutional_primary",
+      "source_location": "EEA relevance, draft decisions, Joint Committee adoption, constitutional requirements and entry into force"
+    },
+    {
+      "id": "eea_act",
+      "label": "Lovdata – EØS-loven",
+      "url": "https://lovdata.no/dokument/NL/lov/1992-11-27-109",
+      "publisher": "Lovdata",
+      "type": "official_law",
+      "source_location": "Gjennomføring av hoveddelen av EØS-avtalen og forrang ved konflikt"
+    },
+    {
+      "id": "storting_eea",
+      "label": "Stortinget – EU/EØS-arbeidet",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/EUEOS-arbeid/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "Stortingets samtykke etter Grunnloven § 26 andre ledd og parlamentarisk behandling av EØS-saker"
+    },
+    {
+      "id": "esa_mission",
+      "label": "EFTA Surveillance Authority – Mission and Values",
+      "url": "https://www.eftasurv.int/esa-at-a-glance/mission-values",
+      "publisher": "EFTA Surveillance Authority",
+      "type": "institutional_primary",
+      "source_location": "Tilsyn med etterlevelse av EØS-reglene i Island, Liechtenstein og Norge"
+    },
+    {
+      "id": "norway_eu_research",
+      "label": "Oxford Handbook – Norway and the European Union",
+      "url": "https://academic.oup.com/edited-volume/62239/chapter/550714633",
+      "publisher": "Oxford University Press",
+      "type": "research_handbook",
+      "source_location": "Norsk EU-tilknytning og europeisering av den parlamentariske styringskjeden"
+    },
+    {
+      "id": "nato_treaty",
+      "label": "NATO – The North Atlantic Treaty",
+      "url": "https://www.nato.int/cps/en/natohq/official_texts_17120.htm",
+      "publisher": "NATO",
+      "type": "official_treaty",
+      "source_location": "Artikkel 5 om kollektivt forsvar og hver parts handling som den anser nødvendig"
+    },
+    {
+      "id": "defence_framework",
+      "label": "Prop. 1 S (2025–2026) Forsvarsdepartementet",
+      "url": "https://www.regjeringen.no/no/dokumenter/prop.-1-s-20252026/id3123480/?ch=1",
+      "publisher": "Regjeringen",
+      "type": "official_budget_proposition",
+      "source_location": "NATO og kollektiv sikkerhetsgaranti som ramme for norsk sikkerhet og forsvar"
+    },
+    {
+      "id": "duufk",
+      "label": "Stortinget – Den utvidede utenriks- og forsvarskomité",
+      "url": "https://www.stortinget.no/no/Saker-og-publikasjoner/Publikasjoner/Dokumentserien/2023-2024/dok20-202324/?m=6",
+      "publisher": "Stortinget",
+      "type": "official_report",
+      "source_location": "Drøfting av viktige utenriks-, handels- og sikkerhetspolitiske spørsmål før viktige beslutninger"
+    },
+    {
+      "id": "corporatism",
+      "label": "Christiansen et al. – Interest Groups and Corporatist Committees",
+      "url": "https://www.cambridge.org/core/journals/voluntas/article/varieties-of-democracy-interest-groups-and-corporatist-committees-in-scandinavian-policy-making/928CFBE2FB46296A85F652B5F4F1DB2E",
+      "publisher": "Cambridge University Press",
+      "type": "peer_reviewed",
+      "source_location": "Skandinaviske policyforberedende utvalg, interessegruppedeltakelse og endring over tid"
+    },
+    {
+      "id": "corporatism_exchange",
+      "label": "Öberg et al. – Disrupted Exchange and Declining Corporatism",
+      "url": "https://www.cambridge.org/core/journals/government-and-opposition/article/disrupted-exchange-and-declining-corporatism-government-authority-and-interest-group-capability-in-scandinavia/F3BAB6741BDB73A23561A5C5A9047287",
+      "publisher": "Cambridge University Press",
+      "type": "peer_reviewed",
+      "source_location": "Korporatisme som institusjonalisert politisk bytte mellom staten og privilegerte interessegrupper"
+    },
+    {
+      "id": "tripartite",
+      "label": "Regjeringen – Trepartssamarbeid på arbeidslivsområdet",
+      "url": "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/innsikt/trepartssamarbeid/id2396817/",
+      "publisher": "Regjeringen",
+      "type": "official",
+      "source_location": "Arbeidslivs- og pensjonspolitisk råd og treparts bransjeprogram"
+    },
+    {
+      "id": "inquiry_instruction",
+      "label": "Lovdata – Utredningsinstruksen",
+      "url": "https://lovdata.no/forskrift/2016-02-19-184",
+      "publisher": "Lovdata",
+      "type": "official_rule",
+      "source_location": "Punkt 1-1, 2-1, 3-1–3-3 og kapittel 5 om alternativer, virkninger, berørte, høring og EØS/Schengen"
+    },
+    {
+      "id": "government_complex",
+      "label": "Regjeringen – Regjeringskvartalet",
+      "url": "https://www.regjeringen.no/en/topics/plan-bygg-og-eiendom/the-government-building-complex/id669703/",
+      "publisher": "Regjeringen",
+      "type": "official",
+      "source_location": "Regjeringskvartalet som arbeidssted for Statsministerens kontor og departementer"
+    },
+    {
+      "id": "storting_budget",
+      "label": "Stortinget – Budsjettarbeidet",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Budsjettarbeidet/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "Regjeringens budsjettforslag, komitébehandling, budsjettvedtak og bevilgninger"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim_001",
+      "claim": "Stortinget er den lovgivende, bevilgende og kontrollerende statsmakten, mens regjeringen leder den utøvende makten innenfor Grunnlovens og Stortingets rammer.",
+      "source_ids": [
+        "grunnloven",
+        "storting_roles"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_002",
+      "claim": "En ordinær lovsak kan følges fra regjeringens eller representantenes forslag gjennom fagkomité, innstilling, plenumsdebatt og vedtak før sanksjon og ikraftsetting.",
+      "source_ids": [
+        "storting_law"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_003",
+      "claim": "Stortingskomiteene forbereder saker og avgir innstillinger, men selve stortingsvedtaket treffes i plenum; komitébehandling og plenumsvedtak er derfor ulike beslutningsledd.",
+      "source_ids": [
+        "storting_roles",
+        "storting_rules"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_004",
+      "claim": "Departementer støtter politisk ledelse med saksforberedelse og styring, mens direktorater og andre underliggende virksomheter har avgrensede faglige og utøvende roller.",
+      "source_ids": [
+        "embetsverk"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_005",
+      "claim": "Det faste embetsverket skal forene lojalitet til politisk ledelse med plikter til lovlighet, sannhet, faglighet, partipolitisk nøytralitet og åpenhet.",
+      "source_ids": [
+        "embetsverk"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_006",
+      "claim": "Norsk parlamentarisme er negativ: en regjering kan sitte uten et uttrykt flertallsvedtak for tiltredelse, men må søke avskjed dersom Stortinget vedtar mistillit.",
+      "source_ids": [
+        "grunnloven",
+        "storting_control"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_007",
+      "claim": "Parlamentarisk kontroll omfatter mer enn mistillit og virker også gjennom informasjonsplikt, spørsmål, kontrollsaker, høringer, komiteer og Stortingets eksterne kontrollorganer.",
+      "source_ids": [
+        "storting_control",
+        "storting_rules"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_008",
+      "claim": "Mindretallsregjering innebærer avhengighet av forhandlet parlamentarisk støtte, ikke fravær av styringsevne; sakstype, opposisjonsstrategi og partimål påvirker utfallet.",
+      "source_ids": [
+        "strom_minority",
+        "strom_performance"
+      ],
+      "classification": "research_synthesis",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_009",
+      "claim": "Et politisk parti og dets stortingsgruppe er organisatorisk forbundet, men er ikke samme analyseenhet; kandidater, medlemmer, programorganer og folkevalgte har ulike roller.",
+      "source_ids": [
+        "storting_rules",
+        "valg_results"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_010",
+      "claim": "En politisk skillelinje er en varig forbindelse mellom sosial konflikt, kollektiv identitet, organisering og partideling; en dagsaktuell sak er ikke automatisk en ny skillelinje.",
+      "source_ids": [
+        "rokkan_cleavage"
+      ],
+      "classification": "research_synthesis",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_011",
+      "claim": "Partisystemanalyse må undersøke partienes antall, samhandling, polarisering og stabilitet, ikke bare plassere hvert parti på én ideologisk skala.",
+      "source_ids": [
+        "party_systems"
+      ],
+      "classification": "research_synthesis",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_012",
+      "claim": "Valgresultater dokumenterer stemmer og mandater, men valgseier, regjeringsdeltakelse og faktisk politisk gjennomslag er forskjellige utfall.",
+      "source_ids": [
+        "valg_results",
+        "strom_performance"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_013",
+      "claim": "Kommuneloven skal fremme kommunalt og fylkeskommunalt selvstyre innenfor nasjonale rammer og legger den overordnede beslutningsmyndigheten til kommunestyre og fylkesting.",
+      "source_ids": [
+        "kommuneloven"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_014",
+      "claim": "Oslo har både kommunale og fylkeskommunale oppgaver og styres parlamentarisk med bystyre og et byråd som er ansvarlig overfor bystyret.",
+      "source_ids": [
+        "oslo_governance"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_015",
+      "claim": "Innbyggermedvirkning, høring og politisk representasjon kan påvirke kommunale beslutninger uten at deltakerne dermed får den formelle beslutningsmyndigheten.",
+      "source_ids": [
+        "kommuneloven",
+        "multilevel_legitimacy"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_016",
+      "claim": "Kommunestyret fastsetter politiske mål og prioriteringer, mens administrasjonen forbereder og iverksetter innenfor delegert myndighet; politisk prioritering og administrativ drift må skilles.",
+      "source_ids": [
+        "kommuneloven"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_017",
+      "claim": "Staten styrer kommunesektoren gjennom en kombinasjon av lov og forskrift, finansiering, veiledning, rapportering og tilsyn, som virker gjennom ulike mekanismer.",
+      "source_ids": [
+        "state_municipal_guide"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_018",
+      "claim": "Formelt kommunalt ansvar sier ikke alene hvilke økonomiske ressurser eller hvilken faglig kapasitet kommunen har til å utføre oppgaven.",
+      "source_ids": [
+        "state_municipal_guide",
+        "income_system"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_019",
+      "claim": "Rammefinansiering gir kommunen friere prioritering innenfor lovkrav, mens øremerkede tilskudd binder midler sterkere til et statlig definert formål.",
+      "source_ids": [
+        "state_municipal_guide",
+        "income_system"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_020",
+      "claim": "Inntektssystemet fordeler rammetilskudd og utjevner deler av skatteinntektene, men like satser eller formelle oppgaver garanterer ikke identisk lokal kapasitet eller tjenesteutfall.",
+      "source_ids": [
+        "income_system"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_021",
+      "claim": "Sameloven pålegger staten, fylkeskommuner og kommuner å konsultere Sametinget og andre representanter for berørte samiske interesser i saker som kan påvirke dem direkte.",
+      "source_ids": [
+        "sami_act",
+        "sami_consultation"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_022",
+      "claim": "Konsultasjoner skal gjennomføres i god tro og med formål om å oppnå enighet, men konsultasjonsplikt er ikke det samme som en generell samtykke- eller vetorett.",
+      "source_ids": [
+        "sami_act",
+        "sami_consultation"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_023",
+      "claim": "Sametingets folkevalgte representasjon og rollen som konsultasjonspart er ulike institusjonelle funksjoner som må analyseres hver for seg.",
+      "source_ids": [
+        "sami_act",
+        "josefsen_sami"
+      ],
+      "classification": "research_synthesis",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_024",
+      "claim": "Formell konsultasjonsadgang dokumenterer en prosedyre, men faktisk innflytelse må undersøkes gjennom tidspunkt, informasjon, respons, endringer og begrunnelse i den konkrete saken.",
+      "source_ids": [
+        "sami_act",
+        "josefsen_sami"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_025",
+      "claim": "Norge deltar i EUs indre marked gjennom EØS-avtalen uten å være medlem av EU; EØS-tilknytning og EU-medlemskap gir derfor ulike institusjonelle rettigheter og plikter.",
+      "source_ids": [
+        "eea_overview",
+        "eea_act"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_026",
+      "claim": "EØS/EFTA-statene kan delta i tidlig regelutforming og ekspertarbeid, men har ikke stemmerett i EUs lovgivende institusjoner.",
+      "source_ids": [
+        "eea_overview",
+        "norway_eu_research"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_027",
+      "claim": "En EØS-relevant EU-rettsakt blir ikke automatisk EØS-rett; den må innlemmes gjennom en beslutning i EØS-komiteen og eventuelle tilpasninger.",
+      "source_ids": [
+        "eea_process"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_028",
+      "claim": "Etter innlemmelse må rettsakten gjøres til del av nasjonal rett etter rettsaktstype og nasjonale krav, og deretter iverksettes av ansvarlige organer.",
+      "source_ids": [
+        "eea_process",
+        "eea_act"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_029",
+      "claim": "Stortingets samtykke kreves for EØS-komitébeslutninger når saken blant annet nødvendiggjør lovendring, får budsjettkonsekvenser eller er av særlig viktighet.",
+      "source_ids": [
+        "grunnloven",
+        "storting_eea"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_030",
+      "claim": "ESA overvåker at Norge, Island og Liechtenstein oppfyller EØS-forpliktelsene; tilsynsrollen er forskjellig fra nasjonal lovgivning og lokal gjennomføring.",
+      "source_ids": [
+        "esa_mission"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_031",
+      "claim": "Formell innlemmelse og juridisk gjennomføring dokumenterer ikke alene faktisk etterlevelse; forvaltningspraksis, tilsyn og lokale utfall må undersøkes separat.",
+      "source_ids": [
+        "eea_process",
+        "esa_mission"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_032",
+      "claim": "NATO og den kollektive sikkerhetsgarantien er en sentral ramme for norsk sikkerhets- og forsvarspolitikk og kobler nasjonale kapasiteter til alliert planlegging.",
+      "source_ids": [
+        "defence_framework",
+        "nato_treaty"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_033",
+      "claim": "Atlanterhavspaktens artikkel 5 forplikter partene til å bistå ved væpnet angrep, men hver part treffer den handlingen den anser nødvendig; alliansebinding betyr ikke identisk automatisk respons.",
+      "source_ids": [
+        "nato_treaty"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_034",
+      "claim": "Den utvidede utenriks- og forsvarskomiteen gir regjeringen og Stortingets partier et institusjonelt rom for å drøfte viktige utenriks-, handels- og sikkerhetspolitiske spørsmål før viktige beslutninger.",
+      "source_ids": [
+        "duufk",
+        "storting_rules"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_035",
+      "claim": "Sikkerhetspolitikk omfatter flere virkemidler og avhengigheter enn militært forsvar alene, selv når forsvarsalliansen er en sentral institusjonell ramme.",
+      "source_ids": [
+        "defence_framework",
+        "duufk"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_036",
+      "claim": "Korporatisme innebærer institusjonalisert utveksling mellom staten og utvalgte organiserte interesser, og må skilles fra et pluralistisk system med åpen konkurranse om adgang.",
+      "source_ids": [
+        "corporatism",
+        "corporatism_exchange"
+      ],
+      "classification": "research_synthesis",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_037",
+      "claim": "Norsk trepartssamarbeid organiserer kontakt mellom myndighetene, arbeidsgiverorganisasjoner og arbeidstakerorganisasjoner i faste råd og programmer.",
+      "source_ids": [
+        "tripartite"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_038",
+      "claim": "En ordinær høring innhenter synspunkter fra en bred krets, mens forhandling innebærer direkte søk etter en avtale mellom identifiserte parter.",
+      "source_ids": [
+        "tripartite",
+        "inquiry_instruction"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_039",
+      "claim": "Adgang til utvalg, høring eller forhandling kan gi informasjon og påvirkningsmulighet, men er ikke identisk med formell beslutningsmyndighet.",
+      "source_ids": [
+        "corporatism",
+        "corporatism_exchange"
+      ],
+      "classification": "research_synthesis",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_040",
+      "claim": "Utredningsinstruksen krever at statlige tiltak bygger på et definert problem, alternative tiltak, prinsipielle spørsmål, virkninger, berørte og forutsetninger for gjennomføring.",
+      "source_ids": [
+        "inquiry_instruction"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_041",
+      "claim": "Høring skal gi berørte og andre anledning til å uttale seg om forslag, men høring er ikke det samme som medbestemmelse eller rett til å avgjøre saken.",
+      "source_ids": [
+        "inquiry_instruction"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_042",
+      "claim": "Høringsinnspill er sporbar evidens for hva aktører argumenterte for, men om innspillet påvirket utfallet må undersøkes gjennom endringer og begrunnelser senere i dokumentkjeden.",
+      "source_ids": [
+        "inquiry_instruction",
+        "storting_law"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_043",
+      "claim": "Regjeringen legger fram forslag til statsbudsjett, mens Stortinget behandler og vedtar bevilgningene gjennom komité- og plenumsbehandling.",
+      "source_ids": [
+        "grunnloven",
+        "storting_budget"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_044",
+      "claim": "En bevilgning gir fullmakt og økonomisk ramme, men dokumenterer ikke alene når, hvordan eller med hvilket resultat ressursene faktisk ble brukt.",
+      "source_ids": [
+        "storting_budget",
+        "income_system"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_045",
+      "claim": "Stortinget, Regjeringskvartalet og Oslo rådhus synliggjør ulike ledd i nasjonal beslutning, departemental forberedelse og kommunal styring.",
+      "source_ids": [
+        "storting_roles",
+        "government_complex",
+        "oslo_governance"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_046",
+      "claim": "Youngstorget og Eidsvolls plass kan brukes som innganger til henholdsvis organisert interessepolitikk og parlamentarisk offentlighet, men stedet alene beviser ikke aktørenes innflytelse i en bestemt sak.",
+      "source_ids": [
+        "tripartite",
+        "storting_roles"
+      ],
+      "classification": "bounded_inference",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    }
+  ]
+}
