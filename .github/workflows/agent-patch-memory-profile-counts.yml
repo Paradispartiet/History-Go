@@ -1,0 +1,38 @@
+name: Agent patch memory profile counts
+
+on:
+  pull_request:
+    types: [reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.pull_request.number == 4549
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Patch profile count semantics and self-remove
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path('.github/workflows/agent-history-memory-heritage-materialize.yml')
+          s = p.read_text()
+          old = "profile.production_coverage.claims_total=claimsFile.claims.length; profile.production_coverage.sources_total=sourcesFile.sources.length; profile.production_coverage.evidence_links_total=evidenceFile.evidence_links.length; profile.production_coverage.verified_cases_total=profile.cases.filter(c=>c.evidence_status==='claim_source_linked').length; profile.migration_summary.validated_cases=profile.production_coverage.verified_cases_total;"
+          new = "const profileEvidence=evidenceFile.evidence_links.filter(e=>e.profile_id===profile.profile_id); profile.production_coverage.cases_total=profile.cases.length; profile.production_coverage.claims_total=new Set(profileEvidence.map(e=>e.claim_id)).size; profile.production_coverage.sources_total=new Set(profileEvidence.flatMap(e=>e.source_ids||[])).size; profile.production_coverage.evidence_links_total=profileEvidence.length; profile.production_coverage.verified_cases_total=profile.cases.filter(c=>c.evidence_status==='claim_source_linked').length; profile.migration_summary.validated_cases=profile.production_coverage.verified_cases_total;"
+          if old not in s:
+              raise SystemExit('target profile-count line not found')
+          p.write_text(s.replace(old, new))
+          PY
+          rm -f .github/workflows/agent-patch-memory-profile-counts.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Rett profilens evidence-tall i minnebatchen'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
