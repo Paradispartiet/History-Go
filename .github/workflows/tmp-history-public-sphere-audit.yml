@@ -1,23 +1,44 @@
-name: Temporary history public sphere audit
+name: Temporary history public sphere materializer
 
 on:
-  push:
-    branches:
-      - agent/history-public-sphere-evidence-v1
   pull_request:
     branches:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  materialize:
+    if: github.event.pull_request.head.ref == 'agent/history-public-sphere-evidence-v1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/history-public-sphere-evidence-v1
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Audit reusable public sphere evidence
-        run: node tmp/history-public-sphere-audit.mjs
+      - name: Materialize reusable public sphere evidence
+        run: |
+          set -euo pipefail
+          node tmp/history-public-sphere-audit.mjs
+          node tools/validate-historie-theory-evidence.mjs
+          node tools/audit-historie-universal-coverage.mjs
+          node tools/audit-historie-v5-5-quality-depth.mjs
+          node -e "import('./scripts/audit-fagverk-historie.mjs').then(m=>m.auditHistorySubject({writeReport:true,checkReport:false}))"
+          node tools/validate-historie-theory-evidence.mjs --check
+          node tools/audit-historie-universal-coverage.mjs --check
+          node --test tests/fagverk-historie.test.mjs
+          git diff --check
+      - name: Commit production diff and remove temporary audit
+        run: |
+          set -euo pipefail
+          rm tmp/history-public-sphere-audit.mjs .github/workflows/tmp-history-public-sphere-audit.yml
+          git add data/fag/historie/theory_evidence_historie_canonical_v1.json docs/HISTORY_THEORY_EVIDENCE.md tests/fagverk-historie.test.mjs reports/historie-theory-evidence reports/historie-universal-coverage reports/fagverk/historie-subject-audit.json tmp/history-public-sphere-audit.mjs .github/workflows/tmp-history-public-sphere-audit.yml
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Build public sphere theory evidence v1'
+          git push origin HEAD:agent/history-public-sphere-evidence-v1
