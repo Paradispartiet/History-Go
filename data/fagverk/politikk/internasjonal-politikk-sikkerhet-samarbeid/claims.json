@@ -1,0 +1,605 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "internasjonal-politikk-sikkerhet-samarbeid",
+  "verified_at": "2026-07-30",
+  "verification_status": "claims_traced",
+  "sources": [
+    {
+      "id": "un_charter",
+      "label": "FN – De forente nasjoners pakt",
+      "url": "https://www.un.org/en/about-us/un-charter/full-text",
+      "publisher": "United Nations",
+      "type": "official_treaty",
+      "source_location": "Artikkel 1–2, 24–27 og 51"
+    },
+    {
+      "id": "unsc_voting",
+      "label": "FN – Sikkerhetsrådets stemmesystem",
+      "url": "https://main.un.org/securitycouncil/en/content/voting-system",
+      "publisher": "United Nations Security Council",
+      "type": "official",
+      "source_location": "Artikkel 27, ni stemmer og de faste medlemmenes stilling"
+    },
+    {
+      "id": "nato_treaty",
+      "label": "NATO – The North Atlantic Treaty",
+      "url": "https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/1949/04/04/the-north-atlantic-treaty",
+      "publisher": "NATO",
+      "type": "official_treaty",
+      "source_location": "Artikkel 4, 5 og 7"
+    },
+    {
+      "id": "nato_posture",
+      "label": "NATO – Deterrence and Defence Posture Review",
+      "url": "https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/2012/05/20/deterrence-and-defence-posture-review",
+      "publisher": "NATO",
+      "type": "official_strategy",
+      "source_location": "Avsnitt 1–9 om avskrekking, forsvar og kapasiteter"
+    },
+    {
+      "id": "jervis_security_dilemma",
+      "label": "Robert Jervis – Cooperation Under the Security Dilemma",
+      "url": "https://www.cambridge.org/core/journals/world-politics/article/cooperation-under-the-security-dilemma/C8907431CCEFEFE762BFCA32F091C526",
+      "publisher": "World Politics",
+      "type": "peer_reviewed",
+      "source_location": "Sammendrag og artikkelens offense–defense- og distinguishability-mekanismer"
+    },
+    {
+      "id": "fearon_war",
+      "label": "James D. Fearon – Rationalist Explanations for War",
+      "url": "https://web.stanford.edu/group/fearon-research/cgi-bin/wordpress/wp-content/uploads/2013/10/Rationalist-Explanations-for-War.pdf",
+      "publisher": "International Organization",
+      "type": "peer_reviewed",
+      "source_location": "s. 379–414, særlig private information, commitment problems og issue indivisibilities"
+    },
+    {
+      "id": "keohane_regimes",
+      "label": "Robert O. Keohane – The Demand for International Regimes",
+      "url": "https://www.cambridge.org/core/journals/international-organization/article/demand-for-international-regimes/0D14D12EB2AC7046BEE3E2322996FAC0",
+      "publisher": "International Organization",
+      "type": "peer_reviewed",
+      "source_location": "Sammendrag og mekanismene informasjon og transaksjonskostnader"
+    },
+    {
+      "id": "putnam_two_level",
+      "label": "Robert D. Putnam – Diplomacy and Domestic Politics",
+      "url": "https://www.cambridge.org/core/journals/international-organization/article/diplomacy-and-domestic-politics-the-logic-of-twolevel-games/B2E11FB757C4465C4097015BD421035F",
+      "publisher": "International Organization",
+      "type": "peer_reviewed",
+      "source_location": "Sammendrag og modellen for ratifikasjon og innenrikspolitiske koalisjoner"
+    },
+    {
+      "id": "collier_process_tracing",
+      "label": "David Collier – Understanding Process Tracing",
+      "url": "https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/understanding-process-tracing/183A057AD6A36783E678CB37440346D1",
+      "publisher": "PS: Political Science & Politics",
+      "type": "peer_reviewed",
+      "source_location": "Diagnostisk evidens, sekvens og innenfor-case-slutning"
+    },
+    {
+      "id": "paris_ndc",
+      "label": "UNFCCC – Nationally Determined Contributions",
+      "url": "https://unfccc.int/process-and-meetings/the-paris-agreement/nationally-determined-contributions-ndcs",
+      "publisher": "UNFCCC",
+      "type": "official_treaty_implementation",
+      "source_location": "Parisavtalen artikkel 4 nr. 2 og femårssyklusen"
+    },
+    {
+      "id": "who_ihr",
+      "label": "WHO – International Health Regulations",
+      "url": "https://www.who.int/health-topics/international-health-regulations",
+      "publisher": "World Health Organization",
+      "type": "official_regulation",
+      "source_location": "Kjernekapasiteter, varsling, informasjonsdeling og koordinering"
+    },
+    {
+      "id": "norway_nss",
+      "label": "Regjeringen – National Security Strategy",
+      "url": "https://www.regjeringen.no/en/documents/national-security-strategy/id3099304/",
+      "publisher": "Regjeringen.no",
+      "type": "official_strategy",
+      "source_location": "Norske sikkerhetsinteresser, NATO-avhengighet, motstandskraft og økonomisk sikkerhet"
+    },
+    {
+      "id": "norway_security_policy",
+      "label": "Regjeringen – Security policy",
+      "url": "https://www.regjeringen.no/en/topics/foreign-affairs/security-policy/id1111/",
+      "publisher": "Regjeringen.no",
+      "type": "official",
+      "source_location": "Mål og politiske, militære, diplomatiske, økonomiske og rettslige virkemidler"
+    },
+    {
+      "id": "mfa_tasks",
+      "label": "Regjeringen – Ministry of Foreign Affairs",
+      "url": "https://www.regjeringen.no/en/dep/ud/id833/",
+      "publisher": "Utenriksdepartementet",
+      "type": "official",
+      "source_location": "Departementets hovedoppgave og strukturelle norske interesser"
+    },
+    {
+      "id": "constitution",
+      "label": "Lovdata – Kongeriket Norges Grunnlov",
+      "url": "https://lovdata.no/dokument/NL/lov/1814-05-17/KAPITTEL_1-4",
+      "publisher": "Lovdata",
+      "type": "official_law",
+      "source_location": "§ 26 om traktater og Stortingets samtykke"
+    },
+    {
+      "id": "duufk",
+      "label": "Stortinget – Den utvidete utenriks- og forsvarskomité",
+      "url": "https://www.stortinget.no/no/Representanter-og-komiteer/Komiteene/Andre-faste-komiteer/den-utvidete-utenriks--og-forsvarskomite/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "Oppgaven med å drøfte viktige utenriks-, handels-, sikkerhets- og beredskapsspørsmål"
+    },
+    {
+      "id": "storting_committee",
+      "label": "Stortinget – Standing Committee on Foreign Affairs and Defence",
+      "url": "https://www.stortinget.no/en/In-English/Standing-Commitees/The-Standing-Committee-on-Foreign-Affairs/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "Komiteens ansvarsområder"
+    },
+    {
+      "id": "norway_peace",
+      "label": "Regjeringen – Norway’s efforts for peace and conflict resolution",
+      "url": "https://www.regjeringen.no/en/documents/meld.-st.-30-20242025/id3108206/",
+      "publisher": "Utenriksdepartementet",
+      "type": "official_white_paper",
+      "source_location": "Meld. St. 30 (2024–2025), roller, dilemmaer, læring og prioriteringer"
+    },
+    {
+      "id": "nobel_institute",
+      "label": "Det Norske Nobelinstitutt – The Norwegian Nobel Institute",
+      "url": "https://www.nobelpeaceprize.org/about-us/nobel-institute/",
+      "publisher": "Det Norske Nobelinstitutt",
+      "type": "institutional_primary",
+      "source_location": "Instituttets oppgave som Nobelkomiteens sekretariat"
+    },
+    {
+      "id": "nobel_center",
+      "label": "Nobels Fredssenter – About us",
+      "url": "https://www.nobelpeacecenter.org/en/about-us",
+      "publisher": "Nobels Fredssenter",
+      "type": "institutional_primary",
+      "source_location": "Museum, utstillinger, læring, dialog og offentlig samtale"
+    },
+    {
+      "id": "akershus_defence",
+      "label": "Forsvaret – Forsvarets fellestjenester",
+      "url": "https://www.forsvaret.no/om-forsvaret/organisasjon/forsvarets-fellestjenester",
+      "publisher": "Forsvaret",
+      "type": "official",
+      "source_location": "Akershus festning som sete for forsvarsledelse og fellesavdelinger"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim_001",
+      "claim": "FN-pakten bygger det mellomstatlige systemet på medlemsstatenes suverene likhet og pålegger dem å oppfylle paktforpliktelsene i god tro.",
+      "source_ids": [
+        "un_charter"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_002",
+      "claim": "FN-pakten krever fredelig tvisteløsning og forbyr trussel om eller bruk av makt mot staters territorielle integritet eller politiske uavhengighet.",
+      "source_ids": [
+        "un_charter"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_003",
+      "claim": "Det internasjonale systemet er anarkisk i betydningen at det mangler en overordnet verdensregjering, men det er ikke regel- eller institusjonsløst.",
+      "source_ids": [
+        "un_charter",
+        "keohane_regimes"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_004",
+      "claim": "Systemnivået definerer begrensninger og insentiver, men en konkret utenrikspolitisk beslutning må fortsatt forklares gjennom aktører, oppfatninger, institusjoner og hendelsesforløp.",
+      "source_ids": [
+        "jervis_security_dilemma",
+        "fearon_war",
+        "putnam_two_level"
+      ],
+      "classification": "methodological_synthesis",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_005",
+      "claim": "Et sikkerhetsdilemma kan oppstå når tiltak en stat oppfatter som defensive, reduserer andre staters opplevde sikkerhet og utløser mottiltak.",
+      "source_ids": [
+        "jervis_security_dilemma"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_006",
+      "claim": "Jervis viser at sikkerhetsdilemmaet påvirkes av om forsvar har fordel over angrep og om offensive og defensive forberedelser kan skilles fra hverandre.",
+      "source_ids": [
+        "jervis_security_dilemma"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_007",
+      "claim": "Fearons forhandlingsmodell identifiserer privat informasjon og insentiver til feilrepresentasjon, forpliktelsesproblemer og i noen tilfeller udelelige goder som rasjonalistiske veier til kostbar krig.",
+      "source_ids": [
+        "fearon_war"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_008",
+      "claim": "At krig eller opprustning observeres, identifiserer ikke alene hvilken mekanisme som virket; analysen må teste sikkerhetsdilemma, aggresjon, feilinformasjon og forpliktelsesproblemer mot tidsfestet evidens.",
+      "source_ids": [
+        "jervis_security_dilemma",
+        "fearon_war",
+        "collier_process_tracing"
+      ],
+      "classification": "methodological_synthesis",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_009",
+      "claim": "NATO-traktatens artikkel 4 gir konsultasjon når et medlems territorielle integritet, politiske uavhengighet eller sikkerhet er truet.",
+      "source_ids": [
+        "nato_treaty"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_010",
+      "claim": "Artikkel 5 definerer et væpnet angrep på én alliert som et angrep på alle, men hver alliert yter den bistanden den anser nødvendig, som kan omfatte væpnet makt.",
+      "source_ids": [
+        "nato_treaty"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_011",
+      "claim": "Avskrekking forsøker å påvirke en motparts valg før angrep gjennom troverdig utsikt til nektelse eller kostnad, mens forsvar også omfatter evnen til å stanse og håndtere et faktisk angrep.",
+      "source_ids": [
+        "nato_posture"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_012",
+      "claim": "En formell forsvarsgaranti er ikke alene bevis for troverdig avskrekking; analysen må også undersøke kapasiteter, beredskap, signaler, interesser og motpartens oppfatninger.",
+      "source_ids": [
+        "nato_treaty",
+        "nato_posture",
+        "fearon_war"
+      ],
+      "classification": "methodological_synthesis",
+      "status": "verified",
+      "used_in": [
+        "01-grunnlag.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_013",
+      "claim": "Internasjonale institusjoner består av regler, prosedyrer og organisasjoner som strukturerer samhandling, men de opphever ikke staters makt, interesser eller uenighet.",
+      "source_ids": [
+        "un_charter",
+        "keohane_regimes"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_014",
+      "claim": "Keohanes regimeteori forklarer etterspørsel etter institusjoner med at de kan levere informasjon, redusere transaksjonskostnader og gjøre avtaler lettere å inngå.",
+      "source_ids": [
+        "keohane_regimes"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_015",
+      "claim": "Samarbeid betyr koordinert tilpasning av politikk eller handling, ikke nødvendigvis felles mål, lik gevinst eller fravær av konflikt.",
+      "source_ids": [
+        "keohane_regimes"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_016",
+      "claim": "Materielle beslutninger i FNs sikkerhetsråd krever ni positive stemmer og de faste medlemmenes medvirkning etter artikkel 27, noe som gir institusjonalisert ulikhet i beslutningsmakten.",
+      "source_ids": [
+        "unsc_voting",
+        "un_charter"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_017",
+      "claim": "Institusjonell effekt må undersøkes gjennom den konkrete regelen, informasjonsstrømmen, beslutningsprosedyren, etterlevelsen og utfallet, ikke utledes av organisasjonens navn alene.",
+      "source_ids": [
+        "keohane_regimes",
+        "unsc_voting"
+      ],
+      "classification": "methodological_synthesis",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_018",
+      "claim": "Norges nasjonale sikkerhetsstrategi beskriver sikkerheten som avhengig av NATO og nære allierte, samtidig som Norge må bidra til nasjonal og regional sikkerhet.",
+      "source_ids": [
+        "norway_nss"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_019",
+      "claim": "Norsk sikkerhetspolitikk bruker politiske, militære, diplomatiske, økonomiske og folkerettslige virkemidler for å verne suverenitet, territoriell integritet og politisk handlefrihet.",
+      "source_ids": [
+        "norway_security_policy"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_020",
+      "claim": "Utenriksdepartementets oppgave er å ivareta og fremme norske interesser internasjonalt, og departementet knytter disse interessene til blant annet geografi, åpen økonomi, kyststatrolle og ressurser.",
+      "source_ids": [
+        "mfa_tasks"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_021",
+      "claim": "Grunnloven § 26 legger traktatkompetanse til regjeringen, men krever Stortingets samtykke for traktater av særlig stor viktighet og traktater som nødvendiggjør ny lov eller stortingsbeslutning.",
+      "source_ids": [
+        "constitution"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_022",
+      "claim": "Den utvidete utenriks- og forsvarskomiteen brukes til å drøfte viktige utenriks-, handels-, sikkerhets- og beredskapsspørsmål med regjeringen.",
+      "source_ids": [
+        "duufk"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_023",
+      "claim": "Putnams to-nivåmodell analyserer internasjonale forhandlinger sammen med innenrikspolitiske preferanser, koalisjoner, institusjoner og ratifikasjonsmuligheter.",
+      "source_ids": [
+        "putnam_two_level"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_024",
+      "claim": "Småstat er en relasjonell betegnelse på begrenset kapasitet overfor større aktører, ikke et synonym for svak stat; allianser, institusjoner, nisjekompetanse og hjemlig legitimitet kan forme handlingsrommet.",
+      "source_ids": [
+        "norway_nss",
+        "norway_security_policy",
+        "putnam_two_level"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[1]"
+      ]
+    },
+    {
+      "id": "claim_025",
+      "claim": "Parisavtalens artikkel 4 krever at partene forbereder, kommuniserer og opprettholder successive nasjonalt fastsatte bidrag som registreres offentlig.",
+      "source_ids": [
+        "paris_ndc"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_026",
+      "claim": "Parisregimet kombinerer nasjonalt bestemte tiltak med en felles syklus for innmelding og oppdatering, men en innmeldt ambisjon er ikke det samme som dokumentert gjennomføring eller utslippsutfall.",
+      "source_ids": [
+        "paris_ndc"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_027",
+      "claim": "Det internasjonale helsereglementet krever nasjonal kapasitet til å forebygge, oppdage, vurdere, varsle og håndtere hendelser og pålegger WHO funksjoner for varsling, informasjonsdeling og koordinering.",
+      "source_ids": [
+        "who_ihr"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_028",
+      "claim": "Grenseoverskridende problemer må analyseres med eksplisitt enhet, nevner, tidsrom og utfall fordi felles regelverk, nasjonal kapasitet og faktisk etterlevelse kan variere hver for seg.",
+      "source_ids": [
+        "paris_ndc",
+        "who_ihr",
+        "keohane_regimes"
+      ],
+      "classification": "methodological_synthesis",
+      "status": "verified",
+      "used_in": [
+        "02-fordypning.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_029",
+      "claim": "Norsk freds- og konfliktløsningspolitikk omfatter tilrettelegging, kontakt med statlige og ikke-statlige aktører, støtte, læring og dilemmaer; deltakelse i en prosess er ikke i seg selv bevis for nøytralitet eller fredseffekt.",
+      "source_ids": [
+        "norway_peace"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "03-anvendelse.sections[0]"
+      ]
+    },
+    {
+      "id": "claim_030",
+      "claim": "Prosessporing vurderer en foreslått mekanisme gjennom tidsrekkefølge og diagnostisk evidens innenfor et case og må sammenholde funnene med konkurrerende forklaringer.",
+      "source_ids": [
+        "collier_process_tracing"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "03-anvendelse.sections[2]"
+      ]
+    },
+    {
+      "id": "claim_031",
+      "claim": "Stortinget behandler utenriks- og forsvarssaker gjennom komitéarbeid og samtykkekompetanse og er derfor et sted for analyse av innenrikspolitisk forankring av internasjonale forpliktelser.",
+      "source_ids": [
+        "constitution",
+        "storting_committee",
+        "duufk"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "03-anvendelse.relatedPlaces[0]"
+      ]
+    },
+    {
+      "id": "claim_032",
+      "claim": "Akershus festning huser deler av Forsvarets politiske og militære ledelse og fellesavdelinger og er et konkret anker for analyse av forsvarskapasitet og sikkerhetspolitiske institusjoner.",
+      "source_ids": [
+        "akershus_defence"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "03-anvendelse.relatedPlaces[1]"
+      ]
+    },
+    {
+      "id": "claim_033",
+      "claim": "Det Norske Nobelinstitutt støtter Nobelkomiteens vurdering av nominasjoner og kandidater og fungerer som komiteens sekretariat, ikke som et organ for regjeringens utenrikspolitikk.",
+      "source_ids": [
+        "nobel_institute"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "03-anvendelse.relatedPlaces[2]"
+      ]
+    },
+    {
+      "id": "claim_034",
+      "claim": "Nobels Fredssenter er museet for Nobels fredspris og bruker utstillinger, undervisning og arrangementer til offentlig læring og dialog; det treffer ikke beslutningen om pristildeling.",
+      "source_ids": [
+        "nobel_center",
+        "nobel_institute"
+      ],
+      "classification": "source_based_synthesis",
+      "status": "verified",
+      "used_in": [
+        "03-anvendelse.relatedPlaces[3]"
+      ]
+    }
+  ]
+}
