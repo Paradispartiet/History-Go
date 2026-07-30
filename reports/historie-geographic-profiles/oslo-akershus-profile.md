@@ -73,4 +73,3 @@ Ingen åpne terskelgap.
 - 24 universelle emner mangler fortsatt en casekandidat i profilen.
 - 71 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
 - Videre produksjon skal bruke canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon uten å gjøre pilotgeografien universell.
-
