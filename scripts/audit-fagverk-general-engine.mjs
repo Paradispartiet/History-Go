@@ -48,6 +48,106 @@ function optionalJson(relativePath) {
   return fs.existsSync(absolute(relativePath)) ? readJson(relativePath) : null;
 }
 
+function resolveRelativeFagPointer(basePath, pointer) {
+  assert(typeof pointer === 'string' && pointer.trim(), `${basePath}: tom vitenskapelig fagpeker`);
+  const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(basePath), pointer));
+  assert(resolved.startsWith('data/fag/'), `${basePath}: vitenskapelig fagpeker går utenfor data/fag: ${pointer}`);
+  return resolved;
+}
+
+function buildScientificSource(CORE, { index, domainCatalog, modules, methodProtocols }) {
+  const topics = modules.flatMap((module) => CORE.list(module?.topics));
+  const topicByDomain = new Map();
+  for (const topic of topics) {
+    const domainId = CORE.text(topic?.domain_id);
+    if (!topicByDomain.has(domainId)) topicByDomain.set(domainId, []);
+    topicByDomain.get(domainId).push(topic);
+  }
+
+  const domains = CORE.list(domainCatalog?.domains).map((domain) => {
+    const domainId = CORE.text(domain?.domain_id);
+    const domainTopics = topicByDomain.get(domainId) || [];
+    return {
+      ...domain,
+      emne_ids: domainTopics.map((topic) => topic.emne_id),
+      method_ids: CORE.unique(domainTopics.flatMap((topic) => CORE.list(topic?.method_protocol_ids)))
+    };
+  });
+
+  const emners = topics.map((topic) => ({
+    ...topic,
+    subject_id: index.subject_id,
+    definition: topic.evidence_focus,
+    why_it_matters: topic.research_question,
+    key_questions: topic.research_question ? [topic.research_question] : [],
+    method_ids: CORE.list(topic.method_protocol_ids),
+    conflicts: topic.topic_specific_inference_limit ? [topic.topic_specific_inference_limit] : [],
+    analysis_axes: CORE.list(topic.claim_type_ids),
+    status: 'active'
+  }));
+
+  const methods = {
+    methods: CORE.list(methodProtocols?.protocols).map((method) => ({
+      ...method,
+      title: method.label,
+      data_forms: CORE.list(method.compatible_evidence),
+      limitations: CORE.unique([
+        ...CORE.list(method.validity_threats),
+        method.forbidden_overreach
+      ]),
+      emne_ids: topics
+        .filter((topic) => CORE.list(topic?.method_protocol_ids).includes(method.method_id))
+        .map((topic) => topic.emne_id)
+    }))
+  };
+
+  return {
+    pensum: {
+      subject_id: index.subject_id,
+      subject_title: index.subject_title,
+      scope: index.scope,
+      purpose: 'Canonical vitenskapelig fagstruktur fra aktiv musikkvitenskapelig pakke.',
+      domain_order: domains.map((domain) => domain.domain_id),
+      domains
+    },
+    emners,
+    fagkart: {
+      subject_id: index.subject_id,
+      subject_title: index.subject_title,
+      status: index.status
+    },
+    methods
+  };
+}
+
+function loadScientificSource(CORE, manifestEntry) {
+  const packagePath = CORE.resolveManifestPointer(manifestEntry.scientificPackage);
+  const scientificPackage = readJson(packagePath);
+  const indexPath = resolveRelativeFagPointer(packagePath, scientificPackage.active_scientific_package);
+  const index = readJson(indexPath);
+  const domainCatalogPath = resolveRelativeFagPointer(indexPath, index?.files?.domain_catalog);
+  const methodProtocolsPath = resolveRelativeFagPointer(indexPath, index?.files?.method_protocols);
+  const modulePaths = CORE.list(index?.files?.canonical_modules).map((pointer) => resolveRelativeFagPointer(indexPath, pointer));
+  assert(modulePaths.length > 0, `${indexPath}: mangler canonical_modules`);
+  return buildScientificSource(CORE, {
+    index,
+    domainCatalog: readJson(domainCatalogPath),
+    modules: modulePaths.map(readJson),
+    methodProtocols: readJson(methodProtocolsPath)
+  });
+}
+
+function loadSubjectSource(CORE, manifestEntry) {
+  if (CORE.text(manifestEntry?.scientificPackage)) return loadScientificSource(CORE, manifestEntry);
+  const source = {};
+  for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {
+    const relativePath = CORE.resolveManifestPointer(manifestEntry[field]);
+    assert(fs.existsSync(absolute(relativePath)), `mangler ${field} ${relativePath}`);
+    source[field === 'emner' ? 'emners' : field] = readJson(relativePath);
+  }
+  return source;
+}
+
 function validateRuntimeSurface({ html, coreSource, modelSource, pageSource }) {
   const orderedScripts = [PATHS.core, PATHS.model, PATHS.page];
   let previous = -1;
@@ -64,6 +164,8 @@ function validateRuntimeSurface({ html, coreSource, modelSource, pageSource }) {
   assert(!pageSource.includes("|| 'politikk'"), 'Fagsiden har politikkfallback i subject-resolveren');
   assert(!pageSource.includes('HGPolitikkFagModel'), 'Den generelle rendereren avhenger av HGPolitikkFagModel');
   assert(!modelSource.includes('politikk_runtime_manifest'), 'Den generelle loaderen peker til politikkmanifest');
+  assert(modelSource.includes('scientificPackage'), 'Den generelle loaderen mangler manifestert scientificPackage-støtte');
+  assert(modelSource.includes('canonical_modules'), 'Den generelle loaderen mangler canonical modules_v2-støtte');
   assert(coreSource.includes('resolveCanonicalSubjectId'), 'Core mangler streng canonical subject-resolver');
   assert(coreSource.includes('resolveManifestPointer'), 'Core mangler manifest-first filresolver');
   assert(coreSource.includes('normalizeSubject'), 'Core mangler normalisert fagmodell');
@@ -138,12 +240,7 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
     assert(portalEntry.badgePage, `${subjectId}: mangler merkesidelenke`);
 
     const manifestEntry = manifest[subjectId];
-    const source = {};
-    for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {
-      const relativePath = CORE.resolveManifestPointer(manifestEntry[field]);
-      assert(fs.existsSync(absolute(relativePath)), `${subjectId}: mangler ${field} ${relativePath}`);
-      source[field === 'emner' ? 'emners' : field] = readJson(relativePath);
-    }
+    const source = loadSubjectSource(CORE, manifestEntry);
     const badge = optionalJson(`data/badges/${subjectId}.json`);
     const normalized = CORE.normalizeSubject({
       subjectId,
@@ -201,11 +298,7 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
     const inventoryEntry = inventoryById.get('politikk');
     const statusEntry = statusById.get('politikk');
     const manifestEntry = manifest.politikk;
-    const source = {};
-    for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {
-      const data = readJson(CORE.resolveManifestPointer(manifestEntry[field]));
-      source[field === 'emner' ? 'emners' : field] = data;
-    }
+    const source = loadSubjectSource(CORE, manifestEntry);
     return CORE.normalizeSubject({ subjectId: 'politikk', categoryLabel: categories.labels.politikk, categoryDescription: categories.decisions.politikk, schemaFamily: inventoryEntry.schemaFamily, manifestEntry, portalEntry, inventoryEntry, statusEntry, registry, badge: optionalJson('data/badges/politikk.json'), source });
   })();
   assert(politicsModel.chapters.every((chapter) => chapter.primaryDomainId), 'Politikk: alle materialiserte kapitler må ha eksplisitt primært fagområde i registeret');
