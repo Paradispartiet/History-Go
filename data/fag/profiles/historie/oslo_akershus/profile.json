@@ -33,20 +33,20 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 32,
-    "unverified_case_candidates": 76
+    "validated_cases": 33,
+    "unverified_case_candidates": 75
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 108,
-    "claims_total": 135,
-    "sources_total": 104,
-    "evidence_links_total": 137,
+    "claims_total": 143,
+    "sources_total": 112,
+    "evidence_links_total": 145,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 32,
+    "verified_cases_total": 33,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -294,9 +294,10 @@
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_explicit_limitations",
         "additional_batch_ids": [
-          "history_ritual_reception_evidence_v1"
+          "history_ritual_reception_evidence_v1",
+          "history_war_transitional_coldwar_evidence_v1"
         ],
-        "scope_expanded_at": "2026-07-27"
+        "scope_expanded_at": "2026-07-30"
       }
     },
     {
@@ -1089,6 +1090,7 @@
       "emne_ids": [
         "em_his_fangenskap_kontroll",
         "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+        "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
         "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
         "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
         "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
@@ -1114,7 +1116,11 @@
         "validated_at": "2026-07-30",
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_explicit_limitations",
-        "spatial_note": "`grini_fangeleir` bruker det dokumenterte opprinnelige Ila/Grini-hovedbygget som historisk anker; 360-metersradiusen er ikke en påstand om leirens fulle krigsperimeter, og dagens aktive fengselsområde er ikke et offentlig gameplaymål."
+        "spatial_note": "`grini_fangeleir` bruker det dokumenterte opprinnelige Ila/Grini-hovedbygget som historisk anker; 360-metersradiusen er ikke en påstand om leirens fulle krigsperimeter, og dagens aktive fengselsområde er ikke et offentlig gameplaymål.",
+        "additional_batch_ids": [
+          "history_war_transitional_coldwar_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-07-30"
       }
     },
     {
@@ -1376,22 +1382,41 @@
       "label": "Høyesteretts hus",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "hoyesteretts_hus"
+      ],
       "emne_ids": [
         "em_his_beslutningskjeder_kompetanse_ansvar",
         "em_his_embetsstat_forvaltning",
         "em_his_kontroll_overvakning",
+        "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
         "em_his_rett_politi_fengsel",
         "em_his_rettigheter_borgerskap_forvaltning",
+        "em_his_rettsoppgjor",
+        "em_his_rettsoppgjor_etterkrig",
         "em_his_serielle_kilder_kvantifisering",
+        "em_his_stat_institusjoner",
         "em_his_styring_krise_kontinuitet"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_war_transitional_coldwar_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`hoyesteretts_hus` er den historiske Justisbygningen der Høyesterett hadde sin rettssal i tredje etasje fra 1903 til huset ble eksklusivt Høyesterett i 1996; caset forankrer 1945-gjenåpningen og landssvikbehandlingen i den faktiske domstolsbygningen."
       }
     },
     {
@@ -2743,6 +2768,9 @@
         "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
         "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
         "em_his_kjonn_familie_seksualitet_regulering_og_identitet",
+        "em_his_kontroll_overvakning",
+        "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+        "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
         "em_his_minoritetshistorie",
         "em_his_modernisering_1800",
         "em_his_nasjonal_identitet_fortellinger",
@@ -2759,6 +2787,7 @@
         "em_his_rett_politi_fengsel",
         "em_his_rettigheter_borgerskap_forvaltning",
         "em_his_rettsoppgjor",
+        "em_his_rettsoppgjor_etterkrig",
         "em_his_samtidshistorie_brudd",
         "em_his_serielle_kilder_kvantifisering",
         "em_his_spor_materialitet",
@@ -2783,9 +2812,10 @@
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_explicit_limitations",
         "additional_batch_ids": [
-          "history_source_method_families_evidence_v1"
+          "history_source_method_families_evidence_v1",
+          "history_war_transitional_coldwar_evidence_v1"
         ],
-        "scope_expanded_at": "2026-07-27"
+        "scope_expanded_at": "2026-07-30"
       }
     },
     {
@@ -5028,6 +5058,7 @@
         "case_his_mollergata_19",
         "case_his_oslo_byarkiv",
         "case_his_riksarkivet",
+        "case_his_stortinget",
         "case_his_victoria_terrasse"
       ],
       "case_requirement_ids": [
@@ -5084,8 +5115,11 @@
       "emne_id": "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
       "case_ids": [
         "case_his_akershus_festning",
+        "case_his_grini_fangeleir",
+        "case_his_hoyesteretts_hus",
         "case_his_mollergata_19",
         "case_his_oscarsborg_festning",
+        "case_his_stortinget",
         "case_his_villa_grande"
       ],
       "case_requirement_ids": [
@@ -5103,6 +5137,7 @@
       "case_ids": [
         "case_his_akershus_festning",
         "case_his_hjemmefrontmuseet",
+        "case_his_stortinget",
         "case_his_victoria_terrasse",
         "case_his_villa_grande"
       ],
@@ -6453,6 +6488,7 @@
         "case_his_akershus_festning",
         "case_his_botsfengselet",
         "case_his_grini_fangeleir",
+        "case_his_hoyesteretts_hus",
         "case_his_mollergata_19",
         "case_his_oscarsborg_festning",
         "case_his_stortinget",
@@ -6473,8 +6509,10 @@
       "case_ids": [
         "case_his_akershus_festning",
         "case_his_grini_fangeleir",
+        "case_his_hoyesteretts_hus",
         "case_his_mollergata_19",
         "case_his_oscarsborg_festning",
+        "case_his_stortinget",
         "case_his_victoria_terrasse",
         "case_his_villa_grande"
       ],
@@ -6936,6 +6974,7 @@
       "emne_id": "em_his_stat_institusjoner",
       "case_ids": [
         "case_his_akershus_festning",
+        "case_his_hoyesteretts_hus",
         "case_his_oslo_radhus",
         "case_his_regjeringskvartalet",
         "case_his_riksarkivet",
