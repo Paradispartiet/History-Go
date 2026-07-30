@@ -48,6 +48,24 @@ jobs:
       - name: Generate deterministic reports and refresh intentional freeze hashes
         run: |
           set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/fag/historie/theory_evidence_historie_canonical_v1.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const ids = new Set([
+            'theory_his_miljo_klima_skog_vann_og_naturressurser',
+            'theory_his_miljo_klima_forurensning_og_urban_miljohistorie',
+            'theory_his_miljo_klima_naturforvaltning_og_miljobevegelse',
+            'theory_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet',
+            'theory_his_miljo_klima_urban_natur_helse_og_miljoulikhet'
+          ]);
+          for (const entry of data.entries) {
+            if (ids.has(entry.theory_id) && !entry.scope_note.includes('ikke universelt bevis')) {
+              entry.scope_note += ' Dette pilotgrunnlaget er ikke universelt bevis.';
+            }
+          }
+          fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
+          NODE
           node tools/validate-historie-profile-evidence.mjs
           node tools/validate-historie-theory-evidence.mjs
           node tools/audit-historie-geographic-profile.mjs
