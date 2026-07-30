@@ -67,10 +67,7 @@ function main() {
 
   const claimTypeIds = new Set(list(research.evidence_contract?.claim_types).map((item) => item.claim_type_id));
   const methodIds = new Set(list(methods.protocols).map((item) => item.method_id));
-  const topic = list(module.topics).find((item) => item.emne_id === 'em_musikk_vit_rytme_meter_groove_timing');
-  ok(Boolean(topic), 'Mangler canonicalt rytme/meter/groove/timing-emne');
-  const topicClaimTypes = new Set(list(topic?.claim_type_ids));
-  const topicMethodIds = new Set(list(topic?.method_protocol_ids));
+  const topicById = new Map(list(module.topics).map((item) => [item.emne_id, item]));
 
   ok(pkg.version === '2.0', 'scientific_package må beholde canonical versjon 2.0');
   ok(pkg.summary.verified_scholarly_source_record_count === canonicalIndex.summary.verified_scholarly_source_record_count, 'produksjonskilder kan ikke endre canonical bibliografisk basistall');
@@ -78,6 +75,7 @@ function main() {
   ok(pkg.fulltext_evidence_revision === index.revision, 'fulltekstevidensrevisjon er usynkronisert');
   ok(index.status === 'pilot_active', 'fulltekstevidensindeksen må være pilot_active');
   ok(index.summary.fulltext_pilot_topic_count === list(index.topic_files).length, 'pilot topic count matcher ikke topic_files');
+  ok(new Set(list(index.topic_files)).size === list(index.topic_files).length, 'topic_files kan ikke inneholde duplikater');
   ok(contract.hard_rules.full_text_must_be_reviewed_before_claim_ready === true, 'kontrakten mangler fulltekstport');
   ok(contract.hard_rules.article_locator_is_not_direct_music_object_locator === true, 'kontrakten må skille artikkellokator fra direkte objektlokator');
   ok(contract.hard_rules.question_release_requires_topic_direct_object_gate === true, 'kontrakten mangler direct-object question gate');
@@ -92,14 +90,23 @@ function main() {
   let boundaries = 0;
   let questionReadyTopics = 0;
   let questionReadyClaims = 0;
+  const seenEmneIds = new Set();
 
   for (const topicFile of list(index.topic_files)) {
     const relative = `${BASE}/fulltext_evidence_v1/${topicFile}`;
     const evidence = readJson(relative);
+    const topic = topicById.get(evidence.emne_id);
     ok(evidence.subject_id === 'musikk', `${topicFile}: feil subject_id`);
     ok(evidence.domain_id === 'musikalsk_analyse_lyd_struktur', `${topicFile}: feil domain_id`);
-    ok(evidence.emne_id === topic?.emne_id, `${topicFile}: feil emne_id`);
+    ok(Boolean(topic), `${topicFile}: ukjent canonical emne_id ${evidence.emne_id}`);
+    ok(!seenEmneIds.has(evidence.emne_id), `${topicFile}: duplikat evidensfil for ${evidence.emne_id}`);
+    seenEmneIds.add(evidence.emne_id);
+    ok(topic?.domain_id === evidence.domain_id, `${topicFile}: emne og evidens har ulikt domene`);
     ok(list(contract.release_states).includes(evidence.status), `${topicFile}: uventet release-status ${evidence.status}`);
+
+    const topicClaimTypes = new Set(list(topic?.claim_type_ids));
+    const topicMethodIds = new Set(list(topic?.method_protocol_ids));
+    const topicObjectTypes = new Set(list(topic?.research_object_types));
 
     const extensionIds = new Set();
     for (const extension of list(evidence.production_source_extensions)) {
@@ -144,7 +151,7 @@ function main() {
     for (const object of list(evidence.direct_objects)) {
       directObjects += 1;
       ok(Boolean(text(object.object_id)), `${topicFile}: direct object mangler object_id`);
-      ok(list(topic?.research_object_types).includes(object.object_type), `${topicFile}/${object.object_id}: object_type er ikke tillatt for emnet`);
+      ok(topicObjectTypes.has(object.object_type), `${topicFile}/${object.object_id}: object_type er ikke tillatt for emnet`);
       ok(Boolean(text(object.title)), `${topicFile}/${object.object_id}: title mangler`);
       ok(/^https:\/\//.test(text(object.persistent_url)), `${topicFile}/${object.object_id}: persistent_url må være https`);
       ok(!objectById.has(object.object_id), `${topicFile}: duplikat object_id ${object.object_id}`);
@@ -159,6 +166,9 @@ function main() {
       ok(object.rights && Boolean(text(object.rights.history_go_use_mode)), `${topicFile}/${object.object_id}: rights/history_go_use_mode mangler`);
       if (object.rights?.redistribution_allowed === false || object.rights?.modification_allowed === false) {
         ok(object.rights.history_go_use_mode === 'external_link_and_metadata_only', `${topicFile}/${object.object_id}: ikke-redistribuerbart objekt må være external_link_and_metadata_only`);
+      }
+      if (text(object.rights?.commercial_compatibility_with_history_go) === 'not_resolved') {
+        ok(object.rights.history_go_use_mode === 'external_link_and_metadata_only', `${topicFile}/${object.object_id}: uløst kommersiell lisenskompatibilitet må være external_link_and_metadata_only`);
       }
     }
 
@@ -224,6 +234,10 @@ function main() {
         ok(Boolean(claim), `${topicFile}: question-ready claim finnes ikke: ${claimId}`);
         ok(claim?.object_scope?.direct_object_id === gate.selected_object_id, `${topicFile}/${claimId}: question-ready claim peker ikke til selected direct object`);
       }
+      const selectedObject = objectById.get(gate.selected_object_id);
+      if (text(selectedObject?.rights?.commercial_compatibility_with_history_go) === 'not_resolved') {
+        ok(selectedObject.rights.history_go_use_mode === 'external_link_and_metadata_only', `${topicFile}: uløst lisenskompatibilitet kan bare frigi metadata/ekstern-lenke-bruk`);
+      }
     } else {
       ok(evidence.status !== 'question_release_ready', `${topicFile}: status kan ikke være question_release_ready når gaten er lukket`);
       ok(list(gate.question_ready_claim_ids).length === 0, `${topicFile}: lukket gate kan ikke ha question_ready_claim_ids`);
@@ -256,7 +270,7 @@ function main() {
   ok(pkg.summary.question_release_ready_claim_count === questionReadyClaims, 'scientific_package question_release_ready_claim_count er feil');
 
   console.log(`Musikk fulltekstevidens v1: ${pass} PASS, ${fail} FAIL`);
-  console.log(`Pilot: ${list(index.topic_files).length} emne, ${reviewedSources} fulltekster (${canonicalReviewedSources} canonical + ${productionExtensions} produksjonsutvidelse), ${directObjects} direkte objekt, ${claimReady} claim-klare funn, ${boundaries} slutningsgrenser, ${questionReadyTopics} question-ready emne/${questionReadyClaims} claim.`);
+  console.log(`Pilot: ${list(index.topic_files).length} emner, ${reviewedSources} fulltekster (${canonicalReviewedSources} canonical + ${productionExtensions} produksjonsutvidelser), ${directObjects} direkte objekter, ${claimReady} claim-klare funn, ${boundaries} slutningsgrenser, ${questionReadyTopics} question-ready emner/${questionReadyClaims} claims.`);
   if (errors.length) {
     for (const error of errors) console.error(`FAIL: ${error}`);
     process.exitCode = 1;
