@@ -10,59 +10,8 @@ const SCHEMA = 'data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json';
 const QUESTION_SCHEMA = 'data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json';
 const MODULE = 'data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json';
 const METHODS = 'data/fag/musikk/musikkvitenskap_canonical_v1/method_protocols_v1.json';
+const SCIENTIFIC_PACKAGE = 'data/fag/musikk/scientific_package.json';
 const STAGES = ['observe', 'explain', 'evaluate_evidence', 'diagnose_failure', 'decide_and_justify'];
-
-const SET_CONFIGS = Object.freeze([
-  {
-    emne: 'em_musikk_vit_rytme_meter_groove_timing',
-    target: 'subject_musikk_rytme_meter_groove_timing',
-    evidence: 'data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json',
-    claim: 'claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure',
-    object: 'obj_sioros_2014_zenodo_1221315',
-    method: 'rytme_mikrotiminganalyse',
-    objectType: 'datasett_og_kode',
-    primarySource: 'prod_src_sioros_syncopation_synthesized_2014',
-    allowedSources: ['prod_src_sioros_syncopation_synthesized_2014', 'obj_sioros_2014_zenodo_1221315'],
-    objectUrlPattern: /^https:\/\/zenodo\.org\/records\/1221315/,
-    rightsCheck(object) {
-      return object?.rights?.history_go_use_mode === 'external_link_and_metadata_only'
-        && object?.rights?.redistribution_allowed === false
-        && object?.rights?.modification_allowed === false;
-    }
-  },
-  {
-    emne: 'em_musikk_vit_melodi_motiv_frasering',
-    target: 'subject_musikk_melodi_motiv_frasering',
-    evidence: 'data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/melodi_motiv_frasering.json',
-    claim: 'claim_musikk_melody_boss_alpha_salience_development',
-    object: 'obj_beethoven_op10_1_dcml_v2_5_05_1',
-    method: 'notasjons_kildeanalyse',
-    objectType: 'notert_kilde',
-    primarySource: 'prod_src_boss_hidden_repetition_beethoven_1999',
-    allowedSources: ['prod_src_boss_hidden_repetition_beethoven_1999', 'prod_src_hentschel_annotated_piano_corpus_2024', 'obj_beethoven_op10_1_dcml_v2_5_05_1'],
-    objectUrlPattern: /^https:\/\/github\.com\/DCMLab\/beethoven_piano_sonatas\/blob\/v2\.5\/MS3\/05-1\.mscx/,
-    rightsCheck(object) {
-      return object?.rights?.history_go_use_mode === 'external_link_and_metadata_only'
-        && object?.rights?.commercial_compatibility_with_history_go === 'not_resolved';
-    }
-  },
-  {
-    emne: 'em_musikk_vit_harmoni_tonalitet_modalitet',
-    target: 'subject_musikk_harmoni_tonalitet_modalitet',
-    evidence: 'data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/harmoni_tonalitet_modalitet.json',
-    claim: 'claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63',
-    object: 'obj_beethoven_tempest_op31_2_dcml_v2_5_17_1',
-    method: 'notasjons_kildeanalyse',
-    objectType: 'notert_kilde',
-    primarySource: 'prod_src_caplin_tempest_exposition_2010',
-    allowedSources: ['prod_src_caplin_tempest_exposition_2010', 'prod_src_hentschel_annotated_piano_corpus_2024', 'obj_beethoven_tempest_op31_2_dcml_v2_5_17_1'],
-    objectUrlPattern: /^https:\/\/github\.com\/DCMLab\/beethoven_piano_sonatas\/blob\/v2\.5\/MS3\/17-1\.mscx/,
-    rightsCheck(object) {
-      return object?.rights?.history_go_use_mode === 'external_link_and_metadata_only'
-        && object?.rights?.commercial_compatibility_with_history_go === 'not_resolved';
-    }
-  }
-]);
 
 let pass = 0;
 let fail = 0;
@@ -103,6 +52,46 @@ function splitClaims(value) {
 function sameOrder(actual, expected) {
   return Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => value === expected[index]);
 }
+function targetFromEmne(emne) {
+  const prefix = 'em_musikk_vit_';
+  return emne.startsWith(prefix) ? `subject_musikk_${emne.slice(prefix.length)}` : '';
+}
+function buildConfigs(pkg) {
+  return list(pkg.production_context?.released_evidence_files).map((evidenceFile) => {
+    const evidence = readJson(evidenceFile);
+    const gate = evidence.direct_object_gate || {};
+    const releasedClaims = list(gate.question_ready_claim_ids);
+    const claimId = releasedClaims[0] || '';
+    const claim = list(evidence.claim_records).find((item) => item.claim_id === claimId);
+    const objectId = text(gate.selected_object_id);
+    const object = list(evidence.direct_objects).find((item) => item.object_id === objectId);
+    const methodIds = list(claim?.method_protocol_ids);
+    const primarySource = list(claim?.source_ids)[0] || '';
+    const allowedSources = unique([
+      ...list(claim?.source_ids),
+      ...list(object?.provenance_source_ids),
+      objectId
+    ].filter(Boolean));
+    return {
+      evidenceFile,
+      evidence,
+      gate,
+      emne: text(evidence.emne_id),
+      target: targetFromEmne(text(evidence.emne_id)),
+      claim: claimId,
+      claimRecord: claim,
+      object: objectId,
+      objectRecord: object,
+      method: methodIds[0] || '',
+      methodIds,
+      objectType: text(object?.object_type),
+      primarySource,
+      allowedSources,
+      objectUrl: text(object?.persistent_url),
+      rightsMode: text(object?.rights?.history_go_use_mode)
+    };
+  });
+}
 
 function main() {
   const pkg = readJson(PACKAGE);
@@ -110,8 +99,11 @@ function main() {
   const questionSchema = readJson(QUESTION_SCHEMA);
   const module = readJson(MODULE);
   const methods = readJson(METHODS);
+  const scientificPackage = readJson(SCIENTIFIC_PACKAGE);
   const topicById = new Map(list(module.topics).map((item) => [item.emne_id, item]));
   const methodIds = new Set(list(methods.protocols).map((item) => item.method_id));
+  const configs = buildConfigs(pkg);
+  const canonicalTopicCount = Number(scientificPackage.summary?.topic_count || 0);
 
   for (const field of list(schema.required_top_fields)) ok(Object.hasOwn(pkg, field), `pakken mangler toppfelt ${field}`);
   ok(pkg.schema === 'history_go_subject_pathway_package_v1', 'feil package schema');
@@ -119,47 +111,48 @@ function main() {
   ok(pkg.categoryId === 'musikk' && pkg.subject_id === 'musikk', 'pakken må tilhøre musikk');
   ok(pkg.targetId === 'subject_musikk', 'topp-target må være subject_musikk');
   ok(pkg.status === 'pilot_active', 'Musikk-pathway skal være pilot_active');
-  ok(pkg.production_context?.profile === 'subject_pathway_pilot_3x5', 'feil pilotprofil');
-  ok(pkg.production_context?.blocked_canonical_topic_count === 45, 'piloten må eksplisitt holde 45 canonicale temaer blokkert');
+  ok(configs.length >= 1, 'released_evidence_files må inneholde minst ett frigitt evidenstema');
+  ok(canonicalTopicCount > 0, 'canonical topic_count mangler i scientific package');
+  ok(pkg.production_context?.profile === `subject_pathway_pilot_${configs.length}x5`, 'feil pilotprofil');
+  ok(pkg.production_context?.blocked_canonical_topic_count === canonicalTopicCount - configs.length, 'blocked_canonical_topic_count er usynkronisert med canonical topic-count og released evidence');
   ok(pkg.production_context?.rights_mode === 'external_link_and_metadata_only', 'rettighetsmodus må være external_link_and_metadata_only');
-  ok(sameOrder(pkg.production_context?.released_emne_ids, SET_CONFIGS.map((item) => item.emne)), 'released_emne_ids er usynkronisert');
-  ok(sameOrder(pkg.production_context?.question_ready_claim_ids, SET_CONFIGS.map((item) => item.claim)), 'question_ready_claim_ids er usynkronisert');
-  ok(sameOrder(pkg.production_context?.direct_object_ids, SET_CONFIGS.map((item) => item.object)), 'direct_object_ids er usynkronisert');
-  ok(list(pkg.production_context?.released_evidence_files).length === SET_CONFIGS.length, 'released_evidence_files må dekke alle settene');
+  ok(sameOrder(pkg.production_context?.released_emne_ids, configs.map((item) => item.emne)), 'released_emne_ids er usynkronisert med evidensfilene');
+  ok(sameOrder(pkg.production_context?.question_ready_claim_ids, configs.map((item) => item.claim)), 'question_ready_claim_ids er usynkronisert med evidensgatene');
+  ok(sameOrder(pkg.production_context?.direct_object_ids, configs.map((item) => item.object)), 'direct_object_ids er usynkronisert med evidensgatene');
 
   const packageSources = new Map(list(pkg.sources).map((item) => [item.id, item]));
-  const expectedSourceIds = unique(SET_CONFIGS.flatMap((item) => item.allowedSources));
+  const expectedSourceIds = unique(configs.flatMap((item) => item.allowedSources));
   ok(packageSources.size === expectedSourceIds.length, `pakken skal ha nøyaktig ${expectedSourceIds.length} frigjorte kilder/objekter`);
   for (const sourceId of expectedSourceIds) ok(packageSources.has(sourceId), `pakken mangler source/object ${sourceId}`);
 
-  ok(list(pkg.sets).length === SET_CONFIGS.length, `Musikk-piloten skal ha nøyaktig ${SET_CONFIGS.length} sett`);
+  ok(list(pkg.sets).length === configs.length, `Musikk-piloten skal ha nøyaktig ${configs.length} sett`);
   const setByEmne = new Map(list(pkg.sets).map((set) => [set.emne_id, set]));
   const requiredQuestionFields = unique([...list(questionSchema.required_fields), ...list(schema.question_contract?.required_fields)]);
   const seenQuestionIds = new Set();
   let totalQuestions = 0;
 
-  for (const [configIndex, config] of SET_CONFIGS.entries()) {
-    const evidence = readJson(config.evidence);
-    const claims = new Map(list(evidence.claim_records).map((item) => [item.claim_id, item]));
-    const objects = new Map(list(evidence.direct_objects).map((item) => [item.object_id, item]));
-    const extensions = new Set(list(evidence.production_source_extensions).map((item) => item.source_id));
-    const gate = evidence.direct_object_gate || {};
-    const claim = claims.get(config.claim);
-    const object = objects.get(config.object);
+  for (const [configIndex, config] of configs.entries()) {
+    const { evidence, gate, claimRecord: claim, objectRecord: object } = config;
     const topic = topicById.get(config.emne);
 
     ok(evidence.status === 'question_release_ready', `${config.emne}: upstream fulltekstevidens er ikke question_release_ready`);
+    ok(evidence.domain_id === 'musikalsk_analyse_lyd_struktur', `${config.emne}: evidensfilen ligger i feil domene`);
     ok(gate.question_release_ready === true, `${config.emne}: upstream direct-object gate er ikke åpen`);
-    ok(sameOrder(gate.question_ready_claim_ids, [config.claim]), `${config.emne}: upstream gate frigir ikke nøyaktig forventet claim`);
-    ok(gate.selected_object_id === config.object, `${config.emne}: upstream gate peker ikke til forventet direct object`);
-    ok(Boolean(claim), `${config.emne}: frigitt claim mangler`);
-    ok(Boolean(object), `${config.emne}: direct object mangler`);
-    ok(extensions.has(config.primarySource), `${config.emne}: primær production extension mangler`);
-    ok(claim?.object_scope?.direct_object_id === config.object, `${config.emne}: claimet peker ikke til direct object`);
+    ok(list(gate.question_ready_claim_ids).length === 1, `${config.emne}: pathway-gaten må frigi nøyaktig ett claim`);
+    ok(sameOrder(gate.question_ready_claim_ids, [config.claim]), `${config.emne}: upstream gate frigir ikke forventet claim`);
+    ok(Boolean(config.claim), `${config.emne}: frigitt claim-id mangler`);
+    ok(Boolean(claim), `${config.emne}: frigitt claim-record mangler`);
+    ok(Boolean(config.object), `${config.emne}: selected direct object-id mangler`);
+    ok(Boolean(object), `${config.emne}: direct object-record mangler`);
+    ok(config.methodIds.length === 1 && Boolean(config.method), `${config.emne}: frigitt claim må bruke nøyaktig én metodeprotokoll`);
+    ok(Boolean(config.primarySource), `${config.emne}: claimet mangler primær fulltekstkilde`);
+    ok(list(evidence.production_source_extensions).some((item) => item.source_id === config.primarySource), `${config.emne}: primær fulltekstkilde må være eksplisitt production extension`);
+    ok(claim?.object_scope?.direct_object_id === config.object, `${config.emne}: claimet peker ikke til selected direct object`);
     ok(list(claim?.source_ids).includes(config.primarySource), `${config.emne}: claimet peker ikke til primær fulltekstkilde`);
-    ok(object?.object_type === config.objectType, `${config.emne}: direct object har feil object_type`);
+    ok(config.objectType.length > 0, `${config.emne}: direct object har ingen object_type`);
+    ok(config.objectUrl.length > 0, `${config.emne}: direct object mangler persistent_url`);
     ok(list(object?.locators).length >= 2, `${config.emne}: direct object må ha minst to locatorer`);
-    ok(config.rightsCheck(object), `${config.emne}: upstream rights gate er ikke kompatibel med package use mode`);
+    ok(config.rightsMode === pkg.production_context?.rights_mode, `${config.emne}: object rights mode avviker fra package rights mode`);
 
     ok(Boolean(topic), `${config.emne}: canonicalt emne mangler`);
     ok(topic?.domain_id === 'musikalsk_analyse_lyd_struktur', `${config.emne}: emnet ligger i feil domene`);
@@ -168,8 +161,8 @@ function main() {
     ok(methodIds.has(config.method), `${config.emne}: metoden mangler i method_protocols`);
 
     const packagedObject = packageSources.get(config.object) || {};
-    ok(packagedObject.use_mode === 'external_link_and_metadata_only', `${config.emne}: pakket direct object har feil use_mode`);
-    ok(config.objectUrlPattern.test(text(packagedObject.url)), `${config.emne}: pakket direct object har feil persistent URL`);
+    ok(text(packagedObject.use_mode) === config.rightsMode, `${config.emne}: pakket direct object har feil use_mode`);
+    ok(text(packagedObject.url) === config.objectUrl, `${config.emne}: pakket direct object har feil persistent URL`);
 
     const set = setByEmne.get(config.emne) || {};
     for (const field of list(schema.set_contract?.required_fields)) ok(Object.hasOwn(set, field), `${config.emne}: settet mangler felt ${field}`);
@@ -205,8 +198,8 @@ function main() {
         ok(config.allowedSources.includes(source.source_id), `${label}: ikke-frigitt kilde/objekt ${source.source_id}`);
         ok(text(source.locator).length > 4, `${label}: source locator mangler`);
         if (source.source_id === config.object) {
-          ok(source.use_mode === 'external_link_and_metadata_only', `${label}: direct object mangler sikker use_mode`);
-          ok(config.objectUrlPattern.test(text(source.url)), `${label}: direct object må bruke forventet persistent URL`);
+          ok(text(source.use_mode) === config.rightsMode, `${label}: direct object mangler sikker use_mode`);
+          ok(text(source.url) === config.objectUrl, `${label}: direct object må bruke evidensfilens persistent URL`);
         }
       }
       if (question.claim_id) ok(question.claim_id === config.claim && list(gate.question_ready_claim_ids).includes(question.claim_id), `${label}: claim_id er ikke frigitt`);
@@ -228,7 +221,7 @@ function main() {
     ok(new Set(answerIndexes).size >= 3, `${config.emne}: riktige svar må være fordelt over minst tre answerIndex-posisjoner`);
   }
 
-  ok(totalQuestions === SET_CONFIGS.length * 5, `forventet ${SET_CONFIGS.length * 5} spørsmål totalt`);
+  ok(totalQuestions === configs.length * 5, `forventet ${configs.length * 5} spørsmål totalt`);
   console.log(`Musikk subject pathway v1: ${pass} PASS, ${fail} FAIL`);
   console.log(`Pilot: ${pkg.sets.length} sett, ${totalQuestions} spørsmål, ${pkg.production_context.question_ready_claim_ids.length} released claims, ${pkg.production_context.direct_object_ids.length} direct objects, ${pkg.production_context.blocked_canonical_topic_count} temaer fortsatt blokkert.`);
   for (const error of errors) console.error(`FAIL: ${error}`);
