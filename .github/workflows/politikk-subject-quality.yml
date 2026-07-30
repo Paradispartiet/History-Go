@@ -15,6 +15,7 @@ on:
       - 'scripts/audit-politikk-chapter-politisk-okonomi-stat-marked.mjs'
       - 'scripts/audit-politikk-chapter-statsvitenskapelig-metode-og-sammenligning.mjs'
       - 'scripts/audit-politikk-chapter-norsk-politikk-eos-eu-flernivastyring.mjs'
+      - 'scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs'
       - 'tests/politikk-subject-quality.test.mjs'
       - 'tests/politikk-thinker-integrity.test.mjs'
       - 'tests/politikk-chapter-regimer-institusjoner.test.mjs'
@@ -24,6 +25,7 @@ on:
       - 'tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs'
       - 'tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs'
       - 'tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs'
+      - 'tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs'
       - 'reports/fagverk/politikk-quality-audit.json'
       - 'reports/fagverk/politikk-thinker-integrity-audit.json'
       - 'reports/fagverk/politikk-regimer-institusjoner-audit.json'
@@ -33,6 +35,7 @@ on:
       - 'reports/fagverk/politikk-politisk-okonomi-stat-marked-audit.json'
       - 'reports/fagverk/politikk-statsvitenskapelig-metode-og-sammenligning-audit.json'
       - 'reports/fagverk/politikk-norsk-politikk-eos-eu-flernivastyring-audit.json'
+      - 'reports/fagverk/politikk-rett-lov-rettssikkerhet-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
   push:
     branches: [main]
@@ -49,6 +52,7 @@ on:
       - 'scripts/audit-politikk-chapter-politisk-okonomi-stat-marked.mjs'
       - 'scripts/audit-politikk-chapter-statsvitenskapelig-metode-og-sammenligning.mjs'
       - 'scripts/audit-politikk-chapter-norsk-politikk-eos-eu-flernivastyring.mjs'
+      - 'scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs'
       - 'tests/politikk-subject-quality.test.mjs'
       - 'tests/politikk-thinker-integrity.test.mjs'
       - 'tests/politikk-chapter-regimer-institusjoner.test.mjs'
@@ -58,6 +62,7 @@ on:
       - 'tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs'
       - 'tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs'
       - 'tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs'
+      - 'tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs'
       - 'reports/fagverk/politikk-quality-audit.json'
       - 'reports/fagverk/politikk-thinker-integrity-audit.json'
       - 'reports/fagverk/politikk-regimer-institusjoner-audit.json'
@@ -67,6 +72,7 @@ on:
       - 'reports/fagverk/politikk-politisk-okonomi-stat-marked-audit.json'
       - 'reports/fagverk/politikk-statsvitenskapelig-metode-og-sammenligning-audit.json'
       - 'reports/fagverk/politikk-norsk-politikk-eos-eu-flernivastyring-audit.json'
+      - 'reports/fagverk/politikk-rett-lov-rettssikkerhet-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
 
 jobs:
@@ -90,6 +96,7 @@ jobs:
           node --check scripts/audit-politikk-chapter-politisk-okonomi-stat-marked.mjs
           node --check scripts/audit-politikk-chapter-statsvitenskapelig-metode-og-sammenligning.mjs
           node --check scripts/audit-politikk-chapter-norsk-politikk-eos-eu-flernivastyring.mjs
+          node --check scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs
           node scripts/audit-politikk-subject-quality.mjs
           node scripts/audit-politikk-thinker-integrity.mjs
           node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
@@ -99,7 +106,8 @@ jobs:
           node scripts/audit-politikk-chapter-politisk-okonomi-stat-marked.mjs
           node scripts/audit-politikk-chapter-statsvitenskapelig-metode-og-sammenligning.mjs
           node scripts/audit-politikk-chapter-norsk-politikk-eos-eu-flernivastyring.mjs
-          node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs
+          node scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs
+          node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
