@@ -38,9 +38,51 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  bootstrap-form-method-link:
+    if: github.head_ref == 'agent/musikk-fulltext-evidence-form-v1'
+    name: Bootstrap form notation method link
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Add existing notation method to form topic and blueprint
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const emne = 'em_musikk_vit_form_prosess_improvisasjon';
+          const method = 'notasjons_kildeanalyse';
+          const topic = data.topics.find((item) => item.emne_id === emne);
+          const blueprint = data.question_blueprints.find((item) => item.emne_id === emne);
+          if (!topic || !blueprint) throw new Error('Form topic/blueprint mangler');
+          for (const item of [topic, blueprint]) {
+            item.method_protocol_ids = Array.isArray(item.method_protocol_ids) ? item.method_protocol_ids : [];
+            if (!item.method_protocol_ids.includes(method)) item.method_protocol_ids.push(method);
+          }
+          fs.writeFileSync(file, `${JSON.stringify(data)}\n`, 'utf8');
+          NODE
+          node tools/validate-musikk-emner-fagdybde-v2.mjs
+          node tools/validate-musikk-fulltext-evidence-v1.mjs
+      - name: Commit canonical linkage
+        run: |
+          if git diff --quiet; then
+            echo 'No canonical linkage change.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json
+          git commit -m 'Link notation source analysis to form topic'
+          git push origin HEAD:${{ github.head_ref }}
+
   validate:
     name: Validate materialized Musikk subject
     runs-on: ubuntu-latest
