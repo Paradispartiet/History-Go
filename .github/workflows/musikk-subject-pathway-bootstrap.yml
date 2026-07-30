@@ -1,0 +1,40 @@
+name: Bootstrap Musikk subject pathway registration
+
+on:
+  push:
+    branches:
+      - 'agent/musikk-rhythm-subject-pathway-v1'
+    paths:
+      - 'data/quiz/musikk/musikk_subject_pathways_v1.json'
+      - 'tools/build-musikk-subject-pathway-registration-v1.mjs'
+      - '.github/workflows/musikk-subject-pathway-bootstrap.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  write-registration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/musikk-rhythm-subject-pathway-v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate deterministic registration outputs
+        run: |
+          node tools/build-musikk-subject-pathway-registration-v1.mjs --write
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node tools/validate-musikk-subject-pathway-v1.mjs
+      - name: Commit generated outputs
+        run: |
+          if git diff --quiet; then
+            echo 'No generated changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/fag_manifest.json data/fagverk/subject_inventory.json data/fagverk/subject_status.json data/quiz/manifest.json data/knowledge/knowledge_manifest.json reports/fagverk/subject-baseline.json
+          git commit -m 'Register Musikk subject pathway outputs'
+          git push origin HEAD:agent/musikk-rhythm-subject-pathway-v1
