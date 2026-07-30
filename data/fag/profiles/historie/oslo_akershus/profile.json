@@ -33,21 +33,22 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 33,
+    "validated_cases": 36,
     "unverified_case_candidates": 75
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
-    "emne_link_ratio_percent": 87,
-    "cases_total": 108,
-    "claims_total": 170,
-    "sources_total": 132,
-    "evidence_links_total": 176,
+    "emne_link_ratio_percent": 89.6,
+    "cases_total": 111,
+    "claims_total": 177,
+    "sources_total": 137,
+    "evidence_links_total": 184,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 33,
-    "completion_scope": "minimum_representative_evidence_foundation"
+    "verified_cases_total": 36,
+    "completion_scope": "minimum_representative_evidence_foundation",
+    "emners_with_profile_case_candidates": 206
   },
   "cases": [
     {
@@ -103,6 +104,40 @@
           "history_source_method_families_evidence_v1"
         ],
         "scope_expanded_at": "2026-07-27"
+      }
+    },
+    {
+      "case_id": "case_his_aftenposten_akersgata",
+      "label": "Aftenposten – Akersgata 51",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "aftenposten_akersgata"
+      ],
+      "emne_ids": [
+        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+        "em_his_okkupasjon_motstand"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "migrated_from": "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "migration_date": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_war_propaganda_imprisonment_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`aftenposten_akersgata` er det eksplisitte historiske pressehusankeret Akersgata 51 for 1876–2003; det brukes for okkupasjonstidens avis- og trykkerivirksomhet uten å gjøre hele Akersgata eller dagens redaksjonsadresse til samme sted."
       }
     },
     {
@@ -599,6 +634,45 @@
       }
     },
     {
+      "case_id": "case_his_bryn_fyrstikkfabrikk",
+      "label": "Bryn fyrstikkfabrikk",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "bryn_industriomrade"
+      ],
+      "emne_ids": [
+        "em_his_arbeiderbevegelse_folkedannelse",
+        "em_his_arbeidsmiljo_risiko_helse",
+        "em_his_arbeidstid_lonn_ferdighet",
+        "em_his_fabrikk_arbeidsorganisering",
+        "em_his_kjonn_arbeidsdeling_lonn",
+        "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+        "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/industry_work_environment_gender_v1.json",
+        "production_date": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_industry_work_environment_gender_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`bryn_industriomrade` er et uverifisert områdeanker og brukes ikke som eksakt fabrikkkoordinat."
+      }
+    },
+    {
       "case_id": "case_his_bygdoy",
       "label": "Bygdøy",
       "geography_id": "geo_no_oslo_akershus",
@@ -834,6 +908,39 @@
           "history_sources_silence_script_digital_evidence_v1"
         ],
         "scope_expanded_at": "2026-07-30"
+      }
+    },
+    {
+      "case_id": "case_his_ekeberg_helleristninger",
+      "label": "Helleristningene på Ekeberg",
+      "place_ids": [
+        "ekeberg_helleristninger"
+      ],
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/prehistory_archaeology_v1.json",
+        "created_at": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_prehistory_archaeology_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "archaeological_site_sources_paired_with_explicit_dating_interpretive_and_preservation_limits"
       }
     },
     {
@@ -1164,6 +1271,50 @@
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      }
+    },
+    {
+      "case_id": "case_his_gronvold_fyrstikkfabrikk",
+      "label": "Nitedals Tændstikfabrik på Grønvold",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "helsfyr"
+      ],
+      "emne_ids": [
+        "em_his_arbeiderbevegelse_folkedannelse",
+        "em_his_arbeidsmiljo_risiko_helse",
+        "em_his_arbeidstid_lonn_ferdighet",
+        "em_his_arbeidsvandring_rekruttering",
+        "em_his_barndom_familie_livslop",
+        "em_his_boligpolitikk_materiell_velferd",
+        "em_his_fabrikk_arbeidsorganisering",
+        "em_his_kjonn_arbeidsdeling_lonn",
+        "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+        "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+        "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+        "em_his_sosialhistorie_hverdagsliv"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/industry_work_environment_gender_v1.json",
+        "production_date": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_industry_work_environment_gender_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`helsfyr` er et verifisert område-/kollektivanker og brukes ikke som eksakt fabrikkkoordinat."
       }
     },
     {
@@ -1934,6 +2085,41 @@
       }
     },
     {
+      "case_id": "case_his_nationaltheatret",
+      "label": "Nationaltheatret",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "nationaltheatret"
+      ],
+      "emne_ids": [
+        "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+        "em_his_okkupasjon_motstand"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "migrated_from": "data/places/production/nationaltheatret.json + data/people/claims/litteratur/oslo/nationaltheatret/axel_otto_normann.claims.json",
+        "migration_date": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_war_collaboration_grayzones_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`nationaltheatret` brukes som anker for hovedbygningen og den stedbundne teaterinstitusjonen; Nationaltheatret stasjon og streikehendelser i andre byer er ikke del av dette stedspunktet."
+      }
+    },
+    {
       "case_id": "case_his_norges_bank",
       "label": "Norges Bank",
       "geography_id": "geo_no_oslo_akershus",
@@ -2068,6 +2254,41 @@
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      }
+    },
+    {
+      "case_id": "case_his_nostvet_boplass",
+      "label": "Nøstvet-boplassen",
+      "place_ids": [
+        "nostvet_boplass"
+      ],
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_steinalder_teknologi_bosetning",
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/prehistory_archaeology_v1.json",
+        "created_at": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_prehistory_archaeology_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "archaeological_site_sources_paired_with_explicit_dating_interpretive_and_preservation_limits"
       }
     },
     {
@@ -2832,6 +3053,40 @@
       }
     },
     {
+      "case_id": "case_his_stunner_steinalderboplass",
+      "label": "Stunner steinalderboplass",
+      "place_ids": [
+        "stunner_boplass"
+      ],
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_steinalder_teknologi_bosetning",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/prehistory_archaeology_v1.json",
+        "created_at": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_prehistory_archaeology_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "archaeological_site_sources_paired_with_explicit_dating_interpretive_and_preservation_limits"
+      }
+    },
+    {
       "case_id": "case_his_synagogen_i_bergstien",
       "label": "Synagogen i Bergstien",
       "geography_id": "geo_no_oslo_akershus",
@@ -3303,158 +3558,6 @@
         ],
         "scope_expanded_at": "2026-07-30"
       }
-    },
-    {
-      "case_id": "case_his_bryn_fyrstikkfabrikk",
-      "label": "Bryn fyrstikkfabrikk",
-      "geography_id": "geo_no_oslo_akershus",
-      "geography_scope": "local_or_regional",
-      "status": "pilot_validated",
-      "evidence_status": "claim_source_linked",
-      "place_ids": [
-        "bryn_industriomrade"
-      ],
-      "emne_ids": [
-        "em_his_arbeiderbevegelse_folkedannelse",
-        "em_his_arbeidsmiljo_risiko_helse",
-        "em_his_arbeidstid_lonn_ferdighet",
-        "em_his_fabrikk_arbeidsorganisering",
-        "em_his_kjonn_arbeidsdeling_lonn",
-        "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
-        "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
-        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer"
-      ],
-      "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
-        "case_req_his_actor_conflict",
-        "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
-      ],
-      "provenance": {
-        "created_from": "data/fag/historie/source_dossiers/industry_work_environment_gender_v1.json",
-        "production_date": "2026-07-30"
-      },
-      "validation": {
-        "status": "validated_case",
-        "batch_id": "history_industry_work_environment_gender_evidence_v1",
-        "validated_at": "2026-07-30",
-        "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations",
-        "spatial_note": "`bryn_industriomrade` er et uverifisert områdeanker og brukes ikke som eksakt fabrikkkoordinat."
-      }
-    },
-    {
-      "case_id": "case_his_gronvold_fyrstikkfabrikk",
-      "label": "Nitedals Tændstikfabrik på Grønvold",
-      "geography_id": "geo_no_oslo_akershus",
-      "geography_scope": "local_or_regional",
-      "status": "pilot_validated",
-      "evidence_status": "claim_source_linked",
-      "place_ids": [
-        "helsfyr"
-      ],
-      "emne_ids": [
-        "em_his_arbeiderbevegelse_folkedannelse",
-        "em_his_arbeidsmiljo_risiko_helse",
-        "em_his_arbeidstid_lonn_ferdighet",
-        "em_his_arbeidsvandring_rekruttering",
-        "em_his_barndom_familie_livslop",
-        "em_his_boligpolitikk_materiell_velferd",
-        "em_his_fabrikk_arbeidsorganisering",
-        "em_his_kjonn_arbeidsdeling_lonn",
-        "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
-        "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
-        "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
-        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
-        "em_his_sosialhistorie_hverdagsliv"
-      ],
-      "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
-        "case_req_his_actor_conflict",
-        "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
-      ],
-      "provenance": {
-        "created_from": "data/fag/historie/source_dossiers/industry_work_environment_gender_v1.json",
-        "production_date": "2026-07-30"
-      },
-      "validation": {
-        "status": "validated_case",
-        "batch_id": "history_industry_work_environment_gender_evidence_v1",
-        "validated_at": "2026-07-30",
-        "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations",
-        "spatial_note": "`helsfyr` er et verifisert område-/kollektivanker og brukes ikke som eksakt fabrikkkoordinat."
-      }
-    },
-    {
-      "case_id": "case_his_nationaltheatret",
-      "label": "Nationaltheatret",
-      "geography_id": "geo_no_oslo_akershus",
-      "geography_scope": "local_or_regional",
-      "status": "pilot_validated",
-      "evidence_status": "claim_source_linked",
-      "place_ids": [
-        "nationaltheatret"
-      ],
-      "emne_ids": [
-        "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
-        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
-        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
-        "em_his_okkupasjon_motstand"
-      ],
-      "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
-        "case_req_his_actor_conflict",
-        "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
-      ],
-      "provenance": {
-        "migrated_from": "data/places/production/nationaltheatret.json + data/people/claims/litteratur/oslo/nationaltheatret/axel_otto_normann.claims.json",
-        "migration_date": "2026-07-30"
-      },
-      "validation": {
-        "status": "validated_case",
-        "batch_id": "history_war_collaboration_grayzones_evidence_v1",
-        "validated_at": "2026-07-30",
-        "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations",
-        "spatial_note": "`nationaltheatret` brukes som anker for hovedbygningen og den stedbundne teaterinstitusjonen; Nationaltheatret stasjon og streikehendelser i andre byer er ikke del av dette stedspunktet."
-      }
-    },
-    {
-      "case_id": "case_his_aftenposten_akersgata",
-      "label": "Aftenposten – Akersgata 51",
-      "geography_id": "geo_no_oslo_akershus",
-      "geography_scope": "local_or_regional",
-      "status": "pilot_validated",
-      "evidence_status": "claim_source_linked",
-      "place_ids": [
-        "aftenposten_akersgata"
-      ],
-      "emne_ids": [
-        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
-        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
-        "em_his_okkupasjon_motstand"
-      ],
-      "case_requirement_ids": [
-        "case_req_his_temporal_sequence",
-        "case_req_his_actor_conflict",
-        "case_req_his_source_comparison",
-        "case_req_his_comparative_scale"
-      ],
-      "provenance": {
-        "migrated_from": "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
-        "migration_date": "2026-07-30"
-      },
-      "validation": {
-        "status": "validated_case",
-        "batch_id": "history_war_propaganda_imprisonment_evidence_v1",
-        "validated_at": "2026-07-30",
-        "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations",
-        "spatial_note": "`aftenposten_akersgata` er det eksplisitte historiske pressehusankeret Akersgata 51 for 1876–2003; det brukes for okkupasjonstidens avis- og trykkerivirksomhet uten å gjøre hele Akersgata eller dagens redaksjonsadresse til samme sted."
-      }
     }
   ],
   "emne_case_mappings": [
@@ -3758,6 +3861,20 @@
       "provenance": "recommended_oslo_cases"
     },
     {
+      "emne_id": "em_his_arkeologisk_datering_kronologi",
+      "case_ids": [
+        "case_his_ekeberg_helleristninger",
+        "case_his_nostvet_boplass",
+        "case_his_stunner_steinalderboplass"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
       "emne_id": "em_his_arkeologisk_kontekst_formation",
       "case_ids": [
         "case_his_bjorvika",
@@ -3773,6 +3890,20 @@
       "mapping_status": "validated_production_added",
       "evidence_status": "claim_source_linked",
       "provenance": "history_medieval_social_economic_legal_evidence_v1"
+    },
+    {
+      "emne_id": "em_his_arkeologisk_landskap_miljo",
+      "case_ids": [
+        "case_his_ekeberg_helleristninger",
+        "case_his_nostvet_boplass",
+        "case_his_stunner_steinalderboplass"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
     },
     {
       "emne_id": "em_his_arkiv_og_dokumentasjon",
@@ -5307,6 +5438,19 @@
       "provenance": "recommended_oslo_cases"
     },
     {
+      "emne_id": "em_his_menneskelig_utvikling_mobilitet",
+      "case_ids": [
+        "case_his_nostvet_boplass",
+        "case_his_stunner_steinalderboplass"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
       "emne_id": "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
       "case_ids": [
         "case_his_akershus_festning",
@@ -5791,6 +5935,19 @@
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
       "provenance": "recommended_oslo_cases"
+    },
+    {
+      "emne_id": "em_his_neolitisering_jordbruk_sedentisme",
+      "case_ids": [
+        "case_his_ekeberg_helleristninger",
+        "case_his_nostvet_boplass"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
     },
     {
       "emne_id": "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
@@ -7067,6 +7224,19 @@
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
       "provenance": "recommended_oslo_cases"
+    },
+    {
+      "emne_id": "em_his_steinalder_teknologi_bosetning",
+      "case_ids": [
+        "case_his_nostvet_boplass",
+        "case_his_stunner_steinalderboplass"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
     },
     {
       "emne_id": "em_his_styring_krise_kontinuitet",
