@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **111**
-- Andel med dokumentert evidensgrunnlag: **48.3 %**
+- Validerte pilotobjekter: **120**
+- Andel med dokumentert evidensgrunnlag: **52.2 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -29,23 +29,35 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Arbeidsmiljø, risiko og helse | 3 | 2 | 3 | 3 | evidence_ready |
 | Arbeidstid, lønn og ferdighet | 6 | 3 | 5 | 6 | evidence_ready |
 | Arbeidsvandring, rekruttering og arbeidskraft | 3 | 3 | 4 | 3 | evidence_ready |
+| Arkeologisk datering, stratigrafi og kronologi | 4 | 4 | 5 | 4 | evidence_ready |
 | Arkeologiske kilder, kontekst og formasjonsprosesser | 4 | 2 | 3 | 4 | evidence_ready |
+| Arkeologiske landskap, miljø og ressursbruk | 4 | 4 | 6 | 4 | evidence_ready |
 | Arkiv, klassifikasjon og makt | 5 | 5 | 8 | 5 | evidence_ready |
 | Avindustrialisering, ombruk og industriarv | 4 | 2 | 4 | 4 | evidence_ready |
+| Beslutningskjede, kompetanse og ansvar | 4 | 2 | 4 | 4 | evidence_ready |
 | Bevaring, ombruk og kulturmiljø | 5 | 5 | 9 | 5 | evidence_ready |
 | Bevaring, restaurering og autentisitet | 3 | 2 | 3 | 3 | evidence_ready |
+| Bioarkeologi, helse, kosthold og demografi | 3 | 3 | 4 | 3 | evidence_ready |
+| Bronsealderens metall, utveksling og ritualer | 4 | 2 | 3 | 4 | evidence_ready |
 | Brudd, kontinuitet og omforming | 3 | 3 | 6 | 3 | evidence_ready |
+| Byfornyelse, boligstandard og oppgradering | 4 | 3 | 5 | 4 | evidence_ready |
+| Byutvidelse, grenser og innlemmelse | 3 | 2 | 2 | 3 | evidence_ready |
 | Digital kulturarv og formidling | 3 | 2 | 3 | 3 | evidence_ready |
 | Digitale kilder, metadata og søk | 5 | 4 | 5 | 5 | evidence_ready |
 | Dokumentform og autentisitet | 3 | 2 | 3 | 3 | evidence_ready |
+| Embetsverk, kontor og byråkrati | 4 | 2 | 3 | 4 | evidence_ready |
 | Erfaringsrom og forventningshorisont | 4 | 3 | 5 | 4 | evidence_ready |
 | Fabrikk, arbeidsprosess og organisering | 5 | 2 | 3 | 5 | evidence_ready |
 | Folkedannelse og arbeideroffentlighet | 4 | 3 | 4 | 4 | evidence_ready |
 | Fravær, taushet og motminne | 5 | 3 | 6 | 5 | evidence_ready |
+| Gatenett, tomtestruktur og infrastruktur | 4 | 2 | 6 | 4 | evidence_ready |
+| Gentrifisering, verdi og befolkningsendring | 4 | 2 | 4 | 4 | evidence_ready |
 | Grunnlov som rom og tekst | 5 | 3 | 6 | 5 | evidence_ready |
 | Hendelse, forløp og konsekvens | 4 | 2 | 4 | 4 | evidence_ready |
 | Industriby, produksjon og arbeiderliv | 5 | 3 | 6 | 5 | evidence_ready |
+| Industri-, havne- og jernbanetransformasjon | 4 | 3 | 5 | 4 | evidence_ready |
 | Institusjonsbygging, mandat og funksjon | 6 | 5 | 6 | 6 | evidence_ready |
+| Jernalderens gårder, håndverk og maktlandskap | 4 | 2 | 4 | 4 | evidence_ready |
 | Jubileum, seremoni og historiebruk | 4 | 4 | 7 | 4 | evidence_ready |
 | Kildekritikk, opphav og formål | 3 | 3 | 3 | 3 | evidence_ready |
 | Kjønn, arbeidsdeling og lønn | 6 | 4 | 6 | 6 | evidence_ready |
@@ -59,9 +71,12 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Okkupasjon, samarbeid, tilpasning og motstand: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
 | Propaganda, sensur og informasjonskontroll: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 | Rettsoppgjør og etterkrig: forklarings- og kildebane | 5 | 3 | 7 | 5 | evidence_ready |
+| Krise, unntak og institusjonell kontinuitet | 4 | 2 | 4 | 4 | evidence_ready |
 | Kronologi, datering og usikkerhet | 4 | 4 | 6 | 4 | evidence_ready |
 | Kulturminneutvelgelse og verdi | 5 | 5 | 9 | 5 | evidence_ready |
 | Lang varighet og strukturell endring | 4 | 2 | 4 | 4 | evidence_ready |
+| Lov, domstol og rettsstat | 4 | 2 | 4 | 4 | evidence_ready |
+| Menneskelig utvikling, mobilitet og jeger-sanker-samfunn | 4 | 3 | 4 | 4 | evidence_ready |
 | Middelalderbyen og kirkemakten | 3 | 3 | 3 | 3 | evidence_ready |
 | Bondehushold, demografi og dagligliv: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
 | Handel, håndverk og bydannelse: forklarings- og kildebane | 5 | 3 | 5 | 5 | evidence_ready |
@@ -72,11 +87,22 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane | 6 | 2 | 3 | 6 | evidence_ready |
 | Skriftkultur, diplom og muntlig rett: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
 | Svartedauden og senmiddelalderens omforming: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
+| Antropocen, langsom vold og miljørettferdighet: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
+| Dyr og menneske–natur-relasjoner: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
+| Energi og energiregimer: forklarings- og kildebane | 4 | 3 | 3 | 4 | evidence_ready |
+| Forurensning og urban miljøhistorie: forklarings- og kildebane | 3 | 2 | 5 | 3 | evidence_ready |
+| Klima og historisk endring: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 | Landskap som historisk prosess: forklarings- og kildebane | 6 | 4 | 8 | 6 | evidence_ready |
+| Miljørettferdighet, langsom vold og framtidsansvar: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
+| Naturforvaltning og miljøbevegelse: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
+| Skog, vann og naturressurser: forklarings- og kildebane | 3 | 3 | 3 | 3 | evidence_ready |
+| Urban natur, helse og miljøulikhet: forklarings- og kildebane | 4 | 2 | 6 | 4 | evidence_ready |
 | Minnested, ritual og offentlig sorg | 6 | 3 | 7 | 6 | evidence_ready |
 | Monument, symbol og makt | 4 | 4 | 6 | 4 | evidence_ready |
 | Muntlige kilder og erindring | 4 | 2 | 4 | 4 | evidence_ready |
 | Museum, samling og kanon | 5 | 5 | 8 | 5 | evidence_ready |
+| Næring, funksjonsskifte og hverdagsbruk | 4 | 3 | 6 | 4 | evidence_ready |
+| Neolitisering, jordbruk og bofasthet | 3 | 3 | 6 | 3 | evidence_ready |
 | Offentlig rom, tilgang og konflikt | 6 | 5 | 9 | 6 | evidence_ready |
 | Arbeider-, kvinne- og avholdsbevegelser: forklarings- og kildebane | 6 | 4 | 9 | 6 | evidence_ready |
 | Borgerrettigheter, solidaritet og internasjonalisme: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
@@ -91,6 +117,10 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Okkupasjon som byrom og kontroll | 5 | 4 | 8 | 5 | evidence_ready |
 | Organisering, streik og forhandling | 3 | 3 | 4 | 3 | evidence_ready |
 | Periodisering, epoker og analytiske grenser | 4 | 4 | 6 | 4 | evidence_ready |
+| Politi, fengsel og strafferegime | 4 | 2 | 3 | 4 | evidence_ready |
+| Register, overvåkning og disiplin | 3 | 2 | 3 | 3 | evidence_ready |
+| Regulering, plan og ekspropriasjon | 4 | 2 | 4 | 4 | evidence_ready |
+| Rettigheter, medborgerskap og forvaltning | 4 | 3 | 5 | 3 | evidence_ready |
 | Rettsoppgjør, legitimitet og minne | 5 | 5 | 8 | 5 | evidence_ready |
 | Historiske rytmer, tempo og modernisering | 4 | 2 | 4 | 4 | evidence_ready |
 | Samtid, ettertid og historisk fortelling | 4 | 3 | 6 | 4 | evidence_ready |
@@ -98,34 +128,13 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Serielle kilder og historiske mønstre | 4 | 2 | 4 | 4 | evidence_ready |
 | Skrift, hånd og lesbarhet | 3 | 2 | 4 | 3 | evidence_ready |
 | Materielle spor og sted som kilde | 4 | 4 | 8 | 4 | evidence_ready |
+| Statlig kapasitet, ressurser og gjennomføring | 4 | 4 | 4 | 4 | evidence_ready |
 | Stedsnavn og navnepolitikk | 3 | 2 | 2 | 3 | evidence_ready |
+| Steinalderens teknologi, bosetning og livsgrunnlag | 5 | 3 | 4 | 5 | evidence_ready |
 | Taushet, fravær og blindsoner | 3 | 3 | 4 | 3 | evidence_ready |
 | Tidslag og samtidighet i sted | 3 | 3 | 6 | 3 | evidence_ready |
+| Vikingtidens mobilitet, handel, vold og statsdannelse | 4 | 2 | 3 | 4 | evidence_ready |
 | Bilder, fotografi og visuelle kilder | 3 | 2 | 2 | 3 | evidence_ready |
-| Byutvidelse, grenser og innlemmelse | 3 | 2 | 2 | 3 | evidence_ready |
-| Gatenett, tomtestruktur og infrastruktur | 4 | 2 | 6 | 4 | evidence_ready |
-| Regulering, plan og ekspropriasjon | 4 | 2 | 4 | 4 | evidence_ready |
-| Byfornyelse, boligstandard og oppgradering | 4 | 3 | 5 | 4 | evidence_ready |
-| Næring, funksjonsskifte og hverdagsbruk | 4 | 3 | 6 | 4 | evidence_ready |
-| Industri-, havne- og jernbanetransformasjon | 4 | 3 | 5 | 4 | evidence_ready |
-| Gentrifisering, verdi og befolkningsendring | 4 | 2 | 4 | 4 | evidence_ready |
-| Embetsverk, kontor og byråkrati | 4 | 2 | 3 | 4 | evidence_ready |
-| Beslutningskjede, kompetanse og ansvar | 4 | 2 | 4 | 4 | evidence_ready |
-| Statlig kapasitet, ressurser og gjennomføring | 4 | 4 | 4 | 4 | evidence_ready |
-| Rettigheter, medborgerskap og forvaltning | 4 | 3 | 5 | 3 | evidence_ready |
-| Lov, domstol og rettsstat | 4 | 2 | 4 | 4 | evidence_ready |
-| Politi, fengsel og strafferegime | 4 | 2 | 3 | 4 | evidence_ready |
-| Register, overvåkning og disiplin | 3 | 2 | 3 | 3 | evidence_ready |
-| Krise, unntak og institusjonell kontinuitet | 4 | 2 | 4 | 4 | evidence_ready |
-| Klima og historisk endring: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
-| Energi og energiregimer: forklarings- og kildebane | 4 | 3 | 3 | 4 | evidence_ready |
-| Skog, vann og naturressurser: forklarings- og kildebane | 3 | 3 | 3 | 3 | evidence_ready |
-| Forurensning og urban miljøhistorie: forklarings- og kildebane | 3 | 2 | 5 | 3 | evidence_ready |
-| Dyr og menneske–natur-relasjoner: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
-| Naturforvaltning og miljøbevegelse: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
-| Antropocen, langsom vold og miljørettferdighet: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
-| Urban natur, helse og miljøulikhet: forklarings- og kildebane | 4 | 2 | 6 | 4 | evidence_ready |
-| Miljørettferdighet, langsom vold og framtidsansvar: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 

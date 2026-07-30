@@ -21,24 +21,16 @@ on:
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-historie.test.mjs'
-      - 'tests/history-prehistory-audit.test.mjs'
       - 'reports/fagverk/**'
       - 'reports/historie-universal-coverage/**'
-      - '.github/workflows/fagverk-historie.yml'
-  push:
-    branches:
-      - 'agent/history-prehistory-evidence-v1'
-    paths:
-      - 'scripts/materialize-history-prehistory-evidence-v1.mjs'
       - '.github/workflows/fagverk-historie.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate:
-    if: github.event_name == 'pull_request'
     name: Validate materialized Historie subject
     runs-on: ubuntu-latest
     steps:
@@ -58,80 +50,3 @@ jobs:
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-historie.test.mjs
-          node --test tests/history-prehistory-audit.test.mjs
-
-  materialize-prehistory:
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/agent/history-prehistory-evidence-v1') || (github.event_name == 'pull_request' && github.head_ref == 'agent/history-prehistory-evidence-v1')
-    name: Materialize Forhistorie evidence and self-clean
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: agent/history-prehistory-evidence-v1
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-      - name: Materialize canonical evidence
-        shell: bash
-        run: |
-          set -euo pipefail
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const file = 'scripts/materialize-history-prehistory-evidence-v1.mjs';
-          const from = "'claim_his_solberg_bronze_age_rock_art_ritual'";
-          const to = "'claim_his_solberg_bronze_age_rock_art_ritual_landscape'";
-          const input = fs.readFileSync(file, 'utf8');
-          const occurrences = input.split(from).length - 1;
-          if (occurrences !== 2) throw new Error(`Expected exactly two obsolete Solberg claim references, found ${occurrences}`);
-          fs.writeFileSync(file, input.split(from).join(to));
-          NODE
-          node scripts/materialize-history-prehistory-evidence-v1.mjs
-      - name: Generate deterministic reports and refresh freeze
-        shell: bash
-        run: |
-          set -euo pipefail
-          node tools/validate-historie-profile-evidence.mjs
-          node tools/audit-historie-geographic-profile.mjs
-          node tools/validate-historie-theory-evidence.mjs
-          node tools/audit-historie-universal-coverage.mjs
-          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze --reason="V5.8 freeze refreshed after Forhistorie/arkeologi V6 evidence batch; canonical claims, sources, place evidence, profiles and profile registry expanded while frozen V5.8 theory definitions remain unchanged."
-          node scripts/audit-fagverk-historie.mjs --write-report --no-check-report
-      - name: Verify all affected contracts
-        shell: bash
-        run: |
-          set -euo pipefail
-          node tools/validate-historie-profile-evidence.mjs
-          node tools/audit-historie-geographic-profile.mjs --check
-          node tools/validate-historie-theory-evidence.mjs --check
-          node tools/audit-historie-universal-coverage.mjs --check
-          node tools/audit-historie-v5-5-quality-depth.mjs
-          node scripts/audit-fagverk-historie.mjs
-          node --test tests/fagverk-subject-inventory.test.mjs
-          node --test tests/fagverk-general-engine.test.mjs
-          node --test tests/fagverk-historie.test.mjs
-          node --test tests/history-prehistory-audit.test.mjs
-          node -e "const x=require('./data/fag/historie/theory_evidence_historie_canonical_v1.json'); if(x.entries.length!==120||x.completion.qualifying_entries!==120) throw new Error('Expected exactly 120 qualifying theory entries'); console.log('Forhistorie target PASS: 120/230')"
-      - name: Remove temporary production machinery and verify final diff
-        shell: bash
-        run: |
-          set -euo pipefail
-          git show e48c86099c5c0daf3152e4058a6f18655d7eb220:.github/workflows/fagverk-historie.yml > .github/workflows/fagverk-historie.yml
-          rm -f tests/history-prehistory-audit.test.mjs scripts/materialize-history-prehistory-evidence-v1.mjs
-          test ! -e tests/history-prehistory-audit.test.mjs
-          test ! -e scripts/materialize-history-prehistory-evidence-v1.mjs
-          final_files="$(git diff --name-only e48c86099c5c0daf3152e4058a6f18655d7eb220 --)"
-          printf '%s\n' "$final_files"
-          if printf '%s\n' "$final_files" | grep -E '(^|/)(history-prehistory-audit\.test\.mjs|materialize-history-prehistory-evidence-v1\.mjs)$|^\.github/workflows/fagverk-historie\.yml$'; then
-            echo 'Temporary file leaked into final production diff' >&2
-            exit 1
-          fi
-      - name: Commit validated production diff
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'Materialiser Forhistorie og arkeologi evidens V1'
-          git push origin HEAD:agent/history-prehistory-evidence-v1

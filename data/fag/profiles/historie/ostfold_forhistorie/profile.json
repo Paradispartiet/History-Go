@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "profile_historie_no_ostfold_forhistorie",
+  "subject_id": "historie",
+  "canonical_subject_version": "v5.8",
+  "status": "active_production_profile",
+  "geography": {
+    "geography_id": "geo_no_ostfold_forhistorie",
+    "type": "regional_profile",
+    "country_code": "NO",
+    "labels": {
+      "nb": "Østfold – forhistorie og arkeologi",
+      "en": "Østfold – prehistory and archaeology"
+    },
+    "includes": [
+      "Østfold"
+    ],
+    "boundary_model": "Profilen bruker validerte arkeologiske steder i dagens Østfold som regionale pilotankre. Gameplay-radius og moderne fylkesgrense er ikke fortidige territorier eller kulturgrenser."
+  },
+  "contract": {
+    "universal_subject_contract": "docs/SUBJECT_FILE_CONTRACT.md",
+    "architecture_contract": "docs/SUBJECT_FILE_CONTRACT.md#13-casekrav-profiler-og-evidensregistre",
+    "case_requirements_file": "data/fag/historie/case_requirements_historie_canonical_v1.json",
+    "claims_file": "data/fag/historie/claims_historie_canonical_v1.json",
+    "sources_file": "data/fag/historie/sources_historie_canonical_v1.json",
+    "place_evidence_file": "data/fag/historie/place_evidence_historie_v1.json",
+    "data_production_contract": "docs/DATA_PRODUCTION_CONTRACT.md#historie-profil-og-evidenslag"
+  },
+  "production_coverage": {
+    "total_subject_emner": 230,
+    "emner_with_profile_case_candidates": 0,
+    "emne_link_ratio_percent": 3,
+    "cases_total": 4,
+    "claims_total": 10,
+    "sources_total": 6,
+    "evidence_links_total": 11,
+    "verified_cases_total": 4,
+    "minimum_cases_total": 4,
+    "minimum_verified_cases": 4,
+    "minimum_evidence_links": 8,
+    "minimum_mappings": 7,
+    "status": "COMPLETE",
+    "completion_scope": "theory_specific_multi_case_evidence_foundation",
+    "interpretation": "Fire validerte Østfold-caser dokumenterer bronse- og jernalder, vikingtid, landskap, datering og bioarkeologiske kildegrenser. Profilen er en regional pilot og gjør ikke Østfold til universell modell for norsk forhistorie.",
+    "emners_with_profile_case_candidates": 7
+  },
+  "cases": [
+    {
+      "case_id": "case_his_gjellestad_jellhaugen",
+      "label": "Gjellestadskipet og Jellhaugen",
+      "place_ids": [
+        "gjellestadskipet_jellhaugen"
+      ],
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_vikingtid_mobilitet_handel_makt",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "geography_id": "geo_no_ostfold_forhistorie",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/prehistory_archaeology_v1.json",
+        "created_at": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_prehistory_archaeology_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "archaeological_site_sources_paired_with_explicit_dating_interpretive_and_preservation_limits"
+      }
+    },
+    {
+      "case_id": "case_his_hunnfeltet_gravlandskap",
+      "label": "Hunnfeltet gravlandskap",
+      "place_ids": [
+        "hunnfeltet_gravfelt"
+      ],
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_arkeologisk_landskap_miljo",
+        "em_his_bioarkeologi_helse_demografi"
+      ],
+      "geography_id": "geo_no_ostfold_forhistorie",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/prehistory_archaeology_v1.json",
+        "created_at": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_prehistory_archaeology_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "archaeological_site_sources_paired_with_explicit_dating_interpretive_and_preservation_limits"
+      }
+    },
+    {
+      "case_id": "case_his_solbergfeltet_bronsealder",
+      "label": "Solbergfeltet helleristninger",
+      "place_ids": [
+        "solbergfeltet_helleristninger"
+      ],
+      "emne_ids": [
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "geography_id": "geo_no_ostfold_forhistorie",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/prehistory_archaeology_v1.json",
+        "created_at": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_prehistory_archaeology_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "archaeological_site_sources_paired_with_explicit_dating_interpretive_and_preservation_limits"
+      }
+    },
+    {
+      "case_id": "case_his_tuneskipet_funnsted",
+      "label": "Tune-skipets funnsted",
+      "place_ids": [
+        "tune_skipet_funnsted"
+      ],
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_vikingtid_mobilitet_handel_makt",
+        "em_his_bioarkeologi_helse_demografi"
+      ],
+      "geography_id": "geo_no_ostfold_forhistorie",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/prehistory_archaeology_v1.json",
+        "created_at": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_prehistory_archaeology_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "archaeological_site_sources_paired_with_explicit_dating_interpretive_and_preservation_limits"
+      }
+    }
+  ],
+  "emne_case_mappings": [
+    {
+      "emne_id": "em_his_arkeologisk_datering_kronologi",
+      "case_ids": [
+        "case_his_gjellestad_jellhaugen",
+        "case_his_hunnfeltet_gravlandskap",
+        "case_his_tuneskipet_funnsted"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
+      "emne_id": "em_his_arkeologisk_landskap_miljo",
+      "case_ids": [
+        "case_his_gjellestad_jellhaugen",
+        "case_his_hunnfeltet_gravlandskap",
+        "case_his_solbergfeltet_bronsealder"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
+      "emne_id": "em_his_bioarkeologi_helse_demografi",
+      "case_ids": [
+        "case_his_hunnfeltet_gravlandskap",
+        "case_his_tuneskipet_funnsted"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
+      "emne_id": "em_his_bronsealder_utveksling_ritual",
+      "case_ids": [
+        "case_his_hunnfeltet_gravlandskap",
+        "case_his_solbergfeltet_bronsealder"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
+      "emne_id": "em_his_jernalder_gard_handverk_makt",
+      "case_ids": [
+        "case_his_gjellestad_jellhaugen",
+        "case_his_hunnfeltet_gravlandskap"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
+      "emne_id": "em_his_neolitisering_jordbruk_sedentisme",
+      "case_ids": [
+        "case_his_hunnfeltet_gravlandskap"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    },
+    {
+      "emne_id": "em_his_vikingtid_mobilitet_handel_makt",
+      "case_ids": [
+        "case_his_gjellestad_jellhaugen",
+        "case_his_tuneskipet_funnsted"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ]
+    }
+  ]
+}

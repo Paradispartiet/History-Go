@@ -1,0 +1,784 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_prehistory_archaeology_evidence_v1",
+  "subject_id": "historie",
+  "domain_id": "his_forhistorie_arkeologi",
+  "status": "materialized",
+  "created_at": "2026-07-30",
+  "purpose": "Kvalifisere de ni manglende teoriobjektene i Forhistorie og arkeologi med eksisterende canonical steder, regionale profiler og eksplisitte daterings-, tolknings-, utvalgs- og bevaringsgrenser.",
+  "theory_ids": [
+    "theory_his_arkeologisk_datering_kronologi",
+    "theory_his_menneskelig_utvikling_mobilitet",
+    "theory_his_steinalder_teknologi_bosetning",
+    "theory_his_neolitisering_jordbruk_sedentisme",
+    "theory_his_bronsealder_utveksling_ritual",
+    "theory_his_jernalder_gard_handverk_makt",
+    "theory_his_vikingtid_mobilitet_handel_makt",
+    "theory_his_arkeologisk_landskap_miljo",
+    "theory_his_bioarkeologi_helse_demografi"
+  ],
+  "source_ids_used": [
+    "src_his_stunner_ski_historielag",
+    "src_his_nostvet_riksantikvaren",
+    "src_his_nostvet_as_kommune",
+    "src_his_ekeberg_riksantikvaren",
+    "src_his_oslofjord_neolithic_mobility_2023",
+    "src_his_snl_bronsealderen_norge",
+    "src_his_solberg_ofk_helleristninger",
+    "src_his_hunn_snl",
+    "src_his_tuneskipet_snl",
+    "src_his_gjellestad_niku",
+    "src_his_gjellestad_niku_longhouse"
+  ],
+  "case_ids_used": [
+    "case_his_stunner_steinalderboplass",
+    "case_his_nostvet_boplass",
+    "case_his_ekeberg_helleristninger",
+    "case_his_solbergfeltet_bronsealder",
+    "case_his_hunnfeltet_gravlandskap",
+    "case_his_tuneskipet_funnsted",
+    "case_his_gjellestad_jellhaugen"
+  ],
+  "place_ids_used": [
+    "stunner_boplass",
+    "nostvet_boplass",
+    "ekeberg_helleristninger",
+    "solbergfeltet_helleristninger",
+    "hunnfeltet_gravfelt",
+    "tune_skipet_funnsted",
+    "gjellestadskipet_jellhaugen"
+  ],
+  "sources": {
+    "src_his_stunner_ski_historielag": {
+      "title": "Stunner steinalderboplass",
+      "url": "https://www.ski-historielag.no/ski/Stunner",
+      "publisher": "Ski Historielag",
+      "limitations": [
+        "Historielagets side er en lokal syntese og erstatter ikke full feltpublikasjon, funnkatalog eller naturvitenskapelig dateringsserie for Stunner.",
+        "Aldersangivelsen rundt 11 000 år og koblingen til Fosnakomplekset må behandles som en arkeologisk tolkningsramme med regional kronologisk usikkerhet."
+      ]
+    },
+    "src_his_nostvet_riksantikvaren": {
+      "title": "Nøstvet boplassen, lokalitet 41534",
+      "url": "https://kulturminnesok.no/ra/lokalitet/41534",
+      "publisher": "Riksantikvaren",
+      "limitations": [
+        "Registeret er autoritativt for lokalitetsidentitet og vern, men den offentlige presentasjonen er ikke en komplett publisering av alle funn, prøver og stratigrafiske observasjoner.",
+        "Lokalitetsgeometrien viser registrert kulturminneareal og må ikke behandles som en full rekonstruksjon av den forhistoriske bosetningens aktivitetsområde eller samtidige strandlinje."
+      ]
+    },
+    "src_his_nostvet_as_kommune": {
+      "title": "Nøstvedtfunnet og Tussebohuken",
+      "url": "https://www.as.kommune.no/tjenester/friluftsliv-natur-og-klima/friluftslivsomrader-og-turmal/nostvedtfunnet-og-tussebohuken",
+      "publisher": "Ås kommune",
+      "limitations": [
+        "Kommunens formidling sammenfatter funnhistorien pedagogisk og erstatter ikke arkeologiske primærrapporter eller full typologisk analyse av redskapsmaterialet.",
+        "Nøstvet-navnet har en historisk eiendomstilknytning og må ikke brukes til å flytte selve funnstedet fra Sjøskogen til Nøstvet gårds navnepunkt."
+      ]
+    },
+    "src_his_ekeberg_riksantikvaren": {
+      "title": "Ekeberg 2 (Sjømannsskolen) / Familiedalen, objekt 41907-1",
+      "url": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/lokaliteter/items/41907-1?f=json",
+      "publisher": "Riksantikvaren",
+      "limitations": [
+        "Registerdata dokumenterer lokalitet og registrerte figurer, men gir ikke en sikker tolkning av motivbetydning, ritual eller sosial organisasjon.",
+        "Den tekniske stedfilens år -2500 er et omtrentlig representasjonspunkt og må ikke behandles som eksakt produksjonsår for ristningene."
+      ]
+    },
+    "src_his_oslofjord_neolithic_mobility_2023": {
+      "title": "Hunting, fishing, gardening: Re-evaluating Middle Neolithic mobility and cultural diversity on the Norwegian Skagerrak coast",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S2352409X23003140",
+      "publisher": "Journal of Archaeological Science: Reports",
+      "limitations": [
+        "Artikkelen analyserer Skagerrakkysten og Oslofjordregionen på regional skala; den dokumenterer ikke jordbruk direkte på Nøstvet-boplassen eller Ekebergfeltet.",
+        "Tidlig neolittisk jordbruk og husdyrhold forekommer sammen med fortsatt jakt, fiske og mobilitet; overgangen må derfor ikke framstilles som samtidig eller fullstendig sedentarisering over hele regionen."
+      ]
+    },
+    "src_his_snl_bronsealderen_norge": {
+      "title": "bronsealderen i Norge",
+      "url": "https://snl.no/bronsealderen_i_Norge",
+      "publisher": "Store norske leksikon",
+      "limitations": [
+        "Leksikonartikkelen er en faglig syntese på nasjonal og sørskandinavisk skala og kan ikke alene bevise hvilken konkret utvekslingsreise eller ritualhandling som fant sted på Solberg eller Hunn.",
+        "Bronsealderbegrepet skjuler stor regional variasjon; metallfunn, bergkunst, jordbruk og gravskikk må skilles analytisk og dateres stedsspesifikt."
+      ]
+    },
+    "src_his_solberg_ofk_helleristninger": {
+      "title": "Helleristninger i Østfold",
+      "url": "https://ofk.no/tjenester/kulturminner/opplev-kulturarven/helleristninger/helleristninger.187126.aspx",
+      "publisher": "Østfold fylkeskommune",
+      "limitations": [
+        "Fylkeskommunens formidlingsside oppsummerer bergkunst og landskap, men er ikke en full panel-for-panel dokumentasjon eller selvstendig datering av hvert motiv.",
+        "Symboltolkningene er arkeologiske forslag og må ikke omskrives til sikre utsagn om kult, religion, eierskap eller konkrete hendelser."
+      ]
+    },
+    "src_his_hunn_snl": {
+      "title": "Hunn",
+      "url": "https://snl.no/Hunn",
+      "publisher": "Store norske leksikon",
+      "limitations": [
+        "Artikkelen sammenfatter et flerleddet grav- og bosetningslandskap; enkeltgraver, dateringer og funn kan ikke uten videre generaliseres til alle tre delfeltene.",
+        "C14-daterte brente bein dokumenterer begravelser i bestemte undersøkte kontekster, men gir ikke en representativ demografisk profil for befolkningen som brukte Hunn."
+      ]
+    },
+    "src_his_tuneskipet_snl": {
+      "title": "Tuneskipet",
+      "url": "https://snl.no/Tuneskipet",
+      "publisher": "Store norske leksikon",
+      "limitations": [
+        "Utgravningen i 1867 ble utført raskt og med dokumentasjon langt under moderne standard; fravær i materialet kan derfor skyldes datidens felt- og bevaringspraksis.",
+        "Skjelettrestene av den gravlagte ble ikke ivaretatt, slik at kjønn, alder, helse, slektskap og identitet ikke kan rekonstrueres sikkert fra menneskelige levninger i dag."
+      ]
+    },
+    "src_his_gjellestad_niku": {
+      "title": "Gjellestadskipet",
+      "url": "https://www.niku.no/prosjekter/gjellestadskipet/",
+      "publisher": "Norsk institutt for kulturminneforskning (NIKU)",
+      "limitations": [
+        "Georadar kartlegger anomalier og strukturer uten å gi full funksjons- eller dateringssikkerhet før målrettede arkeologiske undersøkelser er gjennomført.",
+        "Skipsgraven, gravhaugene og husene er deler av et større landskap; samtidighet mellom alle registrerte strukturer kan ikke forutsettes."
+      ]
+    },
+    "src_his_gjellestad_niku_longhouse": {
+      "title": "Langhus på 60 meter funnet med georadar nær Gjellestadskipet",
+      "url": "https://www.niku.no/2021/12/langhus-pa-60-meter-funnet-med-georadar-naer-gjellestadskipet/",
+      "publisher": "Norsk institutt for kulturminneforskning (NIKU)",
+      "limitations": [
+        "NIKU beskriver et sterkt sentralstedsmønster, men flere av husene manglet ved publisering endelig arkeologisk datering og funksjonsbestemmelse.",
+        "Størrelsen på langhuset og nærheten til gravlandskapet støtter en makttolkning, men beviser ikke alene politisk territorium, høvdingidentitet eller samtidig bruk av alle monumentene."
+      ]
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "claim_his_stunner_early_holocene_coastal_settlement",
+      "statement": "Stunner dokumenterer en rundt 11 000 år gammel steinalderboplass i et landskap der strandlinjen lå langt høyere enn i dag. Flintfunn og terreng gjør stedet til et konkret anker for tidlig bosetning og kystorientert mobilitet etter istiden.",
+      "claim_type": "palaeoshoreline_settlement_chronology",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "stunner_boplass"
+        ],
+        "case_ids": [
+          "case_his_stunner_steinalderboplass"
+        ],
+        "temporal": {
+          "from": -9500,
+          "to": -8500
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_steinalder_teknologi_bosetning",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_stunner_ski_historielag"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Alderen uttrykkes som omtrentlig fordi lokal kronologi, strandforskyvning og kulturhistoriske fasegrenser ikke gir ett eksakt kalenderår for all aktivitet på boplassen."
+      },
+      "alternative_interpretations": [
+        "Stunner kan leses som del av mobil kystbruk snarere enn en permanent boplass i moderne betydning; materialet alene avgjør ikke oppholdenes varighet eller sesong."
+      ]
+    },
+    {
+      "claim_id": "claim_his_stunner_flint_fosna_technology",
+      "statement": "Flintfunnene på Stunner, oppdaget i 1928 og senere knyttet til Fosnakomplekset av Anders Nummedal, viser hvordan litisk teknologi og typologisk sammenligning brukes til å plassere et tidlig boplassmateriale i en større mesolittisk forskningskontekst.",
+      "claim_type": "lithic_typology_research_history",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "stunner_boplass"
+        ],
+        "case_ids": [
+          "case_his_stunner_steinalderboplass"
+        ],
+        "temporal": {
+          "from": -9500,
+          "to": -8000
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_steinalder_teknologi_bosetning"
+      ],
+      "source_ids": [
+        "src_his_stunner_ski_historielag"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Typologiske kulturbetegnelser er analytiske klassifikasjoner og innebærer ikke at alle grupper med lignende redskap hadde samme identitet, språk eller organisasjon."
+      },
+      "alternative_interpretations": [
+        "Funnene kan ordnes typologisk som del av Fosna-relatert materiale, men stedet kan samtidig ha lokale teknologiske og mobilitetsmønstre som brede kulturmerkelapper skjuler."
+      ]
+    },
+    {
+      "claim_id": "claim_his_nostvet_lithic_toolkit_settlement",
+      "statement": "Nøstvet-boplassen ved Sjøskogen er en automatisk fredet steinalderlokalitet med steinøkser, flint og bergart og ga navn til Nøstvetkulturen. Materialet dokumenterer redskapsteknologi og bosetningsaktivitet i Nøstvetfasen, omtrent 7000–4800 fvt.",
+      "claim_type": "lithic_technology_settlement",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "nostvet_boplass"
+        ],
+        "case_ids": [
+          "case_his_nostvet_boplass"
+        ],
+        "temporal": {
+          "from": -7000,
+          "to": -4800
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_steinalder_teknologi_bosetning",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_nostvet_riksantikvaren",
+        "src_his_nostvet_as_kommune"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Periodeintervallet gjelder Nøstvetfasen og boplassens arkeologiske ramme, ikke at alle registrerte funn sikkert er samtidige gjennom hele intervallet."
+      },
+      "alternative_interpretations": [
+        "Redskap og funnspredning kan representere gjentatt og sesongpreget bruk av stedet, ikke nødvendigvis en stabil helårsbosetning."
+      ]
+    },
+    {
+      "claim_id": "claim_his_nostvet_palaeoshoreline_landscape_dating",
+      "statement": "Da Nøstvet-boplassen var i bruk lå strandlinjen høyere enn i dag. Kombinasjonen av redskapsfunn, terreng, høyde over havet og rekonstruerte strandlinjer brukes derfor til å plassere aktiviteten i et tidligere kystlandskap.",
+      "claim_type": "palaeoshoreline_relative_dating",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "nostvet_boplass"
+        ],
+        "case_ids": [
+          "case_his_nostvet_boplass"
+        ],
+        "temporal": {
+          "from": -7000,
+          "to": -4800
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_steinalder_teknologi_bosetning",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_nostvet_riksantikvaren",
+        "src_his_nostvet_as_kommune"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Strandlinjedatering avhenger av lokale landhevingskurver, terrengmodell og korrekt proveniens; høyde over havet alene daterer ikke et funn."
+      },
+      "alternative_interpretations": [
+        "Landskapsplasseringen støtter kystorientert bruk, men sier ikke alene om aktivitetene var bolig, råstoffbearbeiding, jakt, fiske eller flere funksjoner over tid."
+      ]
+    },
+    {
+      "claim_id": "claim_his_oslofjord_neolithic_transition_comparative",
+      "statement": "Forskning på den norske Skagerrak- og Oslofjordregionen plasserer de første neolittiske jordbruks- og husdyrholdspraksisene omkring 3900 fvt., samtidig som jakt, fiske og mobilitet fortsatte og graden av sedentarisering varierte. Nøstvet og Ekeberg brukes her som før- og senere-periodiske regionale ankere, ikke som direkte bevis på jordbruk på selve lokalitetene.",
+      "claim_type": "regional_neolithic_transition_synthesis",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "nostvet_boplass",
+          "ekeberg_helleristninger"
+        ],
+        "case_ids": [
+          "case_his_nostvet_boplass",
+          "case_his_ekeberg_helleristninger"
+        ],
+        "temporal": {
+          "from": -3900,
+          "to": -2300
+        }
+      },
+      "emne_ids": [
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_steinalder_teknologi_bosetning",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_oslofjord_neolithic_mobility_2023",
+        "src_his_nostvet_riksantikvaren",
+        "src_his_ekeberg_riksantikvaren"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "high",
+        "note": "Den regionale syntesen dokumenterer økonomisk endring i Oslofjordområdet, men Nøstvet- og Ekeberg-lokalitetene er komparative tids- og landskapsankre og ikke dokumenterte gårdsanlegg i denne claimen."
+      },
+      "alternative_interpretations": [
+        "Neolitisering kan beskrives som gradvis blandingsøkonomi og skiftende mobilitet snarere enn et enkelt brudd fra mobile jeger-fisker-sankere til fullt bofaste bønder."
+      ]
+    },
+    {
+      "claim_id": "claim_his_ekeberg_rock_art_registered_figures_dating_uncertainty",
+      "statement": "Riksantikvarens Ekeberg 2 / Familiedalen registrerer 13 bergkunstfigurer, blant annet dyr, menneskefigur, fugl og skålgroper. Feltet er flere tusen år gammelt, men år -2500 i produktdata er bare et omtrentlig representasjonspunkt og ikke en eksakt datering av hver figur.",
+      "claim_type": "rock_art_relative_chronology",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "ekeberg_helleristninger"
+        ],
+        "case_ids": [
+          "case_his_ekeberg_helleristninger"
+        ],
+        "temporal": {
+          "from": -3000,
+          "to": -2000
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_ekeberg_riksantikvaren"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "high",
+        "note": "Bergkunst kan være laget i flere episoder og uten direkte daterbart materiale; det angitte tidsrommet er derfor en bred arkeologisk ramme."
+      },
+      "alternative_interpretations": [
+        "Motivlikhet og strandlandskap kan støtte en tidsplassering, men andre dateringsforslag må vurderes dersom ny dokumentasjon endrer regional kronologi eller panelenes relasjon til strandnivå."
+      ]
+    },
+    {
+      "claim_id": "claim_his_ekeberg_rock_art_interpretive_limits",
+      "statement": "Ekebergs dyre-, menneske- og skålgropmotiver er materielle spor, men deres opprinnelige betydning er ikke bevart. Sammenligning med andre felt og landskapet kan støtte tolkninger av jakt, ritual eller territorium, men ingen av disse funksjonene følger sikkert av motivene alene.",
+      "claim_type": "rock_art_interpretive_limitation",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "ekeberg_helleristninger"
+        ],
+        "case_ids": [
+          "case_his_ekeberg_helleristninger"
+        ],
+        "temporal": {
+          "from": -3000,
+          "to": -2000
+        }
+      },
+      "emne_ids": [
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_arkeologisk_landskap_miljo",
+        "em_his_arkeologisk_kontekst_formation"
+      ],
+      "source_ids": [
+        "src_his_ekeberg_riksantikvaren"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "high",
+        "note": "Kildens styrke ligger i registrert motiv og lokalitet; mening, aktørgruppe og sosial funksjon må rekonstrueres indirekte."
+      },
+      "alternative_interpretations": [
+        "Det samme motivet kan ha hatt flere betydninger over tid, og dagens synlighet påvirkes av slitasje, lys, fuktighet og moderne oppmaling eller tilrettelegging."
+      ]
+    },
+    {
+      "claim_id": "claim_his_solberg_bronze_age_rock_art_ritual_landscape",
+      "statement": "Solbergfeltet består av flere tettliggende bronsealderpaneler med skip, vogner, mennesker, solfigurer, skålgroper og et sjeldent tremotiv. Plasseringen i Oldtidsveiens jordbruks- og kystlandskap gjør feltet til et stedlig grunnlag for å undersøke ritual, ferdsel og sosial symbolbruk uten å gi motivene én sikker oversettelse.",
+      "claim_type": "bronze_age_rock_art_ritual",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "solbergfeltet_helleristninger"
+        ],
+        "case_ids": [
+          "case_his_solbergfeltet_bronsealder"
+        ],
+        "temporal": {
+          "from": -1700,
+          "to": -500
+        }
+      },
+      "emne_ids": [
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_solberg_ofk_helleristninger",
+        "src_his_snl_bronsealderen_norge"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "high",
+        "note": "Panelene tilhører et langt bronsealderintervall, og motivtolkningene er komparative arkeologiske modeller, ikke samtidige tekster som forklarer symbolene."
+      },
+      "alternative_interpretations": [
+        "Bergkunsten kan knyttes til ritual og kosmologi, men kan også uttrykke ferdsel, sosial identitet, minne eller flere overlappende praksiser."
+      ]
+    },
+    {
+      "claim_id": "claim_his_solberg_hunn_bronze_exchange_context",
+      "statement": "Norsk bronsealder var avhengig av metalltilførsel utenfra, og langdistanseutveksling bandt sørnorske jordbruksbygder til områder lenger sør i Europa. Solbergs skipsmotiver og Hunns metallurgiske og monumentale landskap er lokale ankere for dette nettverket, men dokumenterer ikke en bestemt handelsreise mellom de to stedene.",
+      "claim_type": "bronze_age_long_distance_exchange_context",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "solbergfeltet_helleristninger",
+          "hunnfeltet_gravfelt"
+        ],
+        "case_ids": [
+          "case_his_solbergfeltet_bronsealder",
+          "case_his_hunnfeltet_gravlandskap"
+        ],
+        "temporal": {
+          "from": -1700,
+          "to": -500
+        }
+      },
+      "emne_ids": [
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_snl_bronsealderen_norge",
+        "src_his_solberg_ofk_helleristninger",
+        "src_his_hunn_snl"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "high",
+        "note": "Den overregionale metall- og idéutvekslingen er godt dokumentert som system, men konkrete ruter, aktører og transaksjoner for Solberg og Hunn kan ikke rekonstrueres fra disse syntesekildene alene."
+      },
+      "alternative_interpretations": [
+        "Skip i bergkunst kan uttrykke både faktiske maritime praksiser og kosmologiske eller rituelle forestillinger; nettverkskoblingen må derfor holdes adskilt fra motivets mulige symbolske mening."
+      ]
+    },
+    {
+      "claim_id": "claim_his_hunn_burial_landscape_long_duration",
+      "statement": "Hunn er et flerleddet gravlandskap med mer enn hundre hauger, røyser og steinringer. Undersøkelser viser gravminner fra bronsealder gjennom romertid og vikingtid, slik at stedet dokumenterer langvarig omforming av gravskikk, sosial markering og landskapsbruk.",
+      "claim_type": "burial_landscape_long_duration",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "hunnfeltet_gravfelt"
+        ],
+        "case_ids": [
+          "case_his_hunnfeltet_gravlandskap"
+        ],
+        "temporal": {
+          "from": -1700,
+          "to": 1000
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_hunn_snl",
+        "src_his_snl_bronsealderen_norge"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "De tre delfeltene har ulike gravtyper og delvis ulik kronologi; hele Hunnfeltet kan ikke behandles som én samtidig gravplass eller én sosial institusjon."
+      },
+      "alternative_interpretations": [
+        "Monumentenes endring kan uttrykke skiftende gravritual, slektsmarkering og makt, men også ulik bevaringsgrad og hvilke deler av landskapet som faktisk er undersøkt."
+      ]
+    },
+    {
+      "claim_id": "claim_his_hunn_c14_burnt_bones_bioarchaeology",
+      "statement": "I steinsetningene på Hunn er ansamlinger av brente bein og trekull tolket som begravelseslevninger og C14-datert til yngre bronsealder eller førromersk jernalder. Materialet kobler biologiske levninger til en naturvitenskapelig kronologi, men kremasjon begrenser hvilke biologiske egenskaper som kan rekonstrueres.",
+      "claim_type": "cremation_bioarchaeology_c14",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "hunnfeltet_gravfelt"
+        ],
+        "case_ids": [
+          "case_his_hunnfeltet_gravlandskap"
+        ],
+        "temporal": {
+          "from": -1100,
+          "to": -1
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_bioarkeologi_helse_demografi"
+      ],
+      "source_ids": [
+        "src_his_hunn_snl"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "C14-resultatene gjelder undersøkte begravelseskontekster; brente bein kan være fragmenterte og gir ikke automatisk individtall, kjønn, alder, helse eller slektskap."
+      },
+      "alternative_interpretations": [
+        "Dateringen støtter begravelsesbruk av steinsetningene, men selve monumentene kan ha hatt lengre brukstid eller flere funksjoner enn den daterte bein- og trekullprøven representerer."
+      ]
+    },
+    {
+      "claim_id": "claim_his_hunn_settlement_agriculture_bronze_casting",
+      "statement": "Utgravningene på Hunn har avdekket boplass- og åkerrester fra yngre steinalder eller bronsealder, og Hunn beskrives også som et viktig senter for bronsestøping omkring 1300–700 fvt. Stedet dokumenterer derfor at gravlandskapet må ses sammen med produksjon, jordbruk og bosetning, ikke isolert som ritualområde.",
+      "claim_type": "settlement_agriculture_metallurgy_context",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "hunnfeltet_gravfelt"
+        ],
+        "case_ids": [
+          "case_his_hunnfeltet_gravlandskap"
+        ],
+        "temporal": {
+          "from": -2500,
+          "to": -500
+        }
+      },
+      "emne_ids": [
+        "em_his_neolitisering_jordbruk_sedentisme",
+        "em_his_bronsealder_utveksling_ritual",
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_hunn_snl",
+        "src_his_snl_bronsealderen_norge"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Bosetnings- og åkersporene har brede dateringer, og metallurgisk aktivitet kan ikke uten videre knyttes til bestemte graver, hushold eller personer."
+      },
+      "alternative_interpretations": [
+        "Hunn kan forstås som et integrert produksjons- og monumentlandskap, men aktivitetene kan ha flyttet seg og vært usamtidige gjennom det lange tidsrommet."
+      ]
+    },
+    {
+      "claim_id": "claim_his_tuneskipet_dendro_grave_910",
+      "statement": "Årringsdatering viser at Båthaugen med Tuneskipet ble anlagt omkring 910 eller noe senere, og at skipet var forholdsvis nytt da det ble brukt som gravskip. Dendrokronologien gir et presist tidsanker som er sterkere enn en generell typologisk etikett «vikingtid».",
+      "claim_type": "dendrochronological_ship_grave_dating",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "tune_skipet_funnsted"
+        ],
+        "case_ids": [
+          "case_his_tuneskipet_funnsted"
+        ],
+        "temporal": {
+          "from": 900,
+          "to": 930
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_vikingtid_mobilitet_handel_makt"
+      ],
+      "source_ids": [
+        "src_his_tuneskipet_snl"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Formuleringen «omkring 910 eller noe senere» bevares som kildens dateringspresisjon og skal ikke reduseres til ett sikkert kalenderår for gravleggingen."
+      },
+      "alternative_interpretations": [
+        "Dendrokronologien daterer trevirke og gravanlegg svært godt, men sier ikke alene hvem som ble gravlagt eller hvilke politiske nettverk personen tilhørte."
+      ]
+    },
+    {
+      "claim_id": "claim_his_tuneskipet_ship_mobility_elite_network",
+      "statement": "Tuneskipets bevarte konstruksjon og senere rekonstruksjon viser et fartøy som kunne seiles og ros og var egnet til rask transport av mange mennesker. Gravtypen, gjenstandene og sammenlignbare funn peker mot et høystatusmiljø med internasjonale forbindelser, uten at en bestemt kongeslekt kan identifiseres sikkert.",
+      "claim_type": "viking_ship_mobility_status_network",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "tune_skipet_funnsted"
+        ],
+        "case_ids": [
+          "case_his_tuneskipet_funnsted"
+        ],
+        "temporal": {
+          "from": 850,
+          "to": 1000
+        }
+      },
+      "emne_ids": [
+        "em_his_menneskelig_utvikling_mobilitet",
+        "em_his_vikingtid_mobilitet_handel_makt"
+      ],
+      "source_ids": [
+        "src_his_tuneskipet_snl"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "high",
+        "note": "Skipets ytelse er rekonstruert fra fragmentarisk bevart materiale, og sosial status kan diskuteres uten at sagaidentifikasjoner eller navngitte dynastier blir sikre."
+      },
+      "alternative_interpretations": [
+        "Skipsgraven kan uttrykke eliteposisjon og mobilitet, men gravskipets symbolske rolle trenger ikke være identisk med fartøyets bruk i levende ferdsels- og handelsnettverk."
+      ]
+    },
+    {
+      "claim_id": "claim_his_tuneskipet_human_horse_skeletal_preservation_loss",
+      "statement": "I Tuneskipsgraven ble det registrert skjelettdeler av menneske og hest samt minst to hesteskjeletter, men menneskeskjelettet ble ikke bevart. Casen dokumenterer derfor både bioarkeologisk potensial og et konkret tap som setter en hard grense for senere analyser av helse, alder, kjønn og genetikk.",
+      "claim_type": "bioarchaeological_preservation_bias",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "tune_skipet_funnsted"
+        ],
+        "case_ids": [
+          "case_his_tuneskipet_funnsted"
+        ],
+        "temporal": {
+          "from": 900,
+          "to": 930
+        }
+      },
+      "emne_ids": [
+        "em_his_vikingtid_mobilitet_handel_makt",
+        "em_his_bioarkeologi_helse_demografi",
+        "em_his_arkeologisk_kontekst_formation"
+      ],
+      "source_ids": [
+        "src_his_tuneskipet_snl"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Kilden dokumenterer at menneskelige og animalske levninger ble observert, men den manglende bevaringen av menneskebeina gjør moderne individanalyse umulig."
+      },
+      "alternative_interpretations": [
+        "Fravær av analyserbare menneskebein er et resultat av bevarings- og innsamlingshistorie og kan ikke tolkes som fravær av biologisk informasjon i den opprinnelige graven."
+      ]
+    },
+    {
+      "claim_id": "claim_his_gjellestad_gpr_ship_mounds_houses",
+      "statement": "Motorisert georadar avdekket i 2018 en om lag 20 meter lang skipsform ved Gjellestad sammen med gravhauger og hus fra jernalderen. Utgravningen i 2020–2021 bekreftet skipsrester, mens georadaren gjør det mulig å analysere monumentet som del av et større bosetnings- og gravlandskap.",
+      "claim_type": "geophysical_archaeology_landscape_mapping",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "gjellestadskipet_jellhaugen"
+        ],
+        "case_ids": [
+          "case_his_gjellestad_jellhaugen"
+        ],
+        "temporal": {
+          "from": 600,
+          "to": 1000
+        }
+      },
+      "emne_ids": [
+        "em_his_arkeologisk_datering_kronologi",
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_vikingtid_mobilitet_handel_makt",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_gjellestad_niku"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Georadar viser strukturer og anomalier, men alle hus og gravminner er ikke nødvendigvis samtidige eller like sikkert daterte."
+      },
+      "alternative_interpretations": [
+        "Landskapet kan leses som sentralsted og maktlandskap, men geofysisk mønster alene avgjør ikke politisk territorium, eierskap eller funksjonen til hver bygning."
+      ]
+    },
+    {
+      "claim_id": "claim_his_gjellestad_longhouse_central_place",
+      "statement": "NIKUs georadarundersøkelser rundt Gjellestad fant flere jernalderlanghus, blant annet ett nær 60 meter langt og 15 meter bredt, samt flere overpløyde gravhauger. Kombinasjonen av store hus, gravmonumenter og skipsgrav styrker tolkningen av Gjellestad som et sentralt høystatussted i sen jernalder og vikingtid.",
+      "claim_type": "iron_age_central_place_architecture",
+      "scope": {
+        "geography_ids": [
+          "geo_no_ostfold_forhistorie"
+        ],
+        "place_ids": [
+          "gjellestadskipet_jellhaugen"
+        ],
+        "case_ids": [
+          "case_his_gjellestad_jellhaugen"
+        ],
+        "temporal": {
+          "from": 400,
+          "to": 1000
+        }
+      },
+      "emne_ids": [
+        "em_his_jernalder_gard_handverk_makt",
+        "em_his_vikingtid_mobilitet_handel_makt",
+        "em_his_arkeologisk_landskap_miljo"
+      ],
+      "source_ids": [
+        "src_his_gjellestad_niku",
+        "src_his_gjellestad_niku_longhouse"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Langhusenes alder og funksjon må bekreftes med arkeologiske undersøkelser; «sentralsted» er en analytisk tolkning av et sammensatt monument- og bosetningsmønster."
+      },
+      "alternative_interpretations": [
+        "Store hus og gravminner kan uttrykke maktkonsentrasjon, men kan også representere flere faser og skiftende funksjoner i et langvarig jordbrukslandskap."
+      ]
+    }
+  ]
+}
