@@ -1,0 +1,231 @@
+name: Agent History time evidence materialize
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.ref == 'agent/history-time-expectation-anachronism-evidence-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Materialize canonical theory reuse batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const registryPath = 'data/fag/historie/theory_evidence_historie_canonical_v1.json';
+          const claimsPath = 'data/fag/historie/claims_historie_canonical_v1.json';
+          const placeEvidencePath = 'data/fag/historie/place_evidence_historie_v1.json';
+          const docsPath = 'docs/HISTORY_THEORY_EVIDENCE.md';
+          const testPath = 'tests/fagverk-historie.test.mjs';
+          const batchDocPath = 'docs/HISTORY_TIME_EXPECTATION_ANACHRONISM_EVIDENCE_V1.md';
+          const dossierPath = 'data/fag/historie/source_dossiers/time_expectation_anachronism_reuse_v1.json';
+          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const stable = (v) => `${JSON.stringify(v, null, 2)}\n`;
+          const uniqSort = (xs) => [...new Set(xs)].sort((a,b) => String(a).localeCompare(String(b), 'nb'));
+
+          const registry = read(registryPath);
+          if (registry.completion?.qualifying_entries !== 73) throw new Error(`Expected 73 qualifying entries, found ${registry.completion?.qualifying_entries}`);
+          const targetIds = [
+            'theory_his_erfaringsrom_forventningshorisont',
+            'theory_his_anakronisme_begrepsbruk'
+          ];
+          for (const id of targetIds) if (registry.entries.some((e) => e.theory_id === id)) throw new Error(`${id} already exists`);
+
+          const claimsFile = read(claimsPath);
+          const placeEvidenceFile = read(placeEvidencePath);
+          const claimById = new Map(claimsFile.claims.map((c) => [c.claim_id, c]));
+          const evidenceByClaim = new Map();
+          for (const link of placeEvidenceFile.evidence_links) {
+            const list = evidenceByClaim.get(link.claim_id) || [];
+            list.push(link.evidence_id);
+            evidenceByClaim.set(link.claim_id, list);
+          }
+          const derive = (claimIds) => {
+            const claims = claimIds.map((id) => {
+              const c = claimById.get(id);
+              if (!c) throw new Error(`Unknown claim ${id}`);
+              return c;
+            });
+            return {
+              source_ids: uniqSort(claims.flatMap((c) => c.source_ids || [])),
+              case_ids: uniqSort(claims.flatMap((c) => c.scope?.case_ids || [])),
+              place_ids: uniqSort(claims.flatMap((c) => c.scope?.place_ids || [])),
+              emne_ids: uniqSort(claims.flatMap((c) => c.emne_ids || [])),
+              evidence_link_ids: uniqSort(claims.flatMap((c) => evidenceByClaim.get(c.claim_id) || []))
+            };
+          };
+          const makeEntry = ({theory_id, claim_ids, evidence_dimensions, rationale, limitations, alternative_interpretations, disconfirmation_conditions, scope_note}) => ({
+            theory_id,
+            status: 'evidence_ready',
+            scope_status: 'multi_case_geographic_pilot',
+            universalization_status: 'provisional_not_universal',
+            claim_ids,
+            ...derive(claim_ids),
+            evidence_dimensions,
+            rationale,
+            limitations,
+            alternative_interpretations,
+            disconfirmation_conditions,
+            scope_note
+          });
+
+          const expectationClaims = [
+            'claim_his_bryn_gronvold_piecework_long_days_gender_wage_gap_1889',
+            'claim_his_bryn_gronvold_strike_health_reform_1889_1892',
+            'claim_his_youngstorget_mayday_1890_eight_hour_demand'
+          ];
+          const anachronismClaims = [
+            'claim_his_eidsvollsbygningen_limited_franchise_1814',
+            'claim_his_stortinget_universal_male_suffrage_1898',
+            'claim_his_stortinget_women_suffrage_1913_06_11'
+          ];
+
+          registry.entries.push(makeEntry({
+            theory_id: 'theory_his_erfaringsrom_forventningshorisont',
+            claim_ids: expectationClaims,
+            evidence_dimensions: [
+              'documented_application',
+              'limitation_test',
+              'alternative_interpretation',
+              'multi_case_comparison',
+              'documented_work_experience',
+              'explicit_future_directed_collective_demands',
+              'hindsight_control'
+            ],
+            rationale: 'Bryn og Grønvold dokumenterer et konkret erfaringsrom av lange akkorddager, kjønnet lavlønn og helserisiko. Streiken i 1889 dokumenterer deretter eksplisitte krav om lønn, arbeidstid, mulkter og sanitære forhold, mens Youngstorgets åttetimerskrav i 1890 viser en offentlig formulert ønsket framtidig arbeidstidsordning. Senere lønns- og verneendringer holdes adskilt fra de forventningene som faktisk kan dokumenteres i samtidige krav og handlinger.',
+            limitations: [
+              'Kildene dokumenterer kollektive krav, arbeidsforhold og organisert mobilisering, men gir ikke direkte tilgang til alle enkeltarbeideres personlige forventninger, frykt eller framtidsforestillinger.',
+              'At bestemte krav ble formulert viser et mulig og ønsket handlingsrom for organiserte aktører; det beviser ikke at alle arbeidere delte samme prioriteringer eller vurderte de samme framtidsalternativene som realistiske.'
+            ],
+            alternative_interpretations: [
+              'Kravene kan leses som uttrykk for en forventningshorisont, men også som strategiske minimumskrav i en konkret konflikt; analysen må derfor skille dokumentert kollektiv handling fra antatte individuelle forestillinger.'
+            ],
+            disconfirmation_conditions: [
+              'Anvendelsen svekkes dersom senere utfall brukes til å rekonstruere hva aktørene må ha forventet i 1889–1890, eller dersom samtidige kilder viser at de registrerte kravene, arbeidsvilkårene eller tidsforløpet er vesentlig feil fremstilt.'
+            ],
+            scope_note: 'Dette er et fler-case evidensgrunnlag fra fyrstikkarbeid og arbeiderbevegelsens mobilisering i Kristiania og er ikke universelt bevis for erfaringsrom og forventningshorisont på tvers av perioder, grupper, konflikter eller geografier.'
+          }));
+
+          registry.entries.push(makeEntry({
+            theory_id: 'theory_his_anakronisme_begrepsbruk',
+            claim_ids: anachronismClaims,
+            evidence_dimensions: [
+              'documented_application',
+              'limitation_test',
+              'alternative_interpretation',
+              'multi_case_comparison',
+              'historical_category_scope_control',
+              'franchise_definition_change_over_time',
+              'teleology_control'
+            ],
+            rationale: 'Eidsvollsbygningen dokumenterer at stemmeretten i 1814 var begrenset til bestemte grupper av menn. Stortinget dokumenterer deretter alminnelig mannlig stemmerett i 1898 og kvinnelig stemmerett i 1913. Sammen viser claimene hvorfor moderne samlebetegnelser som demokrati og universell stemmerett må oversettes historisk: rettighetskretsen og begrepenes praktiske rekkevidde endret seg, og 1814 eller 1898 kan ikke uten presisering beskrives med senere inkluderingsstandarder.',
+            limitations: [
+              'De canonicale claim-ID-ene bruker moderne analytiske etiketter for å gjøre registeret søkbart; disse etikettene må ikke forveksles med samtidens eget ordforråd eller behandles som bevis på uendret begrepsinnhold.',
+              'Formell stemmerettsutvidelse dokumenterer juridisk adgang, men ikke automatisk faktisk valgdeltakelse, representasjon, sosial likhet eller fravær av andre eksklusjonsmekanismer.'
+            ],
+            alternative_interpretations: [
+              'Forløpet kan leses som gradvis demokratisering, men en slik kontinuitetsfortelling må balanseres mot at hver ordning hadde samtidige grenser og at senere rettighetsstandarder ikke var forhåndsbestemt i 1814.'
+            ],
+            disconfirmation_conditions: [
+              'Anvendelsen svekkes dersom begrepene bare brukes som en teleologisk stige fra ufullstendig til fullført demokrati, eller dersom samtidens juridiske kategorier og konkrete inkluderings- og eksklusjonsgrenser ikke kontrolleres mot kildene.'
+            ],
+            scope_note: 'Dette er et fler-case evidensgrunnlag fra Eidsvollsbygningen og Stortinget og er ikke universelt bevis for hvordan anakronisme eller begrepsendring skal analyseres i alle perioder, språk, institusjoner eller geografier.'
+          }));
+
+          registry.entries.sort((a,b) => a.theory_id.localeCompare(b.theory_id, 'nb'));
+          registry.completion.qualifying_entries = registry.entries.length;
+          registry.completion.ratio = Math.round((registry.entries.length / registry.completion.total_theories) * 1000) / 1000;
+          if (registry.entries.length !== 75 || registry.completion.ratio !== 0.326) throw new Error(`Unexpected completion ${registry.entries.length}/${registry.completion.total_theories} ratio=${registry.completion.ratio}`);
+          fs.writeFileSync(registryPath, stable(registry));
+
+          const expectation = derive(expectationClaims);
+          const anachronism = derive(anachronismClaims);
+          const dossier = {
+            schema_version: '1.0',
+            dossier_id: 'history_time_expectation_anachronism_reuse_v1',
+            subject_id: 'historie',
+            geography_id: 'geo_no_oslo_akershus',
+            status: 'reviewed_reuse_dossier',
+            accessed_at: '2026-07-30',
+            scope: {
+              qualified_theory_ids: targetIds,
+              method_rule: 'Kun eksisterende canonical claims, kilder, cases og validerte place-evidence-lenker brukes. Erfaringsrom skilles fra ettertidens kjente utfall, og anakronismekontroll skiller moderne analyseord fra samtidens rettighets- og begrepsgrenser.'
+            },
+            claim_bundles: {
+              erfaringsrom_forventningshorisont: { claim_ids: expectationClaims, ...expectation },
+              anakronisme_begrepsbruk: { claim_ids: anachronismClaims, ...anachronism }
+            },
+            production_decisions: [
+              'Ingen nye canonical claims opprettes; begge teoriobjektene kvalifiseres ved dokumentert gjenbruk.',
+              'Ingen nye canonical kilder opprettes; source_ids avledes eksakt fra de valgte claimene.',
+              'Ingen cases eller place-evidence-lenker valideres på nytt; eksisterende validerte koblinger avledes og kontrolleres av permanent teori-evidensvalidator.',
+              'Fyrstikkarbeiderkrav og åttetimersmobilisering brukes som dokumenterte framtidsrettede praksiser, ikke som bevis på alle individers indre forventninger.',
+              '1814, 1898 og 1913 brukes til å kontrollere skiftende rettighetsomfang og hindre at senere demokratiske kategorier retrojiseres ukritisk.'
+            ]
+          };
+          fs.mkdirSync('data/fag/historie/source_dossiers', { recursive: true });
+          fs.writeFileSync(dossierPath, stable(dossier));
+
+          let doc = fs.readFileSync(docsPath, 'utf8');
+          const oldCompletion = 'Produksjonen står på 73 av 230 etter at overgangsrettferdighet, rettsoppgjør, kald krig, beredskap og sikkerhetsstat V1 er lagt til.';
+          if (!doc.includes(oldCompletion)) throw new Error('Expected 73/230 completion sentence not found');
+          doc = doc.replace(oldCompletion, 'Produksjonen står på 75 av 230 etter at erfaringsrom, forventningshorisont, anakronisme og historisk begrepsbruk V1 er kvalifisert gjennom eksisterende validerte evidenskjeder.');
+          doc = doc.replace('\n- Totalt: **73 av 230** teoriobjekter (**31.7 %**).', '\n- Historisk tid: erfaringsrom, forventningshorisont, anakronisme og begrepsbruk V1: **2** nye kvalifiserende teoriobjekter ved ren gjenbruk; **0** nye claims, kilder, cases eller place-evidence-lenker.\n- Totalt: **75 av 230** teoriobjekter (**32.6 %**).');
+          doc = doc.replace('- Gjenstående teoriobjekter: **157**.', '- Gjenstående teoriobjekter: **155**.');
+          if (!doc.includes('**75 av 230**') || !doc.includes('**155**')) throw new Error('Documentation replacement failed');
+          fs.writeFileSync(docsPath, doc);
+
+          const batchDoc = `# Historie — erfaringsrom, forventningshorisont og anakronisme V1\n\n## Mål\n\nKvalifisere de to siste teoriobjektene i \`his_tid_periodisering\` uten å opprette nye historiske claims, kilder, cases eller place-evidence-lenker. Batchen løfter domenet fra **8/10 til 10/10** og total teori-evidens fra **73/230 til 75/230**.\n\n## Erfaringsrom og forventningshorisont\n\nEvidensgrunnlaget bruker dokumenterte arbeidsvilkår ved Bryn og Grønvold, de eksplisitte kravene i fyrstikkarbeiderstreiken i 1889 og åttetimerskravet på Youngstorget i 1890. Krav og handlinger brukes som samtidige spor etter mulige og ønskede framtider; senere lønns- og verneendringer brukes ikke til å bestemme hva aktørene må ha forventet.\n\n## Anakronisme og historisk begrepsbruk\n\nEvidensgrunnlaget sammenholder begrenset stemmerett i 1814, alminnelig mannlig stemmerett i 1898 og kvinnelig stemmerett i 1913. Poenget er å kontrollere hvordan ord som \"demokrati\" og \"alminnelig\" oversettes på tvers av perioder, uten å gjøre senere inkluderingsstandarder til samtidige realiteter.\n\n## Produksjonsgrense\n\n- Ingen nye claims.\n- Ingen nye canonical kilder.\n- Ingen nye eller nyvaliderte cases.\n- Ingen nye place-evidence-lenker.\n- Frozen V5.5/V5.8-teoriobjekter endres ikke.\n- De to theory-entryene har forskjellige komplette claim-bundles og er fortsatt \`provisional_not_universal\`.\n\n## Validering\n\nPermanent teori-evidensvalidator avleder kilder, cases, steder, emner og evidenslenker direkte fra de valgte claimene og kontrollerer kontraktens terskler. Universal-coverage-rapporten og Fagverk Historie-auditen regenereres deterministisk etter registry-endringen.\n`;
+          fs.writeFileSync(batchDocPath, batchDoc);
+
+          let test = fs.readFileSync(testPath, 'utf8');
+          const oldAssert = 'assert.equal(report.universalCoverage.theoryEvidenceQualifying, 73);';
+          if (!test.includes(oldAssert)) throw new Error('Expected 73 assertion not found');
+          test = test.replace(oldAssert, 'assert.equal(report.universalCoverage.theoryEvidenceQualifying, 75);');
+          fs.writeFileSync(testPath, test);
+          NODE
+      - name: Regenerate deterministic Historie reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-theory-evidence.mjs
+          node tools/audit-historie-universal-coverage.mjs
+          node scripts/audit-fagverk-historie.mjs
+      - name: Validate focused Historie gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-theory-evidence.mjs --check
+          node tools/audit-historie-universal-coverage.mjs --check
+          node tools/audit-historie-v5-5-quality-depth.mjs
+          node --test tests/fagverk-historie.test.mjs
+          git diff --check
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/agent-history-time-evidence-materialize.yml
+          rm -f .github/agent-history-time-evidence-trigger.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No production changes to commit'
+            exit 1
+          fi
+          git commit -m 'Bygg Historie erfaringsrom- og anakronismeevidens V1'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
