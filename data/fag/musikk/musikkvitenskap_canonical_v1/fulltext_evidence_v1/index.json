@@ -1,7 +1,7 @@
 {
   "schema": "history_go_musikk_fulltext_evidence_index_v1",
-  "version": "1.7.0",
-  "revision": "musikk-fulltext-evidence-history-source-criticism-v7-2026-07-30",
+  "version": "1.8.0",
+  "revision": "musikk-fulltext-evidence-history-reception-recording-v8-2026-07-30",
   "status": "pilot_active",
   "subject_id": "musikk",
   "contract": "contract.json",
@@ -12,26 +12,27 @@
     "form_prosess_improvisasjon.json",
     "klang_tekstur_instrumentasjon.json",
     "analytisk_lytting_beskrivelse.json",
-    "kildekritikk_musikkhistorie.json"
+    "kildekritikk_musikkhistorie.json",
+    "resepsjon_kritikk_opptakshistorie.json"
   ],
   "summary": {
     "canonical_topic_count": 48,
-    "fulltext_pilot_topic_count": 7,
-    "fulltext_reviewed_source_count": 17,
+    "fulltext_pilot_topic_count": 8,
+    "fulltext_reviewed_source_count": 21,
     "canonical_fulltext_reviewed_source_count": 3,
-    "production_extension_source_count": 14,
-    "direct_object_count": 7,
-    "claim_ready_editorial_count": 14,
-    "boundary_count": 23,
-    "question_release_ready_topic_count": 7,
-    "question_release_ready_claim_count": 7
+    "production_extension_source_count": 18,
+    "direct_object_count": 8,
+    "claim_ready_editorial_count": 15,
+    "boundary_count": 27,
+    "question_release_ready_topic_count": 8,
+    "question_release_ready_claim_count": 8
   },
   "release_policy": {
     "editorial_use": "Allowed only for claim records marked claim_ready_editorial and with all attached inference boundaries preserved.",
     "question_use": "Allowed only for claim IDs explicitly released by a resolved topic direct-object gate. Persistent identity, at least two direct-object locators and rights-compatible History Go use are mandatory.",
     "production_source_extensions": "A production-specific fulltext source may be registered inside the evidence layer without incrementing the canonical bibliographic basis. It must carry full bibliographic identity, registration reason and fulltext verification.",
     "nonredistributable_objects": "Objects whose record prohibits redistribution or whose license compatibility with History Go is unresolved remain external-link-and-metadata-only in History Go.",
-    "chapter_use": "The evidence pilot now spans all six analysis topics plus the first historical/historiographic source-criticism topic. This index does not by itself make the historical domain chapter complete; every further topic needs its own fulltext, direct-object, provenance and rights gate."
+    "chapter_use": "The evidence pilot now spans all six analysis topics plus two historical/historiographic topics: source criticism and the bounded Grieg reception/recording-history case. This does not make the historical domain chapter complete; every remaining topic needs its own fulltext, direct-object, provenance and rights gate."
   },
-  "next_gate": "generalize_subject_pathway_validator_to_all_canonical_domains_before_materializing_history_source_criticism"
+  "next_gate": "materialize_history_reception_recording_pathway_from_released_claim"
 }
