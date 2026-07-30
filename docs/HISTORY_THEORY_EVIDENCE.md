@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 87 av 230 etter at taushet/fravær, skrift/hånd/lesbarhet og digitale kilder V1 er kvalifisert. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 87 av 230 etter at offentlighet, mobilisering og bevegelser er fullført til 10/10 ved ren claim-gjenbruk. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
