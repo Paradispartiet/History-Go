@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 75 av 230 etter at erfaringsrom, forventningshorisont, anakronisme og historisk begrepsbruk V1 er kvalifisert gjennom eksisterende validerte evidenskjeder. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 78 av 230 etter at bevaring/restaurering/autentisitet, stedsnavn/navnepolitikk og digital kulturarv/formidling V1 er kvalifisert. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -57,6 +57,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Propaganda, sensur, informasjonskontroll, fangenskap, vold og forfølgelse V1: **2** nye kvalifiserende teoriobjekter, **7** nye claims, **5** nye kilder, **3** nyvaliderte cases og **1** utvidet case.
 - Overgangsrettferdighet, rettsoppgjør, kald krig, beredskap og sikkerhetsstat V1: **2** nye kvalifiserende teoriobjekter, **8** nye claims, **8** nye kilder, **1** nyvalidert case og **3** utvidede cases.
 - Historisk tid: erfaringsrom, forventningshorisont, anakronisme og begrepsbruk V1: **2** nye kvalifiserende teoriobjekter ved ren gjenbruk; **0** nye claims, kilder, cases eller place-evidence-lenker.
-- Totalt: **75 av 230** teoriobjekter (**32.6 %**).
+- Minne, kulturarv og historiebruk V1: **3** nye kvalifiserende teoriobjekter, **6** nye claims, **4** nye kilder, **6** nye place-evidence-lenker og **5** utvidede validerte cases; digital kulturarv kvalifiseres ved ren claim-gjenbruk.
+- Totalt: **78 av 230** teoriobjekter (**33.9 %**).
 - Universell status: **INCOMPLETE**.
-- Gjenstående teoriobjekter: **155**.
+- Gjenstående teoriobjekter: **152**.
