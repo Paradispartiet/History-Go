@@ -45,7 +45,7 @@ jobs:
           node-version: '20'
       - name: Materialize production batch
         run: node tools/materialize-history-byhistory-v1.mjs
-      - name: Generate deterministic reports
+      - name: Generate deterministic reports and refresh intentional freeze hashes
         run: |
           set -euo pipefail
           node tools/validate-historie-profile-evidence.mjs
@@ -55,6 +55,7 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-historie.mjs --write-report
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze --reason="V5.8 freeze refreshed after Byhistorie V6 evidence batch; canonical claims, sources, place evidence and Oslo profile expanded while frozen V5.8 theory definitions remain unchanged."
       - name: Validate all affected contracts
         run: |
           set -euo pipefail
