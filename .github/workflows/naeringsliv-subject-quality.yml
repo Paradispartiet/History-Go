@@ -45,16 +45,18 @@ jobs:
       - name: Validate Økonomi og næringsliv quality contracts
         run: |
           node --check scripts/audit-naeringsliv-subject-quality.mjs
-          node --check scripts/audit-naeringsliv-chapter-arbeid-produksjon-verdiskaping.mjs
+          for audit in scripts/audit-naeringsliv-chapter-*.mjs; do
+            node --check "$audit"
+            node "$audit"
+          done
           node --check tools/validate-okonomi-naeringsliv-universitetsramme.mjs
           node --check tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
           node --check tools/validate-okonomi-naeringsliv-handelshogskole.mjs
           node tools/validate-okonomi-naeringsliv-universitetsramme.mjs
           node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
           node tools/validate-okonomi-naeringsliv-handelshogskole.mjs
-          node scripts/audit-naeringsliv-chapter-arbeid-produksjon-verdiskaping.mjs
           node scripts/audit-naeringsliv-subject-quality.mjs
-          node --test tests/naeringsliv-chapter-arbeid-produksjon-verdiskaping.test.mjs tests/naeringsliv-subject-quality.test.mjs
+          node --test tests/naeringsliv-*.test.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
