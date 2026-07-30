@@ -1,0 +1,50 @@
+name: Agent History welfare V2 materialize
+
+on:
+  pull_request:
+    paths:
+      - 'tools/materialize-historie-velferd-rett-v2.mjs'
+      - '.github/workflows/agent-history-welfare-v2-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Materialize production data and reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/materialize-historie-velferd-rett-v2.mjs
+          node tools/validate-historie-profile-evidence.mjs
+          node tools/audit-historie-geographic-profile.mjs
+          node tools/validate-historie-theory-evidence.mjs
+          node tools/audit-historie-universal-coverage.mjs
+          node tools/audit-historie-v5-5-quality-depth.mjs
+          node scripts/audit-fagverk-historie.mjs
+          node tools/validate-historie-theory-evidence.mjs --check
+          node tools/audit-historie-geographic-profile.mjs --check
+          node tools/audit-historie-universal-coverage.mjs --check
+          node --test tests/fagverk-historie.test.mjs
+          git diff --check
+      - name: Remove bootstrap files and commit production state
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/materialize-historie-velferd-rett-v2.mjs
+          rm -f .github/workflows/agent-history-welfare-v2-materialize.yml
+          git add -A
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Fullfør Historie velferd, rett og hverdagsliv V2'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
