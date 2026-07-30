@@ -17,9 +17,11 @@ const ok = (condition, message) => {
   else { fail += 1; errors.push(message); }
 };
 
+const sets = list(pkg.sets);
 const sourceById = new Map(list(pkg.sources).map((source) => [source.id, source]));
 const questionIds = new Set();
-for (const set of list(pkg.sets)) {
+for (const set of sets) {
+  ok(list(set.questions).length === 5, `${set.set_id || set.emne_id || 'ukjent sett'}: forventet fem pathway-spørsmål`);
   for (const question of list(set.questions)) {
     ok(!questionIds.has(question.id), `${question.id}: duplikat question id`);
     questionIds.add(question.id);
@@ -37,8 +39,8 @@ for (const set of list(pkg.sets)) {
   }
 }
 
-ok(list(pkg.sets).length === 2, 'forventet 2 Musikk subject-pathway-sett');
-ok(questionIds.size === 10, 'forventet 10 unike Musikk pathway-spørsmål');
+ok(sets.length >= 1, 'Musikk subject pathway må ha minst ett sett');
+ok(questionIds.size === sets.length * 5, `forventet ${sets.length * 5} unike Musikk pathway-spørsmål`);
 
 console.log(`Musikk pathway source metadata v1: ${pass} PASS, ${fail} FAIL`);
 for (const error of errors) console.error(`FAIL: ${error}`);
