@@ -84,6 +84,7 @@ jobs:
           });
 
           const expectationClaims = [
+            'claim_his_gronvold_women_children_phosphorus_necrosis_1875_1890',
             'claim_his_bryn_gronvold_piecework_long_days_gender_wage_gap_1889',
             'claim_his_bryn_gronvold_strike_health_reform_1889_1892',
             'claim_his_youngstorget_mayday_1890_eight_hour_demand'
@@ -106,16 +107,16 @@ jobs:
               'explicit_future_directed_collective_demands',
               'hindsight_control'
             ],
-            rationale: 'Bryn og Grønvold dokumenterer et konkret erfaringsrom av lange akkorddager, kjønnet lavlønn og helserisiko. Streiken i 1889 dokumenterer deretter eksplisitte krav om lønn, arbeidstid, mulkter og sanitære forhold, mens Youngstorgets åttetimerskrav i 1890 viser en offentlig formulert ønsket framtidig arbeidstidsordning. Senere lønns- og verneendringer holdes adskilt fra de forventningene som faktisk kan dokumenteres i samtidige krav og handlinger.',
+            rationale: 'Grønvold dokumenterer konkret helserisiko ved fosforarbeid, mens Bryn og Grønvold dokumenterer lange akkorddager og kjønnet lavlønn. Streiken i 1889 dokumenterer deretter eksplisitte krav om lønn, arbeidstid, mulkter og sanitære forhold, mens Youngstorgets åttetimerskrav i 1890 viser en offentlig formulert ønsket framtidig arbeidstidsordning. Senere lønns- og verneendringer holdes adskilt fra de forventningene som faktisk kan dokumenteres i samtidige krav og handlinger.',
             limitations: [
-              'Kildene dokumenterer kollektive krav, arbeidsforhold og organisert mobilisering, men gir ikke direkte tilgang til alle enkeltarbeideres personlige forventninger, frykt eller framtidsforestillinger.',
+              'Kildene dokumenterer kollektive krav, arbeidsforhold, helserisiko og organisert mobilisering, men gir ikke direkte tilgang til alle enkeltarbeideres personlige forventninger, frykt eller framtidsforestillinger.',
               'At bestemte krav ble formulert viser et mulig og ønsket handlingsrom for organiserte aktører; det beviser ikke at alle arbeidere delte samme prioriteringer eller vurderte de samme framtidsalternativene som realistiske.'
             ],
             alternative_interpretations: [
               'Kravene kan leses som uttrykk for en forventningshorisont, men også som strategiske minimumskrav i en konkret konflikt; analysen må derfor skille dokumentert kollektiv handling fra antatte individuelle forestillinger.'
             ],
             disconfirmation_conditions: [
-              'Anvendelsen svekkes dersom senere utfall brukes til å rekonstruere hva aktørene må ha forventet i 1889–1890, eller dersom samtidige kilder viser at de registrerte kravene, arbeidsvilkårene eller tidsforløpet er vesentlig feil fremstilt.'
+              'Anvendelsen svekkes dersom senere utfall brukes til å rekonstruere hva aktørene må ha forventet i 1889–1890, eller dersom samtidige kilder viser at de registrerte arbeidsvilkårene, helserisikoen, kravene eller tidsforløpet er vesentlig feil fremstilt.'
             ],
             scope_note: 'Dette er et fler-case evidensgrunnlag fra fyrstikkarbeid og arbeiderbevegelsens mobilisering i Kristiania og er ikke universelt bevis for erfaringsrom og forventningshorisont på tvers av perioder, grupper, konflikter eller geografier.'
           }));
@@ -173,6 +174,7 @@ jobs:
               'Ingen nye canonical claims opprettes; begge teoriobjektene kvalifiseres ved dokumentert gjenbruk.',
               'Ingen nye canonical kilder opprettes; source_ids avledes eksakt fra de valgte claimene.',
               'Ingen cases eller place-evidence-lenker valideres på nytt; eksisterende validerte koblinger avledes og kontrolleres av permanent teori-evidensvalidator.',
+              'Erfaringsrom-bundelen utvides med det eksisterende fosfornekrose-claimet slik at den er analytisk og kontraktsmessig forskjellig fra organisering/streik-bundelen.',
               'Fyrstikkarbeiderkrav og åttetimersmobilisering brukes som dokumenterte framtidsrettede praksiser, ikke som bevis på alle individers indre forventninger.',
               '1814, 1898 og 1913 brukes til å kontrollere skiftende rettighetsomfang og hindre at senere demokratiske kategorier retrojiseres ukritisk.'
             ]
@@ -189,7 +191,7 @@ jobs:
           if (!doc.includes('**75 av 230**') || !doc.includes('**155**')) throw new Error('Documentation replacement failed');
           fs.writeFileSync(docsPath, doc);
 
-          const batchDoc = `# Historie — erfaringsrom, forventningshorisont og anakronisme V1\n\n## Mål\n\nKvalifisere de to siste teoriobjektene i \`his_tid_periodisering\` uten å opprette nye historiske claims, kilder, cases eller place-evidence-lenker. Batchen løfter domenet fra **8/10 til 10/10** og total teori-evidens fra **73/230 til 75/230**.\n\n## Erfaringsrom og forventningshorisont\n\nEvidensgrunnlaget bruker dokumenterte arbeidsvilkår ved Bryn og Grønvold, de eksplisitte kravene i fyrstikkarbeiderstreiken i 1889 og åttetimerskravet på Youngstorget i 1890. Krav og handlinger brukes som samtidige spor etter mulige og ønskede framtider; senere lønns- og verneendringer brukes ikke til å bestemme hva aktørene må ha forventet.\n\n## Anakronisme og historisk begrepsbruk\n\nEvidensgrunnlaget sammenholder begrenset stemmerett i 1814, alminnelig mannlig stemmerett i 1898 og kvinnelig stemmerett i 1913. Poenget er å kontrollere hvordan ord som \"demokrati\" og \"alminnelig\" oversettes på tvers av perioder, uten å gjøre senere inkluderingsstandarder til samtidige realiteter.\n\n## Produksjonsgrense\n\n- Ingen nye claims.\n- Ingen nye canonical kilder.\n- Ingen nye eller nyvaliderte cases.\n- Ingen nye place-evidence-lenker.\n- Frozen V5.5/V5.8-teoriobjekter endres ikke.\n- De to theory-entryene har forskjellige komplette claim-bundles og er fortsatt \`provisional_not_universal\`.\n\n## Validering\n\nPermanent teori-evidensvalidator avleder kilder, cases, steder, emner og evidenslenker direkte fra de valgte claimene og kontrollerer kontraktens terskler. Universal-coverage-rapporten og Fagverk Historie-auditen regenereres deterministisk etter registry-endringen.\n`;
+          const batchDoc = `# Historie — erfaringsrom, forventningshorisont og anakronisme V1\n\n## Mål\n\nKvalifisere de to siste teoriobjektene i \`his_tid_periodisering\` uten å opprette nye historiske claims, kilder, cases eller place-evidence-lenker. Batchen løfter domenet fra **8/10 til 10/10** og total teori-evidens fra **73/230 til 75/230**.\n\n## Erfaringsrom og forventningshorisont\n\nEvidensgrunnlaget bruker dokumentert fosforrelatert helserisiko og arbeidsvilkår ved Grønvold/Bryn, de eksplisitte kravene i fyrstikkarbeiderstreiken i 1889 og åttetimerskravet på Youngstorget i 1890. Krav og handlinger brukes som samtidige spor etter mulige og ønskede framtider; senere lønns- og verneendringer brukes ikke til å bestemme hva aktørene må ha forventet.\n\n## Anakronisme og historisk begrepsbruk\n\nEvidensgrunnlaget sammenholder begrenset stemmerett i 1814, alminnelig mannlig stemmerett i 1898 og kvinnelig stemmerett i 1913. Poenget er å kontrollere hvordan ord som \"demokrati\" og \"alminnelig\" oversettes på tvers av perioder, uten å gjøre senere inkluderingsstandarder til samtidige realiteter.\n\n## Produksjonsgrense\n\n- Ingen nye claims.\n- Ingen nye canonical kilder.\n- Ingen nye eller nyvaliderte cases.\n- Ingen nye place-evidence-lenker.\n- Frozen V5.5/V5.8-teoriobjekter endres ikke.\n- De to theory-entryene har forskjellige komplette claim-bundles og er fortsatt \`provisional_not_universal\`.\n\n## Validering\n\nPermanent teori-evidensvalidator avleder kilder, cases, steder, emner og evidenslenker direkte fra de valgte claimene og kontrollerer kontraktens terskler. Universal-coverage-rapporten og Fagverk Historie-auditen regenereres deterministisk etter registry-endringen.\n`;
           fs.writeFileSync(batchDocPath, batchDoc);
 
           let test = fs.readFileSync(testPath, 'utf8');
