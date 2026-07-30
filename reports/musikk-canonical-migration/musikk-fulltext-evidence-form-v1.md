@@ -44,16 +44,45 @@ Temaet og blueprintet tillater allerede `notert_kilde` og `score_or_representati
 
 Batchen legger derfor bare denne eksisterende metode-ID-en til temaet og blueprintet. Ingen ny metode, claim-type, emne eller domene opprettes.
 
-## Forventet aggregert status
+## Aggregert status
 
-Når validatoren er grønn:
+Fulltekstevidensvalidatoren bekrefter:
 
 - 4 fulltekstevidenstemaer
-- 10 fulltekstgjennomganger
+- 10 fulltekstgjennomganger, hvorav 3 canonicale og 7 produksjonsutvidelser
 - 4 direct objects
 - 11 claim-klare funn
 - 13 slutningsgrenser
 - 4 question-ready emner
 - 4 question-ready claims
 
-De øvrige 44 canonicale temaene forblir blokkert av fulltekstevidenslaget.
+Resultat:
+
+`714 PASS / 0 FAIL`
+
+Fagdybdevalidatoren etter metodekoblingen:
+
+`1909 PASS / 0 FAIL`
+
+Musikk source dossiers forblir:
+
+`6520 PASS / 0 FAIL`
+
+Den eksisterende aktive subject pathwayen endres ikke i denne batchen og forblir 3 sett / 15 spørsmål. De øvrige 44 canonicale temaene forblir blokkert av fulltekstevidenslaget.
+
+## CI
+
+På første låste read-only-head var alle workflowene som denne femfil-diffen faktisk trigget grønne:
+
+- Data checks
+- Musikk scientific quality
+- Fagverk Musikk
+- Fagverk subject inventory
+
+Data checks bekreftet også grønne Knowledge V2-, category/quiz-governance-, Places- og People-jobber.
+
+Den midlertidige bootstrap-jobben som la eksisterende `notasjons_kildeanalyse` til formtema og blueprint er fjernet. Permanent `Fagverk Musikk` står igjen med `permissions: contents: read`.
+
+## Neste gate
+
+Det fjerde analyseemnet er question-ready i evidenslaget, men ikke materialisert som pathway-sett. Neste produksjon kan legge form/prosess inn som sett 4 uten å åpne de øvrige 44 temaene.
