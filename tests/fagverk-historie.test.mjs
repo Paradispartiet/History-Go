@@ -112,7 +112,7 @@ test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', (
   assert.equal(report.universalCoverage.coveredCells, 58);
   assert.equal(report.universalCoverage.totalCells, 58);
   assert.equal(report.universalCoverage.productionGaps, 1);
-  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 67);
+  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 69);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
 });
