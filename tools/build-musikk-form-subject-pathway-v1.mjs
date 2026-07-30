@@ -125,7 +125,7 @@ const formSet = {
       targetId: FORM.target,
       question_scope: 'subject_area',
       pathway_stage: 'observe',
-      question: 'Hvor lokaliserer Huguet det komplette A4-refrengeret i finalen til Beethovens op. 10 nr. 3?',
+      question: 'Hvor lokaliserer Huguet det komplette A4-refrengpartiet i finalen til Beethovens op. 10 nr. 3?',
       options: ['Takt 84–92', 'Takt 58–64', 'Takt 93–113'],
       answer: 'Takt 84–92',
       answerIndex: 0,
