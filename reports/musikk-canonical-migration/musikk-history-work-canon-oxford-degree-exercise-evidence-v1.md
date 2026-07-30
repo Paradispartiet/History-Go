@@ -8,7 +8,7 @@ Denne produksjonen åpner bare `em_musikk_vit_verkbegrep_forfatterskap_kanon` gj
 
 - claim: `claim_musikk_history_work_canon_oxford_degree_exercise_institutional_status`
 - claim-type: `historical_claim`
-- metoder: `historisk_kildekritikk`, `historiografisk_analyse`
+- metode: `historiografisk_analyse`
 - direct object: `obj_crotch_o_sing_bmus_exercise_1794`
 
 ## Direkte objekt
