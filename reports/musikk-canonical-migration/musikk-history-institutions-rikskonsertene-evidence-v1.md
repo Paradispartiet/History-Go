@@ -27,22 +27,37 @@ Denne produksjonen åpner bare `em_musikk_vit_institusjoner_patronat_offentlighe
 
 ## Rights
 
-Direct object er et offentlig parlamentarisk dokument. History Go bruker ekstern lenke, dokumentidentitet, offentlige tall og parafraserte funn. Ingen tredjepartsbilder eller hele dokumenter republiseres. Langdalen-rapporten brukes kun via bibliografisk identitet, sidelokator og parafrase.
+Direct object er et offentlig parlamentarisk dokument, men den canonicale object-gaten er bevisst streng: objektet leveres som `external_link_and_metadata_only`. History Go viser ekstern lenke og dokumentmetadata; offentlige tall og parafraserte funn bæres av source-evidensen. Ingen tredjepartsbilder eller hele dokumenter republiseres. Langdalen-rapporten brukes kun via bibliografisk identitet, sidelokator og parafrase.
 
-## Forventet additive dekning
+## Validatorresultat
 
-Før CI er følgende kun strukturforventninger:
+Grønn Musikk-kjøring på den firefil-avgrensede evidensbranchen ga:
 
-- 9 fulltext pilot topics
-- 25 fulltext-reviewed sources
-- 3 canonical fulltext-reviewed sources
-- 22 production source extensions
-- 9 direct objects
-- 16 claim-ready editorial findings
-- 31 inference boundaries
-- 9 question-release-ready topics / claims
+- Musikk source dossiers: **6520 PASS / 0 FAIL**
+- Musikk fulltekstevidens: **1519 PASS / 0 FAIL**
+  - 9 emner
+  - 25 fulltekster
+  - 3 canonical fulltekster
+  - 22 produksjonsutvidelser
+  - 9 direct objects
+  - 16 claim-klare funn
+  - 31 slutningsgrenser
+  - 9 question-ready emner / 9 claims
+- Musikk subject pathway: **2376 PASS / 0 FAIL**
+  - fortsatt 8 sett / 40 spørsmål
+  - 8 released pathway-claims
+  - 8 pathway direct objects
+  - 40 temaer fortsatt blokkert i pathwayen
+- Musikk pathway source metadata: **580 PASS / 0 FAIL**
 
-Pathwayen skal forbli 8 sett / 40 spørsmål til en separat materialiseringsgate.
+Dette bekrefter at evidenslaget går 8 → 9 released emner uten at pathwayen åpnes automatisk.
+
+## Kontraktrettinger under CI
+
+To CI-funn ble rettet uten å utvide evidensgrunnlaget:
+
+1. `scientific_package.source_revision` ble beholdt på canonical V9 fordi ingen source-dossier eller canonical kilderegister ble endret; kun fulltext-evidence-revisjonen økes.
+2. Direct object ble låst til nøyaktig `external_link_and_metadata_only`, slik validatoren krever når `redistribution_allowed` er `false`.
 
 ## Produksjonsgrense
 
@@ -53,4 +68,4 @@ Nøyaktig fire filer skal endres:
 3. `data/fag/musikk/scientific_package.json`
 4. `reports/musikk-canonical-migration/musikk-history-institutions-rikskonsertene-evidence-v1.md`
 
-Ingen pathway- eller Knowledge-materialisering inngår i denne PR-en.
+Ingen pathway- eller Knowledge-materialisering inngår i denne PR-en. Neste gate er separat materialisering av det frigitte institusjonsclaimet som et nytt femtrinnssett.
