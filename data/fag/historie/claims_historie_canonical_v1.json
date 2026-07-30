@@ -7917,44 +7917,9 @@
       ]
     },
     {
-      "claim_id": "claim_his_stortinget_social_insurance_expansion_1894_1911",
-      "statement": "Stortinget vedtok ulykkesforsikring for fabrikkarbeidere i 1894, og obligatorisk syketrygd for lavtlønte arbeidere ble gjennomført fra 1911. Ordningene ga lovbaserte ytelser til avgrensede yrkes- og inntektsgrupper og viser en trinnvis overgang fra lokalt fattigskjønn til sosialforsikring, uten full befolkningsdekning.",
-      "claim_type": "occupation_income_bounded_social_insurance_expansion",
-      "scope": {
-        "geography_ids": [
-          "geo_no_oslo_akershus"
-        ],
-        "place_ids": [
-          "stortinget"
-        ],
-        "case_ids": [
-          "case_his_stortinget"
-        ],
-        "temporal": {
-          "from": 1894,
-          "to": 1911
-        }
-      },
-      "emne_ids": [
-        "em_his_sosialforsikring_pensjon_universalisme",
-        "em_his_velferd_hverdagsliv"
-      ],
-      "source_ids": [
-        "src_his_snl_folketrygden"
-      ],
-      "confidence": "high",
-      "uncertainty": {
-        "level": "medium",
-        "note": "Kilden dokumenterer lovrekkefølgen og avgrensede målgrupper, men ikke komplett medlemskap, lokale vedtak, faktisk utbetaling eller husholdningenes økonomiske virkning."
-      },
-      "alternative_interpretations": [
-        "Reformene kan leses som rettighetsutvidelse bort fra fattighjelp, men også som et forsikringssystem som fortsatt sorterte etter yrke, lønn og medlemskap."
-      ]
-    },
-    {
-      "claim_id": "claim_his_stortinget_old_age_pension_universalization_1936_1967",
-      "statement": "Alderstrygden fra 1936 var behovsprøvd; behovsprøvingen ble opphevet med virkning fra 1959, og folketrygden fra 1967 kombinerte en generell grunnpensjon med inntektsgradert tilleggspensjon. Forløpet utvidet dekningen, men beholdt forskjellige medlemskaps-, opptjenings- og fordelingsmekanismer.",
-      "claim_type": "means_test_to_universal_basic_and_earnings_pension",
+      "claim_id": "claim_his_stortinget_age_pension_need_test_1936",
+      "statement": "Stortingets lov om alderstrygd i 1936 gjorde ordningen landsdekkende, men ytelsen var fortsatt behovsprøvd. Vedtaket markerer derfor nasjonal utvidelse uten at formell lovdekning kan likestilles med universell faktisk pensjonsadgang.",
+      "claim_type": "national_means_tested_old_age_pension",
       "scope": {
         "geography_ids": [
           "geo_no_oslo_akershus"
@@ -7967,6 +7932,41 @@
         ],
         "temporal": {
           "from": 1936,
+          "to": 1959
+        }
+      },
+      "emne_ids": [
+        "em_his_sosialforsikring_pensjon_universalisme",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_snl_folketrygden"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Kilden dokumenterer lovens nasjonale og behovsprøvde karakter, men ikke lokale søknadstall, skjønnsvariasjon, satser eller husholdenes faktiske levestandard."
+      },
+      "alternative_interpretations": [
+        "1936-loven kan leses som et gjennombrudd fordi ansvaret ble nasjonalt, samtidig som behovsprøvingen videreførte en selektiv adgang."
+      ]
+    },
+    {
+      "claim_id": "claim_his_stortinget_universal_pension_folketrygd_1959_1967",
+      "statement": "Alderspensjon til alle over 70 år ble innført i 1959, og Stortingets folketrygdvedtak i 1966 samlet grunntrygder med felles finansiering og administrasjon fra 1967. Folketrygden beholdt en flat minstesikring og la inntektsgradert tilleggspensjon over denne.",
+      "claim_type": "universal_minimum_and_earnings_related_pension",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "stortinget"
+        ],
+        "case_ids": [
+          "case_his_stortinget"
+        ],
+        "temporal": {
+          "from": 1959,
           "to": 1967
         }
       },
@@ -7975,16 +7975,197 @@
         "em_his_velferd_hverdagsliv"
       ],
       "source_ids": [
-        "src_his_snl_alderspensjon",
+        "src_his_nav_folketrygden_40_ar",
         "src_his_snl_folketrygden"
       ],
       "confidence": "high",
       "uncertainty": {
         "level": "medium",
-        "note": "Kildene dokumenterer lov- og systemendringene, men ikke ytelsenes realverdi, full faktisk dekning eller fordelingsvirkning for ulike kjønn, hushold, yrkesløp og botid."
+        "note": "Kildene dokumenterer systemdesign og årstall, men ikke lik opptjening, like utbetalinger, kjønnsforskjeller, informasjon eller alle gruppers faktiske tilgang."
       },
       "alternative_interpretations": [
-        "Folketrygden kan forstås som universell grunnsikring og institusjonell samling, samtidig som tilleggspensjonen videreførte inntekts- og arbeidsmarkedsforskjeller."
+        "Reformen kan tolkes som universell grunnsikring og solidarisk samordning, men også som en videreføring av arbeids- og inntektsbaserte forskjeller gjennom tilleggspensjonen."
+      ]
+    },
+    {
+      "claim_id": "claim_his_ulleval_hageby_social_design_1918_1926",
+      "statement": "Ullevål hageby ble oppført 1918–1926 med 661 leiligheter som et forsøk på sosial boligbygging for å bedre arbeiderklassens boforhold. Hager, lys, luft, grøntarealer og lokale tjenester gjorde helse og materiell hverdagsvelferd til del av boligplanen.",
+      "claim_type": "planned_social_housing_material_welfare",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "ullevål_hageby"
+        ],
+        "case_ids": [
+          "case_his_ulleval_hageby"
+        ],
+        "temporal": {
+          "from": 1918,
+          "to": 1926
+        }
+      },
+      "emne_ids": [
+        "em_his_boligpolitikk_materiell_velferd",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_oslo_byplan_ulleval_hageby_100",
+        "src_his_snl_ulleval_hageby"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Kildene dokumenterer planintensjon, utbyggingsperiode og fysiske hovedtrekk, men ikke standard, vedlikehold eller hverdagsbruk i hver enkelt bolig."
+      },
+      "alternative_interpretations": [
+        "Den lave tettheten kan leses som helse- og livskvalitetsgevinst, men også som en kostbar arealbruk som reduserte antallet hushold prosjektet kunne nå."
+      ]
+    },
+    {
+      "claim_id": "claim_his_ulleval_hageby_cost_access_failure_1918_1926",
+      "statement": "Kvalitetsnivå, lav tetthet og prisstigning gjorde Ullevål hageby for dyr for de fleste i målgruppen. I stedet flyttet hovedsakelig øvre middelklasse inn, slik at et sosialt boligformål ikke ga den tilsiktede arbeiderklassen faktisk kjøpsadgang.",
+      "claim_type": "social_housing_cost_access_gap",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "ullevål_hageby"
+        ],
+        "case_ids": [
+          "case_his_ulleval_hageby"
+        ],
+        "temporal": {
+          "from": 1918,
+          "to": 1926
+        }
+      },
+      "emne_ids": [
+        "em_his_boligpolitikk_materiell_velferd",
+        "em_his_bruker_tjeneste_forvaltning",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_oslo_byplan_ulleval_hageby_100",
+        "src_his_snl_ulleval_hageby"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Kildene dokumenterer hovedutfallet og typiske beboergrupper, men gir ikke fullstendige andelstegnings-, inntekts- eller avslagsdata for hver søker."
+      },
+      "alternative_interpretations": [
+        "Prosjektet kan vurderes som arkitektonisk og materiell suksess, men som fordelingspolitisk svikt for den opprinnelige målgruppen."
+      ]
+    },
+    {
+      "claim_id": "claim_his_rikshospitalet_gendered_nursing_role_1855_1869",
+      "statement": "Ved Rikshospitalet ble en moderne sykepleierrolle formet i 1855–1869 gjennom forsøk på å erstatte eller lede ufaglærte gangkoner med dannede, utdannede kvinner og diakonisser. Pleiearbeidet ble profesjonalisert, men samtidig definert gjennom kjønn, klasse, kall og rollen som medisinsk assistanse.",
+      "claim_type": "gendered_professionalization_of_care_work",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "rikshospitalet"
+        ],
+        "case_ids": [
+          "case_his_rikshospitalet"
+        ],
+        "temporal": {
+          "from": 1855,
+          "to": 1869
+        }
+      },
+      "emne_ids": [
+        "em_his_helse_omsorg_institusjoner",
+        "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon"
+      ],
+      "source_ids": [
+        "src_his_moseng_rikshospitalet_sykepleierrolle_2008"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Artikkelen dokumenterer institusjonsledelsens profesjonsdiskurs og konkrete ansettelser, men ikke komplett arbeidsdeling, lønn, tidsbruk eller pasientenes vurdering av pleien."
+      },
+      "alternative_interpretations": [
+        "Endringen kan leses som kompetanseheving og bedre pleiekapasitet, men også som medisinsk underordning og sosial sortering av hvilke kvinner som ble regnet som skikket."
+      ]
+    },
+    {
+      "claim_id": "claim_his_sagene_school_meal_application_gate_1897",
+      "statement": "Gratis mat for trengende barn ved Sagene skole kom i gang i 1897, men barna måtte søke og få behovet vurdert. Ordningen viser at et konkret omsorgstilbud kunne være offentlig tilgjengelig samtidig som adgang ble filtrert gjennom søknad og administrativ klassifikasjon.",
+      "claim_type": "means_tested_school_meal_application_gate",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "sagene_skole"
+        ],
+        "case_ids": [
+          "case_his_sagene_skole"
+        ],
+        "temporal": {
+          "from": 1897,
+          "to": 1929
+        }
+      },
+      "emne_ids": [
+        "em_his_bruker_tjeneste_forvaltning",
+        "em_his_skole_folkedannelse",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_kulturpunkt_sagene_skole",
+        "src_his_sagene_skole_official_history"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "high",
+        "note": "Kildene dokumenterer tilbudet og søknadsporten, men ikke komplett antall søkere, avslag, begrunnelser, uteblitte søknader eller ernæringsutfall."
+      },
+      "alternative_interpretations": [
+        "Behovsvurderingen kan ha konsentrert knappe ressurser om utsatte barn, men kan også ha skapt stigma, informasjonsbarrierer og forskjell mellom formelt tilbud og faktisk bruk."
+      ]
+    },
+    {
+      "claim_id": "claim_his_oslo_hospital_admission_worthiness_family_gate_1538_1800",
+      "statement": "Oslo Hospital tok inn fattige og uføre som hadde bodd i Oslo og manglet familieomsorg; de skulle samtidig være levedyktige, og senere ble tilbudet avgrenset til «verdig trengende». Fundaser og innskrivning gjorde bosted, familie, funksjonsevne og moralsk klassifikasjon til porter inn til forsorgen.",
+      "claim_type": "poor_relief_admission_eligibility_gate",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "oslo_hospital"
+        ],
+        "case_ids": [
+          "case_his_oslo_hospital"
+        ],
+        "temporal": {
+          "from": 1538,
+          "to": 1800
+        }
+      },
+      "emne_ids": [
+        "em_his_bruker_tjeneste_forvaltning",
+        "em_his_fattigvesen_veldedighet_sosial_kontroll",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_oslo_byarkiv_oslo_hospital_history"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Arkivformidlingen dokumenterer regelverk og kategorier, men ikke alle søkere, avslag, forhandlinger, familiers faktiske omsorgsevne eller lemmers egne vurderinger."
+      },
+      "alternative_interpretations": [
+        "Kriteriene kan leses som prioritering av begrenset kapasitet, men også som en sosial og moralsk sortering som skilte formelt hjelpeformål fra faktisk adgang."
       ]
     }
   ],
