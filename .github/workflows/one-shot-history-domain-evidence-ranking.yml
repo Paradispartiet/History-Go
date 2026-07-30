@@ -1,0 +1,61 @@
+name: One-shot History domain evidence ranking
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+jobs:
+  rank:
+    if: github.event.pull_request.head.ref == 'agent/history-domain-evidence-ranking'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Build exact domain ranking
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const objects = JSON.parse(fs.readFileSync('data/fag/historie/theory_objects_historie_canonical_v5_5.json','utf8'));
+          const evidence = JSON.parse(fs.readFileSync('data/fag/historie/theory_evidence_historie_canonical_v1.json','utf8'));
+          const pensum = JSON.parse(fs.readFileSync('data/fag/historie/historiepensum_canonical_v4_5.json','utf8'));
+          const qualified = new Set(evidence.entries.filter(x => x.status === 'evidence_ready').map(x => x.theory_id));
+          const byDomain = new Map();
+          for (const d of pensum.domains) byDomain.set(d.domain_id, {domain_id:d.domain_id,label:d.label,total:0,qualified:0,missing:[],ready:[]});
+          for (const t of objects) {
+            const domains = t.explanatory_scope || [];
+            if (domains.length !== 1) throw new Error(`${t.theory_id} has ${domains.length} explanatory scopes`);
+            const row = byDomain.get(domains[0]);
+            if (!row) throw new Error(`Unknown domain ${domains[0]} for ${t.theory_id}`);
+            row.total++;
+            if (qualified.has(t.theory_id)) { row.qualified++; row.ready.push(t.theory_id); }
+            else row.missing.push(t.theory_id);
+          }
+          const ranking = [...byDomain.values()].map(r => ({...r,remaining:r.total-r.qualified})).sort((a,b)=>a.remaining-b.remaining || b.qualified-a.qualified || a.domain_id.localeCompare(b.domain_id));
+          if (ranking.reduce((s,r)=>s+r.total,0) !== 230) throw new Error('Theory total mismatch');
+          if (ranking.reduce((s,r)=>s+r.qualified,0) !== qualified.size) throw new Error('Qualified total mismatch');
+          fs.mkdirSync('reports/historie-theory-evidence', {recursive:true});
+          fs.writeFileSync('reports/historie-theory-evidence/history-domain-evidence-ranking.tmp.json', JSON.stringify({generated_at:'2026-07-30',total_theories:230,qualifying_entries:qualified.size,domains:ranking}, null, 2)+'\n');
+          console.log(ranking.map(r => `${r.qualified}/10\t${r.domain_id}\tmissing=${r.remaining}`).join('\n'));
+          NODE
+      - name: Commit temporary ranking only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/one-shot-history-domain-evidence-ranking.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/historie-theory-evidence/history-domain-evidence-ranking.tmp.json
+          git commit -m 'Generer midlertidig Historie-domenerangering'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
