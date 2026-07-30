@@ -1,6 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditPolitikkInternasjonalPolitikkChapter } from '../scripts/audit-politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.mjs';
+import {
+  auditPolitikkInternasjonalPolitikkChapter,
+  hasCompleteClaimTrace
+} from '../scripts/audit-politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.mjs';
+
+test('claimspor krever minst én ikke-tom claim-ID per innholdselement', () => {
+  assert.equal(hasCompleteClaimTrace([['claim-1'], ['claim-2', 'claim-3']]), true);
+  assert.equal(hasCompleteClaimTrace([['claim-1'], []]), false);
+  assert.equal(hasCompleteClaimTrace([['claim-1'], ['   ']]), false);
+  assert.equal(hasCompleteClaimTrace([['claim-1'], 'claim-2']), false);
+});
 
 test('Internasjonal politikk, sikkerhet og samarbeid oppfyller Fagverkets kapittelkontrakt', () => {
   const report = auditPolitikkInternasjonalPolitikkChapter();
