@@ -20,6 +20,18 @@ const digest = (value, length = 10) => createHash('sha256').update(clean(value),
 const stableId = (prefix, subjectId, value) => `${prefix}_${slug(subjectId, 24) || 'unknown'}_${slug(value, prefix === 'ku' ? 24 : 36) || 'item'}_${digest(`${subjectId}\0${normalize(value)}`)}`;
 const jsonText = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
+function splitClaims(value) {
+  const source = clean(value).replace(/\s+/g, ' ');
+  if (!source) return [];
+  const protectedText = source
+    .replace(/\b(bl|ca|dvs|dr|f\.eks|mfl|mr|nr|osv|prof|st)\./gi, (match) => match.replace('.', '∯'))
+    .replace(/(\d)\.(\d)/g, '$1∯$2');
+  return protectedText
+    .split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/)
+    .map((part) => part.replaceAll('∯', '.').trim())
+    .filter((part) => part.length >= 12 && !part.endsWith('?'));
+}
+
 const absolute = path.join(ROOT, FILE);
 const original = fs.readFileSync(absolute, 'utf8');
 const before = JSON.parse(original);
@@ -39,8 +51,10 @@ for (const [setIndex, set] of list(pkg.sets).entries()) {
     if (!concepts.length || !terms.length || !summary) throw new Error(`${question.id || questionCount}: mangler concepts/terms/knowledge summary`);
     question.concept_ids = concepts.map((value) => stableId('co', 'musikk', value));
     question.term_ids = terms.map((value) => stableId('term', 'musikk', value));
-    question.primary_knowledge_unit_id = stableId('ku', 'musikk', summary);
-    question.knowledge_unit_ids = [question.primary_knowledge_unit_id];
+    const claims = splitClaims(summary);
+    const effectiveClaims = claims.length ? claims : [summary];
+    question.knowledge_unit_ids = effectiveClaims.map((claim) => stableId('ku', 'musikk', claim));
+    question.primary_knowledge_unit_id = question.knowledge_unit_ids[0];
     question.source = list(question.source).map((source) => {
       const canonical = sourceById.get(clean(source.source_id));
       if (!canonical) throw new Error(`${question.id || questionCount}: ukjent source_id ${clean(source.source_id)}`);
