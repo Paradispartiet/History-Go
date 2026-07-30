@@ -1,0 +1,626 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "politisk-okonomi-stat-marked",
+  "verified_at": "2026-07-30",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "north_institutions",
+      "label": "Douglass C. North – Institutions",
+      "url": "https://www.aeaweb.org/articles?id=10.1257/jep.5.1.97",
+      "publisher": "American Economic Association",
+      "type": "peer_reviewed",
+      "source_location": "Journal of Economic Perspectives 5(1), særlig definisjonen av institusjoner og insentivstruktur"
+    },
+    {
+      "id": "competition_act",
+      "label": "Lovdata – Konkurranseloven",
+      "url": "https://lovdata.no/lov/2004-03-05-12",
+      "publisher": "Lovdata",
+      "type": "official_law",
+      "source_location": "§ 1 og lovens bestemmelser om konkurransebegrensende atferd"
+    },
+    {
+      "id": "competition_authority",
+      "label": "Konkurransetilsynet – Norwegian Competition Authority",
+      "url": "https://konkurransetilsynet.no/norwegian-competition-authority/?lang=en",
+      "publisher": "Konkurransetilsynet",
+      "type": "official",
+      "source_location": "Mandate og Main tasks"
+    },
+    {
+      "id": "iversen_soskice",
+      "label": "Iversen og Soskice – Electoral Institutions and the Politics of Coalitions",
+      "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/electoral-institutions-and-the-politics-of-coalitions-why-some-democracies-redistribute-more-than-others/F30F0B252475D90BFF365C2410FA23DB",
+      "publisher": "Cambridge University Press",
+      "type": "peer_reviewed",
+      "source_location": "Abstract og teori om valgsystem, koalisjoner og omfordeling"
+    },
+    {
+      "id": "korpi_palme",
+      "label": "Korpi og Palme – The Paradox of Redistribution",
+      "url": "https://www.jstor.org/stable/2657333",
+      "publisher": "American Sociological Review / JSTOR",
+      "type": "peer_reviewed",
+      "source_location": "Abstract og sammenligningen av velferdsinstitusjoner og omfordelende budsjetter"
+    },
+    {
+      "id": "ssb_progressivity",
+      "label": "SSB – Progressivity and Redistribution in Personal Income Taxation",
+      "url": "https://www.ssb.no/en/forskning/discussion-papers/_attachment/231844?_ts=14e0ab12b60",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "research_report",
+      "source_location": "Innledning og dekomponeringen av progressivitet og redistributiv effekt"
+    },
+    {
+      "id": "ssb_income",
+      "label": "SSB – Income and wealth statistics for households",
+      "url": "https://www.ssb.no/en/inntekt-og-forbruk/inntekt-og-formue/statistikk/inntekts-og-formuesstatistikk-for-husholdninger",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "official_statistics",
+      "source_location": "Definitions og About the statistics"
+    },
+    {
+      "id": "ministry_finance",
+      "label": "Regjeringen – Ministry of Finance",
+      "url": "https://www.regjeringen.no/en/dep/fin/id216/",
+      "publisher": "Finansdepartementet",
+      "type": "official",
+      "source_location": "Ministry responsibilities for economic policy and the Fiscal Budget"
+    },
+    {
+      "id": "fiscal_framework",
+      "label": "Regjeringen – Economic policy",
+      "url": "https://www.regjeringen.no/en/topics/the-economy/economic-policy/economic-policy/id418083/",
+      "publisher": "Finansdepartementet",
+      "type": "official_policy",
+      "source_location": "Fiscal policy framework og fiscal rule"
+    },
+    {
+      "id": "nb_strategy",
+      "label": "Norges Bank – Monetary policy strategy",
+      "url": "https://www.norges-bank.no/en/topics/monetary-policy/monetary-policy-strategy/",
+      "publisher": "Norges Bank",
+      "type": "official_policy",
+      "source_location": "Monetary policy objectives and considerations"
+    },
+    {
+      "id": "monetary_regulation",
+      "label": "Norges Bank – Regulation on Monetary Policy",
+      "url": "https://www.norges-bank.no/en/topics/about/Mission-core-responsibilities/Legislation/Regulation-on-Monetary-Policy/",
+      "publisher": "Norges Bank",
+      "type": "official_regulation",
+      "source_location": "Sections 1–4 on purpose, target and publication"
+    },
+    {
+      "id": "storting_about",
+      "label": "Stortinget – About the Storting",
+      "url": "https://www.stortinget.no/en/in-english/about-the-storting/",
+      "publisher": "Stortinget",
+      "type": "official",
+      "source_location": "The Storting's main functions: legislation, budget and supervision"
+    },
+    {
+      "id": "frontfag_nou",
+      "label": "NOU 2024: 6 – Grunnlaget for inntektsoppgjørene 2024",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2024-6/id3031371/?ch=5",
+      "publisher": "Regjeringen",
+      "type": "official_report",
+      "source_location": "Kapittel 3 om frontfagsmodellen og koordinert lønnsdannelse"
+    },
+    {
+      "id": "euronext_oslo",
+      "label": "Euronext – Oslo markets",
+      "url": "https://www.euronext.com/en/markets/oslo",
+      "publisher": "Euronext",
+      "type": "institutional_primary",
+      "source_location": "Overview of Euronext Oslo and Norway's regulated securities markets"
+    },
+    {
+      "id": "stigler_regulation",
+      "label": "George J. Stigler – The Theory of Economic Regulation",
+      "url": "https://www.jstor.org/stable/3003160",
+      "publisher": "The Bell Journal of Economics / JSTOR",
+      "type": "peer_reviewed",
+      "source_location": "Abstract og teori om at regulering kan erverves og brukes av bransjer"
+    },
+    {
+      "id": "ostrom_commons",
+      "label": "Elinor Ostrom – Governing the Commons",
+      "url": "https://www.cambridge.org/core/books/governing-the-commons/A8BB63BC4A1433A50A3FB92EDBBB97D5",
+      "publisher": "Cambridge University Press",
+      "type": "research_monograph",
+      "source_location": "Book description og analysen av institusjoner for fellesressurser"
+    },
+    {
+      "id": "climate_plan",
+      "label": "Regjeringen – Norway's Climate Action Plan for 2021–2030",
+      "url": "https://www.regjeringen.no/en/documents/meld.-st.-13-20202021/id2827405/?ch=2",
+      "publisher": "Regjeringen",
+      "type": "official_white_paper",
+      "source_location": "Chapter 2 on carbon tax and the need for complementary instruments"
+    },
+    {
+      "id": "green_tax_commission",
+      "label": "Green Tax Commission – Summary and recommendations",
+      "url": "https://www.regjeringen.no/contentassets/38978c0304534ce6bd703c7c4cf32fc1/en-gb/sved/kap02.pdf",
+      "publisher": "Regjeringen",
+      "type": "official_report",
+      "source_location": "Chapter 2 on green tax shift and environmental instruments"
+    },
+    {
+      "id": "carbon_meta",
+      "label": "Ohlendorf et al. – Distributional Impacts of Carbon Pricing",
+      "url": "https://link.springer.com/article/10.1007/s10640-020-00521-1",
+      "publisher": "Springer",
+      "type": "peer_reviewed",
+      "source_location": "Abstract, methods and conclusions on variation in distributional effects"
+    },
+    {
+      "id": "rodrik_open",
+      "label": "Dani Rodrik – Why Do More Open Economies Have Bigger Governments?",
+      "url": "https://www.journals.uchicago.edu/doi/10.1086/250038",
+      "publisher": "Journal of Political Economy",
+      "type": "peer_reviewed",
+      "source_location": "Abstract og empirical association between openness and government consumption"
+    },
+    {
+      "id": "walter_compensation",
+      "label": "Stefanie Walter – Globalization and the Welfare State",
+      "url": "https://www.stefaniewalter.de/app/download/4123411/Walter.2010.ISQ.pdf",
+      "publisher": "International Studies Quarterly",
+      "type": "peer_reviewed",
+      "source_location": "Abstract, Swiss survey design and findings on economic risk and compensation preferences"
+    },
+    {
+      "id": "nb_building",
+      "label": "Norges Bank – Norges Bank building",
+      "url": "https://www.norges-bank.no/en/topics/about/the-building/",
+      "publisher": "Norges Bank",
+      "type": "institutional_primary",
+      "source_location": "Location of the head office at Bankplassen in Oslo"
+    },
+    {
+      "id": "government_complex",
+      "label": "Regjeringen – The Government Building Complex",
+      "url": "https://www.regjeringen.no/en/topics/plan-bygg-og-eiendom/the-government-building-complex/id669703/",
+      "publisher": "Regjeringen",
+      "type": "official",
+      "source_location": "Description and location of Regjeringskvartalet in central Oslo"
+    },
+    {
+      "id": "youngstorget_mayday",
+      "label": "Oslo byleksikon – 1. mai",
+      "url": "https://oslobyleksikon.no/side/1._mai",
+      "publisher": "Oslo byleksikon",
+      "type": "reference_work",
+      "source_location": "Avsnittet om hovedarrangement og demonstrasjonstog på Youngstorget etter 1945"
+    },
+    {
+      "id": "finance_markets_dept",
+      "label": "Regjeringen – Financial Markets Department",
+      "url": "https://www.regjeringen.no/en/dep/fin/about-the-ministry/Departments/financial_markets_department/id1551/",
+      "publisher": "Finansdepartementet",
+      "type": "official",
+      "source_location": "Responsibilities for financial market regulation and EEA framework"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim_001",
+      "claim": "Institusjoner består av formelle regler, uformelle begrensninger og håndhevingsmekanismer som former aktørenes insentiver.",
+      "source_ids": [
+        "north_institutions"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_002",
+      "claim": "Markeder må analyseres som institusjonelle ordninger fordi regler om eierskap, avtaler, adgang og håndheving påvirker hvilke bytter som kan gjennomføres.",
+      "source_ids": [
+        "north_institutions"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_003",
+      "claim": "Konkurranselovens formål er å fremme konkurranse for å bidra til effektiv bruk av samfunnets ressurser, med særskilt hensyn til forbrukernes interesser.",
+      "source_ids": [
+        "competition_act"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_004",
+      "claim": "Konkurransetilsynets hovedoppgaver omfatter ulovlig samarbeid, misbruk av dominerende stilling og kontroll med foretakssammenslutninger.",
+      "source_ids": [
+        "competition_authority"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_005",
+      "claim": "Politisk økonomi undersøker hvordan institusjoner, interesser og maktforhold former økonomiske regler og fordelingsutfall, ikke bare samlet produksjon.",
+      "source_ids": [
+        "north_institutions",
+        "iversen_soskice"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_006",
+      "claim": "Iversen og Soskice knytter forskjeller i omfordeling mellom demokratier til hvordan valgsystemer påvirker partier og regjeringskoalisjoner.",
+      "source_ids": [
+        "iversen_soskice"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_007",
+      "claim": "Korpi og Palme viser komparativt at utformingen av velferdsinstitusjoner påvirker både størrelsen på omfordelende budsjetter og fordelingen av dem.",
+      "source_ids": [
+        "korpi_palme"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_008",
+      "claim": "Skattens progressivitet og dens samlede redistributive virkning er ulike størrelser fordi nivå, skattegrunnlag og andre komponenter påvirker resultatet.",
+      "source_ids": [
+        "ssb_progressivity"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_009",
+      "claim": "SSBs husholdningsstatistikk skiller inntektskomponenter, skatt og formue og krever at analyseenhet og inntektsbegrep oppgis ved fordelingssammenligning.",
+      "source_ids": [
+        "ssb_income"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_010",
+      "claim": "Finansdepartementet planlegger og gjennomfører økonomisk politikk og samordner arbeidet med statsbudsjettet.",
+      "source_ids": [
+        "ministry_finance"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_011",
+      "claim": "Den norske handlingsregelen knytter bruk av fondsinntekter over tid til forventet realavkastning, anslått til tre prosent, men åpner for konjunkturtilpasning.",
+      "source_ids": [
+        "fiscal_framework"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_012",
+      "claim": "Norges Banks pengepolitikk skal sikte mot inflasjon nær to prosent over tid og samtidig bidra til høy og stabil produksjon og sysselsetting.",
+      "source_ids": [
+        "nb_strategy"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_013",
+      "claim": "Pengepolitikkforskriften fastsetter mål og rapporteringskrav politisk, mens Norges Bank offentliggjør vurderingene som ligger til grunn for gjennomføringen.",
+      "source_ids": [
+        "monetary_regulation"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_014",
+      "claim": "Et nominelt mål beskriver størrelser i løpende priser, mens vurderingen av reell virkning må følge kjøpekraft, produksjon og sysselsetting.",
+      "source_ids": [
+        "nb_strategy"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_015",
+      "claim": "Stortingets hovedoppgaver omfatter å vedta lover, bestemme statens inntekter og utgifter og føre kontroll med regjeringen.",
+      "source_ids": [
+        "storting_about"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_016",
+      "claim": "Frontfagsmodellen koordinerer lønnsdannelsen ved at konkurranseutsatt sektor forhandler først og danner en norm for øvrige oppgjør.",
+      "source_ids": [
+        "frontfag_nou"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_017",
+      "claim": "Finansmarkedsavdelingen har ansvar for regulering av finansmarkedene og følger et omfattende regelverk som i stor grad inngår i EØS-rammen.",
+      "source_ids": [
+        "finance_markets_dept"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_018",
+      "claim": "Euronext Oslo driver de regulerte verdipapirmarkedene i Norge og er derfor et institusjonelt knutepunkt mellom selskaper, investorer og markedsregler.",
+      "source_ids": [
+        "euronext_oslo"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_019",
+      "claim": "Stiglers reguleringsteori viser at regulering kan erverves og brukes av regulerte næringer, slik at interessepåvirkning er en mulig konkurrerende forklaring.",
+      "source_ids": [
+        "stigler_regulation"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_020",
+      "claim": "Ostroms studier av fellesressurser dokumenterer institusjonelle løsninger som ikke passer i et enkelt valg mellom sentral stat og uregulert marked.",
+      "source_ids": [
+        "ostrom_commons"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_021",
+      "claim": "En påvist markedsfeil identifiserer et problem, men beviser ikke at et bestemt tiltak har riktig målgruppe, informasjon, kapasitet eller netto virkning.",
+      "source_ids": [
+        "stigler_regulation",
+        "ostrom_commons"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_022",
+      "claim": "Norges klimamelding omtaler karbonavgift som et hovedvirkemiddel, men forklarer også hvorfor avgift alene kan kreve høy sats og hvorfor supplerende virkemidler vurderes.",
+      "source_ids": [
+        "climate_plan"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_023",
+      "claim": "Grønn skattekommisjon vurderte en grønn skatteveksling der miljøavgifter kombineres med endringer i andre skatter, slik at instrument og inntektsbruk analyseres sammen.",
+      "source_ids": [
+        "green_tax_commission"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_024",
+      "claim": "Forskningen som sammenstiller karbonprising viser at fordelingsvirkningene varierer med land, husholdningsmønster og hvordan inntektene brukes.",
+      "source_ids": [
+        "carbon_meta"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_025",
+      "claim": "Fordelingsvirkninger kan påvirke politisk aksept for karbonprising, så utslippseffekt og fordelingskostnad må vurderes som separate utfall.",
+      "source_ids": [
+        "carbon_meta"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_026",
+      "claim": "Rodrik finner en robust sammenheng mellom større økonomisk åpenhet og større offentlig konsum og tolker den gjennom etterspørsel etter risikodemping, uten at korrelasjonen alene identifiserer årsak.",
+      "source_ids": [
+        "rodrik_open"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_027",
+      "claim": "Walters sveitsiske surveyanalyse finner at personer utsatt for økonomisk globaliseringsrisiko i større grad støtter sosial kompensasjon, innenfor studiens avgrensede case.",
+      "source_ids": [
+        "walter_compensation"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_028",
+      "claim": "Globalisering fordeler eksponering og gevinster ulikt, slik at åpenhet må skilles fra sårbarhet og samlet vekst fra gruppevis velferd.",
+      "source_ids": [
+        "rodrik_open",
+        "walter_compensation"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_029",
+      "claim": "Et virkemiddel må beskrives gjennom mål, målgruppe, atferdsantakelse, administrativ kapasitet og forventet virkningskjede før effekten kan vurderes.",
+      "source_ids": [
+        "climate_plan",
+        "green_tax_commission"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_030",
+      "claim": "Norges Banks hovedkontor ligger på Bankplassen i Kvadraturen i Oslo.",
+      "source_ids": [
+        "nb_building"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_031",
+      "claim": "Regjeringskvartalet ligger sentralt i Oslo og er et konkret sted for å undersøke departementenes organisering og økonomisk-politisk samordning.",
+      "source_ids": [
+        "government_complex",
+        "ministry_finance"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_032",
+      "claim": "Stortinget er beslutningsstedet for lover, statens inntekter og utgifter og parlamentarisk kontroll med regjeringen.",
+      "source_ids": [
+        "storting_about"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_033",
+      "claim": "Youngstorget har siden etterkrigstiden som regel vært hovedarena for Oslos sentrale 1. mai-arrangement og demonstrasjonstog.",
+      "source_ids": [
+        "youngstorget_mayday"
+      ],
+      "classification": "documented_fact",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    },
+    {
+      "id": "claim_034",
+      "claim": "Kausale påstander krever et kontrafaktisk spørsmål og vurdering av alternative forklaringer; samtidige institusjoner og utfall er ikke alene bevis for virkning.",
+      "source_ids": [
+        "north_institutions",
+        "stigler_regulation"
+      ],
+      "classification": "methodological_claim",
+      "status": "verified",
+      "used_in": [
+        "chapter_learning_content"
+      ]
+    }
+  ]
+}
