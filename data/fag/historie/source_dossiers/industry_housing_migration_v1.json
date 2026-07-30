@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_industry_housing_migration_evidence_v1",
+  "subject_id": "historie",
+  "geography_id": "geo_no_oslo_akershus",
+  "status": "reviewed_source_dossier",
+  "accessed_at": "2026-07-30",
+  "scope": {
+    "qualified_theory_ids": [
+      "theory_his_arbeiderbolig_hushold_livsvilkar",
+      "theory_his_arbeidsvandring_rekruttering"
+    ],
+    "case_ids": [
+      "case_his_gronvold_fyrstikkfabrikk",
+      "case_his_hjula_vaeveri",
+      "case_his_nydalen"
+    ],
+    "method_rule": "Boligsporet skiller dokumentert boligtype og nærhet fra faktisk trangboddhet, leie og levestandard. Mobilitetssporet skiller bedriftens rekruttering og lokaliseringsbehov fra arbeidernes egne flyttemotiv. Nydalen og Hjula brukes for dokumentert internasjonal ekspertrekruttering, mens Grønvold brukes for arbeidskraftmangel, fabrikkflytting og innlosjering."
+  },
+  "spatial_anchoring": {
+    "nydalen": {
+      "place_id": "nydalen",
+      "status": "verified_area_anchor",
+      "assessment": "Industrimuseum stedfester arbeiderboliger til øvre Sandakerveien og Gjerdrums vei i Nydalen. Canonical `nydalen` brukes på områdenivå; batchen hevder ikke koordinat for hver bolig eller hvert hushold."
+    },
+    "gronvold": {
+      "place_id": "helsfyr",
+      "status": "verified_area_anchor_not_building_point",
+      "assessment": "SNL stedfester Grønvold gård og Nitedals Tændstikfabrik til dagens Helsfyr. Canonical `helsfyr` brukes som områdeanker, ikke som eksakt koordinat for uthuset, stabburet eller hver arbeiderbolig."
+    },
+    "hjula": {
+      "place_id": "voienfossen",
+      "status": "verified_industrial_anchor",
+      "assessment": "Den eksisterende Vøyenfossen-forankringen gjenbrukes for Hjula Væveris dokumenterte engelske eksperter og opplæring."
+    }
+  },
+  "source_anchoring": {
+    "new_source_ids": [
+      "src_his_industrimuseum_nydalen_arbeiderboliger"
+    ],
+    "reused_source_ids": [
+      "src_his_arbark_karoline_kristiansen_fyrstikkarbeid",
+      "src_his_nbl_adam_hiorth",
+      "src_his_snl_hjula_vaeveri",
+      "src_his_snl_nitedals_taendstikfabrik",
+      "src_his_snl_nydalens_compagnie"
+    ],
+    "assessment": "Norsk Teknisk Museums Industrimuseum gir et stedsspesifikt bolig- og nærmiljøspor for Nydalen. SNL/NBL-kildene dokumenterer ekspertrekruttering, opplæring, arbeidskraftmangel, flytting og innlosjering. Arbeiderbevegelsens arkiv gir ett navngitt livsløp som kobler hjemmearbeid, fabrikkarbeid og omsorg."
+  },
+  "source_snapshots": [
+    {
+      "source_id": "src_his_industrimuseum_nydalen_arbeiderboliger",
+      "title": "Arbeiderboliger i Nydalen",
+      "publisher": "Industrimuseum / Norsk Teknisk Museum",
+      "url": "https://industrimuseum.no/lydfiler/17_arbeiderboliger_nydalen_lyd",
+      "supported_dimensions": [
+        "worker_housing",
+        "workplace_proximity",
+        "transport_constraint",
+        "schools_and_leisure",
+        "industrial_neighbourhood"
+      ],
+      "source_locations": [
+        "Ingress og brødtekst om Nydalens Compagnie, Christiania Spigerverk, befolkningsvekst og arbeiderboliger i Sandakerveien og Gjerdrums vei",
+        "Avsnittet om lange arbeidsdager, vanskelig transport og nødvendigheten av å bo nær arbeidsplassen",
+        "Avsnittet om tett miljø, barn i gatene, skoler og fritidstilbud"
+      ],
+      "limitations": [
+        "Kort museumstekst uten komplett bygnings-, folketellings-, leie- eller husholdsserie.",
+        "Institusjoner og nærhet dokumenterer ikke automatisk faktisk tilgang, kvalitet eller levestandard."
+      ]
+    },
+    {
+      "source_id": "src_his_snl_nitedals_taendstikfabrik",
+      "title": "Nitedals Tændstikfabrik",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Nitedals_T%C3%A6ndstikfabrik",
+      "supported_dimensions": [
+        "labour_shortage",
+        "factory_relocation",
+        "worker_housing",
+        "transport_cost",
+        "gronvold_helsfyr_location"
+      ],
+      "source_locations": [
+        "Avsnittet Flytting til Grønvold om arbeidskraftmangel i Nittedal, kostbar råvaretransport og gradvis flytting 1875–1895",
+        "Samme avsnitt om bruk av gårdens uthus og stabbur som bolig for 82 arbeidere og opparbeiding av Fyrstikkalleen"
+      ],
+      "limitations": [
+        "Bedriftens lokaliseringsbegrunnelse dokumenterer ikke individuelle flyttemotiv eller rekrutteringskontrakter.",
+        "Beleggstallet 82 sier ikke noe om antall rom, hushold, leie, sanitærstandard eller botid."
+      ]
+    },
+    {
+      "source_id": "src_his_snl_nydalens_compagnie",
+      "title": "Nydalens Compagnie",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Nydalens_Compagnie",
+      "supported_dimensions": [
+        "english_expert_recruitment",
+        "machine_installation",
+        "worker_training",
+        "technical_staff_settlement",
+        "intergenerational_company_link"
+      ],
+      "source_locations": [
+        "Avsnittet Etablering om engelske fagfolk som installerte maskiner, lærte opp norske arbeidere og ble værende i teknisk stab",
+        "Avsnittene Etablering og Fra spinneri til Nydalens Compagnie om Hargreaves Jameson og familiens fler-generasjons tilknytning"
+      ],
+      "limitations": [
+        "Syntesen dokumenterer arbeidsgiverens rekruttering, men ikke ekspertenes kontrakter, lønn eller egne flyttemotiv.",
+        "Navngitte tekniske ledere kan ikke representere hele den mobile arbeidsstyrken eller alle kompetansebaner."
+      ]
+    },
+    {
+      "source_id": "src_his_snl_hjula_vaeveri",
+      "title": "Hjula Væveri",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Hjula_V%C3%A6veri",
+      "supported_dimensions": [
+        "english_factory_system",
+        "expert_recruitment",
+        "machine_installation",
+        "worker_training"
+      ],
+      "source_locations": [
+        "Avsnittene om åpningen i 1855, importerte tegninger, bygningsdeler og 400 vevstoler samt engelske eksperter for drift og opplæring"
+      ],
+      "limitations": [
+        "Syntesen oppgir ikke ekspertenes navn, kontrakter, botid eller videre mobilitet.",
+        "Opplæringens omfang og norske arbeideres egne kompetansebaner er ikke dokumentert i detalj."
+      ]
+    },
+    {
+      "source_id": "src_his_arbark_karoline_kristiansen_fyrstikkarbeid",
+      "title": "Fyrstikkarbeiderstreiken 1889",
+      "publisher": "Arbeiderbevegelsens arkiv og bibliotek",
+      "url": "https://www.arbark.no/utstilling/arbeidsfolk_forteller/02/AF02.htm",
+      "supported_dimensions": [
+        "child_homework",
+        "factory_entry",
+        "childcare",
+        "paid_work",
+        "worker_life_course"
+      ],
+      "source_locations": [
+        "Erindringen om eskemaking hjemme før og etter skole, fabrikkstart som 14-åring, barnekrybbe og lange arbeidsdager"
+      ],
+      "limitations": [
+        "Retrospektivt intervju som komprimerer et langt liv og ikke daterer alle faser.",
+        "Én navngitt erfaring er ikke en representativ husholds- eller boligserie."
+      ]
+    }
+  ],
+  "production_decisions": [
+    "Arbeiderboligteorien kvalifiseres med Nydalens boligmiljø, Grønvolds innlosjering og Karoline Kristiansens dokumenterte kobling mellom hjemmearbeid, lønnsarbeid og omsorg.",
+    "Arbeidsvandringsteorien kvalifiseres med ekspertrekruttering og opplæring ved Nydalen og Hjula samt arbeidskraftmangel, fabrikkflytting og bolig ved Grønvold.",
+    "Grønvold-claimet brukes i begge teorier fordi kilden eksplisitt knytter lokaliseringsvalget til arbeidskraft og innlosjering; teoriene har ellers ulike claim-bunter og analytiske grenser.",
+    "Ingen claim gjør boligtype til mål på trangboddhet eller bedriftens rekrutteringsfortelling til bevis på individuelle flyttemotiv."
+  ]
+}

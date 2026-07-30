@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **63**
-- Andel med dokumentert evidensgrunnlag: **27.4 %**
+- Validerte pilotobjekter: **65**
+- Andel med dokumentert evidensgrunnlag: **28.3 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -78,6 +78,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Arbeidstid, lønn og ferdighet | 6 | 3 | 5 | 6 | evidence_ready |
 | Arbeidsmiljø, risiko og helse | 3 | 2 | 3 | 3 | evidence_ready |
 | Kjønn, arbeidsdeling og lønn | 6 | 4 | 6 | 6 | evidence_ready |
+| Arbeiderbolig, hushold og livsvilkår | 3 | 2 | 3 | 3 | evidence_ready |
+| Arbeidsvandring, rekruttering og arbeidskraft | 3 | 3 | 4 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 
