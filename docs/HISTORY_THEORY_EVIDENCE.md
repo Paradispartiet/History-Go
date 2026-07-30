@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 120 av 230 etter at Forhistorie og arkeologi er fullført til 10/10 med Stunner, Nøstvet, Ekeberg, Solberg, Hunn, Tune og Gjellestad som eksisterende fysiske ankere, supplert av regional neolittisk syntese og eksplisitte bevaringsgrenser. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 125 av 230 etter at Velferd, rett og hverdagsliv V1 kvalifiserer fattigvesen og sosial kontroll, helse og profesjonalisering, skole og folkedannelse, barndom og livsløp samt institusjonalisering og avinstitusjonalisering med eksisterende Oslo-caser og eksplisitte grenser mellom institusjon, regel, tilgang, erfaring og utfall. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -64,6 +64,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Makt, stat og institusjoner V1: **8** nye kvalifiserende teoriobjekter, **9** nye claims, **6** nye kilder, **9** nye place-evidence-lenker og **0** nye cases; fem objekter bygger hovedsakelig på claim-gjenbruk, mens embetsverk/byråkrati, lov/domstol/rettsstat og register/overvåking/disiplin får målrettet ny evidens. Register-objektet skiller eksplisitt demokratisk sikkerhetsovervåking fra nazistisk fange-klassifikasjon, statskapasitet avgrenses til dokumentert fiskal, tilsynsmessig og militær kapasitet, og krise/unntak-objektet skiller mellom rettslig kontinuitet, ekstraordinær administrasjon og faktisk institusjonelt brudd under okkupasjonen.
 - Miljø, klima og landskap V1: **9** nye kvalifiserende teoriobjekter, **6** nye claims, **6** nye kilder, **6** nye place-evidence-lenker og **0** nye cases; energi og naturforvaltning kvalifiseres hovedsakelig ved gjenbruk, mens klima, forurensning, dyr–natur og miljørettferdighet får målrettet ny evidens. Klimaobjektet skiller trend, ekstremhendelse og tilpasning; miljørettferdighetsobjektene skiller global skala fra lokale årsakskjeder og hevder ikke individnivå-skade uten kilder. Alta-claimet bruker Eidsvolls plass som mobiliseringsanker, ikke som fysisk kraftverkslokasjon.
 - Forhistorie og arkeologi V1: **9** nye kvalifiserende teoriobjekter, **17** nye claims, **11** nye kilder, **19** nye place-evidence-lenker, **7** nyvaliderte cases og **1** ny geografiprofil; null nye place-objekter. Neolitisering behandles som regional og gradvis overgang, bronsealderens utveksling skilles fra sikker motivtolkning, og bioarkeologi avgrenses eksplisitt mot representativ demografi.
-- Totalt: **120 av 230** teoriobjekter (**52.2 %**).
+- Velferd, rett og hverdagsliv V1: **5** nye kvalifiserende teoriobjekter, **11** nye claims, **9** nye kilder, **11** nye place-evidence-lenker og **4** nyvaliderte cases; null nye place- eller people-objekter. Institusjonskronologi og regelverk holdes eksplisitt adskilt fra faktisk tilgang, erfaring og utfall.
+- Totalt: **125 av 230** teoriobjekter (**54.3 %**).
 - Universell status: **INCOMPLETE**.
-- Gjenstående teoriobjekter: **110**.
+- Gjenstående teoriobjekter: **105**.

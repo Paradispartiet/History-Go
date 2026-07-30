@@ -1,0 +1,521 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_welfare_rights_everyday_life_evidence_v1",
+  "subject_id": "historie",
+  "domain_id": "his_velferd_rett_hverdagsliv",
+  "status": "materialized",
+  "created_at": "2026-07-30",
+  "purpose": "Kvalifisere fem velferds- og hverdagslivsteorier med eksisterende Oslo-caser og eksplisitte grenser mellom institusjon, regel, faktisk tilgang, erfaring og utfall.",
+  "theory_ids": [
+    "theory_his_fattigvesen_veldedighet_sosial_kontroll",
+    "theory_his_helse_epidemi_profesjonalisering",
+    "theory_his_skole_folkedannelse_medborgerskap",
+    "theory_his_barndom_familie_livslop",
+    "theory_his_institusjonalisering_avinstitusjonalisering"
+  ],
+  "source_ids_used": [
+    "src_his_oslo_byleksikon_prinds_christian_augusts_minde",
+    "src_his_oslo_byarkiv_fattigdom_for_og_na",
+    "src_his_oslo_hospital_official_history",
+    "src_his_oslo_byarkiv_oslo_hospital_history",
+    "src_his_tidsskriftet_oslo_hospital_dollhus",
+    "src_his_sagene_skole_official_history",
+    "src_his_nbl_anna_sethne",
+    "src_his_sml_rikshospitalet",
+    "src_his_tidsskriftet_rikshospitalet_history"
+  ],
+  "case_ids_used": [
+    "case_his_prinds_christian_augusts_minde",
+    "case_his_oslo_hospital",
+    "case_his_sagene_skole",
+    "case_his_rikshospitalet",
+    "case_his_gronvold_fyrstikkfabrikk"
+  ],
+  "place_ids_used": [
+    "prinds_christian_augusts_minde",
+    "oslo_hospital",
+    "sagene_skole",
+    "rikshospitalet",
+    "helsfyr"
+  ],
+  "sources": {
+    "src_his_oslo_byleksikon_prinds_christian_augusts_minde": {
+      "title": "Prinds Christian Augusts Minde",
+      "url": "https://oslobyleksikon.no/side/Prinds_Christian_Augusts_Minde",
+      "publisher": "Oslo byleksikon",
+      "limitations": [
+        "Leksikonartikkelen er en redigert lokalhistorisk syntese og erstatter ikke fattigvesenets protokoller, pasientjournaler eller bygningsarkiv.",
+        "Institusjonens skiftende funksjoner må dateres hver for seg; navn og bygningskompleks dokumenterer ikke ett uendret regime fra 1809 til 1915."
+      ]
+    },
+    "src_his_oslo_byarkiv_fattigdom_for_og_na": {
+      "title": "Fattigdom før og nå",
+      "url": "https://blogg.oslobyarkiv.no/blog/category/prosjekter/fattigdom/",
+      "publisher": "Oslo byarkiv",
+      "limitations": [
+        "Prosjektsiden formidler arkivforskning i kortform og erstatter ikke de enkelte fattiglovene, understøttelsesprotokollene eller en full representativ analyse.",
+        "Kategoriene verdig og uverdig fattig beskriver forvaltningens klassifikasjon og må ikke gjengis som nøytrale egenskaper ved mottakerne."
+      ]
+    },
+    "src_his_oslo_hospital_official_history": {
+      "title": "Oslo Hospital sin historie",
+      "url": "https://www.oslohospital.no/oslo-hospital-sin-historie",
+      "publisher": "Oslo Hospital",
+      "limitations": [
+        "Institusjonens egen historikk er autoritativ for selvpresentert kronologi, men må suppleres med arkiv- og forskningskilder for pasienterfaringer og konflikt.",
+        "Moderne psykiatriske begreper må ikke projiseres bakover på fattighus, dårekiste og Dollhus uten begrepskritikk."
+      ]
+    },
+    "src_his_oslo_byarkiv_oslo_hospital_history": {
+      "title": "Oslo Hospitals historie",
+      "url": "https://blogg.oslobyarkiv.no/oslo-hospitals-historie/",
+      "publisher": "Oslo byarkiv",
+      "limitations": [
+        "Arkivbloggen er en formidlende syntese og erstatter ikke stiftelsesdokumenter, regnskaper, journaler eller full institusjonshistorisk forskning.",
+        "Oppgitt sluttår for psykiatrisk virksomhet avviker i arkiv- og institusjonsformidling; batchen bruker den offisielle institusjonssidens mars 2018 for den konkrete nedleggelsesclaimen."
+      ]
+    },
+    "src_his_tidsskriftet_oslo_hospital_dollhus": {
+      "title": "Etableringen av Oslo Hospitals Dollhus",
+      "url": "https://tidsskriftet.no/2000/11/merkesteiner-i-norsk-medisin/etableringen-av-oslo-hospitals-dollhus",
+      "publisher": "Tidsskrift for Den norske legeforening",
+      "limitations": [
+        "Artikkelen er en medisinhistorisk framstilling og gir ikke et representativt mål på alle innlagtes erfaringer.",
+        "Samtidens kategorier og behandlingsspråk må leses historisk; senere psykiatrisk profesjonalisering kan ikke brukes som målestokk uten videre."
+      ]
+    },
+    "src_his_sagene_skole_official_history": {
+      "title": "Skolens historie",
+      "url": "https://sagene.osloskolen.no/om-skolen/om-oss/skolens-historie/",
+      "publisher": "Sagene skole / Oslo kommune",
+      "limitations": [
+        "Skolens egen historikk er en kuratert institusjonsfortelling og erstatter ikke elevprotokoller, fraværsdata eller samtidige erfaringer fra barn og familier.",
+        "Tiltak som måltider, klær og hygiene dokumenterer tilbud og normer, men ikke lik tilgang, virkning eller opplevelse for alle elever."
+      ]
+    },
+    "src_his_nbl_anna_sethne": {
+      "title": "Anna Sethne",
+      "url": "https://nbl.snl.no/Anna_Sethne",
+      "publisher": "Norsk biografisk leksikon",
+      "limitations": [
+        "En biografisk artikkel framhever én reformaktør og må ikke gjøre skolens endring til et individuelt verk alene.",
+        "Pedagogiske program og forsøk dokumenterer intensjoner og organisering, ikke automatisk læringsutbytte eller representativ elevopplevelse."
+      ]
+    },
+    "src_his_sml_rikshospitalet": {
+      "title": "Rikshospitalet",
+      "url": "https://sml.snl.no/Rikshospitalet",
+      "publisher": "Store medisinske leksikon",
+      "limitations": [
+        "Leksikonartikkelen gir institusjonskronologi, men ikke pasienttilgang, behandlingsutfall eller fordelingsvirkninger.",
+        "Organisatoriske fusjoner og flytting må ikke brukes som bevis på kontinuitet i tilbud, kapasitet eller selvbestemmelse."
+      ]
+    },
+    "src_his_tidsskriftet_rikshospitalet_history": {
+      "title": "Militærhospitalet som ble Rikshospital",
+      "url": "https://tidsskriftet.no/2017/12/medisinsk-historie/militaerhospitalet-som-ble-rikshospital",
+      "publisher": "Tidsskrift for Den norske legeforening",
+      "limitations": [
+        "Artikkelen belyser etableringsfasen og kan ikke alene dokumentere senere pasientgrupper, behandlingspraksis eller tilgang.",
+        "Behovet for et nasjonalt undervisningssykehus dokumenterer statlig og profesjonell organisering, ikke lik helsehjelp til hele befolkningen."
+      ]
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "claim_his_prinds_charity_workhouse_coercion_1809_1915",
+      "statement": "Prinds Christian Augusts Minde ble grunnlagt i 1809 som et veldedig arbeidstiltak, men utviklet seg til en tvangsarbeidsanstalt med fengselslignende regler. Stedet viser hvordan hjelp, arbeid, avskrekking og sosial kontroll kunne organiseres i samme institusjon.",
+      "claim_type": "charity_workhouse_coercion_transition",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "prinds_christian_augusts_minde"
+        ],
+        "case_ids": [
+          "case_his_prinds_christian_augusts_minde"
+        ],
+        "temporal": {
+          "from": 1809,
+          "to": 1915
+        }
+      },
+      "emne_ids": [
+        "em_his_fattigvesen_veldedighet_sosial_kontroll",
+        "em_his_institusjonalisering_avinstitusjonalisering",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_oslo_byleksikon_prinds_christian_augusts_minde",
+        "src_his_oslo_byarkiv_fattigdom_for_og_na"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Institusjonskronologien og fattiglovskonteksten er dokumentert, men graden av tvang og hverdagsregimet varierte over tid."
+      },
+      "alternative_interpretations": [
+        "Arbeidstilbudet kan samtidig leses som materiell hjelp og som disiplinering; claimet beholder begge funksjonene."
+      ]
+    },
+    {
+      "claim_id": "claim_his_prinds_children_schooling_confinement_pre1845",
+      "statement": "Barn under 15 år kunne fram til 1845 plasseres på Prinds for blant annet skulking og ulydighet, samtidig som institusjonen ga undervisning fram mot konfirmasjon. Casen forbinder barndom, skole, fattigforvaltning og frihetsinnskrenkning.",
+      "claim_type": "child_confinement_schooling_regime",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "prinds_christian_augusts_minde"
+        ],
+        "case_ids": [
+          "case_his_prinds_christian_augusts_minde"
+        ],
+        "temporal": {
+          "from": 1812,
+          "to": 1845
+        }
+      },
+      "emne_ids": [
+        "em_his_fattigvesen_veldedighet_sosial_kontroll",
+        "em_his_skole_folkedannelse",
+        "em_his_barndom_familie_livslop",
+        "em_his_institusjonalisering_avinstitusjonalisering"
+      ],
+      "source_ids": [
+        "src_his_oslo_byleksikon_prinds_christian_augusts_minde"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Leksikonframstillingen dokumenterer ordningen, men gir ikke et representativt mål på barnas erfaringer, oppholdslengde eller senere livsløp."
+      },
+      "alternative_interpretations": [
+        "Undervisningen kan tolkes som både omsorg, kvalifisering og disiplin."
+      ]
+    },
+    {
+      "claim_id": "claim_his_prinds_poor_hospital_asylum_1828_1905",
+      "statement": "Prinds fikk fattigsykerom fra 1828, sykehusbygning i 1838–1845 og et kommunalt asyl fra 1829 som ble flyttet i 1905. Funksjonsendringene viser at fattighjelp, sykdom og institusjonalisering ble sortert og profesjonalisert gradvis.",
+      "claim_type": "poor_relief_hospital_asylum_sequence",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "prinds_christian_augusts_minde"
+        ],
+        "case_ids": [
+          "case_his_prinds_christian_augusts_minde"
+        ],
+        "temporal": {
+          "from": 1828,
+          "to": 1905
+        }
+      },
+      "emne_ids": [
+        "em_his_fattigvesen_veldedighet_sosial_kontroll",
+        "em_his_helse_omsorg_institusjoner",
+        "em_his_institusjonalisering_avinstitusjonalisering"
+      ],
+      "source_ids": [
+        "src_his_oslo_byleksikon_prinds_christian_augusts_minde"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Dateringen er dokumentert; claimet sier ikke at ett behandlingsregime var uendret gjennom hele perioden."
+      },
+      "alternative_interpretations": [
+        "Utbyggingen kan leses som spesialisering og økt omsorgskapasitet, men også som sterkere kategorisering og adskillelse."
+      ]
+    },
+    {
+      "claim_id": "claim_his_oslo_hospital_reformation_poor_sick_1538",
+      "statement": "Oslo Hospital ble etablert i 1538 for å videreføre deler av klostrenes forsorg etter reformasjonen og fungerte som pleie- og oppholdssted for fattige og syke. Casen viser overgang mellom religiøs veldedighet og varig institusjonell forsorg.",
+      "claim_type": "post_reformation_poor_sick_institution",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "oslo_hospital"
+        ],
+        "case_ids": [
+          "case_his_oslo_hospital"
+        ],
+        "temporal": {
+          "from": 1538,
+          "to": 1777
+        }
+      },
+      "emne_ids": [
+        "em_his_fattigvesen_veldedighet_sosial_kontroll",
+        "em_his_helse_omsorg_institusjoner",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_oslo_byarkiv_oslo_hospital_history",
+        "src_his_oslo_hospital_official_history",
+        "src_his_tidsskriftet_oslo_hospital_dollhus"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Kildene støtter etablering og hovedfunksjoner, men ikke en komplett eller uendret mottakerprofil."
+      },
+      "alternative_interpretations": [
+        "Kontinuitet i sted og stiftelse kan skjule store brudd i finansiering, målgrupper, behandling og rettsgrunnlag."
+      ]
+    },
+    {
+      "claim_id": "claim_his_oslo_hospital_dollhus_psychiatric_institution",
+      "statement": "Dollhuset ved Oslo Hospital ble etablert i 1777, og senere lov- og profesjonsendringer bidro til å gjøre behandling av psykisk syke til en mer avgrenset institusjonsoppgave. Casen dokumenterer profesjonalisering, men ikke automatisk bedre rettigheter eller pasienterfaringer.",
+      "claim_type": "psychiatric_institution_professionalization",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "oslo_hospital"
+        ],
+        "case_ids": [
+          "case_his_oslo_hospital"
+        ],
+        "temporal": {
+          "from": 1736,
+          "to": 1960
+        }
+      },
+      "emne_ids": [
+        "em_his_helse_omsorg_institusjoner",
+        "em_his_institusjonalisering_avinstitusjonalisering"
+      ],
+      "source_ids": [
+        "src_his_oslo_hospital_official_history",
+        "src_his_tidsskriftet_oslo_hospital_dollhus"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Langtidslinjen omfatter skiftende kategorier, lover og behandlingspraksiser; senere terminologi brukes ikke som direkte navn på alle tidligere regimer."
+      },
+      "alternative_interpretations": [
+        "Profesjonalisering kan beskrive ny ekspertise og behandling, men også sterkere institusjonsmakt og avsondring."
+      ]
+    },
+    {
+      "claim_id": "claim_his_oslo_hospital_closure_reuse_2018",
+      "statement": "Den psykiatriske sykehusdriften ved Oslo Hospital opphørte i mars 2018, og bygningsanlegget gikk inn i en fase med ny bruk og utvikling. Nedleggelsen dokumenterer et institusjonsbrudd, men ikke i seg selv hvordan bolig, tjenester eller selvbestemmelse ble ivaretatt etterpå.",
+      "claim_type": "institution_closure_reuse_boundary",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "oslo_hospital"
+        ],
+        "case_ids": [
+          "case_his_oslo_hospital"
+        ],
+        "temporal": {
+          "from": 2018,
+          "to": null
+        }
+      },
+      "emne_ids": [
+        "em_his_institusjonalisering_avinstitusjonalisering"
+      ],
+      "source_ids": [
+        "src_his_oslo_hospital_official_history"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Den offisielle siden daterer opphøret; videre konsekvenser for tidligere pasienter dokumenteres ikke."
+      },
+      "alternative_interpretations": [
+        "Bygningsmessig ombruk kan tolkes som avinstitusjonalisering av stedet, men ikke som mål på tjenesteforløp."
+      ]
+    },
+    {
+      "claim_id": "claim_his_sagene_school_local_expansion_1741_1861",
+      "statement": "Sagene skoles egen historikk fører organisert lokal skole tilbake til 1741 og til en ny skolebygning i Biermanns gate i 1861. Casen knytter skoleutbygging til et voksende industriområde, men dokumenterer ikke likt frammøte eller læringsutbytte.",
+      "claim_type": "local_school_expansion_industrial_district",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "sagene_skole"
+        ],
+        "case_ids": [
+          "case_his_sagene_skole"
+        ],
+        "temporal": {
+          "from": 1741,
+          "to": 1861
+        }
+      },
+      "emne_ids": [
+        "em_his_skole_folkedannelse",
+        "em_his_barndom_familie_livslop"
+      ],
+      "source_ids": [
+        "src_his_sagene_skole_official_history"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Institusjonshistorikken dokumenterer milepæler, men ikke en ubrutt skolegang for alle barn i området."
+      },
+      "alternative_interpretations": [
+        "Skoleutbyggingen kan leses som tilgang til kunnskap og som standardisering av barndom, tid og disiplin."
+      ]
+    },
+    {
+      "claim_id": "claim_his_sagene_school_meals_hygiene_material_support",
+      "statement": "Sagene skole beskriver at skolen i industriområdet ga elever mer enn lesing, skriving og regning, blant annet klær, hygieneoppfølging og måltider. Tiltakene viser hvordan skole, materiell velferd og normer for barndom ble koblet i hverdagen.",
+      "claim_type": "school_material_welfare_childhood",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "sagene_skole"
+        ],
+        "case_ids": [
+          "case_his_sagene_skole"
+        ],
+        "temporal": {
+          "from": 1861,
+          "to": 1938
+        }
+      },
+      "emne_ids": [
+        "em_his_skole_folkedannelse",
+        "em_his_barndom_familie_livslop",
+        "em_his_velferd_hverdagsliv"
+      ],
+      "source_ids": [
+        "src_his_sagene_skole_official_history"
+      ],
+      "confidence": "medium",
+      "uncertainty": {
+        "level": "medium",
+        "note": "Kilden dokumenterer tiltakene, men ikke omfang, behovsgrunnlag, mottakernes erfaringer eller virkning for alle elever."
+      },
+      "alternative_interpretations": [
+        "Tiltakene kan forstås som omsorg og tilgangsstøtte, men også som hygiene-, klasse- og normalitetsregulering."
+      ]
+    },
+    {
+      "claim_id": "claim_his_sagene_sethne_activity_school_1919_1938",
+      "statement": "Som overlærer ved Sagene skole fra 1919 til 1938 utviklet Anna Sethne aktivitetspedagogikk, leseforsøk og skolebibliotek som gjorde skolen til en reformarena. Casen viser institusjonell folkedannelse, men ikke at én leder alene skapte endringen eller at alle elever fikk samme utbytte.",
+      "claim_type": "school_reform_activity_pedagogy",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "sagene_skole"
+        ],
+        "case_ids": [
+          "case_his_sagene_skole"
+        ],
+        "temporal": {
+          "from": 1919,
+          "to": 1938
+        }
+      },
+      "emne_ids": [
+        "em_his_skole_folkedannelse",
+        "em_his_barndom_familie_livslop"
+      ],
+      "source_ids": [
+        "src_his_sagene_skole_official_history",
+        "src_his_nbl_anna_sethne"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Rolle, tidsrom og reformarbeid er dokumentert i to redigerte kilder; elevutfall og variasjon krever andre kilder."
+      },
+      "alternative_interpretations": [
+        "Reformene kan leses som demokratiserende folkedannelse og som nye pedagogiske normalitetskrav."
+      ]
+    },
+    {
+      "claim_id": "claim_his_rikshospitalet_state_teaching_hospital_1826",
+      "statement": "Rikshospitalet ble etablert i 1826 som et nasjonalt hospital tett knyttet til universitetets behov for klinisk undervisning. Casen viser hvordan staten, sykehuset og medisinsk profesjonalisering ble koblet, uten å dokumentere lik tilgang til behandling.",
+      "claim_type": "state_teaching_hospital_professionalization",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "rikshospitalet"
+        ],
+        "case_ids": [
+          "case_his_rikshospitalet"
+        ],
+        "temporal": {
+          "from": 1814,
+          "to": 2000
+        }
+      },
+      "emne_ids": [
+        "em_his_helse_omsorg_institusjoner",
+        "em_his_skole_folkedannelse"
+      ],
+      "source_ids": [
+        "src_his_sml_rikshospitalet",
+        "src_his_tidsskriftet_rikshospitalet_history"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Etablering og undervisningsfunksjon er dokumentert; befolkningens faktiske tilgang og behandlingsutfall følger ikke av organisasjonsformen."
+      },
+      "alternative_interpretations": [
+        "Et nasjonalt undervisningssykehus kan tolkes som både kapasitetsbygging og sentralisering av ekspertise."
+      ]
+    },
+    {
+      "claim_id": "claim_his_rikshospitalet_gaustad_specialized_university_hospital",
+      "statement": "Rikshospitalet flyttet til Gaustad i 2000 og ble senere del av Oslo universitetssykehus. Flytting og sammenslåing dokumenterer organisatorisk og romlig konsentrasjon av høyspesialisert behandling, forskning og utdanning, men ikke kontinuitet i tilbud eller like regional tilgang.",
+      "claim_type": "specialized_university_hospital_reorganization",
+      "scope": {
+        "geography_ids": [
+          "geo_no_oslo_akershus"
+        ],
+        "place_ids": [
+          "rikshospitalet"
+        ],
+        "case_ids": [
+          "case_his_rikshospitalet"
+        ],
+        "temporal": {
+          "from": 2000,
+          "to": null
+        }
+      },
+      "emne_ids": [
+        "em_his_helse_omsorg_institusjoner"
+      ],
+      "source_ids": [
+        "src_his_sml_rikshospitalet"
+      ],
+      "confidence": "high",
+      "uncertainty": {
+        "level": "low",
+        "note": "Institusjonskronologien er dokumentert, mens kapasitets-, fordelings- og pasientutfall ligger utenfor kildens dekning."
+      },
+      "alternative_interpretations": [
+        "Samlokalisering kan styrke fagmiljø og behandling, men kan også analyseres som sentralisering."
+      ]
+    }
+  ]
+}
