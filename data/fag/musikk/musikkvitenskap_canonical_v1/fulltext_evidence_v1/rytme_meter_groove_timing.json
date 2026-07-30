@@ -1,0 +1,297 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-rhythm-v1-2026-07-30",
+  "status": "research_evidence_ready_direct_object_blocked",
+  "subject_id": "musikk",
+  "domain_id": "musikalsk_analyse_lyd_struktur",
+  "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/musikalsk_analyse_lyd_struktur/rytme_meter_groove_timing.json",
+  "research_question": "Hvordan organiseres puls, aksent, mikrotiming og kroppslig framdrift?",
+  "source_reviews": [
+    {
+      "source_id": "src_iyer_expressive_microtiming_2002",
+      "registry_path": "../scholarly_source_registries_v1/rhythm_groove_v1.json",
+      "full_text_status": "reviewed_author_copy",
+      "full_text_access": "https://vijayiyer.scholars.harvard.edu/sites/g/files/omnuum3421/files/vijayiyer/files/iyer_embodied_mind.pdf",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "387-389",
+          "section": "Abstract and opening framing",
+          "supports": "Embodied and situated cognition is applied with an explicit cultural-specificity limit on universal claims."
+        },
+        {
+          "pages": "399-400",
+          "section": "Expressive Microtiming in African-American Music",
+          "supports": "Microtiming is treated as deviation relative to an identified reference and is discussed as structurally and culturally situated rather than self-explanatory."
+        },
+        {
+          "pages": "404-405",
+          "section": "Swing",
+          "supports": "Swing ratios are described as tempo-dependent and as part of a larger perceptual and performance context."
+        }
+      ],
+      "rights_and_reuse_note": "Author-hosted copy was reviewed for verification. Store only bibliographic identity, paraphrased findings and locators; do not redistribute article text or PDF."
+    },
+    {
+      "source_id": "src_camara_timing_sound_2020",
+      "registry_path": "../scholarly_source_registries_v1/rhythm_groove_v1.json",
+      "full_text_status": "reviewed_author_uploaded_manuscript",
+      "full_text_access": "https://www.researchgate.net/publication/344339619_Timing_Is_EverythingOr_Is_It_Effects_of_Instructed_Timing_Style_Reference_and_Pattern_on_Drum_Kit_Sound_in_Groove-Based_Performance",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "7-8",
+          "section": "Data processing and statistical analysis; Results",
+          "supports": "Two participants were excluded, leaving N=20; onset, duration and SPL were analyzed under style, reference and pattern conditions."
+        },
+        {
+          "pages": "19-20",
+          "section": "Effects of musical context; Systematicity and intentionality",
+          "supports": "Reference and pattern affected timing-sound profiles, and systematic acoustic differences were explicitly separated from claims of conscious intention."
+        },
+        {
+          "pages": "20-21",
+          "section": "Summary and Conclusions",
+          "supports": "The study reports timing-style differences in onset together with duration and/or intensity and argues that timing should not be reduced to onset alone."
+        }
+      ],
+      "rights_and_reuse_note": "Author-uploaded manuscript was reviewed for verification. Store only paraphrased findings, methods and locators; do not redistribute the manuscript."
+    },
+    {
+      "source_id": "src_sioros_syncopation_groove_2022",
+      "registry_path": "../scholarly_source_registries_v1/rhythm_groove_v1.json",
+      "full_text_status": "reviewed_author_uploaded_manuscript",
+      "full_text_access": "https://www.researchgate.net/publication/361010815_Syncopation_and_Groove_in_Polyphonic_Music_Patterns_Matter",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "13-14",
+          "section": "On Measuring Syncopation",
+          "supports": "The authors question the general validity of scalar syncopation measures in polyphonic contexts and analyze pattern structure instead."
+        },
+        {
+          "pages": "24-25",
+          "section": "Hypotheses and Conclusion",
+          "supports": "Original and algorithmically transformed excerpts with similar syncopation amounts differed in groove ratings; four proposed mechanisms remain hypotheses for later testing."
+        },
+        {
+          "pages": "25-26",
+          "section": "Conclusion and author note",
+          "supports": "The paper distinguishes its experimental findings from the follow-up hypotheses and identifies the study scope."
+        }
+      ],
+      "rights_and_reuse_note": "Author-uploaded full text was reviewed for verification. Store only paraphrased findings and locators; do not redistribute the article text or PDF."
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_rhythm_camara_timing_is_multidimensional",
+      "statement": "I Câmara mfl. sin analyserte gruppe på 20 profesjonelle trommeslagere fulgte gjennomsnittlig onset de instruerte laid-back-, on-beat- og pushed-betingelsene, samtidig som timingstil ga systematiske forskjeller i varighet og/eller lydtrykknivå for trommeinstrumentene.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_camara_timing_sound_2020"
+      ],
+      "locators": [
+        "Câmara et al. 2020, pp. 7-8, Data processing and statistical analysis / Results",
+        "Câmara et al. 2020, pp. 20-21, Summary and Conclusions"
+      ],
+      "method_protocol_ids": [
+        "rytme_mikrotiminganalyse"
+      ],
+      "object_scope": {
+        "participants_analyzed": 20,
+        "performance_object": "drum-kit performances of two instructed groove-based patterns",
+        "conditions": "three timing styles x two timing references x two patterns",
+        "measures": [
+          "onset",
+          "duration",
+          "sound pressure level"
+        ]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Funnene gjelder det eksperimentelle utvalget, de instruerte mønstrene, referansene og målvariablene; de dokumenterer ikke en universell timingstrategi.",
+      "prohibited_inference": "Systematiske forskjeller kan ikke alene brukes som bevis for bevisst utøverintensjon eller for at onset, varighet og intensitet virker likt på tvers av instrumenter og stiler.",
+      "reproducibility": {
+        "raw_data_status": "not_independently_verified_in_this_batch",
+        "method_status": "fulltext_method_and_analysis_description_reviewed",
+        "independent_reanalysis": false
+      }
+    },
+    {
+      "claim_id": "claim_musikk_rhythm_camara_context_changes_timing_profiles",
+      "statement": "I samme trommeslagereksperiment påvirket både referansetype og rytmemønster de målte timingprofilene: instrumental backing track ga mer uttalte tidlige og sene onsetprofiler enn metronom i flere betingelser, og mønster påvirket onset, varighet eller intensitet.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_camara_timing_sound_2020"
+      ],
+      "locators": [
+        "Câmara et al. 2020, p. 19, Effects of musical context: reference and pattern",
+        "Câmara et al. 2020, pp. 20-21, Summary and Conclusions"
+      ],
+      "method_protocol_ids": [
+        "rytme_mikrotiminganalyse"
+      ],
+      "object_scope": {
+        "participants_analyzed": 20,
+        "references": [
+          "metronome",
+          "instrumental backing track"
+        ],
+        "patterns": [
+          "simple back-beat pattern",
+          "more complex variation"
+        ]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Noen forklaringer på hvorfor referansene og mønstrene ga utslag presenteres som plausible mekanismer, ikke som direkte testede årsaker.",
+      "prohibited_inference": "Referanse- og mønstereffektene kan ikke generaliseres til alle groovepraksiser eller brukes til å tilskrive utøverne én felles estetisk strategi.",
+      "reproducibility": {
+        "raw_data_status": "not_independently_verified_in_this_batch",
+        "method_status": "fulltext_method_and_analysis_description_reviewed",
+        "independent_reanalysis": false
+      }
+    },
+    {
+      "claim_id": "claim_musikk_rhythm_sioros_pattern_matters_beyond_syncopation_amount",
+      "statement": "I Sioros mfl. sitt lytteeksperiment ble originalutdragene vurdert som mer groove-skapende enn desynkoperte versjoner, mens algoritmisk generert synkopering med sammenlignbar mengde ikke gjenskapte den samme groove-effekten.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_sioros_syncopation_groove_2022"
+      ],
+      "locators": [
+        "Sioros et al. 2022, p. 25, Conclusion",
+        "Sioros et al. 2022, pp. 24-25, transition from structural analysis to hypotheses"
+      ],
+      "method_protocol_ids": [
+        "rytme_mikrotiminganalyse"
+      ],
+      "object_scope": {
+        "stimulus_family": "polyphonic funk and rock excerpts and algorithmically transformed variants",
+        "comparison": [
+          "original",
+          "de-syncopated",
+          "algorithmically syncopated"
+        ],
+        "outcome": "listener groove ratings"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Resultatet viser forskjeller mellom disse stimulusvariantene; det fastslår ikke én generell mekanisme for groove.",
+      "prohibited_inference": "Påstanden kan ikke omskrives til at en bestemt mengde synkope alltid skaper groove eller at algoritmisk synkopering generelt er mindre musikalsk.",
+      "reproducibility": {
+        "raw_data_status": "not_independently_verified_in_this_batch",
+        "transformation_details_status": "fulltext_design_and_analysis_reviewed",
+        "independent_reanalysis": false
+      }
+    },
+    {
+      "claim_id": "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient",
+      "statement": "Sioros mfl. viser at en samlet skalaverdi for synkope kan skjule strukturelle forskjeller i polyfon musikk; analyser av fordeling mellom instrumenter og metriske posisjoner, samspill mellom synkoper og konkrete rytmiske mønstre skilte eksempler med lignende synkopemengde, men ulike groove-vurderinger.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_sioros_syncopation_groove_2022"
+      ],
+      "locators": [
+        "Sioros et al. 2022, pp. 13-14, On Measuring Syncopation",
+        "Sioros et al. 2022, p. 25, Conclusion"
+      ],
+      "method_protocol_ids": [
+        "rytme_mikrotiminganalyse"
+      ],
+      "object_scope": {
+        "analysis_object": "polyphonic rhythmic structures in original and transformed excerpts",
+        "parameters": [
+          "distribution across instruments",
+          "metrical position",
+          "interacting syncopation patterns",
+          "pickup notes"
+        ]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Artikkelen utfordrer generell bruk av én skalar synkopemåling i denne typen materiale; den viser ikke at alle synkopemål er ugyldige i alle repertoarer.",
+      "prohibited_inference": "Funnene kan ikke brukes til å forkaste kvantitative rytmemål generelt eller til å behandle artikkelens fire oppfølgingshypoteser som bekreftede mekanismer.",
+      "reproducibility": {
+        "raw_data_status": "not_independently_verified_in_this_batch",
+        "analysis_status": "fulltext_structural_analysis_reviewed",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_rhythm_iyer_cultural_specificity_limits_universalization",
+      "statement": "Iyer bruker embodiment og situated cognition til å understreke at kroppslige regulariteter må avgrenses av kulturelt spesifikke framførings- og lyttepraksiser; analysen gjelder bestemte afrikansk-amerikanske musikkformer og kan ikke gjøres til en universell groove-modell.",
+      "source_ids": [
+        "src_iyer_expressive_microtiming_2002"
+      ],
+      "locators": [
+        "Iyer 2002, pp. 387-389, abstract and opening framing",
+        "Iyer 2002, pp. 399-400, Expressive Microtiming in African-American Music"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_rhythm_camara_timing_is_multidimensional",
+        "claim_musikk_rhythm_camara_context_changes_timing_profiles",
+        "claim_musikk_rhythm_sioros_pattern_matters_beyond_syncopation_amount",
+        "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient"
+      ],
+      "release_effect": "Blocks universal, ethnic-essentialist or genre-essentialist reformulation of the empirical claims."
+    },
+    {
+      "boundary_id": "boundary_musikk_rhythm_camara_systematicity_is_not_intention",
+      "statement": "Câmara mfl. skiller eksplisitt mellom systematiske timing-/lydforskjeller og bevis for bevisst intensjon; motoriske begrensninger og andre mekanismer kan produsere samme observerte mønster.",
+      "source_ids": [
+        "src_camara_timing_sound_2020"
+      ],
+      "locators": [
+        "Câmara et al. 2020, p. 20, Systematicity and intentionality"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_rhythm_camara_timing_is_multidimensional",
+        "claim_musikk_rhythm_camara_context_changes_timing_profiles"
+      ],
+      "release_effect": "Blocks attribution of conscious performer intention unless an independent actor-account source supports it."
+    },
+    {
+      "boundary_id": "boundary_musikk_rhythm_sioros_hypotheses_are_not_results",
+      "statement": "Sioros mfl. formulerer fire strukturelle forklaringsforslag som hypoteser for senere eksperimenter; de er ikke etablert av de to studiene som ferdige årsaksforklaringer.",
+      "source_ids": [
+        "src_sioros_syncopation_groove_2022"
+      ],
+      "locators": [
+        "Sioros et al. 2022, pp. 24-25, four hypotheses and Conclusion"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_rhythm_sioros_pattern_matters_beyond_syncopation_amount",
+        "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient"
+      ],
+      "release_effect": "Blocks causal wording that turns the proposed four mechanisms into confirmed findings."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "lydopptak",
+      "datasett_og_kode",
+      "liveframføring"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": false,
+    "minimum_direct_object_locator_count": 2,
+    "unresolved": [
+      "stable identity and access basis for the exact audio/stimulus objects to be used in a History Go question",
+      "at least two timecode, stimulus-position or dataset-position locators on the selected direct object",
+      "reuse/licensing decision for any object exposed to the user"
+    ],
+    "question_release_ready": false,
+    "release_rule": "Research findings may support editorial explanation, but no quiz question may be released from this file until the direct music-object gate is separately resolved."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 3,
+    "claim_ready_editorial_count": 4,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 0,
+    "known_gap": "This pilot covers one of six topics in the analysis domain and does not make the full domain chapter-ready."
+  }
+}
