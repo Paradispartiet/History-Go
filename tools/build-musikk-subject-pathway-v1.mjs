@@ -4,6 +4,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FILE = 'data/quiz/musikk/musikk_subject_pathways_v1.json';
@@ -19,14 +20,29 @@ const digest = (value, length = 10) => createHash('sha256').update(clean(value),
 const stableId = (prefix, subjectId, value) => `${prefix}_${slug(subjectId, 24) || 'unknown'}_${slug(value, prefix === 'ku' ? 24 : 36) || 'item'}_${digest(`${subjectId}\0${normalize(value)}`)}`;
 const jsonText = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
+function splitClaims(value) {
+  const source = clean(value).replace(/\s+/g, ' ');
+  if (!source) return [];
+  const protectedText = source
+    .replace(/\b(bl|ca|dvs|dr|f\.eks|mfl|mr|nr|osv|prof|st)\./gi, (match) => match.replace('.', '∯'))
+    .replace(/(\d)\.(\d)/g, '$1∯$2');
+  return protectedText
+    .split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/)
+    .map((part) => part.replaceAll('∯', '.').trim())
+    .filter((part) => part.length >= 12 && !part.endsWith('?'));
+}
+
 const absolute = path.join(ROOT, FILE);
 const original = fs.readFileSync(absolute, 'utf8');
-const pkg = JSON.parse(original);
+const before = JSON.parse(original);
+const pkg = structuredClone(before);
 if (pkg.categoryId !== 'musikk' || pkg.subject_id !== 'musikk') throw new Error('Uventet subject-pathway-pakke');
 const sourceById = new Map(list(pkg.sources).map((source) => [clean(source.id), source]));
+if (!list(pkg.sets).length) throw new Error('Musikk pathway må ha minst ett sett');
 
 let questionCount = 0;
-for (const set of list(pkg.sets)) {
+for (const [setIndex, set] of list(pkg.sets).entries()) {
+  if (list(set.questions).length !== 5) throw new Error(`${set.set_id || `sett_${setIndex + 1}`}: forventet 5 spørsmål`);
   for (const question of list(set.questions)) {
     questionCount += 1;
     const concepts = list(question.core_concepts).map(clean).filter(Boolean);
@@ -35,8 +51,10 @@ for (const set of list(pkg.sets)) {
     if (!concepts.length || !terms.length || !summary) throw new Error(`${question.id || questionCount}: mangler concepts/terms/knowledge summary`);
     question.concept_ids = concepts.map((value) => stableId('co', 'musikk', value));
     question.term_ids = terms.map((value) => stableId('term', 'musikk', value));
-    question.primary_knowledge_unit_id = stableId('ku', 'musikk', summary);
-    question.knowledge_unit_ids = [question.primary_knowledge_unit_id];
+    const claims = splitClaims(summary);
+    const effectiveClaims = claims.length ? claims : [summary];
+    question.knowledge_unit_ids = effectiveClaims.map((claim) => stableId('ku', 'musikk', claim));
+    question.primary_knowledge_unit_id = question.knowledge_unit_ids[0];
     question.source = list(question.source).map((source) => {
       const canonical = sourceById.get(clean(source.source_id));
       if (!canonical) throw new Error(`${question.id || questionCount}: ukjent source_id ${clean(source.source_id)}`);
@@ -51,17 +69,18 @@ for (const set of list(pkg.sets)) {
     });
   }
 }
-if (questionCount !== 5) throw new Error(`Forventet 5 pilotspørsmål, fikk ${questionCount}`);
+const expectedQuestionCount = list(pkg.sets).length * 5;
+if (questionCount !== expectedQuestionCount) throw new Error(`Forventet ${expectedQuestionCount} pathway-spørsmål, fikk ${questionCount}`);
 
-const next = jsonText(pkg);
-if (next !== original) {
+const changed = !isDeepStrictEqual(before, pkg);
+if (changed) {
   if (WRITE) {
-    fs.writeFileSync(absolute, next, 'utf8');
-    console.log(`Musikk pathway canonicalisert for ${questionCount} spørsmål.`);
+    fs.writeFileSync(absolute, jsonText(pkg), 'utf8');
+    console.log(`Musikk pathway canonicalisert for ${pkg.sets.length} sett / ${questionCount} spørsmål.`);
   } else {
-    console.error('Musikk pathway er utdatert. Kjør node tools/build-musikk-subject-pathway-v1.mjs --write');
+    console.error('Musikk pathway har semantisk canonicaliseringsdrift. Kjør node tools/build-musikk-subject-pathway-v1.mjs --write');
     process.exitCode = 1;
   }
 } else {
-  console.log(`Musikk pathway canonicalisering OK for ${questionCount} spørsmål.`);
+  console.log(`Musikk pathway canonicalisering OK for ${pkg.sets.length} sett / ${questionCount} spørsmål.`);
 }
