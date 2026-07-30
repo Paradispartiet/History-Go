@@ -1,0 +1,185 @@
+name: Agent History sources silence script digital materialize
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.ref == 'agent/history-sources-silence-script-digital-evidence-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Materialize canonical source-method evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const P = {
+            claims:'data/fag/historie/claims_historie_canonical_v1.json',
+            sources:'data/fag/historie/sources_historie_canonical_v1.json',
+            evidence:'data/fag/historie/place_evidence_historie_v1.json',
+            theory:'data/fag/historie/theory_evidence_historie_canonical_v1.json',
+            profile:'data/fag/profiles/historie/oslo_akershus/profile.json',
+            docs:'docs/HISTORY_THEORY_EVIDENCE.md',
+            test:'tests/fagverk-historie.test.mjs',
+            dossier:'data/fag/historie/source_dossiers/sources_silence_script_digital_v1.json',
+            batchDoc:'docs/HISTORY_SOURCES_SILENCE_SCRIPT_DIGITAL_EVIDENCE_V1.md'
+          };
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const write=(p,v)=>fs.writeFileSync(p,`${JSON.stringify(v,null,2)}\n`);
+          const uniqSort=xs=>[...new Set(xs)].sort((a,b)=>String(a).localeCompare(String(b),'nb'));
+          const accessedAt='2026-07-30';
+          const batchId='history_sources_silence_script_digital_evidence_v1';
+          const claimsFile=read(P.claims), sourcesFile=read(P.sources), evidenceFile=read(P.evidence), theoryFile=read(P.theory), profile=read(P.profile);
+          const initial={claims:claimsFile.claims.length,sources:sourcesFile.sources.length,evidence:evidenceFile.evidence_links.length};
+          if(theoryFile.completion?.qualifying_entries!==78) throw new Error(`Expected 78 qualifying entries, found ${theoryFile.completion?.qualifying_entries}`);
+          const targetTheoryIds=['theory_his_taushet_fravaer','theory_his_skrift_lesning','theory_his_digitale_kilder'];
+          for(const id of targetTheoryIds) if(theoryFile.entries.some(e=>e.theory_id===id)) throw new Error(`${id} already exists`);
+
+          const newSources=[
+            {
+              source_id:'src_his_nb_bylaw_critical_edition_2024',
+              title:'Magnus Håkonsson Lagabøtes bylov og farmannslov',
+              publisher:'Nasjonalbiblioteket',
+              source_type:'critical_digital_text_edition',
+              url:'https://www.nb.no/content/uploads/2024/07/Byloven_utenVariantapparat.pdf',
+              language:'nn',
+              geography_ids:['geo_no_oslo_akershus'],
+              temporal_scope:{from:1276,to:2024},
+              provenance:{repository_source:P.dossier,extracted_from:['sources.src_his_nb_bylaw_critical_edition_2024'],accessed_at:accessedAt},
+              dating:{published_at:2024,updated_at:'2024-07-05',accessed_at:accessedAt},
+              limitations:[
+                'Dette er en moderne vitenskapelig tekstutgave og ikke en fotografisk gjengivelse av ett komplett originalmanuskript; editorial tegnsetting og markører må skilles fra middelalderhåndens grafiske form.',
+                'PDF-en uten fullt variantapparat viser transkripsjonsmarkører og manuskriptstruktur, men erstatter ikke kollasjon mot alle håndskriftvitner når enkeltlesninger, skriverhender eller variantdatering skal avgjøres.'
+              ],
+              quality:{tier:'A',rationale:'Nasjonalbibliotekets egen kritiske digitale utgave med eksplisitt tegnforklaring for sideskift, kapittelinndeling, linjeskift, manglende tekst, tillegg og eliminering.'}
+            },
+            {
+              source_id:'src_his_storting_constitution_transcription_1814',
+              title:'Transkripsjon – Grunnloven undertegnet på Eidsvoll 17. mai 1814',
+              publisher:'Stortinget',
+              source_type:'official_archival_transcription',
+              url:'https://www.stortinget.no/no/Stortinget-og-demokratiet/Kronologi/1814/Transkripsjon/',
+              language:'nb',
+              geography_ids:['geo_no_oslo_akershus'],
+              temporal_scope:{from:1814,to:1814},
+              provenance:{repository_source:P.dossier,extracted_from:['sources.src_his_storting_constitution_transcription_1814'],accessed_at:accessedAt},
+              dating:{published_at:null,updated_at:null,accessed_at:accessedAt},
+              limitations:[
+                'Transkripsjonen er en tekstlig gjengivelse og kan ikke alene brukes til å undersøke originalens håndskrift, papir, blekk, rettelser, segl eller øvrige materialspor.',
+                'En offisiell transkripsjon gjør innholdet lesbart, men redaksjonelle valg og normalisering må skilles fra det som faktisk er synlig i originaldokumentet.'
+              ],
+              quality:{tier:'A',rationale:'Stortingets offisielle transkripsjon av det signerte grunnlovsdokumentet gir en institusjonelt sporbar tekstgjengivelse som kan sammenholdes med originaldokumentets hånd og materialitet.'}
+            }
+          ];
+          for(const s of newSources){
+            if(sourcesFile.sources.some(x=>x.source_id===s.source_id)) throw new Error(`Duplicate source id ${s.source_id}`);
+            if(sourcesFile.sources.some(x=>x.url===s.url)) throw new Error(`Duplicate source URL ${s.url}`);
+          }
+          sourcesFile.sources.push(...newSources); sourcesFile.sources.sort((a,b)=>a.source_id.localeCompare(b.source_id,'nb'));
+
+          const makeClaim=(claim_id,statement,claim_type,place_id,case_id,temporal,emne_ids,source_ids,uncertainty,alternatives)=>({
+            claim_id,statement,claim_type,scope:{geography_ids:['geo_no_oslo_akershus'],place_ids:[place_id],case_ids:[case_id],temporal},emne_ids,source_ids,confidence:'high',uncertainty:{level:'medium',note:uncertainty},alternative_interpretations:alternatives
+          });
+          const newClaims=[
+            makeClaim(
+              'claim_his_bylaw_critical_edition_marks_manuscript_structure_2024',
+              'Nasjonalbibliotekets digitale utgave av Magnus Lagabøtes bylov markerer eksplisitt sideskift i håndskriftet, nye kapitler, linjeskift, manglende tekst, tillegg og eliminering, slik at den publiserte transkripsjonen skiller manuskriptets struktur og tekstinngrep fra en glatt, normalisert løpende tekst.',
+              'critical_transcription_and_editorial_markup','middelalder_oslo','case_his_middelalderbyen_oslo',{from:2024,to:2024},
+              ['em_his_skrift_hand_lesning','em_his_kildekritikk_arkiv_spor','em_his_middelalder_oslo'],
+              ['src_his_nb_bylaw_critical_edition_2024'],
+              'Utgaven dokumenterer editoriske markører og tekststruktur, men PDF-versjonen uten fullt variantapparat gir ikke i seg selv komplett paleografisk beskrivelse av alle skriverhender eller håndskriftvitner.',
+              ['Markørene kan leses som transparens om edisjonsarbeidet, men de er samtidig moderne representasjonsvalg og må ikke forveksles med tegn som stod identisk i middelaldermanuskriptet.']
+            ),
+            makeClaim(
+              'claim_his_constitution_gothic_hand_and_official_transcription_1814',
+              'Originaldokumentet til Grunnloven av 17. mai 1814 er trolig ført i pennen av Johan Matthæus Buschmann i enkel gotisk håndskrift og inneholder enkelte skrivefeil; Stortinget publiserer en separat offisiell transkripsjon av den undertegnede teksten, slik at original håndskrift og moderne tekstgjengivelse kan sammenholdes som forskjellige kildeformer.',
+              'handwriting_and_archival_transcription','eidsvollsbygningen','case_his_eidsvollsbygningen',{from:1814,to:1814},
+              ['em_his_skrift_hand_lesning','em_his_dokument_autentisitet','em_his_kildekritikk_arkiv_spor'],
+              ['src_his_eidsvoll1814_original_constitution','src_his_storting_constitution_transcription_1814'],
+              'Skriveridentifikasjonen er formulert som sannsynlig, ikke sikker. Transkripsjonen dokumenterer tekstinnhold, men ikke alle grafiske og materielle egenskaper ved originalen.',
+              ['Den moderne transkripsjonen kan gjøre innholdet langt mer tilgjengelig uten at den dermed erstatter originalen for spørsmål om hånd, rettelser, materiale, segl eller dokumentproduksjon.']
+            )
+          ];
+          for(const c of newClaims) if(claimsFile.claims.some(x=>x.claim_id===c.claim_id)) throw new Error(`Duplicate claim ${c.claim_id}`);
+          claimsFile.claims.push(...newClaims); claimsFile.claims.sort((a,b)=>a.claim_id.localeCompare(b.claim_id,'nb'));
+
+          const newEvidence=[
+            {evidence_id:'evidence_his_sources_script_01',profile_id:'profile_historie_no_oslo_akershus',geography_id:'geo_no_oslo_akershus',place_id:'middelalder_oslo',case_id:'case_his_middelalderbyen_oslo',emne_ids:newClaims[0].emne_ids,claim_id:newClaims[0].claim_id,source_ids:newClaims[0].source_ids,support_type:'direct_single_source',validation_status:'validated_case',limitations_inherited:true,note:'Kilder/arkiv/spor V1: moderne kritisk transkripsjon brukes som dokumentert lesnings- og edisjonscase, ikke som fysisk originalmanuskript.'},
+            {evidence_id:'evidence_his_sources_script_02',profile_id:'profile_historie_no_oslo_akershus',geography_id:'geo_no_oslo_akershus',place_id:'eidsvollsbygningen',case_id:'case_his_eidsvollsbygningen',emne_ids:newClaims[1].emne_ids,claim_id:newClaims[1].claim_id,source_ids:newClaims[1].source_ids,support_type:'corroborated',validation_status:'validated_case',limitations_inherited:true,note:'Kilder/arkiv/spor V1: gotisk originalhånd og offisiell transkripsjon holdes eksplisitt som ulike kildeformer.'}
+          ];
+          for(const e of newEvidence) if(evidenceFile.evidence_links.some(x=>x.evidence_id===e.evidence_id)) throw new Error(`Duplicate evidence ${e.evidence_id}`);
+          evidenceFile.evidence_links.push(...newEvidence); evidenceFile.evidence_links.sort((a,b)=>a.evidence_id.localeCompare(b.evidence_id,'nb'));
+
+          const claimById=new Map(claimsFile.claims.map(c=>[c.claim_id,c])); const evidenceByClaim=new Map();
+          for(const e of evidenceFile.evidence_links){const a=evidenceByClaim.get(e.claim_id)||[];a.push(e.evidence_id);evidenceByClaim.set(e.claim_id,a);}
+          const derive=ids=>{const cs=ids.map(id=>{const c=claimById.get(id);if(!c)throw new Error(`Missing claim ${id}`);return c;});return{source_ids:uniqSort(cs.flatMap(c=>c.source_ids||[])),case_ids:uniqSort(cs.flatMap(c=>c.scope?.case_ids||[])),place_ids:uniqSort(cs.flatMap(c=>c.scope?.place_ids||[])),emne_ids:uniqSort(cs.flatMap(c=>c.emne_ids||[])),evidence_link_ids:uniqSort(cs.flatMap(c=>evidenceByClaim.get(c.claim_id)||[]))};};
+          const te=(theory_id,claim_ids,evidence_dimensions,rationale,limitations,alternative_interpretations,disconfirmation_conditions,scope_note)=>({theory_id,status:'evidence_ready',scope_status:'multi_case_geographic_pilot',universalization_status:'provisional_not_universal',claim_ids,...derive(claim_ids),evidence_dimensions,rationale,limitations,alternative_interpretations,disconfirmation_conditions,scope_note});
+          const silenceClaims=['claim_his_medieval_manuscript_survival_fragmentary_skew','claim_his_hovedoya_estate_history_mediated_by_documentary_survival','claim_his_norsk_folkemuseum_neg_selection_access_limits'];
+          const scriptClaims=['claim_his_law_manuscripts_postdate_enactment_and_change',newClaims[0].claim_id,newClaims[1].claim_id];
+          const digitalClaims=['claim_his_norsk_folkemuseum_neg_paper_digital_series_shift','claim_his_norsk_folkemuseum_neg_selection_access_limits','claim_his_stortinget_constitution_custody_conservation_surrogate','claim_his_met_frost_quality_control_station_metadata','claim_his_radhusplassen_social_media_organized_rituals_2011'];
+          theoryFile.entries.push(
+            te('theory_his_taushet_fravaer',silenceClaims,['documented_application','limitation_test','alternative_interpretation','multi_case_comparison','survival_bias','documentary_mediation','selection_and_access_silence','absence_expectation_control'],'Fragmentert middelaldermanuskriptoverlevering dokumenterer tap og skjev bevaring, Hovedøya viser hvordan eiendoms- og institusjonshistorie blir synlig gjennom et selektivt bevart dokumentgrunnlag, og NEG-materialet viser hvordan selvrekruttering, spørsmålsform, kanal og tilgang former hvem som faktisk blir hørt. Sammen gjør casene fravær analytisk relevant først når produksjons-, bevarings- eller tilgangsforventningen er spesifisert.',['Fravær i et arkiv eller corpus dokumenterer ikke i seg selv bevisst undertrykking; tap, kassasjon, registreringsrutiner, tilgang, innsamlingsdesign og forskeravgrensning må skilles.','Middelalderens overleveringsskjevhet og moderne innsamlingsskjevhet har forskjellige mekanismer og må ikke homogeniseres til én type taushet.'],['Et tomrom kan skyldes at materialet aldri ble produsert, at det ble tapt, at det ikke er katalogisert eller tilgjengelig, eller at forskeren leter med feil kategori; hver forklaring krever egne kontrollspor.'],['Anvendelsen svekkes dersom fravær fortolkes uten å begrunne hvorfor et spor med rimelighet burde ha blitt produsert, bevart og funnet, eller dersom bevisst fortielse konkluderes uten positiv dokumentasjon.'],'Dette er et fler-case evidensgrunnlag fra middelaldermanuskripter, Hovedøya og Norsk Folkemuseum og er ikke universelt bevis for arkivtaushet på tvers av institusjoner, perioder, materialtyper eller geografier.'),
+            te('theory_his_skrift_lesning',scriptClaims,['documented_application','limitation_test','alternative_interpretation','multi_case_comparison','manuscript_transmission','critical_transcription_markup','gothic_handwriting','original_vs_transcription'],'De bevarte lovmanuskriptene viser at en middelaldertekst kan være kjent gjennom senere og varierende håndskriftvitner. Nasjonalbibliotekets Bylov-utgave gjør edisjonsarbeidet eksplisitt ved å markere manuskriptside, linjeskift, manglende tekst, tillegg og eliminering. Grunnlovsdokumentet gir et senere kontrastcase med dokumentert gotisk håndskrift og en separat offisiell transkripsjon. Sammen viser casene at lesbar historisk tekst er et resultat av både hånd, materiale, overlevering og redaksjonell representasjon.',['Bylov-utgaven uten fullt variantapparat kan ikke brukes til detaljert paleografisk identifikasjon av alle skriverhender eller varianter.','Grunnlovens skriveridentifikasjon er sannsynlig, ikke sikker, og en tekstlig transkripsjon bevarer ikke automatisk grafiske og materielle trekk ved originalen.'],['Normalisering og transkripsjon kan være nødvendig for lesbarhet og sammenligning, men kan samtidig skjule grafiske trekk, rettelser og usikkerheter som er relevante for andre spørsmål.'],['Anvendelsen svekkes dersom moderne transkripsjon behandles som identisk med originaldokumentet, dersom editorial markeringer feiltolkes som originale tegn, eller dersom paleografisk datering gis større presisjon enn håndskriftgrunnlaget tillater.'],'Dette er et fler-case evidensgrunnlag fra middelalderens Oslo-lovtekst og Grunnlovsdokumentet og er ikke universelt bevis for skriftlesning på tvers av språk, skriftsystemer, sjangre eller arkivtradisjoner.'),
+            te('theory_his_digitale_kilder',digitalClaims,['documented_application','limitation_test','alternative_interpretation','multi_case_comparison','digitization_break','selection_and_access','digital_surrogate','metadata_and_quality_flags','platform_mediated_participation'],'NEG dokumenterer et kanalskifte fra papir til digital innsamling og tilhørende utvalgs- og tilgangseffekter. Stortingets digitale Grunnlov viser forskjellen mellom digitalt surrogat og fysisk original. Frost-caset viser at digitale dataserier må leses med stasjonsmetadata og kvalitetsflagg, mens Rådhusplassen-caset viser born-digital sosial medieorganisering og selektiv plattformsynlighet. Sammen dekker casene både digitaliserte og digitalfødte kilder uten å behandle grensesnittet som transparent.',['Claimene dokumenterer metadata, digitalisering, kanal- og plattformformidling, men gir ikke komplett dekning av OCR-feil, filhash-integritet, migreringshistorikk eller algoritmisk rangering i alle systemene.','Sosiale medier-eksemplet er kuratert og ikke en komplett plattformdatabase; det kan derfor ikke brukes som representativt mål på hele den digitale offentligheten etter 22. juli.'],['Digitalisering kan øke tilgang samtidig som metadata, søkegrensesnitt og utvalg former hva som blir synlig; born-digitale spor kan være rike på samtidighet, men avhengige av plattform, eksport og bevaringspraksis.'],['Anvendelsen svekkes dersom skjermbilde, nettsidetreff eller API-resultat brukes uten dokumentert proveniens, metadata og versjons-/kvalitetskontroll, eller dersom manglende søketreff likestilles med dokumentert historisk fravær.'],'Dette er et fler-case evidensgrunnlag fra Norsk Folkemuseum, Stortinget, Meteorologisk institutt og Rådhusplassen og er ikke universelt bevis for digitale kilder på tvers av plattformer, filformater, metadataregimer eller bevaringssystemer.')
+          );
+          theoryFile.entries.sort((a,b)=>a.theory_id.localeCompare(b.theory_id,'nb')); theoryFile.completion.qualifying_entries=theoryFile.entries.length; theoryFile.completion.ratio=Math.round((theoryFile.entries.length/theoryFile.completion.total_theories)*1000)/1000;
+          if(theoryFile.entries.length!==81||theoryFile.completion.ratio!==0.352) throw new Error(`Unexpected theory completion ${theoryFile.entries.length}/${theoryFile.completion.total_theories} ratio=${theoryFile.completion.ratio}`);
+
+          const caseById=new Map(profile.cases.map(c=>[c.case_id,c]));
+          const expandCase=(id,emnes)=>{const c=caseById.get(id);if(!c)throw new Error(`Missing case ${id}`);if(c.status!=='pilot_validated'||c.evidence_status!=='claim_source_linked')throw new Error(`Case not validated ${id}`);c.emne_ids=uniqSort([...(c.emne_ids||[]),...emnes]);c.validation||={status:'validated_case'};c.validation.additional_batch_ids=uniqSort([...(c.validation.additional_batch_ids||[]),batchId]);c.validation.scope_expanded_at=accessedAt;};
+          expandCase('case_his_middelalderbyen_oslo',['em_his_skrift_hand_lesning','em_his_kildekritikk_arkiv_spor']);
+          expandCase('case_his_eidsvollsbygningen',['em_his_skrift_hand_lesning','em_his_kildekritikk_arkiv_spor']);
+          if(claimsFile.claims.length!==initial.claims+2||sourcesFile.sources.length!==initial.sources+2||evidenceFile.evidence_links.length!==initial.evidence+2) throw new Error('Unexpected production delta');
+          const profileEvidence=evidenceFile.evidence_links.filter(e=>e.profile_id===profile.profile_id); profile.production_coverage.cases_total=profile.cases.length; profile.production_coverage.claims_total=new Set(profileEvidence.map(e=>e.claim_id)).size; profile.production_coverage.sources_total=new Set(profileEvidence.flatMap(e=>e.source_ids||[])).size; profile.production_coverage.evidence_links_total=profileEvidence.length; profile.production_coverage.verified_cases_total=profile.cases.filter(c=>c.evidence_status==='claim_source_linked').length; profile.migration_summary.validated_cases=profile.production_coverage.verified_cases_total;
+
+          write(P.claims,claimsFile);write(P.sources,sourcesFile);write(P.evidence,evidenceFile);write(P.theory,theoryFile);write(P.profile,profile);
+          write(P.dossier,{schema_version:'1.0',dossier_id:'history_sources_silence_script_digital_v1',subject_id:'historie',geography_id:'geo_no_oslo_akershus',status:'reviewed_source_and_reuse_dossier',accessed_at:accessedAt,scope:{qualified_theory_ids:targetTheoryIds,batch_id:batchId,method_rule:'Taushet krever forventning om produksjon/bevaring/funn; skriftlesning skiller original hånd, overlevering og transkripsjon; digitale kilder skiller digitalisering, metadata, plattform og fysisk original.'},sources:Object.fromEntries(newSources.map(s=>[s.source_id,{title:s.title,publisher:s.publisher,url:s.url,limitations:s.limitations,quality:s.quality}])),claim_bundles:{taushet_fravaer:{claim_ids:silenceClaims,...derive(silenceClaims)},skrift_hand_lesning:{claim_ids:scriptClaims,...derive(scriptClaims)},digitale_kilder:{claim_ids:digitalClaims,...derive(digitalClaims)}},production_decisions:['Taushet/fravær kvalifiseres ved ren gjenbruk av tre allerede validerte claims med ulike fraværsmekanismer.','Digitale kilder kvalifiseres ved ren gjenbruk av fem claims fra fire cases og er eksplisitt forskjellig fra digital-kulturarv-bundelen.','Skrift/hånd/lesbarhet får bare to nye claims; eksisterende manuskriptoverleveringsclaim beholdes som historisk tekstkontekst.','Ingen nye places eller cases opprettes.']});
+
+          let doc=fs.readFileSync(P.docs,'utf8'); const old='Produksjonen står på 78 av 230 etter at bevaring/restaurering/autentisitet, stedsnavn/navnepolitikk og digital kulturarv/formidling V1 er kvalifisert.'; if(!doc.includes(old))throw new Error('78 completion sentence missing'); doc=doc.replace(old,'Produksjonen står på 81 av 230 etter at taushet/fravær, skrift/hånd/lesbarhet og digitale kilder V1 er kvalifisert.'); doc=doc.replace('\n- Totalt: **78 av 230** teoriobjekter (**33.9 %**).','\n- Kilder, arkiv og spor V1: **3** nye kvalifiserende teoriobjekter, **2** nye claims, **2** nye kilder og **2** nye place-evidence-lenker; taushet/fravær og digitale kilder kvalifiseres hovedsakelig ved claim-gjenbruk.\n- Totalt: **81 av 230** teoriobjekter (**35.2 %**).'); doc=doc.replace('- Gjenstående teoriobjekter: **152**.','- Gjenstående teoriobjekter: **149**.'); fs.writeFileSync(P.docs,doc);
+          fs.writeFileSync(P.batchDoc,`# Historie — Kilder, arkiv og spor V1\n\n## Mål\n\nFullføre de tre gjenstående teoriobjektene i \`his_kilder_arkiv_spor\`: taushet/fravær, skrift/hånd/lesbarhet og digitale kilder. Batchen løfter domenet fra **7/10 til 10/10** og total teori-evidens fra **78/230 til 81/230**.\n\n## Taushet og fravær\n\nFragmentert middelaldermanuskriptoverlevering, Hovedøyas dokumentbaserte eiendomshistorie og NEG-materialets innsamlings-/tilgangsskjevhet brukes sammen for å skille tap, overlevering, seleksjon og tilgang. Fravær tolkes ikke som bevisst fortielse uten positiv dokumentasjon og en begrunnet forventning om at et spor burde ha blitt produsert, bevart og funnet.\n\n## Skrift, hånd og lesbarhet\n\nEksisterende lovmanuskriptoverlevering kombineres med to nye claims. Nasjonalbibliotekets Bylov-utgave markerer manuskriptside, kapittel, linjeskift, manglende tekst, tillegg og eliminering. Grunnlovsdokumentet gir et senere kontrastcase der enkel gotisk håndskrift og skrivefeil kan sammenholdes med Stortingets separate offisielle transkripsjon.\n\n## Digitale kilder\n\nNEG-kanalskift og utvalg, Stortingets digitale Grunnlov-surrogat, Frost-metadata/kvalitetsflagg og sosiale medier rundt rosetoget brukes til å skille digitalisering, metadata, born-digital plattformmediering og fysisk original. Manglende søketreff eller et skjermbilde behandles ikke som tilstrekkelig proveniens.\n\n## Produksjonsgrense\n\n- 2 nye canonical claims og 2 nye canonical kilder.\n- 2 nye validerte place–claim–source-koblinger.\n- Ingen nye places eller cases.\n- To eksisterende validerte cases utvides med batchproveniens.\n- Frozen V5.5-teoriobjekter endres ikke; V5.8-freeze-manifestet refreshes fordi authoritative claims/sources/evidence/profile endres.\n- Alle tre theory-entryene forblir \`provisional_not_universal\`.\n`);
+          let test=fs.readFileSync(P.test,'utf8'); if(!test.includes('assert.equal(report.universalCoverage.theoryEvidenceQualifying, 78);'))throw new Error('Expected test assertion 78 missing'); test=test.replace('assert.equal(report.universalCoverage.theoryEvidenceQualifying, 78);','assert.equal(report.universalCoverage.theoryEvidenceQualifying, 81);'); fs.writeFileSync(P.test,test);
+          NODE
+      - name: Refresh intentional V5.8 freeze and deterministic reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze --reason='V5.8 freeze reaffirmed after source-silence-script-digital V6 evidence batch; frozen theory definitions remain unchanged.'
+          node tools/audit-historie-geographic-profile.mjs
+          node tools/validate-historie-theory-evidence.mjs
+          node tools/audit-historie-universal-coverage.mjs
+          node scripts/audit-fagverk-historie.mjs --write-report --no-check-report
+      - name: Validate focused Historie gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-profile-evidence.mjs
+          node tools/audit-historie-geographic-profile.mjs --check
+          node tools/validate-historie-theory-evidence.mjs --check
+          node tools/audit-historie-universal-coverage.mjs --check
+          node scripts/audit-fagverk-historie.mjs
+          node tools/audit-historie-v5-5-quality-depth.mjs
+          node --test tests/fagverk-historie.test.mjs
+          git diff --check
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/agent-history-sources-silence-script-digital-materialize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Bygg Historie kilde-, arkiv- og sporevidens V1'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
