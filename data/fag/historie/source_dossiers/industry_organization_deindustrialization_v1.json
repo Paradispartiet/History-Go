@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_industry_organization_deindustrialization_evidence_v1",
+  "subject_id": "historie",
+  "geography_id": "geo_no_oslo_akershus",
+  "status": "reviewed_source_dossier",
+  "accessed_at": "2026-07-30",
+  "scope": {
+    "qualified_theory_ids": [
+      "theory_his_organisering_streik_forhandling",
+      "theory_his_avindustrialisering_ombruk_industriarv"
+    ],
+    "case_ids": [
+      "case_his_aker_brygge",
+      "case_his_akerselva",
+      "case_his_bryn_fyrstikkfabrikk",
+      "case_his_gronvold_fyrstikkfabrikk",
+      "case_his_youngstorget"
+    ],
+    "method_rule": "Streikssporet skiller arbeidsvilkår og utløsende lønnskutt fra organisering, krav, arbeidsgiverrespons, umiddelbart resultat og senere virkninger. Avindustrialiseringssporet skiller dokumentert produksjons- og sysselsettingsnedtrapping fra nedleggelse, eiendomsomforming, adaptiv gjenbruk og industriarv; ett nedlagt verft brukes ikke som universelt bevis for nasjonal avindustrialisering."
+  },
+  "spatial_anchoring": {
+    "aker_brygge": {
+      "place_id": "aker_brygge",
+      "status": "verified_former_shipyard_area_anchor",
+      "assessment": "Canonical Aker Brygge dekker området til det tidligere Akers mekaniske Verksted i Pipervika. Batchen kobler dokumentert verftsnedtrapping og ombruk til området uten å påstå koordinat for hvert historisk produksjonsbygg."
+    },
+    "akerselva": {
+      "place_id": "akerselva",
+      "status": "verified_industrial_landscape_anchor",
+      "assessment": "Akerselva gjenbrukes som validert landskapsanker for industriaksen og den senere miljø- og ombruksprosessen."
+    },
+    "bryn_gronvold": {
+      "place_ids": [
+        "bryn_industriomrade",
+        "helsfyr"
+      ],
+      "status": "existing_validated_area_anchors",
+      "assessment": "Eksisterende validerte områdeankre gjenbrukes for fyrstikkarbeiderstreikens dokumenterte arbeidsvilkår, mobilisering og utfall."
+    },
+    "youngstorget": {
+      "place_id": "youngstorget",
+      "status": "existing_validated_public_mobilization_anchor",
+      "assessment": "Youngstorget gjenbrukes for den dokumenterte 1. mai-mobiliseringen i 1890 og brukes ikke som arbeidsgiverforhandlingssted."
+    }
+  },
+  "source_anchoring": {
+    "new_source_ids": [
+      "src_his_snl_akers_mekaniske_verksted",
+      "src_his_oslo_byleksikon_aker_brygge"
+    ],
+    "reused_source_ids": [
+      "src_his_arbark_eight_hour_day_1890",
+      "src_his_arbark_mayday_history",
+      "src_his_oslo_kommune_akerselva",
+      "src_his_snl_akerselva",
+      "src_his_snl_fyrstikkarbeiderstreiken",
+      "src_his_snl_nitedals_taendstikfabrik"
+    ],
+    "assessment": "Streikteorien bygger utelukkende på allerede canonical streike- og mobiliseringskilder. De nye kildene brukes bare til Aker Brygges dokumenterte nedtrapping, nedleggelse, ombygging og bevarte industristrukturer; Akerselva gir et separat, eksisterende sammenligningscase."
+  },
+  "source_snapshots": [
+    {
+      "source_id": "src_his_snl_akers_mekaniske_verksted",
+      "title": "Akers mekaniske Verksted",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Akers_mekaniske_Verksted",
+      "supported_dimensions": [
+        "shipyard_employment_contraction",
+        "newbuilding_stop",
+        "closure",
+        "adaptive_reuse",
+        "preserved_industrial_structures"
+      ],
+      "source_locations": [
+        "Avsnittet Avvikling av verftet om overkapasitet, stans i nybygging i 1978, om lag 2 000 ansatte ved siste nybygg og knapt 100 ansatte i 1980",
+        "Avsnittet Etablering av Aker Brygge om nedleggelsen i 1982, ombygging/riving, boliger og bevarte verkstedbygninger og tørrdokk"
+      ],
+      "limitations": [
+        "Den redigerte syntesen dokumenterer verftets nedtrapping, nedleggelse og hovedtrekk i ombyggingen, men erstatter ikke årlige personalregistre, lønningsdata eller full produksjonsstatistikk.",
+        "Ett Oslo-verft kan ikke alene brukes som bevis for nasjonal avindustrialisering eller for arbeidernes videre yrkes-, inntekts- og flyttebaner etter nedleggelsen."
+      ]
+    },
+    {
+      "source_id": "src_his_oslo_byleksikon_aker_brygge",
+      "title": "Aker Brygge",
+      "publisher": "Oslo byleksikon",
+      "url": "https://oslobyleksikon.no/side/Aker_Brygge",
+      "supported_dimensions": [
+        "former_shipyard_site",
+        "redevelopment",
+        "demolition",
+        "workshop_hall_reuse",
+        "commercial_reuse"
+      ],
+      "source_locations": [
+        "Ingressen om at området er det tidligere Akers mek. Verksted og at utviklingen av ny bydel startet etter driftsstansen i 1982",
+        "Avsnittet om riving og ombygging samt verkstedhallene Stranden 3–5 tatt i bruk til forretninger og restauranter i 1985–86"
+      ],
+      "limitations": [
+        "Byleksikonet gir en konsis utbyggings- og bygningshistorie, men dokumenterer ikke komplett eierskap, finansiering, grunnverdi, sanering, miljøopprydding eller de tidligere arbeidernes overgang til annet arbeid.",
+        "Ombygging og bevaring av verkstedhaller dokumenterer materiell ombruk, men kan ikke i seg selv brukes som bevis på kontinuitet i industriarbeid, ferdigheter, arbeidsmiljø eller lokal kontroll over området."
+      ]
+    }
+  ],
+  "production_decisions": [
+    "Organisering, streik og forhandling kvalifiseres uten nye streikeclaims: den eksisterende fyrstikkevidensen dekker arbeidsvilkår, lønnskutt, organisering, krav og kort-/langsiktig utfall, mens Youngstorget gir et separat mobiliseringscase for åttetimerskravet.",
+    "Aker Brygge deles i to claims slik at produksjons- og sysselsettingsnedtrapping/nedleggelse ikke blandes sammen med etterfølgende ombruk og industriarv.",
+    "Akerselva gjenbrukes som separat industrilandskap og ombrukscase for å unngå at ett nedlagt verft bærer hele avindustrialiseringsanvendelsen.",
+    "Ingen claim bruker bevarte bygg som bevis på kontinuitet i arbeid, ferdighet eller produksjonskultur, og ingen lokal nedleggelse generaliseres til nasjonal avindustrialisering."
+  ]
+}

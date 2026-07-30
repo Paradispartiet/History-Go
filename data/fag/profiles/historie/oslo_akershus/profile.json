@@ -41,12 +41,12 @@
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
     "cases_total": 106,
-    "claims_total": 123,
-    "sources_total": 95,
-    "evidence_links_total": 125,
+    "claims_total": 125,
+    "sources_total": 97,
+    "evidence_links_total": 127,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 27,
+    "verified_cases_total": 28,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -110,9 +110,11 @@
       "label": "Aker Brygge",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "aker_brygge"
+      ],
       "emne_ids": [
         "em_his_avindustrialisering_ombruk_industriarv",
         "em_his_brudd_kontinuitet",
@@ -135,6 +137,14 @@
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_industry_organization_deindustrialization_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`aker_brygge` brukes som områdeanker for den tidligere Akers mek.-tomten og den dokumenterte omformingen; batchen hevder ikke koordinat for hvert historisk verkstedbygg."
       }
     },
     {
@@ -7471,6 +7481,49 @@
       "qualified_theory_ids": [
         "theory_his_arbeiderbolig_hushold_livsvilkar",
         "theory_his_arbeidsvandring_rekruttering"
+      ]
+    },
+    {
+      "batch_id": "history_industry_organization_deindustrialization_evidence_v1",
+      "status": "validated",
+      "validated_at": "2026-07-30",
+      "newly_verified_case_ids": [
+        "case_his_aker_brygge"
+      ],
+      "expanded_case_ids": [],
+      "claim_ids": [
+        "claim_his_bryn_gronvold_piecework_long_days_gender_wage_gap_1889",
+        "claim_his_bryn_gronvold_strike_health_reform_1889_1892",
+        "claim_his_youngstorget_mayday_1890_eight_hour_demand",
+        "claim_his_akerselva_industrial_energy_axis",
+        "claim_his_akerselva_environmental_reuse_from_1986",
+        "claim_his_aker_brygge_shipyard_contraction_closure_1978_1982",
+        "claim_his_aker_brygge_adaptive_reuse_industrial_heritage_1982_1986"
+      ],
+      "source_ids": [
+        "src_his_arbark_eight_hour_day_1890",
+        "src_his_arbark_mayday_history",
+        "src_his_oslo_byleksikon_aker_brygge",
+        "src_his_oslo_kommune_akerselva",
+        "src_his_snl_akers_mekaniske_verksted",
+        "src_his_snl_akerselva",
+        "src_his_snl_fyrstikkarbeiderstreiken",
+        "src_his_snl_nitedals_taendstikfabrik"
+      ],
+      "evidence_ids": [
+        "evidence_his_akerselva_01",
+        "evidence_his_akerselva_02",
+        "evidence_his_industry_deindustrialization_reuse_01",
+        "evidence_his_industry_deindustrialization_reuse_02",
+        "evidence_his_industry_work_environment_gender_02",
+        "evidence_his_industry_work_environment_gender_03",
+        "evidence_his_industry_work_environment_gender_04",
+        "evidence_his_industry_work_environment_gender_05",
+        "evidence_his_youngstorget_01"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_organisering_streik_forhandling",
+        "theory_his_avindustrialisering_ombruk_industriarv"
       ]
     }
   ]

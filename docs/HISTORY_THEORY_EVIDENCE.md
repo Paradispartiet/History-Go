@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 65 av 230 etter at arbeiderbolig, hushold, livsvilkår, arbeidsvandring og rekruttering V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 67 av 230 etter at organisering, streik, forhandling, avindustrialisering, ombruk og industriarv V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -52,6 +52,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Fabrikkorganisering og arbeidstid, lønn og ferdighet V1: **2** nye kvalifiserende teoriobjekter, **7** nye claims, **2** nyvaliderte cases og **1** utvidet case.
 - Arbeidsmiljø, risiko, helse, kjønn og lønn V1: **2** nye kvalifiserende teoriobjekter, **4** nye claims, **4** nye kilder og **2** nyvaliderte cases.
 - Arbeiderbolig, hushold, livsvilkår, arbeidsvandring og rekruttering V1: **2** nye kvalifiserende teoriobjekter, **2** nye claims, **1** ny kilde og **3** utvidede cases.
-- Totalt: **65 av 230** teoriobjekter (**28.3 %**).
+- Organisering, streik, forhandling, avindustrialisering, ombruk og industriarv V1: **2** nye kvalifiserende teoriobjekter, **2** nye claims, **2** nye kilder og **1** nyvalidert case.
+- Totalt: **67 av 230** teoriobjekter (**29.1 %**).
 - Universell status: **INCOMPLETE**.
-- Gjenstående teoriobjekter: **165**.
+- Gjenstående teoriobjekter: **163**.
