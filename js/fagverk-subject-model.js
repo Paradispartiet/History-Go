@@ -32,6 +32,115 @@
     return response.json();
   }
 
+  function resolveRelativeFagPointer(basePath, pointer) {
+    const base = CORE.text(basePath).replaceAll('\\', '/');
+    const value = CORE.text(pointer).replaceAll('\\', '/');
+    if (!base.startsWith('data/fag/') || !value || value.startsWith('/') || /^[a-z][a-z0-9+.-]*:/i.test(value)) {
+      throw new Error(`Ugyldig vitenskapelig fagpeker: ${value}`);
+    }
+    const parts = base.split('/').slice(0, -1);
+    for (const part of value.split('/')) {
+      if (!part || part === '.') continue;
+      if (part === '..') parts.pop();
+      else parts.push(part);
+    }
+    const resolved = parts.join('/');
+    if (!resolved.startsWith('data/fag/')) throw new Error(`Vitenskapelig fagpeker går utenfor data/fag: ${value}`);
+    return resolved;
+  }
+
+  function buildScientificSource({ index, domainCatalog, modules, methodProtocols }) {
+    const topics = modules.flatMap((module) => CORE.list(module?.topics));
+    const topicByDomain = new Map();
+    for (const topic of topics) {
+      const domainId = CORE.text(topic?.domain_id);
+      if (!topicByDomain.has(domainId)) topicByDomain.set(domainId, []);
+      topicByDomain.get(domainId).push(topic);
+    }
+
+    const domains = CORE.list(domainCatalog?.domains).map((domain) => {
+      const domainId = CORE.text(domain?.domain_id);
+      const domainTopics = topicByDomain.get(domainId) || [];
+      return {
+        ...domain,
+        emne_ids: domainTopics.map((topic) => topic.emne_id),
+        method_ids: CORE.unique(domainTopics.flatMap((topic) => CORE.list(topic?.method_protocol_ids)))
+      };
+    });
+
+    const emners = topics.map((topic) => ({
+      ...topic,
+      subject_id: index.subject_id,
+      definition: topic.evidence_focus,
+      why_it_matters: topic.research_question,
+      key_questions: topic.research_question ? [topic.research_question] : [],
+      method_ids: CORE.list(topic.method_protocol_ids),
+      conflicts: topic.topic_specific_inference_limit ? [topic.topic_specific_inference_limit] : [],
+      analysis_axes: CORE.list(topic.claim_type_ids),
+      status: 'active'
+    }));
+
+    const methods = {
+      methods: CORE.list(methodProtocols?.protocols).map((method) => ({
+        ...method,
+        title: method.label,
+        data_forms: CORE.list(method.compatible_evidence),
+        limitations: CORE.unique([
+          ...CORE.list(method.validity_threats),
+          method.forbidden_overreach
+        ]),
+        emne_ids: topics
+          .filter((topic) => CORE.list(topic?.method_protocol_ids).includes(method.method_id))
+          .map((topic) => topic.emne_id)
+      }))
+    };
+
+    return {
+      pensum: {
+        subject_id: index.subject_id,
+        subject_title: index.subject_title,
+        scope: index.scope,
+        purpose: 'Canonical vitenskapelig fagstruktur fra aktiv musikkvitenskapelig pakke.',
+        domain_order: domains.map((domain) => domain.domain_id),
+        domains
+      },
+      emners,
+      fagkart: {
+        subject_id: index.subject_id,
+        subject_title: index.subject_title,
+        status: index.status
+      },
+      methods
+    };
+  }
+
+  async function loadScientificSource(manifestEntry) {
+    const packagePath = CORE.resolveManifestPointer(manifestEntry.scientificPackage);
+    const scientificPackage = await fetchJson(packagePath);
+    const indexPath = resolveRelativeFagPointer(packagePath, scientificPackage.active_scientific_package);
+    const index = await fetchJson(indexPath);
+    const domainCatalogPath = resolveRelativeFagPointer(indexPath, index?.files?.domain_catalog);
+    const methodProtocolsPath = resolveRelativeFagPointer(indexPath, index?.files?.method_protocols);
+    const modulePaths = CORE.list(index?.files?.canonical_modules).map((pointer) => resolveRelativeFagPointer(indexPath, pointer));
+    if (!modulePaths.length) throw new Error(`${indexPath}: mangler canonical_modules`);
+    const [domainCatalog, methodProtocols, ...modules] = await Promise.all([
+      fetchJson(domainCatalogPath),
+      fetchJson(methodProtocolsPath),
+      ...modulePaths.map((path) => fetchJson(path))
+    ]);
+    return buildScientificSource({ index, domainCatalog, modules, methodProtocols });
+  }
+
+  async function loadLegacySource(manifestEntry) {
+    const [pensum, emners, fagkart, methods] = await Promise.all([
+      fetchJson(CORE.resolveManifestPointer(manifestEntry.pensum)),
+      fetchJson(CORE.resolveManifestPointer(manifestEntry.emner)),
+      fetchJson(CORE.resolveManifestPointer(manifestEntry.fagkart)),
+      fetchJson(CORE.resolveManifestPointer(manifestEntry.methods))
+    ]);
+    return { pensum, emners, fagkart, methods };
+  }
+
   function loadControls() {
     if (!controlsPromise) {
       controlsPromise = Promise.all(Object.values(PATHS).map((path) => fetchJson(path)))
@@ -73,11 +182,9 @@
         for (const field of coreFields) {
           if (!required.includes(field) || !CORE.text(manifestEntry?.[field])) throw new Error(`${id}: mangler required manifestfelt ${field}`);
         }
-        const [pensum, emners, fagkart, methods, badge] = await Promise.all([
-          fetchJson(CORE.resolveManifestPointer(manifestEntry.pensum)),
-          fetchJson(CORE.resolveManifestPointer(manifestEntry.emner)),
-          fetchJson(CORE.resolveManifestPointer(manifestEntry.fagkart)),
-          fetchJson(CORE.resolveManifestPointer(manifestEntry.methods)),
+
+        const [source, badge] = await Promise.all([
+          CORE.text(manifestEntry?.scientificPackage) ? loadScientificSource(manifestEntry) : loadLegacySource(manifestEntry),
           fetchJson(`data/badges/${encodeURIComponent(id)}.json`, { optional: true })
         ]);
 
@@ -92,7 +199,7 @@
           statusEntry,
           registry: controls.registry,
           badge,
-          source: { pensum, emners, fagkart, methods }
+          source
         });
       })().catch((error) => {
         subjectPromises.delete(cacheKey);
