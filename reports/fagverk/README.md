@@ -23,6 +23,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `politikk-offentlig-politikk-beslutning-implementering-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 21 bærende kilder.
 - `politikk-internasjonal-politikk-sikkerhet-samarbeid-audit.json` — kapittelgate for 5 emner, 4 metoder, tre redigerte moduler, 34 sporede claims og 21 inspectable kilder.
 - `politikk-politisk-okonomi-stat-marked-audit.json` — kapittelgate for 5 emner, 4 metoder, tre redigerte moduler, 34 sporede claims og 25 inspectable kilder.
+- `politikk-statsvitenskapelig-metode-og-sammenligning-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 36 sporede claims og 25 inspectable kilder.
 
 ## Regenerering
 
@@ -55,7 +56,9 @@ node scripts/audit-politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.m
 node scripts/audit-politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.mjs
 node scripts/audit-politikk-chapter-politisk-okonomi-stat-marked.mjs --write-report
 node scripts/audit-politikk-chapter-politisk-okonomi-stat-marked.mjs
-node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs
+node scripts/audit-politikk-chapter-statsvitenskapelig-metode-og-sammenligning.mjs --write-report
+node scripts/audit-politikk-chapter-statsvitenskapelig-metode-og-sammenligning.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs
 ```
 
 `subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
@@ -82,6 +85,6 @@ Historie står `materialized`, `audited` og `chapters_in_progress`. Fire av 23 f
 
 Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinnelige miljøkapitlene og biologifase 1 er bevart. Evolusjon/biologisk mangfold og organismebiologi/fysiologi er nå materialisert med egne emner, metoder, mappinger, fagkart og kapitler. Elleve kapitler dekker alle 65 materialiserte emner. Sopp/lav/mikroorganismer og geologiens indre prosesser står fortsatt som eksplisitte hull før faget kan bli `complete`.
 
-Politikk står `materialized`, `audited` og `chapters_in_progress`. Sju av tretten fagområder har registrerte kapitler, mens seks fortsatt mangler fullverdig hovedkapittel. `Regimer og institusjoner`, `Valg, partier og velgeratferd`, `Offentlig politikk, beslutning og implementering`, `Internasjonal politikk, sikkerhet og samarbeid` og `Politisk økonomi, stat og marked` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. Faget har i tillegg permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
+Politikk står `materialized`, `audited` og `chapters_in_progress`. Åtte av tretten fagområder har registrerte kapitler, mens fem fortsatt mangler fullverdig hovedkapittel. `Regimer og institusjoner`, `Valg, partier og velgeratferd`, `Offentlig politikk, beslutning og implementering`, `Internasjonal politikk, sikkerhet og samarbeid`, `Politisk økonomi, stat og marked` og `Statsvitenskapelig metode og sammenligning` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. Faget har i tillegg permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
 De gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
