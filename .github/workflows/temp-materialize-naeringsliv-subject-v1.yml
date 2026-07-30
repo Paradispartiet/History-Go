@@ -1,0 +1,43 @@
+name: TEMP materialize Økonomi og næringsliv subject v1
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.repository == 'Paradispartiet/History-Go' && github.head_ref == 'agent/naeringsliv-subject-materialization-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/naeringsliv-subject-materialization-v1
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: node scripts/materialize-naeringsliv-subject-v1.mjs
+      - name: Validate generated foundation
+        run: |
+          node --check scripts/audit-naeringsliv-subject-quality.mjs
+          node tools/validate-okonomi-naeringsliv-universitetsramme.mjs
+          node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
+          node tools/validate-okonomi-naeringsliv-handelshogskole.mjs
+          node scripts/audit-naeringsliv-subject-quality.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node --test tests/naeringsliv-subject-quality.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
+      - name: Commit materialized subject
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Materialiser Økonomi og næringsliv"
+          git push origin HEAD:agent/naeringsliv-subject-materialization-v1
