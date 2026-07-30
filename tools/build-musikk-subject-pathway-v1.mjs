@@ -4,6 +4,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FILE = 'data/quiz/musikk/musikk_subject_pathways_v1.json';
@@ -21,7 +22,8 @@ const jsonText = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
 const absolute = path.join(ROOT, FILE);
 const original = fs.readFileSync(absolute, 'utf8');
-const pkg = JSON.parse(original);
+const before = JSON.parse(original);
+const pkg = structuredClone(before);
 if (pkg.categoryId !== 'musikk' || pkg.subject_id !== 'musikk') throw new Error('Uventet subject-pathway-pakke');
 const sourceById = new Map(list(pkg.sources).map((source) => [clean(source.id), source]));
 if (!list(pkg.sets).length) throw new Error('Musikk pathway må ha minst ett sett');
@@ -56,13 +58,13 @@ for (const [setIndex, set] of list(pkg.sets).entries()) {
 const expectedQuestionCount = list(pkg.sets).length * 5;
 if (questionCount !== expectedQuestionCount) throw new Error(`Forventet ${expectedQuestionCount} pathway-spørsmål, fikk ${questionCount}`);
 
-const next = jsonText(pkg);
-if (next !== original) {
+const changed = !isDeepStrictEqual(before, pkg);
+if (changed) {
   if (WRITE) {
-    fs.writeFileSync(absolute, next, 'utf8');
+    fs.writeFileSync(absolute, jsonText(pkg), 'utf8');
     console.log(`Musikk pathway canonicalisert for ${pkg.sets.length} sett / ${questionCount} spørsmål.`);
   } else {
-    console.error('Musikk pathway er utdatert. Kjør node tools/build-musikk-subject-pathway-v1.mjs --write');
+    console.error('Musikk pathway har semantisk canonicaliseringsdrift. Kjør node tools/build-musikk-subject-pathway-v1.mjs --write');
     process.exitCode = 1;
   }
 } else {
