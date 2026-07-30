@@ -13,5 +13,5 @@ test('Økonomi og næringsliv is materialized through its canonical academic and
   assert.equal(report.summary.professionalTrackCount, 5);
   assert.equal(report.summary.professionalModuleCount, 25);
   assert.equal(report.summary.totalLearningUnits, 61);
-  assert.equal(report.summary.registeredChapterCount, 0);
+  assert.equal(report.summary.registeredChapterCount, 1);
 });
