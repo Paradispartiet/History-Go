@@ -1,0 +1,908 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "rett-lov-rettssikkerhet",
+  "verified_at": "2026-07-30",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "s01-grunnloven",
+      "label": "Grunnloven kapittel E",
+      "url": "https://lovdata.no/dokument/NL/lov/1814-05-17/KAPITTEL_1-4",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 89, 95–98, 102 og 113"
+    },
+    {
+      "id": "s02-forvaltningsloven-1967",
+      "label": "Forvaltningsloven 1967",
+      "url": "https://lovdata.no/lov/1967-02-10",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 16–18, 24–25, 28, 34–35 og ikrafttredelsesstatus"
+    },
+    {
+      "id": "s03-forvaltningsloven-2025",
+      "label": "Lov om saksbehandlingen i offentlig forvaltning 2025",
+      "url": "https://lovdata.no/lov/2025-06-20-81",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "lovens metadata og ikrafttredelsesbestemmelse"
+    },
+    {
+      "id": "s04-prop-79-l",
+      "label": "Prop. 79 L (2024–2025) Ny forvaltningslov",
+      "url": "https://www.regjeringen.no/no/dokumenter/prop.-79-l-20242025/id3094317/",
+      "publisher": "Justis- og beredskapsdepartementet",
+      "type": "proposisjon",
+      "source_location": "sammendrag og kapittel 2 om bakgrunn og hovedinnhold"
+    },
+    {
+      "id": "s05-domstolloven",
+      "label": "Domstolloven",
+      "url": "https://lovdata.no/lov/1915-08-13-5",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "kapittel 1–3 om domstolene og dommere"
+    },
+    {
+      "id": "s06-nou-domstolene",
+      "label": "NOU 2020: 11 Den tredje statsmakt",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2020-11/id2766587/?ch=3",
+      "publisher": "Domstolkommisjonen",
+      "type": "offentlig_utredning",
+      "source_location": "del II kapittel 3 om oppgaver, kontroll og rettsutvikling"
+    },
+    {
+      "id": "s07-prop-domstoluavhengighet",
+      "label": "Prop. 163 L (2024–2025)",
+      "url": "https://www.regjeringen.no/no/dokumenter/prop.-163-l-20242025/id3116973/?ch=3",
+      "publisher": "Justis- og beredskapsdepartementet",
+      "type": "proposisjon",
+      "source_location": "kapittel 3 om domstolenes og dommernes uavhengighet"
+    },
+    {
+      "id": "s08-menneskerettsloven",
+      "label": "Menneskerettsloven",
+      "url": "https://lovdata.no/lov/1999-05-21-30",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 2–3 om inkorporasjon og forrang"
+    },
+    {
+      "id": "s09-emk",
+      "label": "Den europeiske menneskerettskonvensjon",
+      "url": "https://lovdata.no/nav/lov/1999-05-21-30/emkn",
+      "publisher": "Lovdata",
+      "type": "konvensjon",
+      "source_location": "artiklene 6, 7 og 13"
+    },
+    {
+      "id": "s10-tvistemalsloven",
+      "label": "Tvisteloven",
+      "url": "https://lovdata.no/lov/2005-06-17-90",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 1-1, 11-1 til 11-5, 19-6 og kapittel 29–30"
+    },
+    {
+      "id": "s11-straffeprosessloven",
+      "label": "Straffeprosessloven",
+      "url": "https://lovdata.no/lov/1981-05-22-25",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "kapittel 22–23 om bevis og dom samt kapittel 23 om anke"
+    },
+    {
+      "id": "s12-politiloven",
+      "label": "Politiloven",
+      "url": "https://lovdata.no/lov/1995-08-04-53",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 2, 6 og 6 a"
+    },
+    {
+      "id": "s13-politi-maktmidler",
+      "label": "Politiets bruk av maktmidler",
+      "url": "https://www.regjeringen.no/no/dokumenter/politiets-bruk-av-maktmidler/id2946065/?ch=5",
+      "publisher": "Justis- og beredskapsdepartementet",
+      "type": "rapport",
+      "source_location": "kapittel 5 om hjemmel, nødvendighet og forsvarlighet"
+    },
+    {
+      "id": "s14-spesialenheten-2025",
+      "label": "Årsrapport 2025",
+      "url": "https://www.spesialenheten.no/wp-content/uploads/2026/02/arsrapport-til-justis-og-beredskapsdepartementet-2025.pdf",
+      "publisher": "Spesialenheten for politisaker",
+      "type": "arsrapport",
+      "source_location": "kapitlene om mandat, sakstyper og reaksjoner"
+    },
+    {
+      "id": "s15-straffeloven",
+      "label": "Straffeloven",
+      "url": "https://lovdata.no/lov/2005-05-20-28",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 14–15 og kapittel 14 om reaksjonsfastsettelse"
+    },
+    {
+      "id": "s16-administrative-sanksjoner",
+      "label": "Forvaltningsloven kapittel IX",
+      "url": "https://lovdata.no/lov/1967-02-10/KAPITTEL_9",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 43–50 om administrative sanksjoner og tvangsmulkt"
+    },
+    {
+      "id": "s17-likestillingsloven",
+      "label": "Likestillings- og diskrimineringsloven",
+      "url": "https://lovdata.no/lov/2017-06-16-51",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 6–11, 13 og 24"
+    },
+    {
+      "id": "s18-diskrimineringsnemnda",
+      "label": "Diskrimineringsnemnda sak 21/98",
+      "url": "https://www.diskrimineringsnemnda.no/media/3175/21-98-offentlig-versjon-av-uttalelse-og-vedtak-146973.pdf",
+      "publisher": "Diskrimineringsnemnda",
+      "type": "vedtak",
+      "source_location": "offentlig versjon, rettslig grunnlag og nemndas vurdering"
+    },
+    {
+      "id": "s19-nou-rettshjelp",
+      "label": "NOU 2020: 5 Likhet for loven",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2020-5/id2700210/?ch=5",
+      "publisher": "Rettshjelpsutvalget",
+      "type": "offentlig_utredning",
+      "source_location": "kapittel 5 om rettshjelpsbehov og tilgang til rettssystemet"
+    },
+    {
+      "id": "s20-sivilombudet-klage",
+      "label": "Fylkesmannens behandling av klagesak",
+      "url": "https://www.sivilombudet.no/uttalelser/fylkesmannens-behandling-av-klagesak/",
+      "publisher": "Sivilombudet",
+      "type": "ombudsuttalelse",
+      "source_location": "avsnittene om klageinstansens prøving, utredning og begrunnelse"
+    },
+    {
+      "id": "s21-sivilombudet-automatisering",
+      "label": "Forhåndsvarsling ved automatiserte vedtak om reduksjon i uføretrygd",
+      "url": "https://www.sivilombudet.no/uttalelser/forhandsvarsling-ved-automatiserte-vedtak-om-reduksjon-i-uforetrygd/",
+      "publisher": "Sivilombudet",
+      "type": "ombudsuttalelse",
+      "source_location": "sammendrag og rettslig vurdering av forhåndsvarsel"
+    },
+    {
+      "id": "s22-fosen-tidslinje",
+      "label": "Regjeringens arbeid med oppfølging av Fosen-saken",
+      "url": "https://www.regjeringen.no/no/tema/energi/landingssider/fosen/regjeringens-arbeid-med-oppfolging-av-Fosen-saken/id2979793/",
+      "publisher": "Energidepartementet",
+      "type": "tidslinje",
+      "source_location": "tidslinjen fra Høyesteretts dom til meklingsavtaler og oppfølging"
+    },
+    {
+      "id": "s23-prop-98-s-fosen",
+      "label": "Prop. 98 S (2023–2024)",
+      "url": "https://www.regjeringen.no/no/dokumenter/prop.-98-s-20232024/id3036336/?ch=6",
+      "publisher": "Energidepartementet",
+      "type": "proposisjon",
+      "source_location": "kapittel 6 om oppfølgingen av Fosen-saken"
+    },
+    {
+      "id": "s24-nim-2023",
+      "label": "Menneskerettighetsåret 2023",
+      "url": "https://www.nhri.no/arsmelding/arsmelding2023/menneskerettighetsaret-2023/",
+      "publisher": "Norges institusjon for menneskerettigheter",
+      "type": "arsmelding",
+      "source_location": "delen om Fosen og fortsatt krenkelse"
+    },
+    {
+      "id": "s25-ssb-anmeldte",
+      "label": "Anmeldte lovbrudd og ofre",
+      "url": "https://www.ssb.no/sosiale-forhold-og-kriminalitet/kriminalitet-og-rettsvesen/statistikk/anmeldte-lovbrudd-og-ofre",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "statistikk",
+      "source_location": "om statistikken, definisjoner og måleenhet"
+    },
+    {
+      "id": "s26-ssb-etterforskede",
+      "label": "Etterforskede lovbrudd",
+      "url": "https://www.ssb.no/sosiale-forhold-og-kriminalitet/kriminalitet-og-rettsvesen/statistikk/etterforskede-lovbrudd",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "statistikk",
+      "source_location": "om statistikken og overgangen fra anmeldelse til avgjørelse"
+    },
+    {
+      "id": "s27-galtung-1969",
+      "label": "Violence, Peace, and Peace Research",
+      "url": "https://journals.sagepub.com/doi/10.1177/002234336900600301",
+      "publisher": "Journal of Peace Research",
+      "type": "fagfellevurdert_artikkel",
+      "source_location": "begrepsdelen om direkte og strukturell vold"
+    },
+    {
+      "id": "s28-crenshaw-1989",
+      "label": "Demarginalizing the Intersection of Race and Sex",
+      "url": "https://chicagounbound.uchicago.edu/uclf/vol1989/iss1/8/",
+      "publisher": "University of Chicago Legal Forum",
+      "type": "fagfellevurdert_artikkel",
+      "source_location": "analysen av hvordan enkeltaksemodeller overser sammensatte erfaringer"
+    },
+    {
+      "id": "s29-fredman-likhet",
+      "label": "Substantive equality revisited",
+      "url": "https://academic.oup.com/icon/article/14/3/712/2404476",
+      "publisher": "International Journal of Constitutional Law",
+      "type": "fagfellevurdert_artikkel",
+      "source_location": "rammeverket for materiell likhet"
+    },
+    {
+      "id": "s30-stortinget-lovarbeid",
+      "label": "Lovarbeidet",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Lovarbeidet/",
+      "publisher": "Stortinget",
+      "type": "institusjonell_veiledning",
+      "source_location": "stegene fra lovforslag til behandling, vedtak og sanksjon"
+    }
+  ],
+  "claims": [
+    {
+      "id": "rett-01",
+      "claim": "Grunnloven § 113 krever at myndighetenes inngrep overfor den enkelte må ha grunnlag i lov.",
+      "source_ids": [
+        "s01-grunnloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-1",
+        "begrep-rettsstat",
+        "begrep-hjemmel",
+        "Hva skiller rettsstat fra styring gjennom lov?"
+      ]
+    },
+    {
+      "id": "rett-02",
+      "claim": "Rettsstat er mer enn styring gjennom lover: også kompetanse, forutberegnelighet, uavhengig prøving og effektive kontrollmuligheter må undersøkes.",
+      "source_ids": [
+        "s01-grunnloven",
+        "s06-nou-domstolene"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-1",
+        "begrep-rettsstat",
+        "Hva skiller rettsstat fra styring gjennom lov?"
+      ]
+    },
+    {
+      "id": "rett-03",
+      "claim": "Grunnloven § 89 gir domstolene kompetanse og plikt til å prøve om lover og andre myndighetsbeslutninger strider mot Grunnloven.",
+      "source_ids": [
+        "s01-grunnloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-1",
+        "Hva er forskjellen på legalitet og legitimitet?",
+        "hoyesteretts_hus"
+      ]
+    },
+    {
+      "id": "rett-04",
+      "claim": "At et tiltak har lovhjemmel avgjør ikke alene om det er legitimt eller om alle rettslige vilkår, herunder forholdsmessighet, er oppfylt.",
+      "source_ids": [
+        "s01-grunnloven",
+        "s17-likestillingsloven"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-1",
+        "Hva er forskjellen på legalitet og legitimitet?"
+      ]
+    },
+    {
+      "id": "rett-05",
+      "claim": "Grunnloven verner blant annet rettferdig rettergang, strafferettslig legalitet, likhet og privatliv i særskilte bestemmelser.",
+      "source_ids": [
+        "s01-grunnloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-1"
+      ]
+    },
+    {
+      "id": "rett-06",
+      "claim": "Normhierarki betyr at et enkeltvedtak må ha grunnlag i og være forenlig med forskrift, lov, Grunnlov og menneskerettslige forpliktelser som gjelder med forrang.",
+      "source_ids": [
+        "s01-grunnloven",
+        "s08-menneskerettsloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-1",
+        "begrep-hjemmel"
+      ]
+    },
+    {
+      "id": "rett-07",
+      "claim": "Domstolenes oppgaver omfatter å avgjøre konkrete tvister og straffesaker, kontrollere offentlig makt og bidra til rettsavklaring.",
+      "source_ids": [
+        "s05-domstolloven",
+        "s06-nou-domstolene"
+      ],
+      "classification": "institusjonell",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-2",
+        "module-2",
+        "hoyesteretts_hus",
+        "tinghuset"
+      ]
+    },
+    {
+      "id": "rett-08",
+      "claim": "Domstoluavhengighet beskytter avgjørelsen mot instrukser i den enkelte sak, men utelukker ikke lovregulering, offentlighet, anke eller faglig kritikk.",
+      "source_ids": [
+        "s06-nou-domstolene",
+        "s07-prop-domstoluavhengighet"
+      ],
+      "classification": "institusjonell",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-2"
+      ]
+    },
+    {
+      "id": "rett-09",
+      "claim": "En rettferdig prosess forutsetter at partene kan kjenne og imøtegå materialet som brukes, og at retten bygger avgjørelsen på forsvarlig behandling av krav og bevis.",
+      "source_ids": [
+        "s09-emk",
+        "s10-tvistemalsloven",
+        "s11-straffeprosessloven"
+      ],
+      "classification": "prosessuell",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-2",
+        "begrep-kontradiksjon",
+        "tinghuset"
+      ]
+    },
+    {
+      "id": "rett-10",
+      "claim": "Bevisføring gjelder hvilket materiale som bringes inn, mens bevisvurdering gjelder hvilken vekt retten gir materialet og hvilket faktum den finner bevist.",
+      "source_ids": [
+        "s10-tvistemalsloven",
+        "s11-straffeprosessloven"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-2",
+        "tinghuset"
+      ]
+    },
+    {
+      "id": "rett-11",
+      "claim": "En dom får ikke automatisk samme rekkevidde som en lov; prejudikatvirkning avhenger av rettsspørsmål, begrunnelse, domstolsnivå og likheten med senere saker.",
+      "source_ids": [
+        "s06-nou-domstolene"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-2",
+        "begrep-prejudikat",
+        "module-2",
+        "Hvorfor er ikke enhver dom en lovregel?",
+        "hoyesteretts_hus"
+      ]
+    },
+    {
+      "id": "rett-12",
+      "claim": "Anke og andre rettsmidler gir mulighet for ny kontroll, men virkningen avhenger av frister, vilkår, kompetanse og hva kontrollorganet kan beslutte.",
+      "source_ids": [
+        "s09-emk",
+        "s10-tvistemalsloven",
+        "s11-straffeprosessloven"
+      ],
+      "classification": "prosessuell",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-2"
+      ]
+    },
+    {
+      "id": "rett-13",
+      "claim": "Menneskerettsloven gjør utvalgte konvensjoner til norsk lov og gir dem forrang ved motstrid med annen lovgivning.",
+      "source_ids": [
+        "s08-menneskerettsloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-3",
+        "Fosen: fra rettighetsdom til gjennomføring"
+      ]
+    },
+    {
+      "id": "rett-14",
+      "claim": "En rettighet må analyseres sammen med pliktsubjektet, rettighetens rekkevidde, tillatte begrensninger og muligheten for et effektivt rettsmiddel.",
+      "source_ids": [
+        "s08-menneskerettsloven",
+        "s09-emk"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-3"
+      ]
+    },
+    {
+      "id": "rett-15",
+      "claim": "Et effektivt rettsmiddel må kunne behandle en påstått krenkelse og gi relevant oppfølging; en formell kanal er ikke nødvendigvis tilstrekkelig i praksis.",
+      "source_ids": [
+        "s09-emk",
+        "s19-nou-rettshjelp"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-3",
+        "begrep-rettsmiddel",
+        "Fosen: fra rettighetsdom til gjennomføring"
+      ]
+    },
+    {
+      "id": "rett-16",
+      "claim": "I Fosen-saken fastslo Høyesterett et menneskerettsbrudd, mens oppfølgingen deretter krevde egne politiske og administrative prosesser.",
+      "source_ids": [
+        "s22-fosen-tidslinje",
+        "s23-prop-98-s-fosen"
+      ],
+      "classification": "case",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-3",
+        "Fosen: fra rettighetsdom til gjennomføring"
+      ]
+    },
+    {
+      "id": "rett-17",
+      "claim": "Fosen-forløpet viser at rettighetsfastsettelse, stans av en krenkelse, avbøtende tiltak og langsiktig gjennomføring er forskjellige analytiske ledd.",
+      "source_ids": [
+        "s22-fosen-tidslinje",
+        "s24-nim-2023"
+      ],
+      "classification": "case",
+      "status": "verified",
+      "used_in": [
+        "rett-grunnlag-3",
+        "Fosen: fra rettighetsdom til gjennomføring"
+      ]
+    },
+    {
+      "id": "rett-18",
+      "claim": "Forvaltningens myndighet må knyttes til kompetansegrunnlag og riktig beslutningstype; politiske mål erstatter ikke rettslig hjemmel.",
+      "source_ids": [
+        "s01-grunnloven",
+        "s02-forvaltningsloven-1967"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-1",
+        "Automatisert reduksjon av uføretrygd",
+        "begrep-enkeltvedtak",
+        "Rekonstruer en rettssikkerhetskjede for et offentlig vedtak.",
+        "Hvilke ledd bør spores i et forvaltningsvedtak?"
+      ]
+    },
+    {
+      "id": "rett-19",
+      "claim": "Forhåndsvarsel skal normalt gi parten mulighet til å uttale seg før et enkeltvedtak treffes når parten ikke allerede har fått uttale seg.",
+      "source_ids": [
+        "s02-forvaltningsloven-1967"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-1",
+        "Automatisert reduksjon av uføretrygd",
+        "begrep-enkeltvedtak",
+        "Rekonstruer en rettssikkerhetskjede for et offentlig vedtak.",
+        "Hvilke ledd bør spores i et forvaltningsvedtak?"
+      ]
+    },
+    {
+      "id": "rett-20",
+      "claim": "Forvaltningen har ansvar for at saken er så godt opplyst som mulig før vedtak, og kontradiksjon kan være nødvendig for å rette feil eller tilføre manglende fakta.",
+      "source_ids": [
+        "s02-forvaltningsloven-1967",
+        "s20-sivilombudet-klage"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-1",
+        "Automatisert reduksjon av uføretrygd",
+        "Rekonstruer en rettssikkerhetskjede for et offentlig vedtak.",
+        "Hvilke ledd bør spores i et forvaltningsvedtak?"
+      ]
+    },
+    {
+      "id": "rett-21",
+      "claim": "Begrunnelse skal synliggjøre regler, faktiske forhold og sentrale skjønnshensyn slik at parten og kontrollorganet kan etterprøve avgjørelsen.",
+      "source_ids": [
+        "s02-forvaltningsloven-1967",
+        "s20-sivilombudet-klage"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-1",
+        "Automatisert reduksjon av uføretrygd",
+        "begrep-skjon",
+        "Rekonstruer en rettssikkerhetskjede for et offentlig vedtak.",
+        "Hvilke ledd bør spores i et forvaltningsvedtak?"
+      ]
+    },
+    {
+      "id": "rett-22",
+      "claim": "Klageinstansen kan prøve sider av saken innenfor lovens rammer og må selv sørge for forsvarlig utredning og begrunnelse.",
+      "source_ids": [
+        "s02-forvaltningsloven-1967",
+        "s20-sivilombudet-klage"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-1",
+        "Rekonstruer en rettssikkerhetskjede for et offentlig vedtak.",
+        "Hvilke ledd bør spores i et forvaltningsvedtak?"
+      ]
+    },
+    {
+      "id": "rett-23",
+      "claim": "Automatisert saksbehandling fjerner ikke i seg selv plikten til forhåndsvarsel; Sivilombudet kritiserte NAVs automatiserte reduksjon av uføretrygd uten tilstrekkelig varsel.",
+      "source_ids": [
+        "s21-sivilombudet-automatisering"
+      ],
+      "classification": "case",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-1",
+        "Automatisert reduksjon av uføretrygd"
+      ]
+    },
+    {
+      "id": "rett-24",
+      "claim": "Politiets oppgaver og inngrep må skilles: et legitimt politioppdrag gir ikke automatisk hjemmel for et bestemt tvangstiltak.",
+      "source_ids": [
+        "s01-grunnloven",
+        "s12-politiloven"
+      ],
+      "classification": "politi",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-2",
+        "module-2",
+        "begrep-inngrepshjemmel",
+        "Prøv et politi- eller sanksjonstiltak.",
+        "politihuset_gronland"
+      ]
+    },
+    {
+      "id": "rett-25",
+      "claim": "Politiloven § 6 regulerer hvordan et tjenesteoppdrag skal gjennomføres, men er ikke alene en selvstendig inngrepshjemmel.",
+      "source_ids": [
+        "s12-politiloven",
+        "s13-politi-maktmidler"
+      ],
+      "classification": "politi",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-2",
+        "module-2",
+        "begrep-inngrepshjemmel",
+        "Prøv et politi- eller sanksjonstiltak.",
+        "Hvorfor er politiloven § 6 ikke nok som inngrepsanalyse?",
+        "politihuset_gronland"
+      ]
+    },
+    {
+      "id": "rett-26",
+      "claim": "Politiets maktbruk må være nødvendig, forsvarlig og forholdsmessig, og svakere midler skal vurderes når de er tilstrekkelige.",
+      "source_ids": [
+        "s12-politiloven",
+        "s13-politi-maktmidler"
+      ],
+      "classification": "politi",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-2",
+        "module-2",
+        "Prøv et politi- eller sanksjonstiltak.",
+        "Hvorfor er politiloven § 6 ikke nok som inngrepsanalyse?",
+        "politihuset_gronland"
+      ]
+    },
+    {
+      "id": "rett-27",
+      "claim": "Spesialenheten etterforsker saker om mulig straffbar handling i tjenesten, men mandat, beviskrav og mulige reaksjoner må holdes atskilt fra ordinær ledelses- og klagekontroll.",
+      "source_ids": [
+        "s14-spesialenheten-2025"
+      ],
+      "classification": "kontroll",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-2",
+        "Prøv et politi- eller sanksjonstiltak."
+      ]
+    },
+    {
+      "id": "rett-28",
+      "claim": "Skjønn gir rom for situasjonstilpasning, men må bindes av formål, relevante hensyn, likebehandling, dokumentasjon og etterfølgende kontroll.",
+      "source_ids": [
+        "s02-forvaltningsloven-1967",
+        "s12-politiloven"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-2",
+        "begrep-skjon",
+        "politihuset_gronland"
+      ]
+    },
+    {
+      "id": "rett-29",
+      "claim": "Straff krever lovhjemmel, og både Grunnloven og straffeloven uttrykker et legalitetskrav som begrenser tilbakevirkende eller analogisk kriminalisering.",
+      "source_ids": [
+        "s01-grunnloven",
+        "s15-straffeloven"
+      ],
+      "classification": "strafferett",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-3",
+        "Hva skiller straff fra administrativ sanksjon?",
+        "botsfengselet"
+      ]
+    },
+    {
+      "id": "rett-30",
+      "claim": "Straffeprosessen skiller etterforskning, tiltale, bevisføring, skyldavgjørelse og reaksjonsfastsettelse; hvert ledd har egne aktører og kontrollspørsmål.",
+      "source_ids": [
+        "s09-emk",
+        "s11-straffeprosessloven",
+        "s15-straffeloven"
+      ],
+      "classification": "prosessuell",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-3",
+        "botsfengselet"
+      ]
+    },
+    {
+      "id": "rett-31",
+      "claim": "En administrativ sanksjon er en negativ reaksjon ilagt av et forvaltningsorgan på grunn av et lovbrudd og krever hjemmel i lov.",
+      "source_ids": [
+        "s16-administrative-sanksjoner"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-3",
+        "begrep-administrativ-sanksjon",
+        "Prøv et politi- eller sanksjonstiltak.",
+        "Hva skiller straff fra administrativ sanksjon?"
+      ]
+    },
+    {
+      "id": "rett-32",
+      "claim": "Straff og administrativ sanksjon må skilles etter organ, prosess og reaksjon, samtidig som menneskerettslige straffegarantier kan få betydning for begge.",
+      "source_ids": [
+        "s09-emk",
+        "s16-administrative-sanksjoner"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-3",
+        "begrep-administrativ-sanksjon",
+        "Prøv et politi- eller sanksjonstiltak.",
+        "Hva skiller straff fra administrativ sanksjon?"
+      ]
+    },
+    {
+      "id": "rett-33",
+      "claim": "Forholdsmessighetsanalyse krever sammenheng mellom formål, inngrepets egnethet og nødvendighet, byrden for den berørte og mulige mildere alternativer.",
+      "source_ids": [
+        "s01-grunnloven",
+        "s12-politiloven",
+        "s17-likestillingsloven"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-fordypning-3",
+        "begrep-forholdsmessighet",
+        "Prøv et politi- eller sanksjonstiltak.",
+        "botsfengselet"
+      ]
+    },
+    {
+      "id": "rett-34",
+      "claim": "Likestillings- og diskrimineringsloven forbyr både direkte og indirekte diskriminering på lovens vernede grunnlag.",
+      "source_ids": [
+        "s17-likestillingsloven"
+      ],
+      "classification": "likestilling",
+      "status": "verified",
+      "used_in": [
+        "module-2",
+        "rett-anvendelse-1",
+        "Undersøk om en lik regel gir likeverdig tilgang.",
+        "begrep-direkte-diskriminering",
+        "begrep-indirekte-diskriminering",
+        "Hvorfor kan lik behandling gi ulikt resultat?"
+      ]
+    },
+    {
+      "id": "rett-35",
+      "claim": "Lik behandling kan videreføre ulikhet når grupper møter ulike barrierer; materiell likhet undersøker også ulempe, deltakelse, tilpasning og endring av strukturer.",
+      "source_ids": [
+        "s29-fredman-likhet"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "module-2",
+        "rett-anvendelse-1",
+        "Undersøk om en lik regel gir likeverdig tilgang.",
+        "begrep-materiell-likeverd",
+        "Hvorfor kan lik behandling gi ulikt resultat?"
+      ]
+    },
+    {
+      "id": "rett-36",
+      "claim": "Reell tilgang til rett avhenger ikke bare av en formell adgang, men også av informasjon, kostnader, rettshjelp, språk, tid og institusjonell kapasitet.",
+      "source_ids": [
+        "s19-nou-rettshjelp"
+      ],
+      "classification": "tilgang",
+      "status": "verified",
+      "used_in": [
+        "module-2",
+        "rett-anvendelse-1",
+        "Undersøk om en lik regel gir likeverdig tilgang."
+      ]
+    },
+    {
+      "id": "rett-37",
+      "claim": "En enkeltakseanalyse kan overse hvordan flere makt- og diskrimineringsdimensjoner virker sammen i en persons møte med rettssystemet.",
+      "source_ids": [
+        "s28-crenshaw-1989"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "module-2",
+        "rett-anvendelse-1",
+        "Undersøk om en lik regel gir likeverdig tilgang."
+      ]
+    },
+    {
+      "id": "rett-38",
+      "claim": "Den norske lovgivningskjeden skiller blant annet lovforslag, komitébehandling, stortingsvedtak, sanksjon og kunngjøring.",
+      "source_ids": [
+        "s30-stortinget-lovarbeid"
+      ],
+      "classification": "lovprosess",
+      "status": "verified",
+      "used_in": [
+        "module-2",
+        "rett-anvendelse-2",
+        "Hva må kontrolleres før en ny lov brukes som gjeldende rett?",
+        "stortinget"
+      ]
+    },
+    {
+      "id": "rett-39",
+      "claim": "Den nye forvaltningsloven fra 2025 fastsetter at Kongen bestemmer ikrafttredelsen; vedtak og kunngjøring dokumenterer derfor ikke alene at loven gjelder.",
+      "source_ids": [
+        "s03-forvaltningsloven-2025"
+      ],
+      "classification": "lovprosess",
+      "status": "verified",
+      "used_in": [
+        "module-2",
+        "rett-anvendelse-2",
+        "begrep-ikrafttredelse",
+        "Hva må kontrolleres før en ny lov brukes som gjeldende rett?",
+        "stortinget"
+      ]
+    },
+    {
+      "id": "rett-40",
+      "claim": "En reformanalyse bør følge problemdefinisjon, utredning, høring, proposisjon, vedtak, overgangsregler, ikrafttredelse og faktisk praksis som separate ledd.",
+      "source_ids": [
+        "s04-prop-79-l",
+        "s30-stortinget-lovarbeid"
+      ],
+      "classification": "reform",
+      "status": "verified",
+      "used_in": [
+        "rett-anvendelse-2",
+        "stortinget"
+      ]
+    },
+    {
+      "id": "rett-41",
+      "claim": "Sammenstillingen av forvaltningsloven fra 1967 og loven fra 2025 viser hvordan eldre institusjoner og begreper kan videreføres, omarbeides eller gis nye rammer.",
+      "source_ids": [
+        "s02-forvaltningsloven-1967",
+        "s03-forvaltningsloven-2025",
+        "s04-prop-79-l"
+      ],
+      "classification": "historisk",
+      "status": "verified",
+      "used_in": [
+        "rett-anvendelse-2"
+      ]
+    },
+    {
+      "id": "rett-42",
+      "claim": "Begrepet strukturell vold retter oppmerksomheten mot systematiske skader og begrensede livsmuligheter som kan oppstå uten én identifiserbar voldshandling.",
+      "source_ids": [
+        "s27-galtung-1969"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "rett-anvendelse-3",
+        "begrep-strukturell-vold"
+      ]
+    },
+    {
+      "id": "rett-43",
+      "claim": "Statistikk over anmeldte og etterforskede lovbrudd beskriver hendelser registrert og behandlet av kontrollapparatet, ikke direkte all kriminalitet i samfunnet.",
+      "source_ids": [
+        "s25-ssb-anmeldte",
+        "s26-ssb-etterforskede"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "rett-anvendelse-3",
+        "Hvorfor er anmeldte lovbrudd ikke lik all kriminalitet?"
+      ]
+    },
+    {
+      "id": "rett-44",
+      "claim": "Kritisk rettsanalyse undersøker hvordan tilsynelatende nøytrale kategorier, terskler og prosesser kan fordele byrder ulikt og skjule sammensatte erfaringer.",
+      "source_ids": [
+        "s17-likestillingsloven",
+        "s28-crenshaw-1989",
+        "s29-fredman-likhet"
+      ],
+      "classification": "analytisk",
+      "status": "verified",
+      "used_in": [
+        "rett-anvendelse-3",
+        "Undersøk om en lik regel gir likeverdig tilgang."
+      ]
+    }
+  ]
+}
