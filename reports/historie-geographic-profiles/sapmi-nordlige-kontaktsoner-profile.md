@@ -9,8 +9,8 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 ## Struktur
 
 - Universelle emner: **230**
-- Unike emner med profilkoblinger: **5**
-- Mappingrecords: **5**
+- Unike emner med profilkoblinger: **9**
+- Mappingrecords: **9**
 - Casekandidater: **2**
 
 ## Evidensgrunnlag
@@ -32,6 +32,6 @@ Ingen åpne terskelgap.
 
 ## Videre produksjonskø
 
-- 225 universelle emner mangler fortsatt en casekandidat i profilen.
+- 221 universelle emner mangler fortsatt en casekandidat i profilen.
 - 0 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
 - Videre produksjon skal bruke canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon uten å gjøre pilotgeografien universell.

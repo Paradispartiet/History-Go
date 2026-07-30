@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **140**
-- Andel med dokumentert evidensgrunnlag: **60.9 %**
+- Validerte pilotobjekter: **150**
+- Andel med dokumentert evidensgrunnlag: **65.2 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -155,6 +155,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Diskriminering, rasisme og ekskludering | 4 | 3 | 5 | 4 | evidence_ready |
 | Organisering, motstand og offentlighet | 5 | 3 | 3 | 5 | evidence_ready |
 | Tilhørighet, identitet og minne | 4 | 3 | 4 | 4 | evidence_ready |
+| Samiske samfunn, siida og næringsformer: forklarings- og kildebane | 5 | 4 | 6 | 5 | evidence_ready |
+| Kontaktsoner, handel og statsgrenser: forklarings- og kildebane | 5 | 2 | 3 | 5 | evidence_ready |
+| Misjon, kristning og kunnskapsmakt: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Jord, ressursrett og kolonisering: forklarings- og kildebane | 4 | 3 | 6 | 4 | evidence_ready |
+| Fornorskning, skole og språk: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
+| Raseforskning og vitenskapelig klassifikasjon: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Organisering, Alta og rettighetskamp: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
+| Revitalisering, sannhet og forsoning: forklarings- og kildebane | 6 | 4 | 8 | 6 | evidence_ready |
+| Sannhet, forsoning og arkivenes ansvar: forklarings- og kildebane | 6 | 4 | 7 | 6 | evidence_ready |
+| Kunst, kulturarv og revitalisering som historisk praksis: forklarings- og kildebane | 6 | 4 | 6 | 6 | evidence_ready |
 
 ## Kontraktsgrense
 
