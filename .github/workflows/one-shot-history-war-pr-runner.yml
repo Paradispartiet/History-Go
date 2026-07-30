@@ -1,0 +1,78 @@
+name: One-shot History war PR runner
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.ref == 'agent/history-war-collaboration-grayzones-evidence-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Extract and run materializer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import textwrap
+          p = Path('.github/workflows/one-shot-history-war-collaboration-grayzones-v1.yml')
+          lines = p.read_text().splitlines()
+          start = next(i for i, line in enumerate(lines) if "node <<'NODE'" in line) + 1
+          end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'NODE')
+          script = textwrap.dedent('\n'.join(lines[start:end])) + '\n'
+          Path('/tmp/materialize-history-war-v1.cjs').write_text(script)
+          PY
+          node /tmp/materialize-history-war-v1.cjs
+
+      - name: Regenerate deterministic History reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-theory-evidence.mjs
+          node tools/audit-historie-geographic-profile.mjs
+          node tools/audit-historie-universal-coverage.mjs
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze --reason='V5.8 freeze reaffirmed after war collaboration and gray-zones V6 evidence batch; frozen theory definitions remain unchanged.'
+          node scripts/audit-fagverk-historie.mjs --write-report --no-check-report
+
+      - name: Validate focused History gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-profile-evidence.mjs
+          node tools/validate-historie-theory-evidence.mjs --check
+          node tools/audit-historie-geographic-profile.mjs --check
+          node tools/audit-historie-universal-coverage.mjs --check
+          node tools/audit-historie-v5-5-quality-depth.mjs
+          node scripts/audit-fagverk-historie.mjs
+          node --test tests/fagverk-historie.test.mjs
+
+      - name: Commit clean production output
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/one-shot-history-war-collaboration-grayzones-v1.yml
+          git rm .github/workflows/one-shot-history-war-pr-runner.yml
+          git rm .history-war-collaboration-grayzones-trigger
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git status --short
+          git commit -m 'Bygg Historie samarbeid- og gråsoneevidens V1'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
