@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 71 av 230 etter at propaganda, sensur, informasjonskontroll, fangenskap, vold og forfølgelse V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 73 av 230 etter at overgangsrettferdighet, rettsoppgjør, kald krig, beredskap og sikkerhetsstat V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -55,6 +55,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Organisering, streik, forhandling, avindustrialisering, ombruk og industriarv V1: **2** nye kvalifiserende teoriobjekter, **2** nye claims, **2** nye kilder og **1** nyvalidert case.
 - Okkupasjon, samarbeid, tilpasning, motstand og gråsoner V1: **2** nye kvalifiserende teoriobjekter, **3** nye claims, **2** nye kilder og **1** nyvalidert case.
 - Propaganda, sensur, informasjonskontroll, fangenskap, vold og forfølgelse V1: **2** nye kvalifiserende teoriobjekter, **7** nye claims, **5** nye kilder, **3** nyvaliderte cases og **1** utvidet case.
-- Totalt: **71 av 230** teoriobjekter (**30.9 %**).
+- Overgangsrettferdighet, rettsoppgjør, kald krig, beredskap og sikkerhetsstat V1: **2** nye kvalifiserende teoriobjekter, **8** nye claims, **8** nye kilder, **1** nyvalidert case og **3** utvidede cases.
+- Totalt: **73 av 230** teoriobjekter (**31.7 %**).
 - Universell status: **INCOMPLETE**.
-- Gjenstående teoriobjekter: **159**.
+- Gjenstående teoriobjekter: **157**.
