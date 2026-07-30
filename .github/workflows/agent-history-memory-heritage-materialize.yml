@@ -1,0 +1,323 @@
+name: Agent History memory heritage evidence materialize
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.ref == 'agent/history-memory-heritage-evidence-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Materialize canonical memory and heritage evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const P = {
+            claims: 'data/fag/historie/claims_historie_canonical_v1.json',
+            sources: 'data/fag/historie/sources_historie_canonical_v1.json',
+            evidence: 'data/fag/historie/place_evidence_historie_v1.json',
+            theory: 'data/fag/historie/theory_evidence_historie_canonical_v1.json',
+            profile: 'data/fag/profiles/historie/oslo_akershus/profile.json',
+            docs: 'docs/HISTORY_THEORY_EVIDENCE.md',
+            test: 'tests/fagverk-historie.test.mjs',
+            dossier: 'data/fag/historie/source_dossiers/memory_heritage_preservation_names_digital_v1.json',
+            batchDoc: 'docs/HISTORY_MEMORY_HERITAGE_EVIDENCE_V1.md'
+          };
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const write = (p,v) => fs.writeFileSync(p, `${JSON.stringify(v,null,2)}\n`);
+          const uniq = xs => [...new Set(xs)];
+          const uniqSort = xs => uniq(xs).sort((a,b)=>String(a).localeCompare(String(b),'nb'));
+          const addUnique = (arr, values) => uniq([...(arr||[]), ...values]);
+          const batchId = 'history_memory_heritage_evidence_v1';
+          const accessedAt = '2026-07-30';
+
+          const claimsFile = read(P.claims);
+          const sourcesFile = read(P.sources);
+          const evidenceFile = read(P.evidence);
+          const theoryFile = read(P.theory);
+          const profile = read(P.profile);
+
+          if (theoryFile.completion?.qualifying_entries !== 75) throw new Error(`Expected 75 qualifying entries, found ${theoryFile.completion?.qualifying_entries}`);
+          if (claimsFile.claims.length !== 143) throw new Error(`Expected 143 claims, found ${claimsFile.claims.length}`);
+          if (sourcesFile.sources.length !== 112) throw new Error(`Expected 112 sources, found ${sourcesFile.sources.length}`);
+          if (evidenceFile.evidence_links.length !== 145) throw new Error(`Expected 145 evidence links, found ${evidenceFile.evidence_links.length}`);
+          if (profile.production_coverage?.claims_total !== 143 || profile.production_coverage?.sources_total !== 112 || profile.production_coverage?.evidence_links_total !== 145) throw new Error('Profile production counts are not at expected preflight values');
+
+          const targetTheoryIds = [
+            'theory_his_bevaring_restaurering_autentisitet',
+            'theory_his_stedsnavn_navnepolitikk',
+            'theory_his_digital_kulturarv_formidling'
+          ];
+          for (const id of targetTheoryIds) if (theoryFile.entries.some(e=>e.theory_id===id)) throw new Error(`${id} already exists`);
+
+          const newSourceIds = [
+            'src_his_riksantikvaren_eidsvoll_restaurering_2014',
+            'src_his_oslo_kommune_hovedoya_klosterruin_rehabilitering',
+            'src_his_storting_kristiania_oslo_name_change_1924',
+            'src_his_oslo_byleksikon_youngstorget'
+          ];
+          for (const id of newSourceIds) if (sourcesFile.sources.some(s=>s.source_id===id)) throw new Error(`Duplicate source id ${id}`);
+          const newUrls = [
+            'https://riksantikvaren.no/kalender/riksantikvartimen-restaureringen-av-eidsvollsbygningen/',
+            'https://www.oslo.kommune.no/slik-bygger-vi-oslo/rehabilitering-av-hovedoya-klosterruin',
+            'https://www.stortinget.no/no/Saker-og-publikasjoner/Stortingsforhandlinger/Saksside/?did=DIVL199088&mtid=142&pid=1911-1924&vt=a',
+            'https://oslobyleksikon.no/side/Youngstorget'
+          ];
+          for (const url of newUrls) if (sourcesFile.sources.some(s=>s.url===url)) throw new Error(`Duplicate source URL ${url}`);
+
+          const provenance = sourceId => ({ repository_source: P.dossier, extracted_from: [`sources.${sourceId}`], accessed_at: accessedAt });
+          const dating = () => ({ published_at: null, updated_at: null, accessed_at: accessedAt });
+          const newSources = [
+            {
+              source_id:'src_his_riksantikvaren_eidsvoll_restaurering_2014', title:'Riksantikvartimen – Restaureringen av Eidsvollsbygningen', publisher:'Riksantikvaren', source_type:'official_heritage_restoration_page', url:newUrls[0], language:'nb', geography_ids:['geo_no_oslo_akershus'], temporal_scope:{from:1914,to:2014}, provenance:provenance('src_his_riksantikvaren_eidsvoll_restaurering_2014'), dating:dating(), limitations:[
+                'Siden er en offisiell faglig introduksjon til et webinar og sammenfatter restaureringshistorien; den erstatter ikke fullstendige konserveringsrapporter, bygningsarkeologiske undersøkelser eller materialjournaler for hvert inngrep.',
+                'Bildesammenstillingen dokumenterer synlige forskjeller mellom restaureringsresultater, men alene ikke alle beslutninger, materialskifter eller håndverksprosesser som skapte forskjellene.'
+              ], quality:{tier:'A', rationale:'Offisiell kulturmiljøfaglig kilde som eksplisitt sammenligner restaureringene i 1914, 1964 og 2014 og deres felles 1814-mål.'}
+            },
+            {
+              source_id:'src_his_oslo_kommune_hovedoya_klosterruin_rehabilitering', title:'Rehabilitering av Hovedøya klosterruin', publisher:'Oslo kommune', source_type:'official_municipal_conservation_project_page', url:newUrls[1], language:'nb', geography_ids:['geo_no_oslo_akershus'], temporal_scope:{from:2023,to:null}, provenance:provenance('src_his_oslo_kommune_hovedoya_klosterruin_rehabilitering'), dating:dating(), limitations:[
+                'Prosjektsiden beskriver kommunens pågående tiltak og mål og er derfor en aktørkilde til dagens forvaltning, ikke en fullstendig uavhengig evaluering av ruinens autentisitet eller hele restaureringshistorien.',
+                'Reparasjon, toppavdekning og sikkerhetstiltak dokumenterer konkrete inngrep, men siden kvantifiserer ikke materialandelen som skiftes eller langtidsvirkningen av tiltakene.'
+              ], quality:{tier:'A', rationale:'Offisiell kommunal prosjektkilde for konkrete konserveringsinngrep, sikkerhet, ansvar og tidsløp ved Hovedøya klosterruin.'}
+            },
+            {
+              source_id:'src_his_storting_kristiania_oslo_name_change_1924', title:'Om forslag om forandr. av Kristiania bys navn', publisher:'Stortinget', source_type:'official_parliamentary_case_register', url:newUrls[2], language:'nb', geography_ids:['geo_no_oslo_akershus'], temporal_scope:{from:1924,to:1925}, provenance:provenance('src_his_storting_kristiania_oslo_name_change_1924'), dating:dating(), limitations:[
+                'Sakssiden dokumenterer den formelle lovprosessen og ikrafttredelsen, men viser ikke i seg selv hvordan innbyggere brukte, aksepterte eller motsatte seg navnene i dagligtale.',
+                'Registeroversikten peker til forhandlinger og beslutninger, men er en komprimert inngang til saken og erstatter ikke detaljlesning av hele debatten dersom motiv, retorikk og stemmegivning skal analyseres.'
+              ], quality:{tier:'A', rationale:'Offisiell parlamentarisk registerkilde for lov 11. juli 1924 og at bynavnet Oslo gjaldt fra 1. januar 1925.'}
+            },
+            {
+              source_id:'src_his_oslo_byleksikon_youngstorget', title:'Youngstorget', publisher:'Oslo byleksikon', source_type:'reference_encyclopedia', url:newUrls[3], language:'nb', geography_ids:['geo_no_oslo_akershus'], temporal_scope:{from:1846,to:null}, provenance:provenance('src_his_oslo_byleksikon_youngstorget'), dating:dating(), limitations:[
+                'Byleksikonet er en redigert sekundærkilde og erstatter ikke kommunale navnevedtak eller samtidige kart dersom den administrative beslutningsprosessen i 1852 eller 1951 skal rekonstrueres detaljert.',
+                'At eldre navn overlever i bygningsnavn, historisk omtale og blå skilt viser navneminne, men må ikke brukes som mål på hvor utbredt eldre navn er i dagens dagligtale.'
+              ], quality:{tier:'B', rationale:'Redigert lokalhistorisk referansekilde som eksplisitt daterer Nytorvet/Youngstorget og dokumenterer videreføring av Nytorvets basar som historisk navn.'}
+            }
+          ];
+          sourcesFile.sources.push(...newSources);
+          sourcesFile.sources.sort((a,b)=>a.source_id.localeCompare(b.source_id,'nb'));
+
+          const makeClaim = (claim_id, statement, claim_type, place_id, case_id, temporal, emne_ids, source_ids, uncertaintyNote, alternatives) => ({
+            claim_id, statement, claim_type,
+            scope:{ geography_ids:['geo_no_oslo_akershus'], place_ids:[place_id], case_ids:[case_id], temporal },
+            emne_ids, source_ids, confidence:'high', uncertainty:{level:'medium',note:uncertaintyNote}, alternative_interpretations:alternatives
+          });
+          const newClaims = [
+            makeClaim(
+              'claim_his_eidsvollsbygningen_restoration_same_goal_different_results_1914_2014',
+              'Eidsvollsbygningen ble restaurert fram mot jubileene i 1914, 1964 og 2014 med et uttalt mål om å gjenskape bygningen slik den fremstod under Riksforsamlingen i 1814, men Riksantikvarens sammenstilling viser at de tre restaureringene ga tydelig forskjellige romlige resultater, og 1914-restaureringen ble kritisert allerede i samtiden.',
+              'restoration_reconstruction_sequence','eidsvollsbygningen','case_his_eidsvollsbygningen',{from:1914,to:2014},
+              ['em_his_restaurering_autentisitet','em_his_kulturminner_bevaring','em_his_spor_materialitet'],
+              ['src_his_riksantikvaren_eidsvoll_restaurering_2014'],
+              'Kilden dokumenterer mål, hovedforløp og synlig resultatforskjell, men ikke alle materialinngrep eller vurderinger i de tre restaureringsprosjektene.',
+              ['De ulike resultatene kan skyldes skiftende kunnskapsgrunnlag, restaureringsidealer, tilgjengelig dokumentasjon og håndverksvalg; forskjell er ikke alene bevis på at én fase var autentisk og de andre uautentiske.']
+            ),
+            makeClaim(
+              'claim_his_eidsvollsbygningen_reconstructed_interior_material_loss_1864_2014',
+              'Restaureringshistorien ved Eidsvollsbygningen omfatter både tap og rekonstruksjon: arbeider fram mot 1864 fjernet eldre tapeter og farger, kjellerrom ble fjernet ved fundamentarbeider 1887–1890, og fram mot 2014 ble tapte interiørelementer og kjellerrom rekonstruert som del av forsøket på å formidle 1814-miljøet.',
+              'reconstruction_after_material_loss','eidsvollsbygningen','case_his_eidsvollsbygningen',{from:1864,to:2014},
+              ['em_his_restaurering_autentisitet','em_his_kulturminner_bevaring','em_his_spor_materialitet'],
+              ['src_his_eidsvoll1814_eidsvollsbygningen','src_his_riksantikvaren_eidsvoll_restaurering_2014'],
+              'Hovedtrekkene i tap og rekonstruksjon er dokumentert, men graden av originalt materiale og dokumentasjonsgrunnlaget varierer mellom rom og bygningsdeler.',
+              ['Rekonstruksjon kan styrke lesbarheten av 1814-laget, men kan samtidig gjøre senere historiske lag mindre synlige; autentisitet må derfor spesifiseres som materiale, form, bruk eller fortelling.']
+            ),
+            makeClaim(
+              'claim_his_hovedoya_ruin_conservation_repair_safety_2023',
+              'Oslo kommunes rehabilitering av Hovedøya klosterruin, startet i 2023, reparerer skadede murpartier og legger ny toppavdekning for å øke holdbarheten samtidig som rasfare og besøkssikkerhet håndteres; tiltaket sikrer den eksisterende ruinen framfor å rekonstruere et komplett middelalderkloster.',
+              'ruin_conservation_repair_and_safety','hovedoya_kloster','case_his_hovedoya_kloster',{from:2023,to:null},
+              ['em_his_restaurering_autentisitet','em_his_kulturminner_bevaring','em_his_ruiner_rester_ombruk','em_his_spor_materialitet'],
+              ['src_his_oslo_kommune_hovedoya_klosterruin_rehabilitering'],
+              'Prosjektsiden dokumenterer utvalgte tiltak og mål, men det pågående flerårige arbeidet kan endre omfang og metode, og siden spesifiserer ikke materialandeler for hvert murparti.',
+              ['Tiltaket kan leses som materialbevaring og sikkerhetsarbeid snarere enn historisk tilbakeføring; ny toppavdekning er samtidig et moderne inngrep i ruinens materialitet.']
+            ),
+            makeClaim(
+              'claim_his_stortinget_kristiania_oslo_rename_law_1924_1925',
+              'Stortingets sak om forandring av Kristianias bynavn endte med lov 11. juli 1924, og fra 1. januar 1925 var byens navn Oslo; navneendringen var dermed et formelt statlig vedtak med fastsatt ikrafttredelse.',
+              'legislated_city_rename','stortinget','case_his_stortinget',{from:'1924-07-11',to:'1925-01-01'},
+              ['em_his_stedsnavn_navnepolitikk','em_his_nasjonal_identitet_fortellinger','em_his_stat_institusjoner'],
+              ['src_his_storting_kristiania_oslo_name_change_1924'],
+              'Den formelle loven og ikrafttredelsen er eksplisitt dokumentert, men registeret alene dokumenterer ikke hvordan navneskiftet ble praktisert eller mottatt i alle lokale miljøer.',
+              ['Vedtaket kan analyseres som administrativ standardisering og nasjonal historiebruk, men formell autoritet er ikke det samme som øyeblikkelig språklig eller sosial aksept.']
+            ),
+            makeClaim(
+              'claim_his_youngstorget_nytorvet_rename_1852_1951',
+              'Torget som ble anlagt i 1846 hadde det offisielle navnet Nytorvet fra 1852 til 1951, da navnet Youngstorget ble tatt i bruk etter kjøpmann Jørgen Young, som hadde eid området.',
+              'municipal_commemorative_rename','youngstorget','case_his_youngstorget',{from:1852,to:1951},
+              ['em_his_stedsnavn_navnepolitikk','em_his_nasjonal_identitet_fortellinger'],
+              ['src_his_oslo_byleksikon_youngstorget'],
+              'Byleksikonet daterer navnene og navnebakgrunnen, men claimet rekonstruerer ikke den fullstendige kommunale vedtaksprosessen eller samtidige alternative skrivemåter.',
+              ['Navneskiftet kan leses som minne om en tidligere grunneier, men også som administrativ orientering og byhistorisk standardisering; kilden dokumenterer ikke alene motivhierarkiet bak vedtaket.']
+            ),
+            makeClaim(
+              'claim_his_youngstorget_nytorvet_name_persistence_basar',
+              'Etter at torget fikk navnet Youngstorget i 1951, lever det eldre navnelaget videre ved at Youngstorgets basar også omtales som Nytorvets basar, og et blått skilt på stedet minner om dette historiske navnet.',
+              'historic_name_persistence_and_marking','youngstorget','case_his_youngstorget',{from:1951,to:null},
+              ['em_his_stedsnavn_navnepolitikk','em_his_minnesteder_historiebruk','em_his_samtid_ettertid_fortelling'],
+              ['src_his_oslo_byleksikon_youngstorget'],
+              'Kilden dokumenterer bevaringen av det eldre navnet i bygningsomtale og minneskilt, men ikke hvor ofte Nytorvet/Nytorvets basar brukes i dagens muntlige dagligtale.',
+              ['Navnepersistensen kan forstås som kulturarv og lokal hukommelse, men den viser nettopp at et offisielt navnevedtak ikke automatisk utsletter eldre språklige lag.']
+            )
+          ];
+          for (const c of newClaims) if (claimsFile.claims.some(x=>x.claim_id===c.claim_id)) throw new Error(`Duplicate claim ${c.claim_id}`);
+          claimsFile.claims.push(...newClaims);
+          claimsFile.claims.sort((a,b)=>a.claim_id.localeCompare(b.claim_id,'nb'));
+
+          const link = (evidence_id, place_id, case_id, claim_id, emne_ids, source_ids, support_type, note) => ({
+            evidence_id, profile_id:'profile_historie_no_oslo_akershus', geography_id:'geo_no_oslo_akershus', place_id, case_id, emne_ids, claim_id, source_ids, support_type, validation_status:'validated_case', limitations_inherited:true, note
+          });
+          const newEvidence = [
+            link('evidence_his_memory_heritage_preservation_01','eidsvollsbygningen','case_his_eidsvollsbygningen',newClaims[0].claim_id,newClaims[0].emne_ids,newClaims[0].source_ids,'direct_single_source','Minne- og kulturarvevidens V1: sammenlignende restaureringsforløp med eksplisitt autentisitetsgrense.'),
+            link('evidence_his_memory_heritage_preservation_02','eidsvollsbygningen','case_his_eidsvollsbygningen',newClaims[1].claim_id,newClaims[1].emne_ids,newClaims[1].source_ids,'corroborated','Minne- og kulturarvevidens V1: materialtap og rekonstruksjon skilt fra forestillingen om urørt original.'),
+            link('evidence_his_memory_heritage_preservation_03','hovedoya_kloster','case_his_hovedoya_kloster',newClaims[2].claim_id,newClaims[2].emne_ids,newClaims[2].source_ids,'direct_single_source','Minne- og kulturarvevidens V1: ruinbevaring, reparasjon og sikkerhet uten påstand om full historisk rekonstruksjon.'),
+            link('evidence_his_memory_heritage_names_01','stortinget','case_his_stortinget',newClaims[3].claim_id,newClaims[3].emne_ids,newClaims[3].source_ids,'direct_single_source','Minne- og kulturarvevidens V1: formelt lovvedtak om bynavn skilt fra lokal navnebruk.'),
+            link('evidence_his_memory_heritage_names_02','youngstorget','case_his_youngstorget',newClaims[4].claim_id,newClaims[4].emne_ids,newClaims[4].source_ids,'direct_single_source','Minne- og kulturarvevidens V1: dokumentert offisielt navneforløp og commemorativ navngiving.'),
+            link('evidence_his_memory_heritage_names_03','youngstorget','case_his_youngstorget',newClaims[5].claim_id,newClaims[5].emne_ids,newClaims[5].source_ids,'direct_single_source','Minne- og kulturarvevidens V1: eldre navnelag dokumentert i basarnavn og historisk markering etter formelt navneskift.')
+          ];
+          for (const e of newEvidence) if (evidenceFile.evidence_links.some(x=>x.evidence_id===e.evidence_id)) throw new Error(`Duplicate evidence ${e.evidence_id}`);
+          evidenceFile.evidence_links.push(...newEvidence);
+          evidenceFile.evidence_links.sort((a,b)=>a.evidence_id.localeCompare(b.evidence_id,'nb'));
+
+          const claimById = new Map(claimsFile.claims.map(c=>[c.claim_id,c]));
+          const evidenceByClaim = new Map();
+          for (const e of evidenceFile.evidence_links) {
+            const arr = evidenceByClaim.get(e.claim_id) || []; arr.push(e.evidence_id); evidenceByClaim.set(e.claim_id,arr);
+          }
+          const derive = claimIds => {
+            const cs = claimIds.map(id=>{const c=claimById.get(id); if(!c) throw new Error(`Missing claim ${id}`); return c;});
+            return {
+              source_ids:uniqSort(cs.flatMap(c=>c.source_ids||[])),
+              case_ids:uniqSort(cs.flatMap(c=>c.scope?.case_ids||[])),
+              place_ids:uniqSort(cs.flatMap(c=>c.scope?.place_ids||[])),
+              emne_ids:uniqSort(cs.flatMap(c=>c.emne_ids||[])),
+              evidence_link_ids:uniqSort(cs.flatMap(c=>evidenceByClaim.get(c.claim_id)||[]))
+            };
+          };
+          const theoryEntry = (theory_id, claim_ids, evidence_dimensions, rationale, limitations, alternative_interpretations, disconfirmation_conditions, scope_note) => ({
+            theory_id,status:'evidence_ready',scope_status:'multi_case_geographic_pilot',universalization_status:'provisional_not_universal',claim_ids,...derive(claim_ids),evidence_dimensions,rationale,limitations,alternative_interpretations,disconfirmation_conditions,scope_note
+          });
+          const preservationClaims = newClaims.slice(0,3).map(c=>c.claim_id);
+          const namingClaims = newClaims.slice(3,6).map(c=>c.claim_id);
+          const digitalClaims = [
+            'claim_his_norsk_folkemuseum_neg_paper_digital_series_shift',
+            'claim_his_norsk_folkemuseum_neg_selection_access_limits',
+            'claim_his_stortinget_constitution_custody_conservation_surrogate'
+          ];
+          theoryFile.entries.push(
+            theoryEntry('theory_his_bevaring_restaurering_autentisitet',preservationClaims,
+              ['documented_application','limitation_test','alternative_interpretation','multi_case_comparison','restoration_choice','material_continuity_and_reconstruction','ruin_conservation_and_safety','authenticity_criteria'],
+              'Eidsvollsbygningen viser at samme uttalte mål om å gjenskape 1814 kan gi ulike restaureringsresultater, og at rekonstruksjon etter materialtap gjør autentisitet avhengig av hvilket kriterium som vurderes. Hovedøya gir et kontrastcase der dagens inngrep reparerer og sikrer eksisterende ruinmateriale uten å rekonstruere et komplett kloster. Sammen skiller casene historisk tilbakeføring, materialbevaring, lesbarhet, bruk og teknisk sikkerhet.',
+              ['Eidsvoll-kildene dokumenterer hovedmål og restaureringsforløp, men ikke full materialjournal for hvert rom; graden av originalt og rekonstruert materiale må derfor ikke generaliseres fra enkelte eksempler.','Hovedøya-prosjektet er pågående og dokumenterer forvalterens tiltak og mål; sikkerhet og holdbarhet er ikke i seg selv mål på historisk autentisitet.'],
+              ['Rekonstruksjon kan gjøre et valgt historisk lag mer lesbart samtidig som senere lag svekkes, mens ruinkonservering kan bevare materialkontinuitet på bekostning av et mer helhetlig visuelt bilde.'],
+              ['Anvendelsen svekkes dersom inngrepene omtales som enten autentiske eller uautentiske uten å spesifisere materiale, form, sted, bruk eller fortelling, eller dersom nye konserveringsrapporter viser vesentlig andre inngrep enn de registrerte.'],
+              'Dette er et fler-case evidensgrunnlag fra Eidsvollsbygningen og Hovedøya klosterruin og er ikke universelt bevis for restaurerings- eller autentisitetspraksis på tvers av kulturminnetyper, perioder eller forvaltningsregimer.'),
+            theoryEntry('theory_his_stedsnavn_navnepolitikk',namingClaims,
+              ['documented_application','limitation_test','alternative_interpretation','multi_case_comparison','official_naming_authority','rename_and_effective_date','historic_name_persistence','institutional_vs_lived_use'],
+              'Stortingets navnelov dokumenterer statlig autoritet, beslutningsform og ikrafttredelse i Kristiania–Oslo-skiftet. Youngstorget dokumenterer et annet navneforløp, fra Nytorvet til et personminnende navn i 1951, samtidig som Nytorvets basar fortsatt bærer det eldre navnelaget i historisk omtale og markering. Sammen viser casene at administrative navn organiserer offentlig orientering og minne, men ikke automatisk utsletter eldre språkbruk.',
+              ['Stortingssaken dokumenterer formell autoritet, ikke representativ lokal mottakelse eller faktisk dagligtale etter 1925.','Oslo byleksikon dokumenterer navn og historisk videreføring, men er ikke den primære kommunale saksakten for 1852- og 1951-vedtakene.'],
+              ['Navneendringer kan analyseres som administrativ standardisering, nasjons- og identitetspolitikk eller commemorativ historiebruk; samme formelle vedtak kan ha ulike sosiale virkninger.'],
+              ['Anvendelsen svekkes dersom dagens offisielle navn projiseres bakover på eldre perioder, eller dersom videreføring av eldre navn i minneskilt og bygningsnavn brukes som ubegrunnet mål på dagens utbredte muntlige bruk.'],
+              'Dette er et fler-case evidensgrunnlag fra Stortinget og Youngstorget og er ikke universelt bevis for stedsnavnpolitikk på tvers av språk, minoritetsforhold, administrative nivåer eller geografier.'),
+            theoryEntry('theory_his_digital_kulturarv_formidling',digitalClaims,
+              ['documented_application','limitation_test','alternative_interpretation','multi_case_comparison','digitization_transition','selection_metadata_and_access','digital_surrogate_original_difference','platform_mediation'],
+              'Norsk Folkemuseums NEG-materiale dokumenterer et skifte fra papir til digitale innsamlingsløsninger og hvordan kanal, selvrekruttering, spørsmålsform og tilgang påvirker corpus og sammenlignbarhet. Stortingsarkivets digitale fotografering av Grunnloven viser et annet digitalt ledd: surrogatet reduserer fysisk håndtering, men har andre kildeegenskaper enn originalens papir, blekk, segl og slitasje. Sammen viser casene at digital tilgang og bevaring både øker synlighet og produserer nye utvalg, metadata- og materialitetsgrenser.',
+              ['NEG-claimene dokumenterer innsamlings- og tilgangsforhold, men ikke komplett metadataanalyse eller alle plattformversjoner over tid.','Digital fotografering av Grunnloven dokumenterer et surrogat og et konserveringsgrep, men sier ikke alene noe om langtidsbevaring, formatmigrering eller framtidig plattformtilgang.'],
+              ['Digitalisering kan samtidig utvide tilgang og endre deltakergrunnlag, søkbarhet og synlighet; et digitalt surrogat kan være et sterkere arbeidsverktøy for noen spørsmål og utilstrekkelig for materialanalytiske spørsmål.'],
+              ['Anvendelsen svekkes dersom digitale objekter behandles som transparente kopier uten produksjons- og metadatahistorie, eller dersom teknisk lagring likestilles med dokumentert langtidsbevaring.'],
+              'Dette er et fler-case evidensgrunnlag fra Norsk Folkemuseum og Stortinget og er ikke universelt bevis for digital kulturarv på tvers av samlingstyper, plattformer, rettighetsregimer eller bevaringsinfrastrukturer.')
+          );
+          theoryFile.entries.sort((a,b)=>a.theory_id.localeCompare(b.theory_id,'nb'));
+          theoryFile.completion.qualifying_entries = theoryFile.entries.length;
+          theoryFile.completion.ratio = Math.round((theoryFile.entries.length/theoryFile.completion.total_theories)*1000)/1000;
+          if (theoryFile.entries.length !== 78 || theoryFile.completion.ratio !== 0.339) throw new Error(`Unexpected theory completion ${theoryFile.entries.length}, ${theoryFile.completion.ratio}`);
+
+          const caseById = new Map(profile.cases.map(c=>[c.case_id,c]));
+          const expandCase = (id, emnes) => {
+            const c=caseById.get(id); if(!c) throw new Error(`Missing case ${id}`); if(c.status!=='pilot_validated'||c.evidence_status!=='claim_source_linked') throw new Error(`Case not validated ${id}`);
+            c.emne_ids = uniqSort([...(c.emne_ids||[]),...emnes]);
+            c.validation ||= {status:'validated_case'};
+            c.validation.additional_batch_ids = uniqSort([...(c.validation.additional_batch_ids||[]),batchId]);
+            c.validation.scope_expanded_at = accessedAt;
+          };
+          expandCase('case_his_eidsvollsbygningen',['em_his_restaurering_autentisitet','em_his_kulturminner_bevaring']);
+          expandCase('case_his_hovedoya_kloster',['em_his_restaurering_autentisitet','em_his_kulturminner_bevaring']);
+          expandCase('case_his_stortinget',['em_his_stedsnavn_navnepolitikk','em_his_digital_kulturarv_formidling']);
+          expandCase('case_his_youngstorget',['em_his_stedsnavn_navnepolitikk']);
+          expandCase('case_his_norsk_folkemuseum',['em_his_digital_kulturarv_formidling']);
+          profile.production_coverage.claims_total = claimsFile.claims.length;
+          profile.production_coverage.sources_total = sourcesFile.sources.length;
+          profile.production_coverage.evidence_links_total = evidenceFile.evidence_links.length;
+          profile.production_coverage.validated_cases = profile.cases.filter(c=>c.evidence_status==='claim_source_linked').length;
+          profile.migration_summary.validated_cases = profile.production_coverage.validated_cases;
+          if (claimsFile.claims.length!==149||sourcesFile.sources.length!==116||evidenceFile.evidence_links.length!==151) throw new Error('Unexpected production totals');
+
+          write(P.claims,claimsFile); write(P.sources,sourcesFile); write(P.evidence,evidenceFile); write(P.theory,theoryFile); write(P.profile,profile);
+
+          const dossier = {
+            schema_version:'1.0', dossier_id:'history_memory_heritage_preservation_names_digital_v1', subject_id:'historie', geography_id:'geo_no_oslo_akershus', status:'reviewed_source_dossier', accessed_at:accessedAt,
+            scope:{qualified_theory_ids:targetTheoryIds,batch_id:batchId,method_rule:'Bevaring skiller rekonstruksjon, materialkontinuitet og sikkerhet; navnepolitikk skiller formelt vedtak fra faktisk navnebruk; digital kulturarv gjenbruker eksisterende claims og skiller digital tilgang fra originalmaterialitet og langtidsbevaring.'},
+            sources:Object.fromEntries(newSources.map(s=>[s.source_id,{title:s.title,publisher:s.publisher,url:s.url,limitations:s.limitations,quality:s.quality}])),
+            claim_bundles:{bevaring_restaurering_autentisitet:{claim_ids:preservationClaims,...derive(preservationClaims)},stedsnavn_navnepolitikk:{claim_ids:namingClaims,...derive(namingClaims)},digital_kulturarv_formidling:{claim_ids:digitalClaims,...derive(digitalClaims)}},
+            production_decisions:['Eidsvollsbygningen og Hovedøya brukes som kontrast mellom historisk rekonstruksjon og ruinbevaring, ikke som én felles restaureringsmodell.','Stortingets Kristiania–Oslo-sak dokumenterer formell navneautoritet; Youngstorget dokumenterer både navneendring og videreføring av et eldre navnelag.','Digital kulturarv kvalifiseres ved ren gjenbruk av allerede validerte Norsk Folkemuseum- og Stortingsclaims; ingen nye digitale claims opprettes.','Ingen nye canonical places eller cases opprettes.']
+          };
+          write(P.dossier,dossier);
+
+          let doc=fs.readFileSync(P.docs,'utf8');
+          const oldSentence='Produksjonen står på 75 av 230 etter at erfaringsrom, forventningshorisont, anakronisme og historisk begrepsbruk V1 er kvalifisert gjennom eksisterende validerte evidenskjeder.';
+          if(!doc.includes(oldSentence)) throw new Error('75 completion sentence missing');
+          doc=doc.replace(oldSentence,'Produksjonen står på 78 av 230 etter at bevaring/restaurering/autentisitet, stedsnavn/navnepolitikk og digital kulturarv/formidling V1 er kvalifisert.');
+          doc=doc.replace('\n- Totalt: **75 av 230** teoriobjekter (**32.6 %**).','\n- Minne, kulturarv og historiebruk V1: **3** nye kvalifiserende teoriobjekter, **6** nye claims, **4** nye kilder, **6** nye place-evidence-lenker og **5** utvidede validerte cases; digital kulturarv kvalifiseres ved ren claim-gjenbruk.\n- Totalt: **78 av 230** teoriobjekter (**33.9 %**).');
+          doc=doc.replace('- Gjenstående teoriobjekter: **155**.','- Gjenstående teoriobjekter: **152**.');
+          fs.writeFileSync(P.docs,doc);
+
+          fs.writeFileSync(P.batchDoc,`# Historie — minne, kulturarv og historiebruk V1\n\n## Mål\n\nFullføre de tre gjenstående teoriobjektene i \`his_minne_kulturarv_historiebruk\`: bevaring/restaurering/autentisitet, stedsnavn/navnepolitikk og digital kulturarv/formidling. Batchen løfter domenet fra **7/10 til 10/10** og total teori-evidens fra **75/230 til 78/230**.\n\n## Bevaring, restaurering og autentisitet\n\nEidsvollsbygningen brukes til å skille uttalt historisk tilbakeføring fra faktisk material- og formhistorie: restaureringene i 1914, 1964 og 2014 hadde samme 1814-mål, men ga ulike resultater, og rekonstruksjon inngår etter tidligere materialtap. Hovedøya klosterruin gir et kontrastcase der skadede murpartier repareres og sikres med ny toppavdekning uten at et komplett middelalderkloster bygges tilbake.\n\n## Stedsnavn og navnepolitikk\n\nStortingets lovsak fra 1924 dokumenterer formell statlig autoritet i Kristiania–Oslo-skiftet. Youngstorget dokumenterer et annet forløp fra Nytorvet til Youngstorget i 1951, samtidig som Nytorvets basar viderefører et eldre navnelag. Formelt vedtak og faktisk språklig minne holdes derfor analytisk adskilt.\n\n## Digital kulturarv og formidling\n\nNorsk Folkemuseums NEG-materiale dokumenterer overgangen fra papir til digitale innsamlingskanaler og tilhørende utvalgs- og tilgangsgrenser. Stortingsarkivets digitale fotografering av Grunnloven dokumenterer et digitalt surrogat som reduserer fysisk håndtering, men som ikke har samme kildeegenskaper som originalmaterialet. Denne teorien kvalifiseres uten nye claims.\n\n## Produksjonsgrense\n\n- 6 nye canonical claims og 4 nye canonical kilder.\n- 6 nye validerte place–claim–source-koblinger.\n- Ingen nye places eller cases.\n- Fem eksisterende validerte cases utvides med relevant emnedekning/batchproveniens.\n- Frozen V5.5-teoriobjekter endres ikke; V5.8-freeze-manifestet refreshes eksplisitt fordi authoritative claims/sources/evidence/profile endres.\n- Alle tre theory-entryene forblir \`provisional_not_universal\`.\n`);
+
+          let test=fs.readFileSync(P.test,'utf8');
+          if(!test.includes('assert.equal(report.universalCoverage.theoryEvidenceQualifying, 75);')) throw new Error('Expected test assertion 75 missing');
+          test=test.replace('assert.equal(report.universalCoverage.theoryEvidenceQualifying, 75);','assert.equal(report.universalCoverage.theoryEvidenceQualifying, 78);');
+          fs.writeFileSync(P.test,test);
+          NODE
+      - name: Refresh intentional V5.8 freeze and deterministic reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze --reason='V5.8 freeze reaffirmed after memory, heritage, naming and digital-culture V6 evidence batch; frozen theory definitions remain unchanged.'
+          node tools/audit-historie-geographic-profile.mjs
+          node tools/validate-historie-theory-evidence.mjs
+          node tools/audit-historie-universal-coverage.mjs
+          node scripts/audit-fagverk-historie.mjs --write-report --no-check-report
+      - name: Validate focused Historie gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-profile-evidence.mjs
+          node tools/audit-historie-geographic-profile.mjs --check
+          node tools/validate-historie-theory-evidence.mjs --check
+          node tools/audit-historie-universal-coverage.mjs --check
+          node scripts/audit-fagverk-historie.mjs
+          node tools/audit-historie-v5-5-quality-depth.mjs
+          node --test tests/fagverk-historie.test.mjs
+          git diff --check
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/agent-history-memory-heritage-materialize.yml
+          rm -f .github/agent-history-memory-heritage-trigger.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Bygg Historie minne- og kulturarvevidens V1'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
