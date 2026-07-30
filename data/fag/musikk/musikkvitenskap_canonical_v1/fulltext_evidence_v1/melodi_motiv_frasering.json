@@ -1,0 +1,229 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-melody-v1-2026-07-30",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "musikalsk_analyse_lyd_struktur",
+  "emne_id": "em_musikk_vit_melodi_motiv_frasering",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/musikalsk_analyse_lyd_struktur/melodi_motiv_frasering.json",
+  "research_question": "Hvordan skapes sammenheng og variasjon gjennom tonehøyde, kontur og frase?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_boss_hidden_repetition_beethoven_1999",
+      "bibliographic_identity": {
+        "creators": ["Jack F. Boss"],
+        "year": 1999,
+        "title": "‘Schenkerian-Schoenbergian Analysis’ and Hidden Repetition in the Opening Movement of Beethoven’s Piano Sonata Op. 10, No. 1",
+        "publication": "Music Theory Online 5(1)"
+      },
+      "registration_reason": "Åpen fagfellevurdert fulltekst med eksplisitte takt-lokatorer for motivisk segmentering, transformasjon og saliens i det samme Beethoven-objektet som brukes som direkte notekilde.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.mtosmt.org/issues/mto.99.5.1/mto.99.5.1.boss.html",
+      "checked_at": "2026-07-30"
+    },
+    {
+      "source_id": "prod_src_hentschel_annotated_piano_corpus_2024",
+      "bibliographic_identity": {
+        "creators": ["Johannes Hentschel", "Yannis Rammos", "Fabian C. Moss", "Markus Neuwirth", "Martin Rohrmeier"],
+        "year": 2024,
+        "title": "An Annotated Corpus of Tonal Piano Music from the Long 19th Century",
+        "publication": "Empirical Musicology Review 18(1), 84–95"
+      },
+      "registration_reason": "Åpen datareport som dokumenterer proveniens, MuseScore-format, annotasjons- og reviewworkflow samt Beethoven-sonatenes dekning i DCML-korpuset som brukes som direkte notekilde.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://phaidra.bruckneruni.at/api/object/o%3A3910/download",
+      "checked_at": "2026-07-30"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_boss_hidden_repetition_beethoven_1999",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.mtosmt.org/issues/mto.99.5.1/mto.99.5.1.boss.html",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "paras. [5]–[7]",
+          "section": "Grundgestalt, motives alpha/delta, and increasing salience",
+          "supports": "Boss avgrenser mm. 1–9 som åpningens Grundgestalt, skiller motivene alpha og delta gjennom en eksplisitt Schenkerian-Schoenbergian segmenteringsmodell og beskriver alpha som gradvis flyttet nærmere overflaten."
+        },
+        {
+          "pages": "paras. [10]–[14]",
+          "section": "Development and motive-status argument",
+          "supports": "Alpha ligger på overflaten i sopranen i mm. 119–121 og 127–129 og metter to-taktsenhetene i mm. 136–141; motivstatus begrunnes som en organisert prosess av repetisjon og variasjon, ikke bare lik intervallform."
+        }
+      ],
+      "rights_and_reuse_note": "Publisher-hosted open HTML was reviewed. History Go stores only bibliographic identity, paraphrased analytical findings and locators; article text and analytical figures are not redistributed."
+    },
+    {
+      "source_id": "prod_src_hentschel_annotated_piano_corpus_2024",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://phaidra.bruckneruni.at/api/object/o%3A3910/download",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "84–85",
+          "section": "Abstract; Method — Scores",
+          "supports": "Datareporten dokumenterer 264 annoterte pianosatser i MuseScore 3, at tone- og rytmeinnhold er kontrollert mot public-domain trykkutgaver og at metadata viser kilder og korreksjon."
+        },
+        {
+          "pages": "85–87",
+          "section": "Annotations; Dataset; Formats and features",
+          "supports": "Annotasjonene er laget og revidert av trente musikkteoretikere gjennom en GitHub-basert reviewprosess; Beethoven-sonatene er komplett dekket og score-/mål-/note-/harmonidata bevares i inspeksjonsbare MuseScore- og TSV-formater."
+        }
+      ],
+      "rights_and_reuse_note": "Institutional open PDF was reviewed under CC BY-NC 4.0. It is used only to verify corpus provenance and review process; no article PDF is redistributed by History Go."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_beethoven_op10_1_dcml_v2_5_05_1",
+      "object_type": "notert_kilde",
+      "title": "Ludwig van Beethoven, Piano Sonata No. 5 in C minor, Op. 10 No. 1, movement 1 — DCML v2.5 score 05-1",
+      "persistent_url": "https://github.com/DCMLab/beethoven_piano_sonatas/blob/v2.5/MS3/05-1.mscx",
+      "provenance_source_ids": ["prod_src_hentschel_annotated_piano_corpus_2024"],
+      "version_and_identity": {
+        "dataset_version": "v2.5",
+        "zenodo_doi": "10.5281/zenodo.15292707",
+        "zenodo_record": "https://zenodo.org/records/15292707",
+        "archive_file": "DCMLab/beethoven_piano_sonatas-v2.5.zip",
+        "archive_md5": "a842f4e47ac9859d8cf91ebee91b02d6",
+        "score_path": "MS3/05-1.mscx",
+        "score_standard": "2.3.0",
+        "measure_count": 284,
+        "annotation_label_count": 310
+      },
+      "locators": [
+        {
+          "locator": "MS3/05-1.mscx, mm. 1–9",
+          "role": "opening score segment used by Boss to define the initial alpha/delta Grundgestalt"
+        },
+        {
+          "locator": "MS3/05-1.mscx, mm. 119–129",
+          "role": "development passage where Boss locates alpha at the surface in the soprano"
+        },
+        {
+          "locator": "MS3/05-1.mscx, mm. 136–141",
+          "role": "development passage where Boss describes alpha in every two-measure unit"
+        }
+      ],
+      "rights": {
+        "license": "CC BY-NC-SA 4.0",
+        "license_source": "DCMLab/beethoven_piano_sonatas v2.5 README",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": null,
+        "modification_allowed": null,
+        "decision": "History Go does not copy, redistribute, render or modify the DCML score file in this production. It stores identity, version, measure locators and persistent external links only."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_melody_boss_alpha_salience_development",
+      "statement": "I Boss sin Schenkerian-Schoenbergian analyse av første sats i Beethovens Op. 10 nr. 1 blir dobbeltnabomotivet alpha gradvis mer overflatenært: det framtrer i sopranen i takt 119–121 og 127–129, og i takt 136–141 inneholder hver to-taktsenhet alpha.",
+      "claim_type_id": "score_or_representation_claim",
+      "source_ids": ["prod_src_boss_hidden_repetition_beethoven_1999"],
+      "locators": [
+        "Boss 1999, para. [10], mm. 119–129",
+        "Boss 1999, para. [10], mm. 136–141"
+      ],
+      "method_protocol_ids": ["notasjons_kildeanalyse"],
+      "object_scope": {
+        "direct_object_id": "obj_beethoven_op10_1_dcml_v2_5_05_1",
+        "work": "Beethoven, Piano Sonata Op. 10 No. 1, movement 1",
+        "analytical_model": "Boss's Schenkerian-Schoenbergian segmentation",
+        "score_segments": ["mm. 119–129", "mm. 136–141"]
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Påstanden gjengir Boss sin eksplisitte analyse av det avgrensede partituret. At passasjene utgjør samme motiv og en saliensprosess avhenger av hans Schenkerian-Schoenbergian segmenteringsmodell.",
+      "prohibited_inference": "Analysen kan ikke omskrives som direkte bevis for Beethovens bevisste intensjon eller som en modelluavhengig egenskap ved alle motiviske forløp.",
+      "reproducibility": {
+        "score_identity_status": "versioned_external_score_verified",
+        "analysis_status": "publisher_fulltext_and_measure_locators_reviewed",
+        "independent_reanalysis": false
+      }
+    },
+    {
+      "claim_id": "claim_musikk_melody_boss_motive_status_requires_process",
+      "statement": "Boss skiller motivisk betydning fra ren intervallik likhet: fordi dobbeltnaboer og tersspenn er vanlige tonale figurer, begrunner han alpha og delta som motiver gjennom den organiserte prosessen av repetisjon, variasjon og skiftende saliens gjennom satsen.",
+      "claim_type_id": "score_or_representation_claim",
+      "source_ids": ["prod_src_boss_hidden_repetition_beethoven_1999"],
+      "locators": [
+        "Boss 1999, paras. [13]–[14], motive-status problem",
+        "Boss 1999, para. [17], methodological conclusion"
+      ],
+      "method_protocol_ids": ["notasjons_kildeanalyse"],
+      "object_scope": {
+        "direct_object_id": "obj_beethoven_op10_1_dcml_v2_5_05_1",
+        "work": "Beethoven, Piano Sonata Op. 10 No. 1, movement 1",
+        "comparison_basis": "common tonal shapes versus their organized recurrence and transformation across the movement"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Dette er Boss sin metodologiske begrunnelse innen en bestemt hybrid analysemodell, ikke en generell definisjon av motiv som alle analysetradisjoner må godta.",
+      "prohibited_inference": "Likhet mellom to melodiske figurer kan ikke alene brukes til å hevde historisk påvirkning, motividentitet eller komponistintensjon.",
+      "reproducibility": {
+        "score_identity_status": "versioned_external_score_verified",
+        "analysis_status": "publisher_fulltext_argument_reviewed",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_melody_boss_segmentation_is_model_dependent",
+      "statement": "Boss identifiserer motivene gjennom en eksplisitt Schenkerian-Schoenbergian segmenteringsmodell; andre plausible segmenteringer kan gi andre analytiske enheter.",
+      "source_ids": ["prod_src_boss_hidden_repetition_beethoven_1999"],
+      "locators": ["Boss 1999, opening methodology and paras. [5], [13]–[14]"],
+      "applies_to_claim_ids": ["claim_musikk_melody_boss_alpha_salience_development", "claim_musikk_melody_boss_motive_status_requires_process"],
+      "release_effect": "Blocks wording that presents alpha/delta segmentation as a model-free fact about the score."
+    },
+    {
+      "boundary_id": "boundary_musikk_melody_boss_analysis_is_not_composer_intention",
+      "statement": "Den dokumenterte scoreprosessen støtter en analytisk fortolkning, men artikkelen og partituret alene dokumenterer ikke Beethovens bevisste motiviske intensjon.",
+      "source_ids": ["prod_src_boss_hidden_repetition_beethoven_1999"],
+      "locators": ["Boss 1999, paras. [13]–[17]"],
+      "applies_to_claim_ids": ["claim_musikk_melody_boss_alpha_salience_development", "claim_musikk_melody_boss_motive_status_requires_process"],
+      "release_effect": "Blocks intention language unless an independent actor/document source is added."
+    },
+    {
+      "boundary_id": "boundary_musikk_melody_dcml_score_is_external_noncommercial_resource",
+      "statement": "DCML v2.5 er publisert under CC BY-NC-SA 4.0. History Go har ikke løst kommersiell lisenskompatibilitet og bruker derfor objektet bare gjennom metadata, målesteds-lokatorer og ekstern lenke.",
+      "source_ids": ["prod_src_hentschel_annotated_piano_corpus_2024"],
+      "locators": ["Hentschel et al. 2024, pp. 84–87; DCML Beethoven v2.5 README license and file overview"],
+      "applies_to_claim_ids": ["claim_musikk_melody_boss_alpha_salience_development"],
+      "release_effect": "Blocks copying, rendering, redistribution or modification of the DCML score inside History Go unless rights are separately resolved."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": ["lydopptak", "notert_kilde", "liveframføring"],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_beethoven_op10_1_dcml_v2_5_05_1",
+    "resolved": [
+      "stable versioned identity for Beethoven Op. 10 No. 1 movement 1 as DCML v2.5 score 05-1",
+      "three measure-range locators linking the direct score object to Boss's analysis",
+      "rights decision fixed to external_link_and_metadata_only because commercial compatibility of CC BY-NC-SA 4.0 is not resolved"
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": ["claim_musikk_melody_boss_alpha_salience_development"],
+    "question_release_ready": true,
+    "release_rule": "Only the explicitly released Boss salience claim may drive a question. The score remains external-link-and-metadata-only, and all model-dependence and intention boundaries must be preserved."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 2,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 2,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 2,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Dette er fulltekst- og direct-object-dekning for ett av seks analyseemner. Det gjør ikke hele analyse-domenet kapittelklart og dekker ikke alternative melodiske tradisjoner eller framføringsbasert frasering."
+  }
+}
