@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **78**
-- Andel med dokumentert evidensgrunnlag: **33.9 %**
+- Validerte pilotobjekter: **81**
+- Andel med dokumentert evidensgrunnlag: **35.2 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -36,6 +36,7 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Bevaring, restaurering og autentisitet | 3 | 2 | 3 | 3 | evidence_ready |
 | Brudd, kontinuitet og omforming | 3 | 3 | 6 | 3 | evidence_ready |
 | Digital kulturarv og formidling | 3 | 2 | 3 | 3 | evidence_ready |
+| Digitale kilder, metadata og søk | 5 | 4 | 5 | 5 | evidence_ready |
 | Dokumentform og autentisitet | 3 | 2 | 3 | 3 | evidence_ready |
 | Erfaringsrom og forventningshorisont | 4 | 3 | 5 | 4 | evidence_ready |
 | Fabrikk, arbeidsprosess og organisering | 5 | 2 | 3 | 5 | evidence_ready |
@@ -89,8 +90,10 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Samtid, ettertid og historisk fortelling | 4 | 3 | 6 | 4 | evidence_ready |
 | Sanering, riving og fortrengning | 4 | 3 | 6 | 4 | evidence_ready |
 | Serielle kilder og historiske mønstre | 4 | 2 | 4 | 4 | evidence_ready |
+| Skrift, hånd og lesbarhet | 3 | 2 | 4 | 3 | evidence_ready |
 | Materielle spor og sted som kilde | 4 | 4 | 8 | 4 | evidence_ready |
 | Stedsnavn og navnepolitikk | 3 | 2 | 2 | 3 | evidence_ready |
+| Taushet, fravær og blindsoner | 3 | 3 | 4 | 3 | evidence_ready |
 | Tidslag og samtidighet i sted | 3 | 3 | 6 | 3 | evidence_ready |
 | Bilder, fotografi og visuelle kilder | 3 | 2 | 2 | 3 | evidence_ready |
 
