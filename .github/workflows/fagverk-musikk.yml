@@ -18,6 +18,8 @@ on:
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-musikk.mjs'
+      - 'tools/build-musikk-subject-pathway-v1.mjs'
+      - 'tools/build-musikk-subject-pathway-registration-v1.mjs'
       - 'tools/validate-musikk-emner-fagdybde-v2.mjs'
       - 'tools/validate-musikk-source-dossiers-v1.mjs'
       - 'tools/validate-musikk-fulltext-evidence-v1.mjs'
@@ -31,9 +33,38 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  bootstrap-pathway-registration:
+    if: github.head_ref == 'agent/musikk-rhythm-subject-pathway-v1'
+    name: Bootstrap Musikk pathway outputs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate deterministic pathway and registrations
+        run: |
+          node tools/build-musikk-subject-pathway-v1.mjs --write
+          node tools/build-musikk-subject-pathway-registration-v1.mjs --write
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node tools/validate-musikk-subject-pathway-v1.mjs
+      - name: Commit generated outputs
+        run: |
+          if git diff --quiet; then
+            echo 'No generated changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/quiz/musikk/musikk_subject_pathways_v1.json data/fag/fag_manifest.json data/fagverk/subject_inventory.json data/fagverk/subject_status.json data/quiz/manifest.json data/knowledge/knowledge_manifest.json reports/fagverk/subject-baseline.json
+          git commit -m 'Register Musikk subject pathway outputs'
+          git push origin HEAD:${{ github.head_ref }}
+
   validate:
     name: Validate materialized Musikk subject
     runs-on: ubuntu-latest
@@ -47,6 +78,8 @@ jobs:
           node --check js/fagverk-subject-model.js
           node --check scripts/audit-fagverk-general-engine.mjs
           node --check scripts/audit-fagverk-musikk.mjs
+          node --check tools/build-musikk-subject-pathway-v1.mjs
+          node --check tools/build-musikk-subject-pathway-registration-v1.mjs
           node --check tools/validate-musikk-fulltext-evidence-v1.mjs
           node --check tools/validate-musikk-subject-pathway-v1.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
