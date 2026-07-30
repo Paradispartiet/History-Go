@@ -76,7 +76,7 @@ History Go lagrer bare:
 
 ## Aggregert status
 
-Etter denne batchen skal fulltekstevidenslaget stå på:
+Fulltekstevidensvalidatoren bekrefter:
 
 - 6 fulltekstevidenstemaer av 48
 - 14 fulltekstgjennomganger, hvorav 3 canonicale og 11 produksjonsutvidelser
@@ -86,11 +86,11 @@ Etter denne batchen skal fulltekstevidenslaget stå på:
 - 6 question-ready emner
 - 6 question-ready claims
 
-Med samme validatorlogikk som de foregående fem filene gir den nye topic-filen 128 nye PASS. Forventet fulltekstevidensresultat er derfor:
+Resultat:
 
 `965 PASS / 0 FAIL`
 
-Musikk source dossiers skal forbli:
+Musikk source dossiers forblir:
 
 `6520 PASS / 0 FAIL`
 
@@ -103,6 +103,17 @@ Den aktive subject pathwayen endres ikke i denne batchen og forblir:
 
 De øvrige 42 canonicale Musikk-temaene forblir blokkert.
 
+## CI
+
+På første firefil-head var alle workflowene som denne avgrensede diffen faktisk trigget grønne:
+
+- Data checks
+- Musikk scientific quality
+- Fagverk Musikk
+- Fagverk subject inventory
+
+`Fagverk Musikk` bekreftet samtidig source dossiers `6520/0`, fulltekstevidens `965/0`, eksisterende pathway `1480/0` og pathway source metadata `328/0`.
+
 ## Neste gate
 
-Når CI bekrefter evidensporten, kan det eksplisitt frigitte claimet materialiseres som subject-pathway sett 6. Pathway-validatoren er allerede evidensdrevet, så neste produksjon skal kunne utvide til 6 sett / 30 spørsmål uten ny emnehardkoding.
+Analysedomenets seks canonicale temaer er nå fulltekst-/object-verifisert. Neste produksjon kan materialisere det eksplisitt frigitte claimet som subject-pathway sett 6. Pathway-validatoren er allerede evidensdrevet, så utvidelsen skal kunne gå fra 5 sett / 25 spørsmål til 6 sett / 30 spørsmål uten ny emnehardkoding.
