@@ -2,8 +2,6 @@
 
 Dato: 2026-07-30
 
-Status: produksjonsaudit før CI.
-
 ## Formål
 
 Denne batchen fulltekst- og object-verifiserer det tredje analyseemnet i Musikk:
@@ -18,7 +16,7 @@ Canonical domene-, emne-, metode- og kildeinventar endres ikke.
 
 Produksjonen bruker William E. Caplin, *Beethoven’s “Tempest” Exposition: A Response to Janet Schmalfeldt*, Music Theory Online 16(2), 2010.
 
-To fulltekstlokatorer er lagt til:
+To fulltekstlokatorer er verifisert:
 
 1. paras. [12]–[14] – halvslutning i ny toneart ved m.41, dominantpedal gjennom m.54, tonika i første omvending ved m.55, naboneapolitanske harmonier, IV ved m.62 og kadensdominant/PAC ved m.63.
 2. paras. [20]–[25] – Caplins argument for tonikaforlengelse i mm.75–87 og hans plassering av den siste levedyktige avsluttende kadensen ved m.75.
@@ -73,7 +71,7 @@ Tre grenser er eksplisitte:
 
 ## Aggregert fulltekststatus etter batchen
 
-Forventet canonical status når validatoren er grønn:
+Validatoren bekrefter:
 
 - 3 fulltekstevidenstemaer av 48
 - 8 fulltekstgjennomganger
@@ -87,15 +85,39 @@ Forventet canonical status når validatoren er grønn:
 
 De øvrige 45 canonicale temaene er fortsatt ikke frigitt av dette evidenslaget.
 
-## CI-gate
+## Validatorer
 
-Før ready/merge skal minst følgende være grønne på låst head:
+Musikk source dossiers:
 
-- `node tools/validate-musikk-fulltext-evidence-v1.mjs`
-- Musikk source-dossier-validator
+`6520 PASS / 0 FAIL`
+
+Musikk fulltekstevidens:
+
+`567 PASS / 0 FAIL`
+
+Eksisterende subject pathway forblir uendret:
+
+`592 PASS / 0 FAIL`
+
+Pathway source metadata forblir uendret:
+
+`122 PASS / 0 FAIL`
+
+## CI
+
+På første firefil-head var alle workflowene som diffen faktisk trigget grønne:
+
+- Data checks
 - Musikk scientific quality
 - Fagverk Musikk
-- Data checks
-- TypeScript guard
+- Fagverk subject inventory
 
-Sluttall for fulltekstevidensvalidatoren og faktisk trigget CI oppdateres i PR-beskrivelsen etter kjøring.
+TypeScript guard ble ikke trigget av denne avgrensede data-/rapportdiffen og regnes derfor ikke som en utført kontroll for batchen.
+
+`Fagverk Musikk` bekreftet samtidig source dossiers `6520/0`, fulltekstevidens `567/0`, eksisterende pathway `592/0` og pathway source metadata `122/0`.
+
+Slutt-head etter denne auditoppdateringen skal kjøre de samme relevante path-baserte kontrollene før ready/merge.
+
+## Neste gate
+
+Det tredje analyseemnet er nå question-ready i evidenslaget, men er ennå ikke materialisert som subject-pathway-sett. Neste produksjon kan derfor legge harmoni/tonalitet inn som sett 3 uten å åpne de øvrige 45 temaene.
