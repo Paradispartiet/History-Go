@@ -1,0 +1,20 @@
+name: Temporary history public sphere audit
+
+on:
+  push:
+    branches:
+      - agent/history-public-sphere-evidence-v1
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit reusable public sphere evidence
+        run: node tmp/history-public-sphere-audit.mjs
