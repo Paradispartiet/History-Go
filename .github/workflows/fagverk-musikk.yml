@@ -26,6 +26,7 @@ on:
       - 'tools/validate-musikk-source-dossiers-v1.mjs'
       - 'tools/validate-musikk-fulltext-evidence-v1.mjs'
       - 'tools/validate-musikk-subject-pathway-v1.mjs'
+      - 'tools/validate-musikk-subject-pathway-source-metadata-v1.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-musikk.test.mjs'
@@ -63,6 +64,7 @@ jobs:
           node dist/scripts/knowledge-canonical-data.mjs --write
           node tools/build-musikk-subject-pathway-registration-v1.mjs --check
           node tools/validate-musikk-subject-pathway-v1.mjs
+          node tools/validate-musikk-subject-pathway-source-metadata-v1.mjs
       - name: Commit generated outputs
         run: |
           if git diff --quiet; then
@@ -93,6 +95,7 @@ jobs:
           node --check tools/build-musikk-subject-pathway-registration-v1.mjs
           node --check tools/validate-musikk-fulltext-evidence-v1.mjs
           node --check tools/validate-musikk-subject-pathway-v1.mjs
+          node --check tools/validate-musikk-subject-pathway-source-metadata-v1.mjs
       - name: Validate Musikk canonical scientific package
         run: |
           node tools/validate-musikk-emner-fagdybde-v2.mjs
