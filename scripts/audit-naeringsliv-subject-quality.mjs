@@ -88,16 +88,20 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
   assert(badgePage.includes('fagverk.html?subject=naeringsliv'), 'Badge page lacks canonical subject link');
   assert(runtime.subjectId === 'naeringsliv' && runtime.displayName === 'Økonomi og næringsliv', 'Runtime manifest uses wrong subject identity');
   assert(runtime.canonicalSummary?.domainCount === 6 && runtime.canonicalSummary?.emneCount === 38, 'Runtime manifest has stale canonical counts');
-  assert(Object.keys(runtime.chapterByDomain || {}).length === 0 && Object.keys(runtime.chapterByEmne || {}).length === 0, 'Foundation materialization must not invent chapters');
+  const firstDomain = domains.find((row) => row.domain_id === 'arbeid_produksjon_verdiskaping');
+  assert(firstDomain, 'Canonical first domain is missing');
+  assert(runtime.chapterByDomain?.[firstDomain.domain_id] === 'arbeid-produksjon-verdiskaping', 'Runtime is missing the first canonical chapter');
+  for (const emneId of firstDomain.emne_ids || []) assert(runtime.chapterByEmne?.[emneId] === 'arbeid-produksjon-verdiskaping', `Runtime is missing first-chapter emne ${emneId}`);
   const portalEntry = portal.categories.find((row) => row.id === 'naeringsliv');
   assert(portalEntry?.subjectStatus === 'materialized' && portalEntry?.subjectPage === 'fagverk.html?subject=naeringsliv', 'Portal is not materialized');
   const statusEntry = status.subjects.find((row) => row.id === 'naeringsliv');
   assert(statusEntry?.navigationStatus === 'materialized', 'Status navigation is not materialized');
   assert(statusEntry?.assessmentStatus === 'audited', 'Status assessment is not audited');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Status editorial state must be structure_ready before chapters');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Status editorial state must be chapters_in_progress after the first chapter');
   assert(registry.subjects?.naeringsliv?.canonicalModel?.sourceOfTruth === true, 'Registry does not point to canonical naeringsliv data');
   assert(registry.subjects?.naeringsliv?.canonicalModel?.runtimeManifest === P.runtime, 'Registry points to wrong runtime manifest');
-  assert((registry.subjects?.naeringsliv?.chapters || []).length === 0, 'Foundation materialization must not register fictional chapters');
+  const registeredChapter = (registry.subjects?.naeringsliv?.chapters || []).find((row) => row.id === 'arbeid-produksjon-verdiskaping');
+  assert(registeredChapter?.file === 'data/fagverk/naeringsliv/arbeid-produksjon-verdiskaping.json', 'Registry is missing the first canonical chapter');
 
   const report = {
     schema: 'history_go_naeringsliv_subject_quality_audit_v1',
@@ -116,7 +120,7 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
       professionalTrackCount,
       professionalModuleCount,
       totalLearningUnits: businessFramework.relationship_to_university_core.total_learning_units,
-      registeredChapterCount: 0,
+      registeredChapterCount: (registry.subjects?.naeringsliv?.chapters || []).length,
       normalOpeningQuestions: quiz.normal_opening_profile.sets * quiz.normal_opening_profile.questions_per_set
     },
     gates: {
@@ -130,7 +134,7 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
       twoTimesSevenNormalQuizOpening: true,
       runtimeManifestMaterialized: true,
       portalRegistryStatusSynchronized: true,
-      noInventedChapters: true
+      registeredChapterSynchronized: true
     }
   };
   if (writeReport) {
