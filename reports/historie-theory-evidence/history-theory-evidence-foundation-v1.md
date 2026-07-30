@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **87**
-- Andel med dokumentert evidensgrunnlag: **37.8 %**
+- Validerte pilotobjekter: **94**
+- Andel med dokumentert evidensgrunnlag: **40.9 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -102,6 +102,13 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Taushet, fravær og blindsoner | 3 | 3 | 4 | 3 | evidence_ready |
 | Tidslag og samtidighet i sted | 3 | 3 | 6 | 3 | evidence_ready |
 | Bilder, fotografi og visuelle kilder | 3 | 2 | 2 | 3 | evidence_ready |
+| Byutvidelse, grenser og innlemmelse | 3 | 2 | 2 | 3 | evidence_ready |
+| Gatenett, tomtestruktur og infrastruktur | 4 | 2 | 6 | 4 | evidence_ready |
+| Regulering, plan og ekspropriasjon | 4 | 2 | 4 | 4 | evidence_ready |
+| Byfornyelse, boligstandard og oppgradering | 4 | 3 | 5 | 4 | evidence_ready |
+| Næring, funksjonsskifte og hverdagsbruk | 4 | 3 | 6 | 4 | evidence_ready |
+| Industri-, havne- og jernbanetransformasjon | 4 | 3 | 5 | 4 | evidence_ready |
+| Gentrifisering, verdi og befolkningsendring | 4 | 2 | 4 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
