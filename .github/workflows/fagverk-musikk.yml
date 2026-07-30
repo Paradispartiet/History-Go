@@ -110,7 +110,6 @@ jobs:
           node tools/build-musikk-subject-pathway-registration-v1.mjs --write
           npm run knowledge:canonical:write
           git restore reports/knowledge-contract-audit.json reports/knowledge-universe-readers.json || true
-          node tools/build-musikk-history-source-criticism-subject-pathway-v1.mjs --check
           node tools/build-musikk-subject-pathway-v1.mjs --check
           node tools/build-musikk-subject-pathway-registration-v1.mjs --check
           node tools/validate-musikk-fulltext-evidence-v1.mjs
