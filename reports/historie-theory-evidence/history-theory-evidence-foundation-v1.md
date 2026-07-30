@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **125**
-- Andel med dokumentert evidensgrunnlag: **54.3 %**
+- Validerte pilotobjekter: **130**
+- Andel med dokumentert evidensgrunnlag: **56.5 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -140,6 +140,11 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Vikingtidens mobilitet, handel, vold og statsdannelse | 4 | 2 | 3 | 4 | evidence_ready |
 | Arkeologiske landskap, miljø og ressursbruk | 4 | 4 | 6 | 4 | evidence_ready |
 | Bioarkeologi, helse, kosthold og demografi | 3 | 3 | 4 | 3 | evidence_ready |
+| Sosialforsikring, pensjon og universalisme | 3 | 2 | 4 | 3 | evidence_ready |
+| Boligpolitikk og materiell velferd | 3 | 3 | 3 | 3 | evidence_ready |
+| Omsorgsarbeid, kjønn og sosial reproduksjon | 3 | 3 | 5 | 3 | evidence_ready |
+| Velferdsrett, vilkår og tilgang | 3 | 3 | 4 | 3 | evidence_ready |
+| Bruker, tjeneste og forvaltning | 3 | 3 | 3 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 
