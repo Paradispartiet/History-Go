@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_war_propaganda_imprisonment_evidence_v1",
+  "subject_id": "historie",
+  "geography_id": "geo_no_oslo_akershus",
+  "status": "reviewed_source_dossier",
+  "accessed_at": "2026-07-30",
+  "scope": {
+    "qualified_theory_ids": [
+      "theory_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+      "theory_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse"
+    ],
+    "case_ids": [
+      "case_his_aftenposten_akersgata",
+      "case_his_nationaltheatret",
+      "case_his_mollergata_19",
+      "case_his_grini_fangeleir"
+    ],
+    "method_rule": "For informasjonsmakt skilles produksjon, kontroll, distribusjon og mottak. For fangenskap skilles arrestasjon, rettsstatus, faktisk behandling, avhør, fengsel/leir, transport og utfall. Ingen delkjede gjøres representativ for alle aktører."
+  },
+  "spatial_anchoring": {
+    "aftenposten": {
+      "place_id": "aftenposten_akersgata",
+      "status": "verified_historical_press_house_anchor",
+      "assessment": "Akersgata 51 er canonical historisk hovedadresse for Aftenposten 1876–2003 og brukes som fysisk pressehusanker for okkupasjonstidens redaksjons- og trykkerivirksomhet."
+    },
+    "nationaltheatret": {
+      "place_id": "nationaltheatret",
+      "status": "existing_validated_institution_anchor",
+      "assessment": "Gjenbrukes som allerede validert stedbundet teaterinstitusjon for 1941-ledelsesinngrep og publikumsboikott."
+    },
+    "mollergata": {
+      "place_id": "mollergata_19",
+      "status": "verified_historical_prison_anchor",
+      "assessment": "Den bevarte hovedbygningen forankrer det historiske politi-/fengselsanlegget; revet fengselsfløy og Victoria terrasse behandles eksplisitt som egne romlige ledd."
+    },
+    "grini": {
+      "place_id": "grini_fangeleir",
+      "status": "verified_historical_camp_core_anchor",
+      "assessment": "Det opprinnelige Ila/Grini-hovedbygget er canonical historisk anker; marker/radius er ikke full leirperimeter og dagens aktive fengsel er ikke offentlig gameplayområde."
+    }
+  },
+  "sources": {
+    "src_his_snl_aftenposten_occupation": {
+      "title": "Aftenposten",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Aftenposten",
+      "supported_dimensions": [
+        "press_censorship",
+        "occupation_directives"
+      ],
+      "limitations": [
+        "Leksikonartikkelen sammenfatter Aftenpostens lange historie og gir bare et kortfattet bilde av redaksjonelle beslutninger, intern uenighet, selvsensur og daglig sensurpraksis under okkupasjonen.",
+        "At avisen fulgte sensur og direktiver dokumenterer informasjonskontroll, men sier ikke alene hvordan hvert enkelt budskap ble mottatt av leserne eller hvilke holdninger eksponeringen skapte."
+      ]
+    },
+    "src_his_snl_deutsche_zeitung_norwegen": {
+      "title": "Deutsche Zeitung in Norwegen",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Deutsche_Zeitung_in_Norwegen",
+      "supported_dimensions": [
+        "occupation_newspaper",
+        "printing_infrastructure",
+        "circulation"
+      ],
+      "limitations": [
+        "Artikkelen dokumenterer avisens målgruppe, utgivelsesperiode, trykkested og opplag, men analyserer ikke systematisk hvert nummers budskap eller redaksjonelle kommandokjede.",
+        "Et dokumentert opplag er et mål på produsert/distribuert avisvolum, ikke på faktisk lesing, overbevisning eller politisk virkning blant mottakerne."
+      ]
+    },
+    "src_his_snl_nationaltheatret_wartime_control": {
+      "title": "Nationaltheatret",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Nationaltheatret",
+      "supported_dimensions": [
+        "institutional_control",
+        "audience_boycott"
+      ],
+      "limitations": [
+        "Leksikonartikkelen oppsummerer konflikten, ledelsesinngrepet og publikumsboikotten, men erstatter ikke samtidige styreprotokoller, sensurdokumenter eller representative publikumsundersøkelser.",
+        "Publikumsboikott viser en kollektiv respons på institusjonens okkupasjonsstyring, men dokumenterer ikke motiv eller deltakelse for hver enkelt tilskuer eller hele befolkningen."
+      ]
+    },
+    "src_his_snl_mollergata_19_occupation_prison": {
+      "title": "Møllergata 19",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/M%C3%B8llergata_19",
+      "supported_dimensions": [
+        "detention_without_judgment",
+        "interrogation",
+        "torture",
+        "transfer"
+      ],
+      "limitations": [
+        "Leksikonartikkelen sammenfatter fengselets institusjonshistorie og dokumenterer ikke et komplett individregister over arrestasjon, avhør, tortur, transport og videre skjebne for alle fanger.",
+        "At tortur og transport til Victoria terrasse forekom dokumenterer en institusjonell praksis, men innebærer ikke at hvert opphold i Møllergata fulgte samme forløp eller voldsnivå."
+      ]
+    },
+    "src_his_mia_grini_prison_camp": {
+      "title": "Grini prison camp",
+      "publisher": "Grinimuseet / MiA – Museene i Akershus",
+      "url": "https://mia.no/grinimuseet/en/grini-prison-camp",
+      "supported_dimensions": [
+        "camp_scale",
+        "confinement_forms",
+        "deportation",
+        "mortality"
+      ],
+      "limitations": [
+        "Museets sammenstilling gir institusjonell hovedkronologi og aggregerte tall, men er ikke et komplett digitalt fange- og transportregister og kan ikke brukes til å rekonstruere hver enkelt fanges behandlingsforløp.",
+        "Tall for internerte, deporterte og døde må leses med kildekritikk fordi fange- og transportdokumentasjon kan være ufullstendig, og dødsfall etter deportasjon skjedde utenfor selve Grini-leiren."
+      ]
+    }
+  },
+  "production_decisions": [
+    "Aftenposten/Akersgata 51 brukes framfor Youngstorget fordi place-recorden eksplisitt representerer det historiske pressehuset og ikke et bredt byrom.",
+    "Nationaltheatret tilfører et separat mottaksspor gjennom publikumsboikott; dette brukes ikke som mål på avislesing.",
+    "Møllergata og Grini materialiseres som to separate fangeinstitusjoner slik at avhør/fengsel, leir, transport og dødsutfall ikke kollapses til ett sted.",
+    "Dødsfall blant Grini-fanger etter deportasjon plasseres ikke fysisk på Grini, og transport til Victoria terrasse plasseres ikke fysisk i Møllergata 19."
+  ]
+}

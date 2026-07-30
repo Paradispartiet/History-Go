@@ -33,20 +33,20 @@
     "legacy_case_candidates": 102,
     "validated_pilot_cases": 1,
     "migration_date": "2026-07-26",
-    "validated_cases": 23,
-    "unverified_case_candidates": 81
+    "validated_cases": 32,
+    "unverified_case_candidates": 76
   },
   "production_coverage": {
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 200,
     "emne_link_ratio_percent": 87,
-    "cases_total": 107,
-    "claims_total": 128,
-    "sources_total": 99,
-    "evidence_links_total": 130,
+    "cases_total": 108,
+    "claims_total": 135,
+    "sources_total": 104,
+    "evidence_links_total": 137,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 29,
+    "verified_cases_total": 32,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -1081,9 +1081,11 @@
       "label": "Grini fangeleir",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "grini_fangeleir"
+      ],
       "emne_ids": [
         "em_his_fangenskap_kontroll",
         "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
@@ -1096,10 +1098,23 @@
         "em_his_rettsoppgjor",
         "em_his_rettsoppgjor_etterkrig"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_war_propaganda_imprisonment_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`grini_fangeleir` bruker det dokumenterte opprinnelige Ila/Grini-hovedbygget som historisk anker; 360-metersradiusen er ikke en påstand om leirens fulle krigsperimeter, og dagens aktive fengselsområde er ikke et offentlig gameplaymål."
       }
     },
     {
@@ -1793,9 +1808,11 @@
       "label": "Møllergata 19",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "mollergata_19"
+      ],
       "emne_ids": [
         "em_his_arkiv_og_dokumentasjon",
         "em_his_brudd_kontinuitet",
@@ -1815,10 +1832,23 @@
         "em_his_serielle_kilder_kvantifisering",
         "em_his_styring_krise_kontinuitet"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_actor_conflict",
+        "case_req_his_comparative_scale",
+        "case_req_his_source_comparison",
+        "case_req_his_temporal_sequence"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_war_propaganda_imprisonment_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`mollergata_19` er det bevarte hovedbygningsankeret for det historiske politi- og fengselsanlegget; den revne fengselsfløyen og avhør på Victoria terrasse behandles som dokumenterte deler av forløpet, ikke som om de ligger i dagens fasadepunkt."
       }
     },
     {
@@ -3324,6 +3354,7 @@
       ],
       "emne_ids": [
         "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
         "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
         "em_his_okkupasjon_motstand"
       ],
@@ -3344,6 +3375,40 @@
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_explicit_limitations",
         "spatial_note": "`nationaltheatret` brukes som anker for hovedbygningen og den stedbundne teaterinstitusjonen; Nationaltheatret stasjon og streikehendelser i andre byer er ikke del av dette stedspunktet."
+      }
+    },
+    {
+      "case_id": "case_his_aftenposten_akersgata",
+      "label": "Aftenposten – Akersgata 51",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "aftenposten_akersgata"
+      ],
+      "emne_ids": [
+        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+        "em_his_okkupasjon_motstand"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "migrated_from": "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "migration_date": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_war_propaganda_imprisonment_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "spatial_note": "`aftenposten_akersgata` er det eksplisitte historiske pressehusankeret Akersgata 51 for 1876–2003; det brukes for okkupasjonstidens avis- og trykkerivirksomhet uten å gjøre hele Akersgata eller dagens redaksjonsadresse til samme sted."
       }
     }
   ],
@@ -5091,8 +5156,10 @@
     {
       "emne_id": "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
       "case_ids": [
+        "case_his_aftenposten_akersgata",
         "case_his_grini_fangeleir",
         "case_his_mollergata_19",
+        "case_his_nationaltheatret",
         "case_his_oscarsborg_festning",
         "case_his_regjeringskvartalet"
       ],
@@ -5109,11 +5176,12 @@
     {
       "emne_id": "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
       "case_ids": [
+        "case_his_aftenposten_akersgata",
         "case_his_grini_fangeleir",
         "case_his_hjemmefrontmuseet",
+        "case_his_nationaltheatret",
         "case_his_regjeringskvartalet",
-        "case_his_victoria_terrasse",
-        "case_his_nationaltheatret"
+        "case_his_victoria_terrasse"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -5872,12 +5940,13 @@
     {
       "emne_id": "em_his_okkupasjon_motstand",
       "case_ids": [
+        "case_his_aftenposten_akersgata",
         "case_his_akershus_festning",
         "case_his_grini_fangeleir",
         "case_his_mollergata_19",
+        "case_his_nationaltheatret",
         "case_his_oscarsborg_festning",
-        "case_his_villa_grande",
-        "case_his_nationaltheatret"
+        "case_his_villa_grande"
       ],
       "case_requirement_ids": [
         "case_req_his_actor_conflict",
