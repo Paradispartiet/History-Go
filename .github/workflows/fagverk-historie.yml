@@ -54,7 +54,7 @@ jobs:
           node tools/audit-historie-universal-coverage.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
-          node scripts/audit-fagverk-historie.mjs
+          node scripts/audit-fagverk-historie.mjs --write-report
       - name: Validate all affected contracts
         run: |
           set -euo pipefail
