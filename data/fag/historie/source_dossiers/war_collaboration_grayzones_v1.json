@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_war_collaboration_grayzones_evidence_v1",
+  "subject_id": "historie",
+  "geography_id": "geo_no_oslo_akershus",
+  "status": "reviewed_source_dossier",
+  "accessed_at": "2026-07-30",
+  "scope": {
+    "qualified_theory_ids": [
+      "theory_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+      "theory_his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner"
+    ],
+    "case_ids": [
+      "case_his_nationaltheatret",
+      "case_his_hl_senteret_villa_grande"
+    ],
+    "method_rule": "Klassifiser handlinger etter dokumentert tvang, initiativ, institusjonsrolle, konsekvens og endring over tid. Gjenopptatt arbeid under dødstrussel er ikke frivillig støtte; gråsonebegrepet brukes til å teste avgrensede aktørforløp og må ikke oppløse dokumentert kollaborasjon eller ansvar."
+  },
+  "spatial_anchoring": {
+    "nationaltheatret": {
+      "place_id": "nationaltheatret",
+      "status": "verified_main_theatre_institution_anchor",
+      "assessment": "Canonical `nationaltheatret` representerer hovedbygningen og den stedbundne institusjonen på Johanne Dybwads plass. Det brukes som anker for teaterstreiken og Normanns institusjonsrolle, ikke for Nationaltheatret stasjon eller streikehendelser i Bergen og Trondheim."
+    },
+    "villa_grande": {
+      "place_id": "villa_grande",
+      "status": "existing_validated_collaboration_power_anchor",
+      "assessment": "Villa Grande gjenbrukes som eksisterende validert case for Quisling-regimets bevoktede residens og fungerer som tydelig grensecase mot å gjøre all okkupasjonsatferd til gråsone."
+    }
+  },
+  "source_anchoring": {
+    "new_source_ids": [
+      "src_his_nationaltheatret_occupation_history",
+      "src_his_nbl_axel_otto_normann"
+    ],
+    "reused_source_ids": [
+      "src_his_hl_senteret_official"
+    ],
+    "assessment": "Nationaltheatrets offisielle historikk bærer streik-, arrestasjons- og tvangssporet. NBL bærer Normanns rolleforløp. HL-senterets eksisterende kilde bærer Villa Grande som kollaborasjons- og maktsted. Kildene fyller ulike funksjoner og brukes ikke som gjensidig erstatning."
+  },
+  "source_snapshots": [
+    {
+      "source_id": "src_his_nationaltheatret_occupation_history",
+      "title": "Nationaltheatret – Historie",
+      "publisher": "Nationaltheatret",
+      "url": "https://www.nationaltheatret.no/om-oss/organisasjon/historie/",
+      "supported_dimensions": [
+        "theatre_strike",
+        "arrests",
+        "coercive_end",
+        "institutional_resistance"
+      ],
+      "source_locations": [
+        "Canonical place-production claims claim_strike_arrests_1941 og claim_strike_spread, faktasjekket 2026-07-29 mot Nationaltheatrets historieside."
+      ],
+      "limitations": [
+        "Nationaltheatrets egen historikk er autoritativ for institusjonens dokumenterte forløp, men er en ettertidsframstilling og erstatter ikke samtidige politi-, styre- eller personarkiver for hver enkelt deltaker.",
+        "Streik, arrestasjoner og avslutning under trussel dokumenterer institusjonelle handlinger og tvang, men kilden gir ikke et representativt mål på alle ansattes motiv, risikovurdering eller politiske holdning."
+      ]
+    },
+    {
+      "source_id": "src_his_nbl_axel_otto_normann",
+      "title": "Axel Otto Normann",
+      "publisher": "Norsk biografisk leksikon / Store norske leksikon",
+      "url": "https://nbl.snl.no/Axel_Otto_Normann",
+      "supported_dimensions": [
+        "director_role",
+        "ns_board_takeover",
+        "wartime_departure",
+        "post_liberation_return"
+      ],
+      "source_locations": [
+        "People-claimsettet for Axel Otto Normann, særlig wartime_departure_return, faktasjekket 2026-07-28 mot NBL."
+      ],
+      "limitations": [
+        "Biografiartikkelen dokumenterer Normanns institusjonelle rolle, avgang og retur, men er ikke en full dag-for-dag-rekonstruksjon av styrekonflikten, arrestasjonene eller alle beslutningene rundt teaterstreiken.",
+        "En redigert personbiografi kan belyse én aktørs forløp, men Normanns valg og posisjon kan ikke uten videre gjøres representative for skuespillerne, styret, publikum eller norsk kulturliv under okkupasjonen."
+      ]
+    }
+  ],
+  "production_decisions": [
+    "Nationaltheatret materialiseres som nytt Historie-case fordi canonical place- og People-produksjon allerede har direkte faktasjekket okkupasjonsevidens; batchen oppretter ikke en ny stedidentitet.",
+    "Streik/arrestasjon, tvungen avslutning og Normanns institusjonelle rolle skilles i tre claims for å unngå at motstand, tvang og ledelsesendring blandes i én påstand.",
+    "Villa Grande gjenbrukes som hardt kollaborasjons- og maktcase. Gråsoneobjektet bruker dette som avgrensning mot relativisering, ikke som påstand om at Quisling-regimets residens var tvetydig.",
+    "De to teoriobjektene får ulike komplette claim-bundles; dette oppfyller både kontrakten og den faglige forskjellen mellom bred handlingsklassifikasjon og mikrohistorisk gråsoneanalyse."
+  ]
+}
