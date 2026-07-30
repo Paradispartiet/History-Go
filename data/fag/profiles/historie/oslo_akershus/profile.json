@@ -40,13 +40,13 @@
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 206,
     "emne_link_ratio_percent": 89.6,
-    "cases_total": 112,
-    "claims_total": 195,
-    "sources_total": 152,
-    "evidence_links_total": 202,
+    "cases_total": 113,
+    "claims_total": 209,
+    "sources_total": 156,
+    "evidence_links_total": 216,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 41,
+    "verified_cases_total": 43,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -1655,19 +1655,25 @@
       "label": "Jødisk museum",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "jodisk_museum_oslo"
+      ],
       "emne_ids": [
+        "em_his_ankomst_bosetting_bolig",
+        "em_his_arbeid_nettverk_naring",
         "em_his_arkiv_og_dokumentasjon",
         "em_his_digital_kulturarv_formidling",
         "em_his_diskriminering_rasisme_ekskludering",
         "em_his_dokument_autentisitet",
+        "em_his_familie_transnasjonale_band",
         "em_his_fravaer_taushet_motminne",
         "em_his_jubileum_seremoni_historiebruk",
         "em_his_kilder_taushet_blindsoner",
         "em_his_kontrovers_fjerning_omtolking",
         "em_his_kulturminner_bevaring",
+        "em_his_migrasjon_mangfold",
         "em_his_minnesteder_historiebruk",
         "em_his_minoritetshistorie",
         "em_his_monumenter_kontrovers",
@@ -1680,10 +1686,22 @@
         "em_his_taushet_og_manglende_kilder",
         "em_his_tilhorighet_ekskludering"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_migration_minority_belonging_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_minority_museum_source_with_migration_institution_persecution_return_and_memory_boundaries"
       }
     },
     {
@@ -2171,8 +2189,13 @@
         "norsk_folkemuseum"
       ],
       "emne_ids": [
+        "em_his_ankomst_bosetting_bolig",
+        "em_his_arbeid_nettverk_naring",
         "em_his_digital_kulturarv_formidling",
+        "em_his_familie_transnasjonale_band",
         "em_his_kildekritikk_arkiv_spor",
+        "em_his_migrasjon_mangfold",
+        "em_his_minoritetshistorie",
         "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
         "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
         "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
@@ -2182,7 +2205,9 @@
         "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
         "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
         "em_his_samtid_ettertid_fortelling",
-        "em_his_serielle_kilder_kvantifisering"
+        "em_his_serielle_kilder_kvantifisering",
+        "em_his_statsborgerskap_status_rettigheter",
+        "em_his_tilhorighet_ekskludering"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -2199,9 +2224,10 @@
         "batch_id": "history_movement_publics_evidence_v1",
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations",
+        "source_policy": "canonical_museum_article_and_exhibition_sources_with_archive_anchor_and_representativity_boundaries",
         "additional_batch_ids": [
           "history_memory_heritage_evidence_v1",
+          "history_migration_minority_belonging_evidence_v1",
           "history_source_method_families_evidence_v1"
         ],
         "scope_expanded_at": "2026-07-30"
@@ -3651,6 +3677,41 @@
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_explicit_rule_access_practice_and_outcome_boundaries"
       }
+    },
+    {
+      "case_id": "case_his_central_jam_e_mosque",
+      "label": "Central Jam-e-Mosque",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "central_jam_e_mosque"
+      ],
+      "emne_ids": [
+        "em_his_arbeid_nettverk_naring",
+        "em_his_minoritetshistorie",
+        "em_his_organisering_motstand_offentlighet",
+        "em_his_sprak_religion_institusjoner",
+        "em_his_tilhorighet_ekskludering"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "created_from": "data/fag/historie/source_dossiers/migration_minority_belonging_v1.json",
+        "production_date": "2026-07-30"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_migration_minority_belonging_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_congregation_first_party_source_with_explicit_representativity_and_transnational_inference_boundaries"
+      }
     }
   ],
   "emne_case_mappings": [
@@ -3825,6 +3886,8 @@
       "case_ids": [
         "case_his_gronland",
         "case_his_interkulturelt_museum",
+        "case_his_jodisk_museum",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
         "case_his_oslo_s",
         "case_his_sagene",
@@ -3847,7 +3910,10 @@
       "case_ids": [
         "case_his_akerselva",
         "case_his_arbeidermuseet",
+        "case_his_central_jam_e_mosque",
         "case_his_gronland",
+        "case_his_jodisk_museum",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_s",
         "case_his_torggata",
         "case_his_toyen",
@@ -4449,6 +4515,8 @@
         "case_his_arbeidermuseet",
         "case_his_gronland",
         "case_his_interkulturelt_museum",
+        "case_his_jodisk_museum",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
         "case_his_oslo_s",
         "case_his_toyen",
@@ -5701,6 +5769,8 @@
       "case_ids": [
         "case_his_arbeidermuseet",
         "case_his_gronland",
+        "case_his_jodisk_museum",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
         "case_his_oslo_s",
         "case_his_sagene",
@@ -5925,9 +5995,11 @@
     {
       "emne_id": "em_his_minoritetshistorie",
       "case_ids": [
+        "case_his_central_jam_e_mosque",
         "case_his_gronland",
         "case_his_interkulturelt_museum",
         "case_his_jodisk_museum",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
         "case_his_regjeringskvartalet",
         "case_his_stortinget",
@@ -6464,6 +6536,7 @@
     {
       "emne_id": "em_his_organisering_motstand_offentlighet",
       "case_ids": [
+        "case_his_central_jam_e_mosque",
         "case_his_gronland",
         "case_his_interkulturelt_museum",
         "case_his_jodisk_museum",
@@ -7220,6 +7293,7 @@
     {
       "emne_id": "em_his_sprak_religion_institusjoner",
       "case_ids": [
+        "case_his_central_jam_e_mosque",
         "case_his_gamle_deichman_pa_hammersborg",
         "case_his_gronland",
         "case_his_interkulturelt_museum",
@@ -7285,6 +7359,7 @@
         "case_his_gronland",
         "case_his_interkulturelt_museum",
         "case_his_jodisk_museum",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
         "case_his_regjeringskvartalet",
         "case_his_stortinget",
@@ -7420,9 +7495,11 @@
     {
       "emne_id": "em_his_tilhorighet_ekskludering",
       "case_ids": [
+        "case_his_central_jam_e_mosque",
         "case_his_gronland",
         "case_his_interkulturelt_museum",
         "case_his_jodisk_museum",
+        "case_his_norsk_folkemuseum",
         "case_his_oslo_byarkiv",
         "case_his_oslo_s",
         "case_his_regjeringskvartalet",
@@ -8056,6 +8133,68 @@
         "theory_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
         "theory_his_rettighet_vilkar_tilgang",
         "theory_his_bruker_tjeneste_forvaltning"
+      ]
+    },
+    {
+      "batch_id": "history_migration_minority_belonging_evidence_v1",
+      "status": "validated",
+      "validated_at": "2026-07-30",
+      "newly_verified_case_ids": [
+        "case_his_jodisk_museum",
+        "case_his_central_jam_e_mosque"
+      ],
+      "expanded_case_ids": [
+        "case_his_norsk_folkemuseum"
+      ],
+      "claim_ids": [
+        "claim_his_norsk_folkemuseum_pakistan_kharian_network_flow_1967_1975",
+        "claim_his_norsk_folkemuseum_arrival_status_housing_1971",
+        "claim_his_norsk_folkemuseum_work_skill_mismatch_1968_1974",
+        "claim_his_norsk_folkemuseum_remittance_family_limited_return_1970s",
+        "claim_his_norsk_folkemuseum_migration_archive_interviews_photos_2002",
+        "claim_his_norsk_folkemuseum_pakistani_home_cocreated_2002",
+        "claim_his_jodisk_museum_eastern_european_settlement_trade_1896_1920",
+        "claim_his_jodisk_museum_dim_synagogue_finance_1918_1921",
+        "claim_his_jodisk_museum_synagogue_school_services_1921_1930",
+        "claim_his_jodisk_museum_deportation_families_loss_1942",
+        "claim_his_jodisk_museum_postwar_return_displaced_persons_1945",
+        "claim_his_jodisk_museum_synagogue_museum_memory_2005_2026",
+        "claim_his_central_jam_e_mosque_congregation_sites_1984_1995",
+        "claim_his_central_jam_e_mosque_member_finance_transnational_materials_1991_2024"
+      ],
+      "source_ids": [
+        "src_his_oslo_museum_byminner_pakistan_2017",
+        "src_his_norsk_folkemuseum_pakistani_home_2002",
+        "src_his_jodisk_museum_calmeyers_gate_history",
+        "src_his_wim_central_jam_e_mosque_history"
+      ],
+      "evidence_ids": [
+        "evidence_his_migration_minority_belonging_v1_01",
+        "evidence_his_migration_minority_belonging_v1_02",
+        "evidence_his_migration_minority_belonging_v1_03",
+        "evidence_his_migration_minority_belonging_v1_04",
+        "evidence_his_migration_minority_belonging_v1_05",
+        "evidence_his_migration_minority_belonging_v1_06",
+        "evidence_his_migration_minority_belonging_v1_07",
+        "evidence_his_migration_minority_belonging_v1_08",
+        "evidence_his_migration_minority_belonging_v1_09",
+        "evidence_his_migration_minority_belonging_v1_10",
+        "evidence_his_migration_minority_belonging_v1_11",
+        "evidence_his_migration_minority_belonging_v1_12",
+        "evidence_his_migration_minority_belonging_v1_13",
+        "evidence_his_migration_minority_belonging_v1_14"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_migrasjonsdrivere_flyttestrommer",
+        "theory_his_ankomst_bosetting_bolig",
+        "theory_his_arbeid_nettverk_naring",
+        "theory_his_statsborgerskap_status_rettigheter",
+        "theory_his_minoritetspolitikk_kategorisering_registrering",
+        "theory_his_sprak_religion_institusjoner",
+        "theory_his_familie_transnasjonale_band",
+        "theory_his_diskriminering_rasisme_ekskludering",
+        "theory_his_organisering_motstand_offentlighet",
+        "theory_his_tilhorighet_identitet_minne"
       ]
     }
   ]
