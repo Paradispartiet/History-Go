@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **102**
-- Andel med dokumentert evidensgrunnlag: **44.3 %**
+- Validerte pilotobjekter: **111**
+- Andel med dokumentert evidensgrunnlag: **48.3 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -117,6 +117,15 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Politi, fengsel og strafferegime | 4 | 2 | 3 | 4 | evidence_ready |
 | Register, overvåkning og disiplin | 3 | 2 | 3 | 3 | evidence_ready |
 | Krise, unntak og institusjonell kontinuitet | 4 | 2 | 4 | 4 | evidence_ready |
+| Klima og historisk endring: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Energi og energiregimer: forklarings- og kildebane | 4 | 3 | 3 | 4 | evidence_ready |
+| Skog, vann og naturressurser: forklarings- og kildebane | 3 | 3 | 3 | 3 | evidence_ready |
+| Forurensning og urban miljøhistorie: forklarings- og kildebane | 3 | 2 | 5 | 3 | evidence_ready |
+| Dyr og menneske–natur-relasjoner: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
+| Naturforvaltning og miljøbevegelse: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
+| Antropocen, langsom vold og miljørettferdighet: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
+| Urban natur, helse og miljøulikhet: forklarings- og kildebane | 4 | 2 | 6 | 4 | evidence_ready |
+| Miljørettferdighet, langsom vold og framtidsansvar: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
