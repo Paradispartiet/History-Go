@@ -16,6 +16,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
 - `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 110 Natur-hooks og 65 emner, inkludert egne fagkartlag for artskunnskap, evolusjon, botanikk, zoologi og fysiologi.
 - `natur-universal-coverage-audit.json` — dokumenterer hvilke biologiske og geologiske fagområder som må materialiseres før Natur kan bli redaksjonelt komplett.
+- `naeringsliv-kapital-eierskap-finans-audit.json` — deterministisk kapittelgate for ni emner, fjorten metoder, tre moduler, 40 claims og 20 inspectable kilder.
 - `naeringsliv-arbeid-produksjon-verdiskaping-audit.json` — deterministisk kapittelgate for ni emner, nitten metoder, tre moduler, 40 claims og 20 inspectable kilder.
 - `naeringsliv-quality-audit.json` — deterministisk materialiserings- og kvalitetsgate for seks fagområder, 38 emner, 27 metoder, 60 hooks, seks akademiske spor og fem profesjonsspor med 25 moduler.
 - `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
@@ -46,6 +47,8 @@ node scripts/audit-natur-fagkart-quality.mjs --write-report
 node scripts/audit-natur-fagkart-quality.mjs
 node scripts/audit-natur-universal-coverage.mjs --write-report
 node scripts/audit-natur-universal-coverage.mjs
+node scripts/audit-naeringsliv-chapter-kapital-eierskap-finans.mjs --write-report
+node scripts/audit-naeringsliv-chapter-kapital-eierskap-finans.mjs
 node scripts/audit-naeringsliv-chapter-arbeid-produksjon-verdiskaping.mjs --write-report
 node scripts/audit-naeringsliv-chapter-arbeid-produksjon-verdiskaping.mjs
 node scripts/audit-naeringsliv-subject-quality.mjs --write-report
@@ -70,7 +73,7 @@ node scripts/audit-politikk-chapter-norsk-politikk-eos-eu-flernivastyring.mjs --
 node scripts/audit-politikk-chapter-norsk-politikk-eos-eu-flernivastyring.mjs
 node scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs --write-report
 node scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs
-node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/naeringsliv-subject-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs
+node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/naeringsliv-chapter-arbeid-produksjon-verdiskaping.test.mjs tests/naeringsliv-chapter-kapital-eierskap-finans.test.mjs tests/naeringsliv-subject-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs
 ```
 
 `subject-baseline.json` er ikke lenger låst til at alle fag må stå urørt på Phase 0. Status kan bare flyttes videre når portalstatus, individuell audit og redaksjonell status følger den bindende progresjonsregelen.
@@ -97,7 +100,7 @@ Historie står `materialized`, `audited` og `chapters_in_progress`. Fire av 23 f
 
 Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinnelige miljøkapitlene og biologifase 1 er bevart. Evolusjon/biologisk mangfold og organismebiologi/fysiologi er nå materialisert med egne emner, metoder, mappinger, fagkart og kapitler. Elleve kapitler dekker alle 65 materialiserte emner. Sopp/lav/mikroorganismer og geologiens indre prosesser står fortsatt som eksplisitte hull før faget kan bli `complete`.
 
-Økonomi og næringsliv står `materialized`, `audited` og `chapters_in_progress`. Faget har seks canonicale fagområder, 38 emner, 27 metoder og 60 hooks. Første av seks hovedkapitler er ferdig: **Arbeid, produksjon og verdiskaping**, med ni emner, nitten metoder, tre moduler, 40 sporede claims og 20 inspectable kilder. Universitetslaget dekker seks akademiske spor og alle 36 kjerneemnene individuelt; handelshøgskolelaget dekker fem profesjonsspor og 25 moduler, samlet 61 læringsenheter.
+Økonomi og næringsliv står `materialized`, `audited` og `chapters_in_progress`. Faget har seks canonicale fagområder, 38 emner, 27 metoder og 60 hooks. To av seks hovedkapitler er ferdige: **Arbeid, produksjon og verdiskaping**, med ni emner og nitten metoder, og **Kapital, eierskap og finans**, med ni emner og fjorten metoder. Begge har tre redigerte moduler, 40 sporede claims og 20 inspectable kilder. Universitetslaget dekker seks akademiske spor og alle 36 kjerneemnene individuelt; handelshøgskolelaget dekker fem profesjonsspor og 25 moduler, samlet 61 læringsenheter.
 
 Politikk står `materialized`, `audited` og `chapters_in_progress`. Ti av tretten fagområder har registrerte kapitler, mens tre fortsatt mangler fullverdig hovedkapittel. `Regimer og institusjoner`, `Valg, partier og velgeratferd`, `Offentlig politikk, beslutning og implementering`, `Internasjonal politikk, sikkerhet og samarbeid`, `Politisk økonomi, stat og marked`, `Statsvitenskapelig metode og sammenligning`, `Norsk politikk, EØS/EU og flernivåstyring` og `Rett, lov og rettssikkerhet` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. Faget har i tillegg permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
