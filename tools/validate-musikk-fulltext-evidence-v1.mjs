@@ -10,7 +10,6 @@ const CANONICAL_INDEX = `${BASE}/index.json`;
 const PACKAGE = 'data/fag/musikk/scientific_package.json';
 const RESEARCH = `${BASE}/research_contract.json`;
 const METHODS = `${BASE}/method_protocols_v1.json`;
-const MODULE = `${BASE}/modules_v2/musikalsk_analyse_lyd_struktur.json`;
 const REGISTRY_DIRS = [
   `${BASE}/scholarly_source_registries_v1`,
   `${BASE}/scholarly_source_registries_v2`
@@ -59,7 +58,8 @@ function main() {
   const contract = readJson(`${BASE}/fulltext_evidence_v1/${index.contract}`);
   const research = readJson(RESEARCH);
   const methods = readJson(METHODS);
-  const module = readJson(MODULE);
+  const canonicalModuleFiles = list(canonicalIndex.files?.canonical_modules);
+  const canonicalModules = canonicalModuleFiles.map((file) => readJson(`${BASE}/${file}`));
 
   const registryFiles = REGISTRY_DIRS.flatMap(walkJson);
   const canonicalSourceIds = new Set();
@@ -67,7 +67,15 @@ function main() {
 
   const claimTypeIds = new Set(list(research.evidence_contract?.claim_types).map((item) => item.claim_type_id));
   const methodIds = new Set(list(methods.protocols).map((item) => item.method_id));
-  const topicById = new Map(list(module.topics).map((item) => [item.emne_id, item]));
+  const topicById = new Map();
+  const canonicalDomainIds = new Set();
+  for (const module of canonicalModules) {
+    const domainId = text(module?.domain?.domain_id);
+    if (domainId) canonicalDomainIds.add(domainId);
+    for (const topic of list(module?.topics)) {
+      if (!topicById.has(topic.emne_id)) topicById.set(topic.emne_id, topic);
+    }
+  }
 
   ok(pkg.version === '2.0', 'scientific_package må beholde canonical versjon 2.0');
   ok(pkg.summary.verified_scholarly_source_record_count === canonicalIndex.summary.verified_scholarly_source_record_count, 'produksjonskilder kan ikke endre canonical bibliografisk basistall');
@@ -76,6 +84,9 @@ function main() {
   ok(index.status === 'pilot_active', 'fulltekstevidensindeksen må være pilot_active');
   ok(index.summary.fulltext_pilot_topic_count === list(index.topic_files).length, 'pilot topic count matcher ikke topic_files');
   ok(new Set(list(index.topic_files)).size === list(index.topic_files).length, 'topic_files kan ikke inneholde duplikater');
+  ok(canonicalModuleFiles.length === canonicalIndex.summary.domain_count, 'canonical_modules må dekke alle canonicale domener');
+  ok(canonicalDomainIds.size === canonicalIndex.summary.domain_count, 'canonical modules har feil antall unike domener');
+  ok(topicById.size === canonicalIndex.summary.topic_count, 'canonical modules har feil antall unike emner');
   ok(contract.hard_rules.full_text_must_be_reviewed_before_claim_ready === true, 'kontrakten mangler fulltekstport');
   ok(contract.hard_rules.article_locator_is_not_direct_music_object_locator === true, 'kontrakten må skille artikkellokator fra direkte objektlokator');
   ok(contract.hard_rules.question_release_requires_topic_direct_object_gate === true, 'kontrakten mangler direct-object question gate');
@@ -97,7 +108,7 @@ function main() {
     const evidence = readJson(relative);
     const topic = topicById.get(evidence.emne_id);
     ok(evidence.subject_id === 'musikk', `${topicFile}: feil subject_id`);
-    ok(evidence.domain_id === 'musikalsk_analyse_lyd_struktur', `${topicFile}: feil domain_id`);
+    ok(canonicalDomainIds.has(evidence.domain_id), `${topicFile}: ukjent canonical domain_id ${evidence.domain_id}`);
     ok(Boolean(topic), `${topicFile}: ukjent canonical emne_id ${evidence.emne_id}`);
     ok(!seenEmneIds.has(evidence.emne_id), `${topicFile}: duplikat evidensfil for ${evidence.emne_id}`);
     seenEmneIds.add(evidence.emne_id);
