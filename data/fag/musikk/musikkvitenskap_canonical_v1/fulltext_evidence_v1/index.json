@@ -1,7 +1,7 @@
 {
   "schema": "history_go_musikk_fulltext_evidence_index_v1",
-  "version": "1.9.0",
-  "revision": "musikk-fulltext-evidence-history-institutions-rikskonsertene-v9-2026-07-30",
+  "version": "1.10.0",
+  "revision": "musikk-fulltext-evidence-history-periodization-ottoman-turkish-v10-2026-07-30",
   "status": "pilot_active",
   "subject_id": "musikk",
   "contract": "contract.json",
@@ -14,26 +14,27 @@
     "analytisk_lytting_beskrivelse.json",
     "kildekritikk_musikkhistorie.json",
     "resepsjon_kritikk_opptakshistorie.json",
-    "institusjoner_patronat_offentlighet.json"
+    "institusjoner_patronat_offentlighet.json",
+    "periodisering_stil_epoke_anakronisme.json"
   ],
   "summary": {
     "canonical_topic_count": 48,
-    "fulltext_pilot_topic_count": 9,
-    "fulltext_reviewed_source_count": 25,
+    "fulltext_pilot_topic_count": 10,
+    "fulltext_reviewed_source_count": 28,
     "canonical_fulltext_reviewed_source_count": 3,
-    "production_extension_source_count": 22,
-    "direct_object_count": 9,
-    "claim_ready_editorial_count": 16,
-    "boundary_count": 31,
-    "question_release_ready_topic_count": 9,
-    "question_release_ready_claim_count": 9
+    "production_extension_source_count": 25,
+    "direct_object_count": 10,
+    "claim_ready_editorial_count": 17,
+    "boundary_count": 35,
+    "question_release_ready_topic_count": 10,
+    "question_release_ready_claim_count": 10
   },
   "release_policy": {
     "editorial_use": "Allowed only for claim records marked claim_ready_editorial and with all attached inference boundaries preserved.",
     "question_use": "Allowed only for claim IDs explicitly released by a resolved topic direct-object gate. Persistent identity, at least two direct-object locators and rights-compatible History Go use are mandatory.",
     "production_source_extensions": "A production-specific fulltext source may be registered inside the evidence layer without incrementing the canonical bibliographic basis. It must carry full bibliographic identity, registration reason and fulltext verification.",
     "nonredistributable_objects": "Objects whose record prohibits redistribution or whose license compatibility with History Go is unresolved remain external-link-and-metadata-only in History Go.",
-    "chapter_use": "The evidence pilot now spans all six analysis topics plus three historical/historiographic topics: source criticism, reception/recording history, and the bounded Rikskonsertene institution/patronage case. This does not make the historical domain chapter complete; the remaining topics need their own gates."
+    "chapter_use": "The evidence pilot now spans all six analysis topics plus four historical/historiographic topics: source criticism, reception/recording history, institutions/patronage, and the bounded Ottoman-Turkish periodization comparison. The two remaining historical topics still require their own gates."
   },
-  "next_gate": "materialize_history_institutions_rikskonsertene_pathway_from_released_claim"
+  "next_gate": "materialize_history_periodization_pathway_from_released_claim"
 }
