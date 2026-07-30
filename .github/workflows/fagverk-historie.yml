@@ -61,12 +61,13 @@ jobs:
           node --test tests/history-prehistory-audit.test.mjs
 
   materialize-prehistory:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/agent/history-prehistory-evidence-v1'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/agent/history-prehistory-evidence-v1') || (github.event_name == 'pull_request' && github.head_ref == 'agent/history-prehistory-evidence-v1')
     name: Materialize Forhistorie evidence and self-clean
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: agent/history-prehistory-evidence-v1
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
