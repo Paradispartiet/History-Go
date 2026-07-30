@@ -133,9 +133,9 @@ History Go frigir ikke:
 - modifikasjon
 - embedding
 
-## Aggregert målstatus
+## Aggregert status
 
-Hvis validatoren godkjenner den nye topic-filen, skal fulltekstevidensindeksen stå på:
+Fulltekstevidensvalidatoren bekrefter:
 
 - 7 fulltekstevidenstemaer av 48
 - 17 fulltekstgjennomganger (3 canonical + 14 produksjonsutvidelser)
@@ -145,14 +145,33 @@ Hvis validatoren godkjenner den nye topic-filen, skal fulltekstevidensindeksen s
 - 7 question-ready emner
 - 7 question-ready claims
 
-Den eksisterende subject pathwayen endres ikke og skal fortsatt være:
+Resultat:
+
+`1140 PASS / 0 FAIL`
+
+Musikk source dossiers forblir:
+
+`6520 PASS / 0 FAIL`
+
+Den eksisterende subject pathwayen er urørt og forblir:
 
 - 6 sett
 - 30 spørsmål
-- 1768 PASS / 0 FAIL før eventuell separat validatorgeneralisering
-- 386 PASS / 0 FAIL i source metadata før eventuell separat validatorgeneralisering
+- `1768 PASS / 0 FAIL`
+- source metadata `386 PASS / 0 FAIL`
 
 De øvrige **41 canonicale Musikk-temaene** forblir blokkert av fulltekstevidenslaget.
+
+## CI
+
+På første firefil-head var alle workflowene denne avgrensede evidensdiffen faktisk trigget grønne:
+
+- Data checks
+- Musikk scientific quality
+- Fagverk Musikk
+- Fagverk subject inventory
+
+`Fagverk Musikk` bekreftet samtidig source dossiers `6520/0`, fulltekstevidens `1140/0`, eksisterende pathway `1768/0` og pathway source metadata `386/0`.
 
 ## Neste gate
 
