@@ -9,7 +9,7 @@ on:
       - 'data/fag/musikk/**'
       - 'data/quiz/musikk/musikk_subject_pathways_v1.json'
       - 'data/quiz/manifest.json'
-      - 'data/knowledge/knowledge_manifest.json'
+      - 'data/knowledge/**'
       - 'data/badges/musikk.json'
       - 'data/fagverk/**'
       - 'js/fagverk-subject-core.js'
@@ -18,6 +18,7 @@ on:
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-musikk.mjs'
+      - 'scripts/knowledge-canonical-data.mts'
       - 'tools/build-musikk-subject-pathway-v1.mjs'
       - 'tools/build-musikk-subject-pathway-registration-v1.mjs'
       - 'tools/validate-musikk-emner-fagdybde-v2.mjs'
@@ -28,14 +29,49 @@ on:
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-musikk.test.mjs'
       - 'reports/fagverk/**'
+      - 'reports/knowledge-id-backfill.json'
       - 'reports/musikk-canonical-migration/**'
       - '.github/workflows/fagverk-musikk.yml'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  bootstrap-knowledge:
+    if: github.head_ref == 'agent/musikk-rhythm-subject-pathway-v1'
+    name: Canonicalize pathway sources and Knowledge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Canonicalize pathway and Knowledge data
+        run: |
+          node tools/build-musikk-subject-pathway-v1.mjs --write
+          node tools/build-musikk-subject-pathway-registration-v1.mjs --check
+          npm run build:scripts
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          node tools/build-musikk-subject-pathway-v1.mjs --check
+          node tools/validate-musikk-subject-pathway-v1.mjs
+      - name: Commit canonical outputs
+        run: |
+          if git diff --quiet; then
+            echo 'No canonical changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/quiz/musikk/musikk_subject_pathways_v1.json data/knowledge/knowledge_units.generated.json data/knowledge/concepts.generated.json data/knowledge/terms.generated.json reports/knowledge-id-backfill.json
+          git commit -m 'Canonicalize Musikk pathway source metadata'
+          git push origin HEAD:${{ github.head_ref }}
+
   validate:
     name: Validate materialized Musikk subject
     runs-on: ubuntu-latest
