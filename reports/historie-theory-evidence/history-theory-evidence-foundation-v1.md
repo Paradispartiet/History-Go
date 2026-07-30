@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **130**
-- Andel med dokumentert evidensgrunnlag: **56.5 %**
+- Validerte pilotobjekter: **140**
+- Andel med dokumentert evidensgrunnlag: **60.9 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -145,6 +145,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Omsorgsarbeid, kjønn og sosial reproduksjon | 3 | 3 | 3 | 3 | evidence_ready |
 | Velferdsrett, vilkår og tilgang | 3 | 3 | 5 | 3 | evidence_ready |
 | Bruker, tjeneste og forvaltning | 3 | 3 | 4 | 3 | evidence_ready |
+| Migrasjonsdrivere og flyttestrømmer | 3 | 2 | 2 | 3 | evidence_ready |
+| Ankomst, bosetting og bolig | 4 | 2 | 3 | 4 | evidence_ready |
+| Arbeid, nettverk og næringsliv | 5 | 3 | 3 | 5 | evidence_ready |
+| Statsborgerskap, juridisk status og rettigheter | 4 | 3 | 6 | 4 | evidence_ready |
+| Minoritetspolitikk, kategorisering og registrering | 5 | 2 | 6 | 5 | evidence_ready |
+| Språk, religion og minoritetsinstitusjoner | 7 | 4 | 6 | 7 | evidence_ready |
+| Familie, livsløp og transnasjonale bånd | 4 | 2 | 2 | 4 | evidence_ready |
+| Diskriminering, rasisme og ekskludering | 4 | 3 | 5 | 4 | evidence_ready |
+| Organisering, motstand og offentlighet | 5 | 3 | 3 | 5 | evidence_ready |
+| Tilhørighet, identitet og minne | 4 | 3 | 4 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
