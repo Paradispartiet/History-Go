@@ -1,0 +1,69 @@
+{
+  "schema": "history_go_musikk_fulltext_evidence_contract_v1",
+  "version": "1.0.0",
+  "status": "canonical_production_evidence_contract",
+  "subject_id": "musikk",
+  "purpose": "Styre fulltekstbasert claim- og lokatorverifikasjon etter at et tema har publisher-verifisert bibliografisk kildegrunnlag. Laget er produksjonsevidens og endrer ikke den canonicale domenestrukturen.",
+  "upstream_contracts": [
+    "../research_contract.json",
+    "../source_dossier_contract_v1.json"
+  ],
+  "required_source_review_fields": [
+    "source_id",
+    "registry_path",
+    "full_text_status",
+    "full_text_access",
+    "checked_at",
+    "locators",
+    "rights_and_reuse_note"
+  ],
+  "required_claim_fields": [
+    "claim_id",
+    "statement",
+    "claim_type_id",
+    "source_ids",
+    "locators",
+    "method_protocol_ids",
+    "object_scope",
+    "support_level",
+    "uncertainty",
+    "prohibited_inference"
+  ],
+  "required_boundary_fields": [
+    "boundary_id",
+    "statement",
+    "source_ids",
+    "locators",
+    "applies_to_claim_ids",
+    "release_effect"
+  ],
+  "hard_rules": {
+    "full_text_must_be_reviewed_before_claim_ready": true,
+    "each_claim_requires_precise_locator": true,
+    "claim_type_must_exist_in_research_contract": true,
+    "source_id_must_exist_in_canonical_registry": true,
+    "method_ids_must_exist_in_method_protocols": true,
+    "observation_measurement_interpretation_and_intention_must_remain_separate": true,
+    "article_locator_is_not_direct_music_object_locator": true,
+    "research_evidence_ready_does_not_equal_question_release_ready": true,
+    "question_release_requires_topic_direct_object_gate": true,
+    "scope_uncertainty_and_prohibited_inference_are_mandatory": true,
+    "no_fulltext_redistribution": true
+  },
+  "support_levels": [
+    "claim_ready_editorial",
+    "boundary_only",
+    "background_only"
+  ],
+  "full_text_statuses": [
+    "reviewed_author_copy",
+    "reviewed_author_uploaded_manuscript",
+    "reviewed_publisher_fulltext",
+    "not_reviewed"
+  ],
+  "release_states": [
+    "research_evidence_ready_direct_object_blocked",
+    "direct_object_ready_question_blocked",
+    "question_release_ready"
+  ]
+}

@@ -17,6 +17,7 @@ on:
       - 'scripts/audit-fagverk-musikk.mjs'
       - 'tools/validate-musikk-emner-fagdybde-v2.mjs'
       - 'tools/validate-musikk-source-dossiers-v1.mjs'
+      - 'tools/validate-musikk-fulltext-evidence-v1.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-musikk.test.mjs'
@@ -42,6 +43,7 @@ jobs:
           node --check js/fagverk-subject-model.js
           node --check scripts/audit-fagverk-general-engine.mjs
           node --check scripts/audit-fagverk-musikk.mjs
+          node --check tools/validate-musikk-fulltext-evidence-v1.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-musikk.mjs
@@ -49,6 +51,7 @@ jobs:
         run: |
           node tools/validate-musikk-emner-fagdybde-v2.mjs
           node tools/validate-musikk-source-dossiers-v1.mjs
+          node tools/validate-musikk-fulltext-evidence-v1.mjs
       - name: Validate Fagverk contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
