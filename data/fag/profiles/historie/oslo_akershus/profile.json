@@ -41,12 +41,12 @@
     "emner_with_profile_case_candidates": 206,
     "emne_link_ratio_percent": 89.6,
     "cases_total": 113,
-    "claims_total": 209,
-    "sources_total": 156,
-    "evidence_links_total": 216,
+    "claims_total": 213,
+    "sources_total": 160,
+    "evidence_links_total": 220,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 43,
+    "verified_cases_total": 44,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -2444,21 +2444,38 @@
       "label": "Oslo brannmuseum",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "brannmuseet_oslo"
+      ],
       "emne_ids": [
         "em_his_branner_ulykker_brudd",
         "em_his_gjenoppbygging_minne",
+        "em_his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+        "em_his_katastrofer_brudd_brann_epidemi_og_naturfare",
         "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
         "em_his_katastrofer_brudd_katastrofe_som_sosial_prosess",
         "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+        "em_his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
         "em_his_terror_samtidshistorie"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_disasters_breaks_accidents_evidence_v1",
+        "validated_at": "2026-07-30",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -8195,6 +8212,52 @@
         "theory_his_diskriminering_rasisme_ekskludering",
         "theory_his_organisering_motstand_offentlighet",
         "theory_his_tilhorighet_identitet_minne"
+      ]
+    },
+    {
+      "batch_id": "history_disasters_breaks_accidents_evidence_v1",
+      "status": "validated",
+      "validated_at": "2026-07-30",
+      "newly_verified_case_ids": [
+        "case_his_oslo_brannmuseum"
+      ],
+      "expanded_case_ids": [
+        "case_his_22_juli_senteret",
+        "case_his_akerselva",
+        "case_his_middelalderbyen_oslo",
+        "case_his_oslo_radhus",
+        "case_his_regjeringskvartalet",
+        "case_his_tanum_kirke_og_baerumsgardene"
+      ],
+      "claim_ids": [
+        "claim_his_22july_commission_prevention_response_failures_2012",
+        "claim_his_regjeringskvartalet_terror_preparedness_followup_2013",
+        "claim_his_brannmuseet_greenland_station_professionalization_1861_1978",
+        "claim_his_brannmuseet_mechanization_fire_driven_change_1870_1924"
+      ],
+      "source_ids": [
+        "src_his_nou_2012_14_22july_commission",
+        "src_his_meldst21_terror_preparedness_2013",
+        "src_his_brannmuseet_oslo_station_history",
+        "src_his_brannmuseet_oslo_equipment_history"
+      ],
+      "evidence_ids": [
+        "evidence_his_disasters_breaks_accidents_v1_01",
+        "evidence_his_disasters_breaks_accidents_v1_02",
+        "evidence_his_disasters_breaks_accidents_v1_03",
+        "evidence_his_disasters_breaks_accidents_v1_04"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_krise_gjenoppbygging",
+        "theory_his_katastrofer_brudd_gjenoppbygging_og_minne_etter_krise",
+        "theory_his_katastrofer_brudd_terror_og_samtidshistorie",
+        "theory_his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+        "theory_his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+        "theory_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+        "theory_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
+        "theory_his_katastrofer_brudd_langsomme_katastrofer_og_miljoskade",
+        "theory_his_katastrofer_brudd_langsomme_katastrofer_miljoskade_og_ulik_eksponering",
+        "theory_his_katastrofer_brudd_katastrofer_branner_ulykker_og_historiske_brudd_fordypning_10"
       ]
     }
   ]

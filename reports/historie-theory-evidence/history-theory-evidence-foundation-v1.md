@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **150**
-- Andel med dokumentert evidensgrunnlag: **65.2 %**
+- Validerte pilotobjekter: **160**
+- Andel med dokumentert evidensgrunnlag: **69.6 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -165,6 +165,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Revitalisering, sannhet og forsoning: forklarings- og kildebane | 6 | 4 | 8 | 6 | evidence_ready |
 | Sannhet, forsoning og arkivenes ansvar: forklarings- og kildebane | 6 | 4 | 7 | 6 | evidence_ready |
 | Kunst, kulturarv og revitalisering som historisk praksis: forklarings- og kildebane | 6 | 4 | 6 | 6 | evidence_ready |
+| Krise, brudd og gjenoppbygging | 4 | 2 | 5 | 4 | evidence_ready |
+| Gjenoppbygging og minne etter krise: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
+| Terror og samtidshistorie: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Teknologi, systemulykker og normalulykker: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
+| Beredskap, kriseledelse og institusjonell læring: forklarings- og kildebane | 5 | 4 | 5 | 5 | evidence_ready |
+| Skyld, ansvar, gransking og rett: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Gjenoppbygging, resiliens og minne: forklarings- og kildebane | 5 | 4 | 5 | 5 | evidence_ready |
+| Langsomme katastrofer og miljøskade: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
+| Langsomme katastrofer, miljøskade og ulik eksponering: forklarings- og kildebane | 5 | 3 | 5 | 5 | evidence_ready |
+| Katastrofer, branner, ulykker og historiske brudd – fordypning 10: forklarings- og kildebane | 5 | 5 | 7 | 5 | evidence_ready |
 
 ## Kontraktsgrense
 
