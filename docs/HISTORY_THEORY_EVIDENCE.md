@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 94 av 230 etter at Byhistorie og stedsendring er fullført til 10/10 med en kombinasjon av eksisterende validerte claims og målrettet ny evidens for bygrense og gentrifisering. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 102 av 230 etter at Makt, stat og institusjoner er fullført til 10/10 med gjenbruk der evidensen allerede var sterk og målrettet ny evidens for embetsverk, rettsstat og register/overvåking. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -61,6 +61,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Kilder, arkiv og spor V1: **3** nye kvalifiserende teoriobjekter, **2** nye claims, **2** nye kilder og **2** nye place-evidence-lenker; taushet/fravær og digitale kilder kvalifiseres hovedsakelig ved claim-gjenbruk.
 - Offentlighet, mobilisering og bevegelser V1: **6** nye kvalifiserende teoriobjekter ved ren claim-gjenbruk; **0** nye claims, kilder, cases eller place-evidence-lenker.
 - Byhistorie og stedsendring V1: **7** nye kvalifiserende teoriobjekter, **6** nye claims, **4** nye kilder, **10** nye place-evidence-lenker og **0** nye cases; grense/innlemmelse og gentrifisering får målrettet ny evidens, mens de øvrige fem objektene kombinerer gjenbruk med de nye Nydalen-claimene der det styrker anvendelsen. Regulering/plan-objektet dokumenterer plan og fysisk gjennomføring, ikke ekspropriasjonsvedtak eller erstatning, og gentrifiseringsobjektet dokumenterer sosialt endringsmønster og eiendomsdrevet funksjonsskifte uten å hevde individnivå-fortrengning.
-- Totalt: **94 av 230** teoriobjekter (**40.9 %**).
+- Makt, stat og institusjoner V1: **8** nye kvalifiserende teoriobjekter, **9** nye claims, **6** nye kilder, **9** nye place-evidence-lenker og **0** nye cases; fem objekter bygger hovedsakelig på claim-gjenbruk, mens embetsverk/byråkrati, lov/domstol/rettsstat og register/overvåking/disiplin får målrettet ny evidens. Register-objektet skiller eksplisitt demokratisk sikkerhetsovervåking fra nazistisk fange-klassifikasjon, statskapasitet avgrenses til dokumentert fiskal, tilsynsmessig og militær kapasitet, og krise/unntak-objektet skiller mellom rettslig kontinuitet, ekstraordinær administrasjon og faktisk institusjonelt brudd under okkupasjonen.
+- Totalt: **102 av 230** teoriobjekter (**44.3 %**).
 - Universell status: **INCOMPLETE**.
-- Gjenstående teoriobjekter: **136**.
+- Gjenstående teoriobjekter: **128**.
