@@ -1,9 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { auditNaeringslivQuality } from '../scripts/audit-naeringsliv-subject-quality.mjs';
 
-test('Økonomi og næringsliv is materialized through its canonical academic and professional package', () => {
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const registry = JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8'));
+
+test('Økonomi og næringsliv validerer canonical fagpakke og registrerte kapitler', () => {
   const report = auditNaeringslivQuality();
+  const chapters = registry.subjects.naeringsliv.chapters;
   assert.equal(report.status, 'passed');
   assert.equal(report.summary.domainCount, 6);
   assert.equal(report.summary.emneCount, 38);
@@ -13,5 +20,7 @@ test('Økonomi og næringsliv is materialized through its canonical academic and
   assert.equal(report.summary.professionalTrackCount, 5);
   assert.equal(report.summary.professionalModuleCount, 25);
   assert.equal(report.summary.totalLearningUnits, 61);
-  assert.equal(report.summary.registeredChapterCount, 1);
+  assert.equal(report.summary.registeredChapterCount, chapters.length);
+  assert.equal(report.summary.registeredDomainCount, chapters.length);
+  assert.equal(report.summary.registeredEmneCount, new Set(chapters.flatMap((chapter) => chapter.emne_ids)).size);
 });
