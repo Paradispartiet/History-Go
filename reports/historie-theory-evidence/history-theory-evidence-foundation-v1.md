@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **81**
-- Andel med dokumentert evidensgrunnlag: **35.2 %**
+- Validerte pilotobjekter: **87**
+- Andel med dokumentert evidensgrunnlag: **37.8 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -79,8 +79,14 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Museum, samling og kanon | 5 | 5 | 8 | 5 | evidence_ready |
 | Offentlig rom, tilgang og konflikt | 6 | 5 | 9 | 6 | evidence_ready |
 | Arbeider-, kvinne- og avholdsbevegelser: forklarings- og kildebane | 6 | 4 | 9 | 6 | evidence_ready |
+| Borgerrettigheter, solidaritet og internasjonalisme: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
 | Borgerrettighetskamp, antirasisme og solidaritetsbevegelser: forklarings- og kildebane | 5 | 3 | 8 | 5 | evidence_ready |
+| Digital mobilisering, overvåkning og motmakt: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
+| Digitale offentligheter, nettverk og nye mobiliseringsformer: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Foreninger, partier og organisasjonssamfunn: forklarings- og kildebane | 3 | 4 | 6 | 3 | evidence_ready |
+| Lekmanns-, språk- og motkulturelle bevegelser: forklarings- og kildebane | 3 | 3 | 5 | 3 | evidence_ready |
 | Miljøbevegelse og nye sosiale bevegelser: forklarings- og kildebane | 4 | 2 | 2 | 4 | evidence_ready |
+| Presse, offentlighet og politisk kommunikasjon: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 | Protest, kollektiv handling og repertoarer: forklarings- og kildebane | 6 | 4 | 7 | 6 | evidence_ready |
 | Okkupasjon som byrom og kontroll | 5 | 4 | 8 | 5 | evidence_ready |
 | Organisering, streik og forhandling | 3 | 3 | 4 | 3 | evidence_ready |
