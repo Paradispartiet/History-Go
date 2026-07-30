@@ -24,7 +24,7 @@ ok(index.status==="canonical_scientific_subject","indeks har vitenskapelig statu
 ok(pkg.status==="canonical_scientific_subject","fagpakke har vitenskapelig status");
 ok(contract.status==="canonical_source_dossier_contract","kildekontrakt er canonical");
 ok(index.source_revision===contract.revision&&pkg.source_revision===contract.revision,"samlet kilderevisjon er konsistent");
-ok(index.source_batches.length===7,"sju kildebatcher er aktive");
+ok(index.source_batches.length===8,"åtte kildebatcher er aktive");
 ok(index.source_batches.every(batch=>contract.supported_batch_revisions.includes(batch.revision)),"alle batchrevisjoner støttes");
 ok(contract.hard_rules.catalog_metadata_is_not_object_evidence===true,"katalogmetadata er ikke objektevidens");
 ok(contract.hard_rules.restricted_material_overrides_question_generation===true,"restriktivt materiale overstyrer spørsmål");
@@ -47,6 +47,14 @@ ok(contract.hard_rules.funding_allocation_is_not_access_or_effect===true,"støtt
 ok(contract.hard_rules.award_ranking_is_not_aesthetic_quality===true,"pris og rangering er ikke estetisk kvalitet");
 ok(contract.hard_rules.registry_or_catalog_absence_is_not_object_absence===true,"register- eller katalogfravær er ikke objektfravær");
 ok(contract.hard_rules.institutional_effect_requires_implementation_chain===true,"institusjonell effekt krever implementeringskjede");
+ok(contract.hard_rules.national_label_is_not_homogeneous_musical_identity===true,"nasjonal etikett er ikke homogen musikalsk identitet");
+ok(contract.hard_rules.nordic_similarity_is_not_shared_causal_model===true,"nordisk likhet er ikke felles årsaksmodell");
+ok(contract.hard_rules.archive_record_is_not_living_practice_or_representativeness===true,"arkivpost er ikke levende praksis eller representativitet");
+ok(contract.hard_rules.catalogue_language_is_not_actor_self_identification===true,"katalogspråk er ikke aktørens selv-identifikasjon");
+ok(contract.hard_rules.artist_city_association_is_not_documented_place_practice===true,"artist- eller bytilknytning er ikke dokumentert stedspraksis");
+ok(contract.hard_rules.place_claim_requires_event_practice_and_source_chain===true,"stedspåstand krever hendelse, praksis og kildekjede");
+ok(contract.hard_rules.indigenous_or_minority_category_requires_self_identification_language_and_authority===true,"urfolks- og minoritetskategori krever selv-identifikasjon, språk og myndighet");
+ok(contract.hard_rules.place_language_community_archive_and_rights_required_before_question_release===true,"sted, språk, fellesskap, arkiv og rettigheter kreves før spørsmål");
 
 const registryPaths=index.source_batches.flatMap(batch=>batch.registry_files);
 const dossierPaths=index.source_batches.flatMap(batch=>batch.dossier_files);
@@ -63,6 +71,7 @@ const hosts=new Set([
   "www.upress.umn.edu","datascience.codata.org","link.springer.com","www.weslpress.org",
   "journals.sagepub.com","www.sciencedirect.com","www.frontiersin.org","journals.plos.org",
   "www.science.org","www.nature.com","www.tandfonline.com"
+  ,"iupress.org","www.vanderbiltuniversitypress.com"
 ]);
 const types=new Set(["scholarly_monograph","edited_scholarly_volume","peer_reviewed_article","scholarly_chapter"]);
 let totalRegistries=0,totalDossierFiles=0,totalSources=0,totalDossiers=0,totalScopes=0;
@@ -115,7 +124,7 @@ for(const batch of index.source_batches){
       ok(false,`${source.source_id} har gyldig URL`);
       ok(false,`${source.source_id} bruker offisiell vert`);
     }
-    ok(["2026-07-27","2026-07-28","2026-07-29"].includes(source.verification.checked_at),`${source.source_id} har kontrolldato`);
+    ok(["2026-07-27","2026-07-28","2026-07-29","2026-07-30"].includes(source.verification.checked_at),`${source.source_id} har kontrolldato`);
     ok(typeof source.verification.full_text_status==="string",`${source.source_id} har fulltekststatus`);
     ok(Object.keys(source.identifiers).length>0,`${source.source_id} har identifikator`);
     if(source.identifiers.doi)
@@ -227,6 +236,20 @@ for(const batch of index.source_batches){
       for(const field of ["institution_and_decision_identity","actor_role_and_population_scope","financial_contractual_and_rights_provenance","implementation_and_timeline","measurement_and_denominator","comparison_counterfactual_and_alternatives","representation_absence_and_visibility_bias","access_rights_and_sensitive_data"])
         ok(strings(gate[field])&&gate[field].length>=2,`${dossier.emne_id} dokumenterer ${field}`);
     }
+
+    if(batch.domain_id==="norsk_nordisk_samisk_sted_arkiv"){
+      const requirement=contract.domain_specific_requirements.norsk_nordisk_samisk_sted_arkiv;
+      for(const field of contract.place_archive_dossier_required_fields)
+        ok(Object.hasOwn(dossier,field),`${dossier.emne_id} har sted-/arkivfelt ${field}`);
+      ok(dossier.place_archive_object_identity_requirements.length>=8,`${dossier.emne_id} har sted-/arkividentitet`);
+      ok(dossier.place_archive_evidence_chain_requirements.length>=4,`${dossier.emne_id} har sted-/arkivevidenskjede`);
+      const gate=dossier.place_archive_research_governance_gate;
+      for(const field of requirement.required_gate_fields)
+        ok(Object.hasOwn(gate,field),`${dossier.emne_id} har sted-/arkivportfelt ${field}`);
+      ok(gate.required_before_question_release===true&&gate.question_release_rule==="blocked_unless_place_language_community_object_archive_and_rights_resolved",`${dossier.emne_id} blokkerer uavklart sted, språk, fellesskap, objekt, arkiv eller rettighet`);
+      for(const field of ["place_region_and_time_identity","people_community_and_authority","language_translation_and_naming","object_recording_archive_and_catalog_provenance","event_practice_and_place_linkage","comparison_scope_and_nordic_asymmetry","consent_access_rights_and_reuse","absence_selection_and_representation_bias"])
+        ok(strings(gate[field])&&gate[field].length>=2,`${dossier.emne_id} dokumenterer ${field}`);
+    }
   }
   ok(used.size===sources.length,`${batch.batch_id} bruker alle kilder`);
 }
@@ -234,7 +257,7 @@ for(const batch of index.source_batches){
 ok(new Set(globalSourceIds).size===globalSourceIds.length,"kilde-ID-er er globalt unike");
 ok(new Set(globalDossierIds).size===globalDossierIds.length,"dossier-ID-er er globalt unike");
 ok(globalUsed.size===globalSourceIds.length,"alle aktive kilder brukes");
-ok(index.summary.source_dossier_domain_count===7&&pkg.summary.source_dossier_domain_count===7,"sju kildedomener eksponeres");
+ok(index.summary.source_dossier_domain_count===8&&pkg.summary.source_dossier_domain_count===8,"åtte kildedomener eksponeres");
 ok(index.summary.source_dossier_topic_count===totalDossiers&&pkg.summary.source_dossier_topic_count===totalDossiers,"alle dossierer telles");
 ok(index.summary.verified_scholarly_source_record_count===totalSources&&pkg.summary.verified_scholarly_source_record_count===totalSources,"alle kilder telles");
 ok(pkg.active_source_manifest==="musikkvitenskap_canonical_v1/index.json#files.source_dossiers","fagpakken bruker manifest");
@@ -244,13 +267,13 @@ for(const [label,value] of Object.entries({contract,index,pkg}))
 for(const file of [...registryPaths,...dossierPaths])
   ok(keys(read(path.join(BASE,file))).filter(key=>forbidden.has(key)).length===0,`${file} har ingen undervisningsnøkler`);
 
-console.log("MUSIKKVITENSKAP KILDEGRUNNLAG – SJU DOMENER V8");
+console.log("MUSIKKVITENSKAP KILDEGRUNNLAG – ÅTTE DOMENER V9");
 console.log(`Kildedomener: ${index.source_batches.length}`);
 console.log(`Kilderegistre: ${totalRegistries}`);
 console.log(`Temadossierfiler: ${totalDossierFiles}`);
 console.log(`Temadossierer: ${totalDossiers}`);
 console.log(`Verifiserte forskningskilder: ${totalSources}`);
 console.log(`Søkeavgrensninger: ${totalScopes}`);
-console.log("Spørsmålsregel: direkte objekt, historisk kildekjede, etisk port, framføringsport, teknologi-/reproduserbarhetsport, persepsjons-/inferensport eller institusjons-/implementeringsport etter domene");
+console.log("Spørsmålsregel: direkte objekt, historisk kildekjede, etisk port, framføringsport, teknologi-/reproduserbarhetsport, persepsjons-/inferensport, institusjons-/implementeringsport eller sted-/språk-/fellesskaps-/arkiv-/rettighetsport etter domene");
 console.log(`RESULTAT ${fail===0?"PASS":"FAIL"}: ${pass} PASS, ${fail} FAIL`);
 process.exit(fail===0?0:1);
