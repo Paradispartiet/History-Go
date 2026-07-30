@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "dossier_id": "history_industry_work_environment_gender_evidence_v1",
+  "subject_id": "historie",
+  "geography_id": "geo_no_oslo_akershus",
+  "status": "reviewed_source_dossier",
+  "accessed_at": "2026-07-30",
+  "scope": {
+    "qualified_theory_ids": [
+      "theory_his_arbeidsmiljo_risiko_helse",
+      "theory_his_kjonn_arbeidsdeling_lonn"
+    ],
+    "case_ids": [
+      "case_his_bryn_fyrstikkfabrikk",
+      "case_his_gronvold_fyrstikkfabrikk",
+      "case_his_hjula_vaeveri",
+      "case_his_nydalen"
+    ],
+    "method_rule": "Bryn og Grønvold brukes som sammenlignbare fyrstikkfabrikkcaser for dokumentert arbeidstid, akkordlønn, sanitær konflikt og organisering. Grønvold brukes i tillegg for aldersdata, fosfornekrose og navngitte arbeiderminner. Nydalen og Hjula gjenbrukes bare for de allerede validerte kjønnsdelings- og lavlønnsclaimene. Batchen skiller farekilde, registrert helseeffekt, arbeidserfaring, mobilisering og senere regulering."
+  },
+  "spatial_anchoring": {
+    "gronvold": {
+      "place_id": "helsfyr",
+      "status": "verified_area_anchor_not_factory_point",
+      "assessment": "SNL stedfester Nitedals Tændstikfabrik på Grønvold til dagens Helsfyr og navngir bevarte bygninger i Fyrstikkalleen. Den canonical place-ID-en `helsfyr` er et verifisert kollektiv-/områdeanker og brukes bare som områdeforankring, ikke som eksakt fabrikkkoordinat."
+    },
+    "bryn": {
+      "place_id": "bryn_industriomrade",
+      "status": "unverified_area_proxy",
+      "assessment": "SNL navngir Bryn som den andre fabrikkcasen. Den canonical place-ID-en har `coordStatus=needs_source` og `coordType=unverified_area_anchor`; evidensen hevder derfor Bryn-området, ikke en bestemt fabrikkbygning eller et dokumentert sentrum."
+    }
+  },
+  "source_anchoring": {
+    "scholarly_reference_source_ids": [
+      "src_his_snl_fyrstikkarbeiderstreiken",
+      "src_his_snl_nitedals_taendstikfabrik"
+    ],
+    "worker_memory_source_ids": [
+      "src_his_arbark_anna_fredriksen_fyrstikkarbeid",
+      "src_his_arbark_karoline_kristiansen_fyrstikkarbeid"
+    ],
+    "reused_industrial_source_ids": [
+      "src_his_snl_hjula_vaeveri",
+      "src_his_snl_nydalens_compagnie"
+    ],
+    "assessment": "SNL-syntesene gir eksplisitte tall for arbeidstid, akkordlønn, lønnssammenligning, alder, arbeidsstyrke og fosfornekrose og knytter arbeidsforholdene til streik og reguleringshistorie. Arbeiderbevegelsens arkiv gir navngitte, daterte minner om arbeidsstilling, fare, hjemmearbeid og omsorg; disse brukes som erfaringskilder med retrospektiv begrensning."
+  },
+  "source_snapshots": [
+    {
+      "source_id": "src_his_snl_fyrstikkarbeiderstreiken",
+      "title": "fyrstikkarbeiderstreiken",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/fyrstikkarbeiderstreiken",
+      "supported_dimensions": [
+        "gendered_piecework",
+        "workday_length",
+        "wage_comparison",
+        "phosphorus_exposure",
+        "strike_demands",
+        "worker_protection_response"
+      ],
+      "source_locations": [
+        "Avsnittet Arbeidsforholdene om pakkersker, ukelønn, mannlig sammenligningslønn, 12–13½ timers dager, mulkter og fosfornekrose",
+        "Avsnittene Streikens begynnelse og Avslutningen og resultatene om lønnskutt, krav, organisering, lønn fra 1890 og arbeidervernloven av 1892"
+      ],
+      "limitations": [
+        "Artikkelen er en fagredigert syntese og viser ikke lønningslister, fabrikkreglementer, medisinske journaler eller hele samtidspressen.",
+        "Reguleringsfølgen hadde flere årsaker, og formell lov dokumenterer ikke automatisk lokal etterlevelse eller når hvitt fosfor faktisk forsvant."
+      ]
+    },
+    {
+      "source_id": "src_his_snl_nitedals_taendstikfabrik",
+      "title": "Nitedals Tændstikfabrik",
+      "publisher": "Store norske leksikon",
+      "url": "https://snl.no/Nitedals_T%C3%A6ndstikfabrik",
+      "supported_dimensions": [
+        "gronvold_helsfyr_location",
+        "workforce_growth",
+        "women_and_child_labour",
+        "phosphorus_necrosis",
+        "factory_inspection_response",
+        "surviving_industrial_buildings"
+      ],
+      "source_locations": [
+        "Avsnittet Flytting til Grønvold om Østre Aker, dagens Helsfyr, arbeiderboliger og Fyrstikkalleen",
+        "Avsnittet Arbeiderne og arbeidsforholdene om 134 og 510 arbeidere, aldersgrupper, lave lønninger og fosfornekrose",
+        "Avsnittet Kulturminner om bevarte bygninger i Fyrstikkalleen 13 og 21"
+      ],
+      "limitations": [
+        "Arbeidsstyrke og aldersgrupper er aggregater og gir ikke individuell eksponeringsdose, ansettelseslengde, arbeidsoppgave eller diagnoseforløp.",
+        "Artikkelen dokumenterer institusjonell respons, men ikke at arbeidstilsyn eller lov ga lik og umiddelbar beskyttelse."
+      ]
+    },
+    {
+      "source_id": "src_his_arbark_anna_fredriksen_fyrstikkarbeid",
+      "title": "Deltok i fyrstikkarbeiderstreiken",
+      "publisher": "Arbeiderbevegelsens arkiv og bibliotek",
+      "url": "https://www.arbark.no/utstilling/arbeidsfolk_forteller/07/AF07.htm",
+      "supported_dimensions": [
+        "named_worker_memory",
+        "standing_work",
+        "twelve_hour_day",
+        "phosphorus_necrosis",
+        "work_clothing"
+      ],
+      "source_locations": [
+        "Anna Fredriksens erindring om hjemmeliming, pakking, nær tolv timers stående arbeid, fosforfare og arbeidsklær",
+        "Kildenotisen om Arbeiderbladet 12. februar 1954 og digital publisering"
+      ],
+      "limitations": [
+        "Intervjuet ble gjort lenge etter arbeidsforløpet og er påvirket av hukommelse, intervjusituasjon og redaksjonelt utvalg.",
+        "Én arbeidserfaring kan ikke alene brukes som prevalensmål eller representativ beskrivelse av alle oppgaver og arbeidere."
+      ]
+    },
+    {
+      "source_id": "src_his_arbark_karoline_kristiansen_fyrstikkarbeid",
+      "title": "Fyrstikkarbeiderstreiken 1889",
+      "publisher": "Arbeiderbevegelsens arkiv og bibliotek",
+      "url": "https://www.arbark.no/utstilling/arbeidsfolk_forteller/02/AF02.htm",
+      "supported_dimensions": [
+        "named_worker_memory",
+        "child_homework",
+        "factory_entry_at_fourteen",
+        "long_workday",
+        "childcare_and_paid_work",
+        "women_worker_organization"
+      ],
+      "source_locations": [
+        "Karoline Kristiansens erindring om eskemaking hjemme før og etter skole, fabrikkstart som 14-åring og arbeidsdag 06–18",
+        "Erindringen om barnekrybbe, elleve timers arbeidsdag, 62 år ved fabrikken og Grønvold kvinnelige fyrstikkarbeiderforening"
+      ],
+      "limitations": [
+        "Intervjuutdraget fra 1956 komprimerer et langt liv og daterer ikke alle faser presist.",
+        "Livsløpet er en dokumentert individuell erfaring, ikke statistisk dokumentasjon av alle arbeiderhushold."
+      ]
+    }
+  ],
+  "production_decisions": [
+    "Arbeidsmiljøteorien kvalifiseres med tre separate claims som skiller fosforeksponering og fosfornekrose, lange arbeidsdager og akkordlønn, og mobilisering og reguleringsrespons.",
+    "Kjønnsteorien kvalifiseres ved å kombinere eksisterende Nydalen- og Hjula-claims med fyrstikkarbeidernes kjønnete oppgaver, lønn, helserisiko, barnearbeid, hjemmearbeid og omsorg.",
+    "Den samme to-fabrikk-konflikten gir sammenlignbarhet, men Grønvold har et rikere kildegrunnlag enn Bryn. Batchen gjør ikke stillhet om Bryn til bevis på identiske helseutfall.",
+    "Teoriene kvalifiseres bare som fler-case geografiske piloter. Batchen mangler lønningsbøker, medisinske journaler, fabrikktilsynsprotokoller og flere representative husholdsserier."
+  ]
+}

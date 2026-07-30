@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **61**
-- Andel med dokumentert evidensgrunnlag: **26.5 %**
+- Validerte pilotobjekter: **63**
+- Andel med dokumentert evidensgrunnlag: **27.4 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -76,6 +76,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Eksklusjon, fornorskning og statsborgerskap: forklarings- og kildebane | 6 | 2 | 8 | 6 | evidence_ready |
 | Fabrikk, arbeidsprosess og organisering | 5 | 2 | 3 | 5 | evidence_ready |
 | Arbeidstid, lønn og ferdighet | 6 | 3 | 5 | 6 | evidence_ready |
+| Arbeidsmiljø, risiko og helse | 3 | 2 | 3 | 3 | evidence_ready |
+| Kjønn, arbeidsdeling og lønn | 6 | 4 | 6 | 6 | evidence_ready |
 
 ## Kontraktsgrense
 

@@ -32,7 +32,7 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 61 av 230 etter at fabrikkorganisering og arbeidstid, lønn og ferdighet V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 63 av 230 etter at arbeidsmiljø, risiko, helse, kjønn og lønn V1 er lagt til. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
 
 ## Produksjonsstatus
 
@@ -50,6 +50,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Embetsstat, demokratisering og kommunalt selvstyre V1: **2** nye kvalifiserende teoriobjekter, **5** nye claims og **2** utvidede cases.
 - Sápmi og Ruija statsdannelse V1: **2** nye kvalifiserende teoriobjekter, **9** nye claims, **3** nyvaliderte cases, **11** nye kilder og **1** ny geografiprofil.
 - Fabrikkorganisering og arbeidstid, lønn og ferdighet V1: **2** nye kvalifiserende teoriobjekter, **7** nye claims, **2** nyvaliderte cases og **1** utvidet case.
-- Totalt: **61 av 230** teoriobjekter (**26.5 %**).
+- Arbeidsmiljø, risiko, helse, kjønn og lønn V1: **2** nye kvalifiserende teoriobjekter, **4** nye claims, **4** nye kilder og **2** nyvaliderte cases.
+- Totalt: **63 av 230** teoriobjekter (**27.4 %**).
 - Universell status: **INCOMPLETE**.
-- Gjenstående teoriobjekter: **169**.
+- Gjenstående teoriobjekter: **167**.
