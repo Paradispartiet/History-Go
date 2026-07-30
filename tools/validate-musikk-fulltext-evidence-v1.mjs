@@ -144,7 +144,7 @@ function main() {
     for (const object of list(evidence.direct_objects)) {
       directObjects += 1;
       ok(Boolean(text(object.object_id)), `${topicFile}: direct object mangler object_id`);
-      ok(list(topic?.object_types).includes(object.object_type), `${topicFile}/${object.object_id}: object_type er ikke tillatt for emnet`);
+      ok(list(topic?.research_object_types).includes(object.object_type), `${topicFile}/${object.object_id}: object_type er ikke tillatt for emnet`);
       ok(Boolean(text(object.title)), `${topicFile}/${object.object_id}: title mangler`);
       ok(/^https:\/\//.test(text(object.persistent_url)), `${topicFile}/${object.object_id}: persistent_url må være https`);
       ok(!objectById.has(object.object_id), `${topicFile}: duplikat object_id ${object.object_id}`);
