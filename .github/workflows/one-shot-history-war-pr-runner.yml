@@ -37,6 +37,7 @@ jobs:
           start = next(i for i, line in enumerate(lines) if "node <<'NODE'" in line) + 1
           end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'NODE')
           script = textwrap.dedent('\n'.join(lines[start:end])) + '\n'
+          script = script.replace('emne_ids: caseEmners,', 'emne_ids: caseEmner,')
           Path('/tmp/materialize-history-war-v1.cjs').write_text(script)
           PY
           node /tmp/materialize-history-war-v1.cjs
