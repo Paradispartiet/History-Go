@@ -15,15 +15,16 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 
 ## Evidensgrunnlag
 
-- Claims: **123**
-- Kilder: **95**
-- Sted–emne–claim–kildekoblinger: **125**
-- Validerte caser: **27**
-- Validerte caser med minst to evidenskoblinger: **27**
+- Claims: **125**
+- Kilder: **97**
+- Sted–emne–claim–kildekoblinger: **127**
+- Validerte caser: **28**
+- Validerte caser med minst to evidenskoblinger: **28**
 
 ## Validerte caser
 
 - `case_his_22_juli_senteret`
+- `case_his_aker_brygge`
 - `case_his_akerselva`
 - `case_his_akershus_festning`
 - `case_his_bispelokket`
@@ -58,5 +59,5 @@ Ingen åpne terskelgap.
 ## Videre produksjonskø
 
 - 29 universelle emner mangler fortsatt en casekandidat i profilen.
-- 79 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
+- 78 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
 - Videre produksjon skal bruke canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon uten å gjøre pilotgeografien universell.
