@@ -206,13 +206,14 @@ jobs:
           set -euo pipefail
           node tools/validate-historie-theory-evidence.mjs
           node tools/audit-historie-universal-coverage.mjs
-          node scripts/audit-fagverk-historie.mjs
+          node scripts/audit-fagverk-historie.mjs --write-report --no-check-report
       - name: Validate focused Historie gates
         shell: bash
         run: |
           set -euo pipefail
           node tools/validate-historie-theory-evidence.mjs --check
           node tools/audit-historie-universal-coverage.mjs --check
+          node scripts/audit-fagverk-historie.mjs
           node tools/audit-historie-v5-5-quality-depth.mjs
           node --test tests/fagverk-historie.test.mjs
           git diff --check
