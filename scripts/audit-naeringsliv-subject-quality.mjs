@@ -33,6 +33,8 @@ const json = (relative) => JSON.parse(read(relative));
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
 const text = (value) => String(value ?? '').trim();
 const unique = (values) => new Set(values).size === values.length;
+const sorted = (values) => [...(values || [])].map(text).sort();
+const equalSet = (a, b) => isDeepStrictEqual(sorted(a), sorted(b));
 
 export function auditNaeringslivQuality({ writeReport = false, checkReport = true } = {}) {
   const pensum = json(P.pensum);
@@ -65,6 +67,7 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
   const domainIds = domains.map((domain) => text(domain.domain_id));
   const emneIds = emners.map((emne) => text(emne.emne_id));
   const methodIds = methods.map((method) => text(method.method_id));
+  const registeredChapters = registry.subjects?.naeringsliv?.chapters || [];
 
   assert(pensum.subject_id === 'naeringsliv', 'Pensum uses wrong subject_id');
   assert(domains.length === 6, 'Expected six canonical business/economics domains');
@@ -88,24 +91,40 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
   assert(badgePage.includes('fagverk.html?subject=naeringsliv'), 'Badge page lacks canonical subject link');
   assert(runtime.subjectId === 'naeringsliv' && runtime.displayName === 'Økonomi og næringsliv', 'Runtime manifest uses wrong subject identity');
   assert(runtime.canonicalSummary?.domainCount === 6 && runtime.canonicalSummary?.emneCount === 38, 'Runtime manifest has stale canonical counts');
-  const firstDomain = domains.find((row) => row.domain_id === 'arbeid_produksjon_verdiskaping');
-  assert(firstDomain, 'Canonical first domain is missing');
-  assert(runtime.chapterByDomain?.[firstDomain.domain_id] === 'arbeid-produksjon-verdiskaping', 'Runtime is missing the first canonical chapter');
-  for (const emneId of firstDomain.emne_ids || []) assert(runtime.chapterByEmne?.[emneId] === 'arbeid-produksjon-verdiskaping', `Runtime is missing first-chapter emne ${emneId}`);
+  assert(unique(registeredChapters.map((row) => text(row.id))), 'Registered chapter IDs must be unique');
+  assert(unique(registeredChapters.map((row) => text(row.primary_domain_id))), 'A canonical domain can only own one chapter');
+  const registeredEmneIds = [];
+  for (const entry of registeredChapters) {
+    assert(text(entry.file) && fs.existsSync(abs(entry.file)), `${entry.id}: registered chapter file is missing`);
+    const chapter = json(entry.file);
+    const domain = domains.find((row) => row.domain_id === entry.primary_domain_id);
+    assert(domain, `${entry.id}: unknown primary domain`);
+    assert(chapter.subject_id === 'naeringsliv' && chapter.id === entry.id, `${entry.id}: chapter identity is unsynchronized`);
+    assert(chapter.primary_domain_id === domain.domain_id, `${entry.id}: chapter uses wrong domain`);
+    assert(equalSet(chapter.emne_ids, domain.emne_ids), `${entry.id}: chapter does not cover the exact domain emners`);
+    assert(equalSet(chapter.method_ids, domain.method_ids), `${entry.id}: chapter does not cover the exact domain methods`);
+    assert(equalSet(entry.emne_ids, chapter.emne_ids) && equalSet(entry.method_ids, chapter.method_ids), `${entry.id}: registry coverage is stale`);
+    assert(runtime.chapterByDomain?.[domain.domain_id] === entry.id, `${entry.id}: runtime domain mapping is missing`);
+    for (const emneId of chapter.emne_ids || []) {
+      assert(runtime.chapterByEmne?.[emneId] === entry.id, `${entry.id}: runtime emne mapping is missing for ${emneId}`);
+      registeredEmneIds.push(emneId);
+    }
+  }
+  assert(Object.keys(runtime.chapterByDomain || {}).length === registeredChapters.length, 'Runtime has unregistered domain mappings');
+  assert(Object.keys(runtime.chapterByEmne || {}).length === new Set(registeredEmneIds).size, 'Runtime has unregistered emne mappings');
   const portalEntry = portal.categories.find((row) => row.id === 'naeringsliv');
   assert(portalEntry?.subjectStatus === 'materialized' && portalEntry?.subjectPage === 'fagverk.html?subject=naeringsliv', 'Portal is not materialized');
   const statusEntry = status.subjects.find((row) => row.id === 'naeringsliv');
+  const expectedEditorialStatus = registeredChapters.length === domains.length ? 'complete' : registeredChapters.length > 0 ? 'chapters_in_progress' : 'structure_ready';
   assert(statusEntry?.navigationStatus === 'materialized', 'Status navigation is not materialized');
   assert(statusEntry?.assessmentStatus === 'audited', 'Status assessment is not audited');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Status editorial state must be chapters_in_progress after the first chapter');
+  assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Status editorial state must be ${expectedEditorialStatus}`);
   assert(registry.subjects?.naeringsliv?.canonicalModel?.sourceOfTruth === true, 'Registry does not point to canonical naeringsliv data');
   assert(registry.subjects?.naeringsliv?.canonicalModel?.runtimeManifest === P.runtime, 'Registry points to wrong runtime manifest');
-  const registeredChapter = (registry.subjects?.naeringsliv?.chapters || []).find((row) => row.id === 'arbeid-produksjon-verdiskaping');
-  assert(registeredChapter?.file === 'data/fagverk/naeringsliv/arbeid-produksjon-verdiskaping.json', 'Registry is missing the first canonical chapter');
 
   const report = {
     schema: 'history_go_naeringsliv_subject_quality_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: 'passed',
     generatedFrom: P,
     summary: {
@@ -120,7 +139,9 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
       professionalTrackCount,
       professionalModuleCount,
       totalLearningUnits: businessFramework.relationship_to_university_core.total_learning_units,
-      registeredChapterCount: (registry.subjects?.naeringsliv?.chapters || []).length,
+      registeredChapterCount: registeredChapters.length,
+      registeredDomainCount: registeredChapters.length,
+      registeredEmneCount: new Set(registeredEmneIds).size,
       normalOpeningQuestions: quiz.normal_opening_profile.sets * quiz.normal_opening_profile.questions_per_set
     },
     gates: {
@@ -134,7 +155,9 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
       twoTimesSevenNormalQuizOpening: true,
       runtimeManifestMaterialized: true,
       portalRegistryStatusSynchronized: true,
-      registeredChapterSynchronized: true
+      everyRegisteredChapterCanonical: true,
+      runtimeHasNoOrphanMappings: true,
+      editorialStatusMatchesChapterCount: true
     }
   };
   if (writeReport) {
@@ -149,7 +172,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const args = new Set(process.argv.slice(2));
   try {
     const report = auditNaeringslivQuality({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Økonomi og næringsliv quality OK: ${report.summary.domainCount} domains, ${report.summary.emneCount} emners, ${report.summary.methodCount} methods, ${report.summary.totalLearningUnits} learning units.`);
+    console.log(`Økonomi og næringsliv quality OK: ${report.summary.registeredChapterCount}/${report.summary.domainCount} chapters, ${report.summary.emneCount} emners, ${report.summary.methodCount} methods.`);
   } catch (error) {
     console.error(`Økonomi og næringsliv quality ERROR: ${error.message}`);
     process.exitCode = 1;
