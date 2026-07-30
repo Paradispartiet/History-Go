@@ -66,9 +66,9 @@ Denne batchen velger likevel:
 
 Det betyr at evidenslaget lagrer identitet, checksums, filstier, analysevinduer og ekstern lenke. Eventuell innebygd avspilling under CC BY kan behandles i en separat audio-delivery-produksjon.
 
-## Forventet aggregert status
+## Aggregert status
 
-Når validatoren er grønn:
+Fulltekstevidensvalidatoren bekrefter:
 
 - 5 fulltekstevidenstemaer av 48
 - 12 fulltekstgjennomganger, hvorav 3 canonicale og 9 produksjonsutvidelser
@@ -78,6 +78,36 @@ Når validatoren er grønn:
 - 5 question-ready emner
 - 5 question-ready claims
 
+Resultat:
+
+`837 PASS / 0 FAIL`
+
+Musikk source dossiers forblir:
+
+`6520 PASS / 0 FAIL`
+
+Den aktive subject pathwayen endres ikke i denne batchen og forblir:
+
+- 4 sett
+- 20 spørsmål
+- `1191 PASS / 0 FAIL`
+- source metadata `265 PASS / 0 FAIL`
+
 De øvrige 43 canonicale Musikk-temaene forblir blokkert av fulltekstevidenslaget.
 
-Aktiv subject pathway endres ikke i denne batchen og forblir 4 sett / 20 spørsmål.
+## CI
+
+På første firefil-head var alle workflowene som denne avgrensede diffen faktisk trigget grønne:
+
+- Data checks
+- Musikk scientific quality
+- Fagverk Musikk
+- Fagverk subject inventory
+
+`Fagverk Musikk` bekreftet samtidig source dossiers `6520/0`, fulltekstevidens `837/0`, eksisterende pathway `1191/0` og pathway source metadata `265/0`.
+
+Slutt-head etter denne rapportoppdateringen skal kjøre de samme path-baserte kontrollene før ready/merge.
+
+## Neste gate
+
+Klang/tekstur/instrumentasjon er nå question-ready i evidenslaget, men ikke materialisert som pathway-sett. Neste produksjon kan legge klang inn som sett 5 uten å åpne de øvrige 43 temaene.
