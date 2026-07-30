@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **94**
-- Andel med dokumentert evidensgrunnlag: **40.9 %**
+- Validerte pilotobjekter: **102**
+- Andel med dokumentert evidensgrunnlag: **44.3 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -109,6 +109,14 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Næring, funksjonsskifte og hverdagsbruk | 4 | 3 | 6 | 4 | evidence_ready |
 | Industri-, havne- og jernbanetransformasjon | 4 | 3 | 5 | 4 | evidence_ready |
 | Gentrifisering, verdi og befolkningsendring | 4 | 2 | 4 | 4 | evidence_ready |
+| Embetsverk, kontor og byråkrati | 4 | 2 | 3 | 4 | evidence_ready |
+| Beslutningskjede, kompetanse og ansvar | 4 | 2 | 4 | 4 | evidence_ready |
+| Statlig kapasitet, ressurser og gjennomføring | 4 | 4 | 4 | 4 | evidence_ready |
+| Rettigheter, medborgerskap og forvaltning | 4 | 3 | 5 | 3 | evidence_ready |
+| Lov, domstol og rettsstat | 4 | 2 | 4 | 4 | evidence_ready |
+| Politi, fengsel og strafferegime | 4 | 2 | 3 | 4 | evidence_ready |
+| Register, overvåkning og disiplin | 3 | 2 | 3 | 3 | evidence_ready |
+| Krise, unntak og institusjonell kontinuitet | 4 | 2 | 4 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
