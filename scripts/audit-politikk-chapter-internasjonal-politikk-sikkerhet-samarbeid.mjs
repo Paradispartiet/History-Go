@@ -26,6 +26,8 @@ const text = (value) => String(value ?? '').trim();
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
 const sorted = (values) => [...values].map(text).sort();
 const equalSet = (a, b) => isDeepStrictEqual(sorted(a), sorted(b));
+export const hasCompleteClaimTrace = (values) => Array.isArray(values)
+  && values.every((claimIds) => Array.isArray(claimIds) && claimIds.some((claimId) => text(claimId)));
 const collectClaimIds = (value, result = []) => {
   if (Array.isArray(value)) { for (const item of value) collectClaimIds(item, result); return result; }
   if (!value || typeof value !== 'object') return result;
@@ -72,10 +74,12 @@ export function auditPolitikkInternasjonalPolitikkChapter({ writeReport = false,
       assert(text(section.id) && text(section.title), 'Seksjon mangler stabil ID eller tittel');
       assert((section.paragraphs || []).length >= 3, `${section.id}: færre enn tre sammenhengende avsnitt`);
       assert((section.paragraphClaimIds || []).length === section.paragraphs.length, `${section.id}: avsnitt og claimspor er usynkrone`);
+      assert(hasCompleteClaimTrace(section.paragraphClaimIds), `${section.id}: minst ett avsnitt mangler claim-ID`);
       paragraphCount += section.paragraphs.length;
       paragraphTraceCount += section.paragraphClaimIds.length;
       if (section.keyPoints) {
         assert((section.keyPointClaimIds || []).length === section.keyPoints.length, `${section.id}: nøkkelpunkter og claimspor er usynkrone`);
+        assert(hasCompleteClaimTrace(section.keyPointClaimIds), `${section.id}: minst ett nøkkelpunkt mangler claim-ID`);
         keyPointCount += section.keyPoints.length;
       }
     }
