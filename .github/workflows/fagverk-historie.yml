@@ -73,7 +73,20 @@ jobs:
         with:
           node-version: '24'
       - name: Materialize canonical evidence
-        run: node scripts/materialize-history-prehistory-evidence-v1.mjs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const file = 'scripts/materialize-history-prehistory-evidence-v1.mjs';
+          const from = "'claim_his_solberg_bronze_age_rock_art_ritual'";
+          const to = "'claim_his_solberg_bronze_age_rock_art_ritual_landscape'";
+          const input = fs.readFileSync(file, 'utf8');
+          const occurrences = input.split(from).length - 1;
+          if (occurrences !== 2) throw new Error(`Expected exactly two obsolete Solberg claim references, found ${occurrences}`);
+          fs.writeFileSync(file, input.split(from).join(to));
+          NODE
+          node scripts/materialize-history-prehistory-evidence-v1.mjs
       - name: Generate deterministic reports and refresh freeze
         shell: bash
         run: |
