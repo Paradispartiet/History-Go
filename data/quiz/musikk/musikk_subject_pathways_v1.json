@@ -1,0 +1,500 @@
+{
+  "schema": "history_go_subject_pathway_package_v1",
+  "version": 1,
+  "status": "pilot_active",
+  "package_kind": "subject_pathway",
+  "categoryId": "musikk",
+  "subject_id": "musikk",
+  "targetId": "subject_musikk",
+  "title": "Musikkvitenskap – fagområdeforløp (pilot)",
+  "sources": [
+    {
+      "id": "prod_src_sioros_syncopation_synthesized_2014",
+      "type": "peer_reviewed_article_production_extension",
+      "title": "Syncopation creates the sensation of groove in synthesized music examples",
+      "publisher_or_author": "George Sioros, Marius Miron, Matthew E. P. Davies, Fabien Gouyon og Guy Madison",
+      "date_or_version": "Frontiers in Psychology 5:1036 (2014), DOI 10.3389/fpsyg.2014.01036",
+      "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01036/full",
+      "status": "reviewed_publisher_fulltext"
+    },
+    {
+      "id": "obj_sioros_2014_zenodo_1221315",
+      "type": "direct_research_object_dataset",
+      "title": "Syncopation creates the sensation of groove in synthesized music examples — stimuli and anonymized ratings",
+      "publisher_or_author": "Zenodo",
+      "date_or_version": "record 1221315; Sioros_et_al.zip; MD5 df685fb58b982b7729dc0fca2576247f",
+      "url": "https://zenodo.org/records/1221315",
+      "status": "direct_object_verified",
+      "object_type": "datasett_og_kode",
+      "use_mode": "external_link_and_metadata_only",
+      "redistribution_allowed": false,
+      "modification_allowed": false
+    }
+  ],
+  "production_context": {
+    "manifest_category": "musikk",
+    "profile": "subject_pathway_pilot_1x5",
+    "standard_version": "QUIZ_PRODUCTION_CANONICAL_3.2+SUBJECT_PATHWAY_V1",
+    "scientific_package": "data/fag/musikk/scientific_package.json",
+    "fulltext_evidence": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json",
+    "source_review_status": "fulltext_and_direct_object_verified",
+    "question_ready_claim_ids": [
+      "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure"
+    ],
+    "direct_object_ids": [
+      "obj_sioros_2014_zenodo_1221315"
+    ],
+    "released_emne_ids": [
+      "em_musikk_vit_rytme_meter_groove_timing"
+    ],
+    "blocked_canonical_topic_count": 47,
+    "geographic_activation": false,
+    "geographic_activation_note": "Universelt fagområdeforløp; registreres ikke som sted, person eller naturmål.",
+    "rights_mode": "external_link_and_metadata_only"
+  },
+  "sets": [
+    {
+      "set_id": "pathway_musikk_rytme_meter_groove_timing",
+      "title": "Rytme, meter, groove og timing",
+      "level": 5,
+      "order": 1,
+      "phase": "subject_pathway",
+      "target_kind": "subject_area",
+      "targetId": "subject_musikk_rytme_meter_groove_timing",
+      "area_id": "musikalsk_analyse_lyd_struktur",
+      "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
+      "sequence": [
+        "observe",
+        "explain",
+        "evaluate_evidence",
+        "diagnose_failure",
+        "decide_and_justify"
+      ],
+      "completion_rule": {
+        "minimum_correct": 4,
+        "explanation_required_for_stages": [
+          "evaluate_evidence",
+          "diagnose_failure",
+          "decide_and_justify"
+        ],
+        "source_trace_required_for_mastery": true
+      },
+      "direct_object_ids": [
+        "obj_sioros_2014_zenodo_1221315"
+      ],
+      "question_ready_claim_ids": [
+        "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure"
+      ],
+      "questions": [
+        {
+          "id": "quiz_musikk_rytme_groove_pathway_q1",
+          "quiz_id": "musikk_rytme_groove_pathway_q1",
+          "categoryId": "musikk",
+          "targetId": "subject_musikk_rytme_meter_groove_timing",
+          "question_scope": "subject_area",
+          "pathway_stage": "observe",
+          "question": "Hva beskriver best stimulusgrunnlaget i Sioros mfl. 2014?",
+          "options": [
+            "Enkle syntetiserte pianomelodier i 4/4 ved 120 BPM med algoritmisk genererte varianter",
+            "Liveopptak av profesjonelle funk-trommeslagere uten transformasjoner",
+            "Historiske orkesteropptak i skiftende taktarter"
+          ],
+          "answer": "Enkle syntetiserte pianomelodier i 4/4 ved 120 BPM med algoritmisk genererte varianter",
+          "answerIndex": 0,
+          "knowledge": "Sioros mfl. 2014 brukte enkle syntetiserte 4/4-pianomelodier ved 120 BPM og algoritmisk genererte varianter som direkte stimulusgrunnlag.",
+          "difficulty": 2,
+          "question_type": "observation",
+          "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
+          "method_id": "rytme_mikrotiminganalyse",
+          "direct_object_id": "obj_sioros_2014_zenodo_1221315",
+          "core_concepts": [
+            "synkope",
+            "stimulusdesign",
+            "meter"
+          ],
+          "concept_ids": [
+            "co_musikk_synkope_9875675af2",
+            "co_musikk_stimulusdesign_fba982f07e",
+            "co_musikk_meter_3f75d210ad"
+          ],
+          "terms": [
+            "synkope",
+            "stimulusdesign",
+            "meter"
+          ],
+          "term_ids": [
+            "term_musikk_synkope_9875675af2",
+            "term_musikk_stimulusdesign_fba982f07e",
+            "term_musikk_meter_3f75d210ad"
+          ],
+          "primary_knowledge_unit_id": "ku_musikk_sioros_mfl_2014_brukte_e_dd5be51c4e",
+          "knowledge_unit_ids": [
+            "ku_musikk_sioros_mfl_2014_brukte_e_dd5be51c4e"
+          ],
+          "learning_objective_id": "lo_musikk_rytme_groove_observe",
+          "evidence_type": "fulltext_plus_direct_dataset",
+          "knowledge_payload": {
+            "summary": "Sioros mfl. 2014 brukte enkle syntetiserte 4/4-pianomelodier ved 120 BPM og algoritmisk genererte varianter som direkte stimulusgrunnlag.",
+            "explanation": "Artikkelen beskriver 4/4-stimuli ved 120 BPM, og Zenodo-posten lokaliserer de musikalske stimulusfilene for begge eksperimenter. Dette identifiserer forskningsobjektet uten å kopiere filene inn i History Go.",
+            "why_it_matters": "Trinnet trener presis rytme- og grooveanalyse med en eksplisitt kilde-, objekt- og slutningsgrense."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "source": [
+            {
+              "source_id": "prod_src_sioros_syncopation_synthesized_2014",
+              "locator": "pp. 2-4, Experiment 1 — Methods / Stimuli / Implementation of musical examples",
+              "claim_basis": "Sioros mfl. 2014 brukte enkle syntetiserte 4/4-pianomelodier ved 120 BPM og algoritmisk genererte varianter som direkte stimulusgrunnlag.",
+              "source_type": "peer_reviewed_article_production_extension",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples",
+              "publisher_or_author": "George Sioros, Marius Miron, Matthew E. P. Davies, Fabien Gouyon og Guy Madison",
+              "date_or_version": "Frontiers in Psychology 5:1036 (2014), DOI 10.3389/fpsyg.2014.01036",
+              "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01036/full"
+            },
+            {
+              "source_id": "obj_sioros_2014_zenodo_1221315",
+              "locator": "musical_stimuli/expA/ og musical_stimuli/expB/",
+              "url": "https://zenodo.org/records/1221315",
+              "use_mode": "external_link_and_metadata_only",
+              "claim_basis": "Sioros mfl. 2014 brukte enkle syntetiserte 4/4-pianomelodier ved 120 BPM og algoritmisk genererte varianter som direkte stimulusgrunnlag.",
+              "source_type": "direct_research_object_dataset",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples — stimuli and anonymized ratings",
+              "publisher_or_author": "Zenodo",
+              "date_or_version": "record 1221315; Sioros_et_al.zip; MD5 df685fb58b982b7729dc0fca2576247f"
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sioros mfl. 2014 brukte enkle syntetiserte 4/4-pianomelodier ved 120 BPM og algoritmisk genererte varianter som direkte stimulusgrunnlag.",
+          "guidance_basis": [
+            "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json",
+            "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json"
+          ],
+          "claim_id": "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "quiz_musikk_rytme_groove_pathway_q2",
+          "quiz_id": "musikk_rytme_groove_pathway_q2",
+          "categoryId": "musikk",
+          "targetId": "subject_musikk_rytme_meter_groove_timing",
+          "question_scope": "subject_area",
+          "pathway_stage": "explain",
+          "question": "Hva er den mest presise forklaringen på studiens groove-resultat?",
+          "options": [
+            "Jo mer synkope en variant hadde, desto høyere ble groove-vurderingen uten unntak",
+            "Moderate, strukturelt plasserte synkoper ga høyere groove-vurderinger, mens synkopemengde alene ikke forklarte forskjellene",
+            "Groove-vurderingene var uavhengige av hvordan synkopene var plassert"
+          ],
+          "answer": "Moderate, strukturelt plasserte synkoper ga høyere groove-vurderinger, mens synkopemengde alene ikke forklarte forskjellene",
+          "answerIndex": 1,
+          "knowledge": "I Sioros mfl. 2014 ga moderate, strukturelt plasserte synkoper høyere groove-vurderinger enn usynkoperte og maksimalt, jevnt synkoperte varianter; synkopemengde alene forklarte ikke resultatet.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
+          "method_id": "rytme_mikrotiminganalyse",
+          "direct_object_id": "obj_sioros_2014_zenodo_1221315",
+          "core_concepts": [
+            "synkope",
+            "groove",
+            "rytmiske mønstre"
+          ],
+          "concept_ids": [
+            "co_musikk_synkope_9875675af2",
+            "co_musikk_groove_17dda5370e",
+            "co_musikk_rytmiske_m_nstre_9563fbe667"
+          ],
+          "terms": [
+            "synkope",
+            "groove",
+            "rytmiske mønstre"
+          ],
+          "term_ids": [
+            "term_musikk_synkope_9875675af2",
+            "term_musikk_groove_17dda5370e",
+            "term_musikk_rytmiske_m_nstre_9563fbe667"
+          ],
+          "primary_knowledge_unit_id": "ku_musikk_i_sioros_mfl_2014_ga_mod_6e03919151",
+          "knowledge_unit_ids": [
+            "ku_musikk_i_sioros_mfl_2014_ga_mod_6e03919151"
+          ],
+          "learning_objective_id": "lo_musikk_rytme_groove_explain",
+          "evidence_type": "computational_measurement",
+          "knowledge_payload": {
+            "summary": "I Sioros mfl. 2014 ga moderate, strukturelt plasserte synkoper høyere groove-vurderinger enn usynkoperte og maksimalt, jevnt synkoperte varianter; synkopemengde alene forklarte ikke resultatet.",
+            "explanation": "Det sentrale funnet er mønsterspesifikt: moderate og strukturelt plasserte synkoper fikk høyere groove-vurderinger enn både usynkoperte og maksimalt, jevnt synkoperte varianter. Derfor kan ikke én samlet synkopemengde brukes som hele forklaringen.",
+            "why_it_matters": "Trinnet trener presis rytme- og grooveanalyse med en eksplisitt kilde-, objekt- og slutningsgrense."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "source": [
+            {
+              "source_id": "prod_src_sioros_syncopation_synthesized_2014",
+              "locator": "pp. 5-6, Experiment 2 — Methods / Stimuli; pp. 7-9, Discussion and Conclusion",
+              "claim_basis": "I Sioros mfl. 2014 ga moderate, strukturelt plasserte synkoper høyere groove-vurderinger enn usynkoperte og maksimalt, jevnt synkoperte varianter; synkopemengde alene forklarte ikke resultatet.",
+              "source_type": "peer_reviewed_article_production_extension",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples",
+              "publisher_or_author": "George Sioros, Marius Miron, Matthew E. P. Davies, Fabien Gouyon og Guy Madison",
+              "date_or_version": "Frontiers in Psychology 5:1036 (2014), DOI 10.3389/fpsyg.2014.01036",
+              "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01036/full"
+            },
+            {
+              "source_id": "obj_sioros_2014_zenodo_1221315",
+              "locator": "ratings/GrooveSynthExptA.XLS og ratings/GrooveSynthExptB.XLS",
+              "url": "https://zenodo.org/records/1221315",
+              "use_mode": "external_link_and_metadata_only",
+              "claim_basis": "I Sioros mfl. 2014 ga moderate, strukturelt plasserte synkoper høyere groove-vurderinger enn usynkoperte og maksimalt, jevnt synkoperte varianter; synkopemengde alene forklarte ikke resultatet.",
+              "source_type": "direct_research_object_dataset",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples — stimuli and anonymized ratings",
+              "publisher_or_author": "Zenodo",
+              "date_or_version": "record 1221315; Sioros_et_al.zip; MD5 df685fb58b982b7729dc0fca2576247f"
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "I Sioros mfl. 2014 ga moderate, strukturelt plasserte synkoper høyere groove-vurderinger enn usynkoperte og maksimalt, jevnt synkoperte varianter; synkopemengde alene forklarte ikke resultatet.",
+          "guidance_basis": [
+            "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json",
+            "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json"
+          ],
+          "claim_id": "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "quiz_musikk_rytme_groove_pathway_q3",
+          "quiz_id": "musikk_rytme_groove_pathway_q3",
+          "categoryId": "musikk",
+          "targetId": "subject_musikk_rytme_meter_groove_timing",
+          "question_scope": "subject_area",
+          "pathway_stage": "evaluate_evidence",
+          "question": "Hvilket evidensgrunnlag gjør groove-påstanden best etterprøvbar?",
+          "options": [
+            "Bare artikkelens tittel og DOI",
+            "Bare én samlet synkopeverdi uten tilgang til stimulus- eller ratinggrunnlaget",
+            "Artikkelens metode- og resultatlokatorer sammen med Zenodo-posisjonene for både stimuli og ratings"
+          ],
+          "answer": "Artikkelens metode- og resultatlokatorer sammen med Zenodo-posisjonene for både stimuli og ratings",
+          "answerIndex": 2,
+          "knowledge": "Påstanden kan etterprøves ved å koble artikkelens metode- og resultatlokatorer til Zenodo-arkivets separate stimulus- og ratingposisjoner for eksperimentene.",
+          "difficulty": 3,
+          "question_type": "comparison",
+          "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
+          "method_id": "rytme_mikrotiminganalyse",
+          "direct_object_id": "obj_sioros_2014_zenodo_1221315",
+          "core_concepts": [
+            "evidens",
+            "dataset-lokator",
+            "etterprøvbarhet"
+          ],
+          "concept_ids": [
+            "co_musikk_evidens_c4891f05c4",
+            "co_musikk_dataset_lokator_8ed544aedb",
+            "co_musikk_etterpr_vbarhet_3531290651"
+          ],
+          "terms": [
+            "evidens",
+            "dataset-lokator",
+            "etterprøvbarhet"
+          ],
+          "term_ids": [
+            "term_musikk_evidens_c4891f05c4",
+            "term_musikk_dataset_lokator_8ed544aedb",
+            "term_musikk_etterpr_vbarhet_3531290651"
+          ],
+          "primary_knowledge_unit_id": "ku_musikk_pastanden_kan_etterpr_ve_db8ce5da21",
+          "knowledge_unit_ids": [
+            "ku_musikk_pastanden_kan_etterpr_ve_db8ce5da21"
+          ],
+          "learning_objective_id": "lo_musikk_rytme_groove_evaluate_evidence",
+          "evidence_type": "source_trace_plus_direct_object",
+          "knowledge_payload": {
+            "summary": "Påstanden kan etterprøves ved å koble artikkelens metode- og resultatlokatorer til Zenodo-arkivets separate stimulus- og ratingposisjoner for eksperimentene.",
+            "explanation": "En sterk evidenskjede krever både artikkelens metode/resultater og det direkte forskningsobjektet. Zenodo-posten skiller stimulusmapper fra ratingfiler for begge eksperimenter, slik at påstanden kan spores til både hva deltakerne hørte og hva de vurderte.",
+            "why_it_matters": "Trinnet trener presis rytme- og grooveanalyse med en eksplisitt kilde-, objekt- og slutningsgrense."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "source": [
+            {
+              "source_id": "prod_src_sioros_syncopation_synthesized_2014",
+              "locator": "pp. 2-6, Methods / Stimuli; pp. 7-9, Discussion and Conclusion",
+              "claim_basis": "Påstanden kan etterprøves ved å koble artikkelens metode- og resultatlokatorer til Zenodo-arkivets separate stimulus- og ratingposisjoner for eksperimentene.",
+              "source_type": "peer_reviewed_article_production_extension",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples",
+              "publisher_or_author": "George Sioros, Marius Miron, Matthew E. P. Davies, Fabien Gouyon og Guy Madison",
+              "date_or_version": "Frontiers in Psychology 5:1036 (2014), DOI 10.3389/fpsyg.2014.01036",
+              "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01036/full"
+            },
+            {
+              "source_id": "obj_sioros_2014_zenodo_1221315",
+              "locator": "musical_stimuli/expA/, ratings/GrooveSynthExptA.XLS, musical_stimuli/expB/, ratings/GrooveSynthExptB.XLS",
+              "url": "https://zenodo.org/records/1221315",
+              "use_mode": "external_link_and_metadata_only",
+              "claim_basis": "Påstanden kan etterprøves ved å koble artikkelens metode- og resultatlokatorer til Zenodo-arkivets separate stimulus- og ratingposisjoner for eksperimentene.",
+              "source_type": "direct_research_object_dataset",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples — stimuli and anonymized ratings",
+              "publisher_or_author": "Zenodo",
+              "date_or_version": "record 1221315; Sioros_et_al.zip; MD5 df685fb58b982b7729dc0fca2576247f"
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "Påstanden kan etterprøves ved å koble artikkelens metode- og resultatlokatorer til Zenodo-arkivets separate stimulus- og ratingposisjoner for eksperimentene.",
+          "guidance_basis": [
+            "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json",
+            "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json"
+          ],
+          "claim_id": "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "quiz_musikk_rytme_groove_pathway_q4",
+          "quiz_id": "musikk_rytme_groove_pathway_q4",
+          "categoryId": "musikk",
+          "targetId": "subject_musikk_rytme_meter_groove_timing",
+          "question_scope": "subject_area",
+          "pathway_stage": "diagnose_failure",
+          "question": "Hvilken konklusjon går lenger enn evidensen tillater?",
+          "options": [
+            "At resultatet må avgrenses til de kontrollerte syntetiserte stimulusene som faktisk ble testet",
+            "At en bestemt mengde synkope alltid skaper groove i all musikk",
+            "At synkopenes strukturelle plassering må vurderes, ikke bare samlet mengde"
+          ],
+          "answer": "At en bestemt mengde synkope alltid skaper groove i all musikk",
+          "answerIndex": 1,
+          "knowledge": "Resultatet gjelder kontrollerte syntetiserte pianostimuli og kan ikke generaliseres til at en bestemt mengde synkope alltid skaper groove i all musikk.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
+          "method_id": "rytme_mikrotiminganalyse",
+          "direct_object_id": "obj_sioros_2014_zenodo_1221315",
+          "core_concepts": [
+            "generalisering",
+            "usikkerhet",
+            "stimulusavgrensning"
+          ],
+          "concept_ids": [
+            "co_musikk_generalisering_40a122e3e3",
+            "co_musikk_usikkerhet_03b92f2820",
+            "co_musikk_stimulusavgrensning_a057c9e671"
+          ],
+          "terms": [
+            "generalisering",
+            "usikkerhet",
+            "stimulusavgrensning"
+          ],
+          "term_ids": [
+            "term_musikk_generalisering_40a122e3e3",
+            "term_musikk_usikkerhet_03b92f2820",
+            "term_musikk_stimulusavgrensning_a057c9e671"
+          ],
+          "primary_knowledge_unit_id": "ku_musikk_resultatet_gjelder_kontr_2cbdd59ca2",
+          "knowledge_unit_ids": [
+            "ku_musikk_resultatet_gjelder_kontr_2cbdd59ca2"
+          ],
+          "learning_objective_id": "lo_musikk_rytme_groove_diagnose_failure",
+          "evidence_type": "scope_and_inference_boundary",
+          "knowledge_payload": {
+            "summary": "Resultatet gjelder kontrollerte syntetiserte pianostimuli og kan ikke generaliseres til at en bestemt mengde synkope alltid skaper groove i all musikk.",
+            "explanation": "Studien gjelder to kontrollerte lytteeksperimenter med enkle syntetiserte pianomelodier. Den støtter ikke en universell regel om groove, og artikkelens mulige forklaring med rikere notelengde- og metrisk struktur er uttrykkelig ikke etablert som sikker årsak.",
+            "why_it_matters": "Trinnet trener presis rytme- og grooveanalyse med en eksplisitt kilde-, objekt- og slutningsgrense."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "source": [
+            {
+              "source_id": "prod_src_sioros_syncopation_synthesized_2014",
+              "locator": "pp. 7-9, Discussion and Conclusion",
+              "claim_basis": "Resultatet gjelder kontrollerte syntetiserte pianostimuli og kan ikke generaliseres til at en bestemt mengde synkope alltid skaper groove i all musikk.",
+              "source_type": "peer_reviewed_article_production_extension",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples",
+              "publisher_or_author": "George Sioros, Marius Miron, Matthew E. P. Davies, Fabien Gouyon og Guy Madison",
+              "date_or_version": "Frontiers in Psychology 5:1036 (2014), DOI 10.3389/fpsyg.2014.01036",
+              "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01036/full"
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "Resultatet gjelder kontrollerte syntetiserte pianostimuli og kan ikke generaliseres til at en bestemt mengde synkope alltid skaper groove i all musikk.",
+          "guidance_basis": [
+            "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json",
+            "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json"
+          ],
+          "claim_id": "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure",
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "quiz_musikk_rytme_groove_pathway_q5",
+          "quiz_id": "musikk_rytme_groove_pathway_q5",
+          "categoryId": "musikk",
+          "targetId": "subject_musikk_rytme_meter_groove_timing",
+          "question_scope": "subject_area",
+          "pathway_stage": "decide_and_justify",
+          "question": "Hvordan skal History Go bruke Zenodo-objektet under den dokumenterte rettighetsregelen?",
+          "options": [
+            "Kopiere stimulusfilene inn i appen så lenge forskningsartikkelen siteres",
+            "Endre stimulusfilene og publisere en ny variant uten separat rettighetskontroll",
+            "Vise metadata, persistent ekstern lenke og dataset-lokatorer uten å kopiere, redistribuere eller endre filene"
+          ],
+          "answer": "Vise metadata, persistent ekstern lenke og dataset-lokatorer uten å kopiere, redistribuere eller endre filene",
+          "answerIndex": 2,
+          "knowledge": "History Go kan vise metadata, persistent Zenodo-lenke og dataset-lokatorer, men skal ikke kopiere, redistribuere eller endre stimulus- eller ratingfilene.",
+          "difficulty": 5,
+          "question_type": "analysis",
+          "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
+          "method_id": "rytme_mikrotiminganalyse",
+          "direct_object_id": "obj_sioros_2014_zenodo_1221315",
+          "core_concepts": [
+            "forskningsobjekt",
+            "gjenbruk",
+            "rettigheter"
+          ],
+          "concept_ids": [
+            "co_musikk_forskningsobjekt_910231f3ae",
+            "co_musikk_gjenbruk_9a2f12d500",
+            "co_musikk_rettigheter_a36a85c5c7"
+          ],
+          "terms": [
+            "forskningsobjekt",
+            "gjenbruk",
+            "rettigheter"
+          ],
+          "term_ids": [
+            "term_musikk_forskningsobjekt_910231f3ae",
+            "term_musikk_gjenbruk_9a2f12d500",
+            "term_musikk_rettigheter_a36a85c5c7"
+          ],
+          "primary_knowledge_unit_id": "ku_musikk_history_go_kan_vise_meta_0887f22954",
+          "knowledge_unit_ids": [
+            "ku_musikk_history_go_kan_vise_meta_0887f22954"
+          ],
+          "learning_objective_id": "lo_musikk_rytme_groove_decide_and_justify",
+          "evidence_type": "rights_and_reuse_metadata",
+          "knowledge_payload": {
+            "summary": "History Go kan vise metadata, persistent Zenodo-lenke og dataset-lokatorer, men skal ikke kopiere, redistribuere eller endre stimulus- eller ratingfilene.",
+            "explanation": "Zenodo-recorden er et verifiserbart direkte objekt, men posten oppgir at redistribusjon og endring ikke er tillatt. History Go kan derfor peke til recorden, vise metadata og interne locatorer og forklare evidenskjeden, men ikke pakke stimulus- eller ratingfilene inn i appen.",
+            "why_it_matters": "Trinnet trener presis rytme- og grooveanalyse med en eksplisitt kilde-, objekt- og slutningsgrense."
+          },
+          "feedback_basis": "source_trace_and_explanation",
+          "source": [
+            {
+              "source_id": "obj_sioros_2014_zenodo_1221315",
+              "locator": "Zenodo record 1221315; rights metadata; Sioros_et_al.zip",
+              "url": "https://zenodo.org/records/1221315",
+              "use_mode": "external_link_and_metadata_only",
+              "claim_basis": "History Go kan vise metadata, persistent Zenodo-lenke og dataset-lokatorer, men skal ikke kopiere, redistribuere eller endre stimulus- eller ratingfilene.",
+              "source_type": "direct_research_object_dataset",
+              "title": "Syncopation creates the sensation of groove in synthesized music examples — stimuli and anonymized ratings",
+              "publisher_or_author": "Zenodo",
+              "date_or_version": "record 1221315; Sioros_et_al.zip; MD5 df685fb58b982b7729dc0fca2576247f"
+            }
+          ],
+          "source_origin": "external",
+          "claim_basis": "History Go kan vise metadata, persistent Zenodo-lenke og dataset-lokatorer, men skal ikke kopiere, redistribuere eller endre stimulus- eller ratingfilene.",
+          "guidance_basis": [
+            "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/musikalsk_analyse_lyd_struktur.json",
+            "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}

@@ -7,6 +7,9 @@ on:
       - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
       - 'data/fag/musikk/**'
+      - 'data/quiz/musikk/musikk_subject_pathways_v1.json'
+      - 'data/quiz/manifest.json'
+      - 'data/knowledge/knowledge_manifest.json'
       - 'data/badges/musikk.json'
       - 'data/fagverk/**'
       - 'js/fagverk-subject-core.js'
@@ -15,9 +18,12 @@ on:
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-musikk.mjs'
+      - 'tools/build-musikk-subject-pathway-v1.mjs'
+      - 'tools/build-musikk-subject-pathway-registration-v1.mjs'
       - 'tools/validate-musikk-emner-fagdybde-v2.mjs'
       - 'tools/validate-musikk-source-dossiers-v1.mjs'
       - 'tools/validate-musikk-fulltext-evidence-v1.mjs'
+      - 'tools/validate-musikk-subject-pathway-v1.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-musikk.test.mjs'
@@ -43,7 +49,12 @@ jobs:
           node --check js/fagverk-subject-model.js
           node --check scripts/audit-fagverk-general-engine.mjs
           node --check scripts/audit-fagverk-musikk.mjs
+          node --check tools/build-musikk-subject-pathway-v1.mjs
+          node --check tools/build-musikk-subject-pathway-registration-v1.mjs
           node --check tools/validate-musikk-fulltext-evidence-v1.mjs
+          node --check tools/validate-musikk-subject-pathway-v1.mjs
+          node tools/build-musikk-subject-pathway-v1.mjs --check
+          node tools/build-musikk-subject-pathway-registration-v1.mjs --check
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-musikk.mjs
@@ -52,6 +63,7 @@ jobs:
           node tools/validate-musikk-emner-fagdybde-v2.mjs
           node tools/validate-musikk-source-dossiers-v1.mjs
           node tools/validate-musikk-fulltext-evidence-v1.mjs
+          node tools/validate-musikk-subject-pathway-v1.mjs
       - name: Validate Fagverk contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
