@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **71**
-- Andel med dokumentert evidensgrunnlag: **30.9 %**
+- Validerte pilotobjekter: **73**
+- Andel med dokumentert evidensgrunnlag: **31.7 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -86,6 +86,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Motstand, samarbeid, tilpasning og gråsoner: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 | Propaganda, sensur og informasjonskontroll: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 | Fangenskap, vold og forfølgelse: forklarings- og kildebane | 4 | 2 | 2 | 4 | evidence_ready |
+| Folkerett, rettsoppgjør og overgangsrettferdighet: forklarings- og kildebane | 5 | 3 | 5 | 5 | evidence_ready |
+| Kald krig, beredskap og sikkerhetsstat: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 
