@@ -1,17 +1,40 @@
 {
   "schema": "history_go_musikk_fulltext_topic_evidence_v1",
-  "version": "1.0.0",
-  "revision": "musikk-fulltext-evidence-rhythm-v1-2026-07-30",
-  "status": "research_evidence_ready_direct_object_blocked",
+  "version": "1.1.0",
+  "revision": "musikk-rhythm-direct-object-v1-2026-07-30",
+  "status": "question_release_ready",
   "subject_id": "musikk",
   "domain_id": "musikalsk_analyse_lyd_struktur",
   "emne_id": "em_musikk_vit_rytme_meter_groove_timing",
   "contract": "contract.json",
   "upstream_dossier": "../source_dossiers_v1/musikalsk_analyse_lyd_struktur/rytme_meter_groove_timing.json",
   "research_question": "Hvordan organiseres puls, aksent, mikrotiming og kroppslig framdrift?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_sioros_syncopation_synthesized_2014",
+      "bibliographic_identity": {
+        "creators": [
+          "George Sioros",
+          "Marius Miron",
+          "Matthew E. P. Davies",
+          "Fabien Gouyon",
+          "Guy Madison"
+        ],
+        "year": 2014,
+        "title": "Syncopation creates the sensation of groove in synthesized music examples",
+        "publication": "Frontiers in Psychology 5:1036",
+        "doi": "10.3389/fpsyg.2014.01036"
+      },
+      "registration_reason": "Production-specific open fulltext and direct-dataset provenance for the rhythm/groove pilot. This source extends one production evidence chain and is not counted as a new canonical scholarly-source registry record.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01036/full",
+      "checked_at": "2026-07-30"
+    }
+  ],
   "source_reviews": [
     {
       "source_id": "src_iyer_expressive_microtiming_2002",
+      "source_registration": "canonical_registry",
       "registry_path": "../scholarly_source_registries_v1/rhythm_groove_v1.json",
       "full_text_status": "reviewed_author_copy",
       "full_text_access": "https://vijayiyer.scholars.harvard.edu/sites/g/files/omnuum3421/files/vijayiyer/files/iyer_embodied_mind.pdf",
@@ -37,6 +60,7 @@
     },
     {
       "source_id": "src_camara_timing_sound_2020",
+      "source_registration": "canonical_registry",
       "registry_path": "../scholarly_source_registries_v1/rhythm_groove_v1.json",
       "full_text_status": "reviewed_author_uploaded_manuscript",
       "full_text_access": "https://www.researchgate.net/publication/344339619_Timing_Is_EverythingOr_Is_It_Effects_of_Instructed_Timing_Style_Reference_and_Pattern_on_Drum_Kit_Sound_in_Groove-Based_Performance",
@@ -62,6 +86,7 @@
     },
     {
       "source_id": "src_sioros_syncopation_groove_2022",
+      "source_registration": "canonical_registry",
       "registry_path": "../scholarly_source_registries_v1/rhythm_groove_v1.json",
       "full_text_status": "reviewed_author_uploaded_manuscript",
       "full_text_access": "https://www.researchgate.net/publication/361010815_Syncopation_and_Groove_in_Polyphonic_Music_Patterns_Matter",
@@ -84,6 +109,79 @@
         }
       ],
       "rights_and_reuse_note": "Author-uploaded full text was reviewed for verification. Store only paraphrased findings and locators; do not redistribute the article text or PDF."
+    },
+    {
+      "source_id": "prod_src_sioros_syncopation_synthesized_2014",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01036/full",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "2-4",
+          "section": "Experiment 1 — Methods / Stimuli / Implementation of musical examples",
+          "supports": "Experiment 1 used 4/4 simple synthesized piano melodies at 120 BPM, algorithmic syncopation transformations, generated MIDI variants and rendered 16-bit wave files."
+        },
+        {
+          "pages": "5-6",
+          "section": "Experiment 2 — Methods / Stimuli",
+          "supports": "Experiment 2 compared original, three syncopation transforms and two density transforms with a metronomic reference; MIDI files for all melody variations are identified as supplementary material."
+        },
+        {
+          "pages": "7-9",
+          "section": "Discussion and Conclusion",
+          "supports": "Moderate salient syncopation produced stronger groove ratings than maximum uniformly distributed syncopation, while scalar syncopation amount alone was insufficient and a richer-duration explanation remained inconclusive."
+        }
+      ],
+      "rights_and_reuse_note": "Open publisher full text was reviewed. The linked Zenodo stimuli and ratings may be used only under the dataset's stated conditions; History Go must not redistribute or modify the dataset and may expose only metadata and external links unless a later rights review permits more."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_sioros_2014_zenodo_1221315",
+      "object_type": "datasett_og_kode",
+      "title": "Syncopation creates the sensation of groove in synthesized music examples — stimuli and anonymized ratings",
+      "repository": "Zenodo",
+      "record_id": "1221315",
+      "persistent_url": "https://zenodo.org/records/1221315",
+      "provenance_source_ids": [
+        "prod_src_sioros_syncopation_synthesized_2014"
+      ],
+      "archive_file": {
+        "name": "Sioros_et_al.zip",
+        "size_mb": 181.9,
+        "checksum": {
+          "algorithm": "md5",
+          "value": "df685fb58b982b7729dc0fca2576247f"
+        }
+      },
+      "locators": [
+        {
+          "locator": "musical_stimuli/expA/",
+          "role": "Experiment 1 musical stimuli"
+        },
+        {
+          "locator": "ratings/GrooveSynthExptA.XLS",
+          "role": "Experiment 1 anonymized listener ratings"
+        },
+        {
+          "locator": "musical_stimuli/expB/",
+          "role": "Experiment 2 musical stimuli"
+        },
+        {
+          "locator": "ratings/GrooveSynthExptB.XLS",
+          "role": "Experiment 2 anonymized listener ratings"
+        }
+      ],
+      "rights": {
+        "dataset_statement": "Free of charge for non-commercial use only; redistribution and modification are prohibited by the dataset record.",
+        "stated_license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0",
+        "non_commercial_only": true,
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "history_go_use_mode": "external_link_and_metadata_only"
+      },
+      "release_note": "The dataset can function as a verifiable direct research object through its persistent record and internal dataset positions. No stimulus or rating file is copied into History Go."
     }
   ],
   "claim_records": [
@@ -217,6 +315,43 @@
         "analysis_status": "fulltext_structural_analysis_reviewed",
         "independent_reanalysis": false
       }
+    },
+    {
+      "claim_id": "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure",
+      "statement": "I Sioros mfl. 2014 ga moderate, strukturelt plasserte synkoper i en kontrollert samling syntetiserte pianomelodier høyere groove-vurderinger enn både usynkoperte varianter og maksimal, jevnt fordelt synkopering; samlet synkopemengde alene forklarte ikke forskjellene.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_sioros_syncopation_synthesized_2014"
+      ],
+      "locators": [
+        "Sioros et al. 2014, pp. 5-6, Experiment 2 stimulus transformations and comparison design",
+        "Sioros et al. 2014, pp. 7-9, Discussion and Conclusion"
+      ],
+      "method_protocol_ids": [
+        "rytme_mikrotiminganalyse"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_sioros_2014_zenodo_1221315",
+        "stimulus_family": "simple synthesized 4/4 piano melodies and algorithmically transformed variants",
+        "tempo_bpm": 120,
+        "experiment_1_participants": 28,
+        "experiment_2_participants": 22,
+        "comparison": [
+          "quantized/original",
+          "moderate syncopation transformations",
+          "maximum syncopation",
+          "density controls"
+        ],
+        "outcome": "listener groove ratings"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Funnene gjelder syntetiserte, enkle pianomelodier i to kontrollerte lytteeksperimenter. Artikkelen sier selv at en rikere fordeling av notelengder/metriske nivåer kan være en mulig forklaring, men at dette ikke kunne konkluderes sikkert.",
+      "prohibited_inference": "Påstanden kan ikke generaliseres til all musikk, alle groovepraksiser eller alle former for synkope, og den kan ikke omskrives til at synkopemengde alene er en universell groove-mekanisme.",
+      "reproducibility": {
+        "dataset_identity_status": "persistent_zenodo_record_verified",
+        "dataset_locator_status": "four_dataset_positions_verified_from_record_metadata",
+        "independent_reanalysis": false
+      }
     }
   ],
   "boundary_records": [
@@ -234,7 +369,8 @@
         "claim_musikk_rhythm_camara_timing_is_multidimensional",
         "claim_musikk_rhythm_camara_context_changes_timing_profiles",
         "claim_musikk_rhythm_sioros_pattern_matters_beyond_syncopation_amount",
-        "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient"
+        "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient",
+        "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure"
       ],
       "release_effect": "Blocks universal, ethnic-essentialist or genre-essentialist reformulation of the empirical claims."
     },
@@ -267,6 +403,20 @@
         "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient"
       ],
       "release_effect": "Blocks causal wording that turns the proposed four mechanisms into confirmed findings."
+    },
+    {
+      "boundary_id": "boundary_musikk_rhythm_sioros2014_scope_and_inconclusive_duration_explanation",
+      "statement": "Sioros mfl. 2014 undersøker en avgrenset stimulusfamilie av enkle, syntetiserte pianomelodier. Artikkelen peker på rikere notelengde- og metriske strukturer som en mulig medvirkende forklaring, men sier uttrykkelig at datagrunnlaget ikke tillater en sikker konklusjon om denne mekanismen.",
+      "source_ids": [
+        "prod_src_sioros_syncopation_synthesized_2014"
+      ],
+      "locators": [
+        "Sioros et al. 2014, pp. 7-9, Discussion and Conclusion"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure"
+      ],
+      "release_effect": "Blocks generalization beyond the controlled synthesized stimuli and blocks presenting note-duration diversity as an established causal mechanism."
     }
   ],
   "direct_object_gate": {
@@ -276,22 +426,30 @@
       "datasett_og_kode",
       "liveframføring"
     ],
+    "selected_object_id": "obj_sioros_2014_zenodo_1221315",
     "article_locators_satisfied": true,
-    "direct_music_object_locators_satisfied": false,
+    "direct_music_object_locators_satisfied": true,
     "minimum_direct_object_locator_count": 2,
-    "unresolved": [
-      "stable identity and access basis for the exact audio/stimulus objects to be used in a History Go question",
-      "at least two timecode, stimulus-position or dataset-position locators on the selected direct object",
-      "reuse/licensing decision for any object exposed to the user"
+    "resolved": [
+      "persistent Zenodo record identity and archive filename/checksum",
+      "four dataset-position locators spanning stimuli and ratings for both experiments",
+      "rights rule resolved as external-link-and-metadata-only because redistribution and modification are prohibited"
     ],
-    "question_release_ready": false,
-    "release_rule": "Research findings may support editorial explanation, but no quiz question may be released from this file until the direct music-object gate is separately resolved."
+    "unresolved": [],
+    "question_release_ready": true,
+    "question_ready_claim_ids": [
+      "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure"
+    ],
+    "release_rule": "Only the explicitly listed question-ready claim may be used at this gate. History Go may reference the Zenodo record and its metadata but must not copy, redistribute or modify the stimulus or ratings files. Scope and inference boundaries remain mandatory."
   },
   "coverage": {
-    "fulltext_reviewed_source_count": 3,
-    "claim_ready_editorial_count": 4,
-    "boundary_count": 3,
-    "question_release_ready_claim_count": 0,
+    "fulltext_reviewed_source_count": 4,
+    "canonical_fulltext_reviewed_source_count": 3,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 5,
+    "boundary_count": 4,
+    "question_release_ready_claim_count": 1,
     "known_gap": "This pilot covers one of six topics in the analysis domain and does not make the full domain chapter-ready."
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema": "history_go_musikk_fulltext_evidence_index_v1",
-  "version": "1.0.0",
-  "revision": "musikk-fulltext-evidence-rhythm-v1-2026-07-30",
+  "version": "1.1.0",
+  "revision": "musikk-rhythm-direct-object-v1-2026-07-30",
   "status": "pilot_active",
   "subject_id": "musikk",
   "contract": "contract.json",
@@ -11,15 +11,21 @@
   "summary": {
     "canonical_topic_count": 48,
     "fulltext_pilot_topic_count": 1,
-    "fulltext_reviewed_source_count": 3,
-    "claim_ready_editorial_count": 4,
-    "boundary_count": 3,
-    "question_release_ready_topic_count": 0
+    "fulltext_reviewed_source_count": 4,
+    "canonical_fulltext_reviewed_source_count": 3,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 5,
+    "boundary_count": 4,
+    "question_release_ready_topic_count": 1,
+    "question_release_ready_claim_count": 1
   },
   "release_policy": {
     "editorial_use": "Allowed only for claim records marked claim_ready_editorial and with all attached inference boundaries preserved.",
-    "question_use": "Blocked until the topic file documents a resolved direct-object gate with at least two direct object locators and rights/access status.",
+    "question_use": "Allowed only for claim IDs explicitly released by a resolved topic direct-object gate. Persistent identity, at least two direct-object locators and rights-compatible History Go use are mandatory.",
+    "production_source_extensions": "A production-specific fulltext source may be registered inside the evidence layer without incrementing the canonical bibliographic basis. It must carry full bibliographic identity, registration reason and fulltext verification.",
+    "nonredistributable_objects": "Objects whose record prohibits redistribution or modification remain external-link-and-metadata-only in History Go.",
     "chapter_use": "This index does not by itself make a six-topic domain chapter complete; chapter production must document coverage of every canonical topic used."
   },
-  "next_gate": "resolve_direct_object_for_rhythm_or_expand_fulltext_evidence_to_remaining_analysis_topics"
+  "next_gate": "build_first_rhythm_question_package_or_expand_fulltext_evidence_to_remaining_analysis_topics"
 }
