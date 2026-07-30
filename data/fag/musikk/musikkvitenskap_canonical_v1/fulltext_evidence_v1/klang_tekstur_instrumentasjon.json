@@ -1,0 +1,228 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-timbre-v1-2026-07-30",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "musikalsk_analyse_lyd_struktur",
+  "emne_id": "em_musikk_vit_klang_tekstur_instrumentasjon",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/musikalsk_analyse_lyd_struktur/klang_tekstur_instrumentasjon.json",
+  "research_question": "Hvordan beskrives klang, register, tekstur og instrumentasjon uten å blande måling, hørbar observasjon og kulturell fortolkning?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_gonzalez_prati_timbral_variations_2023",
+      "bibliographic_identity": {
+        "creators": ["Yubiry Gonzalez", "Ronaldo C. Prati"],
+        "year": 2023,
+        "title": "Comparative Study of Musical Timbral Variations: Crescendo and Vibrato Using FFT-Acoustic Descriptor",
+        "publication": "Eng 4(3), 2468–2482"
+      },
+      "identifiers": {
+        "doi": "10.3390/eng4030140"
+      },
+      "registration_reason": "Åpen fagfellevurdert fulltekst som bruker TinySOL via mirdata til Random-Forest-klassifikasjon av instrument, instrumentfamilie, pitch og dynamikk og eksplisitt sammenligner FFT-Acoustic-deskriptorer med Librosa-trekk.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.mdpi.com/2673-4117/4/3/140",
+      "checked_at": "2026-07-30"
+    },
+    {
+      "source_id": "prod_src_tinysol_v6_zenodo_documentation_2020",
+      "bibliographic_identity": {
+        "creators": ["Carmine-Emanuele Cella", "Daniele Ghisi", "Vincent Lostanlen", "Fabien Lévy", "Joshua Fineberg", "Yan Maresz"],
+        "year": 2020,
+        "title": "TinySOL: an audio dataset of isolated musical notes, version 6.0",
+        "publication": "Zenodo dataset documentation"
+      },
+      "identifiers": {
+        "doi": "10.5281/zenodo.3685367"
+      },
+      "registration_reason": "Repositorydokumentasjonen låser datasetversjon, filstruktur, instrumenter, dynamikkmetadata, opptaksproveniens, WAV-format, minimum klipplengde, checksums og CC BY 4.0-vilkår for direct object.",
+      "full_text_status": "reviewed_repository_documentation",
+      "full_text_access": "https://zenodo.org/records/3685367",
+      "checked_at": "2026-07-30"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_gonzalez_prati_timbral_variations_2023",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.mdpi.com/2673-4117/4/3/140",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "Section 2, Databases and General Formalism; Section 4, Automatic Classification of Musical Timbres",
+          "section": "TinySOL design and classification variables",
+          "supports": "Studien bruker TinySOL via mirdata og klassifiserer blant annet dynamikkklassene pianissimo, mezzo-forte og fortissimo med Random Forest, i tillegg til instrument, pitch og instrumentfamilie."
+        },
+        {
+          "pages": "Section 4, paired T-test and Table 1 discussion; Section 5, Conclusions",
+          "section": "Dynamics classification result",
+          "supports": "Ved 99 prosent signifikansnivå rapporterer forfatterne at FFT-Acoustic-koeffisientene fungerer godt for instrument/familie og bedre enn de sammenlignede Librosa-trekkene for klassifikasjon etter dynamikk; konklusjonen oppsummerer statistisk signifikant klassifikasjon av instrument, dynamikk og familie."
+        }
+      ],
+      "rights_and_reuse_note": "Publisher-hosted open fulltext was reviewed. History Go stores only bibliographic identity, paraphrased computational findings, method parameters and section/table locators; article text and figures are not redistributed."
+    },
+    {
+      "source_id": "prod_src_tinysol_v6_zenodo_documentation_2020",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_repository_documentation",
+      "full_text_access": "https://zenodo.org/records/3685367",
+      "checked_at": "2026-07-30",
+      "locators": [
+        {
+          "pages": "Description; Data Files; metadata field definitions",
+          "section": "Version, provenance, format and sample structure",
+          "supports": "TinySOL v6 inneholder 2913 isolerte enkelttoner fra 14 instrumenter, opprinnelig tatt opp ved IRCAM 1996–1999; filene er mono WAV, 44,1 kHz, 16-bit, 2–10 sekunder, og metadata oppgir instrument, pitch, dynamikk, instance og om digital retuning var nødvendig."
+        },
+        {
+          "pages": "Conditions of Use; Files; DOI",
+          "section": "Rights, checksums and persistent identity",
+          "supports": "TinySOL v6 er CC BY 4.0 med DOI 10.5281/zenodo.3685367; TinySOL.tar.gz har MD5 36030a7fe389da86c3419e5ee48e3b7f og metadatafilen MD5 a86c9bb115f69e61f2f25872e397fc4a."
+        }
+      ],
+      "rights_and_reuse_note": "Zenodo-dokumentasjonen er gjennomgått for identitet, tekniske metadata og rettigheter. CC BY 4.0 tillater gjenbruk med attribusjon; denne piloten velger likevel external-link-and-metadata-only som History Go-leveransemodus."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_tinysol_v6_flute_c4_pp_ff",
+      "object_type": "lydopptak",
+      "title": "TinySOL v6 — matched flute C4 ordinario samples at pp and ff",
+      "persistent_url": "https://zenodo.org/records/3685367",
+      "provenance_source_ids": ["prod_src_tinysol_v6_zenodo_documentation_2020"],
+      "version_and_identity": {
+        "dataset_version": "6.0",
+        "doi": "10.5281/zenodo.3685367",
+        "archive_file": "TinySOL.tar.gz",
+        "archive_md5": "36030a7fe389da86c3419e5ee48e3b7f",
+        "metadata_file": "TinySOL_metadata.csv",
+        "metadata_md5": "a86c9bb115f69e61f2f25872e397fc4a",
+        "audio_format": "WAV mono 44.1 kHz 16-bit",
+        "recording_provenance": "IRCAM Studio On Line, Paris, 1996–1999; ordinary playing style; no mute",
+        "sample_design": "Flute, ordinario, C4/MIDI 60 held constant; dynamics varies between pp and ff; both selected metadata rows have digital-retuning flag FALSE"
+      },
+      "locators": [
+        {
+          "locator": "TinySOL.tar.gz :: Winds/Flute/ordinario/Fl-ord-C4-pp-N-N.wav :: 0.000–2.000 s",
+          "role": "pianissimo matched sample; first two seconds form a reproducible window because TinySOL documents every clip as at least two seconds long"
+        },
+        {
+          "locator": "TinySOL.tar.gz :: Winds/Flute/ordinario/Fl-ord-C4-ff-N-N.wav :: 0.000–2.000 s",
+          "role": "fortissimo matched sample with the same instrument, pitch and ordinary technique; first two seconds provide the paired inspection window"
+        }
+      ],
+      "measurement_chain": {
+        "article_dataset_access": "TinySOL via mirdata",
+        "article_classifier": "Random Forest",
+        "article_comparison_features": ["FFT-Acoustic descriptors", "Librosa timbral features"],
+        "article_statistical_test": "paired T-test across possible classes",
+        "article_fft_notes": [
+          "FFT spectrum normalized by maximum amplitude in the descriptor method",
+          "spectral components below 10 percent of maximum amplitude excluded in the reported FFT-acoustic procedure"
+        ],
+        "history_go_independent_measurement": false,
+        "history_go_inspection_window": "0.000–2.000 s for each selected WAV",
+        "limitation": "The direct-object windows make the underlying dataset inspectable but do not independently reproduce the published aggregate Random-Forest classification or its statistical result."
+      },
+      "rights": {
+        "license": "CC BY 4.0",
+        "license_source": "TinySOL v6 Zenodo Conditions of Use",
+        "commercial_compatibility_with_history_go": "resolved_compatible_with_attribution",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": true,
+        "modification_allowed": true,
+        "attribution_required": true,
+        "decision": "TinySOL permits reuse under CC BY 4.0, including commercial reuse with attribution. This evidence production deliberately stores only dataset identity, file locators, measurement metadata and external links; embedded playback can be considered separately."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023",
+      "statement": "I Gonzalez og Pratis TinySOL-klassifikasjon med Random Forest behandles pp, mf og ff som dynamikkklasser; ved 99 prosent signifikansnivå rapporterer de at FFT-Acoustic-koeffisientene er bedre for klassifikasjon etter dynamikk enn de sammenlignede Librosa-trekkene.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": ["prod_src_gonzalez_prati_timbral_variations_2023"],
+      "locators": [
+        "Gonzalez & Prati 2023, Section 4: TinySOL via mirdata; dynamics pp/mf/ff; Random Forest classification",
+        "Gonzalez & Prati 2023, Section 4/Table 1 discussion: 99% significance and better dynamics classification relative to compared Librosa features"
+      ],
+      "method_protocol_ids": ["klang_spektralanalyse"],
+      "object_scope": {
+        "direct_object_id": "obj_tinysol_v6_flute_c4_pp_ff",
+        "dataset": "TinySOL v6",
+        "dataset_population": "2913 isolated notes from 14 instruments",
+        "released_inspection_subset": [
+          "Winds/Flute/ordinario/Fl-ord-C4-pp-N-N.wav :: 0.000–2.000 s",
+          "Winds/Flute/ordinario/Fl-ord-C4-ff-N-N.wav :: 0.000–2.000 s"
+        ],
+        "published_classification_variables": ["instrument", "instrument family", "pitch", "dynamics pp/mf/ff"],
+        "published_method": "Random Forest with FFT-Acoustic descriptors compared against selected Librosa timbral features; paired T-test used for classwise statistical comparison"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Claimet gjengir et publisert, datasett- og metodeavhengig klassifikasjonsresultat. History Go har ikke rerunnet Random-Forest-eksperimentet, og de to frigitte fløytefilene er inspeksjonsankre for datasettet, ikke en selvstendig replikasjon av aggregate performance.",
+      "prohibited_inference": "Resultatet kan ikke brukes som bevis for at dynamikk er en naturlig, universell eller instrumentuavhengig klangkategori, eller at FFT-Acoustic alltid er bedre enn andre feature-sett utenfor det rapporterte TinySOL-oppsettet.",
+      "reproducibility": {
+        "dataset_identity_status": "versioned_zenodo_dataset_verified",
+        "dataset_checksum_status": "archive_and_metadata_md5_verified",
+        "method_status": "publisher_fulltext_method_and_classification_result_reviewed",
+        "parameter_status": "core FFT normalization, amplitude threshold, classifier and statistical-comparison description recovered; exact full model hyperparameterization not independently reconstructed in this production",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_timbre_computational_category_is_not_natural_truth",
+      "statement": "Dynamikkklassene og FFT-/Librosa-representasjonene er operative kategorier i et bestemt datasett og klassifikasjonsoppsett; statistisk klassifiserbarhet gjør dem ikke til universelle eller naturlige klangkategorier.",
+      "source_ids": ["prod_src_gonzalez_prati_timbral_variations_2023"],
+      "locators": ["Gonzalez & Prati 2023, Section 4 classification design and Section 5 conclusions"],
+      "applies_to_claim_ids": ["claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"],
+      "release_effect": "Blocks universal timbre-taxonomy wording and claims that a model category is an intrinsic musical truth."
+    },
+    {
+      "boundary_id": "boundary_musikk_timbre_parameter_and_dataset_dependence",
+      "statement": "FFT-Acoustic-resultatet avhenger av TinySOL-utvalget, feature-definisjonene, FFT-behandlingen, Random-Forest-oppsettet og den rapporterte statistiske sammenligningen; History Go har ikke gjennomført en uavhengig rerun.",
+      "source_ids": ["prod_src_gonzalez_prati_timbral_variations_2023"],
+      "locators": ["Gonzalez & Prati 2023, Sections 2 and 4; Table 1 discussion"],
+      "applies_to_claim_ids": ["claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"],
+      "release_effect": "Blocks wording that treats the reported ranking against Librosa as parameter-free, dataset-independent or independently replicated by History Go."
+    },
+    {
+      "boundary_id": "boundary_musikk_timbre_tinysol_rights_and_sample_scope",
+      "statement": "TinySOL v6 is CC BY 4.0 and allows reuse with attribution, but this production uses only external links and metadata. The released C4 flute pp/ff windows are inspection anchors and do not by themselves support population-level claims about all instruments, pitches or dynamics.",
+      "source_ids": ["prod_src_tinysol_v6_zenodo_documentation_2020"],
+      "locators": ["TinySOL v6 Zenodo: Description; Data Files; Conditions of Use; Files and checksums"],
+      "applies_to_claim_ids": ["claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"],
+      "release_effect": "Keeps rights explicit and blocks generalization from the two inspectable sample windows to the full TinySOL classification population."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": ["lydopptak", "akustisk_maaling", "notert_kilde"],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_tinysol_v6_flute_c4_pp_ff",
+    "resolved": [
+      "TinySOL v6 persistent identity, DOI, archive checksum, recording provenance and audio format verified",
+      "two matched flute C4 ordinary-technique audio windows fixed at pp and ff with exact archive paths and 0.000–2.000 s intervals",
+      "CC BY 4.0 rights are compatible with attributed reuse; this production deliberately chooses external_link_and_metadata_only"
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": ["claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"],
+    "question_release_ready": true,
+    "release_rule": "Only the published Gonzalez & Prati TinySOL dynamics-classification claim may drive a question. The direct audio windows support dataset inspection, not independent replication; parameter dependence, dataset scope and rights boundaries must be preserved."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 2,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 2,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Produksjonen verifiserer ett beregningsresultat om klang/dynamikk i TinySOL og to matched fløytesamples som object anchors. Den dekker ikke orkestral tekstur, romakustikk, kulturell klangbetydning eller en uavhengig rerun av klassifikatoren."
+  }
+}
