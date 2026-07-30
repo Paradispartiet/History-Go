@@ -1,7 +1,7 @@
 {
   "schema": "history_go_musikk_fulltext_evidence_index_v1",
-  "version": "1.5.0",
-  "revision": "musikk-fulltext-evidence-five-analysis-topics-v5-2026-07-30",
+  "version": "1.6.0",
+  "revision": "musikk-fulltext-evidence-analysis-domain-complete-v6-2026-07-30",
   "status": "pilot_active",
   "subject_id": "musikk",
   "contract": "contract.json",
@@ -10,26 +10,27 @@
     "melodi_motiv_frasering.json",
     "harmoni_tonalitet_modalitet.json",
     "form_prosess_improvisasjon.json",
-    "klang_tekstur_instrumentasjon.json"
+    "klang_tekstur_instrumentasjon.json",
+    "analytisk_lytting_beskrivelse.json"
   ],
   "summary": {
     "canonical_topic_count": 48,
-    "fulltext_pilot_topic_count": 5,
-    "fulltext_reviewed_source_count": 12,
+    "fulltext_pilot_topic_count": 6,
+    "fulltext_reviewed_source_count": 14,
     "canonical_fulltext_reviewed_source_count": 3,
-    "production_extension_source_count": 9,
-    "direct_object_count": 5,
-    "claim_ready_editorial_count": 12,
-    "boundary_count": 16,
-    "question_release_ready_topic_count": 5,
-    "question_release_ready_claim_count": 5
+    "production_extension_source_count": 11,
+    "direct_object_count": 6,
+    "claim_ready_editorial_count": 13,
+    "boundary_count": 19,
+    "question_release_ready_topic_count": 6,
+    "question_release_ready_claim_count": 6
   },
   "release_policy": {
     "editorial_use": "Allowed only for claim records marked claim_ready_editorial and with all attached inference boundaries preserved.",
     "question_use": "Allowed only for claim IDs explicitly released by a resolved topic direct-object gate. Persistent identity, at least two direct-object locators and rights-compatible History Go use are mandatory.",
     "production_source_extensions": "A production-specific fulltext source may be registered inside the evidence layer without incrementing the canonical bibliographic basis. It must carry full bibliographic identity, registration reason and fulltext verification.",
     "nonredistributable_objects": "Objects whose record prohibits redistribution or whose license compatibility with History Go is unresolved remain external-link-and-metadata-only in History Go.",
-    "chapter_use": "This index does not by itself make a six-topic domain chapter complete; chapter production must document coverage of every canonical topic used."
+    "chapter_use": "This index completes the six-topic analysis-domain evidence pilot, but does not by itself make a domain chapter complete; chapter production must still document how claims, methods and boundaries are synthesized."
   },
-  "next_gate": "materialize_released_timbre_claim_or_complete_analysis_domain_with_analytical_listening_evidence"
+  "next_gate": "materialize_released_analytical_listening_claim_as_subject_pathway_set_6"
 }
