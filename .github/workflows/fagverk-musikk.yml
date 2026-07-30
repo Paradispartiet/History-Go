@@ -1,9 +1,6 @@
 name: Fagverk Musikk
 
 on:
-  push:
-    branches:
-      - 'agent/musikk-analytical-listening-subject-pathway-v1'
   pull_request:
     paths:
       - 'fagverk.html'
@@ -49,12 +46,12 @@ permissions:
 jobs:
   materialize-analytical-listening:
     name: Materialize analytical listening pathway
-    if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
+    if: github.event_name == 'pull_request' && github.head_ref == 'agent/musikk-analytical-listening-subject-pathway-v1' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -98,11 +95,10 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Materialize analytical listening Musikk subject pathway outputs'
-          git push origin HEAD:${{ github.ref_name }}
+          git push origin HEAD:${{ github.head_ref }}
 
   validate:
     name: Validate materialized Musikk subject
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
