@@ -60,7 +60,7 @@ Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har
 - Minne, kulturarv og historiebruk V1: **3** nye kvalifiserende teoriobjekter, **6** nye claims, **4** nye kilder, **6** nye place-evidence-lenker og **5** utvidede validerte cases; digital kulturarv kvalifiseres ved ren claim-gjenbruk.
 - Kilder, arkiv og spor V1: **3** nye kvalifiserende teoriobjekter, **2** nye claims, **2** nye kilder og **2** nye place-evidence-lenker; taushet/fravær og digitale kilder kvalifiseres hovedsakelig ved claim-gjenbruk.
 - Offentlighet, mobilisering og bevegelser V1: **6** nye kvalifiserende teoriobjekter ved ren claim-gjenbruk; **0** nye claims, kilder, cases eller place-evidence-lenker.
-- Byhistorie og stedsendring V1: **7** nye kvalifiserende teoriobjekter, **6** nye claims, **4** nye kilder, **10** nye place-evidence-lenker og **0** nye cases; grense/innlemmelse og gentrifisering får målrettet ny evidens, mens de øvrige fem objektene kombinerer gjenbruk med de nye Nydalen-claimene der det styrker anvendelsen.
+- Byhistorie og stedsendring V1: **7** nye kvalifiserende teoriobjekter, **6** nye claims, **4** nye kilder, **10** nye place-evidence-lenker og **0** nye cases; grense/innlemmelse og gentrifisering får målrettet ny evidens, mens de øvrige fem objektene kombinerer gjenbruk med de nye Nydalen-claimene der det styrker anvendelsen. Regulering/plan-objektet dokumenterer plan og fysisk gjennomføring, ikke ekspropriasjonsvedtak eller erstatning, og gentrifiseringsobjektet dokumenterer sosialt endringsmønster og eiendomsdrevet funksjonsskifte uten å hevde individnivå-fortrengning.
 - Totalt: **94 av 230** teoriobjekter (**40.9 %**).
 - Universell status: **INCOMPLETE**.
 - Gjenstående teoriobjekter: **136**.
