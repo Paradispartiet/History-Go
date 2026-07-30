@@ -112,9 +112,26 @@ test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', (
   assert.equal(report.universalCoverage.coveredCells, 58);
   assert.equal(report.universalCoverage.totalCells, 58);
   assert.equal(report.universalCoverage.productionGaps, 1);
-  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 63);
+  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 65);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
+});
+
+test('teori-evidensregisteret bevarer alle stedskoblinger for fler-steds-claims', () => {
+  const theoryEvidence = readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json');
+  const placeEvidence = readJson('data/fag/historie/place_evidence_historie_v1.json');
+  const linksByClaim = new Map();
+
+  for (const link of placeEvidence.evidence_links) {
+    const links = linksByClaim.get(link.claim_id) || [];
+    links.push(link.evidence_id);
+    linksByClaim.set(link.claim_id, links);
+  }
+
+  for (const entry of theoryEvidence.entries) {
+    const expected = [...new Set(entry.claim_ids.flatMap((claimId) => linksByClaim.get(claimId) || []))].sort();
+    assert.deepEqual([...entry.evidence_link_ids].sort(), expected, entry.theory_id);
+  }
 });
 
 test('1814-kapittelets pedagogiske kort følger renderer-kontrakten', () => {

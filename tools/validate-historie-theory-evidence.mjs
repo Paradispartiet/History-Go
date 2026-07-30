@@ -89,7 +89,12 @@ const placeEvidenceFile = readJson(placeEvidencePath);
 const theoryById = new Map(A(theories).map((item) => [item.theory_id, item]));
 const claimById = new Map(A(claimsFile.claims).map((item) => [item.claim_id, item]));
 const sourceById = new Map(A(sourcesFile.sources).map((item) => [item.source_id, item]));
-const evidenceByClaim = new Map(A(placeEvidenceFile.evidence_links).map((item) => [item.claim_id, item]));
+const evidenceByClaim = new Map();
+for (const item of A(placeEvidenceFile.evidence_links)) {
+  const links = evidenceByClaim.get(item.claim_id) || [];
+  links.push(item);
+  evidenceByClaim.set(item.claim_id, links);
+}
 const errors = [];
 const seenTheoryIds = new Set();
 const seenClaimBundles = new Set();
@@ -120,7 +125,7 @@ for (const entry of A(registry.entries)) {
   const derivedCases = sorted(claims.flatMap((claim) => A(claim.scope?.case_ids)));
   const derivedPlaces = sorted(claims.flatMap((claim) => A(claim.scope?.place_ids)));
   const derivedEmner = sorted(claims.flatMap((claim) => A(claim.emne_ids)));
-  const derivedEvidenceLinks = sorted(claims.map((claim) => evidenceByClaim.get(claim.claim_id)?.evidence_id).filter(Boolean));
+  const derivedEvidenceLinks = sorted(claims.flatMap((claim) => A(evidenceByClaim.get(claim.claim_id)).map((link) => link.evidence_id).filter(Boolean)));
   const claimTypes = sorted(claims.map((claim) => claim.claim_type).filter(Boolean));
   const temporalAnchors = asTemporalAnchors(claims);
 
@@ -140,10 +145,12 @@ for (const entry of A(registry.entries)) {
   for (const claim of claims) {
     if (!claim.uncertainty?.level || !String(claim.uncertainty?.note || '').trim()) errors.push(`${prefix}: claim ${claim.claim_id} lacks explicit uncertainty.`);
     if (!A(claim.alternative_interpretations).length) errors.push(`${prefix}: claim ${claim.claim_id} lacks an alternative interpretation.`);
-    const link = evidenceByClaim.get(claim.claim_id);
-    if (!link) errors.push(`${prefix}: claim ${claim.claim_id} lacks a place-evidence link.`);
-    if (link && !['validated_case', 'validated_pilot'].includes(link.validation_status)) errors.push(`${prefix}: claim ${claim.claim_id} has non-validating evidence status ${link.validation_status}.`);
-    if (link && !A(link.source_ids).every((id) => A(claim.source_ids).includes(id))) errors.push(`${prefix}: evidence sources for ${claim.claim_id} are not contained in the claim source set.`);
+    const links = A(evidenceByClaim.get(claim.claim_id));
+    if (!links.length) errors.push(`${prefix}: claim ${claim.claim_id} lacks a place-evidence link.`);
+    for (const link of links) {
+      if (!['validated_case', 'validated_pilot'].includes(link.validation_status)) errors.push(`${prefix}: claim ${claim.claim_id} has non-validating evidence status ${link.validation_status}.`);
+      if (!A(link.source_ids).every((id) => A(claim.source_ids).includes(id))) errors.push(`${prefix}: evidence sources for ${claim.claim_id} are not contained in the claim source set.`);
+    }
   }
 
   for (const sourceId of derivedSources) {
