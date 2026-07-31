@@ -1,0 +1,59 @@
+name: Materialize Næringsliv teknologi chapter
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - ".bootstrap/naeringsliv-teknologi/**"
+      - ".github/workflows/naeringsliv-teknologi-innovasjon-plattformer-materialize.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: naeringsliv-teknologi-materialize-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Reconstruct materializer
+        run: |
+          mkdir -p scripts
+          cat .bootstrap/naeringsliv-teknologi/part-* \
+            | base64 -d \
+            | gzip -d \
+            > scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
+          node --check scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
+
+      - name: Materialize and validate chapter
+        run: node scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
+
+      - name: Remove transport chunks
+        run: rm -rf .bootstrap/naeringsliv-teknologi
+
+      - name: Commit materialized production files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No materialization changes to commit."
+            exit 0
+          fi
+          git commit -m "Materialiser Næringsliv teknologi, innovasjon og plattformer"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
