@@ -31,6 +31,9 @@ on:
       - 'reports/fagverk/README.md'
       - '.github/workflows/naeringsliv-subject-quality.yml'
 
+permissions:
+  contents: write
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -61,3 +64,177 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
           npm run typecheck:web
+
+  sync-main:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge current main and take shared files from main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-commit --no-ff origin/main || true
+          shared_files=(
+            .github/workflows/naeringsliv-subject-quality.yml
+            data/fag/naeringsliv/naeringsliv_runtime_manifest.json
+            data/fagverk/fagverk_registry.json
+            data/fagverk/subject_status.json
+            reports/fagverk/README.md
+            reports/fagverk/general-engine-audit.json
+            reports/fagverk/naeringsliv-quality-audit.json
+          )
+          for file in "${shared_files[@]}"; do
+            git checkout --theirs -- "$file"
+            git add "$file"
+          done
+          rm -f .github/workflows/naeringsliv-teknologi-main-sync.yml
+          unresolved=$(git diff --name-only --diff-filter=U)
+          if [ -n "$unresolved" ]; then
+            echo "Unresolved files after generated-file resolution:"
+            echo "$unresolved"
+            exit 1
+          fi
+
+      - name: Reapply chapter registration on current main
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
+          const write = (path, value) => fs.writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
+          const bumpMinor = (version) => {
+            const parts = String(version || '0.0.0').split('.').map(Number);
+            while (parts.length < 3) parts.push(0);
+            parts[1] += 1;
+            parts[2] = 0;
+            return parts.slice(0, 3).join('.');
+          };
+          const chapter = {
+            id: 'teknologi-innovasjon-plattformer',
+            title: 'Teknologi, innovasjon og plattformer',
+            file: 'data/fagverk/naeringsliv/teknologi-innovasjon-plattformer.json',
+            primary_domain_id: 'teknologi_innovasjon_plattform',
+            emne_ids: ['em_naering_data_algoritmer_verdiskaping','em_naering_digitalisering_plattformokonomi','em_naering_doxa_vekst_effektivitet','em_naering_innovasjon_teknologisk_skift','em_naering_ledelse_kontrollsystemer','em_naering_startup_grunder_innovasjon','em_naering_teknologi_infrastruktur'],
+            method_ids: ['met_naering_teknologi_og_plattformanalyse','met_naering_verdiskapingsanalyse','met_naering_ledelses_og_kontrollanalyse','met_naering_infrastrukturanalyse','met_naering_markedsanalyse','met_naering_innovasjonsanalyse','met_naering_omstilling_og_endringsanalyse','met_naering_organisasjonsanalyse','met_naering_kapital_og_finansanalyse','met_naering_makt_og_ulikhetsanalyse'],
+            moduleFiles: ['data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/01-grunnlag.json','data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/02-fordypning.json','data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/03-anvendelse.json'],
+            briefFile: 'data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/brief.json',
+            claimsFile: 'data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/claims.json',
+            editorialStatus: 'chapter_ready',
+            claimTraceRequired: true
+          };
+
+          const manifestPath = 'data/fag/naeringsliv/naeringsliv_runtime_manifest.json';
+          const manifest = read(manifestPath);
+          manifest.version = bumpMinor(manifest.version);
+          manifest.updatedAt = '2026-07-31';
+          manifest.chapterByDomain ||= {};
+          manifest.chapterByDomain[chapter.primary_domain_id] = chapter.id;
+          manifest.chapterByEmne ||= {};
+          for (const emneId of chapter.emne_ids) manifest.chapterByEmne[emneId] = chapter.id;
+          write(manifestPath, manifest);
+
+          const registryPath = 'data/fagverk/fagverk_registry.json';
+          const registry = read(registryPath);
+          registry.version = bumpMinor(registry.version);
+          registry.updatedAt = '2026-07-31';
+          const subject = registry.subjects?.naeringsliv;
+          if (!subject || !Array.isArray(subject.chapters)) throw new Error('Missing naeringsliv chapter registry');
+          subject.chapters = subject.chapters.filter((item) => item.id !== chapter.id);
+          subject.chapters.push(chapter);
+          write(registryPath, registry);
+
+          const statusPath = 'data/fagverk/subject_status.json';
+          const status = read(statusPath);
+          status.version = bumpMinor(status.version);
+          status.updatedAt = '2026-07-31';
+          const subjectStatus = status.subjects.find((item) => item.id === 'naeringsliv');
+          if (!subjectStatus) throw new Error('Missing naeringsliv subject status');
+          subjectStatus.navigationStatus = 'materialized';
+          subjectStatus.assessmentStatus = 'audited';
+          subjectStatus.editorialStatus = 'chapters_in_progress';
+          subjectStatus.nextGate = 'phase_4_chapters';
+          subjectStatus.note = 'Økonomi og næringsliv har nå 4 av 6 canonicale hovedkapitler ferdig: Arbeid, produksjon og verdiskaping; Kapital, eierskap og finans; Handel, forbruk og marked; og Teknologi, innovasjon og plattformer. Kapittel 4 dekker alle sju emner og ti metoder i fagområdet gjennom tre redigerte moduler, 42 sporede claims og 22 inspectable kilder. To fagområder står fortsatt uten ferdigskrevne kapitler.';
+          write(statusPath, status);
+
+          const enginePath = 'reports/fagverk/general-engine-audit.json';
+          const engine = read(enginePath);
+          let updated = false;
+          const visit = (value) => {
+            if (!value || typeof value !== 'object') return;
+            if ((value.id === 'naeringsliv' || value.subjectId === 'naeringsliv') && Object.hasOwn(value, 'chapterCount')) {
+              value.chapterCount = 4;
+              updated = true;
+            }
+            for (const child of Object.values(value)) visit(child);
+          };
+          visit(engine);
+          if (!updated) throw new Error('Could not locate naeringsliv general-engine record');
+          write(enginePath, engine);
+
+          const qualityPath = 'reports/fagverk/naeringsliv-quality-audit.json';
+          const quality = read(qualityPath);
+          quality.metrics.registeredChapterCount = 4;
+          quality.metrics.registeredDomainCount = 4;
+          quality.metrics.registeredEmneCount = 30;
+          write(qualityPath, quality);
+
+          const readmePath = 'reports/fagverk/README.md';
+          let readme = fs.readFileSync(readmePath, 'utf8');
+          const description = '- `naeringsliv-teknologi-innovasjon-plattformer-audit.json` — deterministisk kapittelgate for sju emner, ti metoder, tre moduler, 42 claims og 22 inspectable kilder.\n';
+          if (!readme.includes('naeringsliv-teknologi-innovasjon-plattformer-audit.json')) {
+            readme = readme.replace('- `naeringsliv-handel-forbruk-marked-audit.json`', `${description}- \`naeringsliv-handel-forbruk-marked-audit.json\``);
+          }
+          const commands = 'node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs --write-report\nnode scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs\n';
+          if (!readme.includes('node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs --write-report')) {
+            readme = readme.replace('node scripts/audit-naeringsliv-chapter-handel-forbruk-marked.mjs --write-report', `${commands}node scripts/audit-naeringsliv-chapter-handel-forbruk-marked.mjs --write-report`);
+          }
+          if (!readme.includes('tests/naeringsliv-chapter-teknologi-innovasjon-plattformer.test.mjs')) {
+            readme = readme.replace('tests/naeringsliv-chapter-handel-forbruk-marked.test.mjs tests/naeringsliv-subject-quality.test.mjs', 'tests/naeringsliv-chapter-handel-forbruk-marked.test.mjs tests/naeringsliv-chapter-teknologi-innovasjon-plattformer.test.mjs tests/naeringsliv-subject-quality.test.mjs');
+          }
+          const lines = readme.split('\n');
+          const index = lines.findIndex((line) => line.startsWith('Økonomi og næringsliv står '));
+          if (index < 0) throw new Error('Missing naeringsliv README status paragraph');
+          lines[index] = 'Økonomi og næringsliv står `materialized`, `audited` og `chapters_in_progress`. Faget har seks canonicale fagområder, 38 emner, 27 metoder og 60 hooks. Fire av seks hovedkapitler er ferdige: **Arbeid, produksjon og verdiskaping**, **Kapital, eierskap og finans**, **Handel, forbruk og marked** og **Teknologi, innovasjon og plattformer**. Kapittel 4 dekker sju emner og ti metoder gjennom tre redigerte moduler, 42 sporede claims og 22 inspectable kilder. Universitetslaget dekker seks akademiske spor og alle 36 kjerneemnene individuelt; handelshøgskolelaget dekker fem profesjonsspor og 25 moduler, samlet 61 læringsenheter.';
+          fs.writeFileSync(readmePath, lines.join('\n'));
+          NODE
+
+      - name: Regenerate and validate merged result
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs --write-report
+          node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs
+          node scripts/audit-naeringsliv-subject-quality.mjs --write-report
+          node scripts/audit-naeringsliv-subject-quality.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs
+          node --test tests/naeringsliv-chapter-teknologi-innovasjon-plattformer.test.mjs tests/naeringsliv-subject-quality.test.mjs tests/fagverk-general-engine.test.mjs
+
+      - name: Commit clean merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          changed=$(git diff --cached --name-only origin/main)
+          echo "$changed"
+          count=$(printf '%s\n' "$changed" | sed '/^$/d' | wc -l)
+          if [ "$count" -ne 15 ]; then
+            echo "Expected 15 production files relative to main, got $count"
+            exit 1
+          fi
+          if printf '%s\n' "$changed" | grep -E '(^|/)(\.bootstrap|naeringsliv-teknologi-main-sync\.yml)' ; then
+            echo "Temporary files remain in final diff"
+            exit 1
+          fi
+          git commit -m "Synkroniser Næringsliv teknologi med main"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
