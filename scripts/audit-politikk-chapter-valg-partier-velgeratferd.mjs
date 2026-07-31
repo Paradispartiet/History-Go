@@ -123,8 +123,8 @@ export function auditPolitikkValgChapter({ writeReport = false, checkReport = tr
   assert(runtime.chapterByDomain?.[domain.domain_id] === chapter.id, 'Runtime mangler domain→chapter-kobling');
   for (const emneId of chapter.emne_ids || []) assert(runtime.chapterByEmne?.[emneId] === chapter.id, `Runtime mangler emne→chapter for ${emneId}`);
   const politicsStatus = (status.subjects || []).find((row) => row.id === 'politikk');
-  assert(politicsStatus?.editorialStatus === 'chapters_in_progress', 'Politikkstatus skal være chapters_in_progress');
-  assert(politicsStatus?.nextGate === 'phase_4_chapters', 'Politikkstatus peker ikke til videre kapittelproduksjon');
+  assert(politicsStatus?.editorialStatus === 'complete', 'Politikkstatus skal være complete');
+  assert(politicsStatus?.nextGate === 'maintenance_and_source_refresh', 'Politikkstatus peker ikke til vedlikehold');
 
   const report = {
     schema: 'history_go_politikk_chapter_valg_partier_velgeratferd_audit_v1',

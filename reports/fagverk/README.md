@@ -24,6 +24,8 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `naeringsliv-quality-audit.json` — deterministisk materialiserings- og kvalitetsgate for seks fagområder, 38 emner, 27 metoder, 60 hooks, seks akademiske spor og fem profesjonsspor med 25 moduler.
 - `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle forekomster er synkronisert.
+- `politikk-forvaltning-audit.json` — kapittelgate for 15 emner, 21 metoder, tre redigerte moduler, 36 sporede claims og 24 inspectable kilder.
+- `politikk-parlamentarisme-audit.json` — kapittelgate for 14 emner, 23 metoder, tre redigerte moduler, 36 sporede claims og 30 inspectable kilder.
 - `politikk-regimer-institusjoner-audit.json` — kapittelgate for 15 emner, 16 metoder, tre redigerte moduler, 29 sporede claims og 16 inspectable kilder.
 - `politikk-valg-partier-velgeratferd-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 23 inspectable kilder.
 - `politikk-offentlig-politikk-beslutning-implementering-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 21 bærende kilder.
@@ -67,6 +69,10 @@ node scripts/audit-politikk-subject-quality.mjs --write-report
 node scripts/audit-politikk-subject-quality.mjs
 node scripts/audit-politikk-thinker-integrity.mjs --write-report
 node scripts/audit-politikk-thinker-integrity.mjs
+node scripts/audit-politikk-chapter-forvaltning.mjs --write-report
+node scripts/audit-politikk-chapter-forvaltning.mjs
+node scripts/audit-politikk-chapter-parlamentarisme.mjs --write-report
+node scripts/audit-politikk-chapter-parlamentarisme.mjs
 node scripts/audit-politikk-chapter-regimer-institusjoner.mjs --write-report
 node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
 node scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs --write-report
@@ -114,7 +120,6 @@ Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinn
 
 Økonomi og næringsliv står `materialized`, `audited` og `chapters_in_progress`. Faget har seks canonicale fagområder, 38 emner, 27 metoder og 60 hooks. Fem av seks hovedkapitler er ferdige: **Arbeid, produksjon og verdiskaping**, **Kapital, eierskap og finans**, **Handel, forbruk og marked**, **Teknologi, innovasjon og plattformer** og **Logistikk, infrastruktur og økonomisk rom**. Kapittel 5 dekker tre emner og ni metoder gjennom tre redigerte moduler, 42 sporede claims og 22 inspectable kilder. Universitetslaget dekker seks akademiske spor og alle 36 kjerneemnene individuelt; handelshøgskolelaget dekker fem profesjonsspor og 25 moduler, samlet 61 læringsenheter.
 
-Politikk står `materialized`, `audited` og `chapters_in_progress`. Alle tretten canonicale fagområder har nå registrerte kapitler. De elleve nyere kapitlene fra `Regimer og institusjoner` til `Normer, identitet og hverdagsliv` har egne briefs, påstandsregistre, avsnittssporing og permanente kapittelaudits. De to eldre kapitlene `Offentlig forvaltning` og `Parlamentarisme` er fortsatt registrert som legacy-kapitler uten den nyere brief–claims–audit-kontrakten; derfor er domenedekningen 13/13, mens den redaksjonelle moderniseringen fortsatt pågår. Faget har permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
+Politikk står `materialized`, `audited` og `complete`. Alle tretten canonicale fagområder har fullproduserte kapitler med tre redigerte moduler, exact canonical emne- og metodedekning, inspectable kilder, påstandsregister, avsnittssporing, permanent audit og test. Sluttmoderniseringen omfatter `Offentlig forvaltning` og `Parlamentarisme, representasjon og offentlighet`; den felles sluttgaten bekrefter at 13/13 kapitler følger brief–claims–audit-kontrakten. Faget har dessuten permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
 De gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
-
