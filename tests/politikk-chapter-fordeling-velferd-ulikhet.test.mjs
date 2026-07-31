@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
   auditPolitikkFordelingVelferdUlikhetChapter,
   hasCompleteClaimTrace
@@ -27,4 +28,18 @@ test('Fordeling, velferd og ulikhet oppfyller Fagverkets kapittelkontrakt', () =
   assert.equal(report.gates.paragraphLevelClaimTrace, true);
   assert.equal(report.gates.registryAndRuntimeSynced, true);
   assert.equal(report.gates.honestEditorialStatus, true);
+});
+
+const fordypning = JSON.parse(readFileSync(
+  new URL('../data/fagverk/politikk/fordeling-velferd-ulikhet/02-fordypning.json', import.meta.url),
+  'utf8'
+));
+
+test('arbeidseksemplenes analyser er synlige steg for rendereren', () => {
+  assert.equal(fordypning.workedExamples.length, 2);
+  for (const example of fordypning.workedExamples) {
+    assert.equal(Array.isArray(example.analysis), true);
+    assert.ok(example.analysis.length >= 3);
+    assert.equal(example.analysis.every((step) => typeof step === 'string' && step.trim().length > 0), true);
+  }
 });
