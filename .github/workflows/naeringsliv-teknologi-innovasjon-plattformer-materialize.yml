@@ -40,6 +40,36 @@ jobs:
             > scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
           node --check scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
 
+      - name: Restrict claim collection to claim fields
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs';
+          const source = fs.readFileSync(file, 'utf8');
+          const pattern = /function collectClaimIds\(value, target = new Set\(\)\) \{[\s\S]*?\n\}\nconst PLACE_FILES/;
+          const replacement = `function collectClaimIds(value, target = new Set(), insideClaimField = false) {
+            if (Array.isArray(value)) {
+              for (const item of value) collectClaimIds(item, target, insideClaimField);
+            } else if (value && typeof value === "object") {
+              for (const [key, item] of Object.entries(value)) {
+                const isClaimField = key === "claimIds" || key === "paragraphClaimIds" || key === "keyPointClaimIds";
+                collectClaimIds(item, target, insideClaimField || isClaimField);
+              }
+            } else if (insideClaimField && typeof value === "string") {
+              target.add(value);
+            }
+            return target;
+          }
+          const PLACE_FILES`;
+          const matches = source.match(pattern);
+          if (!matches || matches.length !== 1) {
+            throw new Error('Expected exactly one broad collectClaimIds implementation in materializer');
+          }
+          const patched = source.replace(pattern, replacement);
+          fs.writeFileSync(file, patched);
+          NODE
+          node --check scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
+
       - name: Materialize and validate chapter
         id: materialize
         continue-on-error: true
@@ -103,8 +133,10 @@ jobs:
           git add .bootstrap/naeringsliv-teknologi/materialize-error.log \
                   .bootstrap/naeringsliv-teknologi/materialize-failure.md \
                   .bootstrap/naeringsliv-teknologi/debug
-          git commit -m "Bevar auditgrunnlag for Næringsliv teknologi"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          if ! git diff --cached --quiet; then
+            git commit -m "Bevar auditgrunnlag for Næringsliv teknologi"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
           exit 1
 
       - name: Remove transport chunks
