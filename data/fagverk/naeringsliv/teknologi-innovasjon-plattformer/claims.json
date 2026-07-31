@@ -1,0 +1,705 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "teknologi-innovasjon-plattformer",
+  "verified_at": "2026-07-31",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "s01-oecd-oslo-manual",
+      "label": "Oslo Manual 2018 – Concepts and definitions for measuring business innovation",
+      "url": "https://www.oecd.org/en/publications/oslo-manual-2018_9789264304604-en/full-report/component-7.html",
+      "publisher": "OECD/Eurostat",
+      "type": "internasjonal_metodestandard",
+      "source_location": "Kapittel 3.2 om innovasjonsaktiviteter, forretningsinnovasjon og kravet om implementering"
+    },
+    {
+      "id": "s02-ssb-innovasjon",
+      "label": "Innovasjon i næringslivet",
+      "url": "https://www.ssb.no/teknologi-og-innovasjon/informasjons-og-kommunikasjonsteknologi-ikt/statistikk/innovasjon-i-naeringslivet",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Definisjoner, utvalgte tall 2022–2024, produkt- og forretningsprosessinnovasjon og samarbeid"
+    },
+    {
+      "id": "s03-ssb-fou",
+      "label": "Forskning og utvikling i næringslivet",
+      "url": "https://www.ssb.no/teknologi-og-innovasjon/forskning-og-innovasjon-i-naeringslivet/statistikk/forskning-og-utvikling-i-naeringslivet",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Definisjon av FoU, måling av egenutført og innkjøpt FoU, personale, finansiering og 2024-tall"
+    },
+    {
+      "id": "s04-ssb-ikt",
+      "label": "Bruk av IKT i næringslivet",
+      "url": "https://www.ssb.no/teknologi-og-innovasjon/informasjons-og-kommunikasjonsteknologi-ikt/statistikk/bruk-av-ikt-i-naeringslivet",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Formål, teknologier, IKT-tjenester, kompetanse, netthandel, sikkerhet og bredbånd"
+    },
+    {
+      "id": "s05-ssb-ki",
+      "label": "Dobling i bruk av KI",
+      "url": "https://www.ssb.no/teknologi-og-innovasjon/informasjons-og-kommunikasjonsteknologi-ikt/statistikk/bruk-av-ikt-i-naeringslivet/artikler/dobling-i-bruk-av-ki",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk_artikkel",
+      "source_location": "2024-resultater om foretak med minst ti sysselsatte og bruk av ulike KI-teknologier"
+    },
+    {
+      "id": "s06-regjeringen-ki",
+      "label": "Nasjonal strategi for kunstig intelligens",
+      "url": "https://www.regjeringen.no/no/dokumenter/nasjonal-strategi-for-kunstig-intelligens/id2685594/?ch=2",
+      "publisher": "Digitaliserings- og forvaltningsdepartementet",
+      "type": "nasjonal_strategi",
+      "source_location": "Sammendrag, norske forutsetninger, ansvarlig KI, personvern, sikkerhet og næringsrettet innovasjon"
+    },
+    {
+      "id": "s07-regjeringen-digital",
+      "label": "Utnytte mulighetene i kunstig intelligens",
+      "url": "https://www.regjeringen.no/no/tema/statlig-forvaltning/it-politikk/ny-nasjonal-digitaliseringsstrategi/utnytte-mulighetene-i-kunstig-intelligens/id3054706/",
+      "publisher": "Digitaliserings- og forvaltningsdepartementet",
+      "type": "nasjonal_strategi",
+      "source_location": "Mål mot 2030, nasjonal KI-infrastruktur, produktivitet, rammevilkår, etikk og personvern"
+    },
+    {
+      "id": "s08-eu-ai-act",
+      "label": "AI Act – regulatory framework for artificial intelligence",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "publisher": "European Commission",
+      "type": "eu_regelverksveiledning",
+      "source_location": "Risikoklasser, forbud, krav til høyrisikosystemer, transparens og tidslinje"
+    },
+    {
+      "id": "s09-eu-gpai",
+      "label": "General-purpose AI obligations under the AI Act",
+      "url": "https://digital-strategy.ec.europa.eu/en/factpages/general-purpose-ai-obligations-under-ai-act",
+      "publisher": "European Commission",
+      "type": "eu_regelverksveiledning",
+      "source_location": "Teknisk dokumentasjon, opphavsrettspolicy, sammendrag av treningsinnhold og systemrisiko"
+    },
+    {
+      "id": "s10-dma",
+      "label": "Digital Markets Act",
+      "url": "https://digital-markets-act.ec.europa.eu/index_en",
+      "publisher": "European Commission",
+      "type": "eu_regelverksveiledning",
+      "source_location": "Gatekeeper-kriterier, kjerneplattformtjenester, plikter, forbud og forholdet til konkurranseretten"
+    },
+    {
+      "id": "s11-dma-data",
+      "label": "Data access for business users – Article 6(10) DMA",
+      "url": "https://digital-markets-act.ec.europa.eu/developer-portal/data-access/data-access-business-users-article-610-dma_en",
+      "publisher": "European Commission",
+      "type": "eu_regelverksveiledning",
+      "source_location": "Gratis, høykvalitets og sanntids tilgang til data generert av bedriftsbrukere og sluttbrukere"
+    },
+    {
+      "id": "s12-platform-work",
+      "label": "Directive (EU) 2024/2831 on platform work",
+      "url": "https://eur-lex.europa.eu/eli/dir/2024/2831/oj/eng",
+      "publisher": "European Union",
+      "type": "eu_direktiv",
+      "source_location": "Artikkel 1, kapittel III og fortalen om arbeidsstatus, algoritmisk styring, transparens og menneskelig kontroll"
+    },
+    {
+      "id": "s13-jrc-algorithmic-management",
+      "label": "Algorithmic management and digital monitoring of work",
+      "url": "https://joint-research-centre.ec.europa.eu/projects-and-activities/employment/algorithmic-management-and-digital-monitoring-work_en",
+      "publisher": "European Commission Joint Research Centre",
+      "type": "forskningsoversikt",
+      "source_location": "Definisjon av algoritmisk styring, ledelsesfunksjoner, arbeidstempo, belønning, informasjonsskjevhet og arbeidsvilkår"
+    },
+    {
+      "id": "s14-datatilsynet-auto",
+      "label": "Rettigheter ved automatiserte avgjørelser",
+      "url": "https://www.datatilsynet.no/rettigheter-og-plikter/den-registrertes-rettigheter/rettar-ved-automatiserte-avgjerder/",
+      "publisher": "Datatilsynet",
+      "type": "tilsynsveiledning",
+      "source_location": "Artikkel 22, vilkår, unntak, informasjon, menneskelig gjennomgang og rett til å bestride"
+    },
+    {
+      "id": "s15-nsm-sky",
+      "label": "Spørsmål om sky og tjenesteutsetting",
+      "url": "https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/sporsmal-om-sky-og-tjenesteutsetting/",
+      "publisher": "Nasjonal sikkerhetsmyndighet",
+      "type": "sikkerhetsveiledning",
+      "source_location": "Sikkerhetsansvar, delt ansvar, teknisk gjeld, risikovurdering, leverandørlåsing og exit-strategi"
+    },
+    {
+      "id": "s16-nsm-datasenter",
+      "label": "Temarapport om norske datasentre og digital autonomi – sammendrag",
+      "url": "https://nsm.no/regelverk-og-hjelp/rapporter/temarapport-om-norske-datasentre-og-digital-autonomi/sammendrag/",
+      "publisher": "Nasjonal sikkerhetsmyndighet",
+      "type": "sikkerhetsrapport",
+      "source_location": "Datasentre som produksjonsfabrikk, samfunnsavhengighet, robusthet, nasjonal kontroll og anbefalinger"
+    },
+    {
+      "id": "s17-forskningsparken",
+      "label": "Forskningsparkens historie",
+      "url": "https://www.forskningsparken.no/about/history",
+      "publisher": "Oslotech/Forskningsparken",
+      "type": "institusjonshistorie",
+      "source_location": "Etablering i 1984, åpning i 1989, kommersialisering av forskning og samarbeid mellom forskning og industri"
+    },
+    {
+      "id": "s18-startuplab",
+      "label": "Startuplab",
+      "url": "https://www.forskningsparken.no/company/startuplab",
+      "publisher": "Oslotech/Forskningsparken",
+      "type": "institusjonsside",
+      "source_location": "Etablering i 2012, inkubator, akselerator, tidligfaseinvestering og nettverk"
+    },
+    {
+      "id": "s19-innovasjon-norge",
+      "label": "Oppstartstilskudd 1 – test forretningsideen i markedet",
+      "url": "https://www.innovasjonnorge.no/tjeneste/oppstartstilskudd-1",
+      "publisher": "Innovasjon Norge",
+      "type": "offentlig_virkemiddel",
+      "source_location": "Målgruppe, krevende teknologiutvikling, markedspotensial og avklaring av betalingsvillig marked"
+    },
+    {
+      "id": "s20-patentstyret",
+      "label": "Patent",
+      "url": "https://www.patentstyret.no/patent",
+      "publisher": "Patentstyret",
+      "type": "offentlig_veiledning",
+      "source_location": "Teknisk løsning, nyhet, oppfinnelseshøyde, reproduksjon, enerett og forskjellen fra idé eller forretningskonsept"
+    },
+    {
+      "id": "s21-patentstyret-arbeid",
+      "label": "Arbeidstakeroppfinnelser",
+      "url": "https://www.patentstyret.no/patent/arbeidstakeroppfinnelser",
+      "publisher": "Patentstyret",
+      "type": "offentlig_veiledning",
+      "source_location": "Lovens virkeområde, arbeidstakers utgangspunkt, arbeidsgivers rettigheter og avtalefrihet"
+    },
+    {
+      "id": "s22-altinn",
+      "label": "Hva er Altinn?",
+      "url": "https://info.altinn.no/om-altinn/hva-er-altinn/",
+      "publisher": "Digitaliseringsdirektoratet",
+      "type": "offentlig_plattformbeskrivelse",
+      "source_location": "Altinn som portal, teknisk plattform og samarbeid på tvers av offentlige virksomheter"
+    }
+  ],
+  "claims": [
+    {
+      "id": "teknologi-01",
+      "claim": "Innovasjon krever at et nytt eller vesentlig forbedret produkt gjøres tilgjengelig for brukere, eller at en ny prosess faktisk tas i bruk; idé og oppfinnelse alene er ikke nok.",
+      "source_ids": [
+        "s01-oecd-oslo-manual"
+      ],
+      "classification": "innovasjonsmetodisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-1"
+      ]
+    },
+    {
+      "id": "teknologi-02",
+      "claim": "En forretningsinnovasjon vurderes mot foretakets tidligere produkter og prosesser, ikke bare mot om løsningen er ny i verden.",
+      "source_ids": [
+        "s01-oecd-oslo-manual",
+        "s02-ssb-innovasjon"
+      ],
+      "classification": "innovasjonsmetodisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-1"
+      ]
+    },
+    {
+      "id": "teknologi-03",
+      "claim": "Innovasjonsaktiviteter omfatter utviklingsmessige, finansielle og kommersielle aktiviteter og kan være pågående, utsatt eller avbrutt uten å ha resultert i en implementert innovasjon.",
+      "source_ids": [
+        "s01-oecd-oslo-manual"
+      ],
+      "classification": "innovasjonsmetodisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-1"
+      ]
+    },
+    {
+      "id": "teknologi-04",
+      "claim": "Innovasjonsstatistikk måler både produkt- og forretningsprosessinnovasjon og skiller resultatet fra samarbeid, kostnader og andre innovasjonsaktiviteter.",
+      "source_ids": [
+        "s02-ssb-innovasjon"
+      ],
+      "classification": "statistisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-1"
+      ]
+    },
+    {
+      "id": "teknologi-05",
+      "claim": "FoU er systematisk, kreativ virksomhet med nyhet, usikkerhet og overførbar eller reproduserbar kunnskap, og er derfor snevrere enn all produktutvikling.",
+      "source_ids": [
+        "s03-ssb-fou"
+      ],
+      "classification": "fou_metodisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-2"
+      ]
+    },
+    {
+      "id": "teknologi-06",
+      "claim": "SSBs FoU-statistikk skiller egenutført fra innkjøpt FoU og måler kostnader, personale, finansiering og teknologiområder.",
+      "source_ids": [
+        "s03-ssb-fou"
+      ],
+      "classification": "statistisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-2"
+      ]
+    },
+    {
+      "id": "teknologi-07",
+      "claim": "I perioden 2022–2024 rapporterte 60 prosent av foretakene i SSBs innovasjonsundersøkelse innovasjonsaktivitet, mens 57 prosent rapporterte produkt- eller forretningsprosessinnovasjon.",
+      "source_ids": [
+        "s02-ssb-innovasjon"
+      ],
+      "classification": "statistisk_tidsavgrenset",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-2"
+      ]
+    },
+    {
+      "id": "teknologi-08",
+      "claim": "Næringslivet utførte FoU for om lag 46,6 milliarder kroner i 2024, men utgiftsnivå alene viser ikke om forskningen ble kommersialisert eller ga samfunnsnytte.",
+      "source_ids": [
+        "s03-ssb-fou",
+        "s01-oecd-oslo-manual"
+      ],
+      "classification": "statistisk_tidsavgrenset",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-2"
+      ]
+    },
+    {
+      "id": "teknologi-09",
+      "claim": "Forskningsparken ble etablert for å styrke samarbeid mellom forskning og industri og gjøre forskningsbaserte resultater lettere å kommersialisere.",
+      "source_ids": [
+        "s17-forskningsparken"
+      ],
+      "classification": "institusjonshistorisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-3"
+      ]
+    },
+    {
+      "id": "teknologi-10",
+      "claim": "Innovasjonssenteret A/S ble stiftet i 1984, og Forskningsparken ble offisielt åpnet i 1989 som fysisk infrastruktur for kunnskaps- og næringsmiljøer.",
+      "source_ids": [
+        "s17-forskningsparken"
+      ],
+      "classification": "institusjonshistorisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-3"
+      ]
+    },
+    {
+      "id": "teknologi-11",
+      "claim": "Startuplab ble etablert i 2012 som inkubator, akselerator og tidligfaseinvestor knyttet til miljøet i Forskningsparken.",
+      "source_ids": [
+        "s18-startuplab"
+      ],
+      "classification": "institusjonell",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-3"
+      ]
+    },
+    {
+      "id": "teknologi-12",
+      "claim": "Et offentlig oppstartsvirkemiddel kan brukes til å teste om en innovativ idé møter et betalingsvillig marked før full skalering.",
+      "source_ids": [
+        "s19-innovasjon-norge"
+      ],
+      "classification": "virkemiddelanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-grunnlag-3"
+      ]
+    },
+    {
+      "id": "teknologi-13",
+      "claim": "Digitalisering må analyseres som samspill mellom teknologi, kompetanse, organisasjon og arbeidsprosesser, ikke som anskaffelse av programvare alene.",
+      "source_ids": [
+        "s04-ssb-ikt",
+        "s22-altinn"
+      ],
+      "classification": "organisasjonsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-1"
+      ]
+    },
+    {
+      "id": "teknologi-14",
+      "claim": "SSBs IKT-statistikk kartlegger teknologibruk, tjenester, kompetanse, netthandel og sikkerhetsløsninger og gjør det mulig å skille tilgang fra faktisk anvendelse.",
+      "source_ids": [
+        "s04-ssb-ikt"
+      ],
+      "classification": "statistisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-1"
+      ]
+    },
+    {
+      "id": "teknologi-15",
+      "claim": "Altinn er både portal for digital dialog, teknisk plattform for offentlige tjenester og et samarbeid mellom flere offentlige virksomheter.",
+      "source_ids": [
+        "s22-altinn"
+      ],
+      "classification": "infrastrukturanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-1"
+      ]
+    },
+    {
+      "id": "teknologi-16",
+      "claim": "Programvare og plattformer blir infrastruktur når mange tjenester, virksomheter eller brukere er avhengige av felles grensesnitt, identitet, dataflyt og driftsmiljø.",
+      "source_ids": [
+        "s22-altinn",
+        "s10-dma"
+      ],
+      "classification": "infrastrukturanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-1"
+      ]
+    },
+    {
+      "id": "teknologi-17",
+      "claim": "I 2024 oppga 21 prosent av norske foretak med minst ti sysselsatte at de brukte én eller flere KI-teknologier, mer enn dobbelt så høy andel som året før.",
+      "source_ids": [
+        "s05-ssb-ki"
+      ],
+      "classification": "statistisk_tidsavgrenset",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-2"
+      ]
+    },
+    {
+      "id": "teknologi-18",
+      "claim": "Kunstig intelligens kan støtte nye forretningsmodeller og mer effektiv drift, men gevinstene avhenger av oppgave, datagrunnlag, kompetanse og implementering.",
+      "source_ids": [
+        "s06-regjeringen-ki",
+        "s07-regjeringen-digital"
+      ],
+      "classification": "strategisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-2"
+      ]
+    },
+    {
+      "id": "teknologi-19",
+      "claim": "Data er en produksjonsressurs bare når kvalitet, tilgang, formål, rettigheter, dokumentasjon og vedlikehold gjør dem anvendelige.",
+      "source_ids": [
+        "s06-regjeringen-ki",
+        "s08-eu-ai-act"
+      ],
+      "classification": "dataforvaltningsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-2"
+      ]
+    },
+    {
+      "id": "teknologi-20",
+      "claim": "Ansvarlig KI krever vurdering av personvern, sikkerhet, rettigheter, menneskelig kontroll og mulige skjevheter gjennom hele systemets livsløp.",
+      "source_ids": [
+        "s06-regjeringen-ki",
+        "s08-eu-ai-act"
+      ],
+      "classification": "styringsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-2"
+      ]
+    },
+    {
+      "id": "teknologi-21",
+      "claim": "AI Act bruker en risikobasert modell der enkelte praksiser forbys, høyrisikosystemer får omfattende krav og andre systemer omfattes av transparenskrav eller få særregler.",
+      "source_ids": [
+        "s08-eu-ai-act"
+      ],
+      "classification": "regelverksanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-2"
+      ]
+    },
+    {
+      "id": "teknologi-22",
+      "claim": "Høyrisiko-KI skal blant annet ha risikostyring, egnede datasett, logging, dokumentasjon, informasjon til bruker, menneskelig kontroll, robusthet og cybersikkerhet.",
+      "source_ids": [
+        "s08-eu-ai-act"
+      ],
+      "classification": "regelverksanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-2"
+      ]
+    },
+    {
+      "id": "teknologi-23",
+      "claim": "En digital plattform kan være markedsplass, distribusjonskanal, betalingsledd, identitetslag og datainnehaver samtidig.",
+      "source_ids": [
+        "s10-dma",
+        "s11-dma-data"
+      ],
+      "classification": "plattformanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-3"
+      ]
+    },
+    {
+      "id": "teknologi-24",
+      "claim": "DMA identifiserer store leverandører av kjerneplattformtjenester som gatekeepere og pålegger dem særskilte plikter og forbud for å gjøre markedene mer rettferdige og konkurrerbare.",
+      "source_ids": [
+        "s10-dma"
+      ],
+      "classification": "regelverksanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-3"
+      ]
+    },
+    {
+      "id": "teknologi-25",
+      "claim": "Gatekeepere kan måtte åpne for interoperabilitet, gi bedriftsbrukere tilgang til relevante data og avstå fra bestemte former for selvpreferering og innlåsing.",
+      "source_ids": [
+        "s10-dma",
+        "s11-dma-data"
+      ],
+      "classification": "plattformanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-3"
+      ]
+    },
+    {
+      "id": "teknologi-26",
+      "claim": "DMA krever i visse tilfeller gratis, høykvalitets og sanntids tilgang til data som er generert gjennom bedriftsbrukerens aktivitet på plattformen.",
+      "source_ids": [
+        "s11-dma-data"
+      ],
+      "classification": "datarettighetsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-3"
+      ]
+    },
+    {
+      "id": "teknologi-27",
+      "claim": "Plattformmakt må analyseres gjennom tilgang til brukere, data, standarder, rangering, byttebarrierer og alternative distribusjonskanaler, ikke bare markedsandel.",
+      "source_ids": [
+        "s10-dma",
+        "s11-dma-data"
+      ],
+      "classification": "plattformanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-3"
+      ]
+    },
+    {
+      "id": "teknologi-28",
+      "claim": "DMA supplerer konkurranseretten, men erstatter ikke vanlig vurdering av marked, atferd og skadevirkning.",
+      "source_ids": [
+        "s10-dma"
+      ],
+      "classification": "regelverksanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-fordypning-3"
+      ]
+    },
+    {
+      "id": "teknologi-29",
+      "claim": "Algoritmisk styring er bruk av programmerte prosedyrer til å koordinere arbeid gjennom blant annet planlegging, oppgavefordeling, instrukser, evaluering, belønning og sanksjon.",
+      "source_ids": [
+        "s13-jrc-algorithmic-management"
+      ],
+      "classification": "arbeidslivsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-1"
+      ]
+    },
+    {
+      "id": "teknologi-30",
+      "claim": "Algoritmisk styring kan endre arbeidstempo, kommunikasjon, belønning og informasjonssymmetri mellom ledelse og arbeidstakere.",
+      "source_ids": [
+        "s13-jrc-algorithmic-management"
+      ],
+      "classification": "arbeidslivsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-1"
+      ]
+    },
+    {
+      "id": "teknologi-31",
+      "claim": "Plattformarbeidsdirektivet fastsetter regler om arbeidsstatus, transparens, rettferdighet, sikkerhet, ansvarlighet og menneskelig kontroll i algoritmisk styring.",
+      "source_ids": [
+        "s12-platform-work"
+      ],
+      "classification": "arbeidsrettslig",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-1"
+      ]
+    },
+    {
+      "id": "teknologi-32",
+      "claim": "Digitale arbeidsplattformer skal ha menneskelige ressurser med kompetanse og myndighet til å overvåke og overstyre automatiserte beslutninger.",
+      "source_ids": [
+        "s12-platform-work"
+      ],
+      "classification": "arbeidsrettslig",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-1"
+      ]
+    },
+    {
+      "id": "teknologi-33",
+      "claim": "Personvernforordningens artikkel 22 gir som hovedregel vern mot helautomatiske individuelle avgjørelser med rettsvirkning eller tilsvarende betydelig virkning.",
+      "source_ids": [
+        "s14-datatilsynet-auto"
+      ],
+      "classification": "personvernrettslig",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-1"
+      ]
+    },
+    {
+      "id": "teknologi-34",
+      "claim": "Ved lovlige automatiserte avgjørelser kan den registrerte ha rett til informasjon, å uttrykke sitt syn, bestride avgjørelsen og kreve menneskelig gjennomgang.",
+      "source_ids": [
+        "s14-datatilsynet-auto"
+      ],
+      "classification": "personvernrettslig",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-1"
+      ]
+    },
+    {
+      "id": "teknologi-35",
+      "claim": "Flytting til sky fjerner ikke teknisk gjeld og fritar ikke virksomheten fra sikkerhetsansvar; ansvarsdelingen med leverandøren må avklares.",
+      "source_ids": [
+        "s15-nsm-sky"
+      ],
+      "classification": "sikkerhetsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-2"
+      ]
+    },
+    {
+      "id": "teknologi-36",
+      "claim": "Leverandørlåsing reduseres gjennom åpne standarder, tjenestemobilitet og en dokumentert exit-strategi for både tjenester og data.",
+      "source_ids": [
+        "s15-nsm-sky"
+      ],
+      "classification": "infrastrukturanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-2"
+      ]
+    },
+    {
+      "id": "teknologi-37",
+      "claim": "Datasentre er produksjonsfabrikker for digitale tjenester fordi de prosesserer og lagrer data som private og offentlige virksomheter er avhengige av.",
+      "source_ids": [
+        "s16-nsm-datasenter"
+      ],
+      "classification": "infrastrukturanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-2"
+      ]
+    },
+    {
+      "id": "teknologi-38",
+      "claim": "Avhengighet av utenlandske skytjenester og datasentre kan reise spørsmål om tilgjengelighet, nasjonal kontroll og digital autonomi for samfunnskritiske funksjoner.",
+      "source_ids": [
+        "s16-nsm-datasenter",
+        "s15-nsm-sky"
+      ],
+      "classification": "sikkerhetspolitisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-2"
+      ]
+    },
+    {
+      "id": "teknologi-39",
+      "claim": "Patent beskytter en konkret teknisk løsning, ikke en løs idé eller et forretningskonsept, og krever nyhet, oppfinnelseshøyde og reproduksjon.",
+      "source_ids": [
+        "s20-patentstyret"
+      ],
+      "classification": "immaterialrettslig",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-3"
+      ]
+    },
+    {
+      "id": "teknologi-40",
+      "claim": "Rettigheter til patenterbare oppfinnelser gjort i arbeidsforhold reguleres av lov og avtale og må avklares mellom arbeidstaker og arbeidsgiver.",
+      "source_ids": [
+        "s21-patentstyret-arbeid"
+      ],
+      "classification": "immaterialrettslig",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-3"
+      ]
+    },
+    {
+      "id": "teknologi-41",
+      "claim": "Leverandører av generelle KI-modeller skal etter AI Act blant annet føre teknisk dokumentasjon, ha opphavsrettspolicy og publisere sammendrag av treningsinnhold; modeller med systemrisiko får tilleggskrav.",
+      "source_ids": [
+        "s09-eu-gpai"
+      ],
+      "classification": "regelverksanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-3"
+      ]
+    },
+    {
+      "id": "teknologi-42",
+      "claim": "Innovasjon er ikke automatisk kommersiell suksess eller samfunnsforbedring; virkninger må vurderes etter implementering, spredning, fordeling, risiko og målte resultater.",
+      "source_ids": [
+        "s01-oecd-oslo-manual",
+        "s06-regjeringen-ki",
+        "s13-jrc-algorithmic-management"
+      ],
+      "classification": "kritisk_innovasjonsanalytisk",
+      "status": "verified",
+      "used_in": [
+        "teknologi-anvendelse-3"
+      ]
+    }
+  ]
+}
