@@ -12,8 +12,6 @@ on:
       - "reports/README.md"
       - "scripts/check-documentation-governance.mts"
       - ".github/workflows/documentation-governance.yml"
-      - ".github/workflows/one-shot-politikk-place-recipe.yml"
-      - ".github/scripts/materialize-politikk-place-recipe.py"
   push:
     branches:
       - main
@@ -30,37 +28,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  materialize-politikk-place-recipe:
-    name: Materialize Politikk place recipe
-    if: github.event_name == 'pull_request' && github.head_ref == 'agent/politikk-sted-oppskrift'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out PR branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-
-      - name: Materialize canonical documentation
-        run: python .github/scripts/materialize-politikk-place-recipe.py
-
-      - name: Restore permanent workflow and commit production diff
-        shell: bash
-        run: |
-          git fetch origin main
-          git checkout origin/main -- .github/workflows/documentation-governance.yml
-          rm -f .github/workflows/one-shot-politikk-place-recipe.yml
-          rm -f .github/scripts/materialize-politikk-place-recipe.py
-          git config user.name "history-go-doc-bot"
-          git config user.email "history-go-doc-bot@users.noreply.github.com"
-          git add docs/PLACE_PRODUCTION_CHECKLIST.md docs/documentation_registry.json .github/workflows/documentation-governance.yml .github/workflows/one-shot-politikk-place-recipe.yml .github/scripts/materialize-politikk-place-recipe.py
-          git commit -m "Gjør Politikk-stedsgate obligatorisk i produksjonsoppskriften"
-          git push origin HEAD:${{ github.head_ref }}
-
   documentation-governance:
     name: Documentation registry and links
     runs-on: ubuntu-latest
