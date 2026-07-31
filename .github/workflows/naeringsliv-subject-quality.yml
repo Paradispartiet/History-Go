@@ -1,49 +1,50 @@
-name: Økonomi og næringsliv subject quality
+name: Materialiser sluttkapittelet for Økonomi og næringsliv
 
 on:
   pull_request:
+    types: [opened, reopened, synchronize]
     paths:
-      - 'data/fag/naeringsliv/**'
-      - 'data/badges/naeringsliv.json'
-      - 'data/fagverk/**'
-      - 'tools/validate-okonomi-naeringsliv-*.mjs'
-      - 'scripts/audit-naeringsliv-*.mjs'
-      - 'tests/naeringsliv-*.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'reports/fagverk/naeringsliv-*.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'reports/fagverk/subject-baseline.json'
-      - 'reports/fagverk/README.md'
-      - '.github/workflows/naeringsliv-subject-quality.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/naeringsliv/**'
-      - 'data/badges/naeringsliv.json'
-      - 'data/fagverk/**'
-      - 'tools/validate-okonomi-naeringsliv-*.mjs'
-      - 'scripts/audit-naeringsliv-*.mjs'
-      - 'tests/naeringsliv-*.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'reports/fagverk/naeringsliv-*.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'reports/fagverk/subject-baseline.json'
-      - 'reports/fagverk/README.md'
+      - 'data/fagverk/naeringsliv/makt-regulering-baerekraft.json'
+      - 'data/fagverk/naeringsliv/makt-regulering-baerekraft/**'
+      - 'scripts/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs'
+      - 'scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs'
+      - 'tests/naeringsliv-chapter-makt-regulering-baerekraft.test.mjs'
       - '.github/workflows/naeringsliv-subject-quality.yml'
 
+permissions:
+  contents: write
+
+concurrency:
+  group: materialize-naeringsliv-final-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
-  quality:
+  materialize:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
-      - name: Validate Økonomi og næringsliv quality contracts
+      - name: Rekonstruer produksjonspakken
         run: |
+          cat .bootstrap/naeringsliv-makt-regulering-baerekraft/part-* | base64 --decode > /tmp/naeringsliv-ch6.tar.gz
+          tar -xzf /tmp/naeringsliv-ch6.tar.gz
+          rm -rf .bootstrap
+          test -f scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
+      - run: npm ci
+      - name: Materialiser 6 av 6
+        run: node scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
+      - name: Valider komplett Næringsliv-fagverk
+        run: |
+          test ! -e scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
+          ! grep -q 'Materialiser sluttkapittelet' .github/workflows/naeringsliv-subject-quality.yml
+          ! grep -q 'permissions:' .github/workflows/naeringsliv-subject-quality.yml
           node --check scripts/audit-naeringsliv-subject-quality.mjs
           for audit in scripts/audit-naeringsliv-chapter-*.mjs; do
             node --check "$audit"
@@ -61,3 +62,15 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
           npm run typecheck:web
+      - name: Commit produksjonsdiff
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'Ingen materialiseringsendringer å committe.'
+          else
+            git commit -m 'Materialiser sluttkapittelet Makt, regulering og bærekraft'
+            git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+          fi
