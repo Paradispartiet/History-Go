@@ -1,6 +1,6 @@
 {
   "schema": "history_go_natur_subject_quality_audit_v1",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "passed",
   "generatedFrom": {
     "pensum": "data/fag/natur/naturpensum_canonical_v4_5.json",
@@ -8,25 +8,27 @@
     "fagkart": "data/fag/natur/fagkart_natur_canonical_v4_5.json",
     "methods": "data/fag/natur/methods_natur_canonical_v4_5.json",
     "mappings": "data/fag/natur/emnemapping_natur_canonical_v4_5.json",
+    "overlay": "data/fag/natur/natur_final_phase_canonical_v1.json",
     "quiz": "data/fag/natur/supersetQUIZMAL_natur.json",
     "badge": "data/fag/natur/merke_natur (1).html",
     "report": "reports/fagverk/natur-quality-audit.json"
   },
   "summary": {
     "domainCount": 12,
-    "emneCount": 65,
-    "methodCount": 45,
-    "mappingCount": 65,
-    "hookCount": 110,
-    "uniqueDefinitions": 65,
-    "uniqueWhyExplanations": 65,
-    "uniqueQuestionSets": 65,
-    "uniqueConflictSets": 65,
-    "methodsWithProcedure": 45,
-    "methodsWithLimitations": 45,
+    "emneCount": 77,
+    "methodCount": 51,
+    "mappingCount": 77,
+    "hookCount": 136,
+    "uniqueDefinitions": 77,
+    "uniqueWhyExplanations": 77,
+    "uniqueQuestionSets": 77,
+    "uniqueConflictSets": 77,
+    "methodsWithProcedure": 51,
+    "methodsWithLimitations": 51,
     "normalOpeningQuestions": 14
   },
   "gates": {
+    "canonicalFinalOverlayLoaded": true,
     "universalSubjectScope": true,
     "canonicalDomainReferences": true,
     "noGenericEmneTemplates": true,
@@ -35,6 +37,8 @@
     "emneSpecificQuizAndBlindspots": true,
     "methodProceduresAndLimits": true,
     "twoTimesSevenNormalQuizOpening": true,
-    "publicFacingBadgePage": true
+    "publicFacingBadgePage": true,
+    "finalPhaseCountsVisible": true,
+    "finalStatusVisible": true
   }
 }

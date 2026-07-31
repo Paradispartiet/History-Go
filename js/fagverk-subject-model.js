@@ -13,6 +13,7 @@
     status: 'data/fagverk/subject_status.json',
     registry: 'data/fagverk/fagverk_registry.json'
   });
+  const NATUR_FINAL_PATH = 'data/fag/natur/natur_final_phase_canonical_v1.json';
 
   function projectRoot() {
     const script = document.currentScript;
@@ -30,6 +31,130 @@
     if (optional && response.status === 404) return null;
     if (!response.ok) throw new Error(`${response.status} ${path}`);
     return response.json();
+  }
+
+  function clone(value) {
+    return JSON.parse(JSON.stringify(value));
+  }
+
+  function unique(values) {
+    return [...new Set((Array.isArray(values) ? values : []).filter(Boolean))];
+  }
+
+  function composeNaturFinal({ pensum, emners, fagkart, methods, registry, statusEntry, overlay }) {
+    if (!overlay || overlay.status !== 'canonical_final_phase_overlay') {
+      return { pensum, emners, fagkart, methods, registry, statusEntry };
+    }
+
+    const nextPensum = clone(pensum);
+    const nextEmners = [...clone(emners), ...clone(overlay.emners || [])];
+    const nextMethods = clone(methods);
+    nextMethods.methods = [...CORE.list(nextMethods.methods), ...clone(overlay.methods || [])];
+    nextMethods.version = 'v5.3-canonical-final-overlay';
+    nextMethods.updated_at = overlay.updated_at;
+
+    const patchByDomain = new Map(CORE.list(overlay.domain_patches).map((patch) => [patch.domain_id, patch]));
+    for (const domain of CORE.list(nextPensum.domains)) {
+      const patch = patchByDomain.get(domain.domain_id);
+      if (!patch) continue;
+      domain.coverage_status = patch.coverage_status;
+      domain.status = patch.status;
+      domain.chapter_status = patch.chapter_status;
+      if (patch.definition) domain.definition = patch.definition;
+      if (patch.question_role) domain.question_role = patch.question_role;
+      if (patch.replace_emne_ids) domain.emne_ids = [...patch.replace_emne_ids];
+      if (patch.replace_method_ids) domain.method_ids = [...patch.replace_method_ids];
+      if (patch.replace_hook_ids) domain.hook_ids = [...patch.replace_hook_ids];
+      if (patch.append_emne_ids) domain.emne_ids = unique([...(domain.emne_ids || []), ...patch.append_emne_ids]);
+      if (patch.append_method_ids) domain.method_ids = unique([...(domain.method_ids || []), ...patch.append_method_ids]);
+      if (patch.append_hook_ids) domain.hook_ids = unique([...(domain.hook_ids || []), ...patch.append_hook_ids]);
+      domain.emne_count = CORE.list(domain.emne_ids).length;
+      domain.method_count = CORE.list(domain.method_ids).length;
+      domain.hook_count = CORE.list(domain.hook_ids).length;
+    }
+    nextPensum.version = 'v5.3-canonical-final-overlay';
+    nextPensum.canonical_registry_version = 'naturpensum_v5_3';
+    nextPensum.updated_at = overlay.updated_at;
+    nextPensum.summary = {
+      ...(nextPensum.summary || {}),
+      materialized_domain_count: overlay.completion.materialized_domain_count,
+      partial_domain_count: 0,
+      required_gap_domain_count: 0,
+      current_emne_count: overlay.completion.emne_count,
+      current_method_count: overlay.completion.method_count,
+      current_mapping_count: overlay.completion.mapping_count,
+      current_topic_hook_count: overlay.completion.hook_count,
+      all_current_emners_have_mapping: true,
+      all_current_method_refs_valid: true,
+      editorial_complete: true
+    };
+
+    const nextFagkart = clone(fagkart);
+    const categories = [...CORE.list(nextFagkart.categories)];
+    for (const categoryPatch of CORE.list(overlay.categories)) {
+      const index = categories.findIndex((category) => category.id === categoryPatch.id);
+      if (categoryPatch.mode === 'replace' || index < 0) {
+        const replacement = {
+          id: categoryPatch.id,
+          title: categoryPatch.title,
+          definition: patchByDomain.get(categoryPatch.id)?.definition || '',
+          topic_hooks: clone(categoryPatch.topic_hooks || [])
+        };
+        if (index >= 0) categories[index] = replacement;
+        else categories.push(replacement);
+      } else {
+        const existing = categories[index];
+        const incoming = new Set(CORE.list(categoryPatch.topic_hooks).map((hook) => hook.id));
+        existing.title = categoryPatch.title || existing.title;
+        existing.definition = patchByDomain.get(categoryPatch.id)?.definition || existing.definition;
+        existing.topic_hooks = [
+          ...CORE.list(existing.topic_hooks).filter((hook) => !incoming.has(hook.id)),
+          ...clone(categoryPatch.topic_hooks || [])
+        ];
+      }
+    }
+    const order = new Map(CORE.list(nextPensum.domain_order).map((id, index) => [id, index]));
+    categories.sort((a, b) => (order.get(a.id) ?? 99) - (order.get(b.id) ?? 99));
+    nextFagkart.categories = categories;
+    nextFagkart.version = 'v5.3-canonical-final-overlay';
+    nextFagkart.updated_at = overlay.updated_at;
+    nextFagkart.meta = {
+      ...(nextFagkart.meta || {}),
+      category_count: categories.length,
+      hook_count: categories.reduce((sum, category) => sum + CORE.list(category.topic_hooks).length, 0),
+      canonical_round: 'v5.3'
+    };
+
+    const nextRegistry = clone(registry);
+    const naturRegistry = nextRegistry?.subjects?.natur;
+    if (naturRegistry) {
+      const overlayChapterIds = new Set(CORE.list(overlay.chapters).map((chapter) => chapter.id));
+      naturRegistry.description = 'Et sammenhengende og universelt læreverk om økologi, artskunnskap, evolusjon, botanikk, zoologi, sopp, mikroorganismer, fysiologi, vann, klima, geologi, urban natur, miljøpåvirkning og forvaltning.';
+      naturRegistry.canonicalModel = {
+        ...(naturRegistry.canonicalModel || {}),
+        note: 'Canonical Natur v5.3 komponerer den frosne fase-2-basisen med sluttfaseoverlayet. Registryet viser tolv redigerte lærekapitler og faget er redaksjonelt complete.'
+      };
+      naturRegistry.chapters = [
+        ...CORE.list(naturRegistry.chapters).filter((chapter) => !overlayChapterIds.has(chapter.id)),
+        ...clone(overlay.chapters || [])
+      ].sort((a, b) => (order.get(a.primary_domain_id) ?? 99) - (order.get(b.primary_domain_id) ?? 99));
+    }
+
+    const nextStatusEntry = clone(statusEntry);
+    nextStatusEntry.navigationStatus = 'materialized';
+    nextStatusEntry.assessmentStatus = overlay.completion.assessmentStatus;
+    nextStatusEntry.editorialStatus = overlay.completion.editorialStatus;
+    nextStatusEntry.nextGate = overlay.completion.nextGate;
+    nextStatusEntry.note = 'Natur komponerer fase-2-basisen med canonical v5.3-sluttfaseoverlayet: 12/12 fagområder, 77 emner, 51 metoder, 136 hooks og 12 redigerte kapitler.';
+
+    return {
+      pensum: nextPensum,
+      emners: nextEmners,
+      fagkart: nextFagkart,
+      methods: nextMethods,
+      registry: nextRegistry,
+      statusEntry: nextStatusEntry
+    };
   }
 
   function resolveRelativeFagPointer(basePath, pointer) {
@@ -171,10 +296,10 @@
         const id = CORE.resolveCanonicalSubjectId(subjectId, controls.categories, controls.manifest);
         const portalEntry = controls.portalById.get(id);
         const inventoryEntry = controls.inventoryById.get(id);
-        const statusEntry = controls.statusById.get(id);
-        if (!portalEntry || !inventoryEntry || !statusEntry) throw new Error(`${id}: mangler portal-, inventory- eller statusoppføring`);
+        const baseStatusEntry = controls.statusById.get(id);
+        if (!portalEntry || !inventoryEntry || !baseStatusEntry) throw new Error(`${id}: mangler portal-, inventory- eller statusoppføring`);
         if (!allowPlanned && portalEntry.subjectStatus !== 'materialized') throw new Error(`Faget ${id} er ikke teknisk materialisert ennå.`);
-        if (portalEntry.subjectStatus !== statusEntry.navigationStatus) throw new Error(`${id}: portal- og statusregister er usynkronisert`);
+        if (portalEntry.subjectStatus !== baseStatusEntry.navigationStatus) throw new Error(`${id}: portal- og statusregister er usynkronisert`);
 
         const manifestEntry = controls.manifest[id];
         const required = CORE.list(inventoryEntry.requiredManifestFields);
@@ -183,10 +308,14 @@
           if (!required.includes(field) || !CORE.text(manifestEntry?.[field])) throw new Error(`${id}: mangler required manifestfelt ${field}`);
         }
 
-        const [source, badge] = await Promise.all([
+        const [source, badge, finalOverlay] = await Promise.all([
           CORE.text(manifestEntry?.scientificPackage) ? loadScientificSource(manifestEntry) : loadLegacySource(manifestEntry),
-          fetchJson(`data/badges/${encodeURIComponent(id)}.json`, { optional: true })
+          fetchJson(`data/badges/${encodeURIComponent(id)}.json`, { optional: true }),
+          id === 'natur' ? fetchJson(NATUR_FINAL_PATH, { optional: true }) : Promise.resolve(null)
         ]);
+        const composed = id === 'natur'
+          ? composeNaturFinal({ ...source, registry: controls.registry, statusEntry: baseStatusEntry, overlay: finalOverlay })
+          : { ...source, registry: controls.registry, statusEntry: baseStatusEntry };
 
         return CORE.normalizeSubject({
           subjectId: id,
@@ -196,10 +325,10 @@
           manifestEntry,
           portalEntry,
           inventoryEntry,
-          statusEntry,
-          registry: controls.registry,
+          statusEntry: composed.statusEntry,
+          registry: composed.registry,
           badge,
-          source
+          source: { pensum: composed.pensum, emners: composed.emners, fagkart: composed.fagkart, methods: composed.methods }
         });
       })().catch((error) => {
         subjectPromises.delete(cacheKey);

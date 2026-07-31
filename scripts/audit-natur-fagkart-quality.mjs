@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { composeNaturFinal, readNaturFinalOverlay, NATUR_FINAL_OVERLAY_PATH } from './natur-final-phase-compose.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
@@ -11,6 +12,7 @@ const P = Object.freeze({
   methods: 'data/fag/natur/methods_natur_canonical_v4_5.json',
   fagkart: 'data/fag/natur/fagkart_natur_canonical_v4_5.json',
   mappings: 'data/fag/natur/emnemapping_natur_canonical_v4_5.json',
+  overlay: NATUR_FINAL_OVERLAY_PATH,
   report: 'reports/fagverk/natur-fagkart-quality-audit.json'
 });
 const abs = (p) => path.join(ROOT, p);
@@ -20,11 +22,19 @@ const norm = (v) => String(v ?? '').trim().replace(/\s+/g, ' ').toLocaleLowerCas
 const unique = (values) => new Set(values.map((v) => JSON.stringify(v))).size === values.length;
 
 export function auditNaturFagkartQuality({ writeReport = false, checkReport = true } = {}) {
-  const pensum = json(P.pensum);
-  const emners = json(P.emner);
-  const methodsDoc = json(P.methods);
-  const fagkart = json(P.fagkart);
-  const mappings = json(P.mappings);
+  const composed = composeNaturFinal({
+    pensum: json(P.pensum),
+    emners: json(P.emner),
+    methodsDoc: json(P.methods),
+    fagkart: json(P.fagkart),
+    mappings: json(P.mappings),
+    overlay: readNaturFinalOverlay()
+  });
+  const pensum = composed.pensum;
+  const emners = composed.emners;
+  const methodsDoc = composed.methodsDoc;
+  const fagkart = composed.fagkart;
+  const mappings = composed.mappings;
   const emneIds = new Set(emners.map((e) => e.emne_id));
   const methodIds = new Set((methodsDoc.methods || []).map((m) => m.method_id));
   const pensumDomains = new Map(pensum.domains.map((d) => [d.domain_id, d]));
@@ -33,11 +43,14 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
   const hooks = categories.flatMap((category) => (category.topic_hooks || []).map((hook) => ({ category, hook })));
   const hookIndex = new Map(hooks.map((row) => [row.hook.id, row]));
 
+  assert(composed.overlay.status === 'canonical_final_phase_overlay', 'Fagkartauditen bruker ikke canonical sluttfase-overlay');
   assert(fagkart.scope === 'universal', 'Natur-fagkartet skal ha universelt fagomfang');
-  assert(categories.length === 11, `Forventet 11 materialiserte fagkartkategorier, fikk ${categories.length}`);
-  assert(hooks.length === 110, `Forventet 110 Natur-hooks etter biologi fase 2, fikk ${hooks.length}`);
-  assert(hookIndex.size === 110, 'Natur-fagkartet har dupliserte hook-id-er');
+  assert(categories.length === 12, `Forventet 12 materialiserte fagkartkategorier, fikk ${categories.length}`);
+  assert(hooks.length === 136, `Forventet 136 Natur-hooks etter sluttfasen, fikk ${hooks.length}`);
+  assert(hookIndex.size === 136, 'Natur-fagkartet har dupliserte hook-id-er');
   assert(categories.every((c) => pensumDomains.has(c.id)), 'Fagkartkategori mangler i pensum');
+  assert(categoryIds.has('sopp_lav_mikroorganismer'), 'Sopp/lav/mikroorganismer mangler i fagkartet');
+  assert(categoryIds.has('geologi_landskap_tid'), 'Geologi mangler i fagkartet');
 
   const focusQuestions = [];
   const questionMoves = [];
@@ -69,7 +82,7 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
   assert(unique(questionMoves), 'Natur-hooks har dupliserte spørsmålsbevegelser');
   assert(unique(rotationNotes), 'Natur-hooks har dupliserte rotasjonsnotater');
 
-  assert(mappings.length === 65, `Forventet 65 emnemappings etter biologi fase 2, fikk ${mappings.length}`);
+  assert(mappings.length === 77, `Forventet 77 emnemappings etter sluttfasen, fikk ${mappings.length}`);
   assert(new Set(mappings.map((row) => row.emne_id)).size === mappings.length, 'Dupliserte emne-rader i mappingregisteret');
   const mappingUseNotes = [];
   let mappingCount = 0;
@@ -95,7 +108,7 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
 
   const report = {
     schema: 'history_go_natur_fagkart_quality_audit_v1',
-    version: '1.0.0',
+    version: '1.2.0',
     status: 'passed',
     generatedFrom: P,
     summary: {
@@ -111,13 +124,16 @@ export function auditNaturFagkartQuality({ writeReport = false, checkReport = tr
       uniqueMappingUseNotes: new Set(mappingUseNotes).size
     },
     gates: {
+      canonicalFinalOverlayLoaded: true,
       universalScope: true,
+      allTwelveCategoriesMaterialized: true,
       canonicalCategoryReferences: true,
       allHookReferencesResolved: true,
       hookSpecificLearningFocus: true,
       hookSpecificQuestionMoves: true,
       mappingCategoryAndTitleSync: true,
-      mappingEvidenceAndUseNotes: true
+      mappingEvidenceAndUseNotes: true,
+      microbiologyAndInnerGeologyHooksPresent: true
     }
   };
   if (writeReport) {

@@ -4,6 +4,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { composeNaturFinal } from './natur-final-phase-compose.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PATHS = Object.freeze({
@@ -225,22 +226,43 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
   for (const subjectId of categories.fagSubjects) {
     const portalEntry = portalById.get(subjectId);
     const inventoryEntry = inventoryById.get(subjectId);
-    const statusEntry = statusById.get(subjectId);
-    assert(portalEntry && inventoryEntry && statusEntry, `${subjectId}: mangler portal, inventory eller status`);
-    assert(portalEntry.subjectStatus === statusEntry.navigationStatus, `${subjectId}: status er usynkronisert`);
+    const baseStatusEntry = statusById.get(subjectId);
+    assert(portalEntry && inventoryEntry && baseStatusEntry, `${subjectId}: mangler portal, inventory eller status`);
+    assert(portalEntry.subjectStatus === baseStatusEntry.navigationStatus, `${subjectId}: status er usynkronisert`);
 
     if (portalEntry.subjectStatus !== 'materialized') {
-      assert(statusEntry.editorialStatus === 'not_started', `${subjectId}: planned fag kan ikke være structure_ready`);
+      assert(baseStatusEntry.editorialStatus === 'not_started', `${subjectId}: planned fag kan ikke være structure_ready`);
       continue;
     }
 
-    assert(statusEntry.assessmentStatus === 'audited', `${subjectId}: materialized fag må være audited etter fase 1`);
-    assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(statusEntry.editorialStatus), `${subjectId}: materialized fag mangler strukturell ferdigstatus`);
+    assert(baseStatusEntry.assessmentStatus === 'audited', `${subjectId}: materialized fag må være audited etter fase 1`);
+    assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(baseStatusEntry.editorialStatus), `${subjectId}: materialized fag mangler strukturell ferdigstatus`);
     assert(portalEntry.subjectPage === `fagverk.html?subject=${subjectId}`, `${subjectId}: ugyldig canonical subjectPage`);
     assert(portalEntry.badgePage, `${subjectId}: mangler merkesidelenke`);
 
     const manifestEntry = manifest[subjectId];
     const source = loadSubjectSource(CORE, manifestEntry);
+    let effectiveSource = source;
+    let effectiveRegistry = registry;
+    let effectiveStatusEntry = baseStatusEntry;
+    if (subjectId === 'natur') {
+      const composed = composeNaturFinal({
+        pensum: source.pensum,
+        emners: source.emners,
+        methodsDoc: source.methods,
+        fagkart: source.fagkart,
+        registry,
+        statusEntry: baseStatusEntry
+      });
+      effectiveSource = {
+        pensum: composed.pensum,
+        emners: composed.emners,
+        fagkart: composed.fagkart,
+        methods: composed.methodsDoc
+      };
+      effectiveRegistry = composed.registry;
+      effectiveStatusEntry = composed.statusEntry;
+    }
     const badge = optionalJson(`data/badges/${subjectId}.json`);
     const normalized = CORE.normalizeSubject({
       subjectId,
@@ -250,10 +272,10 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
       manifestEntry,
       portalEntry,
       inventoryEntry,
-      statusEntry,
-      registry,
+      statusEntry: effectiveStatusEntry,
+      registry: effectiveRegistry,
       badge,
-      source
+      source: effectiveSource
     });
 
     assert(normalized.subject.id === subjectId, `${subjectId}: normalisert subject-id er feil`);
@@ -270,6 +292,17 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
       for (const emneId of chapter.emneIds) assert(normalized.emnersById.has(emneId), `${subjectId}/${chapter.id}: ukjent emne ${emneId}`);
     }
 
+    if (subjectId === 'natur') {
+      assert(effectiveStatusEntry.assessmentStatus === 'audited', 'Natur v5.3 må være audited i general-engine');
+      assert(effectiveStatusEntry.editorialStatus === 'complete', 'Natur v5.3 må være complete i general-engine');
+      assert(normalized.summary.domainCount === 12, `Natur v5.3: forventet 12 fagområder, fikk ${normalized.summary.domainCount}`);
+      assert(normalized.summary.emneCount === 77, `Natur v5.3: forventet 77 emner, fikk ${normalized.summary.emneCount}`);
+      assert(normalized.summary.methodCount === 51, `Natur v5.3: forventet 51 metoder, fikk ${normalized.summary.methodCount}`);
+      assert(normalized.summary.mappingCount === 77, `Natur v5.3: forventet 77 mappings, fikk ${normalized.summary.mappingCount}`);
+      assert(normalized.summary.hookCount === 136, `Natur v5.3: forventet 136 hooks, fikk ${normalized.summary.hookCount}`);
+      assert(normalized.chapters.length === 12, `Natur v5.3: forventet 12 kapitler, fikk ${normalized.chapters.length}`);
+    }
+
     materializedRows.push({
       id: subjectId,
       schemaFamily: inventoryEntry.schemaFamily,
@@ -283,8 +316,8 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
       placeCount: normalized.places.length,
       badgePage: normalized.subject.routes.badge,
       subjectPage: normalized.subject.routes.subject,
-      assessmentStatus: statusEntry.assessmentStatus,
-      editorialStatus: statusEntry.editorialStatus
+      assessmentStatus: effectiveStatusEntry.assessmentStatus,
+      editorialStatus: effectiveStatusEntry.editorialStatus
     });
   }
 
