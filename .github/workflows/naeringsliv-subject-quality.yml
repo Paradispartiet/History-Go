@@ -1,8 +1,9 @@
 name: Økonomi og næringsliv subject quality
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - 'agent/naeringsliv-chapter-logistikk-infrastruktur-rom-v1'
     paths:
       - '.github/workflows/naeringsliv-subject-quality.yml'
 
@@ -10,19 +11,18 @@ permissions:
   contents: write
 
 concurrency:
-  group: naeringsliv-logistikk-main-sync-${{ github.event.pull_request.number }}
+  group: naeringsliv-logistikk-main-sync
   cancel-in-progress: true
 
 jobs:
   sync-and-validate:
-    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout PR head
+      - name: Checkout branch head
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: agent/naeringsliv-chapter-logistikk-infrastruktur-rom-v1
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -65,4 +65,4 @@ jobs:
           git add -A
           git diff --cached --check
           git commit -m "Synkroniser Næringsliv logistikk-kapittelet med main"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          git push origin HEAD:agent/naeringsliv-chapter-logistikk-infrastruktur-rom-v1
