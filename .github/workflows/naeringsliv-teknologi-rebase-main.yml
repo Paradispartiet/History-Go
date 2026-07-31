@@ -1,0 +1,152 @@
+name: Rebase Næringsliv teknologi chapter onto main
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - ".github/workflows/naeringsliv-teknologi-rebase-main.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: naeringsliv-teknologi-rebase-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  rebase-main:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Merge latest main and resolve shared fagverk files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          set +e
+          git merge --no-commit --no-ff origin/main
+          merge_status=$?
+          set -e
+          if [ "$merge_status" -ne 0 ]; then
+            for file in \
+              data/fagverk/fagverk_registry.json \
+              data/fagverk/subject_status.json \
+              reports/fagverk/README.md \
+              reports/fagverk/general-engine-audit.json
+            do
+              git checkout origin/main -- "$file"
+              git add "$file"
+            done
+            unresolved="$(git diff --name-only --diff-filter=U)"
+            if [ -n "$unresolved" ]; then
+              echo "Unresolved merge conflicts:"
+              echo "$unresolved"
+              exit 1
+            fi
+          fi
+
+      - name: Materialize merged registry, status and reports
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const ROOT = process.cwd();
+          const CHAPTER_ID = 'teknologi-innovasjon-plattformer';
+          const DOMAIN_ID = 'teknologi_innovasjon_plattform';
+          const CHAPTER_PATH = `data/fagverk/naeringsliv/${CHAPTER_ID}.json`;
+          const REGISTRY_PATH = 'data/fagverk/fagverk_registry.json';
+          const STATUS_PATH = 'data/fagverk/subject_status.json';
+          const README_PATH = 'reports/fagverk/README.md';
+
+          const readJson = rel => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+          const writeJson = (rel, value) => fs.writeFileSync(path.join(ROOT, rel), `${JSON.stringify(value, null, 2)}\n`);
+
+          const chapter = readJson(CHAPTER_PATH);
+
+          const registry = readJson(REGISTRY_PATH);
+          registry.version = '2.12.0';
+          registry.updatedAt = '2026-07-31';
+          const subject = registry.subjects?.naeringsliv;
+          if (!subject) throw new Error('Næringsliv missing from Fagverk registry');
+          subject.chapters = subject.chapters.filter(item => item.id !== CHAPTER_ID);
+          subject.chapters.push({
+            id: CHAPTER_ID,
+            title: chapter.title,
+            file: CHAPTER_PATH,
+            primary_domain_id: DOMAIN_ID,
+            emne_ids: chapter.emne_ids,
+            method_ids: chapter.method_ids,
+            moduleFiles: chapter.moduleFiles,
+            briefFile: chapter.briefFile,
+            claimsFile: chapter.claimsFile,
+            editorialStatus: chapter.editorialStatus,
+            claimTraceRequired: chapter.claimTraceRequired,
+          });
+          writeJson(REGISTRY_PATH, registry);
+
+          const status = readJson(STATUS_PATH);
+          status.version = '2.11.0';
+          status.updatedAt = '2026-07-31';
+          const subjectStatus = status.subjects.find(item => item.id === 'naeringsliv');
+          if (!subjectStatus) throw new Error('Næringsliv missing from subject status');
+          subjectStatus.navigationStatus = 'materialized';
+          subjectStatus.assessmentStatus = 'audited';
+          subjectStatus.editorialStatus = 'chapters_in_progress';
+          subjectStatus.nextGate = 'phase_4_chapters';
+          subjectStatus.note = 'Økonomi og næringsliv har nå 4 av 6 canonicale hovedkapitler ferdig: Arbeid, produksjon og verdiskaping; Kapital, eierskap og finans; Handel, forbruk og marked; og Teknologi, innovasjon og plattformer. Kapittel 4 dekker alle sju emner og ti metoder i fagområdet gjennom tre redigerte moduler, 42 sporede claims og 22 inspectable kilder. To fagområder står fortsatt uten ferdigskrevne kapitler.';
+          writeJson(STATUS_PATH, status);
+
+          let readme = fs.readFileSync(path.join(ROOT, README_PATH), 'utf8');
+          const bullet = '- `naeringsliv-teknologi-innovasjon-plattformer-audit.json` — deterministisk kapittelgate for sju emner, ti metoder, tre moduler, 42 claims og 22 inspectable kilder.\n';
+          if (!readme.includes('naeringsliv-teknologi-innovasjon-plattformer-audit.json')) {
+            readme = readme.replace('- `naeringsliv-handel-forbruk-marked-audit.json`', `${bullet}- \`naeringsliv-handel-forbruk-marked-audit.json\``);
+          }
+          const commands = 'node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs --write-report\nnode scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs\n';
+          if (!readme.includes('audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs --write-report')) {
+            readme = readme.replace('node scripts/audit-naeringsliv-chapter-handel-forbruk-marked.mjs --write-report', `${commands}node scripts/audit-naeringsliv-chapter-handel-forbruk-marked.mjs --write-report`);
+          }
+          readme = readme.replace(
+            /Økonomi og næringsliv står `materialized`, `audited` og `chapters_in_progress`\.[\s\S]*?\n\nPolitikk står/,
+            'Økonomi og næringsliv står `materialized`, `audited` og `chapters_in_progress`. Faget har seks canonicale fagområder, 38 emner, 27 metoder og 60 hooks. Fire av seks hovedkapitler er ferdige: **Arbeid, produksjon og verdiskaping**, **Kapital, eierskap og finans**, **Handel, forbruk og marked** og **Teknologi, innovasjon og plattformer**. Kapittel 4 dekker sju emner og ti metoder gjennom tre redigerte moduler, 42 sporede claims og 22 inspectable kilder. Universitetslaget dekker seks akademiske spor og alle 36 kjerneemnene individuelt; handelshøgskolelaget dekker fem profesjonsspor og 25 moduler, samlet 61 læringsenheter.\n\nPolitikk står'
+          );
+          const oldTests = 'tests/naeringsliv-chapter-arbeid-produksjon-verdiskaping.test.mjs tests/naeringsliv-chapter-kapital-eierskap-finans.test.mjs tests/naeringsliv-chapter-handel-forbruk-marked.test.mjs';
+          const newTests = `${oldTests} tests/naeringsliv-chapter-teknologi-innovasjon-plattformer.test.mjs`;
+          readme = readme.replace(oldTests, newTests);
+          fs.writeFileSync(path.join(ROOT, README_PATH), readme);
+          NODE
+
+          node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs --write-report
+          node scripts/audit-naeringsliv-subject-quality.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+
+          node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs
+          node scripts/audit-naeringsliv-subject-quality.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node --test \
+            tests/naeringsliv-chapter-arbeid-produksjon-verdiskaping.test.mjs \
+            tests/naeringsliv-chapter-kapital-eierskap-finans.test.mjs \
+            tests/naeringsliv-chapter-handel-forbruk-marked.test.mjs \
+            tests/naeringsliv-chapter-teknologi-innovasjon-plattformer.test.mjs \
+            tests/naeringsliv-subject-quality.test.mjs
+
+      - name: Commit clean merged production head
+        run: |
+          rm -f .github/workflows/naeringsliv-teknologi-rebase-main.yml
+          git add -A
+          git status --short
+          git commit -m "Oppdater Næringsliv kapittel 4 på siste main"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
