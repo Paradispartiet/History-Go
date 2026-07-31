@@ -49,17 +49,25 @@ jobs:
           node scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs \
             2>&1 | tee .bootstrap/naeringsliv-teknologi/materialize-error.log
 
-      - name: Preserve audit inputs on failure
+      - name: Preserve available audit inputs on failure
         if: steps.materialize.outcome == 'failure'
+        shell: bash
         run: |
-          cp data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.json \
-            .bootstrap/naeringsliv-teknologi/debug-chapter.json
-          cp data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.evidence.json \
-            .bootstrap/naeringsliv-teknologi/debug-evidence.json
-          cp scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs \
-            .bootstrap/naeringsliv-teknologi/debug-audit.mjs
-          cp scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs \
-            .bootstrap/naeringsliv-teknologi/debug-materializer.mjs
+          mkdir -p .bootstrap/naeringsliv-teknologi/debug
+          : > .bootstrap/naeringsliv-teknologi/debug/files.txt
+          while IFS='|' read -r src dst; do
+            if [ -f "$src" ]; then
+              cp "$src" ".bootstrap/naeringsliv-teknologi/debug/$dst"
+              echo "$src -> debug/$dst" >> .bootstrap/naeringsliv-teknologi/debug/files.txt
+            else
+              echo "MISSING $src" >> .bootstrap/naeringsliv-teknologi/debug/files.txt
+            fi
+          done <<'FILES'
+          data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.json|chapter.json
+          data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.evidence.json|evidence.json
+          scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs|audit.mjs
+          scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs|materializer.mjs
+          FILES
 
       - name: Write compact failure diagnostic
         if: steps.materialize.outcome == 'failure'
@@ -90,10 +98,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .bootstrap/naeringsliv-teknologi/materialize-error.log \
                   .bootstrap/naeringsliv-teknologi/materialize-failure.md \
-                  .bootstrap/naeringsliv-teknologi/debug-chapter.json \
-                  .bootstrap/naeringsliv-teknologi/debug-evidence.json \
-                  .bootstrap/naeringsliv-teknologi/debug-audit.mjs \
-                  .bootstrap/naeringsliv-teknologi/debug-materializer.mjs
+                  .bootstrap/naeringsliv-teknologi/debug
           git commit -m "Bevar auditgrunnlag for Næringsliv teknologi"
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
           exit 1
