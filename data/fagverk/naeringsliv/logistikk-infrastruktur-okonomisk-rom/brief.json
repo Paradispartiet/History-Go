@@ -1,0 +1,112 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "logistikk-infrastruktur-okonomisk-rom",
+  "primary_domain_id": "logistikk_infrastruktur_rom",
+  "purpose": "Gi en sammenhengende og etterprøvbar innføring i hvordan varestrømmer, terminaler, transportnett, lager og areal organiserer økonomien, og hvordan kapasitet, kostnad, miljø og robusthet måles.",
+  "audience": "Brukere som trenger et avansert mellomnivå for å analysere logistikk uten å forveksle tonn med tonnkilometer, areal med kapasitet, lavt lager med robusthet eller transportform med automatisk miljøgevinst.",
+  "learningArc": [
+    "måle transportmengde, transportarbeid, trafikkarbeid og tomkjøring",
+    "følge verdikjeden gjennom noder, ansvarsskifter og omlasting",
+    "forstå havn og Alnabru som sammenkoblet nasjonal infrastruktur",
+    "analysere kapasitet, flaskehalser og faktisk gjennomstrømning",
+    "vurdere lager, buffer, leveringspresisjon og sisteledd",
+    "analysere næringsgeografi, korridorer, terminaler og arealkonflikt",
+    "velge transportform etter vare, avstand, volum og tidskrav",
+    "inkludere utslipp, støy, kø, ulykker og areal som eksternaliteter",
+    "teste robusthet, redundans og beredskap",
+    "gjennomføre helhetlig logistikk- og arealrevisjon"
+  ],
+  "requiredEmneIds": [
+    "em_naering_byens_okonomiske_rom",
+    "em_naering_havn_transport",
+    "em_naering_logistikk_verdikjeder"
+  ],
+  "requiredMethodIds": [
+    "met_naering_industrihistorisk_analyse",
+    "met_naering_byhistorisk_naeringsanalyse",
+    "met_naering_romlig_okonomisk_analyse",
+    "met_naering_markedsanalyse",
+    "met_naering_logistikk_og_verdikjedeanalyse",
+    "met_naering_infrastrukturanalyse",
+    "met_naering_arbeidslivsanalyse",
+    "met_naering_verdiskapingsanalyse",
+    "met_naering_baerekraft_og_eksternalitetsanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "transportmengde vs transportarbeid",
+    "trafikkarbeid vs godstransportarbeid",
+    "tomkjøring vs ledig nettverkskapasitet",
+    "nodekapasitet vs faktisk gjennomstrømning",
+    "nominell kapasitet vs kapasitet etter investering",
+    "omlasting som kostnad vs omlasting som muliggjørende koordinering",
+    "intermodalitet vs parallelle transportformer",
+    "lagerreduksjon vs robusthet",
+    "leveringspresisjon vs gjennomsnittlig transporttid",
+    "sisteledd vs langtransport",
+    "punktlokalisering vs korridor og omland",
+    "arealverdi vs samfunnskritisk funksjon",
+    "transportformens tekniske potensial vs faktisk overføring av gods",
+    "privat logistikkostnad vs eksternalitet",
+    "normaldriftseffektivitet vs beredskap",
+    "reservekapasitet vs sløsing",
+    "aggregert kapasitet vs transportformspesifikk flaskehals",
+    "byomforming vs bortfall av transportbehov"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "SSB for definisjoner og statistikk om vei, sjø, bane og innenlandsk transport",
+      "Jernbanedirektoratet og Bane NOR for Alnabru, terminalstruktur, spor og intermodal drift",
+      "Oslo Havn for Sydhavna, gods, terminalkapasitet, havneareal og sikkerhet",
+      "Oslo kommune og Statens vegvesen for varelevering, sisteledd og arealkonflikter",
+      "Kystverket, DSB og regjeringen for havnefunksjon, transportpolitikk og beredskap",
+      "canonicale Næringsliv-filer som struktur, aldri som faktakilde"
+    ],
+    "minimumExternalSources": 20,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true
+  },
+  "scope": {
+    "included": [
+      "transportmåling, verdikjede og intermodalitet",
+      "havn, terminal, lager og distribusjon",
+      "Alnabru, Sydhavna og Oslo-regionens økonomiske rom",
+      "kapasitet, flaskehals og gjennomstrømning",
+      "lager, buffer, sisteledd og leveringspresisjon",
+      "næringsgeografi og arealpolitikk",
+      "transportvalg, eksternaliteter, robusthet og beredskap"
+    ],
+    "excluded": [
+      "rangering av logistikkselskaper eller frakttjenester",
+      "udaterte volumtall uten primærkilde",
+      "påstand om at én transportform alltid er best",
+      "canonical fagfiler brukt som faktakilde"
+    ]
+  },
+  "rejectedOrDeferred": [
+    {
+      "detail": "Eksakt fremtidig godsvolum uten vedtatt scenario og tidsangivelse.",
+      "reason": "Prognoser må knyttes til modell, forutsetninger og år."
+    },
+    {
+      "detail": "Påstand om at mer sjø eller bane automatisk reduserer alle utslipp.",
+      "reason": "Hele kjeden, energibærer, lastfaktor og sisteledd må vurderes."
+    },
+    {
+      "detail": "Påstand om at sentralt logistikkareal alltid bør bygges om.",
+      "reason": "Forsyning, alternativ lokalisering, avstand og beredskap må dokumenteres."
+    }
+  ],
+  "qa": {
+    "threeEditedModules": true,
+    "workedExamples": true,
+    "misconceptions": true,
+    "applicationTasks": true,
+    "selfCheck": true,
+    "canonicalPlaces": true,
+    "inspectableSources": true,
+    "paragraphLevelClaims": true,
+    "permanentAudit": true
+  }
+}
