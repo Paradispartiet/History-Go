@@ -37,7 +37,8 @@
   "source_anchoring": {
     "exchange_and_market_source_ids": [
       "src_his_snl_oslo_bors_history",
-      "src_his_oslo_byleksikon_borsen"
+      "src_his_oslo_byleksikon_borsen",
+      "src_his_sikt_forvaltningsdatabasen_borser"
     ],
     "monetary_financial_and_series_source_ids": [
       "src_his_norges_bank_historical_monetary_financial_statistics_2022",
@@ -57,7 +58,7 @@
       "src_his_snl_ulleval_hageby",
       "src_his_wang_decolonising_medieval_fennoscandia"
     ],
-    "assessment": "Kildepakken kombinerer fagredigert børshistorie, selvstendige stedshistoriske oppslagsverk, sentralbankens historiske statistikk og institusjonskronologi, offentlig kulturmiljødokumentasjon og eksisterende stedvaliderte ressurs-, industri-, eiendoms- og tilgangscaser. Den skiller institusjon, norm, kapasitet, måling, faktisk bruk og fordelingsvirkning."
+    "assessment": "Kildepakken kombinerer fagredigert børshistorie, stedshistoriske oppslagsverk, en offentlig administrativ enhetsdatabase, sentralbankens historiske statistikk og institusjonskronologi, offentlig kulturmiljødokumentasjon og eksisterende stedvaliderte ressurs-, industri-, eiendoms- og tilgangscaser. Den skiller institusjon, norm, kapasitet, måling, faktisk bruk og fordelingsvirkning."
   },
   "source_snapshots": [
     {
@@ -98,6 +99,25 @@
       "limitations": [
         "Oppslagsverket gir en stedshistorisk bygnings- og institusjonskronologi, men ikke samtidige protokoller, omsetningsserier eller systematiske data om aktører og markedsadgang.",
         "Dagens regulerte markeder og bygningens kontinuitet kan ikke brukes som direkte mål på børsens historiske rekkevidde, likviditet eller representativitet."
+      ]
+    },
+    {
+      "source_id": "src_his_sikt_forvaltningsdatabasen_borser",
+      "title": "Børser — endringshistorie",
+      "publisher": "Sikt — Kunnskapssektorens tjenesteleverandør",
+      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/3600/endringshistorie",
+      "supported_dimensions": [
+        "public_establishment",
+        "administrative_affiliation",
+        "privatization"
+      ],
+      "source_locations": [
+        "Innledningen om Stortingets rolle, sanksjonen av børsloven 8. september 1818 og åpningen av Christiania Børs i april 1819",
+        "Endringspostene om overordnet departement og utskriving fra forvaltningen ved privatiseringen i 2001"
+      ],
+      "limitations": [
+        "Forvaltningsdatabasen dokumenterer offentlig etablering og administrative statusendringer, men er ikke en samtidig børsprotokoll, handelsstatistikk eller markedsanalyse.",
+        "Administrativ tilknytning og privatisering dokumenterer institusjonsform, men ikke alene omsetning, likviditet, markedsadgang eller representativitet for norsk økonomi."
       ]
     },
     {

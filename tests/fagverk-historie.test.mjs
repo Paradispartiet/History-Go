@@ -139,6 +139,12 @@ test('Børsen og Tollboden har reell kildesammenligning på tvers av kildetyper'
   const placeEvidence = readJson('data/fag/historie/place_evidence_historie_v1.json');
   const sourceRegistry = readJson('data/fag/historie/sources_historie_canonical_v1.json');
   const sourcesById = new Map(sourceRegistry.sources.map((source) => [source.source_id, source]));
+  const sourceFamilyByType = new Map([
+    ['editorially_reviewed_encyclopedia', 'secondary_reference_work'],
+    ['local_history_reference_work', 'secondary_reference_work'],
+    ['government_administrative_database', 'government_administrative_record'],
+    ['official_heritage_management_plan', 'government_heritage_record']
+  ]);
 
   for (const caseId of ['case_his_borsen', 'case_his_tollboden']) {
     const profileCase = profile.cases.find((item) => item.case_id === caseId);
@@ -148,11 +154,13 @@ test('Børsen og Tollboden har reell kildesammenligning på tvers av kildetyper'
     const sourceIds = [...new Set(placeEvidence.evidence_links
       .filter((link) => link.case_id === caseId)
       .flatMap((link) => link.source_ids || []))];
-    const sourceTypes = [...new Set(sourceIds.map((sourceId) => sourcesById.get(sourceId)?.source_type))];
+    const sourceFamilies = [...new Set(sourceIds.map((sourceId) => (
+      sourceFamilyByType.get(sourcesById.get(sourceId)?.source_type)
+    )))];
 
     assert.ok(sourceIds.length >= 2, `${caseId} trenger minst to selvstendige kilder`);
-    assert.ok(sourceTypes.length >= 2, `${caseId} trenger minst to kildetyper`);
-    assert.ok(sourceTypes.every(Boolean), `${caseId} har kilde uten canonical source_type`);
+    assert.ok(sourceFamilies.every(Boolean), `${caseId} har kilde uten normalisert kildefamilie`);
+    assert.ok(sourceFamilies.length >= 2, `${caseId} trenger minst to normaliserte kildefamilier`);
   }
 });
 
