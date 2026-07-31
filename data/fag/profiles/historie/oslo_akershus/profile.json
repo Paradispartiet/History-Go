@@ -40,13 +40,13 @@
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 206,
     "emne_link_ratio_percent": 89.6,
-    "cases_total": 113,
-    "claims_total": 228,
-    "sources_total": 177,
-    "evidence_links_total": 236,
+    "cases_total": 114,
+    "claims_total": 233,
+    "sources_total": 182,
+    "evidence_links_total": 241,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 49,
+    "verified_cases_total": 51,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -2318,25 +2318,44 @@
       "label": "Norsk Teknisk Museum",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "teknisk_museum"
+      ],
       "emne_ids": [
         "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
         "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
         "em_his_miljo_klima_forurensning_og_urban_miljohistorie",
         "em_his_miljo_klima_naturforvaltning_og_miljobevegelse",
         "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
+        "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
         "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
         "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+        "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+        "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
         "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+        "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
         "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
         "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_science_technology_knowledge_evidence_v1",
+        "validated_at": "2026-07-31",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_normalized_independent_source_families_and_explicit_collection_limits",
+        "spatial_note": "`teknisk_museum` er hovedmuseet i Kjelsåsveien 143; samlinger og nasjonalt mandat brukes ikke som påstand om at alle objekter, hendelser eller fagmiljøer fysisk oppsto i bygningen."
       }
     },
     {
@@ -3851,6 +3870,42 @@
         "validated_at": "2026-07-30",
         "minimum_evidence_links": 2,
         "source_policy": "canonical_congregation_first_party_source_with_explicit_representativity_and_transnational_inference_boundaries"
+      }
+    },
+    {
+      "case_id": "case_his_kjeller_ffi",
+      "label": "Kjeller – FFI og militærteknologisk forskning",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "kjeller_flyplass"
+      ],
+      "emne_ids": [
+        "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+        "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+        "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "migrated_from": "data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json",
+        "migration_date": "2026-07-31"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_science_technology_knowledge_evidence_v1",
+        "validated_at": "2026-07-31",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_normalized_independent_source_families_and_explicit_spatial_limits",
+        "spatial_note": "`kjeller_flyplass` forankrer det dokumenterte luftfarts-, forsvars- og teknologilandskapet på Kjeller. ENKJ-referansepunktet er ikke FFI-byggkoordinat, eiendomsgrense eller sted for alle prosjekter."
       }
     }
   ],
