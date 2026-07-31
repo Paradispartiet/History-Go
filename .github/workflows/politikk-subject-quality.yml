@@ -18,6 +18,7 @@ on:
       - 'scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs'
       - 'scripts/audit-politikk-chapter-fordeling-velferd-ulikhet.mjs'
       - 'scripts/audit-politikk-chapter-konflikt-makt-sivilsamfunn.mjs'
+      - 'scripts/audit-politikk-chapter-normer-identitet-hverdagsliv.mjs'
       - 'tests/politikk-subject-quality.test.mjs'
       - 'tests/politikk-thinker-integrity.test.mjs'
       - 'tests/politikk-chapter-regimer-institusjoner.test.mjs'
@@ -30,6 +31,7 @@ on:
       - 'tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs'
       - 'tests/politikk-chapter-fordeling-velferd-ulikhet.test.mjs'
       - 'tests/politikk-chapter-konflikt-makt-sivilsamfunn.test.mjs'
+      - 'tests/politikk-chapter-normer-identitet-hverdagsliv.test.mjs'
       - 'reports/fagverk/politikk-quality-audit.json'
       - 'reports/fagverk/politikk-thinker-integrity-audit.json'
       - 'reports/fagverk/politikk-regimer-institusjoner-audit.json'
@@ -42,6 +44,7 @@ on:
       - 'reports/fagverk/politikk-rett-lov-rettssikkerhet-audit.json'
       - 'reports/fagverk/politikk-fordeling-velferd-ulikhet-audit.json'
       - 'reports/fagverk/politikk-konflikt-makt-sivilsamfunn-audit.json'
+      - 'reports/fagverk/politikk-normer-identitet-hverdagsliv-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
   push:
     branches: [main]
@@ -61,6 +64,7 @@ on:
       - 'scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs'
       - 'scripts/audit-politikk-chapter-fordeling-velferd-ulikhet.mjs'
       - 'scripts/audit-politikk-chapter-konflikt-makt-sivilsamfunn.mjs'
+      - 'scripts/audit-politikk-chapter-normer-identitet-hverdagsliv.mjs'
       - 'tests/politikk-subject-quality.test.mjs'
       - 'tests/politikk-thinker-integrity.test.mjs'
       - 'tests/politikk-chapter-regimer-institusjoner.test.mjs'
@@ -73,6 +77,7 @@ on:
       - 'tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs'
       - 'tests/politikk-chapter-fordeling-velferd-ulikhet.test.mjs'
       - 'tests/politikk-chapter-konflikt-makt-sivilsamfunn.test.mjs'
+      - 'tests/politikk-chapter-normer-identitet-hverdagsliv.test.mjs'
       - 'reports/fagverk/politikk-quality-audit.json'
       - 'reports/fagverk/politikk-thinker-integrity-audit.json'
       - 'reports/fagverk/politikk-regimer-institusjoner-audit.json'
@@ -85,6 +90,7 @@ on:
       - 'reports/fagverk/politikk-rett-lov-rettssikkerhet-audit.json'
       - 'reports/fagverk/politikk-fordeling-velferd-ulikhet-audit.json'
       - 'reports/fagverk/politikk-konflikt-makt-sivilsamfunn-audit.json'
+      - 'reports/fagverk/politikk-normer-identitet-hverdagsliv-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
 
 jobs:
@@ -111,6 +117,7 @@ jobs:
           node --check scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs
           node --check scripts/audit-politikk-chapter-fordeling-velferd-ulikhet.mjs
           node --check scripts/audit-politikk-chapter-konflikt-makt-sivilsamfunn.mjs
+          node --check scripts/audit-politikk-chapter-normer-identitet-hverdagsliv.mjs
           node scripts/audit-politikk-subject-quality.mjs
           node scripts/audit-politikk-thinker-integrity.mjs
           node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
@@ -123,7 +130,8 @@ jobs:
           node scripts/audit-politikk-chapter-rett-lov-rettssikkerhet.mjs
           node scripts/audit-politikk-chapter-fordeling-velferd-ulikhet.mjs
           node scripts/audit-politikk-chapter-konflikt-makt-sivilsamfunn.mjs
-          node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs tests/politikk-chapter-fordeling-velferd-ulikhet.test.mjs tests/politikk-chapter-konflikt-makt-sivilsamfunn.test.mjs
+          node scripts/audit-politikk-chapter-normer-identitet-hverdagsliv.mjs
+          node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs tests/politikk-chapter-fordeling-velferd-ulikhet.test.mjs tests/politikk-chapter-konflikt-makt-sivilsamfunn.test.mjs tests/politikk-chapter-normer-identitet-hverdagsliv.test.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs

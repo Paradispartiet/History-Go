@@ -1,0 +1,822 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "normer-identitet-hverdagsliv",
+  "verification_status": "verified",
+  "verified_at": "2026-07-31",
+  "sources": [
+    {
+      "id": "s01-grunnloven-98-104",
+      "label": "Kongeriket Norges Grunnlov – §§ 98, 102 og 104",
+      "url": "https://lovdata.no/lov/1814-05-17-bm/%C2%A798",
+      "publisher": "Lovdata",
+      "type": "grunnlov",
+      "source_location": "Kapittel E, §§ 98, 102 og 104 om likhet, privat- og familieliv og barns rettigheter"
+    },
+    {
+      "id": "s02-emk-8-14",
+      "label": "European Convention on Human Rights – Articles 8 and 14",
+      "url": "https://www.echr.coe.int/documents/d/echr/convention_ENG",
+      "publisher": "European Court of Human Rights",
+      "type": "konvensjon",
+      "source_location": "Artikkel 8 om privat- og familieliv og artikkel 14 om diskrimineringsvern"
+    },
+    {
+      "id": "s03-emk-guide-14",
+      "label": "Guide on Article 14 and Protocol No. 12",
+      "url": "https://ks.echr.coe.int/documents/d/echr-ks/guide_art_14_art_1_protocol_12_eng",
+      "publisher": "European Court of Human Rights",
+      "type": "rettspraksisveileder",
+      "source_location": "Del I om artikkel 14s virkeområde og del II om sammenlignbar situasjon og forskjellsbehandling"
+    },
+    {
+      "id": "s04-likestillingsloven",
+      "label": "Likestillings- og diskrimineringsloven",
+      "url": "https://lovdata.no/lov/2017-06-16-51",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 1, 6–9, 17–23 og 24–26 om vern, indirekte forskjellsbehandling, universell utforming, tilrettelegging og aktivitetsplikt"
+    },
+    {
+      "id": "s05-ombudsloven",
+      "label": "Likestillings- og diskrimineringsombudsloven",
+      "url": "https://lovdata.no/lov/2017-06-16-50",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 1–7 om ombudets og Diskrimineringsnemndas oppgaver og myndighet"
+    },
+    {
+      "id": "s06-barnekonvensjonen",
+      "label": "FNs konvensjon om barnets rettigheter",
+      "url": "https://www.regjeringen.no/no/tema/familie-og-barn/innsiktsartikler/fns-barnekonvensjon/fns-konvensjon-om-barnets-rettigheter/id2511390/",
+      "publisher": "Barne- og familiedepartementet",
+      "type": "konvensjonsveileder",
+      "source_location": "Avsnittene om ikke-diskriminering, barnets beste, utvikling og retten til å bli hørt"
+    },
+    {
+      "id": "s07-nav-foreldrepenger",
+      "label": "Foreldrepenger",
+      "url": "https://www.nav.no/arbeidsgiver/foreldrepenger",
+      "publisher": "NAV",
+      "type": "ordningsregel",
+      "source_location": "Avsnittet om mødrekvote, fedre-/medmorkvote og fellesperiode"
+    },
+    {
+      "id": "s08-nav-foreldrepengestatistikk",
+      "label": "Om statistikken – foreldrepenger ved fødsel",
+      "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/familie-statistikk/relatert-informasjon/om-statistikken-foreldrepenger-ved-fodsel",
+      "publisher": "NAV",
+      "type": "statistikkdokumentasjon",
+      "source_location": "Avsnittene om regelverksendringer, uttak og sammenlignbarhet over tid"
+    },
+    {
+      "id": "s09-ssb-tidsbruk",
+      "label": "Tidsbruksundersøkelsen",
+      "url": "https://www.ssb.no/kultur-og-fritid/tids-og-mediebruk/statistikk/tidsbruksundersokelsen",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Om statistikken og aktivitetene inntektsgivende arbeid, husarbeid, frivillig arbeid, fritid og samvær"
+    },
+    {
+      "id": "s10-ssb-likestilling",
+      "label": "Fakta om likestilling",
+      "url": "https://www.ssb.no/befolkning/faktaside/likestilling",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Indikatorene om arbeidsliv, økonomi, utdanning, helse, politikk og familieliv"
+    },
+    {
+      "id": "s11-ssb-integrering-2020",
+      "label": "Integrering av innvandrere i Norge",
+      "url": "https://www.ssb.no/befolkning/artikler-og-publikasjoner/integrering-av-innvandrere-i-norge",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "forskningsrapport",
+      "source_location": "Sammendrag og kapitlene om strukturell, sosial og psykologisk-kulturell integrering"
+    },
+    {
+      "id": "s12-ssb-innvandrere-2023",
+      "label": "Innvandrere i Norge 2023",
+      "url": "https://www.ssb.no/befolkning/innvandrere/artikler/innvandrere-i-norge-2023",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "statistisk_analyse",
+      "source_location": "Innledning og temakapitler om demografi, utdanning, arbeid, levekår og deltakelse"
+    },
+    {
+      "id": "s13-imdi-integrering-2025",
+      "label": "Hvordan går det med integreringen i Norge? 2025",
+      "url": "https://www.imdi.no/globalassets/rapporter/2025/imdi-hvordan-gar-det-med-integreringen-i-norge-2025_nuc-v5.pdf",
+      "publisher": "Integrerings- og mangfoldsdirektoratet",
+      "type": "indikatorrapport",
+      "source_location": "Sammendrag og kapitlene om utdanning, arbeid, økonomi og levekår, politisk og sosial integrering"
+    },
+    {
+      "id": "s14-imdi-sosial-integrering",
+      "label": "Sosial integrering",
+      "url": "https://www.imdi.no/tall-og-fakta/tall-om-integreringen-i-norge/indikatorrapport-2025/sosial-integrering/",
+      "publisher": "Integrerings- og mangfoldsdirektoratet",
+      "type": "indikatorrapport",
+      "source_location": "Avsnittene om hverdagskontakt, tilhørighet, diskriminering og forskjeller mellom grupper"
+    },
+    {
+      "id": "s15-ssb-hverdagsintegrering",
+      "label": "Hverdagsintegrering blant innvandrere og norskfødte med innvandrerforeldre",
+      "url": "https://www.ssb.no/kultur-og-fritid/organisasjoner-og-medlemskap/artikler/sa-innvandring-hverdagsintegrering",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "statistisk_analyse",
+      "source_location": "Avsnittene om kontakt, sosial støtte, tilhørighet og forskjeller mellom innvandrere og norskfødte"
+    },
+    {
+      "id": "s16-bufdir-etnisitet-diskriminering",
+      "label": "Diskriminering på grunn av etnisitet og religion",
+      "url": "https://www.bufdir.no/statistikk-og-analyse/etnisitet-religion/diskriminering/",
+      "publisher": "Barne-, ungdoms- og familiedirektoratet",
+      "type": "kunnskapsoversikt",
+      "source_location": "Avsnittene om arenaer, LDO-henvendelser, arbeidsliv, forvaltning og varer og tjenester"
+    },
+    {
+      "id": "s17-bufdir-lhbt-diskriminering",
+      "label": "Diskriminering, hatkriminalitet og hatefulle ytringer",
+      "url": "https://www.bufdir.no/statistikk-og-analyse/LHBT/hatkriminalitet-diskriminering/",
+      "publisher": "Barne-, ungdoms- og familiedirektoratet",
+      "type": "kunnskapsoversikt",
+      "source_location": "Definisjoner, datakilder og avsnittene om diskriminering, hatkriminalitet og hatefulle ytringer"
+    },
+    {
+      "id": "s18-bufdir-flere-minoriteter",
+      "label": "Flere minoritetstilhørigheter",
+      "url": "https://www.bufdir.no/statistikk-og-analyse/LHBT/flere-minoritetstilhorigheter/",
+      "publisher": "Barne-, ungdoms- og familiedirektoratet",
+      "type": "kunnskapsoversikt",
+      "source_location": "Avsnittene om samvirkende tilhørigheter, databegrensninger og variasjon innad i grupper"
+    },
+    {
+      "id": "s19-nou-2023-13",
+      "label": "NOU 2023: 13 På høy tid",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2023-13/id2974659/",
+      "publisher": "Kultur- og likestillingsdepartementet",
+      "type": "offentlig_utredning",
+      "source_location": "Sammendrag og kapitlene om menneskerettigheter, barrierer, deltakelse og gjennomføring"
+    },
+    {
+      "id": "s20-bufdir-universell-utforming",
+      "label": "Universell utforming og tilgjengelighet",
+      "url": "https://www.bufdir.no/likestilling/universell-utforming/",
+      "publisher": "Barne-, ungdoms- og familiedirektoratet",
+      "type": "veileder",
+      "source_location": "Definisjonen av universell utforming og skillet mellom generell utforming og individuelle hjelpemidler"
+    },
+    {
+      "id": "s21-oslo-oxlo-planer",
+      "label": "Kommunens handlingsplaner, rapporter og rundskriv",
+      "url": "https://www.oslo.kommune.no/oxlo/ressurser-og-nyttig-informasjon/veiledere-rapporter-og-handlingsplaner/",
+      "publisher": "Oslo kommune",
+      "type": "kommunal_styringskilde",
+      "source_location": "Oversikten over forankringen av mangfolds- og integreringsarbeidet i kommunale planer"
+    },
+    {
+      "id": "s22-oslo-stolt-fri",
+      "label": "Stolt og fri 2024–2028",
+      "url": "https://einnsyn-fillager-api.api.oslo.kommune.no/fil?filnavn=ab9fc3efddb84c019a6ab697e5890aea_e2e488f7042429631618d26dd962debe.pdf&virksomhet=976819837",
+      "publisher": "Oslo kommune",
+      "type": "kommunal_handlingsplan",
+      "source_location": "Kapittel 3 om interseksjonalitet og samvirkende diskrimineringsgrunnlag"
+    },
+    {
+      "id": "s23-oslo-folkehelse",
+      "label": "Folkehelsestrategi for Oslo 2023–2030",
+      "url": "https://www.oslo.kommune.no/folkehelse-og-miljorettet-helsevern/folkehelsestrategi-2023-2030/",
+      "publisher": "Oslo kommune",
+      "type": "kommunal_strategi",
+      "source_location": "Hovedmål og innsatsområder om sosial og geografisk ulikhet i helse og livskvalitet"
+    },
+    {
+      "id": "s24-nou-2024-13",
+      "label": "NOU 2024: 13 Lov og frihet",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2024-13/id3046261/",
+      "publisher": "Arbeids- og inkluderingsdepartementet",
+      "type": "offentlig_utredning",
+      "source_location": "Sammendrag og kapitlene om negativ sosial kontroll, rettsvern, straff, tjenester og ufrivillig utenlandsopphold"
+    },
+    {
+      "id": "s25-handlingsplan-sosial-kontroll",
+      "label": "Sjef i eget liv 2025–2028",
+      "url": "https://www.regjeringen.no/contentassets/42483a2aaa5444459c1de91f1b7c1fdd/no/pdfs/sjef-i-eget-liv.pdf",
+      "publisher": "Arbeids- og inkluderingsdepartementet",
+      "type": "handlingsplan",
+      "source_location": "Innledning, fire innsatsområder og 29 tiltak om rettsvern, forebygging, tjenestekompetanse og utenlandsopphold"
+    },
+    {
+      "id": "s26-bufdir-krisesenter",
+      "label": "Faglig veileder for innholdet i krisesentertilbudet",
+      "url": "https://www.bufdir.no/fagstotte/produkter/krisesenterveileder_faglig_veileder_for_innholdet_i_krisesentertilbudet/",
+      "publisher": "Barne-, ungdoms- og familiedirektoratet",
+      "type": "tjenesteveileder",
+      "source_location": "Avsnittene om personer utsatt for tvangsekteskap, æresmotivert vold og negativ sosial kontroll"
+    },
+    {
+      "id": "s27-ssb-religion",
+      "label": "Religion i Norge",
+      "url": "https://www.ssb.no/kultur-og-fritid/faktaside/religion",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Medlemsstatistikk for Den norske kirke og registrerte tros- og livssynssamfunn"
+    },
+    {
+      "id": "s28-ssb-religion-metode",
+      "label": "Et mangfold av tro og livssyn",
+      "url": "https://www.ssb.no/kultur-og-fritid/artikler-og-publikasjoner/et-mangfold-av-tro-og-livssyn",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "statistikkdokumentasjon",
+      "source_location": "Avsnittet om at medlemsregistre ikke er et register over befolkningens tro eller livssyn"
+    },
+    {
+      "id": "s29-bufdir-arp",
+      "label": "Aktivitets- og redegjørelsesplikt for arbeidsgivere",
+      "url": "https://www.bufdir.no/fagstotte/produkter/aktivitets__og_redegjorelsesplikt_for_arbeidsgivere/",
+      "publisher": "Barne-, ungdoms- og familiedirektoratet",
+      "type": "veileder",
+      "source_location": "Innledning og arbeidsmetoden for aktivt, målrettet og planmessig likestillingsarbeid"
+    },
+    {
+      "id": "s30-ssb-livskvalitetsramme",
+      "label": "Forslag til et rammeverk for måling av livskvalitet i Norge",
+      "url": "https://www.ssb.no/sosiale-forhold-og-kriminalitet/levekar/artikler/quality-of-life.suggestions-for-a-measurement-framework/_/attachment/inline/73aa4f91-eefa-46a1-b57d-b9d6acd7bd91%3Ae9139570887b7b85d0f52885101fcbe1dc5a0188/RAPP2023-51.pdf",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "metoderapport",
+      "source_location": "Kapittel 2–4 om begreper, indikatorvalg, fordeling, datakvalitet og begrensninger"
+    }
+  ],
+  "claims": [
+    {
+      "id": "normer-01",
+      "claim": "Grunnloven § 98 forankrer likhet for loven og forbyr usaklig eller uforholdsmessig forskjellsbehandling; likhet må derfor analyseres både som regel og som begrunnet sammenligning.",
+      "source_ids": [
+        "s01-grunnloven-98-104"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-1"
+      ]
+    },
+    {
+      "id": "normer-02",
+      "claim": "Grunnloven § 102 beskytter privatliv og familieliv, men offentlige familie- og omsorgsordninger fordeler samtidig rettigheter, plikter og ressurser i dette området.",
+      "source_ids": [
+        "s01-grunnloven-98-104"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-1"
+      ]
+    },
+    {
+      "id": "normer-03",
+      "claim": "Grunnloven § 104 krever at barnets beste er et grunnleggende hensyn og at barn får mulighet til å bli hørt i spørsmål som gjelder dem.",
+      "source_ids": [
+        "s01-grunnloven-98-104",
+        "s06-barnekonvensjonen"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-1"
+      ]
+    },
+    {
+      "id": "normer-04",
+      "claim": "EMK artikkel 8 beskytter privat- og familieliv, mens artikkel 14 forbyr diskriminering i utøvelsen av konvensjonsrettighetene; de to vurderingene må holdes analytisk sammen.",
+      "source_ids": [
+        "s02-emk-8-14",
+        "s03-emk-guide-14"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-1"
+      ]
+    },
+    {
+      "id": "normer-05",
+      "claim": "En rettighetsanalyse må identifisere rettighetshaver, pliktbærer, inngrep eller forskjellsbehandling, rettslig begrunnelse og tilgjengelig håndheving før den konkluderer.",
+      "source_ids": [
+        "s03-emk-guide-14",
+        "s05-ombudsloven"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-1"
+      ]
+    },
+    {
+      "id": "normer-06",
+      "claim": "Likestillings- og diskrimineringsloven verner flere grunnlag og skiller mellom direkte og indirekte forskjellsbehandling, slik at en tilsynelatende lik regel kan ha ulik virkning.",
+      "source_ids": [
+        "s04-likestillingsloven"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-2"
+      ]
+    },
+    {
+      "id": "normer-07",
+      "claim": "Forbudet mot diskriminering er ikke bare et krav om identisk behandling; loven omfatter også tilgjengelighet, individuell tilrettelegging og plikt til aktivt likestillingsarbeid.",
+      "source_ids": [
+        "s04-likestillingsloven",
+        "s29-bufdir-arp"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-2"
+      ]
+    },
+    {
+      "id": "normer-08",
+      "claim": "Universell utforming retter analysen mot produkter, omgivelser, programmer og tjenester, og viser hvordan en barriere kan ligge i utformingen fremfor i personen.",
+      "source_ids": [
+        "s20-bufdir-universell-utforming",
+        "s19-nou-2023-13"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-2"
+      ]
+    },
+    {
+      "id": "normer-09",
+      "claim": "NOU 2023: 13 skiller formelle rettigheter fra faktisk gjennomføring og beskriver funksjonshindrede som borgere med rettigheter, ikke bare som passive tjenestemottakere.",
+      "source_ids": [
+        "s19-nou-2023-13"
+      ],
+      "classification": "offentlig_utredning",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-2"
+      ]
+    },
+    {
+      "id": "normer-10",
+      "claim": "Ombudet gir veiledning og driver pådriverarbeid, mens Diskrimineringsnemnda behandler klager; institusjonell rolle må derfor skilles fra selve rettighetsregelen.",
+      "source_ids": [
+        "s05-ombudsloven"
+      ],
+      "classification": "institusjon",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-2"
+      ]
+    },
+    {
+      "id": "normer-11",
+      "claim": "Foreldrepengeordningen deler perioden i mødrekvote, fedre- eller medmorkvote og fellesperiode når begge foreldrene har rett, og gjør omsorgsfordeling til et offentlig utformet handlingsrom.",
+      "source_ids": [
+        "s07-nav-foreldrepenger"
+      ],
+      "classification": "ordning",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-3"
+      ]
+    },
+    {
+      "id": "normer-12",
+      "claim": "NAVs statistikkdokumentasjon viser at lengden på kvotene legger sterke føringer på uttaksmønsteret, slik at observerte familievalg ikke kan tolkes løsrevet fra regelverket.",
+      "source_ids": [
+        "s08-nav-foreldrepengestatistikk"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-3"
+      ]
+    },
+    {
+      "id": "normer-13",
+      "claim": "Tidsbruksundersøkelsen måler både inntektsgivende arbeid, husarbeid, frivillig arbeid, fritid og samvær, og synliggjør omsorgs- og hverdagsarbeid som ikke framgår av inntektsstatistikk alene.",
+      "source_ids": [
+        "s09-ssb-tidsbruk"
+      ],
+      "classification": "statistikk",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-3"
+      ]
+    },
+    {
+      "id": "normer-14",
+      "claim": "SSBs likestillingsindikatorer dekker flere samfunnsområder, noe som viser at representasjon, inntekt, arbeidstid, utdanning og familieliv er ulike mål og ikke ett samlet likestillingsutfall.",
+      "source_ids": [
+        "s10-ssb-likestilling"
+      ],
+      "classification": "statistikk",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-3"
+      ]
+    },
+    {
+      "id": "normer-15",
+      "claim": "Barnets beste er en vurderingsregel, ikke en automatisk løsning; beslutningen må dokumentere berørte rettigheter, barnets syn, omsorgsbehov og mulige konsekvenser.",
+      "source_ids": [
+        "s06-barnekonvensjonen",
+        "s01-grunnloven-98-104"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "normer-grunnlag-3"
+      ]
+    },
+    {
+      "id": "normer-16",
+      "claim": "Integrering må måles på flere områder, blant annet utdanning, arbeid, økonomi, levekår, politisk deltakelse og sosial deltakelse, og kan derfor ikke reduseres til ett samlemål.",
+      "source_ids": [
+        "s11-ssb-integrering-2020",
+        "s13-imdi-integrering-2025"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-1"
+      ]
+    },
+    {
+      "id": "normer-17",
+      "claim": "SSB understreker at integrering kan utvikle seg ulikt langs forskjellige dimensjoner, og at landbakgrunn alene ikke kan forklare individuelle eller gruppemessige utfall.",
+      "source_ids": [
+        "s11-ssb-integrering-2020",
+        "s12-ssb-innvandrere-2023"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-1"
+      ]
+    },
+    {
+      "id": "normer-18",
+      "claim": "IMDis indikatorrapport viser betydelig variasjon etter blant annet botid, generasjon, utdanning og migrasjonsgrunn, så gruppesnitt må brytes ned før mekanismer foreslås.",
+      "source_ids": [
+        "s13-imdi-integrering-2025"
+      ],
+      "classification": "statistikk",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-1"
+      ]
+    },
+    {
+      "id": "normer-19",
+      "claim": "Diskriminering kan hemme tilgang til arbeid, utdanning, bolig og sosial tilhørighet; forskjeller i integreringsutfall kan derfor ikke forklares som tilpasning hos individet alene.",
+      "source_ids": [
+        "s13-imdi-integrering-2025",
+        "s14-imdi-sosial-integrering"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-1"
+      ]
+    },
+    {
+      "id": "normer-20",
+      "claim": "Sosial integrering omfatter hverdagskontakt, nettverk, støtte, tillit og tilhørighet, som må skilles fra rettslig status, sysselsetting og statsborgerskap.",
+      "source_ids": [
+        "s14-imdi-sosial-integrering",
+        "s15-ssb-hverdagsintegrering"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-1"
+      ]
+    },
+    {
+      "id": "normer-21",
+      "claim": "En numerisk minoritet er ikke nødvendigvis politisk marginalisert, og et numerisk flertall er ikke nødvendigvis den institusjonelt dominerende gruppen.",
+      "source_ids": [
+        "s03-emk-guide-14",
+        "s18-bufdir-flere-minoriteter"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-2"
+      ]
+    },
+    {
+      "id": "normer-22",
+      "claim": "Bufdirs oversikt viser at diskriminering på grunn av etnisitet og religion rapporteres på flere arenaer, med arbeidslivet som den største kategorien blant LDO-henvendelser.",
+      "source_ids": [
+        "s16-bufdir-etnisitet-diskriminering"
+      ],
+      "classification": "empiri",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-2"
+      ]
+    },
+    {
+      "id": "normer-23",
+      "claim": "Formell adgang til en tjeneste, arbeidsplass eller offentlig arena dokumenterer ikke alene reell adgang; språk, tilgjengelighet, økonomi, informasjon og sanksjonsrisiko kan fortsatt virke som barrierer.",
+      "source_ids": [
+        "s16-bufdir-etnisitet-diskriminering",
+        "s19-nou-2023-13",
+        "s20-bufdir-universell-utforming"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-2"
+      ]
+    },
+    {
+      "id": "normer-24",
+      "claim": "Flere minoritetstilhørigheter kan virke sammen, men interseksjonalitet må undersøkes gjennom konkrete regler, situasjoner og utfall fremfor å anta en fast samlet identitet.",
+      "source_ids": [
+        "s18-bufdir-flere-minoriteter",
+        "s22-oslo-stolt-fri"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-2"
+      ]
+    },
+    {
+      "id": "normer-25",
+      "claim": "Medlemskap, tilstedeværelse, mulighet til å fremme motkrav og faktisk respons er forskjellige mål på representasjon og må dokumenteres hver for seg.",
+      "source_ids": [
+        "s13-imdi-integrering-2025",
+        "s21-oslo-oxlo-planer"
+      ],
+      "classification": "representasjon",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-2"
+      ]
+    },
+    {
+      "id": "normer-26",
+      "claim": "Likestilling mellom kjønn kan ikke vurderes ut fra én indikator, fordi arbeid, inntekt, omsorgstid, representasjon og rettigheter kan utvikle seg i ulik retning.",
+      "source_ids": [
+        "s09-ssb-tidsbruk",
+        "s10-ssb-likestilling"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-3"
+      ]
+    },
+    {
+      "id": "normer-27",
+      "claim": "Kjønnsforskjeller i foreldrepengeuttak må analyseres mot kvoter, opptjeningsregler og fellesperioden før de forklares som individuelle preferanser eller kulturelle normer.",
+      "source_ids": [
+        "s07-nav-foreldrepenger",
+        "s08-nav-foreldrepengestatistikk"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-3"
+      ]
+    },
+    {
+      "id": "normer-28",
+      "claim": "Bufdir skiller seksuell orientering, kjønnsidentitet, kjønnsuttrykk og kjønnskarakteristika og beskriver flere datakilder; betegnelsen lhbt+ er derfor ikke én ensartet analysegruppe.",
+      "source_ids": [
+        "s17-bufdir-lhbt-diskriminering",
+        "s18-bufdir-flere-minoriteter"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-3"
+      ]
+    },
+    {
+      "id": "normer-29",
+      "claim": "Diskriminering, hatkriminalitet og hatefulle ytringer er beslektede, men ulike fenomener med forskjellige rettslige terskler og datakilder, og kan ikke slås sammen til ett mål.",
+      "source_ids": [
+        "s17-bufdir-lhbt-diskriminering"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-3"
+      ]
+    },
+    {
+      "id": "normer-30",
+      "claim": "Oslo kommunes handlingsplan bruker et interseksjonelt perspektiv for å undersøke hvordan diskrimineringsgrunnlag kan samvirke, men planen erstatter ikke dokumentasjon av konkrete virkninger.",
+      "source_ids": [
+        "s22-oslo-stolt-fri"
+      ],
+      "classification": "styring",
+      "status": "verified",
+      "used_in": [
+        "normer-fordypning-3"
+      ]
+    },
+    {
+      "id": "normer-31",
+      "claim": "En sosial norm uttrykker forventning og uformelle sanksjoner, mens en rettslig norm fastsetter kompetanse, rettigheter eller plikter gjennom institusjonell håndheving.",
+      "source_ids": [
+        "s04-likestillingsloven",
+        "s24-nou-2024-13"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-1"
+      ]
+    },
+    {
+      "id": "normer-32",
+      "claim": "Hverdagspraksis kan avvike fra en regel på grunn av skjønn, kapasitet, informasjon eller nødvendig tilpasning; et avvik er derfor ikke automatisk et regelbrudd.",
+      "source_ids": [
+        "s19-nou-2023-13",
+        "s21-oslo-oxlo-planer"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-1"
+      ]
+    },
+    {
+      "id": "normer-33",
+      "claim": "Oslo kommunes folkehelsestrategi gjør sosial og geografisk ulikhet til et styringsproblem og viser at samme byomfattende tjeneste kan møte ulike lokale behov og vilkår.",
+      "source_ids": [
+        "s23-oslo-folkehelse"
+      ],
+      "classification": "kommunal_styring",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-1"
+      ]
+    },
+    {
+      "id": "normer-34",
+      "claim": "Medlemsstatistikk for tros- og livssynssamfunn måler registrert medlemskap, ikke nødvendigvis personlig tro, praksis, identitet eller intensitet.",
+      "source_ids": [
+        "s27-ssb-religion",
+        "s28-ssb-religion-metode"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-1"
+      ]
+    },
+    {
+      "id": "normer-35",
+      "claim": "En bydels- eller nabolagsstatistikk beskriver en populasjon i et område og kan ikke brukes til å tilskrive identitet, motiv eller norm til enkeltpersoner som bor eller oppholder seg der.",
+      "source_ids": [
+        "s12-ssb-innvandrere-2023",
+        "s30-ssb-livskvalitetsramme"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-1"
+      ]
+    },
+    {
+      "id": "normer-36",
+      "claim": "Negativ sosial kontroll omfatter alvorlige begrensninger og kan være knyttet til trusler, tvang, vold eller avhengighet; begrepet må ikke brukes om enhver form for sosialisering eller uenighet.",
+      "source_ids": [
+        "s24-nou-2024-13"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-2"
+      ]
+    },
+    {
+      "id": "normer-37",
+      "claim": "NOU 2024: 13 vurderer rettsvernet mot negativ sosial kontroll på tvers av strafferett, barnevern, utlendingsrett og tjenester, og viser at problemet ikke kan plasseres i én sektor alene.",
+      "source_ids": [
+        "s24-nou-2024-13"
+      ],
+      "classification": "offentlig_utredning",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-2"
+      ]
+    },
+    {
+      "id": "normer-38",
+      "claim": "Handlingsplanen Sjef i eget liv 2025–2028 samler 29 tiltak innen rettsvern, forebygging, kompetanse i tjenestene og ufrivillige utenlandsopphold.",
+      "source_ids": [
+        "s25-handlingsplan-sosial-kontroll"
+      ],
+      "classification": "politikk",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-2"
+      ]
+    },
+    {
+      "id": "normer-39",
+      "claim": "Offentlige ansatte i skole, helse, politi, barnevern og andre tjenester trenger både identifikasjonskompetanse, tillitsarbeid og kjennskap til spesialiserte hjelpetilbud.",
+      "source_ids": [
+        "s25-handlingsplan-sosial-kontroll",
+        "s26-bufdir-krisesenter"
+      ],
+      "classification": "implementering",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-2"
+      ]
+    },
+    {
+      "id": "normer-40",
+      "claim": "Analyse av sosial kontroll må identifisere norm, overvåker, avhengighet, sanksjon og utgangsmulighet, og samtidig skille beskyttelse og omsorg fra uforholdsmessig kontroll.",
+      "source_ids": [
+        "s24-nou-2024-13",
+        "s26-bufdir-krisesenter"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-2"
+      ]
+    },
+    {
+      "id": "normer-41",
+      "claim": "Statistisk vanlig er et deskriptivt mål, mens normalt som ønskelig eller riktig er en normativ klassifikasjon; de to betydningene må ikke blandes.",
+      "source_ids": [
+        "s30-ssb-livskvalitetsramme",
+        "s10-ssb-likestilling"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-3"
+      ]
+    },
+    {
+      "id": "normer-42",
+      "claim": "En gruppeforskjell er ikke i seg selv bevis for diskriminering eller årsak, men kan begrunne videre analyse av regel, sammenligningsgruppe, seleksjon, barrierer og alternative forklaringer.",
+      "source_ids": [
+        "s03-emk-guide-14",
+        "s30-ssb-livskvalitetsramme"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-3"
+      ]
+    },
+    {
+      "id": "normer-43",
+      "claim": "Dokumenter og statistikk gjør kategorier og utfall synlige, men de er måleinstrumenter med avgrensninger og kan ikke behandles som hele den sosiale virkeligheten.",
+      "source_ids": [
+        "s12-ssb-innvandrere-2023",
+        "s30-ssb-livskvalitetsramme"
+      ],
+      "classification": "dokumentanalyse",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-3"
+      ]
+    },
+    {
+      "id": "normer-44",
+      "claim": "Et ansvarlig norm- og identitetscase følger kjeden fra ekstern kilde til regel eller kategori, aktør og håndheving, observerbar konsekvens og minst ett kritisk skille.",
+      "source_ids": [
+        "s04-likestillingsloven",
+        "s13-imdi-integrering-2025",
+        "s30-ssb-livskvalitetsramme"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-3"
+      ]
+    },
+    {
+      "id": "normer-45",
+      "claim": "Konklusjonen må skille hva kildene dokumenterer, hvilken mekanisme som foreslås, hvilke alternativer som gjenstår, hvem funnet gjelder for, og hvilken normativ standard som brukes.",
+      "source_ids": [
+        "s03-emk-guide-14",
+        "s30-ssb-livskvalitetsramme"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "normer-anvendelse-3"
+      ]
+    }
+  ]
+}
