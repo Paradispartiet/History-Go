@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **180**
-- Andel med dokumentert evidensgrunnlag: **78.3 %**
+- Validerte pilotobjekter: **190**
+- Andel med dokumentert evidensgrunnlag: **82.6 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -195,6 +195,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Religion, politikk og offentlighet: forklarings- og kildebane | 4 | 5 | 8 | 4 | evidence_ready |
 | Religion, migrasjon og transnasjonale nettverk: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
 | Livssyn, sekularitet og offentlighet: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Kunnskapsinstitusjoner og ekspertise: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Profesjoner, standardisering og autoritet: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
+| Måling, statistikk, kart og klassifikasjon: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
+| Teknologi, infrastruktur og samfunn: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
+| Medisin, helsevitenskap og befolkning: forklarings- og kildebane | 4 | 2 | 4 | 4 | evidence_ready |
+| Kommunikasjon, medier og informasjonsregimer: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Digitalisering og datamakt: forklarings- og kildebane | 5 | 4 | 5 | 5 | evidence_ready |
+| Vitenskap, stat, industri og ekskludering: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
+| Kunnskap, makt, kjønn og ekskludering: forklarings- og kildebane | 5 | 4 | 5 | 5 | evidence_ready |
+| Vitenskap, stat, industri og militære forbindelser: forklarings- og kildebane | 5 | 2 | 5 | 5 | evidence_ready |
 
 ## Kontraktsgrense
 

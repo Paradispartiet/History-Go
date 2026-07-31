@@ -112,7 +112,7 @@ test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', (
   assert.equal(report.universalCoverage.coveredCells, 58);
   assert.equal(report.universalCoverage.totalCells, 58);
   assert.equal(report.universalCoverage.productionGaps, 1);
-  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 180);
+  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 190);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
 });
@@ -176,6 +176,36 @@ test('Domkirken og Trefoldighetskirken har uavhengige kildefamilier', () => {
   ]);
 
   for (const caseId of ['case_his_oslo_domkirke', 'case_his_trefoldighetskirken']) {
+    const profileCase = profile.cases.find((item) => item.case_id === caseId);
+    assert.equal(profileCase?.evidence_status, 'claim_source_linked', caseId);
+    assert.ok(profileCase.case_requirement_ids.includes('case_req_his_source_comparison'), caseId);
+
+    const sourceIds = [...new Set(placeEvidence.evidence_links
+      .filter((link) => link.case_id === caseId)
+      .flatMap((link) => link.source_ids || []))];
+    const sourceFamilies = [...new Set(sourceIds.map((sourceId) => (
+      sourceFamilyByType.get(sourcesById.get(sourceId)?.source_type)
+    )))];
+
+    assert.ok(sourceIds.length >= 2, `${caseId} trenger minst to selvstendige kilder`);
+    assert.ok(sourceFamilies.every(Boolean), `${caseId} har kilde uten normalisert kildefamilie`);
+    assert.ok(sourceFamilies.length >= 2, `${caseId} trenger minst to normaliserte kildefamilier`);
+  }
+});
+
+test('Teknisk Museum og Kjeller/FFI har uavhengige kildefamilier', () => {
+  const profile = readJson('data/fag/profiles/historie/oslo_akershus/profile.json');
+  const placeEvidence = readJson('data/fag/historie/place_evidence_historie_v1.json');
+  const sourceRegistry = readJson('data/fag/historie/sources_historie_canonical_v1.json');
+  const sourcesById = new Map(sourceRegistry.sources.map((source) => [source.source_id, source]));
+  const sourceFamilyByType = new Map([
+    ['official_museum_institution_page', 'institutional_museum_record'],
+    ['official_research_institute_history', 'institutional_research_record'],
+    ['official_research_institute_feature', 'institutional_research_record'],
+    ['editorially_reviewed_encyclopedia', 'secondary_reference_work']
+  ]);
+
+  for (const caseId of ['case_his_norsk_teknisk_museum', 'case_his_kjeller_ffi']) {
     const profileCase = profile.cases.find((item) => item.case_id === caseId);
     assert.equal(profileCase?.evidence_status, 'claim_source_linked', caseId);
     assert.ok(profileCase.case_requirement_ids.includes('case_req_his_source_comparison'), caseId);
