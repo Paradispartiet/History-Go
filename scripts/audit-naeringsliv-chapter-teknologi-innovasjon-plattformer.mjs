@@ -38,18 +38,15 @@ function equalSet(actual, expected, label) {
   assert(JSON.stringify(a) === JSON.stringify(e),
     `${label} mismatch\nactual=${JSON.stringify(a)}\nexpected=${JSON.stringify(e)}`);
 }
-function collectClaimIds(value, target = new Set()) {
+function collectClaimIds(value, target = new Set(), insideClaimField = false) {
   if (Array.isArray(value)) {
-    for (const item of value) collectClaimIds(item, target);
+    for (const item of value) collectClaimIds(item, target, insideClaimField);
   } else if (value && typeof value === "object") {
     for (const [key, item] of Object.entries(value)) {
-      if (key === "claimIds" || key === "paragraphClaimIds" || key === "keyPointClaimIds") {
-        collectClaimIds(item, target);
-      } else {
-        collectClaimIds(item, target);
-      }
+      const isClaimField = key === "claimIds" || key === "paragraphClaimIds" || key === "keyPointClaimIds";
+      collectClaimIds(item, target, insideClaimField || isClaimField);
     }
-  } else if (typeof value === "string" && value.startsWith("teknologi-")) {
+  } else if (insideClaimField && typeof value === "string") {
     target.add(value);
   }
   return target;
