@@ -39,9 +39,13 @@ jobs:
           test -f scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
           python -c 'from pathlib import Path; p=Path("scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs"); s=p.read_text(); s=s.replace("/^(\\d+)\\.(\\d+)\\.(\\d+)$/", "/^(.*?)(\\d+)\\.(\\d+)\\.(\\d+)$/").replace("`${match[1]}.${Number(match[2]) + 1}.0`", "`${match[1]}${match[2]}.${Number(match[3]) + 1}.0`").replace("status.generation.generated_at = DATE;", "status.generation = { ...(status.generation || {}), generated_at: DATE };"); p.write_text(s)'
           node --check scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
+          echo '--- materializer 125-150 ---'
+          nl -ba scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs | sed -n '125,150p'
+          echo '--- Object.keys occurrences ---'
+          grep -n 'Object.keys' scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs || true
       - run: npm ci
       - name: Materialiser 6 av 6
-        run: node scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
+        run: node --trace-uncaught scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
       - name: Valider komplett Næringsliv-fagverk
         run: |
           test ! -e scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
