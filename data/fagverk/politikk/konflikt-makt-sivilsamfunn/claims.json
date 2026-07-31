@@ -1,0 +1,815 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "konflikt-makt-sivilsamfunn",
+  "verified_at": "2026-07-31",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "s01-grunnloven-100-101",
+      "label": "Kongeriket Norges Grunnlov – §§ 100 og 101",
+      "url": "https://lovdata.no/nav/lov/1814-05-17/kapE/%C2%A7100",
+      "publisher": "Lovdata",
+      "type": "grunnlov",
+      "source_location": "Kapittel E, §§ 100–101 om ytringsfrihet, foreningsfrihet, fredelige forsamlinger og demonstrasjoner"
+    },
+    {
+      "id": "s02-emk-10-11",
+      "label": "European Convention on Human Rights",
+      "url": "https://www.echr.coe.int/documents/d/echr/convention_eng",
+      "publisher": "European Court of Human Rights",
+      "type": "konvensjon",
+      "source_location": "Articles 10–11 om freedom of expression, assembly and association"
+    },
+    {
+      "id": "s03-nou-2022-9",
+      "label": "NOU 2022: 9 En åpen og opplyst offentlig samtale",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2022-9/id2924020/",
+      "publisher": "Kultur- og likestillingsdepartementet",
+      "type": "offentlig_utredning",
+      "source_location": "Kapittel 3, 6, 9, 12 og 15 om offentlighet, deltakelsesbarrierer, polarisering, organisasjoner og arbeidsliv"
+    },
+    {
+      "id": "s04-nou-2003-19",
+      "label": "NOU 2003: 19 Makt og demokrati",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2003-019/id118893/",
+      "publisher": "Arbeids- og administrasjonsdepartementet",
+      "type": "offentlig_utredning",
+      "source_location": "Kapittel 3, 11 og 12 om makt, organisasjoner, medier, mobilisering og dagsorden"
+    },
+    {
+      "id": "s05-nou-2011-20",
+      "label": "NOU 2011: 20 Ungdom, makt og medvirkning",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2011-20/id666389/",
+      "publisher": "Barne-, likestillings- og inkluderingsdepartementet",
+      "type": "offentlig_utredning",
+      "source_location": "Kapittel 4–5 om organisasjoners interne og eksterne demokratiske roller og ungdoms deltakelse"
+    },
+    {
+      "id": "s06-ssb-frivillighet-tillit",
+      "label": "Frivillighet, politisk deltakelse og tillit, levekårsundersøkelsen",
+      "url": "https://www.ssb.no/kultur-og-fritid/organisasjoner-og-medlemskap/statistikk/organisasjonsaktivitet-politisk-deltakelse-og-sosialt-nettverk-levekarsundersokelsen",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Om statistikken, definisjoner og tabeller om medlemskap, aktivitet, politisk deltakelse og tillit"
+    },
+    {
+      "id": "s07-ssb-deltakelsesforskjeller",
+      "label": "Høy samfunnsdeltakelse blant yrkesaktive",
+      "url": "https://www.ssb.no/kultur-og-fritid/statistikker/orgakt/hvert-3-aar/2014-12-04",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Avsnitt og tabeller om forskjeller i organisasjonsaktivitet etter arbeidsmarkedsstatus"
+    },
+    {
+      "id": "s08-arbeidstvistloven",
+      "label": "Lov om arbeidstvister",
+      "url": "https://lovdata.no/lov/2012-01-27-9",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Kapittel 1–3 om tariffavtaler, fredsplikt, arbeidskamp og mekling"
+    },
+    {
+      "id": "s09-nou-2021-9",
+      "label": "NOU 2021: 9 Den norske modellen og fremtidens arbeidsliv",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2021-9/id2862895/",
+      "publisher": "Arbeids- og sosialdepartementet",
+      "type": "offentlig_utredning",
+      "source_location": "Kapittel 2 om tariffavtaler, organisering, partssamarbeid og trepartssamarbeid"
+    },
+    {
+      "id": "s10-hovedavtalen-lo-nho",
+      "label": "Hovedavtalen mellom LO og NHO 2026–2029",
+      "url": "https://lovdata.no/dokument/TARH/tariff/tarh-1",
+      "publisher": "Lovdata / LO og NHO",
+      "type": "tariffavtale",
+      "source_location": "Kapittel II–IX om organisasjonsrett, fredsplikt, forhandling, tillitsvalgte og samarbeid"
+    },
+    {
+      "id": "s11-oslo-youngstorget",
+      "label": "Youngstorget – Slik bygger vi Oslo",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/youngstorget/",
+      "publisher": "Oslo kommune",
+      "type": "kommunal_stedskilde",
+      "source_location": "Innledning om torgets etablering og bruk til demonstrasjoner, markeringer og arrangementer"
+    },
+    {
+      "id": "s12-stortinget-eidsvolls-plass",
+      "label": "Markeringer på Eidsvolls plass",
+      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/markeringer-pa-eidsvolls-plass/",
+      "publisher": "Stortinget",
+      "type": "institusjonell_stedskilde",
+      "source_location": "Regler om hvem som kan søke og hvilke politiske, humanitære og religiøse markeringer plassen brukes til"
+    },
+    {
+      "id": "s13-lo-tidslinje",
+      "label": "Fagbevegelsens historie i bilder",
+      "url": "https://www.lo.no/folketshjorne/tidslinje/",
+      "publisher": "Landsorganisasjonen i Norge",
+      "type": "organisasjonsarkiv",
+      "source_location": "Tidslinjen om organisering, 1. mai, åttetimersdagen, tariffkamp og Youngstorget"
+    },
+    {
+      "id": "s14-fosen-dommen",
+      "label": "HR-2021-1975-S (Fosen)",
+      "url": "https://lovdata.no/avgjorelse/hr-2021-1975-s",
+      "publisher": "Norges Høyesterett / Lovdata",
+      "type": "rettsavgjorelse",
+      "source_location": "Avsnitt 99–151 om SP artikkel 27, reindrift, inngrepsterskel og konsesjonsvedtakenes gyldighet"
+    },
+    {
+      "id": "s15-fosen-oppfolging",
+      "label": "Regjeringens arbeid med oppfølging av Fosen-dommen",
+      "url": "https://www.regjeringen.no/no/tema/energi/landingssider/fosen/regjeringens-arbeid-med-oppfolging-av-Fosen-saken/id2979793/",
+      "publisher": "Energidepartementet",
+      "type": "offisiell_sakstidslinje",
+      "source_location": "Tidslinje for dom, protest, mekling og avtalene med Sør-Fosen og Nord-Fosen i 2023–2024"
+    },
+    {
+      "id": "s16-nim-samiske-bruksomrader",
+      "label": "Menneskerettslig vern mot inngrep i samiske bruksområder",
+      "url": "https://www.nhri.no/2022/menneskerettslig-vern-mot-inngrep-i-samiske-bruksomrader/",
+      "publisher": "Norges institusjon for menneskerettigheter",
+      "type": "institusjonell_rapport",
+      "source_location": "Kapittel 4–5 om SP artikkel 27 og Høyesteretts anvendelse i Fosen-saken"
+    },
+    {
+      "id": "s17-olson-collective-action",
+      "label": "The Logic of Collective Action",
+      "url": "https://www.hup.harvard.edu/books/9780674537514",
+      "publisher": "Harvard University Press",
+      "type": "forskningsbok",
+      "source_location": "Bokens hovedargument om gruppestørrelse, fellesgoder, organisering og individuelle insentiver"
+    },
+    {
+      "id": "s18-bachrach-baratz",
+      "label": "Two Faces of Power",
+      "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/two-faces-of-power1/0642CFB6AFD6EBF4312DF34CF1556671",
+      "publisher": "American Political Science Review / Cambridge University Press",
+      "type": "fagfellevurdert_originalartikkel",
+      "source_location": "Volume 56, issue 4, pages 947–952 om beslutningsmakt og kontroll over dagsorden"
+    },
+    {
+      "id": "s19-lukes-power",
+      "label": "Power: A Radical View",
+      "url": "https://www.bloomsbury.com/us/power-9781350544734/",
+      "publisher": "Bloomsbury Academic",
+      "type": "forskningsbok",
+      "source_location": "Presentasjonen av beslutning, ikke-beslutning og preferanseforming som tre dimensjoner av makt"
+    },
+    {
+      "id": "s20-benford-snow",
+      "label": "Framing Processes and Social Movements",
+      "url": "https://www.annualreviews.org/content/journals/10.1146/annurev.soc.26.1.611",
+      "publisher": "Annual Review of Sociology",
+      "type": "fagfellevurdert_oversiktsartikkel",
+      "source_location": "Volume 26, pages 611–639 om diagnostisk, prognostisk og motiverende innramming"
+    },
+    {
+      "id": "s21-mcadam-tarrow-tilly",
+      "label": "Dynamics of Contention",
+      "url": "https://sociology.stanford.edu/publications/dynamics-contention",
+      "publisher": "Cambridge University Press / Stanford Sociology",
+      "type": "forskningsbok",
+      "source_location": "Bokens program om dynamisk samhandling, mekanismer og prosesser på tvers av streik, protest og annen strid"
+    },
+    {
+      "id": "s22-habermas-offentlighet",
+      "label": "The Structural Transformation of the Public Sphere",
+      "url": "https://mitpress.mit.edu/9780262081801/the-structural-transformation-of-the-public-sphere/",
+      "publisher": "MIT Press",
+      "type": "forskningsbok",
+      "source_location": "Bokens historisk-sosiologiske analyse av offentlig mening, kommunikasjon og demokratisk offentlighet"
+    },
+    {
+      "id": "s23-fraser-counterpublics",
+      "label": "Rethinking the Public Sphere",
+      "url": "https://www.jstor.org/stable/466240",
+      "publisher": "Social Text",
+      "type": "fagfellevurdert_originalartikkel",
+      "source_location": "Issue 25/26, pages 56–80 om eksklusjon, flere offentligheter og subalterne motoffentligheter"
+    },
+    {
+      "id": "s24-mouffe-agonistics",
+      "label": "Agonistics: Thinking the World Politically",
+      "url": "https://www.versobooks.com/products/2322-agonistics",
+      "publisher": "Verso",
+      "type": "politisk_teori",
+      "source_location": "Bokens skille mellom antagonisme og agonistisk konflikt mellom legitime motstandere"
+    },
+    {
+      "id": "s25-berman-social-democracy",
+      "label": "The Primacy of Politics",
+      "url": "https://www.cambridge.org/core/books/primacy-of-politics/DD19C88ECBF20B33D8D6DE445D198D13",
+      "publisher": "Cambridge University Press",
+      "type": "forskningsbok",
+      "source_location": "Innledning og kapittel 1–3 om sosialdemokrati som selvstendig ideologisk tradisjon og politikkens primat"
+    },
+    {
+      "id": "s26-young-structural-injustice",
+      "label": "Iris Marion Young – structural injustice",
+      "url": "https://learninglink.oup.com/access/content/ramgotra-choat1e-resources/ramgotra-choat1e-key-thinker-iris-marion-young",
+      "publisher": "Oxford University Press",
+      "type": "politisk_teori",
+      "source_location": "Oversikten over strukturell urett, gruppeforskjeller, politisk likhet og reproduksjon av ulikhet"
+    },
+    {
+      "id": "s27-dobson-ecological-citizenship",
+      "label": "Citizenship and the Environment",
+      "url": "https://global.oup.com/academic/product/citizenship-and-the-environment-9780199258437",
+      "publisher": "Oxford University Press",
+      "type": "politisk_teori",
+      "source_location": "Kapittel om økologisk borgerskap, ansvar, rom og forholdet til liberale og republikanske tradisjoner"
+    },
+    {
+      "id": "s28-anderson-nationalism",
+      "label": "Imagined Communities – theory and reception",
+      "url": "https://www.cambridge.org/core/journals/review-of-international-studies/article/international-relations-of-the-imagined-community-explaining-the-late-nineteenthcentury-genesis-of-the-chinese-nation/78FC8E24A3AAE741CCF2F19B423D5323",
+      "publisher": "Cambridge University Press",
+      "type": "fagfellevurdert_teoriartikkel",
+      "source_location": "Innledningens rekonstruksjon av nasjonen som forestilt fellesskap og trykkapitalismens rolle"
+    },
+    {
+      "id": "s29-politiloven",
+      "label": "Lov om politiet",
+      "url": "https://lovdata.no/lov/1995-08-04-53",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§ 11 om arrangementer på offentlig sted og politiets vilkår for orden og sikkerhet"
+    },
+    {
+      "id": "s30-likestillingsloven",
+      "label": "Likestillings- og diskrimineringsloven",
+      "url": "https://lovdata.no/lov/2017-06-16-51",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 1, 6 og 24–26 om likestilling, diskrimineringsvern og aktivt likestillingsarbeid"
+    }
+  ],
+  "claims": [
+    {
+      "id": "konflikt-01",
+      "claim": "En sporbar konfliktanalyse må identifisere aktører, krav, målgruppe, arena og tidsforløp før den forklarer hvorfor konflikten utviklet seg.",
+      "source_ids": [
+        "s21-mcadam-tarrow-tilly"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "konflikt-02",
+      "claim": "En enkelt protesthendelse er en avgrenset episode, mens en sosial bevegelse forutsetter mer varige forbindelser, gjentatt mobilisering og et handlingsrepertoar.",
+      "source_ids": [
+        "s21-mcadam-tarrow-tilly"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "konflikt-03",
+      "claim": "Interessekonflikt om ressurser og verdikonflikt om normer kan overlappe, men de må skilles analytisk fordi krav, kompromissrom og responsmekanismer kan være ulike.",
+      "source_ids": [
+        "s21-mcadam-tarrow-tilly",
+        "s24-mouffe-agonistics"
+      ],
+      "classification": "distinksjon",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "konflikt-04",
+      "claim": "Felles interesser skaper ikke automatisk kollektiv handling; organisering, selektive insentiver, nettverk og kapasitet påvirker om personer faktisk mobiliserer.",
+      "source_ids": [
+        "s17-olson-collective-action"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "konflikt-05",
+      "claim": "Myndighetsrespons og politisk utfall er egne ledd: synlighet, møte, politiinngrep, forhandling, vedtak og implementering må dokumenteres separat.",
+      "source_ids": [
+        "s21-mcadam-tarrow-tilly",
+        "s29-politiloven"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "konflikt-06",
+      "claim": "Makt kan observeres når én aktør får gjennomslag i en beslutning der andre aktører foretrekker et annet utfall.",
+      "source_ids": [
+        "s18-bachrach-baratz",
+        "s19-lukes-power"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "konflikt-07",
+      "claim": "Dagsordenmakt virker også før vedtaket ved å holde krav, alternativer eller berørte grupper utenfor den autoriserte beslutningsarenaen.",
+      "source_ids": [
+        "s18-bachrach-baratz",
+        "s04-nou-2003-19"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "konflikt-08",
+      "claim": "Lukes’ tredimensjonale maktbegrep åpner for å undersøke hvordan institusjoner og sosiale forhold kan forme oppfatninger av hva som er mulig eller legitimt.",
+      "source_ids": [
+        "s19-lukes-power"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "konflikt-09",
+      "claim": "Formell myndighet og faktisk innflytelse er ikke det samme; ressurser, ekspertise, nettverk og adgang til beslutningstakere kan fordele påvirkning ulikt.",
+      "source_ids": [
+        "s04-nou-2003-19"
+      ],
+      "classification": "distinksjon",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "konflikt-10",
+      "claim": "En maktressurs må spesifiseres som for eksempel penger, medlemsmasse, kunnskap, organisasjon, medietilgang, rettslig posisjon eller kontroll over et fysisk rom.",
+      "source_ids": [
+        "s04-nou-2003-19",
+        "s17-olson-collective-action"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "konflikt-11",
+      "claim": "Grunnloven verner både ytringsfriheten og retten til å danne og delta i foreninger, fredelige forsamlinger og demonstrasjoner.",
+      "source_ids": [
+        "s01-grunnloven-100-101"
+      ],
+      "classification": "rettighet",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "konflikt-12",
+      "claim": "EMK artikkel 10 og 11 verner ytring, forsamling og forening, men tillater lovbestemte og nødvendige begrensninger for angitte legitime formål.",
+      "source_ids": [
+        "s02-emk-10-11"
+      ],
+      "classification": "rettighet",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "konflikt-13",
+      "claim": "Frivillige organisasjoner kan både være interne skoler i deltakelse og eksterne kanaler som representerer interesser og ideer overfor offentligheten og staten.",
+      "source_ids": [
+        "s05-nou-2011-20"
+      ],
+      "classification": "institusjon",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "konflikt-14",
+      "claim": "SSBs levekårsundersøkelse måler medlemskap, organisasjonsaktivitet, frivillig innsats, politisk deltakelse og tillit som adskilte indikatorer.",
+      "source_ids": [
+        "s06-ssb-frivillighet-tillit"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "konflikt-15",
+      "claim": "Organisasjonsdeltakelse er sosialt ulikt fordelt, og SSB har blant annet dokumentert høyere aktivt medlemskap blant heltids yrkesaktive enn blant arbeidsledige og uføre.",
+      "source_ids": [
+        "s07-ssb-deltakelsesforskjeller"
+      ],
+      "classification": "empiri",
+      "status": "verified",
+      "used_in": [
+        "konflikt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "konflikt-16",
+      "claim": "Protestformer inngår i historisk utviklede repertoarer; tog, streik, okkupasjon, underskriftskampanje og digital mobilisering har ulike kostnader og publikum.",
+      "source_ids": [
+        "s21-mcadam-tarrow-tilly"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-1"
+      ]
+    },
+    {
+      "id": "konflikt-17",
+      "claim": "Kollektive handlingsrammer kan diagnostisere et problem, foreslå en løsning og motivere deltakelse, og disse oppgavene bør analyseres hver for seg.",
+      "source_ids": [
+        "s20-benford-snow"
+      ],
+      "classification": "mekanisme",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-1"
+      ]
+    },
+    {
+      "id": "konflikt-18",
+      "claim": "Politiske muligheter virker gjennom samhandling: allianser, splittelser, adgang og myndighetsrespons påvirker mobilisering, men gir ikke et automatisk utfall.",
+      "source_ids": [
+        "s21-mcadam-tarrow-tilly"
+      ],
+      "classification": "kausalitet",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-1"
+      ]
+    },
+    {
+      "id": "konflikt-19",
+      "claim": "Eidsvolls plass er en regulert ytringsarena der enkeltpersoner og organisasjoner kan søke om politiske, humanitære og religiøse markeringer.",
+      "source_ids": [
+        "s12-stortinget-eidsvolls-plass"
+      ],
+      "classification": "sted",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-1"
+      ]
+    },
+    {
+      "id": "konflikt-20",
+      "claim": "Youngstorget brukes til demonstrasjoner og markeringer, og kobler et offentlig byrom til arbeiderbevegelsens organisasjoner og historiske mobilisering.",
+      "source_ids": [
+        "s11-oslo-youngstorget",
+        "s13-lo-tidslinje"
+      ],
+      "classification": "sted",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-1"
+      ]
+    },
+    {
+      "id": "konflikt-21",
+      "claim": "En tariffavtale institusjonaliserer interessekonflikt gjennom bindende regler, og fredsplikten begrenser arbeidskamp mens avtalen gjelder.",
+      "source_ids": [
+        "s08-arbeidstvistloven",
+        "s10-hovedavtalen-lo-nho"
+      ],
+      "classification": "institusjon",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-2"
+      ]
+    },
+    {
+      "id": "konflikt-22",
+      "claim": "Arbeidstvistloven regulerer tariffavtaler, mekling og arbeidskamp, slik at streik må analyseres som en rettslig organisert prosess og ikke bare som spontan uro.",
+      "source_ids": [
+        "s08-arbeidstvistloven"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-2"
+      ]
+    },
+    {
+      "id": "konflikt-23",
+      "claim": "Det norske trepartssamarbeidet bygger på organiserte arbeidstaker- og arbeidsgiverparter og samspill med myndighetene.",
+      "source_ids": [
+        "s09-nou-2021-9"
+      ],
+      "classification": "institusjon",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-2"
+      ]
+    },
+    {
+      "id": "konflikt-24",
+      "claim": "Organisasjonsgrad og tariffavtaledekning påvirker hvilke grupper som har kollektive representanter, forhandlingsressurser og tilgang til partssamarbeidet.",
+      "source_ids": [
+        "s09-nou-2021-9"
+      ],
+      "classification": "fordeling",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-2"
+      ]
+    },
+    {
+      "id": "konflikt-25",
+      "claim": "LOs historiske tidslinje viser hvordan organisering, 1. mai-markeringer og krav om åttetimersdag bandt møteplass, kollektiv identitet og reformkrav sammen.",
+      "source_ids": [
+        "s13-lo-tidslinje"
+      ],
+      "classification": "historisk_case",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-2"
+      ]
+    },
+    {
+      "id": "konflikt-26",
+      "claim": "Ideologi organiserer politiske fortolkninger ved å koble problemdefinisjon, aktørbilde, verdier, årsaksfortelling og foretrukne institusjoner.",
+      "source_ids": [
+        "s25-berman-social-democracy",
+        "s26-young-structural-injustice",
+        "s27-dobson-ecological-citizenship"
+      ],
+      "classification": "begrep",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-3"
+      ]
+    },
+    {
+      "id": "konflikt-27",
+      "claim": "En demokratisk offentlighet er både kommunikasjon og infrastruktur: medier, møterom, organisasjoner og regler påvirker hvem som blir hørt.",
+      "source_ids": [
+        "s22-habermas-offentlighet",
+        "s03-nou-2022-9"
+      ],
+      "classification": "offentlighet",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-3"
+      ]
+    },
+    {
+      "id": "konflikt-28",
+      "claim": "Frasers kritikk viser at én påstått felles offentlighet kan skjule eksklusjon, mens motoffentligheter kan utvikle språk, interesser og motargumenter.",
+      "source_ids": [
+        "s23-fraser-counterpublics"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-3"
+      ]
+    },
+    {
+      "id": "konflikt-29",
+      "claim": "Makt- og demokratiutredningen beskrev medienes økte premiss- og dagsordenmakt samtidig som partier og frivillige organisasjoner var blitt svakere mobiliseringskanaler.",
+      "source_ids": [
+        "s04-nou-2003-19"
+      ],
+      "classification": "empiri",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-3"
+      ]
+    },
+    {
+      "id": "konflikt-30",
+      "claim": "Ytringsfrihetskommisjonen fant ikke grunnlag for å hevde at Norge generelt ble stadig mer polarisert, og skilte samfunnspolarisering fra inntrykk i nettdebatter.",
+      "source_ids": [
+        "s03-nou-2022-9"
+      ],
+      "classification": "distinksjon",
+      "status": "verified",
+      "used_in": [
+        "konflikt-fordypning-3"
+      ]
+    },
+    {
+      "id": "konflikt-31",
+      "claim": "Høyesterett slo i Fosen-dommen fast at konsesjonsvedtakene krenket reineiernes rett til kulturutøvelse etter SP artikkel 27 og derfor var ugyldige.",
+      "source_ids": [
+        "s14-fosen-dommen",
+        "s16-nim-samiske-bruksomrader"
+      ],
+      "classification": "rettsavgjorelse",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "konflikt-32",
+      "claim": "Fosen-saken må analyseres som flere ledd fordi dommens rettslige konklusjon, forvaltningens oppfølging, protestene og den senere avtaleløsningen ikke var samme hendelse.",
+      "source_ids": [
+        "s14-fosen-dommen",
+        "s15-fosen-oppfolging"
+      ],
+      "classification": "prosessporing",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "konflikt-33",
+      "claim": "Meklingen førte til avtale med Sør-Fosen sijte i desember 2023 og med Nord-Fosen siida i mars 2024, med forpliktelser for selskaper og stat.",
+      "source_ids": [
+        "s15-fosen-oppfolging"
+      ],
+      "classification": "utfall",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "konflikt-34",
+      "claim": "En miljøpolitisk konflikt må spesifisere hvem som får nytte, hvem som bærer areal- og kulturkostnader, hvilke rettigheter som gjelder og hvem som deltar i beslutningen.",
+      "source_ids": [
+        "s14-fosen-dommen",
+        "s16-nim-samiske-bruksomrader",
+        "s27-dobson-ecological-citizenship"
+      ],
+      "classification": "fordeling",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "konflikt-35",
+      "claim": "Romlig maktanalyse skiller plasseringen av inngrepet, beslutningsarenaen, protestarenaen og målgruppen fordi fysisk nærhet ikke er det samme som politisk adgang.",
+      "source_ids": [
+        "s12-stortinget-eidsvolls-plass",
+        "s14-fosen-dommen",
+        "s15-fosen-oppfolging"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "konflikt-36",
+      "claim": "Berman behandler sosialdemokrati som en selvstendig politisk tradisjon som hevder politikkens evne til å forme økonomi og fellesskap, ikke som utvannet marxisme.",
+      "source_ids": [
+        "s25-berman-social-democracy"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "konflikt-37",
+      "claim": "Youngs begrep om strukturell urett retter analysen mot prosesser som gjentatte ganger begrenser noen gruppers muligheter og gir andre privilegier.",
+      "source_ids": [
+        "s26-young-structural-injustice"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "konflikt-38",
+      "claim": "Dobsons økologiske borgerskap utvider politisk ansvar utover statens territorium og spør hvordan handlingers miljøvirkninger skaper plikter overfor andre.",
+      "source_ids": [
+        "s27-dobson-ecological-citizenship"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "konflikt-39",
+      "claim": "Andersons nasjonalismebegrep analyserer nasjonen som et forestilt politisk fellesskap som blir mulig gjennom kulturelle og kommunikative praksiser.",
+      "source_ids": [
+        "s28-anderson-nationalism"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "konflikt-40",
+      "claim": "Ideologiske tradisjoner bør sammenlignes på samme akser: problem, politisk subjekt, frihets- og likhetsbegrep, maktforståelse, institusjon og akseptabel endring.",
+      "source_ids": [
+        "s24-mouffe-agonistics",
+        "s25-berman-social-democracy",
+        "s26-young-structural-injustice",
+        "s27-dobson-ecological-citizenship",
+        "s28-anderson-nationalism"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "konflikt-41",
+      "claim": "Mouffes agonistiske modell søker å omforme antagonisme mellom fiender til strid mellom legitime motstandere som deler demokratiske spilleregler.",
+      "source_ids": [
+        "s24-mouffe-agonistics"
+      ],
+      "classification": "teori",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-3"
+      ]
+    },
+    {
+      "id": "konflikt-42",
+      "claim": "Legitimitet kan ikke sluttes fra lovlighet alene; berørte gruppers adgang, begrunnelse, prosedyre, rettigheter og faktisk oppfølging må vurderes separat.",
+      "source_ids": [
+        "s03-nou-2022-9",
+        "s16-nim-samiske-bruksomrader",
+        "s22-habermas-offentlighet"
+      ],
+      "classification": "normativ_analyse",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-3"
+      ]
+    },
+    {
+      "id": "konflikt-43",
+      "claim": "Tillit må behandles som et målt forhold til bestemte personer eller institusjoner, ikke som én stabil egenskap ved et helt samfunn.",
+      "source_ids": [
+        "s06-ssb-frivillighet-tillit"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-3"
+      ]
+    },
+    {
+      "id": "konflikt-44",
+      "claim": "Minnesteder og monumenter velger ut aktører, verdier og hendelser; LOs bruk av Pioneren ved Folkets Hus viser hvordan organisasjoner produserer historisk identitet.",
+      "source_ids": [
+        "s13-lo-tidslinje"
+      ],
+      "classification": "symbolanalyse",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-3"
+      ]
+    },
+    {
+      "id": "konflikt-45",
+      "claim": "En avsluttende konfliktvurdering bør skille dokumentert hendelsesforløp, kausal mekanisme, alternativ forklaring, empirisk rekkevidde og normativ dom.",
+      "source_ids": [
+        "s21-mcadam-tarrow-tilly",
+        "s24-mouffe-agonistics"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "konflikt-anvendelse-3"
+      ]
+    }
+  ]
+}

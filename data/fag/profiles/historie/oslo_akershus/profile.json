@@ -41,12 +41,12 @@
     "emner_with_profile_case_candidates": 206,
     "emne_link_ratio_percent": 89.6,
     "cases_total": 113,
-    "claims_total": 213,
-    "sources_total": 160,
-    "evidence_links_total": 220,
+    "claims_total": 219,
+    "sources_total": 164,
+    "evidence_links_total": 226,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 44,
+    "verified_cases_total": 47,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -592,10 +592,13 @@
       "label": "Børsen",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "borsen_oslo"
+      ],
       "emne_ids": [
+        "em_his_okonomi_handel_eiendom_kapital_og_akkumulering",
         "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
         "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
         "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
@@ -603,10 +606,22 @@
         "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
         "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_economy_trade_material_systems_evidence_v1",
+        "validated_at": "2026-07-31",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -2141,21 +2156,37 @@
       "label": "Norges Bank",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "norges_bank_bankplassen_4"
+      ],
       "emne_ids": [
         "em_his_okonomi_handel_eiendom_kapital_og_akkumulering",
+        "em_his_okonomi_handel_forbruk_priser_og_levestandard",
         "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
         "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
         "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
         "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
         "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_economy_trade_material_systems_evidence_v1",
+        "validated_at": "2026-07-31",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -3248,11 +3279,14 @@
       "label": "Tollboden",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "tollboden_oslo"
+      ],
       "emne_ids": [
         "em_his_okonomi_handel_forbruk_priser_og_levestandard",
+        "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
         "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
         "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
         "em_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
@@ -3261,10 +3295,22 @@
         "em_his_statlig_kapasitet_skatt_infrastruktur",
         "em_his_styring_krise_kontinuitet"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_economy_trade_material_systems_evidence_v1",
+        "validated_at": "2026-07-31",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_limitations"
       }
     },
     {
@@ -7759,7 +7805,7 @@
       "provenance": "recommended_oslo_cases"
     }
   ],
-  "last_updated": "2026-07-30",
+  "last_updated": "2026-07-31",
   "evidence_batches": [
     {
       "batch_id": "history_medieval_social_economic_legal_evidence_v1",
@@ -8258,6 +8304,58 @@
         "theory_his_katastrofer_brudd_langsomme_katastrofer_og_miljoskade",
         "theory_his_katastrofer_brudd_langsomme_katastrofer_miljoskade_og_ulik_eksponering",
         "theory_his_katastrofer_brudd_katastrofer_branner_ulykker_og_historiske_brudd_fordypning_10"
+      ]
+    },
+    {
+      "batch_id": "history_economy_trade_material_systems_evidence_v1",
+      "status": "validated",
+      "validated_at": "2026-07-31",
+      "newly_verified_case_ids": [
+        "case_his_borsen",
+        "case_his_norges_bank",
+        "case_his_tollboden"
+      ],
+      "expanded_case_ids": [
+        "case_his_akerselva",
+        "case_his_bjarkoy_samisk_norron_skatt_og_hovdingnettverk",
+        "case_his_hjula_vaeveri",
+        "case_his_nydalen",
+        "case_his_ulleval_hageby",
+        "case_his_vagar_samisk_norron_handel_og_kongelig_monopol"
+      ],
+      "claim_ids": [
+        "claim_his_oslo_bors_market_scope_transition_1819_1895",
+        "claim_his_oslo_bors_crisis_regulation_electronic_trade_1895_1999",
+        "claim_his_norges_bank_crash_rediscount_headquarters_1897_1914",
+        "claim_his_norges_bank_historical_price_wage_series_revisions_1492_2022",
+        "claim_his_tollboden_customs_site_continuity_1790_1896",
+        "claim_his_tollboden_goods_capacity_change_1840_1969"
+      ],
+      "source_ids": [
+        "src_his_snl_oslo_bors_history",
+        "src_his_norges_bank_historical_monetary_financial_statistics_2022",
+        "src_his_norges_bank_history_timeline",
+        "src_his_riksantikvaren_oslo_tollbod"
+      ],
+      "evidence_ids": [
+        "evidence_his_economy_trade_material_systems_v1_01",
+        "evidence_his_economy_trade_material_systems_v1_02",
+        "evidence_his_economy_trade_material_systems_v1_03",
+        "evidence_his_economy_trade_material_systems_v1_04",
+        "evidence_his_economy_trade_material_systems_v1_05",
+        "evidence_his_economy_trade_material_systems_v1_06"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_okonomi_handel_markeder_og_markedsintegrasjon",
+        "theory_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "theory_his_okonomi_handel_penger_kreditt_bank_og_finans",
+        "theory_his_okonomi_handel_eiendom_kapital_og_akkumulering",
+        "theory_his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+        "theory_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+        "theory_his_okonomi_handel_forbruk_priser_og_levestandard",
+        "theory_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+        "theory_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+        "theory_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet"
       ]
     }
   ]

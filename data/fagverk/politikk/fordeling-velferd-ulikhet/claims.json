@@ -1,0 +1,937 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "fordeling-velferd-ulikhet",
+  "verified_at": "2026-07-31",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "s01-ssb-inntekt-2024",
+      "label": "Flere lever med lavinntekt",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/inntekt-og-formue/statistikk/inntekts-og-formuesstatistikk-for-husholdninger/artikler/flere-lever-med-lavinntekt",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Hovedresultater og faktaboks om EU-skala, lavinntekt og Gini, inntektsåret 2024"
+    },
+    {
+      "id": "s02-ssb-fattigdomsproblemer",
+      "label": "Fattigdomsproblemer, levekårsundersøkelsen",
+      "url": "https://www.ssb.no/sosiale-forhold-og-kriminalitet/levekar/statistikk/fattigdomsproblemer-levekarsundersokelsen",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Definisjoner: lavinntekt EU60, inntekt per forbruksenhet og materielle vansker"
+    },
+    {
+      "id": "s03-ssb-lavinntekt-2025",
+      "label": "Økonomi og levekår for lavinntektsgrupper 2025",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/inntekt-og-formue/artikler/okonomi-og-levekar-for-lavinntektsgrupper-2025/_/attachment/inline/d4d85b49-188d-4c9e-a828-5fea74616dff%3Aa50b23ff541c654fee4399aff0ad94d975d9a133/RAPP2025-28.pdf",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_rapport",
+      "source_location": "Kapittel 2 om inntektsmål og kapitlene om økonomiske vansker, bolig, helse og sosial deltakelse"
+    },
+    {
+      "id": "s04-ssb-formue",
+      "label": "Sterk formuesvekst for husholdningene",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/inntekt-og-formue/statistikk/inntekts-og-formuesstatistikk-for-husholdninger/artikler/sterk-formuesvekst-for-husholdningene",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Definisjon av beregnet nettoformue og fordeling etter desiler, inntektsåret 2021"
+    },
+    {
+      "id": "s05-atkinson-ulikhetsmal",
+      "label": "On the Measurement of Inequality",
+      "url": "https://doi.org/10.1016/0022-0531(70)90039-6",
+      "publisher": "Journal of Economic Theory",
+      "type": "fagfellevurdert_originalartikkel",
+      "source_location": "Vol. 2, nr. 3, s. 244–263, særlig skillet mellom fordelingsmål og eksplisitte vurderinger"
+    },
+    {
+      "id": "s06-sosialtjenesteloven",
+      "label": "Sosialtjenesteloven",
+      "url": "https://lovdata.no/lov/2009-12-18-131",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 1, 18 og 19 om formål, stønad til livsopphold og stønad i særlige tilfeller"
+    },
+    {
+      "id": "s07-rundskriv-sosialtjenester",
+      "label": "Rundskriv til sosialtjenesteloven",
+      "url": "https://lovdata.no/nav/rundskriv/r35-00",
+      "publisher": "Arbeids- og velferdsdirektoratet / Lovdata",
+      "type": "rundskriv",
+      "source_location": "Kommentarene til §§ 18 og 19 om subsidiaritet, individuell vurdering og forsvarlig livsopphold"
+    },
+    {
+      "id": "s08-folketrygdloven",
+      "label": "Folketrygdloven",
+      "url": "https://lovdata.no/lov/1997-02-28-19",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§ 1-1 om formål og kapittelstrukturen for inntektssikring og kompensasjon"
+    },
+    {
+      "id": "s09-nav-sosialhjelp-2025",
+      "label": "Sosialhjelpstall for 2025",
+      "url": "https://www.nav.no/_/attachment/inline/b57d8b08-b9b1-48d0-8a78-72e806286ddb%3A6f7976c7fb770306c67262d35f9196e14c80112b/Statistikknotat_Sosialhjelpstall_hele%202025.pdf",
+      "publisher": "Arbeids- og velferdsdirektoratet",
+      "type": "offisiell_statistikk",
+      "source_location": "Sammendrag og s. 4–7 om utvalg, dekningsgrad, mottakere og prisjusterte utbetalinger"
+    },
+    {
+      "id": "s10-korpi-palme",
+      "label": "The Paradox of Redistribution and Strategies of Equality",
+      "url": "https://doi.org/10.2307/2657333",
+      "publisher": "American Sociological Review",
+      "type": "fagfellevurdert_originalartikkel",
+      "source_location": "Vol. 63, nr. 5, s. 661–687, institusjonell utforming, målretting og omfordeling"
+    },
+    {
+      "id": "s11-finans-budsjett",
+      "label": "Veileder til statlig budsjettarbeid",
+      "url": "https://www.regjeringen.no/no/dokumenter/veileder-i-statlig-budsjettarbeid/id439275/?ch=3",
+      "publisher": "Finansdepartementet",
+      "type": "offisiell_veileder",
+      "source_location": "Kapittel 5.2 om ettårsprinsippet, fullstendighet, kontantprinsipp og bruttoprinsipp"
+    },
+    {
+      "id": "s12-finans-regnskap",
+      "label": "Veileder til statlig budsjettarbeid – statsregnskapet",
+      "url": "https://www.regjeringen.no/no/dokumenter/veileder-i-statlig-budsjettarbeid/id439275/?ch=4",
+      "publisher": "Finansdepartementet",
+      "type": "offisiell_veileder",
+      "source_location": "Kommentar til bevilgningsreglementet § 13 om bevilgningsregnskap og kapitalregnskap"
+    },
+    {
+      "id": "s13-oslo-bydelsfakta",
+      "label": "Bydelsfakta – levekårsindikatorer",
+      "url": "https://bydelsfakta.oslo.kommune.no/bydel/alle/levekaar/",
+      "publisher": "Oslo kommune",
+      "type": "kommunal_statistikk",
+      "source_location": "Sammenligningsvisningen for befolkning, levekår og boforhold på bydels- og delbydelsnivå"
+    },
+    {
+      "id": "s14-ssb-opphopning",
+      "label": "Opphopning av dårlige levekår",
+      "url": "https://www.ssb.no/sosiale-forhold-og-kriminalitet/artikler-og-publikasjoner/_attachment/285523",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_rapport",
+      "source_location": "Sammendrag og kapittel 3–5 om indikatorer, korrelasjoner og opphopning av levekårsproblemer"
+    },
+    {
+      "id": "s15-husbanken-startlan",
+      "label": "Startlån og tilskudd fra kommunen",
+      "url": "https://www.husbanken.no/person/startlaan/",
+      "publisher": "Husbanken",
+      "type": "institusjonell_veiledning",
+      "source_location": "Formål, målgruppe og kommunens vurdering av langvarige finansieringsproblemer"
+    },
+    {
+      "id": "s16-husbanken-bostotte",
+      "label": "Kan du få bostøtte?",
+      "url": "https://www.husbanken.no/person/bostotte/kan-jeg-faa-bostotte/",
+      "publisher": "Husbanken",
+      "type": "institusjonell_veiledning",
+      "source_location": "Vilkår om lav inntekt, høye boutgifter, husstand og øvre inntektsgrense"
+    },
+    {
+      "id": "s17-husbanken-beregning",
+      "label": "Beregning av bostøtte",
+      "url": "https://www.husbanken.no/person/bostotte/beregning-av-bostotte/",
+      "publisher": "Husbanken",
+      "type": "institusjonell_veiledning",
+      "source_location": "Inntektsgrunnlag, godkjente boutgifter, egenandel og husstandsstørrelse"
+    },
+    {
+      "id": "s18-oslo-kommunal-bolig",
+      "label": "Søke kommunal bolig",
+      "url": "https://www.oslo.kommune.no/bolig-og-sosiale-tjenester/bolig/kommunal-bolig/soke-kommunal-bolig/",
+      "publisher": "Oslo kommune",
+      "type": "kommunal_veiledning",
+      "source_location": "Søknadsprosess, bydelsvis behandling, dokumentasjon og tre ukers klagefrist"
+    },
+    {
+      "id": "s19-plan-bygningsloven",
+      "label": "Plan- og bygningsloven",
+      "url": "https://lovdata.no/lov/2008-06-27-71",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 1-1 og 3-1 om bærekraft, medvirkning, boligbygging, gode bomiljøer, helse og sosiale hensyn"
+    },
+    {
+      "id": "s20-kommunalt-helseansvar",
+      "label": "Kommunens ansvar for helse- og omsorgstjenester",
+      "url": "https://www.helsedirektoratet.no/rundskriv/helse-og-omsorgstjenesteloven-med-kommentarer/kommunenes-ansvar-for-helse-og-omsorgstjenester/-3-1-kommunens-overordnede-ansvar-for-helse-og-omsorgstjenester",
+      "publisher": "Helsedirektoratet",
+      "type": "rundskriv",
+      "source_location": "Kommentar til helse- og omsorgstjenesteloven § 3-1 om kommunens sørge-for-ansvar"
+    },
+    {
+      "id": "s21-helsedirektoratet-prioritering",
+      "label": "Prioritering i helse- og omsorgstjenesten",
+      "url": "https://www.helsedirektoratet.no/forebygging-diagnose-og-behandling/organisering-og-tjenestetilbud/prioritering-i-helsetjenesten",
+      "publisher": "Helsedirektoratet",
+      "type": "institusjonell_veiledning",
+      "source_location": "Nytte-, ressurs- og alvorlighetskriteriene og anvendelsesområdet i offentlig finansierte tjenester"
+    },
+    {
+      "id": "s22-pasientrettighetsloven",
+      "label": "Pasient- og brukerrettighetsloven",
+      "url": "https://lovdata.no/lov/1999-07-02-63",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Kapittel 2, særlig §§ 2-1 a, 2-2 og 2-2 a om nødvendig helsehjelp, vurdering og frist"
+    },
+    {
+      "id": "s23-nou-prioritering",
+      "label": "NOU 2018: 16 Det viktigste først",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2018-16/id2622153/",
+      "publisher": "Helse- og omsorgsdepartementet",
+      "type": "offentlig_utredning",
+      "source_location": "Kapittel 8–10 om prinsipper, kriterier og beslutningsnivåer i kommunale helse- og omsorgstjenester"
+    },
+    {
+      "id": "s24-opplaeringsloven",
+      "label": "Opplæringsloven 2023",
+      "url": "https://lovdata.no/lov/2023-06-09-30",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Kapittel 2, 5, 11, 12 og 18 om rett til opplæring, tilrettelegging og skolemiljø"
+    },
+    {
+      "id": "s25-ssb-sosial-reproduksjon",
+      "label": "Sosial reproduksjon av utdanning?",
+      "url": "https://www.ssb.no/utdanning/artikler-og-publikasjoner/sosial-reproduksjon-av-utdanning",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_analyse",
+      "source_location": "Resultater om foreldres utdanning, karakterer, valg, frafall og gjennomføring"
+    },
+    {
+      "id": "s26-ssb-lavinntekt-barn",
+      "label": "Barn i vedvarende lavinntekt klarer seg litt dårligere i utdanning og arbeid",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/inntekt-og-formue/artikler/barn-i-vedvarende-lavinntekt-klarer-seg-litt-darligere-i-utdanning-og-arbeid",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_analyse",
+      "source_location": "Kohortresultater om fullføring, høyere utdanning og arbeid; avgrensninger etter bakgrunn"
+    },
+    {
+      "id": "s27-ssb-levekar-arv",
+      "label": "Økonomiske levekår går i arv",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/artikler-og-publikasjoner/okonomiske-levekar-gar-i-arv",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_analyse",
+      "source_location": "Registeranalyse av foreldres og voksne barns inntektsposisjon og vedvarende lavinntekt"
+    },
+    {
+      "id": "s28-ssb-lokalvalg-2023",
+      "label": "Innvandrere og norskfødte ved kommunestyrevalget 2023",
+      "url": "https://www.ssb.no/valg/kommunestyre-og-fylkestingsvalg/artikler/innvandrere-og-norskfodte-ved-kommunestyrevalget-2023",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_valgstatistikk",
+      "source_location": "Valgdeltakelse og representasjon etter innvandringskategori ved kommunestyrevalget 2023"
+    },
+    {
+      "id": "s29-ssb-deltaking",
+      "label": "Deltaking, støtte, tillit og tilhørighet",
+      "url": "https://www.ssb.no/sosiale-forhold-og-kriminalitet/artikler-og-publikasjoner/_attachment/248399",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_rapport",
+      "source_location": "Kapittel 2–6 om måling av sosial og politisk deltakelse og ulikhet etter ressurser"
+    },
+    {
+      "id": "s30-arbark-folkets-hus",
+      "label": "Folkets Hus bygges",
+      "url": "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+      "publisher": "Arbeiderbevegelsens arkiv og bibliotek",
+      "type": "arkivutstilling",
+      "source_location": "Historikken om finansiering, organisasjonslokaler, byggeperioden 1954–1962 og institusjonene i huset"
+    }
+  ],
+  "claims": [
+    {
+      "id": "fordeling-01",
+      "claim": "Inntekt per forbruksenhet justerer husholdningsinntekt for at personer deler ressurser og for at voksne og barn tillegges ulik forbruksvekt.",
+      "source_ids": [
+        "s01-ssb-inntekt-2024",
+        "s02-ssb-fattigdomsproblemer"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-1",
+        "begrep-ekvivalensskala",
+        "Bygg en fordelingsprofil for en offentlig ordning.",
+        "Hvorfor må husholdningsinntekt ekvivaleres?"
+      ]
+    },
+    {
+      "id": "fordeling-02",
+      "claim": "EU60 er en relativ lavinntektsgrense på 60 prosent av median inntekt per forbruksenhet og må ikke leses som et direkte mål på alle materielle behov.",
+      "source_ids": [
+        "s02-ssb-fattigdomsproblemer",
+        "s03-ssb-lavinntekt-2025"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-1",
+        "begrep-eu60",
+        "Bygg en fordelingsprofil for en offentlig ordning.",
+        "Hva skiller lavinntekt fra materiell knapphet?"
+      ]
+    },
+    {
+      "id": "fordeling-03",
+      "claim": "Gini-koeffisienten sammenfatter hele inntektsfordelingen i ett tall, men viser ikke alene hvilke grupper eller deler av fordelingen som har endret seg.",
+      "source_ids": [
+        "s01-ssb-inntekt-2024",
+        "s05-atkinson-ulikhetsmal"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-1",
+        "begrep-gini",
+        "Bygg en fordelingsprofil for en offentlig ordning."
+      ]
+    },
+    {
+      "id": "fordeling-04",
+      "claim": "Gjennomsnitt, median, lavinntektsandel, desilgrenser og spredningsmål beskriver forskjellige sider ved en fordeling og kan utvikle seg ulikt.",
+      "source_ids": [
+        "s01-ssb-inntekt-2024",
+        "s05-atkinson-ulikhetsmal"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-1",
+        "fordeling-anvendelse-3"
+      ]
+    },
+    {
+      "id": "fordeling-05",
+      "claim": "Inntekt er en strøm over en periode, mens nettoformue er en beholdning av eiendeler fratrukket gjeld på et tidspunkt; målene kan derfor ikke brukes om hverandre.",
+      "source_ids": [
+        "s04-ssb-formue"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-1"
+      ]
+    },
+    {
+      "id": "fordeling-06",
+      "claim": "Lavinntekt identifiserer økonomisk risiko, mens levekårsundersøkelser også måler konkrete betalingsproblemer, mangler og sosial deltakelse.",
+      "source_ids": [
+        "s02-ssb-fattigdomsproblemer",
+        "s03-ssb-lavinntekt-2025"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-1",
+        "Hva skiller lavinntekt fra materiell knapphet?"
+      ]
+    },
+    {
+      "id": "fordeling-07",
+      "claim": "Folketrygdens lovfestede formål er å gi økonomisk trygghet ved å sikre inntekt og kompensere bestemte utgifter ved definerte sosiale risikoer.",
+      "source_ids": [
+        "s08-folketrygdloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-2"
+      ]
+    },
+    {
+      "id": "fordeling-08",
+      "claim": "Sosialtjenesteloven § 18 gir krav på økonomisk stønad til den som ikke kan sørge for sitt livsopphold gjennom arbeid eller andre økonomiske rettigheter.",
+      "source_ids": [
+        "s06-sosialtjenesteloven",
+        "s07-rundskriv-sosialtjenester"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-2"
+      ]
+    },
+    {
+      "id": "fordeling-09",
+      "claim": "Sosialtjenesteloven § 19 åpner for stønad i særlige tilfeller selv når vilkårene i § 18 ikke er oppfylt, og markerer et eget skjønnsrom.",
+      "source_ids": [
+        "s06-sosialtjenesteloven",
+        "s07-rundskriv-sosialtjenester"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-2"
+      ]
+    },
+    {
+      "id": "fordeling-10",
+      "claim": "Økonomisk sosialhjelp krever en konkret og individuell vurdering av søkerens nødvendige utgifter, inntekter, rettigheter og faktiske situasjon.",
+      "source_ids": [
+        "s07-rundskriv-sosialtjenester"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-2",
+        "Bygg en fordelingsprofil for en offentlig ordning."
+      ]
+    },
+    {
+      "id": "fordeling-11",
+      "claim": "Universelle og målrettede ordninger skiller seg både i adgangskriterier, finansiering og politiske koalisjoner; målretting kan ikke vurderes bare ut fra hvem som formelt omfattes.",
+      "source_ids": [
+        "s10-korpi-palme"
+      ],
+      "classification": "forskning",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-2",
+        "begrep-universalisme",
+        "02-fordypning",
+        "fordeling-anvendelse-3",
+        "Hva skiller universell ordning fra behovsprøvd ytelse?"
+      ]
+    },
+    {
+      "id": "fordeling-12",
+      "claim": "NAVs foreløpige sosialhjelpstall for 2025 bygger på et utvalg kontorer med begrenset befolkningsdekning, slik at nivå og endring må rapporteres med utvalgsgrensen synlig.",
+      "source_ids": [
+        "s09-nav-sosialhjelp-2025"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-2"
+      ]
+    },
+    {
+      "id": "fordeling-13",
+      "claim": "Velferdsstaten fordeler risiko gjennom ulike institusjoner: sosialforsikring, behovsprøvd stønad, universelle tjenester og skjønnsbasert hjelp er ikke samme mekanisme.",
+      "source_ids": [
+        "s06-sosialtjenesteloven",
+        "s08-folketrygdloven",
+        "s10-korpi-palme"
+      ],
+      "classification": "institusjonell",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-2",
+        "begrep-universalisme",
+        "02-fordypning",
+        "Hva skiller universell ordning fra behovsprøvd ytelse?"
+      ]
+    },
+    {
+      "id": "fordeling-14",
+      "claim": "Statsbudsjettet vedtas for ett kalenderår og skal etter hovedregelen omfatte alle statlige utgifter og inntekter under Stortingets bevilgningsmyndighet.",
+      "source_ids": [
+        "s11-finans-budsjett"
+      ],
+      "classification": "budsjett",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-3",
+        "begrep-bevilgning",
+        "oslo_radhus"
+      ]
+    },
+    {
+      "id": "fordeling-15",
+      "claim": "En bevilgning er en autorisasjon og ramme, mens bevilgningsregnskapet viser regnskapsførte utgifter og inntekter, total bevilgning og overføringer.",
+      "source_ids": [
+        "s11-finans-budsjett",
+        "s12-finans-regnskap"
+      ],
+      "classification": "budsjett",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-3",
+        "begrep-bevilgning",
+        "02-fordypning",
+        "Bygg en fordelingsprofil for en offentlig ordning.",
+        "Hvorfor er en bevilgning ikke det samme som et velferdsutfall?",
+        "oslo_radhus"
+      ]
+    },
+    {
+      "id": "fordeling-16",
+      "claim": "En nominell budsjettøkning kan gi null eller negativ real endring når pris- og lønnsvekst tas med, og sammenligningen må angi hvilket prisgrunnlag som brukes.",
+      "source_ids": [
+        "s11-finans-budsjett",
+        "s03-ssb-lavinntekt-2025"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-3",
+        "02-fordypning",
+        "Bygg en fordelingsprofil for en offentlig ordning."
+      ]
+    },
+    {
+      "id": "fordeling-17",
+      "claim": "Ressursinnsats, faktisk forbruk, produsert tjeneste, mottak og sosialt utfall er forskjellige ledd; en bevilgning dokumenterer ikke alene hvem som fikk nytte.",
+      "source_ids": [
+        "s12-finans-regnskap",
+        "s03-ssb-lavinntekt-2025"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-3",
+        "02-fordypning",
+        "fordeling-anvendelse-3",
+        "Bygg en fordelingsprofil for en offentlig ordning.",
+        "begrep-fordelingsmekanisme",
+        "Hvorfor er en bevilgning ikke det samme som et velferdsutfall?",
+        "oslo_radhus"
+      ]
+    },
+    {
+      "id": "fordeling-18",
+      "claim": "Lik tildeling per innbygger er ikke nødvendigvis likeverdig når behov, kostnader, demografi og eksisterende kapasitet varierer mellom grupper og områder.",
+      "source_ids": [
+        "s13-oslo-bydelsfakta",
+        "s14-ssb-opphopning"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-grunnlag-3",
+        "02-fordypning",
+        "Sammenlign bolig- eller helsetilgang mellom to områder.",
+        "oslo_radhus"
+      ]
+    },
+    {
+      "id": "fordeling-19",
+      "claim": "Plan- og bygningsloven kobler planlegging til tilstrekkelig boligbygging, gode bomiljøer, helse, sosiale hensyn, åpenhet og medvirkning.",
+      "source_ids": [
+        "s19-plan-bygningsloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-1",
+        "Boligkjeden rundt Ullevål hageby",
+        "02-fordypning",
+        "ullevål_hageby"
+      ]
+    },
+    {
+      "id": "fordeling-20",
+      "claim": "Kommunalt startlån retter seg mot personer som over tid har problemer med å få tilstrekkelig lån i ordinær bank, og kan kombineres med tilskudd etter kommunal vurdering.",
+      "source_ids": [
+        "s15-husbanken-startlan"
+      ],
+      "classification": "ordning",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-1",
+        "Boligkjeden rundt Ullevål hageby",
+        "02-fordypning",
+        "Hvorfor løser ikke flere boliger automatisk et betalbarhetsproblem?",
+        "ullevål_hageby"
+      ]
+    },
+    {
+      "id": "fordeling-21",
+      "claim": "Statlig bostøtte er en behovsprøvd ordning for husstander med lav inntekt og høye boutgifter, med en øvre inntektsgrense.",
+      "source_ids": [
+        "s16-husbanken-bostotte"
+      ],
+      "classification": "ordning",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-1",
+        "Boligkjeden rundt Ullevål hageby",
+        "02-fordypning",
+        "begrep-betalbarhet",
+        "begrep-bostotte",
+        "Hvorfor løser ikke flere boliger automatisk et betalbarhetsproblem?"
+      ]
+    },
+    {
+      "id": "fordeling-22",
+      "claim": "Bostøtte beregnes ut fra husstandens faktiske inntekter, godkjente boutgifter, egenandel og antall husstandsmedlemmer, ikke bare husleien isolert.",
+      "source_ids": [
+        "s16-husbanken-bostotte",
+        "s17-husbanken-beregning"
+      ],
+      "classification": "ordning",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-1",
+        "Boligkjeden rundt Ullevål hageby",
+        "02-fordypning",
+        "begrep-betalbarhet",
+        "begrep-bostotte",
+        "Hvorfor løser ikke flere boliger automatisk et betalbarhetsproblem?"
+      ]
+    },
+    {
+      "id": "fordeling-23",
+      "claim": "Oslo behandler søknad om kommunal bolig i bydelen der søkeren bor og opplyser om en tre ukers klagefrist etter vedtaket.",
+      "source_ids": [
+        "s18-oslo-kommunal-bolig"
+      ],
+      "classification": "forvaltning",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-1"
+      ]
+    },
+    {
+      "id": "fordeling-24",
+      "claim": "Boligtilbud, betalbarhet, botrygghet og formuesoppbygging er ulike utfall som påvirkes av forskjellige kombinasjoner av plan, kreditt, støtte og tildeling.",
+      "source_ids": [
+        "s15-husbanken-startlan",
+        "s16-husbanken-bostotte",
+        "s18-oslo-kommunal-bolig",
+        "s19-plan-bygningsloven"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-1",
+        "Boligkjeden rundt Ullevål hageby",
+        "02-fordypning",
+        "begrep-betalbarhet",
+        "Sammenlign bolig- eller helsetilgang mellom to områder.",
+        "Hvorfor løser ikke flere boliger automatisk et betalbarhetsproblem?",
+        "ullevål_hageby"
+      ]
+    },
+    {
+      "id": "fordeling-25",
+      "claim": "Geografisk nærhet til en tjeneste dokumenterer ikke faktisk adgang; pris, transport, åpningstid, informasjon, kapasitet og administrative vilkår kan være egne terskler.",
+      "source_ids": [
+        "s13-oslo-bydelsfakta",
+        "s18-oslo-kommunal-bolig"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-1",
+        "Boligkjeden rundt Ullevål hageby",
+        "02-fordypning",
+        "Sammenlign bolig- eller helsetilgang mellom to områder.",
+        "ullevål_hageby",
+        "toyen_torg"
+      ]
+    },
+    {
+      "id": "fordeling-26",
+      "claim": "Kommunen har et overordnet sørge-for-ansvar for nødvendige helse- og omsorgstjenester til personer som oppholder seg i kommunen.",
+      "source_ids": [
+        "s20-kommunalt-helseansvar"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-2",
+        "Prioriteringskjeden ved Rikshospitalet",
+        "begrep-sorge-for-ansvar"
+      ]
+    },
+    {
+      "id": "fordeling-27",
+      "claim": "Offentlig prioritering i helse- og omsorgstjenesten bygger på kriteriene nytte, ressursbruk og alvorlighet, som må vurderes samlet i den relevante beslutningen.",
+      "source_ids": [
+        "s21-helsedirektoratet-prioritering",
+        "s23-nou-prioritering"
+      ],
+      "classification": "prioritering",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-2",
+        "Prioriteringskjeden ved Rikshospitalet",
+        "begrep-prioriteringskriterier",
+        "Sammenlign bolig- eller helsetilgang mellom to områder.",
+        "Hvordan brukes prioriteringskriteriene i helse?",
+        "rikshospitalet"
+      ]
+    },
+    {
+      "id": "fordeling-28",
+      "claim": "Rett til nødvendig helsehjelp innebærer vurdering av behov og frist, men rettighetsbestemmelsen er ikke i seg selv et mål på kapasitet, ventetid eller faktisk behandlingsutfall.",
+      "source_ids": [
+        "s22-pasientrettighetsloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-2",
+        "Prioriteringskjeden ved Rikshospitalet",
+        "02-fordypning",
+        "Sammenlign bolig- eller helsetilgang mellom to områder.",
+        "rikshospitalet"
+      ]
+    },
+    {
+      "id": "fordeling-29",
+      "claim": "Prioriteringsbeslutninger skjer på flere nivåer, fra politisk ressursfordeling og tjenesteorganisering til faglige avgjørelser for den enkelte pasient eller bruker.",
+      "source_ids": [
+        "s21-helsedirektoratet-prioritering",
+        "s23-nou-prioritering"
+      ],
+      "classification": "institusjonell",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-2",
+        "Prioriteringskjeden ved Rikshospitalet",
+        "begrep-prioriteringskriterier",
+        "Hvordan brukes prioriteringskriteriene i helse?",
+        "rikshospitalet"
+      ]
+    },
+    {
+      "id": "fordeling-30",
+      "claim": "En administrativ omsorgskategori beskriver ikke alene personens behov eller mottatte hjelp; vedtak, omfang, kontinuitet og uformell omsorg må skilles.",
+      "source_ids": [
+        "s20-kommunalt-helseansvar",
+        "s23-nou-prioritering"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-2",
+        "Prioriteringskjeden ved Rikshospitalet"
+      ]
+    },
+    {
+      "id": "fordeling-31",
+      "claim": "Opplæringsloven gir rettigheter til grunnopplæring og videregående opplæring og egne rettigheter til tilrettelegging og et trygt og godt skolemiljø.",
+      "source_ids": [
+        "s24-opplaeringsloven"
+      ],
+      "classification": "rettslig",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-3",
+        "sagene_skole"
+      ]
+    },
+    {
+      "id": "fordeling-32",
+      "claim": "SSBs analyser viser at foreldres utdanningsnivå henger sammen med karakterer, utdanningsvalg, frafall og gjennomføring selv om utdanningsnivået i befolkningen har økt.",
+      "source_ids": [
+        "s25-ssb-sosial-reproduksjon"
+      ],
+      "classification": "empirisk",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-3",
+        "02-fordypning",
+        "sagene_skole"
+      ]
+    },
+    {
+      "id": "fordeling-33",
+      "claim": "Barn som vokser opp med vedvarende lavinntekt har i SSBs kohortanalyse lavere sannsynlighet for å fullføre videregående og være i arbeid, men resultatene varierer mellom undergrupper.",
+      "source_ids": [
+        "s26-ssb-lavinntekt-barn"
+      ],
+      "classification": "empirisk",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-3",
+        "02-fordypning",
+        "sagene_skole"
+      ]
+    },
+    {
+      "id": "fordeling-34",
+      "claim": "Intergenerasjonell mobilitet krever sammenlignbare mål for foreldre og voksne barn, avgrensede kohorter og et klart skille mellom absolutt framgang og relativ posisjon.",
+      "source_ids": [
+        "s27-ssb-levekar-arv"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-3",
+        "02-fordypning",
+        "begrep-relativ-mobilitet",
+        "Hva er forskjellen på utdanningsekspansjon og relativ mobilitet?"
+      ]
+    },
+    {
+      "id": "fordeling-35",
+      "claim": "At flere tar høyere utdanning dokumenterer utdanningsekspansjon, men ikke alene at sosial bakgrunn har sluttet å påvirke tilgang, valg eller gjennomføring.",
+      "source_ids": [
+        "s25-ssb-sosial-reproduksjon"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-fordypning-3",
+        "02-fordypning",
+        "begrep-relativ-mobilitet",
+        "Hva er forskjellen på utdanningsekspansjon og relativ mobilitet?",
+        "sagene_skole"
+      ]
+    },
+    {
+      "id": "fordeling-36",
+      "claim": "Levekår er flerdimensjonale og omfatter blant annet økonomi, arbeid, helse, bolig, sosiale relasjoner og deltakelse; én indikator kan ikke representere hele livssituasjonen.",
+      "source_ids": [
+        "s03-ssb-lavinntekt-2025",
+        "s14-ssb-opphopning"
+      ],
+      "classification": "måling",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-1",
+        "begrep-levekarsprofil",
+        "toyen_torg"
+      ]
+    },
+    {
+      "id": "fordeling-37",
+      "claim": "Opphopning betyr at flere problemer forekommer hos samme personer eller husholdninger, men statistisk samvariasjon fastslår ikke hvilken mekanisme som skapte mønsteret.",
+      "source_ids": [
+        "s14-ssb-opphopning"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-1",
+        "begrep-levekarsprofil"
+      ]
+    },
+    {
+      "id": "fordeling-38",
+      "claim": "Områdetall blander egenskaper ved stedet med sammensetningen av dem som bor der, slik at en bydelsforskjell ikke automatisk er en områdeeffekt.",
+      "source_ids": [
+        "s13-oslo-bydelsfakta",
+        "s14-ssb-opphopning"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-1",
+        "Sammenlign bolig- eller helsetilgang mellom to områder.",
+        "begrep-omradeeffekt",
+        "Hvorfor er en bydelsforskjell ikke automatisk en områdeeffekt?",
+        "toyen_torg"
+      ]
+    },
+    {
+      "id": "fordeling-39",
+      "claim": "En befolkningsframskriving er en betinget beregning basert på forutsetninger og må ikke behandles som en sikker forutsigelse av framtidig tjenestebehov.",
+      "source_ids": [
+        "s13-oslo-bydelsfakta",
+        "s19-plan-bygningsloven"
+      ],
+      "classification": "planlegging",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-1",
+        "begrep-framskriving",
+        "toyen_torg"
+      ]
+    },
+    {
+      "id": "fordeling-40",
+      "claim": "Ved kommunestyrevalget 2023 var valgdeltakelsen klart forskjellig mellom øvrige norske velgere, innvandrere, norskfødte med innvandrerforeldre og utenlandske statsborgere.",
+      "source_ids": [
+        "s28-ssb-lokalvalg-2023"
+      ],
+      "classification": "empirisk",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-2",
+        "Undersøk representasjon i en fordelingsbeslutning."
+      ]
+    },
+    {
+      "id": "fordeling-41",
+      "claim": "Numerisk tilstedeværelse i et valgt organ og substansiell innflytelse over dagsorden, prioriteringer og utfall er to ulike mål på representasjon.",
+      "source_ids": [
+        "s28-ssb-lokalvalg-2023",
+        "s29-ssb-deltaking"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-2",
+        "Undersøk representasjon i en fordelingsbeslutning.",
+        "begrep-substansiell-representasjon",
+        "Hva skiller numerisk og substansiell representasjon?",
+        "folkets_hus_oslo"
+      ]
+    },
+    {
+      "id": "fordeling-42",
+      "claim": "SSBs levekårsanalyser viser sammenhenger mellom utdanning, inntekt, yrkesaktivitet, sosiale nettverk og deltakelsesressurser, uten at sammenhengene alene identifiserer årsak.",
+      "source_ids": [
+        "s29-ssb-deltaking"
+      ],
+      "classification": "empirisk",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-2",
+        "fordeling-anvendelse-3",
+        "Undersøk representasjon i en fordelingsbeslutning.",
+        "folkets_hus_oslo"
+      ]
+    },
+    {
+      "id": "fordeling-43",
+      "claim": "Fordelingsanalyse må skille omfordeling av ressurser fra anerkjennelse og representasjon; økonomisk forbedring og politisk stemme kan kreve ulike mekanismer.",
+      "source_ids": [
+        "s28-ssb-lokalvalg-2023",
+        "s29-ssb-deltaking"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-2",
+        "Undersøk representasjon i en fordelingsbeslutning.",
+        "begrep-substansiell-representasjon",
+        "Hva skiller numerisk og substansiell representasjon?",
+        "folkets_hus_oslo"
+      ]
+    },
+    {
+      "id": "fordeling-44",
+      "claim": "Folkets Hus samlet kontorer, møtesaler, arkiv og organisasjoner, og viser hvordan varige organisatoriske ressurser kan understøtte mobilisering og representasjon over tid.",
+      "source_ids": [
+        "s30-arbark-folkets-hus"
+      ],
+      "classification": "historisk_case",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-2",
+        "fordeling-anvendelse-3",
+        "Undersøk representasjon i en fordelingsbeslutning.",
+        "folkets_hus_oslo"
+      ]
+    },
+    {
+      "id": "fordeling-45",
+      "claim": "En full fordelingskonklusjon må holde beskrivelse av mønster, forklaring av mekanisme og normativ vurdering av rettferdighet fra hverandre.",
+      "source_ids": [
+        "s05-atkinson-ulikhetsmal",
+        "s14-ssb-opphopning"
+      ],
+      "classification": "metode",
+      "status": "verified",
+      "used_in": [
+        "fordeling-anvendelse-3",
+        "Undersøk representasjon i en fordelingsbeslutning.",
+        "begrep-fordelingsmekanisme"
+      ]
+    }
+  ]
+}
