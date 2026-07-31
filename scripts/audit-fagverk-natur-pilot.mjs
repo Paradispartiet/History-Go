@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { auditNaturUniversalCoverage } from './audit-natur-universal-coverage.mjs';
+import { composeNaturFinal, readNaturFinalOverlay, NATUR_FINAL_OVERLAY_PATH } from './natur-final-phase-compose.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
@@ -12,11 +13,11 @@ const P = Object.freeze({
   manifest: 'data/fag/fag_manifest.json', portal: 'data/fagverk/fagverk_portal.json',
   inventory: 'data/fagverk/subject_inventory.json', status: 'data/fagverk/subject_status.json',
   registry: 'data/fagverk/fagverk_registry.json', badge: 'data/badges/natur.json',
+  mappings: 'data/fag/natur/emnemapping_natur_canonical_v4_5.json', overlay: NATUR_FINAL_OVERLAY_PATH,
   report: 'reports/fagverk/natur-pilot-audit.json'
 });
 const ORDER = ['okosystem_mangfold_habitat','artskunnskap_systematikk','evolusjon_biologisk_mangfold','botanikk_vegetasjon','zoologi_dyreliv','sopp_lav_mikroorganismer','organismebiologi_fysiologi','vann_hydrologi_kretslop','klima_energi_resiliens','geologi_landskap_tid','urban_okologi_gronnstruktur','miljopavirkning_forvaltning_regenerasjon'];
-const CHAPTER_DOMAINS = ['okosystem_mangfold_habitat','artskunnskap_systematikk','evolusjon_biologisk_mangfold','botanikk_vegetasjon','zoologi_dyreliv','organismebiologi_fysiologi','vann_hydrologi_kretslop','klima_energi_resiliens','geologi_landskap_tid','urban_okologi_gronnstruktur','miljopavirkning_forvaltning_regenerasjon'];
-const GAP_DOMAINS = ['sopp_lav_mikroorganismer'];
+const CHAPTER_DOMAINS = [...ORDER];
 const abs = (p) => path.join(ROOT, p);
 const read = (p) => fs.readFileSync(abs(p), 'utf8');
 const json = (p) => JSON.parse(read(p));
@@ -36,26 +37,38 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
   const inventory = json(P.inventory), status = json(P.status), registry = json(P.registry), badge = json(P.badge);
   const portalEntry = portal.categories.find((row) => row.id === 'natur');
   const inventoryEntry = inventory.subjects.find((row) => row.id === 'natur');
-  const statusEntry = status.subjects.find((row) => row.id === 'natur');
+  const baseStatusEntry = status.subjects.find((row) => row.id === 'natur');
   const manifestEntry = manifest.natur;
-  const source = {};
+  const baseSource = {};
   for (const field of ['pensum','emner','fagkart','methods']) {
     const file = core.resolveManifestPointer(manifestEntry[field]);
-    source[field === 'emner' ? 'emners' : field] = json(file);
+    baseSource[field === 'emner' ? 'emners' : field] = json(file);
   }
+  const composed = composeNaturFinal({
+    pensum: baseSource.pensum,
+    emners: baseSource.emners,
+    methodsDoc: baseSource.methods,
+    fagkart: baseSource.fagkart,
+    mappings: json(P.mappings),
+    registry,
+    statusEntry: baseStatusEntry,
+    overlay: readNaturFinalOverlay()
+  });
+  const source = { pensum: composed.pensum, emners: composed.emners, fagkart: composed.fagkart, methods: composed.methodsDoc };
   const model = core.normalizeSubject({ subjectId:'natur', categoryLabel:categories.labels.natur,
     categoryDescription:categories.decisions?.natur, schemaFamily:inventoryEntry.schemaFamily,
-    manifestEntry, portalEntry, inventoryEntry, statusEntry, registry, badge, source });
+    manifestEntry, portalEntry, inventoryEntry, statusEntry:composed.statusEntry, registry:composed.registry, badge, source });
 
   const actualDomainOrder = [...model.domains].map((domain) => String(domain.id));
-  assert(model.subject.status.editorial === 'chapters_in_progress', 'Natur har feil redaksjonell status');
+  assert(model.subject.status.assessment === 'audited', 'Natur har feil auditstatus');
+  assert(model.subject.status.editorial === 'complete', 'Natur har feil redaksjonell status');
   assert(isDeepStrictEqual(actualDomainOrder, ORDER), 'Natur har feil canonical domenerekkefølge');
-  assert(model.summary.domainCount === 12 && model.summary.emneCount === 65, 'Natur har feil domene- eller emnetall');
-  assert(model.summary.methodCount === 45 && model.summary.mappingCount === 65 && model.summary.hookCount === 110, 'Natur biologi fase 2 er ikke fullt materialisert');
-  assert(model.chapters.length === 11, 'Natur skal ha elleve redigerte kapitler');
+  assert(model.summary.domainCount === 12 && model.summary.emneCount === 77, 'Natur har feil domene- eller emnetall');
+  assert(model.summary.methodCount === 51 && model.summary.mappingCount === 77 && model.summary.hookCount === 136, 'Natur sluttfase er ikke fullt materialisert');
+  assert(model.chapters.length === 12, 'Natur skal ha tolv redigerte kapitler');
 
   const chapterByDomain = new Map([...model.chapters].map((chapter) => [chapter.primaryDomainId, chapter]));
-  const chapters = CHAPTER_DOMAINS.map((domainId) => {
+  for (const domainId of CHAPTER_DOMAINS) {
     const domain = model.domainsById.get(domainId), chapterMeta = chapterByDomain.get(domainId);
     assert(domain && chapterMeta, `${domainId}: mangler kapittel eller domene`);
     assert(fs.existsSync(abs(chapterMeta.source.file)), `${domainId}: kapittelfilen finnes ikke`);
@@ -63,32 +76,49 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
     assert(chapter.schema === 'history_go_fagverk_chapter_v1' && chapter.subject === 'natur', `${domainId}: ugyldig kapittel`);
     assert(new Set([...chapterMeta.emneIds]).size === domain.emneIds.length && [...domain.emneIds].every((id) => chapterMeta.emneIds.includes(id)), `${domainId}: kapittelets emnedekning er usynkron`);
     assert((chapter.sections || []).length >= 5 && (chapter.sources || []).length >= 3, `${domainId}: kapittelet mangler pedagogiske lag eller kilder`);
-    return { id: chapter.id, primaryDomainId: domainId, coverageRole: domain.source.coverage_status,
-      emneCount: domain.emneIds.length, sectionCount: chapter.sections.length,
-      paragraphCount: chapter.sections.reduce((sum, section) => sum + (section.paragraphs || []).length, 0),
-      conceptCount: (chapter.concepts || []).length, sourceCount: chapter.sources.length };
-  });
-  for (const domainId of GAP_DOMAINS) {
-    const domain = model.domainsById.get(domainId);
-    assert(domain?.source.coverage_status === 'required_gap' && domain.emneIds.length === 0, `${domainId}: gapet er ikke eksplisitt`);
-    assert(!chapterByDomain.has(domainId), `${domainId}: har et kapittel uten materialiserte emner`);
   }
 
+  assert(chapterByDomain.has('sopp_lav_mikroorganismer'), 'Mikrobiologikapittelet mangler');
+  assert(chapterByDomain.has('geologi_landskap_tid'), 'Geologikapittelet mangler');
+  assert(coverage.summary.requiredGapDomainCount === 0 && coverage.summary.partialDomainCount === 0, 'Natur har fortsatt åpne universelle hull');
+
   const report = {
-    schema: 'history_go_fagverk_natur_expansion_audit_v1', version: '1.0.0',
-    status: 'natur_biology_phase_2_materialized_final_phase_remaining', generatedFrom: P,
-    subject: { id:model.subject.id, title:model.subject.title, adapter:model.subject.adapter,
-      assessmentStatus:statusEntry.assessmentStatus, editorialStatus:statusEntry.editorialStatus,
-      nextGate:statusEntry.nextGate, subjectPage:model.subject.routes.subject, badgePage:model.subject.routes.badge },
-    summary: { domainCount:12, materializedEmneCount:65, materializedMethodCount:45,
-      materializedMappingCount:65, materializedHookCount:110, registeredChapterCount:11,
-      preservedEnvironmentChapterCount:6,
-      requiredGapDomainCount:1, partialDomainCount:coverage.summary.partialDomainCount, placeCount:model.places.length },
-    canonicalDomainOrder: ORDER, registeredChapterDomains: CHAPTER_DOMAINS,
-    requiredGapDomains: GAP_DOMAINS, chapters,
-    gates: { canonicalTwelveDomainOrder:true, currentEnvironmentLayerPreserved:true,
-      biologyPhaseOneMaterialized:true, biologyPhaseTwoMaterialized:true, registeredChaptersInspectable:true, requiredGapsExplicit:true, innerGeologyGapExplicit:true,
-      editorialStatusHonest:true, universalCoverageAuditPassed:true }
+    schema: 'history_go_fagverk_natur_expansion_audit_v1',
+    version: '1.2.0',
+    status: 'natur_universal_materialization_complete',
+    generatedFrom: {
+      base: 'Natur v5.2 biology phase 2',
+      overlay: P.overlay,
+      runtimeComposer: 'scripts/natur-final-phase-compose.mjs',
+      audit: 'scripts/audit-fagverk-natur-pilot.mjs'
+    },
+    subject: {
+      id: model.subject.id,
+      assessmentStatus: model.subject.status.assessment,
+      editorialStatus: model.subject.status.editorial,
+      nextGate: composed.statusEntry.nextGate
+    },
+    summary: {
+      domainCount: model.summary.domainCount,
+      materializedEmneCount: model.summary.emneCount,
+      materializedMethodCount: model.summary.methodCount,
+      materializedMappingCount: model.summary.mappingCount,
+      materializedHookCount: model.summary.hookCount,
+      registeredChapterCount: model.chapters.length,
+      requiredGapDomainCount: coverage.summary.requiredGapDomainCount,
+      partialDomainCount: coverage.summary.partialDomainCount
+    },
+    completedDomains: ['sopp_lav_mikroorganismer', 'geologi_landskap_tid'],
+    gates: {
+      canonicalFinalOverlayLoaded: true,
+      microbiologyMaterialized: chapterByDomain.has('sopp_lav_mikroorganismer'),
+      innerGeologyAndNaturalHistoryMaterialized: chapterByDomain.has('geologi_landskap_tid'),
+      registeredChaptersInspectable: model.chapters.length === 12,
+      noRequiredGaps: coverage.summary.requiredGapDomainCount === 0,
+      noPartialDomains: coverage.summary.partialDomainCount === 0,
+      assessmentStatusAudited: model.subject.status.assessment === 'audited',
+      editorialStatusComplete: model.subject.status.editorial === 'complete'
+    }
   };
   if (writeReport) { fs.mkdirSync(path.dirname(abs(P.report)), { recursive:true }); fs.writeFileSync(abs(P.report), `${JSON.stringify(report,null,2)}\n`); }
   if (checkReport) assert(isDeepStrictEqual(json(P.report), report), `${P.report} er utdatert`);
@@ -98,6 +128,6 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try { const { report } = auditNaturePilot({ writeReport:args.has('--write-report'), checkReport:!args.has('--no-check-report') });
-    console.log(`Natur utvides: ${report.summary.registeredChapterCount} kapitler, ${report.summary.domainCount} områder og ${report.summary.requiredGapDomainCount} gjenværende hull.`); }
+    console.log(`Natur komplett: ${report.summary.registeredChapterCount} kapitler, ${report.summary.domainCount}/12 områder og ${report.summary.requiredGapDomainCount} gjenværende hull.`); }
   catch (error) { console.error(`Natur-utvidelse FEIL: ${error.message}`); process.exitCode = 1; }
 }

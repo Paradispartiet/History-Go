@@ -1,191 +1,41 @@
 {
   "schema": "history_go_fagverk_natur_expansion_audit_v1",
-  "version": "1.0.0",
-  "status": "natur_biology_phase_2_materialized_final_phase_remaining",
+  "version": "1.2.0",
+  "status": "natur_universal_materialization_complete",
   "generatedFrom": {
-    "core": "js/fagverk-subject-core.js",
-    "categories": "data/categories/category_contract.json",
-    "manifest": "data/fag/fag_manifest.json",
-    "portal": "data/fagverk/fagverk_portal.json",
-    "inventory": "data/fagverk/subject_inventory.json",
-    "status": "data/fagverk/subject_status.json",
-    "registry": "data/fagverk/fagverk_registry.json",
-    "badge": "data/badges/natur.json",
-    "report": "reports/fagverk/natur-pilot-audit.json"
+    "base": "Natur v5.2 biology phase 2",
+    "overlay": "data/fag/natur/natur_final_phase_canonical_v1.json",
+    "runtimeComposer": "scripts/natur-final-phase-compose.mjs",
+    "audit": "scripts/audit-fagverk-natur-pilot.mjs"
   },
   "subject": {
     "id": "natur",
-    "title": "Natur & miljø",
-    "adapter": "standard",
     "assessmentStatus": "audited",
-    "editorialStatus": "chapters_in_progress",
-    "nextGate": "materialize_microbiology_and_inner_geology",
-    "subjectPage": "fagverk.html?subject=natur",
-    "badgePage": "data/fag/natur/merke_natur (1).html"
+    "editorialStatus": "complete",
+    "nextGate": "complete"
   },
   "summary": {
     "domainCount": 12,
-    "materializedEmneCount": 65,
-    "materializedMethodCount": 45,
-    "materializedMappingCount": 65,
-    "materializedHookCount": 110,
-    "registeredChapterCount": 11,
-    "preservedEnvironmentChapterCount": 6,
-    "requiredGapDomainCount": 1,
-    "partialDomainCount": 1,
-    "placeCount": 0
+    "materializedEmneCount": 77,
+    "materializedMethodCount": 51,
+    "materializedMappingCount": 77,
+    "materializedHookCount": 136,
+    "registeredChapterCount": 12,
+    "requiredGapDomainCount": 0,
+    "partialDomainCount": 0
   },
-  "canonicalDomainOrder": [
-    "okosystem_mangfold_habitat",
-    "artskunnskap_systematikk",
-    "evolusjon_biologisk_mangfold",
-    "botanikk_vegetasjon",
-    "zoologi_dyreliv",
+  "completedDomains": [
     "sopp_lav_mikroorganismer",
-    "organismebiologi_fysiologi",
-    "vann_hydrologi_kretslop",
-    "klima_energi_resiliens",
-    "geologi_landskap_tid",
-    "urban_okologi_gronnstruktur",
-    "miljopavirkning_forvaltning_regenerasjon"
-  ],
-  "registeredChapterDomains": [
-    "okosystem_mangfold_habitat",
-    "artskunnskap_systematikk",
-    "evolusjon_biologisk_mangfold",
-    "botanikk_vegetasjon",
-    "zoologi_dyreliv",
-    "organismebiologi_fysiologi",
-    "vann_hydrologi_kretslop",
-    "klima_energi_resiliens",
-    "geologi_landskap_tid",
-    "urban_okologi_gronnstruktur",
-    "miljopavirkning_forvaltning_regenerasjon"
-  ],
-  "requiredGapDomains": [
-    "sopp_lav_mikroorganismer"
-  ],
-  "chapters": [
-    {
-      "id": "okosystem_mangfold_habitat",
-      "primaryDomainId": "okosystem_mangfold_habitat",
-      "coverageRole": "materialized_environment_layer",
-      "emneCount": 11,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 8,
-      "sourceCount": 3
-    },
-    {
-      "id": "artskunnskap_systematikk",
-      "primaryDomainId": "artskunnskap_systematikk",
-      "coverageRole": "materialized_biology_layer",
-      "emneCount": 6,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 10,
-      "sourceCount": 4
-    },
-    {
-      "id": "evolusjon_biologisk_mangfold",
-      "primaryDomainId": "evolusjon_biologisk_mangfold",
-      "coverageRole": "materialized_biology_layer",
-      "emneCount": 6,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 10,
-      "sourceCount": 5
-    },
-    {
-      "id": "botanikk_vegetasjon",
-      "primaryDomainId": "botanikk_vegetasjon",
-      "coverageRole": "materialized_biology_layer",
-      "emneCount": 6,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 10,
-      "sourceCount": 4
-    },
-    {
-      "id": "zoologi_dyreliv",
-      "primaryDomainId": "zoologi_dyreliv",
-      "coverageRole": "materialized_biology_layer",
-      "emneCount": 6,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 10,
-      "sourceCount": 4
-    },
-    {
-      "id": "organismebiologi_fysiologi",
-      "primaryDomainId": "organismebiologi_fysiologi",
-      "coverageRole": "materialized_biology_layer",
-      "emneCount": 6,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 10,
-      "sourceCount": 5
-    },
-    {
-      "id": "vann_hydrologi_kretslop",
-      "primaryDomainId": "vann_hydrologi_kretslop",
-      "coverageRole": "materialized_environment_layer",
-      "emneCount": 4,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 8,
-      "sourceCount": 3
-    },
-    {
-      "id": "klima_energi_resiliens",
-      "primaryDomainId": "klima_energi_resiliens",
-      "coverageRole": "materialized_environment_layer",
-      "emneCount": 4,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 8,
-      "sourceCount": 3
-    },
-    {
-      "id": "geologi_landskap_tid",
-      "primaryDomainId": "geologi_landskap_tid",
-      "coverageRole": "partial_materialized",
-      "emneCount": 4,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 8,
-      "sourceCount": 3
-    },
-    {
-      "id": "urban_okologi_gronnstruktur",
-      "primaryDomainId": "urban_okologi_gronnstruktur",
-      "coverageRole": "materialized_environment_layer",
-      "emneCount": 6,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 8,
-      "sourceCount": 3
-    },
-    {
-      "id": "miljopavirkning_forvaltning_regenerasjon",
-      "primaryDomainId": "miljopavirkning_forvaltning_regenerasjon",
-      "coverageRole": "materialized_environment_layer",
-      "emneCount": 6,
-      "sectionCount": 5,
-      "paragraphCount": 15,
-      "conceptCount": 8,
-      "sourceCount": 3
-    }
+    "geologi_landskap_tid"
   ],
   "gates": {
-    "canonicalTwelveDomainOrder": true,
-    "currentEnvironmentLayerPreserved": true,
-    "biologyPhaseOneMaterialized": true,
-    "biologyPhaseTwoMaterialized": true,
+    "canonicalFinalOverlayLoaded": true,
+    "microbiologyMaterialized": true,
+    "innerGeologyAndNaturalHistoryMaterialized": true,
     "registeredChaptersInspectable": true,
-    "requiredGapsExplicit": true,
-    "innerGeologyGapExplicit": true,
-    "editorialStatusHonest": true,
-    "universalCoverageAuditPassed": true
+    "noRequiredGaps": true,
+    "noPartialDomains": true,
+    "assessmentStatusAudited": true,
+    "editorialStatusComplete": true
   }
 }

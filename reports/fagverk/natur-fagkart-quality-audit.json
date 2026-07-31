@@ -1,6 +1,6 @@
 {
   "schema": "history_go_natur_fagkart_quality_audit_v1",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "passed",
   "generatedFrom": {
     "pensum": "data/fag/natur/naturpensum_canonical_v4_5.json",
@@ -8,27 +8,31 @@
     "methods": "data/fag/natur/methods_natur_canonical_v4_5.json",
     "fagkart": "data/fag/natur/fagkart_natur_canonical_v4_5.json",
     "mappings": "data/fag/natur/emnemapping_natur_canonical_v4_5.json",
+    "overlay": "data/fag/natur/natur_final_phase_canonical_v1.json",
     "report": "reports/fagverk/natur-fagkart-quality-audit.json"
   },
   "summary": {
-    "categoryCount": 11,
-    "hookCount": 110,
-    "uniqueFocusQuestions": 110,
-    "uniqueQuestionMoveSets": 110,
-    "uniqueRotationNotes": 110,
-    "hookEmneReferences": 212,
-    "hookMethodReferences": 220,
-    "mappedEmneCount": 65,
-    "mappingCount": 217,
-    "uniqueMappingUseNotes": 217
+    "categoryCount": 12,
+    "hookCount": 136,
+    "uniqueFocusQuestions": 136,
+    "uniqueQuestionMoveSets": 136,
+    "uniqueRotationNotes": 136,
+    "hookEmneReferences": 243,
+    "hookMethodReferences": 248,
+    "mappedEmneCount": 77,
+    "mappingCount": 247,
+    "uniqueMappingUseNotes": 247
   },
   "gates": {
+    "canonicalFinalOverlayLoaded": true,
     "universalScope": true,
+    "allTwelveCategoriesMaterialized": true,
     "canonicalCategoryReferences": true,
     "allHookReferencesResolved": true,
     "hookSpecificLearningFocus": true,
     "hookSpecificQuestionMoves": true,
     "mappingCategoryAndTitleSync": true,
-    "mappingEvidenceAndUseNotes": true
+    "mappingEvidenceAndUseNotes": true,
+    "microbiologyAndInnerGeologyHooksPresent": true
   }
 }

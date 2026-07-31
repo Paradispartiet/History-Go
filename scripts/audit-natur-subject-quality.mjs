@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { composeNaturFinal, readNaturFinalOverlay, NATUR_FINAL_OVERLAY_PATH } from './natur-final-phase-compose.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
@@ -11,6 +12,7 @@ const P = Object.freeze({
   fagkart: 'data/fag/natur/fagkart_natur_canonical_v4_5.json',
   methods: 'data/fag/natur/methods_natur_canonical_v4_5.json',
   mappings: 'data/fag/natur/emnemapping_natur_canonical_v4_5.json',
+  overlay: NATUR_FINAL_OVERLAY_PATH,
   quiz: 'data/fag/natur/supersetQUIZMAL_natur.json',
   badge: 'data/fag/natur/merke_natur (1).html',
   report: 'reports/fagverk/natur-quality-audit.json'
@@ -24,11 +26,19 @@ const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
 const unique = (values) => new Set(values.map((v) => JSON.stringify(v))).size === values.length;
 
 export function auditNaturQuality({ writeReport = false, checkReport = true } = {}) {
-  const pensum = json(P.pensum);
-  const emner = json(P.emner);
-  const fagkart = json(P.fagkart);
-  const methodsDoc = json(P.methods);
-  const mappings = json(P.mappings);
+  const composed = composeNaturFinal({
+    pensum: json(P.pensum),
+    emners: json(P.emner),
+    methodsDoc: json(P.methods),
+    fagkart: json(P.fagkart),
+    mappings: json(P.mappings),
+    overlay: readNaturFinalOverlay()
+  });
+  const pensum = composed.pensum;
+  const emner = composed.emners;
+  const fagkart = composed.fagkart;
+  const methodsDoc = composed.methodsDoc;
+  const mappings = composed.mappings;
   const quiz = json(P.quiz);
   const badge = read(P.badge);
   const methods = methodsDoc.methods || [];
@@ -37,10 +47,11 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
   const mappingIds = new Set(mappings.map((m) => m.emne_id));
   const pensumEmneIds = new Set(pensum.domains.flatMap((d) => d.emne_ids || []));
 
+  assert(composed.overlay.status === 'canonical_final_phase_overlay', 'Kvalitetsauditen bruker ikke canonical sluttfase-overlay');
   assert(pensum.scope === 'universal', 'Naturpensum skal ha universelt fagomfang');
   assert(methodsDoc.scope === 'universal', 'Naturmetodene skal ha universelt fagomfang');
-  assert(emner.length === 65, `Forventet 65 Natur-emner etter biologi fase 2, fikk ${emner.length}`);
-  assert(methods.length === 45, `Forventet 45 Natur-metoder etter biologi fase 2, fikk ${methods.length}`);
+  assert(emner.length === 77, `Forventet 77 Natur-emner etter sluttfasen, fikk ${emner.length}`);
+  assert(methods.length === 51, `Forventet 51 Natur-metoder etter sluttfasen, fikk ${methods.length}`);
   assert(mappings.length === emner.length, 'Hvert Natur-emne skal ha én canonical mapping');
   assert(unique(pensum.domains.map((d) => d.question_role)), 'Fagområdene har kopierte question_role-tekster');
 
@@ -98,11 +109,13 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
   assert(!JSON.stringify({ emner, methods }).includes('miljørettpferdig'), 'Naturpakken inneholder kjent språkfeil');
   assert(!badge.includes('full teoretisk beskrivelse') && !badge.includes('fulle interne teorien'), 'Merkesiden fremstår fortsatt som intern teorifil');
   assert(badge.includes('fagverk.html?subject=natur'), 'Merkesiden mangler fagsidelenke');
+  assert(badge.includes('77 materialiserte emner, 51 metoder og tolv redigerte kapitler'), 'Merkesiden mangler sluttfasens produksjonstall');
+  assert(badge.includes('audited') && badge.includes('complete'), 'Merkesiden mangler sluttstatus');
   for (const domain of pensum.domains) assert(badge.includes(domain.label), `Merkesiden omtaler ikke fagområdet ${domain.label}`);
 
   const report = {
     schema: 'history_go_natur_subject_quality_audit_v1',
-    version: '1.0.0',
+    version: '1.2.0',
     status: 'passed',
     generatedFrom: P,
     summary: {
@@ -120,6 +133,7 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
       normalOpeningQuestions: quiz.normal_question_opening.sets * quiz.normal_question_opening.questions_per_set
     },
     gates: {
+      canonicalFinalOverlayLoaded: true,
       universalSubjectScope: true,
       canonicalDomainReferences: true,
       noGenericEmneTemplates: true,
@@ -128,7 +142,9 @@ export function auditNaturQuality({ writeReport = false, checkReport = true } = 
       emneSpecificQuizAndBlindspots: true,
       methodProceduresAndLimits: true,
       twoTimesSevenNormalQuizOpening: true,
-      publicFacingBadgePage: true
+      publicFacingBadgePage: true,
+      finalPhaseCountsVisible: true,
+      finalStatusVisible: true
     }
   };
   if (writeReport) {

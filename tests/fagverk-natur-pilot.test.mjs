@@ -7,31 +7,32 @@ import { auditNaturePilot } from '../scripts/audit-fagverk-natur-pilot.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('Natur er auditert og ærlig under utvidelse', () => {
+test('Natur er auditert og redaksjonelt complete', () => {
   const { report } = auditNaturePilot();
   assert.equal(report.subject.id, 'natur');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'materialize_microbiology_and_inner_geology');
+  assert.equal(report.subject.assessmentStatus, 'audited');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'complete');
   assert.deepEqual(report.summary, {
     domainCount: 12,
-    materializedEmneCount: 65,
-    materializedMethodCount: 45,
-    materializedMappingCount: 65,
-    materializedHookCount: 110,
-    registeredChapterCount: 11,
+    materializedEmneCount: 77,
+    materializedMethodCount: 51,
+    materializedMappingCount: 77,
+    materializedHookCount: 136,
+    registeredChapterCount: 12,
     preservedEnvironmentChapterCount: 6,
-    requiredGapDomainCount: 1,
-    partialDomainCount: 1,
+    requiredGapDomainCount: 0,
+    partialDomainCount: 0,
     placeCount: 0
   });
 });
 
-test('Natur bevarer seks miljøkapitler og materialiserer fem biologikapitler', () => {
+test('Natur har ett inspectable kapittel for alle tolv canonicale fagområder', () => {
   const { report } = auditNaturePilot();
   assert.equal(report.canonicalDomainOrder.length, 12);
-  assert.equal(report.chapters.length, 11);
-  assert.equal(report.requiredGapDomains.length, 1);
-  assert.equal(report.chapters.reduce((sum, chapter) => sum + chapter.emneCount, 0), 65);
+  assert.equal(report.chapters.length, 12);
+  assert.equal(report.requiredGapDomains.length, 0);
+  assert.equal(report.chapters.reduce((sum, chapter) => sum + chapter.emneCount, 0), 77);
   for (const chapter of report.chapters) {
     assert.ok(chapter.sectionCount >= 5);
     assert.ok(chapter.paragraphCount >= 15);
@@ -40,12 +41,12 @@ test('Natur bevarer seks miljøkapitler og materialiserer fem biologikapitler', 
   }
 });
 
-test('Natur-merkesiden forklarer at faget ikke er heldekkende ennå', () => {
+test('Natur-merkesiden viser sluttfasen og alle tolv fagområder', () => {
   const html = fs.readFileSync(path.join(root, 'data/fag/natur/merke_natur (1).html'), 'utf8');
   assert.match(html, /fagverk-forside\.html/);
   assert.match(html, /fagverk\.html\?subject=natur/);
-  assert.match(html, /Natur er fortsatt ikke heldekkende/);
-  assert.match(html, /65 materialiserte emner, 45 metoder og elleve redigerte kapitler/);
-  assert.match(html, /Artskunnskap og systematikk/);
-  assert.match(html, /Organismebiologi og fysiologi/);
+  assert.match(html, /77 materialiserte emner, 51 metoder og tolv redigerte kapitler/);
+  assert.match(html, /Alle tolv canonicale Natur-områder er nå materialisert og auditert/);
+  assert.match(html, /Sopp, lav og mikroorganismer/);
+  assert.match(html, /Geologi og naturhistorie/);
 });
