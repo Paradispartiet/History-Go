@@ -45,19 +45,62 @@ jobs:
           node --check scripts/materialize-naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom-v1.mjs
 
       - name: Materialize and validate
+        id: materialize
+        continue-on-error: true
+        shell: bash
         run: |
-          node scripts/materialize-naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom-v1.mjs
-          node --test tests/naeringsliv-*.test.mjs
-          node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
-          npm run typecheck:web
+          set -o pipefail
+          {
+            node scripts/materialize-naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom-v1.mjs
+            node --test tests/naeringsliv-*.test.mjs
+            node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
+            npm run typecheck:web
+          } 2>&1 | tee .bootstrap/naeringsliv-logistikk/materialize-error.log
+
+      - name: Write compact failure diagnostic
+        if: steps.materialize.outcome == 'failure'
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = '.bootstrap/naeringsliv-logistikk/materialize-error.log';
+          const raw = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+          const lines = raw.split(/\r?\n/).filter(Boolean);
+          const markers = /(^|\s)(Error:|AssertionError|SyntaxError|TypeError|ReferenceError|not ok|FAIL|ERROR)/i;
+          let index = -1;
+          for (let i = lines.length - 1; i >= 0; i -= 1) {
+            if (markers.test(lines[i])) { index = i; break; }
+          }
+          const start = index >= 0 ? Math.max(0, index - 12) : Math.max(0, lines.length - 100);
+          const end = index >= 0 ? Math.min(lines.length, index + 45) : lines.length;
+          const selected = lines.slice(start, end);
+          fs.writeFileSync(
+            '.bootstrap/naeringsliv-logistikk/materialize-failure.md',
+            ['# Materializer failure', '', '```text', ...selected, '```', ''].join('\n')
+          );
+          NODE
+
+      - name: Commit diagnostic on failure
+        if: steps.materialize.outcome == 'failure'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .bootstrap/naeringsliv-logistikk/materialize-error.log \
+                  .bootstrap/naeringsliv-logistikk/materialize-failure.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Bevar logistikk-materialiseringsfeil"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
+          exit 1
 
       - name: Remove bootstrap and restore permanent workflow
+        if: steps.materialize.outcome == 'success'
         run: |
           rm -rf .bootstrap/naeringsliv-logistikk
           rm -f scripts/materialize-naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom-v1.mjs
           git show origin/main:.github/workflows/naeringsliv-subject-quality.yml > .github/workflows/naeringsliv-subject-quality.yml
 
       - name: Commit materialized production files
+        if: steps.materialize.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
