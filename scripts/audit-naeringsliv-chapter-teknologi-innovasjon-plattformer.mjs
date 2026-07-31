@@ -166,8 +166,11 @@ if (!skipIntegration) {
 
   const status = readJson(STATUS_PATH);
   const subjectStatus = status.subjects.find((item) => item.id === "naeringsliv");
-  assert(subjectStatus?.editorialStatus === "chapters_in_progress", "Næringsliv editorial status mismatch");
-  assert(subjectStatus.note.includes("4 av 6"), "Næringsliv status must state 4 of 6 chapters");
+  const registeredChapterCount = subject.chapters.length;
+  const canonicalDomainCount = pensum.domains.length;
+  const expectedEditorialStatus = registeredChapterCount === canonicalDomainCount ? "complete" : "chapters_in_progress";
+  assert(subjectStatus?.editorialStatus === expectedEditorialStatus, `Næringsliv editorial status must be ${expectedEditorialStatus}`);
+  assert(String(subjectStatus?.note || "").includes(`${registeredChapterCount} av ${canonicalDomainCount}`), "Næringsliv status chapter count mismatch");
 }
 
 const report = {

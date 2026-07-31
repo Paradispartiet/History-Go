@@ -1,0 +1,715 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "logistikk-infrastruktur-okonomisk-rom",
+  "verified_at": "2026-07-31",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "s01-ssb-lastebil",
+      "label": "Godstransport med lastebil",
+      "url": "https://www.ssb.no/transport-og-reiseliv/landtransport/statistikk/godstransport-med-lastebil",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Definisjoner av transportmengde, transportarbeid, kjøretøykilometer og tomkjøring samt tidsserier"
+    },
+    {
+      "id": "s02-ssb-lastebil-2026",
+      "label": "Små endringer i godstransporten med norske lastebiler",
+      "url": "https://www.ssb.no/transport-og-reiseliv/landtransport/statistikk/godstransport-med-lastebil/artikler/sma-endringer-i-godstransporten-med-norske-lastebiler",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk_artikkel",
+      "source_location": "1. kvartal 2026 om tonn, tonnkilometer, tomkjøring og vareslag"
+    },
+    {
+      "id": "s03-ssb-kyst",
+      "label": "Godstransport på kysten",
+      "url": "https://www.ssb.no/transport-og-reiseliv/sjotransport/statistikk/godstransport-pa-kysten",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Omfang, havnedefinisjon, kvartalstall og statistikkens avgrensning"
+    },
+    {
+      "id": "s04-ssb-jernbane",
+      "label": "Jernbanetransport",
+      "url": "https://www.ssb.no/transport-og-reiseliv/landtransport/statistikk/jernbanetransport/",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Transportmengde og transportarbeid for gods på jernbane"
+    },
+    {
+      "id": "s05-ssb-innenlandsk",
+      "label": "Innenlandsk transport",
+      "url": "https://www.ssb.no/transport-og-reiseliv/landtransport/statistikk/innenlandsk-transport",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Sammenstilling av innenlandsk godstransportarbeid etter transportmåte"
+    },
+    {
+      "id": "s06-jdir-alnabru",
+      "label": "Alnabruterminalen – utredning fase 2",
+      "url": "https://www.jernbanedirektoratet.no/utredninger/alnabruterminalen-utredning-fase-2/",
+      "publisher": "Jernbanedirektoratet",
+      "type": "offisiell_utredning",
+      "source_location": "Trinnvis modernisering, rasjonell drift, kapasitet og behov for oppgradering"
+    },
+    {
+      "id": "s07-banenor-alnabru",
+      "label": "Alnabru godsterminal",
+      "url": "https://www.banenor.no/for-deg-i-bransjen/godstransport/terminaler/alnabru/",
+      "publisher": "Bane NOR",
+      "type": "infrastrukturforvalter",
+      "source_location": "Intermodal funksjon, spor, lastenheter, tjenester og nettilknytning"
+    },
+    {
+      "id": "s08-jdir-terminalstruktur",
+      "label": "KVU Terminalstruktur i Oslofjordområdet",
+      "url": "https://www.jernbanedirektoratet.no/utredninger/kvu-terminalstruktur-i-oslofjordomradet/",
+      "publisher": "Jernbanedirektoratet",
+      "type": "konseptvalgutredning",
+      "source_location": "Kapasitet på tvers av sjø, bane og vei og jernbanens særskilte utfordringer"
+    },
+    {
+      "id": "s09-banenor-network",
+      "label": "Tilgang til godsterminaler – Network Statement 2026",
+      "url": "https://oppslagsverk.banenor.no/network-statement/vedlegg-2026/5-tilgang-til-godsterminaler/",
+      "publisher": "Bane NOR",
+      "type": "nettveiledning",
+      "source_location": "Terminalgrupper, infrastrukturkostnader, spor og toganløp"
+    },
+    {
+      "id": "s10-oslo-varelevering",
+      "label": "Pilotprosjekt for varelevering",
+      "url": "https://www.oslo.kommune.no/fag-og-utviklingsprosjekter/pilotprosjekt-for-varelevering/",
+      "publisher": "Oslo kommune",
+      "type": "kommunalt_pilotprosjekt",
+      "source_location": "Areal for lasting og lossing, siste fase, letekjøring og arealkonflikt"
+    },
+    {
+      "id": "s11-oslohavn-gods",
+      "label": "Gods",
+      "url": "https://www.oslohavn.no/no/meny/gods/",
+      "publisher": "Oslo Havn KF",
+      "type": "havnemyndighet",
+      "source_location": "Godstyper, Alnabru-kobling, havnefasiliteter og anløp"
+    },
+    {
+      "id": "s12-oslohavn-sydhavna",
+      "label": "Sydhavna",
+      "url": "https://www.oslohavn.no/no/meny/gods/sydhavna/",
+      "publisher": "Oslo Havn KF",
+      "type": "havnemyndighet",
+      "source_location": "Logistikknutepunkt, areal, containerterminal, bulk og jernbanefunksjon"
+    },
+    {
+      "id": "s13-oslohavn-fasiliteter",
+      "label": "Port facilities",
+      "url": "https://www.oslohavn.no/en/menu/gods/havnefacilities/",
+      "publisher": "Oslo Havn KF",
+      "type": "havnemyndighet",
+      "source_location": "Havneareal, kaier, bygninger, jernbanespor og TEU-kapasitet"
+    },
+    {
+      "id": "s14-oslohavn-container",
+      "label": "Container",
+      "url": "https://www.oslohavn.no/en/menu/gods/container/",
+      "publisher": "Oslo Havn KF",
+      "type": "terminalinformasjon",
+      "source_location": "Containerterminal, regionalt marked, utstyr og tilknytning til vei og bane"
+    },
+    {
+      "id": "s15-oslohavn-arsberetning",
+      "label": "En stabil og fremtidsrettet havn",
+      "url": "https://www.oslohavn.no/no/aktuelt/en-stabil-og-fremtidsrettet-havn/",
+      "publisher": "Oslo Havn KF",
+      "type": "arsberetningsomtale",
+      "source_location": "Årsberetning 2025 om godsvolum, infrastruktur og kapasitet"
+    },
+    {
+      "id": "s16-oslohavn-jernbane",
+      "label": "Nærmere jernbaneterminal for gods i Sydhavna",
+      "url": "https://www.oslohavn.no/no/aktuelt/narmere-jernbaneterminal-for-gods-i-sydhavna/",
+      "publisher": "Oslo Havn KF",
+      "type": "prosjektomtale",
+      "source_location": "Havnespor, lastebilstrøm, TEU og mulig forbindelse til Alnabru"
+    },
+    {
+      "id": "s17-oslohavn-adgang",
+      "label": "Adgang til havneområder",
+      "url": "https://www.oslohavn.no/no/meny/gods/adgang-til-havneanlegg/",
+      "publisher": "Oslo Havn KF",
+      "type": "sikkerhetsveiledning",
+      "source_location": "ISPS, adgangskontroll, intern trafikk og sikkerhetsfunksjon"
+    },
+    {
+      "id": "s18-kystverket-lov",
+      "label": "Om havne- og farvannsloven",
+      "url": "https://www.kystverket.no/regelverk/havne--og-farvannsloven/havne--og-farvannsloven/",
+      "publisher": "Kystverket",
+      "type": "regelverksveiledning",
+      "source_location": "Effektiv, sikker og miljøvennlig havnedrift samt forsvars- og beredskapsinteresser"
+    },
+    {
+      "id": "s19-regjeringen-gods-bane",
+      "label": "Mer gods på bane",
+      "url": "https://www.regjeringen.no/no/tema/transport-og-kommunikasjon/jernbane_og_jernbanetransport/gods-pa-bane/id2344802/",
+      "publisher": "Samferdselsdepartementet",
+      "type": "transportpolitikk",
+      "source_location": "Kombitransport, kryssingsspor og terminaltiltak"
+    },
+    {
+      "id": "s20-regjeringen-ntp",
+      "label": "Nasjonal transportplan 2025–2036",
+      "url": "https://www.regjeringen.no/no/tema/transport-og-kommunikasjon/nasjonal-transportplan/id2475111/",
+      "publisher": "Samferdselsdepartementet",
+      "type": "nasjonal_plan",
+      "source_location": "Prioriteringsramme for vedlikehold, bedre utnyttelse og ny infrastruktur"
+    },
+    {
+      "id": "s21-dsb-kritiske",
+      "label": "Samfunnets kritiske funksjoner",
+      "url": "https://www.dsb.no/ros-og-beredskap/samfunnssikkerhet-og-samordning/samfunnets-kritiske-funksjoner/",
+      "publisher": "Direktoratet for samfunnssikkerhet og beredskap",
+      "type": "beredskapsramme",
+      "source_location": "Kritiske funksjoner og nødvendig funksjonsevne som må opprettholdes"
+    },
+    {
+      "id": "s22-regjeringen-klima-gods",
+      "label": "Godstransport på vei, bane og sjø",
+      "url": "https://www.regjeringen.no/no/dokumenter/meld.-st.-25-20242025/id3095592/?ch=6",
+      "publisher": "Regjeringen",
+      "type": "stortingsmelding",
+      "source_location": "Utslipp, transportformenes fortrinn og reelle konkurranseflater for containerfrakt"
+    }
+  ],
+  "claims": [
+    {
+      "id": "logistikk-01",
+      "claim": "Transportmengde er bruttovekten av godset, mens godstransportarbeid er mengde multiplisert med transportavstand.",
+      "source_ids": [
+        "s01-ssb-lastebil"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-1"
+      ]
+    },
+    {
+      "id": "logistikk-02",
+      "claim": "Kjøretøykilometer måler trafikkarbeid og kan ikke erstattes av tonn eller tonnkilometer.",
+      "source_ids": [
+        "s01-ssb-lastebil"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-1"
+      ]
+    },
+    {
+      "id": "logistikk-03",
+      "claim": "Tomkjøringsprosent er andelen kjøretøykilometer uten last.",
+      "source_ids": [
+        "s01-ssb-lastebil"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-1"
+      ]
+    },
+    {
+      "id": "logistikk-04",
+      "claim": "Tomkjøring må tolkes mot varetype, returlastmulighet og geografisk ubalanse.",
+      "source_ids": [
+        "s01-ssb-lastebil",
+        "s02-ssb-lastebil-2026"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-1"
+      ]
+    },
+    {
+      "id": "logistikk-05",
+      "claim": "SSB publiserer tidsavgrensede tall for mengde, transportarbeid og kjørelengde med norske lastebiler.",
+      "source_ids": [
+        "s01-ssb-lastebil",
+        "s02-ssb-lastebil-2026"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-1"
+      ]
+    },
+    {
+      "id": "logistikk-06",
+      "claim": "Sammenligning over tid krever kontroll av statistikkens definisjoner, utvalg og metode.",
+      "source_ids": [
+        "s01-ssb-lastebil"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-1"
+      ]
+    },
+    {
+      "id": "logistikk-07",
+      "claim": "En verdikjedeanalyse må følge vare-, informasjons- og ansvarsskifter gjennom flere aktører og noder.",
+      "source_ids": [
+        "s08-jdir-terminalstruktur",
+        "s20-regjeringen-ntp"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-2"
+      ]
+    },
+    {
+      "id": "logistikk-08",
+      "claim": "Terminaler samler tidsbruk, kostnader og risiko når varer omlastes eller skifter ansvar.",
+      "source_ids": [
+        "s07-banenor-alnabru",
+        "s13-oslohavn-fasiliteter"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-2"
+      ]
+    },
+    {
+      "id": "logistikk-09",
+      "claim": "Intermodal transport bruker standardiserte lastenheter på flere transportformer.",
+      "source_ids": [
+        "s07-banenor-alnabru"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-2"
+      ]
+    },
+    {
+      "id": "logistikk-10",
+      "claim": "Intermodal gevinst avhenger av volum, rutetider, terminaldrift og omlasting.",
+      "source_ids": [
+        "s08-jdir-terminalstruktur",
+        "s19-regjeringen-gods-bane"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-2"
+      ]
+    },
+    {
+      "id": "logistikk-11",
+      "claim": "Alnabru håndterer blant annet vekselflak, ISO-containere, semihengere og termocontainere.",
+      "source_ids": [
+        "s07-banenor-alnabru"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-2"
+      ]
+    },
+    {
+      "id": "logistikk-12",
+      "claim": "Alnabru er koblet til jernbanenettet og leverer løfte-, skifte- og kontrolltjenester.",
+      "source_ids": [
+        "s07-banenor-alnabru"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-2"
+      ]
+    },
+    {
+      "id": "logistikk-13",
+      "claim": "Oslo havn og Alnabru utgjør et sentralt nasjonalt gods- og transportknutepunkt.",
+      "source_ids": [
+        "s11-oslohavn-gods"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-3"
+      ]
+    },
+    {
+      "id": "logistikk-14",
+      "claim": "Sydhavna håndterer containere, bulk, biler, olje og andre varer for Oslo-regionen.",
+      "source_ids": [
+        "s12-oslohavn-sydhavna",
+        "s11-oslohavn-gods",
+        "s14-oslohavn-container"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-3"
+      ]
+    },
+    {
+      "id": "logistikk-15",
+      "claim": "Havnestatistikk måler lastet og losset gods ved havner, ikke terminalens maksimale kapasitet.",
+      "source_ids": [
+        "s03-ssb-kyst",
+        "s13-oslohavn-fasiliteter"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-3"
+      ]
+    },
+    {
+      "id": "logistikk-16",
+      "claim": "TEU-kapasitet, faktisk volum og terminalproduktivitet er forskjellige mål.",
+      "source_ids": [
+        "s13-oslohavn-fasiliteter",
+        "s15-oslohavn-arsberetning"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-3"
+      ]
+    },
+    {
+      "id": "logistikk-17",
+      "claim": "Havneareal kombinerer kai, lager, sikkerhetssoner, bygninger og transporttilknytning.",
+      "source_ids": [
+        "s13-oslohavn-fasiliteter",
+        "s17-oslohavn-adgang"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-3"
+      ]
+    },
+    {
+      "id": "logistikk-18",
+      "claim": "Havne- og farvannsloven knytter havnedrift til effektivitet, sikkerhet, miljø og beredskap.",
+      "source_ids": [
+        "s18-kystverket-lov"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-grunnlag-3"
+      ]
+    },
+    {
+      "id": "logistikk-19",
+      "claim": "Terminalkapasitet bestemmes av samspillet mellom spor, løfteutstyr, porter, bemanning og tilknyttet nett.",
+      "source_ids": [
+        "s06-jdir-alnabru",
+        "s07-banenor-alnabru"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-1"
+      ]
+    },
+    {
+      "id": "logistikk-20",
+      "claim": "Faktisk gjennomstrømning må måles per tidsenhet under definerte driftsforhold.",
+      "source_ids": [
+        "s06-jdir-alnabru",
+        "s09-banenor-network"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-1"
+      ]
+    },
+    {
+      "id": "logistikk-21",
+      "claim": "Alnabru-utredningen anbefaler trinnvis modernisering for mer rasjonell drift og høyere kapasitet.",
+      "source_ids": [
+        "s06-jdir-alnabru"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-1"
+      ]
+    },
+    {
+      "id": "logistikk-22",
+      "claim": "Mulig dobling av godstrafikken er knyttet til gjennomførte utbyggingstrinn, ikke dagens frie kapasitet.",
+      "source_ids": [
+        "s06-jdir-alnabru"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-1"
+      ]
+    },
+    {
+      "id": "logistikk-23",
+      "claim": "Terminalstruktur må vurderes på tvers av sjø, bane og vei.",
+      "source_ids": [
+        "s08-jdir-terminalstruktur",
+        "s04-ssb-jernbane"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-1"
+      ]
+    },
+    {
+      "id": "logistikk-24",
+      "claim": "Samlet terminalkapasitet kan være tilstrekkelig selv om jernbanen har egne kapasitetsproblemer.",
+      "source_ids": [
+        "s08-jdir-terminalstruktur"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-1"
+      ]
+    },
+    {
+      "id": "logistikk-25",
+      "claim": "Lager reduserer avhengigheten av perfekt samtidighet mellom produksjon og etterspørsel.",
+      "source_ids": [
+        "s20-regjeringen-ntp",
+        "s21-dsb-kritiske"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-2"
+      ]
+    },
+    {
+      "id": "logistikk-26",
+      "claim": "Lite buffer kan redusere kapitalbinding, men øke konsekvensen av leveringssvikt.",
+      "source_ids": [
+        "s21-dsb-kritiske"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-2"
+      ]
+    },
+    {
+      "id": "logistikk-27",
+      "claim": "Leveringspresisjon må knyttes til avtalt tid, mengde, kvalitet og sted.",
+      "source_ids": [
+        "s10-oslo-varelevering"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-2"
+      ]
+    },
+    {
+      "id": "logistikk-28",
+      "claim": "Avvik kan oppstå i ordre, plukk, lager, transport eller mottak og må lokaliseres i kjeden.",
+      "source_ids": [
+        "s10-oslo-varelevering"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-2"
+      ]
+    },
+    {
+      "id": "logistikk-29",
+      "claim": "Varelevering i sentrum krever tilgang til areal for lasting og lossing.",
+      "source_ids": [
+        "s10-oslo-varelevering"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-2"
+      ]
+    },
+    {
+      "id": "logistikk-30",
+      "claim": "Den siste fasen fra kjøretøy til mottaker er et eget logistikkproblem, særlig for tungt gods.",
+      "source_ids": [
+        "s10-oslo-varelevering"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-2"
+      ]
+    },
+    {
+      "id": "logistikk-31",
+      "claim": "Lokalisering påvirkes av marked, arbeidskraft, leverandører, transportnett, arealpris og regulering.",
+      "source_ids": [
+        "s08-jdir-terminalstruktur",
+        "s20-regjeringen-ntp"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-3"
+      ]
+    },
+    {
+      "id": "logistikk-32",
+      "claim": "Store terminaler og lager krever areal og må vurderes mot transportavstand og markedsnærhet.",
+      "source_ids": [
+        "s08-jdir-terminalstruktur"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-3"
+      ]
+    },
+    {
+      "id": "logistikk-33",
+      "claim": "Alnabru, Oslo S, Ring 3 og Sydhavna fungerer som ulike, sammenkoblede noder og korridorer.",
+      "source_ids": [
+        "s07-banenor-alnabru",
+        "s12-oslohavn-sydhavna"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-3"
+      ]
+    },
+    {
+      "id": "logistikk-34",
+      "claim": "Verdien av et logistikksted oppstår også gjennom forbindelsen til omland og andre noder.",
+      "source_ids": [
+        "s08-jdir-terminalstruktur"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-3"
+      ]
+    },
+    {
+      "id": "logistikk-35",
+      "claim": "Byomforming kan flytte logistikkfunksjoner og øke avstand til markedet selv om arealet får høyere alternativ verdi.",
+      "source_ids": [
+        "s12-oslohavn-sydhavna",
+        "s16-oslohavn-jernbane"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-3"
+      ]
+    },
+    {
+      "id": "logistikk-36",
+      "claim": "Transportbehovet kan bestå selv om tidligere lager- og havnearealer får nye byfunksjoner.",
+      "source_ids": [
+        "s11-oslohavn-gods",
+        "s12-oslohavn-sydhavna"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-fordypning-3"
+      ]
+    },
+    {
+      "id": "logistikk-37",
+      "claim": "Sjø, bane og vei har ulike fortrinn etter avstand, varetype, volum, frekvens og tidskrav.",
+      "source_ids": [
+        "s05-ssb-innenlandsk",
+        "s22-regjeringen-klima-gods"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-anvendelse-1"
+      ]
+    },
+    {
+      "id": "logistikk-38",
+      "claim": "Godstransportens private kostnad fanger ikke nødvendigvis utslipp, støy, kø, ulykker og arealbruk.",
+      "source_ids": [
+        "s22-regjeringen-klima-gods"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-anvendelse-1"
+      ]
+    },
+    {
+      "id": "logistikk-39",
+      "claim": "Miljøvirkning må knyttes til konkret kjede, energi, lastfaktor og sisteledd.",
+      "source_ids": [
+        "s22-regjeringen-klima-gods",
+        "s12-oslohavn-sydhavna"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-anvendelse-1"
+      ]
+    },
+    {
+      "id": "logistikk-40",
+      "claim": "Overføring fra vei til sjø eller bane krever kapasitet og konkurransedyktighet i hele transportkjeden.",
+      "source_ids": [
+        "s19-regjeringen-gods-bane",
+        "s22-regjeringen-klima-gods"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-anvendelse-1"
+      ]
+    },
+    {
+      "id": "logistikk-41",
+      "claim": "Robusthet krever vurdering av reserveleverandører, alternative ruter, buffere og gjenopprettingstid.",
+      "source_ids": [
+        "s21-dsb-kritiske",
+        "s20-regjeringen-ntp"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-anvendelse-2"
+      ]
+    },
+    {
+      "id": "logistikk-42",
+      "claim": "Transport og forsyning må planlegges som kritiske funksjoner med definerte minimumsnivåer og avhengigheter.",
+      "source_ids": [
+        "s21-dsb-kritiske",
+        "s18-kystverket-lov"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "logistikk-anvendelse-2"
+      ]
+    }
+  ]
+}
