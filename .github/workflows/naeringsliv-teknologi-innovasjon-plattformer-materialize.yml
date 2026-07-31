@@ -40,35 +40,116 @@ jobs:
             > scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
           node --check scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
 
-      - name: Diagnose chapter claim identifiers
+      - name: Materialize and validate chapter
+        id: materialize
+        continue-on-error: true
+        run: node scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
+
+      - name: Write compact claim diagnostic
+        if: steps.materialize.outcome == 'failure'
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const path = 'scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs';
-          const source = fs.readFileSync(path, 'utf8');
-          const lines = source.split(/\r?\n/);
-          console.log('=== lines containing claim_id / claimIds / teknologi-grunnlag-1 ===');
-          lines.forEach((line, index) => {
-            if (/claim_id|claimIds|teknologi-grunnlag-1/.test(line)) {
-              console.log(`${index + 1}: ${line}`);
-            }
-          });
-          console.log('=== unique teknologi-* identifiers ===');
-          const ids = [...source.matchAll(/["'`](teknologi-[a-z0-9-]+)["'`]/g)].map(match => match[1]);
-          const counts = new Map();
-          for (const id of ids) counts.set(id, (counts.get(id) || 0) + 1);
-          for (const [id, count] of [...counts.entries()].sort()) {
-            console.log(`${id}\t${count}`);
+          const path = require('path');
+          const cp = require('child_process');
+
+          const root = process.cwd();
+          const status = cp.execSync('git status --short', { encoding: 'utf8' }).trim().split(/\r?\n/).filter(Boolean);
+          const files = new Set();
+          for (const line of status) {
+            const rel = line.slice(3).trim().replace(/^.* -> /, '');
+            const abs = path.join(root, rel);
+            if (fs.existsSync(abs) && fs.statSync(abs).isFile()) files.add(rel);
           }
+          files.add('scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs');
+
+          const definitions = new Map();
+          const references = new Map();
+          const occurrences = [];
+
+          function add(map, id, where) {
+            if (!map.has(id)) map.set(id, []);
+            map.get(id).push(where);
+          }
+
+          function walk(value, where) {
+            if (Array.isArray(value)) {
+              value.forEach((item, index) => walk(item, `${where}[${index}]`));
+              return;
+            }
+            if (!value || typeof value !== 'object') return;
+            for (const [key, child] of Object.entries(value)) {
+              const childWhere = `${where}.${key}`;
+              if ((key === 'claim_id' || key === 'claimId') && typeof child === 'string') {
+                add(definitions, child, childWhere);
+              }
+              if (key === 'claimIds' && Array.isArray(child)) {
+                child.forEach((id, index) => {
+                  if (typeof id === 'string') add(references, id, `${childWhere}[${index}]`);
+                });
+              }
+              walk(child, childWhere);
+            }
+          }
+
+          for (const rel of [...files].sort()) {
+            const abs = path.join(root, rel);
+            const text = fs.readFileSync(abs, 'utf8');
+            if (text.includes('teknologi-grunnlag-1')) {
+              text.split(/\r?\n/).forEach((line, index) => {
+                if (line.includes('teknologi-grunnlag-1')) occurrences.push(`${rel}:${index + 1}: ${line.trim()}`);
+              });
+            }
+            if (rel.endsWith('.json')) {
+              try { walk(JSON.parse(text), rel); } catch {}
+            }
+          }
+
+          const unknown = [...references.keys()].filter(id => !definitions.has(id)).sort();
+          const out = [];
+          out.push('# Claim diagnostic');
+          out.push('');
+          out.push('## Changed/generated files');
+          out.push(...[...files].sort().map(file => `- ${file}`));
+          out.push('');
+          out.push('## Unknown references');
+          if (!unknown.length) out.push('- none');
+          for (const id of unknown) {
+            out.push(`- ${id}`);
+            for (const where of references.get(id) || []) out.push(`  - ref: ${where}`);
+          }
+          out.push('');
+          out.push('## Definitions');
+          for (const id of [...definitions.keys()].sort()) {
+            out.push(`- ${id}`);
+            for (const where of definitions.get(id) || []) out.push(`  - def: ${where}`);
+          }
+          out.push('');
+          out.push('## Exact occurrences of teknologi-grunnlag-1');
+          out.push(...(occurrences.length ? occurrences.map(item => `- ${item}`) : ['- none']));
+          out.push('');
+          fs.writeFileSync('.bootstrap/naeringsliv-teknologi/claim-diagnostic.md', out.join('\n'));
           NODE
 
-      - name: Materialize and validate chapter
-        run: node scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
+      - name: Commit diagnostic on failure
+        if: steps.materialize.outcome == 'failure'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .bootstrap/naeringsliv-teknologi/claim-diagnostic.md
+          git commit -m "Dokumenter claim-ID-feil i Næringsliv teknologi"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          exit 1
 
       - name: Remove transport chunks
-        run: rm -rf .bootstrap/naeringsliv-teknologi
+        if: steps.materialize.outcome == 'success'
+        run: |
+          rm -rf .bootstrap/naeringsliv-teknologi
+          rm -f .github/workflows/naeringsliv-teknologi-innovasjon-plattformer-materialize.yml
+          rm -f scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
 
       - name: Commit materialized production files
+        if: steps.materialize.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
