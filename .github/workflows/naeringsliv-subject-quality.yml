@@ -37,7 +37,7 @@ jobs:
           tar -xzf /tmp/naeringsliv-ch6.tar.gz
           rm -rf .bootstrap
           test -f scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-          python -c 'from pathlib import Path; p=Path("scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs"); s=p.read_text(); s=s.replace("/^(\\d+)\\.(\\d+)\\.(\\d+)$/", "/^(.*?)(\\d+)\\.(\\d+)\\.(\\d+)$/").replace("`${match[1]}.${Number(match[2]) + 1}.0`", "`${match[1]}${match[2]}.${Number(match[3]) + 1}.0`"); p.write_text(s)'
+          python -c 'from pathlib import Path; p=Path("scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs"); s=p.read_text(); s=s.replace("/^(\\d+)\\.(\\d+)\\.(\\d+)$/", "/^(.*?)(\\d+)\\.(\\d+)\\.(\\d+)$/").replace("`${match[1]}.${Number(match[2]) + 1}.0`", "`${match[1]}${match[2]}.${Number(match[3]) + 1}.0`").replace("status.generation.generated_at = DATE;", "status.generation = { ...(status.generation || {}), generated_at: DATE };"); p.write_text(s)'
           node --check scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
       - run: npm ci
       - name: Materialiser 6 av 6
