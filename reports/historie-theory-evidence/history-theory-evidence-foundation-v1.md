@@ -175,12 +175,12 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Langsomme katastrofer og miljøskade: forklarings- og kildebane | 4 | 2 | 3 | 4 | evidence_ready |
 | Langsomme katastrofer, miljøskade og ulik eksponering: forklarings- og kildebane | 5 | 3 | 5 | 5 | evidence_ready |
 | Katastrofer, branner, ulykker og historiske brudd – fordypning 10: forklarings- og kildebane | 5 | 5 | 7 | 5 | evidence_ready |
-| Markeder og markedsintegrasjon: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
-| Handel, sjøfart og kommersielle nettverk: forklarings- og kildebane | 5 | 3 | 4 | 5 | evidence_ready |
-| Penger, kreditt, bank og finans: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
-| Eiendom, kapital og akkumulering: forklarings- og kildebane | 4 | 4 | 6 | 4 | evidence_ready |
+| Markeder og markedsintegrasjon: forklarings- og kildebane | 4 | 4 | 7 | 4 | evidence_ready |
+| Handel, sjøfart og kommersielle nettverk: forklarings- og kildebane | 5 | 3 | 5 | 5 | evidence_ready |
+| Penger, kreditt, bank og finans: forklarings- og kildebane | 3 | 3 | 6 | 3 | evidence_ready |
+| Eiendom, kapital og akkumulering: forklarings- og kildebane | 4 | 4 | 8 | 4 | evidence_ready |
 | Jordbruk, fiske og ressursøkonomi: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
-| Skatt, offentlig økonomi og infrastruktur: forklarings- og kildebane | 4 | 3 | 3 | 4 | evidence_ready |
+| Skatt, offentlig økonomi og infrastruktur: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
 | Forbruk, priser og levestandard: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
 | Kriser, konjunkturer og global arbeidsdeling: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
 | Teknologi, produktivitet og materielle standarder: forklarings- og kildebane | 4 | 3 | 3 | 4 | evidence_ready |

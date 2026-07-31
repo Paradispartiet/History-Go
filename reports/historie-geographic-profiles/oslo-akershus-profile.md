@@ -16,7 +16,7 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 ## Evidensgrunnlag
 
 - Claims: **219**
-- Kilder: **164**
+- Kilder: **167**
 - Sted–emne–claim–kildekoblinger: **226**
 - Validerte caser: **47**
 - Validerte caser med minst to evidenskoblinger: **47**

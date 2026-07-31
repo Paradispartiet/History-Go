@@ -36,14 +36,17 @@
   },
   "source_anchoring": {
     "exchange_and_market_source_ids": [
-      "src_his_snl_oslo_bors_history"
+      "src_his_snl_oslo_bors_history",
+      "src_his_oslo_byleksikon_borsen",
+      "src_his_sikt_forvaltningsdatabasen_borser"
     ],
     "monetary_financial_and_series_source_ids": [
       "src_his_norges_bank_historical_monetary_financial_statistics_2022",
       "src_his_norges_bank_history_timeline"
     ],
     "customs_and_trade_infrastructure_source_ids": [
-      "src_his_riksantikvaren_oslo_tollbod"
+      "src_his_riksantikvaren_oslo_tollbod",
+      "src_his_oslo_byleksikon_tollboden"
     ],
     "reused_resource_industry_property_and_access_source_ids": [
       "src_his_arran_snl_finnskatt",
@@ -55,7 +58,7 @@
       "src_his_snl_ulleval_hageby",
       "src_his_wang_decolonising_medieval_fennoscandia"
     ],
-    "assessment": "Kildepakken kombinerer fagredigert børshistorie, sentralbankens historiske statistikk og institusjonskronologi, offentlig kulturmiljødokumentasjon og eksisterende stedvaliderte ressurs-, industri-, eiendoms- og tilgangscaser. Den skiller institusjon, norm, kapasitet, måling, faktisk bruk og fordelingsvirkning."
+    "assessment": "Kildepakken kombinerer fagredigert børshistorie, stedshistoriske oppslagsverk, en offentlig administrativ enhetsdatabase, sentralbankens historiske statistikk og institusjonskronologi, offentlig kulturmiljødokumentasjon og eksisterende stedvaliderte ressurs-, industri-, eiendoms- og tilgangscaser. Den skiller institusjon, norm, kapasitet, måling, faktisk bruk og fordelingsvirkning."
   },
   "source_snapshots": [
     {
@@ -76,6 +79,45 @@
       "limitations": [
         "Leksikonartikkelen gir en institusjonell hovedkronologi, men inneholder ikke sammenlignbare serier for kurser, omsetning, transaksjonskostnader eller hvem som faktisk fikk markedsadgang.",
         "Børsens eksistens, nye instrumenter og elektroniske system dokumenterer ikke alene markedsintegrasjon, likviditet, fortjeneste eller representativitet for norsk økonomi."
+      ]
+    },
+    {
+      "source_id": "src_his_oslo_byleksikon_borsen",
+      "title": "Børsen",
+      "publisher": "Oslo byleksikon",
+      "url": "https://oslobyleksikon.no/side/B%C3%B8rsen",
+      "supported_dimensions": [
+        "legal_establishment",
+        "opening",
+        "building_continuity",
+        "trading_hall_change"
+      ],
+      "source_locations": [
+        "Innledningen og historikkdelen om loven i 1818, åpningen i leide rom i 1819 og egen børsbygning fra 1828",
+        "Historikkdelen om utvidelsen 1909–1910 og ny børssal i 1988"
+      ],
+      "limitations": [
+        "Oppslagsverket gir en stedshistorisk bygnings- og institusjonskronologi, men ikke samtidige protokoller, omsetningsserier eller systematiske data om aktører og markedsadgang.",
+        "Dagens regulerte markeder og bygningens kontinuitet kan ikke brukes som direkte mål på børsens historiske rekkevidde, likviditet eller representativitet."
+      ]
+    },
+    {
+      "source_id": "src_his_sikt_forvaltningsdatabasen_borser",
+      "title": "Børser — endringshistorie",
+      "publisher": "Sikt — Kunnskapssektorens tjenesteleverandør",
+      "url": "https://forvaltningsdatabasen.sikt.no/data/enhet/3600/endringshistorie",
+      "supported_dimensions": [
+        "public_establishment",
+        "administrative_affiliation",
+        "privatization"
+      ],
+      "source_locations": [
+        "Innledningen om Stortingets rolle, sanksjonen av børsloven 8. september 1818 og åpningen av Christiania Børs i april 1819",
+        "Endringspostene om overordnet departement og utskriving fra forvaltningen ved privatiseringen i 2001"
+      ],
+      "limitations": [
+        "Forvaltningsdatabasen dokumenterer offentlig etablering og administrative statusendringer, men er ikke en samtidig børsprotokoll, handelsstatistikk eller markedsanalyse.",
+        "Administrativ tilknytning og privatisering dokumenterer institusjonsform, men ikke alene omsetning, likviditet, markedsadgang eller representativitet for norsk økonomi."
       ]
     },
     {
@@ -134,6 +176,25 @@
         "Landsverneplanen dokumenterer anlegg, bygninger og institusjonell bruk, men er ikke en toll-, skips- eller varestatistikk og tallfester ikke samlet handel eller innkrevde avgifter.",
         "Økt lager- og ekspedisjonskapasitet kan skyldes flere varestrømmer, nye kontrollkrav eller omorganisering; bygningsendring er derfor ikke alene mål på markedsvekst eller offentlig effektivitet.",
         "Formell tollbehandling fanger ikke smugling, uregistrert kystfart, egenforsyning eller vareflyt gjennom andre havner og kan ikke gjøres representativ for all handel."
+      ]
+    },
+    {
+      "source_id": "src_his_oslo_byleksikon_tollboden",
+      "title": "Tollboden",
+      "publisher": "Oslo byleksikon",
+      "url": "https://oslobyleksikon.no/side/Tollboden",
+      "supported_dimensions": [
+        "customs_building_sequence",
+        "warehouse_history",
+        "harbour_landscape_change"
+      ],
+      "source_locations": [
+        "Historikkdelen om tollbodene fra 1695, brannen i 1785 og bygningen fra 1787–1790",
+        "Avsnittene om dagens Tollbod fra 1896, Tollpakkehuset 1846–1850 og utfyllingene 1957–1960"
+      ],
+      "limitations": [
+        "Oppslagsverket sammenfatter bygningshistorien, men er ikke en tolljournal, regnskapsserie eller varestatistikk og dokumenterer ikke samlet innkreving eller handelsvolum.",
+        "Bygningenes plassering og ombygging viser institusjonell og materiell endring, men ikke alene effektivitet, smugling, avgiftsfordeling eller representativitet for andre tollsteder."
       ]
     }
   ],
