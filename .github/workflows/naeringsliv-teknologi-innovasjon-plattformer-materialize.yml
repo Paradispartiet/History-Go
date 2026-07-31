@@ -40,14 +40,30 @@ jobs:
             > scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
           node --check scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
 
-      - name: Restrict claim collection to claim fields
+      - name: Restrict claim collection to explicit trace fields
         run: |
           node <<'NODE'
           const fs = require('fs');
           const file = 'scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs';
           const source = fs.readFileSync(file, 'utf8');
-          const pattern = /function collectClaimIds\(value, target = new Set\(\)\) \{[\s\S]*?\n\}\nconst PLACE_FILES/;
-          const replacement = `function collectClaimIds(value, target = new Set(), insideClaimField = false) {
+          const marker = 'materializePayloads();\n\nconst chapter = readJson(CHAPTER_PATH);';
+          const oldCollector = `function collectClaimIds(value, target = new Set()) {
+            if (Array.isArray(value)) {
+              for (const item of value) collectClaimIds(item, target);
+            } else if (value && typeof value === "object") {
+              for (const [key, item] of Object.entries(value)) {
+                if (key === "claimIds" || key === "paragraphClaimIds" || key === "keyPointClaimIds") {
+                  collectClaimIds(item, target);
+                } else {
+                  collectClaimIds(item, target);
+                }
+              }
+            } else if (typeof value === "string" && value.startsWith("teknologi-")) {
+              target.add(value);
+            }
+            return target;
+          }`;
+          const newCollector = `function collectClaimIds(value, target = new Set(), insideClaimField = false) {
             if (Array.isArray(value)) {
               for (const item of value) collectClaimIds(item, target, insideClaimField);
             } else if (value && typeof value === "object") {
@@ -59,14 +75,24 @@ jobs:
               target.add(value);
             }
             return target;
+          }`;
+          if (source.split(marker).length !== 2) {
+            throw new Error('Expected one materializePayloads marker');
           }
-          const PLACE_FILES`;
-          const matches = source.match(pattern);
-          if (!matches || matches.length !== 1) {
-            throw new Error('Expected exactly one broad collectClaimIds implementation in materializer');
-          }
-          const patched = source.replace(pattern, replacement);
-          fs.writeFileSync(file, patched);
+          const injected = [
+            'materializePayloads();',
+            '',
+            'const auditPath = path.join(ROOT, "scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs");',
+            'let auditSource = fs.readFileSync(auditPath, "utf8");',
+            `const broadCollector = ${JSON.stringify(oldCollector)};`,
+            `const narrowCollector = ${JSON.stringify(newCollector)};`,
+            'if (!auditSource.includes(broadCollector)) throw new Error("Expected broad collectClaimIds implementation in generated audit");',
+            'auditSource = auditSource.replace(broadCollector, narrowCollector);',
+            'fs.writeFileSync(auditPath, auditSource);',
+            '',
+            'const chapter = readJson(CHAPTER_PATH);'
+          ].join('\n');
+          fs.writeFileSync(file, source.replace(marker, injected));
           NODE
           node --check scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs
 
