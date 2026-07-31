@@ -52,6 +52,22 @@ jobs:
           set -o pipefail
           {
             node scripts/materialize-naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom-v1.mjs
+            node <<'NODE'
+            const fs = require('fs');
+            const file = 'scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs';
+            let source = fs.readFileSync(file, 'utf8');
+            const oldContract = `  assert(subjectStatus?.editorialStatus === "chapters_in_progress", "Næringsliv editorial status mismatch");
+              assert(subjectStatus.note.includes("4 av 6"), "Næringsliv status must state 4 of 6 chapters");`;
+            const newContract = `  const registeredChapterCount = subject.chapters.length;
+              const canonicalDomainCount = pensum.domains.length;
+              const expectedEditorialStatus = registeredChapterCount === canonicalDomainCount ? "complete" : "chapters_in_progress";
+              assert(subjectStatus?.editorialStatus === expectedEditorialStatus, \`Næringsliv editorial status must be \${expectedEditorialStatus}\`);
+              assert(String(subjectStatus?.note || "").includes(\`\${registeredChapterCount} av \${canonicalDomainCount}\`), "Næringsliv status chapter count mismatch");`;
+            if (!source.includes(oldContract)) throw new Error('Expected hard-coded chapter-4 status contract');
+            source = source.replace(oldContract, newContract);
+            fs.writeFileSync(file, source);
+            NODE
+            node --check scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs
             node --test tests/naeringsliv-*.test.mjs
             node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
             npm run typecheck:web
@@ -72,10 +88,9 @@ jobs:
           }
           const start = index >= 0 ? Math.max(0, index - 12) : Math.max(0, lines.length - 100);
           const end = index >= 0 ? Math.min(lines.length, index + 45) : lines.length;
-          const selected = lines.slice(start, end);
           fs.writeFileSync(
             '.bootstrap/naeringsliv-logistikk/materialize-failure.md',
-            ['# Materializer failure', '', '```text', ...selected, '```', ''].join('\n')
+            ['# Materializer failure', '', '```text', ...lines.slice(start, end), '```', ''].join('\n')
           );
           NODE
 
