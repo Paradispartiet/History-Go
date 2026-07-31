@@ -15,11 +15,11 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 
 ## Evidensgrunnlag
 
-- Claims: **219**
-- Kilder: **167**
-- Sted–emne–claim–kildekoblinger: **226**
-- Validerte caser: **47**
-- Validerte caser med minst to evidenskoblinger: **47**
+- Claims: **228**
+- Kilder: **177**
+- Sted–emne–claim–kildekoblinger: **236**
+- Validerte caser: **49**
+- Validerte caser med minst to evidenskoblinger: **49**
 
 ## Validerte caser
 
@@ -58,6 +58,7 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_nostvet_boplass`
 - `case_his_nydalen`
 - `case_his_oslo_brannmuseum`
+- `case_his_oslo_domkirke`
 - `case_his_oslo_hospital`
 - `case_his_oslo_radhus`
 - `case_his_prinds_christian_augusts_minde`
@@ -68,6 +69,7 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_stunner_steinalderboplass`
 - `case_his_tanum_kirke_og_baerumsgardene`
 - `case_his_tollboden`
+- `case_his_trefoldighetskirken`
 - `case_his_ulleval_hageby`
 - `case_his_youngstorget`
 
@@ -78,5 +80,5 @@ Ingen åpne terskelgap.
 ## Videre produksjonskø
 
 - 24 universelle emner mangler fortsatt en casekandidat i profilen.
-- 66 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
+- 64 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
 - Videre produksjon skal bruke canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon uten å gjøre pilotgeografien universell.

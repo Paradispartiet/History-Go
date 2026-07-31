@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **170**
-- Andel med dokumentert evidensgrunnlag: **73.9 %**
+- Validerte pilotobjekter: **180**
+- Andel med dokumentert evidensgrunnlag: **78.3 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -185,6 +185,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Kriser, konjunkturer og global arbeidsdeling: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
 | Teknologi, produktivitet og materielle standarder: forklarings- og kildebane | 4 | 3 | 3 | 4 | evidence_ready |
 | Global arbeidsdeling, råvarer og avhengighet: forklarings- og kildebane | 5 | 3 | 4 | 5 | evidence_ready |
+| Førkristne religioner og kristning: forklarings- og kildebane | 3 | 2 | 6 | 3 | evidence_ready |
+| Reformasjon og konfesjonalisering: forklarings- og kildebane | 4 | 3 | 7 | 4 | evidence_ready |
+| Statskirke, disiplin og religiøs orden: forklarings- og kildebane | 4 | 5 | 9 | 4 | evidence_ready |
+| Pietisme, vekkelse og lekmannsbevegelse: forklarings- og kildebane | 4 | 3 | 6 | 4 | evidence_ready |
+| Dissentere, trosfrihet og minoriteter: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Sekularisering og livssynspluralisme: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
+| Religion, kjønn og hverdagsliv: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Religion, politikk og offentlighet: forklarings- og kildebane | 4 | 5 | 8 | 4 | evidence_ready |
+| Religion, migrasjon og transnasjonale nettverk: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
+| Livssyn, sekularitet og offentlighet: forklarings- og kildebane | 4 | 3 | 4 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 

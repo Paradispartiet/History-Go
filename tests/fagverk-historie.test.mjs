@@ -112,7 +112,7 @@ test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', (
   assert.equal(report.universalCoverage.coveredCells, 58);
   assert.equal(report.universalCoverage.totalCells, 58);
   assert.equal(report.universalCoverage.productionGaps, 1);
-  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 170);
+  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 180);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
 });
@@ -149,6 +149,35 @@ test('Børsen og Tollboden har reell kildesammenligning på tvers av kildetyper'
   for (const caseId of ['case_his_borsen', 'case_his_tollboden']) {
     const profileCase = profile.cases.find((item) => item.case_id === caseId);
     assert.ok(profileCase, caseId);
+    assert.ok(profileCase.case_requirement_ids.includes('case_req_his_source_comparison'), caseId);
+
+    const sourceIds = [...new Set(placeEvidence.evidence_links
+      .filter((link) => link.case_id === caseId)
+      .flatMap((link) => link.source_ids || []))];
+    const sourceFamilies = [...new Set(sourceIds.map((sourceId) => (
+      sourceFamilyByType.get(sourcesById.get(sourceId)?.source_type)
+    )))];
+
+    assert.ok(sourceIds.length >= 2, `${caseId} trenger minst to selvstendige kilder`);
+    assert.ok(sourceFamilies.every(Boolean), `${caseId} har kilde uten normalisert kildefamilie`);
+    assert.ok(sourceFamilies.length >= 2, `${caseId} trenger minst to normaliserte kildefamilier`);
+  }
+});
+
+test('Domkirken og Trefoldighetskirken har uavhengige kildefamilier', () => {
+  const profile = readJson('data/fag/profiles/historie/oslo_akershus/profile.json');
+  const placeEvidence = readJson('data/fag/historie/place_evidence_historie_v1.json');
+  const sourceRegistry = readJson('data/fag/historie/sources_historie_canonical_v1.json');
+  const sourcesById = new Map(sourceRegistry.sources.map((source) => [source.source_id, source]));
+  const sourceFamilyByType = new Map([
+    ['official_church_heritage_page', 'institutional_church_record'],
+    ['official_church_consultation_report', 'institutional_church_record'],
+    ['local_history_reference_work', 'secondary_reference_work']
+  ]);
+
+  for (const caseId of ['case_his_oslo_domkirke', 'case_his_trefoldighetskirken']) {
+    const profileCase = profile.cases.find((item) => item.case_id === caseId);
+    assert.equal(profileCase?.evidence_status, 'claim_source_linked', caseId);
     assert.ok(profileCase.case_requirement_ids.includes('case_req_his_source_comparison'), caseId);
 
     const sourceIds = [...new Set(placeEvidence.evidence_links
