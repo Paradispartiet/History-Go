@@ -49,6 +49,18 @@ jobs:
           node scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs \
             2>&1 | tee .bootstrap/naeringsliv-teknologi/materialize-error.log
 
+      - name: Preserve audit inputs on failure
+        if: steps.materialize.outcome == 'failure'
+        run: |
+          cp data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.json \
+            .bootstrap/naeringsliv-teknologi/debug-chapter.json
+          cp data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.evidence.json \
+            .bootstrap/naeringsliv-teknologi/debug-evidence.json
+          cp scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs \
+            .bootstrap/naeringsliv-teknologi/debug-audit.mjs
+          cp scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs \
+            .bootstrap/naeringsliv-teknologi/debug-materializer.mjs
+
       - name: Write compact failure diagnostic
         if: steps.materialize.outcome == 'failure'
         run: |
@@ -77,8 +89,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .bootstrap/naeringsliv-teknologi/materialize-error.log \
-                  .bootstrap/naeringsliv-teknologi/materialize-failure.md
-          git commit -m "Dokumenter materialiseringsfeil i Næringsliv teknologi"
+                  .bootstrap/naeringsliv-teknologi/materialize-failure.md \
+                  .bootstrap/naeringsliv-teknologi/debug-chapter.json \
+                  .bootstrap/naeringsliv-teknologi/debug-evidence.json \
+                  .bootstrap/naeringsliv-teknologi/debug-audit.mjs \
+                  .bootstrap/naeringsliv-teknologi/debug-materializer.mjs
+          git commit -m "Bevar auditgrunnlag for Næringsliv teknologi"
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
           exit 1
 
