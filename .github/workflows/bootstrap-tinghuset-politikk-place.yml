@@ -1,0 +1,56 @@
+name: Bootstrap Tinghuset Politikk-pilot
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'scripts/bootstrap-tinghuset-politikk-place.mjs'
+      - '.github/workflows/bootstrap-tinghuset-politikk-place.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.head_ref == 'agent/tinghuset-politikk-place-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Materialiser Politikk-stedet
+        run: node scripts/bootstrap-tinghuset-politikk-place.mjs
+      - name: Bygg og valider produksjonskontekst
+        run: |
+          npm run quiz:context -- --category politikk --target tinghuset --write
+          npm run quiz:validate -- --category politikk --target tinghuset
+      - name: Materialiser Knowledge
+        run: |
+          npm run quiz:knowledge -- --category politikk --target tinghuset --write
+          npm run quiz:validate -- --category politikk --target tinghuset
+      - name: Kjør fokuserte porter
+        run: |
+          node tools/validate-politikk-rett-vertical.mjs
+          npm run quiz:validate:all
+          git diff --check
+      - name: Fjern bootstrap og publiser produksjonsdiff
+        run: |
+          rm -f scripts/bootstrap-tinghuset-politikk-place.mjs
+          rm -f .github/workflows/bootstrap-tinghuset-politikk-place.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Ingen materialiserte endringer'
+            exit 1
+          fi
+          git commit -m 'Fyll Oslo tinghus som Politikk-sted V1'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
