@@ -1,0 +1,650 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "forvaltning",
+  "sources": [
+    {
+      "id": "f01-grunnloven",
+      "label": "Kongeriket Norges Grunnlov",
+      "url": "https://lovdata.no/dokument/NL/lov/1814-05-17",
+      "publisher": "Lovdata",
+      "type": "grunnlov",
+      "source_location": "§§ 3, 49, 75, 89, 98 og 113 om utøvende makt, folkestyre, budsjett, domstolskontroll, likhet og hjemmel"
+    },
+    {
+      "id": "f02-statsforvaltningen",
+      "label": "Regjeringen – Hva er statsforvaltningen?",
+      "url": "https://www.regjeringen.no/no/tema/statlig-forvaltning/forvaltningsutvikling/hva-er-statsforvaltningen/id2397949/",
+      "publisher": "Digitaliserings- og forvaltningsdepartementet",
+      "type": "institusjonskilde",
+      "source_location": "Oversikten over departementer, direktorater, delegasjon, styring og forvaltningsorganer"
+    },
+    {
+      "id": "f03-embetsverket",
+      "label": "Regjeringen – Forholdet mellom politisk ledelse og embetsverk",
+      "url": "https://www.regjeringen.no/no/dokumenter/om-forholdet-mellom-politisk-ledelse-og-embetsverk/id2626841/?ch=3",
+      "publisher": "Kommunal- og distriktsdepartementet",
+      "type": "veileder",
+      "source_location": "Kapittel 2–4 om politisk ledelse, embetsverk, etatsstyring og forvaltningsverdier"
+    },
+    {
+      "id": "f04-dfo-styring",
+      "label": "DFØ – Styring i staten",
+      "url": "https://www.dfo.no/fagomrader/styring-i-staten",
+      "publisher": "Direktoratet for forvaltning og økonomistyring",
+      "type": "veileder",
+      "source_location": "Mål og retning, resultatoppfølging, ressursplanlegging, etatsstyring og virksomhetsstyring"
+    },
+    {
+      "id": "f05-dfo-etatsstyring",
+      "label": "DFØ – Veileder i etatsstyring",
+      "url": "https://www.dfo.no/innledning-2",
+      "publisher": "Direktoratet for forvaltning og økonomistyring",
+      "type": "veileder",
+      "source_location": "Innledningen om departementenes styring og oppfølging av underliggende virksomheter"
+    },
+    {
+      "id": "f06-okonomiregelverket",
+      "label": "Regjeringen – Reglement for økonomistyring i staten",
+      "url": "https://www.regjeringen.no/no/dokumenter/reglement-for-okonomistyring-i-staten/id438887/",
+      "publisher": "Finansdepartementet",
+      "type": "regelverk",
+      "source_location": "§§ 4, 7 og 14 om mål, resultatkrav, tildelingsbrev, rapportering og kontroll"
+    },
+    {
+      "id": "f07-kommuneloven",
+      "label": "Lovdata – kommuneloven",
+      "url": "https://lovdata.no/dokument/NL/lov/2018-06-22-83",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 1-1, 2-1, 5-1, 5-2 og kapittel 25 om selvstyre, folkevalgte organer og internkontroll"
+    },
+    {
+      "id": "f08-oslo-styring",
+      "label": "Oslo kommune – Slik styres Oslo",
+      "url": "https://www.oslo.kommune.no/politikk/slik-styres-oslo/",
+      "publisher": "Oslo kommune",
+      "type": "kommunal-kilde",
+      "source_location": "Bystyrets, byrådets, administrasjonens og bydelenes roller i den parlamentariske styringsmodellen"
+    },
+    {
+      "id": "f09-stat-kommune",
+      "label": "Regjeringen – Statlig styring av kommuner og fylkeskommuner",
+      "url": "https://www.regjeringen.no/no/dokumenter/veileder-om-statlig-styring-av-kommuner-og-fylkeskommuner/id2791598/",
+      "publisher": "Kommunal- og distriktsdepartementet",
+      "type": "veileder",
+      "source_location": "Kapitlene om lov, økonomi, veiledning, tilsyn, rammefinansiering og lokalt handlingsrom"
+    },
+    {
+      "id": "f10-planloven",
+      "label": "Lovdata – plan- og bygningsloven",
+      "url": "https://lovdata.no/dokument/NL/lov/2008-06-27-71",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 3-1, 5-1, 11-1, 12-1 og 12-12 om planoppgaver, medvirkning og kommunale planvedtak"
+    },
+    {
+      "id": "f11-forvaltningsloven-1967",
+      "label": "Lovdata – forvaltningsloven 1967",
+      "url": "https://lovdata.no/lov/1967-02-10",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 6, 11, 17, 18, 24–25, 28 og 34 om habilitet, veiledning, utredning, innsyn, begrunnelse og klage"
+    },
+    {
+      "id": "f12-forvaltningsloven-2025",
+      "label": "Lovdata – lov om saksbehandlingen i offentlig forvaltning 2025",
+      "url": "https://lovdata.no/lov/2025-06-20-81",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Lovens metadata, formål, virkeområde og ikrafttredelsesbestemmelse; gjeldende overgang må kontrolleres"
+    },
+    {
+      "id": "f13-offentleglova",
+      "label": "Lovdata – offentleglova",
+      "url": "https://lovdata.no/dokument/NL/lov/2006-05-19-16",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "§§ 3, 11, 28–32 om hovedregel, merinnsyn, innsynskrav, avgjørelse og klage"
+    },
+    {
+      "id": "f14-innsynsguiden",
+      "label": "Sivilombudet – Innsynsguiden",
+      "url": "https://www.sivilombudet.no/veiledere/innsynsguiden/",
+      "publisher": "Sivilombudet",
+      "type": "kontrollkilde",
+      "source_location": "Delene om behandling uten ugrunnet opphold, begrunnelse, klage og femdagersregelen"
+    },
+    {
+      "id": "f15-begrunnelser",
+      "label": "Sivilombudet – Begrunnelser",
+      "url": "https://www.sivilombudet.no/veiledere/begrunnelser/",
+      "publisher": "Sivilombudet",
+      "type": "kontrollkilde",
+      "source_location": "Formålet med begrunnelse, individuelle vurderinger, standardisering og automatiserte avgjørelser"
+    },
+    {
+      "id": "f16-arkivverket",
+      "label": "Arkivverket – Identifisering og sikring av dokumentasjon",
+      "url": "https://www.arkivverket.no/veiledere-for-offentlig-sektor/metode-for-identifisering-og-sikring-av-dokumentasjon",
+      "publisher": "Arkivverket",
+      "type": "arkivfaglig-veileder",
+      "source_location": "Punkt 2.1 om dokumentasjonskrav, etterrettelighet, åpenhet og demokratiske rettigheter"
+    },
+    {
+      "id": "f17-utredningsinstruksen",
+      "label": "Regjeringen – Utredningsinstruksen",
+      "url": "https://www.regjeringen.no/no/dokumenter/utredningsinstruksen/id3060944/",
+      "publisher": "Finansdepartementet",
+      "type": "instruks",
+      "source_location": "Punkt 1-1 og 2-1 om virkeområde, problem, mål, tiltak, virkninger, berørte og forutsetninger"
+    },
+    {
+      "id": "f18-riksrevisjonen",
+      "label": "Riksrevisjonen – Om Riksrevisjonen",
+      "url": "https://www.riksrevisjonen.no/om-riksrevisjonen/",
+      "publisher": "Riksrevisjonen",
+      "type": "kontrollkilde",
+      "source_location": "Mandat, uavhengighet og kontroll med at statens midler og vedtak forvaltes som Stortinget har bestemt"
+    },
+    {
+      "id": "f19-dfo-evaluering",
+      "label": "DFØ – Evaluering",
+      "url": "https://www.dfo.no/fagomrader/styring-i-staten/evaluering",
+      "publisher": "Direktoratet for forvaltning og økonomistyring",
+      "type": "veileder",
+      "source_location": "Evaluering som kunnskapsgrunnlag for styring, læring, kontroll og endring"
+    },
+    {
+      "id": "f20-nav-partnerskap",
+      "label": "NAV – Partnerskapet i Nav",
+      "url": "https://www.nav.no/samarbeidspartner/partnerskapet",
+      "publisher": "Arbeids- og velferdsetaten",
+      "type": "institusjonskilde",
+      "source_location": "Statlig og kommunalt ansvar, lokale partnerskapsavtaler og felles NAV-kontor"
+    },
+    {
+      "id": "f21-regjeringskvartalet",
+      "label": "Regjeringen – Regjeringskvartalet",
+      "url": "https://www.regjeringen.no/en/topics/plan-bygg-og-eiendom/the-government-building-complex/id669703/",
+      "publisher": "Digitaliserings- og forvaltningsdepartementet",
+      "type": "stedskilde",
+      "source_location": "Regjeringskvartalet som arbeidssted for Statsministerens kontor og departementene"
+    },
+    {
+      "id": "f22-oslo-radhus",
+      "label": "Oslo kommune – Oslo rådhus",
+      "url": "https://www.oslo.kommune.no/radhuset/",
+      "publisher": "Oslo kommune",
+      "type": "stedskilde",
+      "source_location": "Rådhuset som sete for bystyret og byrådet og arena for kommunens demokratiske institusjoner"
+    },
+    {
+      "id": "f23-lipsky",
+      "label": "Russell Sage Foundation – Street-Level Bureaucracy",
+      "url": "https://www.russellsage.org/publications/book/street-level-bureaucracy",
+      "publisher": "Russell Sage Foundation",
+      "type": "forskningsverk",
+      "source_location": "Bokbeskrivelsen og innholdsoversikten om frontlinjeansatte, skjønn, ressurspress og offentlig politikk"
+    },
+    {
+      "id": "f24-digital-forvaltning",
+      "label": "Sivilombudet – Digital forvaltning",
+      "url": "https://www.sivilombudet.no/veiledere/digital-forvaltning/",
+      "publisher": "Sivilombudet",
+      "type": "kontrollkilde",
+      "source_location": "Delene om automatisering, utredning, begrunnelse, innsyn og muligheten til å forstå og etterprøve vedtak"
+    }
+  ],
+  "claims": [
+    {
+      "id": "forv-01",
+      "claim": "Statsforvaltningen omfatter departementene og underliggende virksomheter som forbereder og gjennomfører regjeringens politikk.",
+      "source_ids": [
+        "f02-statsforvaltningen"
+      ],
+      "classification": "institusjon",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-1"
+      ]
+    },
+    {
+      "id": "forv-02",
+      "claim": "Grunnloven fordeler lovgivende, bevilgende og utøvende myndighet mellom Stortinget og regjeringen og gir dermed rammen for administrativ kompetanse.",
+      "source_ids": [
+        "f01-grunnloven"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-1"
+      ]
+    },
+    {
+      "id": "forv-03",
+      "claim": "Departementene betjener politisk ledelse og har etatsstyring som en sentral oppgave overfor underliggende virksomheter.",
+      "source_ids": [
+        "f03-embetsverket",
+        "f05-dfo-etatsstyring"
+      ],
+      "classification": "styring",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-1"
+      ]
+    },
+    {
+      "id": "forv-04",
+      "claim": "Forvaltningsanalyse må skille organets formelle fullmakt fra innflytelsen som følger av informasjon, saksforberedelse og spesialisert kompetanse.",
+      "source_ids": [
+        "f03-embetsverket"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-1"
+      ]
+    },
+    {
+      "id": "forv-05",
+      "claim": "Stortinget vedtar statens utgifter og inntekter, mens forvaltningen må omsette bevilgningen til organisering, aktivitet og resultater.",
+      "source_ids": [
+        "f01-grunnloven",
+        "f06-okonomiregelverket"
+      ],
+      "classification": "budsjett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-2"
+      ]
+    },
+    {
+      "id": "forv-06",
+      "claim": "Statlig styring skal formulere mål og resultatkrav og sikre at ressursbruk og resultater kan følges opp.",
+      "source_ids": [
+        "f04-dfo-styring",
+        "f06-okonomiregelverket"
+      ],
+      "classification": "styring",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-2"
+      ]
+    },
+    {
+      "id": "forv-07",
+      "claim": "Tildelingsbrev og rapportering er sentrale dokumenter i departementets etatsstyring av underliggende virksomheter.",
+      "source_ids": [
+        "f05-dfo-etatsstyring",
+        "f06-okonomiregelverket"
+      ],
+      "classification": "dokument",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-2"
+      ]
+    },
+    {
+      "id": "forv-08",
+      "claim": "Delegasjon flytter beslutningsoppgaver, men omfanget av instruksjonsrett og ansvar må avgjøres etter hjemmel og den konkrete styringsrelasjonen.",
+      "source_ids": [
+        "f02-statsforvaltningen",
+        "f03-embetsverket"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-2"
+      ]
+    },
+    {
+      "id": "forv-09",
+      "claim": "Kommuneloven forankrer kommunalt og fylkeskommunalt selvstyre og legger avgjørende myndighet til folkevalgte organer.",
+      "source_ids": [
+        "f07-kommuneloven"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-3"
+      ]
+    },
+    {
+      "id": "forv-10",
+      "claim": "Statlig styring av kommunesektoren bruker blant annet lov, økonomiske virkemidler, veiledning og tilsyn, samtidig som lokalt handlingsrom skal ivaretas.",
+      "source_ids": [
+        "f09-stat-kommune"
+      ],
+      "classification": "flerniva",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-3"
+      ]
+    },
+    {
+      "id": "forv-11",
+      "claim": "I Oslo er bystyret øverste folkevalgte organ, mens byrådet leder administrasjonen i en parlamentarisk kommunemodell.",
+      "source_ids": [
+        "f08-oslo-styring"
+      ],
+      "classification": "lokaldemokrati",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-3"
+      ]
+    },
+    {
+      "id": "forv-12",
+      "claim": "NAV-kontorene bygger på et partnerskap mellom stat og kommune der ansvar og oppgaver reguleres gjennom lov og lokale avtaler.",
+      "source_ids": [
+        "f20-nav-partnerskap"
+      ],
+      "classification": "tjeneste",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-grunnlag-3"
+      ]
+    },
+    {
+      "id": "forv-13",
+      "claim": "Forvaltningsloven stiller prosessuelle krav som habilitet, veiledning, utredning, begrunnelse og klage ved offentlig saksbehandling.",
+      "source_ids": [
+        "f11-forvaltningsloven-1967"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-1"
+      ]
+    },
+    {
+      "id": "forv-14",
+      "claim": "Den vedtatte forvaltningsloven fra 2025 har egen ikrafttredelsesbestemmelse, slik at analysen må kontrollere hvilket regelsett som gjelder på handlingstidspunktet.",
+      "source_ids": [
+        "f12-forvaltningsloven-2025"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-1"
+      ]
+    },
+    {
+      "id": "forv-15",
+      "claim": "Forskningen om frontlinjebyråkrati viser hvordan skjønn, ressursknapphet og rutiner påvirker hvordan offentlig politikk faktisk leveres.",
+      "source_ids": [
+        "f23-lipsky"
+      ],
+      "classification": "forskning",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-1"
+      ]
+    },
+    {
+      "id": "forv-16",
+      "claim": "Begrunnelser må gjøre vedtaket forståelig og etterprøvbart, også når saksbehandlingen er standardisert eller automatisert.",
+      "source_ids": [
+        "f15-begrunnelser",
+        "f24-digital-forvaltning"
+      ],
+      "classification": "rettssikkerhet",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-1"
+      ]
+    },
+    {
+      "id": "forv-17",
+      "claim": "Økonomiregelverket krever at statlige virksomheter fastsetter mål og resultatkrav innenfor vedtatte bevilgninger og fullmakter.",
+      "source_ids": [
+        "f06-okonomiregelverket"
+      ],
+      "classification": "budsjett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-2"
+      ]
+    },
+    {
+      "id": "forv-18",
+      "claim": "Styring i staten omfatter både retning, ressursplanlegging og oppfølging av resultater og må derfor ses som en sammenhengende kjede.",
+      "source_ids": [
+        "f04-dfo-styring"
+      ],
+      "classification": "styring",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-2"
+      ]
+    },
+    {
+      "id": "forv-19",
+      "claim": "Etatsstyring må tilpasses virksomhetens egenart, risiko og vesentlighet fremfor å reduseres til én standardisert indikatorpakke.",
+      "source_ids": [
+        "f05-dfo-etatsstyring"
+      ],
+      "classification": "styring",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-2"
+      ]
+    },
+    {
+      "id": "forv-20",
+      "claim": "Evaluering kan supplere løpende resultatrapportering med mer helhetlig kunnskap for læring, kontroll og endring av styringskurs.",
+      "source_ids": [
+        "f19-dfo-evaluering"
+      ],
+      "classification": "evaluering",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-2"
+      ]
+    },
+    {
+      "id": "forv-21",
+      "claim": "Embetsverket skal kombinere faglighet og partipolitisk nøytralitet med lojal gjennomføring av lovlig vedtatt politikk.",
+      "source_ids": [
+        "f03-embetsverket"
+      ],
+      "classification": "rolle",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-3"
+      ]
+    },
+    {
+      "id": "forv-22",
+      "claim": "Utredningsinstruksen krever at statlige tiltak bygger på en eksplisitt problembeskrivelse, mål, alternativer, virkninger og berørte grupper.",
+      "source_ids": [
+        "f17-utredningsinstruksen"
+      ],
+      "classification": "utredning",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-3"
+      ]
+    },
+    {
+      "id": "forv-23",
+      "claim": "Riksrevisjonen er Stortingets kontrollorgan og undersøker blant annet om statens midler brukes og forvaltes i samsvar med Stortingets vedtak og forutsetninger.",
+      "source_ids": [
+        "f18-riksrevisjonen"
+      ],
+      "classification": "kontroll",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-3"
+      ]
+    },
+    {
+      "id": "forv-24",
+      "claim": "Evaluering gir et annet kunnskapsgrunnlag enn løpende rapportering og kan avdekke virkninger, årsakskjeder og behov for justering.",
+      "source_ids": [
+        "f19-dfo-evaluering"
+      ],
+      "classification": "legitimitet",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-fordypning-3"
+      ]
+    },
+    {
+      "id": "forv-25",
+      "claim": "Grunnloven § 113 krever lovgrunnlag for myndighetenes inngrep overfor den enkelte.",
+      "source_ids": [
+        "f01-grunnloven"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-1"
+      ]
+    },
+    {
+      "id": "forv-26",
+      "claim": "Offentleglova har innsyn som hovedregel og krever vurdering av merinnsyn der et lovlig unntak kan brukes.",
+      "source_ids": [
+        "f13-offentleglova",
+        "f14-innsynsguiden"
+      ],
+      "classification": "offentlighet",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-1"
+      ]
+    },
+    {
+      "id": "forv-27",
+      "claim": "Offentlige organer trenger dokumentasjon for etterrettelighet, åpenhet, demokratiske rettigheter og kontroll med saksbehandlingen.",
+      "source_ids": [
+        "f16-arkivverket"
+      ],
+      "classification": "arkiv",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-1"
+      ]
+    },
+    {
+      "id": "forv-28",
+      "claim": "Automatiserte avgjørelser må fortsatt være tilstrekkelig utredet, forståelig begrunnet og mulige å etterprøve og korrigere.",
+      "source_ids": [
+        "f15-begrunnelser",
+        "f24-digital-forvaltning"
+      ],
+      "classification": "digitalisering",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-1"
+      ]
+    },
+    {
+      "id": "forv-29",
+      "claim": "Plan- og bygningsloven gjør kommunal planlegging og medvirkning til sentrale mekanismer for å samordne bruk og vern av arealer.",
+      "source_ids": [
+        "f10-planloven"
+      ],
+      "classification": "planlegging",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-2"
+      ]
+    },
+    {
+      "id": "forv-30",
+      "claim": "Kommunalt selvstyre gir folkevalgte organer ansvar for lokale beslutninger innenfor nasjonale rettslige og økonomiske rammer.",
+      "source_ids": [
+        "f07-kommuneloven",
+        "f09-stat-kommune"
+      ],
+      "classification": "lokaldemokrati",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-2"
+      ]
+    },
+    {
+      "id": "forv-31",
+      "claim": "Oslo rådhus er sete for bystyret og byrådet og kan brukes som stedscase når den konkrete kommunale beslutningsprosessen dokumenteres.",
+      "source_ids": [
+        "f08-oslo-styring",
+        "f22-oslo-radhus"
+      ],
+      "classification": "sted",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-2"
+      ]
+    },
+    {
+      "id": "forv-32",
+      "claim": "Regjeringskvartalet er arbeidssted for Statsministerens kontor og departementene, men stedstilknytning må fortsatt knyttes til en dokumentert institusjonell handling.",
+      "source_ids": [
+        "f21-regjeringskvartalet"
+      ],
+      "classification": "sted",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-2"
+      ]
+    },
+    {
+      "id": "forv-33",
+      "claim": "En etterprøvbar forvaltningsanalyse må identifisere både rettsgrunnlaget og den konkrete styrings- og delegasjonskjeden.",
+      "source_ids": [
+        "f01-grunnloven",
+        "f02-statsforvaltningen",
+        "f06-okonomiregelverket"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-3"
+      ]
+    },
+    {
+      "id": "forv-34",
+      "claim": "Utrednings- og styringsdokumenter må koble problem, mål, ressurser, virkemidler og rapportering før gjennomføringen kan vurderes.",
+      "source_ids": [
+        "f04-dfo-styring",
+        "f17-utredningsinstruksen"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-3"
+      ]
+    },
+    {
+      "id": "forv-35",
+      "claim": "Forskjellen mellom regel og praksis krever dokumentasjon av frontlinjens skjønn, kapasitet, informasjon og faktiske borgerkontakt.",
+      "source_ids": [
+        "f11-forvaltningsloven-1967",
+        "f23-lipsky"
+      ],
+      "classification": "praksis",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-3"
+      ]
+    },
+    {
+      "id": "forv-36",
+      "claim": "Kontrollkjeden består av flere ordninger med ulike funksjoner, blant annet innsyn, klage, ombudskontroll, revisjon og evaluering.",
+      "source_ids": [
+        "f14-innsynsguiden",
+        "f18-riksrevisjonen",
+        "f19-dfo-evaluering"
+      ],
+      "classification": "kontroll",
+      "status": "verified",
+      "used_in": [
+        "forvaltning-anvendelse-3"
+      ]
+    }
+  ]
+}

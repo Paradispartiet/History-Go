@@ -1,0 +1,703 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "chapter_id": "parlamentarisme",
+  "sources": [
+    {
+      "id": "p01-grunnloven",
+      "label": "Kongeriket Norges Grunnlov",
+      "url": "https://lovdata.no/dokument/NL/lov/1814-05-17",
+      "publisher": "Lovdata",
+      "type": "grunnlov",
+      "source_location": "§§ 15, 49, 50, 57, 59, 75, 82, 100 og 101 om parlamentarisme, folkestyre, valg, kontroll, informasjon og politiske friheter"
+    },
+    {
+      "id": "p02-stortinget-demokrati",
+      "label": "Stortinget – Stortinget og demokratiet",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/",
+      "publisher": "Stortinget",
+      "type": "institusjonskilde",
+      "source_location": "Oversikten over Stortingets lovgivende, bevilgende og kontrollerende funksjoner og representantenes arbeid"
+    },
+    {
+      "id": "p03-regjeringsdannelse",
+      "label": "Stortinget – Regjeringsdannelse",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Storting-og-regjering/regjeringsdannelse/",
+      "publisher": "Stortinget",
+      "type": "institusjonskilde",
+      "source_location": "Parlamentarisk grunnlag, flertalls- og mindretallsregjeringer og regjeringsskifte"
+    },
+    {
+      "id": "p04-kontroll",
+      "label": "Stortinget – Kontrollvirksomheten",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/arbeidet/kontrollvirksomheten/",
+      "publisher": "Stortinget",
+      "type": "institusjonskilde",
+      "source_location": "Parlamentarisme, opplysningsplikt, spørsmål, kontrollsaker, mistillit og eksterne kontrollorganer"
+    },
+    {
+      "id": "p05-forretningsorden",
+      "label": "Stortingets forretningsorden",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Lover-og-instrukser/forretningsorden/",
+      "publisher": "Stortinget",
+      "type": "regelverk",
+      "source_location": "Regler for plenum, komiteer, høringer, spørsmål og parlamentarisk saksbehandling"
+    },
+    {
+      "id": "p06-komiteene",
+      "label": "Stortinget – Komitéarbeidet",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/arbeidet/saksbehandlingen-i-komiteene/",
+      "publisher": "Stortinget",
+      "type": "institusjonskilde",
+      "source_location": "Komitéfordeling, spørsmål til departement, høringer, forhandlinger og innstilling til Stortinget"
+    },
+    {
+      "id": "p07-partigruppene",
+      "label": "Stortinget – Partigruppene",
+      "url": "https://www.stortinget.no/no/stortinget-og-demokratiet/organene/partigruppene/",
+      "publisher": "Stortinget",
+      "type": "institusjonskilde",
+      "source_location": "Partienes demokratiske oppgaver, gruppenes organisering og samordning på Stortinget"
+    },
+    {
+      "id": "p08-lovarbeidet",
+      "label": "Stortinget – Lovarbeidet",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Lovarbeidet/",
+      "publisher": "Stortinget",
+      "type": "institusjonskilde",
+      "source_location": "Stegene fra lovforslag via komitéinnstilling, debatt og vedtak til sanksjon"
+    },
+    {
+      "id": "p09-budsjettarbeidet",
+      "label": "Stortinget – Budsjettarbeidet",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Arbeidet/Budsjettarbeidet/",
+      "publisher": "Stortinget",
+      "type": "institusjonskilde",
+      "source_location": "Regjeringens forslag, finanskomiteens rammer, fagkomiteenes behandling og endelig budsjettvedtak"
+    },
+    {
+      "id": "p10-valgloven",
+      "label": "Lovdata – valgloven 2023",
+      "url": "https://lovdata.no/dokument/NL/lov/2023-06-16-62",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Kapitlene om stemmerett, listeforslag, valgkretser, stemmegivning og mandatfordeling"
+    },
+    {
+      "id": "p11-valgdirektoratet",
+      "label": "Valgdirektoratet – Stortingsvalg",
+      "url": "https://www.valg.no/om-valg/valgene-i-norge/stortingsvalg/",
+      "publisher": "Valgdirektoratet",
+      "type": "valgkilde",
+      "source_location": "Distriktsmandater, utjevningsmandater, sperregrense og mandatfordeling"
+    },
+    {
+      "id": "p12-ssb-stortingsvalg",
+      "label": "SSB – Stortingsvalget",
+      "url": "https://www.ssb.no/valg/stortingsvalg/statistikk/stortingsvalet",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "statistikk",
+      "source_location": "Definisjoner, stemmer, partifordeling, mandater, geografi og datagrunnlag"
+    },
+    {
+      "id": "p13-ssb-valgdeltakelse",
+      "label": "SSB – Valgdeltakelse",
+      "url": "https://www.ssb.no/valg/stortingsvalg/statistikk/valgdeltakelse",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "statistikk",
+      "source_location": "Definisjoner, datakilder og valgdeltakelse etter alder, kjønn, utdanning og innvandringsbakgrunn"
+    },
+    {
+      "id": "p14-nou-ytring",
+      "label": "NOU 2022: 9 En åpen og opplyst offentlig samtale",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2022-9/id2924020/",
+      "publisher": "Kultur- og likestillingsdepartementet",
+      "type": "offentlig-utredning",
+      "source_location": "Kapittel 3, 5–9, 12 og 15 om ytringsfrihetens infrastruktur, deltakelse, medier, organisasjoner og digitale offentligheter"
+    },
+    {
+      "id": "p15-medietilsynet",
+      "label": "Medietilsynet – NRKs bidrag til mediemangfoldet 2026",
+      "url": "https://www.medietilsynet.no/fakta/rapporter/kringkasting/2026/nrks-bidrag-til-mediemangfoldet/",
+      "publisher": "Medietilsynet",
+      "type": "tilsynsrapport",
+      "source_location": "Sammendrag og mediemangfoldsregnskap om avsender-, innholds- og bruksmangfold"
+    },
+    {
+      "id": "p16-grunnloven-100-101",
+      "label": "Grunnloven §§ 100 og 101",
+      "url": "https://lovdata.no/nav/lov/1814-05-17/kapE/%C2%A7100",
+      "publisher": "Lovdata",
+      "type": "grunnlov",
+      "source_location": "Ytringsfrihet, åpen og opplyst offentlig samtale, foreningsfrihet og fredelige forsamlinger"
+    },
+    {
+      "id": "p17-emk-10-11",
+      "label": "European Convention on Human Rights",
+      "url": "https://www.echr.coe.int/documents/d/echr/convention_eng",
+      "publisher": "European Court of Human Rights",
+      "type": "konvensjon",
+      "source_location": "Articles 10 and 11 on freedom of expression, peaceful assembly and association"
+    },
+    {
+      "id": "p18-nou-makt",
+      "label": "NOU 2003: 19 Makt og demokrati",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2003-019/id118893/",
+      "publisher": "Arbeids- og administrasjonsdepartementet",
+      "type": "offentlig-utredning",
+      "source_location": "Kapitlene om folkestyre, organisasjoner, medier, dagsorden, representasjon og ulik politisk innflytelse"
+    },
+    {
+      "id": "p19-nou-ungdom",
+      "label": "NOU 2011: 20 Ungdom, makt og medvirkning",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2011-20/id666389/",
+      "publisher": "Barne-, likestillings- og inkluderingsdepartementet",
+      "type": "offentlig-utredning",
+      "source_location": "Kapittel 3–5 om valg, organisasjoner, skole, digitale arenaer og unges politiske deltakelse"
+    },
+    {
+      "id": "p20-eidsvolls-plass",
+      "label": "Stortinget – Markeringer på Eidsvolls plass",
+      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/markeringer-pa-eidsvolls-plass/",
+      "publisher": "Stortinget",
+      "type": "stedskilde",
+      "source_location": "Regler for søknad og bruk av plassen til politiske, humanitære og religiøse markeringer"
+    },
+    {
+      "id": "p21-youngstorget",
+      "label": "Oslo kommune – Youngstorget",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/youngstorget/",
+      "publisher": "Oslo kommune",
+      "type": "stedskilde",
+      "source_location": "Torgets historie og bruk til demonstrasjoner, markeringer, arrangementer og handel"
+    },
+    {
+      "id": "p22-folkets-hus",
+      "label": "Arbeiderbevegelsens arkiv – Folkets Hus bygges",
+      "url": "https://www.arbark.no/Bildeserier/folketshus/Folkets_Hus.htm",
+      "publisher": "Arbeiderbevegelsens arkiv og bibliotek",
+      "type": "arkivkilde",
+      "source_location": "Bildeserien om oppføringen og innvielsen av Folkets Hus i Oslo som arbeiderbevegelsens institusjon"
+    },
+    {
+      "id": "p23-strom",
+      "label": "Kaare Strøm – Minority Government and Majority Rule",
+      "url": "https://assets.cambridge.org/97805213/74316/sample/9780521374316ws.pdf",
+      "publisher": "Cambridge University Press",
+      "type": "forskningsverk",
+      "source_location": "Innledning og bokoversikt om mindretallsregjeringer, parlamentariske forhandlinger og flertallsstøtte"
+    },
+    {
+      "id": "p24-dahl",
+      "label": "Robert A. Dahl – Polyarchy",
+      "url": "https://yalebooks.yale.edu/book/9780300015652/polyarchy/",
+      "publisher": "Yale University Press",
+      "type": "forskningsverk",
+      "source_location": "Bokbeskrivelsen om konkurranse, deltakelse, opposisjon og demokratiske institusjoner"
+    },
+    {
+      "id": "p25-pettit",
+      "label": "Philip Pettit – Republicanism",
+      "url": "https://global.oup.com/academic/product/republicanism-9780198296423",
+      "publisher": "Oxford University Press",
+      "type": "forskningsverk",
+      "source_location": "Bokbeskrivelsen om frihet som ikke-dominans og institusjonell kontroll med vilkårlig makt"
+    },
+    {
+      "id": "p26-mudde",
+      "label": "Cas Mudde – The Populist Zeitgeist",
+      "url": "https://www.cambridge.org/core/journals/government-and-opposition/article/populist-zeitgeist/2CD34F8B25C4FFF4F322316833DB94B7",
+      "publisher": "Cambridge University Press",
+      "type": "forskningsartikkel",
+      "source_location": "Artikkelens definisjon av populisme gjennom folket, eliten og den allmenne viljen"
+    },
+    {
+      "id": "p27-fraser",
+      "label": "Nancy Fraser – Rethinking the Public Sphere",
+      "url": "https://www.jstor.org/stable/466240",
+      "publisher": "Social Text",
+      "type": "forskningsartikkel",
+      "source_location": "Issue 25/26, pages 56–80 om eksklusjon, flere offentligheter og subalterne motoffentligheter"
+    },
+    {
+      "id": "p28-habermas",
+      "label": "Jürgen Habermas – The Structural Transformation of the Public Sphere",
+      "url": "https://mitpress.mit.edu/9780262081801/the-structural-transformation-of-the-public-sphere/",
+      "publisher": "MIT Press",
+      "type": "forskningsverk",
+      "source_location": "Bokbeskrivelsen og innholdet om offentlig mening, kommunikasjon og demokratisk offentlighet"
+    },
+    {
+      "id": "p29-rawls",
+      "label": "John Rawls – A Theory of Justice",
+      "url": "https://www.hup.harvard.edu/books/9780674000780",
+      "publisher": "Harvard University Press",
+      "type": "forskningsverk",
+      "source_location": "Bokbeskrivelsen om grunnleggende friheter, rettferdig likhet og institusjonell fordeling"
+    },
+    {
+      "id": "p30-sivil-ulydighet",
+      "label": "Stanford Encyclopedia of Philosophy – Civil Disobedience",
+      "url": "https://plato.stanford.edu/entries/civil-disobedience/",
+      "publisher": "Stanford University",
+      "type": "fagfellevurdert-oppslagsverk",
+      "source_location": "Seksjonene om definisjon, begrunnelser, demokrati, politisk forpliktelse og forholdsmessighet"
+    }
+  ],
+  "claims": [
+    {
+      "id": "parl-01",
+      "claim": "Grunnloven forankrer folkestyret i Stortinget og gir Stortinget lovgivende, bevilgende og kontrollerende myndighet.",
+      "source_ids": [
+        "p01-grunnloven",
+        "p02-stortinget-demokrati"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-1"
+      ]
+    },
+    {
+      "id": "parl-02",
+      "claim": "Grunnloven § 15 pålegger regjeringen eller en statsråd å søke avskjed etter et vedtatt mistillitsforslag.",
+      "source_ids": [
+        "p01-grunnloven",
+        "p04-kontroll"
+      ],
+      "classification": "parlamentarisme",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-1"
+      ]
+    },
+    {
+      "id": "parl-03",
+      "claim": "Norsk negativ parlamentarisme krever ikke et eget tillitsvedtak før en regjering tiltrer.",
+      "source_ids": [
+        "p03-regjeringsdannelse"
+      ],
+      "classification": "parlamentarisme",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-1"
+      ]
+    },
+    {
+      "id": "parl-04",
+      "claim": "Stortingets kontroll bruker flere virkemidler enn mistillit, blant annet opplysningsplikt, spørsmål, høringer, kontrollsaker og eksterne kontrollorganer.",
+      "source_ids": [
+        "p04-kontroll",
+        "p05-forretningsorden"
+      ],
+      "classification": "kontroll",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-1"
+      ]
+    },
+    {
+      "id": "parl-05",
+      "claim": "Regjeringsdannelse i Norge følger parlamentarisk grunnlag og kan gi både flertalls- og mindretallsregjeringer.",
+      "source_ids": [
+        "p03-regjeringsdannelse"
+      ],
+      "classification": "regjering",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-2"
+      ]
+    },
+    {
+      "id": "parl-06",
+      "claim": "En mindretallsregjering må skaffe støtte utenfor egne regjeringspartier for å få vedtatt lov, budsjett og andre saker i Stortinget.",
+      "source_ids": [
+        "p03-regjeringsdannelse",
+        "p23-strom"
+      ],
+      "classification": "forhandling",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-2"
+      ]
+    },
+    {
+      "id": "parl-07",
+      "claim": "Partigruppene organiserer og samordner partienes parlamentariske arbeid og er derfor en sentral kobling mellom parti og representant.",
+      "source_ids": [
+        "p07-partigruppene"
+      ],
+      "classification": "parti",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-2"
+      ]
+    },
+    {
+      "id": "parl-08",
+      "claim": "Forskningen på mindretallsregjeringer viser at parlamentarisk styring må analyseres gjennom forhandling, toleranse og alternative flertall, ikke bare gjennom regjeringens størrelse.",
+      "source_ids": [
+        "p23-strom"
+      ],
+      "classification": "forskning",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-2"
+      ]
+    },
+    {
+      "id": "parl-09",
+      "claim": "Stortingets fagkomiteer forbereder de fleste sakene og avgir innstilling før plenum behandler og stemmer over dem.",
+      "source_ids": [
+        "p06-komiteene",
+        "p05-forretningsorden"
+      ],
+      "classification": "prosess",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-3"
+      ]
+    },
+    {
+      "id": "parl-10",
+      "claim": "Komiteene kan stille spørsmål til departementet og holde høringer som tilfører informasjon og synspunkter før innstillingen avgis.",
+      "source_ids": [
+        "p06-komiteene"
+      ],
+      "classification": "offentlighet",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-3"
+      ]
+    },
+    {
+      "id": "parl-11",
+      "claim": "Lovforslag går gjennom komitéinnstilling, behandling og vedtak i Stortinget før sanksjon og kunngjøring.",
+      "source_ids": [
+        "p08-lovarbeidet"
+      ],
+      "classification": "lovprosess",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-3"
+      ]
+    },
+    {
+      "id": "parl-12",
+      "claim": "Statsbudsjettet behandles gjennom finansielle rammer, fagkomiteenes prioriteringer og et samlet stortingsvedtak.",
+      "source_ids": [
+        "p09-budsjettarbeidet"
+      ],
+      "classification": "budsjett",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-grunnlag-3"
+      ]
+    },
+    {
+      "id": "parl-13",
+      "claim": "Valgloven regulerer stemmerett, listeforslag, valgkretser, stemmegivning og kåring av representanter ved stortingsvalg.",
+      "source_ids": [
+        "p10-valgloven"
+      ],
+      "classification": "valg",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-1"
+      ]
+    },
+    {
+      "id": "parl-14",
+      "claim": "Stortingsvalget fordeler distrikts- og utjevningsmandater etter regler som gjør stemmeandel og mandatandel til ulike størrelser.",
+      "source_ids": [
+        "p11-valgdirektoratet",
+        "p10-valgloven"
+      ],
+      "classification": "valg",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-1"
+      ]
+    },
+    {
+      "id": "parl-15",
+      "claim": "SSBs valgstatistikk dokumenterer stemmer og mandater med definerte datakilder, begreper og geografiske enheter.",
+      "source_ids": [
+        "p12-ssb-stortingsvalg"
+      ],
+      "classification": "statistikk",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-1"
+      ]
+    },
+    {
+      "id": "parl-16",
+      "claim": "Valgdeltakelse varierer mellom grupper og må analyseres med eksplisitt populasjon, valg, periode og bakgrunnskjennetegn uten å trekke slutning om individet.",
+      "source_ids": [
+        "p13-ssb-valgdeltakelse"
+      ],
+      "classification": "representasjon",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-1"
+      ]
+    },
+    {
+      "id": "parl-17",
+      "claim": "Politiske partier organiserer kandidater, standpunkter og påvirkning av beslutningsprosesser, mens partigruppene samordner arbeidet i Stortinget.",
+      "source_ids": [
+        "p07-partigruppene"
+      ],
+      "classification": "parti",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-2"
+      ]
+    },
+    {
+      "id": "parl-18",
+      "claim": "Makt- og demokratiutredningen viser at organisasjoner og medier både kanaliserer deltakelse og fordeler politisk innflytelse ulikt.",
+      "source_ids": [
+        "p18-nou-makt"
+      ],
+      "classification": "makt",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-2"
+      ]
+    },
+    {
+      "id": "parl-19",
+      "claim": "Utredningen om ungdom, makt og medvirkning dokumenterer at organisasjoner, skole og digitale arenaer gir ulike former og vilkår for politisk deltakelse.",
+      "source_ids": [
+        "p19-nou-ungdom"
+      ],
+      "classification": "deltakelse",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-2"
+      ]
+    },
+    {
+      "id": "parl-20",
+      "claim": "Eidsvolls plass, Youngstorget og Folkets Hus har dokumenterte funksjoner som arenaer for markering, demonstrasjon og organisering, men hver stedskobling må knyttes til et konkret forløp.",
+      "source_ids": [
+        "p20-eidsvolls-plass",
+        "p21-youngstorget",
+        "p22-folkets-hus"
+      ],
+      "classification": "sted",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-2"
+      ]
+    },
+    {
+      "id": "parl-21",
+      "claim": "Grunnloven § 100 verner ytringsfriheten og pålegger statens myndigheter å legge til rette for en åpen og opplyst offentlig samtale.",
+      "source_ids": [
+        "p16-grunnloven-100-101"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-3"
+      ]
+    },
+    {
+      "id": "parl-22",
+      "claim": "Ytringsfrihetskommisjonen beskriver infrastrukturkravet som et ansvar for faktiske ytringsmuligheter, arenaer og institusjoner i offentligheten.",
+      "source_ids": [
+        "p14-nou-ytring"
+      ],
+      "classification": "offentlighet",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-3"
+      ]
+    },
+    {
+      "id": "parl-23",
+      "claim": "Mediemangfold kan analyseres som avsender-, innholds- og bruksmangfold, som må dokumenteres separat.",
+      "source_ids": [
+        "p15-medietilsynet"
+      ],
+      "classification": "medier",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-3"
+      ]
+    },
+    {
+      "id": "parl-24",
+      "claim": "Forskning om offentligheten viser både dens demokratiske rolle og hvordan eksklusjon kan skape flere og konkurrerende offentligheter.",
+      "source_ids": [
+        "p27-fraser",
+        "p28-habermas"
+      ],
+      "classification": "forskning",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-fordypning-3"
+      ]
+    },
+    {
+      "id": "parl-25",
+      "claim": "Grunnloven §§ 100 og 101 beskytter ytringsfrihet, foreningsfrihet og retten til fredelige forsamlinger og demonstrasjoner.",
+      "source_ids": [
+        "p16-grunnloven-100-101"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-1"
+      ]
+    },
+    {
+      "id": "parl-26",
+      "claim": "EMK artiklene 10 og 11 beskytter ytring, fredelig forsamling og forening, samtidig som inngrep må oppfylle konvensjonens vilkår.",
+      "source_ids": [
+        "p17-emk-10-11"
+      ],
+      "classification": "rett",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-1"
+      ]
+    },
+    {
+      "id": "parl-27",
+      "claim": "Sivil ulydighet skiller seg fra ordinær protest ved at den innebærer et bevisst politisk eller moralsk begrunnet regelbrudd.",
+      "source_ids": [
+        "p30-sivil-ulydighet"
+      ],
+      "classification": "normativ",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-1"
+      ]
+    },
+    {
+      "id": "parl-28",
+      "claim": "Vurdering av sivil ulydighet krever separate analyser av handlingens form, begrunnelse, forholdsmessighet, demokratisk kanal og myndighetenes respons.",
+      "source_ids": [
+        "p30-sivil-ulydighet",
+        "p25-pettit"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-1"
+      ]
+    },
+    {
+      "id": "parl-29",
+      "claim": "Populisme kan analyseres som en ideologi som deler samfunnet mellom et moralsk rent folk og en korrupt elite og hevder politikk skal uttrykke folkets allmenne vilje.",
+      "source_ids": [
+        "p26-mudde"
+      ],
+      "classification": "ideologi",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-2"
+      ]
+    },
+    {
+      "id": "parl-30",
+      "claim": "Demokratisk representasjon må undersøkes gjennom konkurranse, deltakelse og institusjonelle muligheter for opposisjon, ikke gjennom et udifferensiert folkebegrep.",
+      "source_ids": [
+        "p24-dahl"
+      ],
+      "classification": "demokrati",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-2"
+      ]
+    },
+    {
+      "id": "parl-31",
+      "claim": "Frihet som ikke-dominans retter oppmerksomheten mot om vilkårlig makt kan kontrolleres, også når den ikke brukes i hvert enkelt tilfelle.",
+      "source_ids": [
+        "p25-pettit"
+      ],
+      "classification": "normativ",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-2"
+      ]
+    },
+    {
+      "id": "parl-32",
+      "claim": "Normativ demokratianalyse må skille grunnleggende friheter, rettferdig politisk likhet og institusjonelle fordelingsvilkår.",
+      "source_ids": [
+        "p29-rawls",
+        "p25-pettit"
+      ],
+      "classification": "legitimitet",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-2"
+      ]
+    },
+    {
+      "id": "parl-33",
+      "claim": "Stortingets egne dokumenter gjør det mulig å følge beslutninger gjennom forslag, komité, innstilling, debatt, vedtak og kontroll.",
+      "source_ids": [
+        "p05-forretningsorden",
+        "p06-komiteene",
+        "p08-lovarbeidet"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-3"
+      ]
+    },
+    {
+      "id": "parl-34",
+      "claim": "Valg- og deltakelsesdata må kobles til de institusjonelle reglene som omsetter stemmer til mandater før representasjonen vurderes.",
+      "source_ids": [
+        "p10-valgloven",
+        "p11-valgdirektoratet",
+        "p12-ssb-stortingsvalg",
+        "p13-ssb-valgdeltakelse"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-3"
+      ]
+    },
+    {
+      "id": "parl-35",
+      "claim": "Offentlighetsanalyse må undersøke både rettslige friheter, faktisk tilgang, organisasjonsressurser og medierte portvakter.",
+      "source_ids": [
+        "p14-nou-ytring",
+        "p15-medietilsynet",
+        "p16-grunnloven-100-101",
+        "p18-nou-makt"
+      ],
+      "classification": "analyse",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-3"
+      ]
+    },
+    {
+      "id": "parl-36",
+      "claim": "En ansvarlig demokratikonklusjon skiller empiriske funn om institusjoner og deltakelse fra normative vurderinger av frihet, likhet, legitimitet og ikke-dominans.",
+      "source_ids": [
+        "p24-dahl",
+        "p25-pettit",
+        "p29-rawls"
+      ],
+      "classification": "normativ",
+      "status": "verified",
+      "used_in": [
+        "parlamentarisme-anvendelse-3"
+      ]
+    }
+  ]
+}
