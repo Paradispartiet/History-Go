@@ -63,8 +63,12 @@ jobs:
               echo "MISSING $src" >> .bootstrap/naeringsliv-teknologi/debug/files.txt
             fi
           done <<'FILES'
-          data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.json|chapter.json
-          data/fagverk/chapters/naeringsliv/teknologi-innovasjon-plattformer.evidence.json|evidence.json
+          data/fagverk/naeringsliv/teknologi-innovasjon-plattformer.json|chapter.json
+          data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/brief.json|brief.json
+          data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/claims.json|claims.json
+          data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/01-grunnlag.json|01-grunnlag.json
+          data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/02-fordypning.json|02-fordypning.json
+          data/fagverk/naeringsliv/teknologi-innovasjon-plattformer/03-anvendelse.json|03-anvendelse.json
           scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs|audit.mjs
           scripts/materialize-naeringsliv-chapter-teknologi-innovasjon-plattformer-v1.mjs|materializer.mjs
           FILES
