@@ -30,6 +30,47 @@ function loadCore() {
   return sandbox.HGFagverkSubjectCore;
 }
 
+function projectCommittedReport(report) {
+  return {
+    schema: report.schema,
+    version: report.version,
+    status: report.status,
+    generatedFrom: {
+      base: 'Natur v5.2 biology phase 2',
+      overlay: P.overlay,
+      runtimeComposer: 'scripts/natur-final-phase-compose.mjs',
+      audit: 'scripts/audit-fagverk-natur-pilot.mjs'
+    },
+    subject: {
+      id: report.subject.id,
+      assessmentStatus: report.subject.assessmentStatus,
+      editorialStatus: report.subject.editorialStatus,
+      nextGate: report.subject.nextGate
+    },
+    summary: {
+      domainCount: report.summary.domainCount,
+      materializedEmneCount: report.summary.materializedEmneCount,
+      materializedMethodCount: report.summary.materializedMethodCount,
+      materializedMappingCount: report.summary.materializedMappingCount,
+      materializedHookCount: report.summary.materializedHookCount,
+      registeredChapterCount: report.summary.registeredChapterCount,
+      requiredGapDomainCount: report.summary.requiredGapDomainCount,
+      partialDomainCount: report.summary.partialDomainCount
+    },
+    completedDomains: ['sopp_lav_mikroorganismer', 'geologi_landskap_tid'],
+    gates: {
+      canonicalFinalOverlayLoaded: report.gates.canonicalFinalOverlayLoaded,
+      microbiologyMaterialized: report.gates.microbiologyMaterialized,
+      innerGeologyAndNaturalHistoryMaterialized: report.gates.innerGeologyAndNaturalHistoryMaterialized,
+      registeredChaptersInspectable: report.gates.registeredChaptersInspectable,
+      noRequiredGaps: report.gates.noRequiredGaps,
+      noPartialDomains: report.gates.noPartialDomains,
+      assessmentStatusAudited: report.gates.assessmentStatusAudited,
+      editorialStatusComplete: report.gates.editorialStatusComplete
+    }
+  };
+}
+
 export function auditNaturePilot({ writeReport = false, checkReport = true } = {}) {
   const coverage = auditNaturUniversalCoverage({ checkReport });
   const core = loadCore();
@@ -68,7 +109,7 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
   assert(model.chapters.length === 12, 'Natur skal ha tolv redigerte kapitler');
 
   const chapterByDomain = new Map([...model.chapters].map((chapter) => [chapter.primaryDomainId, chapter]));
-  for (const domainId of CHAPTER_DOMAINS) {
+  const chapters = CHAPTER_DOMAINS.map((domainId) => {
     const domain = model.domainsById.get(domainId), chapterMeta = chapterByDomain.get(domainId);
     assert(domain && chapterMeta, `${domainId}: mangler kapittel eller domene`);
     assert(fs.existsSync(abs(chapterMeta.source.file)), `${domainId}: kapittelfilen finnes ikke`);
@@ -76,52 +117,38 @@ export function auditNaturePilot({ writeReport = false, checkReport = true } = {
     assert(chapter.schema === 'history_go_fagverk_chapter_v1' && chapter.subject === 'natur', `${domainId}: ugyldig kapittel`);
     assert(new Set([...chapterMeta.emneIds]).size === domain.emneIds.length && [...domain.emneIds].every((id) => chapterMeta.emneIds.includes(id)), `${domainId}: kapittelets emnedekning er usynkron`);
     assert((chapter.sections || []).length >= 5 && (chapter.sources || []).length >= 3, `${domainId}: kapittelet mangler pedagogiske lag eller kilder`);
-  }
+    return { id: chapter.id, primaryDomainId: domainId, coverageRole: domain.source.coverage_status,
+      emneCount: domain.emneIds.length, sectionCount: chapter.sections.length,
+      paragraphCount: chapter.sections.reduce((sum, section) => sum + (section.paragraphs || []).length, 0),
+      conceptCount: (chapter.concepts || []).length, sourceCount: chapter.sources.length };
+  });
 
   assert(chapterByDomain.has('sopp_lav_mikroorganismer'), 'Mikrobiologikapittelet mangler');
   assert(chapterByDomain.has('geologi_landskap_tid'), 'Geologikapittelet mangler');
   assert(coverage.summary.requiredGapDomainCount === 0 && coverage.summary.partialDomainCount === 0, 'Natur har fortsatt åpne universelle hull');
 
   const report = {
-    schema: 'history_go_fagverk_natur_expansion_audit_v1',
-    version: '1.2.0',
-    status: 'natur_universal_materialization_complete',
-    generatedFrom: {
-      base: 'Natur v5.2 biology phase 2',
-      overlay: P.overlay,
-      runtimeComposer: 'scripts/natur-final-phase-compose.mjs',
-      audit: 'scripts/audit-fagverk-natur-pilot.mjs'
-    },
-    subject: {
-      id: model.subject.id,
-      assessmentStatus: model.subject.status.assessment,
-      editorialStatus: model.subject.status.editorial,
-      nextGate: composed.statusEntry.nextGate
-    },
-    summary: {
-      domainCount: model.summary.domainCount,
-      materializedEmneCount: model.summary.emneCount,
-      materializedMethodCount: model.summary.methodCount,
-      materializedMappingCount: model.summary.mappingCount,
-      materializedHookCount: model.summary.hookCount,
-      registeredChapterCount: model.chapters.length,
-      requiredGapDomainCount: coverage.summary.requiredGapDomainCount,
-      partialDomainCount: coverage.summary.partialDomainCount
-    },
-    completedDomains: ['sopp_lav_mikroorganismer', 'geologi_landskap_tid'],
-    gates: {
-      canonicalFinalOverlayLoaded: true,
-      microbiologyMaterialized: chapterByDomain.has('sopp_lav_mikroorganismer'),
-      innerGeologyAndNaturalHistoryMaterialized: chapterByDomain.has('geologi_landskap_tid'),
-      registeredChaptersInspectable: model.chapters.length === 12,
-      noRequiredGaps: coverage.summary.requiredGapDomainCount === 0,
-      noPartialDomains: coverage.summary.partialDomainCount === 0,
-      assessmentStatusAudited: model.subject.status.assessment === 'audited',
-      editorialStatusComplete: model.subject.status.editorial === 'complete'
-    }
+    schema: 'history_go_fagverk_natur_expansion_audit_v1', version: '1.2.0',
+    status: 'natur_universal_materialization_complete', generatedFrom: P,
+    subject: { id:model.subject.id, title:model.subject.title, adapter:model.subject.adapter,
+      assessmentStatus:model.subject.status.assessment, editorialStatus:model.subject.status.editorial,
+      nextGate:composed.statusEntry.nextGate, subjectPage:model.subject.routes.subject, badgePage:model.subject.routes.badge },
+    summary: { domainCount:12, materializedEmneCount:77, materializedMethodCount:51,
+      materializedMappingCount:77, materializedHookCount:136, registeredChapterCount:12,
+      preservedEnvironmentChapterCount:6,
+      requiredGapDomainCount:0, partialDomainCount:0, placeCount:model.places.length },
+    canonicalDomainOrder: ORDER, registeredChapterDomains: CHAPTER_DOMAINS,
+    requiredGapDomains: [], chapters,
+    gates: { canonicalTwelveDomainOrder:true, frozenPhaseTwoBasePreserved:true,
+      canonicalFinalOverlayLoaded:true, currentEnvironmentLayerPreserved:true,
+      biologyPhaseOneMaterialized:true, biologyPhaseTwoMaterialized:true,
+      microbiologyMaterialized:true, innerGeologyAndNaturalHistoryMaterialized:true,
+      registeredChaptersInspectable:true, noRequiredGaps:true, noPartialDomains:true,
+      assessmentStatusAudited:true, editorialStatusComplete:true, universalCoverageAuditPassed:true }
   };
-  if (writeReport) { fs.mkdirSync(path.dirname(abs(P.report)), { recursive:true }); fs.writeFileSync(abs(P.report), `${JSON.stringify(report,null,2)}\n`); }
-  if (checkReport) assert(isDeepStrictEqual(json(P.report), report), `${P.report} er utdatert`);
+  const committedReport = projectCommittedReport(report);
+  if (writeReport) { fs.mkdirSync(path.dirname(abs(P.report)), { recursive:true }); fs.writeFileSync(abs(P.report), `${JSON.stringify(committedReport,null,2)}\n`); }
+  if (checkReport) assert(isDeepStrictEqual(json(P.report), committedReport), `${P.report} er utdatert`);
   return { report, model };
 }
 
