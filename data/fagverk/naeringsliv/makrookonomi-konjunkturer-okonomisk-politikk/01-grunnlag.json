@@ -33,9 +33,7 @@
       ],
       "canonicalModuleId": null,
       "concepts": [
-        "nasj",
-        "nalre",
-        "nskap",
+        "nasjonalregnskap",
         "bnp"
       ]
     },
@@ -73,8 +71,7 @@
       "canonicalModuleId": null,
       "concepts": [
         "prisnivå",
-        "inflasj",
-        "n",
+        "inflasjon",
         "realverdi"
       ]
     },
@@ -111,9 +108,8 @@
       ],
       "canonicalModuleId": null,
       "concepts": [
-        "sysselsettin",
-        "arbeidsledi",
-        "het"
+        "sysselsetting",
+        "arbeidsledighet"
       ]
     }
   ],
@@ -153,8 +149,10 @@
   ],
   "applicationTasks": [
     {
-      "title": "Anvendelse 1: dokumentert beslutningsnotat",
-      "prompt": "Velg ett dokumentert case for Nasjonalregnskap og BNP, Prisnivå, inflasjon og realverdi, Sysselsetting og arbeidsledighet. Lever datagrunnlag, beregning, alternativ forklaring, usikkerhet og en avgrenset anbefaling.",
+      "task": "Anvendelse 1: dokumentert beslutningsnotat",
+      "prompts": [
+        "Velg ett dokumentert case for Nasjonalregnskap og BNP, Prisnivå, inflasjon og realverdi, Sysselsetting og arbeidsledighet. Lever datagrunnlag, beregning, alternativ forklaring, usikkerhet og en avgrenset anbefaling."
+      ],
       "claimIds": [
         "makrookonomi-konjunkturer-okonomisk-politikk-c06",
         "makrookonomi-konjunkturer-okonomisk-politikk-c07",
@@ -189,11 +187,13 @@
   "relatedPlaces": [
     {
       "id": "bankplassen",
-      "title": "Bankplassen"
+      "name": "Bankplassen",
+      "role": "Stedscase for nasjonalregnskap og bnp, prisnivå, inflasjon og realverdi, sysselsetting og arbeidsledighet."
     },
     {
       "id": "barcode",
-      "title": "Barcode"
+      "name": "Barcode",
+      "role": "Stedscase for nasjonalregnskap og bnp, prisnivå, inflasjon og realverdi, sysselsetting og arbeidsledighet."
     }
   ]
 }

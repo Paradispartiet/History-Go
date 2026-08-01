@@ -112,7 +112,10 @@ test('kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder'
     }],
     ['module-a.json', {
       workedExamples: [{ title: 'Ny form', scenario: 'Situasjonen', steps: ['Steg 1', 'Steg 2'] }],
-      misconceptions: [{ claim: 'Feil', correction: 'Rett' }]
+      misconceptions: [{ claim: 'Feil', correction: 'Rett' }],
+      applicationTasks: [{ title: 'Eldre oppgave', prompt: 'Eldre instruksjon' }],
+      relatedPlaces: [{ id: 'eldre_sted', title: 'Eldre sted' }],
+      sections: [{ id: 'seksjon', concepts: ['arbeidsdeling'] }]
     }],
     ['module-b.json', {
       workedExamples: [{ title: 'Canonical form', situation: 'Annen situasjon', analysis: ['Analyse'] }],
@@ -137,6 +140,13 @@ test('kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder'
   assert.equal(chapter.workedExamples[1].situation, 'Annen situasjon');
   assert.deepEqual([...chapter.workedExamples[1].analysis], ['Analyse']);
   assert.equal(chapter.commonMisconceptions.length, 2);
+  assert.equal(chapter.applicationTasks[0].task, 'Eldre oppgave');
+  assert.deepEqual([...chapter.applicationTasks[0].prompts], ['Eldre instruksjon']);
+  assert.equal(chapter.relatedPlaces[0].name, 'Eldre sted');
+  assert.equal(chapter.relatedPlaces[0].role, 'Stedscase i kapittelet.');
+  assert.equal(chapter.concepts[0].id, 'arbeidsdeling');
+  assert.equal(chapter.concepts[0].term, 'arbeidsdeling');
+  assert.equal(chapter.concepts[0].definition, 'Begrepet brukes som analysebegrep i dette kapittelet.');
   assert.deepEqual(chapter.sources.map((source) => source.id), ['source-1']);
   assert.deepEqual(chapter.claims.map((claim) => claim.id), ['claim-1']);
 });
@@ -152,6 +162,12 @@ test('alle tolv Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatnin
     assert.ok(chapter.workedExamples.length >= 2, `${chapterMeta.id}: mangler arbeidseksempler`);
     assert.ok(chapter.workedExamples.every((example) => example.situation && example.analysis.length), `${chapterMeta.id}: arbeidseksempel er ikke renderbart`);
     assert.ok(chapter.commonMisconceptions.length >= 5, `${chapterMeta.id}: misoppfatninger er ikke renderbare`);
+    assert.ok(chapter.applicationTasks.every((task) => task.task && task.prompts.length), `${chapterMeta.id}: anvendelsesoppgave er ikke renderbar`);
+    assert.ok(chapter.relatedPlaces.every((place) => place.name && place.role), `${chapterMeta.id}: stedscase er ikke renderbart`);
+    if (chapterMeta.chapter_role === 'specialization') {
+      assert.ok(chapter.concepts.length >= 9, `${chapterMeta.id}: begreper er ikke renderbare`);
+      assert.ok(chapter.concepts.every((concept) => concept.id && concept.term && concept.definition), `${chapterMeta.id}: begrep mangler renderer-felt`);
+    }
     assert.equal(chapter.sources.length, claimsDocument.sources.length, `${chapterMeta.id}: claims-kilder er ikke hydrert`);
     assert.ok(chapter.sources.every((source) => source.label && source.url), `${chapterMeta.id}: kilde mangler label eller URL`);
   }

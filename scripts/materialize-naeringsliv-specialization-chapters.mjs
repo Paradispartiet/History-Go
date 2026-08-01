@@ -13,7 +13,22 @@ const writeJson = (relative, value) => {
   fs.writeFileSync(target, `${JSON.stringify(value, null, 2)}\n`);
 };
 const unique = (values) => [...new Set(values)];
-const humanize = (value) => String(value).replaceAll('_', ' ').replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
+const PLACE_NAMES = new Map(readJson('data/places/places_index.json').map((place) => [place.id, place.name]));
+const slug = (value) => String(value || '')
+  .toLocaleLowerCase('nb-NO')
+  .replaceAll('æ', 'ae')
+  .replaceAll('ø', 'o')
+  .replaceAll('å', 'a')
+  .normalize('NFKD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '');
+const splitTopicConcepts = (title) => String(title || '')
+  .toLocaleLowerCase('nb-NO')
+  .split(/\s*(?:,|\bog\b)\s*/u)
+  .map((concept) => concept.trim())
+  .filter(Boolean)
+  .slice(0, 6);
 const sentence = (value) => {
   const text = String(value || '').trim();
   return text ? `${text[0].toUpperCase()}${text.slice(1)}${/[.!?]$/.test(text) ? '' : '.'}` : '';
@@ -72,7 +87,7 @@ const SOURCE_CATALOG = {
   tolletaten_import: ['Import for bedrifter', 'https://www.toll.no/no/bedrift/import/', 'Tolletaten', 'myndighetsveiledning', 'Import krever korrekt vareklassifisering, verdi, opprinnelse, deklarering og håndtering av avgifter og restriksjoner.', 'Leverandørpris alene er ikke full anskaffelseskostnad; toll, frakt, lager, kvalitet, kapitalbinding og risiko må inngå.']
 };
 
-const makeTopic = (title, purpose, empiricalUnit, calculation, conflict) => ({ title, purpose, empirical_unit: empiricalUnit, calculation_exercise: calculation, professional_conflict: conflict, core_concepts: title.toLowerCase().split(/[, og]+/).filter(Boolean).slice(0, 6) });
+const makeTopic = (title, purpose, empiricalUnit, calculation, conflict) => ({ title, purpose, empirical_unit: empiricalUnit, calculation_exercise: calculation, professional_conflict: conflict, core_concepts: splitTopicConcepts(title) });
 
 const CHAPTERS = [
   {
@@ -205,8 +220,8 @@ function pedagogicalPayload(definition, moduleIndex, topicSlice, claimIds) {
     claimIds: claimIds.slice(index * 2, index * 2 + 2)
   })),
   applicationTasks = [{
-    title: `Anvendelse ${moduleIndex + 1}: dokumentert beslutningsnotat`,
-    prompt: `Velg ett dokumentert case for ${topicSlice.map((topic) => topic.title).join(', ')}. Lever datagrunnlag, beregning, alternativ forklaring, usikkerhet og en avgrenset anbefaling.`,
+    task: `Anvendelse ${moduleIndex + 1}: dokumentert beslutningsnotat`,
+    prompts: [`Velg ett dokumentert case for ${topicSlice.map((topic) => topic.title).join(', ')}. Lever datagrunnlag, beregning, alternativ forklaring, usikkerhet og en avgrenset anbefaling.`],
     claimIds: claimIds.slice(-4)
   }],
   selfCheck = Array.from({ length: moduleIndex < 2 ? 3 : 2 }, (_, index) => ({
@@ -214,7 +229,15 @@ function pedagogicalPayload(definition, moduleIndex, topicSlice, claimIds) {
     answer: [`Enheten og tidsrommet skal være eksplisitt definert før data velges.`, `Kilde, variabler, transformasjoner og antakelser skal dokumenteres.`, `Minst én plausibel alternativ forklaring skal testes mot evidensen.`][index],
     claimIds: [claimIds[index]]
   })),
-  relatedPlaces = definition.places.slice(moduleIndex * 2, moduleIndex * 2 + 2).map((id) => ({ id, title: humanize(id) }));
+  relatedPlaces = definition.places.slice(moduleIndex * 2, moduleIndex * 2 + 2).map((id) => {
+    const name = PLACE_NAMES.get(id);
+    if (!name) throw new Error(`${definition.id}: unknown canonical place ${id}`);
+    return {
+      id,
+      name,
+      role: `Stedscase for ${topicSlice.map((topic) => topic.title.toLocaleLowerCase('nb-NO')).join(', ')}.`
+    };
+  });
   return { workedExamples, misconceptions, applicationTasks, selfCheck, relatedPlaces };
 }
 
@@ -264,6 +287,20 @@ function buildChapter(definition) {
   }
 
   const sources = definition.sourceIds.map(sourceRecord);
+  const chapterConcepts = [];
+  const seenConcepts = new Set();
+  for (const topic of topics) {
+    for (const term of topic.core_concepts || []) {
+      const id = slug(term);
+      if (!id || seenConcepts.has(id)) continue;
+      seenConcepts.add(id);
+      chapterConcepts.push({
+        id,
+        term,
+        definition: `Begrepet brukes i analysen av ${topic.title.toLocaleLowerCase('nb-NO')} og må avgrenses mot analyseenheten ${topic.empirical_unit}.`
+      });
+    }
+  }
   writeJson(`${base}/claims.json`, {
     schema: 'history_go_fagverk_claims_v1', version: '1.0.0', subject_id: 'naeringsliv', chapter_id: definition.id,
     verified_at: VERIFIED_AT, verification_status: 'verified', sources, claims
@@ -277,6 +314,7 @@ function buildChapter(definition) {
     schema: 'history_go_fagverk_chapter_v1', version: '1.0.0', subject: 'naeringsliv', subject_id: 'naeringsliv', id: definition.id, chapter_id: definition.id,
     chapter_role: 'specialization', primary_domain_id: definition.primaryDomainId, title: definition.title, subtitle: definition.subtitle, lead: definition.lead,
     emne_ids: definition.emneIds, method_ids: definition.methodIds,
+    concepts: chapterConcepts,
     learningObjectives: topics.map((topic) => `${topic.purpose} Gjennomfør oppgaven «${topic.calculation_exercise}» med dokumentert usikkerhet.`),
     diagnosticQuestions: topics.slice(0, 5).map((topic) => ({ question: `Hva må avgrenses før ${topic.title.toLowerCase()} analyseres?`, answer: `Analyseenheten ${topic.empirical_unit}, tidsrom, data, metode og beslutningskriterium.` })),
     moduleFiles, briefFile: `${base}/brief.json`, claimsFile: `${base}/claims.json`, editorialStatus: 'chapter_ready', claimTraceRequired: true
@@ -288,4 +326,4 @@ function buildChapter(definition) {
 const built = CHAPTERS.map(buildChapter);
 console.log(`Materialized ${built.length} specialization chapters, ${built.reduce((sum, row) => sum + row.claims.length, 0)} claims and ${built.reduce((sum, row) => sum + row.sources.length, 0)} inspectable sources.`);
 
-export { CHAPTERS, SOURCE_CATALOG, buildChapter };
+export { CHAPTERS, SOURCE_CATALOG, buildChapter, splitTopicConcepts };
