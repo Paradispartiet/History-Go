@@ -246,17 +246,20 @@
     }).join("")}</div>`;
   }
 
-  function renderSources(place, articles) {
+  function renderSources(place, articles, includeProfileLabels = true) {
     const sourceProfile = place?.source_summary && typeof place.source_summary === "object" ? place.source_summary : (place?.sourceSummary || {});
-    const labels = uniqueBy([
-      ...strings(sourceProfile?.safe_sources || sourceProfile?.sources),
-      ...strings(place?.for_na?.sources || place?.for_na?.kilder || place?.for_na?.source)
-    ], value => value);
-    const links = uniqueBy([place, ...list(articles)].flatMap(value => list(value?.externalLinks)).map(link => ({
+    const labels = includeProfileLabels ? uniqueBy(strings(sourceProfile?.safe_sources || sourceProfile?.sources), value => value) : [];
+    const configuredLinks = [place, ...list(articles)].flatMap(value => list(value?.externalLinks)).map(link => ({
       type: text(link?.type || "source"),
       label: text(link?.label || link?.title),
       url: safeHttpsUrl(link?.url)
-    })).filter(link => link.url), link => link.url);
+    }));
+    const beforeAfterLinks = [
+      ...strings(place?.for_na?.sources || place?.for_na?.kilder || place?.for_na?.source),
+      text(place?.for_na?.beforeImageMeta?.sourcePage || place?.for_na?.before_image_meta?.sourcePage),
+      text(place?.for_na?.nowImageMeta?.sourcePage || place?.for_na?.now_image_meta?.sourcePage)
+    ].map(url => ({ type: "image_source", label: "Bilde- og sammenligningskilde", url: safeHttpsUrl(url) }));
+    const links = uniqueBy([...configuredLinks, ...beforeAfterLinks].filter(link => link.url), link => link.url);
     return (labels.length ? section("Kilder i stedprofilen", `<ul>${labels.map(label => `<li>${esc(label)}</li>`).join("")}</ul>`) : "")
       + (links.length ? section("Kilder og eksterne oppslag", `<div class="hg-place-source-link-list">${links.map(link => `<a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer"><strong>${esc(link.label || link.url)}</strong><span>${esc(humanize(link.type))} ↗</span></a>`).join("")}</div>`) : "")
       || `<div class="hg-place-tab-empty">Ingen brukerrettede kilder er registrert for dette stedet ennå.</div>`;
@@ -405,7 +408,8 @@
     append(tabs.panels["before-after"], renderBeforeAfter(place), "before-after");
     append(tabs.panels.news, renderNews(buckets.historical_news, buckets.news_notes), "news");
     append(tabs.panels.reading, renderLesespor(lesespor, placeId), "reading");
-    append(tabs.panels.sources, renderSources(place, articles), "sources");
+    const hasExistingSourceProfile = Boolean(tabs.panels.sources.querySelector(".hg-place-sources-section"));
+    append(tabs.panels.sources, renderSources(place, articles, !hasExistingSourceProfile), "sources");
     append(tabs.panels.more, renderMore(main, buckets.objects, language), "more");
 
     if (articles.length && typeof global.HGLeksikon?.leksikonReadRecordsForPlace === "function") {

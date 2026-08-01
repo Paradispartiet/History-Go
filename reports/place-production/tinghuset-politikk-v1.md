@@ -5,7 +5,7 @@
 - Kategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
 - Normal åpning: 14 ordinære spørsmål før faglig fordypning i sett 3
-- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om», fase 2 «Historie», fase 3 «Fortellinger», fase 4 «Før/etter», fase 5 «Nyheter» og fase 6 «Lesespor» er fullført, øvrige innholdsflater er ikke gjenopptatt
+- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om», fase 2 «Historie», fase 3 «Fortellinger», fase 4 «Før/etter», fase 5 «Nyheter», fase 6 «Lesespor» og fase 7 «Kilder» er fullført, øvrige innholdsflater er ikke gjenopptatt
 
 ## Politikk-hovedfunksjon
 
@@ -44,6 +44,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 - People: sju canonicale stedskoblinger finnes, men seks er kunstnere, bare én person uttrykker domstolens hovedfunksjon, seks mangler bilde og flere profiltekster bruker samme formulering. Yngve Svendsens identitetskontrollerte redaksjonelle illustrasjon kan beholdes
 - Story: én canonical `episode_v1`-fortelling følger den selvstendige konflikten om tilregnelighet gjennom de to motstridende sakkyndigerklæringene, hovedforhandlingen, dommen og den senere offentlige gjennomgangen av rettspsykiatriens rolle. Den dupliserer ikke chronology-punktets dato- og arrangementsinformasjon
 - Lesespor: fire åpne, link-only fordypningsspor dekker domstolenes samfunnsrolle, tinghusets kunst og arkitektur, hovedforhandlingen i 2012 og Tilregnelighetsutvalgets etterbehandling. Ukjent publiseringsdato er beholdt som `null`, og ingen artikkelfulltekst er kopiert
+- Kilder: sju brukerrettede kildegrupper og sytten navngitte HTTPS-lenker dekker domstolen, lovgrunnlaget, bygget og kunsten, drift i 2025, lokalhistorie, terrorrettssaken, dommen, tilregnelighetsspørsmålet, NOU-en og Før/etter-bildene. Interne rapporter, audits og hold-back-notater er ikke eksponert
 - Quiz: 21 eksternt kildebelagte spørsmål
 - Objects: bare ett bildeklart element finnes, skiltet til rettssal 250. Det er ikke tilstrekkelig dybde for en ferdig Objects-runding
 - Brands: Beate Ellingsen AS er en gyldig canonical Brand med offisiell logo og dokumentert stedskobling, men rundingen er foreløpig tynn
@@ -59,7 +60,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 | Før/etter | PASS – fase 4 | Et kontrollert bildepar viser nøyaktig samme adresse før og etter kvartalsendringen: Rosenkrantz’ plass 4 i 1938 og Oslo tinghus på C. J. Hambros plass 4 i 2022. Begge bilder har tillatt lisens, lokal fil, synlig årstall og attribusjon. `before`, `now` og `change` skiller dokumentert observasjon fra tolkning |
 | Nyheter | PASS – fase 5 | Tre daterte driftsnotiser dekker sikkerhetskontrollen i 2025, prøveprosjektet for normert rettsmøtetid og kapasitetsstatusen i årsmeldingen. Hver notis har offisiell primærkilde, kontrolltidspunkt og tydelig inferensgrense |
 | Lesespor | PASS – fase 6 | Fire åpne og eksplisitt stedskoblede spor gir komplementær fordypning i domstolsrolle, kunst/arkitektur, terrorrettssaken og den prinsipielle etterbehandlingen. Alle er `link_only`, uten kopiert fulltekst eller betalingsmur |
-| Kilder | Ikke startet | Kilder finnes i produksjons- og quizfiler, men ikke i canonical brukerflate |
+| Kilder | PASS – fase 7 | Sju kuraterte kildegrupper og sytten unike, navngitte HTTPS-lenker vises i den canonicale Kilder-fanen uten duplisert kildeoversikt. Før/etter-kilder gjenbruker de samme lenkene uten rå URL-lister, eksterne lenker åpnes sikkert, og interne audits/hold-back-materiale holdes utenfor brukerflaten |
 | Mer | Ikke startet | Ingen vurdert språkstoff, observations, Knowledge/funfacts eller curated relations |
 
 Quizspørsmålene har korte `knowledge`-tekster, men `data/knowledge/knowledge_units.generated.json` har ingen enheter med quizreferanse til `tinghuset`. Knowledge er derfor ikke synkronisert ennå.
