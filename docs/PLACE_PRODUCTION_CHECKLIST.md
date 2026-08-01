@@ -28,6 +28,9 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Politikk — canonical fagmodell | `data/fag/politikk/politikk_runtime_manifest.json` |
 | Politikk — faglig kvalitet og inferensgrenser | `scripts/audit-politikk-subject-quality.mjs` og `scripts/audit-politikk-thinker-integrity.mjs` |
 | Politikk — stedsgate og produksjonsrapport | `data/places/regler/politikk_place_production_v1.schema.json` og `scripts/audit-politikk-place-production.mjs` |
+| Historie — canonical fagmodell og fire casekrav | `data/fag/historie/historie_v5_contract.json` og `data/fag/historie/case_requirements_historie_canonical_v1.json` |
+| Historie — claims, kilder og stedsevidens | `data/fag/historie/claims_historie_canonical_v1.json`, `sources_historie_canonical_v1.json` og `place_evidence_historie_v1.json` |
+| Historie — stedsgate og produksjonsrapport | `data/places/regler/historie_place_production_v1.schema.json` og `scripts/audit-historie-place-production.mjs` |
 | People–sted-koblinger | **`docs/people-of-places-method.md`** |
 | Ny/revidert People-profil | **`docs/PEOPLE_PROFILE_CANONICAL.md`** |
 | People-bilder / lisens / attribusjon | `docs/PEOPLE_IMAGES.md` |
@@ -106,6 +109,11 @@ POLITIKK-EMNE_IDS (kun em_pol_*):
 POLITIKK-EVIDENSKJEDE:
 POLITIKK-NÅTIDSKONTROLL:
 POLITIKK-PRODUKSJONSRAPPORT:
+HISTORIE-HOVEDIDENTITET (hvis relevant):
+HISTORIE-EMNE_IDS (kun em_his_*):
+HISTORIE-PROFIL OG CASE_IDS:
+HISTORIE-CLAIM-/EVIDENCE-LINKS:
+HISTORIE-PRODUKSJONSRAPPORT:
 STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
@@ -235,7 +243,7 @@ Usikker koordinat skal ikke merkes `verified`.
 
 ### Stoppgate
 
-Et sted kan ikke merkes `produksjonsklart` før `fagverk-sted.html?place=<place_id>` åpner en fungerende, stedsspesifikk fagverkside med korrekt identitet og relevante fagkoblinger. `fagverk-sted` er aldri N/A.
+Et sted kan ikke merkes `produksjonsklart` før `fagverk-sted.html?place=<place_id>` åpner en fungerende, stedsspesifikk fagverkside med korrekt identitet og relevante fagkoblinger. fagverk-sted er aldri N/A.
 
 ---
 
@@ -336,6 +344,125 @@ Stedet kan ikke godkjennes som Politikk-sted dersom ett av disse forholdene best
 Produksjonsrapporten ligger i `data/places/politikk-production/<place_id>.json` og følger `data/places/regler/politikk_place_production_v1.schema.json`. Rapporten skal peke tilbake til den manifest-loadede place-filen, registrere politisk hovedfunksjon, canonicale `em_pol_*`, kilder med `sourceLocation`, inspectable evidenskjeder, nåtidskontroll og status for A–G.
 
 Alle delene A–G får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. A–E er obligatoriske PASS for et ferdig Politikk-sted; F og G kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-politikk-place-production.mjs --all` validerer alle registrerte rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Politikk-sted opprettes eller et eksisterende Politikk-steds fagkobling, brukerrettede tekst, quizgrunnlag, chronology eller Story-kobling revideres. Politikk kan ikke settes til ferdig på stedet før denne porten passerer.
+
+---
+
+## 4B. Historie-sted — obligatorisk faglig tillegg og sluttgate
+
+Denne delen gjelder når stedet foreslås med **Historie som primær fagidentitet**, eller når `emne_ids` skal inneholde canonicale Historie-emner. Den erstatter ikke place-, fagverk-, quiz-, Story-, description- eller faktisitetskontraktene; den skjerper dem for historiefaglig produksjon.
+
+**LES FØRST — obligatorisk:**
+
+- `docs/FACTUALITY_CONTRACT.md`;
+- `docs/FAGVERK_NAVIGATION.md`;
+- `data/fag/historie/historie_v5_contract.json`;
+- `data/fag/historie/case_requirements_historie_canonical_v1.json`;
+- `data/fag/historie/theory_evidence_historie_contract_v1.json`;
+- `data/fag/historie/claims_historie_canonical_v1.json`;
+- `data/fag/historie/sources_historie_canonical_v1.json`;
+- `data/fag/historie/place_evidence_historie_v1.json`;
+- `data/fag/profiles/manifest.json` og valgt geografisk Historie-profil;
+- `data/places/regler/historie_place_production_v1.schema.json`;
+- `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` ved quiz;
+- `docs/STORIES_DATA_GOVERNANCE.md` ved Story.
+
+### A. Historie må være stedets dokumenterte hovedidentitet
+
+- [ ] stedet er et dokumentert hendelsessted, prosess-sted, institusjonssted, materiell sporflate, minnested, arkeologisk lokalitet, historisk landskap/område, samling/arkiv eller biografisk sted;
+- [ ] rapporten sier presist **hva som faktisk skjedde, foregikk eller kan dokumenteres her**, ikke bare at stedet «har historie»;
+- [ ] bygg og institusjon, hendelse og hendelsessted, person og biografisk sted, funnsted og oppbevaringssted samt historisk og dagens objekt er skilt;
+- [ ] nasjonale og globale hendelser flyttes ikke fysisk til stedet fordi stedet senere formidler, minnes eller symboliserer dem;
+- [ ] stedets historiske rolle, tidsrom og type stedstilknytning er eksplisitt registrert.
+
+### B. Bruk bare canonicale Historie-emner og canonicalt evidenslag
+
+- [ ] Historie-koblinger bruker eksisterende `em_his_*` fra den canonicale Historie-modellen;
+- [ ] hvert valgt emne har egen stedsspesifikk begrunnelse og minst én validert `place_evidence`-lenke;
+- [ ] stedet finnes som case i en manifestregistrert geografisk Historie-profil;
+- [ ] rapportens `caseIds`, `claimIds` og `evidenceLinkIds` finnes i de canonicale registrene og peker konsistent til samme place, profil og emner;
+- [ ] hvert case bærer alle fire canonicale `case_req_his_*`;
+- [ ] den komplette 230/230-teorimodellen brukes som faglig målregister, **ikke som kvote per sted**;
+- [ ] teoristatus `evidence_ready` behandles som dokumentert fler-case-anvendelse, ikke som bevis på universell sannhet.
+
+### C. Realiser et avgrenset kronologisk forløp
+
+- [ ] start, slutt, brudd og kontinuitet er eksplisitt angitt;
+- [ ] dateringens presisjon og usikkerhet er ærlig registrert;
+- [ ] hendelse, prosess og lang varighet holdes adskilt;
+- [ ] periodisering begrunnes i dokumentert forløp og brukes ikke som en naturlig kalendergrense;
+- [ ] samtidige erfaringer blandes ikke med ettertidens epokenavn eller fortelling.
+
+### D. Vis aktører, interesser, makt og konflikt
+
+- [ ] minst to relevante aktører, grupper eller institusjoner med ulike interesser, handlingsrom eller maktposisjoner er identifisert;
+- [ ] aktører behandles som handlende der kildene bærer det, ikke bare som konsekvensmottakere;
+- [ ] konflikt, forhandling eller ulik posisjon er konkret dokumentert;
+- [ ] individuelle valg skilles fra strukturer som økonomi, rett, teknologi, kjønn, klasse, institusjon og geografi;
+- [ ] fravær i kildene omtales som kildeproblem, ikke som bevis på passivitet eller fravær i historien.
+
+### E. Sammenlign minst to kildetyper med proveniens og begrensninger
+
+- [ ] minst to canonicale, inspectable kilder av ulike kildetyper er lest og brukt;
+- [ ] hver kilde har konkret `sourceLocation`, bruksformål, tidsforhold og begrensning i produksjonsrapporten;
+- [ ] canonical `provenance`, `source_type`, URL og `limitations` finnes i kilderegisteret;
+- [ ] samtidige kilder, materielle spor, muntlige minner og ettertidens forskning behandles som ulike kunnskapsposisjoner;
+- [ ] institusjonell selvpresentasjon brukes ikke alene som bevis for erfaring, representativitet eller historisk virkning;
+- [ ] motstridende evidens og alternative fortolkninger beholdes synlige.
+
+### F. Koble lokalt case til større skala uten falsk representativitet
+
+- [ ] det konkrete stedet kobles til minst én større lokal, regional, nasjonal, nordisk, europeisk eller global sammenheng;
+- [ ] koblingen bygger på dokumentert forbindelse eller sammenligning, ikke bare tematisk likhet;
+- [ ] stedet behandles ikke som automatisk representativt for en hel periode, gruppe eller prosess;
+- [ ] Norge, Oslo eller Europa brukes ikke som skjult universell standard;
+- [ ] større hendelser og systemer flyttes ikke fysisk til stedet.
+
+### G. Historiefaglige inferensgrenser er bindende
+
+Påstandsbank, tekst, chronology, Story og quiz skal håndheve minst disse skillene:
+
+- [ ] samtidig kilde er ikke det samme som nøytral eller fullstendig kilde;
+- [ ] ettertidens minne eller historiebruk er ikke det samme som samtidig erfaring;
+- [ ] aktørforklaring er ikke det samme som strukturforklaring;
+- [ ] samtidighet eller korrelasjon er ikke dokumentasjon på årsak;
+- [ ] utløsende hendelse er ikke nødvendigvis grunnårsak eller langsiktig prosess;
+- [ ] formell endring er ikke automatisk praktisk brudd;
+- [ ] lokalt case er ikke universelt bevis;
+- [ ] fravær i arkivet er ikke automatisk fravær i historien.
+
+### H. Quizåpningen skal være sted, historie og konkrete fakta
+
+- [ ] sett 1 og 2 har sju direkte, stedsspesifikke og kildebelagte spørsmål hver;
+- [ ] minst halvparten av de første 14 er faktaspørsmål om sted, tid, aktører, hendelser, funksjon, objekt eller synlig spor;
+- [ ] de første 14 drives ikke av synlige teorinavn, metodenavn, «hvilken hook»-språk eller fagplansjargong;
+- [ ] senere emne-, metode- og teorispørsmål brukes bare når kilder, claims og stedsevidens bærer dem;
+- [ ] `source_brief`, alle `required_inputs`, `production_context`, audits og Knowledge-synkronisering følger Quiz-kontrakten;
+- [ ] ved tynt stoff velges en kortere adaptiv profil; quizen fylles aldri med banalitet eller teori for å nå et tall.
+
+### I. Chronology, Stories, minne og historiebruk holdes adskilt
+
+- [ ] chronology brukes når hovedverdien er **hva som skjedde når**;
+- [ ] en Story krever selvstendig narrativ idé, aktører, handling, konflikt/transformasjon, konsekvens og fysisk eller biografisk anker;
+- [ ] en minneinstitusjon, senere markering eller museumstekst merkes som ettertid/historiebruk og behandles ikke som samtidig hendelseskilde;
+- [ ] samme materiale dupliseres ikke mekanisk som chronology, Story, før/etter, nyhet og quiz;
+- [ ] Stories følger `docs/STORIES_DATA_GOVERNANCE.md` fullt ut.
+
+### Historie-stoppgate
+
+Stedet kan ikke godkjennes som Historie-sted dersom ett av disse forholdene består:
+
+- Historie er bare en generell assosiasjon, ikke dokumentert hovedidentitet eller konkret `em_his_*`-kobling;
+- sted og hendelse, institusjon, person, funn eller minneflate er blandet sammen;
+- emner mangler validert profil-, case-, claim-, kilde- eller `place_evidence`-kobling;
+- ett av de fire canonicale casekravene mangler;
+- kildegrunnlaget består av én kildetype eller mangler proveniens, `sourceLocation` eller begrensning;
+- samtid/ettertid, aktør/struktur, årsak/korrelasjon, hendelse/prosess eller lokal/større skala blandes;
+- de første 14 quizspørsmålene bryter normalåpningen;
+- en chronology-post er gjort til Story uten selvstendig narrativ verdi og forankring.
+
+Produksjonsrapporten ligger i `data/places/historie-production/<place_id>.json` og følger `data/places/regler/historie_place_production_v1.schema.json`. Rapporten peker tilbake til manifest-loadet place-fil og refererer—uten å duplisere—canonical profil, cases, `em_his_*`, claims, kilder og `place_evidence`.
+
+Delene A–I får status **PASS** eller **N/A med begrunnelse**. A–G er obligatoriske PASS for et ferdig Historie-sted; H og I kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-historie-place-production.mjs --all` validerer alle rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Historie-sted opprettes eller et eksisterende Historie-steds fagkobling, brukerrettede tekst, quizgrunnlag, chronology eller Story-kobling revideres. Historie kan ikke settes til ferdig på stedet før denne porten passerer.
 
 ---
 
@@ -991,6 +1118,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] emne_ids
 - [ ] Badges
 - [ ] fagverk-sted — obligatorisk, fungerende og aldri N/A
+- [ ] kategoriens produksjonsrapport og sluttgate / N/A
 
 ### D. desc / popupDesc
 LES: data/places/regler/PLACE_DESCRIPTION_CANONICAL.md

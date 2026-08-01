@@ -1,0 +1,645 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/historie-place-production-v1.json",
+  "title": "History GO Historie place production report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "validatorVersion",
+    "placeId",
+    "placeFile",
+    "status",
+    "historicalIdentity",
+    "historyProfile",
+    "historyTopics",
+    "sourceReviews",
+    "caseRequirements",
+    "inferenceGuards",
+    "quizOpening",
+    "chronologyStories",
+    "gates",
+    "review"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "historie_place_production_v1"
+    },
+    "validatorVersion": {
+      "type": "string",
+      "pattern": "^1\\.0\\.[0-9]+$"
+    },
+    "placeId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "placeFile": {
+      "type": "string",
+      "pattern": "^data/places/.+\\.json$"
+    },
+    "status": {
+      "enum": [
+        "ready",
+        "blocked"
+      ]
+    },
+    "historicalIdentity": {
+      "$ref": "#/$defs/historicalIdentity"
+    },
+    "historyProfile": {
+      "$ref": "#/$defs/historyProfile"
+    },
+    "historyTopics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/historyTopic"
+      }
+    },
+    "sourceReviews": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/sourceReview"
+      }
+    },
+    "caseRequirements": {
+      "$ref": "#/$defs/caseRequirements"
+    },
+    "inferenceGuards": {
+      "$ref": "#/$defs/inferenceGuards"
+    },
+    "quizOpening": {
+      "$ref": "#/$defs/quizOpening"
+    },
+    "chronologyStories": {
+      "$ref": "#/$defs/chronologyStories"
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
+      ],
+      "properties": {
+        "A": { "$ref": "#/$defs/gate" },
+        "B": { "$ref": "#/$defs/gate" },
+        "C": { "$ref": "#/$defs/gate" },
+        "D": { "$ref": "#/$defs/gate" },
+        "E": { "$ref": "#/$defs/gate" },
+        "F": { "$ref": "#/$defs/gate" },
+        "G": { "$ref": "#/$defs/gate" },
+        "H": { "$ref": "#/$defs/gate" },
+        "I": { "$ref": "#/$defs/gate" }
+      }
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    }
+  },
+  "$defs": {
+    "idList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^src_his_[a-z0-9_-]+$"
+      }
+    },
+    "claimIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^claim_his_[a-z0-9_-]+$"
+      }
+    },
+    "evidenceLinkIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^evidence_his_[a-z0-9_-]+$"
+      }
+    },
+    "temporalScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to",
+        "precision"
+      ],
+      "properties": {
+        "from": {
+          "type": ["integer", "null"]
+        },
+        "to": {
+          "type": ["integer", "null"]
+        },
+        "precision": {
+          "enum": [
+            "exact_date",
+            "year",
+            "year_range",
+            "decade",
+            "century",
+            "period",
+            "uncertain"
+          ]
+        }
+      }
+    },
+    "historicalIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement",
+        "placeObjectDistinction",
+        "placeRelation",
+        "temporalScope",
+        "sourceIds"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 20
+        },
+        "placeObjectDistinction": {
+          "type": "string",
+          "minLength": 20
+        },
+        "placeRelation": {
+          "enum": [
+            "event_site",
+            "process_site",
+            "event_and_process_site",
+            "institution_site",
+            "material_trace",
+            "memory_site",
+            "archaeological_site",
+            "landscape_or_area",
+            "collection_or_archive",
+            "biographical_site"
+          ]
+        },
+        "temporalScope": {
+          "$ref": "#/$defs/temporalScope"
+        },
+        "sourceIds": {
+          "$ref": "#/$defs/sourceIds"
+        }
+      }
+    },
+    "historyProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "caseIds",
+        "claimIds",
+        "evidenceLinkIds"
+      ],
+      "properties": {
+        "profileId": {
+          "type": "string",
+          "pattern": "^profile_historie_[a-z0-9_-]+$"
+        },
+        "caseIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^case_his_[a-z0-9_-]+$"
+          }
+        },
+        "claimIds": {
+          "$ref": "#/$defs/claimIds"
+        },
+        "evidenceLinkIds": {
+          "$ref": "#/$defs/evidenceLinkIds"
+        }
+      }
+    },
+    "historyTopic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "emneId",
+        "siteSpecificRationale",
+        "evidenceLinkIds"
+      ],
+      "properties": {
+        "emneId": {
+          "type": "string",
+          "pattern": "^em_his_[a-z0-9_]+$"
+        },
+        "siteSpecificRationale": {
+          "type": "string",
+          "minLength": 20
+        },
+        "evidenceLinkIds": {
+          "$ref": "#/$defs/evidenceLinkIds"
+        }
+      }
+    },
+    "sourceReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "sourceLocation",
+        "use",
+        "limitation",
+        "temporalRelation",
+        "verifiedAt"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "pattern": "^src_his_[a-z0-9_-]+$"
+        },
+        "sourceLocation": {
+          "type": "string",
+          "minLength": 3
+        },
+        "use": {
+          "type": "string",
+          "minLength": 12
+        },
+        "limitation": {
+          "type": "string",
+          "minLength": 12
+        },
+        "temporalRelation": {
+          "enum": [
+            "contemporary",
+            "near_contemporary",
+            "retrospective",
+            "modern_synthesis",
+            "material_or_undated"
+          ]
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "sharedRequirementRefs": {
+      "type": "object",
+      "required": [
+        "statement",
+        "claimIds",
+        "evidenceLinkIds",
+        "sourceIds"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 20
+        },
+        "claimIds": {
+          "$ref": "#/$defs/claimIds"
+        },
+        "evidenceLinkIds": {
+          "$ref": "#/$defs/evidenceLinkIds"
+        },
+        "sourceIds": {
+          "$ref": "#/$defs/sourceIds"
+        }
+      }
+    },
+    "temporalSequence": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/sharedRequirementRefs" },
+        {
+          "type": "object",
+          "required": [
+            "start",
+            "end",
+            "change",
+            "continuity"
+          ],
+          "properties": {
+            "start": {
+              "type": "string",
+              "minLength": 8
+            },
+            "end": {
+              "type": "string",
+              "minLength": 8
+            },
+            "change": {
+              "type": "string",
+              "minLength": 12
+            },
+            "continuity": {
+              "type": "string",
+              "minLength": 12
+            }
+          }
+        }
+      ]
+    },
+    "actorConflict": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/sharedRequirementRefs" },
+        {
+          "type": "object",
+          "required": [
+            "actors",
+            "conflictOrNegotiation"
+          ],
+          "properties": {
+            "actors": {
+              "type": "array",
+              "minItems": 2,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 2
+              }
+            },
+            "conflictOrNegotiation": {
+              "type": "string",
+              "minLength": 12
+            }
+          }
+        }
+      ]
+    },
+    "sourceComparison": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/sharedRequirementRefs" },
+        {
+          "type": "object",
+          "required": [
+            "comparison",
+            "limitations"
+          ],
+          "properties": {
+            "comparison": {
+              "type": "string",
+              "minLength": 20
+            },
+            "limitations": {
+              "type": "string",
+              "minLength": 20
+            }
+          }
+        }
+      ]
+    },
+    "comparativeScale": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/sharedRequirementRefs" },
+        {
+          "type": "object",
+          "required": [
+            "localScale",
+            "widerScale",
+            "comparison"
+          ],
+          "properties": {
+            "localScale": {
+              "type": "string",
+              "minLength": 12
+            },
+            "widerScale": {
+              "type": "string",
+              "minLength": 12
+            },
+            "comparison": {
+              "type": "string",
+              "minLength": 20
+            }
+          }
+        }
+      ]
+    },
+    "caseRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "temporalSequence",
+        "actorConflict",
+        "sourceComparison",
+        "comparativeScale"
+      ],
+      "properties": {
+        "temporalSequence": {
+          "$ref": "#/$defs/temporalSequence"
+        },
+        "actorConflict": {
+          "$ref": "#/$defs/actorConflict"
+        },
+        "sourceComparison": {
+          "$ref": "#/$defs/sourceComparison"
+        },
+        "comparativeScale": {
+          "$ref": "#/$defs/comparativeScale"
+        }
+      }
+    },
+    "inferenceGuards": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contemporaneousVsRetrospective",
+        "actorVsStructure",
+        "causeVsCorrelation",
+        "eventVsProcess",
+        "localVsWiderScale"
+      ],
+      "properties": {
+        "contemporaneousVsRetrospective": {
+          "type": "string",
+          "minLength": 20
+        },
+        "actorVsStructure": {
+          "type": "string",
+          "minLength": 20
+        },
+        "causeVsCorrelation": {
+          "type": "string",
+          "minLength": 20
+        },
+        "eventVsProcess": {
+          "type": "string",
+          "minLength": 20
+        },
+        "localVsWiderScale": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "quizOpening": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "quizTargetId",
+            "firstTwoSetsQuestionCount",
+            "firstTwoSetsFactQuestionCount",
+            "sourceBrief",
+            "productionContext",
+            "requiredInputs"
+          ],
+          "properties": {
+            "status": { "const": "PASS" },
+            "quizTargetId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "firstTwoSetsQuestionCount": { "const": 14 },
+            "firstTwoSetsFactQuestionCount": {
+              "type": "integer",
+              "minimum": 7,
+              "maximum": 14
+            },
+            "sourceBrief": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionContext": {
+              "type": "string",
+              "minLength": 1
+            },
+            "requiredInputs": {
+              "$ref": "#/$defs/idList"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "rationale"
+          ],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": {
+              "type": "string",
+              "minLength": 12
+            }
+          }
+        }
+      ]
+    },
+    "chronologyStories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "chronologyReviewed",
+        "storiesReviewed",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": ["PASS", "N/A"]
+        },
+        "chronologyReviewed": {
+          "type": "boolean"
+        },
+        "storiesReviewed": {
+          "type": "boolean"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 12
+        }
+      }
+    },
+    "gate": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evidenceRefs"
+          ],
+          "properties": {
+            "status": { "const": "PASS" },
+            "evidenceRefs": {
+              "$ref": "#/$defs/idList"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "rationale"
+          ],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": {
+              "type": "string",
+              "minLength": 12
+            }
+          }
+        }
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewer",
+        "reviewedAt",
+        "notes"
+      ],
+      "properties": {
+        "reviewer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
