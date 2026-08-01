@@ -21,6 +21,18 @@ test('global, colonial and transnational History qualifies the complete ten-obje
   assert.deepEqual(new Set(dossier.scope.qualified_theory_ids), targetTheoryIds);
 });
 
+test('dossier case scope exactly matches the final ten evidence bundles', () => {
+  const targetEntries = registry.filter((entry) => targetTheoryIds.has(entry.theory_id));
+  const finalCaseIds = new Set(targetEntries.flatMap((entry) => entry.case_ids));
+  assert.deepEqual(new Set(dossier.scope.case_ids), finalCaseIds);
+  assert.ok(dossier.scope.case_ids.includes('case_his_folkets_hus'));
+  assert.ok(dossier.scope.case_ids.includes('case_his_hjula_vaeveri'));
+  assert.ok(dossier.scope.case_ids.includes('case_his_universitetet_i_oslo'));
+  assert.ok(!dossier.scope.case_ids.includes('case_his_eidsvolls_plass'));
+  assert.ok(!dossier.scope.case_ids.includes('case_his_blitz'));
+  assert.ok(!dossier.scope.case_ids.includes('case_his_norsk_folkemuseum_sami_collections_repatriation'));
+});
+
 test('each global-domain theory uses at least two cases linked to its own emne', () => {
   const theoryById = new Map(theories.map((theory) => [theory.theory_id, theory]));
   for (const theoryId of targetTheoryIds) {
@@ -47,6 +59,41 @@ test('decolonization uses a political transition case rather than trade or museu
   assert.ok(!entry.claim_ids.includes('claim_his_norsk_folkemuseum_baastede_transfer_1600_items'));
   assert.ok(!baastedeClaim.emne_ids.includes(targetEmneId));
   assert.match(entry.rationale, /demokratisk Sør-Afrika/);
+});
+
+test('the value-chain theory uses an independent production and labour case', () => {
+  const entry = registry.find((candidate) => candidate.theory_id === 'theory_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder');
+  const targetEmneId = 'em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder';
+  const mosqueClaim = claimById.get('claim_his_central_jam_e_mosque_member_finance_transnational_materials_1991_2024');
+  const hjulaClaim = claimById.get('claim_his_hjula_transnational_textile_value_chain_1849_1918');
+
+  assert.ok(entry.claim_ids.includes(hjulaClaim.claim_id));
+  assert.ok(entry.case_ids.includes('case_his_hjula_vaeveri'));
+  assert.ok(!entry.claim_ids.includes(mosqueClaim.claim_id));
+  assert.ok(!mosqueClaim.emne_ids.includes(targetEmneId));
+  assert.ok(hjulaClaim.emne_ids.includes(targetEmneId));
+  assert.match(hjulaClaim.statement, /lavtlønte kvinner/);
+  assert.match(hjulaClaim.statement, /svenske kunder/);
+  assert.match(hjulaClaim.statement, /bomull og ull/);
+  assert.match(entry.rationale, /engelske maskiner/);
+});
+
+test('the global-war theory documents imperial troop, labour and logistics mobilization', () => {
+  const entry = registry.find((candidate) => candidate.theory_id === 'theory_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner');
+  const mobilizationClaim = claimById.get('claim_his_uio_noel_baker_colonial_troops_labour_logistics_1915_1959');
+  const organizationClaim = claimById.get('claim_his_uio_noel_baker_wars_league_un_sequence_1914_1959');
+
+  assert.ok(entry.claim_ids.includes(mobilizationClaim.claim_id));
+  assert.ok(entry.claim_ids.includes(organizationClaim.claim_id));
+  assert.ok(entry.claim_ids.includes('claim_his_hjula_transnational_textile_value_chain_1849_1918'));
+  assert.ok(entry.case_ids.includes('case_his_universitetet_i_oslo'));
+  assert.ok(entry.source_ids.includes('src_his_iwm_british_west_indies_regiment_wwi'));
+  assert.ok(entry.source_ids.includes('src_his_nobel_noel_baker_1959_lecture'));
+  assert.match(mobilizationClaim.statement, /kolonitropper/);
+  assert.match(mobilizationClaim.statement, /ammunisjonstransport/);
+  assert.match(mobilizationClaim.statement, /rasialisert arbeidsdeling/);
+  assert.match(entry.rationale, /Ypres og Somme/);
+  assert.match(entry.disconfirmation_conditions.join(' '), /dokumenteres uavhengig/);
 });
 
 test('transnational-movement evidence uses two topic-specific cases with named cross-border channels', () => {

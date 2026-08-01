@@ -216,7 +216,7 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Slaveri, råvarer og globale verdikjeder: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 | Misjon, kunnskap og kulturelle møter: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
 | Migrasjon, diaspora og transnasjonale nettverk: forklarings- og kildebane | 3 | 2 | 2 | 3 | evidence_ready |
-| Globale kriger og internasjonale organisasjoner: forklarings- og kildebane | 4 | 4 | 4 | 4 | evidence_ready |
+| Globale kriger og internasjonale organisasjoner: forklarings- og kildebane | 7 | 6 | 7 | 7 | evidence_ready |
 | Avkolonisering og utviklingspolitikk: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
 | Norge i imperiale og koloniale forbindelser: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
 | Globalisering, avhengighet og sammenvevd historie: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |

@@ -41,12 +41,12 @@
     "emner_with_profile_case_candidates": 213,
     "emne_link_ratio_percent": 92.6,
     "cases_total": 117,
-    "claims_total": 261,
-    "sources_total": 210,
-    "evidence_links_total": 270,
+    "claims_total": 264,
+    "sources_total": 212,
+    "evidence_links_total": 273,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 56,
+    "verified_cases_total": 57,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -3605,27 +3605,36 @@
     },
     {
       "case_id": "case_his_universitetet_i_oslo",
-      "label": "Universitetet i Oslo",
+      "label": "Universitetet i Oslo – Noel-Baker, kolonitropper og etterkrigsorden",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
-      "emne_ids": [
-        "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
-        "em_his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
-        "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
-        "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
-        "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
-        "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
-        "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
-        "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
-        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering"
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "universitetets_gamle_hovedbygning"
       ],
-      "case_requirement_ids": [],
+      "emne_ids": [
+        "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+        "em_his_global_kolonial_verdenskrig",
+        "em_his_revolusjon_imperieopplosning_fredsoppgjor"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
-        "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
-        "migration_date": "2026-07-26"
+        "repository_source": "data/fag/historie/source_dossiers/global_colonial_transnational_v1.json",
+        "created_at": "2026-08-01"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_global_colonial_transnational_evidence_v1",
+        "validated_at": "2026-08-01",
+        "minimum_evidence_links": 2,
+        "source_policy": "official_nobel_lecture_with_independent_imperial_war_museum_corroboration",
+        "spatial_note": "Universitetets gamle hovedanlegg er forelesningsanker; Ypres, Somme, kolonitroppenes tjeneste og Folkeforbundets og FNs virksomhet lokaliseres ikke til Oslo."
       }
     },
     {
