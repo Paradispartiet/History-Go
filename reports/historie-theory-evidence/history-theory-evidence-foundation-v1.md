@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **197**
-- Andel med dokumentert evidensgrunnlag: **85.7 %**
+- Validerte pilotobjekter: **207**
+- Andel med dokumentert evidensgrunnlag: **90 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -212,6 +212,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa | 3 | 3 | 3 | 3 | evidence_ready |
 | Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk | 3 | 2 | 3 | 3 | evidence_ready |
 | Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden | 3 | 2 | 3 | 3 | evidence_ready |
+| Imperier, kolonialisme og makt: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
+| Slaveri, råvarer og globale verdikjeder: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Misjon, kunnskap og kulturelle møter: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
+| Migrasjon, diaspora og transnasjonale nettverk: forklarings- og kildebane | 3 | 2 | 2 | 3 | evidence_ready |
+| Globale kriger og internasjonale organisasjoner: forklarings- og kildebane | 4 | 4 | 4 | 4 | evidence_ready |
+| Avkolonisering og utviklingspolitikk: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
+| Norge i imperiale og koloniale forbindelser: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
+| Globalisering, avhengighet og sammenvevd historie: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
+| Internasjonale organisasjoner, bistand og utviklingspolitikk: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Transnasjonale bevegelser, medier og solidaritetsnettverk: forklarings- og kildebane | 3 | 3 | 5 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 
