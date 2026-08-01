@@ -56,8 +56,9 @@ test('Before/after renderer exposes dates, attribution and image source', () => 
   assert.match(styles, /\.hg-place-before-after-media figcaption a\{/);
 });
 
-test('Phase report marks only Before/after complete and keeps later phases open', () => {
+test('Before/after remains complete while the next phase advances', () => {
   assert.match(report, /\| Før\/etter \| PASS – fase 4 \|/);
-  assert.match(report, /\| Nyheter \| Ikke startet \|/);
+  assert.match(report, /\| Nyheter \| PASS – fase 5 \|/);
+  assert.match(report, /\| Lesespor \| Ikke startet \|/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });
