@@ -524,7 +524,25 @@ export function auditHistoriePlaceProduction({
     if (!base) throw new Error('--changed krever --base');
     const changed = paths ?? changedPaths(root, base, head);
     const required = requiredReportsForChanges(root, changed, base);
-    const reportsToCheck = new Set(changed.filter((entry) => entry.startsWith(`${REPORT_DIR}/`) && entry.endsWith('.json')));
+    const changedReportPaths = changed.filter((entry) => entry.startsWith(`${REPORT_DIR}/`) && entry.endsWith('.json'));
+    const reportsToCheck = new Set(changedReportPaths.filter((entry) => fs.existsSync(path.join(root, entry))));
+
+    for (const reportPath of changedReportPaths) {
+      if (fs.existsSync(path.join(root, reportPath))) continue;
+      const previousSource = sourceAtBase(root, base, reportPath);
+      if (!previousSource) continue;
+      try {
+        const previousReport = JSON.parse(previousSource);
+        const placeFile = repoPath(previousReport?.placeFile);
+        const placeId = String(previousReport?.placeId ?? '');
+        const currentPlace = findPlace(root, placeFile, placeId);
+        if (currentPlace && isHistoryPlace(currentPlace)) {
+          failures.push(`${placeId}: Historie-produksjonsrapporten er slettet mens stedet fortsatt er et Historie-sted`);
+        }
+      } catch {
+        failures.push(`${reportPath}: slettet rapport kunne ikke leses fra base`);
+      }
+    }
 
     for (const [placeId, entry] of required) {
       if (!fs.existsSync(path.join(root, entry.reportPath))) {
@@ -535,7 +553,6 @@ export function auditHistoriePlaceProduction({
     }
 
     for (const reportPath of [...reportsToCheck].sort()) {
-      if (!fs.existsSync(path.join(root, reportPath))) continue;
       const result = validateReportPath(root, reportPath, canonicalEmneIds, manifestPaths, now);
       checked.push(reportPath);
       for (const error of result.errors) failures.push(`${reportPath}: ${error}`);
