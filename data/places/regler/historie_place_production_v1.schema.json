@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/historie-place-production-v1.json",
+  "title": "History GO Historie place production report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "validatorVersion",
+    "placeId",
+    "placeFile",
+    "status",
+    "historicalIdentity",
+    "historyTopics",
+    "sources",
+    "caseRealizations",
+    "presentTrace",
+    "quizOpening",
+    "chronologyStories",
+    "gates",
+    "review"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "historie_place_production_v1" },
+    "validatorVersion": { "type": "string", "pattern": "^1\\.0\\.[0-9]+$" },
+    "placeId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$" },
+    "placeFile": { "type": "string", "pattern": "^data/places/.+\\.json$" },
+    "status": { "enum": ["ready", "blocked"] },
+    "historicalIdentity": { "$ref": "#/$defs/historicalIdentity" },
+    "historyTopics": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/historyTopic" }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "caseRealizations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/caseRealization" }
+    },
+    "presentTrace": { "$ref": "#/$defs/presentTrace" },
+    "quizOpening": { "$ref": "#/$defs/quizOpening" },
+    "chronologyStories": { "$ref": "#/$defs/chronologyStories" },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["A", "B", "C", "D", "E", "F", "G", "H"],
+      "properties": {
+        "A": { "$ref": "#/$defs/gate" },
+        "B": { "$ref": "#/$defs/gate" },
+        "C": { "$ref": "#/$defs/gate" },
+        "D": { "$ref": "#/$defs/gate" },
+        "E": { "$ref": "#/$defs/gate" },
+        "F": { "$ref": "#/$defs/gate" },
+        "G": { "$ref": "#/$defs/gate" },
+        "H": { "$ref": "#/$defs/gate" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer", "reviewedAt", "notes"],
+      "properties": {
+        "reviewer": { "type": "string", "minLength": 1 },
+        "reviewedAt": { "type": "string", "format": "date" },
+        "notes": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^source_[a-z0-9_-]+$" }
+    },
+    "caseIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^case_[a-z0-9_-]+$" }
+    },
+    "temporalScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "precision", "rationale"],
+      "properties": {
+        "start": { "type": "string", "minLength": 1 },
+        "end": { "type": "string", "minLength": 1 },
+        "precision": { "enum": ["day", "year", "decade", "century", "period", "relative", "uncertain"] },
+        "rationale": { "type": "string", "minLength": 12 }
+      }
+    },
+    "historicalIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "placeRelationType", "placeRelationStatement", "temporalScope", "sourceIds"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 20 },
+        "placeRelationType": {
+          "enum": [
+            "event_site",
+            "institution_site",
+            "material_trace",
+            "residence_or_workplace",
+            "findspot",
+            "later_memory_site",
+            "reconstructed_site",
+            "moved_object_site",
+            "historical_landscape"
+          ]
+        },
+        "placeRelationStatement": { "type": "string", "minLength": 20 },
+        "temporalScope": { "$ref": "#/$defs/temporalScope" },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "historyTopic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["emneId", "siteSpecificRationale", "caseIds"],
+      "properties": {
+        "emneId": { "type": "string", "pattern": "^em_his_[a-z0-9_]+$" },
+        "siteSpecificRationale": { "type": "string", "minLength": 20 },
+        "caseIds": { "$ref": "#/$defs/caseIds" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "url",
+        "sourceLocation",
+        "sourceType",
+        "verifiedAt",
+        "temporalCoverage",
+        "provenance",
+        "limitations"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^source_[a-z0-9_-]+$" },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "sourceLocation": { "type": "string", "minLength": 3 },
+        "sourceType": {
+          "enum": [
+            "primary",
+            "official",
+            "institutional",
+            "archive",
+            "archaeological_report",
+            "scholarly",
+            "museum_or_heritage",
+            "oral_history",
+            "reputable_secondary"
+          ]
+        },
+        "verifiedAt": { "type": "string", "format": "date" },
+        "temporalCoverage": { "enum": ["contemporary_to_event", "retrospective", "current", "mixed"] },
+        "provenance": { "type": "string", "minLength": 12 },
+        "limitations": { "type": "string", "minLength": 12 }
+      }
+    },
+    "statementWithSources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "sourceIds"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 12 },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "roleOrInterest", "powerPosition", "sourceIds"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "roleOrInterest": { "type": "string", "minLength": 8 },
+        "powerPosition": { "type": "string", "minLength": 8 },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "caseRealization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "claim",
+        "temporalSequence",
+        "actors",
+        "conflictOrNegotiation",
+        "sourceComparison",
+        "comparativeScale",
+        "causationAndUncertainty"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^case_[a-z0-9_-]+$" },
+        "claim": { "type": "string", "minLength": 20 },
+        "temporalSequence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scope", "startPoint", "endPoint", "breaks", "continuities", "sourceIds"],
+          "properties": {
+            "scope": { "$ref": "#/$defs/temporalScope" },
+            "startPoint": { "type": "string", "minLength": 12 },
+            "endPoint": { "type": "string", "minLength": 12 },
+            "breaks": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 8 } },
+            "continuities": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 8 } },
+            "sourceIds": { "$ref": "#/$defs/sourceIds" }
+          }
+        },
+        "actors": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/actor" } },
+        "conflictOrNegotiation": { "$ref": "#/$defs/statementWithSources" },
+        "sourceComparison": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sourceIds", "comparison", "contradictionsOrSilences", "conclusionLimits"],
+          "properties": {
+            "sourceIds": { "allOf": [{ "$ref": "#/$defs/sourceIds" }, { "minItems": 2 }] },
+            "comparison": { "type": "string", "minLength": 20 },
+            "contradictionsOrSilences": { "type": "string", "minLength": 12 },
+            "conclusionLimits": { "type": "string", "minLength": 12 }
+          }
+        },
+        "comparativeScale": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["localFinding", "widerContext", "scale", "sourceIds"],
+          "properties": {
+            "localFinding": { "type": "string", "minLength": 12 },
+            "widerContext": { "type": "string", "minLength": 12 },
+            "scale": { "enum": ["regional", "national", "nordic", "european", "global"] },
+            "sourceIds": { "$ref": "#/$defs/sourceIds" }
+          }
+        },
+        "causationAndUncertainty": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["causalAssessment", "alternativeExplanations", "uncertainty", "sourceIds"],
+          "properties": {
+            "causalAssessment": { "type": "string", "minLength": 20 },
+            "alternativeExplanations": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 8 }
+            },
+            "uncertainty": { "type": "string", "minLength": 12 },
+            "sourceIds": { "$ref": "#/$defs/sourceIds" }
+          }
+        }
+      }
+    },
+    "presentTrace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objectStatus", "statement", "originalSiteRelationship", "sourceIds"],
+      "properties": {
+        "objectStatus": {
+          "enum": ["original", "altered", "reconstructed", "moved", "destroyed", "commemorative", "landscape_trace"]
+        },
+        "statement": { "type": "string", "minLength": 20 },
+        "originalSiteRelationship": { "type": "string", "minLength": 20 },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "quizOpening": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "quizTargetId", "firstTwoSetsQuestionCount", "sourceBrief", "productionContext", "requiredInputs"],
+          "properties": {
+            "status": { "const": "PASS" },
+            "quizTargetId": { "type": "string", "minLength": 1 },
+            "firstTwoSetsQuestionCount": { "const": 14 },
+            "sourceBrief": { "type": "string", "minLength": 1 },
+            "productionContext": { "type": "string", "minLength": 1 },
+            "requiredInputs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    },
+    "chronologyStories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "chronologyReviewed", "storiesReviewed", "rationale"],
+      "properties": {
+        "status": { "enum": ["PASS", "N/A"] },
+        "chronologyReviewed": { "type": "boolean" },
+        "storiesReviewed": { "type": "boolean" },
+        "rationale": { "type": "string", "minLength": 12 }
+      }
+    },
+    "gate": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "evidenceRefs"],
+          "properties": {
+            "status": { "const": "PASS" },
+            "evidenceRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    }
+  }
+}
