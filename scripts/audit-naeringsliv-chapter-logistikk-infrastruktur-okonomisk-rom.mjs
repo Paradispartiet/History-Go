@@ -149,8 +149,11 @@ export function auditLogistikk({ writeReport = false, checkReport = true } = {})
   assert(runtime.chapterByDomain?.[DOMAIN_ID] === CHAPTER_ID, "Runtime domain mapping is missing");
   for (const emneId of chapter.emne_ids) assert(runtime.chapterByEmne?.[emneId] === CHAPTER_ID, `Runtime emne mapping missing for ${emneId}`);
   const statusEntry = status.subjects.find((row) => row.id === "naeringsliv");
-  assert(statusEntry?.editorialStatus === "chapters_in_progress", "Næringsliv must remain chapters_in_progress at 5/6");
-  assert(String(statusEntry.note || "").includes("5 av 6"), "Status note does not report 5/6");
+  const registeredChapterCount = registry.subjects?.naeringsliv?.chapters?.length || 0;
+  const canonicalDomainCount = (pensum.domains || []).length;
+  const expectedEditorialStatus = registeredChapterCount === canonicalDomainCount ? "complete" : "chapters_in_progress";
+  assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Næringsliv status must be ${expectedEditorialStatus}`);
+  assert(String(statusEntry.note || "").includes(`${registeredChapterCount} av ${canonicalDomainCount}`), "Status note does not report registered coverage");
 
   const report = {
     schema: "history_go_naeringsliv_chapter_audit_v1",

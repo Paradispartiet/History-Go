@@ -132,8 +132,11 @@ export function auditNaeringslivArbeidProduksjonVerdiskapingChapter({ writeRepor
   assert(runtime.chapterByDomain?.[domain.domain_id] === chapter.id, 'Runtime mangler domain→chapter-kobling');
   for (const emneId of chapter.emne_ids || []) assert(runtime.chapterByEmne?.[emneId] === chapter.id, `Runtime mangler emne→chapter for ${emneId}`);
   const subjectStatus = (status.subjects || []).find((row) => row.id === 'naeringsliv');
-  assert(subjectStatus?.editorialStatus === 'chapters_in_progress', 'Næringslivstatus skal være chapters_in_progress');
-  assert(subjectStatus?.nextGate === 'phase_4_chapters', 'Næringslivstatus peker ikke til videre kapittelproduksjon');
+  const registeredChapterCount = registry.subjects?.naeringsliv?.chapters?.length || 0;
+  const canonicalDomainCount = (pensum.domains || []).length;
+  const subjectIsComplete = registeredChapterCount === canonicalDomainCount;
+  assert(subjectStatus?.editorialStatus === (subjectIsComplete ? 'complete' : 'chapters_in_progress'), 'Næringslivstatus samsvarer ikke med registrert kapitteldekning');
+  assert(subjectStatus?.nextGate === (subjectIsComplete ? 'maintenance_and_source_refresh' : 'phase_4_chapters'), 'Næringslivstatus peker til feil neste port');
 
   const report = {
     schema: 'history_go_naeringsliv_chapter_arbeid_produksjon_verdiskaping_audit_v1',

@@ -1,78 +1,63 @@
-name: Materialiser sluttkapittelet for Økonomi og næringsliv
+name: Økonomi og næringsliv subject quality
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
     paths:
+      - 'data/fag/naeringsliv/**'
+      - 'data/badges/naeringsliv.json'
+      - 'data/fagverk/**'
+      - 'tools/validate-okonomi-naeringsliv-*.mjs'
+      - 'scripts/audit-naeringsliv-*.mjs'
+      - 'tests/naeringsliv-*.test.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - 'reports/fagverk/naeringsliv-*.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/subject-baseline.json'
+      - 'reports/fagverk/README.md'
+      - '.github/workflows/naeringsliv-subject-quality.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/naeringsliv/**'
+      - 'data/badges/naeringsliv.json'
+      - 'data/fagverk/**'
+      - 'tools/validate-okonomi-naeringsliv-*.mjs'
+      - 'scripts/audit-naeringsliv-*.mjs'
+      - 'tests/naeringsliv-*.test.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - 'reports/fagverk/naeringsliv-*.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/subject-baseline.json'
+      - 'reports/fagverk/README.md'
       - '.github/workflows/naeringsliv-subject-quality.yml'
 
-permissions:
-  contents: write
-
-concurrency:
-  group: materialize-naeringsliv-final-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
-  materialize:
+  quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
-      - name: Rekonstruer og rett produksjonspakken
-        run: |
-          cat .bootstrap/naeringsliv-makt-regulering-baerekraft/part-* | base64 --decode > /tmp/naeringsliv-ch6.tar.gz
-          tar -xzf /tmp/naeringsliv-ch6.tar.gz
-          rm -rf .bootstrap .diagnostics
-          echo 'CmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAppbXBvcnQgcmUKCm1hdGVyaWFsaXplciA9IFBhdGgoInNjcmlwdHMvbWF0ZXJpYWxpemUtbmFlcmluZ3NsaXYtY2hhcHRlci1tYWt0LXJlZ3VsZXJpbmctYmFlcmVrcmFmdC12MS5tanMiKQpzb3VyY2UgPSBtYXRlcmlhbGl6ZXIucmVhZF90ZXh0KCkKc291cmNlID0gc291cmNlLnJlcGxhY2UoCiAgICByIi9eKFxkKylcLihcZCspXC4oXGQrKSQvIiwKICAgIHIiL14oLio/KShcZCspXC4oXGQrKVwuKFxkKykkLyIsCikucmVwbGFjZSgKICAgICJgJHttYXRjaFsxXX0uJHtOdW1iZXIobWF0Y2hbMl0pICsgMX0uMGAiLAogICAgImAke21hdGNoWzFdfSR7bWF0Y2hbMl19LiR7TnVtYmVyKG1hdGNoWzNdKSArIDF9LjBgIiwKKS5yZXBsYWNlKAogICAgInN0YXR1cy5nZW5lcmF0aW9uLmdlbmVyYXRlZF9hdCA9IERBVEU7IiwKICAgICJzdGF0dXMuZ2VuZXJhdGlvbiA9IHsgLi4uKHN0YXR1cy5nZW5lcmF0aW9uIHx8IHt9KSwgZ2VuZXJhdGVkX2F0OiBEQVRFIH07IiwKKQptYXRlcmlhbGl6ZXIud3JpdGVfdGV4dChzb3VyY2UpCgpmaW5hbF9hdWRpdCA9IFBhdGgoInNjcmlwdHMvYXVkaXQtbmFlcmluZ3NsaXYtY2hhcHRlci1tYWt0LXJlZ3VsZXJpbmctYmFlcmVrcmFmdC5tanMiKQpzb3VyY2UgPSBmaW5hbF9hdWRpdC5yZWFkX3RleHQoKQpuZWVkbGUgPSAnICAgICAgZWxzZSBpZiAoZW50cnkuaXNGaWxlKCkgJiYgZW50cnkubmFtZS5lbmRzV2l0aCgiLmpzb24iKSkge1xuICAgICAgICB0cnkgeycKcmVwbGFjZW1lbnQgPSAnICAgICAgZWxzZSBpZiAoZW50cnkuaXNGaWxlKCkgJiYgZW50cnkubmFtZS5lbmRzV2l0aCgiLmpzb24iKSkge1xuICAgICAgICAvLyBwbGFjZXNfaW5kZXguanNvbiBpcyBhIGdlbmVyYXRlZCBsb29rdXAgcHJvamVjdGlvbiwgbm90IGEgY2Fub25pY2FsIHNvdXJjZSByZWNvcmQuXG4gICAgICAgIGlmIChlbnRyeS5uYW1lID09PSAicGxhY2VzX2luZGV4Lmpzb24iKSBjb250aW51ZTtcbiAgICAgICAgdHJ5IHsnCmlmIG5lZWRsZSBub3QgaW4gc291cmNlIGFuZCAiZ2VuZXJhdGVkIGxvb2t1cCBwcm9qZWN0aW9uIiBub3QgaW4gc291cmNlOgogICAgcmFpc2UgU3lzdGVtRXhpdCgiQ291bGQgbm90IGxvY2F0ZSBjYW5vbmljYWwgcGxhY2Ugc2Nhbm5lciBpbnNlcnRpb24gcG9pbnQiKQppZiBuZWVkbGUgaW4gc291cmNlOgogICAgc291cmNlID0gc291cmNlLnJlcGxhY2UobmVlZGxlLCByZXBsYWNlbWVudCwgMSkKZmluYWxfYXVkaXQud3JpdGVfdGV4dChzb3VyY2UpCgppbnZlbnRvcnlfdGVzdCA9IFBhdGgoInRlc3RzL2ZhZ3Zlcmstc3ViamVjdC1pbnZlbnRvcnkudGVzdC5tanMiKQpzb3VyY2UgPSBpbnZlbnRvcnlfdGVzdC5yZWFkX3RleHQoKQpvbGRfaW5fcHJvZ3Jlc3MgPSAiZm9yKGNvbnN0IGlkIG9mIFsnaGlzdG9yaWUnLCduYWVyaW5nc2xpdiddKSIKbmV3X2luX3Byb2dyZXNzID0gImZvcihjb25zdCBpZCBvZiBbJ2hpc3RvcmllJ10pIgpvbGRfY29tcGxldGUgPSAiZm9yKGNvbnN0IGlkIG9mIFsnbmF0dXInLCdwb2xpdGlrayddKSIKbmV3X2NvbXBsZXRlID0gImZvcihjb25zdCBpZCBvZiBbJ25hZXJpbmdzbGl2JywnbmF0dXInLCdwb2xpdGlrayddKSIKaWYgb2xkX2luX3Byb2dyZXNzIG5vdCBpbiBzb3VyY2Ugb3Igb2xkX2NvbXBsZXRlIG5vdCBpbiBzb3VyY2U6CiAgICByYWlzZSBTeXN0ZW1FeGl0KCJDb3VsZCBub3QgbG9jYXRlIE7DpnJpbmdzbGl2IGVkaXRvcmlhbC1zdGF0dXMgZXhwZWN0YXRpb25zIGluIHN1YmplY3QgaW52ZW50b3J5IHRlc3QiKQpzb3VyY2UgPSBzb3VyY2UucmVwbGFjZShvbGRfaW5fcHJvZ3Jlc3MsIG5ld19pbl9wcm9ncmVzcywgMSkucmVwbGFjZShvbGRfY29tcGxldGUsIG5ld19jb21wbGV0ZSwgMSkKaW52ZW50b3J5X3Rlc3Qud3JpdGVfdGV4dChzb3VyY2UpCgpkeW5hbWljX3RlbXBsYXRlID0gIiIiICBjb25zdCByZWdpc3RlcmVkQ2hhcHRlckNvdW50ID0gcmVnaXN0cnkuc3ViamVjdHM/Lm5hZXJpbmdzbGl2Py5jaGFwdGVycz8ubGVuZ3RoIHx8IDA7CiAgY29uc3QgY2Fub25pY2FsRG9tYWluQ291bnQgPSAocGVuc3VtLmRvbWFpbnMgfHwgW10pLmxlbmd0aDsKICBjb25zdCBzdWJqZWN0SXNDb21wbGV0ZSA9IHJlZ2lzdGVyZWRDaGFwdGVyQ291bnQgPT09IGNhbm9uaWNhbERvbWFpbkNvdW50OwogIGFzc2VydCh7dmFyaWFibGV9Py5lZGl0b3JpYWxTdGF0dXMgPT09IChzdWJqZWN0SXNDb21wbGV0ZSA/ICdjb21wbGV0ZScgOiAnY2hhcHRlcnNfaW5fcHJvZ3Jlc3MnKSwgJ07DpnJpbmdzbGl2c3RhdHVzIHNhbXN2YXJlciBpa2tlIG1lZCByZWdpc3RyZXJ0IGthcGl0dGVsZGVrbmluZycpOwogIGFzc2VydCh7dmFyaWFibGV9Py5uZXh0R2F0ZSA9PT0gKHN1YmplY3RJc0NvbXBsZXRlID8gJ21haW50ZW5hbmNlX2FuZF9zb3VyY2VfcmVmcmVzaCcgOiAncGhhc2VfNF9jaGFwdGVycycpLCAnTsOmcmluZ3NsaXZzdGF0dXMgcGVrZXIgdGlsIGZlaWwgbmVzdGUgcG9ydCcpOyIiIgoKc3RhdHVzX3BhdHRlcm4gPSByZS5jb21waWxlKAogICAgciIiIiAgYXNzZXJ0XCgoP1A8dmFyaWFibGU+c3ViamVjdFN0YXR1c3xzdGF0dXNFbnRyeSlcP1wuZWRpdG9yaWFsU3RhdHVzID09PSBbJyJdY2hhcHRlcnNfaW5fcHJvZ3Jlc3NbJyJdLCBbXlxuXStcKTtcbiIiIgogICAgciIiIiAgYXNzZXJ0XCgoP1A9dmFyaWFibGUpXD9cLm5leHRHYXRlID09PSBbJyJdcGhhc2VfNF9jaGFwdGVyc1snIl0sIFteXG5dK1wpOyIiIgopCgpwYXRjaGVkID0gW10KZm9yIGF1ZGl0IGluIHNvcnRlZChQYXRoKCJzY3JpcHRzIikuZ2xvYigiYXVkaXQtbmFlcmluZ3NsaXYtY2hhcHRlci0qLm1qcyIpKToKICAgIHRleHQgPSBhdWRpdC5yZWFkX3RleHQoKQogICAgaWYgInJlZ2lzdGVyZWRDaGFwdGVyQ291bnQgPSByZWdpc3RyeS5zdWJqZWN0cz8ubmFlcmluZ3NsaXY/LmNoYXB0ZXJzPy5sZW5ndGgiIGluIHRleHQ6CiAgICAgICAgY29udGludWUKICAgIG1hdGNoID0gc3RhdHVzX3BhdHRlcm4uc2VhcmNoKHRleHQpCiAgICBpZiBtYXRjaDoKICAgICAgICB0ZXh0ID0gc3RhdHVzX3BhdHRlcm4uc3ViKGR5bmFtaWNfdGVtcGxhdGUuZm9ybWF0KHZhcmlhYmxlPW1hdGNoLmdyb3VwKCJ2YXJpYWJsZSIpKSwgdGV4dCwgY291bnQ9MSkKICAgICAgICBhdWRpdC53cml0ZV90ZXh0KHRleHQpCiAgICAgICAgcGF0Y2hlZC5hcHBlbmQoYXVkaXQubmFtZSkKICAgICAgICBjb250aW51ZQoKICAgIG9sZF9ibG9jayA9ICcgIGNvbnN0IHN0YXR1c0VudHJ5ID0gc3RhdHVzLnN1YmplY3RzLmZpbmQoKHJvdykgPT4gcm93LmlkID09PSAibmFlcmluZ3NsaXYiKTtcbiAgYXNzZXJ0KHN0YXR1c0VudHJ5Py5lZGl0b3JpYWxTdGF0dXMgPT09ICJjaGFwdGVyc19pbl9wcm9ncmVzcyIsICJOw6ZyaW5nc2xpdiBtdXN0IHJlbWFpbiBjaGFwdGVyc19pbl9wcm9ncmVzcyBhdCA1LzYiKTtcbiAgYXNzZXJ0KFN0cmluZyhzdGF0dXNFbnRyeS5ub3RlIHx8ICIiKS5pbmNsdWRlcygiNSBhdiA2IiksICJTdGF0dXMgbm90ZSBkb2VzIG5vdCByZXBvcnQgNS82Iik7JwogICAgaWYgb2xkX2Jsb2NrIGluIHRleHQ6CiAgICAgICAgbmV3X2Jsb2NrID0gJyAgY29uc3Qgc3RhdHVzRW50cnkgPSBzdGF0dXMuc3ViamVjdHMuZmluZCgocm93KSA9PiByb3cuaWQgPT09ICJuYWVyaW5nc2xpdiIpO1xuICBjb25zdCByZWdpc3RlcmVkQ2hhcHRlckNvdW50ID0gcmVnaXN0cnkuc3ViamVjdHM/Lm5hZXJpbmdzbGl2Py5jaGFwdGVycz8ubGVuZ3RoIHx8IDA7XG4gIGNvbnN0IGNhbm9uaWNhbERvbWFpbkNvdW50ID0gKHBlbnN1bS5kb21haW5zIHx8IFtdKS5sZW5ndGg7XG4gIGNvbnN0IGV4cGVjdGVkRWRpdG9yaWFsU3RhdHVzID0gcmVnaXN0ZXJlZENoYXB0ZXJDb3VudCA9PT0gY2Fub25pY2FsRG9tYWluQ291bnQgPyAiY29tcGxldGUiIDogImNoYXB0ZXJzX2luX3Byb2dyZXNzIjtcbiAgYXNzZXJ0KHN0YXR1c0VudHJ5Py5lZGl0b3JpYWxTdGF0dXMgPT09IGV4cGVjdGVkRWRpdG9yaWFsU3RhdHVzLCBgTsOmcmluZ3NsaXYgc3RhdHVzIG11c3QgYmUgJHtleHBlY3RlZEVkaXRvcmlhbFN0YXR1c31gKTtcbiAgYXNzZXJ0KFN0cmluZyhzdGF0dXNFbnRyeS5ub3RlIHx8ICIiKS5pbmNsdWRlcyhgJHtyZWdpc3RlcmVkQ2hhcHRlckNvdW50fSBhdiAke2Nhbm9uaWNhbERvbWFpbkNvdW50fWApLCAiU3RhdHVzIG5vdGUgZG9lcyBub3QgcmVwb3J0IHJlZ2lzdGVyZWQgY292ZXJhZ2UiKTsnCiAgICAgICAgYXVkaXQud3JpdGVfdGV4dCh0ZXh0LnJlcGxhY2Uob2xkX2Jsb2NrLCBuZXdfYmxvY2ssIDEpKQogICAgICAgIHBhdGNoZWQuYXBwZW5kKGF1ZGl0Lm5hbWUpCgppZiBsZW4ocGF0Y2hlZCkgPCA0OgogICAgcmFpc2UgU3lzdGVtRXhpdChmIkV4cGVjdGVkIHRvIGdlbmVyYWxpemUgYXQgbGVhc3QgZm91ciBwcmlvciBjaGFwdGVyIGF1ZGl0cywgcGF0Y2hlZCB7bGVuKHBhdGNoZWQpfToge3BhdGNoZWR9IikKcHJpbnQoIkdlbmVyYWxpemVkIGNoYXB0ZXIgc3RhdHVzIGF1ZGl0czoiLCAiLCAiLmpvaW4ocGF0Y2hlZCkpCg==' | base64 --decode | python
-          node --check scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-          node --check scripts/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs
       - run: npm ci
-      - name: Materialiser 6 av 6
-        run: node --trace-uncaught scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-      - name: Kontroller ren produksjonsdiff
+      - name: Validate Økonomi og næringsliv quality contracts
         run: |
-          test ! -e .bootstrap
-          test ! -e .diagnostics
-          test ! -e scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-          ! grep -q 'Materialiser sluttkapittelet' .github/workflows/naeringsliv-subject-quality.yml
-          ! grep -q 'permissions:' .github/workflows/naeringsliv-subject-quality.yml
-      - name: Valider alle seks kapitler
-        run: |
+          node --check scripts/audit-naeringsliv-subject-quality.mjs
           for audit in scripts/audit-naeringsliv-chapter-*.mjs; do
-            echo "=== $audit ==="
             node --check "$audit"
             node "$audit"
           done
-      - name: Valider universitets- og handelshøgskolerammen
-        run: |
+          node --check tools/validate-okonomi-naeringsliv-universitetsramme.mjs
+          node --check tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
+          node --check tools/validate-okonomi-naeringsliv-handelshogskole.mjs
           node tools/validate-okonomi-naeringsliv-universitetsramme.mjs
           node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
           node tools/validate-okonomi-naeringsliv-handelshogskole.mjs
-      - name: Valider samlet Næringsliv-kontrakt
-        run: |
-          node --check scripts/audit-naeringsliv-subject-quality.mjs
           node scripts/audit-naeringsliv-subject-quality.mjs
           node --test tests/naeringsliv-*.test.mjs
-      - name: Valider Fagverket og dokumentasjonen
-        run: |
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
-      - name: Valider TypeScript
-        run: npm run typecheck:web
-      - name: Commit produksjonsdiff
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git diff --cached --check
-          git commit -m 'Materialiser sluttkapittelet Makt, regulering og bærekraft'
-          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+          npm run typecheck:web

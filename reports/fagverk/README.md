@@ -16,6 +16,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
 - `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 110 Natur-hooks og 65 emner, inkludert egne fagkartlag for artskunnskap, evolusjon, botanikk, zoologi og fysiologi.
 - `natur-universal-coverage-audit.json` — dokumenterer hvilke biologiske og geologiske fagområder som må materialiseres før Natur kan bli redaksjonelt komplett.
+- `naeringsliv-makt-regulering-baerekraft-audit.json` — deterministisk sluttkapittelgate for tre emner, elleve metoder, tre moduler, 42 claims og 22 inspectable kilder.
 - `naeringsliv-logistikk-infrastruktur-okonomisk-rom-audit.json` — deterministisk kapittelgate for tre emner, ni metoder, tre moduler, 42 claims og 22 inspectable kilder.
 - `naeringsliv-teknologi-innovasjon-plattformer-audit.json` — deterministisk kapittelgate for sju emner, ti metoder, tre moduler, 42 claims og 22 inspectable kilder.
 - `naeringsliv-handel-forbruk-marked-audit.json` — deterministisk kapittelgate for fem emner, elleve metoder, tre moduler, 54 claims og 25 inspectable kilder.
@@ -53,6 +54,8 @@ node scripts/audit-natur-fagkart-quality.mjs --write-report
 node scripts/audit-natur-fagkart-quality.mjs
 node scripts/audit-natur-universal-coverage.mjs --write-report
 node scripts/audit-natur-universal-coverage.mjs
+node scripts/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs --write-report
+node scripts/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs
 node scripts/audit-naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom.mjs --write-report
 node scripts/audit-naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom.mjs
 node scripts/audit-naeringsliv-chapter-teknologi-innovasjon-plattformer.mjs --write-report

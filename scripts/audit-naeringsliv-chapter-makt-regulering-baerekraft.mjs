@@ -56,6 +56,8 @@ function findCanonicalPlaceFiles() {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) walk(full);
       else if (entry.isFile() && entry.name.endsWith(".json")) {
+        // places_index.json is a generated lookup projection, not a canonical source record.
+        if (entry.name === "places_index.json") continue;
         try {
           const value = JSON.parse(fs.readFileSync(full, "utf8"));
           const rows = Array.isArray(value) ? value : [value];
