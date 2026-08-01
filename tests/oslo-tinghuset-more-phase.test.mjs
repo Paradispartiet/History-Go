@@ -67,6 +67,6 @@ test('All eight popup phases are complete without opening later sanitation work'
     ['Om', 1], ['Historie', 2], ['Fortellinger', 3], ['Før/etter', 4],
     ['Nyheter', 5], ['Lesespor', 6], ['Kilder', 7], ['Mer', 8]
   ]) assert.match(report, new RegExp(`\\| ${phase.replace('/', '\\/')} \\| PASS – fase ${number} \\|`));
-  assert.match(report, /Knowledge er derfor ikke synkronisert ennå/);
+  assert.match(report, /Status: \*\*PASS – fase 9\*\*/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });
