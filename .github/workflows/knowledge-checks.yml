@@ -17,6 +17,7 @@ on:
       - 'data/quiz/**'
       - 'tests/knowledge-*.test.*'
       - 'tests/quiz-knowledge-memory.test.*'
+      - 'tests/oslo-tinghuset-knowledge-phase.test.mjs'
       - 'tests/fixtures/knowledge-*.html'
       - 'build/build-web.mjs'
       - '.github/workflows/knowledge-checks.yml'
@@ -87,6 +88,7 @@ jobs:
         run: |
           npm run test:knowledge-core
           node --test tests/knowledge-canonical-storage-contract.test.js
+          node --test tests/oslo-tinghuset-knowledge-phase.test.mjs
 
       - name: Install Chromium for Knowledge E2E
         run: npx playwright install --with-deps chromium
