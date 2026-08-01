@@ -7,6 +7,9 @@ const theories = readJson('data/fag/historie/theory_objects_historie_canonical_v
 const registryFile = readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json');
 const dossier = readJson('data/fag/historie/source_dossiers/cold_war_postwar_v1.json');
 const claims = new Map(readJson('data/fag/historie/claims_historie_canonical_v1.json').claims.map((claim) => [claim.claim_id, claim]));
+const sources = new Map(readJson('data/fag/historie/sources_historie_canonical_v1.json').sources.map((source) => [source.source_id, source]));
+const evidence = new Map(readJson('data/fag/historie/place_evidence_historie_v1.json').evidence_links.map((link) => [link.evidence_id, link]));
+const profile = readJson('data/fag/profiles/historie/oslo_akershus/profile.json');
 
 const targetTheoryIds = new Set(theories
   .filter((theory) => theory.explanatory_scope.includes('his_kald_krig_etterkrig'))
@@ -60,6 +63,30 @@ test('rural modernization preserves the local-museum and national-synthesis boun
 test('dossier scope exactly matches the qualified final-domain theories and cases', () => {
   assert.deepEqual(new Set(dossier.scope.qualified_theory_ids), targetTheoryIds);
   assert.deepEqual(new Set(dossier.scope.case_ids), new Set(entries.flatMap((entry) => entry.case_ids)));
+});
+
+test('final validation batch references canonical records and owns its newly validated case', () => {
+  const batch = profile.evidence_batches.find((candidate) => candidate.batch_id === dossier.dossier_id);
+  const oldBatch = profile.evidence_batches.find((candidate) => candidate.batch_id === 'history_industry_housing_migration_evidence_v1');
+  const gamleHvam = profile.cases.find((candidate) => candidate.case_id === 'case_his_gamle_hvam_museum');
+
+  assert.ok(batch);
+  assert.ok(batch.claim_ids.every((claimId) => claims.has(claimId)));
+  assert.ok(batch.source_ids.every((sourceId) => sources.has(sourceId)));
+  assert.ok(batch.evidence_ids.every((evidenceId) => evidence.has(evidenceId)));
+  assert.equal(gamleHvam.validation.batch_id, batch.batch_id);
+  assert.ok(batch.newly_verified_case_ids.includes(gamleHvam.case_id));
+  assert.ok(!oldBatch.newly_verified_case_ids.includes(gamleHvam.case_id));
+});
+
+test('canonical sources extracted from the final dossier resolve to snapshots', () => {
+  for (const sourceId of profile.evidence_batches.find((batch) => batch.batch_id === dossier.dossier_id).source_ids) {
+    const source = sources.get(sourceId);
+    for (const extractedFrom of source.provenance.extracted_from ?? []) {
+      const snapshotId = extractedFrom.match(/^source_snapshots\.(.+)$/)?.[1];
+      if (snapshotId) assert.ok(dossier.source_snapshots[snapshotId], `Missing dossier snapshot ${snapshotId}`);
+    }
+  }
 });
 
 test('History CI permanently runs the final-domain validator and regressions', () => {
