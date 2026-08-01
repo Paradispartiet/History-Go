@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-07-31**
+Sist kontrollert: **2026-08-01**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -81,7 +81,7 @@ STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
-MÅL FOR RUNDINGER: 4
+MÅL FOR INNHOLDSRUNDINGER: 3 + fast Badges
 VALGTE RUNDINGER:
 PEOPLE-KANDIDATER:
 WORKS-KANDIDATER:
@@ -182,7 +182,7 @@ Usikker koordinat skal ikke merkes `verified`.
 - [ ] ikke dupliser place i andre kategorier for å uttrykke tverrfaglighet;
 - [ ] `underbadge_ids` vurdert og alle ID-er finnes;
 - [ ] `emne_ids` vurdert;
-- [ ] Badges-rundingen er med;
+- [ ] Badges-rundingen er fast og vises øverst til høyre ved stedsoverskriften;
 - [ ] riktig badgegrafikk finnes;
 - [ ] Badges åpner `fagverk-sted.html?place=<place_id>`;
 - [ ] stedets fagverkside viser riktig sted, kategori og relevante fag-/emnekoblinger;
@@ -420,7 +420,10 @@ Alle åtte får status: **ferdig** eller **N/A**.
 Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **Rundingskontrakten eier hele rundingsmodellen.**
 
 - [ ] stedet følger canonical rundingskontrakt;
-- [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell;
+- [ ] Badges-rundingen vises fast øverst til høyre ved stedsoverskriften og teller ikke blant de tre innholdsrundingene;
+- [ ] nøyaktig tre innholdsrundinger vises på én horisontal rad ved `frontImage`;
+- [ ] vanlig sted bruker `people · objects · brands`, mens natursted bruker `map · flora · fauna`;
+- [ ] runtime og data bruker ikke legacy 4-/6-/9-/12-rundersmodell i mediefeltet;
 - [ ] preview brukes ikke som innholdsfilter;
 - [ ] gammel place-spesifikk `rounds`-kuratering brukes ikke som ny standard.
 
@@ -722,10 +725,11 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] `popupDesc`/popup åpner riktig;
 - [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
 - [ ] rundingssettet følger `data/places/README_place_rounds.md`;
-- [ ] fire rundinger vises som 2×2;
+- [ ] fast Badges-runding vises øverst til høyre ved stedsoverskriften;
+- [ ] tre innholdsrundinger vises på én horisontal rad ved `frontImage`;
 - [ ] alle valgte rundinger har korrekte bilder;
 - [ ] Badges åpner riktig sted/fagverk;
-- [ ] de fire canonical rundingene åpner riktig innhold;
+- [ ] Badges og de tre canonicale innholdsrundingene åpner riktig innhold;
 - [ ] Brands viser bare riktige bedrifter/kjente merker;
 - [ ] natursteder bruker den canonical naturprofilen;
 - [ ] Civication/Wonderkammer vises ikke som canonical runding;
@@ -833,7 +837,8 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 
 ### Rundinger
 - [ ] `data/places/README_place_rounds.md` er fulgt;
-- [ ] stedet viser nøyaktig fire canonical rundinger;
+- [ ] Badges vises fast øverst til høyre ved stedsoverskriften;
+- [ ] stedet viser nøyaktig tre innholdsrundinger fra riktig fast profil;
 - [ ] preview og innhold følger rundingskontrakten.
 
 ### På stedet / læring
@@ -933,16 +938,11 @@ LES: docs/PLACE_POPUP_SYSTEM.md
 
 ### F. Rundinger
 LES: data/places/README_place_rounds.md
-Mål: [ ] 4  [ ] 6
-- [ ] Badges
-- [ ] People
-- [ ] Works
-- [ ] Objects
-- [ ] Details
-- [ ] Spots
-- [ ] Nature
-- [ ] Brands
-For hver valgt: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flow
+Mål: [ ] 3 innholdsrundinger + fast Badges
+- [ ] Badges — fast øverst til høyre
+- [ ] riktig fast profil: `people · objects · brands` / `map · flora · fauna`
+- [ ] tre innholdsrundinger på én horisontal rad ved `frontImage`
+For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flow
 
 ### G. People / Stories / Quiz
 - [ ] People of Places lest og vurdert
@@ -985,7 +985,7 @@ For hver valgt: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flo
 - [ ] rundingsbilder
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
-- [ ] 4/6-layout
+- [ ] tre-rundersrad + fast Badges-plassering
 - [ ] popupfaner
 - [ ] relevant CI
 - [ ] ren slutt-diff
