@@ -1,49 +1,30 @@
-name: Materialiser sluttkapittelet for Økonomi og næringsliv
+name: Diagnostiser Youngstorget-kildene for sluttkapittelet
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
     paths:
-      - 'data/fagverk/naeringsliv/makt-regulering-baerekraft.json'
-      - 'data/fagverk/naeringsliv/makt-regulering-baerekraft/**'
-      - 'scripts/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs'
-      - 'scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs'
-      - 'tests/naeringsliv-chapter-makt-regulering-baerekraft.test.mjs'
       - '.github/workflows/naeringsliv-subject-quality.yml'
 
 permissions:
   contents: write
 
 concurrency:
-  group: materialize-naeringsliv-final-${{ github.event.pull_request.number }}
+  group: diagnose-naeringsliv-final-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
-  materialize:
+  diagnose:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-      - name: Rekonstruer produksjonspakken
+      - name: Skriv eksakte Youngstorget-treff
         run: |
-          cat .bootstrap/naeringsliv-makt-regulering-baerekraft/part-* | base64 --decode > /tmp/naeringsliv-ch6.tar.gz
-          tar -xzf /tmp/naeringsliv-ch6.tar.gz
-          rm -rf .bootstrap
-          test -f scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-          python -c 'from pathlib import Path; p=Path("scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs"); s=p.read_text(); s=s.replace("/^(\\d+)\\.(\\d+)\\.(\\d+)$/", "/^(.*?)(\\d+)\\.(\\d+)\\.(\\d+)$/").replace("`${match[1]}.${Number(match[2]) + 1}.0`", "`${match[1]}${match[2]}.${Number(match[3]) + 1}.0`").replace("status.generation.generated_at = DATE;", "status.generation = { ...(status.generation || {}), generated_at: DATE };"); p.write_text(s)'
-          node --check scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-      - name: Diagnostiser Youngstorget-kilder
-        run: |
-          echo '--- git grep youngstorget ---'
-          git grep -n -i 'youngstorget' -- data/places data/manifests data 2>/dev/null | head -200 || true
-          echo '--- JSON-filer med canonical id youngstorget ---'
+          mkdir -p .diagnostics
           node <<'NODE'
           const fs = require('fs');
           const path = require('path');
@@ -63,10 +44,20 @@ jobs:
                     const current = stack.pop();
                     if (current.value && typeof current.value === 'object') {
                       if (!Array.isArray(current.value) && current.value.id === 'youngstorget') {
-                        hits.push({ file: full, pointer: current.pointer, keys: Object.keys(current.value) });
+                        hits.push({
+                          file: full,
+                          pointer: current.pointer,
+                          keys: Object.keys(current.value),
+                          name: current.value.name ?? null,
+                          category: current.value.category ?? null,
+                          status: current.value.status ?? null
+                        });
                       }
-                      if (Array.isArray(current.value)) current.value.forEach((child, index) => stack.push({ value: child, pointer: `${current.pointer}[${index}]` }));
-                      else Object.entries(current.value).forEach(([key, child]) => stack.push({ value: child, pointer: `${current.pointer}.${key}` }));
+                      if (Array.isArray(current.value)) {
+                        current.value.forEach((child, index) => stack.push({ value: child, pointer: `${current.pointer}[${index}]` }));
+                      } else {
+                        Object.entries(current.value).forEach(([key, child]) => stack.push({ value: child, pointer: `${current.pointer}.${key}` }));
+                      }
                     }
                   }
                 } catch {}
@@ -74,42 +65,34 @@ jobs:
             }
           }
           roots.forEach(walk);
-          console.log(JSON.stringify(hits, null, 2));
+          const manifests = [];
+          function scanText(dir) {
+            if (!fs.existsSync(dir)) return;
+            for (const name of fs.readdirSync(dir)) {
+              const full = path.join(dir, name);
+              const stat = fs.statSync(full);
+              if (stat.isDirectory()) scanText(full);
+              else if (/\.(json|md|mjs|js)$/.test(name)) {
+                const text = fs.readFileSync(full, 'utf8');
+                if (/youngstorget/i.test(text)) manifests.push(full);
+              }
+            }
+          }
+          ['data/manifests', 'data/places/manifest.json', 'data/manifest.json'].forEach((entry) => {
+            if (fs.existsSync(entry)) {
+              const stat = fs.statSync(entry);
+              if (stat.isDirectory()) scanText(entry);
+              else if (/youngstorget/i.test(fs.readFileSync(entry, 'utf8'))) manifests.push(entry);
+            }
+          });
+          fs.writeFileSync('.diagnostics/youngstorget-canonical-hits.json', JSON.stringify({ hits, manifest_files: [...new Set(manifests)].sort() }, null, 2) + '\n');
+          if (hits.length !== 2) throw new Error(`Expected two Youngstorget hits, found ${hits.length}`);
           NODE
-      - run: npm ci
-      - name: Materialiser 6 av 6
-        run: node --trace-uncaught scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-      - name: Valider komplett Næringsliv-fagverk
-        run: |
-          test ! -e scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-          ! grep -q 'Materialiser sluttkapittelet' .github/workflows/naeringsliv-subject-quality.yml
-          ! grep -q 'permissions:' .github/workflows/naeringsliv-subject-quality.yml
-          node --check scripts/audit-naeringsliv-subject-quality.mjs
-          for audit in scripts/audit-naeringsliv-chapter-*.mjs; do
-            node --check "$audit"
-            node "$audit"
-          done
-          node --check tools/validate-okonomi-naeringsliv-universitetsramme.mjs
-          node --check tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
-          node --check tools/validate-okonomi-naeringsliv-handelshogskole.mjs
-          node tools/validate-okonomi-naeringsliv-universitetsramme.mjs
-          node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
-          node tools/validate-okonomi-naeringsliv-handelshogskole.mjs
-          node scripts/audit-naeringsliv-subject-quality.mjs
-          node --test tests/naeringsliv-*.test.mjs
-          node scripts/audit-fagverk-general-engine.mjs
-          node scripts/audit-fagverk-subject-inventory.mjs
-          node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
-          npm run typecheck:web
-      - name: Commit produksjonsdiff
+      - name: Commit diagnostikk
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
+          git add .diagnostics/youngstorget-canonical-hits.json
           git diff --cached --check
-          if git diff --cached --quiet; then
-            echo 'Ingen materialiseringsendringer å committe.'
-          else
-            git commit -m 'Materialiser sluttkapittelet Makt, regulering og bærekraft'
-            git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
-          fi
+          git commit -m 'Dokumenter Youngstorget-kildeduplikatet'
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
