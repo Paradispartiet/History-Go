@@ -5,7 +5,7 @@
 - Kategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
 - Normal åpning: 14 ordinære spørsmål før faglig fordypning i sett 3
-- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om» og fase 2 «Historie» er fullført, øvrige innholdsflater er ikke gjenopptatt
+- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om», fase 2 «Historie» og fase 3 «Fortellinger» er fullført, øvrige innholdsflater er ikke gjenopptatt
 
 ## Politikk-hovedfunksjon
 
@@ -42,7 +42,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 - Leksikon: canonical hovedrecord med nøkkelfakta, bygd funksjon og sju kildebelagte chronology-punkter er aktivert i manifestet; recorden inneholder ikke nyheter, Lesespor eller Mer-stoff
 - Hovedbilde: kontrollert public-domain-foto av Oslo tinghus, med lokal full- og kortvariant og lagret attribusjon
 - People: sju canonicale stedskoblinger finnes, men seks er kunstnere, bare én person uttrykker domstolens hovedfunksjon, seks mangler bilde og flere profiltekster bruker samme formulering. Yngve Svendsens identitetskontrollerte redaksjonelle illustrasjon kan beholdes
-- Story: ikke produsert i Historie-fasen. Terrorrettssaken i 2012 er registrert som en datert milepæl; en eventuell Story krever egen narrativ research og review
+- Story: én canonical `episode_v1`-fortelling følger den selvstendige konflikten om tilregnelighet gjennom de to motstridende sakkyndigerklæringene, hovedforhandlingen, dommen og den senere offentlige gjennomgangen av rettspsykiatriens rolle. Den dupliserer ikke chronology-punktets dato- og arrangementsinformasjon
 - Quiz: 21 eksternt kildebelagte spørsmål
 - Objects: bare ett bildeklart element finnes, skiltet til rettssal 250. Det er ikke tilstrekkelig dybde for en ferdig Objects-runding
 - Brands: Beate Ellingsen AS er en gyldig canonical Brand med offisiell logo og dokumentert stedskobling, men rundingen er foreløpig tynn
@@ -54,7 +54,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 | --- | --- | --- |
 | Om | PASS – fase 1 | Canonical identitet, claim-dekket `desc`/`popupDesc`, Leksikon-hovedrecord og åtte kildebelagte nøkkelfakta er på plass |
 | Historie | PASS – fase 2 | Sju chronology-punkter dekker bygging, innflytting, navne- og bruksendringer, ombygging, terrorrettssaken og sammenslåingen i 2021. `history_layers` er vurdert og utelatt fordi det ville duplisere tidslinjen |
-| Fortellinger | N/A, foreløpig | Den tidligere generelle Story-en ble fjernet; ny Story krever selvstendig narrativt materiale |
+| Fortellinger | PASS – fase 3 | Én stedsspesifikk `episode_v1`-Story forklarer hvordan Oslo tingrett måtte avgjøre tilregnelighetsspørsmålet da to sakkyndigpar ga motstridende svar. Fortellingen har egen konflikt, rettssalsforløp, dom og dokumentert ettervirkning utover chronology-punktet |
 | Før/etter | Ikke startet | Ingen `for_na` eller kontrollert bildepar |
 | Nyheter | Ikke startet | Nåtidsstoff er ikke materialisert i egen flate |
 | Lesespor | Ikke startet | Ingen stedskoblet Lesespor-oppføring |
@@ -91,6 +91,9 @@ Status for samlet sted: **under sanering – ikke produksjonsklart**.
 - [Oslo tingrett: Organisasjonen vår](https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/om-oslo-tingrett/organisasjonen/)
 - [Oslo tingrett: En fullfaglig domstol](https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/publikasjoner2/arsmelding-2022/fokusomrader/en-fullfaglig-domstol/)
 - [22. juli-senteret: Rettssaken mot Breivik i 2012](https://www.22julisenteret.no/no/fordyp-deg/fagartikler/rettssaken-mot-breivik-i-2012)
+- [22. juli-senteret: Tilregnelighetsspørsmålet](https://www.22julisenteret.no/no/fordyp-deg/fagartikler/tilregnelighetssporsmalet)
+- [Oslo tingrett: Dom i 22. juli-saken](https://lovdata.no/static/file/1276/toslo-2011-188627-24.pdf)
+- [NOU 2014: 10 Skyldevne, sakkyndighet og samfunnsvern](https://www.regjeringen.no/no/dokumenter/NOU-2014-10/id2008986/)
 - [Oslo byleksikon: Oslo tinghus](https://oslobyleksikon.no/side/Oslo_tinghus)
 - [Oslo byleksikon: Oslo tingrett](https://oslobyleksikon.no/side/Oslo_tingrett)
 
