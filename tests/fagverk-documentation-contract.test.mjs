@@ -128,6 +128,17 @@ test('navigation remains narrow and delegates production architecture to FAGVERK
   assert.match(navigation, /materialized/);
 });
 
+
+test('the place checklist makes a working fagverk page mandatory for every canonical place', () => {
+  const checklist = read('docs/PLACE_PRODUCTION_CHECKLIST.md');
+
+  assert.match(checklist, /Alle canonicale steder skal ha sin egen fungerende fagverkside/);
+  assert.match(checklist, /Kravet gjelder hvert sted, kan ikke settes til N\/A og er en egen ferdigport/);
+  assert.match(checklist, /FAGVERK-STED-STATUS:/);
+  assert.match(checklist, /fagverk-sted er aldri N\/A/);
+  assert.match(checklist, /fagverk-sted — obligatorisk, fungerende og aldri N\/A/);
+});
+
 test('repository and subject documentation point to the canonical master contract', () => {
   const docsEntry = read('DOCS.md');
   const docsMap = read('docs/README.md');

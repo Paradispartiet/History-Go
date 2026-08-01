@@ -100,6 +100,7 @@ HVA REPRESENTerer PLACE-OBJEKTET:
 PRIMÆRKATEGORI:
 UNDERBADGES:
 EMNE_IDS:
+FAGVERK-STED-STATUS:
 POLITIKK-HOVEDFUNKSJON (hvis relevant):
 POLITIKK-EMNE_IDS (kun em_pol_*):
 POLITIKK-EVIDENSKJEDE:
@@ -214,6 +215,8 @@ Usikker koordinat skal ikke merkes `verified`.
 
 ## 4. Kategori, Badges, underbadges, emner og fagverk
 
+**Absolutt krav:** Alle canonicale steder skal ha sin egen fungerende fagverkside på `fagverk-sted.html?place=<place_id>`. Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport. Den generiske ruten alene er ikke nok dersom siden ikke løser riktig place-ID eller viser blankt, feil eller stedfremmed innhold.
+
 **LES FØRST:**
 
 - `data/categories/category_contract.json`
@@ -227,7 +230,12 @@ Usikker koordinat skal ikke merkes `verified`.
 - [ ] riktig badgegrafikk finnes;
 - [ ] Badges åpner `fagverk-sted.html?place=<place_id>`;
 - [ ] stedets fagverkside viser riktig sted, kategori og relevante fag-/emnekoblinger;
+- [ ] fagverksiden er åpnet og kontrollert på den canonicale adressen for dette stedet;
 - [ ] merke- og fagsider blandes ikke sammen.
+
+### Stoppgate
+
+Et sted kan ikke merkes `produksjonsklart` før `fagverk-sted.html?place=<place_id>` åpner en fungerende, stedsspesifikk fagverkside med korrekt identitet og relevante fagkoblinger. `fagverk-sted` er aldri N/A.
 
 ---
 
@@ -881,7 +889,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] underbadges;
 - [ ] emner;
 - [ ] Badges;
-- [ ] fagverk-sted.
+- [ ] egen fungerende `fagverk-sted.html?place=<place_id>` er kontrollert og kan ikke være N/A.
 
 ### Tekst
 - [ ] `desc` følger `PLACE_DESCRIPTION_CANONICAL`;
@@ -982,7 +990,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] underbadges
 - [ ] emne_ids
 - [ ] Badges
-- [ ] fagverk-sted
+- [ ] fagverk-sted — obligatorisk, fungerende og aldri N/A
 
 ### D. desc / popupDesc
 LES: data/places/regler/PLACE_DESCRIPTION_CANONICAL.md
