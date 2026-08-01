@@ -5,8 +5,8 @@ import { fileURLToPath } from "node:url";
 import { isDeepStrictEqual } from "node:util";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const CHAPTER_ID = "logistikk-infrastruktur-okonomisk-rom";
-const DOMAIN_ID = "logistikk_infrastruktur_rom";
+const CHAPTER_ID = "makt-regulering-baerekraft";
+const DOMAIN_ID = "makt_regulering_baerekraft";
 const CHAPTER_PATH = `data/fagverk/naeringsliv/${CHAPTER_ID}.json`;
 const BASE = `data/fagverk/naeringsliv/${CHAPTER_ID}`;
 const BRIEF_PATH = `${BASE}/brief.json`;
@@ -16,15 +16,15 @@ const PENSUM_PATH = "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json"
 const RUNTIME_PATH = "data/fag/naeringsliv/naeringsliv_runtime_manifest.json";
 const REGISTRY_PATH = "data/fagverk/fagverk_registry.json";
 const STATUS_PATH = "data/fagverk/subject_status.json";
-const REPORT_PATH = "reports/fagverk/naeringsliv-logistikk-infrastruktur-okonomisk-rom-audit.json";
-const PLACE_FILES = {
-  alnabru_jernbane_og_logistikk: "data/places/natur/oslo/places_oslo_alna/alnabru_jernbane_og_logistikk.json",
-  havnelageret: "data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json",
-  gronlikaia: "data/places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json",
-  oslo_s: "data/places/by/oslo/places/oslo_s.json",
-  ring_3: "data/places/by/oslo/places/ring_3.json",
-  bjorvika: "data/places/by/oslo/places/bjorvika.json",
-};
+const REPORT_PATH = "reports/fagverk/naeringsliv-makt-regulering-baerekraft-audit.json";
+const REQUIRED_PLACE_IDS = [
+  "youngstorget",
+  "christiania_seildugsfabrik",
+  "vulkan_industriomrade",
+  "alnabru_jernbane_og_logistikk",
+  "havnelageret",
+  "barcode",
+];
 
 const abs = (p) => path.join(ROOT, p);
 const readJson = (p) => JSON.parse(fs.readFileSync(abs(p), "utf8"));
@@ -48,8 +48,35 @@ function collectClaimIds(value, target = new Set(), insideClaimField = false) {
   }
   return target;
 }
+function findCanonicalPlaceFiles() {
+  const root = abs("data/places");
+  const found = new Map();
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.isFile() && entry.name.endsWith(".json")) {
+        // places_index.json is a generated lookup projection, not a canonical source record.
+        if (entry.name === "places_index.json") continue;
+        try {
+          const value = JSON.parse(fs.readFileSync(full, "utf8"));
+          const rows = Array.isArray(value) ? value : [value];
+          for (const row of rows) {
+            if (!row || typeof row !== "object" || typeof row.id !== "string") continue;
+            if (!found.has(row.id)) found.set(row.id, []);
+            found.get(row.id).push(path.relative(ROOT, full));
+          }
+        } catch {
+          // Place audit ignores non-JSON-compatible support files.
+        }
+      }
+    }
+  };
+  walk(root);
+  return found;
+}
 
-export function auditLogistikk({ writeReport = false, checkReport = true } = {}) {
+export function auditMaktReguleringBaerekraft({ writeReport = false, checkReport = true } = {}) {
   const chapter = readJson(CHAPTER_PATH);
   const brief = readJson(BRIEF_PATH);
   const claimsDoc = readJson(CLAIMS_PATH);
@@ -62,7 +89,7 @@ export function auditLogistikk({ writeReport = false, checkReport = true } = {})
   assert(domain, `Missing canonical domain ${DOMAIN_ID}`);
 
   assert(chapter.schema === "history_go_fagverk_chapter_v1", "Wrong chapter schema");
-  assert(chapter.subject_id === "naeringsliv", "Wrong chapter subject");
+  assert(chapter.subject_id === "naeringsliv" && chapter.subject === "naeringsliv", "Wrong chapter subject");
   assert(chapter.id === CHAPTER_ID && chapter.chapter_id === CHAPTER_ID, "Wrong chapter id");
   assert(chapter.primary_domain_id === DOMAIN_ID, "Wrong primary domain");
   equalSet(chapter.emne_ids, domain.emne_ids, "chapter emne_ids");
@@ -136,24 +163,24 @@ export function auditLogistikk({ writeReport = false, checkReport = true } = {})
   }
 
   const places = modules.flatMap((m) => m.relatedPlaces || []);
-  equalSet(places.map((p) => p.id), Object.keys(PLACE_FILES), "related places");
-  for (const [placeId, file] of Object.entries(PLACE_FILES)) {
-    assert(fs.existsSync(abs(file)), `Missing canonical place file ${file}`);
-    assert(readJson(file).id === placeId, `Place identity mismatch for ${placeId}`);
+  equalSet(places.map((p) => p.id), REQUIRED_PLACE_IDS, "related places");
+  const placeFiles = findCanonicalPlaceFiles();
+  for (const placeId of REQUIRED_PLACE_IDS) {
+    const matches = placeFiles.get(placeId) || [];
+    assert(matches.length === 1, `${placeId}: expected exactly one canonical place file, found ${matches.length}`);
   }
 
-  const entry = (registry.subjects?.naeringsliv?.chapters || []).find((row) => row.id === CHAPTER_ID);
+  const chapters = registry.subjects?.naeringsliv?.chapters || [];
+  const entry = chapters.find((row) => row.id === CHAPTER_ID);
   assert(entry, "Registry entry is missing");
   equalSet(entry.emne_ids, chapter.emne_ids, "registry emnes");
   equalSet(entry.method_ids, chapter.method_ids, "registry methods");
   assert(runtime.chapterByDomain?.[DOMAIN_ID] === CHAPTER_ID, "Runtime domain mapping is missing");
   for (const emneId of chapter.emne_ids) assert(runtime.chapterByEmne?.[emneId] === CHAPTER_ID, `Runtime emne mapping missing for ${emneId}`);
   const statusEntry = status.subjects.find((row) => row.id === "naeringsliv");
-  const registeredChapterCount = registry.subjects?.naeringsliv?.chapters?.length || 0;
-  const canonicalDomainCount = (pensum.domains || []).length;
-  const expectedEditorialStatus = registeredChapterCount === canonicalDomainCount ? "complete" : "chapters_in_progress";
-  assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Næringsliv status must be ${expectedEditorialStatus}`);
-  assert(String(statusEntry.note || "").includes(`${registeredChapterCount} av ${canonicalDomainCount}`), "Status note does not report registered coverage");
+  assert(chapters.length === pensum.domains.length, "Næringsliv must register all six canonical chapters");
+  assert(statusEntry?.editorialStatus === "complete", "Næringsliv must be complete at 6/6");
+  assert(String(statusEntry.note || "").includes("6 av 6"), "Status note does not report 6/6");
 
   const report = {
     schema: "history_go_naeringsliv_chapter_audit_v1",
@@ -184,6 +211,7 @@ export function auditLogistikk({ writeReport = false, checkReport = true } = {})
       pedagogicalComponents: true,
       canonicalPlaces: true,
       runtimeRegistryStatusSynchronized: true,
+      subjectCompleteSixOfSix: true,
     },
   };
   if (writeReport) {
@@ -197,7 +225,7 @@ export function auditLogistikk({ writeReport = false, checkReport = true } = {})
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const report = auditLogistikk({ writeReport: args.has("--write-report"), checkReport: !args.has("--no-check-report") });
+    const report = auditMaktReguleringBaerekraft({ writeReport: args.has("--write-report"), checkReport: !args.has("--no-check-report") });
     console.log(`PASS ${report.chapterId}: ${report.counts.claims} claims, ${report.counts.sources} sources`);
   } catch (error) {
     console.error(`FAIL ${CHAPTER_ID}: ${error.message}`);

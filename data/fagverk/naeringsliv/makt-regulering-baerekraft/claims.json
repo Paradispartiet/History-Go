@@ -1,0 +1,692 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "makt-regulering-baerekraft",
+  "verified_at": "2026-07-31",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "s01-trepart",
+      "label": "Trepartssamarbeid på arbeidslivsområdet",
+      "url": "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/innsikt/trepartssamarbeid/id2396817/",
+      "publisher": "Arbeids- og inkluderingsdepartementet",
+      "type": "offisiell_arbeidslivsveiledning",
+      "source_location": "Organisert samarbeid mellom staten og hovedorganisasjonene i arbeidslivet, roller og institusjonalisering"
+    },
+    {
+      "id": "s02-lavlonn-nou",
+      "label": "NOU 2024: 11 Lavlønn i Norge",
+      "url": "https://www.regjeringen.no/no/dokumenter/nou-2024-11/id3045067/",
+      "publisher": "Regjeringen",
+      "type": "offentlig_utredning",
+      "source_location": "Arbeidslivsmodell, tariffavtaler, lønnsdannelse, organisasjonsgrad og lavlønn"
+    },
+    {
+      "id": "s03-ssb-organisering",
+      "label": "Fagforeiningsmedlemmer og streikar",
+      "url": "https://www.ssb.no/arbeid-og-lonn/arbeidsmiljo-sykefravaer-og-arbeidskonflikter/statistikk/fagforeiningsmedlemmer-og-streikar",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Medlemmer i arbeidstaker- og arbeidsgiverorganisasjoner samt streiker, lockouter og tapte arbeidsdager"
+    },
+    {
+      "id": "s04-ssb-lonn-kjonn",
+      "label": "Lønnsforskjeller mellom kvinner og menn",
+      "url": "https://www.ssb.no/arbeid-og-lonn/lonn-og-arbeidskraftkostnader/statistikk/lonn/artikler/slik-kan-lonnsforskjellen-mellom-kvinner-og-menn-forklares",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk_artikkel",
+      "source_location": "Gjennomsnittlig lønnsforskjell, heltidsekvivalenter og forklaringsgrenser i lønnsstatistikken"
+    },
+    {
+      "id": "s05-ssb-lavlonn",
+      "label": "Andel lavlønn holder seg under 6 prosent",
+      "url": "https://www.ssb.no/arbeid-og-lonn/lonn-og-arbeidskraftkostnader/statistikk/lonn/artikler/andel-lavlonn-holder-seg-under-6-prosent",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk_artikkel",
+      "source_location": "Lavlønnsgrense, månedsverk og utvikling i lønnsspredning"
+    },
+    {
+      "id": "s06-ssb-vanlig-lonn",
+      "label": "Hva er vanlig lønn i Norge?",
+      "url": "https://www.ssb.no/arbeid-og-lonn/lonn-og-arbeidskraftkostnader/artikler/hva-er-vanlig-lonn-i-norge",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk_artikkel",
+      "source_location": "Forskjellen mellom gjennomsnitt, median og lønnsfordeling"
+    },
+    {
+      "id": "s07-medvirkning",
+      "label": "Medvirkning",
+      "url": "https://www.arbeidstilsynet.no/arbeidstid-og-organisering/medvirkning/",
+      "publisher": "Arbeidstilsynet",
+      "type": "myndighetsveiledning",
+      "source_location": "Arbeidstakernes rett og plikt til medvirkning og arbeidsgivers ansvar for reell involvering"
+    },
+    {
+      "id": "s08-aml",
+      "label": "Arbeidsmiljøloven",
+      "url": "https://www.arbeidstilsynet.no/regelverk/lover/arbeidsmiljoloven--aml/",
+      "publisher": "Arbeidstilsynet",
+      "type": "lov_og_veiledning",
+      "source_location": "Krav til fullt forsvarlig arbeidsmiljø, systematisk HMS, medvirkning og vernearbeid"
+    },
+    {
+      "id": "s09-riksmekleren",
+      "label": "Riksmekleren – mekling i arbeidskonflikter",
+      "url": "https://www.riksmekleren.no/",
+      "publisher": "Riksmekleren",
+      "type": "offentlig_meklingsinstitusjon",
+      "source_location": "Mekling, plassoppsigelse, konfliktberedskap og institusjonell håndtering av interessetvister"
+    },
+    {
+      "id": "s10-kt-dagligvare",
+      "label": "Dagligvaremarkedet",
+      "url": "https://konkurransetilsynet.no/tema/dagligvaremarkedet/",
+      "publisher": "Konkurransetilsynet",
+      "type": "tilsynsoversikt",
+      "source_location": "Konkurranseutfordringer, verdikjede, opplysningsplikt, markedsandeler og håndheving"
+    },
+    {
+      "id": "s11-kt-rapporter",
+      "label": "Rapporter, uttalelser og vedtak om dagligvaremarkedet",
+      "url": "https://konkurransetilsynet.no/tema/dagligvaremarkedet/rapporter-og-uttalelser/",
+      "publisher": "Konkurransetilsynet",
+      "type": "tilsynsrapporter",
+      "source_location": "Dagligvarerapporter, marginstudier, innkjøpsbetingelser og lokale konkurranseforhold"
+    },
+    {
+      "id": "s12-kt-dominans",
+      "label": "Misbruk av dominerende stilling",
+      "url": "https://konkurransetilsynet.no/misbruk-av-dominerende-stilling/",
+      "publisher": "Konkurransetilsynet",
+      "type": "regelverksveiledning",
+      "source_location": "Dominans, særlig ansvar og mulige virkninger for pris, kvalitet, valgmuligheter og innovasjon"
+    },
+    {
+      "id": "s13-apenhetsloven",
+      "label": "Åpenhetsloven",
+      "url": "https://lovdata.no/dokument/NL/lov/2021-06-18-99",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Formål, virkeområde, aktsomhetsvurderinger, redegjørelse, informasjonsrett og håndheving"
+    },
+    {
+      "id": "s14-forbrukertilsynet",
+      "label": "Åpenhetsloven – veiledning og tilsyn",
+      "url": "https://www.forbrukertilsynet.no/apenhetsloven",
+      "publisher": "Forbrukertilsynet",
+      "type": "tilsynsveiledning",
+      "source_location": "Praktisk veiledning om aktsomhetsvurderinger, redegjørelser og informasjonskrav"
+    },
+    {
+      "id": "s15-oecd-due-diligence",
+      "label": "Due diligence for responsible business conduct",
+      "url": "https://www.oecd.org/en/topics/sub-issues/due-diligence-guidance-for-responsible-business-conduct.html",
+      "publisher": "OECD",
+      "type": "internasjonal_standard",
+      "source_location": "Risikobasert aktsomhetsvurdering i virksomhet, leverandørkjede og forretningsforbindelser"
+    },
+    {
+      "id": "s16-ohchr-business",
+      "label": "Business and Human Rights",
+      "url": "https://europe.ohchr.org/areas-of-work/business-and-human-rights",
+      "publisher": "UN Human Rights",
+      "type": "internasjonal_prinsippramme",
+      "source_location": "Statens plikt til å beskytte, virksomheters ansvar for å respektere og tilgang til gjenoppretting"
+    },
+    {
+      "id": "s17-forurenser-betaler",
+      "label": "Forurensningsloven og prinsippet om at forurenser betaler",
+      "url": "https://www.miljodirektoratet.no/utskrift-nettpublikasjon/?id=196990",
+      "publisher": "Miljødirektoratet",
+      "type": "regelverksveiledning",
+      "source_location": "Forbud mot forurensning uten hjemmel og prinsippet om at forurenser skal dekke kostnader"
+    },
+    {
+      "id": "s18-eu-ets",
+      "label": "Klimagassutslipp fra innsatsfordeling og EU ETS",
+      "url": "https://www.miljodirektoratet.no/ansvarsomrader/klima/klimagasser-utslippstall-regnskap/norske-utslipp-og-opptak-av-klimagasser/Klimagassutslipp-fra-innsatsfordeling-og-eu-ets/",
+      "publisher": "Miljødirektoratet",
+      "type": "klimaregelverk_og_regnskap",
+      "source_location": "Avgrensning mellom kvotepliktige utslipp og innsatsfordelingen, rapportering og systemgrenser"
+    },
+    {
+      "id": "s19-produsentansvar",
+      "label": "Utvidet produsentansvar",
+      "url": "https://www.miljodirektoratet.no/ansvarsomrader/avfall/Returordninger-avfall/utvidet-produsentansvar/",
+      "publisher": "Miljødirektoratet",
+      "type": "avfallsregelverk",
+      "source_location": "Produsentens finansielle og organisatoriske ansvar når produkter blir avfall"
+    },
+    {
+      "id": "s20-oslohavn-nullutslipp",
+      "label": "Oslo som nullutslippshavn",
+      "url": "https://www.oslohavn.no/no/meny/klima-og-miljo/nullutslippshavna/",
+      "publisher": "Oslo Havn KF",
+      "type": "kommunalt_omstillingsprogram",
+      "source_location": "Utslippsmål, elektrifisering, landstrøm, investeringer og samarbeid med havneaktører"
+    },
+    {
+      "id": "s21-ilo-just-transition",
+      "label": "Guidelines for a just transition",
+      "url": "https://www.ilo.org/publications/guidelines-just-transition-towards-environmentally-sustainable-economies",
+      "publisher": "International Labour Organization",
+      "type": "internasjonal_retningslinje",
+      "source_location": "Sosial dialog, anstendig arbeid, kompetanse, sosial beskyttelse og inkluderende lavutslippsomstilling"
+    },
+    {
+      "id": "s22-oecd-just-transition",
+      "label": "Responsible Business Conduct for a Just Transition",
+      "url": "https://www.oecd.org/en/publications/responsible-business-conduct-for-a-just-transition_ea041d32-en/full-report.html",
+      "publisher": "OECD",
+      "type": "internasjonal_analyse",
+      "source_location": "Aktsomhet for arbeidstakere, lokalsamfunn og forbrukere i lavutslippsomstillingen"
+    }
+  ],
+  "claims": [
+    {
+      "id": "makt-01",
+      "claim": "Markedsmakt må analyseres i et definert relevant marked; høy størrelse alene beviser ikke dominans.",
+      "source_ids": [
+        "s12-kt-dominans"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "makt-02",
+      "claim": "Et dominerende foretak har et særlig ansvar for ikke å opptre slik at konkurransen skades ytterligere.",
+      "source_ids": [
+        "s12-kt-dominans"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "makt-03",
+      "claim": "Svak konkurranse kan gi skade gjennom høyere priser, lavere kvalitet, færre valgmuligheter eller mindre innovasjon.",
+      "source_ids": [
+        "s12-kt-dominans"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "makt-04",
+      "claim": "Det norske dagligvaremarkedet overvåkes gjennom flere ledd i verdikjeden, fra produsenter og grossister til butikk.",
+      "source_ids": [
+        "s10-kt-dagligvare"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "makt-05",
+      "claim": "Konkurranseforhold kan variere lokalt selv når nasjonale markedsandeler ser stabile ut.",
+      "source_ids": [
+        "s11-kt-rapporter"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-1"
+      ]
+    },
+    {
+      "id": "makt-06",
+      "claim": "Regulering virker gjennom en kjede av lov, forskrift, tilsyn, rapportering, kontroll og mulig sanksjon.",
+      "source_ids": [
+        "s13-apenhetsloven"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "makt-07",
+      "claim": "En regel er ikke fullt implementert før ansvar, informasjon, kontroll og oppfølging kan dokumenteres.",
+      "source_ids": [
+        "s14-forbrukertilsynet"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "makt-08",
+      "claim": "Åpenhetsloven gir større virksomheter plikt til regelmessige, risikobaserte aktsomhetsvurderinger.",
+      "source_ids": [
+        "s13-apenhetsloven"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "makt-09",
+      "claim": "Aktsomhetsvurdering omfatter å forankre ansvar, kartlegge risiko, iverksette tiltak, følge resultater, kommunisere og bidra til gjenoppretting.",
+      "source_ids": [
+        "s15-oecd-due-diligence"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "makt-10",
+      "claim": "Allmennhetens informasjonsrett gjør virksomhetens håndtering av negative konsekvenser etterprøvbar utover årsrapportens overskrifter.",
+      "source_ids": [
+        "s13-apenhetsloven"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-2"
+      ]
+    },
+    {
+      "id": "makt-11",
+      "claim": "Trepartssamarbeid er organisert samarbeid mellom staten og hovedorganisasjoner på arbeidstaker- og arbeidsgiversiden.",
+      "source_ids": [
+        "s01-trepart"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "makt-12",
+      "claim": "Tariffavtaler regulerer lønns- og arbeidsvilkår for grupper av arbeidstakere og er en egen styringsform ved siden av lov.",
+      "source_ids": [
+        "s02-lavlonn-nou"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "makt-13",
+      "claim": "Fagforeningsmedlemskap og arbeidskonflikter måles som ulike størrelser; medlemsnivå sier ikke alene hvor mange streiker som oppstår.",
+      "source_ids": [
+        "s03-ssb-organisering"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "makt-14",
+      "claim": "Riksmekleren er en institusjonell del av konfliktløpet når forhandlinger om tariffavtaler ikke fører fram.",
+      "source_ids": [
+        "s09-riksmekleren"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-grunnlag-3"
+      ]
+    },
+    {
+      "id": "makt-15",
+      "claim": "Gjennomsnittslønn kan ligge over lønnen til flertallet og må derfor suppleres med median og fordelingsmål.",
+      "source_ids": [
+        "s06-ssb-vanlig-lonn"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-1"
+      ]
+    },
+    {
+      "id": "makt-16",
+      "claim": "Lavlønn kan operasjonaliseres som lønn under en fast andel av medianen, men terskel og populasjon må oppgis.",
+      "source_ids": [
+        "s05-ssb-lavlonn"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-1"
+      ]
+    },
+    {
+      "id": "makt-17",
+      "claim": "Lønnsforskjeller mellom kvinner og menn måles på heltidsekvivalenter og beskriver ikke automatisk lik lønn for likt arbeid.",
+      "source_ids": [
+        "s04-ssb-lonn-kjonn"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-1"
+      ]
+    },
+    {
+      "id": "makt-18",
+      "claim": "Fordelingsanalyse må skille lønnsnivå, stillingsprosent, yrke, sektor, ansiennitet og plassering i lønnsfordelingen.",
+      "source_ids": [
+        "s04-ssb-lonn-kjonn"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-1"
+      ]
+    },
+    {
+      "id": "makt-19",
+      "claim": "Koordinert lønnsdannelse og kollektiv avtaledekning er institusjoner som påvirker lønnsspredning, men virkningen må testes mot data.",
+      "source_ids": [
+        "s02-lavlonn-nou"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-1"
+      ]
+    },
+    {
+      "id": "makt-20",
+      "claim": "Medvirkning innebærer at arbeidstakernes synspunkter skal høres og vurderes før arbeidsgiver tar beslutning.",
+      "source_ids": [
+        "s07-medvirkning"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-2"
+      ]
+    },
+    {
+      "id": "makt-21",
+      "claim": "Arbeidstakere har både rett og plikt til å medvirke i virksomhetens systematiske helse-, miljø- og sikkerhetsarbeid.",
+      "source_ids": [
+        "s08-aml"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-2"
+      ]
+    },
+    {
+      "id": "makt-22",
+      "claim": "Formelle møtefora beviser ikke reell innflytelse; analysen må følge informasjonstidspunkt, alternativer og beslutningsspor.",
+      "source_ids": [
+        "s07-medvirkning"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-2"
+      ]
+    },
+    {
+      "id": "makt-23",
+      "claim": "Arbeidsmiljørisiko kan være fysisk, organisatorisk eller psykososial og må knyttes til konkrete arbeidsprosesser og kontrolltiltak.",
+      "source_ids": [
+        "s08-aml"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-2"
+      ]
+    },
+    {
+      "id": "makt-24",
+      "claim": "Ulikhet i arbeidslivet omfatter også risiko, forutsigbarhet, kontroll over tid og mulighet til å påvirke arbeidet.",
+      "source_ids": [
+        "s02-lavlonn-nou"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-2"
+      ]
+    },
+    {
+      "id": "makt-25",
+      "claim": "Åpenhetslovens leverandørkjedebegrep omfatter leverandører og underleverandører fra råvarestadium til ferdig vare eller tjeneste.",
+      "source_ids": [
+        "s13-apenhetsloven"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-3"
+      ]
+    },
+    {
+      "id": "makt-26",
+      "claim": "Aktsomhetsvurdering skal prioritere negative konsekvenser etter alvorlighet og sannsynlighet, ikke bare etter omdømmerisiko.",
+      "source_ids": [
+        "s15-oecd-due-diligence"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-3"
+      ]
+    },
+    {
+      "id": "makt-27",
+      "claim": "Virksomheters menneskerettighetsansvar innebærer å unngå krenkelser og håndtere negative virkninger de er involvert i.",
+      "source_ids": [
+        "s16-ohchr-business"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-3"
+      ]
+    },
+    {
+      "id": "makt-28",
+      "claim": "En redegjørelse er utilstrekkelig dersom den bare beskriver policy og ikke viser identifisert risiko, tiltak og forventede eller faktiske resultater.",
+      "source_ids": [
+        "s14-forbrukertilsynet"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-fordypning-3"
+      ]
+    },
+    {
+      "id": "makt-29",
+      "claim": "En eksternalitet oppstår når en økonomisk aktivitet påfører andre kostnader eller gevinster som ikke fullt ut inngår i beslutningstakerens pris.",
+      "source_ids": [
+        "s17-forurenser-betaler"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "makt-30",
+      "claim": "Prinsippet om at forurenser betaler skal flytte relevante miljøkostnader tilbake til den ansvarlige så langt regelverket gjør det mulig.",
+      "source_ids": [
+        "s17-forurenser-betaler"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "makt-31",
+      "claim": "Utvidet produsentansvar gjør produsenten ansvarlig for finansiering og organisering når produktet blir avfall.",
+      "source_ids": [
+        "s19-produsentansvar"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "makt-32",
+      "claim": "Miljøkostnader må avgrenses etter utslippskilde, livsløp, geografi, tidsrom og hvem som bærer konsekvensen.",
+      "source_ids": [
+        "s18-eu-ets"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "makt-33",
+      "claim": "Sirkulære tiltak må dokumentere faktisk reduksjon i ressursbruk eller avfall og ikke bare endret markedsføring av produktet.",
+      "source_ids": [
+        "s19-produsentansvar"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-1"
+      ]
+    },
+    {
+      "id": "makt-34",
+      "claim": "EUs klimakvotesystem setter et samlet utslippstak og krever overvåking, rapportering og innlevering av kvoter for omfattet utslipp.",
+      "source_ids": [
+        "s18-eu-ets"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "makt-35",
+      "claim": "En karbonpris er ett virkemiddel og kan måtte kombineres med infrastruktur, standarder, støtte eller forbud for å utløse omstilling.",
+      "source_ids": [
+        "s18-eu-ets"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "makt-36",
+      "claim": "Oslo Havns nullutslippsarbeid kombinerer elektrifisering, landstrøm, ladeinfrastruktur og samarbeid med private havneaktører.",
+      "source_ids": [
+        "s20-oslohavn-nullutslipp"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "makt-37",
+      "claim": "En omstillingsinvestering må vurderes mot faktisk utslippsreduksjon, levetid, kapasitetsbehov og mulig kostnadsflytting.",
+      "source_ids": [
+        "s20-oslohavn-nullutslipp"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "makt-38",
+      "claim": "Virksomheters klimaansvar omfatter også vesentlige virkninger i verdikjeder, ikke bare utslipp fra egne bygg og kjøretøy.",
+      "source_ids": [
+        "s22-oecd-just-transition"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-2"
+      ]
+    },
+    {
+      "id": "makt-39",
+      "claim": "Rettferdig omstilling søker å kombinere miljømål med anstendig arbeid, sosial dialog, kompetanse og sosial beskyttelse.",
+      "source_ids": [
+        "s21-ilo-just-transition"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-3"
+      ]
+    },
+    {
+      "id": "makt-40",
+      "claim": "Omstillingsanalyse må identifisere hvilke arbeidstakere, lokalsamfunn og forbrukere som får gevinster, kostnader og overgangsrisiko.",
+      "source_ids": [
+        "s22-oecd-just-transition"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-3"
+      ]
+    },
+    {
+      "id": "makt-41",
+      "claim": "Sosial dialog mellom myndigheter, arbeidsgivere og arbeidstakere er en sentral mekanisme for å utforme og gjennomføre rettferdig omstilling.",
+      "source_ids": [
+        "s21-ilo-just-transition"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-3"
+      ]
+    },
+    {
+      "id": "makt-42",
+      "claim": "En helhetlig revisjon må følge makt, regel, ressurs, gjennomføring og målt utfall gjennom samme dokumenterte kjede.",
+      "source_ids": [
+        "s01-trepart"
+      ],
+      "classification": "faglig_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makt-anvendelse-3"
+      ]
+    }
+  ]
+}
