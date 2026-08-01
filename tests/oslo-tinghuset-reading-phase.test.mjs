@@ -55,9 +55,9 @@ test('The existing Reading renderer filters by place and excludes paywalls', () 
   assert.match(runtime, /rel="noopener noreferrer"/);
 });
 
-test('Phase report marks Reading complete and keeps later phases open', () => {
+test('Reading remains complete while the Sources phase advances', () => {
   assert.match(report, /\| Lesespor \| PASS – fase 6 \|/);
-  assert.match(report, /\| Kilder \| Ikke startet \|/);
+  assert.match(report, /\| Kilder \| PASS – fase 7 \|/);
   assert.match(report, /\| Mer \| Ikke startet \|/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });

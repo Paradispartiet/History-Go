@@ -50,9 +50,9 @@ test('News sources are official HTTPS pages and stay in the News surface', () =>
   assert.match(styles, /\.hg-place-tab-card \.hg-place-news-source/);
 });
 
-test('News remains complete while the Reading phase advances', () => {
+test('News remains complete while later popup phases advance', () => {
   assert.match(report, /\| Nyheter \| PASS – fase 5 \|/);
   assert.match(report, /\| Lesespor \| PASS – fase 6 \|/);
-  assert.match(report, /\| Kilder \| Ikke startet \|/);
+  assert.match(report, /\| Kilder \| PASS – fase 7 \|/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });
