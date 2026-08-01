@@ -51,7 +51,7 @@ Relaterte rom og landskapslag kan omtales når kilden dokumenterer den fysiske f
 | Gate | Status | Nullmåling |
 | --- | --- | --- |
 | A – historisk identitet og stedstilknytning | DELVIS | Place-identiteten er tydelig, og bygget står fysisk på stedet. Periodeangivelsen spriker mellom «omkring 1100» i teksten og `year: 1150`; presisjon og formulering må kildekontrolleres. |
-| B – canonicale Historie-emner | DELVIS | Fire `em_his_*` finnes, men dagens place-fil dokumenterer ikke én inspectable evidenskjede per emne. Existing canonical case/claims/evidence kan gjenbrukes der scope faktisk passer. |
+| B – canonicale Historie-emner | DELVIS | Fire `em_his_*` finnes, men dagens place-fil dokumenterer ikke én inspectable evidenskjede per emne. Eksisterende canonical case/claims/evidence kan gjenbrukes der scope faktisk passer. |
 | C – tidsforløp, brudd og kontinuitet | DELVIS | Place-filen har mange `history_layers`, men Leksikon har bare ett udokumentert chronology-punkt. Bygging, eierskifter, brann, rivningstrussel, restaureringer og fortsatt bruk må skilles og kildebelegges. |
 | D – aktører, interesser, makt og konflikt | DELVIS | Kloster, kirkelige og kommunale eiere, private eiere, arkitekter og brukere nevnes, men interesser og maktposisjoner er ikke analysert samlet. Påstanden om «reddet fra riving» må dokumenteres presist. |
 | E – kildekritikk og proveniens | IKKE BESTÅTT | Place-filen viser kildenavn, men ikke URL, konkret kildeplassering, proveniens og begrensning for vesentlige claims. Leksikonets fakta og chronology har tomme kildelister. |
@@ -124,7 +124,7 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 
 | Fase | Leveranse | Status |
 | --- | --- | --- |
-| 0 | Nullmåling, identitetsgate og saneringsplan | **PÅGÅR – dette dokumentet** |
+| 0 | Nullmåling, identitetsgate og saneringsplan | **KLAR FOR REVIEW – dette dokumentet** |
 | 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | IKKE STARTET |
 | 2 | Kildebelagt chronology og Historie-fane | IKKE STARTET |
 | 3 | Story-review og eventuell episodeproduksjon | IKKE STARTET |
