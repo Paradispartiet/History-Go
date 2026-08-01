@@ -96,4 +96,9 @@ test('History CI permanently runs the final-domain validator and regressions', (
     'tests/historie-cold-war-postwar-evidence.test.mjs',
     'data/fag/historie/source_dossiers/cold_war_postwar_v1.json',
   ]) assert.ok(workflow.includes(file), `History CI does not include ${file}`);
+  assert.equal(
+    workflow.match(/data\/fag\/profiles\/historie\/oslo_akershus\/profile\.json/g)?.length,
+    2,
+    'History CI must watch the tested profile on pull requests and pushes',
+  );
 });
