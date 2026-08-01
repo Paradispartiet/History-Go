@@ -80,7 +80,14 @@ test('final validation batch references canonical records and owns its newly val
 });
 
 test('canonical sources extracted from the final dossier resolve to snapshots', () => {
-  for (const sourceId of profile.evidence_batches.find((batch) => batch.batch_id === dossier.dossier_id).source_ids) {
+  const batch = profile.evidence_batches.find((candidate) => candidate.batch_id === dossier.dossier_id);
+  const ceremonySourceId = 'src_his_nobel_peace_award_ceremony_venues';
+  const ceremonySnapshotRef = `source_snapshots.${ceremonySourceId}`;
+
+  assert.ok(batch.source_ids.includes(ceremonySourceId));
+  assert.ok(sources.get(ceremonySourceId).provenance.extracted_from.includes(ceremonySnapshotRef));
+
+  for (const sourceId of batch.source_ids) {
     const source = sources.get(sourceId);
     for (const extractedFrom of source.provenance.extracted_from ?? []) {
       const snapshotId = extractedFrom.match(/^source_snapshots\.(.+)$/)?.[1];
