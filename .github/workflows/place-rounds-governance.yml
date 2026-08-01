@@ -8,7 +8,9 @@ on:
       - "js/ui/nature-detailed-map.js"
       - "js/ui/place-card.js"
       - "js/ui/popup-utils.js"
+      - "js/ui/place-popup-tabs.js"
       - "css/place-rounds-fill-layout.css"
+      - "css/place-popup-tabs.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
@@ -18,6 +20,7 @@ on:
       - "tests/place-people-ids-runtime.test.js"
       - "tests/nationaltheatret-people-curation.test.js"
       - "tests/tinghuset-rounds-completion.test.mjs"
+      - "tests/oslo-tinghuset-before-after-phase.test.mjs"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -46,7 +49,9 @@ on:
       - "js/ui/nature-detailed-map.js"
       - "js/ui/place-card.js"
       - "js/ui/popup-utils.js"
+      - "js/ui/place-popup-tabs.js"
       - "css/place-rounds-fill-layout.css"
+      - "css/place-popup-tabs.css"
       - "js/ui/place-card-status-surface.js"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
@@ -56,6 +61,7 @@ on:
       - "tests/place-people-ids-runtime.test.js"
       - "tests/nationaltheatret-people-curation.test.js"
       - "tests/tinghuset-rounds-completion.test.mjs"
+      - "tests/oslo-tinghuset-before-after-phase.test.mjs"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -101,9 +107,11 @@ jobs:
 
       - name: Test canonical three content rounds plus Badges contract
         run: |
+          node --check js/ui/place-popup-tabs.js
           node --check js/ui/nature-detailed-map.js
           node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-detailed-map.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
           node tests/tinghuset-rounds-completion.test.mjs
+          node --test tests/oslo-tinghuset-before-after-phase.test.mjs
