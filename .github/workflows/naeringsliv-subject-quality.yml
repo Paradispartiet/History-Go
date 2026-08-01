@@ -37,24 +37,37 @@ jobs:
       - run: npm ci
       - name: Materialiser 6 av 6
         run: node --trace-uncaught scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
-      - name: Valider komplett Næringsliv-fagverk
+      - name: Kontroller ren produksjonsdiff
         run: |
           test ! -e .bootstrap
           test ! -e .diagnostics
           test ! -e scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
           ! grep -q 'Materialiser sluttkapittelet' .github/workflows/naeringsliv-subject-quality.yml
           ! grep -q 'permissions:' .github/workflows/naeringsliv-subject-quality.yml
-          node --check scripts/audit-naeringsliv-subject-quality.mjs
-          for audit in scripts/audit-naeringsliv-chapter-*.mjs; do node --check "$audit"; node "$audit"; done
+      - name: Valider alle seks kapitler
+        run: |
+          for audit in scripts/audit-naeringsliv-chapter-*.mjs; do
+            echo "=== $audit ==="
+            node --check "$audit"
+            node "$audit"
+          done
+      - name: Valider universitets- og handelshøgskolerammen
+        run: |
           node tools/validate-okonomi-naeringsliv-universitetsramme.mjs
           node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
           node tools/validate-okonomi-naeringsliv-handelshogskole.mjs
+      - name: Valider samlet Næringsliv-kontrakt
+        run: |
+          node --check scripts/audit-naeringsliv-subject-quality.mjs
           node scripts/audit-naeringsliv-subject-quality.mjs
           node --test tests/naeringsliv-*.test.mjs
+      - name: Valider Fagverket og dokumentasjonen
+        run: |
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-documentation-contract.test.mjs
-          npm run typecheck:web
+      - name: Valider TypeScript
+        run: npm run typecheck:web
       - name: Commit produksjonsdiff
         run: |
           git config user.name 'github-actions[bot]'
