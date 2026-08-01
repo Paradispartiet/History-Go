@@ -8,8 +8,10 @@
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
     "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
-    "authority": "category_content_only",
-    "may_override_global_rules": false
+    "authority": "category_content_and_orchestration",
+    "may_override_global_rules": false,
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "subject_manifest": "data/fag/fag_manifest.json"
   },
   "required_emne_prefix": "em_pol_",
   "content_priorities": [
@@ -153,5 +155,197 @@
     "field": "knowledge",
     "rule": "Hvert spørsmål skal levere en kort, etterprøvbar forklaring av hvorfor svaret er riktig, hva begrepet eller mekanismen betyr, og hvilken kilde påstanden bygger på.",
     "minimum": "konkret fakta eller mekanisme + kritisk skille ved behov + kilde"
-  }
+  },
+  "input_roles": {
+    "pensum": "læringsmål og faglig progresjon",
+    "emner": "politiske problemer, begreper og kritiske skiller",
+    "fagkart": "faglige hooks og eventuelle teoribindinger",
+    "methods": "institusjons-, dokument-, rettighets- og kausalanalyse",
+    "supersetQuizMal": "adaptiv profil, relativ progresjon og kontrollrekkefølge",
+    "quizStandard": "felles produksjons- og innholdsregler",
+    "quizQuestionSchema": "teknisk feltkontrakt for spørsmål"
+  },
+  "adaptive_profiles": {
+    "narrow": {
+      "sets": 3,
+      "questions_per_set": 7,
+      "use_when": "avgrenset sted med få uavhengige, sterke påstander"
+    },
+    "normal": {
+      "sets": 4,
+      "questions_per_set": 7,
+      "use_when": "sted med solid hovedhistorie og minst ett tydelig faglig broledd"
+    },
+    "rich": {
+      "sets_min": 5,
+      "sets_max": 8,
+      "questions_per_set": 7,
+      "use_when": "sted med flere kildebelagte institusjonskjeder eller konflikter"
+    },
+    "major": {
+      "sets_min": 8,
+      "sets_max": 10,
+      "questions_per_set": 7,
+      "use_when": "hovedsted med bred dokumentasjon som bærer flere progresjonsløp"
+    }
+  },
+  "profile_selection": {
+    "default": "normal",
+    "evidence_order": [
+      "uavhengige kildebelagte påstander",
+      "relevante kildetyper",
+      "stedlig forankrede emner",
+      "komplette evidenskjeder",
+      "metode- og teorimuligheter"
+    ],
+    "never_pad_to_reach_profile": true,
+    "reduce_profile_when_evidence_is_thin": true
+  },
+  "relative_progression": {
+    "phase_sequences": {
+      "3": [
+        "opening",
+        "bridge",
+        "final"
+      ],
+      "4": [
+        "opening",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "5": [
+        "opening",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "6": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "7": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "8": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "9": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "10": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ]
+    },
+    "phase_requirements": {
+      "opening": {
+        "focus": [
+          "sted",
+          "institusjon",
+          "konkrete fakta"
+        ],
+        "minimum_fact_share": 0.5
+      },
+      "middle": {
+        "focus": [
+          "aktører",
+          "vedtak",
+          "ressurser",
+          "gjennomføring"
+        ]
+      },
+      "bridge": {
+        "focus": [
+          "regel",
+          "kompetanse",
+          "offentlighet",
+          "kritiske skiller"
+        ],
+        "requires_method_or_context": true
+      },
+      "final": {
+        "focus": [
+          "emner",
+          "metode",
+          "mekanismer",
+          "utfall",
+          "eventuell teori"
+        ],
+        "requires_concept_or_method": true
+      }
+    },
+    "short_quiz_rule": "Tre og fire sett skal nå faglig fordypning i siste del uten å gjøre de første 14 spørsmålene teoridrevne.",
+    "absolute_theory_set_numbers_forbidden": true
+  },
+  "question_families": {
+    "fact": {
+      "role": "dokumentert aktør, institusjon, regel, vedtak, ressurs, hendelse eller utfall",
+      "normal_share_min": 0.5,
+      "normal_share_max": 0.7
+    },
+    "context": {
+      "role": "kompetanse, gjennomføring, konsekvens eller kritisk skille",
+      "normal_share_min": 0.2,
+      "normal_share_max": 0.35
+    },
+    "concept_theory": {
+      "role": "stedbundet begrep, metode, mekanisme eller kildebelagt teori",
+      "normal_share_min": 0.1,
+      "normal_share_max": 0.25
+    }
+  },
+  "selection_rules": [
+    "Eksplisitte emne_ids må passe dokumenterte stedspåstander.",
+    "Følg regel, kompetanse, ressurser, gjennomføring og utfall uten å fylle manglende ledd med antakelser.",
+    "En metode velges bare når den gjør et stedbundet skille etterprøvbart.",
+    "Teori er valgfri og krever et konkret stedlig anker.",
+    "Ingen fil regnes som brukt bare fordi den ble lastet."
+  ],
+  "control_order": [
+    "resolver_og_full_innlasting",
+    "eksterne_kilder_og_paastandsbank",
+    "evidenskjede_og_inferensgrenser",
+    "pensum_og_emnevalg",
+    "adaptiv_profil",
+    "relativ_settplan",
+    "normal_aapning",
+    "faglig_fordypning",
+    "produksjonskontekst",
+    "knowledge_sync"
+  ]
 }

@@ -217,6 +217,33 @@ test("builds the Høyland grave-mound context before quiz writing", async () => 
   assert.deepEqual(savedContext, context);
 });
 
+test("builds the Oslo tinghus Politikk context with a narrow ordinary opening", async () => {
+  const context = await buildQuizProductionContext({
+    categoryId: "politikk",
+    targetId: "tinghuset"
+  });
+
+  assert.equal(context.profile, "narrow_3x7");
+  assert.equal(context.required_inputs_loaded.length, 7);
+  assert.equal(Object.keys(context.resolved_files).length, 7);
+  assert.equal(context.manifest.category_id, "politikk");
+  assert.equal(context.manifest.target_id, "tinghuset");
+  assert.equal(context.claim_bank.length, 21);
+  assert.deepEqual(context.set_plan.map((set) => set.phase), [
+    "opening",
+    "bridge",
+    "final"
+  ]);
+  assert.ok(context.set_plan.every((set) => set.planned_questions === 7));
+  assert.equal(context.planned_quiz_file, "data/quiz/politikk/tinghuset_sets.json");
+
+  const savedContext = JSON.parse(await readFile(
+    "data/quiz/production_context/politikk/tinghuset.json",
+    "utf8"
+  ));
+  assert.deepEqual(savedContext, context);
+});
+
 test("passes production-context, progression and theory-binding audits", async () => {
   const reports = await Promise.all([
     auditQuizProductionContext(),
@@ -226,6 +253,6 @@ test("passes production-context, progression and theory-binding audits", async (
 
   for (const report of reports) {
     assert.equal(report.status, "passed", JSON.stringify(report.failures, null, 2));
-    assert.equal(report.quizFilesChecked, 8);
+    assert.equal(report.quizFilesChecked, 9);
   }
 });
