@@ -102,6 +102,38 @@
       "sourceType": "official",
       "verifiedAt": "2026-08-01",
       "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_byleksikon_tinghus",
+      "url": "https://oslobyleksikon.no/side/Oslo_tinghus",
+      "sourceLocation": "Stedsartikkelen, avsnittene om oppføring 1992–1994, bruk fram til 2005, ombygging i 2007 og rettssaken i 2012",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_oslo_byleksikon_tingrett",
+      "url": "https://oslobyleksikon.no/side/Oslo_tingrett",
+      "sourceLocation": "Avsnittene om innflytting i 1994, navneendringen i 2002 og sammenslåingen i 2021",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_22juli_rettssak_2012",
+      "url": "https://www.22julisenteret.no/no/fordyp-deg/fagartikler/rettssaken-mot-breivik-i-2012",
+      "sourceLocation": "Avsnittet om ombyggingen av Oslo tingrett og medietrykket under rettssaken våren 2012",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_oslo_fullfaglig_2022",
+      "url": "https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/publikasjoner2/arsmelding-2022/fokusomrader/en-fullfaglig-domstol/",
+      "sourceLocation": "Ingressen og avsnittet «Videreføring av spesialkompetanse»",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "historical"
     }
   ],
   "evidenceChains": [
@@ -303,10 +335,10 @@
     ]
   },
   "chronologyStories": {
-    "status": "N/A",
+    "status": "PASS",
     "chronologyReviewed": true,
     "storiesReviewed": true,
-    "rationale": "Årstall og årsstatistikk brukes i stedstekst og Knowledge. De utgjør ikke alene en sammenhengende, fysisk forankret episode med konflikt eller transformasjon, så ingen Story produseres."
+    "rationale": "Leksikonets chronology dokumenterer sju daterte milepæler for bygningen og domstolsvirksomheten ved stedet. History layers er vurdert, men utelatt fordi de ville gjenta tidslinjen. Terrorrettssaken i 2012 behandles foreløpig som chronology; en eventuell Story krever en egen narrativ produksjonsfase."
   },
   "gates": {
     "A": {
@@ -357,13 +389,19 @@
       ]
     },
     "G": {
-      "status": "N/A",
-      "rationale": "Chronology og Stories er gjennomgått; materialet bærer ikke en separat episode uten å gjøre årsstatistikk til kunstig fortelling."
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/leksikon/places/oslo/politikk/leksikon_oslo_tinghus.json#chronology",
+        "source_oslo_byleksikon_tinghus",
+        "source_oslo_byleksikon_tingrett",
+        "source_22juli_rettssak_2012",
+        "source_oslo_fullfaglig_2022"
+      ]
     }
   },
   "review": {
     "reviewer": "OpenAI Codex",
     "reviewedAt": "2026-08-01",
-    "notes": "Politisk hovedfunksjon, fire emner, tre evidenskjeder, nåtidskontroll, ordinær quizåpning og inferensgrenser er kontrollert separat."
+    "notes": "Politisk hovedfunksjon, fire emner, tre evidenskjeder, nåtidskontroll, ordinær quizåpning og inferensgrenser er kontrollert separat. Chronology og Story-grensen er kontrollert på nytt i Historie-fasen."
   }
 }
