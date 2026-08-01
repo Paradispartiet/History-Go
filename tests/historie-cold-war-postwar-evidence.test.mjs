@@ -91,14 +91,19 @@ test('canonical sources extracted from the final dossier resolve to snapshots', 
 
 test('History CI permanently runs the final-domain validator and regressions', () => {
   const workflow = fs.readFileSync('.github/workflows/history-theory-evidence.yml', 'utf8');
+  const workflowLines = workflow.split('\n');
+  const eventBlock = (eventName) => {
+    const start = workflowLines.findIndex((line) => line === `  ${eventName}:`);
+    assert.notEqual(start, -1, `History CI does not declare ${eventName}`);
+    const nextEvent = workflowLines.findIndex((line, index) => index > start && /^  [a-z_]+:$/.test(line));
+    return workflowLines.slice(start, nextEvent === -1 ? undefined : nextEvent).join('\n');
+  };
   for (const file of [
     'tools/validate-historie-kald-krig-etterkrig.mjs',
     'tests/historie-cold-war-postwar-evidence.test.mjs',
     'data/fag/historie/source_dossiers/cold_war_postwar_v1.json',
   ]) assert.ok(workflow.includes(file), `History CI does not include ${file}`);
-  assert.equal(
-    workflow.match(/data\/fag\/profiles\/historie\/oslo_akershus\/profile\.json/g)?.length,
-    2,
-    'History CI must watch the tested profile on pull requests and pushes',
-  );
+  const profilePath = "      - 'data/fag/profiles/historie/oslo_akershus/profile.json'";
+  assert.ok(eventBlock('pull_request').includes(profilePath), 'History CI must watch the tested profile on pull requests');
+  assert.ok(eventBlock('push').includes(profilePath), 'History CI must watch the tested profile on pushes');
 });
