@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **220**
-- Andel med dokumentert evidensgrunnlag: **95.7 %**
+- Validerte pilotobjekter: **230**
+- Andel med dokumentert evidensgrunnlag: **100 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -235,6 +235,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Kvinnebevegelse, likestilling og skeiv historie: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
 | Omsorg, sosial reproduksjon og ulønnet arbeid: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
 | Kjønn, rett og statsborgerskap | 5 | 3 | 6 | 4 | evidence_ready |
+| Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer | 3 | 3 | 3 | 3 | evidence_ready |
+| Atomvåpen, avskrekking og rustningskappløp under den kalde krigen | 3 | 3 | 3 | 3 | evidence_ready |
+| Stedfortrederkriger og globale konflikter i den kalde krigen | 3 | 3 | 4 | 3 | evidence_ready |
+| Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991 | 4 | 2 | 5 | 4 | evidence_ready |
+| Et delt Europa: østblokk, vestlig integrasjon og revolusjonene i 1989 | 3 | 3 | 3 | 3 | evidence_ready |
+| Norge og Norden i den kalde krigen: NATO, nøytralitet og sikkerhetsstat | 4 | 2 | 4 | 4 | evidence_ready |
+| Velferdsstat, planlegging og forbrukersamfunn etter 1945 | 3 | 3 | 4 | 3 | evidence_ready |
+| Bønder, fiskere og bygdesamfunn i den kalde krigens modernisering | 3 | 2 | 3 | 3 | evidence_ready |
+| Religiøse fellesskap, menigheter og fredsmobilisering under den kalde krigen | 3 | 3 | 4 | 3 | evidence_ready |
+| Fattige, hjemløse og sosialt marginaliserte i etterkrigstidens velferdssamfunn | 3 | 3 | 4 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 

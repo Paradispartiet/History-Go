@@ -1,16 +1,16 @@
 # Historie — universell heldekningsaudit
 
-Status: **INCOMPLETE**
+Status: **COMPLETE**
 
 Denne rapporten tester om den universelle historiefagmodellen dekker selve faget. Den tester ikke bare om den aktive faglisten er fylt ut. Frysing og eksakte objekttall er derfor registrert som intern strukturstatus, ikke som bevis på heldekning.
 
 ## Hovedresultat
 
-- Universell heldekning: **INCOMPLETE**
+- Universell heldekning: **COMPLETE**
 - Aktiv intern readiness: **FREEZE_READY**
 - Interne domenetall: **23/23** markert komplette internt
 - Dekningsceller: **58 dekket**, **0 delvis**, **0 mangler**
-- Produksjonskrav: **10 bestått**, **1 åpne gap**
+- Produksjonskrav: **11 bestått**, **0 åpne gap**
 
 ## Akseoversikt
 
@@ -20,7 +20,7 @@ Denne rapporten tester om den universelle historiefagmodellen dekker selve faget
 | Tema | ❌ COMPLETE | 23 | 0 | 0 |
 | Geografi | ❌ COMPLETE | 8 | 0 | 0 |
 | Aktører | ❌ COMPLETE | 13 | 0 | 0 |
-| Historiefaglig produksjon | ❌ INCOMPLETE | 10 | – | 1 |
+| Historiefaglig produksjon | ❌ COMPLETE | 11 | – | 0 |
 
 ## Tid
 
@@ -122,12 +122,11 @@ Historien må dekke både institusjonelle makthavere og grupper som ofte forsvin
 | Canonical claim-register | ✅ PASS | data/fag/historie/claims_historie_canonical_v1.json |
 | Canonical kilderegister | ✅ PASS | data/fag/historie/sources_historie_canonical_v1.json |
 | Sted–emne–claim-evidens | ✅ PASS | data/fag/historie/place_evidence_historie_v1.json |
-| Teoriobjekter med dokumentert evidensgrunnlag | ❌ GAP | 96 % (220/230) |
+| Teoriobjekter med dokumentert evidensgrunnlag | ✅ PASS | 100 % (230/230) |
 
 ## Prioriterte faglige gap
 
 Ingen åpne fagceller.
-- **Produksjon — Teoriobjekter med dokumentert evidensgrunnlag:** Utvid det separate theory-evidence-registeret med kontraktvaliderte claims, kilder, alternative fortolkninger og fler-case-koblinger til alle 230 teoriobjekter.
 
 ## Tolkningsregel
 

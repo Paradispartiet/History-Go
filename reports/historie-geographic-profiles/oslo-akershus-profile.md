@@ -11,15 +11,15 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - Universelle emner: **230**
 - Unike emner med profilkoblinger: **216**
 - Mappingrecords: **216**
-- Casekandidater: **118**
+- Casekandidater: **119**
 
 ## Evidensgrunnlag
 
-- Claims: **272**
-- Kilder: **219**
-- Sted–emne–claim–kildekoblinger: **281**
-- Validerte caser: **58**
-- Validerte caser med minst to evidenskoblinger: **58**
+- Claims: **280**
+- Kilder: **227**
+- Sted–emne–claim–kildekoblinger: **289**
+- Validerte caser: **59**
+- Validerte caser med minst to evidenskoblinger: **59**
 
 ## Validerte caser
 
@@ -41,6 +41,7 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_forsvarsmuseet_military_industry_objects`
 - `case_his_gamle_aker_kirke`
 - `case_his_gamle_deichman_pa_hammersborg`
+- `case_his_gamle_hvam_museum`
 - `case_his_grini_fangeleir`
 - `case_his_gronvold_fyrstikkfabrikk`
 - `case_his_hallvardskatedralen`
