@@ -128,6 +128,18 @@ for (const entry of A(registry.entries)) {
   const derivedEvidenceLinks = sorted(claims.flatMap((claim) => A(evidenceByClaim.get(claim.claim_id)).map((link) => link.evidence_id).filter(Boolean)));
   const claimTypes = sorted(claims.map((claim) => claim.claim_type).filter(Boolean));
   const temporalAnchors = asTemporalAnchors(claims);
+  const topicSpecificCaseDomains = new Set([
+    'his_vitenskap_teknologi_kunnskap',
+    'his_forste_verdenskrig_mellomkrig',
+  ]);
+  const requiresTopicSpecificCases = A(theory?.explanatory_scope)
+    .some((domainId) => topicSpecificCaseDomains.has(domainId));
+  const targetEmneId = requiresTopicSpecificCases && theory?.source_hook_id ? `em_${theory.source_hook_id}` : null;
+  const topicSpecificCases = targetEmneId
+    ? sorted(claims
+      .filter((claim) => A(claim.emne_ids).includes(targetEmneId))
+      .flatMap((claim) => A(claim.scope?.case_ids)))
+    : [];
 
   if (!sameSet(entry.source_ids, derivedSources)) errors.push(`${prefix}: source_ids must exactly match the selected claims.`);
   if (!sameSet(entry.case_ids, derivedCases)) errors.push(`${prefix}: case_ids must exactly match the selected claims.`);
@@ -141,6 +153,9 @@ for (const entry of A(registry.entries)) {
   if (derivedPlaces.length < thresholds.minimum_places) errors.push(`${prefix}: requires at least ${thresholds.minimum_places} places.`);
   if (claimTypes.length < thresholds.minimum_claim_types) errors.push(`${prefix}: requires at least ${thresholds.minimum_claim_types} claim types.`);
   if (temporalAnchors.length < thresholds.minimum_temporal_anchors) errors.push(`${prefix}: requires at least ${thresholds.minimum_temporal_anchors} temporal anchors.`);
+  if (requiresTopicSpecificCases && topicSpecificCases.length < thresholds.minimum_cases) {
+    errors.push(`${prefix}: requires at least ${thresholds.minimum_cases} cases linked to its own emne ${targetEmneId}; found ${topicSpecificCases.length}.`);
+  }
 
   for (const claim of claims) {
     if (!claim.uncertainty?.level || !String(claim.uncertainty?.note || '').trim()) errors.push(`${prefix}: claim ${claim.claim_id} lacks explicit uncertainty.`);

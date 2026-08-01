@@ -112,7 +112,7 @@ test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', (
   assert.equal(report.universalCoverage.coveredCells, 58);
   assert.equal(report.universalCoverage.totalCells, 58);
   assert.equal(report.universalCoverage.productionGaps, 1);
-  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 190);
+  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 197);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
 });
@@ -131,6 +131,30 @@ test('teori-evidensregisteret bevarer alle stedskoblinger for fler-steds-claims'
   for (const entry of theoryEvidence.entries) {
     const expected = [...new Set(entry.claim_ids.flatMap((claimId) => linksByClaim.get(claimId) || []))].sort();
     assert.deepEqual([...entry.evidence_link_ids].sort(), expected, entry.theory_id);
+  }
+});
+
+test('vitenskapsteorier har minst to cases koblet til teoriens eget emne', () => {
+  const theoryObjects = readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
+  const theoryEvidence = readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json');
+  const claims = readJson('data/fag/historie/claims_historie_canonical_v1.json');
+  const theoriesById = new Map(theoryObjects.map((theory) => [theory.theory_id, theory]));
+  const claimsById = new Map(claims.claims.map((claim) => [claim.claim_id, claim]));
+
+  for (const entry of theoryEvidence.entries) {
+    const theory = theoriesById.get(entry.theory_id);
+    if (!theory?.explanatory_scope?.includes('his_vitenskap_teknologi_kunnskap')) continue;
+
+    const targetEmneId = `em_${theory.source_hook_id}`;
+    const topicSpecificCases = new Set(entry.claim_ids
+      .map((claimId) => claimsById.get(claimId))
+      .filter((claim) => claim?.emne_ids?.includes(targetEmneId))
+      .flatMap((claim) => claim.scope?.case_ids || []));
+
+    assert.ok(
+      topicSpecificCases.size >= 2,
+      `${entry.theory_id} trenger minst to cases koblet til ${targetEmneId}`
+    );
   }
 });
 
@@ -202,6 +226,7 @@ test('Teknisk Museum og Kjeller/FFI har uavhengige kildefamilier', () => {
     ['official_museum_institution_page', 'institutional_museum_record'],
     ['official_research_institute_history', 'institutional_research_record'],
     ['official_research_institute_feature', 'institutional_research_record'],
+    ['national_library_collection_research_feature', 'national_library_research_collection'],
     ['editorially_reviewed_encyclopedia', 'secondary_reference_work']
   ]);
 

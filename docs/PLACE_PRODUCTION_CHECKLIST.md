@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-07-31**
+Sist kontrollert: **2026-08-01**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -27,6 +27,7 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Fagverk / merke vs fag / navigasjon | `docs/FAGVERK_NAVIGATION.md` |
 | Politikk — canonical fagmodell | `data/fag/politikk/politikk_runtime_manifest.json` |
 | Politikk — faglig kvalitet og inferensgrenser | `scripts/audit-politikk-subject-quality.mjs` og `scripts/audit-politikk-thinker-integrity.mjs` |
+| Politikk — stedsgate og produksjonsrapport | `data/places/regler/politikk_place_production_v1.schema.json` og `scripts/audit-politikk-place-production.mjs` |
 | People–sted-koblinger | **`docs/people-of-places-method.md`** |
 | Ny/revidert People-profil | **`docs/PEOPLE_PROFILE_CANONICAL.md`** |
 | People-bilder / lisens / attribusjon | `docs/PEOPLE_IMAGES.md` |
@@ -77,11 +78,12 @@ POLITIKK-HOVEDFUNKSJON (hvis relevant):
 POLITIKK-EMNE_IDS (kun em_pol_*):
 POLITIKK-EVIDENSKJEDE:
 POLITIKK-NÅTIDSKONTROLL:
+POLITIKK-PRODUKSJONSRAPPORT:
 STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
-MÅL FOR RUNDINGER: 4
+MÅL FOR INNHOLDSRUNDINGER: 3 + fast Badges
 VALGTE RUNDINGER:
 PEOPLE-KANDIDATER:
 WORKS-KANDIDATER:
@@ -182,7 +184,7 @@ Usikker koordinat skal ikke merkes `verified`.
 - [ ] ikke dupliser place i andre kategorier for å uttrykke tverrfaglighet;
 - [ ] `underbadge_ids` vurdert og alle ID-er finnes;
 - [ ] `emne_ids` vurdert;
-- [ ] Badges-rundingen er med;
+- [ ] Badges-rundingen er fast og vises øverst til høyre ved stedsoverskriften;
 - [ ] riktig badgegrafikk finnes;
 - [ ] Badges åpner `fagverk-sted.html?place=<place_id>`;
 - [ ] stedets fagverkside viser riktig sted, kategori og relevante fag-/emnekoblinger;
@@ -199,6 +201,7 @@ Denne delen gjelder når stedet foreslås med **Politikk som primær fagidentite
 - `docs/FACTUALITY_CONTRACT.md`;
 - `docs/FAGVERK_NAVIGATION.md`;
 - `data/fag/politikk/politikk_runtime_manifest.json`;
+- `data/places/regler/politikk_place_production_v1.schema.json`;
 - `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`;
 - `docs/STORIES_DATA_GOVERNANCE.md` når fortellinger produseres.
 
@@ -283,7 +286,9 @@ Stedet kan ikke godkjennes som Politikk-sted dersom ett av disse forholdene best
 - de første 14 quizspørsmålene bryter normalåpningen;
 - en chronology-post er gjort til Story uten narrativ og fysisk forankring.
 
-Alle delene A–G får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. Politikk kan ikke settes til ferdig på stedet før alle relevante deler er PASS.
+Produksjonsrapporten ligger i `data/places/politikk-production/<place_id>.json` og følger `data/places/regler/politikk_place_production_v1.schema.json`. Rapporten skal peke tilbake til den manifest-loadede place-filen, registrere politisk hovedfunksjon, canonicale `em_pol_*`, kilder med `sourceLocation`, inspectable evidenskjeder, nåtidskontroll og status for A–G.
+
+Alle delene A–G får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. A–E er obligatoriske PASS for et ferdig Politikk-sted; F og G kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-politikk-place-production.mjs --all` validerer alle registrerte rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Politikk-sted opprettes eller et eksisterende Politikk-steds fagkobling, brukerrettede tekst, quizgrunnlag, chronology eller Story-kobling revideres. Politikk kan ikke settes til ferdig på stedet før denne porten passerer.
 
 ---
 
@@ -420,7 +425,10 @@ Alle åtte får status: **ferdig** eller **N/A**.
 Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **Rundingskontrakten eier hele rundingsmodellen.**
 
 - [ ] stedet følger canonical rundingskontrakt;
-- [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell;
+- [ ] Badges-rundingen vises fast øverst til høyre ved stedsoverskriften og teller ikke blant de tre innholdsrundingene;
+- [ ] nøyaktig tre innholdsrundinger vises på én horisontal rad ved `frontImage`;
+- [ ] vanlig sted bruker `people · objects · brands`, mens natursted bruker `map · flora · fauna`;
+- [ ] runtime og data bruker ikke legacy 4-/6-/9-/12-rundersmodell i mediefeltet;
 - [ ] preview brukes ikke som innholdsfilter;
 - [ ] gammel place-spesifikk `rounds`-kuratering brukes ikke som ny standard.
 
@@ -722,10 +730,11 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] `popupDesc`/popup åpner riktig;
 - [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
 - [ ] rundingssettet følger `data/places/README_place_rounds.md`;
-- [ ] fire rundinger vises som 2×2;
+- [ ] fast Badges-runding vises øverst til høyre ved stedsoverskriften;
+- [ ] tre innholdsrundinger vises på én horisontal rad ved `frontImage`;
 - [ ] alle valgte rundinger har korrekte bilder;
 - [ ] Badges åpner riktig sted/fagverk;
-- [ ] de fire canonical rundingene åpner riktig innhold;
+- [ ] Badges og de tre canonicale innholdsrundingene åpner riktig innhold;
 - [ ] Brands viser bare riktige bedrifter/kjente merker;
 - [ ] natursteder bruker den canonical naturprofilen;
 - [ ] Civication/Wonderkammer vises ikke som canonical runding;
@@ -833,7 +842,8 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 
 ### Rundinger
 - [ ] `data/places/README_place_rounds.md` er fulgt;
-- [ ] stedet viser nøyaktig fire canonical rundinger;
+- [ ] Badges vises fast øverst til høyre ved stedsoverskriften;
+- [ ] stedet viser nøyaktig tre innholdsrundinger fra riktig fast profil;
 - [ ] preview og innhold følger rundingskontrakten.
 
 ### På stedet / læring
@@ -933,16 +943,11 @@ LES: docs/PLACE_POPUP_SYSTEM.md
 
 ### F. Rundinger
 LES: data/places/README_place_rounds.md
-Mål: [ ] 4  [ ] 6
-- [ ] Badges
-- [ ] People
-- [ ] Works
-- [ ] Objects
-- [ ] Details
-- [ ] Spots
-- [ ] Nature
-- [ ] Brands
-For hver valgt: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flow
+Mål: [ ] 3 innholdsrundinger + fast Badges
+- [ ] Badges — fast øverst til høyre
+- [ ] riktig fast profil: `people · objects · brands` / `map · flora · fauna`
+- [ ] tre innholdsrundinger på én horisontal rad ved `frontImage`
+For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flow
 
 ### G. People / Stories / Quiz
 - [ ] People of Places lest og vurdert
@@ -985,7 +990,7 @@ For hver valgt: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flo
 - [ ] rundingsbilder
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
-- [ ] 4/6-layout
+- [ ] tre-rundersrad + fast Badges-plassering
 - [ ] popupfaner
 - [ ] relevant CI
 - [ ] ren slutt-diff

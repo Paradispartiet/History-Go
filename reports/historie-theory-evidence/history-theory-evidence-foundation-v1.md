@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **190**
-- Andel med dokumentert evidensgrunnlag: **82.6 %**
+- Validerte pilotobjekter: **197**
+- Andel med dokumentert evidensgrunnlag: **85.7 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -205,6 +205,13 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Vitenskap, stat, industri og ekskludering: forklarings- og kildebane | 4 | 3 | 5 | 4 | evidence_ready |
 | Kunnskap, makt, kjønn og ekskludering: forklarings- og kildebane | 5 | 4 | 5 | 5 | evidence_ready |
 | Vitenskap, stat, industri og militære forbindelser: forklarings- og kildebane | 5 | 2 | 5 | 5 | evidence_ready |
+| Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig | 3 | 2 | 3 | 3 | evidence_ready |
+| Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918 | 5 | 2 | 5 | 5 | evidence_ready |
+| Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923 | 4 | 2 | 3 | 4 | evidence_ready |
+| Demokrati, massepolitikk og sosial konflikt i Europa og Norden | 3 | 2 | 3 | 3 | evidence_ready |
+| Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa | 3 | 3 | 3 | 3 | evidence_ready |
+| Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk | 3 | 2 | 3 | 3 | evidence_ready |
+| Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden | 3 | 2 | 3 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 

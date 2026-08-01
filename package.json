@@ -94,6 +94,8 @@
     "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
     "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write",
     "audit:categories": "node scripts/audit-category-governance.mjs",
+    "audit:politikk-place-production": "node scripts/audit-politikk-place-production.mjs --all",
+    "test:politikk-place-production": "node --test tests/politikk-place-production.test.mjs",
     "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
     "audit:quiz-content": "node scripts/audit-quiz-content-quality.mjs",
     "audit:quiz-content:report": "node scripts/audit-quiz-content-quality.mjs --json reports/quiz-content-quality.json",
