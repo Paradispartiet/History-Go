@@ -4,6 +4,8 @@
 
   const MODEL = global.HGFagverkSubjectModel;
   if (!MODEL) throw new Error('HGFagverkSubjectModel må lastes før fagverk.js');
+  const CORE = global.HGFagverkSubjectCore;
+  if (!CORE) throw new Error('HGFagverkSubjectCore må lastes før fagverk.js');
 
   const CHAPTER_SELECTORS = [
     '.fagverk-diagnostic',
@@ -227,22 +229,6 @@
     host.hidden = false;
   }
 
-  async function hydrateChapter(chapter) {
-    const data = await fetchJson(chapter.file);
-    const files = list(data?.moduleFiles);
-    if (!files.length) return data;
-    const modules = await Promise.all(files.map(fetchJson));
-    const merged = { ...data };
-    for (const module of modules) {
-      for (const [key, value] of Object.entries(module || {})) {
-        if (Array.isArray(value)) merged[key] = [...list(merged[key]), ...value];
-        else if (value && typeof value === 'object') merged[key] = { ...(merged[key] || {}), ...value };
-        else if (value != null) merged[key] = value;
-      }
-    }
-    return merged;
-  }
-
   function renderDetails(hostId, items, numbered = false) {
     const host = document.getElementById(hostId);
     if (!host) return;
@@ -284,7 +270,7 @@
   async function renderChapter(model, chapterMeta, selectedConcept) {
     hideAllViews();
     showChapterViews();
-    const chapter = await hydrateChapter(chapterMeta);
+    const chapter = await CORE.hydrateChapter(chapterMeta, fetchJson);
     renderHero(model.subject.title, chapter.title, chapter.subtitle, chapter.lead);
     renderDetails('fagverkDiagnostic', chapter.diagnosticQuestions);
     renderObjectives(chapter);

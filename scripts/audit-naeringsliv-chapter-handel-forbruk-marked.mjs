@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { evaluateNaeringslivEditorialPlan } from './naeringsliv-editorial-plan.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
@@ -139,11 +140,9 @@ export function auditNaeringslivHandelForbrukMarkedChapter({ writeReport = false
   assert(runtime.chapterByDomain?.[domain.domain_id] === chapter.id, 'Runtime mangler domain→chapter-kobling');
   for (const emneId of chapter.emne_ids || []) assert(runtime.chapterByEmne?.[emneId] === chapter.id, `Runtime mangler emne→chapter for ${emneId}`);
   const subjectStatus = (status.subjects || []).find((row) => row.id === 'naeringsliv');
-  const registeredChapterCount = registry.subjects?.naeringsliv?.chapters?.length || 0;
-  const canonicalDomainCount = (pensum.domains || []).length;
-  const subjectIsComplete = registeredChapterCount === canonicalDomainCount;
-  assert(subjectStatus?.editorialStatus === (subjectIsComplete ? 'complete' : 'chapters_in_progress'), 'Næringslivstatus samsvarer ikke med registrert kapitteldekning');
-  assert(subjectStatus?.nextGate === (subjectIsComplete ? 'maintenance_and_source_refresh' : 'phase_4_chapters'), 'Næringslivstatus peker til feil neste port');
+  const editorialPlan = evaluateNaeringslivEditorialPlan(registry.subjects?.naeringsliv, (pensum.domains || []).map((row) => row.domain_id));
+  assert(subjectStatus?.editorialStatus === editorialPlan.expectedEditorialStatus, 'Næringslivstatus samsvarer ikke med redaksjonell kapittelplan');
+  assert(subjectStatus?.nextGate === editorialPlan.expectedNextGate, 'Næringslivstatus peker til feil neste port');
 
   const report = {
     schema: 'history_go_naeringsliv_chapter_handel_forbruk_marked_audit_v1',

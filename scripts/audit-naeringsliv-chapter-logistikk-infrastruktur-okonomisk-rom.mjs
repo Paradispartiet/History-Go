@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isDeepStrictEqual } from "node:util";
+import { evaluateNaeringslivEditorialPlan } from "./naeringsliv-editorial-plan.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CHAPTER_ID = "logistikk-infrastruktur-okonomisk-rom";
@@ -149,11 +150,9 @@ export function auditLogistikk({ writeReport = false, checkReport = true } = {})
   assert(runtime.chapterByDomain?.[DOMAIN_ID] === CHAPTER_ID, "Runtime domain mapping is missing");
   for (const emneId of chapter.emne_ids) assert(runtime.chapterByEmne?.[emneId] === CHAPTER_ID, `Runtime emne mapping missing for ${emneId}`);
   const statusEntry = status.subjects.find((row) => row.id === "naeringsliv");
-  const registeredChapterCount = registry.subjects?.naeringsliv?.chapters?.length || 0;
-  const canonicalDomainCount = (pensum.domains || []).length;
-  const expectedEditorialStatus = registeredChapterCount === canonicalDomainCount ? "complete" : "chapters_in_progress";
-  assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Næringsliv status must be ${expectedEditorialStatus}`);
-  assert(String(statusEntry.note || "").includes(`${registeredChapterCount} av ${canonicalDomainCount}`), "Status note does not report registered coverage");
+  const editorialPlan = evaluateNaeringslivEditorialPlan(registry.subjects?.naeringsliv, (pensum.domains || []).map((row) => row.domain_id));
+  assert(statusEntry?.editorialStatus === editorialPlan.expectedEditorialStatus, `Næringsliv status must be ${editorialPlan.expectedEditorialStatus}`);
+  assert(statusEntry?.nextGate === editorialPlan.expectedNextGate, `Næringsliv next gate must be ${editorialPlan.expectedNextGate}`);
 
   const report = {
     schema: "history_go_naeringsliv_chapter_audit_v1",

@@ -292,6 +292,52 @@
     })).filter((chapter) => chapter.id && chapter.file);
   }
 
+  function mergeChapterPayload(target, payload) {
+    const merged = { ...(target || {}) };
+    for (const [key, value] of Object.entries(payload || {})) {
+      if (Array.isArray(value)) merged[key] = [...list(merged[key]), ...value];
+      else if (value && typeof value === 'object') merged[key] = { ...(merged[key] || {}), ...value };
+      else if (value != null) merged[key] = value;
+    }
+    return merged;
+  }
+
+  function normalizeChapterPayload(chapter) {
+    const normalized = { ...(chapter || {}) };
+    normalized.workedExamples = list(normalized.workedExamples).map((example) => ({
+      ...example,
+      situation: firstText(example?.situation, example?.scenario),
+      analysis: list(example?.analysis).length
+        ? list(example.analysis)
+        : list(example?.steps).length
+          ? list(example.steps)
+          : text(example?.analysis)
+            ? [text(example.analysis)]
+            : []
+    }));
+    normalized.commonMisconceptions = [
+      ...list(normalized.commonMisconceptions),
+      ...list(normalized.misconceptions)
+    ];
+    return normalized;
+  }
+
+  async function hydrateChapter(chapter, fetchJson) {
+    assert(typeof fetchJson === 'function', 'hydrateChapter krever en JSON-laster.');
+    const data = await fetchJson(chapter?.file);
+    let merged = { ...data };
+    const modules = await Promise.all(list(data?.moduleFiles).map(fetchJson));
+    for (const module of modules) merged = mergeChapterPayload(merged, module);
+
+    const claimsFile = firstText(data?.claimsFile, chapter?.claimsFile);
+    if (claimsFile) {
+      const claimsDocument = await fetchJson(claimsFile);
+      merged.claims = list(claimsDocument?.claims);
+      if (list(claimsDocument?.sources).length) merged.sources = list(claimsDocument.sources);
+    }
+    return normalizeChapterPayload(merged);
+  }
+
   function normalizePlaces(registry, emneIds) {
     const knownEmners = new Set(emneIds);
     const result = [];
@@ -442,6 +488,9 @@
     resolveManifestPointer,
     adapterForFamily,
     conceptsForEmne,
+    mergeChapterPayload,
+    normalizeChapterPayload,
+    hydrateChapter,
     normalizeSubject,
     deriveTier
   };
