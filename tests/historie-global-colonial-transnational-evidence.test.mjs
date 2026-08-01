@@ -7,6 +7,7 @@ const theories = readJson('data/fag/historie/theory_objects_historie_canonical_v
 const claims = readJson('data/fag/historie/claims_historie_canonical_v1.json').claims;
 const registry = readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json').entries;
 const dossier = readJson('data/fag/historie/source_dossiers/global_colonial_transnational_v1.json');
+const historyEvidenceWorkflow = fs.readFileSync('.github/workflows/history-theory-evidence.yml', 'utf8');
 const claimById = new Map(claims.map((claim) => [claim.claim_id, claim]));
 
 const targetTheoryIds = new Set(theories
@@ -87,4 +88,19 @@ test('collection and decision institutions remain anchors rather than foreign ev
     assert.ok(claim.uncertainty.note.length > 40);
     assert.ok(claim.alternative_interpretations.length >= 1);
   }
+});
+
+test('History CI watches the delegated domain validator and all of its canonical inputs', () => {
+  for (const path of [
+    'tools/validate-historie-domain.mjs',
+    'data/fag/historie/historiepensum_canonical_v4_5.json',
+    'data/fag/historie/emner_historie_canonical_v4_5.json',
+    'data/fag/historie/emnemapping_historie_canonical_v4_5.json',
+    'data/fag/historie/fagkart_historie_canonical_v4_5.json',
+  ]) {
+    const pathFilter = `- '${path}'`;
+    assert.equal(historyEvidenceWorkflow.split(pathFilter).length - 1, 2, `${path} must be watched for PR and push`);
+  }
+  assert.match(historyEvidenceWorkflow, /node tools\/validate-historie-global-kolonial-transnasjonal\.mjs/);
+  assert.match(historyEvidenceWorkflow, /node --test .*historie-global-colonial-transnational-evidence\.test\.mjs/);
 });
