@@ -5,7 +5,7 @@
 - Kategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
 - Normal åpning: 14 ordinære spørsmål før faglig fordypning i sett 3
-- Saneringsstatus: nullmåling utført 2026-08-01; innholdsproduksjon ikke gjenopptatt
+- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om» er fullført, øvrige innholdsflater er ikke gjenopptatt
 
 ## Politikk-hovedfunksjon
 
@@ -38,7 +38,8 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 
 ## Innholdsflate
 
-- Place: oppdatert beskrivelse, popup, Politikk-gate og fagkoblinger
+- Place: canonical identitet er beholdt; `desc` og `popupDesc` er redigert til en konkret Om-artikkel om bygningen, domstolsfunksjonen, publikumsadgangen, arkitekturen og kunsten
+- Leksikon: canonical hovedrecord med nøkkelfakta og bygd funksjon er aktivert i manifestet; recorden inneholder ikke chronology, nyheter, Lesespor eller Mer-stoff
 - Hovedbilde: kontrollert public-domain-foto av Oslo tinghus, med lokal full- og kortvariant og lagret attribusjon
 - People: sju canonicale stedskoblinger finnes, men seks er kunstnere, bare én person uttrykker domstolens hovedfunksjon, seks mangler bilde og flere profiltekster bruker samme formulering. Yngve Svendsens identitetskontrollerte redaksjonelle illustrasjon kan beholdes
 - Story: begrunnet N/A; årsmeldingstall og viktige årstall hører i chronology/Knowledge og utgjør ikke alene en sammenhengende stedsepisode
@@ -51,7 +52,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 
 | Fane | Status | Begrunnelse |
 | --- | --- | --- |
-| Om | Pågår | `popupDesc` finnes, men canonical Leksikon-record, nøkkelfakta og redaksjonell avgrensning mangler |
+| Om | PASS – fase 1 | Canonical identitet, claim-dekket `desc`/`popupDesc`, Leksikon-hovedrecord og åtte kildebelagte nøkkelfakta er på plass |
 | Historie | Ikke startet | Ingen chronology eller `history_layers`; kan ikke arve Story-N/A |
 | Fortellinger | N/A, foreløpig | Den tidligere generelle Story-en ble fjernet; ny Story krever selvstendig narrativt materiale |
 | Før/etter | Ikke startet | Ingen `for_na` eller kontrollert bildepar |
@@ -84,6 +85,7 @@ Status for samlet sted: **under sanering – ikke produksjonsklart**.
 - [Wikimedia Commons: Oslo tinghus](https://commons.wikimedia.org/wiki/File:Oslo_tinghus.jpg)
 - [Wikimedia Commons: Skilt til rettssal 250](https://commons.wikimedia.org/wiki/File:Skilt_til_rettssal_250_i_Oslo_tingrett.JPG)
 - [KORO: Oslo tinghus](https://koro.no/prosjekter/oslo-tinghus/)
+- [Oslo tingrett: Rom for advokater og aktører](https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/for-aktorer-i-retten/advokat/)
 - [Beate Ellingsen AS: Oslo Tinghus](https://beate-ellingsen.no/oslo-tinghus)
 - [Store norske leksikon: Østgaard Arkitekter AS](https://snl.no/%C3%98stgaard_Arkitekter_AS)
 - [Oslo tingrett: Organisasjonen vår](https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/om-oslo-tingrett/organisasjonen/)
