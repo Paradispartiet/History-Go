@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/politikk-place-production-v1.json",
+  "title": "History GO Politikk place production report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "validatorVersion",
+    "placeId",
+    "placeFile",
+    "status",
+    "primaryFunction",
+    "politicsTopics",
+    "sources",
+    "evidenceChains",
+    "currentVerification",
+    "quizOpening",
+    "chronologyStories",
+    "gates",
+    "review"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "politikk_place_production_v1" },
+    "validatorVersion": { "type": "string", "pattern": "^1\\.0\\.[0-9]+$" },
+    "placeId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$" },
+    "placeFile": { "type": "string", "pattern": "^data/places/.+\\.json$" },
+    "status": { "enum": ["ready", "blocked"] },
+    "primaryFunction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "placeObjectDistinction", "sourceIds"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 20 },
+        "placeObjectDistinction": { "type": "string", "minLength": 20 },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "politicsTopics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["emneId", "siteSpecificRationale", "evidenceChainIds"],
+        "properties": {
+          "emneId": { "type": "string", "pattern": "^em_pol_[a-z0-9_]+$" },
+          "siteSpecificRationale": { "type": "string", "minLength": 20 },
+          "evidenceChainIds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^chain_[a-z0-9_-]+$" }
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "evidenceChains": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/evidenceChain" }
+    },
+    "currentVerification": { "$ref": "#/$defs/currentVerification" },
+    "quizOpening": { "$ref": "#/$defs/quizOpening" },
+    "chronologyStories": { "$ref": "#/$defs/chronologyStories" },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["A", "B", "C", "D", "E", "F", "G"],
+      "properties": {
+        "A": { "$ref": "#/$defs/gate" },
+        "B": { "$ref": "#/$defs/gate" },
+        "C": { "$ref": "#/$defs/gate" },
+        "D": { "$ref": "#/$defs/gate" },
+        "E": { "$ref": "#/$defs/gate" },
+        "F": { "$ref": "#/$defs/gate" },
+        "G": { "$ref": "#/$defs/gate" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer", "reviewedAt", "notes"],
+      "properties": {
+        "reviewer": { "type": "string", "minLength": 1 },
+        "reviewedAt": { "type": "string", "format": "date" },
+        "notes": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^source_[a-z0-9_-]+$" }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "url", "sourceLocation", "sourceType", "verifiedAt", "temporalStatus"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^source_[a-z0-9_-]+$" },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "sourceLocation": { "type": "string", "minLength": 3 },
+        "sourceType": {
+          "enum": ["primary", "official", "institutional", "archive", "scholarly", "reputable_secondary"]
+        },
+        "verifiedAt": { "type": "string", "format": "date" },
+        "temporalStatus": { "enum": ["historical", "current", "superseded"] }
+      }
+    },
+    "evidenceStep": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "statement", "sourceIds"],
+          "properties": {
+            "status": { "const": "documented" },
+            "statement": { "type": "string", "minLength": 8 },
+            "sourceIds": { "$ref": "#/$defs/sourceIds" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "enum": ["not_applicable", "missing"] },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    },
+    "evidenceChain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "claim", "stages"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^chain_[a-z0-9_-]+$" },
+        "claim": { "type": "string", "minLength": 20 },
+        "stages": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "institutionActor",
+            "competenceRole",
+            "ruleDecision",
+            "resourceInstrument",
+            "implementation",
+            "output",
+            "outcomeEffect"
+          ],
+          "properties": {
+            "institutionActor": { "$ref": "#/$defs/evidenceStep" },
+            "competenceRole": { "$ref": "#/$defs/evidenceStep" },
+            "ruleDecision": { "$ref": "#/$defs/evidenceStep" },
+            "resourceInstrument": { "$ref": "#/$defs/evidenceStep" },
+            "implementation": { "$ref": "#/$defs/evidenceStep" },
+            "output": { "$ref": "#/$defs/evidenceStep" },
+            "outcomeEffect": { "$ref": "#/$defs/evidenceStep" }
+          }
+        }
+      }
+    },
+    "currentVerification": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "checkedAt", "currentClaimIds", "sourceIds"],
+          "properties": {
+            "status": { "const": "PASS" },
+            "checkedAt": { "type": "string", "format": "date" },
+            "currentClaimIds": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^chain_[a-z0-9_-]+$" }
+            },
+            "sourceIds": { "$ref": "#/$defs/sourceIds" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    },
+    "quizOpening": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "quizTargetId",
+            "firstTwoSetsQuestionCount",
+            "sourceBrief",
+            "productionContext",
+            "requiredInputs"
+          ],
+          "properties": {
+            "status": { "const": "PASS" },
+            "quizTargetId": { "type": "string", "minLength": 1 },
+            "firstTwoSetsQuestionCount": { "const": 14 },
+            "sourceBrief": { "type": "string", "minLength": 1 },
+            "productionContext": { "type": "string", "minLength": 1 },
+            "requiredInputs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    },
+    "chronologyStories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "chronologyReviewed", "storiesReviewed", "rationale"],
+      "properties": {
+        "status": { "enum": ["PASS", "N/A"] },
+        "chronologyReviewed": { "type": "boolean" },
+        "storiesReviewed": { "type": "boolean" },
+        "rationale": { "type": "string", "minLength": 12 }
+      }
+    },
+    "gate": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "evidenceRefs"],
+          "properties": {
+            "status": { "const": "PASS" },
+            "evidenceRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    }
+  }
+}
