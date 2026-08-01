@@ -35,13 +35,17 @@ test('each global-domain theory uses at least two cases linked to its own emne',
   }
 });
 
-test('decolonization uses a separate repatriation case instead of colonial trade as its second case', () => {
+test('decolonization uses a political transition case rather than trade or museum repatriation', () => {
   const entry = registry.find((candidate) => candidate.theory_id === 'theory_his_global_kolonial_avkolonisering_og_utviklingspolitikk');
-  assert.ok(entry.claim_ids.includes('claim_his_norsk_folkemuseum_baastede_transfer_1600_items'));
-  assert.ok(entry.case_ids.includes('case_his_norsk_folkemuseum_sami_collections_repatriation'));
+  const targetEmneId = 'em_his_global_kolonial_avkolonisering_og_utviklingspolitikk';
+  const baastedeClaim = claimById.get('claim_his_norsk_folkemuseum_baastede_transfer_1600_items');
+  assert.ok(entry.claim_ids.includes('claim_his_oslo_radhus_mandela_deklerk_democratic_transition_1993'));
+  assert.ok(entry.case_ids.includes('case_his_oslo_radhus'));
   assert.ok(entry.case_ids.includes('case_his_stortinget'));
   assert.ok(!entry.claim_ids.includes('claim_his_fredensborg_danish_norwegian_triangle_trade_1767_1768'));
-  assert.match(entry.rationale, /samisk eierskap/);
+  assert.ok(!entry.claim_ids.includes('claim_his_norsk_folkemuseum_baastede_transfer_1600_items'));
+  assert.ok(!baastedeClaim.emne_ids.includes(targetEmneId));
+  assert.match(entry.rationale, /demokratisk Sør-Afrika/);
 });
 
 test('transnational-movement evidence uses two topic-specific cases with named cross-border channels', () => {
@@ -53,22 +57,25 @@ test('transnational-movement evidence uses two topic-specific cases with named c
     .filter((claim) => claim?.emne_ids.includes(targetEmneId))
     .flatMap((claim) => claim.scope.case_ids));
 
-  assert.ok(entry.claim_ids.includes('claim_his_oslo_radhus_lutuli_anti_apartheid_network_1961_1967'));
   assert.ok(entry.claim_ids.includes('claim_his_folkets_hus_nocosa_shipping_boycott_network_1967_1993'));
+  assert.ok(entry.claim_ids.includes('claim_his_nobel_institute_nansen_famine_relief_network_1921_1922'));
   assert.ok(entry.claim_ids.includes('claim_his_norsk_folkemuseum_pakistan_kharian_network_flow_1967_1975'));
+  assert.ok(!entry.claim_ids.includes('claim_his_oslo_radhus_lutuli_anti_apartheid_network_1961_1967'));
   assert.ok(!entry.claim_ids.includes('claim_his_eidsvolls_plass_vietnam_demonstration_1968'));
   assert.ok(!vietnamClaim.emne_ids.includes(targetEmneId));
-  assert.deepEqual(topicCases, new Set(['case_his_folkets_hus', 'case_his_oslo_radhus']));
+  assert.deepEqual(topicCases, new Set(['case_his_folkets_hus', 'case_his_nobel_institute_nansen_postwar_order']));
   assert.match(entry.rationale, /boikott/);
   assert.match(entry.rationale, /Shipping Research Bureau/);
+  assert.match(entry.rationale, /48 Røde Kors-/);
   assert.match(entry.rationale, /reiseruter og finansiering/);
-  assert.match(entry.disconfirmation_conditions.join(' '), /konkrete grensekryssende kanaler/);
+  assert.match(entry.disconfirmation_conditions.join(' '), /separate grensekryssende kanaler/);
 });
 
 test('collection and decision institutions remain anchors rather than foreign event locations', () => {
   assert.ok(dossier.production_decisions.some((decision) => decision.includes('lokaliseres ikke til dagens bygg')));
   assert.ok(dossier.production_decisions.some((decision) => decision.includes('gjennomføring og virkninger i andre land')));
   assert.ok(dossier.production_decisions.some((decision) => decision.includes('oppbevarings- og dokumentasjonsanker')));
+  assert.ok(dossier.production_decisions.some((decision) => decision.includes('Nobelinstituttet brukes som kilde- og institusjonsanker')));
   for (const claimId of [
     'claim_his_fredensborg_danish_norwegian_triangle_trade_1767_1768',
     'claim_his_nb_santali_authored_manuscripts_local_knowledge_agency',
