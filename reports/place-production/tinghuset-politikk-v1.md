@@ -5,7 +5,7 @@
 - Kategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
 - Normal åpning: 14 ordinære spørsmål før faglig fordypning i sett 3
-- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om», fase 2 «Historie», fase 3 «Fortellinger» og fase 4 «Før/etter» er fullført, øvrige innholdsflater er ikke gjenopptatt
+- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om», fase 2 «Historie», fase 3 «Fortellinger», fase 4 «Før/etter» og fase 5 «Nyheter» er fullført, øvrige innholdsflater er ikke gjenopptatt
 
 ## Politikk-hovedfunksjon
 
@@ -56,7 +56,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 | Historie | PASS – fase 2 | Sju chronology-punkter dekker bygging, innflytting, navne- og bruksendringer, ombygging, terrorrettssaken og sammenslåingen i 2021. `history_layers` er vurdert og utelatt fordi det ville duplisere tidslinjen |
 | Fortellinger | PASS – fase 3 | Én stedsspesifikk `episode_v1`-Story forklarer hvordan Oslo tingrett måtte avgjøre tilregnelighetsspørsmålet da to sakkyndigpar ga motstridende svar. Fortellingen har egen konflikt, rettssalsforløp, dom og dokumentert ettervirkning utover chronology-punktet |
 | Før/etter | PASS – fase 4 | Et kontrollert bildepar viser nøyaktig samme adresse før og etter kvartalsendringen: Rosenkrantz’ plass 4 i 1938 og Oslo tinghus på C. J. Hambros plass 4 i 2022. Begge bilder har tillatt lisens, lokal fil, synlig årstall og attribusjon. `before`, `now` og `change` skiller dokumentert observasjon fra tolkning |
-| Nyheter | Ikke startet | Nåtidsstoff er ikke materialisert i egen flate |
+| Nyheter | PASS – fase 5 | Tre daterte driftsnotiser dekker sikkerhetskontrollen i 2025, prøveprosjektet for normert rettsmøtetid og kapasitetsstatusen i årsmeldingen. Hver notis har offisiell primærkilde, kontrolltidspunkt og tydelig inferensgrense |
 | Lesespor | Ikke startet | Ingen stedskoblet Lesespor-oppføring |
 | Kilder | Ikke startet | Kilder finnes i produksjons- og quizfiler, men ikke i canonical brukerflate |
 | Mer | Ikke startet | Ingen vurdert språkstoff, observations, Knowledge/funfacts eller curated relations |
