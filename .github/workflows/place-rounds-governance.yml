@@ -22,6 +22,8 @@ on:
       - "tests/tinghuset-rounds-completion.test.mjs"
       - "tests/oslo-tinghuset-before-after-phase.test.mjs"
       - "tests/oslo-tinghuset-news-phase.test.mjs"
+      - "tests/oslo-tinghuset-reading-phase.test.mjs"
+      - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -64,6 +66,8 @@ on:
       - "tests/tinghuset-rounds-completion.test.mjs"
       - "tests/oslo-tinghuset-before-after-phase.test.mjs"
       - "tests/oslo-tinghuset-news-phase.test.mjs"
+      - "tests/oslo-tinghuset-reading-phase.test.mjs"
+      - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -116,4 +120,4 @@ jobs:
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
           node tests/tinghuset-rounds-completion.test.mjs
-          node --test tests/oslo-tinghuset-before-after-phase.test.mjs tests/oslo-tinghuset-news-phase.test.mjs
+          node --test tests/oslo-tinghuset-before-after-phase.test.mjs tests/oslo-tinghuset-news-phase.test.mjs tests/oslo-tinghuset-reading-phase.test.mjs
