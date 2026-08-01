@@ -1595,17 +1595,21 @@ if (peopleEl) {
 
   const peopleHtml = allPeopleRows
     .map(p => {
-      const personDesc = String(p.popupdesc || p.desc || "").trim();
+      const personDesc = String(p.popupDesc || p.popupdesc || p.desc || "").trim();
+      const personImage = String(p.cardImage || p.imageCard || p.image || "").trim();
+      const isIllustration = p?.imageMeta?.mediaType === "editorial_illustration" || p?.imageMeta?.source === "history_go_editorial_illustration";
+      const imageAlt = isIllustration ? `Illustrasjon av ${p.name || "person"}` : (p.name || "");
 
       return `
-        <button class="pc-person" data-person="${p.id}">
-          <img src="${p.image}" class="pc-person-img" alt="">
+        <button class="pc-person" data-person="${escapePlaceCardHTML(p.id)}">
+          ${personImage ? `<img src="${escapePlaceCardHTML(personImage)}" class="pc-person-img" alt="${escapePlaceCardHTML(imageAlt)}">` : ""}
           <div class="pc-person-meta">
             <div class="pc-person-name-row">
-              <span class="pc-person-name">${p.name || ""}</span>
-              ${p.year ? `<span class="pc-person-year">${p.year}</span>` : ""}
+              <span class="pc-person-name">${escapePlaceCardHTML(p.name || "")}</span>
+              ${p.year ? `<span class="pc-person-year">${escapePlaceCardHTML(p.year)}</span>` : ""}
             </div>
-            ${personDesc ? `<div class="pc-person-desc">${personDesc}</div>` : ""}
+            ${isIllustration ? `<div class="pc-person-image-kind">Illustrasjon</div>` : ""}
+            ${personDesc ? `<div class="pc-person-desc">${escapePlaceCardHTML(personDesc)}</div>` : ""}
           </div>
         </button>
       `;
@@ -1634,13 +1638,18 @@ if (peopleEl) {
 }
 window.HG_SocialDemoAdapter?.attachToPlaceCard?.(peopleEl || card, place);
 
-// people icon preview (første person)
+// People-previewet velger første bildeklare person uten å filtrere popupinnholdet.
 if (peopleIcon) {
-  const p0 = persons?.[0];
-  if (p0?.image) {
-    peopleIcon.innerHTML = `<img src="${p0.image}" class="pc-person-img" alt="">`;
+  const p0 = persons?.find(person => person?.cardImage || person?.imageCard || person?.image) || persons?.[0];
+  const previewImage = p0?.cardImage || p0?.imageCard || p0?.image || "";
+  const isIllustration = p0?.imageMeta?.mediaType === "editorial_illustration" || p0?.imageMeta?.source === "history_go_editorial_illustration";
+  if (previewImage) {
+    const previewAlt = isIllustration ? `Illustrasjon av ${p0.name || "person"}` : (p0.name || "");
+    peopleIcon.innerHTML = `<img src="${escapePlaceCardHTML(previewImage)}" class="pc-person-img" alt="${escapePlaceCardHTML(previewAlt)}">`;
+    peopleIcon.dataset.roundReady = "true";
   } else {
     setRoundLabel(peopleIcon, "👥", persons.length);
+    peopleIcon.dataset.roundReady = "false";
   }
 }
 

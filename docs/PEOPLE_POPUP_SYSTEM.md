@@ -8,7 +8,7 @@ Canonical data: `data/people/manifest.json`
 Readiness-audit: `tools/audit-people-popup-readiness.mts`
 Faktisitetskontrakt: `docs/FACTUALITY_CONTRACT.md`
 Profilproduksjon: `docs/PEOPLE_PROFILE_CANONICAL.md`
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-01**
 
 Dette dokumentet definerer hvordan people-popupen skal presentere en canonical person, hvilke felt den kan lese, hvordan ulike persontyper skal fylles, og hvordan manglende informasjon skal håndteres uten tomme bokser eller oppdiktede data.
 
@@ -256,7 +256,8 @@ Regler:
 - et ødelagt bildeikon er aldri et gyldig sluttresultat;
 - et tomt bilde er bedre enn et feilaktig eller uavklart portrett;
 - identitet, lisens, kilde og godkjenning følger `docs/PEOPLE_IMAGES.md`;
-- popupen skal aldri bruke et tilfeldig ansikt, et generert portrett eller et bilde av en navnelik person.
+- popupen skal aldri bruke et tilfeldig ansikt, et umerket generert portrett eller et bilde av en navnelik person;
+- en tydelig stilisert redaksjonell illustrasjon er bare tillatt når den følger den særskilte identitets-, proveniens-, review- og merkingsporten i `docs/PEOPLE_IMAGES.md`.
 
 ## 4. Persontypeprofiler
 

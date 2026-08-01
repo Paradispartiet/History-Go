@@ -38,6 +38,23 @@ export function isAllowedLicense(license: unknown): boolean {
   return /public domain|\bpd\b|\bcc0\b|cc by(?!.*\b(?:nc|nd)\b)|creative commons attribution(?!.*noncommercial|.*no derivatives)/.test(l);
 }
 
+export function validateEditorialIllustrationMeta(meta: unknown): string[] {
+  if (!isObj(meta) || reqStr(meta.source) !== 'history_go_editorial_illustration') return [];
+  const errors: string[] = [];
+  if (reqStr(meta.mediaType) !== 'editorial_illustration') errors.push('mediaType');
+  if (!reqStr(meta.sourcePage)) errors.push('sourcePage');
+  if (!reqStr(meta.referenceImage)) errors.push('referenceImage');
+  if (!reqStr(meta.identityReference)) errors.push('identityReference');
+  if (!reqStr(meta.creator)) errors.push('creator');
+  if (!reqStr(meta.credit)) errors.push('credit');
+  if (!isAllowedLicense(meta.license)) errors.push('license');
+  if (!reqStr(meta.licenseUrl)) errors.push('licenseUrl');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(reqStr(meta.generatedAt))) errors.push('generatedAt');
+  if (reqStr(meta.reviewStatus) !== 'identity_and_editorial_review_passed') errors.push('reviewStatus');
+  if (!/illustrasjon/i.test(reqStr(meta.disclosure)) || !/ikke fotografi/i.test(reqStr(meta.disclosure))) errors.push('disclosure');
+  return errors;
+}
+
 function assertCommonsUrl(u: string): void {
   const url = new URL(u);
   if (!/^(upload\.wikimedia\.org|commons\.wikimedia\.org)$/.test(url.hostname)) throw new Error(`Image URL is not Wikimedia Commons: ${u}`);
@@ -298,7 +315,7 @@ function selectApplyCandidates(candidates: any[], args: string[]): ApplyPlan {
 }
 function extFromMime(mime: string): string { if (mime.includes('png')) return '.png'; if (mime.includes('webp')) return '.webp'; if (mime.includes('gif')) return '.gif'; return '.jpg'; }
 async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> { const res = await fetcher(url, { headers: { 'User-Agent': UA } }); if (!res.ok || !res.body) throw new Error(`Download failed ${res.status}`); const ext = extFromMime(res.headers.get('content-type') || 'image/jpeg'); const dest = destBase + ext; if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`); const tmp = `${dest}.${process.pid}.tmp`; try { await pipeline(res.body as any, createWriteStream(tmp, { flags: 'wx' })); await rename(tmp, dest); return path.relative(ROOT(), dest).replace(/\\/g, '/'); } catch (e) { await rm(tmp, { force: true }); throw e; } }
-async function regenerateAttributions(entries: Entry[], write: boolean): Promise<void> { const rows = entries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => r.source === 'wikimedia_commons').sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
+async function regenerateAttributions(entries: Entry[], write: boolean): Promise<void> { const rows = entries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => ['wikimedia_commons', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
 export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
   const write = args.includes('--write');
   const candidateJson = await readJson(CANDIDATES());
@@ -338,6 +355,6 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
     await regenerateAttributions(await loadPeople(), true);
   } else await regenerateAttributions(entries, false);
 }
-export async function auditPeople(): Promise<number> { const entries = await loadPeople(); let external = 0, noMeta = 0, badLic = 0, missing = 0; const files = new Map<string,string[]>(); for (const e of entries) { const img = reqStr(e.person.image); if (!img) continue; if (/^https?:/.test(img)) external++; else { files.set(img, [...(files.get(img) || []), reqStr(e.person.id)]); if (!(await exists(path.join(ROOT(), img)))) missing++; } if (!isObj(e.person.imageMeta)) noMeta++; else if (!isAllowedLicense(e.person.imageMeta.license)) badLic++; } const dup = [...files.values()].filter(v => v.length > 1).length; const noImage = entries.filter(e => !reqStr(e.person.image)).length; console.log(JSON.stringify({ totalPeople: entries.length, peopleWithoutImage: noImage, externalImageUrls: external, localImagesWithoutImageMeta: noMeta, unknownOrDisallowedLicenses: badLic, missingLocalImageFiles: missing, duplicateOrCollidingImageFiles: dup }, null, 2)); return external || noMeta || badLic || missing || dup ? 1 : 0; }
+export async function auditPeople(): Promise<number> { const entries = await loadPeople(); let external = 0, noMeta = 0, badLic = 0, missing = 0, badEditorial = 0; const files = new Map<string,string[]>(); for (const e of entries) { const img = reqStr(e.person.image); if (!img) continue; if (/^https?:/.test(img)) external++; else { files.set(img, [...(files.get(img) || []), reqStr(e.person.id)]); if (!(await exists(path.join(ROOT(), img)))) missing++; } if (!isObj(e.person.imageMeta)) noMeta++; else { if (!isAllowedLicense(e.person.imageMeta.license)) badLic++; if (validateEditorialIllustrationMeta(e.person.imageMeta).length) badEditorial++; } } const dup = [...files.values()].filter(v => v.length > 1).length; const noImage = entries.filter(e => !reqStr(e.person.image)).length; console.log(JSON.stringify({ totalPeople: entries.length, peopleWithoutImage: noImage, externalImageUrls: external, localImagesWithoutImageMeta: noMeta, unknownOrDisallowedLicenses: badLic, invalidEditorialIllustrationMetadata: badEditorial, missingLocalImageFiles: missing, duplicateOrCollidingImageFiles: dup }, null, 2)); return external || noMeta || badLic || badEditorial || missing || dup ? 1 : 0; }
 async function main() { const [cmd, ...args] = process.argv.slice(2); if (cmd === 'candidates') await buildCandidates(args); else if (cmd === 'apply') await applyCandidates(args); else if (cmd === 'audit') process.exitCode = await auditPeople(); else { console.error('Usage: people-image-pipeline <candidates|apply|audit>'); process.exitCode = 2; } }
 if (import.meta.url === `file://${process.argv[1]}`) main().catch(e => { console.error(e); process.exit(1); });

@@ -39,18 +39,22 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 
 - Place: oppdatert beskrivelse, popup, Politikk-gate og fagkoblinger
 - Hovedbilde: kontrollert public-domain-foto av Oslo tinghus, med lokal full- og kortvariant og lagret attribusjon
-- People: canonicale stedskoblinger til Ole Lislerud og Øivind Åstein er dokumentert; rundingen er ikke bildeklart fordi ingen godkjent Commons-portrettkandidat er funnet
+- People: sju canonicale stedskoblinger er dokumentert: Ole Lislerud, Øivind Åstein, Yngve Svendsen, Nina Sundbye, Svein Strand, Svein Bolling og Ingunn Skogholt. Rundingen bruker en identitetskontrollert, tydelig merket redaksjonell illustrasjon av sorenskriver Yngve Svendsen
 - Story: begrunnet N/A; årsmeldingstall og viktige årstall hører i chronology/Knowledge og utgjør ikke alene en sammenhengende stedsepisode
 - Quiz: 21 eksternt kildebelagte spørsmål
 - Objects: bildeklart, stedsspesifikt skilt til rettssal 250 med CC BY-SA 3.0-attribusjon
-- Brands: ikke produksjonsklar; relevante firmaforbindelser er dokumentert, men ingen korrekt og rettighetsavklart logo er materialisert i canonical Brands-data
+- Brands: Beate Ellingsen AS er canonical profesjonell Brand med firmaets offisielle logo og direkte dokumentert totalinnredning av 52 rettssaler og tilhørende rom i 1991–1994
 - Challenge: ivaretas gjennom quiz- og stedslæringsløpet
 
 ## Rundingsgate
 
-Runtimeprofilen er fast `people · objects · brands`, med Badges oppe til høyre. Objects har et reelt bildeklart preview. People og Brands er fortsatt stoppgater etter bildesjekklisten og kan ikke gis PASS på grunnlag av initialer, generisk hovedbilde eller omklassifiserte institusjoner.
+Runtimeprofilen er fast `people · objects · brands`, med Badges oppe til høyre. Alle tre innholdsrundingene har nå reelle, stedsspesifikke og bildeklare previews:
 
-Status for samlet sted: **ikke sluttgodkjent** før People- og Brands-previewene er canonicale og bildeklare.
+- People: illustrert Yngve Svendsen-preview med offisiell identitetsreferanse, lokal fil, CC0 og synlig illustrasjonsmerking;
+- Objects: det konkrete skiltet til rettssal 250;
+- Brands: offisiell Beate Ellingsen AS-logo med dokumentert prosjektkobling.
+
+Status for samlet sted: **produksjonsklart**, forutsatt grønn slutt-CI på låst PR-head.
 
 ## Kilder
 
@@ -66,6 +70,7 @@ Status for samlet sted: **ikke sluttgodkjent** før People- og Brands-previewene
 - [KORO: Oslo tinghus](https://koro.no/prosjekter/oslo-tinghus/)
 - [Beate Ellingsen AS: Oslo Tinghus](https://beate-ellingsen.no/oslo-tinghus)
 - [Store norske leksikon: Østgaard Arkitekter AS](https://snl.no/%C3%98stgaard_Arkitekter_AS)
+- [Oslo tingrett: Organisasjonen vår](https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/om-oslo-tingrett/organisasjonen/)
 
 ## Maskinell sluttgate
 
