@@ -3,7 +3,7 @@ import { mkdtemp, mkdir, writeFile, readFile, access } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
-import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates } from '../dist/tools/people-image-pipeline.mjs';
+import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates, validateEditorialIllustrationMeta } from '../dist/tools/people-image-pipeline.mjs';
 
 assert.equal(isAllowedLicense('Public Domain'), true);
 assert.equal(isAllowedLicense('CC0'), true);
@@ -13,6 +13,24 @@ assert.equal(isAllowedLicense('CC BY-NC 4.0'), false);
 assert.equal(isAllowedLicense('CC BY-ND 4.0'), false);
 assert.equal(isAllowedLicense('all rights reserved'), false);
 assert.equal(isAllowedLicense(''), false);
+
+const validEditorialMeta = {
+  source: 'history_go_editorial_illustration',
+  mediaType: 'editorial_illustration',
+  sourcePage: 'https://example.org/person',
+  referenceImage: 'https://example.org/person.jpg',
+  identityReference: 'Official institutional portrait',
+  creator: 'History GO with OpenAI image generation',
+  credit: 'History GO / OpenAI',
+  license: 'CC0 1.0',
+  licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+  generatedAt: '2026-08-01',
+  reviewStatus: 'identity_and_editorial_review_passed',
+  disclosure: 'Illustrasjon basert på kontrollert identitetsreferanse; ikke fotografi.'
+};
+assert.deepEqual(validateEditorialIllustrationMeta(validEditorialMeta), []);
+assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, disclosure: '' }), ['disclosure']);
+assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, reviewStatus: 'pending' }), ['reviewStatus']);
 
 async function missing(p){ try { await access(p); return false; } catch { return true; } }
 async function fixture(){

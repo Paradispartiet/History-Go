@@ -124,6 +124,22 @@ test("renders all structured profile sections when the person has rich data", as
   assert.equal(quizButton.hidden, false);
 });
 
+test("labels a generated editorial portrait as an illustration", async () => {
+  const { window, captured } = createHarness({ hasQuiz: false });
+  window.showPersonPopup({
+    id: "illustrated_person",
+    name: "Illustrert Person",
+    image: "bilder/kort/people/illustrert.png",
+    imageMeta: {
+      source: "history_go_editorial_illustration",
+      mediaType: "editorial_illustration"
+    }
+  });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.match(captured.html, /hg-person-portrait-kind">Illustrasjon/);
+  assert.match(captured.html, /alt="Illustrasjon av Illustrert Person"/);
+});
+
 test("renders the enriched Kjersti profile without requiring a portrait", async () => {
   const { window, captured } = createHarness({ hasQuiz: true });
   const people = JSON.parse(fs.readFileSync(

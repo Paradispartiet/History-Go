@@ -113,6 +113,11 @@
     ]);
   }
 
+  function isEditorialIllustration(person) {
+    return firstText(person?.imageMeta?.mediaType, person?.imageMeta?.source) === "editorial_illustration"
+      || firstText(person?.imageMeta?.source) === "history_go_editorial_illustration";
+  }
+
   function formatDate(value) {
     const raw = text(value);
     if (!raw) return "";
@@ -542,6 +547,8 @@
     const anchorYear = firstText(person?.year, person?.anchorYear);
     const candidates = imageCandidates(person);
     const initials = initialsFor(person);
+    const editorialIllustration = isEditorialIllustration(person);
+    const portraitAlt = editorialIllustration ? `Illustrasjon av ${name}` : name;
 
     const facts = [
       renderFact("Rolle", role),
@@ -567,7 +574,8 @@
         <div class="hg-modal-body hg-person-popup-body">
           <section class="hg-person-hero">
             <div class="hg-person-hero-media is-missing" data-person-hero-media>
-              <img class="hg-person-hero-image" data-person-hero-image alt="${escapeAttr(name)}" hidden>
+              <img class="hg-person-hero-image" data-person-hero-image alt="${escapeAttr(portraitAlt)}" hidden>
+              ${editorialIllustration ? `<small class="hg-person-portrait-kind">Illustrasjon</small>` : ""}
               <div class="hg-person-hero-placeholder">
                 <strong>${escapeHtml(initials)}</strong>
                 <span>${escapeHtml(name)}</span>

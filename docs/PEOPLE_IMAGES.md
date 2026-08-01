@@ -4,11 +4,11 @@ Status: **canonical bilde-, rettighets- og attribusjonskontrakt for people-data*
 Implementasjon: [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts)  
 Tester: [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs)  
 Datainngang: [`../data/people/manifest.json`](../data/people/manifest.json)  
-Sist kontrollert: **2026-07-26**
+Sist kontrollert: **2026-08-01**
 
 Dette dokumentet eier tillatte bildekilder, lisensporten, redaksjonell godkjenning, lokal lagring og attribusjonskrav for people-bilder. Verktøyet eier implementasjonen, og canonical people-filer eier de faktiske `image`, `cardImage` og `imageMeta`-verdiene.
 
-Produksjonskilden er Wikidata og Wikimedia Commons. Google Images brukes ikke: søkeresultater er ikke en lisenskilde, gir ofte kopier fra tilfeldige nettsteder og kan ikke gi stabil attribusjon.
+Dokumentariske portretter hentes fra Wikidata og Wikimedia Commons. Når ingen lovlig og identitetsmessig forsvarlig portrettkandidat finnes, kan History GO produsere en tydelig stilisert **redaksjonell illustrasjon** etter den separate porten nedenfor. Google Images brukes ikke som bilde- eller lisenskilde: søkeresultater gir ofte kopier fra tilfeldige nettsteder og kan ikke gi stabil attribusjon.
 
 ## Flyt
 
@@ -54,6 +54,25 @@ Manifeststier må være `people/...` og løses kun under `data/people/`. Apply k
 Attribusjon lagres i `imageMeta` med Commons-side, creator, credit, license og licenseUrl. Kunstneriske fremstillinger skal merkes tydelig i eksisterende personfelt/tekst før godkjenning dersom bildet ikke er et fotografisk portrett.
 
 Personer uten bilde skal bruke eksisterende initialer/placeholder i UI. Nye bildeleverandører kan bare legges til ved å normalisere metadata til samme kandidatformat og kjøre samme lisensport ved både kandidat- og apply-steg.
+
+## Redaksjonell illustrasjon når portrett mangler
+
+En redaksjonell illustrasjon er en eksplisitt fallback, ikke et dokumentarfoto og ikke en snarvei rundt identitetskontrollen. Den kan brukes når Commons-flyten ikke gir et egnet portrett og alle disse kravene er oppfylt:
+
+- personen har en direkte, kildebelagt canonical identitet og stedskobling;
+- minst én offentlig, autoritativ institusjonsside gir en kontrollert identitetsreferanse;
+- illustrasjonen er tydelig tegnet/stilisert og kopierer ikke referansebildets bakgrunn eller fotografiske komposisjon;
+- ansikt, alderstrekk og andre identitetsbærende kjennetegn er manuelt kontrollert mot referansen;
+- bildet inneholder ikke oppdiktede handlinger, symboler, uniformer, verv, sitater eller kontekster;
+- `imageMeta.source` er `history_go_editorial_illustration` og `mediaType` er `editorial_illustration`;
+- `sourcePage`, `referenceImage`, `identityReference`, `creator`, `credit`, `license`, `licenseUrl`, `generatedAt`, `reviewStatus` og `disclosure` er fylt ut;
+- `reviewStatus` er `identity_and_editorial_review_passed`;
+- `disclosure` sier uttrykkelig at bildet er en illustrasjon og ikke et fotografi;
+- outputfilen er lokal, rettighetsavklart og publisert med en tillatt lisens.
+
+People-popupen og andre tekstbærende personflater skal vise «Illustrasjon». Alt-tekst for bildepreview skal også skille illustrasjon fra fotografi. En generert fotorealistisk person, et tilfeldig ansikt eller en illustrasjon uten kontrollert identitetsreferanse er fortsatt forbudt.
+
+`npm run people:images:audit` validerer metadataene for denne fallbacken. Illustrasjoner registreres i den deterministiske attribusjonsfila sammen med Commons-portretter.
 
 ## GitHub Actions-kandidatkjøring
 

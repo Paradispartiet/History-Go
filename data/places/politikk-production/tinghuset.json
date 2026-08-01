@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "tinghuset",
+  "placeFile": "data/places/politikk/oslo/places_politikk/tinghuset.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Oslo tinghus er et domstolsbygg der Oslo tingrett gjennomfører rettsmøter og rettslig kontroll innenfor lovbestemte rammer.",
+    "placeObjectDistinction": "Stedet er den fysiske institusjonsarenaen ved C. J. Hambros plass, ikke en enkelt lovtekst, dom, rettssak eller hele domstolsorganisasjonen.",
+    "sourceIds": [
+      "source_domstol_praktisk",
+      "source_oslo_enedommer_2025"
+    ]
+  },
+  "politicsTopics": [
+    {
+      "emneId": "em_pol_domstoler_rettspraksis",
+      "siteSpecificRationale": "Rettssaler, enedommersaker og publiserte behandlingstall gjør domstolens konkrete praksis etterprøvbar ved stedet.",
+      "evidenceChainIds": [
+        "chain_rettslig_kontroll",
+        "chain_kapasitet_og_tid"
+      ]
+    },
+    {
+      "emneId": "em_pol_rettsstat_rettssikkerhet",
+      "siteSpecificRationale": "Grunnlovens krav til uavhengighet, offentlighet og rimelig tid kan følges fra regel til dokumentert gjennomføring.",
+      "evidenceChainIds": [
+        "chain_offentlig_rettergang",
+        "chain_kapasitet_og_tid"
+      ]
+    },
+    {
+      "emneId": "em_pol_likeverd_rettssikkerhet",
+      "siteSpecificRationale": "Uskyldspresumsjon og rettferdig rettergang gir presise rettssikkerhetskrav, mens årsrapportene avgrenser hva aktivitetsmål kan bevise.",
+      "evidenceChainIds": [
+        "chain_rettslig_kontroll",
+        "chain_kapasitet_og_tid"
+      ]
+    },
+    {
+      "emneId": "em_pol_maktbegrensning",
+      "siteSpecificRationale": "En uavhengig domstol og domstolskontroll av inngrep er konkrete mekanismer som begrenser offentlig makt.",
+      "evidenceChainIds": [
+        "chain_rettslig_kontroll",
+        "chain_offentlig_rettergang"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_domstol_praktisk",
+      "url": "https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/om-oslo-tingrett/praktisk-informasjon-om-oslo-tinghus/",
+      "sourceLocation": "Sikkerhetskontroll, rettssaler, ferdigstillelse og kunst",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_grunnloven_95_98",
+      "url": "https://lovdata.no/nav/lov/1814-05-17/kapE",
+      "sourceLocation": "Grunnloven §§ 95–98",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_domstolloven_124",
+      "url": "https://lovdata.no/dokument/NL/lov/1915-08-13-5",
+      "sourceLocation": "Domstolloven § 124",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_security_2025",
+      "url": "https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/publikasjoner2/arsmelding-2025/fokusomrader/sikkerhet/",
+      "sourceLocation": "Nøkkeltall for sikkerhetskontroll og sikkerhetstiltak",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_enedommer_2025",
+      "url": "https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/publikasjoner2/arsmelding-2025/enedommersaker/enedommersaker/",
+      "sourceLocation": "Ingress, sakstyper og behandlingstid",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_forord_2025",
+      "url": "https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/publikasjoner2/arsmelding-2025/forord/",
+      "sourceLocation": "Kapasitet og måloppnåelse for meddomsrettssaker",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_active_case_2025",
+      "url": "https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/publikasjoner2/arsmelding-2025/fokusomrader/aktiv-saksstyring/",
+      "sourceLocation": "Prosjektstart, mål og planlagt evaluering",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-01",
+      "temporalStatus": "current"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_rettslig_kontroll",
+      "claim": "Enedommersaker viser hvordan lovregulerte inngrep blir lagt fram for domstolskontroll uten å være en domfellelse.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo tingrett og én fagdommer behandler enedommersaken.",
+          "sourceIds": [
+            "source_oslo_enedommer_2025"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Fagdommeren avgjør prosesspørsmål som ransaking, fengsling og besøksforbud.",
+          "sourceIds": [
+            "source_oslo_enedommer_2025"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Grunnloven krever dom før straff og beskytter uskyldspresumsjonen.",
+          "sourceIds": [
+            "source_grunnloven_95_98"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Fagdommer, saksbehandling og rettssaler er dokumenterte institusjonelle ressurser.",
+          "sourceIds": [
+            "source_oslo_enedommer_2025",
+            "source_domstol_praktisk"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Oslo tingrett registrerte og behandlet enedommersaker gjennom 2025.",
+          "sourceIds": [
+            "source_oslo_enedommer_2025"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "13 742 enedommersaker kom inn, med sju dagers gjennomsnittlig behandlingstid.",
+          "sourceIds": [
+            "source_oslo_enedommer_2025"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Aktivitetstallene dokumenterer ikke materiell riktighet eller rettferdighet i hver avgjørelse."
+        }
+      }
+    },
+    {
+      "id": "chain_offentlig_rettergang",
+      "claim": "Offentlig rettergang ved tinghuset gjennomføres som lovregulert innsyn med begrunnede grenser og fysisk sikkerhetskontroll.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo tingrett organiserer rettsmøter og publikumsadgang i Oslo tinghus.",
+          "sourceIds": [
+            "source_domstol_praktisk"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Retten kan bruke lovbestemte unntak fra offentlighet når vilkårene er oppfylt.",
+          "sourceIds": [
+            "source_grunnloven_95_98",
+            "source_domstolloven_124"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Grunnloven § 95 og domstolloven § 124 fastsetter offentlighet som utgangspunkt.",
+          "sourceIds": [
+            "source_grunnloven_95_98",
+            "source_domstolloven_124"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Rettssaler, publikumsarealer og sikkerhetskontroll er dokumenterte instrumenter.",
+          "sourceIds": [
+            "source_domstol_praktisk"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Besøkende og bagasje ble kontrollert før adgang gjennom 2025.",
+          "sourceIds": [
+            "source_domstol_praktisk",
+            "source_oslo_security_2025"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "137 953 personer ble registrert i metalldetektoren, og 298 saker hadde særskilte tiltak.",
+          "sourceIds": [
+            "source_oslo_security_2025"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Kontrolltallene dokumenterer ikke alene lik tilgang, nødvendighet eller rettferdig rettergang."
+        }
+      }
+    },
+    {
+      "id": "chain_kapasitet_og_tid",
+      "claim": "Kildene viser et skille mellom retten til behandling innen rimelig tid, tilgjengelige ressurser og faktisk måloppnåelse.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo tingrett rapporterer om egen saksbehandling og kapasitet.",
+          "sourceIds": [
+            "source_oslo_forord_2025"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Tingretten gjennomfører rettsbehandling, mens Stortinget har satt et tidsmål.",
+          "sourceIds": [
+            "source_oslo_forord_2025"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Grunnloven § 95 gir rett til avgjørelse innen rimelig tid.",
+          "sourceIds": [
+            "source_grunnloven_95_98"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Årsmeldingen beskriver kapasitetsutfordringer og manglende nye dommer- og saksbehandlerressurser.",
+          "sourceIds": [
+            "source_oslo_forord_2025"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Tingretten behandlet saker og startet et prosjekt med aktiv saksstyring.",
+          "sourceIds": [
+            "source_oslo_enedommer_2025",
+            "source_oslo_active_case_2025"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Enedommersaker hadde sju dagers gjennomsnitt, mens 90-dagersmålet for meddomsrettssaker ikke ble nådd.",
+          "sourceIds": [
+            "source_oslo_enedommer_2025",
+            "source_oslo_forord_2025"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Prosjektets ønskede effekt er ikke dokumentert før den planlagte evalueringen foreligger."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "PASS",
+    "checkedAt": "2026-08-01",
+    "currentClaimIds": [
+      "chain_rettslig_kontroll",
+      "chain_offentlig_rettergang",
+      "chain_kapasitet_og_tid"
+    ],
+    "sourceIds": [
+      "source_domstol_praktisk",
+      "source_grunnloven_95_98",
+      "source_domstolloven_124",
+      "source_oslo_security_2025",
+      "source_oslo_enedommer_2025",
+      "source_oslo_forord_2025",
+      "source_oslo_active_case_2025"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "tinghuset",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/tinghuset.json",
+    "productionContext": "data/quiz/production_context/politikk/tinghuset.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Årstall og årsstatistikk brukes i stedstekst og Knowledge. De utgjør ikke alene en sammenhengende, fysisk forankret episode med konflikt eller transformasjon, så ingen Story produseres."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction",
+        "source_domstol_praktisk"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "em_pol_domstoler_rettspraksis",
+        "em_pol_rettsstat_rettssikkerhet",
+        "em_pol_likeverd_rettssikkerhet",
+        "em_pol_maktbegrensning"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chain_rettslig_kontroll",
+        "chain_offentlig_rettergang",
+        "chain_kapasitet_og_tid"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources",
+        "currentVerification"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "outcomeEffect",
+        "claim_tinghuset_inference_limits"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/production_briefs/politikk/tinghuset.json",
+        "data/quiz/production_context/politikk/tinghuset.json",
+        "data/quiz/politikk/tinghuset_sets.json"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Chronology og Stories er gjennomgått; materialet bærer ikke en separat episode uten å gjøre årsstatistikk til kunstig fortelling."
+    }
+  },
+  "review": {
+    "reviewer": "OpenAI Codex",
+    "reviewedAt": "2026-08-01",
+    "notes": "Politisk hovedfunksjon, fire emner, tre evidenskjeder, nåtidskontroll, ordinær quizåpning og inferensgrenser er kontrollert separat."
+  }
+}
