@@ -210,9 +210,24 @@
     ].join("");
   }
 
+  function newsCards(items) {
+    const rows = list(items).filter(Boolean);
+    if (!rows.length) return "";
+    return `<div class="hg-place-tab-card-list">${rows.map(item => {
+      const title = text(item?.title || item?.name || item?.id || "Notis");
+      const meta = [item?.date || item?.year || item?.period, item?.category || item?.type]
+        .map(text).filter(Boolean).join(" · ");
+      const summary = text(item?.summary?.one_liner || item?.popupDesc || item?.desc || item?.description);
+      const rawSource = list(item?.sources)[0];
+      const sourceUrl = safeHttpsUrl(typeof rawSource === "string" ? rawSource : rawSource?.url);
+      const sourceLabel = text(typeof rawSource === "string" ? "Offisiell kilde" : rawSource?.label || rawSource?.title || "Offisiell kilde");
+      return `<article class="hg-place-tab-card"><strong>${esc(title)}</strong>${meta ? `<span>${esc(meta)}</span>` : ""}${summary ? `<p>${esc(summary)}</p>` : ""}${sourceUrl ? `<a class="hg-place-news-source" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel)} ↗</a>` : ""}</article>`;
+    }).join("")}</div>`;
+  }
+
   function renderNews(oldNews, newNews) {
-    return (list(oldNews).length ? section("Gamle nyheter", cards(oldNews)) : "")
-      + (list(newNews).length ? section("Nyere notiser", cards(newNews)) : "")
+    return (list(oldNews).length ? section("Gamle nyheter", newsCards(oldNews)) : "")
+      + (list(newNews).length ? section("Nyere notiser", newsCards(newNews)) : "")
       || `<div class="hg-place-tab-empty">Ingen nyheter eller notiser knyttet til stedet ennå.</div>`;
   }
 
