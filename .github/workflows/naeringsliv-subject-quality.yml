@@ -1,4 +1,4 @@
-name: Diagnostiser Youngstorget-kildene for sluttkapittelet
+name: Hent auditkilden for sluttkapittelet
 
 on:
   pull_request:
@@ -10,11 +10,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: diagnose-naeringsliv-final-${{ github.event.pull_request.number }}
+  group: inspect-naeringsliv-final-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
-  diagnose:
+  inspect:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -22,77 +22,21 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - name: Skriv eksakte Youngstorget-treff
+      - name: Rekonstruer og kopier auditkilden
         run: |
+          cat .bootstrap/naeringsliv-makt-regulering-baerekraft/part-* | base64 --decode > /tmp/naeringsliv-ch6.tar.gz
+          mkdir -p /tmp/naeringsliv-ch6
+          tar -xzf /tmp/naeringsliv-ch6.tar.gz -C /tmp/naeringsliv-ch6
           mkdir -p .diagnostics
-          node <<'NODE'
-          const fs = require('fs');
-          const path = require('path');
-          const roots = ['data/places'];
-          const hits = [];
-          function walk(dir) {
-            if (!fs.existsSync(dir)) return;
-            for (const name of fs.readdirSync(dir)) {
-              const full = path.join(dir, name);
-              const stat = fs.statSync(full);
-              if (stat.isDirectory()) walk(full);
-              else if (name.endsWith('.json')) {
-                try {
-                  const value = JSON.parse(fs.readFileSync(full, 'utf8'));
-                  const stack = [{ value, pointer: '$' }];
-                  while (stack.length) {
-                    const current = stack.pop();
-                    if (current.value && typeof current.value === 'object') {
-                      if (!Array.isArray(current.value) && current.value.id === 'youngstorget') {
-                        hits.push({
-                          file: full,
-                          pointer: current.pointer,
-                          keys: Object.keys(current.value),
-                          name: current.value.name ?? null,
-                          category: current.value.category ?? null,
-                          status: current.value.status ?? null
-                        });
-                      }
-                      if (Array.isArray(current.value)) {
-                        current.value.forEach((child, index) => stack.push({ value: child, pointer: `${current.pointer}[${index}]` }));
-                      } else {
-                        Object.entries(current.value).forEach(([key, child]) => stack.push({ value: child, pointer: `${current.pointer}.${key}` }));
-                      }
-                    }
-                  }
-                } catch {}
-              }
-            }
-          }
-          roots.forEach(walk);
-          const manifests = [];
-          function scanText(dir) {
-            if (!fs.existsSync(dir)) return;
-            for (const name of fs.readdirSync(dir)) {
-              const full = path.join(dir, name);
-              const stat = fs.statSync(full);
-              if (stat.isDirectory()) scanText(full);
-              else if (/\.(json|md|mjs|js)$/.test(name)) {
-                const text = fs.readFileSync(full, 'utf8');
-                if (/youngstorget/i.test(text)) manifests.push(full);
-              }
-            }
-          }
-          ['data/manifests', 'data/places/manifest.json', 'data/manifest.json'].forEach((entry) => {
-            if (fs.existsSync(entry)) {
-              const stat = fs.statSync(entry);
-              if (stat.isDirectory()) scanText(entry);
-              else if (/youngstorget/i.test(fs.readFileSync(entry, 'utf8'))) manifests.push(entry);
-            }
-          });
-          fs.writeFileSync('.diagnostics/youngstorget-canonical-hits.json', JSON.stringify({ hits, manifest_files: [...new Set(manifests)].sort() }, null, 2) + '\n');
-          if (hits.length !== 2) throw new Error(`Expected two Youngstorget hits, found ${hits.length}`);
-          NODE
-      - name: Commit diagnostikk
+          cp /tmp/naeringsliv-ch6/scripts/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs .diagnostics/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs
+          cp /tmp/naeringsliv-ch6/scripts/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs .diagnostics/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
+          node --check .diagnostics/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs
+          node --check .diagnostics/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
+      - name: Commit auditkilden
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .diagnostics/youngstorget-canonical-hits.json
+          git add .diagnostics/audit-naeringsliv-chapter-makt-regulering-baerekraft.mjs .diagnostics/materialize-naeringsliv-chapter-makt-regulering-baerekraft-v1.mjs
           git diff --cached --check
-          git commit -m 'Dokumenter Youngstorget-kildeduplikatet'
+          git commit -m 'Dokumenter auditkilden for sluttkapittelet'
           git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
