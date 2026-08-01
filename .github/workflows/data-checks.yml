@@ -23,6 +23,7 @@ on:
       - 'scripts/build-civication-history-people-index.mts'
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/audit-category-governance.mjs'
+      - 'scripts/audit-politikk-place-production.mjs'
       - 'scripts/audit-quiz-content-quality.mjs'
       - 'scripts/audit-quiz-production-context.mjs'
       - 'scripts/audit-quiz-progression.mjs'
@@ -31,6 +32,7 @@ on:
       - 'scripts/build-quiz-production-context.mjs'
       - 'scripts/quiz-production-lib.mjs'
       - 'tests/quiz-production-pipeline.test.mjs'
+      - 'tests/politikk-place-production.test.mjs'
       - 'data/Civication/historyPeople_index.json'
       - 'data/Civication/people_access_map.json'
       - 'tools/**'
@@ -75,6 +77,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -127,6 +131,18 @@ jobs:
               npm run places:emner:check
               npm run places:coords:check
             } 2>&1 | tee -a /tmp/places-check.log
+          fi
+
+      - name: Enforce Politikk place production reports
+        shell: bash
+        run: |
+          node --test tests/politikk-place-production.test.mjs
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            node scripts/audit-politikk-place-production.mjs --changed \
+              --base "${{ github.event.pull_request.base.sha }}" \
+              --head "${{ github.sha }}"
+          else
+            node scripts/audit-politikk-place-production.mjs --all
           fi
 
       - name: Upload Places check log
