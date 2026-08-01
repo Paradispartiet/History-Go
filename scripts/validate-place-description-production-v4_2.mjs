@@ -85,6 +85,10 @@ const GENERATED_INDEX_PATTERNS = [
   /(?:^|\/)generated\//u
 ];
 
+export function isGeneratedPlaceIndex(file) {
+  return GENERATED_INDEX_PATTERNS.some((pattern) => pattern.test(String(file ?? '')));
+}
+
 function normalizeText(value) {
   return String(value ?? '')
     .normalize('NFKC')
@@ -455,7 +459,7 @@ function getChangedFiles(root, base, head) {
 
 function changedDescriptionPlaceFiles(root, base, head, changedFiles) {
   const files = [];
-  for (const file of changedFiles.filter((value) => value.startsWith('data/places/') && value.endsWith('.json') && !value.startsWith(`${PACKET_DIR}/`) && !value.includes('/regler/'))) {
+  for (const file of changedFiles.filter((value) => value.startsWith('data/places/') && value.endsWith('.json') && !value.startsWith(`${PACKET_DIR}/`) && !value.includes('/regler/') && !isGeneratedPlaceIndex(value))) {
     let diff = '';
     try { diff = git(['diff', '--unified=0', `${base}...${head}`, '--', file], root); }
     catch { diff = ''; }
@@ -480,7 +484,7 @@ function validatePrScope({ root, base, head, changedFiles, packets }) {
   if (changedRules && descriptionFiles.length > 0) addIssue(issues, 'mixed_rules_and_place_content', 'Regelendringer og stedsbeskrivelser skal ikke ligge i samme PR.', { descriptionFiles });
   const changedCoordinates = changedFiles.filter((file) => file.startsWith('data/coordinate-evidence/') || /coordinate/i.test(path.basename(file)));
   if (changedCoordinates.length > 0) addIssue(issues, 'mixed_description_and_coordinate_scope', 'Beskrivelsesendringer og koordinatendringer skal ikke blandes i samme PR.', { files: changedCoordinates });
-  const changedIndexes = changedFiles.filter((file) => GENERATED_INDEX_PATTERNS.some((pattern) => pattern.test(file)));
+  const changedIndexes = changedFiles.filter(isGeneratedPlaceIndex);
   if (changedIndexes.length > 0) addIssue(issues, 'generated_index_in_description_pr', 'En ren beskrivelses-PR skal ikke endre genererte indekser.', { files: changedIndexes });
   return issues;
 }
