@@ -27,6 +27,7 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Fagverk / merke vs fag / navigasjon | `docs/FAGVERK_NAVIGATION.md` |
 | Politikk — canonical fagmodell | `data/fag/politikk/politikk_runtime_manifest.json` |
 | Politikk — faglig kvalitet og inferensgrenser | `scripts/audit-politikk-subject-quality.mjs` og `scripts/audit-politikk-thinker-integrity.mjs` |
+| Politikk — stedsgate og produksjonsrapport | `data/places/regler/politikk_place_production_v1.schema.json` og `scripts/audit-politikk-place-production.mjs` |
 | People–sted-koblinger | **`docs/people-of-places-method.md`** |
 | Ny/revidert People-profil | **`docs/PEOPLE_PROFILE_CANONICAL.md`** |
 | People-bilder / lisens / attribusjon | `docs/PEOPLE_IMAGES.md` |
@@ -77,6 +78,7 @@ POLITIKK-HOVEDFUNKSJON (hvis relevant):
 POLITIKK-EMNE_IDS (kun em_pol_*):
 POLITIKK-EVIDENSKJEDE:
 POLITIKK-NÅTIDSKONTROLL:
+POLITIKK-PRODUKSJONSRAPPORT:
 STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
@@ -199,6 +201,7 @@ Denne delen gjelder når stedet foreslås med **Politikk som primær fagidentite
 - `docs/FACTUALITY_CONTRACT.md`;
 - `docs/FAGVERK_NAVIGATION.md`;
 - `data/fag/politikk/politikk_runtime_manifest.json`;
+- `data/places/regler/politikk_place_production_v1.schema.json`;
 - `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`;
 - `docs/STORIES_DATA_GOVERNANCE.md` når fortellinger produseres.
 
@@ -283,7 +286,9 @@ Stedet kan ikke godkjennes som Politikk-sted dersom ett av disse forholdene best
 - de første 14 quizspørsmålene bryter normalåpningen;
 - en chronology-post er gjort til Story uten narrativ og fysisk forankring.
 
-Alle delene A–G får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. Politikk kan ikke settes til ferdig på stedet før alle relevante deler er PASS.
+Produksjonsrapporten ligger i `data/places/politikk-production/<place_id>.json` og følger `data/places/regler/politikk_place_production_v1.schema.json`. Rapporten skal peke tilbake til den manifest-loadede place-filen, registrere politisk hovedfunksjon, canonicale `em_pol_*`, kilder med `sourceLocation`, inspectable evidenskjeder, nåtidskontroll og status for A–G.
+
+Alle delene A–G får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. A–E er obligatoriske PASS for et ferdig Politikk-sted; F og G kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-politikk-place-production.mjs --all` validerer alle registrerte rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Politikk-sted opprettes eller et eksisterende Politikk-steds fagkobling, brukerrettede tekst, quizgrunnlag, chronology eller Story-kobling revideres. Politikk kan ikke settes til ferdig på stedet før denne porten passerer.
 
 ---
 
