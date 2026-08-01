@@ -18,14 +18,17 @@ on:
       - 'tools/validate-historie-domain.mjs'
       - 'tools/validate-historie-forste-verdenskrig-mellomkrig.mjs'
       - 'tools/validate-historie-kjonn-familie-livslop.mjs'
+      - 'tools/validate-historie-kald-krig-etterkrig.mjs'
       - 'tools/validate-historie-global-kolonial-transnasjonal.mjs'
       - 'tools/audit-historie-universal-coverage.mjs'
       - 'tests/historie-global-colonial-transnational-evidence.test.mjs'
       - 'tests/historie-first-world-war-interwar-evidence.test.mjs'
       - 'tests/historie-gender-family-lifecourse-evidence.test.mjs'
+      - 'tests/historie-cold-war-postwar-evidence.test.mjs'
       - 'data/fag/historie/source_dossiers/global_colonial_transnational_v1.json'
       - 'data/fag/historie/source_dossiers/first_world_war_interwar_v1.json'
       - 'data/fag/historie/source_dossiers/gender_family_lifecourse_v1.json'
+      - 'data/fag/historie/source_dossiers/cold_war_postwar_v1.json'
       - 'reports/historie-theory-evidence/**'
       - 'reports/historie-universal-coverage/**'
       - 'docs/HISTORY_THEORY_EVIDENCE.md'
@@ -49,14 +52,17 @@ on:
       - 'tools/validate-historie-domain.mjs'
       - 'tools/validate-historie-forste-verdenskrig-mellomkrig.mjs'
       - 'tools/validate-historie-kjonn-familie-livslop.mjs'
+      - 'tools/validate-historie-kald-krig-etterkrig.mjs'
       - 'tools/validate-historie-global-kolonial-transnasjonal.mjs'
       - 'tools/audit-historie-universal-coverage.mjs'
       - 'tests/historie-global-colonial-transnational-evidence.test.mjs'
       - 'tests/historie-first-world-war-interwar-evidence.test.mjs'
       - 'tests/historie-gender-family-lifecourse-evidence.test.mjs'
+      - 'tests/historie-cold-war-postwar-evidence.test.mjs'
       - 'data/fag/historie/source_dossiers/global_colonial_transnational_v1.json'
       - 'data/fag/historie/source_dossiers/first_world_war_interwar_v1.json'
       - 'data/fag/historie/source_dossiers/gender_family_lifecourse_v1.json'
+      - 'data/fag/historie/source_dossiers/cold_war_postwar_v1.json'
       - 'reports/historie-theory-evidence/**'
       - 'reports/historie-universal-coverage/**'
       - 'docs/HISTORY_THEORY_EVIDENCE.md'
@@ -109,6 +115,14 @@ jobs:
           node --check tools/validate-historie-kjonn-familie-livslop.mjs
           node tools/validate-historie-kjonn-familie-livslop.mjs
           node --test --test-reporter=spec tests/historie-gender-family-lifecourse-evidence.test.mjs
+
+      - name: Validate Cold War and postwar evidence regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/validate-historie-kald-krig-etterkrig.mjs
+          node tools/validate-historie-kald-krig-etterkrig.mjs
+          node --test --test-reporter=spec tests/historie-cold-war-postwar-evidence.test.mjs
 
       - name: Verify universal coverage integration
         run: node tools/audit-historie-universal-coverage.mjs --check

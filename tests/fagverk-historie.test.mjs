@@ -106,13 +106,13 @@ test('alle Historie-kapitlene oppfyller kapittel- og evidensporten', () => {
   assert.equal(report.gates.historyPlaceFallbackResolved, true);
 });
 
-test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', () => {
+test('kapittelproduksjon rapporterer full universell evidensdekning', () => {
   const { report } = auditHistorySubject();
-  assert.equal(report.universalCoverage.status, 'INCOMPLETE');
+  assert.equal(report.universalCoverage.status, 'COMPLETE');
   assert.equal(report.universalCoverage.coveredCells, 58);
   assert.equal(report.universalCoverage.totalCells, 58);
-  assert.equal(report.universalCoverage.productionGaps, 1);
-  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 220);
+  assert.equal(report.universalCoverage.productionGaps, 0);
+  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 230);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
 });
