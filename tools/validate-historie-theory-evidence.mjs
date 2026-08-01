@@ -131,6 +131,7 @@ for (const entry of A(registry.entries)) {
   const topicSpecificCaseDomains = new Set([
     'his_vitenskap_teknologi_kunnskap',
     'his_forste_verdenskrig_mellomkrig',
+    'his_global_kolonial_transnasjonal',
   ]);
   const requiresTopicSpecificCases = A(theory?.explanatory_scope)
     .some((domainId) => topicSpecificCaseDomains.has(domainId));
