@@ -1,0 +1,408 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "makrookonomi-konjunkturer-okonomisk-politikk",
+  "verified_at": "2026-08-01",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "ssb_nasjonalregnskap",
+      "label": "Nasjonalregnskap",
+      "url": "https://www.ssb.no/nasjonalregnskap-og-konjunkturer/nasjonalregnskap/statistikk/nasjonalregnskap",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "BNP, konsum, investering, eksport, import, sysselsetting, lønn og produktivitet inngår som sammenhengende størrelser i nasjonalregnskapet."
+    },
+    {
+      "id": "ssb_kpi",
+      "label": "Konsumprisindeksen",
+      "url": "https://www.ssb.no/priser-og-prisindekser/konsumpriser/statistikk/konsumprisindeksen",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "KPI måler utviklingen i konsumpriser for varer og tjenester som private husholdninger etterspør."
+    },
+    {
+      "id": "ssb_aku",
+      "label": "Arbeidskraftundersøkelsen",
+      "url": "https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/arbeidskraftundersokelsen",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "AKU måler sysselsetting og arbeidsledighet og skiller mellom personer i arbeidsstyrken og personer utenfor arbeidsstyrken."
+    },
+    {
+      "id": "ssb_konjunkturer",
+      "label": "Konjunkturtendensene",
+      "url": "https://www.ssb.no/nasjonalregnskap-og-konjunkturer/konjunkturer/statistikk/konjunkturtendensene",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_analyse",
+      "source_location": "Konjunkturanalyse kombinerer historiske indikatorer med framskrivinger av økonomiske hovedstørrelser."
+    },
+    {
+      "id": "nb_inflasjon",
+      "label": "Inflasjon",
+      "url": "https://www.norges-bank.no/tema/pengepolitikk/inflasjon/",
+      "publisher": "Norges Bank",
+      "type": "sentralbankforklaring",
+      "source_location": "Norges Banks operative inflasjonsmål er en årlig prisvekst nær 2 prosent over tid."
+    },
+    {
+      "id": "nb_strategi",
+      "label": "Norges Banks pengepolitiske strategi",
+      "url": "https://www.norges-bank.no/tema/pengepolitikk/pengepolitisk-strategi/",
+      "publisher": "Norges Bank",
+      "type": "sentralbankstrategi",
+      "source_location": "Inflasjonsstyringen er fremoverskuende og fleksibel og skal også bidra til høy og stabil produksjon og sysselsetting."
+    },
+    {
+      "id": "regjeringen_oljepenger",
+      "label": "Oljeinntektene og bruken av dem",
+      "url": "https://www.regjeringen.no/no/tema/okonomi-og-budsjett/norsk_okonomi/bruk-av-oljepenger-/id449281/",
+      "publisher": "Finansdepartementet",
+      "type": "offisiell_finanspolitikk",
+      "source_location": "Statens netto kontantstrøm fra petroleumsvirksomheten overføres til Statens pensjonsfond utland."
+    },
+    {
+      "id": "nasjonalbudsjett",
+      "label": "Nasjonalbudsjettet 2026",
+      "url": "https://www.regjeringen.no/no/dokumenter/meld.-st.-1-20252026/id3123808/",
+      "publisher": "Finansdepartementet",
+      "type": "stortingsmelding",
+      "source_location": "Nasjonalbudsjettet presenterer regjeringens vurdering av utsiktene og hovedlinjene i den økonomiske politikken."
+    },
+    {
+      "id": "ssb_utenriksregnskap",
+      "label": "Utenriksregnskap",
+      "url": "https://www.ssb.no/utenriksokonomi/utenriksregnskap/statistikk/utenriksregnskap",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Utenriksregnskapet samler betalingsbalanse og utenriksbalanse og viser økonomiske forbindelser mellom Norge og utlandet."
+    }
+  ],
+  "claims": [
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c01",
+      "claim": "Nasjonalregnskapet beskriver produksjon, inntekt og anvendelse i et konsistent regnskapssystem; BNP alene er derfor ikke et fullstendig mål på velferd eller fordeling.",
+      "source_ids": [
+        "ssb_nasjonalregnskap"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-01"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c02",
+      "claim": "Nasjonalregnskap og BNP krever en eksplisitt analyseenhet: norsk økonomi i én eksplisitt periode; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_nasjonalregnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-01"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c03",
+      "claim": "En faglig konklusjon om nasjonalregnskap og bnp må skille beregnet resultat fra konflikten «målt aktivitet mot velferd, fordeling og ubetalt arbeid» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_nasjonalregnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-01"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c04",
+      "claim": "Prisnivå, prisvekst og kjøpekraft er forskjellige størrelser; nominelle beløp må deflateres før utvikling i realverdi sammenlignes.",
+      "source_ids": [
+        "ssb_kpi"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-02"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c05",
+      "claim": "Prisnivå, inflasjon og realverdi krever en eksplisitt analyseenhet: en dokumentert konsumkurv og tidsserie; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_kpi"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-02"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c06",
+      "claim": "En faglig konklusjon om prisnivå, inflasjon og realverdi må skille beregnet resultat fra konflikten «gjennomsnittlig prisvekst mot husholdningenes ulike forbruksmønstre» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_kpi"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-02"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c07",
+      "claim": "Arbeidsledighetsraten må tolkes sammen med sysselsettingsandel og arbeidsstyrkedeltakelse fordi nevner og populasjon påvirker resultatet.",
+      "source_ids": [
+        "ssb_aku"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-03"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c08",
+      "claim": "Sysselsetting og arbeidsledighet krever en eksplisitt analyseenhet: befolkningen i arbeidsfør alder etter AKUs definisjoner; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_aku"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-03"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c09",
+      "claim": "En faglig konklusjon om sysselsetting og arbeidsledighet må skille beregnet resultat fra konflikten «lav ledighet mot svak deltakelse eller skjult undersysselsetting» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_aku"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-03"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c10",
+      "claim": "En prognose uttrykker en betinget vurdering under bestemte antakelser og må ikke behandles som et sikkert framtidsutfall.",
+      "source_ids": [
+        "ssb_konjunkturer"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-04"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c11",
+      "claim": "Konjunkturer, trend og prognose krever en eksplisitt analyseenhet: en harmonisert kvartalsserie med sammenligningsindikator; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_konjunkturer"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-04"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c12",
+      "claim": "En faglig konklusjon om konjunkturer, trend og prognose må skille beregnet resultat fra konflikten «kortvarig variasjon mot varig kapasitetsendring» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_konjunkturer"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-04"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c13",
+      "claim": "Styringsrenten er sentralbankens viktigste virkemiddel, men renteendringer virker med tidsetterslep gjennom flere kanaler.",
+      "source_ids": [
+        "nb_inflasjon"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-05"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c14",
+      "claim": "Inflasjonsmål og styringsrente krever en eksplisitt analyseenhet: en rentebeslutning med samtidig pris- og aktivitetsdata; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "nb_inflasjon"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-05"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c15",
+      "claim": "En faglig konklusjon om inflasjonsmål og styringsrente må skille beregnet resultat fra konflikten «prisvekst mot produksjon, sysselsetting og finansiell stabilitet» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "nb_inflasjon"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-05"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c16",
+      "claim": "Pengepolitikken må balansere mål og usikkerhet; ett enkelt inflasjonstall bestemmer ikke alene rentebeslutningen.",
+      "source_ids": [
+        "nb_strategi"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-06"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c17",
+      "claim": "Fleksibel pengepolitikk krever en eksplisitt analyseenhet: en pengepolitisk rapport og dens risikoscenarioer; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "nb_strategi"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-06"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c18",
+      "claim": "En faglig konklusjon om fleksibel pengepolitikk må skille beregnet resultat fra konflikten «rask måloppnåelse mot kostnader for aktivitet og sysselsetting» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "nb_strategi"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-06"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c19",
+      "claim": "Handlingsregelen sikter mot at bruken av fondsmidler over tid følger forventet realavkastning, samtidig som bruken tilpasses økonomiens situasjon.",
+      "source_ids": [
+        "regjeringen_oljepenger"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-07"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c20",
+      "claim": "Oljefond og handlingsregel krever en eksplisitt analyseenhet: ett statsbudsjett og tilhørende fondsdata; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "regjeringen_oljepenger"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-07"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c21",
+      "claim": "En faglig konklusjon om oljefond og handlingsregel må skille beregnet resultat fra konflikten «stabilisering i dag mot bærekraft mellom generasjoner» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "regjeringen_oljepenger"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-07"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c22",
+      "claim": "Finanspolitiske virkninger må vurderes både mot konjunktursituasjonen og mot langsiktig bærekraft i offentlige finanser.",
+      "source_ids": [
+        "nasjonalbudsjett"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-08"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c23",
+      "claim": "Finanspolitikk og offentlige finanser krever en eksplisitt analyseenhet: ett nasjonalbudsjett med eksplisitt konjunktursituasjon; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "nasjonalbudsjett"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-08"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c24",
+      "claim": "En faglig konklusjon om finanspolitikk og offentlige finanser må skille beregnet resultat fra konflikten «kortsiktig etterspørsel mot langsiktig kapasitet og finansiering» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "nasjonalbudsjett"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-08"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c25",
+      "claim": "Løpende poster, kapitalbevegelser og beholdninger må skilles for å unngå å blande strømmer og balanser.",
+      "source_ids": [
+        "ssb_utenriksregnskap"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-09"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c26",
+      "claim": "Utenriksbalanse og valutarisiko krever en eksplisitt analyseenhet: Norges transaksjoner og posisjoner mot utlandet i en periode; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_utenriksregnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-09"
+      ]
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk-c27",
+      "claim": "En faglig konklusjon om utenriksbalanse og valutarisiko må skille beregnet resultat fra konflikten «overskudd i varehandel mot samlet ekstern balanse og risiko» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_utenriksregnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "makrookonomi-konjunkturer-okonomisk-politikk-09"
+      ]
+    }
+  ]
+}

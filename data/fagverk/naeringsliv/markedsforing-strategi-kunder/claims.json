@@ -1,0 +1,408 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "markedsforing-strategi-kunder",
+  "verified_at": "2026-08-01",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "markedsforingsloven",
+      "label": "Markedsføringsloven",
+      "url": "https://lovdata.no/lov/2009-01-09-2",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Markedsføringsloven regulerer handelspraksis og avtalevilkår i forbrukerforhold."
+    },
+    {
+      "id": "some_reklame",
+      "label": "Veileder for merking av reklame i sosiale medier",
+      "url": "https://www.forbrukertilsynet.no/lov-og-rett/veiledninger-og-retningslinjer/someveiledning",
+      "publisher": "Forbrukertilsynet",
+      "type": "tilsynsveiledning",
+      "source_location": "Reklame i sosiale medier skal tydelig fremstå som reklame for mottakeren."
+    },
+    {
+      "id": "datatilsynet_markedsforing",
+      "label": "Målrettet markedsføring og personopplysninger",
+      "url": "https://www.datatilsynet.no/personvern-pa-ulike-omrader/kundehandtering-handel-og-medlemskap/digitale-tjenester-og-forbrukeres-personopplysninger/bruk-av-personopplysninger-til-malrettet-markedsforing/",
+      "publisher": "Datatilsynet",
+      "type": "personvernveiledning",
+      "source_location": "Målrettet markedsføring kan bygge på innsamling, analyse og profilering av personopplysninger."
+    },
+    {
+      "id": "ssb_varehandel",
+      "label": "Varehandelsindeksen",
+      "url": "https://www.ssb.no/varehandel-og-tjenesteyting/varehandel/statistikk/varehandelsindeksen",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Varehandelsindeksen beskriver verdi- og volumutviklingen i detaljhandel, engroshandel og motorvognhandel."
+    },
+    {
+      "id": "ssb_forbruk",
+      "label": "Forbruksundersøkelsen",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/forbruk/statistikk/forbruksundersokelsen",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Forbruksundersøkelsen beskriver husholdningenes utgifter og hvordan forbruksmønstre varierer mellom husholdningstyper."
+    },
+    {
+      "id": "konkurranseloven",
+      "label": "Konkurranseloven",
+      "url": "https://lovdata.no/lov/2004-03-05-12",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Konkurranseloven regulerer konkurransebegrensende samarbeid, misbruk av dominans og kontroll med foretakssammenslutninger."
+    },
+    {
+      "id": "kt_samarbeid",
+      "label": "Ulovlig samarbeid",
+      "url": "https://konkurransetilsynet.no/ulovlig-samarbeid/",
+      "publisher": "Konkurransetilsynet",
+      "type": "tilsynsveiledning",
+      "source_location": "Konkurranseloven forbyr samarbeid som har til formål eller virkning å begrense konkurransen."
+    },
+    {
+      "id": "kt_dominans",
+      "label": "Misbruk av dominerende stilling",
+      "url": "https://konkurransetilsynet.no/misbruk-av-dominerende-stilling/",
+      "publisher": "Konkurransetilsynet",
+      "type": "tilsynsveiledning",
+      "source_location": "Dominans er ikke i seg selv forbudt, men et dominerende foretak har et særlig ansvar for ikke å skade konkurransen."
+    },
+    {
+      "id": "apenhetsloven",
+      "label": "Åpenhetsloven",
+      "url": "https://lovdata.no/lov/2021-06-18-99",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Åpenhetsloven krever risikobaserte aktsomhetsvurderinger og offentlig redegjørelse fra virksomheter som omfattes."
+    }
+  ],
+  "claims": [
+    {
+      "id": "markedsforing-strategi-kunder-c01",
+      "claim": "Markedsføring må vurderes etter helhetsinntrykk, vesentlige opplysninger og hvem budskapet retter seg mot.",
+      "source_ids": [
+        "markedsforingsloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-01"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c02",
+      "claim": "Markedsinnsikt og segmentering krever en eksplisitt analyseenhet: ett definert produktmarked med kunde- eller respondentdata og to plausible segmenteringsgrunnlag; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "markedsforingsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-01"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c03",
+      "claim": "En faglig konklusjon om markedsinnsikt og segmentering må skille beregnet resultat fra konflikten «statistisk tydelige segmenter mot etisk, strategisk og operativt anvendelige målgrupper» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "markedsforingsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-01"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c04",
+      "claim": "Annonsørens ansvar for tydelig merking forsvinner ikke fordi distribusjonen utføres av en influenser eller plattform.",
+      "source_ids": [
+        "some_reklame"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-02"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c05",
+      "claim": "Produkt, pris, distribusjon og kommunikasjon krever en eksplisitt analyseenhet: ett tilbud i én målgruppe med dokumenterte priser, kanaler, kostnader og kampanjer; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "some_reklame"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-02"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c06",
+      "claim": "En faglig konklusjon om produkt, pris, distribusjon og kommunikasjon må skille beregnet resultat fra konflikten «kortvarig respons og salg mot langsiktig verdi, tillit og merkevare» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "some_reklame"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-02"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c07",
+      "claim": "Segmenteringens forretningsverdi må vurderes sammen med behandlingsgrunnlag, åpenhet, dataminimering og registrertes rettigheter.",
+      "source_ids": [
+        "datatilsynet_markedsforing"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-03"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c08",
+      "claim": "Merkevare og kunderelasjoner krever en eksplisitt analyseenhet: ett merke med kundekohorter og et kvalitetsjustert sammenligningsalternativ; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "datatilsynet_markedsforing"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-03"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c09",
+      "claim": "En faglig konklusjon om merkevare og kunderelasjoner må skille beregnet resultat fra konflikten «symbolsk og relasjonell verdi mot måleusikkerhet, statusforskjeller og manipulerende påvirkning» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "datatilsynet_markedsforing"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-03"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c10",
+      "claim": "Verdiendring må skilles fra volumendring fordi prisendringer kan påvirke omsetning uten tilsvarende mengdeendring.",
+      "source_ids": [
+        "ssb_varehandel"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-04"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c11",
+      "claim": "Konkurransestrategi og ressursanalyse krever en eksplisitt analyseenhet: én virksomhet og minst to konkurrenter i et eksplisitt avgrenset marked; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_varehandel"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-04"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c12",
+      "claim": "En faglig konklusjon om konkurransestrategi og ressursanalyse må skille beregnet resultat fra konflikten «ekstern posisjonering mot interne ressurser, og varig fortrinn mot rask imitasjon og endring» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_varehandel"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-04"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c13",
+      "claim": "Utvalgsdata må tolkes med usikkerhet og kan ikke uten videre forklare hvorfor forbrukere velger som de gjør.",
+      "source_ids": [
+        "ssb_forbruk"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-05"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c14",
+      "claim": "Konsernstrategi, implementering og strategisk endring krever en eksplisitt analyseenhet: ett strategisk initiativ eller en virksomhetsportefølje med mål, ressurser, avhengigheter og tidslinje; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_forbruk"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-05"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c15",
+      "claim": "En faglig konklusjon om konsernstrategi, implementering og strategisk endring må skille beregnet resultat fra konflikten «finansiell synergi og kontroll mot kompleksitet, kulturell friksjon og tap av lokal kunnskap» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_forbruk"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-05"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c16",
+      "claim": "Strategisk analyse må skille hard konkurranse fra handlinger som loven forbyr eller krever melding om.",
+      "source_ids": [
+        "konkurranseloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-06"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c17",
+      "claim": "Marked, kategori og substitutter krever en eksplisitt analyseenhet: ett definert produkt- eller tjenestemarked; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "konkurranseloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-06"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c18",
+      "claim": "En faglig konklusjon om marked, kategori og substitutter må skille beregnet resultat fra konflikten «praktisk kategorisering mot juridisk relevant marked» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "konkurranseloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-06"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c19",
+      "claim": "Samarbeid kan være horisontalt eller vertikalt, og lovligheten avhenger av innhold, virkning og eventuelle effektivitetsvilkår.",
+      "source_ids": [
+        "kt_samarbeid"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-07"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c20",
+      "claim": "Kundereise, kanal og attribusjon krever en eksplisitt analyseenhet: en dokumentert kundereise på tvers av kanaler; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "kt_samarbeid"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-07"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c21",
+      "claim": "En faglig konklusjon om kundereise, kanal og attribusjon må skille beregnet resultat fra konflikten «målbar kontakt mot faktisk årsakseffekt» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "kt_samarbeid"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-07"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c22",
+      "claim": "Markedsandel er bare ett moment; relevant marked, etableringshindre, alternativer og konkret atferd må undersøkes.",
+      "source_ids": [
+        "kt_dominans"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-08"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c23",
+      "claim": "Pris, verdi og lønnsom vekst krever en eksplisitt analyseenhet: ett segment og ett tilbud over en definert periode; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "kt_dominans"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-08"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c24",
+      "claim": "En faglig konklusjon om pris, verdi og lønnsom vekst må skille beregnet resultat fra konflikten «omsetningsvekst mot lønnsomhet og langsiktig tillit» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "kt_dominans"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-08"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c25",
+      "claim": "En bærekraftspåstand bør spores fra policy via tiltak til dokumentert virkning og må ikke erstatte konkret risikovurdering.",
+      "source_ids": [
+        "apenhetsloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-09"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c26",
+      "claim": "Ansvarlig påvirkning og dokumentasjon krever en eksplisitt analyseenhet: én kampanje med budskap, målgruppe, data og dokumentasjon; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "apenhetsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-09"
+      ]
+    },
+    {
+      "id": "markedsforing-strategi-kunder-c27",
+      "claim": "En faglig konklusjon om ansvarlig påvirkning og dokumentasjon må skille beregnet resultat fra konflikten «effektiv påvirkning mot autonomi, personvern og forbrukervern» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "apenhetsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "markedsforing-strategi-kunder-09"
+      ]
+    }
+  ]
+}

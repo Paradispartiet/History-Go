@@ -11,12 +11,16 @@ export function evaluateNaeringslivEditorialPlan(registrySubject, canonicalDomai
   const chapters = Array.isArray(registrySubject?.chapters) ? registrySubject.chapters : [];
   const coveredDomains = new Set(chapters.map((chapter) => String(chapter?.primary_domain_id || '').trim()).filter(Boolean));
   const allCanonicalDomainsCovered = canonicalDomainIds.every((domainId) => coveredDomains.has(domainId));
-  const complete = chapters.length >= minimum && allCanonicalDomainsCovered;
+  const withinTargetRange = chapters.length >= minimum && chapters.length <= maximum;
+  const allChaptersReady = chapters.every((chapter) => chapter?.editorialStatus === 'chapter_ready' && chapter?.claimTraceRequired === true);
+  const complete = withinTargetRange && allCanonicalDomainsCovered && allChaptersReady;
   return {
     chapterCount: chapters.length,
     minimum,
     maximum,
     allCanonicalDomainsCovered,
+    withinTargetRange,
+    allChaptersReady,
     complete,
     expectedEditorialStatus: complete ? 'complete' : chapters.length ? 'chapters_in_progress' : 'structure_ready',
     expectedNextGate: complete ? COMPLETE_GATE : inProgressGate

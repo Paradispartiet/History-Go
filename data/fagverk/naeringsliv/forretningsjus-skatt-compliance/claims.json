@@ -1,0 +1,408 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "forretningsjus-skatt-compliance",
+  "verified_at": "2026-08-01",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "avtaleloven",
+      "label": "Avtaleloven",
+      "url": "https://lovdata.no/lov/1918-05-31-4",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Avtaleloven regulerer avtaleinngåelse, fullmakt og ugyldighet."
+    },
+    {
+      "id": "kjopsloven",
+      "label": "Kjøpsloven",
+      "url": "https://lovdata.no/lov/1988-05-13-27",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Kjøpsloven regulerer partenes plikter og misligholdsbeføyelser i kjøp som omfattes av loven."
+    },
+    {
+      "id": "aksjeloven",
+      "label": "Aksjeloven",
+      "url": "https://lovdata.no/lov/1997-06-13-44",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Aksjeloven regulerer stiftelse, kapital, selskapsorganer, beslutninger og ansvar i aksjeselskaper."
+    },
+    {
+      "id": "brreg_as",
+      "label": "Aksjeselskap",
+      "url": "https://www.brreg.no/aksjeselskap/",
+      "publisher": "Brønnøysundregistrene",
+      "type": "registerveiledning",
+      "source_location": "Brønnøysundregistrene samler krav og tjenester for stiftelse, roller, kapital, registrering og rapportering i aksjeselskaper."
+    },
+    {
+      "id": "arbeidsmiljoloven",
+      "label": "Arbeidsmiljøloven",
+      "url": "https://lovdata.no/lov/2005-06-17-62",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Arbeidsmiljøloven regulerer blant annet arbeidsmiljø, arbeidstid, medvirkning, kontrolltiltak og stillingsvern."
+    },
+    {
+      "id": "personopplysningsloven",
+      "label": "Personopplysningsloven",
+      "url": "https://lovdata.no/lov/2018-06-15-38",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Personopplysningsloven gjennomfører personvernforordningen og regulerer behandling av personopplysninger."
+    },
+    {
+      "id": "skatteloven",
+      "label": "Skatteloven",
+      "url": "https://lovdata.no/lov/1999-03-26-14",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Skatteloven regulerer skattepliktig inntekt, fradrag, tidfesting og andre sentrale elementer i inntektsbeskatningen."
+    },
+    {
+      "id": "mvaloven",
+      "label": "Merverdiavgiftsloven",
+      "url": "https://lovdata.no/lov/2009-06-19-58",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Merverdiavgift beregnes og rapporteres etter regler om avgiftspliktig omsetning, unntak, fritak og fradrag."
+    },
+    {
+      "id": "konkurranseloven",
+      "label": "Konkurranseloven",
+      "url": "https://lovdata.no/lov/2004-03-05-12",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Konkurranseloven regulerer konkurransebegrensende samarbeid, misbruk av dominans og kontroll med foretakssammenslutninger."
+    }
+  ],
+  "claims": [
+    {
+      "id": "forretningsjus-skatt-compliance-c01",
+      "claim": "En kontraktsanalyse må identifisere tilbud, aksept, fullmakt, tolkningsgrunnlag og eventuelle ugyldighetsgrunner.",
+      "source_ids": [
+        "avtaleloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-01"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c02",
+      "claim": "Avtalerett og kjøpsrett krever en eksplisitt analyseenhet: én avtale eller kjøpstransaksjon med tilbud, aksept, fullmakt, ytelse og dokumentert avvik; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "avtaleloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-01"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c03",
+      "claim": "En faglig konklusjon om avtalerett og kjøpsrett må skille beregnet resultat fra konflikten «forutberegnelighet og avtalefrihet mot rimelighet, informasjonsasymmetri og vern av svakere part» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "avtaleloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-01"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c04",
+      "claim": "Risiko, levering, mangel, forsinkelse og varsel må knyttes til avtalens faktum og riktig regelsett.",
+      "source_ids": [
+        "kjopsloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-02"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c05",
+      "claim": "Selskapsrett og eieransvar krever en eksplisitt analyseenhet: én selskapsstruktur med eiere, vedtekter, organer, kapital og en dokumentert beslutning; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "kjopsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-02"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c06",
+      "claim": "En faglig konklusjon om selskapsrett og eieransvar må skille beregnet resultat fra konflikten «begrenset ansvar og effektiv kapitalmobilisering mot kreditorvern, minoritetsvern og ansvar for faktisk kontroll» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "kjopsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-02"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c07",
+      "claim": "Eierskap, stemmerett, styreansvar og daglig ledelse er forskjellige styringsposisjoner og må analyseres separat.",
+      "source_ids": [
+        "aksjeloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-03"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c08",
+      "claim": "Arbeidsrett og personvern krever en eksplisitt analyseenhet: ett arbeidsforhold eller kontrolltiltak med formål, rettsgrunnlag, berørte data og dokumentert beslutningsprosess; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "aksjeloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-03"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c09",
+      "claim": "En faglig konklusjon om arbeidsrett og personvern må skille beregnet resultat fra konflikten «effektiv ledelse og sikkerhet mot autonomi, lik behandling, privatliv og kollektiv medbestemmelse» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "aksjeloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-03"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c10",
+      "claim": "Registeropplysninger dokumenterer formelle roller og hendelser, men forklarer ikke alene faktisk kontroll eller beslutningspraksis.",
+      "source_ids": [
+        "brreg_as"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-04"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c11",
+      "claim": "Skatterett og avgiftsforståelse krever en eksplisitt analyseenhet: én virksomhetsperiode eller transaksjon med regnskapsmessig og skattemessig behandling; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "brreg_as"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-04"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c12",
+      "claim": "En faglig konklusjon om skatterett og avgiftsforståelse må skille beregnet resultat fra konflikten «nøytralitet og finansiering av fellesskap mot kompleksitet, tilpasning og fordelingsvirkninger» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "brreg_as"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-04"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c13",
+      "claim": "Arbeidsrettslig analyse må knytte tiltak til hjemmel, saklig behov, forholdsmessighet, prosess og dokumentert virkning.",
+      "source_ids": [
+        "arbeidsmiljoloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-05"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c14",
+      "claim": "Konkurranserett, compliance og bærekraftsrapportering krever en eksplisitt analyseenhet: ett produktmarked, en høyrisikoprosess eller en rapporteringspåstand med identifiserte plikter og bevis; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "arbeidsmiljoloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-05"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c15",
+      "claim": "En faglig konklusjon om konkurranserett, compliance og bærekraftsrapportering må skille beregnet resultat fra konflikten «standardisert etterlevelse og omdømmevern mot reell risikoreduksjon, konkurranse og åpenhet» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "arbeidsmiljoloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-05"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c16",
+      "claim": "Analyse av persondata krever behandlingsgrunnlag, formålsavgrensning, dataminimering, sikkerhet og ivaretakelse av rettigheter.",
+      "source_ids": [
+        "personopplysningsloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-06"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c17",
+      "claim": "Juridisk metode og faktummatrise krever en eksplisitt analyseenhet: én avgrenset virksomhetshendelse; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "personopplysningsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-06"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c18",
+      "claim": "En faglig konklusjon om juridisk metode og faktummatrise må skille beregnet resultat fra konflikten «rask konklusjon mot forsvarlig tolkning og kontradiksjon» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "personopplysningsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-06"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c19",
+      "claim": "Regnskapsmessig resultat og skattemessig inntekt kan avvike fordi klassifikasjon og tidfesting følger ulike regler.",
+      "source_ids": [
+        "skatteloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-07"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c20",
+      "claim": "Ansvar, fullmakt og selskapsstyring krever en eksplisitt analyseenhet: én beslutning med protokoll, fullmakt og rolledata; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "skatteloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-07"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c21",
+      "claim": "En faglig konklusjon om ansvar, fullmakt og selskapsstyring må skille beregnet resultat fra konflikten «formell rolle mot faktisk kontroll og informasjonsgrunnlag» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "skatteloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-07"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c22",
+      "claim": "Utgående og inngående merverdiavgift må holdes fra hverandre, og feil periode eller sats kan gi feil avgiftsoppgjør.",
+      "source_ids": [
+        "mvaloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-08"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c23",
+      "claim": "Compliance, avvik og gjenoppretting krever en eksplisitt analyseenhet: ett risikoområde med hendelses- og kontrolldata; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "mvaloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-08"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c24",
+      "claim": "En faglig konklusjon om compliance, avvik og gjenoppretting må skille beregnet resultat fra konflikten «policy på papir mot etterlevelse i praksis» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "mvaloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-08"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c25",
+      "claim": "Strategisk analyse må skille hard konkurranse fra handlinger som loven forbyr eller krever melding om.",
+      "source_ids": [
+        "konkurranseloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-09"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c26",
+      "claim": "Skatt, avgift og økonomisk substans krever en eksplisitt analyseenhet: én transaksjonskjede med avtale, faktura og betaling; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "konkurranseloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-09"
+      ]
+    },
+    {
+      "id": "forretningsjus-skatt-compliance-c27",
+      "claim": "En faglig konklusjon om skatt, avgift og økonomisk substans må skille beregnet resultat fra konflikten «juridisk form mot økonomisk realitet og dokumentasjon» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "konkurranseloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "forretningsjus-skatt-compliance-09"
+      ]
+    }
+  ]
+}

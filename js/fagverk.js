@@ -118,7 +118,7 @@
       const href = MODEL.chapterUrl(model.subject.id, chapter.id, { place: placeId });
       return `<a class="fagverk-chapter-link${chapter.id === selectedChapterId ? ' is-active' : ''}" href="${escapeHtml(href)}">
         <strong>${escapeHtml(chapter.title)}</strong>
-        <span>${escapeHtml(chapter.subtitle)}</span>
+        <span>${chapter.role === 'specialization' ? 'Fordypning · ' : ''}${escapeHtml(chapter.subtitle)}</span>
       </a>`;
     }).join('');
   }
@@ -171,7 +171,7 @@
       </section>
       ${model.chapters.length ? `<section>
         <h3>Lærekapitler</h3>
-        <div class="fagverk-general-domain-grid">${model.chapters.map((chapter) => `<a class="fagverk-general-domain-card" href="${escapeHtml(MODEL.chapterUrl(model.subject.id, chapter.id, { place: placeId }))}"><span class="fagverk-kicker">Redigert lærestoff</span><strong>${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.subtitle)}</span><small>Les kapittelet →</small></a>`).join('')}</div>
+        <div class="fagverk-general-domain-grid">${model.chapters.map((chapter) => `<a class="fagverk-general-domain-card" href="${escapeHtml(MODEL.chapterUrl(model.subject.id, chapter.id, { place: placeId }))}"><span class="fagverk-kicker">${chapter.role === 'specialization' ? 'Faglig fordypning' : 'Canonicalt grunnkapittel'}</span><strong>${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.subtitle)}</span><small>Les kapittelet →</small></a>`).join('')}</div>
       </section>` : ''}
       <section>
         <h3>Metoder</h3>
@@ -196,7 +196,7 @@
         const row = progress.coverageById.get(emne.id) || {};
         return `<a href="${escapeHtml(MODEL.emneUrl(model.subject.id, domain.id, emne.id, { place: placeId }))}"><span><strong>${escapeHtml(emne.title)}</strong><small>${escapeHtml(emne.definition || emne.whyItMatters)}</small></span><b>${Number(row.percent || 0)}%</b></a>`;
       }).join('')}</div>
-      ${chapters.length ? `<section><h4>Lærekapitler i fagområdet</h4><div class="fagverk-general-domain-grid">${chapters.map((chapter) => `<a class="fagverk-general-domain-card" href="${escapeHtml(MODEL.chapterUrl(model.subject.id, chapter.id, { domain: domain.id, place: placeId }))}"><span class="fagverk-kicker">Redigert lærestoff</span><strong>${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.subtitle)}</span><small>Les kapittelet →</small></a>`).join('')}</div></section>` : ''}
+      ${chapters.length ? `<section><h4>Lærekapitler i fagområdet</h4><div class="fagverk-general-domain-grid">${chapters.map((chapter) => `<a class="fagverk-general-domain-card" href="${escapeHtml(MODEL.chapterUrl(model.subject.id, chapter.id, { domain: domain.id, place: placeId }))}"><span class="fagverk-kicker">${chapter.role === 'specialization' ? 'Faglig fordypning' : 'Canonicalt grunnkapittel'}</span><strong>${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.subtitle)}</span><small>Les kapittelet →</small></a>`).join('')}</div></section>` : ''}
       ${methods.length ? `<section><h4>Metoder i fagområdet</h4><div class="fagverk-general-method-list">${methods.map((method) => `<details><summary>${escapeHtml(method.title)}</summary><p>${escapeHtml(method.description)}</p>${method.procedure.length ? `<h5>Slik arbeider metoden</h5><ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<h5>Begrensninger</h5><ul>${method.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}</details>`).join('')}</div></section>` : ''}
     `;
     host.hidden = false;

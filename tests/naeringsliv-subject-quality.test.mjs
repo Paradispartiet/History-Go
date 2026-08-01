@@ -21,6 +21,9 @@ test('Økonomi og næringsliv validerer canonical fagpakke og registrerte kapitl
   assert.equal(report.summary.professionalModuleCount, 25);
   assert.equal(report.summary.totalLearningUnits, 61);
   assert.equal(report.summary.registeredChapterCount, chapters.length);
-  assert.equal(report.summary.registeredDomainCount, chapters.length);
+  assert.equal(report.summary.registeredDomainCount, 6);
+  assert.equal(report.summary.coreChapterCount, 6);
+  assert.equal(report.summary.specializationChapterCount, 6);
+  assert.deepEqual(report.summary.chapterContent, { modules: 36, sections: 108, paragraphs: 324, claims: 422, sources: 185, workedExamples: 24, misconceptions: 60, applicationTasks: 36, selfCheck: 96, relatedPlaces: 72 });
   assert.equal(report.summary.registeredEmneCount, new Set(chapters.flatMap((chapter) => chapter.emne_ids)).size);
 });

@@ -1,0 +1,408 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "regnskap-revisjon-okonomistyring",
+  "verified_at": "2026-08-01",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "bokforingsloven",
+      "label": "Bokføringsloven",
+      "url": "https://lovdata.no/lov/2004-11-19-73",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Loven fastsetter grunnleggende plikter for registrering, dokumentasjon, spesifikasjon og oppbevaring av regnskapsopplysninger."
+    },
+    {
+      "id": "regnskapsloven",
+      "label": "Regnskapsloven",
+      "url": "https://lovdata.no/lov/1998-07-17-56",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Årsregnskapet skal minst omfatte resultatregnskap, balanse og noteopplysninger, med tilleggskrav for enkelte foretak."
+    },
+    {
+      "id": "brreg_innsending",
+      "label": "Innsending av årsregnskap",
+      "url": "https://www.brreg.no/innsending-av-arsregnskap/",
+      "publisher": "Brønnøysundregistrene",
+      "type": "registerveiledning",
+      "source_location": "Innsending til Regnskapsregisteret og innsending av skattemelding er to forskjellige rapporteringsplikter."
+    },
+    {
+      "id": "brreg_innhold",
+      "label": "Hva skal årsregnskapet inneholde?",
+      "url": "https://www.brreg.no/innsending-av-arsregnskap/hva-skal-arsregnskapet-inneholde/",
+      "publisher": "Brønnøysundregistrene",
+      "type": "registerveiledning",
+      "source_location": "Komplett årsregnskap består av sammenhengende oppstillinger og noter, og enkelte foretak har tilleggskrav."
+    },
+    {
+      "id": "revisorloven",
+      "label": "Revisorloven",
+      "url": "https://lovdata.no/lov/2020-11-20-128",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Revisorloven regulerer revisjonsplikt, godkjenning av revisorer og revisors oppgaver."
+    },
+    {
+      "id": "finanstilsynet_revisor",
+      "label": "Revisor",
+      "url": "https://www.finanstilsynet.no/tillatelser/revisor/",
+      "publisher": "Finanstilsynet",
+      "type": "tilsynsveiledning",
+      "source_location": "Statsautoriserte revisorer og revisjonsselskaper er underlagt godkjenning og tilsyn."
+    },
+    {
+      "id": "skatteetaten_regnskap",
+      "label": "Regnskap",
+      "url": "https://www.skatteetaten.no/bedrift-og-organisasjon/starte-og-drive/rutiner-regnskap-og-kassasystem/gode-rutiner-for-daglig-drift/regnskap/",
+      "publisher": "Skatteetaten",
+      "type": "myndighetsveiledning",
+      "source_location": "Regnskapsføringen må skille virksomhetens inntekter, kostnader og merverdiavgift etter registreringsstatus."
+    },
+    {
+      "id": "mvaloven",
+      "label": "Merverdiavgiftsloven",
+      "url": "https://lovdata.no/lov/2009-06-19-58",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Merverdiavgift beregnes og rapporteres etter regler om avgiftspliktig omsetning, unntak, fritak og fradrag."
+    },
+    {
+      "id": "bokforingsforskriften",
+      "label": "Bokføringsforskriften",
+      "url": "https://lovdata.no/forskrift/2004-12-01-1558",
+      "publisher": "Lovdata",
+      "type": "forskrift",
+      "source_location": "Forskriften konkretiserer dokumentasjons-, spesifikasjons- og oppbevaringskrav for bokføringspliktige."
+    }
+  ],
+  "claims": [
+    {
+      "id": "regnskap-revisjon-okonomistyring-c01",
+      "claim": "Et kontrollspor krever at dokumentasjon, postering og rapportert beløp kan følges i begge retninger.",
+      "source_ids": [
+        "bokforingsloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-01"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c02",
+      "claim": "Bokføring og regnskapskretsløp krever en eksplisitt analyseenhet: ett avgrenset regnskapsår eller en måned med komplett bilagsserie; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "bokforingsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-01"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c03",
+      "claim": "En faglig konklusjon om bokføring og regnskapskretsløp må skille beregnet resultat fra konflikten «mekanisk korrekt bokføring mot økonomisk korrekt periodisering og klassifisering» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "bokforingsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-01"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c04",
+      "claim": "Resultat, balanse og kontantstrøm belyser ulike sider av virksomheten og kan ikke brukes som om de var samme mål.",
+      "source_ids": [
+        "regnskapsloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-02"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c05",
+      "claim": "Finansregnskap og ekstern rapportering krever en eksplisitt analyseenhet: ett årsregnskap med sammenligningstall og sentrale noter; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "regnskapsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-02"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c06",
+      "claim": "En faglig konklusjon om finansregnskap og ekstern rapportering må skille beregnet resultat fra konflikten «sammenlignbar standardisering mot virksomhetsspesifikt skjønn og informasjonsbehov» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "regnskapsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-02"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c07",
+      "claim": "Styret eller annen ansvarlig ledelse beholder ansvaret for innsending selv om praktisk arbeid er delegert.",
+      "source_ids": [
+        "brreg_innsending"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-03"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c08",
+      "claim": "Regnskapsanalyse og verdsettelse krever en eksplisitt analyseenhet: én virksomhet analysert over minst tre år og mot en relevant sammenligningsgruppe; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "brreg_innsending"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-03"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c09",
+      "claim": "En faglig konklusjon om regnskapsanalyse og verdsettelse må skille beregnet resultat fra konflikten «markedspris og rapportert resultat mot fundamental verdi og usikre framtidsforutsetninger» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "brreg_innsending"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-03"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c10",
+      "claim": "Notehenvisninger og oppstillinger må stemme overens for at rapporteringen skal være etterprøvbar.",
+      "source_ids": [
+        "brreg_innhold"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-04"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c11",
+      "claim": "Kostnadsanalyse, kalkulasjon og budsjettering krever en eksplisitt analyseenhet: ett kostnadssted eller produkt- og tjenestespekter med volum, kapasitet og indirekte kostnader; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "brreg_innhold"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-04"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c12",
+      "claim": "En faglig konklusjon om kostnadsanalyse, kalkulasjon og budsjettering må skille beregnet resultat fra konflikten «enkel og styrbar kalkyle mot mer presis, men datakrevende kostnadsfordeling» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "brreg_innhold"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-04"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c13",
+      "claim": "Revisjon gir en uavhengig uttalelse med definert sikkerhet, ikke en garanti for at alle feil eller misligheter er oppdaget.",
+      "source_ids": [
+        "revisorloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-05"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c14",
+      "claim": "Internkontroll, revisjon og prestasjonsstyring krever en eksplisitt analyseenhet: én kritisk prosess med påstander, risikoer, kontroller, eiere og resultatmål; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "revisorloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-05"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c15",
+      "claim": "En faglig konklusjon om internkontroll, revisjon og prestasjonsstyring må skille beregnet resultat fra konflikten «kontroll og etterprøvbarhet mot fleksibilitet, læring og risiko for gaming» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "revisorloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-05"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c16",
+      "claim": "Uavhengighet, profesjonell skepsis og dokumentert revisjonsbevis er sentrale kvalitetsforutsetninger.",
+      "source_ids": [
+        "finanstilsynet_revisor"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-06"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c17",
+      "claim": "Kontrollspor og avstemming krever en eksplisitt analyseenhet: en avgrenset bilagsserie med hovedbok og reskontro; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "finanstilsynet_revisor"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-06"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c18",
+      "claim": "En faglig konklusjon om kontrollspor og avstemming må skille beregnet resultat fra konflikten «mekanisk avstemming mot økonomisk korrekt klassifisering» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "finanstilsynet_revisor"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-06"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c19",
+      "claim": "En kostnad i regnskapet er ikke automatisk skattemessig fradragsberettiget; formål og dokumentasjon må vurderes separat.",
+      "source_ids": [
+        "skatteetaten_regnskap"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-07"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c20",
+      "claim": "Resultat, likviditet og arbeidskapital krever en eksplisitt analyseenhet: ett foretak over minst to perioder; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "skatteetaten_regnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-07"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c21",
+      "claim": "En faglig konklusjon om resultat, likviditet og arbeidskapital må skille beregnet resultat fra konflikten «rapportert overskudd mot betalingsevne» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "skatteetaten_regnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-07"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c22",
+      "claim": "Utgående og inngående merverdiavgift må holdes fra hverandre, og feil periode eller sats kan gi feil avgiftsoppgjør.",
+      "source_ids": [
+        "mvaloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-08"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c23",
+      "claim": "Budsjett, avvik og beslutningsansvar krever en eksplisitt analyseenhet: ett ansvarssenter med budsjett og faktisk aktivitet; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "mvaloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-08"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c24",
+      "claim": "En faglig konklusjon om budsjett, avvik og beslutningsansvar må skille beregnet resultat fra konflikten «styringsinformasjon mot målforskyvning og spill» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "mvaloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-08"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c25",
+      "claim": "Internkontroll bør teste både at transaksjonen fant sted, at den er riktig klassifisert og at den er bokført i riktig periode.",
+      "source_ids": [
+        "bokforingsforskriften"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-09"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c26",
+      "claim": "Revisjonsbevis og profesjonell skepsis krever en eksplisitt analyseenhet: ett vesentlig regnskapsområde i et revisjonsoppdrag; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "bokforingsforskriften"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-09"
+      ]
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring-c27",
+      "claim": "En faglig konklusjon om revisjonsbevis og profesjonell skepsis må skille beregnet resultat fra konflikten «rimelig sikkerhet mot forventning om garanti» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "bokforingsforskriften"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "regnskap-revisjon-okonomistyring-09"
+      ]
+    }
+  ]
+}

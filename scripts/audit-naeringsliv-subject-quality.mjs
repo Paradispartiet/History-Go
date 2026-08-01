@@ -69,6 +69,9 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
   const emneIds = emners.map((emne) => text(emne.emne_id));
   const methodIds = methods.map((method) => text(method.method_id));
   const registeredChapters = registry.subjects?.naeringsliv?.chapters || [];
+  const coreChapters = registeredChapters.filter((row) => text(row.chapter_role || 'core') === 'core');
+  const specializationChapters = registeredChapters.filter((row) => text(row.chapter_role) === 'specialization');
+  const chapterContent = { modules: 0, sections: 0, paragraphs: 0, claims: 0, sources: 0, workedExamples: 0, misconceptions: 0, applicationTasks: 0, selfCheck: 0, relatedPlaces: 0 };
 
   assert(pensum.subject_id === 'naeringsliv', 'Pensum uses wrong subject_id');
   assert(domains.length === 6, 'Expected six canonical business/economics domains');
@@ -93,26 +96,51 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
   assert(runtime.subjectId === 'naeringsliv' && runtime.displayName === 'Økonomi og næringsliv', 'Runtime manifest uses wrong subject identity');
   assert(runtime.canonicalSummary?.domainCount === 6 && runtime.canonicalSummary?.emneCount === 38, 'Runtime manifest has stale canonical counts');
   assert(unique(registeredChapters.map((row) => text(row.id))), 'Registered chapter IDs must be unique');
-  assert(unique(registeredChapters.map((row) => text(row.primary_domain_id))), 'A canonical domain can only own one chapter');
+  assert(coreChapters.length === domains.length, 'Each canonical domain must own one core chapter');
+  assert(specializationChapters.length === 6, 'Expected six materialized specialization chapters');
+  assert(unique(coreChapters.map((row) => text(row.primary_domain_id))), 'A canonical domain can only own one core chapter');
   const registeredEmneIds = [];
   for (const entry of registeredChapters) {
     assert(text(entry.file) && fs.existsSync(abs(entry.file)), `${entry.id}: registered chapter file is missing`);
     const chapter = json(entry.file);
+    const claimsDocument = json(chapter.claimsFile);
+    const chapterModules = chapter.moduleFiles.map(json);
+    chapterContent.claims += claimsDocument.claims.length;
+    chapterContent.sources += claimsDocument.sources.length;
+    for (const module of chapterModules) {
+      chapterContent.modules += 1;
+      chapterContent.sections += (module.sections || []).length;
+      chapterContent.paragraphs += (module.sections || []).flatMap((section) => section.paragraphs || []).length;
+      chapterContent.workedExamples += (module.workedExamples || []).length;
+      chapterContent.misconceptions += (module.misconceptions || []).length + (module.commonMisconceptions || []).length;
+      chapterContent.applicationTasks += (module.applicationTasks || []).length;
+      chapterContent.selfCheck += (module.selfCheck || []).length;
+      chapterContent.relatedPlaces += (module.relatedPlaces || []).length;
+    }
     const domain = domains.find((row) => row.domain_id === entry.primary_domain_id);
     assert(domain, `${entry.id}: unknown primary domain`);
     assert(chapter.subject_id === 'naeringsliv' && chapter.id === entry.id, `${entry.id}: chapter identity is unsynchronized`);
     assert(chapter.primary_domain_id === domain.domain_id, `${entry.id}: chapter uses wrong domain`);
-    assert(equalSet(chapter.emne_ids, domain.emne_ids), `${entry.id}: chapter does not cover the exact domain emners`);
-    assert(equalSet(chapter.method_ids, domain.method_ids), `${entry.id}: chapter does not cover the exact domain methods`);
+    const specialization = text(entry.chapter_role) === 'specialization';
+    if (specialization) {
+      assert(chapter.chapter_role === 'specialization', `${entry.id}: specialization role is unsynchronized`);
+      assert((chapter.emne_ids || []).length >= 5 && chapter.emne_ids.every((id) => emneIds.includes(id)), `${entry.id}: specialization has invalid emne coverage`);
+      assert((chapter.method_ids || []).length >= 5 && chapter.method_ids.every((id) => methodIds.includes(id)), `${entry.id}: specialization has invalid method coverage`);
+    } else {
+      assert(equalSet(chapter.emne_ids, domain.emne_ids), `${entry.id}: core chapter does not cover the exact domain emners`);
+      assert(equalSet(chapter.method_ids, domain.method_ids), `${entry.id}: core chapter does not cover the exact domain methods`);
+    }
     assert(equalSet(entry.emne_ids, chapter.emne_ids) && equalSet(entry.method_ids, chapter.method_ids), `${entry.id}: registry coverage is stale`);
-    assert(runtime.chapterByDomain?.[domain.domain_id] === entry.id, `${entry.id}: runtime domain mapping is missing`);
+    if (!specialization) assert(runtime.chapterByDomain?.[domain.domain_id] === entry.id, `${entry.id}: runtime domain mapping is missing`);
     for (const emneId of chapter.emne_ids || []) {
-      assert(runtime.chapterByEmne?.[emneId] === entry.id, `${entry.id}: runtime emne mapping is missing for ${emneId}`);
+      if (!specialization) assert(runtime.chapterByEmne?.[emneId] === entry.id, `${entry.id}: runtime emne mapping is missing for ${emneId}`);
       registeredEmneIds.push(emneId);
     }
   }
-  assert(Object.keys(runtime.chapterByDomain || {}).length === registeredChapters.length, 'Runtime has unregistered domain mappings');
-  assert(Object.keys(runtime.chapterByEmne || {}).length === new Set(registeredEmneIds).size, 'Runtime has unregistered emne mappings');
+  assert(Object.keys(runtime.chapterByDomain || {}).length === coreChapters.length, 'Runtime has unregistered domain mappings');
+  assert(Object.keys(runtime.chapterByEmne || {}).length === coreEmners.length, 'Runtime has unregistered emne mappings');
+  assert(equalSet(runtime.specializationChapterIds, specializationChapters.map((row) => row.id)), 'Runtime specialization chapter list is stale');
+  assert(isDeepStrictEqual(chapterContent, { modules: 36, sections: 108, paragraphs: 324, claims: 422, sources: 185, workedExamples: 24, misconceptions: 60, applicationTasks: 36, selfCheck: 96, relatedPlaces: 72 }), 'Materialized chapter content totals are stale');
   const portalEntry = portal.categories.find((row) => row.id === 'naeringsliv');
   assert(portalEntry?.subjectStatus === 'materialized' && portalEntry?.subjectPage === 'fagverk.html?subject=naeringsliv', 'Portal is not materialized');
   const statusEntry = status.subjects.find((row) => row.id === 'naeringsliv');
@@ -121,6 +149,7 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
   assert(statusEntry?.assessmentStatus === 'audited', 'Status assessment is not audited');
   assert(statusEntry?.editorialStatus === editorialPlan.expectedEditorialStatus, `Status editorial state must be ${editorialPlan.expectedEditorialStatus}`);
   assert(statusEntry?.nextGate === editorialPlan.expectedNextGate, `Status next gate must be ${editorialPlan.expectedNextGate}`);
+  assert(editorialPlan.withinTargetRange && editorialPlan.allChaptersReady, 'Editorial completion requires 12–14 chapter-ready, claim-traced chapters');
   assert(registry.subjects?.naeringsliv?.canonicalModel?.sourceOfTruth === true, 'Registry does not point to canonical naeringsliv data');
   assert(registry.subjects?.naeringsliv?.canonicalModel?.runtimeManifest === P.runtime, 'Registry points to wrong runtime manifest');
 
@@ -142,9 +171,12 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
       professionalModuleCount,
       totalLearningUnits: businessFramework.relationship_to_university_core.total_learning_units,
       registeredChapterCount: registeredChapters.length,
+      coreChapterCount: coreChapters.length,
+      specializationChapterCount: specializationChapters.length,
+      chapterContent,
       targetChapterMinimum: editorialPlan.minimum,
       targetChapterMaximum: editorialPlan.maximum,
-      registeredDomainCount: registeredChapters.length,
+      registeredDomainCount: new Set(registeredChapters.map((row) => row.primary_domain_id)).size,
       registeredEmneCount: new Set(registeredEmneIds).size,
       normalOpeningQuestions: quiz.normal_opening_profile.sets * quiz.normal_opening_profile.questions_per_set
     },
@@ -176,7 +208,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const args = new Set(process.argv.slice(2));
   try {
     const report = auditNaeringslivQuality({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Økonomi og næringsliv quality OK: ${report.summary.registeredChapterCount}/${report.summary.domainCount} chapters, ${report.summary.emneCount} emners, ${report.summary.methodCount} methods.`);
+    console.log(`Økonomi og næringsliv quality OK: ${report.summary.registeredChapterCount} chapters across ${report.summary.domainCount} domains, ${report.summary.emneCount} emners, ${report.summary.methodCount} methods.`);
   } catch (error) {
     console.error(`Økonomi og næringsliv quality ERROR: ${error.message}`);
     process.exitCode = 1;

@@ -22,7 +22,8 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `naeringsliv-handel-forbruk-marked-audit.json` — deterministisk kapittelgate for fem emner, elleve metoder, tre moduler, 54 claims og 25 inspectable kilder.
 - `naeringsliv-kapital-eierskap-finans-audit.json` — deterministisk kapittelgate for ni emner, fjorten metoder, tre moduler, 40 claims og 20 inspectable kilder.
 - `naeringsliv-arbeid-produksjon-verdiskaping-audit.json` — deterministisk kapittelgate for ni emner, nitten metoder, tre moduler, 40 claims og 20 inspectable kilder.
-- `naeringsliv-quality-audit.json` — deterministisk materialiserings- og kvalitetsgate for seks fagområder, 38 emner, 27 metoder, 60 hooks, seks akademiske spor og fem profesjonsspor med 25 moduler.
+- `naeringsliv-specialization-chapters-audit.json` — samlet permanent fullkapittelgate for seks fordypninger, 54 seksjoner, 162 fagavsnitt, 162 claims og 54 inspectable kilder.
+- `naeringsliv-quality-audit.json` — deterministisk materialiserings- og kvalitetsgate for seks fagområder, tolv kapitler, 38 emner, 27 metoder, 60 hooks, seks akademiske spor og fem profesjonsspor med 25 moduler.
 - `politikk-quality-audit.json` — deterministisk kvalitetsgate for 13 fagområder, 123 emner, 71 metoder, 123 mappingrader, quiz, Knowledge, merke og Fagverk-visning.
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle forekomster er synkronisert.
 - `politikk-forvaltning-audit.json` — kapittelgate for 15 emner, 21 metoder, tre redigerte moduler, 36 sporede claims og 24 inspectable kilder.
@@ -68,6 +69,8 @@ node scripts/audit-naeringsliv-chapter-arbeid-produksjon-verdiskaping.mjs --writ
 node scripts/audit-naeringsliv-chapter-arbeid-produksjon-verdiskaping.mjs
 node scripts/audit-naeringsliv-subject-quality.mjs --write-report
 node scripts/audit-naeringsliv-subject-quality.mjs
+node scripts/audit-naeringsliv-specialization-chapters.mjs --write-report
+node scripts/audit-naeringsliv-specialization-chapters.mjs
 node scripts/audit-politikk-subject-quality.mjs --write-report
 node scripts/audit-politikk-subject-quality.mjs
 node scripts/audit-politikk-thinker-integrity.mjs --write-report
@@ -121,7 +124,7 @@ Historie står `materialized`, `audited` og `chapters_in_progress`. Fire av 23 f
 
 Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinnelige miljøkapitlene og biologifase 1 er bevart. Evolusjon/biologisk mangfold og organismebiologi/fysiologi er nå materialisert med egne emner, metoder, mappinger, fagkart og kapitler. Elleve kapitler dekker alle 65 materialiserte emner. Sopp/lav/mikroorganismer og geologiens indre prosesser står fortsatt som eksplisitte hull før faget kan bli `complete`.
 
-Økonomi og næringsliv står `materialized`, `audited` og `chapters_in_progress`. Faget har seks canonicale fagområder, 38 emner, 27 metoder og 60 hooks. Seks brede hovedkapitler dekker alle fagområdene, men statusen er bevisst ikke `complete`: den redaksjonelle målporten er 12–14 fullverdige kapitler. Videre produksjon skal blant annet skille ut makroøkonomi, penge- og finanspolitikk, internasjonal økonomi, regnskap og økonomistyring, foretaksfinans, organisasjon, ledelse og kvantitative metoder. Universitetslaget dekker seks akademiske spor og alle 36 kjerneemnene individuelt; handelshøgskolelaget dekker fem profesjonsspor og 25 moduler, samlet 61 læringsenheter. Runtime normaliserer begge pedagogiske feltvarianter og laster canonicale kilder fra kapitlenes `claimsFile`.
+Økonomi og næringsliv står `materialized`, `audited` og `complete`. Faget har seks canonicale grunnkapitler og seks fullverdige fordypningskapitler: makroøkonomi og økonomisk politikk; regnskap og økonomistyring; markedsføring og strategi; kvantitative metoder og business analytics; forretningsjus, skatt og compliance; internasjonal økonomi, operations og prosjekt. Fordypningene tilfører 54 seksjoner, 162 fagavsnitt, 162 sporede claims og 54 inspectable autoritative kilder. Universitetslaget dekker seks akademiske spor og alle 36 kjerneemnene individuelt; handelshøgskolelaget dekker fem profesjonsspor og 25 moduler. Runtime skiller grunnkapitler fra fordypninger, normaliserer begge pedagogiske feltvarianter og laster kilder fra alle kapitlenes `claimsFile`.
 
 Politikk står `materialized`, `audited` og `complete`. Alle tretten canonicale fagområder har fullproduserte kapitler med tre redigerte moduler, exact canonical emne- og metodedekning, inspectable kilder, påstandsregister, avsnittssporing, permanent audit og test. Sluttmoderniseringen omfatter `Offentlig forvaltning` og `Parlamentarisme, representasjon og offentlighet`; den felles sluttgaten bekrefter at 13/13 kapitler følger brief–claims–audit-kontrakten. Faget har dessuten permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
