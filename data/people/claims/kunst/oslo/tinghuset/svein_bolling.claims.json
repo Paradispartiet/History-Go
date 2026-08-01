@@ -1,0 +1,49 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "svein_bolling",
+  "profile_file": "data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json",
+  "identity": {
+    "canonical_identity": "Billedkunstneren Svein Bolling, representert med tre malerier i Oslo tinghus.",
+    "name_variants": ["Svein Bolling"],
+    "not": ["navnelike personer"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "tinghuset_paintings",
+      "claim": "KORO dokumenterer tre malerier av Svein Bolling i andre etasje i Oslo tinghus, blant dem Kilden II og Kilden III.",
+      "status": "verified",
+      "source_url": "https://koro.no/prosjekter/oslo-tinghus/",
+      "source_location": "verkoversikten og billedtekstene for Svein Bollings malerier",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["tinghuset_paintings"],
+    "kindLabel": ["tinghuset_paintings"],
+    "year": ["tinghuset_paintings"],
+    "period": ["tinghuset_paintings"],
+    "placeId": ["tinghuset_paintings"],
+    "places[tinghuset]": ["tinghuset_paintings"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["tinghuset_paintings"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["tinghuset_paintings"]},
+      {"sentence": 2, "claim_ids": ["tinghuset_paintings"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "1/1",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
