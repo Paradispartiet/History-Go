@@ -9,6 +9,9 @@
   "accessed_at": "2026-08-01",
   "scope": {
     "qualified_theory_ids": [
+      "theory_his_imperialisme_allianser_krigsutbrudd",
+      "theory_his_fronter_total_krig_teknologi",
+      "theory_his_global_kolonial_verdenskrig",
       "theory_his_sivilsamfunn_krigsokonomi_hverdagsliv",
       "theory_his_norge_norden_noytralitet_sjofart",
       "theory_his_revolusjon_imperieopplosning_fredsoppgjor",
@@ -17,11 +20,7 @@
       "theory_his_store_depresjonen_arbeidsloshet_politikk",
       "theory_his_kultur_modernisme_kunst_visuell_politikk"
     ],
-    "deferred_theory_ids": [
-      "theory_his_imperialisme_allianser_krigsutbrudd",
-      "theory_his_fronter_total_krig_teknologi",
-      "theory_his_global_kolonial_verdenskrig"
-    ],
+    "deferred_theory_ids": [],
     "case_ids": [
       "case_his_hjula_vaeveri",
       "case_his_norsk_maritimt_museum",
@@ -30,7 +29,8 @@
       "case_his_norges_bank",
       "case_his_stortinget",
       "case_his_norsk_teknisk_museum",
-      "case_his_kunstnernes_hus_interwar_visual_culture"
+      "case_his_kunstnernes_hus_interwar_visual_culture",
+      "case_his_universitetet_i_oslo"
     ],
     "method_rule": "Perioden kvalifiseres bare når daterte kilder skiller hendelse, institusjon, samlingsanker, faktisk praksis, fordelingsvirkning og ettertidens formidling. Oslo-samlinger brukes ikke som påståtte hendelsessteder for globale krigsforløp."
   },
@@ -60,11 +60,98 @@
       "src_his_kunstnernes_hus_krohg_exhibition_1930"
     ],
     "reused_source_ids": [
+      "src_his_iwm_british_west_indies_regiment_wwi",
+      "src_his_nobel_noel_baker_1959_lecture",
       "src_his_snl_hjula_vaeveri"
     ],
-    "assessment": "Pakken kombinerer offisielle museumssamlinger, digitalisert presse og visuell kultur, Nobel-institusjonens prisarkiv, parlamentariske primær- og formidlingskilder, sentralbankhistorie og et eksisterende fabrikkcase. Hver lokal markør har eksplisitt skille mellom samlingssted og historisk hendelsessted."
+    "outbreak_front_and_global_source_ids": [
+      "src_his_storting_first_world_war_archives",
+      "src_his_iwm_world_went_to_war_1914",
+      "src_his_iwm_modern_weapons_trenches_wwi",
+      "src_his_iwm_first_world_war_global_total_war"
+    ],
+    "assessment": "Pakken kombinerer offisielle museumssamlinger, digitalisert presse og visuell kultur, Nobel-institusjonens prisarkiv, parlamentariske primær- og formidlingskilder, sentralbankhistorie og et eksisterende fabrikkcase. IWM-kildene gir uavhengige hendelsesforløp for allianser, fronter, teknologi, total krig og imperiegeografi; hver lokal markør har eksplisitt skille mellom samlingssted og historisk hendelsessted."
   },
   "source_snapshots": [
+    {
+      "source_id": "src_his_storting_first_world_war_archives",
+      "title": "Spor etter første verdenskrig i Stortingets arkiver",
+      "publisher": "Stortinget",
+      "url": "https://www.stortinget.no/no/Stortinget-og-demokratiet/Historikk/historisk-dokumentasjon/Spor-etter-1-verdenskrig-i-Stortingets-arkiver/",
+      "supported_dimensions": [
+        "official",
+        "parliamentary",
+        "archive",
+        "homefront"
+      ],
+      "source_locations": [
+        "Avsnittene om krigsutbruddet daterer Hærens sanitets oppfordring til 31. juli 1914 og følger sanitetsarbeidet inn i stortingsbygningen."
+      ],
+      "limitations": [
+        "Arkivartikkelen dokumenterer norsk sanitetsberedskap ved krigsutbruddet, men forklarer ikke alene den europeiske julikrisen, alliansesystemene eller beslutningene som utløste krigen.",
+        "Fotografiet og arkivsporene viser organisert innsats i Kristiania, men gir ikke full oversikt over deltakere, materiellbehov eller beredskap i hele Norge."
+      ]
+    },
+    {
+      "source_id": "src_his_iwm_world_went_to_war_1914",
+      "title": "How The World Went To War In 1914",
+      "publisher": "Imperial War Museums",
+      "url": "https://www.iwm.org.uk/history/how-the-world-went-to-war-in-1914",
+      "supported_dimensions": [
+        "official",
+        "museum",
+        "alliances",
+        "july_crisis",
+        "outbreak"
+      ],
+      "source_locations": [
+        "Delene om de rivaliserende alliansesystemene, julikrisen, mobiliseringene, Belgia-invasjonen og britisk imperiedeltakelse."
+      ],
+      "limitations": [
+        "Museumsframstillingen sammenfatter en omstridt flerårsakshistorie og kan ikke erstatte diplomatiske arkiver fra alle statene eller avgjøre ett entydig skyldspørsmål.",
+        "Den britiske inngangen og imperieperspektivet er fyldig belyst, mens andre staters hjemlige konflikter, folkeopinion og alternative handlingsrom er mindre uttømmende."
+      ]
+    },
+    {
+      "source_id": "src_his_iwm_modern_weapons_trenches_wwi",
+      "title": "How Modern Weapons Changed Combat In The First World War",
+      "publisher": "Imperial War Museums",
+      "url": "https://www.iwm.org.uk/history/how-modern-weapons-changed-combat-in-the-first-world-war",
+      "supported_dimensions": [
+        "official",
+        "museum",
+        "weapons",
+        "trenches",
+        "fronts"
+      ],
+      "source_locations": [
+        "Innledningen om tapene i 1914, massehærer, hurtigskytende artilleri og overgangen til skyttergraver innen fire måneder."
+      ],
+      "limitations": [
+        "Framstillingen forklarer en sentral teknologi-taktikk-kjede, men dekker ikke alle fronter, våpentyper, kommandovalg eller soldaters erfaringer likt.",
+        "Sammenhengen mellom ildkraft og skyttergraver må ikke leses som teknologisk determinisme; terreng, planer, logistikk og politiske mål påvirket også krigføringen."
+      ]
+    },
+    {
+      "source_id": "src_his_iwm_first_world_war_global_total_war",
+      "title": "5 Things You Need To Know About The First World War",
+      "publisher": "Imperial War Museums",
+      "url": "https://www.iwm.org.uk/history/5-things-you-need-to-know-about-the-first-world-war",
+      "supported_dimensions": [
+        "official",
+        "museum",
+        "global_war",
+        "imperial_fronts",
+        "total_war"
+      ],
+      "source_locations": [
+        "Punktene om global krig, massehærer og sivilt arbeid, statlig produksjonskontroll, innovasjon og ødeleggelse."
+      ],
+      "limitations": [
+        "Oversikten syntetiserer et svært stort krigsforløp i fem hovedpunkter og kan ikke representere alle imperier, kolonier, fronter, sivile grupper eller lokale variasjoner.",
+        "Britiske produksjonstall og samlingsobjekter belyser mobiliseringskapasitet, men kan ikke generaliseres direkte til andre krigførende eller nøytrale stater."
+      ]
+    },
     {
       "source_id": "src_his_marmuseum_krigsforsikringen_1914",
       "title": "Krigsforsikringen for norske skib",
@@ -342,8 +429,8 @@
     }
   ],
   "production_decisions": [
-    "Syv teorier kvalifiseres i fase 1; imperialisme/alliansesystem, front/total krig og global/kolonial krig utsettes til de har egne hendelsesnære caser utenfor Oslo-profilen.",
-    "Norsk Maritimt Museum, Nasjonalbiblioteket og Nobelinstituttet brukes som nåværende samlings- og institusjonsankre; historiske sjø-, presse- og hjelpehendelser lokaliseres ikke til dagens bygg.",
+    "Alle ti teorier kvalifiseres først når de tre tidligere utsatte objektene har minst to egne casekoblinger og uavhengige kilder for allianser og julikrise, front og total krig samt global og kolonial mobilisering.",
+    "Norsk Maritimt Museum, Nasjonalbiblioteket, Nobelinstituttet og Universitetet i Oslo brukes som nåværende samlings-, forelesnings- og institusjonsankre; historiske sjø-, presse-, front-, imperie- og hjelpehendelser lokaliseres ikke til dagens bygg.",
     "Norsk nøytralitet behandles som formell status sammen med faktisk handel, forsikring, sjøfolks risiko, tap, forsyningskrise og etterkrigspolitisk omstilling.",
     "Ideologi kvalifiseres gjennom offentlig språk, vitenskapsautoritet, visuell form, sensur og demokratisk motkonflikt; ingen enkelt plakat eller tekst gjøres til bevis på masseoppslutning.",
     "Depresjonen følger finans, valuta, handel og parlamentarisk respons, men tallfester ikke arbeidsløshet eller husholdsvirkning utover kildenes faktiske dekning.",
