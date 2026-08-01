@@ -44,11 +44,23 @@ test('decolonization uses a separate repatriation case instead of colonial trade
   assert.match(entry.rationale, /samisk eierskap/);
 });
 
-test('transnational-movement evidence traces named organizational and travel-resource channels', () => {
+test('transnational-movement evidence uses two topic-specific cases with named cross-border channels', () => {
   const entry = registry.find((candidate) => candidate.theory_id === 'theory_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk');
+  const targetEmneId = 'em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk';
+  const vietnamClaim = claimById.get('claim_his_eidsvolls_plass_vietnam_demonstration_1968');
+  const topicCases = new Set(entry.claim_ids
+    .map((claimId) => claimById.get(claimId))
+    .filter((claim) => claim?.emne_ids.includes(targetEmneId))
+    .flatMap((claim) => claim.scope.case_ids));
+
   assert.ok(entry.claim_ids.includes('claim_his_oslo_radhus_lutuli_anti_apartheid_network_1961_1967'));
+  assert.ok(entry.claim_ids.includes('claim_his_folkets_hus_nocosa_shipping_boycott_network_1967_1993'));
   assert.ok(entry.claim_ids.includes('claim_his_norsk_folkemuseum_pakistan_kharian_network_flow_1967_1975'));
-  assert.match(entry.rationale, /boikottkampanje/);
+  assert.ok(!entry.claim_ids.includes('claim_his_eidsvolls_plass_vietnam_demonstration_1968'));
+  assert.ok(!vietnamClaim.emne_ids.includes(targetEmneId));
+  assert.deepEqual(topicCases, new Set(['case_his_folkets_hus', 'case_his_oslo_radhus']));
+  assert.match(entry.rationale, /boikott/);
+  assert.match(entry.rationale, /Shipping Research Bureau/);
   assert.match(entry.rationale, /reiseruter og finansiering/);
   assert.match(entry.disconfirmation_conditions.join(' '), /konkrete grensekryssende kanaler/);
 });
@@ -56,6 +68,7 @@ test('transnational-movement evidence traces named organizational and travel-res
 test('collection and decision institutions remain anchors rather than foreign event locations', () => {
   assert.ok(dossier.production_decisions.some((decision) => decision.includes('lokaliseres ikke til dagens bygg')));
   assert.ok(dossier.production_decisions.some((decision) => decision.includes('gjennomføring og virkninger i andre land')));
+  assert.ok(dossier.production_decisions.some((decision) => decision.includes('oppbevarings- og dokumentasjonsanker')));
   for (const claimId of [
     'claim_his_fredensborg_danish_norwegian_triangle_trade_1767_1768',
     'claim_his_nb_santali_authored_manuscripts_local_knowledge_agency',
