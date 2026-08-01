@@ -238,6 +238,39 @@ test('changed-mode krever rapport ved brukerrettet Historie-stedsendring, men ik
   assert.equal(requiredReportsForChanges(fixtureRoot, [placePath], base).size, 0);
 });
 
+test('changed-mode blokkerer sletting av rapport når stedet fortsatt er Historie-sted', (t) => {
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'historie-report-delete-'));
+  t.after(() => fs.rmSync(fixtureRoot, { recursive: true, force: true }));
+  const placePath = 'data/places/historie/test/test_historisk_sted.json';
+  const reportPath = 'data/places/historie-production/test_historisk_sted.json';
+  fs.mkdirSync(path.join(fixtureRoot, 'data/places/historie/test'), { recursive: true });
+  fs.mkdirSync(path.join(fixtureRoot, 'data/places/historie-production'), { recursive: true });
+  fs.mkdirSync(path.join(fixtureRoot, 'data/places/regler'), { recursive: true });
+  fs.mkdirSync(path.join(fixtureRoot, 'data/fag/historie'), { recursive: true });
+  fs.writeFileSync(path.join(fixtureRoot, 'data/places/manifest.json'), JSON.stringify({ files: ['places/historie/test/test_historisk_sted.json'] }));
+  fs.writeFileSync(path.join(fixtureRoot, placePath), JSON.stringify(place));
+  fs.writeFileSync(path.join(fixtureRoot, 'data/places/regler/historie_place_production_v1.schema.json'), '{}');
+  fs.writeFileSync(path.join(fixtureRoot, 'data/fag/historie/emner_historie_canonical_v4_5.json'), JSON.stringify([{ emne_id: 'em_his_tid_periodisering_epoker' }]));
+  fs.writeFileSync(path.join(fixtureRoot, reportPath), JSON.stringify(validReport()));
+  execFileSync('git', ['init', '-q'], { cwd: fixtureRoot });
+  execFileSync('git', ['config', 'user.email', 'test@history-go.invalid'], { cwd: fixtureRoot });
+  execFileSync('git', ['config', 'user.name', 'History GO test'], { cwd: fixtureRoot });
+  execFileSync('git', ['add', '.'], { cwd: fixtureRoot });
+  execFileSync('git', ['commit', '-qm', 'fixture base'], { cwd: fixtureRoot });
+  const base = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: fixtureRoot, encoding: 'utf8' }).trim();
+
+  fs.unlinkSync(path.join(fixtureRoot, reportPath));
+  const result = auditHistoriePlaceProduction({
+    root: fixtureRoot,
+    mode: 'changed',
+    base,
+    paths: [reportPath],
+    now: new Date('2026-08-01T12:00:00Z')
+  });
+  assert.equal(result.status, 'failed');
+  assert.ok(result.failures.some((error) => error.includes('slettet mens stedet fortsatt er et Historie-sted')));
+});
+
 test('all-mode kan kjøres permanent før første produksjonsrapport er lagt inn', (t) => {
   const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'historie-place-all-'));
   t.after(() => fs.rmSync(fixtureRoot, { recursive: true, force: true }));
