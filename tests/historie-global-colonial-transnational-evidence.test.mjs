@@ -35,6 +35,24 @@ test('each global-domain theory uses at least two cases linked to its own emne',
   }
 });
 
+test('decolonization uses a separate repatriation case instead of colonial trade as its second case', () => {
+  const entry = registry.find((candidate) => candidate.theory_id === 'theory_his_global_kolonial_avkolonisering_og_utviklingspolitikk');
+  assert.ok(entry.claim_ids.includes('claim_his_norsk_folkemuseum_baastede_transfer_1600_items'));
+  assert.ok(entry.case_ids.includes('case_his_norsk_folkemuseum_sami_collections_repatriation'));
+  assert.ok(entry.case_ids.includes('case_his_stortinget'));
+  assert.ok(!entry.claim_ids.includes('claim_his_fredensborg_danish_norwegian_triangle_trade_1767_1768'));
+  assert.match(entry.rationale, /samisk eierskap/);
+});
+
+test('transnational-movement evidence traces named organizational and travel-resource channels', () => {
+  const entry = registry.find((candidate) => candidate.theory_id === 'theory_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk');
+  assert.ok(entry.claim_ids.includes('claim_his_oslo_radhus_lutuli_anti_apartheid_network_1961_1967'));
+  assert.ok(entry.claim_ids.includes('claim_his_norsk_folkemuseum_pakistan_kharian_network_flow_1967_1975'));
+  assert.match(entry.rationale, /boikottkampanje/);
+  assert.match(entry.rationale, /reiseruter og finansiering/);
+  assert.match(entry.disconfirmation_conditions.join(' '), /konkrete grensekryssende kanaler/);
+});
+
 test('collection and decision institutions remain anchors rather than foreign event locations', () => {
   assert.ok(dossier.production_decisions.some((decision) => decision.includes('lokaliseres ikke til dagens bygg')));
   assert.ok(dossier.production_decisions.some((decision) => decision.includes('gjennomføring og virkninger i andre land')));

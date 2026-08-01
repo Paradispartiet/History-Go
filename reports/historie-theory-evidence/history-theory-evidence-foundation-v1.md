@@ -221,7 +221,7 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Norge i imperiale og koloniale forbindelser: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
 | Globalisering, avhengighet og sammenvevd historie: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
 | Internasjonale organisasjoner, bistand og utviklingspolitikk: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
-| Transnasjonale bevegelser, medier og solidaritetsnettverk: forklarings- og kildebane | 3 | 3 | 5 | 3 | evidence_ready |
+| Transnasjonale bevegelser, medier og solidaritetsnettverk: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
 
 ## Kontraktsgrense
 
