@@ -61,6 +61,32 @@ Det er derfor ikke lov å:
 
 ---
 
+## Obligatorisk arbeidsmåte — nullmåling og én fase om gangen
+
+Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-gate når relevant, alle åtte popupfaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
+
+Produksjonen deles deretter i små faser. Bare én fase kan ha status `PÅGÅR` om gangen:
+
+```text
+IKKE STARTET → PÅGÅR → KLAR FOR REVIEW → GODKJENT / BEGRUNNET N/A
+```
+
+- [ ] nullmåling finnes før første innholdsendring;
+- [ ] planen sier eksplisitt hva som beholdes, omskrives, flyttes, fjernes og mangler;
+- [ ] aktiv fase og eksakt filscope er skrevet i arbeidskortet;
+- [ ] neste fase starter ikke før den aktive fasen er reviewet;
+- [ ] teknisk PASS brukes ikke som synonym for redaksjonell ferdigstatus;
+- [ ] en runding er ikke «bildeklar» fordi bare preview-elementet har bilde;
+- [ ] hver popupfane vurderes og godkjennes separat;
+- [ ] hver godkjent fase merges som en liten, avgrenset PR og kontrolleres på faktisk `main`/produksjonsflate før neste fase starter;
+- [ ] arbeid samles ikke i en skjult flerfasebranch mens status rapporteres som publisert.
+
+### Stoppgate
+
+Et sted kan ikke merkes `produksjonsklart` når nullmålingen eller fasesporingen mangler, når en relevant fase fortsatt er `IKKE STARTET`/`PÅGÅR`, eller når en teknisk minimumstest motsies av den synlige redaksjonelle kvaliteten.
+
+---
+
 # DEL A — ARBEIDSKORT FOR DET AKTIVE STEDET
 
 Fyll før research/produksjon:
@@ -93,6 +119,19 @@ QUIZ-STATUS:
 STORY-STATUS:
 VIKTIGSTE KILDER:
 AVVIST/UVISST INNHOLD:
+NULLMÅLING:
+SANERINGS-/PRODUKSJONSPLAN:
+AKTIV FASE:
+AKTIVT FILSCOPE:
+FORRIGE FASE MERGET OG LIVE-KONTROLLERT:
+POPUPSTATUS — OM:
+POPUPSTATUS — HISTORIE:
+POPUPSTATUS — FORTELLINGER:
+POPUPSTATUS — FØR/ETTER:
+POPUPSTATUS — NYHETER:
+POPUPSTATUS — LESESPOR:
+POPUPSTATUS — KILDER:
+POPUPSTATUS — MER:
 ```
 
 Arbeidskortet skal gjøre det tydelig **hva stedet er, hvor canonical sannhet ligger, hvilke subsystemer som er relevante og hvilke kontrakter som skal brukes**.
@@ -412,7 +451,15 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 - [ ] «legg merke til»-momenter vurdert;
 - [ ] Mer brukes ikke som søppelskuff for handlinger eller fysiske Objects/Details/Spots.
 
-Alle åtte får status: **ferdig** eller **N/A**.
+Alle åtte får egen status: **ikke startet**, **pågår**, **klar for review**, **ferdig** eller **N/A med fanespesifikk begrunnelse og evidenspeker**.
+
+Status kan ikke arves mellom faner. Særlig gjelder:
+
+- chronology kan ikke settes N/A fordi materialet mangler narrativ Story-kvalitet;
+- Story kan ikke settes N/A bare fordi chronology finnes;
+- en samlet formulering som «chronology/Stories vurdert» er ikke tilstrekkelig;
+- Kilder er ikke ferdig fordi URL-er finnes i en intern produksjonsrapport eller quizfil; brukerflaten må ha sin canonical kildeflate;
+- korte `knowledge`-tekster inne i quiz er ikke det samme som synkroniserte Knowledge-enheter.
 
 ---
 
@@ -536,6 +583,13 @@ Researchrekkefølge:
 - [ ] eksisterende canonical person søkes og gjenbrukes;
 - [ ] primæranker flyttes ikke uten faglig grunn;
 - [ ] duplikat-ID opprettes ikke.
+- [ ] personer som uttrykker stedets dokumenterte hovedfunksjon dominerer utvalget; sekundære kunst-, arkitektur- eller besøkskoblinger overtar ikke galleriet;
+- [ ] hver synlig person har en egen, presis rolle ved stedet;
+- [ ] `desc` er en kort, særpreget People-teaser, mens `popupDesc` er den lengre profilteksten;
+- [ ] navnet er ikke det eneste som skiller ellers malidentiske `desc`/`popupDesc`;
+- [ ] gjentatte setningsåpninger og boilerplate er eksplisitt kontrollert;
+- [ ] hver person som vises i den ferdige rundingen har identitetskontrollert bilde eller tydelig merket redaksjonell illustrasjon;
+- [ ] manglende tillatt foto kan løses med redaksjonell illustrasjon etter bildekontrakten; logoer kan brukes som identifikasjon i Brands, men ikke som personportrett.
 
 ### Hvis personprofil opprettes eller revideres
 
@@ -733,6 +787,8 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] fast Badges-runding vises øverst til høyre ved stedsoverskriften;
 - [ ] tre innholdsrundinger vises på én horisontal rad ved `frontImage`;
 - [ ] alle valgte rundinger har korrekte bilder;
+- [ ] People-kortet viser personens korte `desc`, ikke hele `popupDesc`;
+- [ ] full People-tekst vises først i personpopupen;
 - [ ] Badges åpner riktig sted/fagverk;
 - [ ] Badges og de tre canonicale innholdsrundingene åpner riktig innhold;
 - [ ] Brands viser bare riktige bedrifter/kjente merker;
@@ -790,6 +846,7 @@ Kjør gates som faktisk eier endringene. Typiske:
 ## 24. Ett-sted-PR
 
 - [ ] PR-en gjelder ett place;
+- [ ] PR-en gjelder bare den aktive produksjonsfasen eller en uttrykkelig nødvendig sikringsendring;
 - [ ] avhengige People/Works/Story/Quiz/Objects/Details/Spots-data er med bare når nødvendig for dette stedet;
 - [ ] neste sted er ikke blandet inn;
 - [ ] sluttdiffen har bare forventede filer;
@@ -798,6 +855,7 @@ Kjør gates som faktisk eier endringene. Typiske:
 - [ ] alle relevante gates er grønne på uendret head-SHA;
 - [ ] manuell sted-QA er utført på samme innhold;
 - [ ] merge bruker låst/forventet head-SHA.
+- [ ] den mergede fasen er kontrollert på faktisk `main`/produksjonsflate før neste fase starter.
 
 Ikke start neste sted før dette stedet er merget eller eksplisitt stoppet/blokkert med dokumentert grunn.
 
@@ -900,6 +958,13 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 ```markdown
 ## <place_id> — produksjonsstatus
 
+### 0. Nullmåling og fasekontroll
+- [ ] nullmåling
+- [ ] behold / omskriv / flytt / fjern / mangler
+- [ ] aktiv fase
+- [ ] eksakt filscope
+- [ ] forrige fase merget og live-kontrollert / første fase
+
 ### A. Source og identitet
 - [ ] canonical object
 - [ ] manifest/source
@@ -932,14 +997,14 @@ LES: data/places/regler/PLACE_DESCRIPTION_CANONICAL.md
 
 ### E. Popup
 LES: docs/PLACE_POPUP_SYSTEM.md
-- [ ] Om
-- [ ] Historie
-- [ ] Fortellinger / N/A
-- [ ] Før/etter / N/A
-- [ ] Nyheter / N/A
-- [ ] Lesespor / N/A
-- [ ] Kilder
-- [ ] Mer / N/A
+- [ ] Om — status + evidens
+- [ ] Historie — status + evidens
+- [ ] Fortellinger — status + egen N/A-begrunnelse/evidens
+- [ ] Før/etter — status + egen N/A-begrunnelse/evidens
+- [ ] Nyheter — status + egen N/A-begrunnelse/evidens
+- [ ] Lesespor — status + egen N/A-begrunnelse/evidens
+- [ ] Kilder — status + brukerrettet kildeflate
+- [ ] Mer — status + egen N/A-begrunnelse/evidens
 
 ### F. Rundinger
 LES: data/places/README_place_rounds.md

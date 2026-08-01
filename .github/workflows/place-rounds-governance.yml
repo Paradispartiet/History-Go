@@ -17,8 +17,20 @@ on:
       - "tests/place-card-rounds-runtime-audit.test.js"
       - "tests/place-people-ids-runtime.test.js"
       - "tests/nationaltheatret-people-curation.test.js"
+      - "tests/tinghuset-rounds-completion.test.mjs"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+      - "data/places/politikk/oslo/places_politikk/tinghuset.json"
+      - "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json"
+      - "data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json"
+      - "data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json"
+      - "data/people/politikk/oslo/tinghuset/**"
+      - "data/people/manifest.json"
+      - "data/brands/**"
+      - "bilder/kort/people/**"
+      - "bilder/brands/**"
+      - "bilder/places/auto/tinghuset__*"
+      - "reports/place-production/tinghuset-politikk-v1.md"
       - "docs/PLACE_PRODUCTION_CHECKLIST.md"
       - "docs/PLACE_STANDARD.md"
       - "docs/PLACE_POPUP_SYSTEM.md"
@@ -43,8 +55,20 @@ on:
       - "tests/place-card-rounds-runtime-audit.test.js"
       - "tests/place-people-ids-runtime.test.js"
       - "tests/nationaltheatret-people-curation.test.js"
+      - "tests/tinghuset-rounds-completion.test.mjs"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
+      - "data/places/politikk/oslo/places_politikk/tinghuset.json"
+      - "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json"
+      - "data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json"
+      - "data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json"
+      - "data/people/politikk/oslo/tinghuset/**"
+      - "data/people/manifest.json"
+      - "data/brands/**"
+      - "bilder/kort/people/**"
+      - "bilder/brands/**"
+      - "bilder/places/auto/tinghuset__*"
+      - "reports/place-production/tinghuset-politikk-v1.md"
       - "docs/PLACE_PRODUCTION_CHECKLIST.md"
       - "docs/PLACE_STANDARD.md"
       - "docs/PLACE_POPUP_SYSTEM.md"
@@ -75,10 +99,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test canonical four-round contract
+      - name: Test canonical three content rounds plus Badges contract
         run: |
           node --check js/ui/nature-detailed-map.js
           node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-detailed-map.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
+          node tests/tinghuset-rounds-completion.test.mjs

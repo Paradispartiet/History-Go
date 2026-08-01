@@ -16,6 +16,33 @@ for (const id of ['ole_lislerud', 'oivind_astein', 'yngve_svendsen', 'nina_sundb
 }
 assert.equal(peopleById.size >= 7, true, 'Oslo tinghus skal ha et reelt persongalleri');
 
+const hasLocalImage = entity => {
+  const image = String(entity?.cardImage || entity?.imageCard || entity?.image || entity?.logo || '').trim();
+  return Boolean(image && fs.existsSync(image));
+};
+
+const popupOpening = person => String(person?.popupDesc || person?.popupdesc || '')
+  .replace(String(person?.name || ''), '')
+  .trim()
+  .toLocaleLowerCase('nb-NO')
+  .split(/\s+/)
+  .slice(0, 6)
+  .join(' ');
+
+const openingCounts = new Map();
+for (const person of peopleById.values()) {
+  const opening = popupOpening(person);
+  if (opening) openingCounts.set(opening, (openingCounts.get(opening) || 0) + 1);
+}
+
+const duplicateOpenings = [...openingCounts.entries()].filter(([, count]) => count > 1);
+const peopleWithImages = [...peopleById.values()].filter(hasLocalImage);
+const primaryFunctionPeople = [...peopleById.values()].filter(person => {
+  const role = String(person?.role || person?.kindLabel || '').trim();
+  const tags = new Set((Array.isArray(person?.tags) ? person.tags : []).map(tag => String(tag).toLowerCase()));
+  return Boolean(role && (tags.has('domstol') || tags.has('rettsstat') || tags.has('dommer')));
+});
+
 const yngve = peopleById.get('yngve_svendsen');
 assert.equal(yngve.imageMeta.source, 'history_go_editorial_illustration');
 assert.equal(yngve.imageMeta.mediaType, 'editorial_illustration');
@@ -34,9 +61,37 @@ assert.ok(fs.existsSync(brand.logo));
 assert.ok(brand.source_urls.includes('https://beate-ellingsen.no/oslo-tinghus'));
 
 const place = readJson('data/places/politikk/oslo/places_politikk/tinghuset.json');
-assert.ok(place.objects?.some(object => object.image && fs.existsSync(object.image)), 'Objects-preview mangler');
+const objects = Array.isArray(place.objects) ? place.objects : [];
+const objectTitles = new Set(objects.map(object => String(object?.title || '').trim()).filter(Boolean));
+
+const quality = {
+  peopleVisualCoverage: peopleWithImages.length === peopleById.size,
+  primaryFunctionDominates: primaryFunctionPeople.length > peopleById.size / 2,
+  peopleTextsAreDistinct: duplicateOpenings.length === 0,
+  objectsHaveDepth: objects.length >= 3
+    && objectTitles.size === objects.length
+    && objects.every(object => hasLocalImage(object) && Array.isArray(object.source_urls) && object.source_urls.length > 0),
+  brandsAreReady: brandsByPlace.tinghuset.length > 0
+    && brandsByPlace.tinghuset.every(id => {
+      const item = brands.find(candidate => candidate.id === id);
+      return item && hasLocalImage(item) && Array.isArray(item.source_urls) && item.source_urls.length > 0;
+    })
+};
+
+const report = fs.readFileSync('reports/place-production/tinghuset-politikk-v1.md', 'utf8');
+const markedProductionReady = /Status for samlet sted:\s*\*\*produksjonsklart\*\*/i.test(report);
+if (markedProductionReady) {
+  for (const [gate, passed] of Object.entries(quality)) {
+    assert.equal(passed, true, `Oslo tinghus kan ikke være produksjonsklart: ${gate} feiler`);
+  }
+} else {
+  assert.match(report, /Status for samlet sted:\s*\*\*under sanering[^*]*\*\*/i);
+}
 
 const cardRuntime = fs.readFileSync('js/ui/place-card.js', 'utf8');
 assert.match(cardRuntime, /persons\?\.find\(person => person\?\.cardImage \|\| person\?\.imageCard \|\| person\?\.image\)/);
+assert.match(cardRuntime, /const personDesc = String\(p\.desc \|\| ""\)\.trim\(\)/);
+assert.doesNotMatch(cardRuntime, /const personDesc = String\(p\.popupDesc \|\| p\.popupdesc \|\| p\.desc/);
 
-console.log('Oslo tinghus rounds completion OK: People, Objects and Brands are image-ready');
+const failedGates = Object.entries(quality).filter(([, passed]) => !passed).map(([gate]) => gate);
+console.log(`Oslo tinghus round audit: ${peopleWithImages.length}/${peopleById.size} People med bilde, ${objects.length} Objects, ${brandsByPlace.tinghuset.length} Brands; uferdige porter: ${failedGates.join(', ') || 'ingen'}`);

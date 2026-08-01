@@ -1595,7 +1595,9 @@ if (peopleEl) {
 
   const peopleHtml = allPeopleRows
     .map(p => {
-      const personDesc = String(p.popupDesc || p.popupdesc || p.desc || "").trim();
+      // Rundingen er en kort inngang til personprofilen. Den fulle popupDesc-en
+      // eies av personpopupen og skal ikke brukes som teaser her.
+      const personDesc = String(p.desc || "").trim();
       const personImage = String(p.cardImage || p.imageCard || p.image || "").trim();
       const isIllustration = p?.imageMeta?.mediaType === "editorial_illustration" || p?.imageMeta?.source === "history_go_editorial_illustration";
       const imageAlt = isIllustration ? `Illustrasjon av ${p.name || "person"}` : (p.name || "");
