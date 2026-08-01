@@ -141,10 +141,11 @@ test('kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder'
   assert.deepEqual(chapter.claims.map((claim) => claim.id), ['claim-1']);
 });
 
-test('alle seks Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatninger og canonicale kilder', async () => {
+test('alle tolv Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatninger og canonicale kilder', async () => {
   const registry = JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8'));
   const fetchFile = async (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 
+  assert.equal(registry.subjects.naeringsliv.chapters.length, 12);
   for (const chapterMeta of registry.subjects.naeringsliv.chapters) {
     const chapter = await CORE.hydrateChapter(chapterMeta, fetchFile);
     const claimsDocument = await fetchFile(chapterMeta.claimsFile);

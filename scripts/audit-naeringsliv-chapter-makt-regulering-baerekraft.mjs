@@ -179,7 +179,7 @@ export function auditMaktReguleringBaerekraft({ writeReport = false, checkReport
   assert(runtime.chapterByDomain?.[DOMAIN_ID] === CHAPTER_ID, "Runtime domain mapping is missing");
   for (const emneId of chapter.emne_ids) assert(runtime.chapterByEmne?.[emneId] === CHAPTER_ID, `Runtime emne mapping missing for ${emneId}`);
   const statusEntry = status.subjects.find((row) => row.id === "naeringsliv");
-  assert(chapters.length === pensum.domains.length, "Næringsliv must register all six canonical chapters");
+  assert(chapters.filter((row) => (row.chapter_role || "core") === "core").length === pensum.domains.length, "Næringsliv must register all six canonical core chapters");
   const editorialPlan = evaluateNaeringslivEditorialPlan(registry.subjects?.naeringsliv, (pensum.domains || []).map((row) => row.domain_id));
   assert(statusEntry?.editorialStatus === editorialPlan.expectedEditorialStatus, `Næringsliv status must be ${editorialPlan.expectedEditorialStatus}`);
   assert(statusEntry?.nextGate === editorialPlan.expectedNextGate, `Næringsliv next gate must be ${editorialPlan.expectedNextGate}`);

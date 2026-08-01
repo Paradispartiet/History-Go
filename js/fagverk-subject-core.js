@@ -286,6 +286,7 @@
       title: firstText(chapter?.title),
       subtitle: firstText(chapter?.subtitle),
       file: firstText(chapter?.file),
+      role: firstText(chapter?.chapter_role, 'core'),
       primaryDomainId: firstText(chapter?.primary_domain_id, chapter?.domain_id),
       emneIds: unique(list(chapter?.emne_ids)),
       source: chapter

@@ -1,0 +1,408 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "kvantitative-metoder-business-analytics",
+  "verified_at": "2026-08-01",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "ssb_api",
+      "label": "SSBs API-er med åpne data",
+      "url": "https://www.ssb.no/api",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_datatjeneste",
+      "source_location": "SSBs API-er gir maskinlesbar tilgang til oppdaterte tabeller som kan behandles i kode, regneark og visualiseringer."
+    },
+    {
+      "id": "ssb_api_v2",
+      "label": "API mot Statistikkbanken – brukerveiledning",
+      "url": "https://www.ssb.no/api/pxwebapiv2",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "api_dokumentasjon",
+      "source_location": "PxWebApi v2 lar brukere hente hele eller avgrensede deler av tabeller gjennom dokumenterte spørringer."
+    },
+    {
+      "id": "ssb_statbank",
+      "label": "Hvordan bruke Statistikkbanken",
+      "url": "https://www.ssb.no/statbank/hvordan-bruke-statistikkbanken",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "brukerveiledning",
+      "source_location": "Statistikkbanken tilbyr tabeller, metadata, standardtegn, måleenheter og integrasjon med eksterne API-er."
+    },
+    {
+      "id": "ssb_forskningsdata",
+      "label": "Tilgang til data fra SSB",
+      "url": "https://www.ssb.no/data-til-forskning",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "datatilgangsveiledning",
+      "source_location": "SSB skiller mellom aggregerte tabeller og mikrodata på enhetsnivå."
+    },
+    {
+      "id": "statistikkloven",
+      "label": "Statistikkloven",
+      "url": "https://lovdata.no/lov/2019-06-21-32",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Statistikkloven regulerer utvikling, framstilling og formidling av offisiell statistikk."
+    },
+    {
+      "id": "personopplysningsloven",
+      "label": "Personopplysningsloven",
+      "url": "https://lovdata.no/lov/2018-06-15-38",
+      "publisher": "Lovdata",
+      "type": "lov",
+      "source_location": "Personopplysningsloven gjennomfører personvernforordningen og regulerer behandling av personopplysninger."
+    },
+    {
+      "id": "automatiserte_avgjorelser",
+      "label": "Personvernforordningen",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "publisher": "Den europeiske union",
+      "type": "forordning",
+      "source_location": "Helautomatiske avgjørelser med rettsvirkning eller tilsvarende betydelig virkning er underlagt særskilte rettigheter og begrensninger."
+    },
+    {
+      "id": "eu_ai_act",
+      "label": "Artificial Intelligence Act",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "publisher": "Den europeiske union",
+      "type": "forordning",
+      "source_location": "KI-forordningen bruker en risikobasert reguleringsmodell med plikter som varierer etter systemets bruk og risikonivå."
+    },
+    {
+      "id": "nb_statistikk",
+      "label": "Norges Banks statistikk",
+      "url": "https://www.norges-bank.no/tema/Statistikk/",
+      "publisher": "Norges Bank",
+      "type": "sentralbankdata",
+      "source_location": "Norges Bank publiserer statistikk om blant annet renter, valutakurser, finansielle markeder og betalingssystemer."
+    }
+  ],
+  "claims": [
+    {
+      "id": "kvantitative-metoder-business-analytics-c01",
+      "claim": "Et reproducerbart uttrekk må lagre tabell, variabler, filter, tidspunkt og eventuelle transformasjoner.",
+      "source_ids": [
+        "ssb_api"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-01"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c02",
+      "claim": "Matematikk for økonomi krever en eksplisitt analyseenhet: én eksplisitt økonomisk funksjon eller et lite ligningssystem med dokumenterte enheter; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_api"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-01"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c03",
+      "claim": "En faglig konklusjon om matematikk for økonomi må skille beregnet resultat fra konflikten «matematisk presisjon og generalitet mot økonomisk realisme og tolkbarhet» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_api"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-01"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c04",
+      "claim": "API-grenser, tabellmetadata og revisjoner må inngå i analysens datakvalitetskontroll.",
+      "source_ids": [
+        "ssb_api_v2"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-02"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c05",
+      "claim": "Sannsynlighet og statistisk inferens krever en eksplisitt analyseenhet: ett definert utvalg med eksplisitt populasjon, måleprosess og primærparameter; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_api_v2"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-02"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c06",
+      "claim": "En faglig konklusjon om sannsynlighet og statistisk inferens må skille beregnet resultat fra konflikten «beslutningsbehov for klare svar mot statistisk usikkerhet og risiko for falske funn» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_api_v2"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-02"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c07",
+      "claim": "Variabeldefinisjon, enhet og klassifikasjon må leses før tall sammenlignes eller kombineres.",
+      "source_ids": [
+        "ssb_statbank"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-03"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c08",
+      "claim": "Regresjon og kausal identifikasjon krever en eksplisitt analyseenhet: ett utfall, en behandling eller eksponering og en eksplisitt sammenligningsgruppe over tid eller rom; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_statbank"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-03"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c09",
+      "claim": "En faglig konklusjon om regresjon og kausal identifikasjon må skille beregnet resultat fra konflikten «høy prediksjonskraft mot troverdig kausal identifikasjon og ekstern gyldighet» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_statbank"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-03"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c10",
+      "claim": "Tilgang, konfidensialitet og analyseform må tilpasses detaljnivået og risikoen for identifisering.",
+      "source_ids": [
+        "ssb_forskningsdata"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-04"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c11",
+      "claim": "Programmering, databehandling og visualisering krever en eksplisitt analyseenhet: ett versjonert datasett med datakontrakt, transformasjonslogg og analyseprodukt; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_forskningsdata"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-04"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c12",
+      "claim": "En faglig konklusjon om programmering, databehandling og visualisering må skille beregnet resultat fra konflikten «hurtig analyse og fleksibilitet mot datakvalitet, sporbarhet, sikkerhet og vedlikehold» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_forskningsdata"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-04"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c13",
+      "claim": "Kvalitet omfatter mer enn nøyaktighet og krever blant annet relevans, sammenlignbarhet, aktualitet og dokumenterte metoder.",
+      "source_ids": [
+        "statistikkloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-05"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c14",
+      "claim": "Prognoser, optimering og beslutningsanalyse krever en eksplisitt analyseenhet: én operativ eller strategisk beslutning med målvariabel, begrensninger og sannsynlige scenarioer; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "statistikkloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-05"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c15",
+      "claim": "En faglig konklusjon om prognoser, optimering og beslutningsanalyse må skille beregnet resultat fra konflikten «forventet optimal løsning mot robusthet, fleksibilitet, rettferdighet og modellrisiko» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "statistikkloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-05"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c16",
+      "claim": "Analyse av persondata krever behandlingsgrunnlag, formålsavgrensning, dataminimering, sikkerhet og ivaretakelse av rettigheter.",
+      "source_ids": [
+        "personopplysningsloven"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-06"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c17",
+      "claim": "Spørsmål, estimand og datagenerering krever en eksplisitt analyseenhet: én beslutning med eksplisitt populasjon, behandling, utfall og tidsrom; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "personopplysningsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-06"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c18",
+      "claim": "En faglig konklusjon om spørsmål, estimand og datagenerering må skille beregnet resultat fra konflikten «lett tilgjengelige data mot relevant evidens» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "personopplysningsloven"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-06"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c19",
+      "claim": "Modellens prediksjon må skilles fra beslutningen, og menneskelig kontroll må være reell og dokumentert.",
+      "source_ids": [
+        "automatiserte_avgjorelser"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-07"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c20",
+      "claim": "Validering, robusthet og lekkasje krever en eksplisitt analyseenhet: ett datasett med tids- eller enhetsstruktur; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "automatiserte_avgjorelser"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-07"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c21",
+      "claim": "En faglig konklusjon om validering, robusthet og lekkasje må skille beregnet resultat fra konflikten «høy intern treffsikkerhet mot stabil ytelse i drift» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "automatiserte_avgjorelser"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-07"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c22",
+      "claim": "Teknisk ytelse alene avgjør ikke om et system er forsvarlig; formål, data, tilsyn, dokumentasjon og berørte rettigheter må vurderes.",
+      "source_ids": [
+        "eu_ai_act"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-08"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c23",
+      "claim": "Forklarbarhet og beslutningsgrense krever en eksplisitt analyseenhet: ett prediktivt system med berørte grupper; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "eu_ai_act"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-08"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c24",
+      "claim": "En faglig konklusjon om forklarbarhet og beslutningsgrense må skille beregnet resultat fra konflikten «optimal prediksjon mot rettferdig, lovlig og forståelig beslutning» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "eu_ai_act"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-08"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c25",
+      "claim": "Tidsserier må kontrolleres for frekvens, enhet, observasjonstidspunkt og brudd før de brukes i prognoser eller modeller.",
+      "source_ids": [
+        "nb_statistikk"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-09"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c26",
+      "claim": "Reproduserbar analyse og modellstyring krever en eksplisitt analyseenhet: én analyse fra rådata til produksjonsbeslutning; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "nb_statistikk"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-09"
+      ]
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics-c27",
+      "claim": "En faglig konklusjon om reproduserbar analyse og modellstyring må skille beregnet resultat fra konflikten «rask iterasjon mot kontrollert og etterprøvbar bruk» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "nb_statistikk"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "kvantitative-metoder-business-analytics-09"
+      ]
+    }
+  ]
+}

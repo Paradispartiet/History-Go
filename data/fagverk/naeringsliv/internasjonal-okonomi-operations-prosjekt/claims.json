@@ -1,0 +1,408 @@
+{
+  "schema": "history_go_fagverk_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "naeringsliv",
+  "chapter_id": "internasjonal-okonomi-operations-prosjekt",
+  "verified_at": "2026-08-01",
+  "verification_status": "verified",
+  "sources": [
+    {
+      "id": "ssb_utenrikshandel",
+      "label": "Utenrikshandel med varer",
+      "url": "https://www.ssb.no/utenriksokonomi/utenrikshandel/statistikk/utenrikshandel-med-varer",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Statistikken beskriver norsk import og eksport av varer etter blant annet varegruppe og handelspartner."
+    },
+    {
+      "id": "ssb_utenriksregnskap",
+      "label": "Utenriksregnskap",
+      "url": "https://www.ssb.no/utenriksokonomi/utenriksregnskap/statistikk/utenriksregnskap",
+      "publisher": "Statistisk sentralbyrå",
+      "type": "offisiell_statistikk",
+      "source_location": "Utenriksregnskapet samler betalingsbalanse og utenriksbalanse og viser økonomiske forbindelser mellom Norge og utlandet."
+    },
+    {
+      "id": "wto_tariff",
+      "label": "WTO Tariff and Trade Data",
+      "url": "https://www.wto.org/english/tratop_e/tariffs_e/tariff_data_e.htm",
+      "publisher": "World Trade Organization",
+      "type": "internasjonal_offisiell_data",
+      "source_location": "WTOs plattform gir offisielle data om anvendte tollsatser, bundne satser og bilateral varehandel."
+    },
+    {
+      "id": "wto_statistics",
+      "label": "WTO Global Trade Statistics",
+      "url": "https://www.wto.org/statistics",
+      "publisher": "World Trade Organization",
+      "type": "internasjonal_offisiell_data",
+      "source_location": "WTO publiserer data om varehandel, tjenestehandel, toll og handel i verdiskaping."
+    },
+    {
+      "id": "nb_valuta",
+      "label": "Valutakurser",
+      "url": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/",
+      "publisher": "Norges Bank",
+      "type": "sentralbankdata",
+      "source_location": "Norges Bank publiserer referansekurser for norske kroner mot en rekke valutaer."
+    },
+    {
+      "id": "efta_eos",
+      "label": "The European Economic Area",
+      "url": "https://www.efta.int/eea",
+      "publisher": "European Free Trade Association",
+      "type": "internasjonal_avtaleinformasjon",
+      "source_location": "EØS-avtalen knytter Norge, Island og Liechtenstein til EUs indre marked gjennom felles regler på avtalens områder."
+    },
+    {
+      "id": "oecd_due_diligence",
+      "label": "Due diligence for responsible business conduct",
+      "url": "https://www.oecd.org/en/topics/due-diligence-for-responsible-business-conduct.html",
+      "publisher": "OECD",
+      "type": "internasjonal_retningslinje",
+      "source_location": "OECD anbefaler risikobasert aktsomhet for faktiske og mulige negative virkninger i virksomhet, leverandørkjeder og forretningsforbindelser."
+    },
+    {
+      "id": "oecd_mne",
+      "label": "OECD Guidelines for Multinational Enterprises",
+      "url": "https://www.oecd.org/en/publications/oecd-guidelines-for-multinational-enterprises-on-responsible-business-conduct_81f92357-en.html",
+      "publisher": "OECD",
+      "type": "internasjonal_retningslinje",
+      "source_location": "Retningslinjene dekker ansvarlig virksomhet på tvers av blant annet arbeid, miljø, åpenhet, forbrukerinteresser, teknologi og skatt."
+    },
+    {
+      "id": "tolletaten_import",
+      "label": "Import for bedrifter",
+      "url": "https://www.toll.no/no/bedrift/import/",
+      "publisher": "Tolletaten",
+      "type": "myndighetsveiledning",
+      "source_location": "Import krever korrekt vareklassifisering, verdi, opprinnelse, deklarering og håndtering av avgifter og restriksjoner."
+    }
+  ],
+  "claims": [
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c01",
+      "claim": "Handelsverdi må skilles fra volum, priser og verdiskaping, og brutto eksport er ikke det samme som nasjonalt innhold.",
+      "source_ids": [
+        "ssb_utenrikshandel"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-01"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c02",
+      "claim": "Internasjonal handel og valuta krever en eksplisitt analyseenhet: én vare- eller tjenestestrøm mellom to land med pris, volum, kostnad og valuta; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_utenrikshandel"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-01"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c03",
+      "claim": "En faglig konklusjon om internasjonal handel og valuta må skille beregnet resultat fra konflikten «gevinster fra spesialisering og markedstilgang mot sårbarhet, fordelingsvirkninger og strategisk avhengighet» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_utenrikshandel"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-01"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c04",
+      "claim": "Løpende poster, kapitalbevegelser og beholdninger må skilles for å unngå å blande strømmer og balanser.",
+      "source_ids": [
+        "ssb_utenriksregnskap"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-02"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c05",
+      "claim": "Multinasjonale selskaper og globale verdikjeder krever en eksplisitt analyseenhet: én global verdikjede eller markedsinngang med minst tre land- eller organisasjonsledd; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "ssb_utenriksregnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-02"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c06",
+      "claim": "En faglig konklusjon om multinasjonale selskaper og globale verdikjeder må skille beregnet resultat fra konflikten «global skala og spesialisering mot kontrolltap, institusjonell avstand, skatte- og arbeidslivsforskjeller» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "ssb_utenriksregnskap"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-02"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c07",
+      "claim": "Tollprofil må analyseres på riktig produktnivå og sammen med opprinnelsesregler og ikke-tariffære forhold.",
+      "source_ids": [
+        "wto_tariff"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-03"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c08",
+      "claim": "Operations og kapasitetsstyring krever en eksplisitt analyseenhet: én ende-til-ende-prosess med ankomst, behandlingstid, kapasitet, kø og kvalitetsutfall; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "wto_tariff"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-03"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c09",
+      "claim": "En faglig konklusjon om operations og kapasitetsstyring må skille beregnet resultat fra konflikten «høy kapasitetsutnyttelse og lav kostnad mot kort ledetid, fleksibilitet, kvalitet og robusthet» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "wto_tariff"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-03"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c10",
+      "claim": "Brutto handelsstrømmer og handel i verdiskaping svarer på ulike spørsmål i globale verdikjeder.",
+      "source_ids": [
+        "wto_statistics"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-04"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c11",
+      "claim": "Innkjøp, kvalitet og forsyningsrisiko krever en eksplisitt analyseenhet: én vare- eller tjenestekategori med minst tre leverandører, kvalitetsdata og forsyningsscenarioer; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "wto_statistics"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-04"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c12",
+      "claim": "En faglig konklusjon om innkjøp, kvalitet og forsyningsrisiko må skille beregnet resultat fra konflikten «lav innkjøpspris og konsolidering mot kvalitet, leveringssikkerhet, makt og redundans» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "wto_statistics"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-04"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c13",
+      "claim": "Valutarisiko avhenger av eksponering, tidshorisont, kontraktsvaluta og sikring, ikke bare av dagens kurs.",
+      "source_ids": [
+        "nb_valuta"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-05"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c14",
+      "claim": "Prosjektledelse og prosjektøkonomi krever en eksplisitt analyseenhet: ett prosjekt med leveransestruktur, aktiviteter, ressurser, budsjett, risiko og gevinstmål; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "nb_valuta"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-05"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c15",
+      "claim": "En faglig konklusjon om prosjektledelse og prosjektøkonomi må skille beregnet resultat fra konflikten «planmessig kontroll og kontrakt mot læring, endring, interessentbehov og usikker gevinst» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "nb_valuta"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-05"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c16",
+      "claim": "Markedsadgang må skilles fra tollunion, og virksomheter må undersøke hvilke produkt-, tjeneste- og etableringsregler som faktisk gjelder.",
+      "source_ids": [
+        "efta_eos"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-06"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c17",
+      "claim": "Handel, spesialisering og verdiskaping krever en eksplisitt analyseenhet: én vare- eller tjenestestrøm mellom definerte land; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "efta_eos"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-06"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c18",
+      "claim": "En faglig konklusjon om handel, spesialisering og verdiskaping må skille beregnet resultat fra konflikten «samlet gevinst mot sektor-, region- og gruppevise omstillingskostnader» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "efta_eos"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-06"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c19",
+      "claim": "Aktsomhet er en løpende prosess med kartlegging, prioritering, tiltak, oppfølging, kommunikasjon og eventuell gjenoppretting.",
+      "source_ids": [
+        "oecd_due_diligence"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-07"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c20",
+      "claim": "Valuta, pris og kontraktsrisiko krever en eksplisitt analyseenhet: én import- eller eksportkontrakt med tidslinje; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "oecd_due_diligence"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-07"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c21",
+      "claim": "En faglig konklusjon om valuta, pris og kontraktsrisiko må skille beregnet resultat fra konflikten «beskyttelse mot nedside mot kostnad og tapt oppside» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "oecd_due_diligence"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-07"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c22",
+      "claim": "Et multinasjonalt selskaps juridiske struktur må ikke forveksles med den operative verdikjeden eller virksomhetens påvirkning.",
+      "source_ids": [
+        "oecd_mne"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-08"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c23",
+      "claim": "Forsyningsnettverk og robusthet krever en eksplisitt analyseenhet: ett produkt med leverandørledd, transport og kritiske innsatsfaktorer; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "oecd_mne"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-08"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c24",
+      "claim": "En faglig konklusjon om forsyningsnettverk og robusthet må skille beregnet resultat fra konflikten «lav kostnad og lean drift mot redundans og beredskap» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "oecd_mne"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-08"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c25",
+      "claim": "Leverandørpris alene er ikke full anskaffelseskostnad; toll, frakt, lager, kvalitet, kapitalbinding og risiko må inngå.",
+      "source_ids": [
+        "tolletaten_import"
+      ],
+      "classification": "eksternt_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-09"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c26",
+      "claim": "Prosjektportefølje og gevinstrealisering krever en eksplisitt analyseenhet: ett prosjekt med baseline, milepæler og nytteansvar; beregningen må kunne gjentas fra dokumenterte data og antakelser.",
+      "source_ids": [
+        "tolletaten_import"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-09"
+      ]
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt-c27",
+      "claim": "En faglig konklusjon om prosjektportefølje og gevinstrealisering må skille beregnet resultat fra konflikten «tid og budsjett mot faktisk nytte og langsiktig drift» og oppgi hvor evidensen ikke rekker.",
+      "source_ids": [
+        "tolletaten_import"
+      ],
+      "classification": "metodisk_verifisert",
+      "status": "verified",
+      "used_in": [
+        "internasjonal-okonomi-operations-prosjekt-09"
+      ]
+    }
+  ]
+}
