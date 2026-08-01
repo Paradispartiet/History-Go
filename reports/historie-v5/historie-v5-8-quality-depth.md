@@ -438,5 +438,5 @@ None.
 
 ## Freeze policy
 
-Manifest: `data/fag/historie/historie_v5_8_freeze_manifest.json`, frozen 2026-08-01T10:57:20.029Z.
+Manifest: `data/fag/historie/historie_v5_8_freeze_manifest.json`, frozen 2026-08-01T15:50:56.000Z.
 Authoritative V5.8 files may only change through an explicit manifest refresh after a green depth audit.
