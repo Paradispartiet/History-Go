@@ -112,7 +112,7 @@ test('kapittelproduksjon skjuler ikke ufullstendig universell evidensdekning', (
   assert.equal(report.universalCoverage.coveredCells, 58);
   assert.equal(report.universalCoverage.totalCells, 58);
   assert.equal(report.universalCoverage.productionGaps, 1);
-  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 190);
+  assert.equal(report.universalCoverage.theoryEvidenceQualifying, 197);
   assert.equal(report.universalCoverage.theoryEvidenceTotal, 230);
   assert.equal(report.gates.honestCompletionBoundary, true);
 });
@@ -226,6 +226,7 @@ test('Teknisk Museum og Kjeller/FFI har uavhengige kildefamilier', () => {
     ['official_museum_institution_page', 'institutional_museum_record'],
     ['official_research_institute_history', 'institutional_research_record'],
     ['official_research_institute_feature', 'institutional_research_record'],
+    ['national_library_collection_research_feature', 'national_library_research_collection'],
     ['editorially_reviewed_encyclopedia', 'secondary_reference_work']
   ]);
 

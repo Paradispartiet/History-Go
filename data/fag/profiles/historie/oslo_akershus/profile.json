@@ -38,15 +38,15 @@
   },
   "production_coverage": {
     "total_subject_emner": 230,
-    "emner_with_profile_case_candidates": 206,
-    "emne_link_ratio_percent": 89.6,
-    "cases_total": 115,
-    "claims_total": 235,
-    "sources_total": 184,
-    "evidence_links_total": 243,
+    "emner_with_profile_case_candidates": 213,
+    "emne_link_ratio_percent": 92.6,
+    "cases_total": 117,
+    "claims_total": 250,
+    "sources_total": 198,
+    "evidence_links_total": 259,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 52,
+    "verified_cases_total": 56,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -1488,7 +1488,8 @@
         "em_his_fabrikk_arbeidsorganisering",
         "em_his_industri_produksjon_energi",
         "em_his_industriby_1900",
-        "em_his_kjonn_arbeidsdeling_lonn"
+        "em_his_kjonn_arbeidsdeling_lonn",
+        "em_his_sivilsamfunn_krigsokonomi_hverdagsliv"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -1505,7 +1506,11 @@
         "batch_id": "history_industry_factory_work_evidence_v1",
         "validated_at": "2026-07-29",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_first_world_war_interwar_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-08-01"
       }
     },
     {
@@ -2134,9 +2139,11 @@
       "label": "Nasjonalbiblioteket",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "nasjonalbiblioteket"
+      ],
       "emne_ids": [
         "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
         "em_his_1814_statsdannelse_kiel_1814_og_geopolitisk_brudd",
@@ -2170,12 +2177,29 @@
         "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
         "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
         "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
-        "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn"
+        "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+        "em_his_norge_norden_noytralitet_sjofart",
+        "em_his_revolusjon_imperieopplosning_fredsoppgjor",
+        "em_his_idehistorie_fascisme_nazisme_kommunisme",
+        "em_his_kultur_modernisme_kunst_visuell_politikk"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_first_world_war_interwar_evidence_v1",
+        "validated_at": "2026-08-01",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_digitized_press_selection_and_reception_limits",
+        "spatial_note": "Biblioteket er samlings- og digitaliseringsanker; utenlandske hendelser og historiske pressehandlinger lokaliseres ikke til bygningen."
       }
     },
     {
@@ -2231,7 +2255,9 @@
         "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
         "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
         "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
-        "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder"
+        "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+        "em_his_demokrati_massepolitikk_sosial_konflikt",
+        "em_his_store_depresjonen_arbeidsloshet_politikk"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -2248,7 +2274,11 @@
         "batch_id": "history_economy_trade_material_systems_evidence_v1",
         "validated_at": "2026-07-31",
         "minimum_evidence_links": 2,
-        "source_policy": "canonical_registry_with_explicit_limitations"
+        "source_policy": "canonical_registry_with_explicit_limitations",
+        "additional_batch_ids": [
+          "history_first_world_war_interwar_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-08-01"
       }
     },
     {
@@ -2331,21 +2361,38 @@
       "label": "Norsk Maritimt Museum",
       "geography_id": "geo_no_oslo_akershus",
       "geography_scope": "local_or_regional",
-      "status": "legacy_profile_candidate",
-      "evidence_status": "unverified",
-      "place_ids": [],
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "norsk_maritimt_museum"
+      ],
       "emne_ids": [
         "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
         "em_his_global_kolonial_imperier_kolonialisme_og_makt",
         "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
         "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
         "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-        "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
+        "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk",
+        "em_his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "em_his_norge_norden_noytralitet_sjofart"
       ],
-      "case_requirement_ids": [],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
       "provenance": {
         "migrated_from": "data/fag/historie/emner_historie_canonical_v4_5.json#recommended_oslo_cases",
         "migration_date": "2026-07-26"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_first_world_war_interwar_evidence_v1",
+        "validated_at": "2026-08-01",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_registry_with_explicit_museum_collection_and_shipping_limits",
+        "spatial_note": "Museet er dagens samlingsanker; fartøy, forlis, sjøkrig og handelsruter lokaliseres ikke til Bygdøynes."
       }
     },
     {
@@ -2372,7 +2419,8 @@
         "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
         "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
         "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
+        "em_his_idehistorie_fascisme_nazisme_kommunisme"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -2390,7 +2438,11 @@
         "validated_at": "2026-07-31",
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_normalized_independent_source_families_and_explicit_collection_limits",
-        "spatial_note": "`teknisk_museum` er hovedmuseet i Kjelsåsveien 143; samlinger og nasjonalt mandat brukes ikke som påstand om at alle objekter, hendelser eller fagmiljøer fysisk oppsto i bygningen."
+        "spatial_note": "`teknisk_museum` er hovedmuseet i Kjelsåsveien 143; samlinger og nasjonalt mandat brukes ikke som påstand om at alle objekter, hendelser eller fagmiljøer fysisk oppsto i bygningen.",
+        "additional_batch_ids": [
+          "history_first_world_war_interwar_evidence_v1"
+        ],
+        "scope_expanded_at": "2026-08-01"
       }
     },
     {
@@ -3270,7 +3322,10 @@
         "em_his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
         "em_his_1814_statsdannelse_suverenitet_grunnlov_og_representasjon",
         "em_his_velferd_hverdagsliv",
-        "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
+        "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet",
+        "em_his_demokrati_massepolitikk_sosial_konflikt",
+        "em_his_idehistorie_fascisme_nazisme_kommunisme",
+        "em_his_store_depresjonen_arbeidsloshet_politikk"
       ],
       "case_requirement_ids": [
         "case_req_his_temporal_sequence",
@@ -3291,9 +3346,10 @@
         "additional_batch_ids": [
           "history_memory_heritage_evidence_v1",
           "history_source_method_families_evidence_v1",
-          "history_war_transitional_coldwar_evidence_v1"
+          "history_war_transitional_coldwar_evidence_v1",
+          "history_first_world_war_interwar_evidence_v1"
         ],
-        "scope_expanded_at": "2026-07-30"
+        "scope_expanded_at": "2026-08-01"
       }
     },
     {
@@ -3941,6 +3997,70 @@
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_normalized_independent_source_families_and_explicit_spatial_limits",
         "spatial_note": "`kjeller_flyplass` forankrer det dokumenterte luftfarts-, forsvars- og teknologilandskapet på Kjeller. ENKJ-referansepunktet er ikke FFI-byggkoordinat, eiendomsgrense eller sted for alle prosjekter."
+      }
+    },
+    {
+      "case_id": "case_his_nobel_institute_nansen_postwar_order",
+      "label": "Nobelinstituttet – Nansen og etterkrigsordenen",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "nobelinstituttet"
+      ],
+      "emne_ids": [
+        "em_his_revolusjon_imperieopplosning_fredsoppgjor"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "repository_source": "data/fag/historie/source_dossiers/first_world_war_interwar_v1.json",
+        "created_at": "2026-08-01"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_first_world_war_interwar_evidence_v1",
+        "validated_at": "2026-08-01",
+        "minimum_evidence_links": 2,
+        "source_policy": "official_nobel_record_with_transnational_activity_and_institutional_self_presentation_limits",
+        "spatial_note": "Nobelinstituttet er pris- og institusjonsanker; Nansens repatriering, flyktningarbeid og nødhjelp var transnasjonale operasjoner."
+      }
+    },
+    {
+      "case_id": "case_his_kunstnernes_hus_interwar_visual_culture",
+      "label": "Kunstnernes Hus – modernisme og visuell politikk 1930",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "kunstnernes_hus"
+      ],
+      "emne_ids": [
+        "em_his_kultur_modernisme_kunst_visuell_politikk"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "repository_source": "data/fag/historie/source_dossiers/first_world_war_interwar_v1.json",
+        "created_at": "2026-08-01"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_first_world_war_interwar_evidence_v1",
+        "validated_at": "2026-08-01",
+        "minimum_evidence_links": 2,
+        "source_policy": "official_architecture_and_exhibition_records_with_institutional_perspective_limits",
+        "spatial_note": "Bygningen og utstillingen er direkte stedfestet; de gjøres ikke representative for all norsk eller europeisk mellomkrigskultur."
       }
     }
   ],
@@ -7971,6 +8091,119 @@
       "mapping_status": "migrated_unverified",
       "evidence_status": "requires_case_level_claim_source_validation",
       "provenance": "recommended_oslo_cases"
+    },
+    {
+      "emne_id": "em_his_sivilsamfunn_krigsokonomi_hverdagsliv",
+      "case_ids": [
+        "case_his_hjula_vaeveri",
+        "case_his_norsk_maritimt_museum"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "mapping_status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "provenance": "history_first_world_war_interwar_evidence_v1"
+    },
+    {
+      "emne_id": "em_his_norge_norden_noytralitet_sjofart",
+      "case_ids": [
+        "case_his_nasjonalbiblioteket",
+        "case_his_norsk_maritimt_museum"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "mapping_status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "provenance": "history_first_world_war_interwar_evidence_v1"
+    },
+    {
+      "emne_id": "em_his_revolusjon_imperieopplosning_fredsoppgjor",
+      "case_ids": [
+        "case_his_nasjonalbiblioteket",
+        "case_his_nobel_institute_nansen_postwar_order"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "mapping_status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "provenance": "history_first_world_war_interwar_evidence_v1"
+    },
+    {
+      "emne_id": "em_his_demokrati_massepolitikk_sosial_konflikt",
+      "case_ids": [
+        "case_his_norges_bank",
+        "case_his_stortinget"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "mapping_status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "provenance": "history_first_world_war_interwar_evidence_v1"
+    },
+    {
+      "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+      "case_ids": [
+        "case_his_nasjonalbiblioteket",
+        "case_his_norsk_teknisk_museum",
+        "case_his_stortinget"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "mapping_status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "provenance": "history_first_world_war_interwar_evidence_v1"
+    },
+    {
+      "emne_id": "em_his_store_depresjonen_arbeidsloshet_politikk",
+      "case_ids": [
+        "case_his_norges_bank",
+        "case_his_stortinget"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "mapping_status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "provenance": "history_first_world_war_interwar_evidence_v1"
+    },
+    {
+      "emne_id": "em_his_kultur_modernisme_kunst_visuell_politikk",
+      "case_ids": [
+        "case_his_kunstnernes_hus_interwar_visual_culture",
+        "case_his_nasjonalbiblioteket"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "mapping_status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "provenance": "history_first_world_war_interwar_evidence_v1"
     }
   ],
   "last_updated": "2026-08-01",
@@ -8620,6 +8853,86 @@
         "theory_his_religion_reformasjon_religion_politikk_og_offentlighet",
         "theory_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
         "theory_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
+      ]
+    },
+    {
+      "batch_id": "history_first_world_war_interwar_evidence_v1",
+      "status": "validated",
+      "validated_at": "2026-08-01",
+      "newly_verified_case_ids": [
+        "case_his_kunstnernes_hus_interwar_visual_culture",
+        "case_his_nasjonalbiblioteket",
+        "case_his_nobel_institute_nansen_postwar_order",
+        "case_his_norsk_maritimt_museum"
+      ],
+      "expanded_case_ids": [
+        "case_his_hjula_vaeveri",
+        "case_his_norges_bank",
+        "case_his_norsk_teknisk_museum",
+        "case_his_stortinget"
+      ],
+      "claim_ids": [
+        "claim_his_hjula_wage_supplement_material_stop_1914_1918",
+        "claim_his_maritime_war_insurance_neutral_shipping_1914",
+        "claim_his_svanen_sailor_risk_owner_profit_1915_1918",
+        "claim_his_torpedert_norwegian_sailor_exposure_1917",
+        "claim_his_nb_1919_postwar_losses_prices_revolution_news",
+        "claim_his_nb_norway_league_membership_neutrality_debate_1920",
+        "claim_his_nansen_prisoners_refugees_passports_1919_1922",
+        "claim_his_nansen_soviet_famine_relief_1921_1922",
+        "claim_his_poor_relief_voting_exclusion_protest_repeal_1919_1935",
+        "claim_his_government_transition_nygaardsvold_1935",
+        "claim_his_depression_gold_standard_break_norway_1929_1931",
+        "claim_his_world_trade_collapse_clearing_controls_1930s",
+        "claim_his_racial_hygiene_press_poster_nazi_polarization_1914_1938",
+        "claim_his_gulbransson_caricature_censorship_accommodation_1933_1939",
+        "claim_his_kunstnernes_hus_modernist_architecture_1930",
+        "claim_his_krohg_exhibition_portrait_pressure_1930"
+      ],
+      "source_ids": [
+        "src_his_snl_hjula_vaeveri",
+        "src_his_marmuseum_krigsforsikringen_1914",
+        "src_his_marmuseum_svanen_wartime_shipping",
+        "src_his_marmuseum_torpedert_wwi_resources",
+        "src_his_nb_news_cavalcade_1919",
+        "src_his_nb_news_cavalcade_1920",
+        "src_his_nobel_nansen_1922",
+        "src_his_stortinget_poor_relief_voting_disqualification",
+        "src_his_stortinget_government_change_1935",
+        "src_his_norges_bank_depression_1929_1935",
+        "src_his_norges_bank_trade_collapse_1930s",
+        "src_his_nb_racial_hygiene_debate",
+        "src_his_nb_gulbransson_visual_politics",
+        "src_his_kunstnernes_hus_architecture_1930",
+        "src_his_kunstnernes_hus_krohg_exhibition_1930"
+      ],
+      "evidence_ids": [
+        "evidence_his_industry_factory_work_07",
+        "evidence_his_first_world_war_interwar_v1_01",
+        "evidence_his_first_world_war_interwar_v1_02",
+        "evidence_his_first_world_war_interwar_v1_03",
+        "evidence_his_first_world_war_interwar_v1_04",
+        "evidence_his_first_world_war_interwar_v1_05",
+        "evidence_his_first_world_war_interwar_v1_06",
+        "evidence_his_first_world_war_interwar_v1_07",
+        "evidence_his_first_world_war_interwar_v1_08",
+        "evidence_his_first_world_war_interwar_v1_09",
+        "evidence_his_first_world_war_interwar_v1_10",
+        "evidence_his_first_world_war_interwar_v1_11",
+        "evidence_his_first_world_war_interwar_v1_12",
+        "evidence_his_first_world_war_interwar_v1_13",
+        "evidence_his_first_world_war_interwar_v1_14",
+        "evidence_his_first_world_war_interwar_v1_15",
+        "evidence_his_first_world_war_interwar_v1_16"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_sivilsamfunn_krigsokonomi_hverdagsliv",
+        "theory_his_norge_norden_noytralitet_sjofart",
+        "theory_his_revolusjon_imperieopplosning_fredsoppgjor",
+        "theory_his_demokrati_massepolitikk_sosial_konflikt",
+        "theory_his_idehistorie_fascisme_nazisme_kommunisme",
+        "theory_his_store_depresjonen_arbeidsloshet_politikk",
+        "theory_his_kultur_modernisme_kunst_visuell_politikk"
       ]
     }
   ]

@@ -9,17 +9,17 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 ## Struktur
 
 - Universelle emner: **230**
-- Unike emner med profilkoblinger: **206**
-- Mappingrecords: **206**
-- Casekandidater: **115**
+- Unike emner med profilkoblinger: **213**
+- Mappingrecords: **213**
+- Casekandidater: **117**
 
 ## Evidensgrunnlag
 
-- Claims: **235**
-- Kilder: **184**
-- Sted–emne–claim–kildekoblinger: **243**
-- Validerte caser: **52**
-- Validerte caser med minst to evidenskoblinger: **52**
+- Claims: **250**
+- Kilder: **198**
+- Sted–emne–claim–kildekoblinger: **259**
+- Validerte caser: **56**
+- Validerte caser med minst to evidenskoblinger: **56**
 
 ## Validerte caser
 
@@ -50,13 +50,17 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_hoyesteretts_hus`
 - `case_his_jodisk_museum`
 - `case_his_kjeller_ffi`
+- `case_his_kunstnernes_hus_interwar_visual_culture`
 - `case_his_mariakirkeruinen`
 - `case_his_meteorologisk_institutt`
 - `case_his_middelalderbyen_oslo`
 - `case_his_mollergata_19`
+- `case_his_nasjonalbiblioteket`
 - `case_his_nationaltheatret`
+- `case_his_nobel_institute_nansen_postwar_order`
 - `case_his_norges_bank`
 - `case_his_norsk_folkemuseum`
+- `case_his_norsk_maritimt_museum`
 - `case_his_norsk_teknisk_museum`
 - `case_his_nostvet_boplass`
 - `case_his_nydalen`
@@ -82,6 +86,6 @@ Ingen åpne terskelgap.
 
 ## Videre produksjonskø
 
-- 24 universelle emner mangler fortsatt en casekandidat i profilen.
-- 63 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
+- 17 universelle emner mangler fortsatt en casekandidat i profilen.
+- 61 profilcaser er fortsatt kandidater uten full claim–source–evidence-kjede.
 - Videre produksjon skal bruke canonical place- og person-ID-er og utvide periodisk, sosial og geografisk representasjon uten å gjøre pilotgeografien universell.
