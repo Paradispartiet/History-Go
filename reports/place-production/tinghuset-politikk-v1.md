@@ -5,7 +5,7 @@
 - Kategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
 - Normal åpning: 14 ordinære spørsmål før faglig fordypning i sett 3
-- Saneringsstatus: nullmåling utført 2026-08-01; fase 1 «Identitet og Om», fase 2 «Historie», fase 3 «Fortellinger», fase 4 «Før/etter», fase 5 «Nyheter», fase 6 «Lesespor» og fase 7 «Kilder» er fullført, øvrige innholdsflater er ikke gjenopptatt
+- Saneringsstatus: nullmåling utført 2026-08-01; alle åtte popupfaser er fullført gjennom fase 8 «Mer», mens Knowledge og People/Objects/Brands-rundingene fortsatt er åpne
 
 ## Politikk-hovedfunksjon
 
@@ -39,12 +39,13 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 ## Innholdsflate
 
 - Place: canonical identitet er beholdt; `desc` og `popupDesc` er redigert til en konkret Om-artikkel om bygningen, domstolsfunksjonen, publikumsadgangen, arkitekturen og kunsten
-- Leksikon: canonical hovedrecord med nøkkelfakta, bygd funksjon og sju kildebelagte chronology-punkter er aktivert i manifestet; samme fil inneholder tre separate Nyheter-records, mens Lesespor ligger i sin egen canonical samling og Mer-stoff fortsatt er utelatt
+- Leksikon: canonical hovedrecord med nøkkelfakta, bygd funksjon, sju kildebelagte chronology-punkter og en avgrenset tolkningspakke er aktivert i manifestet; samme fil inneholder tre separate Nyheter-records, mens Lesespor og Språkleksikon ligger i sine egne canonicale samlinger
 - Hovedbilde: kontrollert public-domain-foto av Oslo tinghus, med lokal full- og kortvariant og lagret attribusjon
 - People: sju canonicale stedskoblinger finnes, men seks er kunstnere, bare én person uttrykker domstolens hovedfunksjon, seks mangler bilde og flere profiltekster bruker samme formulering. Yngve Svendsens identitetskontrollerte redaksjonelle illustrasjon kan beholdes
 - Story: én canonical `episode_v1`-fortelling følger den selvstendige konflikten om tilregnelighet gjennom de to motstridende sakkyndigerklæringene, hovedforhandlingen, dommen og den senere offentlige gjennomgangen av rettspsykiatriens rolle. Den dupliserer ikke chronology-punktets dato- og arrangementsinformasjon
 - Lesespor: fire åpne, link-only fordypningsspor dekker domstolenes samfunnsrolle, tinghusets kunst og arkitektur, hovedforhandlingen i 2012 og Tilregnelighetsutvalgets etterbehandling. Ukjent publiseringsdato er beholdt som `null`, og ingen artikkelfulltekst er kopiert
 - Kilder: sju brukerrettede kildegrupper og sytten navngitte HTTPS-lenker dekker domstolen, lovgrunnlaget, bygget og kunsten, drift i 2025, lokalhistorie, terrorrettssaken, dommen, tilregnelighetsspørsmålet, NOU-en og Før/etter-bildene. Interne rapporter, audits og hold-back-notater er ikke eksponert
+- Mer: fem kildebelagte språkoppføringer skiller tinghus, tingrett, enedommersak, meddomsrettssak og offentlig rettsmøte. Tre observasjons-, betydnings- og motpunktserier holder bygning fra institusjon, offentlighet fra ubegrenset adgang og driftsdata fra dokumentasjon på rettslig kvalitet. Kuraterte relasjoner er vurdert og utelatt fordi ingen av dem tilfører en egen forklarende relasjon uten å duplisere Nearby, Kilder eller den senere rundingsfasen
 - Quiz: 21 eksternt kildebelagte spørsmål
 - Objects: bare ett bildeklart element finnes, skiltet til rettssal 250. Det er ikke tilstrekkelig dybde for en ferdig Objects-runding
 - Brands: Beate Ellingsen AS er en gyldig canonical Brand med offisiell logo og dokumentert stedskobling, men rundingen er foreløpig tynn
@@ -61,7 +62,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 | Nyheter | PASS – fase 5 | Tre daterte driftsnotiser dekker sikkerhetskontrollen i 2025, prøveprosjektet for normert rettsmøtetid og kapasitetsstatusen i årsmeldingen. Hver notis har offisiell primærkilde, kontrolltidspunkt og tydelig inferensgrense |
 | Lesespor | PASS – fase 6 | Fire åpne og eksplisitt stedskoblede spor gir komplementær fordypning i domstolsrolle, kunst/arkitektur, terrorrettssaken og den prinsipielle etterbehandlingen. Alle er `link_only`, uten kopiert fulltekst eller betalingsmur |
 | Kilder | PASS – fase 7 | Sju kuraterte kildegrupper og sytten unike, navngitte HTTPS-lenker vises i den canonicale Kilder-fanen uten duplisert kildeoversikt. Før/etter-kilder gjenbruker de samme lenkene uten rå URL-lister, eksterne lenker åpnes sikkert, og interne audits/hold-back-materiale holdes utenfor brukerflaten |
-| Mer | Ikke startet | Ingen vurdert språkstoff, observations, Knowledge/funfacts eller curated relations |
+| Mer | PASS – fase 8 | Fem kildebelagte Språkleksikon-oppslag og ni avgrensede tolkningspunkter forklarer ord, observerbare skiller og inferensgrenser. Knowledge/funfacts er holdt utenfor til Knowledge-synken, fysiske Objects er ikke parkert i fanen, og kuraterte relasjoner er vurdert som N/A fordi de ville duplisere andre eide flater |
 
 Quizspørsmålene har korte `knowledge`-tekster, men `data/knowledge/knowledge_units.generated.json` har ingen enheter med quizreferanse til `tinghuset`. Knowledge er derfor ikke synkronisert ennå.
 
@@ -104,4 +105,4 @@ Status for samlet sted: **under sanering – ikke produksjonsklart**.
 
 ## Maskinell sluttgate
 
-Kontekst-, quiz-, place-, Story- og tverrfaglige validatorer kjøres i materialiseringsjobben og ordinær PR-CI. Grønn teknisk CI kan ikke overstyre manglende popupfaner, usynkronisert Knowledge eller en redaksjonelt uferdig runding.
+Kontekst-, quiz-, place-, Story- og tverrfaglige validatorer kjøres i materialiseringsjobben og ordinær PR-CI. Alle popupfanene er nå ferdige, men grønn teknisk CI kan ikke overstyre usynkronisert Knowledge eller redaksjonelt uferdige People/Objects/Brands-rundinger.

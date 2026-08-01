@@ -265,6 +265,21 @@
       || `<div class="hg-place-tab-empty">Ingen brukerrettede kilder er registrert for dette stedet ennå.</div>`;
   }
 
+  function languageCards(items) {
+    const rows = list(items).filter(Boolean);
+    if (!rows.length) return "";
+    return `<div class="hg-place-tab-card-list">${rows.map(item => {
+      const title = text(item?.term || item?.title || item?.id || "Oppslag");
+      const type = humanize(item?.type || "språkoppføring");
+      const meaning = text(item?.meaning || item?.desc || item?.description);
+      const context = text(item?.context);
+      const rawSource = list(item?.sources)[0];
+      const sourceUrl = safeHttpsUrl(typeof rawSource === "string" ? rawSource : rawSource?.url);
+      const sourceLabel = text(typeof rawSource === "string" ? "Kilde" : rawSource?.label || rawSource?.title || "Kilde");
+      return `<article class="hg-place-tab-card hg-place-language-card"><strong>${esc(title)}</strong>${type ? `<span>${esc(type)}</span>` : ""}${meaning ? `<p>${esc(meaning)}</p>` : ""}${context ? `<p class="hg-place-language-context">${esc(context)}</p>` : ""}${sourceUrl ? `<a class="hg-place-more-source" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel)} ↗</a>` : ""}</article>`;
+    }).join("")}</div>`;
+  }
+
   function renderMore(article, objectArticles, languageArticle) {
     const interpretation = article?.interpretation && typeof article.interpretation === "object" ? article.interpretation : {};
     const artifacts = [...list(article?.artifacts), ...list(article?.objects), ...list(objectArticles)];
@@ -274,7 +289,7 @@
       strings(interpretation.what_to_notice).length ? section("Legg merke til", `<ul>${strings(interpretation.what_to_notice).map(value => `<li>${esc(value)}</li>`).join("")}</ul>`) : "",
       strings(interpretation.why_it_matters).length ? section("Hvorfor det betyr noe", `<ul>${strings(interpretation.why_it_matters).map(value => `<li>${esc(value)}</li>`).join("")}</ul>`) : "",
       strings(interpretation.counterpoints).length ? section("Motpunkter", `<ul>${strings(interpretation.counterpoints).map(value => `<li>${esc(value)}</li>`).join("")}</ul>`) : "",
-      languageEntries.length ? section("Språkleksikon", cards(languageEntries, true)) : ""
+      languageEntries.length ? section("Språkleksikon", languageCards(languageEntries)) : ""
     ].join("");
   }
 
