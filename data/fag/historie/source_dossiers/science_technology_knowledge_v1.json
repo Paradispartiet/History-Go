@@ -5,7 +5,7 @@
   "domain_id": "his_vitenskap_teknologi_kunnskap",
   "status": "canonical_source_dossier",
   "version": "v1",
-  "produced_at": "2026-07-31",
+  "produced_at": "2026-08-01",
   "scope": {
     "geography_ids": [
       "geo_no_oslo_akershus",
@@ -13,6 +13,7 @@
     ],
     "place_ids": [
       "teknisk_museum",
+      "forsvarsmuseet",
       "kjeller_flyplass",
       "meteorologisk_institutt",
       "rikshospitalet",
@@ -27,6 +28,7 @@
     ],
     "case_ids": [
       "case_his_norsk_teknisk_museum",
+      "case_his_forsvarsmuseet_military_industry_objects",
       "case_his_kjeller_ffi",
       "case_his_meteorologisk_institutt",
       "case_his_rikshospitalet",
@@ -51,7 +53,11 @@
       "src_his_ffi_air_force_research_industry",
       "src_his_snl_forsvarets_forskningsinstitutt"
     ],
-    "assessment": "Kildepakken kombinerer offisiell museumskronologi, fagredigert samlings- og virksomhetskontroll, FFIs institusjons- og prosesskilder og en uavhengig fagredigert FFI-oversikt. De to nye casene har hver minst to normaliserte kildefamilier og eksplisitte grenser for selvframstilling, representativitet, hemmelighold og fysisk lokalisering."
+    "military_industry_object_source_ids": [
+      "src_his_fhm_lund_marine_trial_rifle_1858",
+      "src_his_fhm_krag_cavalry_trial_carbine_1911"
+    ],
+    "assessment": "Kildepakken kombinerer offisiell museumskronologi, fagredigert samlings- og virksomhetskontroll, FFIs institusjons- og prosesskilder, en uavhengig fagredigert FFI-oversikt og to objektposter fra Forsvarshistorisk museum. Objektpostene dokumenterer en separat kjede mellom Kongsberg Våpenfabrikk, militære prøveformål og teknisk kontroll; de brukes ikke som bevis på produksjonsvolum, anskaffelse, operativ virkning eller teststed."
   },
   "source_snapshots": [
     {
@@ -123,12 +129,42 @@
         "Leksikonartikkelen gir en fagredigert institusjonsoversikt, men kan ikke åpne hemmeligstemplede arkiver eller gi full prosjekt-, finansierings- og resultatserie.",
         "Konsentrasjon på Kjeller og samarbeid med forsvarsindustrien viser et institusjonelt nettverk, men ikke at alle beslutninger, laboratorier eller gevinster kan lokaliseres til flyplassankeret."
       ]
+    },
+    {
+      "source_id": "src_his_fhm_lund_marine_trial_rifle_1858",
+      "title": "Kammerladingsgevær 18 lødig Lund Marine",
+      "publisher": "Forsvarshistorisk museum / DigitaltMuseum",
+      "url": "https://digitaltmuseum.no/011022702335/kammerladingsgevaer-18-lodig-lund-marine",
+      "source_locations": [
+        "Objektpostens produksjonsfelt: 1858 og Kongsberg Våpenfabrikk som produsent",
+        "Objektpostens bruksfelt: forsøksgevær for Marinen"
+      ],
+      "limitations": [
+        "Katalogposten dokumenterer ett bevart objekt, produsent, år og prøveformål, men ikke bestillingsvedtak, produksjonsserie, kostnad, testprotokoll eller eventuell innføring.",
+        "Forsvarsmuseet er dagens samlingsanker; posten dokumenterer ikke at produksjon eller militær utprøving fant sted i Hovedarsenalet på Akershus."
+      ]
+    },
+    {
+      "source_id": "src_his_fhm_krag_cavalry_trial_carbine_1911",
+      "title": "Prøvekarabin 6,5x55 Krag Jørgensen 1911",
+      "publisher": "Forsvarshistorisk museum / DigitaltMuseum",
+      "url": "https://digitaltmuseum.no/011022701945/provekarabin-65x55-krag-jorgensen-1911",
+      "source_locations": [
+        "Objektpostens produksjonsfelt: 1911 og Kongsberg Våpenfabrikk som produsent",
+        "Beskrivelsen av pålegget sommeren 1912 om bajonettprøver for kavaleriet og innskriften som identifiserer en kontrolloffiser"
+      ],
+      "limitations": [
+        "Katalogposten dokumenterer prøveobjekt, produsent, teknisk løsning og militært prøveformål, men ikke hvem som formulerte alle kravene, resultatet av prøven eller senere anskaffelse.",
+        "Ett bevart prøvevåpen kan ikke brukes som mål på fabrikkens samlede innovasjon, statlig styring, produksjonsvolum eller våpenets operative betydning."
+      ]
     }
   ],
   "production_decisions": [
     "Norsk Teknisk Museum oppgraderes fra legacy-kandidat med to evidenslenker og to normaliserte kildefamilier; samlingsbredde gjøres ikke til full representativitet.",
     "Kjeller/FFI opprettes som nytt case med tre evidenslenker. Flyplassens ENKJ-referansepunkt brukes som landskapsanker og ikke som FFI-byggkoordinat eller eiendomsgrense.",
     "FFIs egne historie- og prosesskilder kontrolleres mot et fagredigert oppslagsverk og merkes eksplisitt som institusjonell selvframstilling der det er relevant.",
+    "Forsvarsmuseets to objektposter etablerer et separat militær-industrielt case: Kongsberg-produksjon kobles til marine- og kavaleriprøver, mens museumsbygningen bare er dagens samlingsanker.",
+    "Norsk Teknisk Museums dokumenterte medisinhistoriske samlingsbredde kobles eksplisitt til medisin- og helsevitenskapsemnet; samlingen brukes fortsatt ikke som bevis på klinisk praksis, befolkningshelse eller representativitet.",
     "Eksisterende validerte claims gjenbrukes bare når de dokumenterer konkrete måle-, profesjons-, infrastruktur-, medie-, digitaliserings-, helse- eller ekskluderingsmekanismer.",
     "Alle ti teoriobjekter bruker unike claimpakker med minst to cases, to steder, to kilder og to claimtyper og omtales ikke som universelle bevis."
   ]

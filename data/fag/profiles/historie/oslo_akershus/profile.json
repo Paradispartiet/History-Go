@@ -40,13 +40,13 @@
     "total_subject_emner": 230,
     "emner_with_profile_case_candidates": 206,
     "emne_link_ratio_percent": 89.6,
-    "cases_total": 114,
-    "claims_total": 233,
-    "sources_total": 182,
-    "evidence_links_total": 241,
+    "cases_total": 115,
+    "claims_total": 235,
+    "sources_total": 184,
+    "evidence_links_total": 243,
     "status": "COMPLETE",
     "interpretation": "Profilen har et representativt minimumsgrunnlag og er utvidet med kildeformspesifikke baner for visuelle, muntlige, serielle, dokumentautentiske og arkeologiske kilder. Fullført profilstatus gjelder minimumsgrunnlaget; universell teori-evidens er fortsatt eksplisitt produksjonskø.",
-    "verified_cases_total": 51,
+    "verified_cases_total": 52,
     "completion_scope": "minimum_representative_evidence_foundation"
   },
   "cases": [
@@ -1046,6 +1046,41 @@
         "validated_at": "2026-07-27",
         "minimum_evidence_links": 2,
         "source_policy": "canonical_registry_with_explicit_limitations"
+      }
+    },
+    {
+      "case_id": "case_his_forsvarsmuseet_military_industry_objects",
+      "label": "Forsvarsmuseet – militær-industrielle prøveobjekter",
+      "geography_id": "geo_no_oslo_akershus",
+      "geography_scope": "local_or_regional",
+      "status": "pilot_validated",
+      "evidence_status": "claim_source_linked",
+      "place_ids": [
+        "forsvarsmuseet"
+      ],
+      "emne_ids": [
+        "em_his_spor_materialitet",
+        "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+        "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
+      ],
+      "case_requirement_ids": [
+        "case_req_his_temporal_sequence",
+        "case_req_his_actor_conflict",
+        "case_req_his_source_comparison",
+        "case_req_his_comparative_scale"
+      ],
+      "provenance": {
+        "migrated_from": "data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06/forsvarsmuseet.json",
+        "migration_date": "2026-08-01"
+      },
+      "validation": {
+        "status": "validated_case",
+        "batch_id": "history_science_technology_knowledge_p2_correction_v1",
+        "validated_at": "2026-08-01",
+        "minimum_evidence_links": 2,
+        "source_policy": "canonical_museum_object_records_with_explicit_production_test_and_spatial_limits",
+        "spatial_note": "Forsvarsmuseet er samlingsanker; Kongsberg-produksjon og militær prøving lokaliseres ikke til museet."
       }
     },
     {
@@ -7921,6 +7956,7 @@
     {
       "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
       "case_ids": [
+        "case_his_forsvarsmuseet_military_industry_objects",
         "case_his_gaustad_sykehus",
         "case_his_meteorologisk_institutt",
         "case_his_norsk_teknisk_museum",
@@ -7937,7 +7973,7 @@
       "provenance": "recommended_oslo_cases"
     }
   ],
-  "last_updated": "2026-07-31",
+  "last_updated": "2026-08-01",
   "evidence_batches": [
     {
       "batch_id": "history_medieval_social_economic_legal_evidence_v1",
@@ -8491,6 +8527,36 @@
         "theory_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
         "theory_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
         "theory_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet"
+      ]
+    },
+    {
+      "batch_id": "history_science_technology_knowledge_p2_correction_v1",
+      "status": "validated",
+      "validated_at": "2026-08-01",
+      "newly_verified_case_ids": [
+        "case_his_forsvarsmuseet_military_industry_objects"
+      ],
+      "expanded_case_ids": [
+        "case_his_norsk_teknisk_museum"
+      ],
+      "claim_ids": [
+        "claim_his_forsvarsmuseet_krag_cavalry_trial_carbine_1911_1912",
+        "claim_his_forsvarsmuseet_lund_marine_trial_rifle_1858",
+        "claim_his_teknisk_museum_collection_research_mediation"
+      ],
+      "source_ids": [
+        "src_his_fhm_krag_cavalry_trial_carbine_1911",
+        "src_his_fhm_lund_marine_trial_rifle_1858",
+        "src_his_snl_norsk_teknisk_museum"
+      ],
+      "evidence_ids": [
+        "evidence_his_science_technology_knowledge_v1_02",
+        "evidence_his_science_technology_knowledge_v1_06",
+        "evidence_his_science_technology_knowledge_v1_07"
+      ],
+      "qualified_theory_ids": [
+        "theory_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+        "theory_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
       ]
     },
     {

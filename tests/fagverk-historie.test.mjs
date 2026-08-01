@@ -134,6 +134,30 @@ test('teori-evidensregisteret bevarer alle stedskoblinger for fler-steds-claims'
   }
 });
 
+test('vitenskapsteorier har minst to cases koblet til teoriens eget emne', () => {
+  const theoryObjects = readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
+  const theoryEvidence = readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json');
+  const claims = readJson('data/fag/historie/claims_historie_canonical_v1.json');
+  const theoriesById = new Map(theoryObjects.map((theory) => [theory.theory_id, theory]));
+  const claimsById = new Map(claims.claims.map((claim) => [claim.claim_id, claim]));
+
+  for (const entry of theoryEvidence.entries) {
+    const theory = theoriesById.get(entry.theory_id);
+    if (!theory?.explanatory_scope?.includes('his_vitenskap_teknologi_kunnskap')) continue;
+
+    const targetEmneId = `em_${theory.source_hook_id}`;
+    const topicSpecificCases = new Set(entry.claim_ids
+      .map((claimId) => claimsById.get(claimId))
+      .filter((claim) => claim?.emne_ids?.includes(targetEmneId))
+      .flatMap((claim) => claim.scope?.case_ids || []));
+
+    assert.ok(
+      topicSpecificCases.size >= 2,
+      `${entry.theory_id} trenger minst to cases koblet til ${targetEmneId}`
+    );
+  }
+});
+
 test('Børsen og Tollboden har reell kildesammenligning på tvers av kildetyper', () => {
   const profile = readJson('data/fag/profiles/historie/oslo_akershus/profile.json');
   const placeEvidence = readJson('data/fag/historie/place_evidence_historie_v1.json');
