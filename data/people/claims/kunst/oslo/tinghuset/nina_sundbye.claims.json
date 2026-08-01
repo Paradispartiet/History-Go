@@ -1,0 +1,49 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "nina_sundbye",
+  "profile_file": "data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json",
+  "identity": {
+    "canonical_identity": "Billedhuggeren Nina Sundbye, representert med to skulpturer i Oslo tinghus.",
+    "name_variants": ["Nina Sundbye"],
+    "not": ["navnelike personer"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "tinghuset_sculptures",
+      "claim": "KORO dokumenterer to skulpturer av Nina Sundbye i Oslo tinghus, utenfor det tidligere vigselsrommet 283 og i de ansattes kantine.",
+      "status": "verified",
+      "source_url": "https://koro.no/prosjekter/oslo-tinghus/",
+      "source_location": "verkoversikten og billedtekstene for Nina Sundbyes skulpturer",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["tinghuset_sculptures"],
+    "kindLabel": ["tinghuset_sculptures"],
+    "year": ["tinghuset_sculptures"],
+    "period": ["tinghuset_sculptures"],
+    "placeId": ["tinghuset_sculptures"],
+    "places[tinghuset]": ["tinghuset_sculptures"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["tinghuset_sculptures"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["tinghuset_sculptures"]},
+      {"sentence": 2, "claim_ids": ["tinghuset_sculptures"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "1/1",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

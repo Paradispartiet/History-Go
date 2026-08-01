@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "wenche_elizabeth_arntzen",
+  "profile_file": "data/people/politikk/oslo/tinghuset/people_oslo_tinghus_rettsstaten_v1.json",
+  "identity": {
+    "canonical_identity": "Den norske juristen og dommeren Wenche Elizabeth Arntzen.",
+    "name_variants": ["Wenche Elizabeth Arntzen", "Wenche Elisabeth Arntzen"],
+    "not": ["navnelike personer"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_profession",
+      "claim": "Wenche Elizabeth Arntzen er norsk jurist og dommer.",
+      "status": "verified",
+      "source_url": "https://snl.no/Wenche_Elizabeth_Arntzen",
+      "source_location": "faktaboks og innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "trial_role_2012",
+      "claim": "Oslo tingretts dom av 24. august 2012 navngir tingrettsdommer Wenche Elizabeth Arntzen som rettens leder.",
+      "status": "verified",
+      "source_url": "https://lovdata.no/static/file/1276/toslo-2011-188627-24.pdf",
+      "source_location": "side 1, metadatafeltene Dato og Forfatter",
+      "source_type": "primary",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-01",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "trial_place",
+      "claim": "22. juli-senteret dokumenterer at hovedforhandlingen foregikk i Oslo tingrett og at tinghuset ble bygget om for de berørte og medietrykket.",
+      "status": "verified",
+      "source_url": "https://www.22julisenteret.no/no/fordyp-deg/fagartikler/rettssaken-mot-breivik-i-2012",
+      "source_location": "avsnittet under ingressen om hovedforhandlingen våren 2012",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-01",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["identity_profession"],
+    "kindLabel": ["identity_profession", "trial_role_2012"],
+    "role": ["trial_role_2012"],
+    "year": ["trial_role_2012"],
+    "period": ["trial_role_2012"],
+    "placeId": ["trial_role_2012", "trial_place"],
+    "places[tinghuset]": ["trial_role_2012", "trial_place"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["identity_profession", "trial_role_2012"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["identity_profession", "trial_role_2012"]},
+      {"sentence": 2, "claim_ids": ["trial_place"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-01",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

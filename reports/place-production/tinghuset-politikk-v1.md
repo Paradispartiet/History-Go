@@ -5,7 +5,7 @@
 - Kategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
 - Normal åpning: 14 ordinære spørsmål før faglig fordypning i sett 3
-- Saneringsstatus: nullmåling utført 2026-08-01; alle åtte popupfaser og fase 9 «Knowledge» er fullført, mens People/Objects/Brands-rundingene fortsatt er åpne
+- Saneringsstatus: nullmåling utført 2026-08-01; alle åtte popupfaser, fase 9 «Knowledge» og fase 10 «People» er fullført, mens Objects/Brands-rundingene fortsatt er åpne
 
 ## Politikk-hovedfunksjon
 
@@ -41,7 +41,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 - Place: canonical identitet er beholdt; `desc` og `popupDesc` er redigert til en konkret Om-artikkel om bygningen, domstolsfunksjonen, publikumsadgangen, arkitekturen og kunsten
 - Leksikon: canonical hovedrecord med nøkkelfakta, bygd funksjon, sju kildebelagte chronology-punkter og en avgrenset tolkningspakke er aktivert i manifestet; samme fil inneholder tre separate Nyheter-records, mens Lesespor og Språkleksikon ligger i sine egne canonicale samlinger
 - Hovedbilde: kontrollert public-domain-foto av Oslo tinghus, med lokal full- og kortvariant og lagret attribusjon
-- People: sju canonicale stedskoblinger finnes, men seks er kunstnere, bare én person uttrykker domstolens hovedfunksjon, seks mangler bilde og flere profiltekster bruker samme formulering. Yngve Svendsens identitetskontrollerte redaksjonelle illustrasjon kan beholdes
+- People: tretten canonicale stedskoblinger dekker sju personer fra tinghusets juridiske hovedfunksjon og seks kunstnere med dokumenterte verk i bygningen. Alle tretten har egne claim-filer, stedsspesifikke profiltekster, lokale bilder og sporbar rettighetsmetadata; elleve bruker tydelig merkede redaksjonelle illustrasjoner og to bruker godkjente Commons-fotografier
 - Story: én canonical `episode_v1`-fortelling følger den selvstendige konflikten om tilregnelighet gjennom de to motstridende sakkyndigerklæringene, hovedforhandlingen, dommen og den senere offentlige gjennomgangen av rettspsykiatriens rolle. Den dupliserer ikke chronology-punktets dato- og arrangementsinformasjon
 - Lesespor: fire åpne, link-only fordypningsspor dekker domstolenes samfunnsrolle, tinghusets kunst og arkitektur, hovedforhandlingen i 2012 og Tilregnelighetsutvalgets etterbehandling. Ukjent publiseringsdato er beholdt som `null`, og ingen artikkelfulltekst er kopiert
 - Kilder: sju brukerrettede kildegrupper og sytten navngitte HTTPS-lenker dekker domstolen, lovgrunnlaget, bygget og kunsten, drift i 2025, lokalhistorie, terrorrettssaken, dommen, tilregnelighetsspørsmålet, NOU-en og Før/etter-bildene. Interne rapporter, audits og hold-back-notater er ikke eksponert
@@ -74,11 +74,23 @@ Status: **PASS – fase 9**.
 - de 21 spørsmålene bruker 37 eksplisitte canonicale begreper;
 - spørsmål, svar, alternativer, rekkefølge, claim-grunnlag og kildereferanser er uendret fra før Knowledge-materialiseringen.
 
+## People
+
+Status: **PASS – fase 10**.
+
+- tretten canonicale personer er eksplisitt koblet til `tinghuset`;
+- sju personer representerer tinghusets hovedfunksjon: sorenskriver, fagdommere, aktorer og forsvarere, mens seks kunstnere dokumenterer den bygningsintegrerte kunsten;
+- alle tretten profilene følger `people_profile_v1.0`, har egen claim-fil, eksternt kildegrunnlag og distinkt stedsspesifikk åpning;
+- 13 av 13 personer har lokalt bilde og kortbilde med tillatt lisens og oppføring i attribusjonsregisteret;
+- elleve identitetskontrollerte redaksjonelle illustrasjoner er eksplisitt merket «illustrasjon – ikke fotografi»; Inga Bejer Engh og Geir Lippestad bruker manuelt godkjente Commons-fotografier.
+
+Objects- og Brands-rundingene fortsatt er åpne. People-fasen endrer ikke disse samlingene.
+
 ## Rundingsgate
 
 Runtimeprofilen er korrekt fast `people · objects · brands`, med Badges oppe til høyre. Nullmålingen viser likevel at preview-tilgjengelighet ikke er det samme som en ferdig runding:
 
-- People: 1 av 7 personer har bilde; hovedfunksjonen dominerer ikke utvalget;
+- People: PASS – 13 canonicale personer, 13 lokale bilder og hovedfunksjonsdominans med sju juridiske aktører mot seks kunstnere;
 - Objects: 1 element finnes;
 - Brands: 1 gyldig logo og stedskobling finnes.
 
@@ -113,4 +125,4 @@ Status for samlet sted: **under sanering – ikke produksjonsklart**.
 
 ## Maskinell sluttgate
 
-Kontekst-, quiz-, place-, Story-, Knowledge- og tverrfaglige validatorer kjøres i materialiseringsjobben og ordinær PR-CI. Popup og Knowledge er nå ferdige, men grønn teknisk CI kan ikke overstyre redaksjonelt uferdige People/Objects/Brands-rundinger.
+Kontekst-, quiz-, place-, Story-, Knowledge-, People- og tverrfaglige validatorer kjøres i materialiseringsjobben og ordinær PR-CI. Popup, Knowledge og People er nå ferdige, men grønn teknisk CI kan ikke overstyre redaksjonelt uferdige Objects/Brands-rundinger.
