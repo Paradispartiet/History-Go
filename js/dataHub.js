@@ -522,9 +522,10 @@ async function loadPlacesBase(opts = {}) {
 
   function getLesesporStatusRank(item) {
     const status = String(item?.curation_status || "").trim();
-    if (status === "strong_candidate") return 0;
-    if (status === "candidate_needs_review" || status === "candidate") return 1;
-    return 2;
+    if (status === "approved") return 0;
+    if (status === "strong_candidate") return 1;
+    if (status === "candidate_needs_review" || status === "candidate") return 2;
+    return 3;
   }
 
   function sortLesesporItems(items) {
