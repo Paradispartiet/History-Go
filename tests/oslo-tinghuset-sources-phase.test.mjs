@@ -53,8 +53,8 @@ test('The existing source profile is not rendered twice inside the Sources tab',
   assert.match(runtime, /renderSources\(place, articles, !hasExistingSourceProfile\)/);
 });
 
-test('Phase report marks Sources complete and keeps More open', () => {
+test('Phase report keeps Sources complete when More is completed', () => {
   assert.match(report, /\| Kilder \| PASS – fase 7 \|/);
-  assert.match(report, /\| Mer \| Ikke startet \|/);
+  assert.match(report, /\| Mer \| PASS – fase 8 \|/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });
