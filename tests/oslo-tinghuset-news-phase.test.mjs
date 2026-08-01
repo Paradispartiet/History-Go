@@ -18,7 +18,6 @@ test('Oslo tinghus has three dated, place-specific news notes', () => {
   assert.ok(news.every(item => item.source_checked_at === '2026-08-01'));
   assert.ok(news.every(item => item.classification?.source_quality === 'official_primary'));
 });
-
 test('Each note preserves its factual and inferential boundary', () => {
   const byId = new Map(news.map(item => [item.id, item]));
   const security = byId.get('tinghuset_nyhet_sikkerhetskontroll_2025');
@@ -51,9 +50,9 @@ test('News sources are official HTTPS pages and stay in the News surface', () =>
   assert.match(styles, /\.hg-place-tab-card \.hg-place-news-source/);
 });
 
-test('Phase report marks only News complete and keeps later phases open', () => {
+test('News remains complete while the Reading phase advances', () => {
   assert.match(report, /\| Nyheter \| PASS – fase 5 \|/);
-  assert.match(report, /\| Lesespor \| Ikke startet \|/);
+  assert.match(report, /\| Lesespor \| PASS – fase 6 \|/);
   assert.match(report, /\| Kilder \| Ikke startet \|/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });
