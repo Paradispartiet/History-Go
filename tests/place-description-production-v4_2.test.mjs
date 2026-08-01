@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   containsStrongClaim,
   containsTemporalClaim,
+  isGeneratedPlaceIndex,
   sha256Text,
   splitSentences,
   validatePacket,
@@ -113,6 +114,11 @@ test('strong and temporal gates detect governed wording', () => {
   assert.equal(containsStrongClaim('Bygningen ble reist i 1912.'), false);
   assert.equal(containsTemporalClaim('Museet drives av kommunen i dag.'), true);
   assert.equal(containsTemporalClaim('Museet stengte i 1984.'), false);
+});
+
+test('generated place indexes are build output, not canonical description files', () => {
+  assert.equal(isGeneratedPlaceIndex('data/places/places_index.json'), true);
+  assert.equal(isGeneratedPlaceIndex('data/places/politikk/oslo/places_politikk/tinghuset.json'), false);
 });
 
 test('a complete ready_v4_2 packet passes packet validation', () => {

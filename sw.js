@@ -1,9 +1,9 @@
 /* ============================================================
    History Go – Service Worker (precache synkronisert mot index.html)
-   Oppdatert: 2026-06-22
+   Oppdatert: 2026-08-01
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-07-28-v1.3.145";
+const SW_VERSION = "hg-sw-2026-08-01-v1.3.146";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -344,7 +344,7 @@ self.addEventListener("fetch", (/** @type {any} */ event) => {
     // Data (JSON) – network-first under utvikling
     if (path.startsWith("/History-Go/data/") || path.includes("/data/")) {
       if (path.endsWith("/data/places/places_index.json") || path.includes("/data/places/")) {
-        event.respondWith(cacheFirst(req, CACHE_RUNTIME));
+        event.respondWith(networkFirst(req, CACHE_RUNTIME));
         return;
       }
       event.respondWith(networkFirst(req, CACHE_RUNTIME));
