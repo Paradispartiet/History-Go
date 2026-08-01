@@ -183,10 +183,24 @@
     const data = place?.for_na && typeof place.for_na === "object" ? place.for_na : null;
     if (!data) return `<div class="hg-place-tab-empty">Ingen før/etter-innhold for dette stedet ennå.</div>`;
     const images = [
-      ["Før", data.beforeImage || data.before_image || data.imageBefore],
-      ["Nå", data.nowImage || data.now_image || data.imageNow]
-    ].filter(([, url]) => safeHttpsUrl(url) || text(url).startsWith("bilder/") || text(url).startsWith("assets/"));
-    const imageHtml = images.length ? `<div class="hg-place-before-after-media">${images.map(([label, url]) => `<figure><img src="${esc(url)}" alt="${esc(label)}: ${esc(place?.name || "stedet")}" loading="lazy"><figcaption>${esc(label)}</figcaption></figure>`).join("")}</div>` : "";
+      {
+        label: text(data.beforeImageLabel || data.before_image_label || "Før"),
+        url: data.beforeImage || data.before_image || data.imageBefore,
+        meta: data.beforeImageMeta || data.before_image_meta
+      },
+      {
+        label: text(data.nowImageLabel || data.now_image_label || "Nå"),
+        url: data.nowImage || data.now_image || data.imageNow,
+        meta: data.nowImageMeta || data.now_image_meta
+      }
+    ].filter(item => safeHttpsUrl(item.url) || text(item.url).startsWith("bilder/") || text(item.url).startsWith("assets/"));
+    const imageHtml = images.length ? `<div class="hg-place-before-after-media">${images.map(item => {
+      const credit = text(item.meta?.credit || item.meta?.author);
+      const license = text(item.meta?.license);
+      const sourcePage = safeHttpsUrl(item.meta?.sourcePage || item.meta?.sourceUrl);
+      const attribution = [credit, license].filter(Boolean).join(" · ");
+      return `<figure><img src="${esc(item.url)}" alt="${esc(item.label)}: ${esc(place?.name || "stedet")}" loading="lazy"><figcaption><strong>${esc(item.label)}</strong>${attribution ? `<span>${esc(attribution)}</span>` : ""}${sourcePage ? `<a href="${esc(sourcePage)}" target="_blank" rel="noopener noreferrer">Bildekilde ↗</a>` : ""}</figcaption></figure>`;
+    }).join("")}</div>` : "";
     const lookFor = strings(data.lookFor || data.look_for || data.observe || data.observer);
     return imageHtml + [
       text(data.before) ? section("Før", `<p>${esc(data.before)}</p>`) : "",
