@@ -103,6 +103,59 @@ test('nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-kobl
   assert.equal(model.emners[0].domainId, 'design');
 });
 
+test('kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder', async () => {
+  const documents = new Map([
+    ['chapter.json', {
+      title: 'Kapittel',
+      moduleFiles: ['module-a.json', 'module-b.json'],
+      claimsFile: 'claims.json'
+    }],
+    ['module-a.json', {
+      workedExamples: [{ title: 'Ny form', scenario: 'Situasjonen', steps: ['Steg 1', 'Steg 2'] }],
+      misconceptions: [{ claim: 'Feil', correction: 'Rett' }]
+    }],
+    ['module-b.json', {
+      workedExamples: [{ title: 'Canonical form', situation: 'Annen situasjon', analysis: ['Analyse'] }],
+      commonMisconceptions: [{ claim: 'Annen feil', correction: 'Annen rett' }],
+      sources: [{ id: 'stale', label: 'Stale', url: 'https://example.test/stale' }]
+    }],
+    ['claims.json', {
+      claims: [{ id: 'claim-1' }],
+      sources: [{ id: 'source-1', label: 'Canonical kilde', url: 'https://example.test/source' }]
+    }]
+  ]);
+  const fetched = [];
+  const chapter = await CORE.hydrateChapter({ file: 'chapter.json' }, async (file) => {
+    fetched.push(file);
+    return documents.get(file);
+  });
+
+  assert.deepEqual(fetched, ['chapter.json', 'module-a.json', 'module-b.json', 'claims.json']);
+  assert.equal(chapter.workedExamples.length, 2);
+  assert.equal(chapter.workedExamples[0].situation, 'Situasjonen');
+  assert.deepEqual([...chapter.workedExamples[0].analysis], ['Steg 1', 'Steg 2']);
+  assert.equal(chapter.workedExamples[1].situation, 'Annen situasjon');
+  assert.deepEqual([...chapter.workedExamples[1].analysis], ['Analyse']);
+  assert.equal(chapter.commonMisconceptions.length, 2);
+  assert.deepEqual(chapter.sources.map((source) => source.id), ['source-1']);
+  assert.deepEqual(chapter.claims.map((claim) => claim.id), ['claim-1']);
+});
+
+test('alle seks Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatninger og canonicale kilder', async () => {
+  const registry = JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8'));
+  const fetchFile = async (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+
+  for (const chapterMeta of registry.subjects.naeringsliv.chapters) {
+    const chapter = await CORE.hydrateChapter(chapterMeta, fetchFile);
+    const claimsDocument = await fetchFile(chapterMeta.claimsFile);
+    assert.ok(chapter.workedExamples.length >= 2, `${chapterMeta.id}: mangler arbeidseksempler`);
+    assert.ok(chapter.workedExamples.every((example) => example.situation && example.analysis.length), `${chapterMeta.id}: arbeidseksempel er ikke renderbart`);
+    assert.ok(chapter.commonMisconceptions.length >= 5, `${chapterMeta.id}: misoppfatninger er ikke renderbare`);
+    assert.equal(chapter.sources.length, claimsDocument.sources.length, `${chapterMeta.id}: claims-kilder er ikke hydrert`);
+    assert.ok(chapter.sources.every((source) => source.label && source.url), `${chapterMeta.id}: kilde mangler label eller URL`);
+  }
+});
+
 test('materialisert fagside og committed fase-1-rapport passerer full audit', () => {
   const result = auditRepository();
   assert.ok(result.materializedRows.some((row) => row.id === 'politikk'));

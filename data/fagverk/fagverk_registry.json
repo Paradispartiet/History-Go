@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.16.0",
-  "updatedAt": "2026-07-31",
+  "version": "2.17.0",
+  "updatedAt": "2026-08-01",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
@@ -380,6 +380,19 @@
         "runtimeManifest": "data/fag/naeringsliv/naeringsliv_runtime_manifest.json",
         "sourceOfTruth": true,
         "note": "Fagområder, emner, metoder, mappings, universitetsutvidelser og handelshøgskolemoduler leses fra canonicale næringslivsdata. Registryet eier bare ferdigskrevne lærekapitler og stedsspesifikk kuratering."
+      },
+      "editorialPlan": {
+        "targetChapterRange": {
+          "minimum": 12,
+          "maximum": 14
+        },
+        "inProgressGate": "phase_4_expand_to_12_14_chapters_and_runtime_qa",
+        "completionRequirements": [
+          "all_canonical_domains_covered",
+          "minimum_twelve_full_chapters",
+          "runtime_pedagogy_and_sources_rendered",
+          "full_subject_audit_green"
+        ]
       },
       "chapters": [
         {

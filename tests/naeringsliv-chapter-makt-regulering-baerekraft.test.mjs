@@ -26,5 +26,5 @@ test("Makt, regulering og bærekraft passes its permanent chapter gate", () => {
     selfCheck: 8,
     relatedPlaces: 6,
   });
-  assert.equal(report.gates.subjectCompleteSixOfSix, true);
+  assert.equal(report.gates.subjectEditorialPlanHonest, true);
 });

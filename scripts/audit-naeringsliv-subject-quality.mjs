@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { evaluateNaeringslivEditorialPlan } from './naeringsliv-editorial-plan.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
@@ -115,10 +116,11 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
   const portalEntry = portal.categories.find((row) => row.id === 'naeringsliv');
   assert(portalEntry?.subjectStatus === 'materialized' && portalEntry?.subjectPage === 'fagverk.html?subject=naeringsliv', 'Portal is not materialized');
   const statusEntry = status.subjects.find((row) => row.id === 'naeringsliv');
-  const expectedEditorialStatus = registeredChapters.length === domains.length ? 'complete' : registeredChapters.length > 0 ? 'chapters_in_progress' : 'structure_ready';
+  const editorialPlan = evaluateNaeringslivEditorialPlan(registry.subjects?.naeringsliv, domainIds);
   assert(statusEntry?.navigationStatus === 'materialized', 'Status navigation is not materialized');
   assert(statusEntry?.assessmentStatus === 'audited', 'Status assessment is not audited');
-  assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Status editorial state must be ${expectedEditorialStatus}`);
+  assert(statusEntry?.editorialStatus === editorialPlan.expectedEditorialStatus, `Status editorial state must be ${editorialPlan.expectedEditorialStatus}`);
+  assert(statusEntry?.nextGate === editorialPlan.expectedNextGate, `Status next gate must be ${editorialPlan.expectedNextGate}`);
   assert(registry.subjects?.naeringsliv?.canonicalModel?.sourceOfTruth === true, 'Registry does not point to canonical naeringsliv data');
   assert(registry.subjects?.naeringsliv?.canonicalModel?.runtimeManifest === P.runtime, 'Registry points to wrong runtime manifest');
 
@@ -140,6 +142,8 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
       professionalModuleCount,
       totalLearningUnits: businessFramework.relationship_to_university_core.total_learning_units,
       registeredChapterCount: registeredChapters.length,
+      targetChapterMinimum: editorialPlan.minimum,
+      targetChapterMaximum: editorialPlan.maximum,
       registeredDomainCount: registeredChapters.length,
       registeredEmneCount: new Set(registeredEmneIds).size,
       normalOpeningQuestions: quiz.normal_opening_profile.sets * quiz.normal_opening_profile.questions_per_set
@@ -157,7 +161,7 @@ export function auditNaeringslivQuality({ writeReport = false, checkReport = tru
       portalRegistryStatusSynchronized: true,
       everyRegisteredChapterCanonical: true,
       runtimeHasNoOrphanMappings: true,
-      editorialStatusMatchesChapterCount: true
+      editorialStatusMatchesChapterPlan: true
     }
   };
   if (writeReport) {

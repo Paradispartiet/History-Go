@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isDeepStrictEqual } from "node:util";
+import { evaluateNaeringslivEditorialPlan } from "./naeringsliv-editorial-plan.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CHAPTER_ID = "makt-regulering-baerekraft";
@@ -179,8 +180,9 @@ export function auditMaktReguleringBaerekraft({ writeReport = false, checkReport
   for (const emneId of chapter.emne_ids) assert(runtime.chapterByEmne?.[emneId] === CHAPTER_ID, `Runtime emne mapping missing for ${emneId}`);
   const statusEntry = status.subjects.find((row) => row.id === "naeringsliv");
   assert(chapters.length === pensum.domains.length, "Næringsliv must register all six canonical chapters");
-  assert(statusEntry?.editorialStatus === "complete", "Næringsliv must be complete at 6/6");
-  assert(String(statusEntry.note || "").includes("6 av 6"), "Status note does not report 6/6");
+  const editorialPlan = evaluateNaeringslivEditorialPlan(registry.subjects?.naeringsliv, (pensum.domains || []).map((row) => row.domain_id));
+  assert(statusEntry?.editorialStatus === editorialPlan.expectedEditorialStatus, `Næringsliv status must be ${editorialPlan.expectedEditorialStatus}`);
+  assert(statusEntry?.nextGate === editorialPlan.expectedNextGate, `Næringsliv next gate must be ${editorialPlan.expectedNextGate}`);
 
   const report = {
     schema: "history_go_naeringsliv_chapter_audit_v1",
@@ -211,7 +213,7 @@ export function auditMaktReguleringBaerekraft({ writeReport = false, checkReport
       pedagogicalComponents: true,
       canonicalPlaces: true,
       runtimeRegistryStatusSynchronized: true,
-      subjectCompleteSixOfSix: true,
+      subjectEditorialPlanHonest: true,
     },
   };
   if (writeReport) {

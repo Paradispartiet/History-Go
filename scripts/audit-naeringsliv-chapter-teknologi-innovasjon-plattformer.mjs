@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { evaluateNaeringslivEditorialPlan } from "./naeringsliv-editorial-plan.mjs";
 
 const ROOT = process.cwd();
 const CHAPTER_ID = "teknologi-innovasjon-plattformer";
@@ -166,11 +167,9 @@ if (!skipIntegration) {
 
   const status = readJson(STATUS_PATH);
   const subjectStatus = status.subjects.find((item) => item.id === "naeringsliv");
-  const registeredChapterCount = subject.chapters.length;
-  const canonicalDomainCount = pensum.domains.length;
-  const expectedEditorialStatus = registeredChapterCount === canonicalDomainCount ? "complete" : "chapters_in_progress";
-  assert(subjectStatus?.editorialStatus === expectedEditorialStatus, `Næringsliv editorial status must be ${expectedEditorialStatus}`);
-  assert(String(subjectStatus?.note || "").includes(`${registeredChapterCount} av ${canonicalDomainCount}`), "Næringsliv status chapter count mismatch");
+  const editorialPlan = evaluateNaeringslivEditorialPlan(subject, pensum.domains.map((item) => item.domain_id));
+  assert(subjectStatus?.editorialStatus === editorialPlan.expectedEditorialStatus, `Næringsliv editorial status must be ${editorialPlan.expectedEditorialStatus}`);
+  assert(subjectStatus?.nextGate === editorialPlan.expectedNextGate, `Næringsliv next gate must be ${editorialPlan.expectedNextGate}`);
 }
 
 const report = {
