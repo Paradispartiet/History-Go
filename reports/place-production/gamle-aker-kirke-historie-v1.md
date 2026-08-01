@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 0 – nullmåling klar for review; stedet er ikke produksjonsklart**
+- Status: **fase 1 – kildegrunnlag, Historie-rapport, Om og bilder klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -124,8 +124,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 
 | Fase | Leveranse | Status |
 | --- | --- | --- |
-| 0 | Nullmåling, identitetsgate og saneringsplan | **KLAR FOR REVIEW – dette dokumentet** |
-| 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | IKKE STARTET |
+| 0 | Nullmåling, identitetsgate og saneringsplan | **GODKJENT – PR #4647, merge `64a49e4ab978cd6ff062c557e7dc891cc15d710e`** |
+| 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | **KLAR FOR REVIEW** |
 | 2 | Kildebelagt chronology og Historie-fane | IKKE STARTET |
 | 3 | Story-review og eventuell episodeproduksjon | IKKE STARTET |
 | 4 | Før/etter | IKKE STARTET |
@@ -137,21 +137,36 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 10 | People, Objects, Brands og Badges/rundinger | IKKE STARTET |
 | 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | IKKE STARTET |
 
+## Resultat i fase 1
+
+- Fem eksterne kilder dekker fagartikkel, offisiell kirkeinformasjon, kulturminneforvaltning, byleksikon og fersk rehabiliteringsstatus.
+- Historie-rapporten kryssrefererer alle fire `em_his_*` til ett stedsspesifikt case med aktører, konflikt, brudd, kontinuitet, skala og kildegrenser.
+- `desc` og `popupDesc` er revidert under Place Description 4.2. Nøyaktig byggeår oppgis ikke som sikkert, og det bare steininteriøret beskrives som et restaureringsvalg fra 1950-årene.
+- Thomas Blix-inventarets motstridende årfesting er holdt utenfor teksten til en senere objektfase kan løse kildekonflikten.
+- Et public-domain-foto fra Wikimedia Commons er lagt inn som hoved- og kortbilde med inspectable lisensmetadata.
+- Den feilplasserte, lukkede PR #4646 gjenbrukes bare som audit-idé: case/evidens er kryssreferert, inferensgrenser er eksplisitte, og ordinære faktaspørsmål skal telles i fase 9.
+- Historiegate A–G er faglig dokumentert. Gate H står begrunnet som uferdig fordi 2 × 7 quiz, chronology og Story ferdigstilles i egne faser.
+
 ## Aktivt filscope
 
-Fase 0 endrer bare:
+Fase 1 endrer bare:
 
-- `reports/place-production/gamle-aker-kirke-historie-v1.md`
+- canonical place-fil; `data/places/places_index.json` er generert build-output og skal ikke committes i en Description 4.2-PR;
+- `data/places/historie-production/gamle_aker_kirke.json`;
+- `data/places/production/gamle_aker_kirke.json`;
+- to bildevarianter under `bilder/places/auto/`;
+- dette arbeidskortet.
 
-Ingen place-, Leksikon-, Story-, People-, Quiz-, Knowledge-, bilde-, manifest-, runtime- eller validatorfil skal endres i nullmålings-PR-en.
+Ingen Leksikon-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime- eller validatorfil endres i fase 1.
 
-## Ferdigport for fase 0
+## Ferdigport for fase 1
 
-Fase 0 kan godkjennes når:
+Fase 1 kan godkjennes når:
 
-1. nullmålingen samsvarer med fersk `main`;
-2. canonical identitet og source-fil er entydig;
-3. behold/omskriv/fjern/mangler er eksplisitt;
-4. popup, rundinger, Quiz, Knowledge og Historie-gatene er vurdert separat;
-5. PR-diffen inneholder nøyaktig dette dokumentet;
-6. review ikke finner at teknisk eksistens er forvekslet med redaksjonell ferdigstatus.
+1. Historie-produksjonsrapporten består permanent audit med 0 feil;
+2. Description 4.2-pakken består source-led policy med 0 blokkerende feil;
+3. alle brukerrettede setninger har verifiserte claim-referanser;
+4. hovedbildet finnes i begge avtalte størrelser og har kilde-, opphavs- og lisensmetadata;
+5. generert place-indeks ikke ligger i diffen, i tråd med Description 4.2-porten;
+6. quiz, chronology og Story fortsatt er eksplisitt uferdige og ikke feilaktig godkjent;
+7. PR-review ikke finner nye påstander, kildesprang eller identitetsblanding.
