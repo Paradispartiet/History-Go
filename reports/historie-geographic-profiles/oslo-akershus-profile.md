@@ -11,15 +11,15 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - Universelle emner: **230**
 - Unike emner med profilkoblinger: **216**
 - Mappingrecords: **216**
-- Casekandidater: **117**
+- Casekandidater: **118**
 
 ## Evidensgrunnlag
 
-- Claims: **268**
-- Kilder: **216**
-- Sted–emne–claim–kildekoblinger: **277**
-- Validerte caser: **57**
-- Validerte caser med minst to evidenskoblinger: **57**
+- Claims: **272**
+- Kilder: **219**
+- Sted–emne–claim–kildekoblinger: **281**
+- Validerte caser: **58**
+- Validerte caser med minst to evidenskoblinger: **58**
 
 ## Validerte caser
 
@@ -49,6 +49,7 @@ Rapporten måler geografisk produksjonsdekning separat fra den universelle fagmo
 - `case_his_hovedoya_kloster`
 - `case_his_hoyesteretts_hus`
 - `case_his_jodisk_museum`
+- `case_his_kjaerlighetskarusellen`
 - `case_his_kjeller_ffi`
 - `case_his_kunstnernes_hus_interwar_visual_culture`
 - `case_his_mariakirkeruinen`

@@ -7,8 +7,8 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 ## Resultat
 
 - Teoriobjekter totalt: **230**
-- Validerte pilotobjekter: **210**
-- Andel med dokumentert evidensgrunnlag: **91.3 %**
+- Validerte pilotobjekter: **220**
+- Andel med dokumentert evidensgrunnlag: **95.7 %**
 - Pilotmål: **10**
 - Universelt mål: **230**
 - Valideringsfeil: **0**
@@ -225,6 +225,16 @@ Dette er en streng geografisk pilot for å dokumentere hvordan teoriobjekter bru
 | Globalisering, avhengighet og sammenvevd historie: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
 | Internasjonale organisasjoner, bistand og utviklingspolitikk: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
 | Transnasjonale bevegelser, medier og solidaritetsnettverk: forklarings- og kildebane | 3 | 3 | 3 | 3 | evidence_ready |
+| Kjønn som historisk kategori: forklarings- og kildebane | 3 | 3 | 4 | 3 | evidence_ready |
+| Familie, hushold og slektskap: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Ekteskap, arv og eiendom: forklarings- og kildebane | 3 | 2 | 3 | 3 | evidence_ready |
+| Seksualitet, regulering og identitet: forklarings- og kildebane | 3 | 2 | 2 | 3 | evidence_ready |
+| Kropp, reproduksjon og medisinsk makt: forklarings- og kildebane | 3 | 2 | 4 | 3 | evidence_ready |
+| Maskuliniteter, femininiteter og arbeid: forklarings- og kildebane | 3 | 4 | 3 | 3 | evidence_ready |
+| Barndom, ungdom, alderdom og livsløp: forklarings- og kildebane | 3 | 3 | 3 | 3 | evidence_ready |
+| Kvinnebevegelse, likestilling og skeiv historie: forklarings- og kildebane | 4 | 2 | 5 | 4 | evidence_ready |
+| Omsorg, sosial reproduksjon og ulønnet arbeid: forklarings- og kildebane | 4 | 4 | 5 | 4 | evidence_ready |
+| Kjønn, rett og statsborgerskap | 5 | 3 | 6 | 4 | evidence_ready |
 
 ## Kontraktsgrense
 
