@@ -7,6 +7,7 @@ on:
       - 'data/places/manifest.json'
       - 'tools/check_stories_integrity.mts'
       - 'tools/report_stories_governance.mts'
+      - 'tests/oslo-tinghuset-story-phase.test.mjs'
       - 'tests/stories-governance-metrics.test.mjs'
       - '.github/workflows/stories-governance.yml'
   push:
@@ -17,6 +18,7 @@ on:
       - 'data/places/manifest.json'
       - 'tools/check_stories_integrity.mts'
       - 'tools/report_stories_governance.mts'
+      - 'tests/oslo-tinghuset-story-phase.test.mjs'
       - 'tests/stories-governance-metrics.test.mjs'
       - '.github/workflows/stories-governance.yml'
 
@@ -73,6 +75,9 @@ jobs:
             exit 1
           fi
           cat stories-governance-metrics.log
+
+      - name: Validate Oslo tinghus Story phase
+        run: node --test tests/oslo-tinghuset-story-phase.test.mjs
 
       - name: Upload metrics diagnostic
         if: failure()
