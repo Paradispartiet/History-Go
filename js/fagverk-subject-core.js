@@ -41,6 +41,18 @@
     return sentence.charAt(0).toLocaleUpperCase('nb-NO') + sentence.slice(1);
   }
 
+  function slug(value) {
+    return text(value)
+      .toLocaleLowerCase('nb-NO')
+      .replaceAll('æ', 'ae')
+      .replaceAll('ø', 'o')
+      .replaceAll('å', 'a')
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
   function cleanSubjectLabel(value) {
     return text(value).replace(/\s+[–-]\s+pensum$/i, '').trim();
   }
@@ -320,6 +332,37 @@
       ...list(normalized.commonMisconceptions),
       ...list(normalized.misconceptions)
     ];
+    normalized.applicationTasks = list(normalized.applicationTasks).map((item) => ({
+      ...item,
+      task: firstText(item?.task, item?.title),
+      prompts: list(item?.prompts).length
+        ? list(item.prompts)
+        : text(item?.prompt)
+          ? [text(item.prompt)]
+          : []
+    }));
+    normalized.relatedPlaces = list(normalized.relatedPlaces).map((place) => ({
+      ...place,
+      name: firstText(place?.name, place?.title, humanize(place?.id)),
+      role: firstText(place?.role, place?.description, 'Stedscase i kapittelet.')
+    }));
+    const sectionConcepts = list(normalized.sections).flatMap((section) => list(section?.concepts));
+    const concepts = list(normalized.concepts).length ? list(normalized.concepts) : sectionConcepts;
+    const seenConcepts = new Set();
+    normalized.concepts = concepts.map((concept) => {
+      const term = typeof concept === 'string' ? text(concept) : firstText(concept?.term, concept?.title);
+      return {
+        ...(concept && typeof concept === 'object' ? concept : {}),
+        id: firstText(concept?.id, slug(term)),
+        term,
+        definition: firstText(concept?.definition, concept?.description, 'Begrepet brukes som analysebegrep i dette kapittelet.')
+      };
+    }).filter((concept) => {
+      const key = firstText(concept.id, concept.term).toLocaleLowerCase('nb-NO');
+      if (!key || seenConcepts.has(key)) return false;
+      seenConcepts.add(key);
+      return true;
+    });
     return normalized;
   }
 

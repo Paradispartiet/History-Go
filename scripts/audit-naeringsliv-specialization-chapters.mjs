@@ -19,22 +19,8 @@ function collectClaimIds(value, target = new Set(), active = false) {
   return target;
 }
 
-function canonicalPlaceIds() {
-  const ids = new Set();
-  const walk = (directory) => {
-    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-      const full = path.join(directory, entry.name);
-      if (entry.isDirectory()) walk(full);
-      else if (entry.isFile() && entry.name.endsWith('.json') && entry.name !== 'places_index.json') {
-        try {
-          const value = JSON.parse(fs.readFileSync(full, 'utf8'));
-          for (const row of Array.isArray(value) ? value : [value]) if (typeof row?.id === 'string') ids.add(row.id);
-        } catch {}
-      }
-    }
-  };
-  walk(abs('data/places'));
-  return ids;
+function canonicalPlaceNames() {
+  return new Map(json('data/places/places_index.json').map((place) => [place.id, place.name]));
 }
 
 export function auditNaeringslivSpecializations({ writeReport = false, checkReport = true } = {}) {
@@ -45,7 +31,7 @@ export function auditNaeringslivSpecializations({ writeReport = false, checkRepo
   const methodDoc = json('data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json');
   const emneIds = new Set(emneDoc.map((row) => row.emne_id));
   const methodIds = new Set((methodDoc.methods || []).map((row) => row.method_id));
-  const places = canonicalPlaceIds();
+  const places = canonicalPlaceNames();
   const chapters = registry.subjects.naeringsliv.chapters.filter((row) => row.chapter_role === 'specialization');
   assert(chapters.length === 6, 'Expected six specialization chapters');
   assert(equalSet(chapters.map((row) => row.id), runtime.specializationChapterIds || []), 'Runtime specialization list mismatch');
@@ -70,10 +56,16 @@ export function auditNaeringslivSpecializations({ writeReport = false, checkRepo
     const misconceptions = modules.flatMap((module) => module.misconceptions || []);
     const applicationTasks = modules.flatMap((module) => module.applicationTasks || []);
     const selfCheck = modules.flatMap((module) => module.selfCheck || []);
+    const concepts = chapter.concepts || [];
     assert(sections.length === 9 && new Set(sections.map((row) => row.id)).size === 9, `${entry.id}: section contract mismatch`);
     assert(paragraphs.length === 27 && paragraphs.every((paragraph) => paragraph.length >= 160), `${entry.id}: paragraph contract mismatch`);
     assert(workedExamples.length === 2 && misconceptions.length === 5 && applicationTasks.length === 3 && selfCheck.length === 8, `${entry.id}: pedagogy contract mismatch`);
-    assert(relatedPlaces.length === 6 && relatedPlaces.every((place) => places.has(place.id)), `${entry.id}: place contract mismatch`);
+    assert(applicationTasks.every((task) => task.task && Array.isArray(task.prompts) && task.prompts.length), `${entry.id}: application task renderer contract mismatch`);
+    assert(relatedPlaces.length === 6 && relatedPlaces.every((place) => places.has(place.id) && place.name === places.get(place.id) && place.role), `${entry.id}: place renderer contract mismatch`);
+    assert(concepts.length >= 9 && concepts.every((concept) => concept.id && concept.term && concept.definition), `${entry.id}: concept renderer contract mismatch`);
+    const sectionConcepts = new Set(sections.flatMap((section) => section.concepts || []));
+    const chapterConcepts = new Set(concepts.map((concept) => concept.term));
+    assert([...sectionConcepts].every((concept) => chapterConcepts.has(concept)), `${entry.id}: section concepts are not materialized at chapter level`);
 
     const claimIds = new Set(claimsDoc.claims.map((claim) => claim.id));
     const sourceIds = new Set(claimsDoc.sources.map((source) => source.id));
@@ -92,7 +84,7 @@ export function auditNaeringslivSpecializations({ writeReport = false, checkRepo
 
     chapterReports.push({
       id: entry.id, title: entry.title, primaryDomainId: entry.primary_domain_id,
-      counts: { emners: chapter.emne_ids.length, methods: chapter.method_ids.length, modules: 3, sections: 9, paragraphs: 27, claims: 27, sources: 9, workedExamples: 2, misconceptions: 5, applicationTasks: 3, selfCheck: 8, relatedPlaces: 6 }
+      counts: { emners: chapter.emne_ids.length, methods: chapter.method_ids.length, modules: 3, sections: 9, paragraphs: 27, claims: 27, sources: 9, concepts: concepts.length, workedExamples: 2, misconceptions: 5, applicationTasks: 3, selfCheck: 8, relatedPlaces: 6 }
     });
   }
 
@@ -102,7 +94,7 @@ export function auditNaeringslivSpecializations({ writeReport = false, checkRepo
     schema: 'history_go_naeringsliv_specialization_chapters_audit_v1', version: '1.0.0', status: 'PASSED', generatedAt: '2026-08-01',
     totals: { chapters: 6, modules: 18, sections: 54, paragraphs: 162, claims: 162, sources: 54, workedExamples: 12, misconceptions: 30, applicationTasks: 18, selfCheck: 48, relatedPlaces: 36 },
     chapters: chapterReports,
-    gates: { canonicalSubsets: true, chapterRoleSeparated: true, allClaimsVerifiedAndTraced: true, allSourcesInspectableAndUsed: true, pedagogyComplete: true, canonicalPlacesValid: true, runtimeSpecializationListSynchronized: true, subjectCompleteAtTwelveChapters: true }
+    gates: { canonicalSubsets: true, chapterRoleSeparated: true, allClaimsVerifiedAndTraced: true, allSourcesInspectableAndUsed: true, pedagogyComplete: true, rendererContractsComplete: true, canonicalPlacesValid: true, runtimeSpecializationListSynchronized: true, subjectCompleteAtTwelveChapters: true }
   };
   if (writeReport) fs.writeFileSync(abs(REPORT), `${JSON.stringify(report, null, 2)}\n`);
   if (checkReport) assert(isDeepStrictEqual(json(REPORT), report), `${REPORT} is stale`);
