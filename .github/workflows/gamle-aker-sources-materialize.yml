@@ -1,0 +1,52 @@
+name: Gamle Aker Sources materialization
+
+on:
+  push:
+    branches:
+      - 'agent/historie-gamle-aker-sources-v1'
+    paths:
+      - 'scripts/gamle-aker-sources-materialize.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gamle-aker-sources-materialization
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/historie-gamle-aker-sources-v1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize and validate Sources phase
+        run: node scripts/gamle-aker-sources-materialize.mjs
+
+      - name: Publish production diff and remove one-shot files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/gamle-aker-sources-materialize.mjs
+          rm -f .github/workflows/gamle-aker-sources-materialize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Bygg brukerrettede Kilder for Gamle Aker kirke"
+          git pull --rebase origin agent/historie-gamle-aker-sources-v1
+          git push origin HEAD:agent/historie-gamle-aker-sources-v1
