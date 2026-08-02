@@ -1,0 +1,336 @@
+name: Temporary Regjeringskvartalet reading production
+
+on:
+  push:
+    branches:
+      - production/regjeringskvartalet-phase-6-reading
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: production/regjeringskvartalet-phase-6-reading
+          fetch-depth: 0
+
+      - name: Produce phase 6
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          reading_path = Path('data/lesespor/oslo/lesespor_oslo_politikk.json')
+          document = json.loads(reading_path.read_text(encoding='utf-8'))
+          ids = {
+              'lesespor_regjeringskvartalet_historie_001',
+              'lesespor_regjeringskvartalet_stortingsmelding_001',
+              'lesespor_regjeringskvartalet_kunst_001',
+              'lesespor_regjeringskvartalet_statsbygg_001',
+          }
+          document['generated_at'] = '2026-08-02T22:17:00+02:00'
+          document['items'] = [item for item in document['items'] if item.get('id') not in ids]
+          document['items'].extend([
+              {
+                  'id': 'lesespor_regjeringskvartalet_historie_001',
+                  'title': 'Om Regjeringskvartalet',
+                  'author': 'Christina Marwold',
+                  'publication': '22. juli-senteret',
+                  'date': None,
+                  'year': 2020,
+                  'type': 'fagartikkel',
+                  'subjects': [
+                      'Regjeringskvartalet',
+                      'Empirekvartalet',
+                      'departementshistorie',
+                      'arkitekturhistorie'
+                  ],
+                  'place_ids': ['regjeringskvartalet'],
+                  'person_ids': [],
+                  'category_hints': ['politikk', 'historie', 'by'],
+                  'url': 'https://www.22julisenteret.no/no/fordyp-deg/fagartikler/om-regjeringskvartalet',
+                  'access': 'open',
+                  'rights': 'link_only',
+                  'source_quality': 'institutional',
+                  'curation_status': 'approved',
+                  'relevance': 'Gir en sammenhengende historisk inngang fra Empirekvartalet og Rikshospitalet til departementsbyggene, Høyblokka og den lange prosessen med å samle statsforvaltningen på stedet.'
+              },
+              {
+                  'id': 'lesespor_regjeringskvartalet_stortingsmelding_001',
+                  'title': 'Meld. St. 21 (2018–2019) – Nytt regjeringskvartal',
+                  'author': 'Kommunal- og moderniseringsdepartementet',
+                  'publication': 'Regjeringen.no',
+                  'date': '2019-04-10',
+                  'year': 2019,
+                  'type': 'stortingsmelding',
+                  'subjects': [
+                      'regjeringsforvaltning',
+                      'sikkerhet',
+                      'bymiljø',
+                      'arbeidsplassutforming'
+                  ],
+                  'place_ids': ['regjeringskvartalet'],
+                  'person_ids': [],
+                  'category_hints': ['politikk', 'by'],
+                  'url': 'https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/',
+                  'access': 'open',
+                  'rights': 'link_only',
+                  'source_quality': 'canonical',
+                  'curation_status': 'approved',
+                  'relevance': 'Dokumenterer de politiske avveiningene bak nytt regjeringskvartal: departementsfunksjon, sikkerhet, arbeidsformer, miljø, byrom, tilgjengelighet, kunst og trinnvis gjennomføring.'
+              },
+              {
+                  'id': 'lesespor_regjeringskvartalet_kunst_001',
+                  'title': 'Kunsten i nytt regjeringskvartal',
+                  'author': None,
+                  'publication': 'KORO',
+                  'date': None,
+                  'year': None,
+                  'type': 'prosjektside',
+                  'subjects': [
+                      'offentlig kunst',
+                      'kunstprogram',
+                      'naturbetong',
+                      'nye kunstprosjekter'
+                  ],
+                  'place_ids': ['regjeringskvartalet'],
+                  'person_ids': [],
+                  'category_hints': ['politikk', 'kunst', 'by'],
+                  'url': 'https://koro.no/kunsten-i-nytt-regjeringskvartal/',
+                  'access': 'open',
+                  'rights': 'link_only',
+                  'source_quality': 'institutional',
+                  'curation_status': 'approved',
+                  'relevance': 'Samler prosjektets historiske og nye kunstlag og gjør det mulig å utforske kunstverk, kunstnere, plasseringer og hvordan kunst inngår i bygg, inngangspartier, plasser og parker.'
+              },
+              {
+                  'id': 'lesespor_regjeringskvartalet_statsbygg_001',
+                  'title': 'Nytt regjeringskvartal',
+                  'author': None,
+                  'publication': 'Statsbygg',
+                  'date': None,
+                  'year': None,
+                  'type': 'prosjektoversikt',
+                  'subjects': [
+                      'byggetrinn',
+                      'rehabilitering',
+                      'prosjektstyring',
+                      'departementsbygg'
+                  ],
+                  'place_ids': ['regjeringskvartalet'],
+                  'person_ids': [],
+                  'category_hints': ['politikk', 'by'],
+                  'url': 'https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/',
+                  'access': 'open',
+                  'rights': 'link_only',
+                  'source_quality': 'institutional',
+                  'curation_status': 'approved',
+                  'relevance': 'Gir byggherrens løpende prosjektoversikt over omfang, byggetrinn, rehabilitering, arealer, kostnadsrammer og skillet mellom ferdigstilt første trinn og fortsatt uavklart sluttføring.'
+              }
+          ])
+          reading_path.write_text(json.dumps(document, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          report_path = Path('reports/place-production/regjeringskvartalet-politikk-v1.md')
+          report = report_path.read_text(encoding='utf-8')
+          replacements = {
+              '- Status: **fase 5 – to daterte Nyheter-notiser klare for review; stedet er ikke samlet produksjonsklart**': '- Status: **fase 6 – fire godkjente Lesespor klare for review; stedet er ikke samlet produksjonsklart**',
+              '| Lesespor | `data/lesespor/oslo/lesespor_oslo_politikk.json` har ingen oppføring med `place_ids: ["regjeringskvartalet"]`. |': '| Lesespor | Fire åpne og godkjente `link_only`-spor dekker stedshistorie, politisk beslutningsgrunnlag, offentlig kunst og Statsbyggs prosjektgjennomføring. |',
+              '| Lesespor | MANGLER | Ingen manifestlastede Lesespor peker til `regjeringskvartalet`. |': '| Lesespor | PASS – fase 6 | Fire komplementære oppføringer er eksplisitt koblet bare til `regjeringskvartalet`, uten kopiert fulltekst eller betalingsmur. |',
+              '- Lesespor med åpne, komplementære `link_only`-kilder;\n': '',
+              '- to daterte Nyheter-notiser med eksplisitt `ongoing`/`completed`-status.': '- to daterte Nyheter-notiser med eksplisitt `ongoing`/`completed`-status;\n- fire godkjente Lesespor med ærlige datoer, åpne lenker og `link_only`-rettigheter.',
+              '| 5 | Nyheter | **KLAR FOR REVIEW** |': '| 5 | Nyheter | **GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`** |',
+              '| 6 | Lesespor | **NESTE AKTIVE FASE ETTER MERGE AV FASE 5** |': '| 6 | Lesespor | **KLAR FOR REVIEW** |',
+              '| 7 | Brukerrettede Kilder | IKKE STARTET |': '| 7 | Brukerrettede Kilder | **NESTE AKTIVE FASE ETTER MERGE AV FASE 6** |',
+          }
+          for old, new in replacements.items():
+              if old not in report:
+                  raise SystemExit(f'Mangler forventet rapporttekst: {old}')
+              report = report.replace(old, new, 1)
+
+          marker = '## Neste aktive fase\n'
+          if marker not in report:
+              raise SystemExit('Mangler Neste aktive fase-seksjon')
+          report = report.split(marker, 1)[0].rstrip() + '''
+
+## Resultat i fase 6
+
+- Fire oppføringer er lagt til i den eksisterende manifestlastede Politikk-filen for Lesespor.
+- 22. juli-senterets «Om Regjeringskvartalet» gir en navngitt, stedsspesifikk historisk fagartikkel fra 2020; eksakt publiseringsdag er ikke konstruert.
+- Meld. St. 21 (2018–2019) er det canonicale politiske lesesporet for funksjon, sikkerhet, bymiljø, miljø, arbeidsformer og beslutningsprosess.
+- KOROs prosjektside gir et eget kunstspor, mens Statsbyggs prosjektside gir byggherre- og gjennomføringssporet. Ukjent publiseringsdato og år står som `null`.
+- Alle fire oppføringer er `open`, `link_only`, `approved`, bruker HTTPS og peker eksplisitt bare til `regjeringskvartalet`.
+- Ingen artikkeltekst er kopiert. Oppføringene lagrer bare tittel, ansvarlig aktør, publikasjon, dato/år når kjent, tema, relevans og ekstern lenke.
+- Ingen record er kopiert inn i Leksikon, canonical place-`externalLinks`, Nyheter, Quiz eller Knowledge.
+- Ingen canonical place-, Leksikon-, Story-, Quiz-, Knowledge-, People-, bilde-, manifest- eller runtimefil er endret.
+
+## Neste aktive fase
+
+Etter at fase 6 er merget og kontrollert på faktisk `main`, starter **fase 7: brukerrettede Kilder**.
+
+Fasen skal:
+
+1. samle en liten, deduplisert kildeflate som dokumenterer stedets sentrale faktalag og ikke fungerer som en ny Lesespor-liste;
+2. gruppere og navngi offisielle kilder etter hva de faktisk dokumenterer: identitet/historie, plan/vedtak, bygg/gjennomføring, kunst og minne;
+3. kontrollere HTTPS, språk, tilgang, verifiseringsdato og direkte støtte for brukerrettede påstander;
+4. holde interne rapporter, audits og produksjonsfiler utenfor brukerflaten;
+5. oppdatere bare canonical place-/Leksikon-kildedata, fasekort og målrettede regresjoner dersom eksisterende runtimekontrakt holder.
+
+## Samlet status etter fase 6
+
+Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Om-grunnlag, Historie, Stories, Før/etter, Nyheter, Lesespor, Quiz/Knowledge og People er nå produsert eller reviewet. Brukerrettede Kilder, Mer, Objects, Brands og sluttkontroll av Badges, fagverk og faktisk UI står fortsatt åpne.
+'''
+          report_path.write_text(report, encoding='utf-8')
+
+          before_path = Path('tests/regjeringskvartalet-before-after-phase.test.mjs')
+          before = before_path.read_text(encoding='utf-8')
+          old_before = '''test('Fasekortet lukker chronology, åpner Før/etter for review og peker bare videre til Nyheter', () => {
+  assert.match(report, /\\| 2 \\| Kildebelagt chronology og Historie-fane \\| \\*\\*GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`\\*\\* \\|/);
+  assert.match(report, /\\| Før\\/etter \\| PASS – fase 4 \\|/);
+  assert.match(report, /\\| 4 \\| Før\\/etter \\| \\*\\*KLAR FOR REVIEW\\*\\* \\|/);
+  assert.match(report, /\\| 5 \\| Nyheter \\| \\*\\*NESTE AKTIVE FASE ETTER MERGE AV FASE 4\\*\\* \\|/);
+  assert.match(report, /ikke produksjonsklart/);
+});'''
+          new_before = '''test('Fasekortet bevarer den godkjente Før/etter-fasen gjennom senere popupfaser', () => {
+  assert.match(report, /\\| 2 \\| Kildebelagt chronology og Historie-fane \\| \\*\\*GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`\\*\\* \\|/);
+  assert.match(report, /\\| Før\\/etter \\| PASS – fase 4 \\|/);
+  assert.match(report, /\\| 4 \\| Før\\/etter \\| \\*\\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\\*\\* \\|/);
+  assert.match(report, /\\| 6 \\| Lesespor \\| \\*\\*KLAR FOR REVIEW\\*\\* \\|/);
+  assert.match(report, /ikke produksjonsklart/);
+});'''
+          if old_before not in before:
+              raise SystemExit('Mangler gammel Før/etter-faseassert')
+          before_path.write_text(before.replace(old_before, new_before, 1), encoding='utf-8')
+
+          news_path = Path('tests/regjeringskvartalet-news-phase.test.mjs')
+          news = news_path.read_text(encoding='utf-8')
+          old_news = '''test('Fasekortet lukker Før/etter og åpner bare Lesespor som neste fase', () => {
+  assert.match(report, /\\| 4 \\| Før\\/etter \\| \\*\\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\\*\\* \\|/);
+  assert.match(report, /\\| Nyheter \\| PASS – fase 5 \\|/);
+  assert.match(report, /\\| 5 \\| Nyheter \\| \\*\\*KLAR FOR REVIEW\\*\\* \\|/);
+  assert.match(report, /\\| 6 \\| Lesespor \\| \\*\\*NESTE AKTIVE FASE ETTER MERGE AV FASE 5\\*\\* \\|/);
+  assert.match(report, /Åpningen av byggetrinn 1 den 13\\. april.*ikke duplisert som nyhetskort/s);
+  assert.match(report, /ikke produksjonsklart/);
+});'''
+          new_news = '''test('Fasekortet bevarer Nyheter som godkjent når Lesespor åpnes', () => {
+  assert.match(report, /\\| 4 \\| Før\\/etter \\| \\*\\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\\*\\* \\|/);
+  assert.match(report, /\\| Nyheter \\| PASS – fase 5 \\|/);
+  assert.match(report, /\\| 5 \\| Nyheter \\| \\*\\*GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`\\*\\* \\|/);
+  assert.match(report, /\\| 6 \\| Lesespor \\| \\*\\*KLAR FOR REVIEW\\*\\* \\|/);
+  assert.match(report, /Åpningen av byggetrinn 1 den 13\\. april.*ikke duplisert som nyhetskort/s);
+  assert.match(report, /ikke produksjonsklart/);
+});'''
+          if old_news not in news:
+              raise SystemExit('Mangler gammel Nyheter-faseassert')
+          news_path.write_text(news.replace(old_news, new_news, 1), encoding='utf-8')
+
+          test_path = Path('tests/regjeringskvartalet-reading-phase.test.mjs')
+          test_path.write_text("""import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import test from 'node:test';
+
+const readJson = path => JSON.parse(fs.readFileSync(path, 'utf8'));
+const path = 'data/lesespor/oslo/lesespor_oslo_politikk.json';
+const document = readJson(path);
+const rows = document.items.filter(item => item.place_ids?.includes('regjeringskvartalet'));
+const runtime = fs.readFileSync('js/ui/place-popup-tabs.js', 'utf8');
+const report = fs.readFileSync('reports/place-production/regjeringskvartalet-politikk-v1.md', 'utf8');
+const leksikon = fs.readFileSync('data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json', 'utf8');
+const place = readJson('data/places/politikk/oslo/places_politikk/regjeringskvartalet.json');
+
+test('Regjeringskvartalet har fire komplementære canonicale Lesespor', () => {
+  assert.equal(document.schema, 'history_go_lesespor_v1');
+  assert.equal(document.city, 'oslo');
+  assert.equal(document.category, 'politikk');
+  assert.equal(document.generated_at, '2026-08-02T22:17:00+02:00');
+  assert.equal(rows.length, 4);
+  assert.deepEqual(new Set(rows.map(item => item.id)), new Set([
+    'lesespor_regjeringskvartalet_historie_001',
+    'lesespor_regjeringskvartalet_stortingsmelding_001',
+    'lesespor_regjeringskvartalet_kunst_001',
+    'lesespor_regjeringskvartalet_statsbygg_001'
+  ]));
+  assert.deepEqual(new Set(rows.map(item => item.type)), new Set([
+    'fagartikkel', 'stortingsmelding', 'prosjektside', 'prosjektoversikt'
+  ]));
+});
+
+test('Lesesporene er åpne, godkjente, link-only og eksplisitt stedskoblet', () => {
+  const forbidden = ['article_body', 'fulltext', 'body', 'text', 'content'];
+  for (const item of rows) {
+    assert.equal(item.access, 'open');
+    assert.equal(item.rights, 'link_only');
+    assert.equal(item.curation_status, 'approved');
+    assert.match(item.url, /^https:\/\//);
+    assert.ok(item.relevance.length >= 140);
+    assert.deepEqual(item.place_ids, ['regjeringskvartalet']);
+    assert.deepEqual(item.person_ids, []);
+    for (const field of forbidden) assert.equal(Object.hasOwn(item, field), false);
+  }
+  assert.deepEqual(new Set(rows.map(item => item.source_quality)), new Set(['canonical', 'institutional']));
+});
+
+test('Kjente og ukjente publiseringsdatoer er lagret ærlig', () => {
+  const byId = new Map(rows.map(item => [item.id, item]));
+  const history = byId.get('lesespor_regjeringskvartalet_historie_001');
+  assert.equal(history.author, 'Christina Marwold');
+  assert.equal(history.date, null);
+  assert.equal(history.year, 2020);
+
+  const policy = byId.get('lesespor_regjeringskvartalet_stortingsmelding_001');
+  assert.equal(policy.date, '2019-04-10');
+  assert.equal(policy.year, 2019);
+  assert.equal(policy.author, 'Kommunal- og moderniseringsdepartementet');
+
+  for (const id of ['lesespor_regjeringskvartalet_kunst_001', 'lesespor_regjeringskvartalet_statsbygg_001']) {
+    assert.equal(byId.get(id).date, null);
+    assert.equal(byId.get(id).year, null);
+  }
+});
+
+test('Lesesporene eies ikke av Leksikon, canonical place-lenker eller andre popupflater', () => {
+  const urls = rows.map(item => item.url);
+  const externalLinks = place.externalLinks?.map(link => link.url) ?? [];
+  for (const url of urls) {
+    assert.equal(leksikon.includes(`\\"url\\": \\"${url}\\"`), false);
+    assert.equal(externalLinks.includes(url), false);
+  }
+  assert.match(report, /Ingen record er kopiert inn i Leksikon, canonical place-`externalLinks`, Nyheter, Quiz eller Knowledge/);
+});
+
+test('Eksisterende Lesespor-renderer filtrerer på sted og avviser betalingsmurer', () => {
+  assert.match(runtime, /function renderLesespor\(items, placeId\)/);
+  assert.match(runtime, /list\(item\?\.place_ids\).*includes\(placeId\)/);
+  assert.match(runtime, /paywall.*subscription.*subscriber.*abonnement.*betalingsmur.*krever abonnement/);
+  assert.match(runtime, /item\?\.relevance/);
+  assert.match(runtime, /Les teksten ↗/);
+  assert.match(runtime, /rel="noopener noreferrer"/);
+});
+
+test('Fasekortet lukker Nyheter, åpner Lesespor og peker bare videre til Kilder', () => {
+  assert.match(report, /\\| 5 \\| Nyheter \\| \\*\\*GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`\\*\\* \\|/);
+  assert.match(report, /\\| Lesespor \\| PASS – fase 6 \\|/);
+  assert.match(report, /\\| 6 \\| Lesespor \\| \\*\\*KLAR FOR REVIEW\\*\\* \\|/);
+  assert.match(report, /\\| 7 \\| Brukerrettede Kilder \\| \\*\\*NESTE AKTIVE FASE ETTER MERGE AV FASE 6\\*\\* \\|/);
+  assert.match(report, /ikke produksjonsklart/);
+});
+""", encoding='utf-8')
+          PY
+
+      - name: Validate targeted phase
+        run: node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs
+
+      - name: Remove temporary workflow
+        run: rm .github/workflows/_tmp-regjeringskvartalet-reading.yml
+
+      - name: Commit phase 6
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lesespor/oslo/lesespor_oslo_politikk.json reports/place-production/regjeringskvartalet-politikk-v1.md tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs .github/workflows/_tmp-regjeringskvartalet-reading.yml
+          git commit -m "Bygg Lesespor for Regjeringskvartalet"
+          git push origin HEAD:production/regjeringskvartalet-phase-6-reading
