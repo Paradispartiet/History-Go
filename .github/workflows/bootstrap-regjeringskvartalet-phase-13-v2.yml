@@ -1,0 +1,73 @@
+name: Bootstrap Regjeringskvartalet phase 13 v2
+
+on:
+  push:
+    branches:
+      - agent/regjeringskvartalet-phase-13-ui-audit
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/regjeringskvartalet-phase-13-ui-audit
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Materialize corrected permanent audit
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import textwrap
+
+          source_path = Path('.github/workflows/bootstrap-regjeringskvartalet-phase-13.yml')
+          source = source_path.read_text()
+          marker = "python3 - <<'PY'\n"
+          if marker not in source or '\n          PY\n' not in source:
+              raise SystemExit('Kunne ikke hente materialiseringsskriptet fra første bootstrap')
+          script = source.split(marker, 1)[1].split('\n          PY\n', 1)[0]
+          script = textwrap.dedent(script).replace('fagverkPlaceEmners', 'fagverkPlaceEmner')
+          exec(compile(script, '<phase13-materialize>', 'exec'))
+
+          brands_path = Path('tests/regjeringskvartalet-brands-phase.test.mjs')
+          brands = brands_path.read_text().replace('\n// Phase 13 bootstrap trigger; removed from the final diff.\n', '\n')
+          brands_path.write_text(brands)
+          PY
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run phase 13 and regression gates
+        run: |
+          node --check js/ui/place-popup-tabs.js
+          node --check js/ui/place-rounds-visual-collections.js
+          node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs tests/regjeringskvartalet-sources-phase.test.mjs tests/regjeringskvartalet-more-phase.test.mjs tests/regjeringskvartalet-objects-phase.test.mjs tests/regjeringskvartalet-brands-phase.test.mjs
+          node tests/regjeringskvartalet-ui-production-audit.test.mjs
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-link-audit.test.mjs tests/fagverk-place-category-design.test.mjs
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs
+          npm run test:politikk-place-production
+          npm run audit:politikk-place-production
+          git diff --check
+
+      - name: Commit validated production diff
+        run: |
+          rm -f .github/workflows/bootstrap-regjeringskvartalet-phase-13.yml
+          rm -f .github/workflows/bootstrap-regjeringskvartalet-phase-13-v2.yml
+          rm -f .github/phase13-trigger.txt .github/phase13-trigger-v2.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fullfør Regjeringskvartalets UI-audit"
+          git push origin HEAD:agent/regjeringskvartalet-phase-13-ui-audit
