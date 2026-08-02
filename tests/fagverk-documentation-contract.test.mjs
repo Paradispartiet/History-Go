@@ -135,7 +135,7 @@ test('the place checklist makes a working fagverk page mandatory for every canon
   assert.match(checklist, /Alle canonicale steder skal ha sin egen fungerende fagverkside/);
   assert.match(checklist, /Kravet gjelder hvert sted, kan ikke settes til N\/A og er en egen ferdigport/);
   assert.match(checklist, /FAGVERK-STED-STATUS:/);
-  assert.match(checklist, /fagverk-sted er aldri N\/A/);
+  assert.match(checklist, /`?fagverk-sted`? er aldri N\/A/);
   assert.match(checklist, /fagverk-sted — obligatorisk, fungerende og aldri N\/A/);
 });
 
