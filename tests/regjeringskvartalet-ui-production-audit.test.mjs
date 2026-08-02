@@ -142,6 +142,7 @@ const fixture = `<!doctype html>
   </div>
   <script>
     window.showPlacePopup = () => {};
+    window.showPlacePopup.__hgPlacePopupV2 = true;
     window.PLACES = ${JSON.stringify([place])};
     window.LEKSIKON_BY_PLACE = { regjeringskvartalet: [] };
     window.__stories = [];
