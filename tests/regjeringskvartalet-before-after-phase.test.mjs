@@ -1,9 +1,13 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import test from 'node:test';
 
 const readJson = path => JSON.parse(fs.readFileSync(path, 'utf8'));
-const place = readJson('data/places/politikk/oslo/places_politikk/regjeringskvartalet.json');
+const placePath = 'data/places/politikk/oslo/places_politikk/regjeringskvartalet.json';
+const placeBuffer = fs.readFileSync(placePath);
+const place = JSON.parse(placeBuffer.toString('utf8'));
+const context = readJson('data/quiz/production_context/politikk/regjeringskvartalet.json');
 const report = fs.readFileSync('reports/place-production/regjeringskvartalet-politikk-v1.md', 'utf8');
 const runtime = fs.readFileSync('js/ui/place-popup-tabs.js', 'utf8');
 const data = place.for_na;
@@ -81,6 +85,15 @@ test('Eksisterende popup-runtime viser bildeetikettene og løfter kilder/lisens 
   assert.match(runtime, /const configuredLinks = \[place, \.\.\.list\(articles\)\]/);
   assert.match(runtime, /type: "image_source", label: "Bilde- og sammenligningskilde"/);
   assert.match(runtime, /rel="noopener noreferrer"/);
+});
+
+test('Den deterministiske quiz-konteksten er synkronisert med canonical place-fil', () => {
+  const target = context.source_files.target;
+  assert.equal(target.path, placePath);
+  assert.equal(target.bytes, placeBuffer.byteLength);
+  assert.equal(target.sha256, createHash('sha256').update(placeBuffer).digest('hex'));
+  assert.equal(target.bytes, 13355);
+  assert.equal(target.sha256, '92c2d08c56b25005e64ae532621cf28f3bc3ba703d6ec803d18865777e0c6221');
 });
 
 test('Fasekortet lukker chronology, åpner Før/etter for review og peker bare videre til Nyheter', () => {
