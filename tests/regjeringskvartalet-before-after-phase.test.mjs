@@ -100,6 +100,6 @@ test('Fasekortet bevarer den godkjente Før/etter-fasen gjennom senere popupfase
   assert.match(report, /\| 2 \| Kildebelagt chronology og Historie-fane \| \*\*GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`\*\* \|/);
   assert.match(report, /\| Før\/etter \| PASS – fase 4 \|/);
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\*\* \|/);
-  assert.match(report, /\| 11 \| Objects \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 12 \| Brands \| \*\*KLAR FOR REVIEW – N\/A MED EVIDENS\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });

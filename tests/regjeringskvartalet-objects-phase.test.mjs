@@ -87,7 +87,7 @@ test('Canonical place og deterministisk Quiz-kontekst er synkronisert', () => {
 test('Fasekortet lukker Mer, åpner Objects og peker bare videre til Brands', () => {
   assert.match(report, /\| 8 \| Mer \| \*\*GODKJENT – PR #4671, merge `5effd690c06502b68a5870ca2bc089459fac56b9`\*\* \|/);
   assert.match(report, /\| Objects \| PASS – fase 11 \|/);
-  assert.match(report, /\| 11 \| Objects \| \*\*KLAR FOR REVIEW\*\* \|/);
-  assert.match(report, /\| 12 \| Brands \| \*\*NESTE AKTIVE FASE ETTER MERGE AV FASE 11 – mulig begrunnet N\/A\*\* \|/);
+  assert.match(report, /\| 11 \| Objects \| \*\*GODKJENT – PR #4672, merge `1b8b277cc70b4a26f332091194de667d1a32da53`\*\* \|/);
+  assert.match(report, /\| 12 \| Brands \| \*\*KLAR FOR REVIEW – N\/A MED EVIDENS\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });
