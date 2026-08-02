@@ -1,18 +1,16 @@
-name: Materialize Regjeringskvartalet phase 13
+name: Clean Regjeringskvartalet phase 13 artifacts
 
 on:
   pull_request:
     branches: [main]
     paths:
       - ".github/workflows/materialize-regjeringskvartalet-phase13.yml"
-      - "scripts/run_regjeringskvartalet_phase13_content.py"
-      - "scripts/materialize_regjeringskvartalet_phase13.py"
 
 permissions:
   contents: write
 
 jobs:
-  materialize:
+  cleanup:
     if: github.event.pull_request.number == 4674
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -22,13 +20,13 @@ jobs:
           ref: agent/regjeringskvartalet-phase-13-ui-audit
           fetch-depth: 0
 
-      - name: Materialize report and phase tests
-        run: python3 scripts/run_regjeringskvartalet_phase13_content.py
-
-      - name: Commit content-only result
+      - name: Remove non-production bootstrap artifacts
         run: |
+          rm -f .github/phase13-*.txt
+          rm -f scripts/materialize_regjeringskvartalet_phase13.py
+          rm -f scripts/run_regjeringskvartalet_phase13_content.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/place-production/regjeringskvartalet-politikk-v1.md tests/regjeringskvartalet-*-phase.test.mjs
-          git commit -m "Materialiser Regjeringskvartalets fase 13-innhold"
+          git add -A
+          git commit -m "Fjern midlertidige fase 13-artefakter"
           git push origin HEAD:agent/regjeringskvartalet-phase-13-ui-audit
