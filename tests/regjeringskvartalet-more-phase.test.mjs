@@ -76,6 +76,6 @@ test('Fasekortet lukker Kilder, åpner Mer og peker videre til Objects', () => {
   assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*GODKJENT – PR #4670, merge `318119d72d63838d487bbaeec85bda2dd58209b1`\*\* \|/);
   assert.match(report, /\| Mer \| PASS – fase 8 \|/);
   assert.match(report, /\| 8 \| Mer \| \*\*GODKJENT – PR #4671, merge `5effd690c06502b68a5870ca2bc089459fac56b9`\*\* \|/);
-  assert.match(report, /\| 12 \| Brands \| \*\*KLAR FOR REVIEW – N\/A MED EVIDENS\*\* \|/);
-  assert.match(report, /ikke produksjonsklart/);
+  assert.match(report, /\| 12 \| Brands \| \*\*GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`\*\* \|/);
+  assert.match(report, /\| 13 \| Badges, fagverk, alle åtte popupfaner, rundinger og full UI-\/produksjonsaudit \| \*\*(?:KLAR FOR REVIEW – FULL UI-\/PRODUKSJONSAUDIT PASS|GODKJENT – PR #[0-9]+, merge `[0-9a-f]{40}`)\*\* \|/);
 });

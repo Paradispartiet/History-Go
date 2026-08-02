@@ -72,7 +72,7 @@ test('Fasekortet bevarer Nyheter som godkjent når Lesespor åpnes', () => {
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\*\* \|/);
   assert.match(report, /\| Nyheter \| PASS – fase 5 \|/);
   assert.match(report, /\| 5 \| Nyheter \| \*\*GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`\*\* \|/);
-  assert.match(report, /\| 12 \| Brands \| \*\*KLAR FOR REVIEW – N\/A MED EVIDENS\*\* \|/);
+  assert.match(report, /\| 12 \| Brands \| \*\*GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`\*\* \|/);
   assert.match(report, /Åpningen av byggetrinn 1 den 13\. april.*ikke duplisert som nyhetskort/s);
-  assert.match(report, /ikke produksjonsklart/);
+  assert.match(report, /\| 13 \| Badges, fagverk, alle åtte popupfaner, rundinger og full UI-\/produksjonsaudit \| \*\*(?:KLAR FOR REVIEW – FULL UI-\/PRODUKSJONSAUDIT PASS|GODKJENT – PR #[0-9]+, merge `[0-9a-f]{40}`)\*\* \|/);
 });

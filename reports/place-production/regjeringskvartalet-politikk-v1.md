@@ -8,7 +8,7 @@
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 12 – Brands vurdert som N/A med evidens; stedet er ikke samlet produksjonsklart**
+- Status: **fase 13 – full UI-/produksjonsaudit PASS; stedet er ikke produksjonsklart før fasen er merget og kontrollert på fersk `main`**
 
 ## Arbeidskort
 
@@ -36,7 +36,7 @@
 | Lesespor | Fire åpne og godkjente `link_only`-spor dekker stedshistorie, politisk beslutningsgrunnlag, offentlig kunst og Statsbyggs prosjektgjennomføring. |
 | Brukerrettede kilder | Seks redaksjonelle kildegrupper og tolv navngitte place-lenker dekker identitet/historie, plan/vedtak, bygg/gjennomføring, kunst/arkitektur, 22. juli/minne og bilde/lisens. Runtime aggregerer Leksikon- og Før/etter-lenker og dedupliserer på URL. |
 | Mer | Fem stedsspesifikke Språkleksikon-oppslag og tre kildebelagte spor hver for observasjon, betydning og motpunkt er ferdige. Knowledge, funfacts, relasjoner og Objects dupliseres ikke inn i fanen. |
-| Fagverk-sted | Regjeringskvartalet har kuratert stedsside og relevante Politikk-linser. Den canonicale URL-en og synlig UI må kontrolleres på nytt i sluttfasen. |
+| Fagverk-sted | **PASS – fase 13.** `fagverk-sted.html?place=regjeringskvartalet` er kontrollert i Chromium med canonicalt bilde, tre undermerker, Politikk-domener, linser, spørsmål, kapitler, begreper, emner og sikre kildelenker. |
 
 ## Canonical identitetsgate
 
@@ -87,7 +87,7 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | People | PASS – PR #3604 | Tolv dokumenterte canonicale personer og eksplisitt rollebalanse med maksimalt to arkitekter. |
 | Objects | PASS – fase 11 | To avgrensede kunstobjekter har identitet, fysisk plassering, kilde, bilde, attribusjon, lisens og eksplisitt skille mellom eldre foto og dagens plassering. |
 | Brands | N/A – fase 12 | Brand-master og stedskoblinger er eksplisitt kontrollert uten kandidat. Ingen organisasjon eller person omklassifiseres for å fylle rundingen. |
-| Badges/fagverk | DELVIS | Data og kuratert fagverk finnes, men sluttfasen må kontrollere faktisk badgegrafikk, klikk og stedsside i UI. |
+| Badges/fagverk | PASS – fase 13 | Badges ligger ved overskriften, peker til canonical fagverk-rute og viser de tre Politikk-undermerkene og stedets faglige stier. |
 
 ## Før/etter-research og eiergrense
 
@@ -173,8 +173,8 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 9 | Quizåpning 2 × 7 og Knowledge | **GODKJENT – PR #4664, merge `94cdc10e328b216dd374179fa5c12bf250def50e`** |
 | 10 | People | **GODKJENT – PR #3604** |
 | 11 | Objects | **GODKJENT – PR #4672, merge `1b8b277cc70b4a26f332091194de667d1a32da53`** |
-| 12 | Brands | **KLAR FOR REVIEW – N/A MED EVIDENS** |
-| 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | **NESTE AKTIVE FASE ETTER MERGE AV FASE 12** |
+| 12 | Brands | **GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`** |
+| 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | **KLAR FOR REVIEW – FULL UI-/PRODUKSJONSAUDIT PASS** |
 
 ## Resultat i fase 4
 
@@ -254,18 +254,20 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 - Ingen tom `brands`-liste, lokal `brand_ids`-kuratering, ny master-record eller falsk logo er opprettet.
 - Den faste vanlige rundingsprofilen er fortsatt `people · objects · brands`; N/A-statusen er redaksjonell evidens og endrer ikke runtimekontrakten.
 
-## Neste aktive fase
+## Resultat i fase 13
 
-Etter at fase 12 er merget og kontrollert på faktisk `main`, starter **fase 13: full UI-/produksjonsaudit**.
+- Den faktiske popup-runtimeen er kjørt i Chromium mot canonical Regjeringskvartalet-data på både desktop (`1440 × 1000`) og mobil (`390 × 844`).
+- Alle åtte faner vises i riktig rekkefølge: Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder og Mer.
+- Fanene har `tablist`/`tab`/`tabpanel`, korrekt `aria-selected` og tastaturnavigasjon med piltaster, Home og End.
+- Mobilvisningen har horisontal fanescroll og én kolonne for Før/etter-bildene; desktop beholder to kolonner.
+- Den faste rundingsprofilen er kontrollert som Personer · Gjenstander · Brands, mens Badges ligger separat ved overskriften.
+- Objects-rundingen viser «Fiskerne» og «Grass Roots Square» med de canonicale Commons-bildene. Brands forblir kontrollert N/A uten filler eller per-place runtime-unntak.
+- Badges-klikkets canonicale mål er `fagverk-sted.html?place=regjeringskvartalet`.
+- Fagverk-stedet er kjørt i Chromium og viser Regjeringskvartalet, hovedbilde, tre undermerker, Politikk-domener, minst fire linser, minst fire stedsspørsmål, kapitler, begreper, emner og brukerrettede HTTPS-kilder.
+- Popup- og fagverksflater er kontrollert uten synlige pekerstrenger til `reports/`, `tests/`, quiz-produksjonskontekst, koordinat-evidens eller interne claims/audits.
+- Eksterne lenker åpnes sikkert med `noopener noreferrer`, og canonical bilde-URL-er er HTTPS.
+- Den permanente `Place rounds governance`-workflowen kjører nå den samme Chromium-baserte sluttporten ved relevante endringer.
 
-Fasen skal:
+## Sluttstatus for review
 
-1. kontrollere Badges-rundingen og de faste People · Objects · Brands-rundingene i faktisk UI;
-2. kontrollere alle åtte popupfaner mot canonical data og tom-/N/A-tilstander;
-3. kontrollere fagverk-sted, kategorilinser, bildevisning, lenker, mobil/desktop og tastaturnavigasjon;
-4. verifisere at ingen interne rapporter, audits eller produksjonsartefakter lekker til brukerflater;
-5. lukke stedet som produksjonsklart bare dersom alle sluttporter består på fersk `main`.
-
-## Samlet status etter fase 12
-
-Regjeringskvartalet er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista** før fase 13 er fullført. Alle åtte popupfaner, Quiz/Knowledge, People og Objects er produsert eller reviewet, og Brands er begrunnet N/A. Bare sluttkontroll av Badges, fagverk, rundinger og faktisk UI står åpen.
+Alle fase 13-portene består på den validerte PR-headen. Regjeringskvartalet er fortsatt **ikke produksjonsklart før fase 13 er merget og den identiske sluttdiffen er kontrollert på fersk `main`**. Etter merge skal fasekortet lukkes med PR-nummer og merge-SHA; ingen ny innholdsproduksjonsfase åpnes.
