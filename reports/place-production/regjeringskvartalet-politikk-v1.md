@@ -8,7 +8,7 @@
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 7 – kuratert brukerrettet Kilder-flate klar for review; stedet er ikke samlet produksjonsklart**
+- Status: **fase 8 – avgrenset Mer-pakke klar for review; stedet er ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -23,7 +23,7 @@
 | Koordinat | `verified_geometry`; deterministisk sentroid av den offisielle S-5100-planflaten. Høyblokka eller et tilfeldig adressepunkt brukes ikke som proxy for hele området. |
 | Description-pakke | Canonical 4.2-pakke og Politikk-rapport er `ready`. `desc` og `popupDesc` ble senest synkronisert og kontrollert i PR #4659. |
 | Hovedbilde | Gyldig eksternt `popupImage` finnes og bildebackloggen ble oppdatert i PR #4659. |
-| Leksikon | Fire tematiske artikler og to `news_note`-records finnes. Hovedartikkelen er versjon 2 med tre fakta og tolv kildebelagte chronology-punkter fra 1883 til juli 2026. |
+| Leksikon | Fire tematiske artikler og to `news_note`-records finnes. Hovedartikkelen er versjon 3 med tre fakta, tolv chronology-punkter og kildebelagt Mer-tolkning. |
 | Rundingsprofil | Fast `people · objects · brands`, med Badges ved overskriften. Wonderkammer-innhold skal ikke telles som ferdig Objects-runding. |
 | People | Tolv canonicale personer er dokumentert ved stedet, med maksimalt to arkitekter og flertall av faktiske brukere, beslutningstakere, kunst-/ingeniøraktører og hendelsespersoner. Dekningen ble låst i PR #3604. |
 | Objects | Ingen ferdig canonical Objects-pakke for rundingen er dokumentert. `Grass Roots Square` finnes som Wonderkammer-oppføring, men er ikke dermed et validert Object-kort. `Fiskerne`, `Måken`, minnestedet og andre fysiske kandidater må identitets-, kilde-, plassering- og bildeauditeres før bruk. |
@@ -35,7 +35,7 @@
 | Nyheter | To daterte og stedsspesifikke `news_note`-records dekker G-blokkas pågående forprosjekt og den gjennomførte kunstmarkeringen 6. juni 2026. |
 | Lesespor | Fire åpne og godkjente `link_only`-spor dekker stedshistorie, politisk beslutningsgrunnlag, offentlig kunst og Statsbyggs prosjektgjennomføring. |
 | Brukerrettede kilder | Seks redaksjonelle kildegrupper og tolv navngitte place-lenker dekker identitet/historie, plan/vedtak, bygg/gjennomføring, kunst/arkitektur, 22. juli/minne og bilde/lisens. Runtime aggregerer Leksikon- og Før/etter-lenker og dedupliserer på URL. |
-| Mer | Tematiske Leksikon-artikler finnes, men ingen fasegodkjent pakke med Språkleksikon, observasjon/betydning/motpunkt eller eksplisitt begrunnet N/A for de øvrige Mer-komponentene. |
+| Mer | Fem stedsspesifikke Språkleksikon-oppslag og tre kildebelagte spor hver for observasjon, betydning og motpunkt er ferdige. Knowledge, funfacts, relasjoner og Objects dupliseres ikke inn i fanen. |
 | Fagverk-sted | Regjeringskvartalet har kuratert stedsside og relevante Politikk-linser. Den canonicale URL-en og synlig UI må kontrolleres på nytt i sluttfasen. |
 
 ## Canonical identitetsgate
@@ -77,7 +77,7 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | Nyheter | PASS – fase 5 | To notiser skiller et pågående forprosjekt fra et gjennomført arrangement og dupliserer ikke åpningene 13. april, 19. juli eller 22. juli fra chronology. |
 | Lesespor | PASS – fase 6 | Fire komplementære oppføringer er eksplisitt koblet bare til `regjeringskvartalet`, uten kopiert fulltekst eller betalingsmur. |
 | Kilder | PASS – fase 7 | Seks kildegrupper forklarer hva kildene brukes til. Tolv navngitte place-lenker er HTTPS, språkmerket og datokontrollert; Leksikon- og Før/etter-lenker dedupliseres av eksisterende runtime. |
-| Mer | DELVIS / IKKE GODKJENT | Fire tematiske artikler gir innhold, men Mer-fanens egne kontrakter og eiergrenser er ikke ferdig vurdert. |
+| Mer | PASS – fase 8 | Fem kildebelagte begreper og 3 × 3 tolkningspunkter rendres av eksisterende runtime. Øvrige komponenter har fanespesifikk N/A/eiergrense. |
 
 ## Rundings- og progresjonsstatus
 
@@ -138,11 +138,11 @@ Paret kan ikke alene dokumentere:
 - fire tematiske Leksikon-artikler som innholdsgrunnlag;
 - to daterte Nyheter-notiser med eksplisitt `ongoing`/`completed`-status;
 - fire godkjente Lesespor med ærlige datoer, åpne lenker og `link_only`-rettigheter;
-- seks brukerrettede kildegrupper og en deduplisert, navngitt lenkeflate med eksplisitte hold-back-grenser.
+- seks brukerrettede kildegrupper og en deduplisert, navngitt lenkeflate med eksplisitte hold-back-grenser;
+- fem Språkleksikon-oppslag og avgrensede observasjon-, betydning- og motpunktspor for Mer.
 
 ### Revider eller bygg separat
 
-- Mer med Språkleksikon og avgrensede observasjon-/betydning-/motpunktspor, eller begrunnet N/A;
 - Objects bare for fysiske elementer som kan identifiseres, lokaliseres, kildebelegges og vises korrekt;
 - Brands bare dersom en faktisk canonical merke-/virksomhetsidentitet oppfyller rundingkontrakten.
 
@@ -168,11 +168,11 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 4 | Før/etter | **GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`** |
 | 5 | Nyheter | **GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`** |
 | 6 | Lesespor | **GODKJENT – PR #4669, merge `c68881578a5a56c6ae9b610f7c5132fc448297c3`** |
-| 7 | Brukerrettede Kilder | **KLAR FOR REVIEW** |
-| 8 | Mer | **NESTE AKTIVE FASE ETTER MERGE AV FASE 7** |
+| 7 | Brukerrettede Kilder | **GODKJENT – PR #4670, merge `318119d72d63838d487bbaeec85bda2dd58209b1`** |
+| 8 | Mer | **KLAR FOR REVIEW** |
 | 9 | Quizåpning 2 × 7 og Knowledge | **GODKJENT – PR #4664, merge `94cdc10e328b216dd374179fa5c12bf250def50e`** |
 | 10 | People | **GODKJENT – PR #3604** |
-| 11 | Objects | IKKE STARTET |
+| 11 | Objects | **NESTE AKTIVE FASE ETTER MERGE AV FASE 8** |
 | 12 | Brands | IKKE STARTET / mulig begrunnet N/A |
 | 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | IKKE STARTET |
 
@@ -217,18 +217,30 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 - Planlagte byggetrinn og framtidig ferdigstillelse må fortsatt presenteres med kontrollert status og dato.
 - Canonical place-endringen er synkronisert deterministisk i Quiz-produksjonskonteksten; Quiz-innhold, Knowledge, Leksikon, Stories, People, bilder og runtime er uendret.
 
+## Resultat i fase 8
+
+- Hovedartikkelen er oppgradert til versjon 3 med tre «Legg merke til»-punkter, tre betydningspunkter og tre motpunkter.
+- Tolkningssporet skiller observerbare fysiske forhold fra institusjonell betydning og fra påstander som ikke kan utledes av byggene alene.
+- Et stedsspesifikt Språkleksikon med fem oppslag forklarer `regjeringskvartal`, `utøvende makt`, `departement`, `naturbetong` og `perimetersikring`.
+- Alle oppslag er koblet til canonical place-ID, har stedskontekst og én navngitt HTTPS-kilde kontrollert 2. august 2026.
+- Observations er levert som `interpretation.what_to_notice`. Separat Knowledge i Mer er N/A fordi de 21 canonicale Knowledge-enhetene eies av quizpakken og ikke skal dupliseres.
+- Funfacts er N/A: korte kuriositeter har ingen selvstendig læringsverdi her og kan trivialisere terror-, minne- og sikkerhetslaget.
+- Curated relations er N/A i Mer: canonicale personer og relasjoner eies av People-/relasjonsdata. Kopiering ville skape parallelle identiteter.
+- Artifacts/Objects er N/A i denne fanefasen og forblir åpne i egen fase 11 med krav til identitet, fysisk plassering, kilder og bilde.
+- Eksisterende runtime og CSS håndterer alle leverte komponenter; ingen visningskode er endret.
+
 ## Neste aktive fase
 
-Etter at fase 7 er merget og kontrollert på faktisk `main`, starter **fase 8: Mer**.
+Etter at fase 8 er merget og kontrollert på faktisk `main`, starter **fase 11: Objects**. Fase 9 Quiz/Knowledge og fase 10 People er allerede godkjent.
 
 Fasen skal:
 
-1. auditere hvilke av Mer-komponentene som faktisk er relevante: Språkleksikon, observasjon, betydning, motpunkt og kuraterte relasjoner;
-2. produsere bare kildebelagt, selvstendig innhold som ikke dupliserer Om, Historie, Stories, Objects eller Kilder;
-3. bruke begrunnet N/A der stedet ikke har et reelt innholdsspor;
-4. kontrollere at Mer-fanen rendrer riktig i eksisterende runtime;
-5. oppdatere eide data, fasekort og målrettet regresjon uten å lage filler.
+1. skille hele bygg og institusjoner fra faktiske, avgrensede fysiske Object-kandidater;
+2. kontrollere identitet, plassering i parent-området, brukerrettet kilde og bilde/lisens for hver kandidat;
+3. prioritere et lite antall sterke objekter fremfor å fylle rundingen;
+4. holde Wonderkammer-oppføringer, kunstnere, etater og abstrakte sikkerhetstiltak utenfor Object-kontrakten;
+5. oppdatere canonical Object-data, fasekort og målrettede regresjoner uten å åpne Brands eller slutt-UI.
 
-## Samlet status etter fase 7
+## Samlet status etter fase 8
 
-Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Om-grunnlag, Historie, Stories, Før/etter, Nyheter, Lesespor, Kilder, Quiz/Knowledge og People er nå produsert eller reviewet. Mer, Objects, Brands og sluttkontroll av Badges, fagverk og faktisk UI står fortsatt åpne.
+Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Alle åtte popupfaner er nå produsert eller klare for review. Quiz/Knowledge og People er ferdige. Objects, Brands og sluttkontroll av Badges, fagverk, rundinger og faktisk UI står fortsatt åpne.
