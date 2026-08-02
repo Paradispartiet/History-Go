@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 1 – kildegrunnlag, Historie-rapport, Om og bilder klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 2 – kildebelagt chronology og Historie-fane klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -125,8 +125,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | Fase | Leveranse | Status |
 | --- | --- | --- |
 | 0 | Nullmåling, identitetsgate og saneringsplan | **GODKJENT – PR #4647, merge `64a49e4ab978cd6ff062c557e7dc891cc15d710e`** |
-| 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | **KLAR FOR REVIEW** |
-| 2 | Kildebelagt chronology og Historie-fane | IKKE STARTET |
+| 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | **GODKJENT – PR #4649, merge `26967843bc8ee20441c313d238bf2b51f85baf23`** |
+| 2 | Kildebelagt chronology og Historie-fane | **KLAR FOR REVIEW** |
 | 3 | Story-review og eventuell episodeproduksjon | IKKE STARTET |
 | 4 | Før/etter | IKKE STARTET |
 | 5 | Nyheter | IKKE STARTET |
@@ -147,26 +147,36 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Den feilplasserte, lukkede PR #4646 gjenbrukes bare som audit-idé: case/evidens er kryssreferert, inferensgrenser er eksplisitte, og ordinære faktaspørsmål skal telles i fase 9.
 - Historiegate A–G er faglig dokumentert. Gate H står begrunnet som uferdig fordi 2 × 7 quiz, chronology og Story ferdigstilles i egne faser.
 
+## Resultat i fase 2
+
+- Den ene udokumenterte chronology-raden er erstattet med elleve kildebelagte milepæler fra middelalderens usikre byggeperiode til planlagt rehabilitering i 2026–2027.
+- Byggeperioden bruker `year: null` og `period: "Ca. 1080–1180"`; feltet omslutter begge kildeintervallene og fremstiller dem ikke som ett sikkert byggeår.
+- Tidslinjen dekker klostereierskap, brannene i 1592 og 1703, rivningsstriden i 1852, to restaureringsperioder, krigsårene og den nyere rehabiliteringen.
+- Fremtidspunktet 2026–2027 er eksplisitt merket som planlagt og kan ikke leses som en ferdig hendelse.
+- Leksikonets interne `sources` er fylt med fem eksterne kilder. Brukerrettet `externalLinks` produseres først i Kilder-fasen og er ikke smuglet inn her.
+- Den eksisterende Storyen er gjennomgått bare for å sikre at chronology ikke dupliserer den. Full Story-avgjørelse står fortsatt i fase 3.
+
 ## Aktivt filscope
 
-Fase 1 endrer bare:
+Fase 2 endrer bare:
 
-- canonical place-fil; `data/places/places_index.json` er generert build-output og skal ikke committes i en Description 4.2-PR;
+- Leksikon-recorden for `gamle_aker_kirke`;
 - `data/places/historie-production/gamle_aker_kirke.json`;
-- `data/places/production/gamle_aker_kirke.json`;
-- to bildevarianter under `bilder/places/auto/`;
+- den eksisterende Historie-regresjonspakken;
+- Data checks-workflowens smale trigger for denne canonicale Leksikon-filen;
 - dette arbeidskortet.
 
-Ingen Leksikon-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime- eller validatorfil endres i fase 1.
+Ingen canonical place-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime- eller bildefil endres i fase 2.
 
-## Ferdigport for fase 1
+## Ferdigport for fase 2
 
-Fase 1 kan godkjennes når:
+Fase 2 kan godkjennes når:
 
-1. Historie-produksjonsrapporten består permanent audit med 0 feil;
-2. Description 4.2-pakken består source-led policy med 0 blokkerende feil;
-3. alle brukerrettede setninger har verifiserte claim-referanser;
-4. hovedbildet finnes i begge avtalte størrelser og har kilde-, opphavs- og lisensmetadata;
-5. generert place-indeks ikke ligger i diffen, i tråd med Description 4.2-porten;
-6. quiz, chronology og Story fortsatt er eksplisitt uferdige og ikke feilaktig godkjent;
-7. PR-review ikke finner nye påstander, kildesprang eller identitetsblanding.
+1. alle chronology-rader har unik ID, periode, beskrivelse, confidence og minst én gyldig HTTPS-kilde;
+2. usikker middelalderdatering ikke er representert som ett eksakt år;
+3. sentrale brudd, kontinuiteter, restaureringer og dagens/planned rehabilitering er tidsfestet uten å overdrive kildene;
+4. framtidig arbeid er merket som planlagt;
+5. chronology og Story er eksplisitt holdt som ulike redaksjonelle flater;
+6. Historie-rapporten og permanent audit består med 0 feil;
+7. Data checks faktisk trigges ved senere endringer i den canonicale Leksikon-filen;
+8. PR-review ikke finner nye påstander, kildesprang eller kronologi-/Story-sammenblanding.
