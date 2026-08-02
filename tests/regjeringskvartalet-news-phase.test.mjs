@@ -27,12 +27,14 @@ test('Notisene skiller pågående prosess fra gjennomført arrangement', () => {
   const byId = new Map(news.map(item => [item.id, item]));
   const gBlock = byId.get('regjeringskvartalet_nyhet_g_blokka_forprosjekt_2026');
   assert.equal(gBlock.date, '2026-01-29');
+  assert.equal(gBlock.reporting_period, 'januar–desember 2026');
   assert.equal(gBlock.classification.temporal_status, 'ongoing');
   assert.match(gBlock.popupDesc, /140 millioner kroner/);
   assert.match(gBlock.wikiText.join(' '), /ikke at rehabiliteringen er vedtatt, startet eller ferdig/);
 
   const art = byId.get('regjeringskvartalet_nyhet_kunstmarkering_2026');
   assert.equal(art.date, '2026-06-06');
+  assert.equal(art.reporting_period, 'juni 2026');
   assert.equal(art.classification.temporal_status, 'completed');
   assert.match(art.popupDesc, /Mer enn 600 mennesker/);
   assert.match(art.wikiText.join(' '), /over 300 kunstverk av bortimot 150 kunstnere/);
@@ -58,6 +60,8 @@ test('Nyheter bruker navngitte offisielle HTTPS-kilder og eksisterende runtime',
     assert.ok(allowedHosts.has(new URL(source.url).hostname));
     assert.equal(item.externalLinks, undefined);
   }
+  assert.match(news[0].sources[0].label, /Regjeringen\.no/);
+  assert.match(news[1].sources[0].label, /KORO/);
   assert.match(runtime, /function newsCards\(items\)/);
   assert.match(runtime, /list\(item\?\.sources\)\[0\]/);
   assert.match(runtime, /class="hg-place-news-source"/);
