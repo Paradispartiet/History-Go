@@ -15,7 +15,7 @@ const data = place.for_na;
 test('Regjeringskvartalet har et komplett Før/etter-par med Johan Nygaardsvolds plass som felles anker', () => {
   assert.ok(data);
   assert.equal(data.title, 'Samme plass, nytt regjeringsanlegg');
-  assert.match(data.beforeImageLabel, /Johan Nygaardsvolds plass.*1\. juli 2008assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(data.beforeImageLabel, /Johan Nygaardsvolds plass.*1\. juli 2008/);
   assert.match(data.nowImageLabel, /Johan Nygaardsvolds plass.*13\. april 2026/);
   assert.match(data.before, /Høyblokka og Y-blokka/);
   assert.match(data.now, /A-blokka/);
