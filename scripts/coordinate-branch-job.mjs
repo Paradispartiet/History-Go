@@ -10,3 +10,4 @@ const canonicalWorkflow = execFileSync(
 
 writeFileSync(workflowPath, canonicalWorkflow, 'utf8');
 console.log('Restored canonical coordinate runner; runtime place index will be rebuilt by the workflow.');
+console.log('Regjeringskvartalet index-sync job triggered.');
