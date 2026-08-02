@@ -1,0 +1,52 @@
+name: Temporary Regjeringskvartalet reading PR runner
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    if: github.head_ref == 'production/regjeringskvartalet-phase-6-reading'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: production/regjeringskvartalet-phase-6-reading
+          fetch-depth: 0
+
+      - name: Execute embedded phase 6 producer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          workflow = Path('.github/workflows/_tmp-regjeringskvartalet-reading.yml').read_text(encoding='utf-8')
+          opening = "          python - <<'PY'\n"
+          closing = "\n          PY\n"
+          start = workflow.index(opening) + len(opening)
+          end = workflow.index(closing, start)
+          lines = workflow[start:end].splitlines()
+          code = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines)
+          exec(compile(code, 'regjeringskvartalet_phase_6.py', 'exec'))
+          PY
+
+      - name: Validate targeted phase
+        run: node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs
+
+      - name: Remove temporary production files
+        run: |
+          rm .github/workflows/_tmp-regjeringskvartalet-reading.yml
+          rm .github/workflows/_tmp-regjeringskvartalet-reading-pr.yml
+          rm .github/_tmp-trigger-regjeringskvartalet-reading.txt
+
+      - name: Commit phase 6
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lesespor/oslo/lesespor_oslo_politikk.json reports/place-production/regjeringskvartalet-politikk-v1.md tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs .github/workflows/_tmp-regjeringskvartalet-reading.yml .github/workflows/_tmp-regjeringskvartalet-reading-pr.yml .github/_tmp-trigger-regjeringskvartalet-reading.txt
+          git commit -m "Bygg Lesespor for Regjeringskvartalet"
+          git push origin HEAD:production/regjeringskvartalet-phase-6-reading
