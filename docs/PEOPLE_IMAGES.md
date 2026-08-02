@@ -4,7 +4,7 @@ Status: **canonical bilde-, rettighets- og attribusjonskontrakt for people-data*
 Implementasjon: [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts)  
 Tester: [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs)  
 Datainngang: [`../data/people/manifest.json`](../data/people/manifest.json)  
-Sist kontrollert: **2026-08-01**
+Sist kontrollert: **2026-08-02**
 
 Dette dokumentet eier tillatte bildekilder, lisensporten, redaksjonell godkjenning, lokal lagring og attribusjonskrav for people-bilder. Verktøyet eier implementasjonen, og canonical people-filer eier de faktiske `image`, `cardImage` og `imageMeta`-verdiene.
 
@@ -62,9 +62,12 @@ En redaksjonell illustrasjon er en eksplisitt fallback, ikke et dokumentarfoto o
 - personen har en direkte, kildebelagt canonical identitet og stedskobling;
 - minst én offentlig, autoritativ institusjonsside gir en kontrollert identitetsreferanse;
 - illustrasjonen er tydelig tegnet/stilisert og kopierer ikke referansebildets bakgrunn eller fotografiske komposisjon;
+- alle genererte People-illustrasjoner har ekte transparent bakgrunn; gul eller annen påført bakgrunn, ramme, scene og dekorative bakgrunnselementer er forbudt;
+- både `image` og `cardImage` er lokale PNG- eller WebP-filer med alfakanal, minst ett helt transparent bakgrunnspiksel og et ugjennomsiktig personmotiv; transparenskravet er obligatorisk og kan aldri settes til N/A;
 - ansikt, alderstrekk og andre identitetsbærende kjennetegn er manuelt kontrollert mot referansen;
 - bildet inneholder ikke oppdiktede handlinger, symboler, uniformer, verv, sitater eller kontekster;
 - `imageMeta.source` er `history_go_editorial_illustration` og `mediaType` er `editorial_illustration`;
+- `imageMeta.background` er `transparent`;
 - `sourcePage`, `referenceImage`, `identityReference`, `creator`, `credit`, `license`, `licenseUrl`, `generatedAt`, `reviewStatus` og `disclosure` er fylt ut;
 - `reviewStatus` er `identity_and_editorial_review_passed`;
 - `disclosure` sier uttrykkelig at bildet er en illustrasjon og ikke et fotografi;
@@ -72,7 +75,7 @@ En redaksjonell illustrasjon er en eksplisitt fallback, ikke et dokumentarfoto o
 
 People-popupen og andre tekstbærende personflater skal vise «Illustrasjon». Alt-tekst for bildepreview skal også skille illustrasjon fra fotografi. En generert fotorealistisk person, et tilfeldig ansikt eller en illustrasjon uten kontrollert identitetsreferanse er fortsatt forbudt.
 
-`npm run people:images:audit` validerer metadataene for denne fallbacken. Illustrasjoner registreres i den deterministiske attribusjonsfila sammen med Commons-portretter.
+`npm run people:images:audit` validerer metadataene og de faktiske alfapikslene i både full- og kortfilen. En ugjennomsiktig PNG, en JPG eller en fil som bare påstår transparens i metadata består ikke. Illustrasjoner registreres i den deterministiske attribusjonsfila sammen med Commons-portretter.
 
 ## GitHub Actions-kandidatkjøring
 

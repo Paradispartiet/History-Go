@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'data/people/**'
+      - 'bilder/kort/people/**'
+      - 'docs/PEOPLE_IMAGES.md'
       - 'data/places/**'
       - 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json'
       - 'data/quiz/**'
@@ -17,6 +19,7 @@ on:
       - 'js/core/categories.js'
       - 'dist/web/categories.js'
       - 'tests/etne-people-manifest-integration.test.js'
+      - 'tests/people-images.test.mjs'
       - 'tests/etne-people-of-places-*.test.js'
       - 'tests/quiz-content-quality-audit.test.mjs'
       - 'scripts/check-people.sh'

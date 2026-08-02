@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir, rename, rm, access } from 'node:fs/promises
 import { createWriteStream } from 'node:fs';
 import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
+import sharp from 'sharp';
 import { analyzeImageBuffer, unavailableAnalysisQuality, type Quality, type FaceDetection } from './people-image-quality.mjs';
 
 const ROOT = () => process.cwd();
@@ -42,6 +43,7 @@ export function validateEditorialIllustrationMeta(meta: unknown): string[] {
   if (!isObj(meta) || reqStr(meta.source) !== 'history_go_editorial_illustration') return [];
   const errors: string[] = [];
   if (reqStr(meta.mediaType) !== 'editorial_illustration') errors.push('mediaType');
+  if (reqStr(meta.background) !== 'transparent') errors.push('background');
   if (!reqStr(meta.sourcePage)) errors.push('sourcePage');
   if (!reqStr(meta.referenceImage)) errors.push('referenceImage');
   if (!reqStr(meta.identityReference)) errors.push('identityReference');
@@ -53,6 +55,31 @@ export function validateEditorialIllustrationMeta(meta: unknown): string[] {
   if (reqStr(meta.reviewStatus) !== 'identity_and_editorial_review_passed') errors.push('reviewStatus');
   if (!/illustrasjon/i.test(reqStr(meta.disclosure)) || !/ikke fotografi/i.test(reqStr(meta.disclosure))) errors.push('disclosure');
   return errors;
+}
+
+export async function validateEditorialIllustrationFile(filePath: string): Promise<string[]> {
+  const errors: string[] = [];
+  if (!/\.(png|webp)$/i.test(filePath)) errors.push('format');
+  try {
+    const image = sharp(filePath, { animated: false, pages: 1, limitInputPixels: 100_000_000, failOn: 'error' });
+    const metadata = await image.metadata();
+    if (!metadata.hasAlpha) return [...errors, 'alphaChannel'];
+    const { data, info } = await sharp(filePath, { animated: false, pages: 1, limitInputPixels: 100_000_000, failOn: 'error' })
+      .ensureAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    let transparentPixels = 0;
+    let opaquePixels = 0;
+    for (let i = info.channels - 1; i < data.length; i += info.channels) {
+      if (data[i] === 0) transparentPixels++;
+      if (data[i] === 255) opaquePixels++;
+    }
+    if (!transparentPixels) errors.push('transparentPixels');
+    if (!opaquePixels) errors.push('opaqueSubject');
+  } catch {
+    errors.push('decode');
+  }
+  return [...new Set(errors)];
 }
 
 function assertCommonsUrl(u: string): void {
@@ -355,6 +382,50 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
     await regenerateAttributions(await loadPeople(), true);
   } else await regenerateAttributions(entries, false);
 }
-export async function auditPeople(): Promise<number> { const entries = await loadPeople(); let external = 0, noMeta = 0, badLic = 0, missing = 0, badEditorial = 0; const files = new Map<string,string[]>(); for (const e of entries) { const img = reqStr(e.person.image); if (!img) continue; if (/^https?:/.test(img)) external++; else { files.set(img, [...(files.get(img) || []), reqStr(e.person.id)]); if (!(await exists(path.join(ROOT(), img)))) missing++; } if (!isObj(e.person.imageMeta)) noMeta++; else { if (!isAllowedLicense(e.person.imageMeta.license)) badLic++; if (validateEditorialIllustrationMeta(e.person.imageMeta).length) badEditorial++; } } const dup = [...files.values()].filter(v => v.length > 1).length; const noImage = entries.filter(e => !reqStr(e.person.image)).length; console.log(JSON.stringify({ totalPeople: entries.length, peopleWithoutImage: noImage, externalImageUrls: external, localImagesWithoutImageMeta: noMeta, unknownOrDisallowedLicenses: badLic, invalidEditorialIllustrationMetadata: badEditorial, missingLocalImageFiles: missing, duplicateOrCollidingImageFiles: dup }, null, 2)); return external || noMeta || badLic || badEditorial || missing || dup ? 1 : 0; }
-async function main() { const [cmd, ...args] = process.argv.slice(2); if (cmd === 'candidates') await buildCandidates(args); else if (cmd === 'apply') await applyCandidates(args); else if (cmd === 'audit') process.exitCode = await auditPeople(); else { console.error('Usage: people-image-pipeline <candidates|apply|audit>'); process.exitCode = 2; } }
+export async function auditPeople(): Promise<number> {
+  const entries = await loadPeople();
+  let external = 0, noMeta = 0, badLic = 0, missing = 0, badEditorial = 0, badEditorialFiles = 0;
+  const files = new Map<string,string[]>();
+  for (const e of entries) {
+    const img = reqStr(e.person.image);
+    if (!img) continue;
+    if (/^https?:/.test(img)) external++;
+    else {
+      files.set(img, [...(files.get(img) || []), reqStr(e.person.id)]);
+      if (!(await exists(path.join(ROOT(), img)))) missing++;
+    }
+    if (!isObj(e.person.imageMeta)) noMeta++;
+    else {
+      if (!isAllowedLicense(e.person.imageMeta.license)) badLic++;
+      if (validateEditorialIllustrationMeta(e.person.imageMeta).length) badEditorial++;
+      if (reqStr(e.person.imageMeta.source) === 'history_go_editorial_illustration') {
+        for (const rel of new Set([img, reqStr(e.person.cardImage)])) {
+          if (!rel || /^https?:/.test(rel)) { badEditorialFiles++; continue; }
+          const abs = path.join(ROOT(), rel);
+          if (!(await exists(abs)) || (await validateEditorialIllustrationFile(abs)).length) badEditorialFiles++;
+        }
+      }
+    }
+  }
+  const dup = [...files.values()].filter(v => v.length > 1).length;
+  const noImage = entries.filter(e => !reqStr(e.person.image)).length;
+  console.log(JSON.stringify({ totalPeople: entries.length, peopleWithoutImage: noImage, externalImageUrls: external, localImagesWithoutImageMeta: noMeta, unknownOrDisallowedLicenses: badLic, invalidEditorialIllustrationMetadata: badEditorial, invalidEditorialIllustrationFiles: badEditorialFiles, missingLocalImageFiles: missing, duplicateOrCollidingImageFiles: dup }, null, 2));
+  return external || noMeta || badLic || badEditorial || badEditorialFiles || missing || dup ? 1 : 0;
+}
+export async function auditEditorialIllustrations(): Promise<number> {
+  const entries = (await loadPeople()).filter(e => reqStr(e.person.imageMeta?.source) === 'history_go_editorial_illustration');
+  let invalidMetadata = 0;
+  let invalidFiles = 0;
+  for (const e of entries) {
+    if (validateEditorialIllustrationMeta(e.person.imageMeta).length) invalidMetadata++;
+    for (const rel of new Set([reqStr(e.person.image), reqStr(e.person.cardImage)])) {
+      if (!rel || /^https?:/.test(rel)) { invalidFiles++; continue; }
+      const abs = path.join(ROOT(), rel);
+      if (!(await exists(abs)) || (await validateEditorialIllustrationFile(abs)).length) invalidFiles++;
+    }
+  }
+  console.log(JSON.stringify({ editorialIllustrations: entries.length, invalidEditorialIllustrationMetadata: invalidMetadata, invalidEditorialIllustrationFiles: invalidFiles }, null, 2));
+  return invalidMetadata || invalidFiles ? 1 : 0;
+}
+async function main() { const [cmd, ...args] = process.argv.slice(2); if (cmd === 'candidates') await buildCandidates(args); else if (cmd === 'apply') await applyCandidates(args); else if (cmd === 'audit') process.exitCode = await auditPeople(); else if (cmd === 'audit-editorial') process.exitCode = await auditEditorialIllustrations(); else { console.error('Usage: people-image-pipeline <candidates|apply|audit|audit-editorial>'); process.exitCode = 2; } }
 if (import.meta.url === `file://${process.argv[1]}`) main().catch(e => { console.error(e); process.exit(1); });

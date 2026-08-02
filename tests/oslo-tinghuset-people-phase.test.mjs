@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
+import sharp from 'sharp';
 
 const readJson = path => JSON.parse(fs.readFileSync(path, 'utf8'));
 const manifest = readJson('data/people/manifest.json');
@@ -61,7 +62,7 @@ test('all 13 People profiles are claim-backed and have distinct place-specific o
   }
 });
 
-test('all 13 People have local full and card images with auditable rights metadata', () => {
+test('all 13 People have local full and card images with auditable rights metadata', async () => {
   const attributed = new Set(attributions.map(row => `${row.personId}\0${row.file}`));
   for (const person of tinghusetPeople) {
     assert.match(person.image, /^bilder\/kort\/people\/.+\.(jpg|jpeg|png|webp)$/i, person.id);
@@ -73,6 +74,22 @@ test('all 13 People have local full and card images with auditable rights metada
     assert.match(person.imageMeta.licenseUrl, /^https:\/\//, person.id);
     assert.ok(['wikimedia_commons', 'history_go_editorial_illustration'].includes(person.imageMeta.source), person.id);
     if (person.imageMeta.source === 'history_go_editorial_illustration') {
+      assert.equal(person.imageMeta.background, 'transparent', person.id);
+      assert.match(person.image, /\.png$/i, person.id);
+      assert.match(person.cardImage, /\.png$/i, person.id);
+      for (const file of [person.image, person.cardImage]) {
+        const metadata = await sharp(file).metadata();
+        assert.equal(metadata.hasAlpha, true, `${person.id}: ${file}`);
+        const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+        let transparentPixels = 0;
+        let opaquePixels = 0;
+        for (let i = info.channels - 1; i < data.length; i += info.channels) {
+          if (data[i] === 0) transparentPixels++;
+          if (data[i] === 255) opaquePixels++;
+        }
+        assert.ok(transparentPixels > 0, `${person.id}: ${file} lacks transparent background pixels`);
+        assert.ok(opaquePixels > 0, `${person.id}: ${file} lacks an opaque subject`);
+      }
       assert.equal(person.imageMeta.mediaType, 'editorial_illustration', person.id);
       assert.equal(person.imageMeta.reviewStatus, 'identity_and_editorial_review_passed', person.id);
       assert.match(person.imageMeta.disclosure, /illustrasjon.*ikke fotografi/i, person.id);

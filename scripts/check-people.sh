@@ -101,6 +101,10 @@ node dist/tools/audit-people-of-places-status.mjs
 echo "== People place coverage =="
 node dist/tools/audit-people-place-coverage.mjs
 
+echo "== People image contract =="
+node dist/tools/people-image-pipeline.mjs audit-editorial
+node tests/people-images.test.mjs
+
 # Civication leser personene via en generert kategoriindeks. Nye/endrede
 # personer krever regenerering: npm run civication:history-people:build
 echo "== Civication history people index sync =="

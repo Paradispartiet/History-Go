@@ -3,7 +3,7 @@ import { mkdtemp, mkdir, writeFile, readFile, access } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
-import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates, validateEditorialIllustrationMeta } from '../dist/tools/people-image-pipeline.mjs';
+import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates, validateEditorialIllustrationMeta, validateEditorialIllustrationFile } from '../dist/tools/people-image-pipeline.mjs';
 
 assert.equal(isAllowedLicense('Public Domain'), true);
 assert.equal(isAllowedLicense('CC0'), true);
@@ -17,6 +17,7 @@ assert.equal(isAllowedLicense(''), false);
 const validEditorialMeta = {
   source: 'history_go_editorial_illustration',
   mediaType: 'editorial_illustration',
+  background: 'transparent',
   sourcePage: 'https://example.org/person',
   referenceImage: 'https://example.org/person.jpg',
   identityReference: 'Official institutional portrait',
@@ -29,6 +30,7 @@ const validEditorialMeta = {
   disclosure: 'Illustrasjon basert på kontrollert identitetsreferanse; ikke fotografi.'
 };
 assert.deepEqual(validateEditorialIllustrationMeta(validEditorialMeta), []);
+assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, background: '' }), ['background']);
 assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, disclosure: '' }), ['disclosure']);
 assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, reviewStatus: 'pending' }), ['reviewStatus']);
 
@@ -47,6 +49,21 @@ function humanClaim(){ return { mainsnak: { datavalue: { value: { id: 'Q5' } } }
 function p18Claim(file){ return { mainsnak: { datavalue: { value: file } } }; }
 function candidate(overrides={}){ return { personId:'ada', personName:'Ada', sourceFile:'data/people/folder/array.json', personIndex:0, pointer:'/0', wikidataId:'Q1', commonsFileName:'Ada.jpg', originalImageUrl:'https://upload.wikimedia.org/wikipedia/commons/a/ada.jpg', commonsPage:'https://commons.wikimedia.org/wiki/File:Ada.jpg', creator:'Creator', credit:'Credit', license:'CC BY-SA 4.0', licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/', width:10, height:10, approved:true, reason:'test', score:100, ...overrides }; }
 async function withCwd(dir, fn){ const old=process.cwd(); process.chdir(dir); try { return await fn(); } finally { process.chdir(old); } }
+
+{
+  const dir = await mkdtemp(path.join(tmpdir(), 'people-transparent-'));
+  const transparent = path.join(dir, 'transparent.png');
+  const opaque = path.join(dir, 'opaque.png');
+  const jpeg = path.join(dir, 'opaque.jpg');
+  await sharp({ create: { width: 64, height: 64, channels: 4, background: { r: 20, g: 40, b: 80, alpha: 0 } } })
+    .composite([{ input: { create: { width: 32, height: 48, channels: 4, background: { r: 120, g: 80, b: 60, alpha: 1 } } }, left: 16, top: 16 }])
+    .png().toFile(transparent);
+  await sharp({ create: { width: 64, height: 64, channels: 3, background: { r: 20, g: 40, b: 80 } } }).png().toFile(opaque);
+  await sharp({ create: { width: 64, height: 64, channels: 3, background: { r: 20, g: 40, b: 80 } } }).jpeg().toFile(jpeg);
+  assert.deepEqual(await validateEditorialIllustrationFile(transparent), []);
+  assert.deepEqual(await validateEditorialIllustrationFile(opaque), ['alphaChannel']);
+  assert.deepEqual(await validateEditorialIllustrationFile(jpeg), ['format', 'alphaChannel']);
+}
 
 {
   const dir = await fixture();
@@ -148,7 +165,9 @@ for (const bad of [
 
 {
   const { analyzeCandidate } = await import('../dist/tools/people-image-pipeline.mjs');
-  const image = await sharp({ create: { width: 700, height: 500, channels: 3, background: { r: 110, g: 150, b: 190 } } }).jpeg().toBuffer();
+  const image = await sharp({ create: { width: 700, height: 500, channels: 3, background: { r: 110, g: 150, b: 190 } } })
+    .composite([{ input: { create: { width: 280, height: 500, channels: 3, background: { r: 220, g: 180, b: 80 } } }, left: 210, top: 0 }])
+    .jpeg().toBuffer();
   const analyzed = await analyzeCandidate(candidateFor('real-jpeg'), async () => new Response(image));
   assert.equal(analyzed.quality.analysisStatus, 'complete', 'candidate fetch with a real JPEG performs pixel analysis');
   assert.notEqual(analyzed.quality.meanLuminance, 0, 'regression: candidate is not replaced by zero-value fallback');
