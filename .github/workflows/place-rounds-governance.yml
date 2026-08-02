@@ -34,6 +34,7 @@ on:
       - "tests/regjeringskvartalet-more-phase.test.mjs"
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
+      - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json"
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
@@ -96,6 +97,7 @@ on:
       - "tests/regjeringskvartalet-more-phase.test.mjs"
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
+      - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json"
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
@@ -133,7 +135,7 @@ jobs:
   visual-rounds:
     name: Visual round contract
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -147,6 +149,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Chromium for Regjeringskvartalet UI audit
+        run: npx playwright install --with-deps chromium
+
       - name: Test canonical three content rounds plus Badges contract
         run: |
           node --check js/ui/place-popup-tabs.js
@@ -158,3 +163,4 @@ jobs:
           node tests/tinghuset-rounds-completion.test.mjs
           node --test tests/oslo-tinghuset-before-after-phase.test.mjs tests/oslo-tinghuset-news-phase.test.mjs tests/oslo-tinghuset-reading-phase.test.mjs tests/oslo-tinghuset-sources-phase.test.mjs tests/oslo-tinghuset-more-phase.test.mjs tests/oslo-tinghuset-people-phase.test.mjs tests/oslo-tinghuset-objects-phase.test.mjs
           node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs tests/regjeringskvartalet-sources-phase.test.mjs tests/regjeringskvartalet-more-phase.test.mjs tests/regjeringskvartalet-objects-phase.test.mjs tests/regjeringskvartalet-brands-phase.test.mjs
+          node tests/regjeringskvartalet-ui-production-audit.test.mjs
