@@ -100,10 +100,9 @@ test('all 13 People have local full and card images with auditable rights metada
   assert.equal(tinghusetPeople.filter(person => person.imageMeta.source === 'history_go_editorial_illustration').length, 11);
 });
 
-test('phase report marks People complete while Objects and Brands remain open', () => {
+test('phase report keeps People complete after later round phases', () => {
   assert.match(report, /Status: \*\*PASS – fase 10\*\*/);
   assert.match(report, /13 av 13 personer har lokalt bilde/);
   assert.match(report, /sju personer representerer tinghusets hovedfunksjon/);
-  assert.match(report, /Objects- og Brands-rundingene fortsatt er åpne/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });

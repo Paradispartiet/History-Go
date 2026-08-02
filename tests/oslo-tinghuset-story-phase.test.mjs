@@ -65,6 +65,6 @@ test('Phase report keeps Fortellinger complete and the remaining remediation exp
   assert.match(report, /\| Fortellinger \| PASS – fase 3 \|/);
   assert.match(report, /\| Før\/etter \| PASS – fase 4 \|/);
   assert.match(report, /\| Mer \| PASS – fase 8 \|/);
-  assert.match(report, /Objects- og Brands-rundingene fortsatt er åpne\./);
+  assert.match(report, /Brands-rundingen fortsatt er åpen/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });

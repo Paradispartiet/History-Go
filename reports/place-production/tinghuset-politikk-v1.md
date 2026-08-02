@@ -5,7 +5,7 @@
 - Kategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
 - Normal åpning: 14 ordinære spørsmål før faglig fordypning i sett 3
-- Saneringsstatus: nullmåling utført 2026-08-01; alle åtte popupfaser, fase 9 «Knowledge» og fase 10 «People» er fullført, mens Objects/Brands-rundingene fortsatt er åpne
+- Saneringsstatus: nullmåling utført 2026-08-01; alle åtte popupfaser, fase 9 «Knowledge», fase 10 «People» og fase 11 «Objects» er fullført, mens Brands-rundingen fortsatt er åpen
 
 ## Politikk-hovedfunksjon
 
@@ -47,7 +47,7 @@ Oslo tinghus er dokumentert som domstolsbygg og førsteinstansarena for uavhengi
 - Kilder: sju brukerrettede kildegrupper og sytten navngitte HTTPS-lenker dekker domstolen, lovgrunnlaget, bygget og kunsten, drift i 2025, lokalhistorie, terrorrettssaken, dommen, tilregnelighetsspørsmålet, NOU-en og Før/etter-bildene. Interne rapporter, audits og hold-back-notater er ikke eksponert
 - Mer: fem kildebelagte språkoppføringer skiller tinghus, tingrett, enedommersak, meddomsrettssak og offentlig rettsmøte. Tre observasjons-, betydnings- og motpunktserier holder bygning fra institusjon, offentlighet fra ubegrenset adgang og driftsdata fra dokumentasjon på rettslig kvalitet. Kuraterte relasjoner er vurdert og utelatt fordi ingen av dem tilfører en egen forklarende relasjon uten å duplisere Nearby, Kilder eller den senere rundingsfasen
 - Quiz og Knowledge: 21 eksternt kildebelagte spørsmål er manifestlastet og koblet én-til-én til 21 reviewed canonicale Knowledge-enheter, fire Politikk-emner og 37 eksplisitte begreper. Spørsmål, svar, rekkefølge og kilder er uendret
-- Objects: bare ett bildeklart element finnes, skiltet til rettssal 250. Det er ikke tilstrekkelig dybde for en ferdig Objects-runding
+- Objects: tre canonicale, fysiske og stedsspesifikke Objects dekker rettssalsnavigasjon, den bygningsintegrerte lovinstallasjonen Lex Portalis og Øivind Åsteins marmorrelieffer på hovedfasaden. Alle har kilder, lokalt fullbilde og kortbilde; de to redaksjonelle illustrasjonene er tydelig merket og har verifisert transparent bakgrunn
 - Brands: Beate Ellingsen AS er en gyldig canonical Brand med offisiell logo og dokumentert stedskobling, men rundingen er foreløpig tynn
 - Challenge: ivaretas gjennom quiz- og stedslæringsløpet
 
@@ -84,14 +84,25 @@ Status: **PASS – fase 10**.
 - 13 av 13 personer har lokalt bilde og kortbilde med tillatt lisens og oppføring i attribusjonsregisteret;
 - elleve identitetskontrollerte redaksjonelle illustrasjoner er eksplisitt merket «illustrasjon – ikke fotografi»; Inga Bejer Engh og Geir Lippestad bruker manuelt godkjente Commons-fotografier.
 
-Objects- og Brands-rundingene fortsatt er åpne. People-fasen endrer ikke disse samlingene.
+## Objects
+
+Status: **PASS – fase 11**.
+
+- tre canonicale, fysiske og stedsspesifikke Objects er koblet direkte til `tinghuset`;
+- skiltet til rettssal 250 dokumenterer den konkrete navigasjonen fra publikumsareal til rettssal;
+- Ole Lisleruds Lex Portalis dokumenterer den 32 meter høye, bygningsintegrerte lovinstallasjonen i sentralhallen;
+- Øivind Åsteins 32 blokker i hvit fauskemarmor dokumenterer den skulpturelle og rebusbaserte hovedfasaden;
+- alle tre har lokale full- og kortbilder, konkret `whereToFind` og ekstern objektreferanse;
+- Lex Portalis og marmorblokkene bruker tydelig merkede redaksjonelle PNG-illustrasjoner med faktisk transparent bakgrunn. Marmorillustrasjonen er eksplisitt avgrenset som en samlerrepresentasjon, ikke en nøyaktig gjengivelse av ett bestemt relieffmotiv.
+
+Brands-rundingen fortsatt er åpen. Objects-fasen endrer ikke Brand-data.
 
 ## Rundingsgate
 
 Runtimeprofilen er korrekt fast `people · objects · brands`, med Badges oppe til høyre. Nullmålingen viser likevel at preview-tilgjengelighet ikke er det samme som en ferdig runding:
 
 - People: PASS – 13 canonicale personer, 13 lokale bilder og hovedfunksjonsdominans med sju juridiske aktører mot seks kunstnere;
-- Objects: 1 element finnes;
+- Objects: PASS – 3 canonicale, fysiske og stedsspesifikke elementer med lokale bilder og eksterne objektreferanser;
 - Brands: 1 gyldig logo og stedskobling finnes.
 
 Status for samlet sted: **under sanering – ikke produksjonsklart**.
@@ -125,4 +136,4 @@ Status for samlet sted: **under sanering – ikke produksjonsklart**.
 
 ## Maskinell sluttgate
 
-Kontekst-, quiz-, place-, Story-, Knowledge-, People- og tverrfaglige validatorer kjøres i materialiseringsjobben og ordinær PR-CI. Popup, Knowledge og People er nå ferdige, men grønn teknisk CI kan ikke overstyre redaksjonelt uferdige Objects/Brands-rundinger.
+Kontekst-, quiz-, place-, Story-, Knowledge-, People-, Objects- og tverrfaglige validatorer kjøres i materialiseringsjobben og ordinær PR-CI. Popup, Knowledge, People og Objects er nå ferdige, men grønn teknisk CI kan ikke overstyre en redaksjonelt uferdig Brands-runding.
