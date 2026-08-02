@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 2 – kildebelagt chronology og Historie-fane klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 3 – Story-review og episodeproduksjon klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -126,8 +126,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | --- | --- | --- |
 | 0 | Nullmåling, identitetsgate og saneringsplan | **GODKJENT – PR #4647, merge `64a49e4ab978cd6ff062c557e7dc891cc15d710e`** |
 | 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | **GODKJENT – PR #4649, merge `26967843bc8ee20441c313d238bf2b51f85baf23`** |
-| 2 | Kildebelagt chronology og Historie-fane | **KLAR FOR REVIEW** |
-| 3 | Story-review og eventuell episodeproduksjon | IKKE STARTET |
+| 2 | Kildebelagt chronology og Historie-fane | **GODKJENT – PR #4651, merge `75cfe841738fc4d0296868d0b8f2dfe6ba5fe78f`** |
+| 3 | Story-review og eventuell episodeproduksjon | **KLAR FOR REVIEW** |
 | 4 | Før/etter | IKKE STARTET |
 | 5 | Nyheter | IKKE STARTET |
 | 6 | Lesespor | IKKE STARTET |
@@ -154,29 +154,38 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Tidslinjen dekker klostereierskap, brannene i 1592 og 1703, rivningsstriden i 1852, to restaureringsperioder, krigsårene og den nyere rehabiliteringen.
 - Fremtidspunktet 2026–2027 er eksplisitt merket som planlagt og kan ikke leses som en ferdig hendelse.
 - Leksikonets interne `sources` er fylt med fem eksterne kilder. Brukerrettet `externalLinks` produseres først i Kilder-fasen og er ikke smuglet inn her.
-- Den eksisterende Storyen er gjennomgått bare for å sikre at chronology ikke dupliserer den. Full Story-avgjørelse står fortsatt i fase 3.
+- Den daværende Storyen ble i fase 2 bare gjennomgått for å sikre at chronology ikke dupliserte den; full Story-avgjørelse ble utsatt til fase 3.
+
+## Resultat i fase 3
+
+- Den aktive fossilteksten er avvist som Story fordi den forklarte materiale og geologi uten aktører, handling, konflikt, valg eller transformasjon.
+- Fossilstoffet og de tre kildeinngangene beholdes som eksplisitt kandidat til den kildebelagte «Mer»-fasen: Oslo Byleksikon om synlige orthocerer, SNL om kirken og SNL om ortocerkalkstein.
+- Samme canonical Story-fil inneholder nå én `episode_v1`: flyttingen av Dronning Mauds sarkofag fra Akershus til krypten 19. april 1940.
+- Episoden har navngitte initiativtakere, dokumentert fare, konkret handling, fysisk anker og avslutning da sarkofagen ble returnert til Akershus i 1948.
+- `dronning_maud` er koblet som canonical person, og `akershus_festning` er både faktisk relatert sted og narrativ neste scene.
+- Episoden bruker to eksterne HTTPS-kilder og kopierer ikke chronologyens korte 1940–1948-punkt.
 
 ## Aktivt filscope
 
-Fase 2 endrer bare:
+Fase 3 endrer bare:
 
-- Leksikon-recorden for `gamle_aker_kirke`;
+- `data/stories/stories_gamle_aker_kirke.json` på eksisterende manifestlastet sti;
+- `data/stories/stories_episode_v1_manifest.json`;
 - `data/places/historie-production/gamle_aker_kirke.json`;
 - den eksisterende Historie-regresjonspakken;
-- Data checks-workflowens smale trigger for denne canonicale Leksikon-filen;
 - dette arbeidskortet.
 
-Ingen canonical place-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime- eller bildefil endres i fase 2.
+Ingen canonical place-, Leksikon-, People-, Quiz-, Knowledge-, hovedmanifest-, runtime- eller bildefil endres i fase 3.
 
-## Ferdigport for fase 2
+## Ferdigport for fase 3
 
-Fase 2 kan godkjennes når:
+Fase 3 kan godkjennes når:
 
-1. alle chronology-rader har unik ID, periode, beskrivelse, confidence og minst én gyldig HTTPS-kilde;
-2. usikker middelalderdatering ikke er representert som ett eksakt år;
-3. sentrale brudd, kontinuiteter, restaureringer og dagens/planned rehabilitering er tidsfestet uten å overdrive kildene;
-4. framtidig arbeid er merket som planlagt;
-5. chronology og Story er eksplisitt holdt som ulike redaksjonelle flater;
-6. Historie-rapporten og permanent audit består med 0 feil;
-7. Data checks faktisk trigges ved senere endringer i den canonicale Leksikon-filen;
-8. PR-review ikke finner nye påstander, kildesprang eller kronologi-/Story-sammenblanding.
+1. fossilforklaringen ikke lenger presenteres som aktiv Story, men kildegrunnlaget er bevart til «Mer»;
+2. den nye Storyen har selvstendig narrativt spørsmål, aktører, fare/valg, handling, fysisk anker og dokumentert konsekvens;
+3. `episode.date`, handling og konsekvens er kildebelagt uten å overdrive motiv eller hemmelighold;
+4. Storyen bruker canonicale place- og person-ID-er og en reell narrativ `next_scene`;
+5. filen er registrert nøyaktig én gang i `episode_v1`-manifestet og består Story-integritetskontrollen;
+6. chronology og Story fortsatt har ulike produktroller;
+7. Historie-rapporten, den permanente regresjonen og Story-governance består med 0 feil;
+8. PR-review ikke finner kildehopp, scoreavvik eller en forkledd chronology-post.

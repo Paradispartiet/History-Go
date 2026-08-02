@@ -322,5 +322,37 @@ test('Gamle Aker chronology er kildebelagt og holder usikker datering og Story a
   const report = JSON.parse(fs.readFileSync(path.join(root, 'data/places/historie-production/gamle_aker_kirke.json'), 'utf8'));
   assert.equal(report.chronologyStories.status, 'PASS');
   assert.equal(report.gates.H.status, 'PASS');
-  assert.match(report.chronologyStories.rationale, /fase 3/);
+  assert.match(report.chronologyStories.rationale, /narrativ akse utover tidslinjen/);
+});
+
+test('Gamle Aker Story er en manifestert episode og ikke en fossilforklaring', () => {
+  const storyPath = 'data/stories/stories_gamle_aker_kirke.json';
+  const stories = JSON.parse(fs.readFileSync(path.join(root, storyPath), 'utf8'));
+  assert.equal(stories.length, 1);
+  const story = stories[0];
+  assert.equal(story.id, 'st_gamle_aker_kirke_dronning_maud_i_krypten');
+  assert.equal(story.quality_profile, 'episode_v1');
+  assert.equal(story.type, 'historical_event');
+  assert.equal(story.year, 1940);
+  assert.equal(story.place_id, 'gamle_aker_kirke');
+  assert.equal(story.episode.date, '1940-04-19');
+  assert.ok(story.episode.actors.some((actor) => actor.includes('Broch')));
+  assert.ok(story.episode.actors.some((actor) => actor.includes('Berggrav')));
+  assert.deepEqual(story.related_people, ['dronning_maud']);
+  assert.deepEqual(story.related_places, ['akershus_festning']);
+  assert.equal(story.next_scenes[0].place_id, 'akershus_festning');
+  assert.equal(story.sources.length, 2);
+  assert.ok(story.sources.every((source) => URL.canParse(source.url) && new URL(source.url).protocol === 'https:'));
+  assert.match(story.story, /19\. april/);
+  assert.match(story.story, /1948/);
+  assert.doesNotMatch(JSON.stringify(story), /st_gamle_aker_kirke_fossiler/);
+
+  const storyManifest = JSON.parse(fs.readFileSync(path.join(root, 'data/stories/stories_manifest.json'), 'utf8'));
+  assert.equal(storyManifest.files.filter((entry) => entry.path === storyPath).length, 1);
+  const episodeManifest = JSON.parse(fs.readFileSync(path.join(root, 'data/stories/stories_episode_v1_manifest.json'), 'utf8'));
+  assert.equal(episodeManifest.files.filter((entry) => entry === storyPath).length, 1);
+
+  const report = JSON.parse(fs.readFileSync(path.join(root, 'data/places/historie-production/gamle_aker_kirke.json'), 'utf8'));
+  assert.equal(report.chronologyStories.status, 'PASS');
+  assert.match(report.chronologyStories.rationale, /19\. april 1940/);
 });
