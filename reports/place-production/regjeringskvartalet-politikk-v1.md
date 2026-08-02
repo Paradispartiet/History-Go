@@ -8,7 +8,7 @@
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 0 – nullmåling og sanerings-/produksjonsplan klar for review; stedet er ikke samlet produksjonsklart**
+- Status: **fase 2 – kildebelagt chronology og Historie-fane klar for review; stedet er ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -23,7 +23,7 @@
 | Koordinat | `verified_geometry`; deterministisk sentroid av den offisielle S-5100-planflaten. Høyblokka eller et tilfeldig adressepunkt brukes ikke som proxy for hele området. |
 | Description-pakke | Canonical 4.2-pakke og Politikk-rapport er `ready`. `desc` og `popupDesc` ble senest synkronisert og kontrollert i PR #4659. |
 | Hovedbilde | Gyldig eksternt `popupImage` finnes og bildebackloggen ble oppdatert i PR #4659. Nullmålingen finner ikke et dokumentert lokalt full-/kortbildepar som egen ferdig fase. |
-| Leksikon | Fire manifestlastede artikler finnes: hovedartikkel, utøvende makt/forvaltning, arkitektur/kunst/bevaring og 22. juli/sikkerhet/minne. Hovedartikkelen har tre fakta og seks kildebelagte chronology-punkter. |
+| Leksikon | Fire manifestlastede artikler finnes. Hovedartikkelen er versjon 2 med tre fakta og tolv kildebelagte chronology-punkter fra 1883 til juli 2026. |
 | Rundingsprofil | Fast `people · objects · brands`, med Badges ved overskriften. Wonderkammer-innhold skal ikke telles som ferdig Objects-runding. |
 | People | Tolv canonicale personer er dokumentert ved stedet, med maksimalt to arkitekter og flertall av faktiske brukere, beslutningstakere, kunst-/ingeniøraktører og hendelsespersoner. Dekningen ble låst i PR #3604. |
 | Objects | Ingen ferdig canonical Objects-pakke for rundingen er dokumentert. `Grass Roots Square` finnes som Wonderkammer-oppføring, men er ikke dermed et validert Object-kort. `Fiskerne`, `Måken`, minnestedet og andre fysiske kandidater må identitets-, kilde-, plassering- og bildeauditeres før bruk. |
@@ -73,7 +73,7 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | Fane | Status | Begrunnelse |
 | --- | --- | --- |
 | Om | PASS – eksisterende grunnlag | Canonical identitet, Politikk-rapport, 4.2-dekket `desc`/`popupDesc`, hovedartikkel, kilder og gyldig eksternt popupbilde er på plass. |
-| Historie | DELVIS | Seks kildebelagte chronology-punkter finnes, men fasen er ikke separat auditert etter checklista. Tidslinjen starter i 1906 selv om stedsteksten og Story-grunnlaget dokumenterer eldre samlokaliseringsforsøk og 1946 som selvstendig vendepunkt. |
+| Historie | PASS – fase 2 | Tolv kildebelagte chronology-punkter følger samlokaliseringsforsøk, bygg, utvidelser, terrorangrep, gjenoppbygging og åpningene i 2026. Punktene er korte hendelsesrecords og erstatter ikke de tre narrative Stories. |
 | Fortellinger | PASS – PR #4428 | Tre ulike narrative akser er konsolidert og reviewet mot `episode_v1`; de dupliserer ikke bare en datooversikt. |
 | Før/etter | MANGLER | Ingen canonical bildeparpakke med samme identitetsanker, rettigheter, attribusjon og eksplisitt inferensgrense er funnet. |
 | Nyheter | MANGLER | Ingen stedsspesifikke `news_note`-records finnes. |
@@ -99,6 +99,7 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 - `politikk` som hovedkategori, de tre underbadgene og de tre Politikk-emnene, forutsatt fortsatt runtimekontroll;
 - de tre evidenskjedene og deres eksplisitte inferensgrenser;
 - revidert `desc`, `popupDesc`, Politikk-produksjonsrapport og eksternt popupbilde;
+- den kildebelagte chronology-pakken med tolv avgrensede hendelser;
 - de tre narrative Stories;
 - full 3×7 Quiz og Knowledge-materialisering;
 - de tolv dokumenterte People-koblingene;
@@ -106,7 +107,6 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 
 ### Revider eller bygg separat
 
-- chronology/Historie-fanen som første aktive innholdsfase etter nullmålingen;
 - Før/etter med kontrollert historisk og nyere bilde av samme område/anker;
 - Nyheter med daterte nåtidsrecords og tydelig skille mellom gjennomført, pågående og planlagt;
 - Lesespor med åpne, komplementære `link_only`-kilder;
@@ -130,11 +130,11 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 
 | Fase | Leveranse | Status |
 | --- | --- | --- |
-| 0 | Nullmåling, identitetsgate og saneringsplan | **KLAR FOR REVIEW** |
+| 0 | Nullmåling, identitetsgate og saneringsplan | **GODKJENT – PR #4665, merge `c00d94430ea82da5afb4f0e1b10ead2b504f6ff8`** |
 | 1 | Kildebank, Politikk-rapport, description 4.2, bilde og Om | **EKSISTERENDE GRUNNLAG PASS – #4353, #4368, #4408 og #4659; slutt-UI gjenstår** |
-| 2 | Kildebelagt chronology og Historie-fane | **NESTE AKTIVE FASE ETTER MERGE AV FASE 0** |
+| 2 | Kildebelagt chronology og Historie-fane | **KLAR FOR REVIEW** |
 | 3 | Story-review og episodeproduksjon | **GODKJENT – PR #4428** |
-| 4 | Før/etter | IKKE STARTET |
+| 4 | Før/etter | **NESTE AKTIVE FASE ETTER MERGE AV FASE 2** |
 | 5 | Nyheter | IKKE STARTET |
 | 6 | Lesespor | IKKE STARTET |
 | 7 | Brukerrettede Kilder | IKKE STARTET |
@@ -145,18 +145,29 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 12 | Brands | IKKE STARTET / mulig begrunnet N/A |
 | 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | IKKE STARTET |
 
+## Resultat i fase 2
+
+- Hovedartikkelen er løftet fra versjon 1 til versjon 2.
+- Chronology er utvidet fra seks til tolv unike, kildebelagte hendelser.
+- Den tidligere åpningen i 1906 er supplert med departementsinnflyttingen i 1883, konkurransene 1887–1891, den resultatløse konkurransen i 1939 og omjuryeringen i 1946.
+- Utbyggingen etter 1969 er samlet i ett avgrenset 1978–2012-punkt i stedet for å skape en rekke mekaniske byggeposter.
+- 2011, riving/byggestart 2020–2021, åpningen 13. april 2026 og åpningene 19. og 22. juli 2026 er holdt som separate hendelser.
+- Alle chronology-punkter har minst én inspectable HTTPS-kilde; elleve av tolv bruker en offisiell `regjeringen.no`-kilde, mens terrorpunktet også har SNL som supplerende kontroll.
+- De tre Story-filene er urørt. Chronology svarer på hva og når; Stories beholder årsak, konflikt, aktører og konsekvens som narrativ akse.
+- Senere byggetrinn og framtidig ferdigstillelse er ikke gjort til gjennomførte chronology-hendelser.
+
 ## Neste aktive fase
 
-Etter at denne nullmålingen er merget på faktisk `main`, starter **fase 2: kildebelagt chronology og Historie-fane**.
+Etter at fase 2 er merget og kontrollert på faktisk `main`, starter **fase 4: Før/etter**.
 
 Fasen skal:
 
-1. auditere de seks eksisterende chronology-punktene mot den nåværende canonicale stedsteksten og kildebanken;
-2. avgjøre om de dokumenterte vendepunktene før 1906 og i 1946 mangler som egne chronology-punkter;
-3. skille chronology fra de tre narrative Stories;
-4. bevare planlagt/pågående status for senere byggetrinn;
-5. endre bare Leksikon-record, arbeidskort og målrettet regresjon med mindre en kontrakt krever mer.
+1. finne et historisk og et nyere bilde som faktisk viser samme identifiserbare del av Regjeringskvartalet;
+2. kontrollere lisens, attribusjon, filproveniens og synlig årstall;
+3. beskrive observerbar endring uten å late som ett bildepar dokumenterer hele kvartalets transformasjon;
+4. skille bildeobservasjon fra tolkning om stat, sikkerhet, vern og byrom;
+5. endre bare canonical place-data, nødvendige bilde-/attribusjonsfiler, arbeidskort og målrettet regresjon.
 
-## Samlet nullmålingsresultat
+## Samlet status etter fase 2
 
-Regjeringskvartalet har et sterkt, allerede produsert faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Fire store deler kan krediteres som reviewet eller teknisk ferdige: Om-grunnlag, Stories, Quiz/Knowledge og People. Historie-fanen er delvis, fem popup-/rundingsfaser mangler, og sluttkontroll av Badges, fagverk og faktisk UI er ikke gjennomført.
+Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Om-grunnlag, Historie, Stories, Quiz/Knowledge og People er nå produsert eller reviewet. Før/etter, Nyheter, Lesespor, brukerrettede Kilder, Mer, Objects, Brands og sluttkontroll av Badges, fagverk og faktisk UI står fortsatt åpne.
