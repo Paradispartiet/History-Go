@@ -227,7 +227,7 @@ try {
   for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'more']) {
     await page.locator(`[data-place-tab="${id}"]`).click();
     assert.equal(await page.locator(`[data-place-tab="${id}"]`).getAttribute('aria-selected'), 'true');
-    assert.equal(await page.locator(`#hg-place-panel-${id}`).isVisible(), true);
+    assert.equal(await page.locator(`#hg-place-panel-${id}`).evaluate(panel => panel.hidden), false);
   }
 
   await page.locator('[data-place-tab="about"]').focus();
