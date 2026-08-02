@@ -15,7 +15,7 @@ const data = place.for_na;
 test('Regjeringskvartalet har et komplett Før/etter-par med Johan Nygaardsvolds plass som felles anker', () => {
   assert.ok(data);
   assert.equal(data.title, 'Samme plass, nytt regjeringsanlegg');
-  assert.match(data.beforeImageLabel, /Johan Nygaardsvolds plass.*1\. juli 2008/);
+  assert.match(data.beforeImageLabel, /Johan Nygaardsvolds plass.*1\. juli 2008assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(data.nowImageLabel, /Johan Nygaardsvolds plass.*13\. april 2026/);
   assert.match(data.before, /Høyblokka og Y-blokka/);
   assert.match(data.now, /A-blokka/);
@@ -92,14 +92,14 @@ test('Den deterministiske quiz-konteksten er synkronisert med canonical place-fi
   assert.equal(target.path, placePath);
   assert.equal(target.bytes, placeBuffer.byteLength);
   assert.equal(target.sha256, createHash('sha256').update(placeBuffer).digest('hex'));
-  assert.equal(target.bytes, 13355);
-  assert.equal(target.sha256, '92c2d08c56b25005e64ae532621cf28f3bc3ba703d6ec803d18865777e0c6221');
+  assert.equal(target.bytes, 15086);
+  assert.equal(target.sha256, '018b5eac3f090fb7310e980eb5599fdbb1f09308be0052645b854c4f158e446d');
 });
 
 test('Fasekortet bevarer den godkjente Før/etter-fasen gjennom senere popupfaser', () => {
   assert.match(report, /\| 2 \| Kildebelagt chronology og Historie-fane \| \*\*GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`\*\* \|/);
   assert.match(report, /\| Før\/etter \| PASS – fase 4 \|/);
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\*\* \|/);
-  assert.match(report, /\| 6 \| Lesespor \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });
