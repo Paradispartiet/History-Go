@@ -83,6 +83,6 @@ test('Fasekortet lukker Nyheter, åpner Lesespor og peker bare videre til Kilder
   assert.match(report, /\| 5 \| Nyheter \| \*\*GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`\*\* \|/);
   assert.match(report, /\| Lesespor \| PASS – fase 6 \|/);
   assert.match(report, /\| 6 \| Lesespor \| \*\*GODKJENT – PR #4669, merge `c68881578a5a56c6ae9b610f7c5132fc448297c3`\*\* \|/);
-  assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });
