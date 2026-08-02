@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 3 – Story-review og episodeproduksjon klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 4 – kilde- og lisenskontrollert Før/etter-pakke klar for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -127,8 +127,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 0 | Nullmåling, identitetsgate og saneringsplan | **GODKJENT – PR #4647, merge `64a49e4ab978cd6ff062c557e7dc891cc15d710e`** |
 | 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | **GODKJENT – PR #4649, merge `26967843bc8ee20441c313d238bf2b51f85baf23`** |
 | 2 | Kildebelagt chronology og Historie-fane | **GODKJENT – PR #4651, merge `75cfe841738fc4d0296868d0b8f2dfe6ba5fe78f`** |
-| 3 | Story-review og eventuell episodeproduksjon | **KLAR FOR REVIEW** |
-| 4 | Før/etter | IKKE STARTET |
+| 3 | Story-review og eventuell episodeproduksjon | **GODKJENT – PR #4652, merge `8ce0bc33263dbbcc7581c9b8316f8a483c60143b`** |
+| 4 | Før/etter | **KLAR FOR REVIEW** |
 | 5 | Nyheter | IKKE STARTET |
 | 6 | Lesespor | IKKE STARTET |
 | 7 | Brukerrettede Kilder | IKKE STARTET |
@@ -165,27 +165,35 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - `dronning_maud` er koblet som canonical person, og `akershus_festning` er både faktisk relatert sted og narrativ neste scene.
 - Episoden bruker to eksterne HTTPS-kilder og kopierer ikke chronologyens korte 1940–1948-punkt.
 
+## Resultat i fase 4
+
+- Et arkivfoto av sørsiden og kirkegården, tatt av Ole Tobias Olsen omtrent 1863–1883, er lagt inn i original oppløsning uten oppskalering eller beskjæring.
+- Arkivbildets opphav, museums-ID og CC BY-SA 4.0-lisens er hentet fra Wikimedia Commons og kan inspiseres fra brukerflaten.
+- Det eksisterende public-domain-bildet fra 10. februar 2008 gjenbrukes som den nyere siden av paret; ingen unødvendig kopi er laget.
+- Begge bilder viser den samme sørsiden, men fra ulik avstand og vinkel. Vindusrytme, midttårn og takvolumer brukes som kontrollerbare identitetsankere.
+- Teksten gjør kontinuitet til hovedfunnet: arkivfotoet er tatt etter restaureringen i 1858–1861 og kan derfor ikke vise den opprinnelige middelalderkirken.
+- Inferensgrensen er eksplisitt: bildet fra 2008 dokumenterer ikke resultatet av rehabiliteringen i 2023–2024, og paret brukes ikke til å datere alle bygningsdetaljer eller forklare hele områdets utvikling.
+
 ## Aktivt filscope
 
-Fase 3 endrer bare:
+Fase 4 endrer bare:
 
-- `data/stories/stories_gamle_aker_kirke.json` på eksisterende manifestlastet sti;
-- `data/stories/stories_episode_v1_manifest.json`;
-- `data/places/historie-production/gamle_aker_kirke.json`;
-- den eksisterende Historie-regresjonspakken;
+- canonical place-fil med én `for_na`-pakke;
+- ett historisk JPEG-bilde i dokumentert originaloppløsning;
+- en egen Før/etter-regresjonspakke;
 - dette arbeidskortet.
 
-Ingen canonical place-, Leksikon-, People-, Quiz-, Knowledge-, hovedmanifest-, runtime- eller bildefil endres i fase 3.
+Ingen Leksikon-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-, hovedbilde- eller produksjonsrapportfil endres i fase 4.
 
-## Ferdigport for fase 3
+## Ferdigport for fase 4
 
-Fase 3 kan godkjennes når:
+Fase 4 kan godkjennes når:
 
-1. fossilforklaringen ikke lenger presenteres som aktiv Story, men kildegrunnlaget er bevart til «Mer»;
-2. den nye Storyen har selvstendig narrativt spørsmål, aktører, fare/valg, handling, fysisk anker og dokumentert konsekvens;
-3. `episode.date`, handling og konsekvens er kildebelagt uten å overdrive motiv eller hemmelighold;
-4. Storyen bruker canonicale place- og person-ID-er og en reell narrativ `next_scene`;
-5. filen er registrert nøyaktig én gang i `episode_v1`-manifestet og består Story-integritetskontrollen;
-6. chronology og Story fortsatt har ulike produktroller;
-7. Historie-rapporten, den permanente regresjonen og Story-governance består med 0 feil;
-8. PR-review ikke finner kildehopp, scoreavvik eller en forkledd chronology-post.
+1. begge bilder viser Gamle Aker kirkes sørside og kan sammenlignes gjennom minst tre synlige identitetsankere;
+2. historisk bilde har navn, dato/intervall, opphav, museums-ID, lisens og inspectable HTTPS-kildeside;
+3. den nyere bildefilen gjenbrukes uten duplikat og beholder sin public-domain-proveniens;
+4. teksten skiller dokumentert observasjon fra historisk tolkning og sier at arkivbildet er tatt etter 1800-tallsrestaureringen;
+5. sammenligningen ikke omtaler 2008-bildet som dokumentasjon av rehabiliteringen i 2023–2024;
+6. lokale bildefiler finnes, er forskjellige og samsvarer med metadataene;
+7. Historie-rapporten og changed-mode-porten består med 0 feil;
+8. PR-review ikke finner lisensbrudd, falsk synsvinkelparitet eller overtolkning av bildeparet.
