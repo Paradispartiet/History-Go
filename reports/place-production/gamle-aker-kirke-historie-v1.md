@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 5 – daterte og kildeavgrensede Nyheter godkjent; fase 6 er neste; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 6 – tre åpne og komplementære Lesespor klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -130,7 +130,7 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 3 | Story-review og eventuell episodeproduksjon | **GODKJENT – PR #4652, merge `8ce0bc33263dbbcc7581c9b8316f8a483c60143b`** |
 | 4 | Før/etter | **GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`** |
 | 5 | Nyheter | **GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`** |
-| 6 | Lesespor | IKKE STARTET |
+| 6 | Lesespor | **KLAR FOR REVIEW** |
 | 7 | Brukerrettede Kilder | IKKE STARTET |
 | 8 | Mer | IKKE STARTET |
 | 9 | Quizåpning 2 × 7 og Knowledge | IKKE STARTET |
@@ -183,26 +183,35 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Den planlagte sluttfasen 2026–2027 vises bare i Historie-kronologien. Den sene reviewen på PR #4656 avdekket at en tredje Nyheter-record dupliserte samme plan, og recorden er derfor fjernet før fase 6.
 - De to gjennomførte notisene ligger i Nyheter-flaten og dupliseres ikke som chronology, Story eller brukerrettet Kilder-liste.
 
+## Resultat i fase 6
+
+- Tre `approved` Lesespor er knyttet direkte og bare til `gamle_aker_kirke`.
+- SNL-artikkelen gir det brede faglige løpet gjennom bygg, institusjonshistorie, rivningsstrid og restaureringer.
+- Arkitektur-intervjuet undersøker beslutninger, vernehensyn og myndighetsansvar i rehabiliteringen i 2023–2024.
+- Riksantikvarens case viser hvordan energi, brannsikring, teknikk og universell utforming er integrert i et automatisk fredet middelalderbygg.
+- Alle tre tekster er fullt åpne, bruker `link_only`, har godkjent kildekvalitet og lagrer ingen kopiert artikkeltekst.
+- Ukjent publiseringsdato for Riksantikvarens case står ærlig som `date: null` og `year: null`; siden tillegges ikke et konstruert årstall.
+- Lesespor ligger bare i den canonicale Lesespor-modulen og vises gjennom den eksisterende stedfiltrerte rendereren. Ingen record er kopiert inn i Leksikon eller `externalLinks`.
+
 ## Aktivt filscope
 
-Fase 5 endrer bare:
+Fase 6 endrer bare:
 
-- den eksisterende manifestlastede Leksikon-filen med to `news_note`-records;
-- en egen Nyheter-regresjonspakke;
-- den eksisterende Før/etter-regresjonen, bare for å følge den godkjente faseovergangen;
+- den eksisterende manifestlastede Oslo/Historie-filen i Lesespor-modulen;
+- en egen Lesespor-regresjonspakke;
 - dette arbeidskortet.
 
-Ingen canonical place-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-, bilde- eller produksjonsrapportfil endres i fase 5.
+Ingen canonical place-, Leksikon-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-, bilde- eller produksjonsrapportfil endres i fase 6.
 
-## Ferdigport for fase 5
+## Ferdigport for fase 6
 
-Fase 5 kan godkjennes når:
+Fase 6 kan godkjennes når:
 
-1. begge notiser har unik ID, korrekt place-ID, kategori, dato/periode og fersk kildekontroll;
-2. kildene er navngitte, offisielle HTTPS-sider som faktisk dekker den enkelte notisen;
-3. gjenåpningsfeiring ikke forveksles med at alle rehabiliteringsarbeider var avsluttet;
-4. døpefontkopien ikke brukes til å avgjøre originalens omstridte årstall;
-5. planlagt arbeid i 2026–2027 eies bare av Historie-kronologien og ikke dupliseres som Nyheter;
-6. Nyheter ikke materialiseres som Story, `externalLinks` eller quizstoff;
-7. Historie-rapporten og Data checks består med 0 feil;
-8. PR-review ikke finner foreldede nåtidsopplysninger, kildehopp eller sammenblanding av plan og hendelse.
+1. nøyaktig tre records har unike ID-er og bare `place_ids: ["gamle_aker_kirke"]`;
+2. alle tre bruker `access: "open"`, `rights: "link_only"` og `curation_status: "approved"`;
+3. kildene har canonical, recognized eller institutional kildekvalitet og inspectable HTTPS-lenker;
+4. Lesesporene utfyller hverandre med historisk oversikt, restaureringsbeslutninger og teknisk kulturminneforvaltning;
+5. ukjent dato bevares som `null`, og kjente datoer samsvarer med de publiserte sidene;
+6. ingen record lagrer artikkeltekst eller materialiseres i Leksikon, `externalLinks`, Story eller quiz;
+7. den eksisterende rendereren filtrerer på place-ID, avviser betalingsmurer og viser relevansnotatet;
+8. Lesespor-validator, Historie-rapport og PR-review består uten feil i stedskobling, tilgang eller kildeklassifisering.
