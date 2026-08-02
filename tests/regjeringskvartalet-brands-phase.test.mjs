@@ -52,3 +52,5 @@ test('Fasekortet lukker Objects, godkjenner Brands-N/A og åpner sluttfasen', ()
   assert.match(report, /\| 13 \| Badges, fagverk, alle åtte popupfaner, rundinger og full UI-\/produksjonsaudit \| \*\*NESTE AKTIVE FASE ETTER MERGE AV FASE 12\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });
+
+// Phase 13 bootstrap trigger; removed from the final diff.
