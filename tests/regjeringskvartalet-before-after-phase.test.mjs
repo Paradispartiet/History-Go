@@ -58,6 +58,11 @@ test('Begge bilder har Commons-proveniens og synlig fotograf/lisens innenfor can
   assert.equal(data.sources.length, 4);
   assert.equal(new Set(data.sources).size, 4);
   assert.ok(data.sources.every(source => URL.canParse(source) && new URL(source).protocol === 'https:'));
+
+  const licenseLink = place.externalLinks.find(link => link.url === 'https://creativecommons.org/licenses/by-sa/4.0/');
+  assert.ok(licenseLink);
+  assert.equal(licenseLink.label, 'Creative Commons – CC BY-SA 4.0-lisens');
+  assert.equal(licenseLink.verifiedAt, '2026-08-02');
 });
 
 test('Før/etter-teksten bevarer bildets inferensgrense og juliåpningene eies ikke av nå-bildet', () => {
@@ -69,10 +74,11 @@ test('Før/etter-teksten bevarer bildets inferensgrense og juliåpningene eies i
   assert.ok(!data.change.includes('viser hele'));
 });
 
-test('Eksisterende popup-runtime viser bildeetikettene og løfter for_na.sources til brukerrettede kildelenker', () => {
+test('Eksisterende popup-runtime viser bildeetikettene og løfter kilder/lisens til brukerrettede lenker', () => {
   assert.match(runtime, /safeHttpsUrl\(item\.url\)/);
   assert.match(runtime, /<strong>\$\{esc\(item\.label\)\}<\/strong>/);
   assert.match(runtime, /strings\(place\?\.for_na\?\.sources/);
+  assert.match(runtime, /const configuredLinks = \[place, \.\.\.list\(articles\)\]/);
   assert.match(runtime, /type: "image_source", label: "Bilde- og sammenligningskilde"/);
   assert.match(runtime, /rel="noopener noreferrer"/);
 });
