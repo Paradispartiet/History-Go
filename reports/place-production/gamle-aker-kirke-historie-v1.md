@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 4 – kilde- og lisenskontrollert Før/etter-pakke klar for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 5 – daterte og kildeavgrensede Nyheter klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -128,8 +128,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 1 | Kildebank, Historie-rapport, description 4.2, bilder og Om | **GODKJENT – PR #4649, merge `26967843bc8ee20441c313d238bf2b51f85baf23`** |
 | 2 | Kildebelagt chronology og Historie-fane | **GODKJENT – PR #4651, merge `75cfe841738fc4d0296868d0b8f2dfe6ba5fe78f`** |
 | 3 | Story-review og eventuell episodeproduksjon | **GODKJENT – PR #4652, merge `8ce0bc33263dbbcc7581c9b8316f8a483c60143b`** |
-| 4 | Før/etter | **KLAR FOR REVIEW** |
-| 5 | Nyheter | IKKE STARTET |
+| 4 | Før/etter | **GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`** |
+| 5 | Nyheter | **KLAR FOR REVIEW** |
 | 6 | Lesespor | IKKE STARTET |
 | 7 | Brukerrettede Kilder | IKKE STARTET |
 | 8 | Mer | IKKE STARTET |
@@ -174,26 +174,35 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Teksten gjør kontinuitet til hovedfunnet: arkivfotoet er tatt etter restaureringen i 1858–1861 og kan derfor ikke vise den opprinnelige middelalderkirken.
 - Inferensgrensen er eksplisitt: bildet fra 2008 dokumenterer ikke resultatet av rehabiliteringen i 2023–2024, og paret brukes ikke til å datere alle bygningsdetaljer eller forklare hele områdets utvikling.
 
+## Resultat i fase 5
+
+- Tre `news_note`-records dekker gjenåpningsfeiringen i 2024, den nye brukskopien av Blix-døpefonten i 2025 og den planlagte nødutgangsfasen i 2026–2027.
+- Alle tre notiser har dato eller avgrenset periode, fersk `source_checked_at`, navngitte offisielle HTTPS-kilder og `quiz_use: none`.
+- Gjenåpningsnotisen skiller feiringen 26. mai 2024 fra at rehabiliteringsarbeider fortsatte ut august eller september samme år.
+- Døpefontnotisen dokumenterer den nye kopien og innvielsen uten å late som den løser kildekonflikten om originalens årstall.
+- 2026-notisen er merket `planned` og sier eksplisitt at kontrollen skjedde før varslet oppstart; den fremstiller verken oppstart eller ferdigstillelse som gjennomført.
+- Notisene ligger i Nyheter-flaten og dupliseres ikke som chronology, Story eller brukerrettet Kilder-liste.
+
 ## Aktivt filscope
 
-Fase 4 endrer bare:
+Fase 5 endrer bare:
 
-- canonical place-fil med én `for_na`-pakke;
-- ett historisk JPEG-bilde i dokumentert originaloppløsning;
-- en egen Før/etter-regresjonspakke;
+- den eksisterende manifestlastede Leksikon-filen med tre `news_note`-records;
+- en egen Nyheter-regresjonspakke;
+- den eksisterende Før/etter-regresjonen, bare for å følge den godkjente faseovergangen;
 - dette arbeidskortet.
 
-Ingen Leksikon-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-, hovedbilde- eller produksjonsrapportfil endres i fase 4.
+Ingen canonical place-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-, bilde- eller produksjonsrapportfil endres i fase 5.
 
-## Ferdigport for fase 4
+## Ferdigport for fase 5
 
-Fase 4 kan godkjennes når:
+Fase 5 kan godkjennes når:
 
-1. begge bilder viser Gamle Aker kirkes sørside og kan sammenlignes gjennom minst tre synlige identitetsankere;
-2. historisk bilde har navn, dato/intervall, opphav, museums-ID, lisens og inspectable HTTPS-kildeside;
-3. den nyere bildefilen gjenbrukes uten duplikat og beholder sin public-domain-proveniens;
-4. teksten skiller dokumentert observasjon fra historisk tolkning og sier at arkivbildet er tatt etter 1800-tallsrestaureringen;
-5. sammenligningen ikke omtaler 2008-bildet som dokumentasjon av rehabiliteringen i 2023–2024;
-6. lokale bildefiler finnes, er forskjellige og samsvarer med metadataene;
-7. Historie-rapporten og changed-mode-porten består med 0 feil;
-8. PR-review ikke finner lisensbrudd, falsk synsvinkelparitet eller overtolkning av bildeparet.
+1. alle tre notiser har unik ID, korrekt place-ID, kategori, dato/periode og fersk kildekontroll;
+2. kildene er navngitte, offisielle HTTPS-sider som faktisk dekker den enkelte notisen;
+3. gjenåpningsfeiring ikke forveksles med at alle rehabiliteringsarbeider var avsluttet;
+4. døpefontkopien ikke brukes til å avgjøre originalens omstridte årstall;
+5. planlagt arbeid i 2026–2027 har `temporal_status: planned` og ikke beskrives som påbegynt eller ferdig;
+6. Nyheter ikke materialiseres som chronology, Story, `externalLinks` eller quizstoff;
+7. Historie-rapporten og Data checks består med 0 feil;
+8. PR-review ikke finner foreldede nåtidsopplysninger, kildehopp eller sammenblanding av plan og hendelse.
