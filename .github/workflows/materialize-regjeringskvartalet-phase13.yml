@@ -1,0 +1,34 @@
+name: Materialize Regjeringskvartalet phase 13
+
+on:
+  push:
+    branches:
+      - agent/regjeringskvartalet-phase-13-ui-audit
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.head_commit.message == 'Trigger clean phase 13 materializer'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/regjeringskvartalet-phase-13-ui-audit
+          fetch-depth: 0
+
+      - name: Materialize phase 13
+        run: python3 scripts/materialize_regjeringskvartalet_phase13.py
+
+      - name: Commit clean permanent diff
+        run: |
+          rm -f .github/phase13-*.txt
+          rm -f .github/workflows/materialize-regjeringskvartalet-phase13.yml
+          rm -f scripts/materialize_regjeringskvartalet_phase13.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fullfør Regjeringskvartalets UI-audit"
+          git push origin HEAD:agent/regjeringskvartalet-phase-13-ui-audit
