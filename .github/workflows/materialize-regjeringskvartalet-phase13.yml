@@ -18,16 +18,24 @@ jobs:
           ref: agent/regjeringskvartalet-phase-13-ui-audit
           fetch-depth: 0
 
-      - name: Materialize phase 13
-        run: python3 scripts/materialize_regjeringskvartalet_phase13.py
-
-      - name: Commit clean permanent diff
+      - name: Materialize and publish result
+        shell: bash
         run: |
-          rm -f .github/phase13-*.txt
-          rm -f .github/workflows/materialize-regjeringskvartalet-phase13.yml
-          rm -f scripts/materialize_regjeringskvartalet_phase13.py
+          set +e
+          python3 scripts/materialize_regjeringskvartalet_phase13.py > /tmp/phase13.log 2>&1
+          code=$?
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Fullfør Regjeringskvartalets UI-audit"
+          rm -f .github/workflows/materialize-regjeringskvartalet-phase13.yml
+          if [ "$code" -eq 0 ]; then
+            rm -f .github/phase13-*.txt
+            rm -f scripts/materialize_regjeringskvartalet_phase13.py
+            git add -A
+            git commit -m "Fullfør Regjeringskvartalets UI-audit"
+          else
+            cp /tmp/phase13.log .github/phase13-clean-result.txt
+            git add -A
+            git commit -m "Capture clean phase 13 materialization error"
+          fi
           git push origin HEAD:agent/regjeringskvartalet-phase-13-ui-audit
