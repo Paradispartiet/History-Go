@@ -29,7 +29,7 @@ test('Notisene skiller pågående prosess fra gjennomført arrangement', () => {
   assert.equal(gBlock.date, '2026-01-29');
   assert.equal(gBlock.reporting_period, 'januar–desember 2026');
   assert.equal(gBlock.classification.temporal_status, 'ongoing');
-  assert.match(gBlock.popupDesc, /140 millioner kronerassert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(gBlock.popupDesc, /140 millioner kroner/);
   assert.match(gBlock.wikiText.join(' '), /ikke at rehabiliteringen er vedtatt, startet eller ferdig/);
 
   const art = byId.get('regjeringskvartalet_nyhet_kunstmarkering_2026');
