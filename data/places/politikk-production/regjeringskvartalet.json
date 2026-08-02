@@ -282,8 +282,20 @@
     ]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Eksisterende Regjeringskvartalet-quiz har ett kildebasert sett med fem spørsmål og oppfyller derfor ikke normalåpningens krav om to sett og 14 spørsmål."
+    "status": "PASS",
+    "quizTargetId": "regjeringskvartalet",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/regjeringskvartalet.json",
+    "productionContext": "data/quiz/production_context/politikk/regjeringskvartalet.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
   },
   "chronologyStories": {
     "status": "PASS",
@@ -335,8 +347,12 @@
       ]
     },
     "F": {
-      "status": "N/A",
-      "rationale": "Quizfilen har foreløpig ett sett med fem spørsmål og kan ikke godkjennes som normalåpning på to sett og 14 spørsmål."
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/regjeringskvartalet_sets.json",
+        "data/quiz/production_briefs/politikk/regjeringskvartalet.json",
+        "data/quiz/production_context/politikk/regjeringskvartalet.json"
+      ]
     },
     "G": {
       "status": "PASS",
@@ -351,6 +367,6 @@
   "review": {
     "reviewer": "OpenAI",
     "reviewedAt": "2026-08-02",
-    "notes": "Rapporten materialiserer eksisterende v4.2-dossier, canonical emne_ids, gjeldende quizstatus og tre episode_v1-stories. Ingen udokumentert effektpåstand er godkjent."
+    "notes": "Rapporten materialiserer eksisterende v4.2-dossier, canonical emne_ids, tre episode_v1-stories og en full narrow 3x7-quizpakke. De første to settene utgjør en godkjent normalåpning på 14 spørsmål. Ingen udokumentert effektpåstand er godkjent."
   }
 }
