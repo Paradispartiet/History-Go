@@ -301,9 +301,10 @@ test('Gamle Aker chronology er kildebelagt og holder usikker datering og Story a
     assert.ok(entry.sources.every((source) => URL.canParse(source) && new URL(source).protocol === 'https:'));
   }
 
-  const uncertainDating = article.chronology.find((entry) => entry.id === 'chrono_gak_c1080_1150');
+  const uncertainDating = article.chronology.find((entry) => entry.id === 'chrono_gak_c1080_1180');
   assert.equal(uncertainDating.year, null);
-  assert.match(uncertainDating.period, /1080.*1150/);
+  assert.match(uncertainDating.period, /1080.*1180/);
+  assert.match(uncertainDating.desc, /1080.*1100-tallet.*1130.*1180/);
   assert.deepEqual(
     article.chronology.filter((entry) => entry.year !== null).map((entry) => entry.year),
     [1186, 1592, 1703, 1852, 1856, 1940, 1950, 2023, 2025, 2026]

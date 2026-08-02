@@ -150,7 +150,7 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 ## Resultat i fase 2
 
 - Den ene udokumenterte chronology-raden er erstattet med elleve kildebelagte milepæler fra middelalderens usikre byggeperiode til planlagt rehabilitering i 2026–2027.
-- Byggeperioden bruker `year: null` og `period: "Ca. 1080–1150"`; kildenes dateringsspenn blir dermed ikke fremstilt som ett sikkert byggeår.
+- Byggeperioden bruker `year: null` og `period: "Ca. 1080–1180"`; feltet omslutter begge kildeintervallene og fremstiller dem ikke som ett sikkert byggeår.
 - Tidslinjen dekker klostereierskap, brannene i 1592 og 1703, rivningsstriden i 1852, to restaureringsperioder, krigsårene og den nyere rehabiliteringen.
 - Fremtidspunktet 2026–2027 er eksplisitt merket som planlagt og kan ikke leses som en ferdig hendelse.
 - Leksikonets interne `sources` er fylt med fem eksterne kilder. Brukerrettet `externalLinks` produseres først i Kilder-fasen og er ikke smuglet inn her.
