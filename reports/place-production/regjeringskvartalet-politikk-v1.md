@@ -8,7 +8,7 @@
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 13 – full UI-/produksjonsaudit PASS; stedet er ikke produksjonsklart før fasen er merget og kontrollert på fersk `main`**
+- Status: **fase 13 – full UI-/produksjonsaudit PASS; produksjonsklart etter PR #4674 og kontroll på fersk `main`**
 
 ## Arbeidskort
 
@@ -174,7 +174,7 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 10 | People | **GODKJENT – PR #3604** |
 | 11 | Objects | **GODKJENT – PR #4672, merge `1b8b277cc70b4a26f332091194de667d1a32da53`** |
 | 12 | Brands | **GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`** |
-| 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | **KLAR FOR REVIEW – FULL UI-/PRODUKSJONSAUDIT PASS** |
+| 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | **GODKJENT – PR #4674, merge `06d6c462e549be34e784d81317333bbfb20fd5ef`** |
 
 ## Resultat i fase 4
 
@@ -268,6 +268,8 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 - Eksterne lenker åpnes sikkert med `noopener noreferrer`, og canonical bilde-URL-er er HTTPS.
 - Den permanente `Place rounds governance`-workflowen kjører nå den samme Chromium-baserte sluttporten ved relevante endringer.
 
-## Sluttstatus for review
+## Sluttstatus
 
-Alle fase 13-portene består på den validerte PR-headen. Regjeringskvartalet er fortsatt **ikke produksjonsklart før fase 13 er merget og den identiske sluttdiffen er kontrollert på fersk `main`**. Etter merge skal fasekortet lukkes med PR-nummer og merge-SHA; ingen ny innholdsproduksjonsfase åpnes.
+Fase 13 er squash-merget i PR #4674 med commit `06d6c462e549be34e784d81317333bbfb20fd5ef`. Den permanente ellevefilersdiffen er kontrollert gjennom closure-PR-CI på en gren opprettet direkte fra fersk `main`; `Place rounds governance` og `TypeScript guard` må begge bestå før denne avslutningen merges.
+
+Regjeringskvartalet er dermed **produksjonsklart etter den canonicale sted-for-sted-checklista**. Alle tretten faser er lukket, og ingen ny innholdsproduksjonsfase står åpen.
