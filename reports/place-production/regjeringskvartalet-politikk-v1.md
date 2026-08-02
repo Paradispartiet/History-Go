@@ -8,11 +8,11 @@
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 2 – kildebelagt chronology og Historie-fane klar for review; stedet er ikke samlet produksjonsklart**
+- Status: **fase 4 – lisenskontrollert Før/etter-par klart for review; stedet er ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
-| Felt | Status ved nullmåling |
+| Felt | Status |
 | --- | --- |
 | Hva place-objektet representerer | Det offisielle institusjonsområdet mellom Akersgata og Møllergata der Statsministerens kontor og departementer samles. Det er ikke synonymt med Høyblokka, ett departement, 22. juli-senteret, minnestedet eller den revne Y-blokka. |
 | Kategori | `politikk` er riktig hovedidentitet fordi stedet primært er et fysisk område for utøvende statsmakt og sentralforvaltning. |
@@ -22,16 +22,16 @@
 | Nåtidskontroll | `currentVerification.status: PASS`, kontrollert 2026-08-02 mot offisielle kilder om byggetrinn 1, minnestedet og 22. juli-senteret. |
 | Koordinat | `verified_geometry`; deterministisk sentroid av den offisielle S-5100-planflaten. Høyblokka eller et tilfeldig adressepunkt brukes ikke som proxy for hele området. |
 | Description-pakke | Canonical 4.2-pakke og Politikk-rapport er `ready`. `desc` og `popupDesc` ble senest synkronisert og kontrollert i PR #4659. |
-| Hovedbilde | Gyldig eksternt `popupImage` finnes og bildebackloggen ble oppdatert i PR #4659. Nullmålingen finner ikke et dokumentert lokalt full-/kortbildepar som egen ferdig fase. |
+| Hovedbilde | Gyldig eksternt `popupImage` finnes og bildebackloggen ble oppdatert i PR #4659. |
 | Leksikon | Fire manifestlastede artikler finnes. Hovedartikkelen er versjon 2 med tre fakta og tolv kildebelagte chronology-punkter fra 1883 til juli 2026. |
 | Rundingsprofil | Fast `people · objects · brands`, med Badges ved overskriften. Wonderkammer-innhold skal ikke telles som ferdig Objects-runding. |
 | People | Tolv canonicale personer er dokumentert ved stedet, med maksimalt to arkitekter og flertall av faktiske brukere, beslutningstakere, kunst-/ingeniøraktører og hendelsespersoner. Dekningen ble låst i PR #3604. |
 | Objects | Ingen ferdig canonical Objects-pakke for rundingen er dokumentert. `Grass Roots Square` finnes som Wonderkammer-oppføring, men er ikke dermed et validert Object-kort. `Fiskerne`, `Måken`, minnestedet og andre fysiske kandidater må identitets-, kilde-, plassering- og bildeauditeres før bruk. |
-| Brands | Ingen kvalifiserende canonical Brand-runding med dokumentert stedskobling er funnet i nullmålingen. Departementer, Statsbygg, arkitektkontorer og kunstnere skal ikke brukes som filler. |
+| Brands | Ingen kvalifiserende canonical Brand-runding med dokumentert stedskobling er funnet. Departementer, Statsbygg, arkitektkontorer og kunstnere skal ikke brukes som filler. |
 | Quiz | Full 3×7-pakke med 21 spørsmål. De første to settene gir 14 ordinære spørsmål; sett 3 bærer teori-/metodefordypning. |
 | Knowledge | 21 eksplisitte Knowledge-ID-er er materialisert og synkronisert. Alle spørsmål er stedsskopet og har emne-, begreps- og kunnskapskoblinger. |
 | Stories | Tre canonicale `episode_v1`-fortellinger er narrativt revidert: «Staten leter etter et hjem», «Kunst støpt inn i staten» og «Etter bomben». |
-| Før/etter | Ingen canonical og lisenskontrollert bildepakke er funnet. |
+| Før/etter | Lisenskontrollert Wikimedia-par fra Johan Nygaardsvolds plass: 1. juli 2008 og åpningen 13. april 2026. Begge er CC BY-SA 4.0, har navngitt fotograf, verifisert kildeside og eksplisitt inferensgrense. |
 | Nyheter | Ingen daterte `news_note`-records for stedet er funnet i den manifestlastede Leksikon-filen. |
 | Lesespor | `data/lesespor/oslo/lesespor_oslo_politikk.json` har ingen oppføring med `place_ids: ["regjeringskvartalet"]`. |
 | Brukerrettede kilder | Place og Leksikon har flere offisielle lenker, men ingen separat, deduplisert og fasegodkjent Kilder-flate med grupper, navn, kildebruk og avgrensninger er dokumentert. |
@@ -39,8 +39,6 @@
 | Fagverk-sted | Regjeringskvartalet har kuratert stedsside og relevante Politikk-linser. Den canonicale URL-en og synlig UI må kontrolleres på nytt i sluttfasen. |
 
 ## Canonical identitetsgate
-
-Nullmålingen finner ingen grunn til å opprette et nytt sted eller endre place-ID-en.
 
 `regjeringskvartalet` skal representere **det samlede institusjonsområdet i den offisielle planavgrensningen**, ikke:
 
@@ -55,9 +53,9 @@ Nullmålingen finner ingen grunn til å opprette et nytt sted eller endre place-
 
 Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når egen identitet og fysisk tilknytning beholdes presist.
 
-## Politikk-nullmåling etter stedsgaten
+## Politikk-gate
 
-| Gate | Status | Nullmåling |
+| Gate | Status | Begrunnelse |
 | --- | --- | --- |
 | Hovedfunksjon | PASS | Stedet er presist avgrenset som fysisk kjerneområde for regjering og departementer. |
 | Canonicale emner | PASS | Tre `em_pol_*` er eksplisitt begrunnet med stedsspesifikke evidenskjeder. |
@@ -68,20 +66,20 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | Nåtidskontroll | PASS | Aktive og planlagte forhold er kontrollert 2026-08-02. |
 | Quizåpning | PASS | 14 ordinære spørsmål kommer før teori-/metodefordypningen. |
 
-## Popup-nullmåling
+## Popup-status
 
 | Fane | Status | Begrunnelse |
 | --- | --- | --- |
 | Om | PASS – eksisterende grunnlag | Canonical identitet, Politikk-rapport, 4.2-dekket `desc`/`popupDesc`, hovedartikkel, kilder og gyldig eksternt popupbilde er på plass. |
-| Historie | PASS – fase 2 | Tolv kildebelagte chronology-punkter følger samlokaliseringsforsøk, bygg, utvidelser, terrorangrep, gjenoppbygging og åpningene i 2026. Punktene er korte hendelsesrecords og erstatter ikke de tre narrative Stories. |
+| Historie | PASS – PR #4666 | Tolv kildebelagte chronology-punkter følger samlokaliseringsforsøk, bygg, utvidelser, terrorangrep, gjenoppbygging og åpningene i 2026. Punktene er korte hendelsesrecords og erstatter ikke de tre narrative Stories. |
 | Fortellinger | PASS – PR #4428 | Tre ulike narrative akser er konsolidert og reviewet mot `episode_v1`; de dupliserer ikke bare en datooversikt. |
-| Før/etter | MANGLER | Ingen canonical bildeparpakke med samme identitetsanker, rettigheter, attribusjon og eksplisitt inferensgrense er funnet. |
+| Før/etter | PASS – fase 4 | To CC BY-SA 4.0-bilder bruker Johan Nygaardsvolds plass som felles fysisk anker. Teksten skiller observerbar endring fra forklaring og sier uttrykkelig at ulike utsnitt ikke dokumenterer hele kvartalet. |
 | Nyheter | MANGLER | Ingen stedsspesifikke `news_note`-records finnes. |
 | Lesespor | MANGLER | Ingen manifestlastede Lesespor peker til `regjeringskvartalet`. |
 | Kilder | DELVIS / IKKE GODKJENT | Kilder finnes i place-, rapport-, Story- og Leksikon-data, men den brukerrettede flaten er ikke separat kuratert, deduplisert og fasegodkjent. |
 | Mer | DELVIS / IKKE GODKJENT | Fire tematiske artikler gir innhold, men Mer-fanens egne kontrakter og eiergrenser er ikke ferdig vurdert. |
 
-## Rundings- og progresjonsnullmåling
+## Rundings- og progresjonsstatus
 
 | Fase | Status | Begrunnelse |
 | --- | --- | --- |
@@ -90,6 +88,39 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | Objects | IKKE STARTET | Ingen canonical bildeklare Object-kort er dokumentert for rundingen. |
 | Brands | IKKE STARTET / mulig N/A | Ingen kvalifiserende Brand er dokumentert; N/A kan bare godkjennes etter eksplisitt research og audit. |
 | Badges/fagverk | DELVIS | Data og kuratert fagverk finnes, men sluttfasen må kontrollere faktisk badgegrafikk, klikk og stedsside i UI. |
+
+## Før/etter-research og eiergrense
+
+### Før-bildet
+
+- Fil: `File:Regjeringskvartalet H-blokk Johan Nygaardsvolds plass Oslo Norway (2008.07.01).jpg`.
+- Dato: 1. juli 2008.
+- Fotograf: Geir Hval (www.MacWhale.eu).
+- Lisens: CC BY-SA 4.0.
+- Stedssignal: Wikimedia-beskrivelsen identifiserer Johan Nygaardsvolds plass langs Akersgata med Høyblokka og Y-blokka i bakgrunnen.
+- Bruk: direkte HTTPS-redirect fra Wikimedia Commons uten lokal beskjæring eller bearbeiding.
+
+### Nå-bildet
+
+- Fil: `File:Official opening Regjeringskvartalet April 13th 2026.jpg`.
+- Dato: 13. april 2026.
+- Fotograf: Helge Høifødt.
+- Lisens: CC BY-SA 4.0.
+- Stedssignal: bildet er tatt under den offisielle åpningen på Johan Nygaardsvolds plass og viser den nye A-blokka.
+- Bruk: direkte HTTPS-redirect fra Wikimedia Commons uten lokal beskjæring eller bearbeiding.
+
+### Hva paret kan og ikke kan dokumentere
+
+Paret kan vise en fysisk omforming rundt samme navngitte plass: Y-blokka i den eldre situasjonen, A-blokka i det nye anlegget og endret bakkeplan/uterom. Høyblokka fungerer som orienteringspunkt, men kameravinklene er ikke identiske.
+
+Paret kan ikke alene dokumentere:
+
+- hele planområdets endring;
+- årsakene til riving og bevaring;
+- hvordan sikkerhetsløsningene fungerer;
+- adgang og tilgjengelighet for alle deler av området;
+- forholdene etter åpningene av minnestedet og det permanente 22. juli-senteret i juli 2026;
+- målt effekt på trygghet, tillit, forvaltning eller demokratisk offentlighet.
 
 ## Sanerings- og produksjonsplan
 
@@ -101,13 +132,13 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 - revidert `desc`, `popupDesc`, Politikk-produksjonsrapport og eksternt popupbilde;
 - den kildebelagte chronology-pakken med tolv avgrensede hendelser;
 - de tre narrative Stories;
+- Før/etter-paret med full Commons-attribusjon og avgrenset bildelesning;
 - full 3×7 Quiz og Knowledge-materialisering;
 - de tolv dokumenterte People-koblingene;
 - fire Leksikon-artikler som innholdsgrunnlag.
 
 ### Revider eller bygg separat
 
-- Før/etter med kontrollert historisk og nyere bilde av samme område/anker;
 - Nyheter med daterte nåtidsrecords og tydelig skille mellom gjennomført, pågående og planlagt;
 - Lesespor med åpne, komplementære `link_only`-kilder;
 - Kilder som deduplisert og brukerrettet flate;
@@ -132,10 +163,10 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | --- | --- | --- |
 | 0 | Nullmåling, identitetsgate og saneringsplan | **GODKJENT – PR #4665, merge `c00d94430ea82da5afb4f0e1b10ead2b504f6ff8`** |
 | 1 | Kildebank, Politikk-rapport, description 4.2, bilde og Om | **EKSISTERENDE GRUNNLAG PASS – #4353, #4368, #4408 og #4659; slutt-UI gjenstår** |
-| 2 | Kildebelagt chronology og Historie-fane | **KLAR FOR REVIEW** |
+| 2 | Kildebelagt chronology og Historie-fane | **GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`** |
 | 3 | Story-review og episodeproduksjon | **GODKJENT – PR #4428** |
-| 4 | Før/etter | **NESTE AKTIVE FASE ETTER MERGE AV FASE 2** |
-| 5 | Nyheter | IKKE STARTET |
+| 4 | Før/etter | **KLAR FOR REVIEW** |
+| 5 | Nyheter | **NESTE AKTIVE FASE ETTER MERGE AV FASE 4** |
 | 6 | Lesespor | IKKE STARTET |
 | 7 | Brukerrettede Kilder | IKKE STARTET |
 | 8 | Mer | IKKE STARTET |
@@ -145,29 +176,29 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 12 | Brands | IKKE STARTET / mulig begrunnet N/A |
 | 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | IKKE STARTET |
 
-## Resultat i fase 2
+## Resultat i fase 4
 
-- Hovedartikkelen er løftet fra versjon 1 til versjon 2.
-- Chronology er utvidet fra seks til tolv unike, kildebelagte hendelser.
-- Den tidligere åpningen i 1906 er supplert med departementsinnflyttingen i 1883, konkurransene 1887–1891, den resultatløse konkurransen i 1939 og omjuryeringen i 1946.
-- Utbyggingen etter 1969 er samlet i ett avgrenset 1978–2012-punkt i stedet for å skape en rekke mekaniske byggeposter.
-- 2011, riving/byggestart 2020–2021, åpningen 13. april 2026 og åpningene 19. og 22. juli 2026 er holdt som separate hendelser.
-- Alle chronology-punkter har minst én inspectable HTTPS-kilde; elleve av tolv bruker en offisiell `regjeringen.no`-kilde, mens terrorpunktet også har SNL som supplerende kontroll.
-- De tre Story-filene er urørt. Chronology svarer på hva og når; Stories beholder årsak, konflikt, aktører og konsekvens som narrativ akse.
-- Senere byggetrinn og framtidig ferdigstillelse er ikke gjort til gjennomførte chronology-hendelser.
+- `for_na` er lagt i canonical place-record, ikke i en separat duplikatfil.
+- Begge bilder lastes via eksisterende HTTPS-støtte i `renderBeforeAfter`; ingen runtimeendring er nødvendig.
+- Begge kildesider oppgir navngitt fotograf, opptaksdato og CC BY-SA 4.0.
+- Johan Nygaardsvolds plass er felles fysisk anker, mens ulik kameravinkel beskrives åpent.
+- Før-bildet viser Høyblokka og Y-blokka 1. juli 2008.
+- Nå-bildet viser plassen og A-blokka under åpningen 13. april 2026.
+- Teksten hevder ikke at paret viser hele planområdet, full sikkerhetsløsning eller status etter juliåpningene.
+- Ingen Leksikon-, Story-, Quiz-, Knowledge-, People-, koordinat-, manifest- eller runtimefil er endret.
 
 ## Neste aktive fase
 
-Etter at fase 2 er merget og kontrollert på faktisk `main`, starter **fase 4: Før/etter**.
+Etter at fase 4 er merget og kontrollert på faktisk `main`, starter **fase 5: Nyheter**.
 
 Fasen skal:
 
-1. finne et historisk og et nyere bilde som faktisk viser samme identifiserbare del av Regjeringskvartalet;
-2. kontrollere lisens, attribusjon, filproveniens og synlig årstall;
-3. beskrive observerbar endring uten å late som ett bildepar dokumenterer hele kvartalets transformasjon;
-4. skille bildeobservasjon fra tolkning om stat, sikkerhet, vern og byrom;
-5. endre bare canonical place-data, nødvendige bilde-/attribusjonsfiler, arbeidskort og målrettet regresjon.
+1. finne et lite antall daterte, stedsspesifikke og fortsatt relevante hendelser;
+2. bruke offisielle primærkilder og skille gjennomført hendelse fra pågående eller planlagt arbeid;
+3. unngå å duplisere chronology-punktene som mekaniske nyhetskort;
+4. plassere løpende prosjektstatus i riktig flate uten å fremstille senere byggetrinn som ferdige;
+5. oppdatere Leksikon-record, fasekort og målrettet regresjon – og runtime bare dersom eksisterende Nyheter-kontrakt ikke kan vise kilden korrekt.
 
-## Samlet status etter fase 2
+## Samlet status etter fase 4
 
-Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Om-grunnlag, Historie, Stories, Quiz/Knowledge og People er nå produsert eller reviewet. Før/etter, Nyheter, Lesespor, brukerrettede Kilder, Mer, Objects, Brands og sluttkontroll av Badges, fagverk og faktisk UI står fortsatt åpne.
+Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Om-grunnlag, Historie, Stories, Før/etter, Quiz/Knowledge og People er nå produsert eller reviewet. Nyheter, Lesespor, brukerrettede Kilder, Mer, Objects, Brands og sluttkontroll av Badges, fagverk og faktisk UI står fortsatt åpne.
