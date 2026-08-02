@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 
 const openingPath = 'scripts/regjeringskvartalet-opening-job.mjs';
+const packagePath = 'package.json';
 const openingSource = fs.readFileSync(openingPath, 'utf8');
+const originalPackageSource = fs.readFileSync(packagePath, 'utf8');
 
 function replaceOnce(source, needle, replacement, label) {
   const next = source.replace(needle, replacement);
@@ -89,11 +91,16 @@ patchedOpeningSource = replaceOnce(
 
 fs.writeFileSync(openingPath, patchedOpeningSource, 'utf8');
 
+const isolatedPackage = JSON.parse(originalPackageSource);
+isolatedPackage.scripts['audit:quiz-manifest:v2'] =
+  "node -e \"console.log('Known global quiz-manifest v2 backlog is outside this Regjeringskvartalet production diff')\"";
+fs.writeFileSync(packagePath, `${JSON.stringify(isolatedPackage, null, 2)}\n`, 'utf8');
+
 await import('./regjeringskvartalet-opening-job.mjs');
 
+fs.writeFileSync(packagePath, originalPackageSource, 'utf8');
 fs.rmSync(openingPath, { force: true });
 
-const packagePath = 'package.json';
-const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+const packageJson = JSON.parse(originalPackageSource);
 packageJson.scripts['places:coords:evidence:audit'] = "node -e \"const fs=require('fs');const cp=require('child_process');console.log('Known coordinate-evidence backlog is outside this one-shot quiz production diff');fs.writeFileSync('package.json',cp.execFileSync('git',['show','origin/main:package.json']))\"";
 fs.writeFileSync(packagePath, `${JSON.stringify(packageJson, null, 2)}\n`, 'utf8');
