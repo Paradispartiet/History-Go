@@ -266,7 +266,8 @@ try {
   await fagverk.waitForSelector('#fagverkPlaceBadgePath:not([hidden])');
 
   assert.equal((await fagverk.textContent('#fagverkPlaceTitle')).trim(), 'Regjeringskvartalet');
-  assert.equal(await fagverk.locator('#fagverkPlaceUnderbadges a').count(), 3);
+  await fagverk.waitForSelector('#fagverkPlaceBadgePath .fagverk-canonical-underbadges a');
+  assert.equal(await fagverk.locator('#fagverkPlaceBadgePath .fagverk-canonical-underbadges a').count(), 3);
   assert.ok(await fagverk.locator('#fagverkPlaceLenses article').count() >= 4);
   assert.ok(await fagverk.locator('#fagverkPlaceQuestions li').count() >= 4);
   assert.ok(await fagverk.locator('#fagverkPlaceChapters a').count() >= 1);
