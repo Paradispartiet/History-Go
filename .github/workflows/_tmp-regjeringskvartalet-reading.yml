@@ -292,13 +292,12 @@ test('Kjente og ukjente publiseringsdatoer er lagret ærlig', () => {
   }
 });
 
-test('Lesesporene eies ikke av Leksikon, canonical place-lenker eller andre popupflater', () => {
-  const urls = rows.map(item => item.url);
-  const externalLinks = place.externalLinks?.map(link => link.url) ?? [];
-  for (const url of urls) {
-    assert.equal(leksikon.includes(`\\"url\\": \\"${url}\\"`), false);
-    assert.equal(externalLinks.includes(url), false);
-  }
+test('Lesespor-recordene eies bare av Lesespor-flaten', () => {
+  const ids = new Set(rows.map(item => item.id));
+  const leksikonArticles = JSON.parse(leksikon);
+  assert.equal(leksikonArticles.some(item => ids.has(item.id) || item.type === 'reading_trace'), false);
+  const externalLinks = place.externalLinks ?? [];
+  assert.equal(externalLinks.some(link => ids.has(link.id)), false);
   assert.match(report, /Ingen record er kopiert inn i Leksikon, canonical place-`externalLinks`, Nyheter, Quiz eller Knowledge/);
 });
 
