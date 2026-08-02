@@ -6,21 +6,22 @@ const readJson = path => JSON.parse(fs.readFileSync(path, 'utf8'));
 const leksikonPath = 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json';
 const articles = readJson(leksikonPath);
 const news = articles.filter(article => article.place_id === 'gamle_aker_kirke' && article.type === 'news_note');
+const mainArticle = articles.find(article => article.place_id === 'gamle_aker_kirke' && article.type !== 'news_note');
 const runtime = fs.readFileSync('js/ui/place-popup-tabs.js', 'utf8');
 const report = fs.readFileSync('reports/place-production/gamle-aker-kirke-historie-v1.md', 'utf8');
 
-test('Gamle Aker har tre daterte og stedsspesifikke Nyheter-notiser', () => {
-  assert.equal(news.length, 3);
-  assert.equal(new Set(news.map(item => item.id)).size, 3);
+test('Gamle Aker har to daterte og stedsspesifikke Nyheter-notiser', () => {
+  assert.equal(news.length, 2);
+  assert.equal(new Set(news.map(item => item.id)).size, 2);
   assert.ok(news.every(item => item.place_id === 'gamle_aker_kirke'));
   assert.ok(news.every(item => item.category === 'nyere_notis'));
-  assert.deepEqual(news.map(item => item.year), [2024, 2025, 2026]);
+  assert.deepEqual(news.map(item => item.year), [2024, 2025]);
   assert.ok(news.every(item => item.source_checked_at === '2026-08-02'));
   assert.ok(news.every(item => item.classification?.source_quality === 'official_primary'));
   assert.ok(news.every(item => item.classification?.quiz_use === 'none'));
 });
 
-test('Hver notis bevarer grensen mellom dokumentert hendelse, konflikt og plan', () => {
+test('Hver notis bevarer grensen mellom dokumentert hendelse og kildekonflikt', () => {
   const byId = new Map(news.map(item => [item.id, item]));
 
   const reopening = byId.get('gamle_aker_nyhet_gjenapning_2024');
@@ -33,11 +34,14 @@ test('Hver notis bevarer grensen mellom dokumentert hendelse, konflikt og plan',
   assert.match(font.popupDesc, /brukskopi/);
   assert.match(font.wikiText.join(' '), /avgjør ikke om Thomas Blix laget originalen i 1715 eller 1725/);
 
-  const planned = byId.get('gamle_aker_nyhet_nodutgang_plan_2026');
-  assert.equal(planned.classification.temporal_status, 'planned');
-  assert.match(planned.popupDesc, /planlagt fra september 2026 til mars 2027/);
-  assert.match(planned.wikiText.join(' '), /før den varslede oppstarten/);
-  assert.match(planned.wikiText.join(' '), /ikke at arbeidet faktisk har startet/);
+});
+
+test('Planlagt sluttfase eies bare av Historie-kronologien', () => {
+  assert.equal(news.some(item => item.id === 'gamle_aker_nyhet_nodutgang_plan_2026'), false);
+  const planned = mainArticle.chronology.find(item => item.id === 'chrono_gak_2026_2027');
+  assert.ok(planned);
+  assert.match(planned.period, /Planlagt sluttfase 2026–2027/);
+  assert.match(planned.desc, /planlagt fra september 2026 til mars 2027/);
 });
 
 test('Nyheter bruker navngitte offisielle HTTPS-kilder og blir i riktig flate', () => {
@@ -56,7 +60,7 @@ test('Nyheter bruker navngitte offisielle HTTPS-kilder og blir i riktig flate', 
 
 test('Fasekortet lukker Før/etter og holder senere popupfaser åpne', () => {
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`\*\* \|/);
-  assert.match(report, /\| 5 \| Nyheter \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 5 \| Nyheter \| \*\*GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`\*\* \|/);
   assert.match(report, /\| 6 \| Lesespor \| IKKE STARTET \|/);
-  assert.match(report, /planlagt arbeid i 2026–2027 har `temporal_status: planned`/);
+  assert.match(report, /sluttfasen 2026–2027 vises bare i Historie-kronologien/);
 });

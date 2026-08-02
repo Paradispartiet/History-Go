@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 5 – daterte og kildeavgrensede Nyheter klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 5 – daterte og kildeavgrensede Nyheter godkjent; fase 6 er neste; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -129,7 +129,7 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 2 | Kildebelagt chronology og Historie-fane | **GODKJENT – PR #4651, merge `75cfe841738fc4d0296868d0b8f2dfe6ba5fe78f`** |
 | 3 | Story-review og eventuell episodeproduksjon | **GODKJENT – PR #4652, merge `8ce0bc33263dbbcc7581c9b8316f8a483c60143b`** |
 | 4 | Før/etter | **GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`** |
-| 5 | Nyheter | **KLAR FOR REVIEW** |
+| 5 | Nyheter | **GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`** |
 | 6 | Lesespor | IKKE STARTET |
 | 7 | Brukerrettede Kilder | IKKE STARTET |
 | 8 | Mer | IKKE STARTET |
@@ -176,18 +176,18 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 
 ## Resultat i fase 5
 
-- Tre `news_note`-records dekker gjenåpningsfeiringen i 2024, den nye brukskopien av Blix-døpefonten i 2025 og den planlagte nødutgangsfasen i 2026–2027.
-- Alle tre notiser har dato eller avgrenset periode, fersk `source_checked_at`, navngitte offisielle HTTPS-kilder og `quiz_use: none`.
+- To `news_note`-records dekker gjenåpningsfeiringen i 2024 og den nye brukskopien av Blix-døpefonten i 2025.
+- Begge notiser har dato eller avgrenset periode, fersk `source_checked_at`, navngitte offisielle HTTPS-kilder og `quiz_use: none`.
 - Gjenåpningsnotisen skiller feiringen 26. mai 2024 fra at rehabiliteringsarbeider fortsatte ut august eller september samme år.
 - Døpefontnotisen dokumenterer den nye kopien og innvielsen uten å late som den løser kildekonflikten om originalens årstall.
-- 2026-notisen er merket `planned` og sier eksplisitt at kontrollen skjedde før varslet oppstart; den fremstiller verken oppstart eller ferdigstillelse som gjennomført.
-- Notisene ligger i Nyheter-flaten og dupliseres ikke som chronology, Story eller brukerrettet Kilder-liste.
+- Den planlagte sluttfasen 2026–2027 vises bare i Historie-kronologien. Den sene reviewen på PR #4656 avdekket at en tredje Nyheter-record dupliserte samme plan, og recorden er derfor fjernet før fase 6.
+- De to gjennomførte notisene ligger i Nyheter-flaten og dupliseres ikke som chronology, Story eller brukerrettet Kilder-liste.
 
 ## Aktivt filscope
 
 Fase 5 endrer bare:
 
-- den eksisterende manifestlastede Leksikon-filen med tre `news_note`-records;
+- den eksisterende manifestlastede Leksikon-filen med to `news_note`-records;
 - en egen Nyheter-regresjonspakke;
 - den eksisterende Før/etter-regresjonen, bare for å følge den godkjente faseovergangen;
 - dette arbeidskortet.
@@ -198,11 +198,11 @@ Ingen canonical place-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-,
 
 Fase 5 kan godkjennes når:
 
-1. alle tre notiser har unik ID, korrekt place-ID, kategori, dato/periode og fersk kildekontroll;
+1. begge notiser har unik ID, korrekt place-ID, kategori, dato/periode og fersk kildekontroll;
 2. kildene er navngitte, offisielle HTTPS-sider som faktisk dekker den enkelte notisen;
 3. gjenåpningsfeiring ikke forveksles med at alle rehabiliteringsarbeider var avsluttet;
 4. døpefontkopien ikke brukes til å avgjøre originalens omstridte årstall;
-5. planlagt arbeid i 2026–2027 har `temporal_status: planned` og ikke beskrives som påbegynt eller ferdig;
-6. Nyheter ikke materialiseres som chronology, Story, `externalLinks` eller quizstoff;
+5. planlagt arbeid i 2026–2027 eies bare av Historie-kronologien og ikke dupliseres som Nyheter;
+6. Nyheter ikke materialiseres som Story, `externalLinks` eller quizstoff;
 7. Historie-rapporten og Data checks består med 0 feil;
 8. PR-review ikke finner foreldede nåtidsopplysninger, kildehopp eller sammenblanding av plan og hendelse.
