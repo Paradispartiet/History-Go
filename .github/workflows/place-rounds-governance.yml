@@ -31,6 +31,7 @@ on:
       - "tests/regjeringskvartalet-news-phase.test.mjs"
       - "tests/regjeringskvartalet-reading-phase.test.mjs"
       - "tests/regjeringskvartalet-sources-phase.test.mjs"
+      - "tests/regjeringskvartalet-more-phase.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json"
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
@@ -38,6 +39,7 @@ on:
       - "reports/place-production/regjeringskvartalet-politikk-v1.md"
       - "data/leksikon/sprak/manifest.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
+      - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -89,6 +91,7 @@ on:
       - "tests/regjeringskvartalet-news-phase.test.mjs"
       - "tests/regjeringskvartalet-reading-phase.test.mjs"
       - "tests/regjeringskvartalet-sources-phase.test.mjs"
+      - "tests/regjeringskvartalet-more-phase.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json"
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
@@ -96,6 +99,7 @@ on:
       - "reports/place-production/regjeringskvartalet-politikk-v1.md"
       - "data/leksikon/sprak/manifest.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
+      - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -149,4 +153,4 @@ jobs:
           node tests/nationaltheatret-people-curation.test.js
           node tests/tinghuset-rounds-completion.test.mjs
           node --test tests/oslo-tinghuset-before-after-phase.test.mjs tests/oslo-tinghuset-news-phase.test.mjs tests/oslo-tinghuset-reading-phase.test.mjs tests/oslo-tinghuset-sources-phase.test.mjs tests/oslo-tinghuset-more-phase.test.mjs tests/oslo-tinghuset-people-phase.test.mjs tests/oslo-tinghuset-objects-phase.test.mjs
-          node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs tests/regjeringskvartalet-sources-phase.test.mjs
+          node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs tests/regjeringskvartalet-sources-phase.test.mjs tests/regjeringskvartalet-more-phase.test.mjs
