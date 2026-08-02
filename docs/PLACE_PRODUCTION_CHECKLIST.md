@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-01**
+Sist kontrollert: **2026-08-02**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -31,6 +31,9 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Historie — canonical V5.8-fagmodell | `data/fag/historie/historie_v5_contract.json` |
 | Historie — casekrav, claims, kilder og stedsevidens | `data/fag/historie/case_requirements_historie_canonical_v1.json`, `claims_historie_canonical_v1.json`, `sources_historie_canonical_v1.json` og `place_evidence_historie_v1.json` |
 | Historie — stedsgate og produksjonsrapport | `data/places/regler/historie_place_production_v1.schema.json` og `scripts/audit-historie-place-production.mjs` |
+| Økonomi og næringsliv — canonical fagmodell | `data/fag/naeringsliv/naeringsliv_runtime_manifest.json`, `emner_naeringsliv_canonical_v4_5.json` og `methods_naeringsliv_canonical_v4_5.json` |
+| Økonomi og næringsliv — faglig standard og kildeprioritet | `data/fag/naeringsliv/universitetsramme_okonomi_og_naeringsliv_v1.json`, `quiz_generator_rules_naeringsliv_v5_1_source_priority_patch.json` og `scripts/audit-naeringsliv-source-maintenance.mjs` |
+| Økonomi og næringsliv — stedsgate og produksjonsrapport | `data/places/regler/naeringsliv_place_production_v1.schema.json` og `scripts/audit-naeringsliv-place-production.mjs` |
 | People–sted-koblinger | **`docs/people-of-places-method.md`** |
 | Ny/revidert People-profil | **`docs/PEOPLE_PROFILE_CANONICAL.md`** |
 | People-bilder / lisens / attribusjon | `docs/PEOPLE_IMAGES.md` |
@@ -66,7 +69,7 @@ Det er derfor ikke lov å:
 
 ## Obligatorisk arbeidsmåte — nullmåling og én fase om gangen
 
-Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk- og Historie-gate når relevant, alle åtte popupfaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
+Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie- og Næringsliv-gate når relevant, alle åtte popupfaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
 
 Produksjonen deles deretter i små faser. Bare én fase kan ha status `PÅGÅR` om gangen:
 
@@ -117,6 +120,15 @@ HISTORIE-CASE-REALISERINGER:
 HISTORIE-KILDEKRITIKK:
 HISTORIE-DAGENS-SPOR:
 HISTORIE-PRODUKSJONSRAPPORT:
+NÆRINGSLIV-HOVEDIDENTITET (hvis relevant):
+NÆRINGSLIV-ANKERTYPE:
+NÆRINGSLIV-EMNE_IDS (kun em_naering_*):
+NÆRINGSLIV-ØKONOMISKE CASE:
+NÆRINGSLIV-VERDISKAPINGSKJEDE:
+NÆRINGSLIV-METODE/MÅL/ENHET:
+NÆRINGSLIV-FORDELING/MAKT/RISIKO:
+NÆRINGSLIV-DAGENS DRIFTSSTATUS:
+NÆRINGSLIV-PRODUKSJONSRAPPORT:
 STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
@@ -469,6 +481,127 @@ Stedet kan ikke godkjennes som Historie-sted dersom ett av disse forholdene best
 Produksjonsrapporten ligger i `data/places/historie-production/<place_id>.json` og følger `data/places/regler/historie_place_production_v1.schema.json`. Rapporten skal peke tilbake til den manifest-loadede place-filen og registrere historisk hovedidentitet, stedstilknytningstype, tidsavgrensning, canonicale `em_his_*`, kilder, case-realiseringer, dagens fysiske spor og status for A–H.
 
 Alle delene A–H får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. A–F er obligatoriske PASS for et ferdig Historie-sted; G og H kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-historie-place-production.mjs --all` validerer alle registrerte rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Historie-sted opprettes eller et eksisterende Historie-steds identitet, fagkobling, brukerrettede tekst, quizgrunnlag, chronology eller Story-kobling revideres. Ren koordinatendring forblir eid av coordinate-gaten. Historie kan ikke settes til ferdig på stedet før denne porten passerer.
+
+## 4C. Økonomi og næringsliv-sted — obligatorisk faglig tillegg og sluttgate
+
+Denne delen gjelder når stedet foreslås med **Næringsliv som primær fagidentitet**, eller når `emne_ids` skal inneholde canonicale Næringsliv-emner. Den erstatter ikke de generelle place-, fagverk-, quiz-, story- eller faktisitetskontraktene; den skjerper dem for Økonomi og næringsliv.
+
+**LES FØRST — obligatorisk:**
+
+- `docs/FACTUALITY_CONTRACT.md`;
+- `docs/FAGVERK_NAVIGATION.md`;
+- `data/fag/naeringsliv/naeringsliv_runtime_manifest.json`;
+- `data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json`;
+- `data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json`;
+- `data/fag/naeringsliv/universitetsramme_okonomi_og_naeringsliv_v1.json`;
+- `data/fag/naeringsliv/quiz_generator_rules_naeringsliv_v5_1_source_priority_patch.json`;
+- `data/places/regler/naeringsliv_place_production_v1.schema.json`;
+- `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` når quiz produseres;
+- `docs/STORIES_DATA_GOVERNANCE.md` når fortellinger produseres.
+
+### A. Økonomisk virksomhet må være stedets dokumenterte hovedidentitet
+
+- [ ] stedet er primært et arbeidssted, virksomhetssted, fabrikk, produksjonssted, butikk, handelsgate, bank, børs, marked, hovedkontor, teknologimiljø, lager, havn, logistikk-/infrastrukturpunkt, fagforening, bransjeinstitusjon eller annen økonomisk institusjon;
+- [ ] koblingen beskriver konkret arbeid, virksomhet, produksjon, kapital, eierskap, marked, teknologi, logistikk, infrastruktur, regulering eller verdikjede **på eller gjennom dette stedet**;
+- [ ] fysisk bygg, virksomhet, juridisk enhet, merkevare, arbeidsplass, konsern og dagens leietaker/bruk skilles eksplisitt;
+- [ ] historisk virksomhet, senere ombruk og dagens drift skilles eksplisitt;
+- [ ] stedet er ikke gitt Næringsliv som primæridentitet bare fordi det er et kontorbygg, et historisk bygg, et byutviklingsprosjekt eller har en kommersiell leietaker.
+
+### B. Bruk bare canonicale Næringsliv-emner som stedet realiserer
+
+- [ ] Næringsliv-koblinger bruker eksisterende `em_naering_*` fra den canonicale Næringsliv-modellen;
+- [ ] hvert valgt emne har stedsspesifikk evidens og minst én konkret økonomisk case-realisering;
+- [ ] `em_by_*`, `em_his_*`, `em_pol_*` eller andre fag-ID-er brukes ikke som erstatning for et manglende Næringsliv-emne;
+- [ ] fagfiler velger emner, metoder og teorihooks, men brukes ikke som faktakilde for stedspåstander;
+- [ ] modellens 38 emner, 27 metoder og 12 kapitler er et komplett målregister, **ikke en kvote per sted**;
+- [ ] irrelevante emner utelates selv om de finnes i fagmodellen.
+
+### C. Bygg en inspectable økonomisk case og verdiskapingskjede
+
+For hver case-realisering skal den dokumenterte økonomiske prosessen kunne følges:
+
+```text
+avgrenset analyseenhet
+  → arbeid, kapital, teknologi, råvarer, data eller andre innsatsfaktorer
+  → produksjon, tjeneste, handel, finansiering eller logistisk aktivitet
+  → dokumentert output
+  → avgrenset vurdering av verdiskaping
+```
+
+- [ ] analyseenhet, geografisk grense, periode og skala er eksplisitte;
+- [ ] innsatsfaktorer, aktivitet og output har konkrete kilder;
+- [ ] omsetning, produksjon, resultat, kontantstrøm, produktivitet og samfunnsøkonomisk verdiskaping blandes ikke;
+- [ ] virksomhetens egen markedsføring brukes ikke alene som bevis for økonomisk betydning eller samfunnsvirkning;
+- [ ] ledd som ikke kan dokumenteres, utelates eller markeres som usikre; de fylles ikke med antakelser.
+
+### D. Aktører, arbeid, eierskap, fordeling og makt skal være konkrete
+
+- [ ] hver økonomisk case identifiserer minst to aktører eller grupper med ulike roller, interesser eller økonomiske posisjoner;
+- [ ] eierskap, kontroll, ledelse, arbeid, kunder, leverandører, kreditorer, offentlige aktører eller berørte naboer tas med etter hva kildene faktisk bærer;
+- [ ] det registreres hvem som mottar lønn, avkastning, rente, leie, skatt eller andre gevinster når det kan dokumenteres;
+- [ ] det registreres hvem som bærer arbeidsbelastning, omstillingsrisiko, finansiell risiko, kostnader eller tap når det kan dokumenteres;
+- [ ] arbeid, ubetalt arbeid og leverandørbidrag gjøres ikke usynlig bare fordi de faller utenfor virksomhetens regnskap;
+- [ ] motiv, makt og fordeling påstås ikke uten kilde.
+
+### E. Metode, måling, enhet og sammenlignbarhet er bindende
+
+- [ ] hver case bruker minst én relevant canonical `met_naering_*`;
+- [ ] indikator eller observasjon, måleenhet, periode og datakilde registreres;
+- [ ] nominelle og reelle verdier, beholdning og strøm, prosent og prosentpoeng samt absolutte og relative tall holdes adskilt;
+- [ ] regnskapsdata, registerdata, statistikk, arkivdata og kvalitative observasjoner tolkes innenfor sin faktiske definisjon og dekning;
+- [ ] sammenlignbarhet over tid, sted eller virksomhet begrunnes;
+- [ ] utvalg, manglende data, målefeil og endrede definisjoner registreres;
+- [ ] beregning eller modell presenteres ikke uten variabel-, enhets- og antakelsestolkning.
+
+### F. Risiko, eksternaliteter, årsak, usikkerhet og dagens drift må kontrolleres
+
+- [ ] risiko vurderes konkret for caset; eksternaliteter dokumenteres eller settes begrunnet `not_applicable`;
+- [ ] gevinst for virksomheten brukes ikke automatisk som bevis for samfunnsøkonomisk gevinst;
+- [ ] korrelasjon, tidsrekkefølge eller samtidig vekst brukes ikke alene som årsaksbevis;
+- [ ] minst én alternativ forklaring og analysens gyldighetsgrense registreres;
+- [ ] minst to eksterne kilder og to relevante kildetyper sammenlignes;
+- [ ] minst én primær, offisiell, register-, statistikk-, arkiv-, årsrapport- eller teknisk kilde inngår;
+- [ ] kildenes proveniens, `sourceLocation`, tidsdekning og begrensninger registreres;
+- [ ] alle kildekontroller og dagens driftsstatus er høyst 365 dager gamle;
+- [ ] aktiv, tidligere, blandet, flyttet, avsluttet eller revet virksomhet skilles eksplisitt.
+
+### G. Quizåpningen skal være vanlig, konkret og source-led
+
+- [ ] sett 1 og 2 har sju direkte, stedsspesifikke og kildebelagte spørsmål hver;
+- [ ] de første 14 spørsmålene starter i konkret virksomhet, arbeid, produksjon, kapital, marked, teknologi, logistikk, infrastruktur eller dokumentert økonomisk praksis;
+- [ ] synlige emnenavn, metodenavn, teorinavn og fagplansjargong driver ikke åpningssettene;
+- [ ] eksterne virksomhets-, arbeidslivs-, register-, statistikk-, arkiv-, bransje- og forskningskilder dominerer det faktiske spørsmålsinnholdet;
+- [ ] spørsmål fremstiller ikke økonomisk aktivitet som nøytral uten arbeid, eierskap, risiko, regulering, ressursbruk, fordeling eller makt når dette er relevant;
+- [ ] adaptiv profil, `source_brief`, alle `required_inputs`, `production_context`, audits og Knowledge-synkronisering følger Quiz-kontrakten.
+
+### H. Chronology og Stories holdes adskilt
+
+- [ ] etablering, eierskifte, produksjonsendring, konflikt, krise, omstilling og nedleggelse legges i chronology når verdien først og fremst er **hva som skjedde når**;
+- [ ] en Story opprettes bare når det finnes en selvstendig narrativ idé, konkrete aktører, handling, konflikt/valg/transformasjon, konsekvens og tydelig fysisk eller biografisk forankring;
+- [ ] virksomhetens milepælsliste eller markedsføringshistorie kopieres ikke automatisk til Stories;
+- [ ] samme materiale dupliseres ikke mekanisk som chronology, Story, nyhet og quiz;
+- [ ] Stories følger `docs/STORIES_DATA_GOVERNANCE.md` fullt ut.
+
+### Næringsliv-stoppgate
+
+Stedet kan ikke godkjennes som Næringsliv-sted dersom ett av disse forholdene består:
+
+- Næringsliv er ikke den dokumenterte hovedidentiteten;
+- bygg, virksomhet, juridisk enhet, merkevare eller dagens bruk er blandet sammen;
+- primære Næringsliv-koblinger mangler canonicale `em_naering_*` eller konkret økonomisk case;
+- caset mangler avgrenset analyseenhet, innsatsfaktorer, aktivitet, output eller verdiskapingsvurdering;
+- arbeid, eierskap, fordeling, kostnader eller risiko er generiske eller udokumenterte;
+- måling mangler canonical metode, enhet, periode, sammenlignbarhet eller databegrensning;
+- omsetning, resultat eller virksomhetsmarkedsføring brukes som automatisk bevis for verdiskaping eller samfunnseffekt;
+- korrelasjon eller tidsrekkefølge brukes som årsaksbevis uten identifikasjon og alternative forklaringer;
+- kildene mangler proveniens, kildeplassering, variasjon eller ferskhetskontroll;
+- dagens driftsstatus er uklar eller foreldet;
+- de første 14 quizspørsmålene bryter normalåpningen;
+- en chronology-post er gjort til Story uten selvstendig narrativ og fysisk forankring.
+
+Produksjonsrapporten ligger i `data/places/naeringsliv-production/<place_id>.json` og følger `data/places/regler/naeringsliv_place_production_v1.schema.json`. Rapporten skal peke tilbake til den manifest-loadede place-filen og registrere økonomisk hovedidentitet, ankertype, tidsavgrensning, canonicale `em_naering_*`, kilder, økonomiske case-realiseringer, verdiskapingskjede, aktører, måling/metode, fordeling/makt, risiko/eksternaliteter, inferensgrenser, dagens driftsstatus og status for A–H.
+
+Alle delene A–H får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. A–F er obligatoriske PASS for et ferdig Næringsliv-sted; G og H kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-naeringsliv-place-production.mjs --all` validerer alle registrerte rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Næringsliv-sted opprettes eller et eksisterende Næringsliv-steds identitet, fagkobling, brukerrettede tekst, økonomiske profiler, quizgrunnlag, chronology eller Story-kobling revideres. Ren koordinatendring forblir eid av coordinate-gaten. Næringsliv kan ikke settes til ferdig på stedet før denne porten passerer.
 
 ---
 
@@ -1024,7 +1157,8 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] Badges;
 - [ ] egen fungerende `fagverk-sted.html?place=<place_id>` er kontrollert og kan ikke være N/A;
 - [ ] Politikk-gate/produksjonsrapport PASS når relevant;
-- [ ] Historie-gate/produksjonsrapport PASS når relevant.
+- [ ] Historie-gate/produksjonsrapport PASS når relevant;
+- [ ] Næringsliv-gate/produksjonsrapport PASS når relevant.
 
 ### Tekst
 - [ ] `desc` følger `PLACE_DESCRIPTION_CANONICAL`;
@@ -1128,6 +1262,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] fagverk-sted — obligatorisk, fungerende og aldri N/A
 - [ ] Politikk-gate/produksjonsrapport / N/A
 - [ ] Historie-gate/produksjonsrapport / N/A
+- [ ] Næringsliv-gate/produksjonsrapport / N/A
 
 ### D. desc / popupDesc
 LES: data/places/regler/PLACE_DESCRIPTION_CANONICAL.md

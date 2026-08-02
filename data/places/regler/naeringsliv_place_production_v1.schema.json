@@ -1,0 +1,436 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/naeringsliv-place-production-v1.json",
+  "title": "History GO Næringsliv place production report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "validatorVersion",
+    "placeId",
+    "placeFile",
+    "status",
+    "economicIdentity",
+    "businessTopics",
+    "sources",
+    "economicCases",
+    "presentOperation",
+    "quizOpening",
+    "chronologyStories",
+    "gates",
+    "review"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "naeringsliv_place_production_v1" },
+    "validatorVersion": { "type": "string", "pattern": "^1\\.0\\.[0-9]+$" },
+    "placeId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$" },
+    "placeFile": { "type": "string", "pattern": "^data/places/.+\\.json$" },
+    "status": { "enum": ["ready", "blocked"] },
+    "economicIdentity": { "$ref": "#/$defs/economicIdentity" },
+    "businessTopics": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/businessTopic" }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "economicCases": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/economicCase" }
+    },
+    "presentOperation": { "$ref": "#/$defs/presentOperation" },
+    "quizOpening": { "$ref": "#/$defs/quizOpening" },
+    "chronologyStories": { "$ref": "#/$defs/chronologyStories" },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["A", "B", "C", "D", "E", "F", "G", "H"],
+      "properties": {
+        "A": { "$ref": "#/$defs/gate" },
+        "B": { "$ref": "#/$defs/gate" },
+        "C": { "$ref": "#/$defs/gate" },
+        "D": { "$ref": "#/$defs/gate" },
+        "E": { "$ref": "#/$defs/gate" },
+        "F": { "$ref": "#/$defs/gate" },
+        "G": { "$ref": "#/$defs/gate" },
+        "H": { "$ref": "#/$defs/gate" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer", "reviewedAt", "notes"],
+      "properties": {
+        "reviewer": { "type": "string", "minLength": 1 },
+        "reviewedAt": { "type": "string", "format": "date" },
+        "notes": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^source_[a-z0-9_-]+$" }
+    },
+    "caseIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^case_[a-z0-9_-]+$" }
+    },
+    "temporalScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "precision", "rationale"],
+      "properties": {
+        "start": { "type": "string", "minLength": 1 },
+        "end": { "type": "string", "minLength": 1 },
+        "precision": { "enum": ["day", "year", "decade", "period", "current", "uncertain"] },
+        "rationale": { "type": "string", "minLength": 12 }
+      }
+    },
+    "economicIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "anchorType", "placeObjectDistinction", "temporalScope", "sourceIds"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 20 },
+        "anchorType": {
+          "enum": [
+            "workplace",
+            "firm_site",
+            "factory",
+            "production_site",
+            "office",
+            "bank",
+            "stock_exchange",
+            "market",
+            "shop",
+            "trade_street",
+            "technology_site",
+            "business_cluster",
+            "logistics_hub",
+            "harbor",
+            "warehouse",
+            "infrastructure",
+            "union",
+            "economic_institution",
+            "mixed_economic_site"
+          ]
+        },
+        "placeObjectDistinction": { "type": "string", "minLength": 20 },
+        "temporalScope": { "$ref": "#/$defs/temporalScope" },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "businessTopic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["emneId", "siteSpecificRationale", "caseIds"],
+      "properties": {
+        "emneId": { "type": "string", "pattern": "^em_naering_[a-z0-9_]+$" },
+        "siteSpecificRationale": { "type": "string", "minLength": 20 },
+        "caseIds": { "$ref": "#/$defs/caseIds" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "url",
+        "sourceLocation",
+        "sourceType",
+        "verifiedAt",
+        "temporalCoverage",
+        "provenance",
+        "limitations"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^source_[a-z0-9_-]+$" },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "sourceLocation": { "type": "string", "minLength": 3 },
+        "sourceType": {
+          "enum": [
+            "primary_business",
+            "annual_report",
+            "official",
+            "registry",
+            "statistics",
+            "archive",
+            "technical_documentation",
+            "scholarly",
+            "industry",
+            "museum_or_heritage",
+            "reputable_secondary"
+          ]
+        },
+        "verifiedAt": { "type": "string", "format": "date" },
+        "temporalCoverage": { "enum": ["historical", "current", "mixed"] },
+        "provenance": { "type": "string", "minLength": 12 },
+        "limitations": { "type": "string", "minLength": 12 }
+      }
+    },
+    "statementWithSources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "sourceIds"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 12 },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "roleOrInterest", "economicPosition", "sourceIds"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "roleOrInterest": { "type": "string", "minLength": 8 },
+        "economicPosition": { "type": "string", "minLength": 8 },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "unitOfAnalysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unit", "boundary", "scale", "temporalScope", "sourceIds"],
+      "properties": {
+        "unit": { "type": "string", "minLength": 8 },
+        "boundary": { "type": "string", "minLength": 12 },
+        "scale": { "enum": ["site", "firm", "market", "value_chain", "network", "regional_system"] },
+        "temporalScope": { "$ref": "#/$defs/temporalScope" },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "valueCreation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputs", "activity", "outputs", "valueCreationAssessment"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/statementWithSources" }
+        },
+        "activity": { "$ref": "#/$defs/statementWithSources" },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/statementWithSources" }
+        },
+        "valueCreationAssessment": { "$ref": "#/$defs/statementWithSources" }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "methodId",
+        "evidenceType",
+        "indicatorOrObservation",
+        "unit",
+        "period",
+        "comparability",
+        "dataLimitations",
+        "sourceIds"
+      ],
+      "properties": {
+        "methodId": { "type": "string", "pattern": "^met_naering_[a-z0-9_]+$" },
+        "evidenceType": { "enum": ["quantitative", "qualitative", "mixed"] },
+        "indicatorOrObservation": { "type": "string", "minLength": 12 },
+        "unit": { "type": "string", "minLength": 1 },
+        "period": { "type": "string", "minLength": 1 },
+        "comparability": { "type": "string", "minLength": 12 },
+        "dataLimitations": { "type": "string", "minLength": 12 },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "distributionAndPower": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ownershipOrControl", "laborPosition", "beneficiaries", "costRiskBearers", "sourceIds"],
+      "properties": {
+        "ownershipOrControl": { "type": "string", "minLength": 12 },
+        "laborPosition": { "type": "string", "minLength": 12 },
+        "beneficiaries": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 8 } },
+        "costRiskBearers": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 8 } },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "externalityAssessment": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "statement", "sourceIds"],
+          "properties": {
+            "status": { "const": "documented" },
+            "statement": { "type": "string", "minLength": 12 },
+            "sourceIds": { "$ref": "#/$defs/sourceIds" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "not_applicable" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    },
+    "riskAndExternalities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["riskAssessment", "externalityAssessment"],
+      "properties": {
+        "riskAssessment": { "$ref": "#/$defs/statementWithSources" },
+        "externalityAssessment": { "$ref": "#/$defs/externalityAssessment" }
+      }
+    },
+    "comparisonAndCausality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparisonBasis",
+        "causalStatus",
+        "causalAssessment",
+        "alternativeExplanations",
+        "uncertainty",
+        "sourceIds"
+      ],
+      "properties": {
+        "comparisonBasis": { "type": "string", "minLength": 20 },
+        "causalStatus": { "enum": ["descriptive_only", "associational", "causal_supported"] },
+        "causalAssessment": { "type": "string", "minLength": 20 },
+        "alternativeExplanations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 8 }
+        },
+        "uncertainty": { "type": "string", "minLength": 12 },
+        "sourceIds": {
+          "allOf": [
+            { "$ref": "#/$defs/sourceIds" },
+            { "minItems": 2 }
+          ]
+        }
+      }
+    },
+    "economicCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "claim",
+        "unitOfAnalysis",
+        "actors",
+        "valueCreation",
+        "measurement",
+        "distributionAndPower",
+        "riskAndExternalities",
+        "comparisonAndCausality"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^case_[a-z0-9_-]+$" },
+        "claim": { "type": "string", "minLength": 20 },
+        "unitOfAnalysis": { "$ref": "#/$defs/unitOfAnalysis" },
+        "actors": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/actor" } },
+        "valueCreation": { "$ref": "#/$defs/valueCreation" },
+        "measurement": { "$ref": "#/$defs/measurement" },
+        "distributionAndPower": { "$ref": "#/$defs/distributionAndPower" },
+        "riskAndExternalities": { "$ref": "#/$defs/riskAndExternalities" },
+        "comparisonAndCausality": { "$ref": "#/$defs/comparisonAndCausality" }
+      }
+    },
+    "presentOperation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operationalStatus", "statement", "originalEconomicRoleRelationship", "checkedAt", "sourceIds"],
+      "properties": {
+        "operationalStatus": { "enum": ["active", "former", "mixed", "relocated", "closed", "demolished"] },
+        "statement": { "type": "string", "minLength": 20 },
+        "originalEconomicRoleRelationship": { "type": "string", "minLength": 20 },
+        "checkedAt": { "type": "string", "format": "date" },
+        "sourceIds": { "$ref": "#/$defs/sourceIds" }
+      }
+    },
+    "quizOpening": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "quizTargetId", "firstTwoSetsQuestionCount", "sourceBrief", "productionContext", "requiredInputs"],
+          "properties": {
+            "status": { "const": "PASS" },
+            "quizTargetId": { "type": "string", "minLength": 1 },
+            "firstTwoSetsQuestionCount": { "const": 14 },
+            "sourceBrief": { "type": "string", "minLength": 1 },
+            "productionContext": { "type": "string", "minLength": 1 },
+            "requiredInputs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    },
+    "chronologyStories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "chronologyReviewed", "storiesReviewed", "rationale"],
+      "properties": {
+        "status": { "enum": ["PASS", "N/A"] },
+        "chronologyReviewed": { "type": "boolean" },
+        "storiesReviewed": { "type": "boolean" },
+        "rationale": { "type": "string", "minLength": 12 }
+      }
+    },
+    "gate": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "evidenceRefs"],
+          "properties": {
+            "status": { "const": "PASS" },
+            "evidenceRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": { "const": "N/A" },
+            "rationale": { "type": "string", "minLength": 12 }
+          }
+        }
+      ]
+    }
+  }
+}
