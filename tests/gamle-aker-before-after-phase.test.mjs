@@ -50,9 +50,10 @@ test('Begge bilder er lokale, forskjellige og har inspectable rettighetsmetadata
   assert.match(data.nowImageMeta.sourcePage, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
 });
 
-test('Fasekortet lukker fase 3 og holder senere popupfaser åpne', () => {
+test('Fasekortet holder Før/etter godkjent mens senere popupfaser går videre', () => {
   assert.match(report, /\| 3 \| Story-review og eventuell episodeproduksjon \| \*\*GODKJENT – PR #4652, merge `8ce0bc33263dbbcc7581c9b8316f8a483c60143b`\*\* \|/);
-  assert.match(report, /\| 4 \| Før\/etter \| \*\*KLAR FOR REVIEW\*\* \|/);
-  assert.match(report, /\| 5 \| Nyheter \| IKKE STARTET \|/);
+  assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`\*\* \|/);
+  assert.match(report, /\| 5 \| Nyheter \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 6 \| Lesespor \| IKKE STARTET \|/);
   assert.match(report, /bildet fra 2008 dokumenterer ikke resultatet av rehabiliteringen i 2023–2024/);
 });
