@@ -23,37 +23,36 @@ test('Regjeringskvartalet har et komplett Før/etter-par med Johan Nygaardsvolds
   assert.ok(data.lookFor.some(item => /Y-blokka.*A-blokka/.test(item)));
 });
 
-test('Begge bilder har verifisert Commons-proveniens, dato, fotograf og CC BY-SA 4.0', () => {
+test('Begge bilder har Commons-proveniens og synlig fotograf/lisens innenfor canonical for_na-kontrakt', () => {
   const images = [
     {
       url: data.beforeImage,
-      meta: data.beforeImageMeta,
-      date: '2008-07-01',
-      author: 'Geir Hval (www.MacWhale.eu)'
+      label: data.beforeImageLabel,
+      sourcePage: 'https://commons.wikimedia.org/wiki/File:Regjeringskvartalet_H-blokk_Johan_Nygaardsvolds_plass_Oslo_Norway_(2008.07.01).jpg',
+      author: /Geir Hval/,
+      date: /1\. juli 2008/
     },
     {
       url: data.nowImage,
-      meta: data.nowImageMeta,
-      date: '2026-04-13',
-      author: 'Helge Høifødt'
+      label: data.nowImageLabel,
+      sourcePage: 'https://commons.wikimedia.org/wiki/File:Official_opening_Regjeringskvartalet_April_13th_2026.jpg',
+      author: /Helge Høifødt/,
+      date: /13\. april 2026/
     }
   ];
+
+  assert.equal('beforeImageMeta' in data, false);
+  assert.equal('nowImageMeta' in data, false);
 
   for (const image of images) {
     assert.ok(URL.canParse(image.url));
     assert.equal(new URL(image.url).protocol, 'https:');
     assert.equal(new URL(image.url).hostname, 'commons.wikimedia.org');
     assert.match(new URL(image.url).pathname, /Special:Redirect\/file\//);
-    assert.equal(image.meta.source, 'wikimedia_commons');
-    assert.equal(image.meta.date, image.date);
-    assert.equal(image.meta.author, image.author);
-    assert.equal(image.meta.license, 'CC BY-SA 4.0');
-    assert.equal(image.meta.licenseUrl, 'https://creativecommons.org/licenses/by-sa/4.0/');
-    assert.equal(image.meta.verified, true);
-    assert.equal(image.meta.verifiedAt, '2026-08-02');
-    assert.ok(URL.canParse(image.meta.sourcePage));
-    assert.equal(new URL(image.meta.sourcePage).hostname, 'commons.wikimedia.org');
-    assert.match(image.meta.modifications, /ikke lokalt beskåret, oppskalert eller bearbeidet/);
+    assert.match(image.label, image.author);
+    assert.match(image.label, image.date);
+    assert.match(image.label, /CC BY-SA 4\.0/);
+    assert.ok(data.sources.includes(image.sourcePage));
   }
 
   assert.equal(data.sources.length, 4);
@@ -70,11 +69,11 @@ test('Før/etter-teksten bevarer bildets inferensgrense og juliåpningene eies i
   assert.ok(!data.change.includes('viser hele'));
 });
 
-test('Eksisterende popup-runtime viser eksterne HTTPS-bilder med kreditering og kildelenke', () => {
+test('Eksisterende popup-runtime viser bildeetikettene og løfter for_na.sources til brukerrettede kildelenker', () => {
   assert.match(runtime, /safeHttpsUrl\(item\.url\)/);
-  assert.match(runtime, /item\.meta\?\.credit \|\| item\.meta\?\.author/);
-  assert.match(runtime, /item\.meta\?\.license/);
-  assert.match(runtime, /Bildekilde ↗/);
+  assert.match(runtime, /<strong>\$\{esc\(item\.label\)\}<\/strong>/);
+  assert.match(runtime, /strings\(place\?\.for_na\?\.sources/);
+  assert.match(runtime, /type: "image_source", label: "Bilde- og sammenligningskilde"/);
   assert.match(runtime, /rel="noopener noreferrer"/);
 });
 
