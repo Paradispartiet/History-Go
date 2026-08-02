@@ -77,10 +77,10 @@ test('Knowledge materialization does not alter quiz questions, answers, order or
   assert.equal(digest, '6d6b159d19099a9e37d1f0847c5a7ea9114deb1159ff22b798272bf8cc1780c2');
 });
 
-test('phase report marks Knowledge complete while rounds remain open', () => {
+test('phase report keeps Knowledge complete while Brands remains open', () => {
   assert.match(report, /Status: \*\*PASS – fase 9\*\*/);
   assert.match(report, /nøyaktig 21 tinghus-enheter/);
   assert.match(report, /37 eksplisitte canonicale begreper/);
-  assert.match(report, /People\/Objects\/Brands-rundingene fortsatt er åpne/);
+  assert.match(report, /Brands-rundingen fortsatt er åpen/);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });
