@@ -96,10 +96,10 @@ test('Den deterministiske quiz-konteksten er synkronisert med canonical place-fi
   assert.equal(target.sha256, '92c2d08c56b25005e64ae532621cf28f3bc3ba703d6ec803d18865777e0c6221');
 });
 
-test('Fasekortet lukker chronology, åpner Før/etter for review og peker bare videre til Nyheter', () => {
+test('Fasekortet bevarer den godkjente Før/etter-fasen gjennom senere popupfaser', () => {
   assert.match(report, /\| 2 \| Kildebelagt chronology og Historie-fane \| \*\*GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`\*\* \|/);
   assert.match(report, /\| Før\/etter \| PASS – fase 4 \|/);
-  assert.match(report, /\| 4 \| Før\/etter \| \*\*KLAR FOR REVIEW\*\* \|/);
-  assert.match(report, /\| 5 \| Nyheter \| \*\*NESTE AKTIVE FASE ETTER MERGE AV FASE 4\*\* \|/);
+  assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\*\* \|/);
+  assert.match(report, /\| 6 \| Lesespor \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });

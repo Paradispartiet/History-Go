@@ -68,11 +68,11 @@ test('Nyheter bruker navngitte offisielle HTTPS-kilder og eksisterende runtime',
   assert.match(runtime, /rel="noopener noreferrer"/);
 });
 
-test('Fasekortet lukker Før/etter og åpner bare Lesespor som neste fase', () => {
+test('Fasekortet bevarer Nyheter som godkjent når Lesespor åpnes', () => {
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\*\* \|/);
   assert.match(report, /\| Nyheter \| PASS – fase 5 \|/);
-  assert.match(report, /\| 5 \| Nyheter \| \*\*KLAR FOR REVIEW\*\* \|/);
-  assert.match(report, /\| 6 \| Lesespor \| \*\*NESTE AKTIVE FASE ETTER MERGE AV FASE 5\*\* \|/);
+  assert.match(report, /\| 5 \| Nyheter \| \*\*GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`\*\* \|/);
+  assert.match(report, /\| 6 \| Lesespor \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /Åpningen av byggetrinn 1 den 13\. april.*ikke duplisert som nyhetskort/s);
   assert.match(report, /ikke produksjonsklart/);
 });
