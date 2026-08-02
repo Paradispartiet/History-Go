@@ -75,7 +75,7 @@ test('Eksisterende Mer-renderer viser tolkning, Språkleksikon og sikre kildelen
 test('Fasekortet lukker Kilder, åpner Mer og peker videre til Objects', () => {
   assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*GODKJENT – PR #4670, merge `318119d72d63838d487bbaeec85bda2dd58209b1`\*\* \|/);
   assert.match(report, /\| Mer \| PASS – fase 8 \|/);
-  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW\*\* \|/);
-  assert.match(report, /\| 11 \| Objects \| \*\*NESTE AKTIVE FASE ETTER MERGE AV FASE 8\*\* \|/);
+  assert.match(report, /\| 8 \| Mer \| \*\*GODKJENT – PR #4671, merge `5effd690c06502b68a5870ca2bc089459fac56b9`\*\* \|/);
+  assert.match(report, /\| 11 \| Objects \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });

@@ -76,14 +76,14 @@ test('Canonical place og deterministisk Quiz-kontekst er synkronisert', () => {
   assert.equal(target.path, placePath);
   assert.equal(target.bytes, placeBuffer.byteLength);
   assert.equal(target.sha256, createHash('sha256').update(placeBuffer).digest('hex'));
-  assert.equal(target.bytes, 15086);
-  assert.equal(target.sha256, '018b5eac3f090fb7310e980eb5599fdbb1f09308be0052645b854c4f158e446d');
+  assert.equal(target.bytes, 18675);
+  assert.equal(target.sha256, '91724e1944b6f27d6e150be578ce5ce8e8070d13c3179d3357b0337498e0beaf');
 });
 
 test('Fasekortet lukker Lesespor, åpner Kilder og peker bare videre til Mer', () => {
   assert.match(report, /\| 6 \| Lesespor \| \*\*GODKJENT – PR #4669, merge `c68881578a5a56c6ae9b610f7c5132fc448297c3`\*\* \|/);
   assert.match(report, /\| Kilder \| PASS – fase 7 \|/);
   assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*GODKJENT – PR #4670, merge `318119d72d63838d487bbaeec85bda2dd58209b1`\*\* \|/);
-  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 11 \| Objects \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });

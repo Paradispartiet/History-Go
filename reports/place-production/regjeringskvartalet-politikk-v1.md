@@ -8,7 +8,7 @@
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 8 – avgrenset Mer-pakke klar for review; stedet er ikke samlet produksjonsklart**
+- Status: **fase 11 – to canonicale Objects klare for review; stedet er ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -26,7 +26,7 @@
 | Leksikon | Fire tematiske artikler og to `news_note`-records finnes. Hovedartikkelen er versjon 3 med tre fakta, tolv chronology-punkter og kildebelagt Mer-tolkning. |
 | Rundingsprofil | Fast `people · objects · brands`, med Badges ved overskriften. Wonderkammer-innhold skal ikke telles som ferdig Objects-runding. |
 | People | Tolv canonicale personer er dokumentert ved stedet, med maksimalt to arkitekter og flertall av faktiske brukere, beslutningstakere, kunst-/ingeniøraktører og hendelsespersoner. Dekningen ble låst i PR #3604. |
-| Objects | Ingen ferdig canonical Objects-pakke for rundingen er dokumentert. `Grass Roots Square` finnes som Wonderkammer-oppføring, men er ikke dermed et validert Object-kort. `Fiskerne`, `Måken`, minnestedet og andre fysiske kandidater må identitets-, kilde-, plassering- og bildeauditeres før bruk. |
+| Objects | To fysiske og stedsspesifikke kunstobjekter er canonicalisert: «Fiskerne» på A-blokka og «Grass Roots Square» på Einar Gerhardsens plass. Begge har KORO-belegg for dagens plassering og lisenskontrollert Commons-foto med synlig tids-/stedsgrense. |
 | Brands | Ingen kvalifiserende canonical Brand-runding med dokumentert stedskobling er funnet. Departementer, Statsbygg, arkitektkontorer og kunstnere skal ikke brukes som filler. |
 | Quiz | Full 3×7-pakke med 21 spørsmål. De første to settene gir 14 ordinære spørsmål; sett 3 bærer teori-/metodefordypning. |
 | Knowledge | 21 eksplisitte Knowledge-ID-er er materialisert og synkronisert. Alle spørsmål er stedsskopet og har emne-, begreps- og kunnskapskoblinger. |
@@ -85,7 +85,7 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | --- | --- | --- |
 | Quiz og Knowledge | PASS – PR #4664 | 21 spørsmål, 14-spørsmåls normalåpning, teori/metode i sett 3 og 21 eksplisitte Knowledge-enheter. |
 | People | PASS – PR #3604 | Tolv dokumenterte canonicale personer og eksplisitt rollebalanse med maksimalt to arkitekter. |
-| Objects | IKKE STARTET | Ingen canonical bildeklare Object-kort er dokumentert for rundingen. |
+| Objects | PASS – fase 11 | To avgrensede kunstobjekter har identitet, fysisk plassering, kilde, bilde, attribusjon, lisens og eksplisitt skille mellom eldre foto og dagens plassering. |
 | Brands | IKKE STARTET / mulig N/A | Ingen kvalifiserende Brand er dokumentert; N/A kan bare godkjennes etter eksplisitt research og audit. |
 | Badges/fagverk | DELVIS | Data og kuratert fagverk finnes, men sluttfasen må kontrollere faktisk badgegrafikk, klikk og stedsside i UI. |
 
@@ -139,11 +139,11 @@ Paret kan ikke alene dokumentere:
 - to daterte Nyheter-notiser med eksplisitt `ongoing`/`completed`-status;
 - fire godkjente Lesespor med ærlige datoer, åpne lenker og `link_only`-rettigheter;
 - seks brukerrettede kildegrupper og en deduplisert, navngitt lenkeflate med eksplisitte hold-back-grenser;
-- fem Språkleksikon-oppslag og avgrensede observasjon-, betydning- og motpunktspor for Mer.
+- fem Språkleksikon-oppslag og avgrensede observasjon-, betydning- og motpunktspor for Mer;
+- to canonicale, fysiske og stedsspesifikke Objects med lisenskontrollerte fotografier.
 
 ### Revider eller bygg separat
 
-- Objects bare for fysiske elementer som kan identifiseres, lokaliseres, kildebelegges og vises korrekt;
 - Brands bare dersom en faktisk canonical merke-/virksomhetsidentitet oppfyller rundingkontrakten.
 
 ### Hold tilbake
@@ -169,11 +169,11 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 5 | Nyheter | **GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`** |
 | 6 | Lesespor | **GODKJENT – PR #4669, merge `c68881578a5a56c6ae9b610f7c5132fc448297c3`** |
 | 7 | Brukerrettede Kilder | **GODKJENT – PR #4670, merge `318119d72d63838d487bbaeec85bda2dd58209b1`** |
-| 8 | Mer | **KLAR FOR REVIEW** |
+| 8 | Mer | **GODKJENT – PR #4671, merge `5effd690c06502b68a5870ca2bc089459fac56b9`** |
 | 9 | Quizåpning 2 × 7 og Knowledge | **GODKJENT – PR #4664, merge `94cdc10e328b216dd374179fa5c12bf250def50e`** |
 | 10 | People | **GODKJENT – PR #3604** |
-| 11 | Objects | **NESTE AKTIVE FASE ETTER MERGE AV FASE 8** |
-| 12 | Brands | IKKE STARTET / mulig begrunnet N/A |
+| 11 | Objects | **KLAR FOR REVIEW** |
+| 12 | Brands | **NESTE AKTIVE FASE ETTER MERGE AV FASE 11 – mulig begrunnet N/A** |
 | 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | IKKE STARTET |
 
 ## Resultat i fase 4
@@ -229,18 +229,31 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 - Artifacts/Objects er N/A i denne fanefasen og forblir åpne i egen fase 11 med krav til identitet, fysisk plassering, kilder og bilde.
 - Eksisterende runtime og CSS håndterer alle leverte komponenter; ingen visningskode er endret.
 
+## Resultat i fase 11
+
+- Canonical place-record har fått to Objects: «Fiskerne» og «Grass Roots Square».
+- Begge er fysiske, identifiserbare kunstobjekter med dokumentert tilknytning til Regjeringskvartalet og presis `whereToFind`.
+- KORO dokumenterer dagens plassering på henholdsvis A-blokka og Einar Gerhardsens plass.
+- Commons-fotografiene er lisenskontrollert som CC BY-SA 3.0 NO og CC BY-SA 3.0, med navngitte fotografer og direkte kildesider.
+- Begge foto er tatt ved verkenes tidligere plassering. `representationScope` sier uttrykkelig at bildene dokumenterer objektidentiteten, ikke dagens plassering.
+- «Måken» holdes tilbake fordi publikumsadgang og et egnet fritt bilde av dagens innvendige plassering ikke er tilstrekkelig dokumentert.
+- «En opprettholdelse» holdes tilbake fra denne runden fordi tilgjengelige nye fotografier har BONO-/fotografkreditering uten dokumentert gjenbrukslisens; minnestedets betydning er fortsatt dekket i Historie, Kilder og Mer.
+- Hele bygg, 22. juli-senteret, departementer, kunstnere og abstrakte sikkerhetstiltak er ikke Objects.
+- Eksterne Commons-bilder støttes av eksisterende rundingsruntime; ingen genererte illustrasjoner, lokale binærfiler eller runtimeendringer er nødvendig.
+- Den deterministiske quizkonteksten er synkronisert med canonical place-filens nye byte-/SHA-verdi. Quizinnhold og Knowledge er uendret.
+
 ## Neste aktive fase
 
-Etter at fase 8 er merget og kontrollert på faktisk `main`, starter **fase 11: Objects**. Fase 9 Quiz/Knowledge og fase 10 People er allerede godkjent.
+Etter at fase 11 er merget og kontrollert på faktisk `main`, starter **fase 12: Brands**.
 
 Fasen skal:
 
-1. skille hele bygg og institusjoner fra faktiske, avgrensede fysiske Object-kandidater;
-2. kontrollere identitet, plassering i parent-området, brukerrettet kilde og bilde/lisens for hver kandidat;
-3. prioritere et lite antall sterke objekter fremfor å fylle rundingen;
-4. holde Wonderkammer-oppføringer, kunstnere, etater og abstrakte sikkerhetstiltak utenfor Object-kontrakten;
-5. oppdatere canonical Object-data, fasekort og målrettede regresjoner uten å åpne Brands eller slutt-UI.
+1. søke etter eksisterende canonicale Brands med reell, dokumentert stedskobling;
+2. skille bedrift/merke fra departement, etat, institusjon, person, kunstverk og bygg;
+3. godkjenne Brand bare med korrekt identitet, logo/bilde og kildebelegg;
+4. velge eksplisitt N/A dersom ingen kandidat oppfyller kontrakten, uten filler;
+5. oppdatere fasekort og målrettede regresjoner før sluttfasen.
 
-## Samlet status etter fase 8
+## Samlet status etter fase 11
 
-Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Alle åtte popupfaner er nå produsert eller klare for review. Quiz/Knowledge og People er ferdige. Objects, Brands og sluttkontroll av Badges, fagverk, rundinger og faktisk UI står fortsatt åpne.
+Regjeringskvartalet er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Alle åtte popupfaner, Quiz/Knowledge, People og Objects er produsert eller klare for review. Brands og sluttkontroll av Badges, fagverk, rundinger og faktisk UI står fortsatt åpne.

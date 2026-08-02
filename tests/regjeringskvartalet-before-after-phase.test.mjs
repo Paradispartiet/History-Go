@@ -92,14 +92,14 @@ test('Den deterministiske quiz-konteksten er synkronisert med canonical place-fi
   assert.equal(target.path, placePath);
   assert.equal(target.bytes, placeBuffer.byteLength);
   assert.equal(target.sha256, createHash('sha256').update(placeBuffer).digest('hex'));
-  assert.equal(target.bytes, 15086);
-  assert.equal(target.sha256, '018b5eac3f090fb7310e980eb5599fdbb1f09308be0052645b854c4f158e446d');
+  assert.equal(target.bytes, 18675);
+  assert.equal(target.sha256, '91724e1944b6f27d6e150be578ce5ce8e8070d13c3179d3357b0337498e0beaf');
 });
 
 test('Fasekortet bevarer den godkjente Før/etter-fasen gjennom senere popupfaser', () => {
   assert.match(report, /\| 2 \| Kildebelagt chronology og Historie-fane \| \*\*GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`\*\* \|/);
   assert.match(report, /\| Før\/etter \| PASS – fase 4 \|/);
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\*\* \|/);
-  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 11 \| Objects \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /ikke produksjonsklart/);
 });

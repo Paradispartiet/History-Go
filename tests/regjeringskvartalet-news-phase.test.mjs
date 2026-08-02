@@ -72,7 +72,7 @@ test('Fasekortet bevarer Nyheter som godkjent når Lesespor åpnes', () => {
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`\*\* \|/);
   assert.match(report, /\| Nyheter \| PASS – fase 5 \|/);
   assert.match(report, /\| 5 \| Nyheter \| \*\*GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`\*\* \|/);
-  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 11 \| Objects \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /Åpningen av byggetrinn 1 den 13\. april.*ikke duplisert som nyhetskort/s);
   assert.match(report, /ikke produksjonsklart/);
 });
