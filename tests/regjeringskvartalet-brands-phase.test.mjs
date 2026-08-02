@@ -48,7 +48,8 @@ test('Fast rundingsprofil beholdes selv om Brands er redaksjonelt N/A', () => {
 test('Fasekortet lukker Objects, godkjenner Brands-N/A og åpner sluttfasen', () => {
   assert.match(report, /\| 11 \| Objects \| \*\*GODKJENT – PR #4672, merge `1b8b277cc70b4a26f332091194de667d1a32da53`\*\* \|/);
   assert.match(report, /\| Brands \| N\/A – fase 12 \|/);
-  assert.match(report, /\| 12 \| Brands \| \*\*KLAR FOR REVIEW – N\/A MED EVIDENS\*\* \|/);
-  assert.match(report, /\| 13 \| Badges, fagverk, alle åtte popupfaner, rundinger og full UI-\/produksjonsaudit \| \*\*NESTE AKTIVE FASE ETTER MERGE AV FASE 12\*\* \|/);
-  assert.match(report, /ikke produksjonsklart/);
+  assert.match(report, /\| 12 \| Brands \| \*\*GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`\*\* \|/);
+  assert.match(report, /\| 13 \| Badges, fagverk, alle åtte popupfaner, rundinger og full UI-\/produksjonsaudit \| \*\*(?:KLAR FOR REVIEW – FULL UI-\/PRODUKSJONSAUDIT PASS|GODKJENT – PR #[0-9]+, merge `[0-9a-f]{40}`)\*\* \|/);
+  assert.match(report, /\| 13 \| Badges, fagverk, alle åtte popupfaner, rundinger og full UI-\/produksjonsaudit \| \*\*(?:KLAR FOR REVIEW – FULL UI-\/PRODUKSJONSAUDIT PASS|GODKJENT – PR #[0-9]+, merge `[0-9a-f]{40}`)\*\* \|/);
 });
+

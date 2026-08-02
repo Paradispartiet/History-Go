@@ -83,5 +83,5 @@ test('Fasekortet lukker Historie og åpner bare Før/etter som neste fase', () =
   assert.match(report, /\| 2 \| Kildebelagt chronology og Historie-fane \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /\| 4 \| Før\/etter \| \*\*NESTE AKTIVE FASE ETTER MERGE AV FASE 2\*\* \|/);
   assert.match(report, /Chronology er utvidet fra seks til tolv unike, kildebelagte hendelser/);
-  assert.match(report, /ikke produksjonsklart/);
+  assert.match(report, /\| 13 \| Badges, fagverk, alle åtte popupfaner, rundinger og full UI-\/produksjonsaudit \| \*\*(?:KLAR FOR REVIEW – FULL UI-\/PRODUKSJONSAUDIT PASS|GODKJENT – PR #[0-9]+, merge `[0-9a-f]{40}`)\*\* \|/);
 });
