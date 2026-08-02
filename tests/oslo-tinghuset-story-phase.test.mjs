@@ -61,8 +61,10 @@ test('Story adds value beyond chronology and uses four inspectable sources', () 
   assert.ok(urls.some((url) => url.includes('regjeringen.no/')));
 });
 
-test('Phase report marks only Fortellinger complete and keeps the place under remediation', () => {
+test('Phase report keeps Fortellinger complete and the remaining remediation explicit', () => {
   assert.match(report, /\| Fortellinger \| PASS – fase 3 \|/);
-  assert.match(report, /\| Før\/etter \| Ikke startet \|/);
+  assert.match(report, /\| Før\/etter \| PASS – fase 4 \|/);
+  assert.match(report, /\| Mer \| PASS – fase 8 \|/);
+  assert.match(report, /Objects- og Brands-rundingene fortsatt er åpne\./);
   assert.match(report, /Status for samlet sted: \*\*under sanering – ikke produksjonsklart\*\*/);
 });
