@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event.head_commit.message == 'Trigger clean phase 13 materializer'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
