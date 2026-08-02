@@ -284,3 +284,42 @@ test('all-mode kan kjøres permanent før første produksjonsrapport er lagt inn
   assert.equal(result.status, 'passed');
   assert.equal(result.summary.failures, 0);
 });
+
+test('Gamle Aker chronology er kildebelagt og holder usikker datering og Story adskilt', () => {
+  const leksikon = JSON.parse(fs.readFileSync(path.join(root, 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json'), 'utf8'));
+  const article = leksikon.find((entry) => entry.place_id === 'gamle_aker_kirke');
+  assert.ok(article);
+  assert.equal(article.version, 2);
+  assert.equal(article.chronology.length, 11);
+  assert.equal(new Set(article.chronology.map((entry) => entry.id)).size, 11);
+
+  for (const entry of article.chronology) {
+    assert.ok(entry.period);
+    assert.ok(entry.desc);
+    assert.ok(['high', 'medium'].includes(entry.confidence));
+    assert.ok(entry.sources.length >= 1);
+    assert.ok(entry.sources.every((source) => URL.canParse(source) && new URL(source).protocol === 'https:'));
+  }
+
+  const uncertainDating = article.chronology.find((entry) => entry.id === 'chrono_gak_c1080_1150');
+  assert.equal(uncertainDating.year, null);
+  assert.match(uncertainDating.period, /1080.*1150/);
+  assert.deepEqual(
+    article.chronology.filter((entry) => entry.year !== null).map((entry) => entry.year),
+    [1186, 1592, 1703, 1852, 1856, 1940, 1950, 2023, 2025, 2026]
+  );
+
+  const historicalHosts = new Set(['snl.no', 'oslobyleksikon.no', 'riksantikvaren.no']);
+  const historicalEntries = article.chronology.filter((entry) => entry.year !== null && entry.year < 2023);
+  assert.ok(historicalEntries.every((entry) => entry.sources.some((source) => historicalHosts.has(new URL(source).hostname))));
+
+  const plannedPhase = article.chronology.find((entry) => entry.id === 'chrono_gak_2026_2027');
+  assert.match(`${plannedPhase.period} ${plannedPhase.desc}`, /planlagt/i);
+  assert.equal(article.sources.length, 5);
+  assert.ok(!Object.hasOwn(article, 'externalLinks'));
+
+  const report = JSON.parse(fs.readFileSync(path.join(root, 'data/places/historie-production/gamle_aker_kirke.json'), 'utf8'));
+  assert.equal(report.chronologyStories.status, 'PASS');
+  assert.equal(report.gates.H.status, 'PASS');
+  assert.match(report.chronologyStories.rationale, /fase 3/);
+});

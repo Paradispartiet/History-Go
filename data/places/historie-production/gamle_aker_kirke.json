@@ -224,10 +224,10 @@
     "rationale": "Eksisterende quiz har bare fem spørsmål; ordinær åpning på to sett og fjorten spørsmål produseres og telles i fase 9."
   },
   "chronologyStories": {
-    "status": "N/A",
+    "status": "PASS",
     "chronologyReviewed": true,
     "storiesReviewed": true,
-    "rationale": "Nullmålingen har gjennomgått begge flater, men kildebelagt chronology og Story-avgjørelse leveres i fase 2 og 3."
+    "rationale": "Leksikonets chronology er erstattet med elleve kildebelagte milepæler med ærlig dateringspresisjon. Den eksisterende Storyen er gjennomgått for å sikre at tidslinjen ikke dupliserer den; full narrativ kvalitetsavgjørelse skjer i fase 3."
   },
   "gates": {
     "A": {
@@ -278,13 +278,16 @@
       ]
     },
     "H": {
-      "status": "N/A",
-      "rationale": "Quizåpning, chronology og Stories er målt og avgrenset, men ferdigstilles i egne senere faser."
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories",
+        "data/leksikon/places/oslo/historie/leksikon_oslo_historie.json#gamle_aker_kirke.chronology"
+      ]
     }
   },
   "review": {
     "reviewer": "OpenAI Codex",
-    "reviewedAt": "2026-08-01",
-    "notes": "Kilde-, case- og evidensreferanser er krysskontrollert. Slutninger om byggeår, redningsårsak og middelalderinteriør er eksplisitt avgrenset; quiz og narrative flater er ikke godkjent i denne fasen."
+    "reviewedAt": "2026-08-02",
+    "notes": "Kilde-, case-, evidens- og chronology-referanser er krysskontrollert. Slutninger om byggeår, redningsårsak og middelalderinteriør er eksplisitt avgrenset. Chronology er godkjent og holdt atskilt fra Story; quizåpningen og Storyens narrative kvalitet avgjøres i senere faser."
   }
 }
