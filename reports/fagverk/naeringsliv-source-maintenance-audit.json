@@ -1,0 +1,133 @@
+{
+  "schema": "history_go_naeringsliv_source_maintenance_audit_v1",
+  "version": "1.0.0",
+  "status": "PASSED",
+  "policy": {
+    "maxVerificationAgeDays": 365
+  },
+  "summary": {
+    "chapterCount": 12,
+    "claimCount": 422,
+    "sourceCount": 185,
+    "shadowSourceEntryCount": 60,
+    "oldestVerificationDate": "2026-07-30",
+    "newestVerificationDate": "2026-08-01"
+  },
+  "chapters": [
+    {
+      "id": "arbeid-produksjon-verdiskaping",
+      "verifiedAt": "2026-07-30",
+      "counts": {
+        "claims": 40,
+        "sources": 20,
+        "shadowSourceEntries": 20
+      }
+    },
+    {
+      "id": "kapital-eierskap-finans",
+      "verifiedAt": "2026-07-30",
+      "counts": {
+        "claims": 40,
+        "sources": 20,
+        "shadowSourceEntries": 20
+      }
+    },
+    {
+      "id": "handel-forbruk-marked",
+      "verifiedAt": "2026-07-30",
+      "counts": {
+        "claims": 54,
+        "sources": 25,
+        "shadowSourceEntries": 20
+      }
+    },
+    {
+      "id": "teknologi-innovasjon-plattformer",
+      "verifiedAt": "2026-07-31",
+      "counts": {
+        "claims": 42,
+        "sources": 22,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "logistikk-infrastruktur-okonomisk-rom",
+      "verifiedAt": "2026-07-31",
+      "counts": {
+        "claims": 42,
+        "sources": 22,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "makt-regulering-baerekraft",
+      "verifiedAt": "2026-07-31",
+      "counts": {
+        "claims": 42,
+        "sources": 22,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "makrookonomi-konjunkturer-okonomisk-politikk",
+      "verifiedAt": "2026-08-01",
+      "counts": {
+        "claims": 27,
+        "sources": 9,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "regnskap-revisjon-okonomistyring",
+      "verifiedAt": "2026-08-01",
+      "counts": {
+        "claims": 27,
+        "sources": 9,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "markedsforing-strategi-kunder",
+      "verifiedAt": "2026-08-01",
+      "counts": {
+        "claims": 27,
+        "sources": 9,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "kvantitative-metoder-business-analytics",
+      "verifiedAt": "2026-08-01",
+      "counts": {
+        "claims": 27,
+        "sources": 9,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "forretningsjus-skatt-compliance",
+      "verifiedAt": "2026-08-01",
+      "counts": {
+        "claims": 27,
+        "sources": 9,
+        "shadowSourceEntries": 0
+      }
+    },
+    {
+      "id": "internasjonal-okonomi-operations-prosjekt",
+      "verifiedAt": "2026-08-01",
+      "counts": {
+        "claims": 27,
+        "sources": 9,
+        "shadowSourceEntries": 0
+      }
+    }
+  ],
+  "gates": {
+    "allClaimsDocumentsVerifiedAndFresh": true,
+    "allSourcesInspectableAndUnique": true,
+    "allClaimsUseKnownSources": true,
+    "everyCanonicalSourceUsed": true,
+    "legacySourceCopiesMatchCanonicalMetadata": true
+  }
+}
