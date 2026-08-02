@@ -8,7 +8,7 @@
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
 - Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 6 – fire godkjente Lesespor klare for review; stedet er ikke samlet produksjonsklart**
+- Status: **fase 7 – kuratert brukerrettet Kilder-flate klar for review; stedet er ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -34,7 +34,7 @@
 | Før/etter | Lisenskontrollert Wikimedia-par fra Johan Nygaardsvolds plass: 1. juli 2008 og åpningen 13. april 2026. Begge er CC BY-SA 4.0, har navngitt fotograf, verifisert kildeside og eksplisitt inferensgrense. |
 | Nyheter | To daterte og stedsspesifikke `news_note`-records dekker G-blokkas pågående forprosjekt og den gjennomførte kunstmarkeringen 6. juni 2026. |
 | Lesespor | Fire åpne og godkjente `link_only`-spor dekker stedshistorie, politisk beslutningsgrunnlag, offentlig kunst og Statsbyggs prosjektgjennomføring. |
-| Brukerrettede kilder | Place og Leksikon har flere offisielle lenker, men ingen separat, deduplisert og fasegodkjent Kilder-flate med grupper, navn, kildebruk og avgrensninger er dokumentert. |
+| Brukerrettede kilder | Seks redaksjonelle kildegrupper og tolv navngitte place-lenker dekker identitet/historie, plan/vedtak, bygg/gjennomføring, kunst/arkitektur, 22. juli/minne og bilde/lisens. Runtime aggregerer Leksikon- og Før/etter-lenker og dedupliserer på URL. |
 | Mer | Tematiske Leksikon-artikler finnes, men ingen fasegodkjent pakke med Språkleksikon, observasjon/betydning/motpunkt eller eksplisitt begrunnet N/A for de øvrige Mer-komponentene. |
 | Fagverk-sted | Regjeringskvartalet har kuratert stedsside og relevante Politikk-linser. Den canonicale URL-en og synlig UI må kontrolleres på nytt i sluttfasen. |
 
@@ -76,7 +76,7 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | Før/etter | PASS – fase 4 | To CC BY-SA 4.0-bilder bruker Johan Nygaardsvolds plass som felles fysisk anker. Teksten skiller observerbar endring fra forklaring og sier uttrykkelig at ulike utsnitt ikke dokumenterer hele kvartalet. |
 | Nyheter | PASS – fase 5 | To notiser skiller et pågående forprosjekt fra et gjennomført arrangement og dupliserer ikke åpningene 13. april, 19. juli eller 22. juli fra chronology. |
 | Lesespor | PASS – fase 6 | Fire komplementære oppføringer er eksplisitt koblet bare til `regjeringskvartalet`, uten kopiert fulltekst eller betalingsmur. |
-| Kilder | DELVIS / IKKE GODKJENT | Kilder finnes i place-, rapport-, Story- og Leksikon-data, men den brukerrettede flaten er ikke separat kuratert, deduplisert og fasegodkjent. |
+| Kilder | PASS – fase 7 | Seks kildegrupper forklarer hva kildene brukes til. Tolv navngitte place-lenker er HTTPS, språkmerket og datokontrollert; Leksikon- og Før/etter-lenker dedupliseres av eksisterende runtime. |
 | Mer | DELVIS / IKKE GODKJENT | Fire tematiske artikler gir innhold, men Mer-fanens egne kontrakter og eiergrenser er ikke ferdig vurdert. |
 
 ## Rundings- og progresjonsstatus
@@ -137,11 +137,11 @@ Paret kan ikke alene dokumentere:
 - de tolv dokumenterte People-koblingene;
 - fire tematiske Leksikon-artikler som innholdsgrunnlag;
 - to daterte Nyheter-notiser med eksplisitt `ongoing`/`completed`-status;
-- fire godkjente Lesespor med ærlige datoer, åpne lenker og `link_only`-rettigheter.
+- fire godkjente Lesespor med ærlige datoer, åpne lenker og `link_only`-rettigheter;
+- seks brukerrettede kildegrupper og en deduplisert, navngitt lenkeflate med eksplisitte hold-back-grenser.
 
 ### Revider eller bygg separat
 
-- Kilder som deduplisert og brukerrettet flate;
 - Mer med Språkleksikon og avgrensede observasjon-/betydning-/motpunktspor, eller begrunnet N/A;
 - Objects bare for fysiske elementer som kan identifiseres, lokaliseres, kildebelegges og vises korrekt;
 - Brands bare dersom en faktisk canonical merke-/virksomhetsidentitet oppfyller rundingkontrakten.
@@ -167,9 +167,9 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 3 | Story-review og episodeproduksjon | **GODKJENT – PR #4428** |
 | 4 | Før/etter | **GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`** |
 | 5 | Nyheter | **GODKJENT – PR #4668, merge `7cd5a0041e3f1bb4b312bc2b32ca5f8ae27df246`** |
-| 6 | Lesespor | **KLAR FOR REVIEW** |
-| 7 | Brukerrettede Kilder | **NESTE AKTIVE FASE ETTER MERGE AV FASE 6** |
-| 8 | Mer | IKKE STARTET |
+| 6 | Lesespor | **GODKJENT – PR #4669, merge `c68881578a5a56c6ae9b610f7c5132fc448297c3`** |
+| 7 | Brukerrettede Kilder | **KLAR FOR REVIEW** |
+| 8 | Mer | **NESTE AKTIVE FASE ETTER MERGE AV FASE 7** |
 | 9 | Quizåpning 2 × 7 og Knowledge | **GODKJENT – PR #4664, merge `94cdc10e328b216dd374179fa5c12bf250def50e`** |
 | 10 | People | **GODKJENT – PR #3604** |
 | 11 | Objects | IKKE STARTET |
@@ -207,18 +207,28 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 - Ingen record er kopiert inn i Leksikon, canonical place-`externalLinks`, Nyheter, Quiz eller Knowledge.
 - Ingen canonical place-, Leksikon-, Story-, Quiz-, Knowledge-, People-, bilde-, manifest- eller runtimefil er endret.
 
+## Resultat i fase 7
+
+- `source_summary` er lagt til i canonical place-record med seks brukerrettede grupper: identitet/historie, plan/vedtak, bygg/gjennomføring, kunst/arkitektur, 22. juli/minne og bilde/lisens.
+- Tolv navngitte place-`externalLinks` dekker de samme funksjonene. Fem manglende innganger er lagt til: Meld. St. 21, Statsbyggs prosjektoversikt, KOROs kunstside, 22. juli-senterets historikk og SNLs hovedartikkel.
+- Eksisterende Regjeringen.no-lenker og CC BY-SA 4.0-lisensen er kontrollert 2. august 2026. Den tekniske S-5100/WFS-lenken beholder sin særskilte koordinatverifisering fra 24. juli 2026.
+- Eksisterende runtime samler place- og Leksikon-`externalLinks` med Før/etter-kildene og dedupliserer etter URL. Lesespor kopieres ikke inn i Kilder-fanen.
+- Interne rapporter, quiz-kontekst, claims og coordinate-audits er eksplisitt holdt utenfor brukerflaten.
+- Planlagte byggetrinn og framtidig ferdigstillelse må fortsatt presenteres med kontrollert status og dato.
+- Canonical place-endringen er synkronisert deterministisk i Quiz-produksjonskonteksten; Quiz-innhold, Knowledge, Leksikon, Stories, People, bilder og runtime er uendret.
+
 ## Neste aktive fase
 
-Etter at fase 6 er merget og kontrollert på faktisk `main`, starter **fase 7: brukerrettede Kilder**.
+Etter at fase 7 er merget og kontrollert på faktisk `main`, starter **fase 8: Mer**.
 
 Fasen skal:
 
-1. samle en liten, deduplisert kildeflate som dokumenterer stedets sentrale faktalag og ikke fungerer som en ny Lesespor-liste;
-2. gruppere og navngi offisielle kilder etter hva de faktisk dokumenterer: identitet/historie, plan/vedtak, bygg/gjennomføring, kunst og minne;
-3. kontrollere HTTPS, språk, tilgang, verifiseringsdato og direkte støtte for brukerrettede påstander;
-4. holde interne rapporter, audits og produksjonsfiler utenfor brukerflaten;
-5. oppdatere bare canonical place-/Leksikon-kildedata, fasekort og målrettede regresjoner dersom eksisterende runtimekontrakt holder.
+1. auditere hvilke av Mer-komponentene som faktisk er relevante: Språkleksikon, observasjon, betydning, motpunkt og kuraterte relasjoner;
+2. produsere bare kildebelagt, selvstendig innhold som ikke dupliserer Om, Historie, Stories, Objects eller Kilder;
+3. bruke begrunnet N/A der stedet ikke har et reelt innholdsspor;
+4. kontrollere at Mer-fanen rendrer riktig i eksisterende runtime;
+5. oppdatere eide data, fasekort og målrettet regresjon uten å lage filler.
 
-## Samlet status etter fase 6
+## Samlet status etter fase 7
 
-Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Om-grunnlag, Historie, Stories, Før/etter, Nyheter, Lesespor, Quiz/Knowledge og People er nå produsert eller reviewet. Brukerrettede Kilder, Mer, Objects, Brands og sluttkontroll av Badges, fagverk og faktisk UI står fortsatt åpne.
+Regjeringskvartalet har et sterkt faglig grunnlag, men er **ikke produksjonsklart etter den canonicale sted-for-sted-checklista**. Om-grunnlag, Historie, Stories, Før/etter, Nyheter, Lesespor, Kilder, Quiz/Knowledge og People er nå produsert eller reviewet. Mer, Objects, Brands og sluttkontroll av Badges, fagverk og faktisk UI står fortsatt åpne.
