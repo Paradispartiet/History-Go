@@ -30,6 +30,7 @@ on:
       - 'scripts/audit-politikk-place-production.mjs'
       - 'scripts/audit-historie-place-production.mjs'
       - 'scripts/audit-naeringsliv-place-production.mjs'
+      - 'scripts/audit-subkultur-place-production.mjs'
       - 'scripts/audit-quiz-content-quality.mjs'
       - 'scripts/audit-quiz-production-context.mjs'
       - 'scripts/audit-quiz-progression.mjs'
@@ -41,6 +42,7 @@ on:
       - 'tests/politikk-place-production.test.mjs'
       - 'tests/historie-place-production.test.mjs'
       - 'tests/naeringsliv-place-production.test.mjs'
+      - 'tests/subkultur-place-production.test.mjs'
       - 'data/Civication/historyPeople_index.json'
       - 'data/Civication/people_access_map.json'
       - 'tools/**'
@@ -175,6 +177,18 @@ jobs:
               --head "${{ github.sha }}"
           else
             node scripts/audit-naeringsliv-place-production.mjs --all
+          fi
+
+      - name: Enforce Subkultur place production reports
+        shell: bash
+        run: |
+          node --test tests/subkultur-place-production.test.mjs
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            node scripts/audit-subkultur-place-production.mjs --changed \
+              --base "${{ github.event.pull_request.base.sha }}" \
+              --head "${{ github.sha }}"
+          else
+            node scripts/audit-subkultur-place-production.mjs --all
           fi
 
       - name: Upload Places check log
