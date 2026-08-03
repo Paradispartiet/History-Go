@@ -119,7 +119,11 @@ function countSubkulturRecords(records, kind) {
 function chapterCount() {
   const directory = absolute('data/fagverk/subkultur');
   if (!fs.existsSync(directory)) return 0;
-  return fs.readdirSync(directory).filter((name) => name.endsWith('.json')).length;
+  return fs.readdirSync(directory).filter((name) => {
+    if (!name.endsWith('.json')) return false;
+    const value = JSON.parse(fs.readFileSync(path.join(directory, name), 'utf8'));
+    return value.schema === 'history_go_fagverk_chapter_v1';
+  }).length;
 }
 
 function inspectLegacyQuiz() {
@@ -309,7 +313,7 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
   const report = buildReport();
   assert(report.current.navigation_status === 'planned', 'Subkultur må beholde navigationStatus planned før materialisering');
   assert(report.current.assessment_status === 'pending', 'Subkultur må beholde assessmentStatus pending før quiz-audit');
-  assert(report.current.editorial_status === 'not_started', 'Subkultur må beholde editorialStatus not_started før sluttport');
+  assert(['not_started', 'chapters_in_progress'].includes(report.current.editorial_status), 'Subkultur må være not_started eller chapters_in_progress før sluttport');
   assert(report.current.registry_subject_exists === false, 'Subkultur skal ikke inn i fagverkregisteret før materialisering');
   if (checkReport) {
     assertLockedBaseline(readLockedReport());

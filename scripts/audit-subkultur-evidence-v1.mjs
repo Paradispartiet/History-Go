@@ -206,7 +206,7 @@ export function auditEvidence({ writeReport = false, checkReport = true } = {}) 
   assert(Object.values(report.policy).every(Boolean), 'Kilde- eller etikkpolicy er svekket');
   assert(report.status_guard.navigation_status === 'planned', 'Subkultur kan ikke materialiseres før kapitler og cases');
   assert(report.status_guard.assessment_status === 'pending', 'Assessment må forbli pending før quiz-audit');
-  assert(report.status_guard.editorial_status === 'not_started', 'Editorial status må forbli not_started før kapittelproduksjon');
+  assert(['not_started', 'chapters_in_progress'].includes(report.status_guard.editorial_status), 'Editorial status må være not_started eller chapters_in_progress før sluttport');
   assert(report.status_guard.runtime_manifest_exists === false, 'Runtime-manifest skal ikke finnes ennå');
   assert(report.status_guard.registry_subject_exists === false, 'Fagverkregisteret skal ikke materialisere Subkultur ennå');
 
