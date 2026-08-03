@@ -105,9 +105,9 @@ const urls = userVisible.match(/https:\/\/[^"\\\s]+/g) || [];
 assert.ok(urls.length >= 15);
 assert.ok(urls.every(url => url.startsWith('https://')));
 
-assert.match(report, /Status: \*\*korrigering pågår.*Quiz og Brands er gjenåpnet/s);
+assert.match(report, /Status: \*\*korrigeringsfase 14–15 PASS/);
 assert.match(report, /Fase 13 beviser at det leverte innholdet rendres riktig/);
-assert.match(report, /ikke samlet produksjonsklart/);
+assert.match(report, /fase 16 har kjørt/);
 assert.match(report, /\| Badges\/fagverk \| PASS – fase 13 \|/);
 assert.match(
   report,

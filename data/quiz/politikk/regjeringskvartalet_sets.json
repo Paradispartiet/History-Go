@@ -8,12 +8,20 @@
     "bygninger_kunst": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
     "melding_21": "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/",
     "minnested_2026": "https://www.regjeringen.no/no/aktuelt/apning-av-nasjonalt-minnested/id3168433/",
-    "senter_2026": "https://www.regjeringen.no/no/aktuelt/statsministerens-tale-ved-minnemarkeringen-i-regjeringskvartalet/id3169237/"
+    "senter_2026": "https://www.regjeringen.no/no/aktuelt/statsministerens-tale-ved-minnemarkeringen-i-regjeringskvartalet/id3169237/",
+    "melding_historie": "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/?ch=1",
+    "fin_gblokka": "https://www.regjeringen.no/no/dep/fin/dep/om-den-gamle-regjeringsbygningen-g-blokka/id450008/",
+    "yblokka_fakta": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/fakta-y-blokken-ma-rives/id2721904/",
+    "statsbygg_prosjekt": "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/",
+    "koro_kunst": "https://koro.no/offisiell-apning-av-regjeringskvartalet-13-april/",
+    "julisenter_historikk": "https://www.22julisenteret.no/no/om-senteret/historikk",
+    "team_urbis": "https://www.statsbygg.no/nyheter/regjeringskvartalet-kontrakt-undertegnet/",
+    "kostnad_aktorer": "https://www.regjeringen.no/no/aktuelt/forste-byggetrinn-i-regjeringskvartalet-ferdigstilles-under-kostnadsrammen/id3141936/"
   },
   "production_context": {
     "manifest_category": "politikk",
-    "profile": "narrow_3x7",
-    "standard_version": "3.0",
+    "profile": "major_10x7",
+    "standard_version": "3.3",
     "source_brief": "data/quiz/production_briefs/politikk/regjeringskvartalet.json",
     "context_artifact": "data/quiz/production_context/politikk/regjeringskvartalet.json",
     "resolved_files": {
@@ -62,7 +70,71 @@
     "works": [],
     "source_review_status": "reviewed",
     "theory_start_phase": "final",
-    "method_start_phase": "final"
+    "method_start_phase": "final",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "git:94cdc10e328b216dd374179fa5c12bf250def50e^:data/quiz/politikk/regjeringskvartalet_sets.json",
+        "data/quiz/politikk/regjeringskvartalet_sets.json",
+        "data/quiz/manifest.json"
+      ],
+      "active_before": {
+        "package": "data/quiz/politikk/regjeringskvartalet_sets.json",
+        "set_count": 3,
+        "question_count": 21,
+        "historical_set_count": 1,
+        "historical_question_count": 5
+      },
+      "decisions": {
+        "keep": [
+          "regjeringskvartalet_quiz_1",
+          "regjeringskvartalet_quiz_2",
+          "regjeringskvartalet_quiz_3",
+          "regjeringskvartalet_quiz_4",
+          "regjeringskvartalet_quiz_5",
+          "regjeringskvartalet_quiz_6",
+          "regjeringskvartalet_quiz_7",
+          "regjeringskvartalet_quiz_8",
+          "regjeringskvartalet_quiz_9",
+          "regjeringskvartalet_quiz_10",
+          "regjeringskvartalet_quiz_11",
+          "regjeringskvartalet_quiz_12",
+          "regjeringskvartalet_quiz_13",
+          "regjeringskvartalet_quiz_14",
+          "regjeringskvartalet_quiz_15",
+          "regjeringskvartalet_quiz_16",
+          "regjeringskvartalet_quiz_17",
+          "regjeringskvartalet_quiz_18",
+          "regjeringskvartalet_quiz_19",
+          "regjeringskvartalet_quiz_20",
+          "regjeringskvartalet_quiz_21"
+        ],
+        "rewrite": [
+          "regjeringskvartalet_s1_q1→regjeringskvartalet_quiz_1",
+          "regjeringskvartalet_s1_q2→regjeringskvartalet_quiz_2",
+          "regjeringskvartalet_s1_q3→regjeringskvartalet_quiz_30",
+          "regjeringskvartalet_s1_q4→regjeringskvartalet_quiz_19",
+          "regjeringskvartalet_s1_q5→regjeringskvartalet_quiz_10"
+        ],
+        "move": [
+          "regjeringskvartalet_quiz_15:set_3→set_10",
+          "regjeringskvartalet_quiz_16:set_3→set_10",
+          "regjeringskvartalet_quiz_17:set_3→set_10",
+          "regjeringskvartalet_quiz_18:set_3→set_10",
+          "regjeringskvartalet_quiz_19:set_3→set_10",
+          "regjeringskvartalet_quiz_20:set_3→set_10",
+          "regjeringskvartalet_quiz_21:set_3→set_10"
+        ],
+        "remove": []
+      },
+      "knowledge_migration": "Bevar eksisterende primary_knowledge_unit_id for spørsmål 1–21; flytting endrer bare quiz_id/settplassering. Nye spørsmål 22–70 materialiseres med nye canonical Knowledge-enheter."
+    },
+    "profile_decision": {
+      "profile": "major",
+      "set_count": 10,
+      "questions_per_set": 7,
+      "justification": "Regjeringskvartalet har ti selvstendige kildebårne læringsjobber: område/tidslag, samlingshistorie, personer, arkitektur/kunst, gjenoppbygging/aktører, forvaltning i arbeid, sikkerhet/byrom, minnested/læring, plan- og rivekonflikter og avsluttende styringsanalyse."
+    },
+    "held_back_candidates": []
   },
   "sets": [
     {
@@ -329,8 +401,8 @@
           "question": "Hva var den direkte virkningen av terrorangrepet i Regjeringskvartalet 22. juli 2011?",
           "options": [
             "Åtte mennesker ble drept og flere regjeringsbygg ble ubrukelige",
-            "Stortinget ble permanent flyttet til Bergen",
-            "Alle departementer ble avviklet"
+            "Regjeringen og Stortinget ble permanent flyttet fra Oslo",
+            "Alle departementene ble avviklet og erstattet av direktorater"
           ],
           "answer": "Åtte mennesker ble drept og flere regjeringsbygg ble ubrukelige",
           "answerIndex": 0,
@@ -424,9 +496,9 @@
       "set_id": "politikk_regjeringskvartalet_set_2",
       "level": 2,
       "order": 2,
-      "phase": "bridge",
-      "xp": 75,
-      "title": "Gjenoppbygging, sikkerhet og minne",
+      "phase": "middle",
+      "xp": 50,
+      "title": "Fra samlingsplan til nytt kvartal",
       "questions": [
         {
           "id": "regjeringskvartalet_quiz_8",
@@ -486,9 +558,9 @@
           "question_scope": "place",
           "question": "Hva forteller bruken av Empirekvartalet og det tidligere Rikshospitalet om statens tidlige lokaler?",
           "options": [
-            "At staten bare brukte nybygde kontorbygg",
+            "At staten fra starten bare brukte nybygde, formålsdelte kontorer",
             "At eldre bygg ble ombrukt før nye, formålsbygde regjeringsbygg kom",
-            "At departementene holdt til utenfor Oslo"
+            "At departementene fram til 1906 hovedsakelig arbeidet utenfor Oslo"
           ],
           "answer": "At eldre bygg ble ombrukt før nye, formålsbygde regjeringsbygg kom",
           "answerIndex": 1,
@@ -535,8 +607,8 @@
           "question_scope": "place",
           "question": "Hvorfor kombinerer byggetrinn 1 rehabilitert Høyblokk med nye A- og D-blokker?",
           "options": [
-            "For å gjøre området til et kjøpesenter",
-            "For å erstatte all historisk arkitektur",
+            "For å erstatte departementene med butikker og private kontorer",
+            "For å rive alle eldre deler og starte uten historiske bindinger",
             "For å samle regjeringsfunksjoner gjennom både bevaring og nybygg"
           ],
           "answer": "For å samle regjeringsfunksjoner gjennom både bevaring og nybygg",
@@ -586,8 +658,8 @@
           "question": "Hva er den politiske funksjonen til perimetersikring og et eksternt kontrollsenter for post og varer?",
           "options": [
             "De omsetter sikkerhetsbeslutninger til konkrete tekniske og romlige tiltak",
-            "De overfører lovgivende makt til vaktselskaper",
-            "De dokumenterer at all risiko er fjernet"
+            "De overfører myndigheten til private vaktselskaper uten politisk kontroll",
+            "De viser at myndighetene har fjernet all risiko fra sentrale statsbygg"
           ],
           "answer": "De omsetter sikkerhetsbeslutninger til konkrete tekniske og romlige tiltak",
           "answerIndex": 0,
@@ -634,9 +706,9 @@
           "question_scope": "place",
           "question": "Hva skjedde med kunstverkene Fiskerne og Måken etter rivningen av Y-blokka?",
           "options": [
-            "De ble ødelagt",
+            "De ble demontert og destruert da Y-blokka ble revet",
             "De ble bevart og integrert i det nye regjeringsområdet",
-            "De ble solgt til private samlere"
+            "De ble solgt til private samlere og flyttet ut av Oslo"
           ],
           "answer": "De ble bevart og integrert i det nye regjeringsområdet",
           "answerIndex": 1,
@@ -779,13 +851,2509 @@
       "set_id": "politikk_regjeringskvartalet_set_3",
       "level": 3,
       "order": 3,
+      "phase": "middle",
+      "xp": 75,
+      "title": "Menneskene bak bygg og kunst",
+      "questions": [
+        {
+          "id": "regjeringskvartalet_quiz_22",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvem tegnet G-blokka, som sto ferdig i 1906?",
+          "options": [
+            "Henrik Bull",
+            "Erling Viksjø",
+            "Sverre Jystad"
+          ],
+          "answer": "Henrik Bull",
+          "answerIndex": 0,
+          "knowledge": "Henrik Bull tegnet G-blokka som første fløy i et planlagt større regjeringsanlegg.",
+          "core_concepts": [
+            "Henrik Bull",
+            "G-blokka",
+            "arkitekt"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1906,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst",
+            "fin_gblokka"
+          ],
+          "source_origin": "external",
+          "claim_basis": "G-blokka sto ferdig i 1906 etter tegninger av arkitekt Henrik Bull.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_22",
+          "quiz_id": "politikk_regjeringskvartalet_set_3_q1",
+          "primary_knowledge_unit_id": "ku_politikk_henrik_bull_tegnet_g_blo_7a7c6b1f1d",
+          "knowledge_unit_ids": [
+            "ku_politikk_henrik_bull_tegnet_g_blo_7a7c6b1f1d"
+          ],
+          "concept_ids": [
+            "co_politikk_henrik_bull_efc8b1b188",
+            "co_politikk_g_blokka_b79196115c",
+            "co_politikk_arkitekt_3578f1c6bc"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_23",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilken arkitekt fikk prosjekteringsansvaret i 1946 og sto bak Høyblokka og Y-blokka?",
+          "options": [
+            "Henrik Bull",
+            "Erling Viksjø",
+            "Matias Faldbakken"
+          ],
+          "answer": "Erling Viksjø",
+          "answerIndex": 1,
+          "knowledge": "Erling Viksjø videreførte et forslag fra konkurransen i 1939 og formet etterkrigstidens regjeringsanlegg.",
+          "core_concepts": [
+            "Erling Viksjø",
+            "prosjektering",
+            "modernisme"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1946,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_historie",
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Erling Viksjø fikk prosjekteringsansvaret i 1946 og sto bak Høyblokka og Y-blokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_23",
+          "quiz_id": "politikk_regjeringskvartalet_set_3_q2",
+          "primary_knowledge_unit_id": "ku_politikk_erling_viksj_videref_rte_a6650a0dbc",
+          "knowledge_unit_ids": [
+            "ku_politikk_erling_viksj_videref_rte_a6650a0dbc"
+          ],
+          "concept_ids": [
+            "co_politikk_erling_viksj_5564975ea6",
+            "co_politikk_prosjektering_a194a329ec",
+            "co_politikk_modernisme_46df323cfb"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_24",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvem utviklet naturbetongteknikken sammen med Erling Viksjø?",
+          "options": [
+            "Carl Nesjar",
+            "Sverre Jystad",
+            "Pablo Picasso"
+          ],
+          "answer": "Sverre Jystad",
+          "answerIndex": 1,
+          "knowledge": "Sverre Jystad bidro til teknikken som gjorde steintilslaget synlig i sandblåst betong.",
+          "core_concepts": [
+            "Sverre Jystad",
+            "naturbetong",
+            "ingeniørkunst"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ingeniør Sverre Jystad utviklet naturbetongteknikken sammen med Erling Viksjø.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_24",
+          "quiz_id": "politikk_regjeringskvartalet_set_3_q3",
+          "primary_knowledge_unit_id": "ku_politikk_sverre_jystad_bidro_til__654242b738",
+          "knowledge_unit_ids": [
+            "ku_politikk_sverre_jystad_bidro_til__654242b738"
+          ],
+          "concept_ids": [
+            "co_politikk_sverre_jystad_c20805329b",
+            "co_politikk_naturbetong_c672809e7f",
+            "co_politikk_ingeni_rkunst_5ddacd9a06"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_25",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvordan var arbeidet fordelt mellom Pablo Picasso og Carl Nesjar i naturbetongverkene?",
+          "options": [
+            "Picasso laget motivene, mens Nesjar overførte dem til betongen",
+            "Nesjar tegnet byggene, mens Picasso støpte veggene",
+            "Begge arbeidet bare med løse malerier"
+          ],
+          "answer": "Picasso laget motivene, mens Nesjar overførte dem til betongen",
+          "answerIndex": 0,
+          "knowledge": "Samarbeidet bandt Picassos tegninger til Nesjars utførelse i selve bygningsflatene.",
+          "core_concepts": [
+            "Pablo Picasso",
+            "Carl Nesjar",
+            "integrert kunst"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst",
+            "yblokka_fakta"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Pablo Picasso leverte motiver, mens Carl Nesjar overførte dem til naturbetongen.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_25",
+          "quiz_id": "politikk_regjeringskvartalet_set_3_q4",
+          "primary_knowledge_unit_id": "ku_politikk_samarbeidet_bandt_picass_4a1a0a4b0c",
+          "knowledge_unit_ids": [
+            "ku_politikk_samarbeidet_bandt_picass_4a1a0a4b0c"
+          ],
+          "concept_ids": [
+            "co_politikk_pablo_picasso_a74602d8f8",
+            "co_politikk_carl_nesjar_919f8cd65c",
+            "co_politikk_integrert_kunst_779a4a86b4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_26",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilken kunstner laget et integrert veggarbeid i Høyblokkas vestibyle?",
+          "options": [
+            "Kai Fjell",
+            "Odd Tandberg",
+            "Matias Faldbakken"
+          ],
+          "answer": "Kai Fjell",
+          "answerIndex": 0,
+          "knowledge": "Kai Fjells arbeid inngikk i Viksjøs idé om at kunsten skulle være en del av regjeringsbygget.",
+          "core_concepts": [
+            "Kai Fjell",
+            "Høyblokka",
+            "vestibyle"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kai Fjell laget et integrert veggarbeid i vestibylen i Høyblokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_26",
+          "quiz_id": "politikk_regjeringskvartalet_set_3_q5",
+          "primary_knowledge_unit_id": "ku_politikk_kai_fjells_arbeid_inngik_0ae35edbdc",
+          "knowledge_unit_ids": [
+            "ku_politikk_kai_fjells_arbeid_inngik_0ae35edbdc"
+          ],
+          "concept_ids": [
+            "co_politikk_kai_fjell_41929600aa",
+            "co_politikk_h_yblokka_2721295bf0",
+            "co_politikk_vestibyle_aff9ed3561"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_27",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvor i Høyblokka hadde Inger Sitter integrerte arbeider?",
+          "options": [
+            "Bare på taket",
+            "I vestibylen og trappeløpene",
+            "Kun i statsrådssalen"
+          ],
+          "answer": "I vestibylen og trappeløpene",
+          "answerIndex": 1,
+          "knowledge": "Arbeidene viser at kunstprogrammet fortsatte gjennom byggets bevegelses- og fellesarealer.",
+          "core_concepts": [
+            "Inger Sitter",
+            "trappeløp",
+            "offentlig kunst"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Inger Sitter hadde integrerte arbeider i vestibylen og trappeløpene i Høyblokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_27",
+          "quiz_id": "politikk_regjeringskvartalet_set_3_q6",
+          "primary_knowledge_unit_id": "ku_politikk_arbeidene_viser_at_kunst_03cf63be26",
+          "knowledge_unit_ids": [
+            "ku_politikk_arbeidene_viser_at_kunst_03cf63be26"
+          ],
+          "concept_ids": [
+            "co_politikk_inger_sitter_fb8ab7a15a",
+            "co_politikk_trappel_p_fd1c6fe36e",
+            "co_politikk_offentlig_kunst_c0ebcb8e07"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_28",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilke to kunstnere hadde integrerte veggarbeider i flere av Høyblokkas etasjer?",
+          "options": [
+            "Tore Haaland og Odd Tandberg",
+            "Henrik Bull og Sverre Jystad",
+            "Matias Faldbakken og Erling Viksjø"
+          ],
+          "answer": "Tore Haaland og Odd Tandberg",
+          "answerIndex": 0,
+          "knowledge": "Tore Haaland og Odd Tandberg var del av det brede kunstprogrammet i Høyblokka.",
+          "core_concepts": [
+            "Tore Haaland",
+            "Odd Tandberg",
+            "Høyblokka"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tore Haaland og Odd Tandberg hadde integrerte veggarbeider i flere etasjer i Høyblokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_28",
+          "quiz_id": "politikk_regjeringskvartalet_set_3_q7",
+          "primary_knowledge_unit_id": "ku_politikk_tore_haaland_og_odd_tand_ab69ce5a1c",
+          "knowledge_unit_ids": [
+            "ku_politikk_tore_haaland_og_odd_tand_ab69ce5a1c"
+          ],
+          "concept_ids": [
+            "co_politikk_tore_haaland_c006a303e6",
+            "co_politikk_odd_tandberg_b134a7d439",
+            "co_politikk_h_yblokka_2721295bf0"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_regjeringskvartalet_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "middle",
+      "xp": 75,
+      "title": "Arkitektur, naturbetong og synlige spor",
+      "questions": [
+        {
+          "id": "regjeringskvartalet_quiz_29",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvordan får naturbetong fram steinen i betongoverflaten?",
+          "options": [
+            "Overflaten sandblåses slik at tilslaget kommer fram",
+            "Overflaten kles med trepanel som skjuler betongkjernen",
+            "Betongen males med mønster som etterligner hugget marmor"
+          ],
+          "answer": "Overflaten sandblåses slik at tilslaget kommer fram",
+          "answerIndex": 0,
+          "knowledge": "Teknikken gjorde den grove steinen til både byggemateriale og kunstnerisk flate.",
+          "core_concepts": [
+            "sandblåsing",
+            "steintilslag",
+            "naturbetong"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Naturbetong lages ved å sandblåse betongoverflaten slik at steintilslaget kommer fram.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_29",
+          "quiz_id": "politikk_regjeringskvartalet_set_4_q1",
+          "primary_knowledge_unit_id": "ku_politikk_teknikken_gjorde_den_gro_38ed1453db",
+          "knowledge_unit_ids": [
+            "ku_politikk_teknikken_gjorde_den_gro_38ed1453db"
+          ],
+          "concept_ids": [
+            "co_politikk_sandblasing_7e3bd5c8ed",
+            "co_politikk_steintilslag_155e2ed566",
+            "co_politikk_naturbetong_c672809e7f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_30",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva hadde Høyblokka og Y-blokka til felles i Viksjøs anlegg?",
+          "options": [
+            "De kombinerte naturbetong med kunst i bygningsflatene",
+            "De ble oppført som trehus med utskårne fasadedetaljer",
+            "De rommet Stortingets plenumsal og komitékontorer"
+          ],
+          "answer": "De kombinerte naturbetong med kunst i bygningsflatene",
+          "answerIndex": 0,
+          "knowledge": "Kunst og arkitektur ble planlagt sammen, ikke som løs utsmykning lagt til etterpå.",
+          "core_concepts": [
+            "Høyblokka",
+            "Y-blokka",
+            "kunstintegrasjon"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Høyblokka og Y-blokka kombinerte naturbetong med kunst integrert i bygningsflatene.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_30",
+          "quiz_id": "politikk_regjeringskvartalet_set_4_q2",
+          "primary_knowledge_unit_id": "ku_politikk_kunst_og_arkitektur_ble__438c12dd94",
+          "knowledge_unit_ids": [
+            "ku_politikk_kunst_og_arkitektur_ble__438c12dd94"
+          ],
+          "concept_ids": [
+            "co_politikk_h_yblokka_2721295bf0",
+            "co_politikk_y_blokka_31307a4e26",
+            "co_politikk_kunstintegrasjon_0c5cad2290"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_31",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvordan skilte Y-blokka seg fysisk fra Høyblokka?",
+          "options": [
+            "Den var en lav, forgrenet bygning",
+            "Den var en høy glasskube",
+            "Den lå under bakken"
+          ],
+          "answer": "Den var en lav, forgrenet bygning",
+          "answerIndex": 0,
+          "knowledge": "Den lave Y-formen ga Viksjø-anlegget en horisontal del ved siden av Høyblokka.",
+          "core_concepts": [
+            "Y-form",
+            "lavblokk",
+            "bygningskomposisjon"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1969,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Y-blokka var en lav, forgrenet bygning i kontrast til Høyblokkas vertikale form.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_31",
+          "quiz_id": "politikk_regjeringskvartalet_set_4_q3",
+          "primary_knowledge_unit_id": "ku_politikk_den_lave_y_formen_ga_vik_e0915b5bab",
+          "knowledge_unit_ids": [
+            "ku_politikk_den_lave_y_formen_ga_vik_e0915b5bab"
+          ],
+          "concept_ids": [
+            "co_politikk_y_form_94dfc44341",
+            "co_politikk_lavblokk_8022c65629",
+            "co_politikk_bygningskomposisjon_18bac84f02"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_32",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva gjorde kunsten i Viksjøs regjeringsbygg annerledes enn løs veggpynt?",
+          "options": [
+            "Den var utført direkte i arkitekturens materialer og flater",
+            "Den kunne bare ses i et eget museum",
+            "Den besto bare av midlertidige plakater"
+          ],
+          "answer": "Den var utført direkte i arkitekturens materialer og flater",
+          "answerIndex": 0,
+          "knowledge": "Når kunstverkene er del av veggen, blir bevaring også et spørsmål om selve bygningen.",
+          "core_concepts": [
+            "stedsspesifikk kunst",
+            "materialitet",
+            "arkitektur"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst",
+            "koro_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kunsten i Viksjøs regjeringsbygg var utført direkte i arkitekturens materialer og flater.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_32",
+          "quiz_id": "politikk_regjeringskvartalet_set_4_q4",
+          "primary_knowledge_unit_id": "ku_politikk_nar_kunstverkene_er_del__7e3e7c03d8",
+          "knowledge_unit_ids": [
+            "ku_politikk_nar_kunstverkene_er_del__7e3e7c03d8"
+          ],
+          "concept_ids": [
+            "co_politikk_stedsspesifikk_kunst_402d26f90c",
+            "co_politikk_materialitet_8a012daf52",
+            "co_politikk_arkitektur_361f7db46b"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_33",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvor var «Fiskerne» opprinnelig plassert?",
+          "options": [
+            "På Y-blokkas utvendige vegg",
+            "I G-blokkas kjeller",
+            "På taket av R6"
+          ],
+          "answer": "På Y-blokkas utvendige vegg",
+          "answerIndex": 0,
+          "knowledge": "Verket måtte skjæres ut før Y-blokka ble revet og ble senere montert på A-blokka.",
+          "core_concepts": [
+            "Fiskerne",
+            "Y-blokka",
+            "fasadekunst"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "yblokka_fakta",
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "«Fiskerne» var opprinnelig integrert i en utvendig vegg på Y-blokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_33",
+          "quiz_id": "politikk_regjeringskvartalet_set_4_q5",
+          "primary_knowledge_unit_id": "ku_politikk_verket_matte_skj_res_ut__01e540bb65",
+          "knowledge_unit_ids": [
+            "ku_politikk_verket_matte_skj_res_ut__01e540bb65"
+          ],
+          "concept_ids": [
+            "co_politikk_fiskerne_4951eaf0f5",
+            "co_politikk_y_blokka_31307a4e26",
+            "co_politikk_fasadekunst_78e45d5d2f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_34",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvor fikk «Måken» ny plass i det gjenoppbygde kvartalet?",
+          "options": [
+            "I inngangspartiet til A-blokka",
+            "I Stortingets vandrehall",
+            "På utsiden av G-blokka"
+          ],
+          "answer": "I inngangspartiet til A-blokka",
+          "answerIndex": 0,
+          "knowledge": "Verket ble bevart fra Y-blokka og integrert i det nye regjeringsområdet.",
+          "core_concepts": [
+            "Måken",
+            "A-blokka",
+            "gjenbruk"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "bygninger_kunst",
+            "koro_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "«Måken» fikk ny plass i inngangspartiet til A-blokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_34",
+          "quiz_id": "politikk_regjeringskvartalet_set_4_q6",
+          "primary_knowledge_unit_id": "ku_politikk_verket_ble_bevart_fra_y__5cc631ada2",
+          "knowledge_unit_ids": [
+            "ku_politikk_verket_ble_bevart_fra_y__5cc631ada2"
+          ],
+          "concept_ids": [
+            "co_politikk_maken_dce06974ac",
+            "co_politikk_a_blokka_0e3f30609a",
+            "co_politikk_gjenbruk_1a03e051d0"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_35",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor var flyttingen av «Fiskerne» og «Måken» mer krevende enn å flytte vanlige bilder?",
+          "options": [
+            "Verkene var fysisk integrert i betongveggene",
+            "Verkene var digitale filer uten kopier",
+            "Verkene tilhørte et annet land"
+          ],
+          "answer": "Verkene var fysisk integrert i betongveggene",
+          "answerIndex": 0,
+          "knowledge": "Rivningen viste den praktiske konsekvensen av å gjøre kunsten til en del av arkitekturen.",
+          "core_concepts": [
+            "bevaring",
+            "utskjæring",
+            "integrert kunst"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "yblokka_fakta",
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Flyttingen av «Fiskerne» og «Måken» krevde utskjæring og sikring fordi verkene var fysisk integrert i betongveggene.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_35",
+          "quiz_id": "politikk_regjeringskvartalet_set_4_q7",
+          "primary_knowledge_unit_id": "ku_politikk_rivningen_viste_den_prak_f1dd7d4f15",
+          "knowledge_unit_ids": [
+            "ku_politikk_rivningen_viste_den_prak_f1dd7d4f15"
+          ],
+          "concept_ids": [
+            "co_politikk_bevaring_bac4ee150d",
+            "co_politikk_utskj_ring_a73f27570d",
+            "co_politikk_integrert_kunst_779a4a86b4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_regjeringskvartalet_set_5",
+      "level": 5,
+      "order": 5,
+      "phase": "middle",
+      "xp": 75,
+      "title": "Gjenoppbygging, aktører og byggetrinn",
+      "questions": [
+        {
+          "id": "regjeringskvartalet_quiz_36",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Omtrent hvor mange ansatte måtte få midlertidige lokaler etter terrorangrepet?",
+          "options": [
+            "Rundt 180",
+            "Rundt 1800",
+            "Rundt 18 000"
+          ],
+          "answer": "Rundt 1800",
+          "answerIndex": 1,
+          "knowledge": "Flyttingen gjorde det mulig å opprettholde forvaltningen mens området ble sikret og planlagt på nytt.",
+          "core_concepts": [
+            "midlertidige lokaler",
+            "forvaltningskontinuitet",
+            "krise"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2011,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rundt 1800 ansatte i berørte departementer og Departementenes servicesenter måtte få midlertidige lokaler etter terrorangrepet.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_36",
+          "quiz_id": "politikk_regjeringskvartalet_set_5_q1",
+          "primary_knowledge_unit_id": "ku_politikk_flyttingen_gjorde_det_mu_893f535b66",
+          "knowledge_unit_ids": [
+            "ku_politikk_flyttingen_gjorde_det_mu_893f535b66"
+          ],
+          "concept_ids": [
+            "co_politikk_midlertidige_lokaler_afa56d9ee5",
+            "co_politikk_forvaltningskontinuitet_9e6df0bac9",
+            "co_politikk_krise_6ca34cf8a9"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_37",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva besluttet regjeringen i januar 2012 om Regjeringskvartalet?",
+          "options": [
+            "Å gå videre med utredningen av et framtidig regjeringskvartal",
+            "Å flytte alle departementer permanent ut av Oslo",
+            "Å gjenreise Y-blokka uendret"
+          ],
+          "answer": "Å gå videre med utredningen av et framtidig regjeringskvartal",
+          "answerIndex": 0,
+          "knowledge": "Beslutningen startet et langsiktig løp fra utredning og plan til bygging og innflytting.",
+          "core_concepts": [
+            "utredning",
+            "regjeringsbeslutning",
+            "gjenoppbygging"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2012,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Regjeringen besluttet i januar 2012 å gå videre med utredningen av et framtidig regjeringskvartal.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_37",
+          "quiz_id": "politikk_regjeringskvartalet_set_5_q2",
+          "primary_knowledge_unit_id": "ku_politikk_beslutningen_startet_et__7a41983355",
+          "knowledge_unit_ids": [
+            "ku_politikk_beslutningen_startet_et__7a41983355"
+          ],
+          "concept_ids": [
+            "co_politikk_utredning_7d994b73b7",
+            "co_politikk_regjeringsbeslutning_8b60e38237",
+            "co_politikk_gjenoppbygging_5e9aa2146a"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_38",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilket hovedgrep ble valgt for den nye utbyggingen i 2014?",
+          "options": [
+            "En konsentrert utbygging mellom Akersgata og Møllergata",
+            "En spredning av kvartalet til alle bydeler",
+            "Et rent underjordisk anlegg"
+          ],
+          "answer": "En konsentrert utbygging mellom Akersgata og Møllergata",
+          "answerIndex": 0,
+          "knowledge": "Valget avgrenset hvor hoveddelen av den framtidige sentralforvaltningen skulle samles.",
+          "core_concepts": [
+            "konsentrert utbygging",
+            "Akersgata",
+            "Møllergata"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2014,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_21",
+            "reguleringsplan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 2014 valgte regjeringen en konsentrert utbygging mellom Akersgata og Møllergata.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_38",
+          "quiz_id": "politikk_regjeringskvartalet_set_5_q3",
+          "primary_knowledge_unit_id": "ku_politikk_valget_avgrenset_hvor_ho_040f42f345",
+          "knowledge_unit_ids": [
+            "ku_politikk_valget_avgrenset_hvor_ho_040f42f345"
+          ],
+          "concept_ids": [
+            "co_politikk_konsentrert_utbygging_6f992016ca",
+            "co_politikk_akersgata_de320afa5f",
+            "co_politikk_m_llergata_29886fe4f8"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_39",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilket formelt planverktøy fastsatte rammene for det nye kvartalet?",
+          "options": [
+            "En statlig reguleringsplan",
+            "En privat leiekontrakt",
+            "En kommunal skolereform"
+          ],
+          "answer": "En statlig reguleringsplan",
+          "answerIndex": 0,
+          "knowledge": "Reguleringsplanen gjør arealbruk, byggeområder og byrom til formelle rammer for gjennomføringen.",
+          "core_concepts": [
+            "statlig reguleringsplan",
+            "arealbruk",
+            "vedtak"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "reguleringsplan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rammene for det nye Regjeringskvartalet ble fastsatt gjennom en statlig reguleringsplan.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_39",
+          "quiz_id": "politikk_regjeringskvartalet_set_5_q4",
+          "primary_knowledge_unit_id": "ku_politikk_reguleringsplanen_gj_r_a_c8caf83f52",
+          "knowledge_unit_ids": [
+            "ku_politikk_reguleringsplanen_gj_r_a_c8caf83f52"
+          ],
+          "concept_ids": [
+            "co_politikk_statlig_reguleringsplan_582492d154",
+            "co_politikk_arealbruk_907987a1bf",
+            "co_politikk_vedtak_3fa466314a"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_40",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Når startet byggearbeidene for byggetrinn 1?",
+          "options": [
+            "Januar 2012",
+            "Januar 2021",
+            "April 2026"
+          ],
+          "answer": "Januar 2021",
+          "answerIndex": 1,
+          "knowledge": "Byggestarten kom etter flere år med utredning, planlegging, vedtak og forberedelser.",
+          "core_concepts": [
+            "byggestart",
+            "byggetrinn 1",
+            "gjennomføring"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2021,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "nytt_rkv",
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byggearbeidene for byggetrinn 1 startet i januar 2021.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_40",
+          "quiz_id": "politikk_regjeringskvartalet_set_5_q5",
+          "primary_knowledge_unit_id": "ku_politikk_byggestarten_kom_etter_f_46285eea6e",
+          "knowledge_unit_ids": [
+            "ku_politikk_byggestarten_kom_etter_f_46285eea6e"
+          ],
+          "concept_ids": [
+            "co_politikk_byggestart_1f1e9112ff",
+            "co_politikk_byggetrinn_1_fabfda7cb5",
+            "co_politikk_gjennomf_ring_8d859bf4ea"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_41",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva viser kjellerarealer, uteområder og sikring i samme byggetrinn som kontorbyggene?",
+          "options": [
+            "At prosjektet også organiserer infrastruktur og offentlig rom",
+            "At uteområdene ikke har noen funksjon",
+            "At prosjektet bare handler om interiør"
+          ],
+          "answer": "At prosjektet også organiserer infrastruktur og offentlig rom",
+          "answerIndex": 0,
+          "knowledge": "Et regjeringskvartal må få logistikk, sikkerhet, forbindelser og byrom til å virke sammen med arbeidsplassene.",
+          "core_concepts": [
+            "infrastruktur",
+            "uteområder",
+            "helhetlig prosjekt"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "nytt_rkv"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byggetrinn 1 omfattet kjellerarealer, uteområder og sikring i tillegg til kontorbygg.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_41",
+          "quiz_id": "politikk_regjeringskvartalet_set_5_q6",
+          "primary_knowledge_unit_id": "ku_politikk_et_regjeringskvartal_ma__361a9b7d2d",
+          "knowledge_unit_ids": [
+            "ku_politikk_et_regjeringskvartal_ma__361a9b7d2d"
+          ],
+          "concept_ids": [
+            "co_politikk_infrastruktur_cd393f3bd5",
+            "co_politikk_uteomrader_ba814cc66f",
+            "co_politikk_helhetlig_prosjekt_f17d29ca35"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_42",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva viser skillet mellom Team Urbis og hovedentreprenørene i prosjektet?",
+          "options": [
+            "At prosjektering og fysisk bygging utføres av ulike profesjonelle aktører",
+            "At departementene selv både prosjekterer og gjennomfører all bygging",
+            "At arkitektfirmaene vedtar bevilgninger og statsbudsjett for prosjektet"
+          ],
+          "answer": "At prosjektering og fysisk bygging utføres av ulike profesjonelle aktører",
+          "answerIndex": 0,
+          "knowledge": "Store offentlige byggeprosjekter fordeler ansvar mellom byggherre, prosjekterende firmaer og entreprenører.",
+          "core_concepts": [
+            "prosjektering",
+            "entreprise",
+            "rollefordeling"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "team_urbis",
+            "kostnad_aktorer"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Team Urbis og hovedentreprenørene har ulike roller i prosjektering og fysisk bygging av Regjeringskvartalet.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_42",
+          "quiz_id": "politikk_regjeringskvartalet_set_5_q7",
+          "primary_knowledge_unit_id": "ku_politikk_store_offentlige_byggepr_62f482d360",
+          "knowledge_unit_ids": [
+            "ku_politikk_store_offentlige_byggepr_62f482d360"
+          ],
+          "concept_ids": [
+            "co_politikk_prosjektering_a194a329ec",
+            "co_politikk_entreprise_5b5bce1cd4",
+            "co_politikk_rollefordeling_088ef66a0f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_regjeringskvartalet_set_6",
+      "level": 6,
+      "order": 6,
+      "phase": "middle",
+      "xp": 75,
+      "title": "Staten i arbeid",
+      "questions": [
+        {
+          "id": "regjeringskvartalet_quiz_43",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilke virksomheter flyttet inn i D-blokka i byggetrinn 1?",
+          "options": [
+            "Statsministerens kontor, Utenriksdepartementet og Kultur- og likestillingsdepartementet",
+            "Stortingets administrasjon, Høyesterett og den politiske ledelsen i Oslo kommune",
+            "Finanstilsynet, NRK, Norges Bank og flere kommunale kontrollorganer"
+          ],
+          "answer": "Statsministerens kontor, Utenriksdepartementet og Kultur- og likestillingsdepartementet",
+          "answerIndex": 0,
+          "knowledge": "D-blokka samler Statsministerens kontor med to departementer i første byggetrinn.",
+          "core_concepts": [
+            "D-blokka",
+            "Statsministerens kontor",
+            "departement"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2026,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "apning_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statsministerens kontor, Utenriksdepartementet og Kultur- og likestillingsdepartementet flyttet inn i D-blokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_43",
+          "quiz_id": "politikk_regjeringskvartalet_set_6_q1",
+          "primary_knowledge_unit_id": "ku_politikk_d_blokka_samler_statsmin_f0cb1de94b",
+          "knowledge_unit_ids": [
+            "ku_politikk_d_blokka_samler_statsmin_f0cb1de94b"
+          ],
+          "concept_ids": [
+            "co_politikk_d_blokka_b27266cc91",
+            "co_politikk_statsministerens_kontor_9b60b9be18",
+            "co_politikk_departement_9a02d273b7"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_44",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilke departementer flyttet inn i A-blokka?",
+          "options": [
+            "Klima- og miljødepartementet og Nærings- og fiskeridepartementet",
+            "Justis- og beredskapsdepartementet og Utenriksdepartementet",
+            "Finansdepartementet og Forsvarsdepartementet"
+          ],
+          "answer": "Klima- og miljødepartementet og Nærings- og fiskeridepartementet",
+          "answerIndex": 0,
+          "knowledge": "A-blokka rommer også deler av Digitaliserings- og forvaltningsdepartementet.",
+          "core_concepts": [
+            "A-blokka",
+            "departementer",
+            "innflytting"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2026,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "apning_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Klima- og miljødepartementet og Nærings- og fiskeridepartementet flyttet inn i A-blokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_44",
+          "quiz_id": "politikk_regjeringskvartalet_set_6_q2",
+          "primary_knowledge_unit_id": "ku_politikk_a_blokka_rommer_ogsa_del_c1ec3c920d",
+          "knowledge_unit_ids": [
+            "ku_politikk_a_blokka_rommer_ogsa_del_c1ec3c920d"
+          ],
+          "concept_ids": [
+            "co_politikk_a_blokka_0e3f30609a",
+            "co_politikk_departementer_d05918bb49",
+            "co_politikk_innflytting_00c924e45e"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_45",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilket departement holder til i den rehabiliterte Høyblokka?",
+          "options": [
+            "Justis- og beredskapsdepartementet",
+            "Samferdselsdepartementet",
+            "Kunnskapsdepartementet"
+          ],
+          "answer": "Justis- og beredskapsdepartementet",
+          "answerIndex": 0,
+          "knowledge": "Høyblokka er igjen i bruk som regjeringsbygg etter rehabiliteringen.",
+          "core_concepts": [
+            "Høyblokka",
+            "Justisdepartementet",
+            "rehabilitering"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2026,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "apning_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Justis- og beredskapsdepartementet holder til i den rehabiliterte Høyblokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_45",
+          "quiz_id": "politikk_regjeringskvartalet_set_6_q3",
+          "primary_knowledge_unit_id": "ku_politikk_h_yblokka_er_igjen_i_bru_a18a962cc6",
+          "knowledge_unit_ids": [
+            "ku_politikk_h_yblokka_er_igjen_i_bru_a18a962cc6"
+          ],
+          "concept_ids": [
+            "co_politikk_h_yblokka_2721295bf0",
+            "co_politikk_justisdepartementet_b82cc047a4",
+            "co_politikk_rehabilitering_bc2074dce3"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_46",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvordan er Digitaliserings- og forvaltningsdepartementet plassert i byggetrinn 1?",
+          "options": [
+            "Det er fordelt mellom A-blokka og Høyblokka",
+            "Det ligger bare i G-blokka",
+            "Det arbeider permanent fra Stortinget"
+          ],
+          "answer": "Det er fordelt mellom A-blokka og Høyblokka",
+          "answerIndex": 0,
+          "knowledge": "Fordelingen viser at én virksomhet kan bruke flere bygg innenfor samme institusjonsområde.",
+          "core_concepts": [
+            "Digitaliseringsdepartementet",
+            "A-blokka",
+            "Høyblokka"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2026,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "apning_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Digitaliserings- og forvaltningsdepartementet er fordelt mellom A-blokka og Høyblokka.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_46",
+          "quiz_id": "politikk_regjeringskvartalet_set_6_q4",
+          "primary_knowledge_unit_id": "ku_politikk_fordelingen_viser_at_en__ff74a00d95",
+          "knowledge_unit_ids": [
+            "ku_politikk_fordelingen_viser_at_en__ff74a00d95"
+          ],
+          "concept_ids": [
+            "co_politikk_digitaliseringsdepartementet_b208d7266a",
+            "co_politikk_a_blokka_0e3f30609a",
+            "co_politikk_h_yblokka_2721295bf0"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_47",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor var tilbakeflyttingen i 2026 institusjonelt viktig etter årene i midlertidige lokaler?",
+          "options": [
+            "Den samlet flere regjeringsvirksomheter i et felles arbeidsområde igjen",
+            "Den avsluttet departementsordningen og fordelte oppgavene til private firmaer",
+            "Den flyttet lovgivende myndighet fra Stortinget inn i departementsbyggene"
+          ],
+          "answer": "Den samlet flere regjeringsvirksomheter i et felles arbeidsområde igjen",
+          "answerIndex": 0,
+          "knowledge": "Samlokalisering er en fysisk leveranse; virkningen på samarbeid må eventuelt dokumenteres separat.",
+          "core_concepts": [
+            "samlokalisering",
+            "tilbakeflytting",
+            "sentralforvaltning"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "apning_2026",
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tilbakeflyttingen samlet flere regjeringsvirksomheter i et felles arbeidsområde igjen etter årene i midlertidige lokaler.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_47",
+          "quiz_id": "politikk_regjeringskvartalet_set_6_q5",
+          "primary_knowledge_unit_id": "ku_politikk_samlokalisering_er_en_fy_d2b19be349",
+          "knowledge_unit_ids": [
+            "ku_politikk_samlokalisering_er_en_fy_d2b19be349"
+          ],
+          "concept_ids": [
+            "co_politikk_samlokalisering_5964506091",
+            "co_politikk_tilbakeflytting_a30c265d6c",
+            "co_politikk_sentralforvaltning_f8e519be13"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_48",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva er den viktigste rolleforskjellen mellom regjeringen og Statsbygg i gjenoppbyggingen?",
+          "options": [
+            "Regjeringen beslutter politiske rammer, mens Statsbygg gjennomfører byggherreoppgaver",
+            "Statsbygg vedtar lover og budsjetter, mens regjeringen prosjekterer og oppfører byggene",
+            "Begge fungerer som private entreprenører uten ulike politiske eller operative roller"
+          ],
+          "answer": "Regjeringen beslutter politiske rammer, mens Statsbygg gjennomfører byggherreoppgaver",
+          "answerIndex": 0,
+          "knowledge": "Skillet gjør det mulig å følge ansvar fra politisk vedtak til praktisk prosjektstyring.",
+          "core_concepts": [
+            "regjeringen",
+            "Statsbygg",
+            "byggherre"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_21",
+            "statsbygg_prosjekt"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Regjeringen beslutter politiske rammer, mens Statsbygg utfører byggherre- og gjennomføringsoppgaver i prosjektet.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_48",
+          "quiz_id": "politikk_regjeringskvartalet_set_6_q6",
+          "primary_knowledge_unit_id": "ku_politikk_skillet_gj_r_det_mulig_a_9881e25ef2",
+          "knowledge_unit_ids": [
+            "ku_politikk_skillet_gj_r_det_mulig_a_9881e25ef2"
+          ],
+          "concept_ids": [
+            "co_politikk_regjeringen_9bcc6526ce",
+            "co_politikk_statsbygg_ceacef0bfe",
+            "co_politikk_byggherre_32582deeca"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_49",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor er Regjeringskvartalet mer enn en vanlig samling kontorbygg?",
+          "options": [
+            "Byggene rommer institusjoner som utøver statlig myndighet og forvaltning",
+            "Alle bygningene fungerer som kommersielle sentre uten offentlig myndighetsutøvelse",
+            "Området eies og styres av ett privat selskap uten departementer eller statsorganer"
+          ],
+          "answer": "Byggene rommer institusjoner som utøver statlig myndighet og forvaltning",
+          "answerIndex": 0,
+          "knowledge": "Den politiske funksjonen gir området en annen betydning enn et ordinært kontorkompleks.",
+          "core_concepts": [
+            "institusjonsområde",
+            "statlig myndighet",
+            "forvaltning"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "apning_2026",
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Regjeringskvartalet er et institusjonsområde fordi byggene rommer regjering og departementer som utøver statlig myndighet og forvaltning.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_49",
+          "quiz_id": "politikk_regjeringskvartalet_set_6_q7",
+          "primary_knowledge_unit_id": "ku_politikk_den_politiske_funksjonen_9ce47a2fab",
+          "knowledge_unit_ids": [
+            "ku_politikk_den_politiske_funksjonen_9ce47a2fab"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjonsomrade_d2d8468acf",
+            "co_politikk_statlig_myndighet_79884ea304",
+            "co_politikk_forvaltning_827d021b03"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_regjeringskvartalet_set_7",
+      "level": 7,
+      "order": 7,
+      "phase": "middle",
+      "xp": 75,
+      "title": "Sikkerhet, åpenhet og byrom",
+      "questions": [
+        {
+          "id": "regjeringskvartalet_quiz_50",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvor ligger hovedområdet for det nye Regjeringskvartalet?",
+          "options": [
+            "Mellom Akersgata og Møllergata",
+            "Mellom Karl Johans gate og Aker brygge",
+            "Mellom Majorstuen og Blindern"
+          ],
+          "answer": "Mellom Akersgata og Møllergata",
+          "answerIndex": 0,
+          "knowledge": "Den konsentrerte plasseringen samler sentrale regjeringsfunksjoner i et avgrenset sentrumsområde.",
+          "core_concepts": [
+            "Akersgata",
+            "Møllergata",
+            "planområde"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "reguleringsplan",
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hovedområdet for det nye Regjeringskvartalet ligger mellom Akersgata og Møllergata.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_50",
+          "quiz_id": "politikk_regjeringskvartalet_set_7_q1",
+          "primary_knowledge_unit_id": "ku_politikk_den_konsentrerte_plasser_68369ed282",
+          "knowledge_unit_ids": [
+            "ku_politikk_den_konsentrerte_plasser_68369ed282"
+          ],
+          "concept_ids": [
+            "co_politikk_akersgata_de320afa5f",
+            "co_politikk_m_llergata_29886fe4f8",
+            "co_politikk_planomrade_8b9582b7e9"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_51",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva skal det eksterne kontrollsenteret håndtere før varer og post kommer inn i kvartalet?",
+          "options": [
+            "Kontroll av post og varer",
+            "Stortingsvalg",
+            "Kunstutstillinger"
+          ],
+          "answer": "Kontroll av post og varer",
+          "answerIndex": 0,
+          "knowledge": "Løsningen flytter en del av sikkerhetskontrollen bort fra selve arbeidsområdet.",
+          "core_concepts": [
+            "kontrollsenter",
+            "post",
+            "varelevering"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "nytt_rkv"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et eksternt kontrollsenter skal kontrollere post og varer før de kommer inn i Regjeringskvartalet.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_51",
+          "quiz_id": "politikk_regjeringskvartalet_set_7_q2",
+          "primary_knowledge_unit_id": "ku_politikk_l_sningen_flytter_en_del_e57ec2ea1f",
+          "knowledge_unit_ids": [
+            "ku_politikk_l_sningen_flytter_en_del_e57ec2ea1f"
+          ],
+          "concept_ids": [
+            "co_politikk_kontrollsenter_6174900c33",
+            "co_politikk_post_c37667b854",
+            "co_politikk_varelevering_ecc764f3ef"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_52",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilke offentlige forbindelser skulle planleggingen fortsatt ivareta?",
+          "options": [
+            "Plasser og ganglinjer gjennom byområdet",
+            "En lukket privat motorvei",
+            "En ny rullebane for fly"
+          ],
+          "answer": "Plasser og ganglinjer gjennom byområdet",
+          "answerIndex": 0,
+          "knowledge": "Byrom og ferdsel er del av den politiske avveiningen mellom tilgjengelighet og beskyttelse.",
+          "core_concepts": [
+            "ganglinjer",
+            "offentlige plasser",
+            "tilgjengelighet"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_21",
+            "reguleringsplan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Planleggingen skulle ivareta offentlige plasser og ganglinjer samtidig som nasjonale funksjoner ble sikret.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_52",
+          "quiz_id": "politikk_regjeringskvartalet_set_7_q3",
+          "primary_knowledge_unit_id": "ku_politikk_byrom_og_ferdsel_er_del__38eba05be0",
+          "knowledge_unit_ids": [
+            "ku_politikk_byrom_og_ferdsel_er_del__38eba05be0"
+          ],
+          "concept_ids": [
+            "co_politikk_ganglinjer_f68c63de25",
+            "co_politikk_offentlige_plasser_ce287727c1",
+            "co_politikk_tilgjengelighet_93f0f32c05"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_53",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor kan ikke sikkerhet i Regjeringskvartalet vurderes bare som et teknisk spørsmål?",
+          "options": [
+            "Tiltakene påvirker også ferdsel, byrom og forholdet mellom stat og offentlighet",
+            "Fordi sikkerhetstiltak ikke får fysisk form og derfor ikke påvirker byen rundt",
+            "Fordi tiltakene bare angår private leverandører og aldri offentlige rom eller borgere"
+          ],
+          "answer": "Tiltakene påvirker også ferdsel, byrom og forholdet mellom stat og offentlighet",
+          "answerIndex": 0,
+          "knowledge": "Sperrer, kontrollpunkter og soner former hvordan mennesker kan bevege seg rundt maktens institusjoner.",
+          "core_concepts": [
+            "sikkerhet",
+            "byrom",
+            "offentlighet"
+          ],
+          "difficulty": 2,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_pol_politi_sikkerhet_makt",
+          "source": [
+            "melding_21",
+            "reguleringsplan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sikkerhetstiltakene påvirker ferdsel, byrom og forholdet mellom statlige funksjoner og offentligheten.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_53",
+          "quiz_id": "politikk_regjeringskvartalet_set_7_q4",
+          "primary_knowledge_unit_id": "ku_politikk_sperrer_kontrollpunkter__3fe606088b",
+          "knowledge_unit_ids": [
+            "ku_politikk_sperrer_kontrollpunkter__3fe606088b"
+          ],
+          "concept_ids": [
+            "co_politikk_sikkerhet_8af2ebb70c",
+            "co_politikk_byrom_96b96bda65",
+            "co_politikk_offentlighet_53c695a61f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_54",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva er den viktigste bymessige risikoen ved en svært hard sikkerhetsperimeter?",
+          "options": [
+            "At området kan bli mindre sammenhengende og tilgjengelig for byens brukere",
+            "At departementene kan miste statlig status og bli en del av den kommunale forvaltningen",
+            "At alle historiske bygg automatisk mister vernestatus når området sikres"
+          ],
+          "answer": "At området kan bli mindre sammenhengende og tilgjengelig for byens brukere",
+          "answerIndex": 0,
+          "knowledge": "Derfor må sikkerhetskrav vurderes sammen med gangforbindelser, plasser og byliv.",
+          "core_concepts": [
+            "perimeter",
+            "tilgjengelighet",
+            "urban sammenheng"
+          ],
+          "difficulty": 2,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_pol_politi_sikkerhet_makt",
+          "source": [
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En svært hard sikkerhetsperimeter kan gjøre området mindre sammenhengende og tilgjengelig som offentlig byrom.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_54",
+          "quiz_id": "politikk_regjeringskvartalet_set_7_q5",
+          "primary_knowledge_unit_id": "ku_politikk_derfor_ma_sikkerhetskrav_834827b497",
+          "knowledge_unit_ids": [
+            "ku_politikk_derfor_ma_sikkerhetskrav_834827b497"
+          ],
+          "concept_ids": [
+            "co_politikk_perimeter_e16b5d994a",
+            "co_politikk_tilgjengelighet_93f0f32c05",
+            "co_politikk_urban_sammenheng_54fa9f6b06"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_55",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor må opplysninger om byggetrinn 2 og 3 alltid dateres og statusmerkes?",
+          "options": [
+            "Planer, forprosjekt og bygging er ulike stadier som kan endre seg",
+            "Fordi alle framtidige byggetrinn allerede var ferdigstilt og tatt i bruk før 2011",
+            "Fordi datoer og status bare har betydning for kunstverk, ikke for byggeprosjekter"
+          ],
+          "answer": "Planer, forprosjekt og bygging er ulike stadier som kan endre seg",
+          "answerIndex": 0,
+          "knowledge": "En kilde kan dokumentere at et arbeid er planlagt eller i gang uten å dokumentere at det er ferdig.",
+          "core_concepts": [
+            "status",
+            "tidsavgrensning",
+            "byggetrinn"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "nytt_rkv"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Opplysninger om senere byggetrinn må dateres og statusmerkes fordi plan, forprosjekt og bygging er ulike og skiftende stadier.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_55",
+          "quiz_id": "politikk_regjeringskvartalet_set_7_q6",
+          "primary_knowledge_unit_id": "ku_politikk_en_kilde_kan_dokumentere_88f660de85",
+          "knowledge_unit_ids": [
+            "ku_politikk_en_kilde_kan_dokumentere_88f660de85"
+          ],
+          "concept_ids": [
+            "co_politikk_status_24973c06f0",
+            "co_politikk_tidsavgrensning_cf51c8b539",
+            "co_politikk_byggetrinn_db3c7423fe"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_56",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva betyr «maktens geografi» konkret i Regjeringskvartalet?",
+          "options": [
+            "At utøvende statsmakt samles og formes i et bestemt fysisk byområde",
+            "At kart og stedsdata om statlige arbeidsplasser alltid må holdes hemmelige",
+            "At Oslo kommune får direkte styringsrett over regjeringen fordi den ligger i byen"
+          ],
+          "answer": "At utøvende statsmakt samles og formes i et bestemt fysisk byområde",
+          "answerIndex": 0,
+          "knowledge": "Plassering, avstander, adkomst og bygninger påvirker hvordan statsinstitusjonene møter hverandre og byen.",
+          "core_concepts": [
+            "maktens geografi",
+            "utøvende makt",
+            "sted"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_maktens_geografi",
+          "source": [
+            "melding_21",
+            "apning_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Regjeringskvartalet viser maktens geografi ved at utøvende statsmakt samles og formes i et bestemt fysisk byområde.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_56",
+          "quiz_id": "politikk_regjeringskvartalet_set_7_q7",
+          "primary_knowledge_unit_id": "ku_politikk_plassering_avstander_adk_fedad6d97d",
+          "knowledge_unit_ids": [
+            "ku_politikk_plassering_avstander_adk_fedad6d97d"
+          ],
+          "concept_ids": [
+            "co_politikk_maktens_geografi_8f9dc6a695",
+            "co_politikk_ut_vende_makt_aa12adc82d",
+            "co_politikk_sted_9630f25730"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_regjeringskvartalet_set_8",
+      "level": 8,
+      "order": 8,
+      "phase": "bridge",
+      "xp": 100,
+      "title": "Minnested og læringsarena",
+      "questions": [
+        {
+          "id": "regjeringskvartalet_quiz_57",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvem laget det nasjonale minnestedet «En opprettholdelse»?",
+          "options": [
+            "Matias Faldbakken",
+            "Erling Viksjø",
+            "Kai Fjell"
+          ],
+          "answer": "Matias Faldbakken",
+          "answerIndex": 0,
+          "knowledge": "Minnestedet ble åpnet på Johan Nygaardsvolds plass 19. juli 2026.",
+          "core_concepts": [
+            "Matias Faldbakken",
+            "En opprettholdelse",
+            "minnested"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2026,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "minnested_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Matias Faldbakken laget det nasjonale minnestedet «En opprettholdelse».",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_57",
+          "quiz_id": "politikk_regjeringskvartalet_set_8_q1",
+          "primary_knowledge_unit_id": "ku_politikk_minnestedet_ble_apnet_pa_711924cf27",
+          "knowledge_unit_ids": [
+            "ku_politikk_minnestedet_ble_apnet_pa_711924cf27"
+          ],
+          "concept_ids": [
+            "co_politikk_matias_faldbakken_0d56c09408",
+            "co_politikk_en_opprettholdelse_71f4b437a6",
+            "co_politikk_minnested_cbf8f2f3d4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_58",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvilke to hoveddeler består «En opprettholdelse» av?",
+          "options": [
+            "En torgskulptur med steinmosaikk og en lang steinbenk",
+            "Et høyt klokketårn med minneplater og en sirkulær fontene",
+            "Et digitalt informasjonsskilt og en innglasset gangbro over plassen"
+          ],
+          "answer": "En torgskulptur med steinmosaikk og en lang steinbenk",
+          "answerIndex": 0,
+          "knowledge": "De to delene knytter minnet til selve plassen og bevegelsen gjennom området.",
+          "core_concepts": [
+            "steinmosaikk",
+            "steinbenk",
+            "torgskulptur"
+          ],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "minnested_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "«En opprettholdelse» består av en torgskulptur med steinmosaikk og en steinbenk på mer enn 18 meter.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_58",
+          "quiz_id": "politikk_regjeringskvartalet_set_8_q2",
+          "primary_knowledge_unit_id": "ku_politikk_de_to_delene_knytter_min_f9d1755cc5",
+          "knowledge_unit_ids": [
+            "ku_politikk_de_to_delene_knytter_min_f9d1755cc5"
+          ],
+          "concept_ids": [
+            "co_politikk_steinmosaikk_8954df56e1",
+            "co_politikk_steinbenk_528481a279",
+            "co_politikk_torgskulptur_ce3fd6f057"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_59",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva gjør innskriften med navnene på de 77 drepte på minnestedet?",
+          "options": [
+            "Den gjør de enkelte tapene synlige i det offentlige rommet",
+            "Den erstatter alle historiske kilder",
+            "Den markerer ansatte i departementene"
+          ],
+          "answer": "Den gjør de enkelte tapene synlige i det offentlige rommet",
+          "answerIndex": 0,
+          "knowledge": "Navnene knytter den nasjonale minnemarkeringen til konkrete mennesker.",
+          "core_concepts": [
+            "navn",
+            "offentlig minne",
+            "22. juli"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "minnested_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Navnene på de 77 drepte er innskrevet slik at de enkelte tapene blir synlige i det offentlige rommet.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_59",
+          "quiz_id": "politikk_regjeringskvartalet_set_8_q3",
+          "primary_knowledge_unit_id": "ku_politikk_navnene_knytter_den_nasj_b273b90915",
+          "knowledge_unit_ids": [
+            "ku_politikk_navnene_knytter_den_nasj_b273b90915"
+          ],
+          "concept_ids": [
+            "co_politikk_navn_226e3668ba",
+            "co_politikk_offentlig_minne_1af9c71198",
+            "co_politikk_22_juli_32194aea9c"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_60",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor er plasseringen på Johan Nygaardsvolds plass viktig for minnestedets betydning?",
+          "options": [
+            "Minnet møter det arbeidende regjeringsområdet der angrepet fant sted",
+            "Plasseringen gjør minnestedet fysisk adskilt fra både Oslo og regjeringsarbeidet",
+            "Plasseringen skjuler minnestedet for publikum og begrenser det til ansatte"
+          ],
+          "answer": "Minnet møter det arbeidende regjeringsområdet der angrepet fant sted",
+          "answerIndex": 0,
+          "knowledge": "Minnestedet er del av et kvartal som både er arbeidsplass, byrom og åsted.",
+          "core_concepts": [
+            "Johan Nygaardsvolds plass",
+            "åsted",
+            "arbeidssted"
+          ],
+          "difficulty": 2,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "minnested_2026",
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plasseringen på Johan Nygaardsvolds plass lar minnet møte det arbeidende regjeringsområdet der angrepet fant sted.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_60",
+          "quiz_id": "politikk_regjeringskvartalet_set_8_q4",
+          "primary_knowledge_unit_id": "ku_politikk_minnestedet_er_del_av_et_6f539629fb",
+          "knowledge_unit_ids": [
+            "ku_politikk_minnestedet_er_del_av_et_6f539629fb"
+          ],
+          "concept_ids": [
+            "co_politikk_johan_nygaardsvolds_plass_71a60902ff",
+            "co_politikk_asted_27c2ceb29d",
+            "co_politikk_arbeidssted_1b82d9314e"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_61",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva viser 22. juli-senterets plassering både over og under bakken?",
+          "options": [
+            "At formidlingen er integrert i det rehabiliterte kvartalet",
+            "At senteret er en midlertidig utstilling som skal fjernes etter byggeperioden",
+            "At senteret ligger i en annen by og ikke har fysisk kontakt med angrepsstedet"
+          ],
+          "answer": "At formidlingen er integrert i det rehabiliterte kvartalet",
+          "answerIndex": 0,
+          "knowledge": "Senteret er bygd inn i stedet som formidler historien, ikke flyttet løs fra åstedet.",
+          "core_concepts": [
+            "22. juli-senteret",
+            "paviljonger",
+            "stedstilknytning"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "senter_2026",
+            "julisenter_historikk"
+          ],
+          "source_origin": "external",
+          "claim_basis": "22. juli-senteret bruker rehabiliterte paviljonger over bakken, nye lokaler under bakken og inngang fra Akersgata.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_61",
+          "quiz_id": "politikk_regjeringskvartalet_set_8_q5",
+          "primary_knowledge_unit_id": "ku_politikk_senteret_er_bygd_inn_i_s_3fcd5e543c",
+          "knowledge_unit_ids": [
+            "ku_politikk_senteret_er_bygd_inn_i_s_3fcd5e543c"
+          ],
+          "concept_ids": [
+            "co_politikk_22_juli_senteret_06b2133aa1",
+            "co_politikk_paviljonger_e7c59992d1",
+            "co_politikk_stedstilknytning_30d728cb14"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_62",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva er offentlig minne i denne sammenhengen?",
+          "options": [
+            "Måten samfunnet gjør fortiden synlig og tilgjengelig i felles rom",
+            "En privat samling minner som bare er tilgjengelig for ansatte i departementene",
+            "Et lukket teknisk arkiv uten formidling, markeringer eller adgang for publikum"
+          ],
+          "answer": "Måten samfunnet gjør fortiden synlig og tilgjengelig i felles rom",
+          "answerIndex": 0,
+          "knowledge": "Minnestedet, senteret, kunsten og de bevarte byggene gir ulike former for offentlig erindring.",
+          "core_concepts": [
+            "offentlig minne",
+            "felles rom",
+            "erindring"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "minnested_2026",
+            "senter_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Offentlig minne er måten samfunnet gjør fortiden synlig og tilgjengelig i felles rom.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_62",
+          "quiz_id": "politikk_regjeringskvartalet_set_8_q6",
+          "primary_knowledge_unit_id": "ku_politikk_minnestedet_senteret_kun_6cea5173fd",
+          "knowledge_unit_ids": [
+            "ku_politikk_minnestedet_senteret_kun_6cea5173fd"
+          ],
+          "concept_ids": [
+            "co_politikk_offentlig_minne_1af9c71198",
+            "co_politikk_felles_rom_325446d313",
+            "co_politikk_erindring_91b8760787"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_63",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva er hovedforskjellen mellom minnestedet og 22. juli-senteret?",
+          "options": [
+            "Minnestedet hedrer de drepte, mens senteret også formidler kunnskap og læring",
+            "Minnestedet er et departement, mens senteret er Stortinget",
+            "De har ingen forbindelse til 22. juli"
+          ],
+          "answer": "Minnestedet hedrer de drepte, mens senteret også formidler kunnskap og læring",
+          "answerIndex": 0,
+          "knowledge": "De to funksjonene utfyller hverandre uten å være den samme institusjonen.",
+          "core_concepts": [
+            "minnested",
+            "formidling",
+            "demokratisk læring"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "minnested_2026",
+            "senter_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Minnestedet hedrer de drepte, mens 22. juli-senteret også har en kunnskaps- og læringsfunksjon.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_63",
+          "quiz_id": "politikk_regjeringskvartalet_set_8_q7",
+          "primary_knowledge_unit_id": "ku_politikk_de_to_funksjonene_utfyll_6284611b05",
+          "knowledge_unit_ids": [
+            "ku_politikk_de_to_funksjonene_utfyll_6284611b05"
+          ],
+          "concept_ids": [
+            "co_politikk_minnested_cbf8f2f3d4",
+            "co_politikk_formidling_e3b92de3e1",
+            "co_politikk_demokratisk_l_ring_67af033a60"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_regjeringskvartalet_set_9",
+      "level": 9,
+      "order": 9,
+      "phase": "bridge",
+      "xp": 100,
+      "title": "Planstrid, riving og historiske bindinger",
+      "questions": [
+        {
+          "id": "regjeringskvartalet_quiz_64",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva viser at konkurransene i 1887 og 1891 ikke førte til et samlet anlegg?",
+          "options": [
+            "At statlig planlegging kan være langvarig uten at hele planen blir gjennomført",
+            "At staten manglet både eiendommer og offentlige institusjoner i hovedstaden",
+            "At hele dagens anlegg, inkludert Høyblokka, allerede var ferdigstilt før konkurransene"
+          ],
+          "answer": "At statlig planlegging kan være langvarig uten at hele planen blir gjennomført",
+          "answerIndex": 0,
+          "knowledge": "Ønsket om samling var tydelig, men konkurranser alene skapte ikke et ferdig kvartal.",
+          "core_concepts": [
+            "arkitektkonkurranse",
+            "planlegging",
+            "ikke-gjennomføring"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": 1887,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_historie"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Konkurransene i 1887 og 1891 viser at statlig planlegging kan være langvarig uten at hele planen blir gjennomført.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_64",
+          "quiz_id": "politikk_regjeringskvartalet_set_9_q1",
+          "primary_knowledge_unit_id": "ku_politikk_nsket_om_samling_var_tyd_541b5e2a55",
+          "knowledge_unit_ids": [
+            "ku_politikk_nsket_om_samling_var_tyd_541b5e2a55"
+          ],
+          "concept_ids": [
+            "co_politikk_arkitektkonkurranse_5419dbe8b1",
+            "co_politikk_planlegging_c0c6920235",
+            "co_politikk_ikke_gjennomf_ring_3f51b72791"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_65",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor ble det ikke kåret en vinner i konkurransen i 1939?",
+          "options": [
+            "Juryen mente gamle og nye byggeperioder var vanskelige å binde sammen",
+            "Konkurransen ble avlyst fordi ingen arkitekter leverte tegninger eller forslag",
+            "Området var allerede solgt til utenlandske eiere som stanset offentlig bygging"
+          ],
+          "answer": "Juryen mente gamle og nye byggeperioder var vanskelige å binde sammen",
+          "answerIndex": 0,
+          "knowledge": "Konflikten mellom eksisterende bygg og nye behov preget planleggingen lenge før dagens vernedebatter.",
+          "core_concepts": [
+            "1939-konkurransen",
+            "historiske lag",
+            "jury"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": 1939,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_historie"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 1939 kåret juryen ingen vinner fordi gamle og nye byggeperioder var vanskelige å binde sammen.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_65",
+          "quiz_id": "politikk_regjeringskvartalet_set_9_q2",
+          "primary_knowledge_unit_id": "ku_politikk_konflikten_mellom_eksist_bc94ede3e9",
+          "knowledge_unit_ids": [
+            "ku_politikk_konflikten_mellom_eksist_bc94ede3e9"
+          ],
+          "concept_ids": [
+            "co_politikk_1939_konkurransen_835fa4280e",
+            "co_politikk_historiske_lag_1823b3db70",
+            "co_politikk_jury_da598f156d"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_66",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva forteller det at bare én fløy av Henrik Bulls planlagte H-anlegg ble reist?",
+          "options": [
+            "At økonomi og politikk kan endre et arkitektonisk helhetsforslag underveis",
+            "At G-blokka bare var planlagt som en midlertidig scene uten administrativ funksjon",
+            "At Bulls konkurranseforslag aldri omfattet flere fløyer eller et samlet anlegg"
+          ],
+          "answer": "At økonomi og politikk kan endre et arkitektonisk helhetsforslag underveis",
+          "answerIndex": 0,
+          "knowledge": "Regjeringskvartalet fikk derfor historiske lag i stedet for ett ferdig anlegg fra 1906.",
+          "core_concepts": [
+            "økonomiske rammer",
+            "ufullført plan",
+            "historiske lag"
+          ],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "fin_gblokka",
+            "melding_historie"
+          ],
+          "source_origin": "external",
+          "claim_basis": "At bare G-blokka ble reist av Bulls planlagte H-anlegg viser at økonomi og politikk kan endre et helhetsforslag underveis.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_66",
+          "quiz_id": "politikk_regjeringskvartalet_set_9_q3",
+          "primary_knowledge_unit_id": "ku_politikk_regjeringskvartalet_fikk_737718d4db",
+          "knowledge_unit_ids": [
+            "ku_politikk_regjeringskvartalet_fikk_737718d4db"
+          ],
+          "concept_ids": [
+            "co_politikk_konomiske_rammer_b575c2472f",
+            "co_politikk_ufullf_rt_plan_d46163c936",
+            "co_politikk_historiske_lag_1823b3db70"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_67",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvordan virker tidligere valg inn på nye planer i Regjeringskvartalet?",
+          "options": [
+            "Bevarte bygg, kunst og eksisterende gater setter rammer for senere løsninger",
+            "Nye planer kan utformes som om området var tomt og uten bygninger eller gateløp",
+            "Tidligere vedtak etterlater ingen materielle spor og får derfor ingen betydning"
+          ],
+          "answer": "Bevarte bygg, kunst og eksisterende gater setter rammer for senere løsninger",
+          "answerIndex": 0,
+          "knowledge": "Nye prosjekter må arbeide med spor etter Empirekvartalet, G-blokka, Viksjø-anlegget og 22. juli.",
+          "core_concepts": [
+            "stiavhengighet",
+            "bevaring",
+            "planrammer"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_maktens_geografi",
+          "source": [
+            "melding_21",
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bevarte bygg, kunst og eksisterende gater setter rammer for senere løsninger i Regjeringskvartalet.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_67",
+          "quiz_id": "politikk_regjeringskvartalet_set_9_q4",
+          "primary_knowledge_unit_id": "ku_politikk_nye_prosjekter_ma_arbeid_7bd8d5d279",
+          "knowledge_unit_ids": [
+            "ku_politikk_nye_prosjekter_ma_arbeid_7bd8d5d279"
+          ],
+          "concept_ids": [
+            "co_politikk_stiavhengighet_4d08b600ad",
+            "co_politikk_bevaring_bac4ee150d",
+            "co_politikk_planrammer_7682f6d399"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_68",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor ble rivningen av Y-blokka også en kulturpolitisk konflikt?",
+          "options": [
+            "Bygningen og kunsten var fysisk og symbolsk bundet sammen",
+            "Fordi Y-blokka var landets eneste departementsbygg og ikke kunne erstattes",
+            "Fordi rivningsvedtaket samtidig endret Grunnloven og Stortingets myndighet"
+          ],
+          "answer": "Bygningen og kunsten var fysisk og symbolsk bundet sammen",
+          "answerIndex": 0,
+          "knowledge": "Debatten handlet derfor både om sikkerhet og utbygging, arkitekturvern og kunstens stedstilknytning.",
+          "core_concepts": [
+            "kulturpolitisk konflikt",
+            "Y-blokka",
+            "vern"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_mediert_offentlighet",
+          "source": [
+            "yblokka_fakta",
+            "bygninger_kunst"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rivningen av Y-blokka ble en kulturpolitisk konflikt fordi bygningen og kunsten var fysisk og symbolsk bundet sammen.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_68",
+          "quiz_id": "politikk_regjeringskvartalet_set_9_q5",
+          "primary_knowledge_unit_id": "ku_politikk_debatten_handlet_derfor__a93d8bd603",
+          "knowledge_unit_ids": [
+            "ku_politikk_debatten_handlet_derfor__a93d8bd603"
+          ],
+          "concept_ids": [
+            "co_politikk_kulturpolitisk_konflikt_dd8dbb0d30",
+            "co_politikk_y_blokka_31307a4e26",
+            "co_politikk_vern_5df544e1e0"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_69",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hva viser de midlertidige departementslokalene om staten som institusjon?",
+          "options": [
+            "Forvaltningen kan opprettholde arbeid selv når det faste maktstedet blir ubrukelig",
+            "At statsforvaltningen og alle departementer opphørte umiddelbart etter angrepet i 2011",
+            "At departementene kan fungere uten arbeidsplasser, sikkerhetssystemer eller samordning"
+          ],
+          "answer": "Forvaltningen kan opprettholde arbeid selv når det faste maktstedet blir ubrukelig",
+          "answerIndex": 0,
+          "knowledge": "Institusjonell kontinuitet er forskjellig fra kontinuiteten til én bestemt bygning.",
+          "core_concepts": [
+            "institusjonell kontinuitet",
+            "midlertidighet",
+            "forvaltning"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_byrakrati_forvaltning",
+          "source": [
+            "melding_21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De midlertidige lokalene viser at forvaltningen kan opprettholde arbeid selv når det faste maktstedet blir ubrukelig.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_69",
+          "quiz_id": "politikk_regjeringskvartalet_set_9_q6",
+          "primary_knowledge_unit_id": "ku_politikk_institusjonell_kontinuit_0fe7f45d9c",
+          "knowledge_unit_ids": [
+            "ku_politikk_institusjonell_kontinuit_0fe7f45d9c"
+          ],
+          "concept_ids": [
+            "co_politikk_institusjonell_kontinuitet_54d775ac43",
+            "co_politikk_midlertidighet_7da39c6d98",
+            "co_politikk_forvaltning_827d021b03"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "regjeringskvartalet_quiz_70",
+          "categoryId": "politikk",
+          "placeId": "regjeringskvartalet",
+          "targetId": "regjeringskvartalet",
+          "question_scope": "place",
+          "question": "Hvorfor er gjenoppbyggingen en politisk prosess og ikke bare et byggeprosjekt?",
+          "options": [
+            "Den fordeler verdier og prioriteringer mellom sikkerhet, vern, arbeid, byrom, kunst og minne",
+            "Den gjelder bare tekniske valg av betong, ventilasjon og andre byggematerialer",
+            "Den gjennomføres uten offentlige vedtak, budsjettprioriteringer eller interessekonflikter"
+          ],
+          "answer": "Den fordeler verdier og prioriteringer mellom sikkerhet, vern, arbeid, byrom, kunst og minne",
+          "answerIndex": 0,
+          "knowledge": "Valgene avgjør både hva staten trenger og hvordan maktstedet møter byen og historien.",
+          "core_concepts": [
+            "prioritering",
+            "interessekonflikt",
+            "gjenoppbygging"
+          ],
+          "difficulty": 2,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_pol_maktens_geografi",
+          "source": [
+            "melding_21",
+            "reguleringsplan"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gjenoppbyggingen er politisk fordi den fordeler verdier og prioriteringer mellom sikkerhet, vern, arbeid, byrom, kunst og minne.",
+          "guidance_basis": [
+            "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+            "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+            "data/fag/politikk/methods_politikk_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_regjeringskvartalet_quiz_70",
+          "quiz_id": "politikk_regjeringskvartalet_set_9_q7",
+          "primary_knowledge_unit_id": "ku_politikk_valgene_avgj_r_bade_hva__553b0c7d6d",
+          "knowledge_unit_ids": [
+            "ku_politikk_valgene_avgj_r_bade_hva__553b0c7d6d"
+          ],
+          "concept_ids": [
+            "co_politikk_prioritering_34fd6babde",
+            "co_politikk_interessekonflikt_f9e1bf20f1",
+            "co_politikk_gjenoppbygging_5e9aa2146a"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "politikk_regjeringskvartalet_set_10",
+      "level": 10,
+      "order": 10,
       "phase": "final",
       "xp": 100,
       "title": "Fra beslutning til virkning",
       "questions": [
         {
           "id": "regjeringskvartalet_quiz_15",
-          "quiz_id": "politikk_regjeringskvartalet_set_3_q1",
+          "quiz_id": "politikk_regjeringskvartalet_set_10_q1",
           "categoryId": "politikk",
           "placeId": "regjeringskvartalet",
           "targetId": "regjeringskvartalet",
@@ -793,8 +3361,8 @@
           "question": "Hva viser arbeidet med byggetrinn 2 etter åpningen i 2026?",
           "options": [
             "At Regjeringskvartalet fortsatt er under gjennomføring",
-            "At første byggetrinn må rives",
-            "At departementene skal avvikles"
+            "At hele det ferdige første byggetrinnet må rives og planlegges på nytt",
+            "At departementsordningen skal avvikles før neste byggetrinn kan starte"
           ],
           "answer": "At Regjeringskvartalet fortsatt er under gjennomføring",
           "answerIndex": 0,
@@ -841,16 +3409,16 @@
         },
         {
           "id": "regjeringskvartalet_quiz_16",
-          "quiz_id": "politikk_regjeringskvartalet_set_3_q2",
+          "quiz_id": "politikk_regjeringskvartalet_set_10_q2",
           "categoryId": "politikk",
           "placeId": "regjeringskvartalet",
           "targetId": "regjeringskvartalet",
           "question_scope": "place",
           "question": "Hva kan et vedtatt planarbeid eller forprosjekt dokumentere?",
           "options": [
-            "At alle planlagte bygg allerede er i bruk",
+            "At alle planlagte bygg allerede er oppført, godkjent og tatt i daglig bruk",
             "At beslutnings- og gjennomføringsprosessen er i gang, men ikke at resultatet er ferdig",
-            "At langsiktige samfunnseffekter er bevist"
+            "At langsiktige virkninger for sikkerhet og styring allerede er målt og bevist"
           ],
           "answer": "At beslutnings- og gjennomføringsprosessen er i gang, men ikke at resultatet er ferdig",
           "answerIndex": 1,
@@ -899,15 +3467,15 @@
         },
         {
           "id": "regjeringskvartalet_quiz_17",
-          "quiz_id": "politikk_regjeringskvartalet_set_3_q3",
+          "quiz_id": "politikk_regjeringskvartalet_set_10_q3",
           "categoryId": "politikk",
           "placeId": "regjeringskvartalet",
           "targetId": "regjeringskvartalet",
           "question_scope": "place",
           "question": "Hvorfor er innflytting av ansatte en leveranse, men ikke automatisk et dokumentert samfunnsutfall?",
           "options": [
-            "Fordi ansatte aldri påvirker forvaltningen",
-            "Fordi bygg ikke kan brukes politisk",
+            "Fordi ansattes innflytting aldri påvirker arbeidsmåter, samordning eller statlig forvaltning",
+            "Fordi et regjeringsbygg ikke kan brukes til politisk eller administrativ virksomhet",
             "Fordi bruk av bygg er dokumentert, mens bedre samordning eller styringskvalitet krever egne målinger"
           ],
           "answer": "Fordi bruk av bygg er dokumentert, mens bedre samordning eller styringskvalitet krever egne målinger",
@@ -956,16 +3524,16 @@
         },
         {
           "id": "regjeringskvartalet_quiz_18",
-          "quiz_id": "politikk_regjeringskvartalet_set_3_q4",
+          "quiz_id": "politikk_regjeringskvartalet_set_10_q4",
           "categoryId": "politikk",
           "placeId": "regjeringskvartalet",
           "targetId": "regjeringskvartalet",
           "question_scope": "place",
           "question": "Hva kan man ikke konkludere med bare fordi nye sikkerhetstiltak er bygget?",
           "options": [
-            "At tiltakene er gjennomført",
+            "At de planlagte sikkerhetstiltakene er fysisk oppført og satt i praktisk drift",
             "At den langsiktige sikkerhetsrisikoen er målt og dokumentert redusert",
-            "At sikkerhet har påvirket utformingen"
+            "At sikkerhetskrav har påvirket plassering, adgang, byrom og teknisk utforming"
           ],
           "answer": "At den langsiktige sikkerhetsrisikoen er målt og dokumentert redusert",
           "answerIndex": 1,
@@ -1007,7 +3575,7 @@
         },
         {
           "id": "regjeringskvartalet_quiz_19",
-          "quiz_id": "politikk_regjeringskvartalet_set_3_q5",
+          "quiz_id": "politikk_regjeringskvartalet_set_10_q5",
           "categoryId": "politikk",
           "placeId": "regjeringskvartalet",
           "targetId": "regjeringskvartalet",
@@ -1015,8 +3583,8 @@
           "question": "Hvilken grunnleggende avveining preger det nye Regjeringskvartalet?",
           "options": [
             "Beskyttelse av nasjonale funksjoner mot ønsket om et tilgjengelig offentlig byrom",
-            "Kommunalt selvstyre mot monarki",
-            "Landbruk mot industri"
+            "Kommunalt selvstyre mot arvelig monarki som overordnet styringsform for Norge",
+            "Utbygging av landbruk mot satsing på industri i den nasjonale økonomien"
           ],
           "answer": "Beskyttelse av nasjonale funksjoner mot ønsket om et tilgjengelig offentlig byrom",
           "answerIndex": 0,
@@ -1057,16 +3625,16 @@
         },
         {
           "id": "regjeringskvartalet_quiz_20",
-          "quiz_id": "politikk_regjeringskvartalet_set_3_q6",
+          "quiz_id": "politikk_regjeringskvartalet_set_10_q6",
           "categoryId": "politikk",
           "placeId": "regjeringskvartalet",
           "targetId": "regjeringskvartalet",
           "question_scope": "place",
           "question": "Hvilken rekkefølge beskriver best en etterprøvbar styringskjede i Regjeringskvartalet?",
           "options": [
-            "Effekt → rykte → arkitektur → beslutning",
+            "Målt effekt → offentlig omdømme → arkitektur → politisk beslutning",
             "Institusjon og beslutning → ressurser og bygging → faktisk bruk",
-            "Kunst → turisme → lovgivning → valg"
+            "Kunstproduksjon → turisme → lovgivning → gjennomføring → budsjett"
           ],
           "answer": "Institusjon og beslutning → ressurser og bygging → faktisk bruk",
           "answerIndex": 1,
@@ -1115,15 +3683,15 @@
         },
         {
           "id": "regjeringskvartalet_quiz_21",
-          "quiz_id": "politikk_regjeringskvartalet_set_3_q7",
+          "quiz_id": "politikk_regjeringskvartalet_set_10_q7",
           "categoryId": "politikk",
           "placeId": "regjeringskvartalet",
           "targetId": "regjeringskvartalet",
           "question_scope": "place",
           "question": "Hvorfor er Regjeringskvartalet også et sted for offentlig minne, ikke bare statsadministrasjon?",
           "options": [
-            "Fordi alle departementer er museer",
-            "Fordi området ikke lenger brukes av regjeringen",
+            "Fordi alle departementene er omgjort til museer, og statsadministrasjonen har flyttet ut",
+            "Fordi området ikke lenger brukes av regjeringen, men bare viser historiske utstillinger",
             "Fordi minnestedet, 22. juli-senteret, kunsten og byggene gjør krisehistorie og statlig makt synlig på samme sted"
           ],
           "answer": "Fordi minnestedet, 22. juli-senteret, kunsten og byggene gjør krisehistorie og statlig makt synlig på samme sted",
