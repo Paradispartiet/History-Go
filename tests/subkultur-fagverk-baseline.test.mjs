@@ -8,6 +8,14 @@ test('Subkultur-kontrakten låser åtte domener og 80 teoriobjekter uten å fors
   assert.equal(report.targets.emne_count, 80);
   assert.equal(report.targets.theory_object_count, 80);
   assert.equal(report.targets.chapter_count, 8);
+  assert.equal(report.targets.modules_per_chapter, 3);
+  assert.equal(report.targets.sections_per_chapter, 9);
+  assert.equal(report.targets.paragraphs_per_chapter, 27);
+  assert.equal(report.targets.minimum_claims_per_chapter, 36);
+  assert.equal(report.targets.minimum_sources_per_chapter, 20);
+  assert.equal(report.targets.minimum_places_per_chapter, 6);
+  assert.equal(report.targets.subject_pathway_count, 8);
+  assert.equal(report.targets.questions_per_pathway, 5);
   assert.deepEqual(report.status_guard, {
     expected_navigation_status: 'planned',
     expected_assessment_status: 'pending',
