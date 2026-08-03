@@ -56,13 +56,14 @@ test('live gaprapport lukker teori- og kapittelporten, men beholder runtime og p
   assert.ok(report.current.absent_production_files.includes('data/quiz/subkultur/subkultur_subject_pathways_v1.json'));
 });
 
-test('Places, People og legacyquiz holdes utenfor fullstendighetsbeviset', () => {
+test('Places og People følger dataauditen mens legacyquiz holdes utenfor fullstendighetsbeviset', () => {
   const report = buildReport();
-  assert.equal(report.current.subkultur_places, 68);
-  assert.equal(report.current.primary_subkultur_places, 56);
-  assert.equal(report.current.secondary_subkultur_places, 12);
-  assert.equal(report.current.subkultur_people, 66);
-  assert.equal(report.current.people_with_subkultur_emne, 0);
+  assert.equal(report.current.subkultur_places, 65);
+  assert.equal(report.current.primary_subkultur_places, 54);
+  assert.equal(report.current.secondary_subkultur_places, 11);
+  assert.equal(report.current.places_with_subkultur_emne, 65);
+  assert.equal(report.current.subkultur_people, 41);
+  assert.equal(report.current.people_with_subkultur_emne, 41);
   assert.equal(report.current.legacy_quiz.active_legacy_questions, 73);
   assert.equal(report.current.legacy_quiz.active_without_sources, 73);
   assert.equal(report.current.legacy_quiz.active_without_knowledge, 73);

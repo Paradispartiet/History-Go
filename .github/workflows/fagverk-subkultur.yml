@@ -6,19 +6,29 @@ on:
       - 'data/fag/subkultur/**'
       - 'data/fagverk/subkultur/**'
       - 'data/fag/profiles/subkultur/**'
+      - 'data/places/subkultur/**'
+      - 'data/places/film/oslo/places/hartvig_nissens_skole_skam.json'
+      - 'data/places/historie/oslo/places_historie/abelonegarden.json'
+      - 'data/people/subkultur/**'
+      - 'data/people/kunst/oslo/people_kunst_oslo.json'
+      - 'data/people/musikk/oslo/people_musikk_oslo.json'
+      - 'data/people/politikk/oslo/people_politikk_oslo.json'
       - 'data/quiz/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
       - 'scripts/audit-subkultur-evidence-*.mjs'
       - 'scripts/audit-subkultur-chapters-*.mjs'
+      - 'scripts/audit-subkultur-data-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
       - 'tests/subkultur-chapters-*.test.mjs'
+      - 'tests/subkultur-data-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
       - 'tools/build-subkultur-chapters-*.mjs'
+      - 'tools/build-subkultur-data-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -28,19 +38,29 @@ on:
       - 'data/fag/subkultur/**'
       - 'data/fagverk/subkultur/**'
       - 'data/fag/profiles/subkultur/**'
+      - 'data/places/subkultur/**'
+      - 'data/places/film/oslo/places/hartvig_nissens_skole_skam.json'
+      - 'data/places/historie/oslo/places_historie/abelonegarden.json'
+      - 'data/people/subkultur/**'
+      - 'data/people/kunst/oslo/people_kunst_oslo.json'
+      - 'data/people/musikk/oslo/people_musikk_oslo.json'
+      - 'data/people/politikk/oslo/people_politikk_oslo.json'
       - 'data/quiz/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
       - 'scripts/audit-subkultur-evidence-*.mjs'
       - 'scripts/audit-subkultur-chapters-*.mjs'
+      - 'scripts/audit-subkultur-data-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
       - 'tests/subkultur-chapters-*.test.mjs'
+      - 'tests/subkultur-data-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
       - 'tools/build-subkultur-chapters-*.mjs'
+      - 'tools/build-subkultur-data-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -65,6 +85,8 @@ jobs:
           node --check scripts/audit-subkultur-evidence-v1.mjs
           node --check tools/build-subkultur-chapters-v1.mjs
           node --check scripts/audit-subkultur-chapters-v1.mjs
+          node --check tools/build-subkultur-data-audit-v1.mjs
+          node --check scripts/audit-subkultur-data-v1.mjs
       - name: Reproducible canonical foundation
         run: node tools/build-subkultur-foundation-v1.mjs --check
       - name: Historical baseline audit
@@ -79,8 +101,13 @@ jobs:
         run: node tools/build-subkultur-chapters-v1.mjs --check
       - name: Chapter and profile audit
         run: node scripts/audit-subkultur-chapters-v1.mjs
-      - name: Contract, foundation, evidence and chapter tests
+      - name: Reproducible Places and People classification
+        run: node tools/build-subkultur-data-audit-v1.mjs
+      - name: Places and People audit
+        run: node scripts/audit-subkultur-data-v1.mjs
+      - name: Contract, foundation, evidence, chapter and data tests
         run: node --test tests/subkultur-fagverk-baseline.test.mjs
           tests/subkultur-foundation-v1.test.mjs
           tests/subkultur-evidence-v1.test.mjs
           tests/subkultur-chapters-v1.test.mjs
+          tests/subkultur-data-v1.test.mjs
