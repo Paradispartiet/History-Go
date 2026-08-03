@@ -10,9 +10,12 @@ on:
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
+      - 'scripts/audit-subkultur-evidence-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
+      - 'tests/subkultur-evidence-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
+      - 'tools/build-subkultur-evidence-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -26,9 +29,12 @@ on:
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
+      - 'scripts/audit-subkultur-evidence-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
+      - 'tests/subkultur-evidence-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
+      - 'tools/build-subkultur-evidence-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -49,12 +55,19 @@ jobs:
           node --check tools/build-subkultur-foundation-v1.mjs
           node --check scripts/audit-subkultur-fagverk-baseline.mjs
           node --check scripts/audit-subkultur-foundation-v1.mjs
+          node --check tools/build-subkultur-evidence-v1.mjs
+          node --check scripts/audit-subkultur-evidence-v1.mjs
       - name: Reproducible canonical foundation
         run: node tools/build-subkultur-foundation-v1.mjs --check
       - name: Historical baseline audit
         run: node scripts/audit-subkultur-fagverk-baseline.mjs
       - name: Foundation audit
         run: node scripts/audit-subkultur-foundation-v1.mjs
-      - name: Contract and foundation tests
+      - name: Reproducible theory evidence
+        run: node tools/build-subkultur-evidence-v1.mjs --check
+      - name: Theory evidence audit
+        run: node scripts/audit-subkultur-evidence-v1.mjs
+      - name: Contract, foundation and evidence tests
         run: node --test tests/subkultur-fagverk-baseline.test.mjs
           tests/subkultur-foundation-v1.test.mjs
+          tests/subkultur-evidence-v1.test.mjs

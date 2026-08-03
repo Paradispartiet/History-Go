@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "case_requirements_subkultur_canonical_v1",
+  "subject_id": "subkultur",
+  "scope": "all_case_profiles",
+  "policy": {
+    "documented_environment_practice_and_social_position_required": true,
+    "environment_near_source_required": true,
+    "independent_control_source_required": true,
+    "theory_cannot_substitute_case_evidence": true,
+    "minimize_identification_and_aggregation_for_vulnerable_people": true
+  },
+  "requirements": [
+    {
+      "requirement_id": "case_req_sub_environment_practice_position",
+      "label": "Miljø, praksis og sosial posisjon",
+      "minimum_sources": 2,
+      "required_dimensions": [
+        "participants_or_actors",
+        "shared_practice",
+        "relation_to_mainstream"
+      ]
+    },
+    {
+      "requirement_id": "case_req_sub_voice_balance",
+      "label": "Miljønær og uavhengig stemme",
+      "minimum_sources": 2,
+      "required_dimensions": [
+        "environment_near_voice",
+        "independent_control",
+        "source_position"
+      ]
+    },
+    {
+      "requirement_id": "case_req_sub_place_change",
+      "label": "Sted, kontroll og endring",
+      "minimum_sources": 2,
+      "required_dimensions": [
+        "spatial_practice",
+        "access_or_control",
+        "change_over_time"
+      ]
+    },
+    {
+      "requirement_id": "case_req_sub_ethics",
+      "label": "Personvern, stigma og romantisering",
+      "minimum_sources": 1,
+      "required_dimensions": [
+        "identification_risk",
+        "privacy_context",
+        "stigma_risk",
+        "romanticization_risk"
+      ]
+    },
+    {
+      "requirement_id": "case_req_sub_negative_case",
+      "label": "Grensetilfelle og alternativ forklaring",
+      "minimum_sources": 1,
+      "required_dimensions": [
+        "non_qualification_test",
+        "alternative_explanation",
+        "uncertainty"
+      ]
+    }
+  ]
+}

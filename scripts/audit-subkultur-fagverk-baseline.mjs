@@ -164,6 +164,10 @@ export function buildReport() {
   const genericDefinitions = emner.filter((entry) => text(entry.definition).startsWith('Emnet studerer'));
   const missingDefinitions = emner.filter((entry) => !text(entry.definition));
   const uniqueMethodDescriptions = new Set(methods.map((entry) => text(entry.description)).filter(Boolean));
+  const theoryObjectCount = exists(PATHS.theoryObjects) ? list(readJson(PATHS.theoryObjects)).length : 0;
+  const evidenceReadyTheoryObjectCount = exists(PATHS.theoryEvidence)
+    ? list(readJson(PATHS.theoryEvidence).entries).filter((entry) => entry.status === 'evidence_ready').length
+    : 0;
   const absentProductionFiles = [
     PATHS.runtimeManifest,
     PATHS.theoryObjects,
@@ -188,6 +192,8 @@ export function buildReport() {
     missing_definition_count: missingDefinitions.length,
     pensum_domains: list(pensum.domains).length,
     fagverk_chapters: chapterCount(),
+    theory_objects: theoryObjectCount,
+    evidence_ready_theory_objects: evidenceReadyTheoryObjectCount,
     runtime_manifest_exists: exists(PATHS.runtimeManifest),
     registry_subject_exists: Boolean(registry.subjects?.subkultur),
     navigation_status: status?.navigationStatus ?? null,
@@ -218,7 +224,7 @@ export function buildReport() {
       domains: targets.domain_count - current.domains,
       emner: targets.emne_count - current.emner,
       mapped_emner: targets.emne_count - current.mapped_emner,
-      theory_objects: targets.theory_object_count,
+      theory_objects: targets.theory_object_count - current.evidence_ready_theory_objects,
       chapters: targets.chapter_count - current.fagverk_chapters,
       pathways: targets.subject_pathway_count,
       individually_rewritten_definitions: current.generic_definition_count + current.missing_definition_count,
