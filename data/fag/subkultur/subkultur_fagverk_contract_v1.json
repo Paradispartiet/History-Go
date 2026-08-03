@@ -1,0 +1,71 @@
+{
+  "schema": "history_go_subkultur_fagverk_contract_v1",
+  "version": "1.0.0",
+  "subject_id": "subkultur",
+  "status": "quality_review_required",
+  "definition_locked_at": "2026-08-04",
+  "definition": "Subkultur handler om mennesker, miljøer og praksiser på siden av eller i friksjon med storsamfunnet. Aktivitet, ungdom, estetikk eller arena kvalifiserer ikke uten et dokumentert miljø, en sosial praksis og en påviselig posisjon til regler, institusjoner, markeder eller dominerende normer.",
+  "canonical_targets": {
+    "domain_count": 8,
+    "emne_count": 80,
+    "theory_object_count": 80,
+    "theory_objects_per_domain": 10,
+    "chapter_count": 8,
+    "modules_per_chapter": 3,
+    "sections_per_chapter": 9,
+    "paragraphs_per_chapter": 27,
+    "minimum_claims_per_chapter": 36,
+    "minimum_sources_per_chapter": 20,
+    "minimum_places_per_chapter": 6,
+    "subject_pathway_count": 8,
+    "questions_per_pathway": 5
+  },
+  "domains": [
+    { "order": 1, "id": "subkulturteori_feltgrenser", "title": "Subkulturteori og feltgrenser" },
+    { "order": 2, "id": "fellesskap_scener_egenorganisering", "title": "Fellesskap, scener og egenorganisering" },
+    { "order": 3, "id": "stil_symboler_koder_kropp", "title": "Stil, symboler, koder og kropp" },
+    { "order": 4, "id": "steder_territorier_okkupering", "title": "Steder, territorier og okkupasjon" },
+    { "order": 5, "id": "motstand_avvik_kontroll", "title": "Motstand, avvik og kontroll" },
+    { "order": 6, "id": "medier_objekter_praksiser", "title": "Medier, objekter og praksiser" },
+    { "order": 7, "id": "sosiale_randsoner_omsorg_skadereduksjon", "title": "Sosiale randsoner, omsorg og skadereduksjon" },
+    { "order": 8, "id": "kommersialisering_institusjonalisering_minne", "title": "Kommersialisering, institusjonalisering og minne" }
+  ],
+  "non_qualification_rules": [
+    "activity_or_youth_alone",
+    "skatepark_or_pumptrack_without_documented_environment",
+    "venue_or_genre_without_social_practice",
+    "commercial_alternative_branding",
+    "named_person_or_city_original_without_documented_environment",
+    "marginality_or_illegality_without_documented_social_world"
+  ],
+  "theory_object_requirements": [
+    "precise_thesis_or_definition",
+    "research_line_and_central_work",
+    "mechanism",
+    "scope",
+    "limitation_and_misuse",
+    "critique_or_counterposition",
+    "operational_method_binding",
+    "scholarly_primary_source",
+    "independent_control_or_critical_source",
+    "case_application_without_case_as_universal_proof",
+    "ethics_review_when_living_vulnerable_or_criminalized_people_are_in_scope"
+  ],
+  "voice_and_ethics": {
+    "environment_near_source_required": true,
+    "independent_control_source_required": true,
+    "publicly_accessible_is_not_automatic_permission": true,
+    "privacy_context_review_required": true,
+    "stigma_and_romanticization_review_required": true,
+    "vulnerable_people_default": "minimize_identification_and_aggregation"
+  },
+  "completion_gate": {
+    "required_navigation_status": "materialized",
+    "required_assessment_status": "audited",
+    "required_editorial_status": "complete",
+    "required_next_gate": "maintenance_and_source_refresh",
+    "blocked_until_all_targets_pass": true,
+    "legacy_quiz_is_not_completion_evidence": true
+  },
+  "documentation": "docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md"
+}

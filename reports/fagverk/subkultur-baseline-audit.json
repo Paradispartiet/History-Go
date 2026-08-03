@@ -1,0 +1,100 @@
+{
+  "schema": "history_go_subkultur_fagverk_baseline_audit_v1",
+  "version": "1.0.0",
+  "subject_id": "subkultur",
+  "baseline_locked_at": "2026-08-04",
+  "status": "GAPS_CONFIRMED",
+  "definition_contract": "data/fag/subkultur/subkultur_fagverk_contract_v1.json",
+  "current": {
+    "domains": 6,
+    "hooks": 60,
+    "emner": 72,
+    "mapped_emner": 69,
+    "unmapped_emne_ids": [
+      "em_sub_grunnbegreper",
+      "em_sub_musikkscener",
+      "em_sub_stil_kropp_symboler"
+    ],
+    "orphan_mapping_ids": [],
+    "methods": 71,
+    "unique_method_descriptions": 21,
+    "unused_method_ids": [],
+    "generic_definition_count": 69,
+    "missing_definition_count": 3,
+    "pensum_domains": 6,
+    "fagverk_chapters": 0,
+    "runtime_manifest_exists": false,
+    "registry_subject_exists": false,
+    "navigation_status": "planned",
+    "assessment_status": "pending",
+    "editorial_status": "not_started",
+    "portal_subject_status": "planned",
+    "subkultur_places": 68,
+    "primary_subkultur_places": 56,
+    "secondary_subkultur_places": 12,
+    "places_with_subkultur_emne": 61,
+    "subkultur_people": 66,
+    "people_with_subkultur_emne": 0,
+    "legacy_quiz": {
+      "active_legacy_questions": 73,
+      "active_without_sources": 73,
+      "active_without_knowledge": 73,
+      "active_without_canonical_emne": 73,
+      "from_by_questions": 10,
+      "from_by_with_foreign_emne": 10
+    },
+    "absent_production_files": [
+      "data/fag/subkultur/subkultur_runtime_manifest.json",
+      "data/fag/subkultur/theory_objects_subkultur_canonical_v1.json",
+      "data/fag/subkultur/theory_evidence_subkultur_canonical_v1.json",
+      "data/fag/subkultur/sources_subkultur_canonical_v1.json",
+      "data/fag/subkultur/claims_subkultur_canonical_v1.json",
+      "data/fag/profiles/subkultur/manifest.json",
+      "data/quiz/subkultur/subkultur_subject_pathways_v1.json"
+    ]
+  },
+  "targets": {
+    "domain_count": 8,
+    "emne_count": 80,
+    "theory_object_count": 80,
+    "theory_objects_per_domain": 10,
+    "chapter_count": 8,
+    "modules_per_chapter": 3,
+    "sections_per_chapter": 9,
+    "paragraphs_per_chapter": 27,
+    "minimum_claims_per_chapter": 36,
+    "minimum_sources_per_chapter": 20,
+    "minimum_places_per_chapter": 6,
+    "subject_pathway_count": 8,
+    "questions_per_pathway": 5
+  },
+  "gaps": {
+    "domains": 2,
+    "emner": 8,
+    "mapped_emner": 11,
+    "theory_objects": 80,
+    "chapters": 8,
+    "pathways": 8,
+    "individually_rewritten_definitions": 72,
+    "places_without_subkultur_emne": 7,
+    "people_without_subkultur_emne": 66
+  },
+  "completion_blockers": [
+    "six_domain_oslo_weighted_structure_instead_of_eight_domain_universal_structure",
+    "generic_or_missing_emne_definitions",
+    "unmapped_core_emner",
+    "duplicated_method_descriptions_without_distinct_operations",
+    "no_theory_claim_source_evidence_layer",
+    "no_fagverk_chapters",
+    "no_runtime_manifest_or_registry_entry",
+    "places_and_people_not_canonically_mapped",
+    "legacy_quiz_without_sources_knowledge_or_subkultur_emne_binding",
+    "foreign_em_by_bindings_in_from_by_quiz"
+  ],
+  "status_guard": {
+    "expected_navigation_status": "planned",
+    "expected_assessment_status": "pending",
+    "expected_editorial_status": "not_started",
+    "completion_status_change_allowed": false
+  }
+}

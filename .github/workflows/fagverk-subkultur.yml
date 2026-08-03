@@ -1,0 +1,44 @@
+name: Fagverk Subkultur
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/subkultur/**'
+      - 'data/fagverk/subkultur/**'
+      - 'data/fag/profiles/subkultur/**'
+      - 'data/quiz/subkultur/**'
+      - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
+      - 'scripts/audit-subkultur-fagverk-*.mjs'
+      - 'tests/subkultur-fagverk-*.test.mjs'
+      - 'reports/fagverk/subkultur-*.json'
+      - '.github/workflows/fagverk-subkultur.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/subkultur/**'
+      - 'data/fagverk/subkultur/**'
+      - 'data/fag/profiles/subkultur/**'
+      - 'data/quiz/subkultur/**'
+      - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
+      - 'scripts/audit-subkultur-fagverk-*.mjs'
+      - 'tests/subkultur-fagverk-*.test.mjs'
+      - 'reports/fagverk/subkultur-*.json'
+      - '.github/workflows/fagverk-subkultur.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  baseline-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax
+        run: node --check scripts/audit-subkultur-fagverk-baseline.mjs
+      - name: Baseline audit
+        run: node scripts/audit-subkultur-fagverk-baseline.mjs
+      - name: Baseline tests
+        run: node --test tests/subkultur-fagverk-baseline.test.mjs
