@@ -35,6 +35,7 @@ on:
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
       - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
+      - "tests/place-production-brand-quiz-governance.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json"
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
@@ -44,6 +45,7 @@ on:
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
+      - "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
       - "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json"
@@ -61,6 +63,7 @@ on:
       - "docs/PLACE_POPUP_SYSTEM.md"
       - "docs/DATA_PRODUCTION_CONTRACT.md"
       - "docs/HISTORY_GO_PRODUCT_MAP.md"
+      - "docs/documentation_registry.json"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
   push:
@@ -98,6 +101,7 @@ on:
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
       - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
+      - "tests/place-production-brand-quiz-governance.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
       - "data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json"
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
@@ -107,6 +111,7 @@ on:
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
+      - "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
       - "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json"
@@ -124,6 +129,7 @@ on:
       - "docs/PLACE_POPUP_SYSTEM.md"
       - "docs/DATA_PRODUCTION_CONTRACT.md"
       - "docs/HISTORY_GO_PRODUCT_MAP.md"
+      - "docs/documentation_registry.json"
       - "schemas/place.ts"
       - ".github/workflows/place-rounds-governance.yml"
   workflow_dispatch:
@@ -163,4 +169,5 @@ jobs:
           node tests/tinghuset-rounds-completion.test.mjs
           node --test tests/oslo-tinghuset-before-after-phase.test.mjs tests/oslo-tinghuset-news-phase.test.mjs tests/oslo-tinghuset-reading-phase.test.mjs tests/oslo-tinghuset-sources-phase.test.mjs tests/oslo-tinghuset-more-phase.test.mjs tests/oslo-tinghuset-people-phase.test.mjs tests/oslo-tinghuset-objects-phase.test.mjs
           node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs tests/regjeringskvartalet-sources-phase.test.mjs tests/regjeringskvartalet-more-phase.test.mjs tests/regjeringskvartalet-objects-phase.test.mjs tests/regjeringskvartalet-brands-phase.test.mjs
+          node --test tests/place-production-brand-quiz-governance.test.mjs
           node tests/regjeringskvartalet-ui-production-audit.test.mjs

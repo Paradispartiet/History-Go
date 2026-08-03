@@ -4,7 +4,7 @@ Status: **eneste autoritative rundingskontrakt**
 Eier: `place_rounds_contract`  
 Runtime: `js/ui/place-rounds-visual-collections.js`  
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`  
-Sist kontrollert: **2026-07-29**
+Sist kontrollert: **2026-08-03**
 
 Denne filen er det eneste dokumentet som bestemmer **hva som er en PlaceCard-runding, hvor badge-rundingen plasseres, hvor mange øvrige rundinger et sted har og hvilke rundinger som brukes**. Andre dokumenter og schemaer skal peke hit og skal ikke vedlikeholde egne rundingslister.
 
@@ -30,7 +30,7 @@ rundinger ved frontImage: people · objects · brands
 - `badges` = Merker;
 - `people` = People;
 - `objects` = Gjenstander;
-- `brands` = bedrifter/kjente merker med dokumentert stedskobling.
+- `brands` = selvstendige, sosialt gjenkjennelige Brand-identiteter med dokumentert stedskobling, etter `data/brands/brand_rules_v1_1.json`.
 
 **Vanlige steder skal aldri ha Kart-runding.** `map` er ikke del av den vanlige profilen og kan ikke introduseres gjennom legacy `rounds`, aliaser eller fallback.
 
@@ -140,11 +140,20 @@ Canonical felt for ny/revidert produksjon er `place.objects`. Legacy `artifacts`
 
 ## 7. Brands
 
-Brands betyr **bedrifter og kjente merker med dokumentert stedskobling**. Det er ikke en generell aktørkategori.
+**Canonical semantisk eier:** `data/brands/brand_rules_v1_1.json`.
 
-- gjenbruk canonical Brand;
-- bruk korrekt logo/brandbilde;
-- ikke legg klubber, institusjoner, personer, skilt eller andre objekter i Brands for å fylle innhold.
+Brands betyr **selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling**. Det omfatter mer enn forbrukermerker og butikker. Kommersielle og historiske selskaper, profesjonelle firmaer, arkitektur- og ingeniørfirmaer, serverings-/galleri-/venue-identiteter, subkulturmerker, institusjonsmerker, legacy-navn og skiltidentiteter kan kvalifisere når Brand-reglenes identitets- og gjenkjennelseskrav består.
+
+En aktør er ikke automatisk en Brand, men aktørtypen er heller ikke et avslag i seg selv. Et arkitektkontor, entreprenørfirma, prosjektteam eller en institusjon skal vurderes etter om navnet har selvstendig offentlig/profesjonell identitet og en konkret, kildebelagt rolle ved stedet.
+
+- les Brand-reglene før kandidater eller N/A avgjøres;
+- søk canonical Brand-ID, aliaser, `brands_by_place` og eventuelle innebygde stedsposter;
+- auditér også dokumenterte eiere, operatører, arkitekt-/ingeniørfirmaer, entreprenører, historiske virksomheter, venue-navn, institusjoner og skiltidentiteter ved stedet;
+- gjenbruk canonical Brand når den finnes;
+- bruk korrekt logo/brandbilde med kilde og rettighetskontroll;
+- ikke legg personer, objekter eller generiske aktørnavn i Brands for å fylle innhold;
+- null treff i dagens Brand-master eller `brands_by_place` er **ikke** alene grunnlag for N/A;
+- N/A krever dokumentert kandidatsøk og kandidatspesifikk avvisning etter Brand-kontrakten.
 
 ## 8. Flora og Fauna
 

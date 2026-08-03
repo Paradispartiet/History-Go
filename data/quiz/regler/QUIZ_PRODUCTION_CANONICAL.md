@@ -1,6 +1,6 @@
 # History Go – kanonisk quizproduksjon
 
-**Versjon:** 3.2
+**Versjon:** 3.3
 
 **Status:** eneste bindende produksjonsprosedyre for nye og reviderte quizer
 
@@ -24,24 +24,25 @@ Denne filen bestemmer arbeidsrekkefølge, innholdsregler og kontrollrekkefølge.
 
 Quizproduksjon skal alltid gå denne veien:
 
-> **kategori og mål → fagmanifest → full fagpakke → stedets kilder → påstandsbank → faglig utvalg → adaptiv profil → settplan → spørsmål → audits → Knowledge**
+> **kategori og mål → eksisterende quiz-audit → fagmanifest → full fagpakke → stedets kilder → påstandsbank → faglig utvalg → adaptiv profil og eksakt settantall → settplan → spørsmål → audits → Knowledge**
 
 Konkret:
 
 1. Fastslå `categoryId` og `targetId`.
-2. Les `data/fag/fag_manifest.json`.
-3. Slå opp kategorien og målstedets `source_brief`, og last samtlige `required_inputs`.
-4. Les stedskort, historier, relasjoner og de gjennomgåtte eksterne kildene i kildegrunnlaget.
-5. Bygg og kontroller påstandsbanken før spørsmål skrives.
-6. Vurder pensummoduler, emner, teorihooks, metoder, teoretikere og verk.
-7. Registrer både hva som ble vurdert og hva som faktisk ble valgt.
-8. Velg adaptiv profil fra kategoriens `supersetQUIZMAL`.
-9. Lås de to første settene til sju normale spørsmål hver etter `QUIZ_NORMAL_OPENING_POLICY_V1.json`.
-10. Lag relativ settplan for progresjonen fra sett 3 og videre.
-11. Skriv spørsmål fra dokumenterte påstander og observasjoner.
-12. Lagre `production_context` i quizpakken.
-13. Kjør innholds-, kontekst-, progresjons- og teorikontroll.
-14. Generer eller synkroniser Knowledge-koblinger.
+2. Auditér all eksisterende quiz for mål-ID-en før profil eller settantall velges: aktive manifestoppføringer, canonical quizfil, legacy-/arkivfiler, dubletter, eksisterende sett, spørsmål og Knowledge-koblinger.
+3. Les `data/fag/fag_manifest.json`.
+4. Slå opp kategorien og målstedets `source_brief`, og last samtlige `required_inputs`.
+5. Les stedskort, historier, relasjoner og de gjennomgåtte eksterne kildene i kildegrunnlaget.
+6. Bygg og kontroller påstandsbanken før spørsmål skrives.
+7. Vurder pensummoduler, emner, teorihooks, metoder, teoretikere og verk.
+8. Registrer både hva som ble vurdert og hva som faktisk ble valgt.
+9. Velg adaptiv profil og **ett eksakt settantall** fra kategoriens `supersetQUIZMAL`.
+10. Lås de to første settene til sju normale spørsmål hver etter `QUIZ_NORMAL_OPENING_POLICY_V1.json`.
+11. Lag relativ settplan for progresjonen fra sett 3 og videre.
+12. Skriv spørsmål fra dokumenterte påstander og observasjoner.
+13. Lagre `production_context` i quizpakken.
+14. Kjør innholds-, kontekst-, progresjons- og teorikontroll.
+15. Generer eller synkroniser Knowledge-koblinger.
 
 Følgende omvendte løp er ikke tillatt:
 
@@ -134,6 +135,38 @@ Kategoriens superset definerer profilene:
 - `major`: 8–10 sett × 7 spørsmål
 
 Profilen velges ut fra dokumentert stoffmengde og faglig bredde, ikke ut fra ønsket lengde. En quiz skal aldri fylles med svake spørsmål for å treffe en profil. Hvis kildematerialet ikke bærer planen, skal profilen reduseres.
+
+### 6.1 Eksisterende quiz skal auditeres før profilvalg
+
+En revisjon starter aldri fra null bare fordi den nye produksjonspakken skal skrives på nytt. Før profil og settantall låses, skal produksjonen dokumentere:
+
+- hvilke aktive og arkiverte quizfiler som allerede finnes for `targetId`;
+- hvor mange sett og spørsmål som allerede er aktive;
+- hvilke eksisterende spørsmål/påstander som beholdes, omskrives, flyttes, slås sammen eller utelates;
+- om samme mål finnes under flere kategorier, filnavn eller manifestoppføringer;
+- hvilke Knowledge-enheter som allerede eies av eksisterende quiz.
+
+Et `profile_hint`, en bestilling i et `source_brief` eller en tidligere kort quiz er bare input til vurderingen. Ingen av dem kan forhåndslåse profilen eller overskrive eksisterende quiz uten audit.
+
+### 6.2 Profil og eksakt settantall er to forskjellige beslutninger
+
+`narrow` og `normal` har faste antall: henholdsvis **3 × 7** og **4 × 7**. `rich` og `major` er intervaller, men en produksjon kan ikke lagre bare intervallet. Den skal velge og begrunne ett eksakt `set_count`:
+
+| Profil | Tillatt settantall | Bruk |
+| --- | ---: | --- |
+| `narrow` | 3 | Avgrenset mål med få uavhengige, sterke påstander. |
+| `normal` | 4 | Solid hovedhistorie og minst ett tydelig faglig broledd. |
+| `rich` | 5–8 | Flere kildebelagte perioder, miljøer, personer, funksjoner, konfliktlinjer eller faglige spor. |
+| `major` | 8–10 | Hovedsted med bred dokumentasjon som bærer flere selvstendige progresjonsløp. |
+
+For `rich` og `major` skal hvert planlagte sett ha en egen læringsjobb og en tilstrekkelig, ikke-duplisert påstandsbank. Det eksakte antallet er antallet slike kildebårne settplaner innenfor profilintervallet.
+
+- Velg ikke nedre grense av bekvemmelighet når materialet bærer flere selvstendige sett.
+- Velg ikke øvre grense ved å splitte samme fortelling, hendelse eller påstand kunstig.
+- Et `major`-sted skal ha **10 × 7** når kildene bærer ti reelt forskjellige settplaner, inkludert selvstendig konflikt-/historiefordypning og avsluttende syntese/sammenligning.
+- Hvis et `major`-sted stoppes på 8 eller 9 sett, skal `production_context` navngi hvilke mulige ekstra spor som ble vurdert og hvorfor de ikke bar et selvstendig sett.
+
+Profilbegrunnelsen skal vise bredden i materialet, ikke bare oppgi etiketten. Et omfattende institusjons-, bygnings- eller historiekompleks kan ikke klassifiseres som `narrow` uten en eksplisitt evidensbasert forklaring på hvorfor de dokumenterte periodene, personene, byggene, hendelsene, konfliktene og funksjonene likevel ikke bærer flere sett.
 
 Alle profiler med minst to sett følger den samme absolutte åpningen: sett 1 og sett 2 skal hver ha sju normale, direkte og kildebelagte quizspørsmål. Kategoriens profil kan skjerpe denne regelen, for eksempel ved å utsette teori til sett 4, men kan aldri redusere de fjorten normale åpningsspørsmålene.
 
@@ -243,6 +276,9 @@ Alle nyproduserte eller fullt reviderte quizpakker skal følge `QUIZ_PACKAGE_SCH
 - valgte pensummoduler, emner, hooks, metoder, teoretikere og verk
 - sti til det genererte kontekstdokumentet
 - status for kildegjennomgang
+- eksisterende quiz-audit med behold/omskriv/flytt/fjern-beslutning
+- valgt eksakt `set_count` og evidensbasert profilbegrunnelse
+- kandidatspor som ble holdt tilbake ved valg under profilens øvre grense
 
 Metadata skal beskrive den faktiske produksjonen. Det er ikke tillatt å fylle inn filer eller fagvalg som ikke ble brukt.
 
@@ -265,7 +301,7 @@ Kontrollene skal verifisere:
 2. at lagrede ID-er finnes i de resolverte fagfilene
 3. at sett 1 og sett 2 har nøyaktig sju normale spørsmål hver
 4. at åpningsspørsmålene har kilder, gyldig svar og plausible svaralternativer
-5. at valgt profil og videre settprogresjon stemmer
+5. at eksisterende quiz er auditert, og at valgt profil, eksakt settantall og videre settprogresjon stemmer
 6. at teorispørsmål er bundet til påstand, emne, hook og teori
 7. at spørsmålene følger innholdsbalanse, språk- og kildereglene
 

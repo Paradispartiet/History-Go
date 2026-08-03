@@ -2,7 +2,7 @@
 
 Status: **canonical dokumentasjonsinngang**
 Register: [`documentation_registry.json`](./documentation_registry.json)
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-03**
 
 Dette dokumentet svarer på tre spørsmål:
 
@@ -118,9 +118,10 @@ DesignCodes er metadata, ikke geometri eller bilder. Registeret eier gyldige kod
 3. [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — maskinlesbar sannhetskilde for runtime- og fagkategorier
 4. [`DOMAIN_REGISTRY_README.md`](./DOMAIN_REGISTRY_README.md) — operativ bruk av DomainRegistry og eksplisitte legacy-aliasgrenser
 5. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — aktiv dataproduksjonskontrakt
-6. relevante manifests under `data/**/manifest.json`
-7. lokale README-filer ved datasettet
-8. relevante audits og CI-gates
+6. [`../data/brands/brand_rules_v1_1.json`](../data/brands/brand_rules_v1_1.json) — canonical Brand-definisjon, klassifisering, place-versus-brand-regel og N/A-gate
+7. relevante manifests under `data/**/manifest.json`
+8. lokale README-filer ved datasettet
+9. relevante audits og CI-gates
 
 `npm run audit:categories` håndhever samsvar mellom maskinkontrakten, fagmanifestet, quizprofilregisteret, badgeindeksen, DomainRegistry, kategori-UI og place-policyen.
 

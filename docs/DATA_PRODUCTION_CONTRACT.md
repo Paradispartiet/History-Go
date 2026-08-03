@@ -2,7 +2,7 @@
 
 Status: **canonical data-production contract**
 Eier: `history_go_data_production`
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-03**
 
 Dette dokumentet eier de **tverrgående reglene** for hvordan History GO-data produseres, aktiveres og kobles sammen. Det skal ikke duplisere subsystemenes detaljoppskrifter.
 
@@ -19,6 +19,7 @@ For full sted-for-sted arbeidsrekkefølge brukes:
 | `desc` / `popupDesc` | `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` |
 | Stedspopup | `docs/PLACE_POPUP_SYSTEM.md` |
 | Rundinger | `data/places/README_place_rounds.md` |
+| Brands-semantikk og place-kobling | `data/brands/brand_rules_v1_1.json` |
 | Kategorier | `data/categories/category_contract.json` |
 | Quiz | `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` |
 | People–sted | `docs/people-of-places-method.md` |
@@ -123,7 +124,7 @@ For nye/reviderte places:
 - nye Spots bruker normalt `place.spots`;
 - legacy aliases brukes bare som compatibility/migreringskilder;
 - Nature er valgfri;
-- Brands betyr fortsatt bedrifter og kjente merker med dokumentert stedskobling;
+- Brands følger hele definisjonen i `data/brands/brand_rules_v1_1.json`, ikke bare forbrukermerker og butikker;
 - Civication Store er ikke runding;
 - Wonderkammer er ikke ny runding eller ny produksjonsmodell.
 
@@ -151,9 +152,13 @@ Før ny entitet opprettes:
 
 ### Brands
 
-Brands er **bedrifter og kjente merker med dokumentert kobling til stedet**.
+Canonical eier er `data/brands/brand_rules_v1_1.json`.
 
-Brands skal ikke brukes som generell restkategori for lag, institusjoner, organisasjoner, skilt eller objekter.
+Brands er **selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert kobling til stedet**. Kommersielle merker, profesjonelle firmaer, arkitektur-/ingeniørfirmaer, venue-, galleri-, serverings-, institusjons-, subkultur-, legacy- og skiltidentiteter kan kvalifisere når Brand-kontrakten består.
+
+Brands skal ikke brukes som generell restkategori for personer, objekter eller generiske aktørnavn. Samtidig kan en kandidat ikke avvises bare fordi den er et arkitektkontor, entreprenørfirma, prosjektteam, institusjon, venue eller skilt. Avgjørelsen skal bygge på identitetsautonomi, gjenkjennelse, særpreg, visuell/symbolsk tilstedeværelse, minneverdi og place-versus-brand-regelen.
+
+Null treff i `brands_master.json` eller `brands_by_place.json` beviser ikke N/A. Produksjonen skal også auditere dokumenterte aktører og historiske/aktuelle virksomheter ved stedet. N/A krever kandidatspesifikke avvisningsgrunner etter Brand-kontrakten.
 
 ### Works
 
