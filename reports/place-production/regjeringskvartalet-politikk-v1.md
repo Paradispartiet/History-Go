@@ -162,7 +162,7 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | Fase | Leveranse | Status |
 | --- | --- | --- |
 | 0 | Nullmåling, identitetsgate og saneringsplan | **GODKJENT – PR #4665, merge `c00d94430ea82da5afb4f0e1b10ead2b504f6ff8`** |
-| 1 | Kildebank, Politikk-rapport, description 4.2, bilde og Om | **EKSISTERENDE GRUNNLAG PASS – #4353, #4368, #4408 og #4659; slutt-UI gjenstår** |
+| 1 | Kildebank, Politikk-rapport, description 4.2, bilde og Om | **GODKJENT – #4353, #4368, #4408 og #4659; slutt-UI kontrollert i PR #4674** |
 | 2 | Kildebelagt chronology og Historie-fane | **GODKJENT – PR #4666, merge `ba71c8684a0b8f8eb5470ee9c256728122661c0f`** |
 | 3 | Story-review og episodeproduksjon | **GODKJENT – PR #4428** |
 | 4 | Før/etter | **GODKJENT – PR #4667, merge `dd31ba5d7852eba372c82477e9fc40a5f563b5ca`** |
