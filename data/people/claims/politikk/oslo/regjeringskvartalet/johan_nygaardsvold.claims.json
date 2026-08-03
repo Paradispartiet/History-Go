@@ -20,6 +20,28 @@
       "temporal_status": "historical",
       "verified_at": "2026-08-03",
       "evidence_level": "explicit"
+    },
+    {
+      "id": "storting_representative_1916_1949",
+      "claim": "Stortingets representantbiografi dokumenterer Johan Nygaardsvold som stortingsrepresentant fra 1916 til 1949.",
+      "status": "verified",
+      "source_url": "https://www.stortinget.no/no/Representanter-og-komiteer/Representantene/Representant/?perid=JONY",
+      "source_location": "biografiens oversikt over stortingsperioder",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "victoria_terrasse_ultimatum_1940",
+      "claim": "Statsministerens kontors historikk dokumenterer at Johan Nygaardsvolds regjering besluttet å avvise Nazi-Tysklands ultimatum på Victoria Terrasse 9. april 1940.",
+      "status": "verified",
+      "source_url": "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1905-1945/id2356824/",
+      "source_location": "avsnittet 1940: Norges første nei",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
     }
   ],
   "field_claim_map": {
@@ -28,7 +50,9 @@
     "year": ["smk_first_offices_1939"],
     "period": ["smk_first_offices_1939"],
     "placeId": ["smk_first_offices_1939"],
-    "places[regjeringskvartalet]": ["smk_first_offices_1939"]
+    "places[regjeringskvartalet]": ["smk_first_offices_1939"],
+    "places[stortinget]": ["storting_representative_1916_1949"],
+    "places[victoria_terrasse]": ["victoria_terrasse_ultimatum_1940"]
   },
   "sentence_claim_map": {
     "desc": [{"sentence": 1, "claim_ids": ["smk_first_offices_1939"]}],
@@ -39,7 +63,7 @@
   },
   "completion": {
     "completed_under": "people_profile_v1.0",
-    "claims_verified": "1/1",
+    "claims_verified": "3/3",
     "fact_review": "passed",
     "editorial_review": "passed",
     "source_verified_at": "2026-08-03",
