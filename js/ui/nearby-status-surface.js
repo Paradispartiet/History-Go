@@ -44,6 +44,7 @@
   function remainingActionLabel(summary) {
     if (summary?.nextAction === "completed") return "Ferdig";
     if (summary?.nextAction === "quiz") return "Gjenstår: Ta quiz";
+    if (summary?.nextAction === "visit") return "Gjenstår: Registrer besøk";
     return "Gjenstår: Åpne";
   }
 
@@ -97,7 +98,8 @@
         "Quiz neste",
         "Ferdig",
         "Gjenstår: Åpne",
-        "Gjenstår: Ta quiz"
+        "Gjenstår: Ta quiz",
+        "Gjenstår: Registrer besøk"
       ].includes(part));
 
     existing.push(statusLabel(summary));

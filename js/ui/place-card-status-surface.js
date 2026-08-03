@@ -6,6 +6,7 @@
 
   const BOUND_FLAG = "__HG_PLACE_CARD_STATUS_SURFACE_BOUND__";
   const ROW_ATTR = "data-pc-progress-status";
+  let currentPlace = null;
 
   function getReader() { return global.HGProfileProgressReader || null; }
   function safeText(value) { return String(value == null ? "" : value).trim(); }
@@ -44,10 +45,12 @@
     global.__HG_PLACE_CARD_ROUND_CONTENT_GUARD_REQUESTED__=true; const script=document.createElement("script"); script.src="js/ui/place-card-round-content-guard.js"; script.defer=true; document.body.appendChild(script);
   }
   function statusLabel(summary) { if (summary?.status === "completed") return "Fullført"; if (summary?.quizCompleted) return "Quiz fullført"; if (summary?.visited) return "Besøkt"; return "Ikke fullført"; }
-  function isVisibleAction(id) { const el=document.getElementById(id); if(!el||el.hidden||el.disabled)return false; const style=global.getComputedStyle?global.getComputedStyle(el):null; return !(style&&(style.display==="none"||style.visibility==="hidden")); }
-  function remainingActionLabel(summary) { if(summary?.nextAction==="completed")return "Ferdig her"; if(!summary?.quizCompleted&&isVisibleAction("pcQuiz"))return "Gjenstår: Ta quiz"; if(isVisibleAction("pcUnlock"))return "Gjenstår: Lås opp"; if(isVisibleAction("pcObserve"))return "Gjenstår: Observer"; if(isVisibleAction("pcRoute"))return "Gjenstår: Følg rute"; return "Gjenstår: Utforsk videre"; }
+  function isShownAction(id) { const el=document.getElementById(id); if(!el||el.hidden)return false; const style=global.getComputedStyle?global.getComputedStyle(el):null; return !(style&&(style.display==="none"||style.visibility==="hidden")); }
+  function isVisibleAction(id) { const el=document.getElementById(id); return !!el&&!el.disabled&&isShownAction(id); }
+  function remainingActionLabel(summary) { if(summary?.nextAction==="completed")return "Ferdig her"; if(summary?.nextAction==="visit"&&isShownAction("pcVisit"))return "Gjenstår: Registrer besøk"; if(!summary?.quizCompleted&&isVisibleAction("pcQuiz"))return "Gjenstår: Ta quiz"; if(isShownAction("pcVisit"))return "Gjenstår: Registrer besøk"; if(isVisibleAction("pcObserve"))return "Gjenstår: Observer"; if(isVisibleAction("pcRoute"))return "Gjenstår: Følg rute"; return "Gjenstår: Utforsk videre"; }
   function renderStatus(place) {
     const reader=getReader(); const metaEl=document.getElementById("pcMeta"); if(!reader||!metaEl||!place)return;
+    currentPlace=place;
     const placeId=safeText(place.id||place.placeId); if(!placeId)return;
     const summary=reader.getPlaceProgressSummary(placeId,{category:safeText(place.category||place.categoryId)});
     const parts=[statusLabel(summary)]; if(summary.favorite)parts.push("Favoritt"); parts.push(remainingActionLabel(summary));
@@ -59,7 +62,9 @@
   function install() {
     if(global[BOUND_FLAG])return true; if(typeof global.openPlaceCard!=="function")return false;
     const original=global.openPlaceCard; global.openPlaceCard=async function openPlaceCardWithStatusSurface(place){const result=await original.apply(this,arguments);try{renderStatus(place);}catch(error){if(global.DEBUG)console.warn("[place-card-status-surface]",error);}return result;};
-    global[BOUND_FLAG]=true;global.HGPlaceCardStatusSurface={render:renderStatus};loadNearbyStatusSurface();loadAreaOverviewSurface();return true;
+    global[BOUND_FLAG]=true;global.HGPlaceCardStatusSurface={render:renderStatus};
+    for(const eventName of ["hg:physicalVisitRegistered","hg:quizCompleted"]){global.addEventListener?.(eventName,()=>{if(currentPlace)renderStatus(currentPlace);});}
+    loadNearbyStatusSurface();loadAreaOverviewSurface();return true;
   }
   loadPlacePopupV2();loadPlaceLearningSurface();loadRoundContentGuard();
   if(!install()){let attempts=0;const timer=global.setInterval(()=>{attempts+=1;if(install()||attempts>400)global.clearInterval(timer);},50);}

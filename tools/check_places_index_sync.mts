@@ -17,6 +17,7 @@ type PlaceRow = JsonObject & {
   category?: unknown;
   year?: unknown;
   desc?: unknown;
+  aliases?: unknown;
   image?: unknown;
   cardImage?: unknown;
   frontImage?: unknown;
@@ -65,6 +66,7 @@ const LIGHT_FIELDS: LightField[] = [
   'category',
   'year',
   'desc',
+  'aliases',
   'image',
   'cardImage',
   'frontImage',

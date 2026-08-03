@@ -89,7 +89,7 @@
     return parts;
   }
   function createPlaceItem(place, selection, visited) {
-    const image = place.image || place.cardImage || "";
+    const image = place.image || place.cardImage || place.popupImage || "";
     const item = document.createElement("div");
     item.className = "nearby-item";
     if (selection.freshPlaceId && String(place.id || "").trim() === selection.freshPlaceId) {

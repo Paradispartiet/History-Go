@@ -125,7 +125,7 @@ const urls = userVisible.match(/https:\/\/[^"\\\s]+/g) || [];
 assert.ok(urls.length >= 15);
 assert.ok(urls.every(url => url.startsWith('https://')));
 
-assert.match(report, /Status: \*\*PRODUKSJONSKLAR – fase 16 PASS/);
+assert.match(report, /Status: \*\*PRODUKSJONSKLAR – fase 17 PASS/);
 assert.match(report, /10 sett × 7 spørsmål, 70 unike spørsmål/);
 assert.match(report, /14 unike canonicale Brand-ID-er/);
 assert.match(report, /22 unike koblinger til Regjeringskvartalet/);

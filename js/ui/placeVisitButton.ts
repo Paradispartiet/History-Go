@@ -39,7 +39,10 @@ export function createPlaceVisitButtonController(options: {
   const patch = (place: PlaceLike): void => {
     clear();
 
-    const oldButton = document.getElementById("pcUnlock");
+    // `pcVisit` is the explicit physical-visit action. Keep `pcUnlock` only as
+    // a compatibility fallback for older embedders; visiting is not an unlock.
+    const oldButton = document.getElementById("pcVisit")
+      || document.getElementById("pcUnlock");
     if (!oldButton || !place) return;
 
     const button = oldButton.cloneNode(true) as HTMLButtonElement;
