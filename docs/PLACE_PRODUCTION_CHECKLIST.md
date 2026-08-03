@@ -35,6 +35,9 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Økonomi og næringsliv — canonical fagmodell | `data/fag/naeringsliv/naeringsliv_runtime_manifest.json`, `emner_naeringsliv_canonical_v4_5.json` og `methods_naeringsliv_canonical_v4_5.json` |
 | Økonomi og næringsliv — faglig standard og kildeprioritet | `data/fag/naeringsliv/universitetsramme_okonomi_og_naeringsliv_v1.json`, `quiz_generator_rules_naeringsliv_v5_1_source_priority_patch.json` og `scripts/audit-naeringsliv-source-maintenance.mjs` |
 | Økonomi og næringsliv — stedsgate og produksjonsrapport | `data/places/regler/naeringsliv_place_production_v1.schema.json` og `scripts/audit-naeringsliv-place-production.mjs` |
+| Subkultur — bindende kategorigrense | `data/fag/subkultur/SUBKULTUR_CATEGORY_BOUNDARY.md` |
+| Subkultur — canonical emner, metoder og kildeprioritet | `data/fag/subkultur/emner_subkultur_canonical_v4_5.json`, `methods_subkultur_canonical_v4_5.json`, `subkulturpensum_canonical_v4_5.json` og `quiz_generator_rules_subkultur_v5_1_source_priority_patch.json` |
+| Subkultur — stedsgate og produksjonsrapport | `data/places/regler/subkultur_place_production_v1.schema.json` og `scripts/audit-subkultur-place-production.mjs` |
 | People–sted-koblinger | **`docs/people-of-places-method.md`** |
 | Ny/revidert People-profil | **`docs/PEOPLE_PROFILE_CANONICAL.md`** |
 | People-bilder / lisens / attribusjon | `docs/PEOPLE_IMAGES.md` |
@@ -70,7 +73,7 @@ Det er derfor ikke lov å:
 
 ## Obligatorisk arbeidsmåte — nullmåling og én fase om gangen
 
-Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie- og Næringsliv-gate når relevant, alle åtte popupfaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
+Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie-, Næringsliv- og Subkultur-gate når relevant, alle åtte popupfaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
 
 Produksjonen deles deretter i små faser. Bare én fase kan ha status `PÅGÅR` om gangen:
 
@@ -603,6 +606,123 @@ Stedet kan ikke godkjennes som Næringsliv-sted dersom ett av disse forholdene b
 Produksjonsrapporten ligger i `data/places/naeringsliv-production/<place_id>.json` og følger `data/places/regler/naeringsliv_place_production_v1.schema.json`. Rapporten skal peke tilbake til den manifest-loadede place-filen og registrere økonomisk hovedidentitet, ankertype, tidsavgrensning, canonicale `em_naering_*`, kilder, økonomiske case-realiseringer, verdiskapingskjede, aktører, måling/metode, fordeling/makt, risiko/eksternaliteter, inferensgrenser, dagens driftsstatus og status for A–H.
 
 Alle delene A–H får status **PASS** eller **N/A med begrunnelse** i produksjonsrapporten. A–F er obligatoriske PASS for et ferdig Næringsliv-sted; G og H kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-naeringsliv-place-production.mjs --all` validerer alle registrerte rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Næringsliv-sted opprettes eller et eksisterende Næringsliv-steds identitet, fagkobling, brukerrettede tekst, økonomiske profiler, quizgrunnlag, chronology eller Story-kobling revideres. Ren koordinatendring forblir eid av coordinate-gaten. Næringsliv kan ikke settes til ferdig på stedet før denne porten passerer.
+
+---
+
+## 4D. Subkultur-sted eller Subkultur-lag — obligatorisk faglig tillegg og sluttgate
+
+Denne delen gjelder når stedet har **Subkultur som primærkategori**, `secondaryBadgeIds: ["subkultur"]` eller ett eller flere canonicale `em_sub_*`. Den gjelder derfor både selvstendige Subkultur-steder og dokumenterte Subkultur-lag på ordinære parker, idrettsanlegg eller andre canonicale steder. Den erstatter ikke de generelle place-, fagverk-, quiz-, story-, personvern- eller faktisitetskontraktene; den skjerper dem for Subkultur.
+
+**LES FØRST — obligatorisk:**
+
+- `docs/FACTUALITY_CONTRACT.md`;
+- `docs/FAGVERK_NAVIGATION.md`;
+- `data/fag/subkultur/SUBKULTUR_CATEGORY_BOUNDARY.md`;
+- `data/fag/subkultur/subkulturpensum_canonical_v4_5.json`;
+- `data/fag/subkultur/emner_subkultur_canonical_v4_5.json`;
+- `data/fag/subkultur/methods_subkultur_canonical_v4_5.json`;
+- `data/places/regler/subkultur_place_production_v1.schema.json`;
+- `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` når quiz produseres;
+- `docs/STORIES_DATA_GOVERNANCE.md` når fortellinger produseres.
+
+### A. Bevis en reell Subkultur-identitet eller et reelt Subkultur-lag
+
+- [ ] stedet har vært et dokumentert samlingspunkt, territorium, uttrykksrom eller støttepunkt for en subkultur, gatekultur, undergrunn eller sosial randsone;
+- [ ] identiteten ligger i menneskene, miljøet, den gjentatte bruken og den sosiale funksjonen, ikke bare i fysisk anleggstype, urbant preg eller alternativ markedsføring;
+- [ ] forholdet til etablert samfunn og hovedkultur er konkret: på siden av, under, i friksjon med, kontrollert av, forhandlet med eller senere institusjonalisert;
+- [ ] fysisk sted, sosialt territorium, organisasjon, scene, arrangement, hjelpetiltak og enkeltpersoner skilles eksplisitt;
+- [ ] primærkategori og sekundærbadge følger canonical place-identitet: tverrfaglighet løses ikke med duplikatmarkør;
+- [ ] vanlig park, lovlig graffitivegg, kommunal skatepark eller organisert arena avvises ikke dersom et faktisk miljø er dokumentert;
+- [ ] pumptrack, fritidsarena, konsertscene, butikk eller trendy byrom får ikke Subkultur-status bare på grunn av aktivitet, publikum eller estetikk.
+
+### B. Bruk bare canonicale Subkultur-emner som stedet realiserer
+
+- [ ] alle Subkultur-koblinger bruker eksisterende `em_sub_*` fra den canonicale fagmodellen;
+- [ ] hvert valgt emne har en stedsspesifikk case-realisering og konkrete kilder;
+- [ ] emner velges etter dokumentert praksis, fellesskap, uttrykk, rom, konflikt, kontroll eller endring—ikke for å fylle bredde;
+- [ ] fagkartet og emnelisten brukes som styring, aldri som faktakilde;
+- [ ] rene Musikk-, Sport-, Kunst-, By-, Helse- eller Næringslivsforhold brukes ikke som erstatning for manglende Subkultur-evidens;
+- [ ] place-filens `em_sub_*` og produksjonsrapportens emner samsvarer nøyaktig.
+
+### C. Miljø, praksis, deltakelse og egenorganisering skal være konkrete
+
+- [ ] hver case identifiserer minst to relevante aktører eller grupper, herunder miljøets deltakere og aktører med formell, økonomisk eller regulerende makt når relevant;
+- [ ] stedlige praksiser beskrives konkret: opphold, arrangering, skating, graffiti, DIY, omsorg, matutdeling, handel, publisering, ritualer, språk, stil eller andre dokumenterte handlinger;
+- [ ] tilhørighet og deltakelse skilles fra tilfeldig publikum, enkeltbesøk og generell popularitet;
+- [ ] selvorganisering, dugnad, portvoktere, adgang, arbeidsdeling og uformelle regler dokumenteres uten å anta at alle i miljøet er like;
+- [ ] uttrykk, koder, objekter og stil beskrives som sosial praksis, ikke som overflatisk liste over klær, sjangre eller symboler; manglende dokumentasjon markeres eksplisitt fremfor å fylles med antakelser;
+- [ ] interne forskjeller, terskler, trygghet og eksklusjon synliggjøres når kildene bærer det.
+
+### D. Rom, territorium, makt, kontroll og fortrengning må analyseres
+
+- [ ] det forklares hvordan gjentatt bruk gjorde det fysiske stedet til et sosialt territorium eller støttepunkt;
+- [ ] eierskap, regulering, politi, vakthold, planlegging, åpningstider, økonomi eller andre kontrollformer identifiseres konkret;
+- [ ] konflikt og forhandling om adgang, synlighet, bruk og videre eksistens dokumenteres når det finnes; fravær eller manglende dokumentasjon markeres eksplisitt;
+- [ ] kriminalisering og sosial kontroll beskrives presist uten å gjøre myndighetskilder til nøytral fasit;
+- [ ] gentrifisering, kommersialisering, flytting, nedleggelse, legalisering eller institusjonalisering dokumenteres som prosess, ikke som automatisk årsaksforklaring;
+- [ ] dagens sted og historiske territorier tidsavgrenses når miljøet har flyttet eller endret karakter.
+
+### E. Stemmebalanse, representasjon, personvern og redaksjonell etikk er bindende
+
+- [ ] kildegrunnlaget har minst én deltaker-, miljø- eller støttetjenestestemme og minst én uavhengig myndighets-, forsknings- eller sekundærkilde;
+- [ ] miljøets selvforståelse og eksterne betegnelser holdes adskilt;
+- [ ] kildenes posisjon, proveniens, `sourceLocation`, tidsdekning og begrensninger registreres;
+- [ ] mennesker beskrives som mennesker, ikke som problemer, kulisse, kriminalitet eller avvik;
+- [ ] rus, hjemløshet, vold, fattigdom eller annen sårbarhet verken romantiseres eller sensationaliseres;
+- [ ] nåværende sårbare enkeltpersoner identifiseres ikke unødvendig;
+- [ ] én synlig talsperson, arrangør, avis eller politirapport behandles ikke automatisk som representativ for et helt miljø;
+- [ ] redaksjonelle formuleringer skiller dokumentert praksis, aktørpåstand og analytisk tolkning.
+
+### F. Canonical metode, endring over tid og inferensgrenser skal være eksplisitte
+
+- [ ] hver case bruker minst én relevant canonical `met_sub_*`;
+- [ ] observasjon/evidens og analysemetode registreres før konklusjonen;
+- [ ] analysen har minst én alternativ forklaring, eksplisitt usikkerhet og refleksjon over forsker-/redaktørblikket;
+- [ ] samtidighet, medieoppmerksomhet eller tidsrekkefølge brukes ikke alene som årsaksbevis;
+- [ ] startpunkt, vendepunkt/endring, nåværende eller avsluttende punkt og minst én kontinuitet dokumenteres;
+- [ ] aktiv, historisk, blandet, flyttet, stengt eller revet funksjon skilles;
+- [ ] aktiv, blandet eller flyttet nåtidsfunksjon har minst én relevant `current`/`mixed`-kilde kontrollert siste 365 dager;
+- [ ] tap av sted behandles ikke automatisk som tap av miljø, og formalisering behandles ikke automatisk som full assimilasjon.
+
+### G. Quizåpningen skal starte i sted, mennesker og praksis
+
+- [ ] sett 1 og 2 har sju direkte, stedsspesifikke og kildebelagte spørsmål hver;
+- [ ] de første 14 spørsmålene starter i konkrete miljøer, praksiser, hendelser, objekter, koder, rom, konflikter eller kontrollformer;
+- [ ] synlige emnenavn, metodenavn, teorinavn og fagplansjargong driver ikke åpningssettene;
+- [ ] spørsmål gjengir ikke stigma, politibegreper eller medieetiketter som nøytral beskrivelse;
+- [ ] eksterne kilder dominerer, mens fagfilene styrer utvalg og analyse;
+- [ ] adaptiv profil, `source_brief`, alle `required_inputs`, `production_context`, audits og Knowledge-synkronisering følger Quiz-kontrakten.
+
+### H. Chronology og Stories holdes adskilt
+
+- [ ] etablering, okkupasjon, åpning, konflikt, kontrolltiltak, flytting, legalisering, institusjonalisering og nedleggelse legges i chronology når verdien først og fremst er **hva som skjedde når**;
+- [ ] en Story opprettes bare når det finnes en selvstendig narrativ idé, konkrete aktører, handling, konflikt/valg/transformasjon, konsekvens og tydelig fysisk eller biografisk forankring;
+- [ ] scenehistorikk, arrangementsliste, medieoppslag eller hjelpeinstitusjonens milepæler kopieres ikke automatisk til Stories;
+- [ ] samme materiale dupliseres ikke mekanisk som chronology, Story, nyhet og quiz;
+- [ ] omtale av sårbare miljøer følger samme personvern- og etikkkrav i Stories som i place-teksten;
+- [ ] Stories følger `docs/STORIES_DATA_GOVERNANCE.md` fullt ut.
+
+### Subkultur-stoppgate
+
+Stedet eller Subkultur-laget kan ikke godkjennes dersom ett av disse forholdene består:
+
+- koblingen bygger bare på urbant preg, ungdom, kreativitet, aktivitet, sjanger eller alternativ markedsføring;
+- det finnes ikke et dokumentert miljø, en gjentatt praksis, et sosialt territorium eller en støttefunksjon;
+- fysisk sted, miljø, organisasjon, arrangement eller hjelpetiltak er blandet sammen;
+- `em_sub_*` mangler eller er lagt på uten stedsspesifikk case-evidens;
+- aktører, deltakelse, egenorganisering, uttrykk eller interne grenser er generiske;
+- eierskap, kontroll, konflikt, regulering, fortrengning eller institusjonalisering er utelatt der det er relevant;
+- kildene mangler miljønær stemme eller uavhengig kontroll;
+- mennesker reduseres til rus, kriminalitet, avvik eller dekorativ undergrunn;
+- nåværende sårbare personer kan identifiseres unødvendig;
+- canonical metode, endring over tid, alternative forklaringer eller usikkerhet mangler;
+- dagens funksjon er uklar eller foreldet;
+- de første 14 quizspørsmålene bryter normalåpningen;
+- en chronology-post er gjort til Story uten selvstendig narrativ og fysisk forankring.
+
+Produksjonsrapporten ligger i `data/places/subkultur-production/<place_id>.json` og følger `data/places/regler/subkultur_place_production_v1.schema.json`. Rapporten peker tilbake til den manifest-loadede place-filen og registrerer Subkultur-identitet eller sekundærlag, ankertype, forholdet til storsamfunnet, tidsavgrensning, canonicale `em_sub_*`, balanserte kilder, stedlige case, aktører, praksis/fellesskap, rom/makt, representasjon/etikk, canonical metode, inferensgrenser, endring over tid, dagens funksjon og status for A–H.
+
+Alle delene A–H får status **PASS** eller **N/A med begrunnelse**. A–F er obligatoriske PASS; G og H kan være begrunnet N/A når stedet ikke har henholdsvis quiz eller chronology/Stories. `node scripts/audit-subkultur-place-production.mjs --all` validerer alle registrerte rapporter. PR-porten i **Data checks → Places data** kjører changed-mode og krever rapport når et nytt Subkultur-sted eller -lag opprettes, eller når identitet, kategori/sekundærbadge, `em_sub_*`, brukerrettet tekst, Subkultur-/sosial profil, quizgrunnlag, chronology eller Story-kobling revideres. Ren koordinatendring forblir eid av coordinate-gaten. Subkultur kan ikke settes til ferdig på stedet før denne porten passerer.
 
 ---
 
