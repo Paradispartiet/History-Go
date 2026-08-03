@@ -10,6 +10,15 @@ Disse reglene gjelder for hele repositoriet.
 - Feil som `origin missing`, DNS/proxy-feil, `CONNECT tunnel failed`, 403 eller blokkert `git fetch` betyr bare at **lokal git-transport er utilgjengelig**. Det betyr ikke at repositoriet eller GitHub er utilgjengelig.
 - En agent skal aldri stoppe repoarbeid eller si at en audit ikke kan utføres bare fordi lokal clone ikke får kontakt med GitHub.
 
+## GitHub CLI er allerede installert
+
+- Den etablerte lokale installasjonen ligger i `/workspace/bin/gh`, med konfigurasjon i `/workspace/gh-config`.
+- Tomt resultat fra `command -v gh` betyr at det aktuelle skallet mangler riktig `PATH` eller ikke har fått `/workspace`-mounten. Det betyr **ikke** at `gh` er avinstallert.
+- Før CLI-spesifikt arbeid skal agenten kjøre `bash tools/ensure-gh-path.sh` eller bruke `/workspace/bin/gh` direkte.
+- Agenten skal aldri kjøre `apt install gh`, laste ned en ny kopi eller be brukeren installere/autentisere `gh` på nytt uten at både workspace-installasjonen og den eksisterende konfigurasjonen er eksplisitt kontrollert og dokumentert ødelagt.
+- Agenten skal aldri formulere «gh er ikke installert». Korrekt diagnose ved isolert skall er «workspace-installasjonen er ikke eksponert i dette skallet».
+- Manglende lokal `gh`-eksponering er aldri en sperre for connector-støttet repo-, PR-, fil-, CI- eller mergearbeid.
+
 ## Obligatorisk fallback-rekkefølge
 
 1. Les og søk i repositoriet gjennom GitHub-connectoren.
@@ -17,6 +26,7 @@ Disse reglene gjelder for hele repositoriet.
 3. Gjør statisk audit direkte mot filene hentet gjennom connectoren.
 4. Når en audit må kjøre kode mot hele repositoriet, bruk eksisterende GitHub Actions-sjekker eller fjern-auditen i `.github/workflows/remote-audit.yml`.
 5. Bruk lokal clone bare dersom den allerede fungerer; lokal clone er aldri en forutsetning for å begynne.
+6. Bruk lokal `gh` bare for operasjoner der connectoren faktisk mangler dekning, etter at `tools/ensure-gh-path.sh` har gjenopprettet stien.
 
 ## Fjern-audit uten lokal clone
 
