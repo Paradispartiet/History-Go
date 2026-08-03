@@ -2,48 +2,50 @@
 
 Disse reglene gjelder for hele repositoriet.
 
-## GitHub-tilgang: connector først
+## GitHub-arbeid: `gh` og lokal checkout først
 
 - Canonical repository er `Paradispartiet/History-Go`.
-- GitHub-connectoren/GitHub App er primær kanal for å lese filer, søke, opprette brancher, skrive filer, åpne PR-er, lese CI og merge.
-- Lokal clone, `git fetch`, `git ls-remote` og `gh` er kun en valgfri optimalisering når miljøet faktisk har direkte GitHub-tilgang.
-- Feil som `origin missing`, DNS/proxy-feil, `CONNECT tunnel failed`, 403 eller blokkert `git fetch` betyr bare at **lokal git-transport er utilgjengelig**. Det betyr ikke at repositoriet eller GitHub er utilgjengelig.
-- En agent skal aldri stoppe repoarbeid eller si at en audit ikke kan utføres bare fordi lokal clone ikke får kontakt med GitHub.
+- GitHub CLI `gh` er installert og skal brukes som primær operativ kanal for repository-, branch-, PR-, review-, CI-, Actions- og mergearbeid.
+- Begynn alltid i den faktiske History-Go-checkouten. Ikke bruk en generell artefaktcontainer, PDF-/dokumentcontainer eller et annet isolert skall som grunnlag for å vurdere om `gh` finnes.
+- Før GitHub-arbeid skal agenten kjøre:
 
-## GitHub CLI er allerede installert
+  ```bash
+  git rev-parse --show-toplevel
+  gh --version
+  gh auth status
+  gh repo view --json nameWithOwner,defaultBranchRef
+  ```
 
-- Den etablerte lokale installasjonen ligger i `/workspace/bin/gh`, med konfigurasjon i `/workspace/gh-config`.
-- Tomt resultat fra `command -v gh` betyr at det aktuelle skallet mangler riktig `PATH` eller ikke har fått `/workspace`-mounten. Det betyr **ikke** at `gh` er avinstallert.
-- Før CLI-spesifikt arbeid skal agenten kjøre `bash tools/ensure-gh-path.sh` eller bruke `/workspace/bin/gh` direkte.
-- Agenten skal aldri kjøre `apt install gh`, laste ned en ny kopi eller be brukeren installere/autentisere `gh` på nytt uten at både workspace-installasjonen og den eksisterende konfigurasjonen er eksplisitt kontrollert og dokumentert ødelagt.
-- Agenten skal aldri formulere «gh er ikke installert». Korrekt diagnose ved isolert skall er «workspace-installasjonen er ikke eksponert i dette skallet».
-- Manglende lokal `gh`-eksponering er aldri en sperre for connector-støttet repo-, PR-, fil-, CI- eller mergearbeid.
+- `gh repo view` skal bekrefte `Paradispartiet/History-Go` før skriving, push, PR eller merge.
+- Tomt resultat fra `command -v gh` i et annet isolert miljø betyr at agenten er i feil kjøringskontekst. Det betyr ikke at `gh` mangler eller må installeres.
+- Agenten skal aldri si «gh er ikke installert», be om reinstallasjon eller erstatte `gh` med connectorarbeid uten først å ha gått til den faktiske repository-checkouten og kjørt kontrollene over.
+- GitHub-connectoren kan brukes som supplerende metadata- eller nødfallback, men den erstatter ikke `gh` som normal arbeidsvei når brukeren har bedt om `gh`.
 
-## Obligatorisk fallback-rekkefølge
+## Obligatorisk arbeidsrekkefølge
 
-1. Les og søk i repositoriet gjennom GitHub-connectoren.
-2. Gjør endringer gjennom connectoren: branch → filendringer → PR → CI → merge.
-3. Gjør statisk audit direkte mot filene hentet gjennom connectoren.
-4. Når en audit må kjøre kode mot hele repositoriet, bruk eksisterende GitHub Actions-sjekker eller fjern-auditen i `.github/workflows/remote-audit.yml`.
-5. Bruk lokal clone bare dersom den allerede fungerer; lokal clone er aldri en forutsetning for å begynne.
-6. Bruk lokal `gh` bare for operasjoner der connectoren faktisk mangler dekning, etter at `tools/ensure-gh-path.sh` har gjenopprettet stien.
+1. Finn eller åpne den faktiske lokale History-Go-checkouten.
+2. Kontroller repo, branch, remote, `gh --version` og `gh auth status`.
+3. Synkroniser mot fersk `main` før audit eller produksjon.
+4. Bruk lokal `git` for diff, staging, commit, worktree og push.
+5. Bruk `gh` for PR-er, reviews, checks, workflow runs, logger og merge.
+6. Lås alltid forventet head-SHA før merge.
+7. Rapporter bare kontroller som faktisk er kjørt.
 
-## Fjern-audit uten lokal clone
+## Korrekt diagnose ved feil kontekst
 
-For en eksplisitt kjørbar audit når lokal git-transport er blokkert:
+Når `gh` ikke kan kjøres i det aktuelle skallet:
 
-1. Opprett en branch fra aktuell `main` gjennom GitHub-connectoren.
-2. Oppdater `.github/audit-request.json` på branchen med ønsket `suite` og en ny unik `nonce`.
-3. Åpne en PR fra samme repository. PR-en starter `Remote repository audit`.
-4. Les workflow-run, jobber og logger gjennom GitHub-connectoren.
-5. Rapporter faktiske resultater. Ikke presenter en ikke-kjørt audit som kjørt.
+- ikke konkluder med at programmet ikke er installert;
+- ikke søk bare i den generelle containerens rotfilsystem;
+- lokaliser repository-arbeidsområdet som tidligere History-Go-jobber bruker;
+- start et skall i den checkouten og kjør kontrollrekken på nytt;
+- fortsett med `gh` så snart riktig arbeidskontekst er aktiv.
 
-Tillatte suites er `data`, `coordinates`, `quiz` og `full`.
+## Audit og publisering
 
-## Arbeidsregel
-
-- Skill mellom **statisk audit** og **kjørbar audit**.
-- Utfør alltid den statiske delen umiddelbart via connectoren.
-- Dersom en kjørbar kontroll mangler en eksisterende suite, utvid den sikre, eksplisitte mappingen i `remote-audit.yml`; aldri kjør vilkårlig kommando fra audit-request-filen.
+- Skill mellom statisk audit og kjørbar audit.
 - Les hele relevante filer før de endres.
-- Oppgi konkret hva som ble kontrollert, hvilken commit/PR som inneholder endringen, og hvilke kontroller som faktisk kjørte.
+- Kontroller `git status -sb`, branch, base og faktisk diff før staging.
+- Stage bare avtalte filer.
+- Bruk `gh pr view`, `gh pr checks`, `gh run view`, `gh run watch` og `gh pr merge` for PR-løpet.
+- Oppgi konkret checkout, branch, commit, PR, head-SHA og kontroller i sluttrapporten.
