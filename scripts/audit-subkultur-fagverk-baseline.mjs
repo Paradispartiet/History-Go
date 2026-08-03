@@ -205,12 +205,16 @@ export function buildReport() {
   };
 
   const targets = contract.canonical_targets;
+  const canonicalLayerMaterialized = current.domains === targets.domain_count
+    && current.hooks === targets.emne_count
+    && current.emner === targets.emne_count
+    && current.mapped_emner === targets.emne_count;
   return {
     schema: 'history_go_subkultur_fagverk_baseline_audit_v1',
     version: '1.0.0',
     subject_id: 'subkultur',
     baseline_locked_at: '2026-08-04',
-    status: 'GAPS_CONFIRMED',
+    status: canonicalLayerMaterialized ? 'CANONICAL_LAYER_MATERIALIZED' : 'GAPS_CONFIRMED',
     definition_contract: PATHS.contract,
     current,
     targets,
@@ -226,10 +230,6 @@ export function buildReport() {
       people_without_subkultur_emne: current.subkultur_people - current.people_with_subkultur_emne
     },
     completion_blockers: [
-      'six_domain_oslo_weighted_structure_instead_of_eight_domain_universal_structure',
-      'generic_or_missing_emne_definitions',
-      'unmapped_core_emner',
-      'duplicated_method_descriptions_without_distinct_operations',
       'no_theory_claim_source_evidence_layer',
       'no_fagverk_chapters',
       'no_runtime_manifest_or_registry_entry',
@@ -280,14 +280,16 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
   assert(contract.completion_gate?.required_next_gate === 'maintenance_and_source_refresh', 'Kontrakten har feil vedlikeholdsport');
 
   const report = buildReport();
-  assert(report.current.domains === 6, `Baseline skal dokumentere 6 domener, fikk ${report.current.domains}`);
-  assert(report.current.hooks === 60, `Baseline skal dokumentere 60 hooks, fikk ${report.current.hooks}`);
-  assert(report.current.emner === 72, `Baseline skal dokumentere 72 emner, fikk ${report.current.emner}`);
-  assert(report.current.mapped_emner === 69, `Baseline skal dokumentere 69 mappinger, fikk ${report.current.mapped_emner}`);
-  assert(report.current.unmapped_emne_ids.length === 3, 'Baseline skal dokumentere tre umappede emner');
-  assert(report.current.methods === 71, `Baseline skal dokumentere 71 metoder, fikk ${report.current.methods}`);
-  assert(report.current.generic_definition_count === 69, 'Baseline skal dokumentere 69 generiske definisjoner');
-  assert(report.current.missing_definition_count === 3, 'Baseline skal dokumentere tre manglende definisjoner');
+  assert(report.status === 'CANONICAL_LAYER_MATERIALIZED', 'Baseline skal registrere materialisert canonical-lag');
+  assert(report.current.domains === 8, `Canonical-laget skal ha 8 domener, fikk ${report.current.domains}`);
+  assert(report.current.hooks === 80, `Canonical-laget skal ha 80 hooks, fikk ${report.current.hooks}`);
+  assert(report.current.emner === 80, `Canonical-laget skal ha 80 emner, fikk ${report.current.emner}`);
+  assert(report.current.mapped_emner === 80, `Canonical-laget skal ha 80 mappinger, fikk ${report.current.mapped_emner}`);
+  assert(report.current.unmapped_emne_ids.length === 0, 'Canonical-laget har umappede emner');
+  assert(report.current.methods >= 35 && report.current.methods <= 50, `Canonical-laget skal ha 35–50 metoder, fikk ${report.current.methods}`);
+  assert(report.current.unique_method_descriptions === report.current.methods, 'Alle aktive metoder skal ha unik operativ beskrivelse');
+  assert(report.current.generic_definition_count === 0, 'Canonical-laget har fortsatt generiske definisjoner');
+  assert(report.current.missing_definition_count === 0, 'Canonical-laget har manglende definisjoner');
   assert(report.current.fagverk_chapters === 0, 'Subkultur skal ikke ha kapitler i baselinefasen');
   assert(report.current.navigation_status === 'planned', 'Baseline må beholde navigationStatus planned');
   assert(report.current.assessment_status === 'pending', 'Baseline må beholde assessmentStatus pending');

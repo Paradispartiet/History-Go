@@ -24,21 +24,19 @@ test('Subkultur-kontrakten låser åtte domener og 80 teoriobjekter uten å fors
   });
 });
 
-test('baseline dokumenterer faktisk canonical gap i stedet for bare filtilstedeværelse', () => {
+test('den levende baselineen registrerer canonical-laget uten å skjule neste produksjonsgap', () => {
   const report = buildReport();
-  assert.equal(report.current.domains, 6);
-  assert.equal(report.current.hooks, 60);
-  assert.equal(report.current.emner, 72);
-  assert.equal(report.current.mapped_emner, 69);
-  assert.deepEqual(report.current.unmapped_emne_ids, [
-    'em_sub_grunnbegreper',
-    'em_sub_musikkscener',
-    'em_sub_stil_kropp_symboler'
-  ]);
-  assert.equal(report.current.methods, 71);
-  assert.equal(report.current.unique_method_descriptions, 21);
-  assert.equal(report.current.generic_definition_count, 69);
-  assert.equal(report.current.missing_definition_count, 3);
+  assert.equal(report.status, 'CANONICAL_LAYER_MATERIALIZED');
+  assert.equal(report.current.domains, 8);
+  assert.equal(report.current.hooks, 80);
+  assert.equal(report.current.emner, 80);
+  assert.equal(report.current.mapped_emner, 80);
+  assert.deepEqual(report.current.unmapped_emne_ids, []);
+  assert.equal(report.current.methods, 43);
+  assert.equal(report.current.unique_method_descriptions, 43);
+  assert.equal(report.current.generic_definition_count, 0);
+  assert.equal(report.current.missing_definition_count, 0);
+  assert.equal(report.gaps.theory_objects, 80);
 });
 
 test('runtime, teori, kapitler, caseprofil og pathways er eksplisitte produksjonsgap', () => {

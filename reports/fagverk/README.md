@@ -28,7 +28,8 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `politikk-thinker-integrity-audit.json` — kontrollerer at alle Politikk-tenker-ID-er har ett canonicalt visningsnavn og at alle forekomster er synkronisert.
 - `politikk-forvaltning-audit.json` — kapittelgate for 15 emner, 21 metoder, tre redigerte moduler, 36 sporede claims og 24 inspectable kilder.
 - `politikk-parlamentarisme-audit.json` — kapittelgate for 14 emner, 23 metoder, tre redigerte moduler, 36 sporede claims og 30 inspectable kilder.
-- `subkultur-baseline-audit.json` — låst gaprapport for Subkultur: 6/8 eksisterende domener, 72/80 emner, 69/80 mappinger, 0/8 kapitler og eksplisitte teori-, runtime-, case-, People-, Quiz- og Knowledge-hull før materialisering.
+- `subkultur-baseline-audit.json` — levende milepælsrapport for Subkultur: 8/8 canonicale domener, 80/80 emner og mappinger, 43 operative metoder, 0/80 evidence-ready teoriobjekter og 0/8 kapitler.
+- `subkultur-canonical-layer-audit.json` — permanent integritetsgate for det universelle canonical-laget: eksakt domenerekkefølge, ti individuelle emner per domene, bevaring av 72 eksisterende emne-ID-er, full metode- og mappingreferanseintegritet, synkronisert quizstyring og ærlig pre-runtime-status.
 - `politikk-regimer-institusjoner-audit.json` — kapittelgate for 15 emner, 16 metoder, tre redigerte moduler, 29 sporede claims og 16 inspectable kilder.
 - `politikk-valg-partier-velgeratferd-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 23 inspectable kilder.
 - `politikk-offentlig-politikk-beslutning-implementering-audit.json` — kapittelgate for 5 emner, 5 metoder, tre redigerte moduler, 33 sporede claims og 21 bærende kilder.
@@ -100,6 +101,10 @@ node scripts/audit-politikk-chapter-fordeling-velferd-ulikhet.mjs --write-report
 node scripts/audit-politikk-chapter-fordeling-velferd-ulikhet.mjs
 node scripts/audit-subkultur-fagverk-baseline.mjs --write-report
 node scripts/audit-subkultur-fagverk-baseline.mjs
+node scripts/materialize-subkultur-canonical-v2.mjs --write
+node scripts/materialize-subkultur-canonical-v2.mjs
+node scripts/audit-subkultur-canonical-layer.mjs --write-report
+node scripts/audit-subkultur-canonical-layer.mjs
 node --test tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-historie.test.mjs tests/fagverk-natur-pilot.test.mjs tests/natur-subject-quality.test.mjs tests/natur-fagkart-quality.test.mjs tests/natur-universal-coverage.test.mjs tests/naeringsliv-chapter-arbeid-produksjon-verdiskaping.test.mjs tests/naeringsliv-chapter-kapital-eierskap-finans.test.mjs tests/naeringsliv-chapter-handel-forbruk-marked.test.mjs tests/naeringsliv-chapter-teknologi-innovasjon-plattformer.test.mjs tests/naeringsliv-chapter-logistikk-infrastruktur-okonomisk-rom.test.mjs tests/naeringsliv-chapter-teknologi-innovasjon-plattformer.test.mjs tests/naeringsliv-subject-quality.test.mjs tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-forvaltning.test.mjs tests/politikk-chapter-parlamentarisme.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs tests/politikk-chapter-fordeling-velferd-ulikhet.test.mjs
 ```
 
@@ -131,6 +136,6 @@ Natur står `materialized`, `audited` og `chapters_in_progress`. De seks opprinn
 
 Politikk står `materialized`, `audited` og `complete`. Alle tretten canonicale fagområder har fullproduserte kapitler med tre redigerte moduler, exact canonical emne- og metodedekning, inspectable kilder, påstandsregister, avsnittssporing, permanent audit og test. Sluttmoderniseringen omfatter `Offentlig forvaltning` og `Parlamentarisme, representasjon og offentlighet`; den felles sluttgaten bekrefter at 13/13 kapitler følger brief–claims–audit-kontrakten. Faget har dessuten permanente kvalitetsgater for 123 emner, 71 operative metoder, 123 mappingrader, 152 hooks, normal quizåpning, Knowledge-leveranse og canonical ID–navn-integritet for teoripersoner.
 
-Subkultur står fortsatt `planned`, `pending` og `not_started`. Produksjonskontrakten låser åtte universelle fagområder og 80 individuelt evidensbelagte teoriobjekter. Baselineen dokumenterer at dagens seksdomenegrunnlag har 72 emner, 69 mappingrader, 71 metoder med bare 21 unike beskrivelser, ingen kapitler eller runtime og et aktivt legacyquizlag som ikke kan telle som ferdigbevis.
+Subkultur står fortsatt `planned`, `pending` og `not_started`. Det universelle canonical-laget er materialisert med åtte fagområder, 80 individuelt redigerte emner, 80 én-til-én-mappinger og 43 operative metoder. Alle 72 tidligere `em_sub_*`-ID-er er bevart, og åtte nye emner dekker postsubkultur samt sosiale randsoner, omsorg og skadereduksjon. Teori-/evidensobjekter, kapitler, caseprofiler, Places/People-revisjon, ny Quiz/Knowledge og runtime gjenstår; canonical-laget kan derfor ikke brukes som ferdigbevis.
 
 De gjenværende fase-2-pilotene er `religion`, `by` og `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. De skal materialiseres individuelt og må passere samme gate før portalstatusen endres.

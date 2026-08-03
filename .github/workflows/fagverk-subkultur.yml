@@ -9,7 +9,10 @@ on:
       - 'data/quiz/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
+      - 'scripts/audit-subkultur-canonical-layer.mjs'
+      - 'scripts/materialize-subkultur-canonical-v2.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
+      - 'tests/subkultur-canonical-layer.test.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -22,7 +25,10 @@ on:
       - 'data/quiz/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
+      - 'scripts/audit-subkultur-canonical-layer.mjs'
+      - 'scripts/materialize-subkultur-canonical-v2.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
+      - 'tests/subkultur-canonical-layer.test.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -39,8 +45,15 @@ jobs:
         with:
           node-version: 22
       - name: Syntax
-        run: node --check scripts/audit-subkultur-fagverk-baseline.mjs
+        run: |
+          node --check scripts/materialize-subkultur-canonical-v2.mjs
+          node --check scripts/audit-subkultur-fagverk-baseline.mjs
+          node --check scripts/audit-subkultur-canonical-layer.mjs
+      - name: Deterministic canonical materialization
+        run: node scripts/materialize-subkultur-canonical-v2.mjs
       - name: Baseline audit
-        run: node scripts/audit-subkultur-fagverk-baseline.mjs
+        run: |
+          node scripts/audit-subkultur-fagverk-baseline.mjs
+          node scripts/audit-subkultur-canonical-layer.mjs
       - name: Baseline tests
-        run: node --test tests/subkultur-fagverk-baseline.test.mjs
+        run: node --test tests/subkultur-fagverk-baseline.test.mjs tests/subkultur-canonical-layer.test.mjs
