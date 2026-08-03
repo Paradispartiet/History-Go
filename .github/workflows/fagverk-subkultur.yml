@@ -9,7 +9,10 @@ on:
       - 'data/quiz/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
+      - 'scripts/audit-subkultur-foundation-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
+      - 'tests/subkultur-foundation-*.test.mjs'
+      - 'tools/build-subkultur-foundation-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -22,7 +25,10 @@ on:
       - 'data/quiz/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
+      - 'scripts/audit-subkultur-foundation-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
+      - 'tests/subkultur-foundation-*.test.mjs'
+      - 'tools/build-subkultur-foundation-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -31,7 +37,7 @@ permissions:
   contents: read
 
 jobs:
-  baseline-contract:
+  foundation-contract:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,8 +45,16 @@ jobs:
         with:
           node-version: 22
       - name: Syntax
-        run: node --check scripts/audit-subkultur-fagverk-baseline.mjs
-      - name: Baseline audit
+        run: |
+          node --check tools/build-subkultur-foundation-v1.mjs
+          node --check scripts/audit-subkultur-fagverk-baseline.mjs
+          node --check scripts/audit-subkultur-foundation-v1.mjs
+      - name: Reproducible canonical foundation
+        run: node tools/build-subkultur-foundation-v1.mjs --check
+      - name: Historical baseline audit
         run: node scripts/audit-subkultur-fagverk-baseline.mjs
-      - name: Baseline tests
+      - name: Foundation audit
+        run: node scripts/audit-subkultur-foundation-v1.mjs
+      - name: Contract and foundation tests
         run: node --test tests/subkultur-fagverk-baseline.test.mjs
+          tests/subkultur-foundation-v1.test.mjs
