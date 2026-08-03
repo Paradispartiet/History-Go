@@ -34,6 +34,7 @@ on:
       - "tests/regjeringskvartalet-more-phase.test.mjs"
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
+      - "tests/regjeringskvartalet-quiz-completion.test.mjs"
       - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
       - "tests/place-production-brand-quiz-governance.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
@@ -100,6 +101,7 @@ on:
       - "tests/regjeringskvartalet-more-phase.test.mjs"
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
+      - "tests/regjeringskvartalet-quiz-completion.test.mjs"
       - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
       - "tests/place-production-brand-quiz-governance.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
@@ -169,5 +171,6 @@ jobs:
           node tests/tinghuset-rounds-completion.test.mjs
           node --test tests/oslo-tinghuset-before-after-phase.test.mjs tests/oslo-tinghuset-news-phase.test.mjs tests/oslo-tinghuset-reading-phase.test.mjs tests/oslo-tinghuset-sources-phase.test.mjs tests/oslo-tinghuset-more-phase.test.mjs tests/oslo-tinghuset-people-phase.test.mjs tests/oslo-tinghuset-objects-phase.test.mjs
           node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs tests/regjeringskvartalet-sources-phase.test.mjs tests/regjeringskvartalet-more-phase.test.mjs tests/regjeringskvartalet-objects-phase.test.mjs tests/regjeringskvartalet-brands-phase.test.mjs
+          node --test tests/regjeringskvartalet-quiz-completion.test.mjs
           node --test tests/place-production-brand-quiz-governance.test.mjs
           node tests/regjeringskvartalet-ui-production-audit.test.mjs

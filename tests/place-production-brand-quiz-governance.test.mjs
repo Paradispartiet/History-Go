@@ -14,6 +14,9 @@ const standard = read('docs/PLACE_STANDARD.md');
 const dataContract = read('docs/DATA_PRODUCTION_CONTRACT.md');
 const checklist = read('docs/PLACE_PRODUCTION_CHECKLIST.md');
 const quiz = read('data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md');
+const packageSchema = readJson('data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json');
+const productionLibrary = read('scripts/quiz-production-lib.mjs');
+const productionAudit = read('scripts/audit-quiz-production-context.mjs');
 
 test('Brand-reglene er canonical semantisk eier og er rutet fra stedskontraktene', () => {
   assert.equal(brandRules.status, 'canonical_brand_definition');
@@ -56,4 +59,12 @@ test('Quizkontrakten krever eksisterende-quiz-audit og eksplisitt settantall', (
   assert.match(quiz, /`profile_hint`.*kan forhåndslåse/s);
   assert.match(checklist, /alle aktive, arkiverte og alternative quizfiler/);
   assert.match(checklist, /`major`-sted bruker 10 sett/);
+  for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
+    assert.ok(packageSchema.production_context.required_fields.includes(field));
+    assert.ok(packageSchema.source_brief_contract.required_fields.includes(field));
+    assert.match(productionLibrary, new RegExp(field));
+    assert.match(productionAudit, new RegExp(field));
+  }
+  assert.doesNotMatch(productionLibrary, /candidates\.find\(\(\[profileId\]\) => profileId === brief\.profile_hint\)/);
+  assert.match(packageSchema.profile_contract.rule, /profile_hint kan ikke velge/);
 });

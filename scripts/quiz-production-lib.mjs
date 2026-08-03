@@ -499,17 +499,44 @@ function profileRange(profile) {
 
 function inferProfile(superset, brief) {
   const profiles = superset.adaptive_profiles || {};
-  const questionsPerSet = Number(profiles.normal?.questions_per_set || profiles.narrow?.questions_per_set || 7);
+  const decision = brief.profile_decision;
+  if (!decision || typeof decision !== "object" || Array.isArray(decision)) {
+    const questionsPerSet = Number(profiles.normal?.questions_per_set || profiles.narrow?.questions_per_set || 7);
+    const claimCount = asArray(brief.claims).length;
+    const setCount = Math.max(3, Math.ceil(claimCount / questionsPerSet));
+    const [profileId, profile] = Object.entries(profiles).find(([, candidate]) => {
+      const range = profileRange(candidate);
+      return setCount >= range.minimum && setCount <= range.maximum;
+    }) || [];
+    if (!profileId || !profile) {
+      throw new Error(`Ingen adaptiv profil dekker ${setCount} sett for ${claimCount} påstander`);
+    }
+    return {
+      id: profileId,
+      setCount,
+      questionsPerSet: Number(profile.questions_per_set || questionsPerSet)
+    };
+  }
+  const profileId = decision.profile;
+  const profile = profiles[profileId];
+  if (!profile) {
+    throw new Error(`${brief.targetId}: ukjent profile_decision.profile ${profileId}`);
+  }
+  const questionsPerSet = Number(decision.questions_per_set);
+  const setCount = Number(decision.set_count);
   const claimCount = asArray(brief.claims).length;
-  const setCount = Math.max(3, Math.ceil(claimCount / questionsPerSet));
-  const candidates = Object.entries(profiles).filter(([, profile]) => {
-    const range = profileRange(profile);
-    return setCount >= range.minimum && setCount <= range.maximum;
-  });
-  const hinted = candidates.find(([profileId]) => profileId === brief.profile_hint);
-  const [profileId, profile] = hinted || candidates[0] || [];
-  if (!profileId || !profile) {
-    throw new Error(`Ingen adaptiv profil dekker ${setCount} sett for ${claimCount} påstander`);
+  const range = profileRange(profile);
+  if (!Number.isInteger(setCount) || setCount < range.minimum || setCount > range.maximum) {
+    throw new Error(`${brief.targetId}: ${profileId} tillater ikke ${setCount} sett`);
+  }
+  if (!Number.isInteger(questionsPerSet) || questionsPerSet !== Number(profile.questions_per_set)) {
+    throw new Error(`${brief.targetId}: profile_decision.questions_per_set avviker fra ${profileId}`);
+  }
+  if (!hasText(decision.justification)) {
+    throw new Error(`${brief.targetId}: profile_decision mangler evidensbasert begrunnelse`);
+  }
+  if (claimCount !== setCount * questionsPerSet) {
+    throw new Error(`${brief.targetId}: ${claimCount} påstander dekker ikke ${setCount} × ${questionsPerSet}`);
   }
 
   return {
@@ -691,6 +718,9 @@ export async function buildQuizProductionContext({
     planned_quiz_file: targetProduction.paths.quiz_file,
     source_registry: brief.sources,
     source_review_status: brief.status || "pending",
+    ...(brief.existing_quiz_audit !== undefined ? { existing_quiz_audit: brief.existing_quiz_audit } : {}),
+    ...(brief.profile_decision !== undefined ? { profile_decision: brief.profile_decision } : {}),
+    ...(brief.held_back_candidates !== undefined ? { held_back_candidates: brief.held_back_candidates } : {}),
     considered_curriculum: curriculum.considered,
     selected_curriculum: curriculum.selected,
     claim_bank: claims,

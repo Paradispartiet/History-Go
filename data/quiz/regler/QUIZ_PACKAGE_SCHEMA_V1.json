@@ -25,7 +25,10 @@
       "method_ids",
       "thinker_ids",
       "works",
-      "source_review_status"
+      "source_review_status",
+      "existing_quiz_audit",
+      "profile_decision",
+      "held_back_candidates"
     ],
     "resolved_files_type": "object",
     "id_array_fields": [
@@ -57,6 +60,9 @@
       "reviewed_at",
       "sources",
       "selected_curriculum",
+      "existing_quiz_audit",
+      "profile_decision",
+      "held_back_candidates",
       "claims"
     ],
     "source_required_fields": [
@@ -85,7 +91,20 @@
       "rich_5x7",
       "major_8x7"
     ],
-    "source": "Kategoriens supersetQUIZMAL-fil"
+    "source": "Kategoriens supersetQUIZMAL-fil",
+    "decision_required_fields": [
+      "profile",
+      "set_count",
+      "questions_per_set",
+      "justification"
+    ],
+    "existing_quiz_audit_required_fields": [
+      "searched_paths",
+      "active_before",
+      "decisions",
+      "knowledge_migration"
+    ],
+    "rule": "profile_decision er autoritativ. profile_hint kan ikke velge mellom overlappende profiler."
   },
   "set_contract": {
     "required_fields": [
@@ -130,6 +149,7 @@
   "migration": {
     "legacy_packages_without_production_context_may_remain": true,
     "new_or_fully_revised_packages_must_comply": true,
+    "audit_metadata_required_from_standard_version": "3.3",
     "enforcement_scope": "quizProduction.targets in data/fag/fag_manifest.json"
   }
 }

@@ -7,52 +7,67 @@ const brands = readJson('data/brands/brands_master.json');
 const brandsByPlace = readJson('data/brands/brands_by_place.json');
 const place = readJson('data/places/politikk/oslo/places_politikk/regjeringskvartalet.json');
 const brandRules = readJson('data/brands/brand_rules_v1_1.json');
+const audit = readJson('reports/place-production/regjeringskvartalet-brands-v2.json');
 const roundsContract = fs.readFileSync('data/places/README_place_rounds.md', 'utf8');
-const standard = fs.readFileSync('docs/PLACE_STANDARD.md', 'utf8');
 const runtime = fs.readFileSync('js/ui/place-rounds-visual-collections.js', 'utf8');
 const report = fs.readFileSync('reports/place-production/regjeringskvartalet-politikk-v1.md', 'utf8');
 
-test('Canonical Brand-register mangler foreløpig Regjeringskvartalet, men null treff beviser ikke N/A', () => {
-  assert.ok(Array.isArray(brands));
-  assert.equal(Object.hasOwn(brandsByPlace, 'regjeringskvartalet'), false);
-  assert.equal(brands.some(brand => {
-    const value = JSON.stringify(brand).toLowerCase();
-    return value.includes('regjeringskvartalet');
-  }), false);
+const expectedIds = [
+  'statsbygg', 'koro', 'nordic_office_of_architecture', 'cowi', 'ramboll',
+  'aas_jakobsen', 'asplan_viak', 'bjorbekk_lindheim', 'sla', 'veidekke',
+  'hent', 'skanska', 'agaia', 'mebyr'
+];
+const byId = new Map(brands.map(brand => [brand.id, brand]));
+
+test('Regjeringskvartalet har fjorten canonicale Brand-koblinger', () => {
+  assert.deepEqual(brandsByPlace.regjeringskvartalet, expectedIds);
+  assert.equal(new Set(expectedIds).size, 14);
   assert.equal(Object.hasOwn(place, 'brands'), false);
   assert.equal(Object.hasOwn(place, 'brand_ids'), false);
+  for (const id of expectedIds) {
+    const brand = byId.get(id);
+    assert.ok(brand, id);
+    assert.deepEqual(brand.place_ids, ['regjeringskvartalet']);
+    assert.equal(brand.state, 'catalog');
+    assert.equal(brand.verification, 'verified');
+    assert.ok(brand.source_urls.length >= 2);
+    assert.ok(brand.source_urls.every(url => url.startsWith('https://')));
+    assert.match(brand.popupdesc, /Regjeringskvartal/i);
+  }
+});
+
+test('Brand-settet dekker arkitektur, rådgivning, entreprise og offentlige aktørbrands', () => {
+  const types = new Set(expectedIds.map(id => byId.get(id).brand_type));
+  for (const type of [
+    'architecture_brand', 'engineering_brand', 'consulting_brand',
+    'landscape_architecture_brand', 'contractor_brand', 'public_builder', 'public_art'
+  ]) assert.ok(types.has(type), type);
+  assert.equal(brandRules.status, 'canonical_brand_definition');
   assert.match(brandRules.place_production_gate.na_rule, /Zero hits.*not evidence of N\/A/i);
 });
 
-test('Canonical Brand-definisjon omfatter profesjonelle og arkitektoniske identiteter', () => {
-  assert.equal(brandRules.status, 'canonical_brand_definition');
-  assert.ok(brandRules.inclusion_rules.include.some(value => /architecture firms/i.test(value)));
-  assert.ok(brands.some(brand => brand.brand_type === 'architecture_brand'));
-  assert.ok(brands.some(brand => brand.brand_type === 'professional_brand'));
-  assert.match(roundsContract, /profesjonelle firmaer, arkitektur- og ingeniørfirmaer/);
-  assert.match(standard, /Brands-semantikken eies av `data\/brands\/brand_rules_v1_1\.json`/);
+test('Kandidatauditen dokumenterer både inkludering, holdback og logoavgjørelse', () => {
+  assert.equal(audit.result, 'PASS');
+  assert.equal(audit.included.length, 14);
+  assert.equal(audit.held_back.length, 4);
+  assert.deepEqual(audit.included.map(item => item.id), expectedIds);
+  assert.ok(audit.included.every(item => item.score >= 8));
+  assert.ok(audit.included.every(item => item.visual_decision === 'name_fallback_no_logo_copied'));
+  for (const candidate of ['Team Urbis', 'departementene', 'arkitekter og kunstnere som personer', '22. juli-senteret']) {
+    assert.ok(audit.held_back.some(item => item.candidate === candidate), candidate);
+  }
+  assert.match(audit.logo_policy, /Ingen logo er kopiert, generert eller rekonstruert/);
 });
 
-test('Den tidligere N/A-konklusjonen er eksplisitt underkjent og kandidatene er gjenåpnet', () => {
-  assert.match(standard, /Manglende relevant innhold kan være N\/A\. Glemt kontroll kan ikke være N\/A/);
-  assert.match(report, /N\/A-konklusjonen er \*\*underkjent\*\*/);
-  for (const candidate of [
-    'Team Urbis', 'Nordic Office of Architecture', 'COWI', 'Rambøll',
-    'Aas-Jakobsen', 'Asplan Viak', 'Bjørbekk & Lindheim', 'SLA',
-    'Veidekke', 'Hent', 'Skanska', 'Agaia', 'Mebyr'
-  ]) assert.match(report, new RegExp(candidate, 'i'), candidate);
-});
-
-test('Fast rundingsprofil beholdes mens Brand-innholdet korrigeres', () => {
+test('Fast rundingsruntime rendrer canonical mapping uten stedsspesifikk særkode', () => {
   assert.match(roundsContract, /vanlig: people · objects · brands/);
   assert.match(runtime, /const GENERAL_ROUNDS = Object\.freeze\(\["people", "objects", "brands"\]\)/);
   assert.doesNotMatch(runtime, /regjeringskvartalet/);
 });
 
-test('Fasehistorikken beholdes, men dagens status gjenåpner Brands og Quiz', () => {
-  assert.match(report, /\| 11 \| Objects \| \*\*GODKJENT – PR #4672, merge `1b8b277cc70b4a26f332091194de667d1a32da53`\*\* \|/);
-  assert.match(report, /\| 12 \| Brands \| \*\*GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`\*\* \|/);
-  assert.match(report, /Status: \*\*korrigering pågår.*Quiz og Brands er gjenåpnet/s);
-  assert.match(report, /Korrigert produksjonsmål: `major_10x7`/);
-  assert.match(report, /ikke samlet produksjonsklart/);
+test('Rapporten markerer Brands og Quiz som produsert før ny sluttkontroll', () => {
+  assert.match(report, /\| Brands \| \*\*PASS – fase 15/);
+  assert.match(report, /\| Quiz \| \*\*PASS – fase 14/);
+  assert.match(report, /Status: \*\*korrigeringsfase 14–15 PASS/);
+  assert.match(report, /fase 16 har kjørt/);
 });

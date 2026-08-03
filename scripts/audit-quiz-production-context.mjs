@@ -102,7 +102,9 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const quizPath = paths.quiz_file;
       validateRequiredFields({
         value: brief,
-        requiredFields: packageSchema.source_brief_contract.required_fields,
+        requiredFields: packageSchema.source_brief_contract.required_fields.filter((field) => {
+          return !["existing_quiz_audit", "profile_decision", "held_back_candidates"].includes(field);
+        }),
         file: paths.source_brief,
         scope: "source_brief",
         failures
@@ -133,6 +135,8 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const quizRecord = await readFileRecord(root, quizPath);
       const quiz = quizRecord.data;
       const context = quiz.production_context;
+      const auditMetadataFields = ["existing_quiz_audit", "profile_decision", "held_back_candidates"];
+      const requiresAuditMetadata = Number.parseFloat(context?.standard_version || "0") >= 3.3;
       const questions = collectQuestions(quiz);
       const claimById = new Map(asArray(brief.claims).map((claim) => [claim.claim_id, claim]));
       checked.push({ categoryId, file: quizPath, targetId, questions: questions.length });
@@ -146,13 +150,38 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       });
       validateRequiredFields({
         value: context,
-        requiredFields: packageSchema.production_context.required_fields,
+        requiredFields: packageSchema.production_context.required_fields.filter((field) => {
+          return requiresAuditMetadata || !auditMetadataFields.includes(field);
+        }),
         file: quizPath,
         scope: "production_context",
         failures
       });
 
       if (!context) continue;
+      if (requiresAuditMetadata) {
+        validateRequiredFields({
+          value: brief,
+          requiredFields: auditMetadataFields,
+          file: paths.source_brief,
+          scope: "source_brief",
+          failures
+        });
+        validateRequiredFields({
+          value: brief.existing_quiz_audit,
+          requiredFields: packageSchema.profile_contract.existing_quiz_audit_required_fields,
+          file: paths.source_brief,
+          scope: "source_brief.existing_quiz_audit",
+          failures
+        });
+        validateRequiredFields({
+          value: brief.profile_decision,
+          requiredFields: packageSchema.profile_contract.decision_required_fields,
+          file: paths.source_brief,
+          scope: "source_brief.profile_decision",
+          failures
+        });
+      }
       if (quiz.targetId !== targetId || quiz.categoryId !== categoryId || context.manifest_category !== categoryId) {
         addFailure(failures, quizPath, "kategori eller mål stemmer ikke med manifestet", {
           categoryId,
@@ -179,6 +208,21 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
           expected: brief.status,
           actual: context.source_review_status
         });
+      }
+      for (const field of auditMetadataFields) {
+        if (JSON.stringify(context[field]) !== JSON.stringify(brief[field])) {
+          addFailure(failures, quizPath, `production_context.${field} avviker fra source_brief`);
+        }
+      }
+      const parsedProfile = String(context.profile || "").match(/^([a-z_]+)_(\d+)x(\d+)$/u);
+      if (requiresAuditMetadata && (
+        !parsedProfile
+        || parsedProfile[1] !== brief.profile_decision.profile
+        || Number(parsedProfile[2]) !== brief.profile_decision.set_count
+        || Number(parsedProfile[3]) !== brief.profile_decision.questions_per_set
+        || asArray(quiz.sets).length !== brief.profile_decision.set_count
+      )) {
+        addFailure(failures, quizPath, "valgt profil eller settantall avviker fra profile_decision");
       }
       if (!sameValues(asArray(context.required_inputs_loaded), loaded.requiredInputs)) {
         addFailure(failures, quizPath, "required_inputs_loaded stemmer ikke med manifestet", {
@@ -297,6 +341,11 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
           expected: context.profile,
           actual: artifact.profile
         });
+      }
+      for (const field of ["existing_quiz_audit", "profile_decision", "held_back_candidates"]) {
+        if (JSON.stringify(artifact[field]) !== JSON.stringify(context[field])) {
+          addFailure(failures, paths.context_artifact, `${field} avviker fra quizpakken`);
+        }
       }
       if (artifact.source_review_status !== brief.status) {
         addFailure(failures, paths.context_artifact, "kildegjennomgangsstatus avviker fra source_brief");
