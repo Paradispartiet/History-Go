@@ -10,6 +10,16 @@ const readJson = file => JSON.parse(read(file));
 
 const place = readJson('data/places/politikk/oslo/places_politikk/regjeringskvartalet.json');
 const registry = readJson('data/fagverk/fagverk_registry.json');
+const quiz = readJson('data/quiz/politikk/regjeringskvartalet_sets.json');
+const brandsByPlace = readJson('data/brands/brands_by_place.json');
+const peopleManifest = readJson('data/people/manifest.json');
+const people = peopleManifest.files.flatMap(file => {
+  const value = readJson(`data/people/${file.slice('people/'.length)}`);
+  return Array.isArray(value) ? value : Array.isArray(value.people) ? value.people : [value];
+});
+const regjeringskvartaletPeople = people.filter(person => (
+  person.placeId === 'regjeringskvartalet' || person.places?.includes('regjeringskvartalet')
+));
 const report = read('reports/place-production/regjeringskvartalet-politikk-v1.md');
 const popupRuntime = read('js/ui/place-popup-tabs.js');
 const roundsRuntime = read('js/ui/place-rounds-visual-collections.js');
@@ -29,6 +39,16 @@ assert.deepEqual(place.objects.map(item => item.id).sort(), [
   'regjeringskvartalet_fiskerne',
   'regjeringskvartalet_grass_roots_square'
 ]);
+assert.equal(quiz.production_context.profile, 'major_10x7');
+assert.equal(quiz.sets.length, 10);
+const questions = quiz.sets.flatMap(set => set.questions);
+assert.equal(questions.length, 70);
+assert.equal(new Set(questions.map(question => question.id)).size, 70);
+assert.equal(new Set(questions.map(question => question.primary_knowledge_unit_id)).size, 70);
+assert.equal(brandsByPlace.regjeringskvartalet.length, 14);
+assert.equal(new Set(brandsByPlace.regjeringskvartalet).size, 14);
+assert.equal(regjeringskvartaletPeople.length, 22);
+assert.equal(new Set(regjeringskvartaletPeople.map(person => person.id)).size, 22);
 
 const curated = registry.placeLinks.regjeringskvartalet;
 assert.ok(curated.lenses.length >= 4);
@@ -105,10 +125,14 @@ const urls = userVisible.match(/https:\/\/[^"\\\s]+/g) || [];
 assert.ok(urls.length >= 15);
 assert.ok(urls.every(url => url.startsWith('https://')));
 
-assert.match(report, /Status: \*\*korrigeringsfase 14–15 PASS/);
-assert.match(report, /Fase 13 beviser at det leverte innholdet rendres riktig/);
-assert.match(report, /fase 16 har kjørt/);
+assert.match(report, /Status: \*\*PRODUKSJONSKLAR – fase 16 PASS/);
+assert.match(report, /10 sett × 7 spørsmål, 70 unike spørsmål/);
+assert.match(report, /14 unike canonicale Brand-ID-er/);
+assert.match(report, /22 unike koblinger til Regjeringskvartalet/);
 assert.match(report, /\| Badges\/fagverk \| PASS – fase 13 \|/);
+assert.match(report, /\| 14 \| Quiz `major_10x7`.*PR #4680, merge `4f15fd4c20949366c023593b96dfa2308623ee5a`/);
+assert.match(report, /\| 15b \| People V2 \| \*\*GODKJENT – PR #4681, merge `a91a0ee590d1c6994092234a5090ea99837cd15b`/);
+assert.match(report, /\| 16 \| Ny samlet sluttkontroll på fersk `main` \| \*\*PASS/);
 assert.match(
   report,
   /\| 12 \| Brands \| \*\*GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`\*\* \|/
@@ -299,7 +323,7 @@ try {
   assert.equal(await fagverk.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), true);
 
   await context.close();
-  console.log('Regjeringskvartalet phase 13 Chromium audit: PASS');
+  console.log('Regjeringskvartalet phase 16 Chromium audit: PASS');
 } finally {
   if (browser) await browser.close();
   await new Promise(resolve => server.close(resolve));
