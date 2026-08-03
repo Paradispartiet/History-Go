@@ -8,6 +8,42 @@ import { isDeepStrictEqual } from 'node:util';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REPORT = 'reports/fagverk/subkultur-baseline-audit.json';
 
+const EXPECTED_TARGETS = Object.freeze({
+  domain_count: 8,
+  emne_count: 80,
+  theory_object_count: 80,
+  theory_objects_per_domain: 10,
+  chapter_count: 8,
+  modules_per_chapter: 3,
+  sections_per_chapter: 9,
+  paragraphs_per_chapter: 27,
+  minimum_claims_per_chapter: 36,
+  minimum_sources_per_chapter: 20,
+  minimum_places_per_chapter: 6,
+  subject_pathway_count: 8,
+  questions_per_pathway: 5
+});
+
+const EXPECTED_DOMAINS = Object.freeze([
+  ['subkulturteori_feltgrenser', 'Subkulturteori og feltgrenser'],
+  ['fellesskap_scener_egenorganisering', 'Fellesskap, scener og egenorganisering'],
+  ['stil_symboler_koder_kropp', 'Stil, symboler, koder og kropp'],
+  ['steder_territorier_okkupering', 'Steder, territorier og okkupasjon'],
+  ['motstand_avvik_kontroll', 'Motstand, avvik og kontroll'],
+  ['medier_objekter_praksiser', 'Medier, objekter og praksiser'],
+  ['sosiale_randsoner_omsorg_skadereduksjon', 'Sosiale randsoner, omsorg og skadereduksjon'],
+  ['kommersialisering_institusjonalisering_minne', 'Kommersialisering, institusjonalisering og minne']
+]);
+
+const EXPECTED_NON_QUALIFICATION_RULES = Object.freeze([
+  'activity_or_youth_alone',
+  'skatepark_or_pumptrack_without_documented_environment',
+  'venue_or_genre_without_social_practice',
+  'commercial_alternative_branding',
+  'named_person_or_city_original_without_documented_environment',
+  'marginality_or_illegality_without_documented_social_world'
+]);
+
 const PATHS = Object.freeze({
   contract: 'data/fag/subkultur/subkultur_fagverk_contract_v1.json',
   fagkart: 'data/fag/subkultur/fagkart_subkultur_canonical_v4_5.json',
@@ -54,7 +90,7 @@ function loadManifestRecords(relative) {
   const byId = new Map();
   for (const entry of files) {
     const file = text(entry).startsWith('data/') ? text(entry) : `data/${text(entry)}`;
-    if (!exists(file)) continue;
+    assert(exists(file), `${relative} peker til manglende fil: ${file}`);
     for (const record of flattenRecords(readJson(file))) {
       if (text(record.id)) byId.set(record.id, record);
     }
@@ -212,11 +248,36 @@ export function buildReport() {
 
 export function auditRepository({ writeReport = false, checkReport = true } = {}) {
   const contract = readJson(PATHS.contract);
+  assert(contract.schema === 'history_go_subkultur_fagverk_contract_v1', 'Kontrakten har feil schema');
+  assert(contract.version === '1.0.0', 'Kontrakten har feil versjon');
   assert(contract.subject_id === 'subkultur', 'Kontrakten har feil subject_id');
-  assert(contract.canonical_targets?.domain_count === 8, 'Kontrakten må låse åtte domener');
-  assert(contract.canonical_targets?.theory_object_count === 80, 'Kontrakten må låse 80 teoriobjekter');
-  assert(list(contract.domains).length === 8, 'Kontrakten må navngi åtte domener');
-  assert(new Set(list(contract.domains).map((entry) => entry.id)).size === 8, 'Domene-ID-er må være unike');
+  assert(contract.status === 'quality_review_required', 'Kontrakten må beholde quality_review_required før produksjon');
+  assert(isDeepStrictEqual(contract.canonical_targets, EXPECTED_TARGETS), 'Kontrakten har endret de vedtatte produksjonsmålene');
+  assert(
+    contract.canonical_targets.domain_count * contract.canonical_targets.theory_objects_per_domain
+      === contract.canonical_targets.theory_object_count,
+    'Domene- og teoriobjektmålene er ikke matematisk konsistente'
+  );
+  const domains = list(contract.domains);
+  assert(domains.length === EXPECTED_DOMAINS.length, 'Kontrakten må navngi åtte domener');
+  assert(new Set(domains.map((entry) => entry.id)).size === EXPECTED_DOMAINS.length, 'Domene-ID-er må være unike');
+  assert(isDeepStrictEqual(
+    domains.map((entry) => [entry.id, entry.title]),
+    EXPECTED_DOMAINS
+  ), 'Kontrakten har endret canonical domenerekkefølge, ID eller tittel');
+  assert(domains.every((entry, index) => entry.order === index + 1), 'Domeneorden må være 1–8 uten hull');
+  assert(isDeepStrictEqual(contract.non_qualification_rules, EXPECTED_NON_QUALIFICATION_RULES), 'Feltgrensen er svekket eller endret');
+  assert(contract.theory_object_requirements?.length === 11, 'Teoriobjektkontrakten må beholde alle elleve krav');
+  assert(contract.voice_and_ethics?.environment_near_source_required === true, 'Miljønær kilde må være obligatorisk');
+  assert(contract.voice_and_ethics?.independent_control_source_required === true, 'Uavhengig kontrollkilde må være obligatorisk');
+  assert(contract.voice_and_ethics?.privacy_context_review_required === true, 'Personvernvurdering må være obligatorisk');
+  assert(contract.voice_and_ethics?.stigma_and_romanticization_review_required === true, 'Stigma- og romantiseringskontroll må være obligatorisk');
+  assert(contract.completion_gate?.blocked_until_all_targets_pass === true, 'Ferdigstatus må blokkeres til alle mål består');
+  assert(contract.completion_gate?.legacy_quiz_is_not_completion_evidence === true, 'Legacyquiz kan ikke brukes som ferdigbevis');
+  assert(contract.completion_gate?.required_navigation_status === 'materialized', 'Kontrakten har feil sluttstatus for navigasjon');
+  assert(contract.completion_gate?.required_assessment_status === 'audited', 'Kontrakten har feil sluttstatus for vurdering');
+  assert(contract.completion_gate?.required_editorial_status === 'complete', 'Kontrakten har feil sluttstatus for redaksjon');
+  assert(contract.completion_gate?.required_next_gate === 'maintenance_and_source_refresh', 'Kontrakten har feil vedlikeholdsport');
 
   const report = buildReport();
   assert(report.current.domains === 6, `Baseline skal dokumentere 6 domener, fikk ${report.current.domains}`);
