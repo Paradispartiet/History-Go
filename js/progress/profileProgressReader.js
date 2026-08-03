@@ -189,7 +189,11 @@
     if (quizCompleted) status = "quiz_completed";
     if (visited && quizCompleted) status = "completed";
 
-    const nextAction = quizCompleted ? "completed" : (visited ? "quiz" : "open");
+    // Quiz and physical visit are independent completion axes. A digital quiz
+    // must never make an unvisited place look fully complete.
+    const nextAction = visited && quizCompleted
+      ? "completed"
+      : (visited ? "quiz" : (quizCompleted ? "visit" : "open"));
 
     return {
       placeId: id,

@@ -82,6 +82,8 @@ export interface Place {
   frontImage?: string;
   cardImage?: string;
   popupImage?: string;
+  /** Alternative public names used for search without changing canonical identity. */
+  aliases?: string[];
   emne_ids?: string[];
   hidden?: boolean;
   stub?: boolean;

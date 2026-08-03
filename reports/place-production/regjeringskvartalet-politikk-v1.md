@@ -9,7 +9,7 @@
 - Primærkategori: `politikk`
 - Aktiv quiz per 3. august 2026: `major_10x7` – 10 sett × 7 spørsmål
 - Korrigert produksjonsmål: **oppnådd**
-- Status: **PRODUKSJONSKLAR – fase 16 PASS på fersk `main` med Quiz, Brands og People ferdig kontrollert**
+- Status: **PRODUKSJONSKLAR – fase 17 PASS med hele sted-checklisten eksplisitt kontrollert**
 
 ## Arbeidskort
 
@@ -181,6 +181,7 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 15 | Brands V2 | **GODKJENT – PR #4680, merge `4f15fd4c20949366c023593b96dfa2308623ee5a`** |
 | 15b | People V2 | **GODKJENT – PR #4681, merge `a91a0ee590d1c6994092234a5090ea99837cd15b`** |
 | 16 | Ny samlet sluttkontroll på fersk `main` | **PASS – kontrollert fra `a91a0ee590d1c6994092234a5090ea99837cd15b`** |
+| 17 | Full sted-checklist: onsite, Observer/Notat/Rute, relasjoner, i18n, besøk, profil og spillerstatus | **PASS – kontrollert fra `66f1bdce519149eecd659674dbf8c3213972e1bf`** |
 
 ### Governance-korrigering 3. august 2026
 
@@ -318,4 +319,43 @@ Regjeringskvartalet er samlet produksjonsklart: `major_10x7` med 70 spørsmål, 
 - People-manifestet gir 22 unike koblinger til Regjeringskvartalet, med 2 arkitekter og 20 andre roller.
 - Canonical place har 2 Objects og 3 underbadges. Popupen har 8 faner i riktig rekkefølge.
 - Data checks, TypeScript guard og Chromium-basert `Place rounds governance` er grønne på de mergede produksjonsheadene; fase 16-porten kjører de samme kontrollene samlet.
-- Ingen produksjonsfase står åpen, og ingen interne rapport-, test-, claims- eller produksjonskontekststier eksponeres i brukerflaten.
+- De ferdigproduserte innholdsflatene har ingen åpen rest, og ingen interne rapport-, test-, claims- eller produksjonskontekststier eksponeres i brukerflaten. Den bredere produktflaten kontrolleres separat i fase 17.
+
+## Resultat i fase 17 – full sted-checklist
+
+Fase 17 er en nullmålt runtime- og dokumentasjonsaudit fra `main` `66f1bdce519149eecd659674dbf8c3213972e1bf`. Den oppretter ikke filler for subsystemer som ikke passer stedet. Hvert tidligere udokumenterte punkt er enten verifisert mot eksisterende eier/runtime eller avsluttet som begrunnet N/A.
+
+| Checklistområde | Status | Bevis og avgrensning |
+| --- | --- | --- |
+| Events | PASS / innhold N/A | Politikkprofilen viser alltid Events. Regjeringskvartalet har ingen aktiv canonical event-kobling, og eksisterende tomtilstand brukes; ingen oppdiktet kalenderhendelse er laget. |
+| Avtal å møtes | PASS | Den faste onsite-raden åpner eksisterende Social Meet med canonical place-ID. Backend-/identitetsgater og personvernregler beholdes; flaten feiler lukket hvis tjenesten ikke er tilgjengelig. |
+| Kunnskapsmøte | PASS | Eksisterende Spotmeeting åpnes med `contextType: place` og `contextId: regjeringskvartalet`; ingen parallell møte- eller deltakerlagring er laget. |
+| Tasks | N/A | Tasks er fjernet fra produktkontrakten og skal ikke gjeninnføres som sted-filler. |
+| Training | N/A | Stedet er ikke et idretts-/treningssted og har ingen trygg, canonical `training_profile`. |
+| Play | N/A | Politikkprofilen har `play: never`; området er ikke en lekeplass og får ingen konstruert `play_profile`. |
+| Observer | PASS | Observer bruker den deployede urbane `by_byliv`-linsen og beholder `politikk` som kategori i learning-log-konteksten. Observerbare forhold er bruk av byrommet, ferdselslinjer og forholdet mellom åpenhet og sikring. |
+| Notat | PASS | Footerhandlingen bruker eksisterende `handlePlaceNote(place)` og eksisterende notat-eier. |
+| Rute | PASS / historisk rute N/A | «Gå hit» bruker eksisterende navigasjon til place-ankeret. Ingen canonical historisk rute/stopp er dokumentert for stedet, og en rute opprettes ikke bare for completeness. |
+| Curated relations | PASS | Fire kildebelagte relasjoner til Erling Viksjø, Henrik Bull, Pablo Picasso og Carl Nesjar eies av `data/relations_philanthropy.json`. De dupliseres ikke som `related_place_ids` eller innebygde relasjoner i place-recorden. |
+| NextUp | PASS | PlaceCard sender place-kontekst til `HGNavigator.buildForPlace` og viser reelle eksisterende kandidatspor uten stedsspesifikk hardkoding. |
+| Nearby | PASS | Listen viser canonical navn og kategori, bruker nå `popupImage` som gyldig bildefallback og åpner canonical `#/place/regjeringskvartalet`. |
+| Søk og alias | PASS | Canonicalnavnet, `RKV` og `Nytt regjeringskvartal` er søkbare. Aliasene endrer ikke ID eller visningsnavn. |
+| i18n | PASS | Engelske, spanske og portugisiske entries er synkronisert til source-hash `c0421036b6d22a2f`, beholder ni avsnitt og dekker hele den reviderte stedsteksten. |
+| Offentlig hjemsted | N/A i place-record | Offentlig hjemsted er en brukervalgt sosial profilverdi, ikke en egenskap ved stedet. Regjeringskvartalet er en canonical offentlig place-ID med verifisert områdeanker; ingen privat adresse eller stedsspesifikk profilverdi er lagt til. |
+| Fysisk besøk | PASS | PlaceCard har en eksplisitt «Registrer besøk»-handling. Eksisterende fysisk visit-service bruker canonical områdeanker og radius 200 m, viser avstandsstatus og skriver bare eksisterende `visited_places`-eier. |
+| Quiz ↔ fysisk besøk | PASS | Digital quiztilgang skriver aldri besøksstatus. Quiz alene gir nå neste handling «Registrer besøk», ikke «Ferdig her». |
+| Favoritt | PASS | `pcFavorite`, Nearby og progress-leseren bruker eksisterende `HGFavoritePlaces`/`hg_favorite_place_ids_v1`; ingen konkurrerende nøkkel er opprettet. |
+| Place-progress og Next Action | PASS | Besøkt og quizfullført er uavhengige akser: besøkt alene → quiz, quiz alene → fysisk besøk, begge → fullført. |
+| Profil / miniProfile | PASS | miniProfile leder til profilsiden. Stedsamlingen er unionen av fysisk besøkte og quiz-samlede steder, viser kildeetikett og bruker place-bildets canonicale fallback. |
+| People/Object/andre unlocks | N/A | Ingen eksisterende regel låser automatisk opp de 22 personene, 2 objektene eller 14 Brands ved besøk/quiz; en slik belønning er ikke oppfunnet. |
+| Badge/merit/Bronse–Sølv–Gull | N/A | Politikk-badges og fagverk er innholdsnavigasjon. Det finnes ingen Regjeringskvartalet-spesifikk Bronze/Silver/Gold-kontrakt som kan materialiseres. |
+| Konsistent status | PASS | PlaceCard, Nearby og profil bruker samme progresjonseiere og skiller favoritt, fysisk besøk og quizfullføring. |
+| QA | PASS | Fase-17-testen låser alle beslutningene, TypeScript og genererte web-bundles er synkronisert, og den permanente Chromium-porten kjøres av `Place rounds governance`. |
+
+### Runtimeavvik rettet i fase 17
+
+- En synlig `pcVisit` erstatter den manglende gamle `pcUnlock`-hooken uten å gjeninnføre den misvisende teksten «Lås opp».
+- Next Action erklærer ikke et sted fullført etter bare digital quiz; fysisk besøk og quiz må begge være fullført.
+- Observer peker på den eneste deployede og gyldige observation-filen (`observations_by.json`) og beholder stedets Politikk-kategori separat.
+- Nearby og profil bruker `popupImage` når et sted ikke har eget `image`/`cardImage`.
+- Globalt søk inkluderer canonicale aliaser, og Regjeringskvartalet har de dokumenterte aliasene `RKV` og `Nytt regjeringskvartal`.

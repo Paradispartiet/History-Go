@@ -1350,6 +1350,7 @@ if (!card) return;
       event.stopPropagation();
       window.HGFavoritePlaces?.toggle?.(place.id);
       updatePlaceCardFavorite();
+      window.HGPlaceCardStatusSurface?.render?.(place);
       if (typeof window.rerenderActiveLeftPanelMode === "function") {
         window.rerenderActiveLeftPanelMode();
       } else if (typeof window.renderNearbyPlaces === "function") {
@@ -2527,14 +2528,14 @@ if (btnObs) {
       return;
     }
 
-    const subjectId = String(place.categoryId || place.category || place.subject_id || "by").trim();
-
     window.HGObservations.start({
       target: {
         targetId: String(place.id || "").trim(),
         targetType: "place",
-        subject_id: subjectId,
-        categoryId: subjectId,
+        // The deployed observation catalogue is the shared urban `by` lens.
+        // Preserve the place category separately for learning-log ownership.
+        subject_id: "by",
+        categoryId: String(place.categoryId || place.category || "by").trim(),
         title: place.name
       },
       lensId: "by_byliv"

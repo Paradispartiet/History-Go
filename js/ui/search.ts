@@ -16,6 +16,7 @@ type SearchableItem = {
   type?: string;
   category?: string;
   year?: string | number;
+  aliases?: unknown[];
   tags?: unknown[];
   emne_ids?: unknown[];
 };
@@ -117,6 +118,7 @@ function searchableText(item: SearchableItem | null | undefined, extra: unknown[
     item?.type,
     item?.category,
     item?.year,
+    ...(Array.isArray(item?.aliases) ? item.aliases : []),
     ...(Array.isArray(item?.tags) ? item.tags : []),
     ...(Array.isArray(item?.emne_ids) ? item.emne_ids : []),
     ...extra

@@ -142,7 +142,7 @@ function createPlaceItem(
   selection: NearbyPlaceSelection,
   visited: Record<string, unknown>
 ): HTMLDivElement {
-  const image = place.image || place.cardImage || "";
+  const image = place.image || place.cardImage || place.popupImage || "";
   const item = document.createElement("div");
   item.className = "nearby-item";
 

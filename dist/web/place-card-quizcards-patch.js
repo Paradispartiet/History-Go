@@ -351,7 +351,7 @@
     const patch = (place) => {
       var _a, _b;
       clear();
-      const oldButton = document2.getElementById("pcUnlock");
+      const oldButton = document2.getElementById("pcVisit") || document2.getElementById("pcUnlock");
       if (!oldButton || !place) return;
       const button = oldButton.cloneNode(true);
       oldButton.replaceWith(button);

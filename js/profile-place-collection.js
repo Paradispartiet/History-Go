@@ -50,7 +50,7 @@
     const collectedPlaceIds = getCollectedPlaceIds();
     const collectedPeopleIds = readIdSet(PEOPLE_KEY);
     const items = [
-      ...places.filter((place) => collectedPlaceIds.has(String(place?.id || "").trim())).map((place) => ({type:"place",id:place.id,name:place.name,year:Number(place.year)||0,image:place.image||`bilder/places/${place.id}.PNG`})),
+      ...places.filter((place) => collectedPlaceIds.has(String(place?.id || "").trim())).map((place) => ({type:"place",id:place.id,name:place.name,year:Number(place.year)||0,image:place.image||place.cardImage||place.popupImage||`bilder/places/${place.id}.PNG`})),
       ...people.filter((person) => collectedPeopleIds.has(String(person?.id || "").trim())).map((person) => ({type:"person",id:person.id,name:person.name,year:Number(person.year)||0,image:person.image||`bilder/people/${person.id}.PNG`}))
     ].sort((a,b) => a.year - b.year);
     if (!items.length) { body.innerHTML = '<div class="muted">Du har ingen historiekort ennå.</div>'; if (bar) bar.style.width = "0%"; if (text) text.textContent = "Du har låst opp 0 kort"; return; }
@@ -67,7 +67,7 @@
     const collectedPlaceIds = getCollectedPlaceIds();
     const collectedPeopleIds = readIdSet(PEOPLE_KEY);
     const items = [
-      ...places.filter((place) => collectedPlaceIds.has(String(place?.id || "").trim())).map((place) => ({type:"place",id:place.id,name:place.name,year:Number(place.year)||0,image:place.cardImage||place.image||""})),
+      ...places.filter((place) => collectedPlaceIds.has(String(place?.id || "").trim())).map((place) => ({type:"place",id:place.id,name:place.name,year:Number(place.year)||0,image:place.cardImage||place.image||place.popupImage||""})),
       ...people.filter((person) => collectedPeopleIds.has(String(person?.id || "").trim())).map((person) => ({type:"person",id:person.id,name:person.name,year:Number(person.year)||0,image:person.imageCard||person.cardImage||person.image||""}))
     ].sort((a,b) => a.year - b.year);
     if (!items.length) { body.innerHTML = '<div class="muted">Ingen kort låst opp ennå.</div>'; return; }

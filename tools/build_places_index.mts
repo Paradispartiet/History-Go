@@ -23,6 +23,7 @@ type PlaceRow = JsonObject & {
   category?: unknown;
   year?: unknown;
   desc?: unknown;
+  aliases?: unknown;
   image?: unknown;
   cardImage?: unknown;
   frontImage?: unknown;
@@ -55,7 +56,7 @@ type CoordinateOverride = JsonObject & {
 };
 
 const LIGHT_FIELDS: LightField[] = [
-  'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
+  'id','name','lat','lon','r','category','year','desc','aliases','image','cardImage','frontImage','hidden','stub','groundhopper','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
 ];
 
 const COORDINATE_OVERRIDE_FIELDS = [

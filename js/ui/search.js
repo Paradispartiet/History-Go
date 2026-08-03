@@ -35,6 +35,7 @@
       item == null ? void 0 : item.type,
       item == null ? void 0 : item.category,
       item == null ? void 0 : item.year,
+      ...Array.isArray(item == null ? void 0 : item.aliases) ? item.aliases : [],
       ...Array.isArray(item == null ? void 0 : item.tags) ? item.tags : [],
       ...Array.isArray(item == null ? void 0 : item.emne_ids) ? item.emne_ids : [],
       ...extra
