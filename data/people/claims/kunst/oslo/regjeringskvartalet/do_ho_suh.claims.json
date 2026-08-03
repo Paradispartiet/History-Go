@@ -1,0 +1,60 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "do_ho_suh",
+  "profile_file": "data/people/kunst/oslo/regjeringskvartalet/people_regjeringskvartalet_art_v1.json",
+  "identity": {
+    "canonical_identity": "Den koreanske kunstneren Do Ho Suh, skaperen av Grass Roots Square.",
+    "name_variants": ["Do Ho Suh", "Do Ho Suhs"],
+    "not": ["navnelike personer"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "grass_roots_square_2012",
+      "claim": "KORO dokumenterer at Do Ho Suh laget Grass Roots Square til plassen foran R6 i regjeringskvartalet i 2012 og at verket består av mer enn 50 000 små figurer.",
+      "status": "verified",
+      "source_url": "https://koro.no/kunstverk/grass-roots-square/",
+      "source_location": "billedtekstene og avsnittet Om",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "relocated_to_einar_gerhardsens_plass",
+      "claim": "KORO dokumenterer at Grass Roots Square ble konservert og flyttet til Einar Gerhardsens plass i det nye regjeringskvartalet.",
+      "status": "verified",
+      "source_url": "https://koro.no/det-folkekjaere-kunstverket-grass-roots-square-blir-flytta/",
+      "source_location": "ingressen og avsnittet om ny plassering",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["grass_roots_square_2012"],
+    "kindLabel": ["grass_roots_square_2012"],
+    "year": ["grass_roots_square_2012"],
+    "period": ["grass_roots_square_2012", "relocated_to_einar_gerhardsens_plass"],
+    "placeId": ["grass_roots_square_2012", "relocated_to_einar_gerhardsens_plass"],
+    "places[regjeringskvartalet]": ["grass_roots_square_2012", "relocated_to_einar_gerhardsens_plass"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["grass_roots_square_2012"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["grass_roots_square_2012"]},
+      {"sentence": 2, "claim_ids": ["grass_roots_square_2012", "relocated_to_einar_gerhardsens_plass"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-03",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

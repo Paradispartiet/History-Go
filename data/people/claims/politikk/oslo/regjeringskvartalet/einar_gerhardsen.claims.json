@@ -1,0 +1,74 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "einar_gerhardsen",
+  "profile_file": "data/people/politikk/oslo/people_politikk_oslo.json",
+  "identity": {
+    "canonical_identity": "Den norske statsministeren Einar Gerhardsen, som flyttet Statsministerens kontor inn i Høyblokka i 1958.",
+    "name_variants": ["Einar Gerhardsen"],
+    "not": ["navnelike personer"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "hoyblokka_office_1958",
+      "claim": "Statsministerens kontor dokumenterer at Einar Gerhardsen inspiserte sitt nye kontor i Høyblokkas 15. etasje i november 1958 og flyttet inn 26. november som den første brukeren av det nye statsministerkontoret.",
+      "status": "verified",
+      "source_url": "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1946--nyere-tid/1958-Statsministeren-flytter-til-Hoyblokken/id759096/",
+      "source_location": "avsnittene under overskriften Statsministeren flytter til Høyblokken og bildetekstene fra november/desember 1958",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "storting_representative_1945_1969",
+      "claim": "Stortingets representantbiografi dokumenterer Einar Gerhardsen som stortingsrepresentant for Oslo i seks perioder fra 1945 til 1969.",
+      "status": "verified",
+      "source_url": "https://www.stortinget.no/no/Representanter-og-komiteer/Representantene/Representant/?perid=EIGE",
+      "source_location": "biografiens oversikt over stortingsperioder",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "youngstorget_speech_1965",
+      "claim": "Arbeiderbevegelsens arkiv og bibliotek dokumenterer Einar Gerhardsen som taler på Youngstorget 1. mai 1965.",
+      "status": "verified",
+      "source_url": "https://digitaltmuseum.no/0210114470844/1-mai-1965-einar-gerhardsen-taler-pa-youngstorget-i-oslo",
+      "source_location": "objekttittel og motivbeskrivelse",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["hoyblokka_office_1958"],
+    "kindLabel": ["hoyblokka_office_1958"],
+    "year": ["hoyblokka_office_1958"],
+    "period": ["hoyblokka_office_1958"],
+    "placeId": ["hoyblokka_office_1958"],
+    "places[regjeringskvartalet]": ["hoyblokka_office_1958"],
+    "places[hoyblokka]": ["hoyblokka_office_1958"],
+    "places[stortinget]": ["storting_representative_1945_1969"],
+    "places[youngstorget]": ["youngstorget_speech_1965"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["hoyblokka_office_1958"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["hoyblokka_office_1958"]},
+      {"sentence": 2, "claim_ids": ["hoyblokka_office_1958"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-03",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
