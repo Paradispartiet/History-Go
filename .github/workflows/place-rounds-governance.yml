@@ -35,6 +35,7 @@ on:
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
       - "tests/regjeringskvartalet-quiz-completion.test.mjs"
+      - "tests/regjeringskvartalet-people-expansion.test.mjs"
       - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
       - "tests/place-production-brand-quiz-governance.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
@@ -42,6 +43,7 @@ on:
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
       - "data/quiz/production_context/politikk/regjeringskvartalet.json"
       - "reports/place-production/regjeringskvartalet-politikk-v1.md"
+      - "reports/place-production/regjeringskvartalet-people-v2.md"
       - "data/leksikon/sprak/manifest.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
@@ -52,6 +54,12 @@ on:
       - "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json"
       - "data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json"
       - "data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json"
+      - "data/people/politikk/oslo/people_politikk_oslo.json"
+      - "data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json"
+      - "data/people/politikk/oslo/regjeringskvartalet/**"
+      - "data/people/kunst/oslo/regjeringskvartalet/**"
+      - "data/people/claims/politikk/oslo/regjeringskvartalet/**"
+      - "data/people/claims/kunst/oslo/regjeringskvartalet/**"
       - "data/people/politikk/oslo/tinghuset/**"
       - "data/people/manifest.json"
       - "data/brands/**"
@@ -102,6 +110,7 @@ on:
       - "tests/regjeringskvartalet-objects-phase.test.mjs"
       - "tests/regjeringskvartalet-brands-phase.test.mjs"
       - "tests/regjeringskvartalet-quiz-completion.test.mjs"
+      - "tests/regjeringskvartalet-people-expansion.test.mjs"
       - "tests/regjeringskvartalet-ui-production-audit.test.mjs"
       - "tests/place-production-brand-quiz-governance.test.mjs"
       - "data/lesespor/oslo/lesespor_oslo_politikk.json"
@@ -109,6 +118,7 @@ on:
       - "data/places/politikk/oslo/places_politikk/regjeringskvartalet.json"
       - "data/quiz/production_context/politikk/regjeringskvartalet.json"
       - "reports/place-production/regjeringskvartalet-politikk-v1.md"
+      - "reports/place-production/regjeringskvartalet-people-v2.md"
       - "data/leksikon/sprak/manifest.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
@@ -119,6 +129,12 @@ on:
       - "data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json"
       - "data/people/kunst/oslo/tinghuset/people_oslo_tinghus_kunst_v1.json"
       - "data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json"
+      - "data/people/politikk/oslo/people_politikk_oslo.json"
+      - "data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json"
+      - "data/people/politikk/oslo/regjeringskvartalet/**"
+      - "data/people/kunst/oslo/regjeringskvartalet/**"
+      - "data/people/claims/politikk/oslo/regjeringskvartalet/**"
+      - "data/people/claims/kunst/oslo/regjeringskvartalet/**"
       - "data/people/politikk/oslo/tinghuset/**"
       - "data/people/manifest.json"
       - "data/brands/**"
@@ -172,5 +188,6 @@ jobs:
           node --test tests/oslo-tinghuset-before-after-phase.test.mjs tests/oslo-tinghuset-news-phase.test.mjs tests/oslo-tinghuset-reading-phase.test.mjs tests/oslo-tinghuset-sources-phase.test.mjs tests/oslo-tinghuset-more-phase.test.mjs tests/oslo-tinghuset-people-phase.test.mjs tests/oslo-tinghuset-objects-phase.test.mjs
           node --test tests/regjeringskvartalet-before-after-phase.test.mjs tests/regjeringskvartalet-news-phase.test.mjs tests/regjeringskvartalet-reading-phase.test.mjs tests/regjeringskvartalet-sources-phase.test.mjs tests/regjeringskvartalet-more-phase.test.mjs tests/regjeringskvartalet-objects-phase.test.mjs tests/regjeringskvartalet-brands-phase.test.mjs
           node --test tests/regjeringskvartalet-quiz-completion.test.mjs
+          node --test tests/regjeringskvartalet-people-expansion.test.mjs
           node --test tests/place-production-brand-quiz-governance.test.mjs
           node tests/regjeringskvartalet-ui-production-audit.test.mjs

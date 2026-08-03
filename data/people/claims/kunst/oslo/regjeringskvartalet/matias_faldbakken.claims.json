@@ -1,0 +1,61 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "matias_faldbakken",
+  "profile_file": "data/people/kunst/oslo/regjeringskvartalet/people_regjeringskvartalet_art_v1.json",
+  "identity": {
+    "canonical_identity": "Den norske kunstneren Matias Faldbakken, skaperen av det nasjonale minnestedet En opprettholdelse.",
+    "name_variants": ["Matias Faldbakken", "Matias Faldbakkens"],
+    "not": ["Knut Faldbakken"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "winner_memorial_competition_2025",
+      "claim": "KORO dokumenterer at Matias Faldbakkens forslag En opprettholdelse vant konkurransen om det nasjonale minnestedet etter 22. juli i regjeringskvartalet i april 2025.",
+      "status": "verified",
+      "source_url": "https://koro.no/prosjekter/nasjonalt-minnested-etter-22-juli-i-det-nye-regjeringskvartalet/",
+      "source_location": "avsnittene om konkurransebeslutningen og oppdraget",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "memorial_opened_2026",
+      "claim": "KORO dokumenterer at En opprettholdelse ble etablert foran 22. juli-senteret og åpnet 19. juli 2026.",
+      "status": "verified",
+      "source_url": "https://koro.no/det-nasjonale-minnestedet-etter-22-juli-apner-19-juli/",
+      "source_location": "overskrift, program og avsnittet Monumentalt og omsorgsfullt",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["winner_memorial_competition_2025"],
+    "kindLabel": ["winner_memorial_competition_2025"],
+    "year": ["memorial_opened_2026"],
+    "period": ["winner_memorial_competition_2025", "memorial_opened_2026"],
+    "placeId": ["winner_memorial_competition_2025", "memorial_opened_2026"],
+    "places[regjeringskvartalet]": ["winner_memorial_competition_2025", "memorial_opened_2026"],
+    "places[22_juli_senteret]": ["memorial_opened_2026"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["winner_memorial_competition_2025", "memorial_opened_2026"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["winner_memorial_competition_2025"]},
+      {"sentence": 2, "claim_ids": ["memorial_opened_2026"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-03",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

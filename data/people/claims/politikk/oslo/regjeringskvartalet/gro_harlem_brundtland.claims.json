@@ -1,0 +1,61 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "gro_harlem_brundtland",
+  "profile_file": "data/people/politikk/oslo/people_politikk_oslo.json",
+  "identity": {
+    "canonical_identity": "Den norske statsministeren Gro Harlem Brundtland, dokumentert ved Statsministerens kontor i Høyblokka.",
+    "name_variants": ["Gro Harlem Brundtland"],
+    "not": ["Cecilie Malm Brundtland"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "office_transition_1981",
+      "claim": "Statsministerens kontor dokumenterer kontorskiftet mellom Odvar Nordli og Gro Harlem Brundtland i Høyblokkas 15. etasje 4. februar 1981.",
+      "status": "verified",
+      "source_url": "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1946--nyere-tid/1958-Statsministeren-flytter-til-Hoyblokken/id759096/",
+      "source_location": "bildeoversikten over statsministerskifter i Høyblokka",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "hoyblokka_1988_1990",
+      "claim": "Den samme kontorhistorikken viser Brundtland med regjeringen på Høyblokkas takterrasse i 1988 og dokumenterer at hun overtok det ombygde statsministerkontoret i 16. etasje 3. november 1990.",
+      "status": "verified",
+      "source_url": "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1946--nyere-tid/1958-Statsministeren-flytter-til-Hoyblokken/id759096/",
+      "source_location": "avsnittet Senere ombygginger og bildetekstene fra 1988 og 1990",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["office_transition_1981"],
+    "kindLabel": ["office_transition_1981"],
+    "year": ["office_transition_1981"],
+    "period": ["office_transition_1981", "hoyblokka_1988_1990"],
+    "placeId": ["office_transition_1981"],
+    "places[regjeringskvartalet]": ["office_transition_1981"],
+    "places[hoyblokka]": ["office_transition_1981", "hoyblokka_1988_1990"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["office_transition_1981", "hoyblokka_1988_1990"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["office_transition_1981"]},
+      {"sentence": 2, "claim_ids": ["hoyblokka_1988_1990"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-03",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

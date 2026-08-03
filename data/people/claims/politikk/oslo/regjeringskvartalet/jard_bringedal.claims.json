@@ -1,0 +1,62 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "jard_bringedal",
+  "profile_file": "data/people/politikk/oslo/regjeringskvartalet/people_regjeringskvartalet_reconstruction_v1.json",
+  "identity": {
+    "canonical_identity": "Jard Bringedal, Statsbyggs prosjektdirektør for nytt regjeringskvartal.",
+    "name_variants": ["Jard Bringedal"],
+    "not": ["andre Statsbygg-prosjektdirektører"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "appointed_project_director_2022",
+      "claim": "Statsbygg dokumenterer at Jard Bringedal ble ansatt som prosjektdirektør for byggingen av det nye regjeringskvartalet i 2022.",
+      "status": "verified",
+      "source_url": "https://www.statsbygg.no/nyheter/ny-leder-for-nytt-regjeringskvartal/",
+      "source_location": "overskrift og ingress",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "project_director_2026",
+      "claim": "Statsbygg navngir Jard Bringedal som prosjektdirektør ved miljøsertifiseringen av regjeringskvartalet i juni 2026.",
+      "status": "verified",
+      "source_url": "https://www.statsbygg.no/nyheter/regjeringskvartalet-er-miljomessig-outstanding/",
+      "source_location": "avsnittet om mottak av miljøsertifiseringen",
+      "source_type": "institutional",
+      "temporal_status": "current",
+      "verified_at": "2026-08-03",
+      "freshness_required_days": 180,
+      "evidence_level": "explicit"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["appointed_project_director_2022", "project_director_2026"],
+    "kindLabel": ["appointed_project_director_2022"],
+    "role": ["appointed_project_director_2022", "project_director_2026"],
+    "year": ["appointed_project_director_2022"],
+    "period": ["appointed_project_director_2022", "project_director_2026"],
+    "placeId": ["appointed_project_director_2022"],
+    "places[regjeringskvartalet]": ["appointed_project_director_2022", "project_director_2026"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["appointed_project_director_2022"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["appointed_project_director_2022"]},
+      {"sentence": 2, "claim_ids": ["project_director_2026"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-03",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

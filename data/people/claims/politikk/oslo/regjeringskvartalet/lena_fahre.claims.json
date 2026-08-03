@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "lena_fahre",
+  "profile_file": "data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json",
+  "identity": {
+    "canonical_identity": "Lena Fahre, direktør for 22. juli-senteret fra 2022.",
+    "name_variants": ["Lena Fahre"],
+    "not": ["navnelike personer"],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "director_appointment_2022",
+      "claim": "22. juli-senteret dokumenterer at Lena Fahre ble ansatt som direktør i 2022.",
+      "status": "verified",
+      "source_url": "https://www.22julisenteret.no/no/hva-skjer/nyheter/lena-fahre-er-ny-direktor-for-22-juli-senteret",
+      "source_location": "overskrift og ingress",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "permanent_center_opening_2026",
+      "claim": "22. juli-senteret dokumenterer at det permanente senteret åpnet i regjeringskvartalet 22. juli 2026 og siterer direktør Lena Fahre om senterets oppgaver for minne og demokratisk motstandskraft.",
+      "status": "verified",
+      "source_url": "https://presse.22julisenteret.no/pressreleases/15-aar-etter-22-juli-aapner-europas-stoerste-minne-og-laeringssenter-om-terror-3459090",
+      "source_location": "overskriften, avsnittet Mer enn et minnested og sitatene fra Lena Fahre",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-03",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "director_current_2026",
+      "claim": "22. juli-senterets ansattside navngir Lena Fahre som direktør i 2026.",
+      "status": "verified",
+      "source_url": "https://www.22julisenteret.no/no/om-senteret/tilsette",
+      "source_location": "ansattoppføringen for direktør",
+      "source_type": "institutional",
+      "temporal_status": "current",
+      "verified_at": "2026-08-03",
+      "freshness_required_days": 180,
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": ["director_appointment_2022", "director_current_2026"],
+    "year": ["director_appointment_2022"],
+    "period": ["director_appointment_2022", "director_current_2026"],
+    "placeId": ["director_appointment_2022", "permanent_center_opening_2026"],
+    "places[22_juli_senteret]": ["director_appointment_2022", "director_current_2026"],
+    "places[regjeringskvartalet]": ["permanent_center_opening_2026"]
+  },
+  "sentence_claim_map": {
+    "desc": [{"sentence": 1, "claim_ids": ["director_appointment_2022", "permanent_center_opening_2026"]}],
+    "popupDesc": [
+      {"sentence": 1, "claim_ids": ["director_appointment_2022", "permanent_center_opening_2026"]},
+      {"sentence": 2, "claim_ids": ["permanent_center_opening_2026", "director_current_2026"]}
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-03",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
