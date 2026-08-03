@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, readFile, access } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import sharp from 'sharp';
 import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates, validateEditorialIllustrationMeta, validateEditorialIllustrationFile } from '../dist/tools/people-image-pipeline.mjs';
 
@@ -13,6 +14,13 @@ assert.equal(isAllowedLicense('CC BY-NC 4.0'), false);
 assert.equal(isAllowedLicense('CC BY-ND 4.0'), false);
 assert.equal(isAllowedLicense('all rights reserved'), false);
 assert.equal(isAllowedLicense(''), false);
+
+const cliProbe = spawnSync(process.execPath, [path.resolve('dist/tools/people-image-pipeline.mjs')], {
+  cwd: process.cwd(),
+  encoding: 'utf8'
+});
+assert.equal(cliProbe.status, 2, 'CLI entrypoint must execute and reject a missing command');
+assert.match(cliProbe.stderr, /Usage: people-image-pipeline/, 'CLI entrypoint prints its command contract');
 
 const validEditorialMeta = {
   source: 'history_go_editorial_illustration',

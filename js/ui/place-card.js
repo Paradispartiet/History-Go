@@ -2075,7 +2075,7 @@ if (brandsEl) {
         return {
           id: item,
           label: resolved?.name || item,
-          logo: resolved?.logo || "",
+          logo: resolved?.logo || resolved?.image || "",
           brandKind: normalizeBrandKind(resolved?.brand_kind)
         };
       }
