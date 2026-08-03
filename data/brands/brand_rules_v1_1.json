@@ -1,5 +1,7 @@
 {
   "version": "1.1",
+  "status": "canonical_brand_definition",
+  "owner": "brand_semantics",
   "purpose": "Rules for deciding whether a name should be modeled as a Brand in History Go, and how it should be classified.",
   "source_basis": {
     "core_definition": [
@@ -17,7 +19,8 @@
   "history_go_definition": {
     "working_definition": "In History Go, a Brand is a socially recognized name with identity beyond a generic location label. It can be commercial, professional, subcultural, retail, gallery-based, hospitality-based, legacy, signage-based, or venue-based, as long as the name carries distinct recognition in public memory.",
     "important_note": "A Place is not automatically a Brand, and a Brand is not automatically a Place. Places should be reserved for sites with independent historical, architectural, institutional, or urban significance. Brands may operate under, within, or around such places.",
-    "place_definition_for_history_go": "In History Go, a Place should normally be a site of historical significance, architectural weight, institutional importance, or strong urban/topographical meaning. Ordinary businesses, galleries, restaurants, bars, and clubs should usually remain in the brand layer unless the site itself is a major historical place."
+    "place_definition_for_history_go": "In History Go, a Place should normally be a site of historical significance, architectural weight, institutional importance, or strong urban/topographical meaning. Ordinary businesses, galleries, restaurants, bars, and clubs should usually remain in the brand layer unless the site itself is a major historical place.",
+    "place_round_definition": "The PlaceCard Brands round uses this full definition. It is not limited to consumer goods or retail: a documented professional, architecture, engineering, contractor, institution, venue, legacy, signage or subculture identity may qualify when the name has autonomous recognition and a direct place relationship."
   },
   "decision_logic": {
     "minimum_rule": "A candidate should satisfy at least 2 core criteria, and should not fail any hard exclusion.",
@@ -176,6 +179,23 @@
       "Do not create a place mapping from vibe alone",
       "Do not map a place to itself just because the names match",
       "Do not move a brand to places merely because it is a venue; first test whether the place itself has historical or architectural primacy"
+    ]
+  },
+  "place_production_gate": {
+    "required_research_order": [
+      "Read this canonical Brand definition before deciding candidates or N/A.",
+      "Audit existing canonical Brand IDs, aliases, brands_by_place mappings and any embedded place-level brand records.",
+      "Audit documented operators, founders, owners, designers, architecture and engineering firms, contractors, professional-service firms, historic businesses, venues, institutions, signage identities and other named project actors tied directly to the place.",
+      "Test each candidate against the core criteria, hard exclusions and place-versus-brand rule; actor status alone neither qualifies nor disqualifies it.",
+      "Reuse an existing Brand record where possible; otherwise create a new canonical Brand only after identity, source, logo rights and place relationship are verified."
+    ],
+    "na_rule": "Zero hits in brands_master or brands_by_place is not evidence of N/A. N/A is allowed only after the candidate discovery pass is documented and every plausible candidate is rejected under this contract with a candidate-specific reason.",
+    "project_actor_rule": "A project team, architecture office, engineering firm, contractor or public institution is not automatically filler and is not automatically a Brand. It qualifies only when its name has autonomous public/professional identity and its concrete role at the place is documented.",
+    "place_link_evidence": [
+      "direct official or otherwise inspectable source naming the Brand and its role at the place",
+      "stable canonical Brand identity and aliases",
+      "correct logo or brand image with documented rights/source",
+      "temporal scope when the relationship is historical, temporary or project-specific"
     ]
   },
   "examples": {

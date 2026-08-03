@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-02**
+Sist kontrollert: **2026-08-03**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -23,6 +23,7 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Description-produksjonspakke | `data/places/regler/place_description_production_v4_2.schema.json` |
 | Stedspopup / åtte faner | **`docs/PLACE_POPUP_SYSTEM.md`** |
 | PlaceCard-rundinger | **`data/places/README_place_rounds.md`** |
+| Brands-semantikk, klassifisering og place-kobling | **`data/brands/brand_rules_v1_1.json`** |
 | Kategori / canonical kategori-ID-er | `data/categories/category_contract.json` |
 | Fagverk / merke vs fag / navigasjon | `docs/FAGVERK_NAVIGATION.md` |
 | Politikk — canonical fagmodell | `data/fag/politikk/politikk_runtime_manifest.json` |
@@ -796,13 +797,18 @@ Denne sjekklisten skal **ikke** brukes som quizoppskrift.
 Ved relevant stedquiz:
 
 - [ ] `categoryId` og `targetId` er fastslått;
+- [ ] alle aktive, arkiverte og alternative quizfiler/manifestoppføringer for `targetId` er søkt før noe overskrives;
+- [ ] eksisterende sett, spørsmål, påstander og Knowledge er dokumentert med behold / omskriv / flytt / slå sammen / fjern;
 - [ ] `data/fag/fag_manifest.json` brukes som filresolver;
 - [ ] alle `required_inputs` for kategorien er faktisk lest;
 - [ ] målstedets `source_brief` er brukt/oppdatert etter quizkontrakten;
 - [ ] eksterne kilder er lest og reviewstatus dokumentert;
 - [ ] påstandsbank bygges før spørsmål skrives;
 - [ ] faglig utvalg/metoder/emner/teorihooks vurderes etter kontrakten;
-- [ ] adaptiv quizprofil velges ut fra dokumentert stoffmengde;
+- [ ] adaptiv quizprofil velges ut fra dokumentert stoffmengde og bredde, aldri fra et forhåndslåst `profile_hint` eller ønsket kort leveranse;
+- [ ] eksakt settantall er valgt og begrunnet: `narrow` = 3, `normal` = 4, `rich` = 5–8, `major` = 8–10; alle sett har 7 spørsmål;
+- [ ] `rich`/`major` har én kildebåret, ikke-duplisert læringsjobb per sett;
+- [ ] et dokumentert `major`-sted bruker 10 sett når materialet bærer ti selvstendige settplaner; 8 eller 9 krever navngitte holdback-spor og konkret grunn;
 - [ ] normalåpning og settplan følger canonical quizregler;
 - [ ] spørsmål er source-led, ikke konstruert fra ønsket emneetikett;
 - [ ] `production_context` lagres når kontrakten krever det;
@@ -889,11 +895,20 @@ Researchrekkefølge:
 
 ## 13. Brands
 
-- [ ] søk eksisterende Brands-data;
-- [ ] gjenbruk eksisterende ID;
-- [ ] dokumenter bedrift-/merke–sted-koblingen;
-- [ ] korrekt logo;
-- [ ] ingen omklassifisering av andre aktørtyper til Brands.
+**LES FØRST — obligatorisk:** `data/brands/brand_rules_v1_1.json`
+
+Brands er ikke begrenset til forbrukermerker. Profesjonelle firmaer, arkitektur-/ingeniørfirmaer, entreprenører, venue-/galleri-/serveringsidentiteter, institusjonsmerker, subkulturmerker, legacy-navn og skiltidentiteter kan kvalifisere når de har selvstendig gjenkjennelse og en dokumentert rolle ved stedet.
+
+- [ ] søk eksisterende canonical Brand-ID-er, aliaser, `brands_by_place` og innebygde place-records;
+- [ ] auditér dokumenterte eiere, operatører, grunnleggere, historiske virksomheter, arkitekt-/ingeniørfirmaer, entreprenører, profesjonelle tjenestefirmaer, venue-navn, institusjoner og skiltidentiteter ved stedet;
+- [ ] vurder hver kandidat etter identitetsautonomi, gjenkjennelse, særpreg, visuell/symbolsk tilstedeværelse, minneverdi og place-versus-brand-regelen;
+- [ ] aktørtype alene brukes verken som godkjenning eller avslag;
+- [ ] gjenbruk eksisterende ID når kandidaten allerede er canonical;
+- [ ] dokumenter Brand–sted-koblingen med inspectable kilde, konkret rolle og tidsrom;
+- [ ] korrekt logo/brandbilde har kilde- og rettighetskontroll;
+- [ ] personer, objekter og generiske aktørnavn omklassifiseres ikke til Brands;
+- [ ] null treff i Brand-master eller `brands_by_place` behandles som «må researches», ikke som N/A;
+- [ ] N/A brukes bare etter dokumentert kandidatsøk og kandidatspesifikke avvisningsgrunner.
 
 Personverk håndteres i People-profilen etter People-kontrakten, ikke som PlaceCard-runding.
 
@@ -1065,7 +1080,7 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] full People-tekst vises først i personpopupen;
 - [ ] Badges åpner riktig sted/fagverk;
 - [ ] Badges og de tre canonicale innholdsrundingene åpner riktig innhold;
-- [ ] Brands viser bare riktige bedrifter/kjente merker;
+- [ ] Brands viser bare kandidater som består `data/brands/brand_rules_v1_1.json` og har dokumentert stedskobling;
 - [ ] natursteder bruker den canonical naturprofilen;
 - [ ] Civication/Wonderkammer vises ikke som canonical runding;
 - [ ] På stedet ligger under rundingene;
@@ -1089,7 +1104,7 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] Quiz følger Quiz Production Canonical;
 - [ ] Nature følger naturmappingens eierskap og evidens;
 - [ ] bilder identitetskontrollert;
-- [ ] Brands er ikke utvidet semantisk;
+- [ ] Brands følger den canonicale Brand-definisjonen uten å snevres inn til bare forbrukermerker eller utvides til en generell aktørrestkategori;
 - [ ] rundingsinnhold er ikke filler;
 - [ ] avvist/usikkert innhold er fortsatt utelatt.
 
@@ -1299,6 +1314,9 @@ For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] 
 - [ ] People Profile Canonical brukt ved People-endring / N/A
 - [ ] Stories Governance brukt ved Story / N/A
 - [ ] Quiz Production Canonical brukt ved Quiz / N/A
+- [ ] eksisterende quiz auditert før profilvalg
+- [ ] quizprofil + eksakt settantall: `narrow` 3 / `normal` 4 / `rich` 5–8 / `major` 8–10
+- [ ] begrunnelse for eksakt settantall og eventuelle holdback-spor
 
 ### H. På stedet
 - [ ] Events / N/A
@@ -1312,7 +1330,7 @@ For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] 
 
 ### I. Relasjoner
 - [ ] Works
-- [ ] Brands
+- [ ] Brands — Brand-regler lest, kandidatsøk, place-evidens, logo/rettigheter og N/A-gate
 - [ ] Leksikon
 - [ ] Relations / NextUp
 - [ ] Nearby / Søk

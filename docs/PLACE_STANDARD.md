@@ -2,7 +2,7 @@
 
 Status: **canonical produktstandard for et History GO-sted**  
 Eier: `place_product_standard`  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-03**
 
 Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, rundinger, People eller koordinater.
 
@@ -19,6 +19,7 @@ Sted-for-sted arbeidsrekkefølge:
 | `desc` / `popupDesc` produksjon | `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` |
 | Popup-presentasjon | `docs/PLACE_POPUP_SYSTEM.md` |
 | Rundinger | `data/places/README_place_rounds.md` |
+| Brands-semantikk og place-kobling | `data/brands/brand_rules_v1_1.json` |
 | Kategorier | `data/categories/category_contract.json` |
 | Koordinater | `docs/coordinates/coordinate-source-contract-v1.md` |
 | People–sted | `docs/people-of-places-method.md` |
@@ -197,7 +198,7 @@ For ny/revidert stedproduksjon:
 
 Legacy aliaser skal ikke bli nye standarder.
 
-Nature er valgfri. Brands betyr fortsatt bare bedrifter og kjente merker med dokumentert stedskobling.
+Nature er valgfri. Brands-semantikken eies av `data/brands/brand_rules_v1_1.json`: også profesjonelle, arkitektur-, venue-, institusjons-, legacy- og skiltidentiteter kan kvalifisere når navnet har selvstendig gjenkjennelse og dokumentert stedskobling. Aktørtype alene er verken godkjenning eller avslag.
 
 ## 10. Strukturerte place-profiler
 

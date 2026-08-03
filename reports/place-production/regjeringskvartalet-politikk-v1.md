@@ -7,8 +7,9 @@
 - Leksikon: `data/leksikon/places/oslo/politikk/leksikon_regjeringskvartalet.json`
 - Quiz: `data/quiz/politikk/regjeringskvartalet_sets.json`
 - Primærkategori: `politikk`
-- Produksjonsprofil: `narrow` – 3 sett × 7 spørsmål
-- Status: **fase 13 – full UI-/produksjonsaudit PASS; produksjonsklart etter PR #4674 og kontroll på fersk `main`**
+- Aktiv quiz per 3. august 2026: `narrow_3x7` – 3 sett × 7 spørsmål
+- Korrigert produksjonsmål: `major_10x7` – 10 sett × 7 spørsmål
+- Status: **korrigering pågår – UI-auditen i fase 13 står, men Quiz og Brands er gjenåpnet; stedet er ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -27,8 +28,8 @@
 | Rundingsprofil | Fast `people · objects · brands`, med Badges ved overskriften. Wonderkammer-innhold skal ikke telles som ferdig Objects-runding. |
 | People | Tolv canonicale personer er dokumentert ved stedet, med maksimalt to arkitekter og flertall av faktiske brukere, beslutningstakere, kunst-/ingeniøraktører og hendelsespersoner. Dekningen ble låst i PR #3604. |
 | Objects | To fysiske og stedsspesifikke kunstobjekter er canonicalisert: «Fiskerne» på A-blokka og «Grass Roots Square» på Einar Gerhardsens plass. Begge har KORO-belegg for dagens plassering og lisenskontrollert Commons-foto med synlig tids-/stedsgrense. |
-| Brands | **N/A – fase 12.** Canonical Brand-master og `brands_by_place` er søkt uten treff. Departementer, Statsbygg, KORO, arkitektteam og kunstnere er institusjoner/aktører, ikke Brands. |
-| Quiz | Full 3×7-pakke med 21 spørsmål. De første to settene gir 14 ordinære spørsmål; sett 3 bærer teori-/metodefordypning. |
+| Brands | **GJENÅPNET 3. august 2026.** Tidligere N/A brukte en for snever forbrukermerkedefinisjon. Team Urbis og navngitte arkitekt-, rådgiver- og entreprenørfirmaer skal vurderes etter canonical Brand-regler, med identitet, stedskobling og logo-/rettighetskontroll. |
+| Quiz | **GJENÅPNET 3. august 2026.** Aktiv pakke er 3×7, men stedet er `major` og produksjonsmålet er 10×7. Den eldre 1×5-quizen og dagens 3×7 skal inngå i behold/omskriv/flytt/fjern-auditen. |
 | Knowledge | 21 eksplisitte Knowledge-ID-er er materialisert og synkronisert. Alle spørsmål er stedsskopet og har emne-, begreps- og kunnskapskoblinger. |
 | Stories | Tre canonicale `episode_v1`-fortellinger er narrativt revidert: «Staten leter etter et hjem», «Kunst støpt inn i staten» og «Etter bomben». |
 | Før/etter | Lisenskontrollert Wikimedia-par fra Johan Nygaardsvolds plass: 1. juli 2008 og åpningen 13. april 2026. Begge er CC BY-SA 4.0, har navngitt fotograf, verifisert kildeside og eksplisitt inferensgrense. |
@@ -83,10 +84,10 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 
 | Fase | Status | Begrunnelse |
 | --- | --- | --- |
-| Quiz og Knowledge | PASS – PR #4664 | 21 spørsmål, 14-spørsmåls normalåpning, teori/metode i sett 3 og 21 eksplisitte Knowledge-enheter. |
+| Quiz og Knowledge | GJENÅPNET | PR #4664 leverte 21 gyldige spørsmål, men hardkodet `narrow_3x7` uten holdbar breddevurdering. Korrigert mål er `major_10x7`; eksisterende Knowledge skal bevares eller migreres eksplisitt. |
 | People | PASS – PR #3604 | Tolv dokumenterte canonicale personer og eksplisitt rollebalanse med maksimalt to arkitekter. |
 | Objects | PASS – fase 11 | To avgrensede kunstobjekter har identitet, fysisk plassering, kilde, bilde, attribusjon, lisens og eksplisitt skille mellom eldre foto og dagens plassering. |
-| Brands | N/A – fase 12 | Brand-master og stedskoblinger er eksplisitt kontrollert uten kandidat. Ingen organisasjon eller person omklassifiseres for å fylle rundingen. |
+| Brands | GJENÅPNET | Null registertreff beviste ikke N/A. Canonical Brand-regler omfatter også profesjonelle og arkitektoniske merkeidentiteter; offisielle prosjektkilder navngir flere kandidater. |
 | Badges/fagverk | PASS – fase 13 | Badges ligger ved overskriften, peker til canonical fagverk-rute og viser de tre Politikk-undermerkene og stedets faglige stier. |
 
 ## Før/etter-research og eiergrense
@@ -176,6 +177,15 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 12 | Brands | **GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`** |
 | 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | **GODKJENT – PR #4674, merge `06d6c462e549be34e784d81317333bbfb20fd5ef`** |
 
+### Governance-korrigering 3. august 2026
+
+Fasetabellen over dokumenterer hva som faktisk ble merget. Den er ikke lenger en samlet ferdigstatus: fase 9 og fase 12 er gjenåpnet fordi de bygde på henholdsvis et ubegrunnet `narrow`-valg og en for snever Brand-definisjon. Fase 13 beviser at det leverte innholdet rendres riktig; den beviser ikke at Quiz- eller Brands-omfanget var redaksjonelt komplett.
+
+- Før PR #4664 fantes én aktiv Regjeringskvartalet-quiz med 1 sett og 5 spørsmål. Etter PR-en finnes 3 sett og 21 spørsmål. Begge tilstandene skal inngå i den nye eksisterende-quiz-auditen.
+- Regjeringskvartalet har dokumenterte perioder, bygg, institusjoner, People, kunst, 22. juli, plan-/beslutningsprosesser, sikkerhet/åpenhet, gjenoppbygging, minnepolitikk og store prosjektaktører. Det bærer ti selvstendige settplaner og skal derfor produseres som `major_10x7`.
+- Statsbyggs og Regjeringens prosjektoversikter navngir Team Urbis samt Nordic Office of Architecture, COWI, Rambøll, Aas-Jakobsen, Asplan Viak, Bjørbekk & Lindheim og SLA. Regjeringens aktøroversikt navngir også Veidekke, Hent, Skanska, Agaia og Mebyr som hovedentreprenører. Disse er Brand-kandidater, ikke automatisk godkjente Brands; hver kandidat må få canonical identitet, konkret stedsevidens og logo-/rettighetskontroll.
+- Kilder: `https://www.statsbygg.no/nyheter/regjeringskvartalet-kontrakt-undertegnet/`, `https://www.regjeringen.no/no/aktuelt/forste-byggetrinn-i-regjeringskvartalet-ferdigstilles-under-kostnadsrammen/id3141936/` og `https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/`.
+
 ## Resultat i fase 4
 
 - `for_na` er lagt i canonical place-record, ikke i en separat duplikatfil.
@@ -244,15 +254,13 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 
 ## Resultat i fase 12
 
-- `data/brands/brands_master.json` og `data/brands/brands_by_place.json` er eksplisitt søkt; Regjeringskvartalet har ingen canonical Brand og ingen stedskobling.
-- Statsbygg er byggherre/prosjektaktør, ikke et forbrukermerke som kvalifiserer rundingen.
-- KORO er statens fagorgan for kunst i offentlige rom, ikke et Brand for stedet.
-- Statsministerens kontor og departementene er offentlige institusjoner.
-- Team Urbis, arkitektkontorer, entreprenører, kunstnere og fotografer har roller i prosjektet, men denne leveransen dokumenterer ikke en selvstendig, kjent Brand-identitet med varig stedskobling og egnet logo.
-- Picasso-navnet tilhører kunstner-/Object-/People-kontekst og skal ikke brukes som Brand-filler.
-- Brands er derfor **N/A med fanespesifikk begrunnelse og evidenspeker**, i tråd med regelen om at manglende relevant innhold kan være N/A mens glemt kontroll ikke kan det.
-- Ingen tom `brands`-liste, lokal `brand_ids`-kuratering, ny master-record eller falsk logo er opprettet.
-- Den faste vanlige rundingsprofilen er fortsatt `people · objects · brands`; N/A-statusen er redaksjonell evidens og endrer ikke runtimekontrakten.
+PR #4673 dokumenterte at `brands_master.json` og `brands_by_place.json` manglet treff, og opprettet ikke filler. Den tekniske observasjonen står, men N/A-konklusjonen er **underkjent** av governance-korrigeringen 3. august 2026.
+
+- Null eksisterende record betyr at kandidatene må researches og eventuelt canonicaliseres; det betyr ikke at Brands er N/A.
+- Fase 12 brukte «forbrukermerke» som terskel og avviste arkitektkontorer og entreprenører som aktørtyper. `data/brands/brand_rules_v1_1.json` inkluderer uttrykkelig profesjonelle merker og arkitektfirmaer når identitetskravene består.
+- Team Urbis-medlemmene og de navngitte hovedentreprenørene er derfor gjenåpnede kandidater. Det endelige Brand-settet bestemmes først etter identitets-, rolle-, kilde-, logo- og rettighetsaudit.
+- Statsministerens kontor, departementene, enkeltkunstnere og Picasso-navnet forblir andre entitetstyper med mindre en separat Brand-identitet faktisk dokumenteres.
+- Den faste vanlige rundingsprofilen er fortsatt `people · objects · brands`; korrigeringen krever ingen place-spesifikk runtimevariant.
 
 ## Resultat i fase 13
 
@@ -261,15 +269,15 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 - Fanene har `tablist`/`tab`/`tabpanel`, korrekt `aria-selected` og tastaturnavigasjon med piltaster, Home og End.
 - Mobilvisningen har horisontal fanescroll og én kolonne for Før/etter-bildene; desktop beholder to kolonner.
 - Den faste rundingsprofilen er kontrollert som Personer · Gjenstander · Brands, mens Badges ligger separat ved overskriften.
-- Objects-rundingen viser «Fiskerne» og «Grass Roots Square» med de canonicale Commons-bildene. Brands forblir kontrollert N/A uten filler eller per-place runtime-unntak.
+- Objects-rundingen viser «Fiskerne» og «Grass Roots Square» med de canonicale Commons-bildene. Den tekniske Brands-tomtilstanden ble kontrollert, men den redaksjonelle N/A-konklusjonen er senere gjenåpnet.
 - Badges-klikkets canonicale mål er `fagverk-sted.html?place=regjeringskvartalet`.
 - Fagverk-stedet er kjørt i Chromium og viser Regjeringskvartalet, hovedbilde, tre undermerker, Politikk-domener, minst fire linser, minst fire stedsspørsmål, kapitler, begreper, emner og brukerrettede HTTPS-kilder.
 - Popup- og fagverksflater er kontrollert uten synlige pekerstrenger til `reports/`, `tests/`, quiz-produksjonskontekst, koordinat-evidens eller interne claims/audits.
 - Eksterne lenker åpnes sikkert med `noopener noreferrer`, og canonical bilde-URL-er er HTTPS.
 - Den permanente `Place rounds governance`-workflowen kjører nå den samme Chromium-baserte sluttporten ved relevante endringer.
 
-## Sluttstatus
+## Korrigert sluttstatus
 
-Fase 13 er squash-merget i PR #4674 med commit `06d6c462e549be34e784d81317333bbfb20fd5ef`. Den permanente ellevefilersdiffen er kontrollert gjennom closure-PR-CI på en gren opprettet direkte fra fersk `main`; `Place rounds governance` og `TypeScript guard` må begge bestå før denne avslutningen merges.
+Fase 13 er squash-merget i PR #4674 med commit `06d6c462e549be34e784d81317333bbfb20fd5ef`, og den tekniske UI-auditen står. Den kan gjenbrukes etter innholdsutvidelsen, men må kjøres på nytt mot den ferdige 10×7-quizen og det canonicaliserte Brand-settet.
 
-Regjeringskvartalet er dermed **produksjonsklart etter den canonicale sted-for-sted-checklista**. Alle tretten faser er lukket, og ingen ny innholdsproduksjonsfase står åpen.
+Regjeringskvartalet er **ikke samlet produksjonsklart**. Åpne korrigeringsfaser er Quiz (`major_10x7` med eksisterende-quiz-audit), Brands (full kandidat- og logoaudit) og deretter en ny avgrenset sluttkontroll.

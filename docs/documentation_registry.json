@@ -2,7 +2,7 @@
   "schema_version": 1,
   "registry_status": "canonical",
   "owner": "history-go-documentation",
-  "last_verified": "2026-08-01",
+  "last_verified": "2026-08-03",
   "status_definitions": {
     "canonical": "Normativ kilde for et avgrenset ansvarsområde. Kan blokkere endringer og skal holdes oppdatert.",
     "operational": "Aktiv inngang, implementasjonsstatus eller arbeidsinstruks uten å opprette en parallell sannhet.",
@@ -19,6 +19,7 @@
     "docs/DOMAIN_CONTRACT.md",
     "docs/FACTUALITY_CONTRACT.md",
     "docs/DATA_PRODUCTION_CONTRACT.md",
+    "data/brands/brand_rules_v1_1.json",
     "docs/PLACE_PRODUCTION_CHECKLIST.md",
     "docs/SUBJECT_FILE_CONTRACT.md",
     "docs/FAGVERK.md",
@@ -593,7 +594,16 @@
       "owns": [
         "data_production_contract"
       ],
-      "last_verified": "2026-07-28"
+      "last_verified": "2026-08-03"
+    },
+    {
+      "path": "data/brands/brand_rules_v1_1.json",
+      "status": "canonical",
+      "role": "Bindende definisjon, klassifisering, place-versus-brand-regel og N/A-gate for Brands",
+      "owns": [
+        "brand_semantics"
+      ],
+      "last_verified": "2026-08-03"
     },
     {
       "path": "README/nature_mapping_workflow.md",
@@ -835,7 +845,7 @@
       "owns": [
         "quiz_production_contract"
       ],
-      "last_verified": "2026-07-25"
+      "last_verified": "2026-08-03"
     },
     {
       "path": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
@@ -1054,7 +1064,7 @@
       "owns": [
         "place_by_place_production_workflow"
       ],
-      "last_verified": "2026-08-01"
+      "last_verified": "2026-08-03"
     }
   ]
 }
