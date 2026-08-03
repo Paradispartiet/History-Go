@@ -11,11 +11,14 @@ on:
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
       - 'scripts/audit-subkultur-evidence-*.mjs'
+      - 'scripts/audit-subkultur-chapters-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
+      - 'tests/subkultur-chapters-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
+      - 'tools/build-subkultur-chapters-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -30,11 +33,14 @@ on:
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
       - 'scripts/audit-subkultur-evidence-*.mjs'
+      - 'scripts/audit-subkultur-chapters-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
+      - 'tests/subkultur-chapters-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
+      - 'tools/build-subkultur-chapters-*.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -57,6 +63,8 @@ jobs:
           node --check scripts/audit-subkultur-foundation-v1.mjs
           node --check tools/build-subkultur-evidence-v1.mjs
           node --check scripts/audit-subkultur-evidence-v1.mjs
+          node --check tools/build-subkultur-chapters-v1.mjs
+          node --check scripts/audit-subkultur-chapters-v1.mjs
       - name: Reproducible canonical foundation
         run: node tools/build-subkultur-foundation-v1.mjs --check
       - name: Historical baseline audit
@@ -67,7 +75,12 @@ jobs:
         run: node tools/build-subkultur-evidence-v1.mjs --check
       - name: Theory evidence audit
         run: node scripts/audit-subkultur-evidence-v1.mjs
-      - name: Contract, foundation and evidence tests
+      - name: Reproducible chapters and profiles
+        run: node tools/build-subkultur-chapters-v1.mjs --check
+      - name: Chapter and profile audit
+        run: node scripts/audit-subkultur-chapters-v1.mjs
+      - name: Contract, foundation, evidence and chapter tests
         run: node --test tests/subkultur-fagverk-baseline.test.mjs
           tests/subkultur-foundation-v1.test.mjs
           tests/subkultur-evidence-v1.test.mjs
+          tests/subkultur-chapters-v1.test.mjs

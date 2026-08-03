@@ -289,7 +289,7 @@ export function auditFoundation({ writeReport = false, checkReport = true } = {}
   }
   assert(report.status_guard.navigation_status === 'planned', 'navigationStatus må forbli planned');
   assert(report.status_guard.assessment_status === 'pending', 'assessmentStatus må forbli pending');
-  assert(report.status_guard.editorial_status === 'not_started', 'editorialStatus må forbli not_started');
+  assert(['not_started', 'chapters_in_progress'].includes(report.status_guard.editorial_status), 'editorialStatus må være not_started eller chapters_in_progress før sluttport');
   assert(report.status_guard.registry_subject_exists === false, 'Subkultur må ikke materialiseres i registeret ennå');
   assert(report.next_gate === 'theory_claim_source_evidence', 'Neste port skal være teori, claims, kilder og evidens');
 
