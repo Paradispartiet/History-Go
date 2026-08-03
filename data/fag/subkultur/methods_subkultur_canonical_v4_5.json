@@ -1,1068 +1,2775 @@
 {
-  "version": "v5.0-canonical-foundation",
+  "version": "v5.0-universal-canonical",
+  "updated_at": "2026-08-04",
+  "type": "methods_registry",
   "subject_id": "subkultur",
   "subject_title": "Subkultur",
   "scope": "universal",
-  "type": "methods",
-  "purpose": "40 operative analysemetoder for et kildebelagt og etisk Subkultur-fagverk.",
-  "updated_at": "2026-08-04",
-  "principles": {
-    "operation_before_label": true,
-    "data_requirement_required": true,
-    "inference_boundary_required": true,
-    "privacy_and_stigma_review_required": true,
-    "no_synonym_padding": true
-  },
+  "purpose": "Operative og distinkte analysemetoder for Subkultur-fagverket.",
+  "principles": [
+    "hver metode utfører en faktisk analyseoperasjon",
+    "hver metode har datakrav, prosedyre og begrensninger",
+    "ingen metode leverer faktapåstander uten ekstern evidens"
+  ],
+  "canonical_inputs": [
+    "fagkart_subkultur_canonical_v4_5.json",
+    "emner_subkultur_canonical_v4_5.json"
+  ],
   "methods": [
     {
       "method_id": "met_sub_begrepsavgrensning",
       "title": "Begrepsavgrensning",
       "short_label": "Begrepsavgrensning",
+      "status": "active",
+      "operation": "Sammenligner rivaliserende feltbegreper mot eksplisitte kjennetegn og negative avgrensninger i et dokumentert case.",
+      "required_data": [
+        "fagdefinisjoner",
+        "casebeskrivelse",
+        "kontraeksempler"
+      ],
       "domain_ids": [
         "subkulturteori_feltgrenser"
       ],
-      "description": "Bryt et omstridt begrep ned i nødvendige, mulige og utelukkende kjennetegn før caset klassifiseres. Metoden bruker fagdefinisjoner, aktørbruk, observerbar praksis og moteksempler.",
-      "operation": "Bryt et omstridt begrep ned i nødvendige, mulige og utelukkende kjennetegn før caset klassifiseres.",
-      "required_data": "fagdefinisjoner, aktørbruk, observerbar praksis og moteksempler",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Bryt et omstridt begrep ned i nødvendige, mulige og utelukkende kjennetegn før caset klassifiseres.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Sammenligner rivaliserende feltbegreper mot eksplisitte kjennetegn og negative avgrensninger i et dokumentert case.",
+      "definition": "Sammenligner rivaliserende feltbegreper mot eksplisitte kjennetegn og negative avgrensninger i et dokumentert case.",
+      "analytical_question": "Hva kan begrepsavgrensning vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "fagdefinisjoner",
+        "casebeskrivelse",
+        "kontraeksempler"
       ],
-      "limitations": [
-        "Metoden avgjør analytisk bruk, ikke hvem som har rett til å navngi sin egen identitet."
+      "evidence_inputs": [
+        "fagdefinisjoner",
+        "casebeskrivelse",
+        "kontraeksempler"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "subkultur, scene, motkultur og livsstil"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_grensetilfelle_sammenligning",
-      "title": "Sammenligning av grensetilfeller",
-      "short_label": "Sammenligning av grensetilfeller",
-      "domain_ids": [
+      "coverage_domains": [
         "subkulturteori_feltgrenser"
       ],
-      "description": "Sammenlign ett tydelig kvalifiserende, ett tvetydig og ett ikke-kvalifiserende case langs de samme kriteriene. Metoden bruker likeartede caser med dokumentert miljø, praksis, organisering og samfunnsposisjon.",
-      "operation": "Sammenlign ett tydelig kvalifiserende, ett tvetydig og ett ikke-kvalifiserende case langs de samme kriteriene.",
-      "required_data": "likeartede caser med dokumentert miljø, praksis, organisering og samfunnsposisjon",
+      "emne_affinities": [
+        "em_sub_grunnbegreper",
+        "em_sub_ungdomskultur_identitet",
+        "em_sub_innenfra_utenfrablikk"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Sammenlign ett tydelig kvalifiserende, ett tvetydig og ett ikke-kvalifiserende case langs de samme kriteriene.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever begrepsavgrensning.",
+        "Samle fagdefinisjoner, casebeskrivelse, kontraeksempler og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom subkultur, scene, motkultur og livsstil.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Ulike datamengder kan skape falske forskjeller mellom casene."
+        "Kan avgrense begrepsbruk, men beviser ikke at et case eksisterer.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_begrepshistorisk_genealogi",
-      "title": "Begrepshistorisk genealogi",
-      "short_label": "Begrepshistorisk genealogi",
+      "method_id": "met_sub_sceneanalyse",
+      "title": "Sceneanalyse",
+      "short_label": "Sceneanalyse",
+      "status": "active",
+      "operation": "Kartlegger forbindelser mellom aktører, steder, hendelser og medier som over tid danner en gjenkjennelig scene.",
+      "required_data": [
+        "aktørlister",
+        "programarkiv",
+        "stedstidslinjer"
+      ],
       "domain_ids": [
-        "subkulturteori_feltgrenser"
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering"
       ],
-      "description": "Følg hvordan en kategori er definert, kritisert og omformet gjennom tid og fagtradisjoner. Metoden bruker daterte fagtekster, utgaver, debatter og senere kritikk.",
-      "operation": "Følg hvordan en kategori er definert, kritisert og omformet gjennom tid og fagtradisjoner.",
-      "required_data": "daterte fagtekster, utgaver, debatter og senere kritikk",
+      "description": "Kartlegger forbindelser mellom aktører, steder, hendelser og medier som over tid danner en gjenkjennelig scene.",
+      "definition": "Kartlegger forbindelser mellom aktører, steder, hendelser og medier som over tid danner en gjenkjennelig scene.",
+      "analytical_question": "Hva kan sceneanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "aktørlister",
+        "programarkiv",
+        "stedstidslinjer"
+      ],
+      "evidence_inputs": [
+        "aktørlister",
+        "programarkiv",
+        "stedstidslinjer"
+      ],
+      "critical_distinctions": [
+        "arrangement vs varig scene"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering"
+      ],
+      "emne_affinities": [
+        "em_sub_musikkscener",
+        "em_sub_undergrunn_miljo",
+        "em_sub_scene_fellesskap",
+        "em_sub_sted_scene"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Følg hvordan en kategori er definert, kritisert og omformet gjennom tid og fagtradisjoner.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever sceneanalyse.",
+        "Samle aktørlister, programarkiv, stedstidslinjer og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom arrangement vs varig scene.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "En begrepshistorie er ikke det samme som miljøets egen historie."
+        "Synlige arrangementer kan overvurdere de mest profilerte aktørene.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_innenfra_utenfra_triangulering",
-      "title": "Innenfra–utenfra-triangulering",
-      "short_label": "Innenfra–utenfra-triangulering",
+      "method_id": "met_sub_fellesskapsanalyse",
+      "title": "Fellesskapsanalyse",
+      "short_label": "Fellesskapsanalyse",
+      "status": "active",
+      "operation": "Undersøker gjensidig anerkjennelse, forpliktelser, grenser og tilhørighet i en avgrenset sosial verden.",
+      "required_data": [
+        "deltakerstemmer",
+        "felles praksiser",
+        "grensesituasjoner"
+      ],
       "domain_ids": [
-        "subkulturteori_feltgrenser"
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon"
       ],
-      "description": "Still miljøets selvbeskrivelse, observasjon og uavhengig dokumentasjon ved siden av hverandre og lokaliser enighet og konflikt. Metoden bruker miljønære kilder, feltdata og uavhengige kontrollkilder.",
-      "operation": "Still miljøets selvbeskrivelse, observasjon og uavhengig dokumentasjon ved siden av hverandre og lokaliser enighet og konflikt.",
-      "required_data": "miljønære kilder, feltdata og uavhengige kontrollkilder",
+      "description": "Undersøker gjensidig anerkjennelse, forpliktelser, grenser og tilhørighet i en avgrenset sosial verden.",
+      "definition": "Undersøker gjensidig anerkjennelse, forpliktelser, grenser og tilhørighet i en avgrenset sosial verden.",
+      "analytical_question": "Hva kan fellesskapsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "deltakerstemmer",
+        "felles praksiser",
+        "grensesituasjoner"
+      ],
+      "evidence_inputs": [
+        "deltakerstemmer",
+        "felles praksiser",
+        "grensesituasjoner"
+      ],
+      "critical_distinctions": [
+        "selvidentifikasjon vs gjensidig medlemskap"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "emne_affinities": [
+        "em_sub_vennegjenger_lojalitet",
+        "em_sub_tilhorighet_miljo",
+        "em_sub_uformelle_moteplasser",
+        "em_sub_sosial_kontroll",
+        "em_sub_skeive_miljoer",
+        "em_sub_gjensidig_hjelp_omsorg"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Still miljøets selvbeskrivelse, observasjon og uavhengig dokumentasjon ved siden av hverandre og lokaliser enighet og konflikt.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever fellesskapsanalyse.",
+        "Samle deltakerstemmer, felles praksiser, grensesituasjoner og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom selvidentifikasjon vs gjensidig medlemskap.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Tre kildetyper garanterer ikke representativitet dersom de bygger på samme stemme eller hendelse."
+        "Enkelte informanter kan ikke representere hele fellesskapet.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_negativ_caseanalyse",
-      "title": "Negativ caseanalyse",
-      "short_label": "Negativ caseanalyse",
+      "method_id": "met_sub_organiseringsanalyse",
+      "title": "Organiseringsanalyse",
+      "short_label": "Organiseringsanalyse",
+      "status": "active",
+      "operation": "Kartlegger beslutninger, roller, arbeidsdeling, ressurser og faktisk styring i formelle og uformelle organisasjoner.",
+      "required_data": [
+        "vedtekter",
+        "møter",
+        "arbeidsdeling",
+        "ressursflyt"
+      ],
       "domain_ids": [
-        "subkulturteori_feltgrenser"
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll",
+        "medier_objekter_praksiser",
+        "kommersialisering_institusjonalisering_minne"
       ],
-      "description": "Let aktivt etter et case som bryter med den foreløpige forklaringen og revider rekkevidden når det finnes. Metoden bruker avvikende og kontrasterende caser dokumentert etter samme standard.",
-      "operation": "Let aktivt etter et case som bryter med den foreløpige forklaringen og revider rekkevidden når det finnes.",
-      "required_data": "avvikende og kontrasterende caser dokumentert etter samme standard",
+      "description": "Kartlegger beslutninger, roller, arbeidsdeling, ressurser og faktisk styring i formelle og uformelle organisasjoner.",
+      "definition": "Kartlegger beslutninger, roller, arbeidsdeling, ressurser og faktisk styring i formelle og uformelle organisasjoner.",
+      "analytical_question": "Hva kan organiseringsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "vedtekter",
+        "møter",
+        "arbeidsdeling",
+        "ressursflyt"
+      ],
+      "evidence_inputs": [
+        "vedtekter",
+        "møter",
+        "arbeidsdeling",
+        "ressursflyt"
+      ],
+      "critical_distinctions": [
+        "formell struktur vs faktisk praksis"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll",
+        "medier_objekter_praksiser",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_undergrunn_miljo",
+        "em_sub_motkultur",
+        "em_sub_arrangorer_dugnad",
+        "em_sub_portvoktere_innvielse",
+        "em_sub_scene_konflikt",
+        "em_sub_sosial_organisering",
+        "em_sub_okkuperte_rom",
+        "em_sub_autonomi_motstand",
+        "em_sub_diy_praksis",
+        "em_sub_uavhengige_medier",
+        "em_sub_institusjonalisering"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Let aktivt etter et case som bryter med den foreløpige forklaringen og revider rekkevidden når det finnes.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever organiseringsanalyse.",
+        "Samle vedtekter, møter, arbeidsdeling, ressursflyt og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom formell struktur vs faktisk praksis.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Fravær av et negativt case i et lite utvalg bekrefter ikke en universell regel."
+        "Uformelle maktforhold kan mangle skriftlige spor.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_deltakende_observasjon",
-      "title": "Deltakende observasjon",
-      "short_label": "Deltakende observasjon",
+      "method_id": "met_sub_deltakelsesanalyse",
+      "title": "Deltakelsesanalyse",
+      "short_label": "Deltakelsesanalyse",
+      "status": "active",
+      "operation": "Følger hvordan personer får adgang, lærer, bidrar og beveger seg mellom perifere og sentrale roller.",
+      "required_data": [
+        "deltakerforløp",
+        "adgangspraksis",
+        "læringssituasjoner"
+      ],
+      "domain_ids": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "medier_objekter_praksiser"
+      ],
+      "description": "Følger hvordan personer får adgang, lærer, bidrar og beveger seg mellom perifere og sentrale roller.",
+      "definition": "Følger hvordan personer får adgang, lærer, bidrar og beveger seg mellom perifere og sentrale roller.",
+      "analytical_question": "Hva kan deltakelsesanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "deltakerforløp",
+        "adgangspraksis",
+        "læringssituasjoner"
+      ],
+      "evidence_inputs": [
+        "deltakerforløp",
+        "adgangspraksis",
+        "læringssituasjoner"
+      ],
+      "critical_distinctions": [
+        "tilstedeværelse vs deltakelse"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "medier_objekter_praksiser"
+      ],
+      "emne_affinities": [
+        "em_sub_ungdomskultur_identitet",
+        "em_sub_arrangorer_dugnad",
+        "em_sub_deltakelse_laring",
+        "em_sub_ritualer_praksis",
+        "em_sub_tilhorighet_miljo",
+        "em_sub_ovingsrom_kjeller",
+        "em_sub_cosplay_fandom",
+        "em_sub_gaming_lan"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever deltakelsesanalyse.",
+        "Samle deltakerforløp, adgangspraksis, læringssituasjoner og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom tilstedeværelse vs deltakelse.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Metoden må ikke kartlegge private personer unødig.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_grensearbeidsanalyse",
+      "title": "Grensearbeidsanalyse",
+      "short_label": "Grensearbeidsanalyse",
+      "status": "active",
+      "operation": "Analyserer situasjoner der aktører definerer, håndhever eller bestrider hvem og hva som hører til.",
+      "required_data": [
+        "grensedebatter",
+        "adgangsregler",
+        "autentisitetsdommer"
+      ],
+      "domain_ids": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "stil_symboler_koder_kropp"
+      ],
+      "description": "Analyserer situasjoner der aktører definerer, håndhever eller bestrider hvem og hva som hører til.",
+      "definition": "Analyserer situasjoner der aktører definerer, håndhever eller bestrider hvem og hva som hører til.",
+      "analytical_question": "Hva kan grensearbeidsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "grensedebatter",
+        "adgangsregler",
+        "autentisitetsdommer"
+      ],
+      "evidence_inputs": [
+        "grensedebatter",
+        "adgangsregler",
+        "autentisitetsdommer"
+      ],
+      "critical_distinctions": [
+        "beskrivelse av grense vs analytikerens norm"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "stil_symboler_koder_kropp"
+      ],
+      "emne_affinities": [
+        "em_sub_stil_kropp_symboler",
+        "em_sub_fandom_nisjer",
+        "em_sub_undergrunn_mainstream",
+        "em_sub_grensearbeid_autentisitet",
+        "em_sub_portvoktere_innvielse",
+        "em_sub_sprak_slang_koder",
+        "em_sub_visuelle_grenser"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever grensearbeidsanalyse.",
+        "Samle grensedebatter, adgangsregler, autentisitetsdommer og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom beskrivelse av grense vs analytikerens norm.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Synlige grensekonflikter kan skjule stille tilpasning.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_ritualanalyse",
+      "title": "Ritualanalyse",
+      "short_label": "Ritualanalyse",
+      "status": "active",
+      "operation": "Bryter gjentatte handlinger ned i sekvens, deltakere, symboler, overgang og sosial virkning.",
+      "required_data": [
+        "sekvensobservasjon",
+        "deltakertolkning",
+        "gjentakelser"
+      ],
       "domain_ids": [
         "fellesskap_scener_egenorganisering"
       ],
-      "description": "Observer gjentatte situasjoner, roller og praksiser over tid og før refleksiv feltdagbok. Metoden bruker situasjoner, feltnotater, samtykkebetingelser og posisjonsnotat.",
-      "operation": "Observer gjentatte situasjoner, roller og praksiser over tid og før refleksiv feltdagbok.",
-      "required_data": "situasjoner, feltnotater, samtykkebetingelser og posisjonsnotat",
+      "description": "Bryter gjentatte handlinger ned i sekvens, deltakere, symboler, overgang og sosial virkning.",
+      "definition": "Bryter gjentatte handlinger ned i sekvens, deltakere, symboler, overgang og sosial virkning.",
+      "analytical_question": "Hva kan ritualanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "sekvensobservasjon",
+        "deltakertolkning",
+        "gjentakelser"
+      ],
+      "evidence_inputs": [
+        "sekvensobservasjon",
+        "deltakertolkning",
+        "gjentakelser"
+      ],
+      "critical_distinctions": [
+        "rutine vs sosialt ladet ritual"
+      ],
+      "coverage_domains": [
+        "fellesskap_scener_egenorganisering"
+      ],
+      "emne_affinities": [
+        "em_sub_deltakelse_laring",
+        "em_sub_ritualer_praksis"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Observer gjentatte situasjoner, roller og praksiser over tid og før refleksiv feltdagbok.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever ritualanalyse.",
+        "Samle sekvensobservasjon, deltakertolkning, gjentakelser og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom rutine vs sosialt ladet ritual.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Forskerens tilgang og rolle former hva som blir synlig."
+        "Ritualtolkning krever kontekst og kan ikke leses fra form alene.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_relasjons_og_nettverkskartlegging",
-      "title": "Relasjons- og nettverkskartlegging",
-      "short_label": "Relasjons- og nettverkskartlegging",
+      "method_id": "met_sub_konfliktanalyse",
+      "title": "Konfliktanalyse",
+      "short_label": "Konfliktanalyse",
+      "status": "active",
+      "operation": "Skiller parter, interesser, ressurser, hendelsesforløp og mulige utfall i interne eller eksterne konflikter.",
+      "required_data": [
+        "tidslinje",
+        "flere partsstemmer",
+        "beslutningsspor"
+      ],
       "domain_ids": [
         "fellesskap_scener_egenorganisering"
       ],
-      "description": "Kartlegg hvem som kobler personer, steder, ressurser og hendelser uten å redusere relasjoner til bare kontaktfrekvens. Metoden bruker intervju, samarbeidsdata, hendelser og organisasjonsdokumenter.",
-      "operation": "Kartlegg hvem som kobler personer, steder, ressurser og hendelser uten å redusere relasjoner til bare kontaktfrekvens.",
-      "required_data": "intervju, samarbeidsdata, hendelser og organisasjonsdokumenter",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Kartlegg hvem som kobler personer, steder, ressurser og hendelser uten å redusere relasjoner til bare kontaktfrekvens.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Skiller parter, interesser, ressurser, hendelsesforløp og mulige utfall i interne eller eksterne konflikter.",
+      "definition": "Skiller parter, interesser, ressurser, hendelsesforløp og mulige utfall i interne eller eksterne konflikter.",
+      "analytical_question": "Hva kan konfliktanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "tidslinje",
+        "flere partsstemmer",
+        "beslutningsspor"
       ],
-      "limitations": [
-        "Sårbare nettverk kan ikke publiseres på individnivå uten særskilt risikovurdering."
+      "evidence_inputs": [
+        "tidslinje",
+        "flere partsstemmer",
+        "beslutningsspor"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "sakskonflikt vs personliggjøring"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_organisatorisk_prosessporing",
-      "title": "Organisatorisk prosessporing",
-      "short_label": "Organisatorisk prosessporing",
-      "domain_ids": [
+      "coverage_domains": [
         "fellesskap_scener_egenorganisering"
       ],
-      "description": "Rekonstruer en beslutning fra forslag gjennom forhandling, arbeid og faktisk gjennomføring. Metoden bruker møtereferat, arbeidsfordeling, tidslinje og aktørintervju.",
-      "operation": "Rekonstruer en beslutning fra forslag gjennom forhandling, arbeid og faktisk gjennomføring.",
-      "required_data": "møtereferat, arbeidsfordeling, tidslinje og aktørintervju",
+      "emne_affinities": [
+        "em_sub_scene_konflikt",
+        "em_sub_trygghet_eksklusjon"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Rekonstruer en beslutning fra forslag gjennom forhandling, arbeid og faktisk gjennomføring.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever konfliktanalyse.",
+        "Samle tidslinje, flere partsstemmer, beslutningsspor og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom sakskonflikt vs personliggjøring.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Uformelle beslutninger etterlater ofte skjeve eller manglende spor."
+        "Uverifiserte anklager må ikke gjentas som fakta.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_praksis_og_laringsanalyse",
-      "title": "Praksis- og læringsanalyse",
-      "short_label": "Praksis- og læringsanalyse",
+      "method_id": "met_sub_trygghets_og_eksklusjonsanalyse",
+      "title": "Trygghets- og eksklusjonsanalyse",
+      "short_label": "Trygghets- og eksklusjonsanalyse",
+      "status": "active",
+      "operation": "Vurderer hvem et trygghetstiltak beskytter, hvilke terskler det skaper og hvordan risiko omfordeles.",
+      "required_data": [
+        "husregler",
+        "hendelsesdata",
+        "ulike brukerperspektiver"
+      ],
       "domain_ids": [
-        "fellesskap_scener_egenorganisering"
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "sosiale_randsoner_omsorg_skadereduksjon"
       ],
-      "description": "Følg hvordan en deltaker lærer en konkret ferdighet, norm eller rolle gjennom observasjon, øving og tilbakemelding. Metoden bruker læringssituasjoner, artefakter, instruksjon og deltakerrefleksjon.",
-      "operation": "Følg hvordan en deltaker lærer en konkret ferdighet, norm eller rolle gjennom observasjon, øving og tilbakemelding.",
-      "required_data": "læringssituasjoner, artefakter, instruksjon og deltakerrefleksjon",
+      "description": "Vurderer hvem et trygghetstiltak beskytter, hvilke terskler det skaper og hvordan risiko omfordeles.",
+      "definition": "Vurderer hvem et trygghetstiltak beskytter, hvilke terskler det skaper og hvordan risiko omfordeles.",
+      "analytical_question": "Hva kan trygghets- og eksklusjonsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "husregler",
+        "hendelsesdata",
+        "ulike brukerperspektiver"
+      ],
+      "evidence_inputs": [
+        "husregler",
+        "hendelsesdata",
+        "ulike brukerperspektiver"
+      ],
+      "critical_distinctions": [
+        "trygghet for noen vs lik adgang"
+      ],
+      "coverage_domains": [
+        "fellesskap_scener_egenorganisering",
+        "steder_territorier_okkupering",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "emne_affinities": [
+        "em_sub_trygghet_eksklusjon",
+        "em_sub_klubbkultur_natt",
+        "em_sub_skeive_miljoer"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Følg hvordan en deltaker lærer en konkret ferdighet, norm eller rolle gjennom observasjon, øving og tilbakemelding.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever trygghets- og eksklusjonsanalyse.",
+        "Samle husregler, hendelsesdata, ulike brukerperspektiver og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom trygghet for noen vs lik adgang.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Synlig mestring viser ikke alene hvem som ble ekskludert fra læringsløpet."
+        "Hendelsesdata kan være skjeve og sensitive.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_intern_ulikhetsaudit",
-      "title": "Intern ulikhetsaudit",
-      "short_label": "Intern ulikhetsaudit",
+      "method_id": "met_sub_nettverksanalyse",
+      "title": "Nettverksanalyse",
+      "short_label": "Nettverksanalyse",
+      "status": "active",
+      "operation": "Kartlegger relasjoner og knutepunkter uten å forveksle kontakt, innflytelse og medlemskap.",
+      "required_data": [
+        "relasjonsdata",
+        "samarbeid",
+        "sirkulasjon"
+      ],
       "domain_ids": [
-        "fellesskap_scener_egenorganisering"
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "medier_objekter_praksiser"
       ],
-      "description": "Sammenlign adgang, taletid, arbeid, risiko og anerkjennelse mellom posisjoner i samme miljø. Metoden bruker rolledata, observasjon, intervjuer og fordelingsoversikt.",
-      "operation": "Sammenlign adgang, taletid, arbeid, risiko og anerkjennelse mellom posisjoner i samme miljø.",
-      "required_data": "rolledata, observasjon, intervjuer og fordelingsoversikt",
+      "description": "Kartlegger relasjoner og knutepunkter uten å forveksle kontakt, innflytelse og medlemskap.",
+      "definition": "Kartlegger relasjoner og knutepunkter uten å forveksle kontakt, innflytelse og medlemskap.",
+      "analytical_question": "Hva kan nettverksanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "relasjonsdata",
+        "samarbeid",
+        "sirkulasjon"
+      ],
+      "evidence_inputs": [
+        "relasjonsdata",
+        "samarbeid",
+        "sirkulasjon"
+      ],
+      "critical_distinctions": [
+        "kontakt vs sosialt bånd"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "fellesskap_scener_egenorganisering",
+        "medier_objekter_praksiser"
+      ],
+      "emne_affinities": [
+        "em_sub_musikkscener",
+        "em_sub_vennegjenger_lojalitet",
+        "em_sub_scene_fellesskap",
+        "em_sub_digitale_miljoer"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Sammenlign adgang, taletid, arbeid, risiko og anerkjennelse mellom posisjoner i samme miljø.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever nettverksanalyse.",
+        "Samle relasjonsdata, samarbeid, sirkulasjon og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom kontakt vs sosialt bånd.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Små tall og sensitive kjennetegn krever aggregering og varsom rapportering."
+        "Ufullstendige nettverk gir lett overdrevne sentralitetsfunn.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_semiotisk_stilanalyse",
-      "title": "Semiotisk stilanalyse",
-      "short_label": "Semiotisk stilanalyse",
+      "method_id": "met_sub_stilanalyse",
+      "title": "Stilanalyse",
+      "short_label": "Stilanalyse",
+      "status": "active",
+      "operation": "Analyserer kombinasjoner av klær, lyd, bevegelse og uttrykk som situerte sosiale repertoarer.",
+      "required_data": [
+        "visuelt og auditivt materiale",
+        "brukskontekst",
+        "mottakerlesninger"
+      ],
       "domain_ids": [
         "stil_symboler_koder_kropp"
       ],
-      "description": "Analyser hvordan et tegn får mening gjennom kombinasjon, kontrast, omplassering og aktørenes egne fortolkninger. Metoden bruker bilder, objekter, språkbruk, kontekst og aktørforklaringer.",
-      "operation": "Analyser hvordan et tegn får mening gjennom kombinasjon, kontrast, omplassering og aktørenes egne fortolkninger.",
-      "required_data": "bilder, objekter, språkbruk, kontekst og aktørforklaringer",
+      "description": "Analyserer kombinasjoner av klær, lyd, bevegelse og uttrykk som situerte sosiale repertoarer.",
+      "definition": "Analyserer kombinasjoner av klær, lyd, bevegelse og uttrykk som situerte sosiale repertoarer.",
+      "analytical_question": "Hva kan stilanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "visuelt og auditivt materiale",
+        "brukskontekst",
+        "mottakerlesninger"
+      ],
+      "evidence_inputs": [
+        "visuelt og auditivt materiale",
+        "brukskontekst",
+        "mottakerlesninger"
+      ],
+      "critical_distinctions": [
+        "enkelttegn vs stilistisk helhet"
+      ],
+      "coverage_domains": [
+        "stil_symboler_koder_kropp"
+      ],
+      "emne_affinities": [
+        "em_sub_stil_sprak",
+        "em_sub_visuelle_grenser"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Analyser hvordan et tegn får mening gjennom kombinasjon, kontrast, omplassering og aktørenes egne fortolkninger.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever stilanalyse.",
+        "Samle visuelt og auditivt materiale, brukskontekst, mottakerlesninger og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom enkelttegn vs stilistisk helhet.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Analytikeren må ikke tilskrive politisk mening som aktører og praksis ikke støtter."
+        "Stil kan ikke brukes til å fastslå en persons identitet.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_visuell_kontekstanalyse",
-      "title": "Visuell kontekstanalyse",
-      "short_label": "Visuell kontekstanalyse",
+      "method_id": "met_sub_semiotisk_analyse",
+      "title": "Semiotisk analyse",
+      "short_label": "Semiotisk analyse",
+      "status": "active",
+      "operation": "Undersøker hvordan tegn får mening gjennom kode, kontrast, kontekst og fortolkende fellesskap.",
+      "required_data": [
+        "tegnmateriale",
+        "brukskontekst",
+        "aktørtolkninger"
+      ],
+      "domain_ids": [
+        "subkulturteori_feltgrenser",
+        "stil_symboler_koder_kropp",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "description": "Undersøker hvordan tegn får mening gjennom kode, kontrast, kontekst og fortolkende fellesskap.",
+      "definition": "Undersøker hvordan tegn får mening gjennom kode, kontrast, kontekst og fortolkende fellesskap.",
+      "analytical_question": "Hva kan semiotisk analyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "tegnmateriale",
+        "brukskontekst",
+        "aktørtolkninger"
+      ],
+      "evidence_inputs": [
+        "tegnmateriale",
+        "brukskontekst",
+        "aktørtolkninger"
+      ],
+      "critical_distinctions": [
+        "tegnform vs sosial betydning"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "stil_symboler_koder_kropp",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_stil_kropp_symboler",
+        "em_sub_klaer_kropp_identitet",
+        "em_sub_objekter_merker",
+        "em_sub_remix_stil",
+        "em_sub_stil_sprak",
+        "em_sub_symboler_koder",
+        "em_sub_merkevare_stil"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever semiotisk analyse.",
+        "Samle tegnmateriale, brukskontekst, aktørtolkninger og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom tegnform vs sosial betydning.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Samme tegn kan ha motstridende betydninger.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_symbolanalyse",
+      "title": "Symbolanalyse",
+      "short_label": "Symbolanalyse",
+      "status": "active",
+      "operation": "Følger ett symbols produksjon, bruk, variasjon og mottakelse for å skille dokumentert sosial betydning fra løs assosiasjon.",
+      "required_data": [
+        "symbolforekomster over tid",
+        "brukskontekst",
+        "deltaker- og mottakerkilder"
+      ],
+      "domain_ids": [
+        "stil_symboler_koder_kropp",
+        "steder_territorier_okkupering"
+      ],
+      "description": "Følger ett symbols produksjon, bruk, variasjon og mottakelse for å skille dokumentert sosial betydning fra løs assosiasjon.",
+      "definition": "Følger ett symbols produksjon, bruk, variasjon og mottakelse for å skille dokumentert sosial betydning fra løs assosiasjon.",
+      "analytical_question": "Hva kan symbolanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "symbolforekomster over tid",
+        "brukskontekst",
+        "deltaker- og mottakerkilder"
+      ],
+      "evidence_inputs": [
+        "symbolforekomster over tid",
+        "brukskontekst",
+        "deltaker- og mottakerkilder"
+      ],
+      "critical_distinctions": [
+        "symbolform vs historisk og situert betydning"
+      ],
+      "coverage_domains": [
+        "stil_symboler_koder_kropp",
+        "steder_territorier_okkupering"
+      ],
+      "emne_affinities": [
+        "em_sub_symboler_koder",
+        "em_sub_territoriale_koder"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever symbolanalyse.",
+        "Samle symbolforekomster over tid, brukskontekst, deltaker- og mottakerkilder og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom symbolform vs historisk og situert betydning.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Et symbol har ikke én stabil betydning på tvers av miljøer og perioder.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_sprakanalyse",
+      "title": "Språkanalyse",
+      "short_label": "Språkanalyse",
+      "status": "active",
+      "operation": "Analyserer sjargong, slang, fortelling og kodebruk i konkrete kommunikasjonssituasjoner.",
+      "required_data": [
+        "tekst eller tale med kontekst",
+        "deltakerforklaring",
+        "situasjon"
+      ],
       "domain_ids": [
         "stil_symboler_koder_kropp"
       ],
-      "description": "Les bilde, utsnitt, publiseringssituasjon og fravær samlet før visuell stil tolkes. Metoden bruker originalfil, metadata, serie, publiseringsflate og samtykkekontekst.",
-      "operation": "Les bilde, utsnitt, publiseringssituasjon og fravær samlet før visuell stil tolkes.",
-      "required_data": "originalfil, metadata, serie, publiseringsflate og samtykkekontekst",
+      "description": "Analyserer sjargong, slang, fortelling og kodebruk i konkrete kommunikasjonssituasjoner.",
+      "definition": "Analyserer sjargong, slang, fortelling og kodebruk i konkrete kommunikasjonssituasjoner.",
+      "analytical_question": "Hva kan språkanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "tekst eller tale med kontekst",
+        "deltakerforklaring",
+        "situasjon"
+      ],
+      "evidence_inputs": [
+        "tekst eller tale med kontekst",
+        "deltakerforklaring",
+        "situasjon"
+      ],
+      "critical_distinctions": [
+        "ordbokbetydning vs situert bruk"
+      ],
+      "coverage_domains": [
+        "stil_symboler_koder_kropp"
+      ],
+      "emne_affinities": [
+        "em_sub_sprak_slang_koder"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Les bilde, utsnitt, publiseringssituasjon og fravær samlet før visuell stil tolkes.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever språkanalyse.",
+        "Samle tekst eller tale med kontekst, deltakerforklaring, situasjon og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom ordbokbetydning vs situert bruk.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Et ikonisk bilde kan overrepresentere det mest synlige og dramatiske."
+        "Lukkede eller sikkerhetsrelevante koder skal ikke eksponeres.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_sprak_og_kodeanalyse",
-      "title": "Språk- og kodeanalyse",
-      "short_label": "Språk- og kodeanalyse",
+      "method_id": "met_sub_kropps_og_stilanalyse",
+      "title": "Kropps- og stilanalyse",
+      "short_label": "Kropps- og stilanalyse",
+      "status": "active",
+      "operation": "Undersøker kroppslig fremføring, modifikasjon og påkledning som sosial praksis uten å slutte identitet fra utseende.",
+      "required_data": [
+        "samtykket observasjon",
+        "deltakerforklaring",
+        "situasjon"
+      ],
       "domain_ids": [
         "stil_symboler_koder_kropp"
       ],
-      "description": "Kartlegg hvordan ord, slang, navn og sjangermerker skifter betydning mellom situasjoner og deltakere. Metoden bruker samtaler, tekster, medier, tidsfesting og posisjonsdata.",
-      "operation": "Kartlegg hvordan ord, slang, navn og sjangermerker skifter betydning mellom situasjoner og deltakere.",
-      "required_data": "samtaler, tekster, medier, tidsfesting og posisjonsdata",
+      "description": "Undersøker kroppslig fremføring, modifikasjon og påkledning som sosial praksis uten å slutte identitet fra utseende.",
+      "definition": "Undersøker kroppslig fremføring, modifikasjon og påkledning som sosial praksis uten å slutte identitet fra utseende.",
+      "analytical_question": "Hva kan kropps- og stilanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "samtykket observasjon",
+        "deltakerforklaring",
+        "situasjon"
+      ],
+      "evidence_inputs": [
+        "samtykket observasjon",
+        "deltakerforklaring",
+        "situasjon"
+      ],
+      "critical_distinctions": [
+        "selvpresentasjon vs andres lesning"
+      ],
+      "coverage_domains": [
+        "stil_symboler_koder_kropp"
+      ],
+      "emne_affinities": [
+        "em_sub_klaer_kropp_identitet",
+        "em_sub_kropp_modifikasjon"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Kartlegg hvordan ord, slang, navn og sjangermerker skifter betydning mellom situasjoner og deltakere.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever kropps- og stilanalyse.",
+        "Samle samtykket observasjon, deltakerforklaring, situasjon og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom selvpresentasjon vs andres lesning.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Kodekunnskap kan være sensitiv, og offentliggjøring kan endre eller skade praksisen."
+        "Kropps- og identitetsdata er sensitive.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_objektbiografi",
-      "title": "Objektbiografi",
-      "short_label": "Objektbiografi",
+      "method_id": "met_sub_distinksjonsanalyse",
+      "title": "Distinksjonsanalyse",
+      "short_label": "Distinksjonsanalyse",
+      "status": "active",
+      "operation": "Kartlegger hvordan smak, kunnskap og tilgang omformes til status og sosial avstand.",
+      "required_data": [
+        "smaksdommer",
+        "tilgangsdata",
+        "statusmarkører"
+      ],
+      "domain_ids": [
+        "fellesskap_scener_egenorganisering",
+        "stil_symboler_koder_kropp",
+        "medier_objekter_praksiser",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "description": "Kartlegger hvordan smak, kunnskap og tilgang omformes til status og sosial avstand.",
+      "definition": "Kartlegger hvordan smak, kunnskap og tilgang omformes til status og sosial avstand.",
+      "analytical_question": "Hva kan distinksjonsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "smaksdommer",
+        "tilgangsdata",
+        "statusmarkører"
+      ],
+      "evidence_inputs": [
+        "smaksdommer",
+        "tilgangsdata",
+        "statusmarkører"
+      ],
+      "critical_distinctions": [
+        "preferanse vs sosial distinksjon"
+      ],
+      "coverage_domains": [
+        "fellesskap_scener_egenorganisering",
+        "stil_symboler_koder_kropp",
+        "medier_objekter_praksiser",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "emne_affinities": [
+        "em_sub_grensearbeid_autentisitet",
+        "em_sub_smak_distinksjon",
+        "em_sub_samlerobjekter",
+        "em_sub_klasse_urban_stil"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever distinksjonsanalyse.",
+        "Samle smaksdommer, tilgangsdata, statusmarkører og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom preferanse vs sosial distinksjon.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Analysen kan overvurdere klasse dersom andre ressurser ikke testes.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_affektanalyse",
+      "title": "Affektanalyse",
+      "short_label": "Affektanalyse",
+      "status": "active",
+      "operation": "Beskriver hvordan sanselige og romlige forhold former kroppslig intensitet, stemning og deltakelse.",
+      "required_data": [
+        "lyd, lys og rom",
+        "deltakerbeskrivelser",
+        "tidsforløp"
+      ],
       "domain_ids": [
         "stil_symboler_koder_kropp"
       ],
-      "description": "Følg ett objekt fra produksjon og tilegnelse gjennom bruk, bytte, reparasjon, utstilling eller kassering. Metoden bruker objektspor, eierskap, brukssituasjoner, foto og intervju.",
-      "operation": "Følg ett objekt fra produksjon og tilegnelse gjennom bruk, bytte, reparasjon, utstilling eller kassering.",
-      "required_data": "objektspor, eierskap, brukssituasjoner, foto og intervju",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Følg ett objekt fra produksjon og tilegnelse gjennom bruk, bytte, reparasjon, utstilling eller kassering.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Beskriver hvordan sanselige og romlige forhold former kroppslig intensitet, stemning og deltakelse.",
+      "definition": "Beskriver hvordan sanselige og romlige forhold former kroppslig intensitet, stemning og deltakelse.",
+      "analytical_question": "Hva kan affektanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "lyd, lys og rom",
+        "deltakerbeskrivelser",
+        "tidsforløp"
       ],
-      "limitations": [
-        "Ett objekts livsløp kan ikke uten videre generaliseres til hele stilen."
+      "evidence_inputs": [
+        "lyd, lys og rom",
+        "deltakerbeskrivelser",
+        "tidsforløp"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "opplevd stemning vs dokumentert virkning"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_smaks_og_statuskartlegging",
-      "title": "Smaks- og statuskartlegging",
-      "short_label": "Smaks- og statuskartlegging",
-      "domain_ids": [
+      "coverage_domains": [
         "stil_symboler_koder_kropp"
       ],
-      "description": "Undersøk hvilke vurderinger som gir anerkjennelse, hvem som kan uttale dem og hvilke ressurser de krever. Metoden bruker rangeringer, samtaler, adgang, forbruk, kompetanse og reaksjoner.",
-      "operation": "Undersøk hvilke vurderinger som gir anerkjennelse, hvem som kan uttale dem og hvilke ressurser de krever.",
-      "required_data": "rangeringer, samtaler, adgang, forbruk, kompetanse og reaksjoner",
+      "emne_affinities": [
+        "em_sub_estetikk_affekt"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Undersøk hvilke vurderinger som gir anerkjennelse, hvem som kan uttale dem og hvilke ressurser de krever.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever affektanalyse.",
+        "Samle lyd, lys og rom, deltakerbeskrivelser, tidsforløp og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom opplevd stemning vs dokumentert virkning.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Smak er situert; uttalte preferanser er ikke identiske med faktisk praksis."
+        "En observatørs reaksjon kan ikke generaliseres.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_stedlig_observasjon",
-      "title": "Stedlig observasjon",
-      "short_label": "Stedlig observasjon",
+      "method_id": "met_sub_materialitetsanalyse",
+      "title": "Materialitetsanalyse",
+      "short_label": "Materialitetsanalyse",
+      "status": "active",
+      "operation": "Følger objekters produksjon, bruk, slitasje, sirkulasjon og verdi i et sosialt miljø.",
+      "required_data": [
+        "objektbiografi",
+        "proveniens",
+        "bruksspor"
+      ],
+      "domain_ids": [
+        "stil_symboler_koder_kropp",
+        "medier_objekter_praksiser",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "description": "Følger objekters produksjon, bruk, slitasje, sirkulasjon og verdi i et sosialt miljø.",
+      "definition": "Følger objekters produksjon, bruk, slitasje, sirkulasjon og verdi i et sosialt miljø.",
+      "analytical_question": "Hva kan materialitetsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "objektbiografi",
+        "proveniens",
+        "bruksspor"
+      ],
+      "evidence_inputs": [
+        "objektbiografi",
+        "proveniens",
+        "bruksspor"
+      ],
+      "critical_distinctions": [
+        "produkt vs sosialt objekt"
+      ],
+      "coverage_domains": [
+        "stil_symboler_koder_kropp",
+        "medier_objekter_praksiser",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_kropp_modifikasjon",
+        "em_sub_objekter_merker",
+        "em_sub_cosplay_fandom",
+        "em_sub_musikkobjekter",
+        "em_sub_samlerobjekter",
+        "em_sub_historisering_revival"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever materialitetsanalyse.",
+        "Samle objektbiografi, proveniens, bruksspor og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom produkt vs sosialt objekt.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Manglende proveniens begrenser historiske slutninger.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_remixanalyse",
+      "title": "Remixanalyse",
+      "short_label": "Remixanalyse",
+      "status": "active",
+      "operation": "Sammenligner kildeuttrykk og ny bruk for å identifisere sitat, endring, makt og ny betydning.",
+      "required_data": [
+        "kildemateriale",
+        "varianter",
+        "produksjonskontekst"
+      ],
+      "domain_ids": [
+        "stil_symboler_koder_kropp",
+        "medier_objekter_praksiser"
+      ],
+      "description": "Sammenligner kildeuttrykk og ny bruk for å identifisere sitat, endring, makt og ny betydning.",
+      "definition": "Sammenligner kildeuttrykk og ny bruk for å identifisere sitat, endring, makt og ny betydning.",
+      "analytical_question": "Hva kan remixanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "kildemateriale",
+        "varianter",
+        "produksjonskontekst"
+      ],
+      "evidence_inputs": [
+        "kildemateriale",
+        "varianter",
+        "produksjonskontekst"
+      ],
+      "critical_distinctions": [
+        "kopi vs transformasjon"
+      ],
+      "coverage_domains": [
+        "stil_symboler_koder_kropp",
+        "medier_objekter_praksiser"
+      ],
+      "emne_affinities": [
+        "em_sub_remix_stil",
+        "em_sub_nettforum_memer"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever remixanalyse.",
+        "Samle kildemateriale, varianter, produksjonskontekst og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom kopi vs transformasjon.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Likhet alene viser ikke intensjon eller påvirkning.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_stedsanalyse",
+      "title": "Stedsanalyse",
+      "short_label": "Stedsanalyse",
+      "status": "active",
+      "operation": "Kobler fysisk utforming, bruk over tid, aktører, minner og regulering i ett avgrenset sted.",
+      "required_data": [
+        "kart",
+        "observasjon",
+        "stedstidslinje",
+        "aktørkilder"
+      ],
+      "domain_ids": [
+        "steder_territorier_okkupering",
+        "medier_objekter_praksiser",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "description": "Kobler fysisk utforming, bruk over tid, aktører, minner og regulering i ett avgrenset sted.",
+      "definition": "Kobler fysisk utforming, bruk over tid, aktører, minner og regulering i ett avgrenset sted.",
+      "analytical_question": "Hva kan stedsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "kart",
+        "observasjon",
+        "stedstidslinje",
+        "aktørkilder"
+      ],
+      "evidence_inputs": [
+        "kart",
+        "observasjon",
+        "stedstidslinje",
+        "aktørkilder"
+      ],
+      "critical_distinctions": [
+        "lokasjon vs sosialt sted"
+      ],
+      "coverage_domains": [
+        "steder_territorier_okkupering",
+        "medier_objekter_praksiser",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "emne_affinities": [
+        "em_sub_gentrifisering_tap",
+        "em_sub_graffiti_gatekunst",
+        "em_sub_ovingsrom_kjeller",
+        "em_sub_skate_byrom",
+        "em_sub_sted_scene",
+        "em_sub_uformelle_moteplasser",
+        "em_sub_plakater_stickers",
+        "em_sub_apne_rusmiljoer_gatefellesskap"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever stedsanalyse.",
+        "Samle kart, observasjon, stedstidslinje, aktørkilder og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom lokasjon vs sosialt sted.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Nåværende observasjon kan ikke alene rekonstruere fortiden.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_romlig_praksisanalyse",
+      "title": "Romlig praksisanalyse",
+      "short_label": "Romlig praksisanalyse",
+      "status": "active",
+      "operation": "Følger bevegelse, rytme og gjentatt bruk for å vise hvordan rom produseres gjennom handling.",
+      "required_data": [
+        "bruksmønstre",
+        "tidsrytmer",
+        "ruter på aggregert nivå"
+      ],
       "domain_ids": [
         "steder_territorier_okkupering"
       ],
-      "description": "Registrer bruk, rytme, materialitet, adgang og samhandling på flere tidspunkter uten å identifisere sårbare personer. Metoden bruker feltnotater, tidsserier, romskisse og refleksiv observatørlogg.",
-      "operation": "Registrer bruk, rytme, materialitet, adgang og samhandling på flere tidspunkter uten å identifisere sårbare personer.",
-      "required_data": "feltnotater, tidsserier, romskisse og refleksiv observatørlogg",
+      "description": "Følger bevegelse, rytme og gjentatt bruk for å vise hvordan rom produseres gjennom handling.",
+      "definition": "Følger bevegelse, rytme og gjentatt bruk for å vise hvordan rom produseres gjennom handling.",
+      "analytical_question": "Hva kan romlig praksisanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "bruksmønstre",
+        "tidsrytmer",
+        "ruter på aggregert nivå"
+      ],
+      "evidence_inputs": [
+        "bruksmønstre",
+        "tidsrytmer",
+        "ruter på aggregert nivå"
+      ],
+      "critical_distinctions": [
+        "designet funksjon vs faktisk bruk"
+      ],
+      "coverage_domains": [
+        "steder_territorier_okkupering"
+      ],
+      "emne_affinities": [
+        "em_sub_skate_byrom",
+        "em_sub_territoriale_koder"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Registrer bruk, rytme, materialitet, adgang og samhandling på flere tidspunkter uten å identifisere sårbare personer.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever romlig praksisanalyse.",
+        "Samle bruksmønstre, tidsrytmer, ruter på aggregert nivå og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom designet funksjon vs faktisk bruk.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Et kort besøk kan forveksle unntak, arrangement eller kontrollaksjon med normal bruk."
+        "Rutekartlegging kan true personvern i sårbare miljøer.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_rute_og_territoriekartlegging",
-      "title": "Rute- og territoriekartlegging",
-      "short_label": "Rute- og territoriekartlegging",
+      "method_id": "met_sub_romlig_maktanalyse",
+      "title": "Romlig maktanalyse",
+      "short_label": "Romlig maktanalyse",
+      "status": "active",
+      "operation": "Sammenligner sosial bruk med juridisk, økonomisk og institusjonell kontroll over adgang og varighet.",
+      "required_data": [
+        "eierskap",
+        "regulering",
+        "adgang",
+        "brukerkrav"
+      ],
+      "domain_ids": [
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll"
+      ],
+      "description": "Sammenligner sosial bruk med juridisk, økonomisk og institusjonell kontroll over adgang og varighet.",
+      "definition": "Sammenligner sosial bruk med juridisk, økonomisk og institusjonell kontroll over adgang og varighet.",
+      "analytical_question": "Hva kan romlig maktanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "eierskap",
+        "regulering",
+        "adgang",
+        "brukerkrav"
+      ],
+      "evidence_inputs": [
+        "eierskap",
+        "regulering",
+        "adgang",
+        "brukerkrav"
+      ],
+      "critical_distinctions": [
+        "sosial legitimitet vs formell råderett"
+      ],
+      "coverage_domains": [
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll"
+      ],
+      "emne_affinities": [
+        "em_sub_okkuperte_rom",
+        "em_sub_byutvikling_regulering",
+        "em_sub_politi_kontroll",
+        "em_sub_regulering_eiendom",
+        "em_sub_rett_til_byen"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever romlig maktanalyse.",
+        "Samle eierskap, regulering, adgang, brukerkrav og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom sosial legitimitet vs formell råderett.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Makt kan ikke utledes fra eierskap alene.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_graffitianalyse",
+      "title": "Graffitianalyse",
+      "short_label": "Graffitianalyse",
+      "status": "active",
+      "operation": "Analyserer lag, navn, flater, sirkulasjon og kontroll i writer- og gatekunstpraksiser.",
+      "required_data": [
+        "flater over tid",
+        "writerkilder",
+        "regulering",
+        "arkiv"
+      ],
       "domain_ids": [
         "steder_territorier_okkupering"
       ],
-      "description": "Kartlegg bevegelse, stopp, grenser og alternative ruter sammen med aktørenes egen romforståelse. Metoden bruker deltakerkart, observasjon, intervjuer og offentlig arealdata.",
-      "operation": "Kartlegg bevegelse, stopp, grenser og alternative ruter sammen med aktørenes egen romforståelse.",
-      "required_data": "deltakerkart, observasjon, intervjuer og offentlig arealdata",
+      "description": "Analyserer lag, navn, flater, sirkulasjon og kontroll i writer- og gatekunstpraksiser.",
+      "definition": "Analyserer lag, navn, flater, sirkulasjon og kontroll i writer- og gatekunstpraksiser.",
+      "analytical_question": "Hva kan graffitianalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "flater over tid",
+        "writerkilder",
+        "regulering",
+        "arkiv"
+      ],
+      "evidence_inputs": [
+        "flater over tid",
+        "writerkilder",
+        "regulering",
+        "arkiv"
+      ],
+      "critical_distinctions": [
+        "praksis og miljø vs bildeestetikk"
+      ],
+      "coverage_domains": [
+        "steder_territorier_okkupering"
+      ],
+      "emne_affinities": [
+        "em_sub_graffiti_gatekunst"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Kartlegg bevegelse, stopp, grenser og alternative ruter sammen med aktørenes egen romforståelse.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever graffitianalyse.",
+        "Samle flater over tid, writerkilder, regulering, arkiv og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom praksis og miljø vs bildeestetikk.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Detaljerte kart kan øke overvåkings- eller fortrengningsrisiko og må generaliseres."
+        "Aktive utøvere og lovbrudd skal ikke identifiseres.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_eiendoms_og_plandokumentanalyse",
-      "title": "Eiendoms- og plandokumentanalyse",
-      "short_label": "Eiendoms- og plandokumentanalyse",
+      "method_id": "met_sub_klubbanalyse",
+      "title": "Klubbanalyse",
+      "short_label": "Klubbanalyse",
+      "status": "active",
+      "operation": "Undersøker nattlige scener gjennom program, dør, økonomi, sikkerhet, rus og tidslig bruk av rom.",
+      "required_data": [
+        "program",
+        "adgangsregler",
+        "økonomi",
+        "deltakerstemmer"
+      ],
       "domain_ids": [
         "steder_territorier_okkupering"
       ],
-      "description": "Følg eierskap, regulering, tillatelser og vedtak som endrer adgang eller bruk. Metoden bruker grunnbok, planer, saksdokumenter, kontrakter og tidslinje.",
-      "operation": "Følg eierskap, regulering, tillatelser og vedtak som endrer adgang eller bruk.",
-      "required_data": "grunnbok, planer, saksdokumenter, kontrakter og tidslinje",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Følg eierskap, regulering, tillatelser og vedtak som endrer adgang eller bruk.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Undersøker nattlige scener gjennom program, dør, økonomi, sikkerhet, rus og tidslig bruk av rom.",
+      "definition": "Undersøker nattlige scener gjennom program, dør, økonomi, sikkerhet, rus og tidslig bruk av rom.",
+      "analytical_question": "Hva kan klubbanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "program",
+        "adgangsregler",
+        "økonomi",
+        "deltakerstemmer"
       ],
-      "limitations": [
-        "Formelle dokumenter viser vedtak, men ikke nødvendigvis faktisk bruk eller uformelle avtaler."
+      "evidence_inputs": [
+        "program",
+        "adgangsregler",
+        "økonomi",
+        "deltakerstemmer"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "enkeltarrangement vs klubbscene"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_stedskonflikt_tidslinje",
-      "title": "Stedskonfliktens tidslinje",
-      "short_label": "Stedskonfliktens tidslinje",
-      "domain_ids": [
+      "coverage_domains": [
         "steder_territorier_okkupering"
       ],
-      "description": "Koble hendelser, krav, vedtak, forhandlinger og materielle endringer i en datert kjede. Metoden bruker presse, aktørarkiv, offentlige dokumenter, foto og intervjuer.",
-      "operation": "Koble hendelser, krav, vedtak, forhandlinger og materielle endringer i en datert kjede.",
-      "required_data": "presse, aktørarkiv, offentlige dokumenter, foto og intervjuer",
+      "emne_affinities": [
+        "em_sub_klubbkultur_natt"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Koble hendelser, krav, vedtak, forhandlinger og materielle endringer i en datert kjede.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever klubbanalyse.",
+        "Samle program, adgangsregler, økonomi, deltakerstemmer og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom enkeltarrangement vs klubbscene.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Ettertidens seier- eller tapsfortelling kan forenkle samtidige uenigheter."
+        "Skjulte og uformelle arenaer krever varsomhet.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_affordans_og_praksisanalyse",
-      "title": "Affordans- og praksisanalyse",
-      "short_label": "Affordans- og praksisanalyse",
+      "method_id": "met_sub_gentrifiseringsanalyse",
+      "title": "Gentrifiseringsanalyse",
+      "short_label": "Gentrifiseringsanalyse",
+      "status": "active",
+      "operation": "Tester om investering, pris, eierskap og planendring kan kobles til konkret fortrengning eller bruksendring.",
+      "required_data": [
+        "pris- og eierskapsdata",
+        "flyttehistorikk",
+        "planvedtak"
+      ],
       "domain_ids": [
-        "steder_territorier_okkupering"
+        "steder_territorier_okkupering",
+        "kommersialisering_institusjonalisering_minne"
       ],
-      "description": "Undersøk hvilke handlinger materialer, former og regler muliggjør eller hemmer for ulike brukere. Metoden bruker måling, foto, bruksspor, observasjon og regulering.",
-      "operation": "Undersøk hvilke handlinger materialer, former og regler muliggjør eller hemmer for ulike brukere.",
-      "required_data": "måling, foto, bruksspor, observasjon og regulering",
+      "description": "Tester om investering, pris, eierskap og planendring kan kobles til konkret fortrengning eller bruksendring.",
+      "definition": "Tester om investering, pris, eierskap og planendring kan kobles til konkret fortrengning eller bruksendring.",
+      "analytical_question": "Hva kan gentrifiseringsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "pris- og eierskapsdata",
+        "flyttehistorikk",
+        "planvedtak"
+      ],
+      "evidence_inputs": [
+        "pris- og eierskapsdata",
+        "flyttehistorikk",
+        "planvedtak"
+      ],
+      "critical_distinctions": [
+        "områdeendring vs dokumentert fortrengning"
+      ],
+      "coverage_domains": [
+        "steder_territorier_okkupering",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_gentrifisering_tap",
+        "em_sub_tapte_steder"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Undersøk hvilke handlinger materialer, former og regler muliggjør eller hemmer for ulike brukere.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever gentrifiseringsanalyse.",
+        "Samle pris- og eierskapsdata, flyttehistorikk, planvedtak og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom områdeendring vs dokumentert fortrengning.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Mulig bruk er ikke det samme som faktisk eller legitim bruk."
+        "Samtidighet beviser ikke årsak.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_stemplingsanalyse",
-      "title": "Stemplingsanalyse",
-      "short_label": "Stemplingsanalyse",
+      "method_id": "met_sub_motstandsanalyse",
+      "title": "Motstandsanalyse",
+      "short_label": "Motstandsanalyse",
+      "status": "active",
+      "operation": "Identifiserer mål, repertoar, organisering, motpart og dokumenterte virkninger i kollektiv motstand.",
+      "required_data": [
+        "aksjonsspor",
+        "program",
+        "organisering",
+        "motpartsrespons"
+      ],
+      "domain_ids": [
+        "subkulturteori_feltgrenser",
+        "motstand_avvik_kontroll"
+      ],
+      "description": "Identifiserer mål, repertoar, organisering, motpart og dokumenterte virkninger i kollektiv motstand.",
+      "definition": "Identifiserer mål, repertoar, organisering, motpart og dokumenterte virkninger i kollektiv motstand.",
+      "analytical_question": "Hva kan motstandsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "aksjonsspor",
+        "program",
+        "organisering",
+        "motpartsrespons"
+      ],
+      "evidence_inputs": [
+        "aksjonsspor",
+        "program",
+        "organisering",
+        "motpartsrespons"
+      ],
+      "critical_distinctions": [
+        "uttrykt misnøye vs organisert motstand"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "motstand_avvik_kontroll"
+      ],
+      "emne_affinities": [
+        "em_sub_motkultur",
+        "em_sub_autonomi_motstand"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever motstandsanalyse.",
+        "Samle aksjonsspor, program, organisering, motpartsrespons og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom uttrykt misnøye vs organisert motstand.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Motstand skal ikke romantiseres eller reduseres til stil.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_avviksanalyse",
+      "title": "Avviksanalyse",
+      "short_label": "Avviksanalyse",
+      "status": "active",
+      "operation": "Undersøker hvem som definerer normalitet, hvordan etiketter anvendes og hvilke følger de får.",
+      "required_data": [
+        "regler",
+        "reaksjoner",
+        "selvdefinisjon",
+        "historisk kontekst"
+      ],
       "domain_ids": [
         "motstand_avvik_kontroll"
       ],
-      "description": "Sammenlign handling, regel, merkelapp, håndhever og konsekvens i samme dokumenterte kjede. Metoden bruker regler, hendelser, omtale, sanksjoner og aktørreaksjoner.",
-      "operation": "Sammenlign handling, regel, merkelapp, håndhever og konsekvens i samme dokumenterte kjede.",
-      "required_data": "regler, hendelser, omtale, sanksjoner og aktørreaksjoner",
+      "description": "Undersøker hvem som definerer normalitet, hvordan etiketter anvendes og hvilke følger de får.",
+      "definition": "Undersøker hvem som definerer normalitet, hvordan etiketter anvendes og hvilke følger de får.",
+      "analytical_question": "Hva kan avviksanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "regler",
+        "reaksjoner",
+        "selvdefinisjon",
+        "historisk kontekst"
+      ],
+      "evidence_inputs": [
+        "regler",
+        "reaksjoner",
+        "selvdefinisjon",
+        "historisk kontekst"
+      ],
+      "critical_distinctions": [
+        "handling vs sosial avviksetikett"
+      ],
+      "coverage_domains": [
+        "motstand_avvik_kontroll"
+      ],
+      "emne_affinities": [
+        "em_sub_avvik_normalitet"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Sammenlign handling, regel, merkelapp, håndhever og konsekvens i samme dokumenterte kjede.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever avviksanalyse.",
+        "Samle regler, reaksjoner, selvdefinisjon, historisk kontekst og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom handling vs sosial avviksetikett.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Metoden forklarer kategorisering, ikke nødvendigvis hvorfor handlingen oppsto."
+        "Analysen må ikke reprodusere stigma.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_moralpanikk_prosessporing",
-      "title": "Moralpanikkens prosessporing",
-      "short_label": "Moralpanikkens prosessporing",
+      "method_id": "met_sub_moralpanikkanalyse",
+      "title": "Moralpanikkanalyse",
+      "short_label": "Moralpanikkanalyse",
+      "status": "active",
+      "operation": "Tester eskalering fra hendelse til generalisert trussel gjennom aktører, medierepetisjon og policyrespons.",
+      "required_data": [
+        "medietidslinje",
+        "skadedata",
+        "reaksjoner"
+      ],
       "domain_ids": [
         "motstand_avvik_kontroll"
       ],
-      "description": "Test om bekymring forsterkes gjennom symbolisering, generalisering, autoritative krav og uforholdsmessige tiltak. Metoden bruker tidsserie av medieoppslag, uttalelser, data og vedtak.",
-      "operation": "Test om bekymring forsterkes gjennom symbolisering, generalisering, autoritative krav og uforholdsmessige tiltak.",
-      "required_data": "tidsserie av medieoppslag, uttalelser, data og vedtak",
+      "description": "Tester eskalering fra hendelse til generalisert trussel gjennom aktører, medierepetisjon og policyrespons.",
+      "definition": "Tester eskalering fra hendelse til generalisert trussel gjennom aktører, medierepetisjon og policyrespons.",
+      "analytical_question": "Hva kan moralpanikkanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "medietidslinje",
+        "skadedata",
+        "reaksjoner"
+      ],
+      "evidence_inputs": [
+        "medietidslinje",
+        "skadedata",
+        "reaksjoner"
+      ],
+      "critical_distinctions": [
+        "reell skade vs overgeneralisert trussel"
+      ],
+      "coverage_domains": [
+        "motstand_avvik_kontroll"
+      ],
+      "emne_affinities": [
+        "em_sub_moralpanikk"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Test om bekymring forsterkes gjennom symbolisering, generalisering, autoritative krav og uforholdsmessige tiltak.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever moralpanikkanalyse.",
+        "Samle medietidslinje, skadedata, reaksjoner og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom reell skade vs overgeneralisert trussel.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Sterk offentlig bekymring er ikke automatisk moralpanikk dersom skade og respons er forholdsmessig dokumentert."
+        "Begrepet må ikke avvise dokumentert skade.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_kontrollkilde_triangulering",
-      "title": "Triangulering av kontrollkilder",
-      "short_label": "Triangulering av kontrollkilder",
+      "method_id": "met_sub_kontrollanalyse",
+      "title": "Kontrollanalyse",
+      "short_label": "Kontrollanalyse",
+      "status": "active",
+      "operation": "Kartlegger overvåkning, adgang, sanksjon og selvregulering samt hvem tiltakene faktisk rammer.",
+      "required_data": [
+        "kontrollregler",
+        "hendelser",
+        "målgruppe",
+        "virkning"
+      ],
+      "domain_ids": [
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "description": "Kartlegger overvåkning, adgang, sanksjon og selvregulering samt hvem tiltakene faktisk rammer.",
+      "definition": "Kartlegger overvåkning, adgang, sanksjon og selvregulering samt hvem tiltakene faktisk rammer.",
+      "analytical_question": "Hva kan kontrollanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "kontrollregler",
+        "hendelser",
+        "målgruppe",
+        "virkning"
+      ],
+      "evidence_inputs": [
+        "kontrollregler",
+        "hendelser",
+        "målgruppe",
+        "virkning"
+      ],
+      "critical_distinctions": [
+        "mandat vs faktisk praksis"
+      ],
+      "coverage_domains": [
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "emne_affinities": [
+        "em_sub_politi_kontroll",
+        "em_sub_sosial_kontroll",
+        "em_sub_synlighet_kontroll",
+        "em_sub_marginalisering_synlighet"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever kontrollanalyse.",
+        "Samle kontrollregler, hendelser, målgruppe, virkning og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom mandat vs faktisk praksis.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Kontrolldata kan være selektive og sensitive.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_kriminaliseringsanalyse",
+      "title": "Kriminaliseringsanalyse",
+      "short_label": "Kriminaliseringsanalyse",
+      "status": "active",
+      "operation": "Følger lov, håndheving og sanksjon over tid for å forklare hvordan praksiser gjøres straffbare i praksis.",
+      "required_data": [
+        "lovendring",
+        "håndhevingsdata",
+        "aktørrespons"
+      ],
       "domain_ids": [
         "motstand_avvik_kontroll"
       ],
-      "description": "Sammenhold politi-, medie-, forvaltnings- og miljøkilder om samme hendelse og skill observasjon fra vurdering. Metoden bruker hendelsesnære kilder med dato, rolle og proveniens.",
-      "operation": "Sammenhold politi-, medie-, forvaltnings- og miljøkilder om samme hendelse og skill observasjon fra vurdering.",
-      "required_data": "hendelsesnære kilder med dato, rolle og proveniens",
+      "description": "Følger lov, håndheving og sanksjon over tid for å forklare hvordan praksiser gjøres straffbare i praksis.",
+      "definition": "Følger lov, håndheving og sanksjon over tid for å forklare hvordan praksiser gjøres straffbare i praksis.",
+      "analytical_question": "Hva kan kriminaliseringsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "lovendring",
+        "håndhevingsdata",
+        "aktørrespons"
+      ],
+      "evidence_inputs": [
+        "lovendring",
+        "håndhevingsdata",
+        "aktørrespons"
+      ],
+      "critical_distinctions": [
+        "ulovlighet vs kriminaliseringsprosess"
+      ],
+      "coverage_domains": [
+        "motstand_avvik_kontroll"
+      ],
+      "emne_affinities": [
+        "em_sub_kriminalisering"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Sammenhold politi-, medie-, forvaltnings- og miljøkilder om samme hendelse og skill observasjon fra vurdering.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever kriminaliseringsanalyse.",
+        "Samle lovendring, håndhevingsdata, aktørrespons og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom ulovlighet vs kriminaliseringsprosess.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Kontrollinstitusjonenes detaljerte data kan fortsatt bygge på selektiv registrering."
+        "Metoden skal ikke identifisere mulige lovbrytere.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_handhevingsdata_analyse",
-      "title": "Analyse av håndhevingsdata",
-      "short_label": "Analyse av håndhevingsdata",
+      "method_id": "met_sub_reguleringsanalyse",
+      "title": "Reguleringsanalyse",
+      "short_label": "Reguleringsanalyse",
+      "status": "active",
+      "operation": "Kobler konkrete regler og vedtak til implementering, ressurser og observerbare konsekvenser.",
+      "required_data": [
+        "regeltekst",
+        "vedtak",
+        "implementering",
+        "utfall"
+      ],
+      "domain_ids": [
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll"
+      ],
+      "description": "Kobler konkrete regler og vedtak til implementering, ressurser og observerbare konsekvenser.",
+      "definition": "Kobler konkrete regler og vedtak til implementering, ressurser og observerbare konsekvenser.",
+      "analytical_question": "Hva kan reguleringsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "regeltekst",
+        "vedtak",
+        "implementering",
+        "utfall"
+      ],
+      "evidence_inputs": [
+        "regeltekst",
+        "vedtak",
+        "implementering",
+        "utfall"
+      ],
+      "critical_distinctions": [
+        "regel på papiret vs faktisk gjennomføring"
+      ],
+      "coverage_domains": [
+        "steder_territorier_okkupering",
+        "motstand_avvik_kontroll"
+      ],
+      "emne_affinities": [
+        "em_sub_byutvikling_regulering",
+        "em_sub_kriminalisering",
+        "em_sub_regulering_eiendom",
+        "em_sub_kulturpolitikk_subkultur"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever reguleringsanalyse.",
+        "Samle regeltekst, vedtak, implementering, utfall og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom regel på papiret vs faktisk gjennomføring.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Regeltekst alene viser ikke virkning.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_rett_til_byen_analyse",
+      "title": "Rett-til-byen-analyse",
+      "short_label": "Rett-til-byen-analyse",
+      "status": "active",
+      "operation": "Vurderer hvem som får bruke, delta i og forme byen gjennom institusjoner, eierskap og kollektiv praksis.",
+      "required_data": [
+        "medvirkning",
+        "plan",
+        "brukerkrav",
+        "utfall"
+      ],
       "domain_ids": [
         "motstand_avvik_kontroll"
       ],
-      "description": "Beregn hvem, hva, hvor og når kontroll rammer med eksplisitt nevner og regelgrunnlag. Metoden bruker kontroller, sanksjoner, befolkning/bruk, tidsrom og geografisk enhet.",
-      "operation": "Beregn hvem, hva, hvor og når kontroll rammer med eksplisitt nevner og regelgrunnlag.",
-      "required_data": "kontroller, sanksjoner, befolkning/bruk, tidsrom og geografisk enhet",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Beregn hvem, hva, hvor og når kontroll rammer med eksplisitt nevner og regelgrunnlag.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Vurderer hvem som får bruke, delta i og forme byen gjennom institusjoner, eierskap og kollektiv praksis.",
+      "definition": "Vurderer hvem som får bruke, delta i og forme byen gjennom institusjoner, eierskap og kollektiv praksis.",
+      "analytical_question": "Hva kan rett-til-byen-analyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "medvirkning",
+        "plan",
+        "brukerkrav",
+        "utfall"
       ],
-      "limitations": [
-        "Registrert håndheving måler ikke all regelbryting og kan speile kontrollprioriteringer."
+      "evidence_inputs": [
+        "medvirkning",
+        "plan",
+        "brukerkrav",
+        "utfall"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "adgang vs makt til å forme"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_motstandsrepertoar_analyse",
-      "title": "Analyse av motstandsrepertoar",
-      "short_label": "Analyse av motstandsrepertoar",
-      "domain_ids": [
+      "coverage_domains": [
         "motstand_avvik_kontroll"
       ],
-      "description": "Klassifiser taktikker etter mål, målgruppe, risiko, ressurser og faktisk respons. Metoden bruker aksjonsdokumentasjon, kommunikasjon, observasjon og utfall.",
-      "operation": "Klassifiser taktikker etter mål, målgruppe, risiko, ressurser og faktisk respons.",
-      "required_data": "aksjonsdokumentasjon, kommunikasjon, observasjon og utfall",
+      "emne_affinities": [
+        "em_sub_rett_til_byen"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Klassifiser taktikker etter mål, målgruppe, risiko, ressurser og faktisk respons.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever rett-til-byen-analyse.",
+        "Samle medvirkning, plan, brukerkrav, utfall og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom adgang vs makt til å forme.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Synlig aksjon kan overskygge langsom organisering og omsorgsarbeid."
+        "Normative krav må skilles fra rettslige rettigheter.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_mediearkeologi",
-      "title": "Mediearkeologi",
-      "short_label": "Mediearkeologi",
+      "method_id": "met_sub_diskursanalyse",
+      "title": "Diskursanalyse",
+      "short_label": "Diskursanalyse",
+      "status": "active",
+      "operation": "Analyserer kategorier, problemframstillinger, tausheter og autoritet i tekst og tale.",
+      "required_data": [
+        "medietekst",
+        "policytekst",
+        "selvrepresentasjon"
+      ],
+      "domain_ids": [
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "description": "Analyserer kategorier, problemframstillinger, tausheter og autoritet i tekst og tale.",
+      "definition": "Analyserer kategorier, problemframstillinger, tausheter og autoritet i tekst og tale.",
+      "analytical_question": "Hva kan diskursanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "medietekst",
+        "policytekst",
+        "selvrepresentasjon"
+      ],
+      "evidence_inputs": [
+        "medietekst",
+        "policytekst",
+        "selvrepresentasjon"
+      ],
+      "critical_distinctions": [
+        "språklig framstilling vs materiell virkning"
+      ],
+      "coverage_domains": [
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_avvik_normalitet",
+        "em_sub_moralpanikk",
+        "em_sub_synlighet_kontroll",
+        "em_sub_klasse_urban_stil",
+        "em_sub_marginalisering_synlighet",
+        "em_sub_stigma_representasjon",
+        "em_sub_historiemakt",
+        "em_sub_nostalgi_revival"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever diskursanalyse.",
+        "Samle medietekst, policytekst, selvrepresentasjon og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom språklig framstilling vs materiell virkning.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Tekstanalyse alene viser ikke hvordan mottakere handler.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_mediearkeologisk_analyse",
+      "title": "Mediearkeologisk analyse",
+      "short_label": "Mediearkeologisk analyse",
+      "status": "active",
+      "operation": "Undersøker format, teknologi, distribusjon, proveniens og brukshistorie i eldre og nyere medier.",
+      "required_data": [
+        "originalmateriale",
+        "formatdata",
+        "distribusjon",
+        "proveniens"
+      ],
+      "domain_ids": [
+        "medier_objekter_praksiser",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "description": "Undersøker format, teknologi, distribusjon, proveniens og brukshistorie i eldre og nyere medier.",
+      "definition": "Undersøker format, teknologi, distribusjon, proveniens og brukshistorie i eldre og nyere medier.",
+      "analytical_question": "Hva kan mediearkeologisk analyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "originalmateriale",
+        "formatdata",
+        "distribusjon",
+        "proveniens"
+      ],
+      "evidence_inputs": [
+        "originalmateriale",
+        "formatdata",
+        "distribusjon",
+        "proveniens"
+      ],
+      "critical_distinctions": [
+        "medieinnhold vs mediets materielle vilkår"
+      ],
+      "coverage_domains": [
+        "medier_objekter_praksiser",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_fanziner_plakater",
+        "em_sub_musikkobjekter",
+        "em_sub_plakater_stickers",
+        "em_sub_uavhengige_medier",
+        "em_sub_dokumentasjon_arkiv"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever mediearkeologisk analyse.",
+        "Samle originalmateriale, formatdata, distribusjon, proveniens og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom medieinnhold vs mediets materielle vilkår.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Bevart materiale er et selektivt utvalg.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_diy_analyse",
+      "title": "DIY-analyse",
+      "short_label": "DIY-analyse",
+      "status": "active",
+      "operation": "Kartlegger hva som produseres selv, hvilke ressurser og ferdigheter som kreves, og hvilke avhengigheter som består.",
+      "required_data": [
+        "produksjonskjede",
+        "kostnader",
+        "arbeidsdeling",
+        "distribusjon"
+      ],
       "domain_ids": [
         "medier_objekter_praksiser"
       ],
-      "description": "Undersøk hvordan eldre formater, teknikker og infrastrukturer fortsatt former hva som kan produseres og bevares. Metoden bruker medieobjekter, avspillingsutstyr, formater, kataloger og brukshistorie.",
-      "operation": "Undersøk hvordan eldre formater, teknikker og infrastrukturer fortsatt former hva som kan produseres og bevares.",
-      "required_data": "medieobjekter, avspillingsutstyr, formater, kataloger og brukshistorie",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Undersøk hvordan eldre formater, teknikker og infrastrukturer fortsatt former hva som kan produseres og bevares.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Kartlegger hva som produseres selv, hvilke ressurser og ferdigheter som kreves, og hvilke avhengigheter som består.",
+      "definition": "Kartlegger hva som produseres selv, hvilke ressurser og ferdigheter som kreves, og hvilke avhengigheter som består.",
+      "analytical_question": "Hva kan diy-analyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "produksjonskjede",
+        "kostnader",
+        "arbeidsdeling",
+        "distribusjon"
       ],
-      "limitations": [
-        "Teknologisk format forklarer ikke alene innholdets mening eller sosiale bruk."
+      "evidence_inputs": [
+        "produksjonskjede",
+        "kostnader",
+        "arbeidsdeling",
+        "distribusjon"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "egenproduksjon vs strukturell autonomi"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_proveniens_og_dokumentkritikk",
-      "title": "Proveniens- og dokumentkritikk",
-      "short_label": "Proveniens- og dokumentkritikk",
-      "domain_ids": [
+      "coverage_domains": [
         "medier_objekter_praksiser"
       ],
-      "description": "Spor hvem som skapte, valgte, redigerte, oppbevarte og publiserte et dokument. Metoden bruker original, metadata, arkivkontekst, versjoner og rettighetsstatus.",
-      "operation": "Spor hvem som skapte, valgte, redigerte, oppbevarte og publiserte et dokument.",
-      "required_data": "original, metadata, arkivkontekst, versjoner og rettighetsstatus",
+      "emne_affinities": [
+        "em_sub_diy_praksis",
+        "em_sub_fanziner_plakater"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Spor hvem som skapte, valgte, redigerte, oppbevarte og publiserte et dokument.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever diy-analyse.",
+        "Samle produksjonskjede, kostnader, arbeidsdeling, distribusjon og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom egenproduksjon vs strukturell autonomi.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "God proveniens gjør ikke dokumentet representativt for hele miljøet."
+        "Uformelt arbeid og ulik belastning kan skjules.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_plattform_walkthrough",
-      "title": "Plattform-walkthrough",
-      "short_label": "Plattform-walkthrough",
+      "method_id": "met_sub_digital_fellesskapsanalyse",
+      "title": "Digital fellesskapsanalyse",
+      "short_label": "Digital fellesskapsanalyse",
+      "status": "active",
+      "operation": "Undersøker varighet, moderering, roller, normer og relasjoner i plattformbaserte miljøer.",
+      "required_data": [
+        "trådforløp",
+        "moderering",
+        "nettverk",
+        "deltakerkilder"
+      ],
       "domain_ids": [
+        "subkulturteori_feltgrenser",
         "medier_objekter_praksiser"
       ],
-      "description": "Dokumenter grensesnitt, standardvalg, synlighetsregler og brukerbaner på et bestemt tidspunkt. Metoden bruker skjermopptak, vilkår, testkonto, dato og funksjonslogg.",
-      "operation": "Dokumenter grensesnitt, standardvalg, synlighetsregler og brukerbaner på et bestemt tidspunkt.",
-      "required_data": "skjermopptak, vilkår, testkonto, dato og funksjonslogg",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Dokumenter grensesnitt, standardvalg, synlighetsregler og brukerbaner på et bestemt tidspunkt.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Undersøker varighet, moderering, roller, normer og relasjoner i plattformbaserte miljøer.",
+      "definition": "Undersøker varighet, moderering, roller, normer og relasjoner i plattformbaserte miljøer.",
+      "analytical_question": "Hva kan digital fellesskapsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "trådforløp",
+        "moderering",
+        "nettverk",
+        "deltakerkilder"
       ],
-      "limitations": [
-        "Plattformer endres raskt, og testbruk viser ikke alle personaliserte resultater."
+      "evidence_inputs": [
+        "trådforløp",
+        "moderering",
+        "nettverk",
+        "deltakerkilder"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "følgergruppe vs sosialt miljø"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_innholdsanalyse",
-      "title": "Innholdsanalyse",
-      "short_label": "Innholdsanalyse",
-      "domain_ids": [
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
         "medier_objekter_praksiser"
       ],
-      "description": "Definer utvalg, kodingsenhet og kategorier før mønstre i tekster, bilder eller lyd telles og fortolkes. Metoden bruker avgrenset korpus, kodebok, reliabilitet og kontekstnotat.",
-      "operation": "Definer utvalg, kodingsenhet og kategorier før mønstre i tekster, bilder eller lyd telles og fortolkes.",
-      "required_data": "avgrenset korpus, kodebok, reliabilitet og kontekstnotat",
+      "emne_affinities": [
+        "em_sub_fandom_nisjer",
+        "em_sub_digitale_miljoer",
+        "em_sub_gaming_lan",
+        "em_sub_nettforum_memer"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Definer utvalg, kodingsenhet og kategorier før mønstre i tekster, bilder eller lyd telles og fortolkes.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever digital fellesskapsanalyse.",
+        "Samle trådforløp, moderering, nettverk, deltakerkilder og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom følgergruppe vs sosialt miljø.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Frekvens er ikke det samme som betydning eller påvirkning."
+        "Forventet offentlighet må vurderes separat fra teknisk tilgang.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_sirkulasjonsanalyse",
-      "title": "Sirkulasjonsanalyse",
-      "short_label": "Sirkulasjonsanalyse",
-      "domain_ids": [
-        "medier_objekter_praksiser"
+      "method_id": "met_sub_omsorgslandskapsanalyse",
+      "title": "Omsorgslandskapsanalyse",
+      "short_label": "Omsorgslandskapsanalyse",
+      "status": "active",
+      "operation": "Kartlegger hvordan mennesker beveger seg mellom uformell hjelp, steder og tjenester uten å individualisere sårbare ruter.",
+      "required_data": [
+        "aggregerte brukerforløp",
+        "tjenestekart",
+        "miljønære kilder"
       ],
-      "description": "Følg hvordan et objekt eller uttrykk beveger seg mellom produsenter, kanaler, steder og publikum. Metoden bruker distribusjonsspor, lenker, salg/bytte, hendelser og intervjuer.",
-      "operation": "Følg hvordan et objekt eller uttrykk beveger seg mellom produsenter, kanaler, steder og publikum.",
-      "required_data": "distribusjonsspor, lenker, salg/bytte, hendelser og intervjuer",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Følg hvordan et objekt eller uttrykk beveger seg mellom produsenter, kanaler, steder og publikum.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
-      ],
-      "limitations": [
-        "Synlige delinger kan skjule privat, analog eller ikke-målbar sirkulasjon."
-      ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_risikomiljoanalyse",
-      "title": "Risikomiljøanalyse",
-      "short_label": "Risikomiljøanalyse",
       "domain_ids": [
         "sosiale_randsoner_omsorg_skadereduksjon"
       ],
-      "description": "Analyser hvordan fysisk rom, marked, politikk, tjenester og relasjoner fordeler risiko og beskyttelse. Metoden bruker helse- og tjenestedata, sted, regler, intervjuer og tidsutvikling.",
-      "operation": "Analyser hvordan fysisk rom, marked, politikk, tjenester og relasjoner fordeler risiko og beskyttelse.",
-      "required_data": "helse- og tjenestedata, sted, regler, intervjuer og tidsutvikling",
+      "description": "Kartlegger hvordan mennesker beveger seg mellom uformell hjelp, steder og tjenester uten å individualisere sårbare ruter.",
+      "definition": "Kartlegger hvordan mennesker beveger seg mellom uformell hjelp, steder og tjenester uten å individualisere sårbare ruter.",
+      "analytical_question": "Hva kan omsorgslandskapsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "aggregerte brukerforløp",
+        "tjenestekart",
+        "miljønære kilder"
+      ],
+      "evidence_inputs": [
+        "aggregerte brukerforløp",
+        "tjenestekart",
+        "miljønære kilder"
+      ],
+      "critical_distinctions": [
+        "omsorgsnettverk vs enkelttiltak"
+      ],
+      "coverage_domains": [
+        "sosiale_randsoner_omsorg_skadereduksjon"
+      ],
+      "emne_affinities": [
+        "em_sub_apne_rusmiljoer_gatefellesskap",
+        "em_sub_hjemloshet_ustabile_boforhold",
+        "em_sub_gjensidig_hjelp_omsorg"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Analyser hvordan fysisk rom, marked, politikk, tjenester og relasjoner fordeler risiko og beskyttelse.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever omsorgslandskapsanalyse.",
+        "Samle aggregerte brukerforløp, tjenestekart, miljønære kilder og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom omsorgsnettverk vs enkelttiltak.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Individdata må ikke brukes til å forklare strukturell risiko uten kontekst."
+        "Geografisk detalj kan øke risiko og skal minimeres.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "sensitive_population",
-        "privacy_context",
-        "stigma_risk",
-        "participatory_voice"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_tjenestereise_kartlegging",
-      "title": "Kartlegging av tjenestereise",
-      "short_label": "Kartlegging av tjenestereise",
+      "method_id": "met_sub_skadereduksjonsanalyse",
+      "title": "Skadereduksjonsanalyse",
+      "short_label": "Skadereduksjonsanalyse",
+      "status": "active",
+      "operation": "Vurderer målskade, terskel, målgruppe, implementering og dokumenterte utfall i lavterskeltiltak.",
+      "required_data": [
+        "tiltaksregel",
+        "brukererfaring",
+        "utfallsdata",
+        "retningslinjer"
+      ],
       "domain_ids": [
         "sosiale_randsoner_omsorg_skadereduksjon"
       ],
-      "description": "Følg en anonymisert brukerbane fra behov gjennom kontakt, terskel, hjelp, avbrudd og oppfølging. Metoden bruker prosedyrer, åpningstider, observasjon, anonymiserte erfaringer og utfall.",
-      "operation": "Følg en anonymisert brukerbane fra behov gjennom kontakt, terskel, hjelp, avbrudd og oppfølging.",
-      "required_data": "prosedyrer, åpningstider, observasjon, anonymiserte erfaringer og utfall",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Følg en anonymisert brukerbane fra behov gjennom kontakt, terskel, hjelp, avbrudd og oppfølging.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Vurderer målskade, terskel, målgruppe, implementering og dokumenterte utfall i lavterskeltiltak.",
+      "definition": "Vurderer målskade, terskel, målgruppe, implementering og dokumenterte utfall i lavterskeltiltak.",
+      "analytical_question": "Hva kan skadereduksjonsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "tiltaksregel",
+        "brukererfaring",
+        "utfallsdata",
+        "retningslinjer"
       ],
-      "limitations": [
-        "Én reise er ikke representativ, og kartet må ikke røpe identitet eller sårbare ruter."
+      "evidence_inputs": [
+        "tiltaksregel",
+        "brukererfaring",
+        "utfallsdata",
+        "retningslinjer"
       ],
-      "ethics_flags": [
-        "sensitive_population",
-        "privacy_context",
-        "stigma_risk",
-        "participatory_voice"
+      "critical_distinctions": [
+        "skadereduksjon vs behandling og kontroll"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_deltakende_kunnskapsproduksjon",
-      "title": "Deltakende kunnskapsproduksjon",
-      "short_label": "Deltakende kunnskapsproduksjon",
-      "domain_ids": [
+      "coverage_domains": [
         "sosiale_randsoner_omsorg_skadereduksjon"
       ],
-      "description": "La berørte grupper påvirke spørsmål, begreper, fortolkning og formidling med reell beslutningsmakt. Metoden bruker samskapingslogg, rolleavtaler, honorering, samtykke og uenighet.",
-      "operation": "La berørte grupper påvirke spørsmål, begreper, fortolkning og formidling med reell beslutningsmakt.",
-      "required_data": "samskapingslogg, rolleavtaler, honorering, samtykke og uenighet",
+      "emne_affinities": [
+        "em_sub_skadereduksjon_lavterskeltiltak",
+        "em_sub_tjenestemoter_rettigheter"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "La berørte grupper påvirke spørsmål, begreper, fortolkning og formidling med reell beslutningsmakt.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever skadereduksjonsanalyse.",
+        "Samle tiltaksregel, brukererfaring, utfallsdata, retningslinjer og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom skadereduksjon vs behandling og kontroll.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Deltakelse kan bli symbolsk dersom institusjonen beholder alle avgjørende valg."
+        "Helse- og rusdata krever aggregasjon og metodekritikk.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "sensitive_population",
-        "privacy_context",
-        "stigma_risk",
-        "participatory_voice"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_stigma_og_diskrimineringsanalyse",
-      "title": "Stigma- og diskrimineringsanalyse",
-      "short_label": "Stigma- og diskrimineringsanalyse",
+      "method_id": "met_sub_etisk_kildeanalyse",
+      "title": "Etisk kildeanalyse",
+      "short_label": "Etisk kildeanalyse",
+      "status": "active",
+      "operation": "Vurderer samtykke, forventet offentlighet, sammenstillingsrisiko, dataminimering og mulig skade før bruk.",
+      "required_data": [
+        "kildekontekst",
+        "samtykke",
+        "formål",
+        "risikovurdering"
+      ],
       "domain_ids": [
-        "sosiale_randsoner_omsorg_skadereduksjon"
+        "subkulturteori_feltgrenser",
+        "sosiale_randsoner_omsorg_skadereduksjon",
+        "kommersialisering_institusjonalisering_minne"
       ],
-      "description": "Skill merkelapp, stereotype, institusjonell behandling, forventet avvisning og konkrete konsekvenser. Metoden bruker språk, praksis, klager, tjenestedata og berørte stemmer.",
-      "operation": "Skill merkelapp, stereotype, institusjonell behandling, forventet avvisning og konkrete konsekvenser.",
-      "required_data": "språk, praksis, klager, tjenestedata og berørte stemmer",
+      "description": "Vurderer samtykke, forventet offentlighet, sammenstillingsrisiko, dataminimering og mulig skade før bruk.",
+      "definition": "Vurderer samtykke, forventet offentlighet, sammenstillingsrisiko, dataminimering og mulig skade før bruk.",
+      "analytical_question": "Hva kan etisk kildeanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "kildekontekst",
+        "samtykke",
+        "formål",
+        "risikovurdering"
+      ],
+      "evidence_inputs": [
+        "kildekontekst",
+        "samtykke",
+        "formål",
+        "risikovurdering"
+      ],
+      "critical_distinctions": [
+        "offentlig tilgjengelighet vs etisk publiserbarhet"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "sosiale_randsoner_omsorg_skadereduksjon",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_innenfra_utenfrablikk",
+        "em_sub_stigma_representasjon",
+        "em_sub_personvern_forskningsetikk",
+        "em_sub_dokumentasjon_arkiv"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Skill merkelapp, stereotype, institusjonell behandling, forventet avvisning og konkrete konsekvenser.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever etisk kildeanalyse.",
+        "Samle kildekontekst, samtykke, formål, risikovurdering og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom offentlig tilgjengelighet vs etisk publiserbarhet.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Ikke all negativ vurdering er diskriminering; sammenligningsgrunnlag og virkning må dokumenteres."
+        "Metoden gir ikke automatisk tillatelse; ved tvil skal data utelates.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "sensitive_population",
-        "privacy_context",
-        "stigma_risk",
-        "participatory_voice"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_personvern_og_representasjonsaudit",
-      "title": "Personvern- og representasjonsaudit",
-      "short_label": "Personvern- og representasjonsaudit",
+      "method_id": "met_sub_kommersialiseringsanalyse",
+      "title": "Kommersialiseringsanalyse",
+      "short_label": "Kommersialiseringsanalyse",
+      "status": "active",
+      "operation": "Følger pris, eierskap, sponsorat, skala og kontroll for å forklare markedsdrevet endring.",
+      "required_data": [
+        "prisdata",
+        "eierskap",
+        "avtaler",
+        "adgangsendring"
+      ],
       "domain_ids": [
-        "sosiale_randsoner_omsorg_skadereduksjon"
+        "subkulturteori_feltgrenser",
+        "kommersialisering_institusjonalisering_minne"
       ],
-      "description": "Vurder identifiserbarhet, forventet offentlighet, sammenstilling, makt, skade og mulighet for medvirkning før publisering. Metoden bruker datakilder, publikum, kontekst, risikoscenario og avbøtende tiltak.",
-      "operation": "Vurder identifiserbarhet, forventet offentlighet, sammenstilling, makt, skade og mulighet for medvirkning før publisering.",
-      "required_data": "datakilder, publikum, kontekst, risikoscenario og avbøtende tiltak",
+      "description": "Følger pris, eierskap, sponsorat, skala og kontroll for å forklare markedsdrevet endring.",
+      "definition": "Følger pris, eierskap, sponsorat, skala og kontroll for å forklare markedsdrevet endring.",
+      "analytical_question": "Hva kan kommersialiseringsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "prisdata",
+        "eierskap",
+        "avtaler",
+        "adgangsendring"
+      ],
+      "evidence_inputs": [
+        "prisdata",
+        "eierskap",
+        "avtaler",
+        "adgangsendring"
+      ],
+      "critical_distinctions": [
+        "inntekt vs markedsstyrt omforming"
+      ],
+      "coverage_domains": [
+        "subkulturteori_feltgrenser",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_undergrunn_mainstream",
+        "em_sub_autentisitet_tap",
+        "em_sub_kommersialisering",
+        "em_sub_merkevare_stil"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Vurder identifiserbarhet, forventet offentlighet, sammenstilling, makt, skade og mulighet for medvirkning før publisering.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever kommersialiseringsanalyse.",
+        "Samle prisdata, eierskap, avtaler, adgangsendring og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom inntekt vs markedsstyrt omforming.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Juridisk offentlighet er ikke alene etisk tillatelse til gjenbruk."
+        "Kommersiell aktivitet beviser ikke autentisitetstap.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "sensitive_population",
-        "privacy_context",
-        "stigma_risk",
-        "participatory_voice"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_kommersialiseringskjede",
-      "title": "Analyse av kommersialiseringskjeden",
-      "short_label": "Analyse av kommersialiseringskjeden",
+      "method_id": "met_sub_kulturarvsanalyse",
+      "title": "Kulturarvsanalyse",
+      "short_label": "Kulturarvsanalyse",
+      "status": "active",
+      "operation": "Undersøker utvelgelse, autorisering, bevaring og omfortolkning når praksis gjøres til kulturarv.",
+      "required_data": [
+        "vernevedtak",
+        "utstillinger",
+        "innsamling",
+        "miljørespons"
+      ],
       "domain_ids": [
         "kommersialisering_institusjonalisering_minne"
       ],
-      "description": "Følg hvem som velger, pakker, priser, distribuerer og tjener på et uttrykk fra miljø til marked. Metoden bruker kontrakter, priser, kreditering, distribusjon, intervjuer og eierskap.",
-      "operation": "Følg hvem som velger, pakker, priser, distribuerer og tjener på et uttrykk fra miljø til marked.",
-      "required_data": "kontrakter, priser, kreditering, distribusjon, intervjuer og eierskap",
+      "description": "Undersøker utvelgelse, autorisering, bevaring og omfortolkning når praksis gjøres til kulturarv.",
+      "definition": "Undersøker utvelgelse, autorisering, bevaring og omfortolkning når praksis gjøres til kulturarv.",
+      "analytical_question": "Hva kan kulturarvsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "vernevedtak",
+        "utstillinger",
+        "innsamling",
+        "miljørespons"
+      ],
+      "evidence_inputs": [
+        "vernevedtak",
+        "utstillinger",
+        "innsamling",
+        "miljørespons"
+      ],
+      "critical_distinctions": [
+        "levende praksis vs bevart representasjon"
+      ],
+      "coverage_domains": [
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_kulturarv_undergrunn"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Følg hvem som velger, pakker, priser, distribuerer og tjener på et uttrykk fra miljø til marked.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever kulturarvsanalyse.",
+        "Samle vernevedtak, utstillinger, innsamling, miljørespons og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom levende praksis vs bevart representasjon.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Salg er ikke i seg selv tap av autonomi; kontroll og fordeling må undersøkes."
+        "Institusjonskilder kan overrepresentere eget perspektiv.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     },
     {
-      "method_id": "met_sub_gentrifiseringssekvens",
-      "title": "Gentrifiseringssekvens",
-      "short_label": "Gentrifiseringssekvens",
+      "method_id": "met_sub_institusjonsanalyse",
+      "title": "Institusjonsanalyse",
+      "short_label": "Institusjonsanalyse",
+      "status": "active",
+      "operation": "Kartlegger mandat, regler, ressurser, skjønn, implementering og faktisk utfall i møte med miljøer.",
+      "required_data": [
+        "mandat",
+        "regel",
+        "ressurs",
+        "gjennomføring",
+        "utfall"
+      ],
+      "domain_ids": [
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "description": "Kartlegger mandat, regler, ressurser, skjønn, implementering og faktisk utfall i møte med miljøer.",
+      "definition": "Kartlegger mandat, regler, ressurser, skjønn, implementering og faktisk utfall i møte med miljøer.",
+      "analytical_question": "Hva kan institusjonsanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "mandat",
+        "regel",
+        "ressurs",
+        "gjennomføring",
+        "utfall"
+      ],
+      "evidence_inputs": [
+        "mandat",
+        "regel",
+        "ressurs",
+        "gjennomføring",
+        "utfall"
+      ],
+      "critical_distinctions": [
+        "formell ordning vs faktisk tilgang"
+      ],
+      "coverage_domains": [
+        "motstand_avvik_kontroll",
+        "sosiale_randsoner_omsorg_skadereduksjon",
+        "kommersialisering_institusjonalisering_minne"
+      ],
+      "emne_affinities": [
+        "em_sub_kulturpolitikk_subkultur",
+        "em_sub_skadereduksjon_lavterskeltiltak",
+        "em_sub_hjemloshet_ustabile_boforhold",
+        "em_sub_tjenestemoter_rettigheter",
+        "em_sub_institusjonalisering",
+        "em_sub_kulturarv_undergrunn"
+      ],
+      "procedure": [
+        "Avgrens caset og formuler et spørsmål som faktisk krever institusjonsanalyse.",
+        "Samle mandat, regel, ressurs, gjennomføring, utfall og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom formell ordning vs faktisk tilgang.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
+      ],
+      "limitations": [
+        "Institusjonens egen rapportering må kontrolleres.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
+      ],
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": true,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
+    },
+    {
+      "method_id": "met_sub_stedsminneanalyse",
+      "title": "Stedsminneanalyse",
+      "short_label": "Stedsminneanalyse",
+      "status": "active",
+      "operation": "Sammenligner minner, arkiv, fysisk spor og senere bruk for å analysere hvordan steder huskes.",
+      "required_data": [
+        "minnefortellinger",
+        "arkiv",
+        "kart",
+        "fysisk spor"
+      ],
       "domain_ids": [
         "kommersialisering_institusjonalisering_minne"
       ],
-      "description": "Rekonstruer endringer i investering, omdømme, regulering, kostnad, brukere og fortrengning over tid. Metoden bruker eiendomsdata, planer, virksomheter, beboer-/brukerstemmer og stedsspor.",
-      "operation": "Rekonstruer endringer i investering, omdømme, regulering, kostnad, brukere og fortrengning over tid.",
-      "required_data": "eiendomsdata, planer, virksomheter, beboer-/brukerstemmer og stedsspor",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Rekonstruer endringer i investering, omdømme, regulering, kostnad, brukere og fortrengning over tid.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+      "description": "Sammenligner minner, arkiv, fysisk spor og senere bruk for å analysere hvordan steder huskes.",
+      "definition": "Sammenligner minner, arkiv, fysisk spor og senere bruk for å analysere hvordan steder huskes.",
+      "analytical_question": "Hva kan stedsminneanalyse vise i dette dokumenterte caset, og hvilke alternative forklaringer består?",
+      "data_forms": [
+        "minnefortellinger",
+        "arkiv",
+        "kart",
+        "fysisk spor"
       ],
-      "limitations": [
-        "Samtidig endring dokumenterer ikke at kultur alene forårsaket verdiøkning."
+      "evidence_inputs": [
+        "minnefortellinger",
+        "arkiv",
+        "kart",
+        "fysisk spor"
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
+      "critical_distinctions": [
+        "erindring vs historisk rekonstruksjon"
       ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_institusjonaliserings_sammenligning",
-      "title": "Sammenligning av institusjonalisering",
-      "short_label": "Sammenligning av institusjonalisering",
-      "domain_ids": [
+      "coverage_domains": [
         "kommersialisering_institusjonalisering_minne"
       ],
-      "description": "Sammenlign styring, finansiering, adgang og praksis før og etter en formell organisatorisk endring. Metoden bruker vedtekter, budsjett, program, roller, deltakelse og intervjuer.",
-      "operation": "Sammenlign styring, finansiering, adgang og praksis før og etter en formell organisatorisk endring.",
-      "required_data": "vedtekter, budsjett, program, roller, deltakelse og intervjuer",
+      "emne_affinities": [
+        "em_sub_autentisitet_tap",
+        "em_sub_historiemakt",
+        "em_sub_historisering_revival",
+        "em_sub_nostalgi_revival",
+        "em_sub_tapte_steder"
+      ],
       "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Sammenlign styring, finansiering, adgang og praksis før og etter en formell organisatorisk endring.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
+        "Avgrens caset og formuler et spørsmål som faktisk krever stedsminneanalyse.",
+        "Samle minnefortellinger, arkiv, kart, fysisk spor og dokumenter proveniens, tidsrom og skjevheter.",
+        "Gjennomfør analysen med eksplisitt skille mellom erindring vs historisk rekonstruksjon.",
+        "Test minst én alternativ forklaring, og rapporter usikkerhet og slutninger datagrunnlaget ikke kan bære."
       ],
       "limitations": [
-        "Før-perioden må ikke romantiseres som fri for hierarki eller eksklusjon."
+        "Nostalgi og profilerte stemmer kan dominere materialet.",
+        "Canonicalfilen kan styre metodevalg, men kan ikke brukes som empirisk bevis."
       ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_minneregimeanalyse",
-      "title": "Minnerregimeanalyse",
-      "short_label": "Minnerregimeanalyse",
-      "domain_ids": [
-        "kommersialisering_institusjonalisering_minne"
-      ],
-      "description": "Undersøk hvem som velger objekter, fortellinger, navn og tausheter når et miljø formidles som historie. Metoden bruker utstilling, arkiv, katalog, kuratorvalg, miljøstemmer og fravær.",
-      "operation": "Undersøk hvem som velger objekter, fortellinger, navn og tausheter når et miljø formidles som historie.",
-      "required_data": "utstilling, arkiv, katalog, kuratorvalg, miljøstemmer og fravær",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Undersøk hvem som velger objekter, fortellinger, navn og tausheter når et miljø formidles som historie.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
-      ],
-      "limitations": [
-        "Bevaring er selektiv og kan ikke likestilles med miljøets egen videreføring."
-      ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
-    },
-    {
-      "method_id": "met_sub_kontinuitet_og_bruddanalyse",
-      "title": "Kontinuitets- og bruddanalyse",
-      "short_label": "Kontinuitets- og bruddanalyse",
-      "domain_ids": [
-        "kommersialisering_institusjonalisering_minne"
-      ],
-      "description": "Identifiser hva som videreføres og hva som endres i aktører, praksis, sted, økonomi og mening. Metoden bruker før/etter-kilder, tidslinje, aktørkart og materiell dokumentasjon.",
-      "operation": "Identifiser hva som videreføres og hva som endres i aktører, praksis, sted, økonomi og mening.",
-      "required_data": "før/etter-kilder, tidslinje, aktørkart og materiell dokumentasjon",
-      "procedure": [
-        "Avgrens analyseenhet og tidsrom.",
-        "Dokumenter datagrunnlag og kildenes posisjon.",
-        "Identifiser hva som videreføres og hva som endres i aktører, praksis, sted, økonomi og mening.",
-        "Test en alternativ forklaring eller et negativt case.",
-        "Rapporter usikkerhet, etikk og rekkevidde."
-      ],
-      "limitations": [
-        "Likhet i navn eller estetikk kan skjule fullstendig utskifting av sosial praksis."
-      ],
-      "ethics_flags": [
-        "contextual_integrity",
-        "voice_balance"
-      ],
-      "status": "active"
+      "canonical_status": "canonical",
+      "canonical_file_role": "active",
+      "registry_version": "subkulturpensum_v5_0_universal",
+      "external_claim_basis_required": true,
+      "ethics_review_required": false,
+      "generator_constraints": {
+        "require_documented_environment": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_sub_"
+      }
     }
   ]
 }

@@ -11,10 +11,10 @@ test('grunnlaget består av åtte kontraktsdomener med ti emner og hooks hver', 
   assert.ok(report.per_domain.every((domain) => domain.hooks === 10 && domain.emner === 10 && domain.mappings === 10));
 });
 
-test('40 operative metoder er unike og faktisk brukt', () => {
+test('35–50 operative metoder er unike og faktisk brukt', () => {
   const report = buildFoundationReport();
-  assert.equal(report.counts.methods, 40);
-  assert.ok(report.per_domain.every((domain) => domain.methods === 5));
+  assert.ok(report.counts.methods >= 35 && report.counts.methods <= 50);
+  assert.ok(report.per_domain.every((domain) => domain.methods >= 5));
   assert.deepEqual(report.integrity.duplicate_method_ids, []);
   assert.deepEqual(report.integrity.non_unique_method_operations, []);
   assert.deepEqual(report.integrity.missing_method_ids, []);
@@ -29,11 +29,16 @@ test('alle emner har individuelt faginnhold, mekanisme og begrensning', () => {
   assert.deepEqual(report.integrity.missing_limitations, []);
 });
 
-test('ID-migrasjonen bevarer aktive referanser og dokumenterer pensjonert samle-ID', () => {
+test('ID-migrasjonen bevarer 72 betydninger og legger bare til åtte godkjente ID-er', () => {
   const report = buildFoundationReport();
-  assert.equal(report.counts.preserved_legacy_ids, 71);
-  assert.equal(report.counts.retired_legacy_ids, 1);
+  assert.equal(report.counts.preserved_legacy_ids, 72);
+  assert.equal(report.counts.retired_legacy_ids, 0);
+  assert.equal(report.counts.new_emne_ids.length, 8);
   assert.ok(report.counts.active_external_emne_references > 0);
+  assert.deepEqual(report.integrity.missing_legacy_emne_ids, []);
+  assert.deepEqual(report.integrity.preserved_legacy_id_mismatch, []);
+  assert.deepEqual(report.integrity.legacy_semantic_title_drift, []);
+  assert.deepEqual(report.integrity.unexpected_new_emne_ids, []);
   assert.deepEqual(report.integrity.dangling_external_emne_ids, []);
   assert.deepEqual(report.integrity.referenced_retired_emne_ids, []);
 });

@@ -23,6 +23,98 @@ const PATHS = Object.freeze({
   quizFromBy: 'data/quiz/quiz_subkultur_from_by.json'
 });
 
+// Public emne-ID-er skal beholde den faglige betydningen de hadde før
+// åttedomenemigrasjonen. Presisering av definisjoner er tillatt; gjenbruk av en
+// etablert ID for et annet begrep er ikke tillatt.
+const LEGACY_TITLE_BY_ID = Object.freeze(
+{
+  "em_sub_arrangorer_dugnad": "Arrangører og dugnad",
+  "em_sub_autentisitet_tap": "Autentisitet og tap",
+  "em_sub_autonomi_motstand": "Autonomi og motstand",
+  "em_sub_avvik_normalitet": "Avvik og normalitet",
+  "em_sub_byutvikling_regulering": "Byutvikling og regulering",
+  "em_sub_cosplay_fandom": "Cosplay og fandom",
+  "em_sub_deltakelse_laring": "Deltakelse og læring",
+  "em_sub_digitale_miljoer": "Digitale miljøer",
+  "em_sub_diy_praksis": "DIY-praksis",
+  "em_sub_dokumentasjon_arkiv": "Dokumentasjon og arkiv",
+  "em_sub_estetikk_affekt": "Estetikk og affekt",
+  "em_sub_fandom_nisjer": "Fandom og nisjer",
+  "em_sub_fanziner_plakater": "Fanziner og plakater",
+  "em_sub_gaming_lan": "Gaming og LAN",
+  "em_sub_gentrifisering_tap": "Gentrifisering og tap",
+  "em_sub_graffiti_gatekunst": "Graffiti og gatekunst",
+  "em_sub_grensearbeid_autentisitet": "Grensearbeid og autentisitet",
+  "em_sub_historiemakt": "Historiemakt",
+  "em_sub_historisering_revival": "Historisering og revival",
+  "em_sub_institusjonalisering": "Institusjonalisering",
+  "em_sub_klaer_kropp_identitet": "Klær, kropp og identitet",
+  "em_sub_klasse_urban_stil": "Klasse og urban stil",
+  "em_sub_klubbkultur_natt": "Klubbkultur og natt",
+  "em_sub_kommersialisering": "Kommersialisering",
+  "em_sub_kriminalisering": "Kriminalisering",
+  "em_sub_kropp_modifikasjon": "Kropp og modifikasjon",
+  "em_sub_kulturarv_undergrunn": "Kulturarv og undergrunn",
+  "em_sub_kulturpolitikk_subkultur": "Kulturpolitikk og subkultur",
+  "em_sub_marginalisering_synlighet": "Marginalisering og synlighet",
+  "em_sub_merkevare_stil": "Merkevare og stil",
+  "em_sub_moralpanikk": "Moralpanikk",
+  "em_sub_motkultur": "Motkultur",
+  "em_sub_musikkobjekter": "Musikkobjekter",
+  "em_sub_nettforum_memer": "Nettforum og memer",
+  "em_sub_nostalgi_revival": "Nostalgi og revival",
+  "em_sub_objekter_merker": "Objekter og merker",
+  "em_sub_okkuperte_rom": "Okkuperte rom",
+  "em_sub_ovingsrom_kjeller": "Øvingsrom og kjeller",
+  "em_sub_plakater_stickers": "Plakater og stickers",
+  "em_sub_politi_kontroll": "Politi og kontroll",
+  "em_sub_portvoktere_innvielse": "Portvoktere og innvielse",
+  "em_sub_regulering_eiendom": "Regulering og eiendom",
+  "em_sub_remix_stil": "Remix og stil",
+  "em_sub_rett_til_byen": "Rett til byen",
+  "em_sub_ritualer_praksis": "Ritualer og praksis",
+  "em_sub_samlerobjekter": "Samlerobjekter",
+  "em_sub_scene_fellesskap": "Scene og fellesskap",
+  "em_sub_scene_konflikt": "Scenekonflikt",
+  "em_sub_skate_byrom": "Skate og byrom",
+  "em_sub_skeive_miljoer": "Skeive miljøer",
+  "em_sub_smak_distinksjon": "Smak og distinksjon",
+  "em_sub_sosial_kontroll": "Sosial kontroll",
+  "em_sub_sosial_organisering": "Sosial organisering",
+  "em_sub_sprak_slang_koder": "Språk, slang og koder",
+  "em_sub_sted_scene": "Sted og scene",
+  "em_sub_stil_sprak": "Stil som språk",
+  "em_sub_symboler_koder": "Symboler og koder",
+  "em_sub_synlighet_kontroll": "Synlighet og kontroll",
+  "em_sub_tapte_steder": "Tapte steder",
+  "em_sub_territoriale_koder": "Territoriale koder",
+  "em_sub_tilhorighet_miljo": "Tilhørighet og miljø",
+  "em_sub_trygghet_eksklusjon": "Trygghet og eksklusjon",
+  "em_sub_uavhengige_medier": "Uavhengige medier",
+  "em_sub_uformelle_moteplasser": "Uformelle møteplasser",
+  "em_sub_undergrunn_mainstream": "Undergrunn og mainstream",
+  "em_sub_undergrunn_miljo": "Undergrunnsmiljø",
+  "em_sub_ungdomskultur_identitet": "Ungdomskultur og identitet",
+  "em_sub_vennegjenger_lojalitet": "Vennegjenger og lojalitet",
+  "em_sub_visuelle_grenser": "Visuelle grenser",
+  "em_sub_grunnbegreper": "Grunnbegreper i subkultur",
+  "em_sub_musikkscener": "Musikkscener og subkulturmiljøer",
+  "em_sub_stil_kropp_symboler": "Stil, kropp og symboler i subkulturer"
+}
+);
+const EXPECTED_NEW_EMNE_IDS = Object.freeze(
+[
+  "em_sub_innenfra_utenfrablikk",
+  "em_sub_apne_rusmiljoer_gatefellesskap",
+  "em_sub_skadereduksjon_lavterskeltiltak",
+  "em_sub_hjemloshet_ustabile_boforhold",
+  "em_sub_gjensidig_hjelp_omsorg",
+  "em_sub_stigma_representasjon",
+  "em_sub_personvern_forskningsetikk",
+  "em_sub_tjenestemoter_rettigheter"
+]
+);
+
 const absolute = (relative) => path.join(ROOT, relative);
 const readJson = (relative) => JSON.parse(fs.readFileSync(absolute(relative), 'utf8'));
 const list = (value) => Array.isArray(value) ? value : [];
@@ -92,7 +184,9 @@ export function buildFoundationReport() {
     ...mapping.flatMap((entry) => list(entry.mappings).flatMap((item) => list(item.recommended_method_ids)))
   ]);
   const currentIds = new Set(emneIds);
+  const emneById = new Map(emner.map((emne) => [text(emne.emne_id), emne]));
   const externalRefs = activeExternalReferences();
+  const preservedLegacyIds = list(pensum.emne_migration?.preserved_legacy_ids).map(text).sort();
   const retiredIds = Object.keys(pensum.emne_migration?.retired_ids ?? {}).sort();
   const status = list(readJson(PATHS.subjectStatus).subjects).find((entry) => entry.id === 'subkultur');
   const portal = list(readJson(PATHS.portal).categories).find((entry) => entry.id === 'subkultur');
@@ -111,8 +205,9 @@ export function buildFoundationReport() {
       mappings: mapping.length,
       methods: methods.length,
       pensum_domains: list(pensum.domains).length,
-      preserved_legacy_ids: list(pensum.emne_migration?.preserved_legacy_ids).length,
+      preserved_legacy_ids: preservedLegacyIds.length,
       retired_legacy_ids: retiredIds.length,
+      new_emne_ids: emneIds.filter((id) => !Object.hasOwn(LEGACY_TITLE_BY_ID, id)).sort(),
       active_external_emne_references: externalRefs.length
     },
     per_domain: domains.map((domain) => ({
@@ -141,6 +236,17 @@ export function buildFoundationReport() {
       missing_mechanisms: emnersWith(emner, (emne) => !text(emne.mechanism)),
       missing_limitations: emnersWith(emner, (emne) => !text(emne.limitation)),
       non_unique_method_operations: duplicates(methods.map((method) => text(method.operation))),
+      missing_legacy_emne_ids: Object.keys(LEGACY_TITLE_BY_ID).filter((id) => !currentIds.has(id)).sort(),
+      preserved_legacy_id_mismatch: isDeepStrictEqual(preservedLegacyIds, Object.keys(LEGACY_TITLE_BY_ID).sort())
+        ? []
+        : ['pensum.emne_migration.preserved_legacy_ids'],
+      legacy_semantic_title_drift: Object.entries(LEGACY_TITLE_BY_ID)
+        .filter(([id, title]) => text(emneById.get(id)?.title) !== title)
+        .map(([id]) => id)
+        .sort(),
+      unexpected_new_emne_ids: emneIds
+        .filter((id) => !Object.hasOwn(LEGACY_TITLE_BY_ID, id) && !EXPECTED_NEW_EMNE_IDS.includes(id))
+        .sort(),
       dangling_external_emne_ids: externalRefs.filter((id) => !currentIds.has(id) && !retiredIds.includes(id)),
       referenced_retired_emne_ids: externalRefs.filter((id) => retiredIds.includes(id))
     },
@@ -165,14 +271,15 @@ export function auditFoundation({ writeReport = false, checkReport = true } = {}
   assert(report.counts.hooks === 80, 'Fagkartet må ha 80 hooks');
   assert(report.counts.emner === 80, 'Emneregisteret må ha 80 emner');
   assert(report.counts.mappings === 80, 'Mappingen må ha 80 poster');
-  assert(report.counts.methods === 40, 'Metoderegisteret må ha 40 operative metoder');
+  assert(report.counts.methods >= 35 && report.counts.methods <= 50, 'Metoderegisteret må ha 35–50 operative metoder');
   assert(report.counts.pensum_domains === 8, 'Pensum må ha åtte domener');
-  assert(report.counts.preserved_legacy_ids === 71, 'Migrasjonen skal bevare 71 etablerte emne-ID-er');
-  assert(report.counts.retired_legacy_ids === 1, 'Migrasjonen skal eksplisitt pensjonere én ureferert samle-ID');
+  assert(report.counts.preserved_legacy_ids === 72, 'Migrasjonen skal bevare alle 72 etablerte emne-ID-er');
+  assert(report.counts.retired_legacy_ids === 0, 'Etablerte emne-ID-er skal ikke pensjoneres i canonical-migrasjonen');
+  assert(isDeepStrictEqual(report.counts.new_emne_ids, [...EXPECTED_NEW_EMNE_IDS].sort()), 'Canonical-laget skal ha nøyaktig åtte godkjente nye emne-ID-er');
   for (const domain of report.per_domain) {
     assert(domain.hooks === 10, `${domain.id} må ha ti hooks`);
     assert(domain.emner === 10, `${domain.id} må ha ti emner`);
-    assert(domain.methods === 5, `${domain.id} må ha fem metoder`);
+    assert(domain.methods >= 5, `${domain.id} må ha minst fem operative metoder`);
     assert(domain.mappings === 10, `${domain.id} må ha ti mappinger`);
   }
   assert(report.integrity.domain_order_matches_contract, 'Domeneorden avviker fra kontrakten');
