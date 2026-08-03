@@ -359,3 +359,11 @@ Fase 17 er en nullmålt runtime- og dokumentasjonsaudit fra `main` `66f1bdce5191
 - Observer peker på den eneste deployede og gyldige observation-filen (`observations_by.json`) og beholder stedets Politikk-kategori separat.
 - Nearby og profil bruker `popupImage` når et sted ikke har eget `image`/`cardImage`.
 - Globalt søk inkluderer canonicale aliaser, og Regjeringskvartalet har de dokumenterte aliasene `RKV` og `Nytt regjeringskvartal`.
+
+## Resultat i fase 17b – bilde- og rettighetsport
+
+- Alle 21 personene som vises i Regjeringskvartalet-rundingen har lokal full-/kortfil, rettighetsmetadata og attribusjon. Fem redaksjonelle illustrasjoner er identitetskontrollert mot navngitte person- eller institusjonssider, har ekte transparent bakgrunn og merkes uttrykkelig som illustrasjoner – ikke fotografier.
+- Sverre Jystad beholdes som én av 22 canonicale personer og beholder koblingene til Høyblokka, Y-blokka og Regjeringskvartalet. Han holdes bare utenfor Regjeringskvartalet-rundingen til et identitetskontrollert, rettighetsavklart bilde finnes; ingen historisk rolle eller canonical relasjon er slettet.
+- Statsbygg har et CC BY-SA 4.0-lisensiert prosjektpreview fra den offisielle åpningen. `representationScope` fastslår at prosjektfotoet ikke er Statsbyggs logo, og ingen logo er kopiert, generert eller rekonstruert.
+- People-bildepipelineens CLI-guard normaliserer nå `file://`-URL til filsti før sammenligning. En regresjonstest beviser at den dokumenterte npm-kommandoen faktisk kjører, og en egen deterministisk kommando regenererer attribusjonsregisteret.
+- Den permanente fase-17b-porten låser 22 canonicale / 21 synlige People, lokale filer, lisensmetadata, transparens/disclosure, attribusjoner, 14 Brands og Statsbygg-previewets lisens og semantiske avgrensning.

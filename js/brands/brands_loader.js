@@ -39,6 +39,8 @@
       verification: asString(raw?.verification),
       verified_at: asString(raw?.verified_at),
       logo: asString(raw?.logo),
+      image: asString(raw?.image),
+      imageMeta: raw?.imageMeta && typeof raw.imageMeta === "object" ? raw.imageMeta : null,
       popupdesc: asString(raw?.popupdesc),
       desc: asString(raw?.desc),
       aliases: uniq(raw?.aliases),

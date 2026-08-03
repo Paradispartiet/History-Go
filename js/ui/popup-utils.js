@@ -342,6 +342,8 @@ function getPeopleForPlace(placeId) {
   const addPerson = (person) => {
     const id = _s(person?.id);
     if (!id || seen.has(id)) return;
+    const roundHoldbacks = _arr(person?.roundHoldbacks).map(_s).filter(Boolean);
+    if (roundHoldbacks.includes(pid)) return;
     seen.add(id);
     out.push(person);
   };
@@ -929,7 +931,7 @@ window.showBrandPopup = async function (brandId, place = null) {
   const state = String(brand.state || "").trim();
   const type = String(brand.brand_type || "").trim();
   const verification = String(brand.verification || "").trim();
-  const logo = String(brand.logo || "").trim();
+  const logo = String(brand.logo || brand.image || "").trim();
   const aliases = Array.isArray(brand.aliases) ? brand.aliases.filter(Boolean) : [];
   const tags = Array.isArray(brand.tags) ? brand.tags.filter(Boolean) : [];
 

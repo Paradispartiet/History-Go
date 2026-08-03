@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-08-03T08:42:05.738Z
+Generert: 2026-08-03T20:58:11.471Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-08-03T08:42:05.738Z |
+| generatedAt | 2026-08-03T20:58:11.471Z |
 | peopleFilesRead | 733 |
 | totalPeople | 1386 |
 | uniquePeopleIds | 1386 |
@@ -1569,7 +1569,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 627
+Mangler filer for image/cardImage/media: 621
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
@@ -1587,8 +1587,6 @@ Mangler filer for image/cardImage/media: 627
 | data/people/by/oslo/people_by_oslo.json | arnstein_arneberg / Arnstein Arneberg | cardImage | bilder/kort/people/arnstein_arneberg.PNG |
 | data/people/by/oslo/people_by_oslo.json | magnus_poulsson / Magnus Poulsson | image | bilder/kort/people/magnus_poulsson.PNG |
 | data/people/by/oslo/people_by_oslo.json | magnus_poulsson / Magnus Poulsson | cardImage | bilder/kort/people/magnus_poulsson.PNG |
-| data/people/by/oslo/people_by_oslo.json | erling_viksjo / Erling Viksjø | image | bilder/kort/people/erling_viksjo.PNG |
-| data/people/by/oslo/people_by_oslo.json | erling_viksjo / Erling Viksjø | cardImage | bilder/kort/people/erling_viksjo.PNG |
 | data/people/by/oslo/people_by_oslo.json | sverre_fehn / Sverre Fehn | image | bilder/kort/people/sverre_fehn.PNG |
 | data/people/by/oslo/people_by_oslo.json | sverre_fehn / Sverre Fehn | cardImage | bilder/kort/people/sverre_fehn.PNG |
 | data/people/by/oslo/people_by_oslo.json | ove_bang / Ove Bang | image | bilder/kort/people/ove_bang.PNG |
@@ -2032,10 +2030,6 @@ Mangler filer for image/cardImage/media: 627
 | data/people/politikk/oslo/people_politikk_oslo.json | fredrikke_marie_qvam / Fredrikke Marie Qvam | cardImage | bilder/kort/people/fredrikke_marie_qvam.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | gina_krog / Gina Krog | image | bilder/kort/people/gina_krog.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | gina_krog / Gina Krog | cardImage | bilder/kort/people/gina_krog.PNG |
-| data/people/politikk/oslo/people_politikk_oslo.json | einar_gerhardsen / Einar Gerhardsen | image | bilder/kort/people/einar_gerhardsen.PNG |
-| data/people/politikk/oslo/people_politikk_oslo.json | einar_gerhardsen / Einar Gerhardsen | cardImage | bilder/kort/people/einar_gerhardsen.PNG |
-| data/people/politikk/oslo/people_politikk_oslo.json | johan_nygaardsvold / Johan Nygaardsvold | image | bilder/kort/people/johan_nygaardsvold.PNG |
-| data/people/politikk/oslo/people_politikk_oslo.json | johan_nygaardsvold / Johan Nygaardsvold | cardImage | bilder/kort/people/johan_nygaardsvold.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | christian_michelsen / Christian Michelsen | image | bilder/kort/people/christian_michelsen.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | christian_michelsen / Christian Michelsen | cardImage | bilder/kort/people/christian_michelsen.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | haakon_vii / Haakon VII | image | bilder/kort/people/haakon_vii.PNG |

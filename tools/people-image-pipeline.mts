@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir, rename, rm, access } from 'node:fs/promises
 import { createWriteStream } from 'node:fs';
 import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
+import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { analyzeImageBuffer, unavailableAnalysisQuality, type Quality, type FaceDetection } from './people-image-quality.mjs';
 
@@ -342,7 +343,7 @@ function selectApplyCandidates(candidates: any[], args: string[]): ApplyPlan {
 }
 function extFromMime(mime: string): string { if (mime.includes('png')) return '.png'; if (mime.includes('webp')) return '.webp'; if (mime.includes('gif')) return '.gif'; return '.jpg'; }
 async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> { const res = await fetcher(url, { headers: { 'User-Agent': UA } }); if (!res.ok || !res.body) throw new Error(`Download failed ${res.status}`); const ext = extFromMime(res.headers.get('content-type') || 'image/jpeg'); const dest = destBase + ext; if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`); const tmp = `${dest}.${process.pid}.tmp`; try { await pipeline(res.body as any, createWriteStream(tmp, { flags: 'wx' })); await rename(tmp, dest); return path.relative(ROOT(), dest).replace(/\\/g, '/'); } catch (e) { await rm(tmp, { force: true }); throw e; } }
-async function regenerateAttributions(entries: Entry[], write: boolean): Promise<void> { const rows = entries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => ['wikimedia_commons', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
+export async function regenerateAttributions(entries?: Entry[], write = false): Promise<void> { const sourceEntries = entries ?? await loadPeople(); const rows = sourceEntries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => ['wikimedia_commons', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
 export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
   const write = args.includes('--write');
   const candidateJson = await readJson(CANDIDATES());
@@ -427,5 +428,7 @@ export async function auditEditorialIllustrations(): Promise<number> {
   console.log(JSON.stringify({ editorialIllustrations: entries.length, invalidEditorialIllustrationMetadata: invalidMetadata, invalidEditorialIllustrationFiles: invalidFiles }, null, 2));
   return invalidMetadata || invalidFiles ? 1 : 0;
 }
-async function main() { const [cmd, ...args] = process.argv.slice(2); if (cmd === 'candidates') await buildCandidates(args); else if (cmd === 'apply') await applyCandidates(args); else if (cmd === 'audit') process.exitCode = await auditPeople(); else if (cmd === 'audit-editorial') process.exitCode = await auditEditorialIllustrations(); else { console.error('Usage: people-image-pipeline <candidates|apply|audit|audit-editorial>'); process.exitCode = 2; } }
-if (import.meta.url === `file://${process.argv[1]}`) main().catch(e => { console.error(e); process.exit(1); });
+async function main() { const [cmd, ...args] = process.argv.slice(2); if (cmd === 'candidates') await buildCandidates(args); else if (cmd === 'apply') await applyCandidates(args); else if (cmd === 'attributions') await regenerateAttributions(await loadPeople(), args.includes('--write')); else if (cmd === 'audit') process.exitCode = await auditPeople(); else if (cmd === 'audit-editorial') process.exitCode = await auditEditorialIllustrations(); else { console.error('Usage: people-image-pipeline <candidates|apply|attributions|audit|audit-editorial>'); process.exitCode = 2; } }
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  main().catch(e => { console.error(e); process.exit(1); });
+}
