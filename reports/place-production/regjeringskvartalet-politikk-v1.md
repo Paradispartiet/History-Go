@@ -1,6 +1,6 @@
 # Regjeringskvartalet – Politikk-sted V1
 
-- Dato: 2026-08-02
+- Dato: 2026-08-03
 - Place ID: `regjeringskvartalet`
 - Canonical place-fil: `data/places/politikk/oslo/places_politikk/regjeringskvartalet.json`
 - Politikk-produksjonsrapport: `data/places/politikk-production/regjeringskvartalet.json`
@@ -9,7 +9,7 @@
 - Primærkategori: `politikk`
 - Aktiv quiz per 3. august 2026: `major_10x7` – 10 sett × 7 spørsmål
 - Korrigert produksjonsmål: **oppnådd**
-- Status: **korrigeringsfase 14–15 PASS – Quiz og Brands er ferdig produsert; ny sluttkontroll på fersk main gjenstår**
+- Status: **PRODUKSJONSKLAR – fase 16 PASS på fersk `main` med Quiz, Brands og People ferdig kontrollert**
 
 ## Arbeidskort
 
@@ -26,7 +26,7 @@
 | Hovedbilde | Gyldig eksternt `popupImage` finnes og bildebackloggen ble oppdatert i PR #4659. |
 | Leksikon | Fire tematiske artikler og to `news_note`-records finnes. Hovedartikkelen er versjon 3 med tre fakta, tolv chronology-punkter og kildebelagt Mer-tolkning. |
 | Rundingsprofil | Fast `people · objects · brands`, med Badges ved overskriften. Wonderkammer-innhold skal ikke telles som ferdig Objects-runding. |
-| People | Tolv canonicale personer er dokumentert ved stedet, med maksimalt to arkitekter og flertall av faktiske brukere, beslutningstakere, kunst-/ingeniøraktører og hendelsespersoner. Dekningen ble låst i PR #3604. |
+| People | **PASS – utvidet i PR #4681.** Tjueto canonicale personer er dokumentert ved stedet, med maksimalt to arkitekter og 20 andre regjerings-, gjenoppbyggings-, 22. juli- og kunstroller. |
 | Objects | To fysiske og stedsspesifikke kunstobjekter er canonicalisert: «Fiskerne» på A-blokka og «Grass Roots Square» på Einar Gerhardsens plass. Begge har KORO-belegg for dagens plassering og lisenskontrollert Commons-foto med synlig tids-/stedsgrense. |
 | Brands | **PASS – fase 15.** Fjorten canonicale Brands er koblet til stedet: Statsbygg, KORO, sju Team Urbis-medlemmer og fem hovedentreprenører. Team Urbis som midlertidig prosjektteam og tre andre entitetstyper er holdt tilbake med kandidatspesifikk begrunnelse. |
 | Quiz | **PASS – fase 14.** `major_10x7` med 70 unike spørsmål og ti selvstendige læringsjobber. Den historiske 1×5-pakken og tidligere 3×7 er dokumentert i behold/omskriv/flytt/fjern-auditen. |
@@ -85,7 +85,7 @@ Bygg, kunstverk, minnefunksjoner og institusjoner kan kobles til området når e
 | Fase | Status | Begrunnelse |
 | --- | --- | --- |
 | Quiz og Knowledge | PASS – fase 14 | 10 × 7 spørsmål, eksplisitt eksisterende-quiz-audit, major-begrunnelse, 70 unike primære Knowledge-ID-er og 49 nye canonicale enheter. |
-| People | PASS – PR #3604 | Tolv dokumenterte canonicale personer og eksplisitt rollebalanse med maksimalt to arkitekter. |
+| People | PASS – PR #3604 og #4681 | Tjueto dokumenterte canonicale personer, null dupliserte ID-er og eksplisitt rollebalanse med maksimalt to arkitekter. |
 | Objects | PASS – fase 11 | To avgrensede kunstobjekter har identitet, fysisk plassering, kilde, bilde, attribusjon, lisens og eksplisitt skille mellom eldre foto og dagens plassering. |
 | Brands | PASS – fase 15 | Fjorten kvalifiserende profesjonelle og institusjonelle Brand-identiteter har canonical record, direkte stedsevidens og mapping; fire kandidater er holdt tilbake med konkret grunn. |
 | Badges/fagverk | PASS – fase 13 | Badges ligger ved overskriften, peker til canonical fagverk-rute og viser de tre Politikk-undermerkene og stedets faglige stier. |
@@ -135,7 +135,7 @@ Paret kan ikke alene dokumentere:
 - de tre narrative Stories;
 - Før/etter-paret med full Commons-attribusjon og avgrenset bildelesning;
 - full `major_10x7`-quiz med alle 21 tidligere spørsmål bevart og 49 nye spørsmål/Knowledge-enheter;
-- de tolv dokumenterte People-koblingene;
+- de tjueto dokumenterte People-koblingene og claims-auditen i `reports/place-production/regjeringskvartalet-people-v2.md`;
 - fire tematiske Leksikon-artikler som innholdsgrunnlag;
 - to daterte Nyheter-notiser med eksplisitt `ongoing`/`completed`-status;
 - fire godkjente Lesespor med ærlige datoer, åpne lenker og `link_only`-rettigheter;
@@ -146,7 +146,7 @@ Paret kan ikke alene dokumentere:
 
 ### Revider eller bygg separat
 
-- kjør ny full sluttkontroll på fersk `main` etter merge av fase 14–15.
+- Ingen åpne produksjonsfaser. Nye utvidelser skal behandles som ny, avgrenset produksjon og må ikke gjenåpne ferdigstatus uten et konkret avvik.
 
 ### Hold tilbake
 
@@ -177,17 +177,18 @@ Bare én fase kan være aktiv om gangen. En godkjent fase skal merges og kontrol
 | 11 | Objects | **GODKJENT – PR #4672, merge `1b8b277cc70b4a26f332091194de667d1a32da53`** |
 | 12 | Brands | **GODKJENT – PR #4673, merge `f4e078f06422747dd6f1ee34985d9c5752bcb3b6`** |
 | 13 | Badges, fagverk, alle åtte popupfaner, rundinger og full UI-/produksjonsaudit | **GODKJENT – PR #4674, merge `06d6c462e549be34e784d81317333bbfb20fd5ef`** |
-| 14 | Quiz `major_10x7`, eksisterende-quiz-audit og Knowledge | **KLAR FOR REVIEW – 70/70 spørsmål og Knowledge PASS** |
-| 15 | Brands V2 | **KLAR FOR REVIEW – 14 canonicale Brands og kandidat-/rettighetsaudit PASS** |
-| 16 | Ny samlet sluttkontroll på fersk `main` | **VENTER PÅ MERGE AV FASE 14–15** |
+| 14 | Quiz `major_10x7`, eksisterende-quiz-audit og Knowledge | **GODKJENT – PR #4680, merge `4f15fd4c20949366c023593b96dfa2308623ee5a`** |
+| 15 | Brands V2 | **GODKJENT – PR #4680, merge `4f15fd4c20949366c023593b96dfa2308623ee5a`** |
+| 15b | People V2 | **GODKJENT – PR #4681, merge `a91a0ee590d1c6994092234a5090ea99837cd15b`** |
+| 16 | Ny samlet sluttkontroll på fersk `main` | **PASS – kontrollert fra `a91a0ee590d1c6994092234a5090ea99837cd15b`** |
 
 ### Governance-korrigering 3. august 2026
 
-Fasetabellen over dokumenterer hva som faktisk ble merget. Den er ikke lenger en samlet ferdigstatus: fase 9 og fase 12 er gjenåpnet fordi de bygde på henholdsvis et ubegrunnet `narrow`-valg og en for snever Brand-definisjon. Fase 13 beviser at det leverte innholdet rendres riktig; den beviser ikke at Quiz- eller Brands-omfanget var redaksjonelt komplett.
+Fasetabellen dokumenterer både den opprinnelige leveransen og korrigeringen. Fase 9 og fase 12 ble gjenåpnet fordi de bygde på henholdsvis et ubegrunnet `narrow`-valg og en for snever Brand-definisjon. PR #4680 lukket begge avvikene, PR #4681 utvidet People uten dubletter, og fase 16 kjører den samlede produksjonsporten på deres felles ferske `main`.
 
 - Før PR #4664 fantes én aktiv Regjeringskvartalet-quiz med 1 sett og 5 spørsmål. Etter PR-en finnes 3 sett og 21 spørsmål. Begge tilstandene skal inngå i den nye eksisterende-quiz-auditen.
-- Regjeringskvartalet har dokumenterte perioder, bygg, institusjoner, People, kunst, 22. juli, plan-/beslutningsprosesser, sikkerhet/åpenhet, gjenoppbygging, minnepolitikk og store prosjektaktører. Det bærer ti selvstendige settplaner og skal derfor produseres som `major_10x7`.
-- Statsbyggs og Regjeringens prosjektoversikter navngir Team Urbis samt Nordic Office of Architecture, COWI, Rambøll, Aas-Jakobsen, Asplan Viak, Bjørbekk & Lindheim og SLA. Regjeringens aktøroversikt navngir også Veidekke, Hent, Skanska, Agaia og Mebyr som hovedentreprenører. Disse er Brand-kandidater, ikke automatisk godkjente Brands; hver kandidat må få canonical identitet, konkret stedsevidens og logo-/rettighetskontroll.
+- Regjeringskvartalet har dokumenterte perioder, bygg, institusjoner, People, kunst, 22. juli, plan-/beslutningsprosesser, sikkerhet/åpenhet, gjenoppbygging, minnepolitikk og store prosjektaktører. Det bærer ti selvstendige settplaner og er derfor produsert som `major_10x7`.
+- Statsbyggs og Regjeringens prosjektoversikter navngir Team Urbis samt Nordic Office of Architecture, COWI, Rambøll, Aas-Jakobsen, Asplan Viak, Bjørbekk & Lindheim og SLA. Regjeringens aktøroversikt navngir også Veidekke, HENT, Skanska, Agaia og Mebyr som hovedentreprenører. Kandidatene er nå identitets-, steds-, kilde- og rettighetsauditert; 14 er canonicalisert, mens Team Urbis-navnet og tre andre entitetstyper er holdt tilbake.
 - Kilder: `https://www.statsbygg.no/nyheter/regjeringskvartalet-kontrakt-undertegnet/`, `https://www.regjeringen.no/no/aktuelt/forste-byggetrinn-i-regjeringskvartalet-ferdigstilles-under-kostnadsrammen/id3141936/` og `https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/`.
 
 ## Resultat i fase 4
@@ -282,9 +283,9 @@ PR #4673 dokumenterte at `brands_master.json` og `brands_by_place.json` manglet 
 
 ## Korrigert sluttstatus
 
-Fase 13 er squash-merget i PR #4674 med commit `06d6c462e549be34e784d81317333bbfb20fd5ef`, og den tekniske UI-auditen står. Den kan gjenbrukes etter innholdsutvidelsen, men må kjøres på nytt mot den ferdige 10×7-quizen og det canonicaliserte Brand-settet.
+Fase 13 ble squash-merget i PR #4674 med commit `06d6c462e549be34e784d81317333bbfb20fd5ef`. Den permanente UI-auditen er nå kjørt på nytt etter at Quiz/Brands ble merget i PR #4680 og People ble merget i PR #4681.
 
-Quiz og Brands er ferdig produsert i arbeidsgrenen. Regjeringskvartalet erklæres ikke samlet produksjonsklart før fase 14–15 er merget og fase 16 har kjørt den samme permanente UI-/produksjonsporten på fersk `main`.
+Regjeringskvartalet er samlet produksjonsklart: `major_10x7` med 70 spørsmål, 70 primære Knowledge-ID-er, 14 Brands, 22 People, 2 Objects, 3 underbadges og alle åtte popupfaner består den samme permanente Chromium-/produksjonsporten på fersk `main`.
 
 ## Resultat i korrigeringsfase 14
 
@@ -301,3 +302,20 @@ Quiz og Brands er ferdig produsert i arbeidsgrenen. Regjeringskvartalet erklære
 - Statsbygg og KORO kvalifiserer som autonome institusjonelle aktørbrands med direkte stedstilknytning. Departementene, enkeltpersoner og 22. juli-senteret beholdes i sine primære entitetslag.
 - Kandidatauditen dokumenterer Brand-kriterier, direkte prosjektkilde og fire kandidatspesifikke avslag.
 - Ingen firmalogo er kopiert, generert eller rekonstruert uten eksplisitt gjenbruksgrunnlag. Kortene bruker canonical navn og eksisterende runtime-fallback; dette er en rettighetsavgjørelse, ikke manglende Brand-identitet.
+
+## Resultat i korrigeringsfase 15b
+
+- People-rundingen er utvidet fra 12 til 22 canonicale personer i PR #4681.
+- Fem eksisterende profiler er gjenbrukt og claim-oppgradert; fem nye profiler er opprettet. Repositoryet har fortsatt null dupliserte person-ID-er.
+- Utvidelsen dekker regjeringshistorie, 22. juli-senteret, gjenoppbygging og offentlig kunst og beholder maksimalt to arkitekter.
+- Eksisterende Stortinget-, Youngstorget- og Victoria Terrasse-koblinger er bevart med egne offisielle claims.
+
+## Resultat i fase 16
+
+- Sluttkontrollen bygger på fersk `main` `a91a0ee590d1c6994092234a5090ea99837cd15b`, som inneholder både PR #4680 og PR #4681.
+- Quizpakken har 10 sett × 7 spørsmål, 70 unike spørsmål og 70 unike primære Knowledge-ID-er.
+- `brands_by_place.regjeringskvartalet` inneholder 14 unike canonicale Brand-ID-er.
+- People-manifestet gir 22 unike koblinger til Regjeringskvartalet, med 2 arkitekter og 20 andre roller.
+- Canonical place har 2 Objects og 3 underbadges. Popupen har 8 faner i riktig rekkefølge.
+- Data checks, TypeScript guard og Chromium-basert `Place rounds governance` er grønne på de mergede produksjonsheadene; fase 16-porten kjører de samme kontrollene samlet.
+- Ingen produksjonsfase står åpen, og ingen interne rapport-, test-, claims- eller produksjonskontekststier eksponeres i brukerflaten.

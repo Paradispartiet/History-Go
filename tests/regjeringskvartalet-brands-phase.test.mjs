@@ -65,9 +65,9 @@ test('Fast rundingsruntime rendrer canonical mapping uten stedsspesifikk særkod
   assert.doesNotMatch(runtime, /regjeringskvartalet/);
 });
 
-test('Rapporten markerer Brands og Quiz som produsert før ny sluttkontroll', () => {
+test('Rapporten markerer Brands, Quiz og samlet sluttkontroll som ferdig', () => {
   assert.match(report, /\| Brands \| \*\*PASS – fase 15/);
   assert.match(report, /\| Quiz \| \*\*PASS – fase 14/);
-  assert.match(report, /Status: \*\*korrigeringsfase 14–15 PASS/);
-  assert.match(report, /fase 16 har kjørt/);
+  assert.match(report, /Status: \*\*PRODUKSJONSKLAR – fase 16 PASS/);
+  assert.match(report, /\| 16 \| Ny samlet sluttkontroll på fersk `main` \| \*\*PASS/);
 });
