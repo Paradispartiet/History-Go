@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { auditSubkulturRuntimeFinal, buildSubkulturRuntimeFinalReport } from '../scripts/audit-subkultur-runtime-final-v1.mjs';
 
 test('Subkultur-runtime materialiserer hele canonicalkjeden', () => {
@@ -34,4 +35,13 @@ test('portal, assessment og redaksjonell status er ferdigstilt atomisk', () => {
   });
   assert.equal(report.runtime.knowledge_registries, 4);
   assert.equal(report.runtime.chapter_files, 40);
+});
+
+test('Subkultur-materialiseringen bevarer redaksjonell status for andre fag', () => {
+  const status = JSON.parse(fs.readFileSync('data/fagverk/subject_status.json', 'utf8'));
+  for (const id of ['historie', 'politikk']) {
+    const subject = status.subjects.find((entry) => entry.id === id);
+    assert.equal(subject?.editorialStatus, 'expanded_and_audited');
+    assert.equal(subject?.nextGate, 'source_refresh_and_case_expansion');
+  }
 });
