@@ -92,6 +92,12 @@ Typisk innhold:
 - type-spesifikke fysiske seksjoner;
 - «Se etter på stedet» når dette beskriver et kjennetegn og ikke en oppgave.
 
+### Én visuell eier per opplysning
+
+Samme nøkkeltall skal ikke gjentas i heroen og i en type-spesifikk detaljseksjon. Headeren eier orientering som kategori, primært år og stedstype. Den relevante detaljseksjonen eier areal, høyde, høyeste punkt, terreng, fysisk utstrekning, etasjer, kapasitet, materiale og konstruksjon.
+
+People- og Story-antall skal normalt ikke vises som egne hero-nøkkeltall når innholdet allerede har egne seksjoner. Badgeflaten eier fagområde, epoke, underbadges og emner.
+
 ### Viktig `popupDesc`-regel
 
 Denne popupkontrakten eier bare **plasseringen** av `popupDesc`.

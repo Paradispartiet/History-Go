@@ -82,6 +82,9 @@ test("renders Stensparken as the park reference profile", () => {
 
   assert.match(captured.html, /Nøkkeltall og landskap/);
   assert.match(captured.html, /48 daa/);
+  assert.equal((captured.html.match(/48 daa/g) || []).length, 1);
+  assert.equal((captured.html.match(/81 moh/g) || []).length, 1);
+  assert.doesNotMatch(captured.html, /hg-place-facts/);
   assert.match(captured.html, /500 m/);
   assert.match(captured.html, /Blåsen/);
   assert.match(captured.html, /81 moh/);

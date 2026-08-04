@@ -152,6 +152,8 @@ Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder ·
 
 Disse tre rollene skal ikke blandes for å fylle UI.
 
+Stedspopupens hero skal gi orientering og primær handling, ikke gjenta nøkkeltall som allerede eies av type-spesifikke detaljseksjoner. Se `docs/PLACE_POPUP_SYSTEM.md` for regelen om én visuell eier per opplysning.
+
 ## 7. PlaceCard
 
 PlaceCard er det kompakte kontrollrommet for stedet.
