@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_subject_status_v1",
-  "version": "2.18.0",
+  "version": "2.19.0",
   "status": "canonical_fagverk_status",
   "updatedAt": "2026-08-04",
   "owner": "fagverk_subject_status",
@@ -19,9 +19,10 @@
       "not_started",
       "structure_ready",
       "chapters_in_progress",
-      "complete"
+      "complete",
+      "expanded_and_audited"
     ],
-    "progressionRule": "Redaksjonell fremdrift krever materialized navigasjonsstatus, individuell audited evidens og grønn fagverkaudit. Complete krever redigerte kapitler som dekker alle canonicale fagområder og emner."
+    "progressionRule": "Redaksjonell fremdrift krever materialized navigasjonsstatus, individuell audited evidens og grønn fagverkaudit. Complete krever redigerte kapitler som dekker alle canonicale fagområder og emner. Expanded_and_audited krever i tillegg en eksplisitt kvalitetsutvidelse med egne, permanente porter."
   },
   "subjects": [
     {
@@ -35,9 +36,9 @@
       "id": "historie",
       "navigationStatus": "materialized",
       "assessmentStatus": "audited",
-      "editorialStatus": "complete",
-      "nextGate": "maintenance_and_source_refresh",
-      "note": "Historie er redaksjonelt komplett med 23 av 23 canonicale fagområder og 23 fullverdige kapitler. Alle 230 emner inngår i et kapittel med teori-evidens, claim- og kildesporing, begrepsforklaringer, eksempler, misoppfatninger, oppgaver og selvtest. Den universitetsnære pensumarkitekturen organiserer stoffet i kronologi, tematiske fagretninger, metode og geografiske læringsstier."
+      "editorialStatus": "expanded_and_audited",
+      "nextGate": "source_refresh_and_case_expansion",
+      "note": "Historie har 23 av 23 canonicale fagområder og 23 fullverdige kapitler. De atten tidligere malpregede kapitlene har nå egne håndredigerte fagprofiler, 180 emnespesifikke redaksjonelle linser, årsakskjeder, tolkningsuenighet og 54 dokumenterte stedscaser. Alle 230 emner beholder teori-evidens, claim- og kildesporing, begrepsforklaringer, oppgaver og selvtest."
     },
     {
       "id": "kunst",
@@ -88,9 +89,9 @@
       "id": "politikk",
       "navigationStatus": "materialized",
       "assessmentStatus": "audited",
-      "editorialStatus": "complete",
-      "nextGate": "maintenance_and_source_refresh",
-      "note": "Politikk er redaksjonelt komplett med et universitetsnært studieløp på 41 forklarte deler, tretten av tretten canonicale fagområder, 123 emner, 71 metoder, 962 søkbare begrepsoppføringer og tretten fullproduserte kapitler. Kapitlene beholder inspectable kilder, claimregister, avsnittssporing og permanente tester; det flate domeneregisteret er nå et kompatibilitetslag under studieløpet."
+      "editorialStatus": "expanded_and_audited",
+      "nextGate": "source_refresh_and_case_expansion",
+      "note": "Politikk har et universitetsnært studieløp på 41 forklarte deler, tretten av tretten canonicale fagområder, 123 emner, 71 metoder, 962 søkbare begrepsoppføringer og tretten fullproduserte kapitler. Alle 962 begreper har nå selvstendige definisjoner; emnebruk, avgrensning, feilbruk, kildekrav og forbindelser er skilt i egne felt. Kapitlene beholder inspectable kilder, claimregister, avsnittssporing og permanente tester."
     },
     {
       "id": "psykologi",

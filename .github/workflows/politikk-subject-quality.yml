@@ -3,10 +3,16 @@ name: Politikk subject quality
 on:
   pull_request:
     paths:
+      - 'fagverk.html'
       - 'data/fag/politikk/**'
       - 'tools/materialize-politikk-curriculum.mjs'
       - 'tools/validate-politikk-curriculum-architecture.mjs'
       - 'tests/politikk-curriculum-architecture.test.mjs'
+      - 'tests/politikk-fag-integration.test.mjs'
+      - 'js/fagverk-subject-core.js'
+      - 'js/fagverk.js'
+      - 'js/politikk-fagportal.js'
+      - 'docs/POLITIKK_CURRICULUM_ARCHITECTURE_V1.md'
       - 'data/badges/politikk.json'
       - 'data/fagverk/**'
       - 'scripts/audit-politikk-subject-quality.mjs'
@@ -59,10 +65,16 @@ on:
   push:
     branches: [main]
     paths:
+      - 'fagverk.html'
       - 'data/fag/politikk/**'
       - 'tools/materialize-politikk-curriculum.mjs'
       - 'tools/validate-politikk-curriculum-architecture.mjs'
       - 'tests/politikk-curriculum-architecture.test.mjs'
+      - 'tests/politikk-fag-integration.test.mjs'
+      - 'js/fagverk-subject-core.js'
+      - 'js/fagverk.js'
+      - 'js/politikk-fagportal.js'
+      - 'docs/POLITIKK_CURRICULUM_ARCHITECTURE_V1.md'
       - 'data/badges/politikk.json'
       - 'data/fagverk/**'
       - 'scripts/audit-politikk-subject-quality.mjs'

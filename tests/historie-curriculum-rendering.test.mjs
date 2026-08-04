@@ -17,10 +17,10 @@ function shell() {
     <div id="fagverkSubjectProgress"></div><nav id="fagverkDomainNav"></nav><nav id="fagverkChapterNav"></nav><aside id="fagverkPlaceContext"></aside>
     <p id="fagverkChapterKicker"></p><h2 id="fagverkChapterTitle"></h2><p id="fagverkChapterSubtitle"></p><p id="fagverkLead"></p>
     <main id="fagverkSubjectOverview"></main><main id="fagverkCanonicalDomain"></main><main id="fagverkCanonicalEmne"></main><main id="fagverkMethods"></main>
-    <section class="fagverk-diagnostic"></section><section class="fagverk-objectives"></section><section class="fagverk-contents"></section>
-    <section id="fagverkSections"></section><section class="fagverk-examples"></section><section class="fagverk-misconceptions"></section>
-    <section class="fagverk-concepts"></section><section class="fagverk-application"></section><section class="fagverk-selfcheck"></section>
-    <section class="fagverk-cases"></section><section class="fagverk-sources"></section>
+    <section class="fagverk-diagnostic"><div id="fagverkDiagnostic"></div></section><section class="fagverk-objectives"><ul id="fagverkObjectives"></ul></section><nav id="fagverkContents" class="fagverk-contents"></nav>
+    <section id="fagverkSections"></section><section class="fagverk-editorial"><div id="fagverkEditorial"></div></section><section class="fagverk-examples"><div id="fagverkExamples"></div></section><section class="fagverk-misconceptions"><div id="fagverkMisconceptions"></div></section>
+    <section class="fagverk-concepts"><div id="fagverkConceptGrid"></div></section><section class="fagverk-application"><div id="fagverkApplication"></div></section><section class="fagverk-selfcheck"><div id="fagverkSelfCheck"></div></section>
+    <section class="fagverk-cases"><div id="fagverkCases"></div></section><section class="fagverk-sources"><ul id="fagverkSources"></ul></section>
   </body></html>`;
 }
 
@@ -97,5 +97,58 @@ test('Historie-oversikten renderer studieløpet og skjuler det flate registeret'
   assert.match(overview.querySelector('#historieConceptResults').textContent.toLocaleLowerCase('nb-NO'), /imperium/);
   assert.match(navigation.textContent, /Canonicalt fagregister \(23\)/);
   assert.equal(navigation.querySelector('.fagverk-domain-registry').open, false);
+  assert.equal(window.document.getElementById('fagverkError').hidden, true);
+});
+
+test('et redaksjonelt Historie-kapittel viser årsakskjede, tolkningsuenighet og stedscaser', async () => {
+  const dom = new JSDOM(shell(), {
+    url: 'https://history-go.test/fagverk.html?subject=historie&chapter=krig_okkupasjon_motstand',
+    runScripts: 'dangerously'
+  });
+  const { window } = dom;
+  window.eval(read('js/fagverk-subject-core.js'));
+  const registry = json('data/fagverk/fagverk_registry.json');
+  const status = json('data/fagverk/subject_status.json').subjects.find((entry) => entry.id === 'historie');
+  const model = window.HGFagverkSubjectCore.normalizeSubject({
+    subjectId: 'historie',
+    schemaFamily: 'standard_canonical',
+    categoryLabel: 'Historie',
+    categoryDescription: 'Historiefaget',
+    registry,
+    statusEntry: status,
+    source: {
+      pensum: json('data/fag/historie/historiepensum_canonical_v4_5.json'),
+      emners: json('data/fag/historie/emner_historie_canonical_v4_5.json'),
+      fagkart: json('data/fag/historie/fagkart_historie_canonical_v4_5.json'),
+      methods: json('data/fag/historie/methods_historie_canonical_v4_5.json'),
+      curriculum: json('data/fag/historie/curriculum_architecture_historie_v1.json'),
+      concepts: json('data/fag/historie/concepts_historie_canonical_v5_5.json'),
+      periodGuides: json('data/fag/historie/period_guides_historie_v1.json')
+    }
+  });
+  const coverage = model.emners.map((emne) => ({ emne_id: emne.id, percent: 0 }));
+  const progress = { points: 0, tier: { label: 'Nybegynner' }, coverage, coverageById: new Map(coverage.map((row) => [row.emne_id, row])), domainProgress: [], quizHistory: [] };
+  window.HGFagverkSubjectModel = {
+    load: async () => model,
+    readProgress: () => progress,
+    domainUrl: () => '#domain',
+    emneUrl: () => '#emne',
+    chapterUrl: () => '#chapter',
+    placePageUrl: (placeId) => `fagverk-sted.html?place=${placeId}`
+  };
+  window.fetch = async (file) => ({ ok: true, json: async () => json(String(file)) });
+
+  window.eval(read('js/fagverk.js'));
+  window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+  await new Promise((resolve) => window.setTimeout(resolve, 40));
+
+  const editorial = window.document.getElementById('fagverkEditorial');
+  assert.equal(editorial.closest('.fagverk-editorial').hidden, false);
+  assert.match(editorial.textContent, /Fra forutsetning til historisk utfall/);
+  assert.match(editorial.textContent, /Hvordan skal historikere forstå handlinger under okkupasjon/);
+  assert.match(editorial.textContent, /Grini fangeleir/);
+  assert.equal(editorial.querySelectorAll('article').length, 3);
+  assert.equal(editorial.querySelectorAll('ol li').length, 4);
+  assert.equal(editorial.querySelectorAll('a').length, 3);
   assert.equal(window.document.getElementById('fagverkError').hidden, true);
 });

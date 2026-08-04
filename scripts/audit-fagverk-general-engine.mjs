@@ -236,7 +236,7 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
     }
 
     assert(baseStatusEntry.assessmentStatus === 'audited', `${subjectId}: materialized fag må være audited etter fase 1`);
-    assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(baseStatusEntry.editorialStatus), `${subjectId}: materialized fag mangler strukturell ferdigstatus`);
+    assert(['structure_ready', 'chapters_in_progress', 'complete', 'expanded_and_audited'].includes(baseStatusEntry.editorialStatus), `${subjectId}: materialized fag mangler strukturell ferdigstatus`);
     assert(portalEntry.subjectPage === `fagverk.html?subject=${subjectId}`, `${subjectId}: ugyldig canonical subjectPage`);
     assert(portalEntry.badgePage, `${subjectId}: mangler merkesidelenke`);
 

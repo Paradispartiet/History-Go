@@ -21,7 +21,8 @@ test('Politikk har et komplett studielop over det canonicale registeret', () => 
   assert.equal(result.concepts, 962);
   assert.equal(result.chapters, 13);
   assert.ok(result.textbookWords >= 25000);
-  assert.equal(result.directDefinitions + result.contextualDefinitions, result.concepts);
+  assert.equal(result.directDefinitions + result.editorialRuleDefinitions, result.concepts);
+  assert.equal(result.contextualDefinitions, 0);
 });
 
 test('fagsiden og Politikk-portalen viser studielop og forklarte begreper', () => {
@@ -41,21 +42,28 @@ test('fagsiden og Politikk-portalen viser studielop og forklarte begreper', () =
   assert.match(portalPage, /Start her/);
 });
 
-test('begrepsregisteret er sporbar til alle emner og skiller definisjonskvalitet', () => {
+test('begrepsregisteret er sporbart og alle oppslag har selvstendig definisjon', () => {
   const document = readJson('data/fag/politikk/concepts_politikk_canonical_v1.json');
   const concepts = document.concepts;
   const statuses = new Set(concepts.map((concept) => concept.definition_status));
 
   assert.equal(concepts.length, 962);
   assert.ok(['editorial_chapter', 'canonical_hook', 'canonical_emne'].some((status) => statuses.has(status)));
-  assert.ok(statuses.has('contextual_from_canonical_emne'));
+  assert.ok(statuses.has('editorial_rule_definition'));
+  assert.ok(!statuses.has('contextual_from_canonical_emne'));
+  assert.equal(document.summary.editorial_rule_definition_count, 819);
+  assert.equal(document.summary.contextual_definition_count, 0);
+  assert.ok(concepts.filter((concept) => concept.definition_method === 'editorial_seed').length >= 273);
+  assert.ok(concepts.filter((concept) => concept.definition_method === 'semantic_editorial_rule').length <= 546);
   assert.equal(new Set(concepts.flatMap((concept) => concept.source_emne_ids)).size, 123);
   assert.equal(new Set(concepts.flatMap((concept) => concept.domain_ids)).size, 13);
   assert.ok(concepts.every((concept) => concept.scope_note && concept.why_it_matters));
+  assert.ok(concepts.every((concept) => concept.contextual_use && concept.definition_method !== 'domain_fallback'));
+  assert.ok(concepts.every((concept) => !/kontekstuelt analysebegrep|koblingen til emnet|innen «|navnet angir|på den måten|med det innholdet|forleddet angir/iu.test(concept.definition)));
   assert.ok(concepts.every((concept) => concept.common_misuse.length && concept.source_requirements.length));
 });
 
-test('anvendelsesspor og kontekstforklaringer bruker hele fagtermer', () => {
+test('anvendelsesspor og selvstendige definisjoner bruker hele fagtermer', () => {
   const curriculum = readJson('data/fag/politikk/curriculum_architecture_politikk_v1.json');
   const concepts = readJson('data/fag/politikk/concepts_politikk_canonical_v1.json').concepts;
   const legalTrack = curriculum.applied_tracks.find((track) => track.id === 'rett_sikkerhet');
@@ -65,10 +73,11 @@ test('anvendelsesspor og kontekstforklaringer bruker hele fagtermer', () => {
   assert.ok(legalTrack.entry_emne_ids.includes('em_pol_domstoler_rettspraksis'));
   assert.ok(!legalTrack.entry_emne_ids.includes('em_pol_kvantitativ_inferens_maling'));
   assert.ok(legalTrack.entry_emne_ids.length < 40);
-  assert.match(concept('statistisk inferens').definition, /analytisk framgangsmåte/);
-  assert.doesNotMatch(concept('statistisk inferens').definition, /regelbundet ordning/);
+  assert.match(concept('statistisk inferens').definition, /utvalg.*populasjon/s);
   assert.match(concept('rettferdighet').definition, /normativt prinsipp/);
-  assert.doesNotMatch(concept('rettferdighet').definition, /rettslig eller politisk regulert/);
+  assert.match(concept('administrativt skjønn').definition, /handlingsrom/);
+  assert.match(concept('alternativkostnad').definition, /beste realistiske alternativ/);
+  assert.match(concept('komparativ politikk').definition, /sammenligner regimer/);
 });
 
 test('den faktiske fagsiden rendrer 41 lesbare deler og et sokbart begrepsverk', async () => {

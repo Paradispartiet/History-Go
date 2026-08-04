@@ -151,8 +151,8 @@ export function auditPolitikkCompleteChapter(config, { writeReport = false, chec
   }
 
   const politicsStatus = (status.subjects || []).find((row) => row.id === 'politikk');
-  assert(politicsStatus?.editorialStatus === 'complete', 'Politikkstatus skal være complete');
-  assert(politicsStatus?.nextGate === 'maintenance_and_source_refresh', 'Politikkstatus peker ikke til vedlikehold');
+  assert(politicsStatus?.editorialStatus === 'expanded_and_audited', 'Politikkstatus skal være expanded_and_audited');
+  assert(politicsStatus?.nextGate === 'source_refresh_and_case_expansion', 'Politikkstatus peker ikke til neste kvalitetsport');
   const registryChapters = registry.subjects?.politikk?.chapters || [];
   assert(registryChapters.length === 13, 'Politikk skal ha tretten registrerte kapitler');
   let fullContractChapterCount = 0;

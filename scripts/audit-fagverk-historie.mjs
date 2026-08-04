@@ -215,7 +215,7 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   assert(portalEntry.subjectPage === 'fagverk.html?subject=historie', 'Historie har feil fagsiderute');
   assert(portalEntry.badgePage === PATHS.badgePage && fs.existsSync(abs(PATHS.badgePage)), 'Historie har ugyldig merkesiderute');
   assert(statusEntry.navigationStatus === 'materialized' && statusEntry.assessmentStatus === 'audited', 'Historie har usynkron strukturell status');
-  assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(statusEntry.editorialStatus), 'Historie har ugyldig redaksjonell status');
+  assert(['structure_ready', 'chapters_in_progress', 'complete', 'expanded_and_audited'].includes(statusEntry.editorialStatus), 'Historie har ugyldig redaksjonell status');
   assert(inventoryEntry.schemaFamily === 'standard_canonical', 'Historie bruker feil schemafamilie');
 
   const source = {};
@@ -286,9 +286,9 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   const theoryEvidence = universalCoverage.production?.checks?.find((check) => check.id === 'theory_evidence_readiness');
   assert(theoryEvidence, 'Heldedekningsrapporten mangler theory-evidence-port');
   if (universalCoverage.status !== 'COMPLETE' || coveredChapterDomains.length < 23) {
-    assert(statusEntry.editorialStatus !== 'complete', 'Historie kan ikke settes complete før alle porter er oppfylt');
+    assert(!['complete', 'expanded_and_audited'].includes(statusEntry.editorialStatus), 'Historie kan ikke få ferdigstatus før alle porter er oppfylt');
   } else {
-    assert(statusEntry.editorialStatus === 'complete', 'Historie skal stå complete når heldekning og 23/23 kapitler er verifisert');
+    assert(['complete', 'expanded_and_audited'].includes(statusEntry.editorialStatus), 'Historie skal ha ferdigstatus når heldekning og 23/23 kapitler er verifisert');
   }
   assert(registry.placePage?.fallbackSubjectByCategory?.historie === 'historie', 'Historie-stedssider faller fortsatt tilbake til et annet fag');
   assert(!JSON.stringify(model.subject).toLocaleLowerCase('nb-NO').includes('politikk'), 'Historie-modellen inneholder politikkspesifikk resttekst');

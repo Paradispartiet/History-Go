@@ -12,6 +12,7 @@
     '.fagverk-objectives',
     '.fagverk-contents',
     '#fagverkSections',
+    '.fagverk-editorial',
     '.fagverk-examples',
     '.fagverk-misconceptions',
     '.fagverk-concepts',
@@ -342,12 +343,13 @@
       canonical_hook: 'Canonical fagdefinisjon',
       canonical_emne: 'Canonical emnedefinisjon',
       canonical_method: 'Canonical metodeforklaring',
-      contextual_from_canonical_emne: 'Kontekstuell faglig bruk'
+      editorial_rule_definition: 'Selvstendig fagdefinisjon'
     }[concept.definitionStatus] || 'Faglig forklaring';
     return `<details class="fagverk-canonical-concept" data-concept-id="${escapeHtml(concept.id)}"${open ? ' open' : ''}>
       <summary><span><strong>${escapeHtml(concept.label)}</strong><small>${escapeHtml(quality)}</small></span><b>${escapeHtml(concept.type.replaceAll('_', ' '))}</b></summary>
       <div class="fagverk-concept-body">
         <p>${escapeHtml(concept.definition)}</p>
+        ${concept.contextualUse ? `<p class="fagverk-concept-context"><strong>Bruk i faget:</strong> ${escapeHtml(concept.contextualUse)}</p>` : ''}
         ${concept.scopeNote ? `<p class="fagverk-concept-scope"><strong>Faglig avgrensning:</strong> ${escapeHtml(concept.scopeNote)}</p>` : ''}
         ${concept.whyItMatters ? `<p><strong>Hvorfor begrepet betyr noe:</strong> ${escapeHtml(concept.whyItMatters)}</p>` : ''}
         ${domains.length ? `<p><strong>Fagfelt:</strong> ${escapeHtml(domains.join(' · '))}</p>` : ''}
@@ -549,6 +551,21 @@
     if (host) host.innerHTML = list(items).map(renderer).join('');
   }
 
+  function renderChapterEditorial(chapter) {
+    const host = document.getElementById('fagverkEditorial');
+    const section = host?.closest('.fagverk-editorial');
+    if (!host || !section) return;
+    const debate = chapter.historiographicalDebate;
+    const hasDebate = debate?.question && list(debate.positions).length;
+    const hasContent = list(chapter.causalFramework).length || hasDebate || list(chapter.caseAnchors).length;
+    section.hidden = !hasContent;
+    host.innerHTML = hasContent ? `
+      ${list(chapter.causalFramework).length ? `<article class="fagverk-learning-card"><p class="fagverk-kicker">Årsakskjede</p><h4>Fra forutsetning til historisk utfall</h4><ol>${list(chapter.causalFramework).map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol></article>` : ''}
+      ${hasDebate ? `<article class="fagverk-learning-card"><p class="fagverk-kicker">Tolkningsuenighet</p><h4>${escapeHtml(debate.question)}</h4><ul>${list(debate.positions).map((position) => `<li>${escapeHtml(position)}</li>`).join('')}</ul>${debate.editorialNote ? `<p>${escapeHtml(debate.editorialNote)}</p>` : ''}</article>` : ''}
+      ${list(chapter.caseAnchors).length ? `<article class="fagverk-learning-card"><p class="fagverk-kicker">Stedscaser</p><h4>Les sporene mot forklaringen</h4><ul>${list(chapter.caseAnchors).map((place) => `<li><a href="${escapeHtml(MODEL.placePageUrl(place.id))}"><strong>${escapeHtml(place.name)}</strong></a>: ${escapeHtml(place.use)}</li>`).join('')}</ul></article>` : ''}
+    ` : '';
+  }
+
   function renderChapterCases(chapter) {
     const host = document.getElementById('fagverkCases');
     host.innerHTML = list(chapter.relatedPlaces).map((place) => `<a class="fagverk-case" href="${escapeHtml(MODEL.placePageUrl(place.id))}"><strong>${escapeHtml(place.name)}</strong><span>${escapeHtml(place.role)}</span><small>Åpne stedets fagverkside →</small></a>`).join('');
@@ -567,6 +584,7 @@
     renderObjectives(chapter);
     renderContents(chapter);
     renderSections(chapter);
+    renderChapterEditorial(chapter);
     renderChapterCards('fagverkExamples', chapter.workedExamples, (example) => `<article class="fagverk-learning-card"><p class="fagverk-kicker">Arbeidseksempel</p><h4>${escapeHtml(example.title)}</h4><p>${escapeHtml(example.situation)}</p><ol>${list(example.analysis).map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol></article>`);
     renderChapterCards('fagverkMisconceptions', chapter.commonMisconceptions, (item) => `<article class="fagverk-learning-card fagverk-misconception"><p class="fagverk-kicker">Påstand</p><h4>${escapeHtml(item.claim)}</h4><p>${escapeHtml(item.correction)}</p></article>`);
     const selected = text(selectedConcept).toLocaleLowerCase('nb-NO');
