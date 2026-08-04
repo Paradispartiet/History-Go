@@ -360,7 +360,25 @@ const conceptDocument = {
 
 const outputArchitecture = path.join(POLITIKK, 'curriculum_architecture_politikk_v1.json');
 const outputConcepts = path.join(POLITIKK, 'concepts_politikk_canonical_v1.json');
-fs.writeFileSync(outputArchitecture, `${JSON.stringify(architecture, null, 2)}\n`);
-fs.writeFileSync(outputConcepts, `${JSON.stringify(conceptDocument, null, 2)}\n`);
-console.log(`Skrev ${path.relative(ROOT, outputArchitecture)} med ${progression.length + foundations.length + disciplinaryFields.length + policyCycle.length + methodFoundation.length + governanceScales.length + appliedTracks.length} forklarte studieløpsdeler.`);
-console.log(`Skrev ${path.relative(ROOT, outputConcepts)} med ${concepts.length} forklarte begrepsoppføringer.`);
+const outputs = [
+  [outputArchitecture, `${JSON.stringify(architecture, null, 2)}\n`],
+  [outputConcepts, `${JSON.stringify(conceptDocument, null, 2)}\n`]
+];
+const checkOnly = process.argv.includes('--check');
+
+if (checkOnly) {
+  const stale = outputs
+    .filter(([file, expected]) => !fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== expected)
+    .map(([file]) => path.relative(ROOT, file));
+  if (stale.length) {
+    console.error(`Politikk-materialiseringen er utdatert: ${stale.join(', ')}`);
+    console.error('Kjør npm run materialize:politikk-curriculum og commit de regenererte filene.');
+    process.exitCode = 1;
+  } else {
+    console.log(`Politikk-materialiseringen er deterministisk og oppdatert: ${outputs.length} filer.`);
+  }
+} else {
+  for (const [file, content] of outputs) fs.writeFileSync(file, content);
+  console.log(`Skrev ${path.relative(ROOT, outputArchitecture)} med ${progression.length + foundations.length + disciplinaryFields.length + policyCycle.length + methodFoundation.length + governanceScales.length + appliedTracks.length} forklarte studieløpsdeler.`);
+  console.log(`Skrev ${path.relative(ROOT, outputConcepts)} med ${concepts.length} forklarte begrepsoppføringer.`);
+}
