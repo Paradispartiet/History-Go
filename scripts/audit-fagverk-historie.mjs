@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { validateHistoryCurriculumArchitecture } from '../tools/validate-historie-curriculum-architecture.mjs';
+import { validateHistoryPeriodModules } from '../tools/validate-historie-period-modules.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PATHS = Object.freeze({
@@ -224,13 +225,14 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
     assert(fs.existsSync(abs(resolved)), `Historie mangler required source: ${field}`);
     source[field === 'emner' ? 'emners' : field] = json(resolved);
   }
-  for (const field of ['curriculumArchitecture', 'periodGuides', 'concepts', 'coverageContract', 'qualityContract', 'caseRequirements', 'claims', 'sources', 'placeEvidence', 'profilesManifest']) {
+  for (const field of ['curriculumArchitecture', 'periodGuides', 'periodModules', 'concepts', 'coverageContract', 'qualityContract', 'caseRequirements', 'claims', 'sources', 'placeEvidence', 'profilesManifest']) {
     const resolved = CORE.resolveManifestPointer(manifestEntry[field]);
     assert(fs.existsSync(abs(resolved)), `Historie mangler manifesttillegget ${field}`);
   }
   source.concepts = json(CORE.resolveManifestPointer(manifestEntry.concepts));
   assert(fs.existsSync(abs(PATHS.theoryEvidence)), 'Historie mangler canonical theory-evidence-register');
   const curriculumArchitecture = validateHistoryCurriculumArchitecture({ root: ROOT });
+  const periodModules = validateHistoryPeriodModules({ root: ROOT });
 
   const claimRegistry = json(CORE.resolveManifestPointer(manifestEntry.claims));
   const sourceRegistry = json(CORE.resolveManifestPointer(manifestEntry.sources));
@@ -296,11 +298,11 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   const report = {
     schema: 'history_go_fagverk_historie_subject_audit_v1', version: '1.4.0', status: 'phase_5_curriculum_navigation_active', generatedFrom: PATHS,
     subject: { id: model.subject.id, title: model.subject.title, schemaFamily: inventoryEntry.schemaFamily, adapter: model.subject.adapter, badgePage: model.subject.routes.badge, subjectPage: model.subject.routes.subject, assessmentStatus: statusEntry.assessmentStatus, editorialStatus: statusEntry.editorialStatus },
-    summary: { domainCount: 23, emneCount: 230, conceptCount: model.concepts.length, methodCount: 105, mappingCount: 230, hookCount: 230, chapterCount: chapterRows.length, chapterDomainCount: coveredChapterDomains.length, remainingChapterDomains: 23 - coveredChapterDomains.length, placeCount: model.places.length, curriculumPeriods: curriculumArchitecture.periods, curriculumPeriodGuides: curriculumArchitecture.periodGuides, curriculumCoveredPeriods: curriculumArchitecture.coveredPeriods, curriculumPartialPeriods: curriculumArchitecture.partialPeriods, curriculumMissingPeriods: curriculumArchitecture.missingPeriods, curriculumThematicFields: curriculumArchitecture.thematicFields, curriculumMethodModules: curriculumArchitecture.methodModules, curriculumGeographicPaths: curriculumArchitecture.geographicPaths },
+    summary: { domainCount: 23, emneCount: 230, conceptCount: model.concepts.length, methodCount: 105, mappingCount: 230, hookCount: 230, chapterCount: chapterRows.length, chapterDomainCount: coveredChapterDomains.length, remainingChapterDomains: 23 - coveredChapterDomains.length, placeCount: model.places.length, curriculumPeriods: curriculumArchitecture.periods, curriculumPeriodGuides: curriculumArchitecture.periodGuides, curriculumCoveredPeriods: curriculumArchitecture.coveredPeriods, curriculumPartialPeriods: curriculumArchitecture.partialPeriods, curriculumMissingPeriods: curriculumArchitecture.missingPeriods, periodModuleCount: periodModules.modules, periodModuleUnitCount: periodModules.units, periodModuleSourceCount: periodModules.sources, periodModuleCaseCount: periodModules.cases, curriculumThematicFields: curriculumArchitecture.thematicFields, curriculumMethodModules: curriculumArchitecture.methodModules, curriculumGeographicPaths: curriculumArchitecture.geographicPaths },
     chapters: chapterAudits,
     universalCoverage: { status: universalCoverage.status, coveredCells: universalCoverage.summary?.covered_cells ?? null, totalCells: universalCoverage.summary?.total_cells ?? null, productionGaps: universalCoverage.summary?.production_gaps ?? null, theoryEvidenceQualifying: theoryEvidence.measured?.qualifying ?? null, theoryEvidenceTotal: theoryEvidence.measured?.total ?? null, theoryEvidenceRatio: theoryEvidence.measured?.ratio ?? null },
     canonicalDomainOrder: actualDomainOrder,
-    gates: { manifestFirst: true, normalizedModel: true, canonicalDomainOrder: true, curriculumNavigationActive: true, variableTrackSizing: true, visibleCurriculumGaps: true, emneReferencesResolved: true, methodReferencesResolved: true, mappingsResolved: true, historyExtensionPointersResolved: true, badgeAndSubjectRoutes: true, registeredChaptersValidated: true, chapterEvidenceReferencesResolved: true, productionBriefAndParagraphTraceValidated: chapterAudits.some((chapterAudit) => chapterAudit.productionBriefValidated), honestCompletionBoundary: true, historyPlaceFallbackResolved: true, politicsResiduals: 0 }
+    gates: { manifestFirst: true, normalizedModel: true, canonicalDomainOrder: true, curriculumNavigationActive: true, variableTrackSizing: true, curriculumGapsClosedWithEvidenceModules: true, emneReferencesResolved: true, methodReferencesResolved: true, mappingsResolved: true, historyExtensionPointersResolved: true, badgeAndSubjectRoutes: true, registeredChaptersValidated: true, chapterEvidenceReferencesResolved: true, productionBriefAndParagraphTraceValidated: chapterAudits.some((chapterAudit) => chapterAudit.productionBriefValidated), honestCompletionBoundary: true, historyPlaceFallbackResolved: true, politicsResiduals: 0 }
   };
   if (writeReport) { fs.mkdirSync(path.dirname(abs(PATHS.report)), { recursive: true }); fs.writeFileSync(abs(PATHS.report), `${JSON.stringify(report, null, 2)}\n`); }
   if (checkReport) assert(isDeepStrictEqual(json(PATHS.report), report), `${PATHS.report} er utdatert`);

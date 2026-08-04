@@ -12,6 +12,8 @@ Historie presenteres som et studieløp, ikke som en flat liste med 23 tekniske d
 
 Den canonicale 23 × 10-modellen består som koblings- og evidensregister. Ingen av de 230 emnene, 230 teoriobjektene, 230 mappingene eller 105 metodene er slettet eller gitt nye id-er.
 
+En egen identitetsaudit viser 230 unike fulltitler, 230 unike definisjoner og 230 unike semantiske nøkler. 26 eldre emne-id-er har ordlyd som ikke lenger samsvarer med visningstittelen. De beholdes som stabile, ugjennomsiktige kompatibilitetsnøkler og låses til riktig tittel gjennom emnets unike `primary_theory_hook`, mapping og teoriobjekt. Det finnes ingen uløste identitetsblokkere; å gi id-ene nye navn uten full referansemigrering er eksplisitt forbudt.
+
 ## Redaksjonelt tekstlag V1.1
 
 Oversikten er ikke bare et navigasjonsregister. Den har en sammenhengende introduksjon til historiefaget, en leseguide og utdypende lærestoff for alle de 40 pedagogiske enhetene:
@@ -24,7 +26,7 @@ Oversikten er ikke bare et navigasjonsregister. Den har en sammenhengende introd
 
 Hver enhet har en kort inngang, en faglig oversiktstekst, tre konkrete læringsmål og tre nøkkelspørsmål. Kronologien, progresjonen og metodegrunnlaget presenteres som lesbare fullbreddeseksjoner framfor et rutenett av små bokser. Tematiske og geografiske spor beholder en kompakt oversikt, men viser den utdypende teksten og læringsmålene direkte; nøkkelspørsmål og tekniske innganger kan foldes ut.
 
-Tekstlaget endrer ikke dekningsstatus. Antikken forklares som et planlagt faglig område, men står fortsatt som manglende. Tidlig moderne tid og samtidshistorien etter 1991 står fortsatt som delvis dekket til de har egne sammenhengende oversiktsløp.
+Tekstlaget endret opprinnelig ikke dekningsstatus. Denne avgrensningen er nå avløst av periodemodulene i V1.4, som gir de tre tidligere gapene egne kilde-, case- og kunnskapsspor.
 
 ## Redaksjonell fullføring V1.2
 
@@ -38,7 +40,7 @@ Historie har nå et komplett lærestofflag under oversikten:
 - alle ni hovedperioder har en egen sammenhengende periodeguide
 - de 18 nye kapitlene har avsnittssporing til ferdige theory-evidence-objekter, canonicale claims og inspectable kilder
 
-Redaksjonell fullføring og vurderingsdekning er fortsatt to forskjellige statuser. Antikken, tidlig moderne tid og perioden etter 1991 har nå fullverdige oversiktstekster. Den gamle `coverage_status` beholdes foreløpig for å vise hvor quiz-, case- og stedsevidens fortsatt er mangelfull. Brukerflaten viser derfor både «Periodeguide komplett» og den separate evidensstatusen.
+Redaksjonell fullføring og vurderingsdekning er fortsatt to forskjellige statuser. Antikken, tidlig moderne tid og perioden etter 1991 fikk først fullverdige oversiktstekster; i V1.4 er de i tillegg supplert med egne evidensklare periodemoduler og kan derfor markeres dekket uten å late som løse tematiske treff fyller kronologiske gap.
 
 Periodeguidene ligger i `data/fag/historie/period_guides_historie_v1.json`. De 23 lærekapitlene registreres i `data/fagverk/fagverk_registry.json`, og det fullstendige begrepsregisteret lastes fra `data/fag/historie/concepts_historie_canonical_v5_5.json`.
 
@@ -59,20 +61,25 @@ Fagprofilene endrer ikke canonicale emne-, teori-, claim- eller kilde-id-er. Mat
 
 `tools/validate-historie-editorial-quality.mjs` kontrollerer at alle atten profiler er komplette, at stedscasene finnes i fagområdets teori-evidens, at hver emne-id har sin egen linse, og at profilteksten faktisk er materialisert i kapittel, moduler og produksjonsbrief. Den gamle felles ledeteksten er eksplisitt forbudt i disse kapitlene.
 
+## Kronologisk sluttdekning V1.4
+
+De tre tidligere kronologiske gapene har nå egne, kildebundne moduler i `data/fag/historie/period_modules_historie_v1.json`:
+
+- antikken og eldre globale sivilisasjoner: 8 læringsenheter
+- tidlig moderne tid 1500–1814: 7 læringsenheter
+- samtidshistorie etter 1991: 6 læringsenheter
+
+Til sammen inneholder laget 21 læringsenheter, 18 kontrollerbare fag- og primærkilder, 9 fysiske stedscaser og 21 kunnskapssjekker. Hver enhet må ha flere substansielle påstander, minst to kilder, et fysisk case og en forklarende kunnskapssjekk. Kildene registrerer også kildeplassering og begrensninger. Antallet enheter er bevisst ulikt mellom periodene; den eldre 23 × 10-strukturen er et kompatibilitetsregister, ikke en produksjonskvote.
+
+Alle ni hovedperioder er dermed markert `covered`, og `known_curriculum_gaps` er tom. Dekningen er internredaksjonelt og teknisk auditert; den er ikke det samme som ekstern fagfellevurdering.
+
 ## Fire adskilte dimensjoner
 
 ### Kronologisk grunnstamme
 
 Grunnstammen har ni perioder fra forhistorie til samtid. Den svarer på hva studenten lærer først og gjør tidsforløpet synlig før tematiske fordypninger.
 
-Statusen er bevisst streng:
-
-- seks perioder er dekket
-- tidlig moderne tid er delvis dekket
-- samtid etter 1991 er delvis dekket
-- antikken og eldre globale sivilisasjoner mangler et dedikert fagfelt
-
-Generelle treff om imperier, religion eller handel får ikke skjule antikkgapet.
+Statusen er bevisst streng: alle ni perioder er dekket, men de tre tidligere gapene må beholde sine dedikerte periodemoduler. Generelle treff om imperier, religion eller handel kan ikke erstatte antikkmodulen, og en periode kan ikke markeres dekket hvis modulens kilde-, case- eller kunnskapsspor brytes.
 
 ### Tematiske fagretninger
 
@@ -100,18 +107,22 @@ Permanent port:
 
 - `node tools/validate-historie-curriculum-architecture.mjs`
 - `node tools/validate-historie-editorial-quality.mjs`
+- `node tools/validate-historie-period-modules.mjs`
+- `node tools/materialize-historie-period-modules.mjs --check`
+- `node tools/audit-historie-canonical-emner.mjs`
 - `node tools/materialize-historie-editorial-chapters.mjs --check`
 
 Porten kontrollerer blant annet:
 
 - gyldige emne-, domene-, metode-, profil- og geograficelle-id-er
 - sammenhengende rekkefølge i alle navigasjonslag
-- synlige og ærlige kronologiske gap
-- at delvis dekning har reelle innganger og en konkret neste handling
-- at manglende dekning ikke fylles med løse tematiske treff
+- at alle ni perioder er dekket og de tre tidligere gapene beholder dedikerte periodemoduler
+- at periodemodulene beholder 21 faglig begrunnede enheter, 18 kilder og 9 canonicale stedscaser
+- at alle moduler har ulike enhetstall, slik at en skjult fast kvote ikke gjeninnføres
 - at alle 23 domener er klassifisert i minst ett pedagogisk lag
 - at 23 domener, 230 emner og 105 metoder er bevart under migreringen
 - at den nye arkitekturen ikke gjeninnfører eksakte emnekvoter
+- at alle 230 emner har unik fulltittel, definisjon og semantisk nøkkel, og at legacy-id-er er eksplisitt bundet til riktig hook
 - at alle 40 pedagogiske enheter beholder reelle oversiktstekster, tre læringsmål og tre fullstendige nøkkelspørsmål
 - at fagintroduksjonen og leseguiden ikke kan erstattes av korte registeretiketter
 - at alle ni perioder har tre sammenhengende hoveddeler, reelle fagavsnitt, sentrale begreper og tverrgående forbindelser
@@ -124,9 +135,9 @@ Porten kontrollerer blant annet:
 
 Fagverket er strukturelt dekkende og redaksjonelt utvidet og auditert. Videre arbeid er kildevedlikehold og nye dokumenterte caseutvidelser:
 
-1. utvide quiz-, case- og stedsevidens for Antikken, tidlig moderne tid og samtid etter 1991
-2. auditere de 230 emnene for reelle dubletter og feiljusterte id/tittel-par
-3. erstatte gamle eksakt-ti-validatorer med minimums-, bredde- og prioriteringsporter
-4. oppdatere kilder og periodeguider når historieforskning eller kildegrunnlag endres
+1. gjennomføre ekstern fagkontroll med historiker og registrere eventuelle korreksjoner enkeltvis
+2. migrere de 26 dokumenterte legacy-id-ene bare dersom alle referanser kan flyttes atomisk; dagens semantiske kobling er komplett og blokkfri
+3. flytte flere eldre konsumenter fra eksakt-ti-antakelser til minimums-, bredde- og prioriteringsporter
+4. vedlikeholde kilder, cases og periodeguider når forskning eller kildegrunnlag endres
 
 Slike endringer skal gjennomføres uten å svekke ferdig claim-, kilde-, place-evidence- eller theory-evidence-sporing.

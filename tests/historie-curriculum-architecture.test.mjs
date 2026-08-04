@@ -16,9 +16,9 @@ test('universitetsnær Historie-arkitektur validerer uten å endre canonicalt in
     schema: 'history_go_history_curriculum_architecture_v1',
     status: 'active_curriculum_navigation',
     periods: 9,
-    coveredPeriods: 6,
-    partialPeriods: 2,
-    missingPeriods: 1,
+    coveredPeriods: 9,
+    partialPeriods: 0,
+    missingPeriods: 0,
     thematicFields: 14,
     methodModules: 6,
     geographicPaths: 6,
@@ -29,16 +29,22 @@ test('universitetsnær Historie-arkitektur validerer uten å endre canonicalt in
   });
 });
 
-test('antikken og de to svake oversiktsperiodene fremstilles ærlig', () => {
+test('de tre tidligere oversiktsgapene er lukket med egne periodemoduler', () => {
   const architecture = json('data/fag/historie/curriculum_architecture_historie_v1.json');
   const periodGuides = json('data/fag/historie/period_guides_historie_v1.json');
   const byId = new Map(architecture.chronological_spine.map((period) => [period.id, period]));
   const guideById = new Map(periodGuides.guides.map((guide) => [guide.period_id, guide]));
-  assert.equal(byId.get('antikken_eldre_sivilisasjoner').coverage_status, 'missing');
+  const modules = json('data/fag/historie/period_modules_historie_v1.json');
+  const moduleById = new Map(modules.modules.map((module) => [module.module_id, module]));
+  assert.equal(byId.get('antikken_eldre_sivilisasjoner').coverage_status, 'covered');
   assert.deepEqual(byId.get('antikken_eldre_sivilisasjoner').entry_emne_ids, []);
-  assert.match(byId.get('antikken_eldre_sivilisasjoner').gap_action, /eget, globalt balansert antikkfelt/);
-  assert.equal(byId.get('tidlig_moderne_1500_1814').coverage_status, 'partial');
-  assert.equal(byId.get('samtid_etter_1991').coverage_status, 'partial');
+  assert.equal(byId.get('tidlig_moderne_1500_1814').coverage_status, 'covered');
+  assert.equal(byId.get('samtid_etter_1991').coverage_status, 'covered');
+  for (const periodId of ['antikken_eldre_sivilisasjoner', 'tidlig_moderne_1500_1814', 'samtid_etter_1991']) {
+    const module = moduleById.get(byId.get(periodId).period_module_id);
+    assert.equal(module.period_id, periodId);
+    assert.ok(module.units.length >= 6);
+  }
   assert.equal(guideById.get('antikken_eldre_sivilisasjoner').editorial_status, 'complete');
   assert.equal(guideById.get('tidlig_moderne_1500_1814').editorial_status, 'complete');
   assert.equal(guideById.get('samtid_etter_1991').editorial_status, 'complete');
@@ -46,7 +52,7 @@ test('antikken og de to svake oversiktsperiodene fremstilles ærlig', () => {
 
 test('alle pedagogiske lag har forklarende tekst, læringsmål og nøkkelspørsmål', () => {
   const architecture = json('data/fag/historie/curriculum_architecture_historie_v1.json');
-  assert.equal(architecture.version, '1.1.0');
+  assert.equal(architecture.version, '1.2.0');
   assert.equal(architecture.editorial_introduction.paragraphs.length, 3);
   const rows = [
     ...architecture.progression,

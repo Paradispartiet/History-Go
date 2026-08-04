@@ -12,6 +12,7 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
 const PATHS = Object.freeze({
   architecture: 'data/fag/politikk/curriculum_architecture_politikk_v1.json',
   concepts: 'data/fag/politikk/concepts_politikk_canonical_v1.json',
+  conceptReviews: 'data/fag/politikk/concept_editorial_reviews_politikk_v1.json',
   pensum: 'data/fag/politikk/politikkpensum_canonical_v4_5.json',
   emners: 'data/fag/politikk/emner_politikk_canonical_v4_5.json',
   methods: 'data/fag/politikk/methods_politikk_canonical_v4_5.json',
@@ -44,6 +45,7 @@ function chapterWordCount(root, chapterMeta) {
 export function validatePolitikkCurriculumArchitecture({ root = DEFAULT_ROOT } = {}) {
   const architecture = readJson(root, PATHS.architecture);
   const conceptDocument = readJson(root, PATHS.concepts);
+  const conceptReviews = readJson(root, PATHS.conceptReviews);
   const pensum = readJson(root, PATHS.pensum);
   const emners = readJson(root, PATHS.emners);
   const methods = list(readJson(root, PATHS.methods).methods);
@@ -115,13 +117,17 @@ export function validatePolitikkCurriculumArchitecture({ root = DEFAULT_ROOT } =
   assert(new Set(concepts.map((concept) => normalize(concept.label))).size === concepts.length, 'Dupliserte begrepsetiketter');
   assert(new Set(concepts.map((concept) => concept.definition)).size === concepts.length, 'Dupliserte begrepsdefinisjoner tyder på maltekst');
   assert(conceptDocument.summary.direct_editorial_or_canonical_definition_count === 143, 'Antallet direkte kilde- og kapitteldefinisjoner er endret');
-  assert(conceptDocument.summary.editorial_rule_definition_count === 819, 'Alle tidligere kontekstoppføringer må ha selvstendig fagdefinisjon');
+  assert(conceptDocument.summary.editorial_seed_definition_count === 273, 'Antallet særskrevne termdefinisjoner er endret');
+  assert(conceptDocument.summary.explicit_editorial_review_count === 546, 'Alle tidligere regeldefinisjoner må være eksplisitt revidert');
+  assert(conceptDocument.summary.semantic_rule_definition_count === 0, 'Semantiske regeldefinisjoner skal ikke stå igjen som sluttinnhold');
   assert(conceptDocument.summary.contextual_definition_count === 0, 'Kontekstforklaringer skal ikke lenger stå som definisjoner');
   const editorialSeedCount = concepts.filter((concept) => concept.definition_method === 'editorial_seed').length;
+  const explicitReviewCount = concepts.filter((concept) => concept.definition_method === 'explicit_editorial_review').length;
   const semanticRuleCount = concepts.filter((concept) => concept.definition_method === 'semantic_editorial_rule').length;
-  assert(editorialSeedCount >= 273, 'Antallet særskilt redigerte termdefinisjoner kan ikke reduseres');
-  assert(semanticRuleCount <= 546, 'Semantiske regeldefinisjoner kan ikke erstatte særskilt redigerte termer');
-  const allowedDefinitionStatuses = new Set(['editorial_chapter', 'canonical_hook', 'canonical_emne', 'canonical_method', 'editorial_rule_definition']);
+  assert(editorialSeedCount === 273, 'Antallet særskilt redigerte termdefinisjoner er endret');
+  assert(explicitReviewCount === 546, 'Det eksplisitte reviewlaget må dekke 546 begreper');
+  assert(semanticRuleCount === 0, 'Semantiske regeldefinisjoner skal være erstattet av eksplisitte reviewer');
+  const allowedDefinitionStatuses = new Set(['editorial_chapter', 'canonical_hook', 'canonical_emne', 'canonical_method', 'editorial_rule_definition', 'editorial_reviewed']);
   for (const concept of concepts) {
     assert(rawConceptLabels.has(normalize(concept.label)), `${concept.label}: finnes ikke i canonicalt emneinventar`);
     assert(typeof concept.definition === 'string' && concept.definition.length >= 85, `${concept.concept_id}: forklaringen er for kort`);
@@ -138,6 +144,24 @@ export function validatePolitikkCurriculumArchitecture({ root = DEFAULT_ROOT } =
   }
   assert(new Set(concepts.flatMap((concept) => concept.source_emne_ids)).size === emneIds.size, 'Begrepsverket dekker ikke alle emner');
   assert(new Set(concepts.flatMap((concept) => concept.domain_ids)).size === domainIds.size, 'Begrepsverket dekker ikke alle fagområder');
+  assert(conceptReviews.schema === 'history_go_politikk_concept_editorial_reviews_v1', 'Feil schema for begrepsreviewene');
+  assert(conceptReviews.status === 'explicit_review_inventory_complete', 'Begrepsreviewene er ikke komplette');
+  assert(conceptReviews.review_policy?.automated_generation_is_not_external_expert_signoff === true, 'Reviewregisteret må markere at ekstern fagkontroll gjenstår');
+  assert(conceptReviews.review_policy?.definitions_are_explicit_not_runtime_rules === true, 'Reviewdefinisjonene må være eksplisitte');
+  const reviews = list(conceptReviews.reviews);
+  assert(reviews.length === explicitReviewCount && new Set(reviews.map((review) => review.concept_id)).size === reviews.length, 'Reviewregisteret må ha ett unikt oppslag per eksplisitt revidert begrep');
+  const reviewById = new Map(reviews.map((review) => [review.concept_id, review]));
+  for (const concept of concepts.filter((entry) => entry.definition_method === 'explicit_editorial_review')) {
+    const review = reviewById.get(concept.concept_id);
+    assert(review?.reviewed_definition === concept.definition, `${concept.concept_id}: review og definisjon avviker`);
+    assert(review?.reviewed_scope_note === concept.scope_note, `${concept.concept_id}: review og avgrensning avviker`);
+    assert(review?.review_status === 'machine_assisted_editorial_review_complete', `${concept.concept_id}: mangler reviewstatus`);
+    assert(list(review?.claim_ids).length >= 1, `${concept.concept_id}: mangler claimspor`);
+    assert(list(review?.source_references).length >= 1, `${concept.concept_id}: mangler kildespor`);
+    assert(list(review.source_references).every((source) => /^https:\/\//u.test(source.url) && String(source.source_location || '').length >= 3), `${concept.concept_id}: mangler synlig kildelenke eller kildeplassering`);
+    assert(concept.editorial_review?.chapter_id === review.chapter_id, `${concept.concept_id}: materialisert review mangler kapittelspor`);
+    assert(JSON.stringify(list(concept.editorial_review?.source_references)) === JSON.stringify(list(review.source_references)), `${concept.concept_id}: materialisert kildespor avviker`);
+  }
   const conceptByLabel = new Map(concepts.map((concept) => [normalize(concept.label), concept]));
   assert(/avgjør hvem|avgjør hvilke/iu.test(conceptByLabel.get('adgangskontroll').definition), 'adgangskontroll: mangler selvstendig portvaktdefinisjon');
   assert(/handlingsrom/iu.test(conceptByLabel.get('administrativt skjønn').definition), 'administrativt skjønn: mangler skjønnsdefinisjon');
@@ -165,8 +189,8 @@ export function validatePolitikkCurriculumArchitecture({ root = DEFAULT_ROOT } =
     chapters: politikkRegistry.chapters.length,
     textbookWords,
     directDefinitions: conceptDocument.summary.direct_editorial_or_canonical_definition_count,
-    editorialRuleDefinitions: conceptDocument.summary.editorial_rule_definition_count,
     editorialSeeds: editorialSeedCount,
+    explicitReviewDefinitions: explicitReviewCount,
     semanticRuleDefinitions: semanticRuleCount,
     contextualDefinitions: conceptDocument.summary.contextual_definition_count
   };

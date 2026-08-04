@@ -45,7 +45,8 @@ test('Historie-oversikten renderer studieløpet og skjuler det flate registeret'
       methods: json('data/fag/historie/methods_historie_canonical_v4_5.json'),
       curriculum: json('data/fag/historie/curriculum_architecture_historie_v1.json'),
       concepts: json('data/fag/historie/concepts_historie_canonical_v5_5.json'),
-      periodGuides: json('data/fag/historie/period_guides_historie_v1.json')
+      periodGuides: json('data/fag/historie/period_guides_historie_v1.json'),
+      periodModules: json('data/fag/historie/period_modules_historie_v1.json')
     }
   });
   const coverage = model.emners.map((emne) => ({ emne_id: emne.id, percent: 0 }));
@@ -77,16 +78,22 @@ test('Historie-oversikten renderer studieløpet og skjuler det flate registeret'
   assert.match(overview.textContent, /Historie er studiet av forandring over tid/);
   assert.match(overview.textContent, /Historisk kunnskap bygger på spor som er bevart, valgt ut og tolket/);
   assert.match(overview.textContent, /Antikken og eldre globale sivilisasjoner/);
-  assert.match(overview.textContent, /Mangler fagfelt/);
+  assert.doesNotMatch(overview.textContent, /Mangler fagfelt/);
   assert.equal(overview.querySelectorAll('.fagverk-curriculum-article').length, 40);
   assert.equal(overview.querySelectorAll('.fagverk-curriculum-overview').length, 40);
   assert.equal(overview.querySelectorAll('.fagverk-curriculum-outcomes').length, 40);
   assert.equal(overview.querySelectorAll('.fagverk-curriculum-questions').length, 40);
   assert.equal(overview.querySelectorAll('.fagverk-history-timeline > article').length, 9);
-  assert.equal(overview.querySelectorAll('.is-covered').length, 6);
-  assert.equal(overview.querySelectorAll('.is-partial').length, 2);
-  assert.equal(overview.querySelectorAll('.is-missing').length, 1);
+  assert.equal(overview.querySelectorAll('.is-covered').length, 9);
+  assert.equal(overview.querySelectorAll('.is-partial').length, 0);
+  assert.equal(overview.querySelectorAll('.is-missing').length, 0);
   assert.equal(overview.querySelectorAll('.fagverk-period-guide').length, 9);
+  assert.equal(overview.querySelectorAll('.fagverk-period-module').length, 3);
+  assert.equal(overview.querySelectorAll('[data-period-unit-id]').length, 21);
+  assert.equal(overview.querySelectorAll('.fagverk-period-module-cases a').length, 9);
+  assert.ok(overview.querySelectorAll('.fagverk-period-module-sources a').length >= 18);
+  assert.match(overview.textContent, /Antikken skal leses som flere samtidige og sammenvevde historiesoner/);
+  assert.match(overview.textContent, /Hvorfor kan ikke kongelige innskrifter alene beskrive et tidlig samfunn/);
   assert.match(overview.textContent, /Alle 976 canonicale begreper er søkbare/);
   assert.equal(overview.querySelectorAll('.fagverk-history-concept').length, 36);
   const conceptSearch = overview.querySelector('#historieConceptSearch');
@@ -123,7 +130,8 @@ test('et redaksjonelt Historie-kapittel viser årsakskjede, tolkningsuenighet og
       methods: json('data/fag/historie/methods_historie_canonical_v4_5.json'),
       curriculum: json('data/fag/historie/curriculum_architecture_historie_v1.json'),
       concepts: json('data/fag/historie/concepts_historie_canonical_v5_5.json'),
-      periodGuides: json('data/fag/historie/period_guides_historie_v1.json')
+      periodGuides: json('data/fag/historie/period_guides_historie_v1.json'),
+      periodModules: json('data/fag/historie/period_modules_historie_v1.json')
     }
   });
   const coverage = model.emners.map((emne) => ({ emne_id: emne.id, percent: 0 }));

@@ -41,9 +41,12 @@ Alle canonicale fagområder, emner og metoder er plassert i den nye arkitekturen
 Begrepsverket skiller definisjonskilden eksplisitt:
 
 - 143 oppslag har en direkte redigert eller canonical definisjon.
-- 819 oppslag har nå en selvstendig statsvitenskapelig definisjon. 273 av disse er egne redaksjonelle definisjonsfrø for termer som krever særskilt presisjon, mens 546 følger fagspesifikke semantiske regler for blant annet institusjoner, makt, rett, metode, prosess, fordeling og utfall.
+- 273 oppslag bruker egne redaksjonelle definisjonsfrø for termer som krever særskilt presisjon.
+- 546 oppslag som tidligere fulgte semantiske regler, er nå fryst som enkeltvise reviewer i `data/fag/politikk/concept_editorial_reviews_politikk_v1.json`. Hvert oppslag har eksplisitt definisjon, avgrensning, eieremne, kapittelpåstand og minst ett kilde- og plasspor.
 
 Definisjon og emnebruk er ikke lenger samme tekst. Feltet `definition` forklarer selve begrepet uten å lene seg på en emnetittel. Feltet `contextual_use` viser deretter hvordan begrepet inngår i ett av de 123 emnene. Avgrensning, feilbruk, indikatorer, kildekrav og forbindelser ligger fortsatt i egne felt. Den tidligere statusen `contextual_from_canonical_emne` er fjernet; ingen av de 962 oppslagene bruker en generell domenefallback.
+
+Reviewregisteret er en eksplisitt og diffbar internredaksjonell kontroll, ikke en påstand om ekstern fagfellevurdering. Kapittelkildene dokumenterer den institusjonelle eller empiriske rammen rundt begrepet; de skal ikke leses som universelt bevis for alle mulige definisjonsanvendelser. En senere statsviterkontroll kan derfor korrigere ett oppslag uten å endre de stabile begreps- eller emne-id-ene.
 
 ## Redaksjonell kvalitetsport
 
@@ -56,11 +59,13 @@ Definisjon og emnebruk er ikke lenger samme tekst. Feltet `definition` forklarer
 - definisjon og kontekstuell emnebruk ikke er skilt i egne felt
 - begrepsverket ikke dekker alle 123 emner og alle 13 fagområder
 - et emne mangler lærekapittel
+- et av de 546 reviewene avviker fra den materialiserte definisjonen, mangler kapittelpåstand, HTTPS-kilde eller konkret kildeplassering
+- en semantisk runtime-regel igjen står som sluttkilde for en definisjon
 - lærekapitlene ikke lenger utgjør et reelt fulltekstverk
 - statusregisteret ikke viser den faktiske, utvidede og auditerte redaksjonelle tilstanden
 
-Materialiseringsskriptet `tools/materialize-politikk-curriculum.mjs` bygger de to nye datafilene deterministisk fra canonicale Politikk-kilder og det redigerte arkitekturgrunnlaget. Validatoren er den bindende porten; generering alene er ikke dokumentasjon på faglig kvalitet.
+`tools/materialize-politikk-curriculum.mjs` materialiserer arkitektur og begreper deterministisk fra canonicale Politikk-kilder, redigerte definisjonsfrø og det eksplisitte reviewregisteret. `tools/build-politikk-concept-editorial-reviews.mjs --check` validerer reviewregisteret mot begreper, kapittelpåstander og kilder uten å regenerere registeret sirkulært. Validatoren er den bindende porten; generering alene er ikke dokumentasjon på faglig kvalitet.
 
 ## Visning
 
-Den generelle fagsiden viser studieløpet først, et søkbart og filtrerbart begrepsverk, og det gamle domeneregisteret som sammenfoldet sekundærlag. Politikk-merkesiden bruker de samme kildene, slik at de to inngangene ikke utvikler parallelle faglige sannheter. På emnesider vises alle relevante begreper som forklarte oppslag, ikke bare som etiketter.
+Den generelle fagsiden viser studieløpet først, et søkbart og filtrerbart begrepsverk, og det gamle domeneregisteret som sammenfoldet sekundærlag. Politikk-merkesiden bruker de samme kildene, slik at de to inngangene ikke utvikler parallelle faglige sannheter. På emnesider vises alle relevante begreper som forklarte oppslag, ikke bare som etiketter. De 546 enkeltvis gjennomgåtte oppslagene viser også sine faktiske kildelenker og kildeplasseringer i leseflaten.

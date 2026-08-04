@@ -18,6 +18,8 @@ const pensum = readJson(path.join(POLITIKK, 'politikkpensum_canonical_v4_5.json'
 const emners = readJson(path.join(POLITIKK, 'emner_politikk_canonical_v4_5.json'));
 const methodsDocument = readJson(path.join(POLITIKK, 'methods_politikk_canonical_v4_5.json'));
 const fagkart = readJson(path.join(POLITIKK, 'fagkart_politikk_canonical_v4_5.json'));
+const conceptReviewsDocument = readJson(path.join(POLITIKK, 'concept_editorial_reviews_politikk_v1.json'));
+const conceptReviewById = new Map(list(conceptReviewsDocument.reviews).map((review) => [review.concept_id, review]));
 const methods = list(methodsDocument.methods);
 const emneById = new Map(emners.map((emne) => [emne.emne_id, emne]));
 const domainById = new Map(list(pensum.domains).map((domain) => [domain.domain_id, domain]));
@@ -636,7 +638,9 @@ const concepts = sortedConceptRows.map(([key, row]) => {
     return rankB - rankA;
   });
   const owner = ownerEmnes[0];
+  const conceptId = conceptIdByKey.get(key);
   const exact = exactDefinitions.get(key);
+  const editorialReview = conceptReviewById.get(conceptId);
   const relatedCounts = new Map();
   for (const emne of ownerEmnes) for (const field of ['core_concepts', 'key_concepts', 'sub_concepts']) for (const other of list(emne[field])) {
     const otherKey = normalize(other);
@@ -648,18 +652,28 @@ const concepts = sortedConceptRows.map(([key, row]) => {
     owner.requires_institution_law_conflict_or_social_process_anchor ? 'Bruken må forankres i en konkret institusjon, regel, konflikt, beslutning eller sosial prosess.' : '',
     owner.requires_politics_anchor ? 'Begrepet må belyse et faktisk politisk makt-, styrings-, fordelings- eller representasjonsforhold.' : ''
   ]);
-  const baseDefinition = exact?.definition || editorialDefinition(row.label, owner);
+  const baseDefinition = editorialReview?.reviewed_definition || exact?.definition || editorialDefinition(row.label, owner);
   const definition = baseDefinition.length >= 85
     ? baseDefinition
     : `${baseDefinition} I dette fagverket brukes begrepet i emnet «${owner.title}» og avgrenses mot emnets øvrige mekanismer og analytiske skiller.`;
   return {
-    concept_id: conceptIdByKey.get(key),
+    concept_id: conceptId,
     label: row.label,
     concept_type: row.rank === 4 ? 'core_concept' : row.rank === 3 ? 'key_concept' : row.rank === 2 ? 'supporting_concept' : 'keyword',
     definition,
-    definition_status: exact?.status || 'editorial_rule_definition',
-    definition_source: exact?.source || 'tools/materialize-politikk-curriculum.mjs#editorialDefinition',
-    definition_method: exact ? 'source_exact' : editorialDefinitionSeeds.has(key) ? 'editorial_seed' : baseDefinition.includes('betegner et avgrenset fenomen i') ? 'domain_fallback' : 'semantic_editorial_rule',
+    definition_status: editorialReview ? 'editorial_reviewed' : exact?.status || 'editorial_rule_definition',
+    definition_source: editorialReview ? `data/fag/politikk/concept_editorial_reviews_politikk_v1.json#${conceptId}` : exact?.source || 'tools/materialize-politikk-curriculum.mjs#editorialDefinition',
+    definition_method: editorialReview ? 'explicit_editorial_review' : exact ? 'source_exact' : editorialDefinitionSeeds.has(key) ? 'editorial_seed' : baseDefinition.includes('betegner et avgrenset fenomen i') ? 'domain_fallback' : 'semantic_editorial_rule',
+    editorial_review: editorialReview ? {
+      review_status: editorialReview.review_status,
+      review_method: editorialReview.review_method,
+      chapter_id: editorialReview.chapter_id,
+      claims_file: editorialReview.claims_file,
+      trace_quality: editorialReview.trace_quality,
+      claim_ids: editorialReview.claim_ids,
+      source_references: editorialReview.source_references,
+      review_note: editorialReview.review_note
+    } : null,
     contextual_use: contextualUse(row.label, owner),
     scope_note: words(owner.definition),
     why_it_matters: words(owner.why_it_matters),
@@ -739,12 +753,15 @@ const conceptDocument = {
     canonical_hook: 'Eksakt definisjon fra det reviderte statsvitenskapelige hook-registeret.',
     canonical_emne: 'Eksakt definisjon fra et canonicalt emne.',
     canonical_method: 'Eksakt beskrivelse fra et canonicalt metodeobjekt.',
-    editorial_rule_definition: 'Selvstendig, fagspesifikk definisjon materialisert fra redigerte statsvitenskapelige definisjonsregler; emnekontekst lagres separat i contextual_use.'
+    editorial_rule_definition: 'Selvstendig, fagspesifikk definisjon materialisert fra redigerte statsvitenskapelige definisjonsfrø; emnekontekst lagres separat i contextual_use.',
+    editorial_reviewed: 'Eksplisitt fryst og enkeltvis sporbar definisjon fra begrepsreviewregisteret, koblet til eieremne, fagkapittel, verifiserte claims og konkrete kildeplasseringer.'
   },
   summary: {
     concept_count: concepts.length,
-    direct_editorial_or_canonical_definition_count: concepts.filter((concept) => concept.definition_status !== 'editorial_rule_definition').length,
-    editorial_rule_definition_count: concepts.filter((concept) => concept.definition_status === 'editorial_rule_definition').length,
+    direct_editorial_or_canonical_definition_count: concepts.filter((concept) => concept.definition_method === 'source_exact').length,
+    editorial_seed_definition_count: concepts.filter((concept) => concept.definition_method === 'editorial_seed').length,
+    explicit_editorial_review_count: concepts.filter((concept) => concept.definition_method === 'explicit_editorial_review').length,
+    semantic_rule_definition_count: concepts.filter((concept) => concept.definition_method === 'semantic_editorial_rule').length,
     contextual_definition_count: 0,
     emne_coverage_count: new Set(concepts.flatMap((concept) => concept.source_emne_ids)).size,
     domain_coverage_count: new Set(concepts.flatMap((concept) => concept.domain_ids)).size
