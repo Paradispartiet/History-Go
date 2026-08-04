@@ -60,10 +60,11 @@ test('Kandidatauditen dokumenterer både inkludering, holdback og logoavgjørels
 });
 
 test('Rundingsruntime bruker kategoriavhengig fjerde runding uten stedsspesifikk særkode', () => {
-  assert.match(roundsContract, /`politikk` \| Spots → Details → Works/);
-  assert.match(runtime, /politikk:\s*\["spots", "details", "works"\]/);
+  assert.match(roundsContract, /\| `politikk` \| `related` \| Relaterte steder \|/);
+  assert.match(runtime, /politikk:\s*["']related["']/);
   assert.match(runtime, /GENERAL_BASE = Object\.freeze\(\["people", "objects", "brands"\]\)/);
-  assert.doesNotMatch(runtime, /id:\s*["']civication["']/);
+  assert.match(runtime, /return collectionItems\(place, preferred\)\.length \? preferred : "images"/);
+  assert.doesNotMatch(runtime, /id:\s*["'](?:civication|works|details|spots)["']/);
   assert.doesNotMatch(runtime, /regjeringskvartalet/);
 });
 

@@ -4,6 +4,10 @@ export interface PlaceNatureProfile {
   summary?: string;
   themes?: string[];
   nearby_place_ids?: string[];
+  destinations?: PlaceVisualRoundItem[];
+  tour_targets?: PlaceVisualRoundItem[];
+  trail_targets?: PlaceVisualRoundItem[];
+  viewpoints?: PlaceVisualRoundItem[];
   [key: string]: unknown;
 }
 
@@ -30,6 +34,10 @@ export interface PlaceForNaProfile {
   before?: string;
   now?: string;
   change?: string;
+  beforeImage?: string;
+  beforeImageLabel?: string;
+  nowImage?: string;
+  nowImageLabel?: string;
   lookFor?: string[];
   sources?: string[];
   [key: string]: unknown;
@@ -42,6 +50,12 @@ export interface PlaceSportProfile {
   groundhopper_type?: string;
   clubs_or_teams?: string[];
   teams?: string[];
+  competitions?: PlaceVisualRoundItem[];
+  matches?: PlaceVisualRoundItem[];
+  tournaments?: PlaceVisualRoundItem[];
+  major_events?: PlaceVisualRoundItem[];
+  notable_events?: PlaceVisualRoundItem[];
+  events?: PlaceVisualRoundItem[];
   [key: string]: unknown;
 }
 
@@ -55,10 +69,19 @@ export interface PlaceVisualRoundItem {
   summary?: string;
   image?: string;
   imageCard?: string;
+  cardImage?: string;
   img?: string;
   photo?: string;
   thumbnail?: string;
   cover?: string;
+  src?: string;
+  type?: string;
+  kind?: string;
+  category?: string;
+  place_id?: string;
+  placeId?: string;
+  target_id?: string;
+  targetId?: string;
   [key: string]: unknown;
 }
 
@@ -98,16 +121,63 @@ export interface Place {
 
   /** Fysiske, identifiserbare gjenstander. Civication-egenskaper kan ligge på samme objekt. */
   objects?: PlaceVisualRoundItem[];
-  /** Små stedsspesifikke detaljer. Place-data, ikke PlaceCard-runding. */
+  /** Legacy fysisk objektfelt som kan brukes som Objects-kilde under migrering. */
+  artifacts?: PlaceVisualRoundItem[];
+
+  /** Kategoriens reelle produksjoner. Runtime gir samlingen et konkret kategorinavn. */
+  works?: PlaceVisualRoundItem[];
+  productions?: PlaceVisualRoundItem[];
+  publications?: PlaceVisualRoundItem[];
+  artworks?: PlaceVisualRoundItem[];
+  books?: PlaceVisualRoundItem[];
+  texts?: PlaceVisualRoundItem[];
+  songs?: PlaceVisualRoundItem[];
+  albums?: PlaceVisualRoundItem[];
+  films?: PlaceVisualRoundItem[];
+  series?: PlaceVisualRoundItem[];
+  performances?: PlaceVisualRoundItem[];
+  releases?: PlaceVisualRoundItem[];
+
+  /** Navngitte bygninger og anlegg som kan kvalifisere til fjerde runding. */
+  buildings?: PlaceVisualRoundItem[];
+  structures?: PlaceVisualRoundItem[];
+  facilities?: PlaceVisualRoundItem[];
+  venues?: PlaceVisualRoundItem[];
+  architecture?: PlaceVisualRoundItem[];
+
+  /** Dokumenterte sportslige konkurranser. */
+  competitions?: PlaceVisualRoundItem[];
+  matches?: PlaceVisualRoundItem[];
+  tournaments?: PlaceVisualRoundItem[];
+  sport_events?: PlaceVisualRoundItem[];
+  sporting_events?: PlaceVisualRoundItem[];
+
+  /** Faktiske relasjoner til andre History GO-steder. */
+  related_places?: Array<string | PlaceVisualRoundItem>;
+  relatedPlaces?: Array<string | PlaceVisualRoundItem>;
+  related_place_ids?: string[];
+
+  /** Navngitte turmål for natursteder. */
+  destinations?: PlaceVisualRoundItem[];
+  tour_targets?: PlaceVisualRoundItem[];
+  trail_targets?: PlaceVisualRoundItem[];
+  viewpoints?: PlaceVisualRoundItem[];
+  attractions?: PlaceVisualRoundItem[];
+
+  /** Dokumenterte bildesamlinger brukt av Bilder-reserven. */
+  images?: Array<string | PlaceVisualRoundItem>;
+  gallery?: Array<string | PlaceVisualRoundItem>;
+  photos?: Array<string | PlaceVisualRoundItem>;
+  imageGallery?: Array<string | PlaceVisualRoundItem>;
+  media?: { images?: Array<string | PlaceVisualRoundItem>; [key: string]: unknown };
+
+  /** Steddata som ikke automatisk gir en PlaceCard-runding. */
   details?: PlaceVisualRoundItem[];
   visual_details?: PlaceVisualRoundItem[];
   site_details?: PlaceVisualRoundItem[];
-  /** Fysiske delpunkter/delsteder. Place-data, ikke PlaceCard-runding. */
   spots?: PlaceVisualRoundItem[];
   subplaces?: PlaceVisualRoundItem[];
   subPlaces?: PlaceVisualRoundItem[];
-  /** Legacy fysisk objektfelt som kan brukes som Objects-kilde under migrering. */
-  artifacts?: PlaceVisualRoundItem[];
 
   /**
    * Legacy presentasjonsfelt. Hele rundingskontrakten eies av

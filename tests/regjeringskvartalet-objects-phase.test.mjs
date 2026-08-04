@@ -62,8 +62,8 @@ test('Commons-foto har full attribusjon og ærlig tids- og stedsgrense', () => {
 
 test('Objects-rundingen støtter eksterne bilde-URL-er uten runtimeendring', () => {
   assert.match(runtime, /item\.imageCard \|\| item\.cardImage \|\| item\.image/);
-  assert.match(runtime, /\.\.\.arr\(place\?\.objects\)/);
-  assert.match(runtime, /const preview=items\.find\(x=>x\.image\)/);
+  assert.match(runtime, /\[place\?\.objects,\s*["']objects["']\]/);
+  assert.match(runtime, /const preview\s*=\s*items\.find\(item => item\.image\)/);
   assert.match(runtime, /<img src="/);
 });
 

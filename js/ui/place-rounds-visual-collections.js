@@ -4,55 +4,68 @@
 (function installCanonicalPlaceRounds(global) {
   "use strict";
 
-  const DEFS = Object.freeze([
-    { id:"badges",  label:"Merker",      fallbackIcon:"🏅", iconId:"pcBadgesIcon",  listId:"pcBadgesList",  kind:"badges" },
-    { id:"people",  label:"Personer",    fallbackIcon:"👥", iconId:"pcPeopleIcon",  listId:"pcPeopleList",  kind:"people" },
-    { id:"works",   label:"Verk",        fallbackIcon:"🎭", iconId:"pcWorksIcon",   listId:"pcWorksList",   kind:"works" },
+  const FIXED_DEFS = Object.freeze([
+    { id:"badges", label:"Merker", fallbackIcon:"🏅", iconId:"pcBadgesIcon", listId:"pcBadgesList", kind:"badges" },
+    { id:"people", label:"Personer", fallbackIcon:"👥", iconId:"pcPeopleIcon", listId:"pcPeopleList", kind:"people" },
     { id:"objects", label:"Gjenstander", fallbackIcon:"🏺", iconId:"pcObjectsIcon", listId:"pcObjectsList", kind:"objects" },
-    { id:"details", label:"Detaljer",    fallbackIcon:"🔎", iconId:"pcDetailsIcon", listId:"pcDetailsList", kind:"details" },
-    { id:"spots",   label:"Punkter",     fallbackIcon:"📍", iconId:"pcSpotsIcon",   listId:"pcSpotsList",   kind:"spots" },
-    { id:"brands",  label:"Brands",      fallbackIcon:"🏷️", iconId:"pcBrandsIcon",  listId:"pcBrandsList",  kind:"brands" },
-    { id:"map",     label:"Kart",        fallbackIcon:"🗺️", iconId:"pcNatureMapIcon", listId:"pcNatureMapList", kind:"nature-map" },
-    { id:"flora",   label:"Flora",       fallbackIcon:"🌱", iconId:"pcFloraIcon",   listId:"pcFloraList",   kind:"flora" },
-    { id:"fauna",   label:"Fauna",       fallbackIcon:"🐾", iconId:"pcFaunaIcon",   listId:"pcFaunaList",   kind:"fauna" }
+    { id:"brands", label:"Brands", fallbackIcon:"🏷️", iconId:"pcBrandsIcon", listId:"pcBrandsList", kind:"brands" },
+    { id:"map", label:"Kart", fallbackIcon:"🗺️", iconId:"pcNatureMapIcon", listId:"pcNatureMapList", kind:"nature-map" },
+    { id:"flora", label:"Flora", fallbackIcon:"🌱", iconId:"pcFloraIcon", listId:"pcFloraList", kind:"flora" },
+    { id:"fauna", label:"Fauna", fallbackIcon:"🐾", iconId:"pcFaunaIcon", listId:"pcFaunaList", kind:"fauna" }
   ]);
 
-  const BY_ID = new Map(DEFS.map(def => [def.id, def]));
+  const FOURTH_DEFS = Object.freeze({
+    productions: { id:"productions", label:"Produksjoner", fallbackIcon:"🎭", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"productions" },
+    structures: { id:"structures", label:"Bygg og anlegg", fallbackIcon:"🏛️", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"structures" },
+    competitions: { id:"competitions", label:"Kamper og konkurranser", fallbackIcon:"🏆", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"competitions" },
+    related: { id:"related", label:"Relaterte steder", fallbackIcon:"🧭", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"related" },
+    destinations: { id:"destinations", label:"Turmål", fallbackIcon:"🥾", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"destinations" },
+    images: { id:"images", label:"Bilder", fallbackIcon:"🖼️", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"images" }
+  });
+
+  const ALL_DEFS = Object.freeze([...FIXED_DEFS, ...Object.values(FOURTH_DEFS)]);
+  const BY_ID = new Map(ALL_DEFS.map(def => [def.id, def]));
   const GENERAL_BASE = Object.freeze(["people", "objects", "brands"]);
   const NATURE_BASE = Object.freeze(["map", "flora", "fauna"]);
 
-  // Hentet fra den canonicale kategori → rundingmatrisen. Første kandidat er
-  // kategoriens normale fjerde runding; neste kandidat brukes når den første
-  // mangler relevant stedsspesifikt innhold.
-  const CATEGORY_FOURTH_PRIORITIES = Object.freeze({
-    by:          ["works", "spots", "details"],
-    historie:    ["spots", "details", "works"],
-    historisk:   ["spots", "details", "works"],
-    kunst:       ["works", "details", "spots"],
-    litteratur:  ["works", "spots", "details"],
-    media:       ["works", "spots", "details"],
-    musikk:      ["works", "spots", "details"],
-    naeringsliv: ["spots", "details", "works"],
-    natur:       ["spots", "details", "works"],
-    politikk:    ["spots", "details", "works"],
-    psykologi:   ["works", "spots", "details"],
-    religion:    ["works", "spots", "details"],
-    scenekunst:  ["works", "spots", "details"],
-    sport:       ["spots", "details", "works"],
-    subkultur:   ["works", "details", "spots"],
-    vitenskap:   ["spots", "details", "works"],
-    teknologi:   ["spots", "details", "works"],
-    filosofi:    ["works", "spots", "details"],
-    film_tv:     ["works", "spots", "details"],
-    lekeplass:   ["spots", "details", "works"],
-    trening:     ["spots", "details", "works"],
-    transport:   ["spots", "details", "works"]
+  const CATEGORY_FOURTH = Object.freeze({
+    by:"structures",
+    historie:"related",
+    historisk:"related",
+    kunst:"productions",
+    litteratur:"productions",
+    media:"productions",
+    musikk:"productions",
+    naeringsliv:"structures",
+    natur:"destinations",
+    politikk:"related",
+    psykologi:"related",
+    religion:"structures",
+    scenekunst:"productions",
+    sport:"competitions",
+    subkultur:"productions",
+    vitenskap:"related",
+    filosofi:"related",
+    film_tv:"productions",
+    lekeplass:"structures",
+    trening:"structures",
+    transport:"structures"
   });
 
-  const NON_GRID_ICON_IDS = Object.freeze([
-    "pcCivicationStoreIcon", "pcNatureIcon", "pcForNaIcon", "pcFortellingerIcon",
-    "pcLeksikonIcon", "pcPlayIcon", "pcTrainingIcon", "pcTasksIcon",
-    "pcWonderkammerIcon", "pcStoriesIcon", "pcRoutesIcon"
+  const PRODUCTION_LABELS = Object.freeze({
+    kunst:"Kunstverk",
+    litteratur:"Bøker og tekster",
+    musikk:"Sanger og album",
+    film_tv:"Filmer og serier",
+    scenekunst:"Forestillinger",
+    media:"Utgivelser",
+    subkultur:"Uttrykk og utgivelser"
+  });
+
+  const LEGACY_GRID_ICON_IDS = Object.freeze([
+    "pcWorksIcon", "pcDetailsIcon", "pcSpotsIcon", "pcCivicationStoreIcon", "pcNatureIcon",
+    "pcForNaIcon", "pcFortellingerIcon", "pcLeksikonIcon", "pcPlayIcon", "pcTrainingIcon",
+    "pcTasksIcon", "pcWonderkammerIcon", "pcStoriesIcon", "pcRoutesIcon"
   ]);
 
   const s = value => String(value == null ? "" : value).trim();
@@ -60,6 +73,7 @@
   const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;");
   let scheduled = false;
   let badgeBound = false;
+  let categoryBound = false;
 
   function normalizeCategory(place) {
     const raw = s(place?.category || "by").toLowerCase();
@@ -77,21 +91,25 @@
 
   function imageFor(item) {
     return item && typeof item === "object"
-      ? s(item.imageCard || item.cardImage || item.image || item.img || item.photo || item.thumbnail || item.cover || item.logo)
+      ? s(item.imageCard || item.cardImage || item.image || item.img || item.photo || item.thumbnail || item.cover || item.logo || item.src)
       : "";
   }
 
   function normalizeItem(item, index, sourceKind) {
-    if (typeof item === "string") return { id:item, title:item, description:"", image:"", sourceKind };
+    if (typeof item === "string") {
+      const linked = arr(global.PLACES).find(place => s(place?.id) === s(item));
+      if (linked) return normalizeItem(linked, index, sourceKind);
+      return { id:item, title:item, description:"", image:"", sourceKind };
+    }
     if (!item || typeof item !== "object") return null;
-    const id = s(item.id || item.slug || item.key || `${sourceKind}_${index}`);
+    const id = s(item.id || item.slug || item.key || item.place_id || item.placeId || `${sourceKind}_${index}`);
     const title = s(item.title || item.name || item.label || item.id || `${sourceKind} ${index + 1}`);
     if (!id && !title) return null;
     return {
-      id: id || title,
+      id:id || title,
       title,
-      description: s(item.description || item.desc || item.summary || item.placeSpecificDetail || item.whatToNotice || item.whereToFind),
-      image: imageFor(item),
+      description:s(item.description || item.desc || item.summary || item.placeSpecificDetail || item.whatToNotice || item.whereToFind || item.why_here || item.why),
+      image:imageFor(item),
       sourceKind
     };
   }
@@ -99,11 +117,15 @@
   function dedupe(items) {
     const seen = new Set();
     return items.filter(Boolean).filter(item => {
-      const key = s(item.id || item.title).toLowerCase();
+      const key = s(item.id || item.image || item.title).toLowerCase();
       if (!key || seen.has(key)) return false;
       seen.add(key);
       return true;
     });
+  }
+
+  function flattenSources(sources) {
+    return dedupe(sources.flatMap(([value, sourceKind]) => arr(value).map((item, index) => normalizeItem(item, index, sourceKind))));
   }
 
   function civicationItems(place) {
@@ -123,52 +145,167 @@
     );
   }
 
+  function objectItems(place) {
+    return flattenSources([
+      [place?.objects, "objects"],
+      [place?.artifacts, "artifacts"],
+      [civicationItems(place).filter(physicalCivication), "civication"]
+    ]);
+  }
+
+  function productionItems(place) {
+    const category = normalizeCategory(place);
+    const profiles = [place?.music_profile, place?.music, place?.literature_profile, place?.film_profile, place?.stage_profile, place?.media_profile, place?.subculture_profile, place?.art_profile];
+    const sources = [
+      [place?.works, "works"], [place?.productions, "productions"], [place?.publications, "publications"],
+      [place?.artworks, "artworks"], [place?.books, "books"], [place?.texts, "texts"],
+      [place?.songs, "songs"], [place?.albums, "albums"], [place?.films, "films"],
+      [place?.series, "series"], [place?.performances, "performances"], [place?.releases, "releases"]
+    ];
+    for (const profile of profiles) {
+      if (!profile || typeof profile !== "object") continue;
+      for (const key of ["works", "productions", "publications", "artworks", "books", "texts", "songs", "albums", "films", "series", "performances", "releases", "tracks"]) {
+        sources.push([profile[key], `${category}_${key}`]);
+      }
+    }
+    return flattenSources(sources);
+  }
+
+  const STRUCTURE_PATTERN = /\b(bygg|bygning|anlegg|hall|arena|stadion|tribune|tårn|tower|kirke|kapell|rom|scene|bro|bru|tunnel|port|gårdsrom|fabrikk|verksted|bane|terminal|stasjon|campus|paviljong|fort|bunker|batteri|ruin|konstruksjon)\b/i;
+
+  function structureCompatible(item) {
+    if (!item || typeof item !== "object") return false;
+    return STRUCTURE_PATTERN.test([item.type, item.kind, item.category, item.title, item.name, item.label].map(s).join(" "));
+  }
+
+  function structureItems(place) {
+    return flattenSources([
+      [place?.buildings, "buildings"], [place?.structures, "structures"], [place?.facilities, "facilities"],
+      [place?.venues, "venues"], [place?.architecture, "architecture"],
+      [arr(place?.subplaces).filter(structureCompatible), "subplaces"],
+      [arr(place?.subPlaces).filter(structureCompatible), "subplaces"],
+      [arr(place?.spots).filter(structureCompatible), "legacy_spots"]
+    ]);
+  }
+
+  function competitionItems(place) {
+    const profile = place?.sport_profile && typeof place.sport_profile === "object" ? place.sport_profile : {};
+    return flattenSources([
+      [place?.competitions, "competitions"], [place?.matches, "matches"], [place?.tournaments, "tournaments"],
+      [place?.sport_events, "sport_events"], [place?.sporting_events, "sporting_events"],
+      [profile.competitions, "sport_profile_competitions"], [profile.matches, "sport_profile_matches"],
+      [profile.tournaments, "sport_profile_tournaments"], [profile.major_events, "sport_profile_major_events"],
+      [profile.notable_events, "sport_profile_notable_events"], [profile.events, "sport_profile_events"]
+    ]);
+  }
+
+  function placeFromReference(value) {
+    if (!value) return null;
+    if (typeof value === "string") return arr(global.PLACES).find(place => s(place?.id) === s(value)) || null;
+    if (typeof value !== "object") return null;
+    const id = s(value.place_id || value.placeId || value.target_id || value.targetId || value.to || value.id);
+    return arr(global.PLACES).find(place => s(place?.id) === id) || (value.title || value.name || value.label ? value : null);
+  }
+
+  function relationReferences(place) {
+    return [
+      ...arr(place?.related_places), ...arr(place?.relatedPlaces), ...arr(place?.related_place_ids),
+      ...arr(place?.relations).map(relation => {
+        if (typeof relation === "string") return relation;
+        if (!relation || typeof relation !== "object") return null;
+        return relation.place_id || relation.placeId || relation.target_id || relation.targetId || relation.to || null;
+      })
+    ].filter(Boolean);
+  }
+
+  function relatedItems(place) {
+    const selfId = s(place?.id);
+    return dedupe(relationReferences(place).map((value, index) => normalizeItem(placeFromReference(value) || value, index, "related")))
+      .filter(item => s(item.id) !== selfId);
+  }
+
+  function destinationItems(place) {
+    const profile = place?.nature_profile && typeof place.nature_profile === "object" ? place.nature_profile : {};
+    const direct = flattenSources([
+      [place?.destinations, "destinations"], [place?.tour_targets, "tour_targets"], [place?.trail_targets, "trail_targets"],
+      [place?.viewpoints, "viewpoints"], [place?.attractions, "attractions"],
+      [profile.destinations, "nature_destinations"], [profile.tour_targets, "nature_tour_targets"],
+      [profile.trail_targets, "nature_trail_targets"], [profile.viewpoints, "nature_viewpoints"]
+    ]);
+    const linked = dedupe(arr(profile.nearby_place_ids).map((id, index) => normalizeItem(placeFromReference(id) || id, index, "nature_nearby")));
+    return dedupe([...direct, ...linked]).filter(item => s(item.id) !== s(place?.id));
+  }
+
+  function imageItems(place) {
+    const result = [];
+    const push = (value, title, sourceKind) => {
+      if (!value) return;
+      if (typeof value === "string") {
+        result.push({ id:`${sourceKind}_${result.length}`, title, description:"", image:s(value), sourceKind });
+        return;
+      }
+      if (typeof value === "object") {
+        const image = imageFor(value);
+        if (!image) return;
+        result.push({
+          id:s(value.id || value.key || `${sourceKind}_${result.length}`),
+          title:s(value.title || value.caption || value.label || title),
+          description:s(value.description || value.desc || value.summary),
+          image,
+          sourceKind
+        });
+      }
+    };
+    arr(place?.images).forEach(value => push(value, "Bilde", "images"));
+    arr(place?.gallery).forEach(value => push(value, "Bilde", "gallery"));
+    arr(place?.photos).forEach(value => push(value, "Bilde", "photos"));
+    arr(place?.imageGallery).forEach(value => push(value, "Bilde", "imageGallery"));
+    arr(place?.media?.images).forEach(value => push(value, "Bilde", "media"));
+    push(place?.frontImage, "Hovedbilde", "frontImage");
+    push(place?.popupImage, "Stedsbilde", "popupImage");
+    push(place?.image, "Stedsbilde", "image");
+    if (!result.length) push(place?.cardImage, "Stedsbilde", "cardImage");
+    push(place?.for_na?.beforeImage, s(place?.for_na?.beforeImageLabel || "Før"), "beforeImage");
+    push(place?.for_na?.nowImage, s(place?.for_na?.nowImageLabel || "Nå"), "nowImage");
+    const seen = new Set();
+    return result.filter(item => {
+      const key = s(item.image).replace(/([_-])card(?=\.[a-z0-9]+$)/i, "").toLowerCase();
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   function collectionItems(place, id) {
     if (!place) return [];
-    let sources = [];
-    if (id === "objects") {
-      sources = [
-        ...arr(place?.objects).map(item => [item, "objects"]),
-        ...arr(place.artifacts).map(item => [item, "artifacts"]),
-        ...civicationItems(place).filter(physicalCivication).map(item => [item, "civication"])
-      ];
-    } else if (id === "details") {
-      sources = [
-        ...arr(place.details).map(item => [item, "details"]),
-        ...arr(place.visual_details).map(item => [item, "details"]),
-        ...arr(place.site_details).map(item => [item, "details"])
-      ];
-    } else if (id === "spots") {
-      sources = [
-        ...arr(place.spots).map(item => [item, "spots"]),
-        ...arr(place.subplaces).map(item => [item, "subplaces"]),
-        ...arr(place.subPlaces).map(item => [item, "subplaces"])
-      ];
-    }
-    return dedupe(sources.map(([item, sourceKind], index) => normalizeItem(item, index, sourceKind)));
+    if (id === "objects") return objectItems(place);
+    if (id === "productions") return productionItems(place);
+    if (id === "structures") return structureItems(place);
+    if (id === "competitions") return competitionItems(place);
+    if (id === "related") return relatedItems(place);
+    if (id === "destinations") return destinationItems(place);
+    if (id === "images") return imageItems(place);
+    return [];
   }
 
-  function listHasContent(id) {
-    const text = s(document.getElementById(BY_ID.get(id)?.listId)?.textContent);
-    return Boolean(text && !/^Ingen\b/i.test(text) && !/^Laster\b/i.test(text));
-  }
-
-  function iconHasImage(id) {
-    return Boolean(document.getElementById(BY_ID.get(id)?.iconId)?.querySelector("img[src]"));
-  }
-
-  function roundHasContent(place, id) {
-    if (["objects", "details", "spots"].includes(id)) return collectionItems(place, id).length > 0;
-    if (id === "works") {
-      return arr(place?.works).length > 0 || Boolean(place?.music_profile || place?.music || place?.sport_profile) || iconHasImage("works") || listHasContent("works");
-    }
-    return false;
+  function preferredFourthId(place) {
+    return CATEGORY_FOURTH[normalizeCategory(place)] || "images";
   }
 
   function fourthRoundId(place) {
-    const category = normalizeCategory(place);
-    const candidates = CATEGORY_FOURTH_PRIORITIES[category] || CATEGORY_FOURTH_PRIORITIES.by;
-    return candidates.find(id => roundHasContent(place, id)) || candidates[0];
+    const preferred = preferredFourthId(place);
+    return collectionItems(place, preferred).length ? preferred : "images";
+  }
+
+  function fourthLabel(place, id = fourthRoundId(place)) {
+    if (id === "productions") return PRODUCTION_LABELS[normalizeCategory(place)] || FOURTH_DEFS.productions.label;
+    return FOURTH_DEFS[id]?.label || FOURTH_DEFS.images.label;
+  }
+
+  function defFor(place, id) {
+    const def = BY_ID.get(id);
+    if (!def) return null;
+    return id in FOURTH_DEFS ? { ...def, label:fourthLabel(place, id) } : def;
   }
 
   function selectedIds(place) {
@@ -186,31 +323,35 @@
     if (badge.parentElement !== titleRow) titleRow.appendChild(badge);
   }
 
+  function ensureElement(id, className, parent, roleButton = false) {
+    let element = document.getElementById(id);
+    if (element || !parent) return element;
+    element = document.createElement("div");
+    element.id = id;
+    element.className = className;
+    element.hidden = true;
+    element.setAttribute("aria-hidden", "true");
+    if (roleButton) {
+      element.setAttribute("role", "button");
+      element.tabIndex = 0;
+    }
+    parent.appendChild(element);
+    return element;
+  }
+
   function ensureDom() {
     const card = document.getElementById("placeCard");
     const grid = card?.querySelector(".pc-icons-quad");
     const body = card?.querySelector(".pc-body");
     if (!card || !grid || !body) return;
-
-    for (const def of DEFS.filter(item => ["objects", "details", "spots", "map", "flora", "fauna"].includes(item.id))) {
-      if (!document.getElementById(def.iconId)) {
-        const icon = document.createElement("div");
-        icon.id = def.iconId;
-        icon.className = "pc-round";
-        icon.hidden = true;
-        icon.setAttribute("role", "button");
-        icon.tabIndex = 0;
-        icon.setAttribute("aria-label", def.label);
-        grid.appendChild(icon);
-      }
-      if (!document.getElementById(def.listId)) {
-        const list = document.createElement("div");
-        list.id = def.listId;
-        list.hidden = true;
-        list.setAttribute("aria-hidden", "true");
-        body.appendChild(list);
-      }
+    for (const def of FIXED_DEFS.filter(item => ["objects", "map", "flora", "fauna"].includes(item.id))) {
+      const icon = ensureElement(def.iconId, "pc-round", grid, true);
+      icon?.setAttribute("aria-label", def.label);
+      ensureElement(def.listId, "", body, false);
     }
+    const categoryIcon = ensureElement("pcCategoryCollectionIcon", "pc-round", grid, true);
+    categoryIcon?.setAttribute("aria-label", "Kategoriinnhold");
+    ensureElement("pcCategoryCollectionList", "", body, false);
     ensureBadgePlacement();
   }
 
@@ -228,23 +369,36 @@
     return arr(place?.[kind]).map((id, index) => normalizeItem(registry.find(row => s(row?.id) === s(id)) || id, index, kind)).filter(Boolean);
   }
 
-  async function renderCustom(place, def) {
+  async function renderFixed(place, def) {
     const icon = document.getElementById(def.iconId);
     const list = document.getElementById(def.listId);
     if (!icon || !list) return;
-
     if (def.id === "map") {
       const preview = await Promise.resolve(global.HGNatureDetailedMap?.getPreview?.(place)).catch(() => "");
       icon.innerHTML = preview ? `<img src="${esc(preview)}" class="pc-person-img" alt="Turkart">` : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span></div>`;
       list.innerHTML = '<div class="pc-empty">Tur- og naturkart åpnes fra Kart-rundingen.</div>';
       return;
     }
-
-    const items = ["flora", "fauna"].includes(def.id)
-      ? await natureItems(place, def.id)
-      : collectionItems(place, def.id);
+    const items = ["flora", "fauna"].includes(def.id) ? await natureItems(place, def.id) : collectionItems(place, def.id);
     list.innerHTML = renderRows(items, def);
-    const preview=items.find(x=>x.image);
+    const preview = items.find(item => item.image);
+    icon.innerHTML = preview?.image
+      ? `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`
+      : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${items.length || ""}</span></div>`;
+  }
+
+  function renderFourth(place) {
+    const id = fourthRoundId(place);
+    const def = defFor(place, id);
+    const icon = document.getElementById("pcCategoryCollectionIcon");
+    const list = document.getElementById("pcCategoryCollectionList");
+    if (!def || !icon || !list) return;
+    const items = collectionItems(place, id);
+    list.innerHTML = renderRows(items, def);
+    const preview = items.find(item => item.image);
+    icon.dataset.roundId = id;
+    icon.setAttribute("aria-label", def.label);
+    icon.title = def.label;
     icon.innerHTML = preview?.image
       ? `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`
       : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${items.length || ""}</span></div>`;
@@ -262,7 +416,7 @@
     showMissingDetailedMap(place);
   }
 
-  function bindCustom(def) {
+  function bindFixed(def) {
     const icon = document.getElementById(def.iconId);
     if (!icon || icon.dataset.canonicalRoundBound === "1") return;
     icon.dataset.canonicalRoundBound = "1";
@@ -273,9 +427,30 @@
       const place = currentPlace();
       if (!place) return;
       if (def.id === "map") return openNatureMap(place);
-      await renderCustom(place, def);
+      await renderFixed(place, def);
       const html = s(document.getElementById(def.listId)?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
       global.showPlaceCardRoundPopup?.({ title:def.label, subtitle:s(place.name || place.title), html, place, kind:def.kind });
+    };
+    icon.addEventListener("click", open);
+    icon.addEventListener("keydown", open);
+  }
+
+  function bindFourth() {
+    if (categoryBound) return;
+    const icon = document.getElementById("pcCategoryCollectionIcon");
+    if (!icon) return;
+    categoryBound = true;
+    const open = event => {
+      if (event?.type === "keydown" && !["Enter", " "].includes(event.key)) return;
+      event?.preventDefault?.();
+      event?.stopPropagation?.();
+      const place = currentPlace();
+      if (!place) return;
+      renderFourth(place);
+      const id = fourthRoundId(place);
+      const def = defFor(place, id);
+      const html = s(document.getElementById("pcCategoryCollectionList")?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
+      global.showPlaceCardRoundPopup?.({ title:def?.label || "Bilder", subtitle:s(place.name || place.title), html, place, kind:id });
     };
     icon.addEventListener("click", open);
     icon.addEventListener("keydown", open);
@@ -302,29 +477,35 @@
     ensureDom();
     bindBadge();
     ensureBadgePlacement();
-
-    for (const def of DEFS.filter(item => ["objects", "details", "spots", "map", "flora", "fauna"].includes(item.id))) {
-      await renderCustom(place, def);
-      bindCustom(def);
+    for (const def of FIXED_DEFS.filter(item => ["objects", "map", "flora", "fauna"].includes(item.id))) {
+      await renderFixed(place, def);
+      bindFixed(def);
     }
+    renderFourth(place);
+    bindFourth();
 
     const selected = selectedIds(place);
-    const allowed = new Set(selected.map(id => BY_ID.get(id)?.iconId).filter(Boolean));
+    const allowed = new Set(selected.map(id => id in FOURTH_DEFS ? "pcCategoryCollectionIcon" : BY_ID.get(id)?.iconId).filter(Boolean));
     const grid = card.querySelector(".pc-icons-quad");
+    const fourth = selected[3] || "images";
     card.dataset.roundMode = "category-four";
     card.dataset.roundCount = "4";
     card.dataset.roundCategory = normalizeCategory(place);
-    card.dataset.roundFourth = selected[3] || "";
+    card.dataset.roundFourth = fourth;
 
     if (grid) {
       grid.querySelectorAll(".pc-round").forEach(icon => {
         const show = allowed.has(icon.id);
         icon.hidden = !show;
         icon.setAttribute("aria-hidden", show ? "false" : "true");
-        const def = DEFS.find(item => item.iconId === icon.id);
-        icon.style.order = show && def ? String(selected.indexOf(def.id)) : "";
+        if (show) {
+          const id = icon.id === "pcCategoryCollectionIcon" ? fourth : FIXED_DEFS.find(item => item.iconId === icon.id)?.id;
+          icon.style.order = String(selected.indexOf(id));
+        } else {
+          icon.style.order = "";
+        }
       });
-      for (const iconId of NON_GRID_ICON_IDS) {
+      for (const iconId of LEGACY_GRID_ICON_IDS) {
         const icon = document.getElementById(iconId);
         if (!icon || allowed.has(iconId)) continue;
         icon.hidden = true;
@@ -334,7 +515,7 @@
       grid.dataset.roundMode = "category-four";
       grid.dataset.roundCount = "4";
       grid.dataset.roundCategory = normalizeCategory(place);
-      grid.dataset.roundFourth = selected[3] || "";
+      grid.dataset.roundFourth = fourth;
       grid.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
       grid.style.gridTemplateRows = "repeat(2, minmax(0, 1fr))";
     }
@@ -363,13 +544,19 @@
   }
 
   function installApi() {
-    const byId = Object.fromEntries(DEFS.map(def => [def.id, def]));
+    const registry = [...FIXED_DEFS, ...Object.values(FOURTH_DEFS)];
+    const byId = Object.fromEntries(registry.map(def => [def.id, def]));
     global.HGPlaceRounds = {
-      registry:[...DEFS], badge:BY_ID.get("badges"),
+      registry, badge:BY_ID.get("badges"),
       base:{ standard:[...GENERAL_BASE], natur:[...NATURE_BASE] },
-      fourthPriorities:CATEGORY_FOURTH_PRIORITIES,
-      byId, get:place => selectedIds(place).map(id => BY_ID.get(id)).filter(Boolean),
-      getFourth:fourthRoundId, apply, __canonicalCategoryFour:true
+      fourthByCategory:CATEGORY_FOURTH,
+      byId,
+      get:place => selectedIds(place).map(id => defFor(place, id)).filter(Boolean),
+      getFourth:fourthRoundId,
+      getFourthLabel:fourthLabel,
+      getItems:collectionItems,
+      apply,
+      __canonicalCategoryFour:true
     };
     global.getPlaceRounds = global.HGPlaceRounds.get;
   }
@@ -378,6 +565,7 @@
     ensureDom();
     installApi();
     bindBadge();
+    bindFourth();
     patchOpenPlaceCard();
     scheduleApply();
     if (typeof global.openPlaceCard !== "function") {
@@ -390,10 +578,10 @@
   }
 
   global.HGVisualPlaceRounds = {
-    ids:DEFS.map(def => def.id), registry:[...DEFS], badge:BY_ID.get("badges"),
+    ids:ALL_DEFS.map(def => def.id), registry:[...ALL_DEFS], badge:BY_ID.get("badges"),
     base:{ standard:[...GENERAL_BASE], natur:[...NATURE_BASE] },
-    fourthPriorities:CATEGORY_FOURTH_PRIORITIES,
-    get:selectedIds, getFourth:fourthRoundId, getItems:collectionItems, apply
+    fourthByCategory:CATEGORY_FOURTH,
+    get:selectedIds, getFourth:fourthRoundId, getFourthLabel:fourthLabel, getItems:collectionItems, apply
   };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true });

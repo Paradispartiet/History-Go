@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const source = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds-visual-collections.js"), "utf8");
 const windows = new Set();
 afterEach(() => { for (const w of windows) w.close(); windows.clear(); });
-const ICONS = ["People", "Badges", "Brands", "Nature", "Works", "CivicationStore", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"];
+const ICONS = ["People", "Badges", "Brands", "Nature", "Works", "Details", "Spots", "CivicationStore", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"];
 
 function make(place, globals = {}) {
   const dom = new JSDOM(`<!doctype html><body><div id="placeCard" data-current-place-id="${place.id}"><div class="pc-body"><div class="pc-title-row"><h2 id="pcTitle"></h2></div><div class="pc-icons-quad">${ICONS.map(x => `<div id="pc${x}Icon" class="pc-round" hidden></div>`).join("")}</div><div id="pcPeopleList"></div><div id="pcBadgesList"></div><div id="pcBrandsList"></div><div id="pcWorksList"></div><div id="pcCivicationStoreList"></div></div></div></body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
@@ -24,49 +24,70 @@ function make(place, globals = {}) {
 
 const ids = (w, place) => Array.from(w.HGPlaceRounds.get(place), def => def.id);
 
-test("canonical pool contains category-dependent visual collections and excludes Civication", () => {
-  const w = make({ id: "x", category: "historie" });
-  assert.deepEqual(Array.from(w.HGVisualPlaceRounds.ids), ["badges", "people", "works", "objects", "details", "spots", "brands", "map", "flora", "fauna"]);
-  assert.ok(!w.HGVisualPlaceRounds.ids.includes("civication"));
-  for (const bad of ["før_nå", "fortellinger", "leksikon", "play", "training", "tasks"]) assert.ok(!w.HGVisualPlaceRounds.ids.includes(bad), bad);
-});
-
-test("history uses Spots as the category-dependent fourth round", () => {
-  const place = { id: "h", category: "historie", spots: [{ id: "port", title: "Port", image: "port.jpg" }] };
-  const w = make(place);
-  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "spots"]);
-  assert.equal(w.HGPlaceRounds.getFourth(place), "spots");
-});
-
-test("history falls through to Details when Spots is empty", () => {
-  const place = { id: "h", category: "historie", details: [{ id: "merke", title: "Merke", image: "merke.jpg" }] };
-  const w = make(place);
-  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "details"]);
-});
-
-test("music and subculture use Works when work content exists", () => {
-  for (const category of ["musikk", "subkultur"]) {
-    const place = { id: category, category, works: [{ id: "verk", title: "Verk", image: "verk.jpg" }] };
-    const w = make(place);
-    assert.deepEqual(ids(w, place), ["people", "objects", "brands", "works"]);
-    w.close();
-    windows.delete(w);
+test("canonical pool contains only clear fourth-round alternatives", () => {
+  const w = make({ id: "x", category: "historie", image: "x.jpg" });
+  assert.deepEqual(Array.from(w.HGVisualPlaceRounds.ids), [
+    "badges", "people", "objects", "brands", "map", "flora", "fauna",
+    "productions", "structures", "competitions", "related", "destinations", "images"
+  ]);
+  for (const removed of ["works", "details", "spots", "civication", "før_nå", "fortellinger", "leksikon", "play", "training", "tasks"]) {
+    assert.ok(!w.HGVisualPlaceRounds.ids.includes(removed), removed);
   }
 });
 
-test("nature keeps map flora fauna and uses Spots as fourth", () => {
-  const place = { id: "n", category: "natur", spots: [{ id: "utsikt", title: "Utsikt", image: "utsikt.jpg" }] };
+test("art uses Kunstverk when production content exists", () => {
+  const place = { id: "kunst", category: "kunst", works: [{ id: "verk", title: "Et verk", image: "verk.jpg" }], image: "sted.jpg" };
   const w = make(place);
-  assert.deepEqual(ids(w, place), ["map", "flora", "fauna", "spots"]);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "productions"]);
+  assert.equal(w.HGPlaceRounds.getFourth(place), "productions");
+  assert.equal(w.HGPlaceRounds.getFourthLabel(place), "Kunstverk");
+});
+
+test("sport uses Kamper og konkurranser from real competition data", () => {
+  const place = { id: "sport", category: "sport", matches: [{ id: "finale", title: "Cupfinalen", image: "finale.jpg" }], image: "stadion.jpg" };
+  const w = make(place);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "competitions"]);
+  assert.equal(w.HGPlaceRounds.getFourthLabel(place), "Kamper og konkurranser");
+});
+
+test("history uses actual related History GO places", () => {
+  const place = { id: "h", category: "historie", related_place_ids: ["r"], image: "h.jpg" };
+  const related = { id: "r", name: "Relatert sted", image: "r.jpg" };
+  const w = make(place, { PLACES: [place, related] });
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "related"]);
+  assert.equal(w.HGPlaceRounds.getItems(place, "related")[0].title, "Relatert sted");
+});
+
+test("city uses named buildings and structures, not generic Spots", () => {
+  const place = { id: "by", category: "by", buildings: [{ id: "hall", title: "Hovedhallen", image: "hall.jpg" }], spots: [{ id: "tilfeldig", title: "Et punkt" }], image: "by.jpg" };
+  const w = make(place);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "structures"]);
+  assert.equal(w.HGPlaceRounds.getItems(place, "structures").length, 1);
+});
+
+test("nature keeps map flora fauna and uses real tour destinations", () => {
+  const place = { id: "n", category: "natur", destinations: [{ id: "topp", title: "Utsiktstoppen", image: "topp.jpg" }], image: "natur.jpg" };
+  const w = make(place);
+  assert.deepEqual(ids(w, place), ["map", "flora", "fauna", "destinations"]);
   assert.equal(w.HGPlaceRounds.badge.id, "badges");
 });
 
-test("category first candidate remains the semantic fallback without filler Civication", () => {
-  const politics = { id: "p", category: "politikk" };
-  const music = { id: "m", category: "musikk" };
-  const w = make(politics);
-  assert.deepEqual(ids(w, politics), ["people", "objects", "brands", "spots"]);
-  assert.deepEqual(ids(w, music), ["people", "objects", "brands", "works"]);
+test("Bilder is the only general fallback when category content is missing", () => {
+  const place = { id: "p", category: "politikk", frontImage: "front.jpg" };
+  const w = make(place);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "images"]);
+  assert.equal(w.HGPlaceRounds.getFourthLabel(place), "Bilder");
+  assert.equal(w.HGPlaceRounds.getItems(place, "images")[0].image, "front.jpg");
+});
+
+test("generic Details and Spots data never become fourth rounds", () => {
+  const place = {
+    id: "p", category: "historie", image: "sted.jpg",
+    details: [{ id: "d", title: "Detalj", image: "d.jpg" }],
+    spots: [{ id: "s", title: "Tilfeldig punkt", image: "s.jpg" }]
+  };
+  const w = make(place);
+  assert.equal(w.HGPlaceRounds.getFourth(place), "images");
 });
 
 test("nature map never falls back to generic main-map navigation", () => {
