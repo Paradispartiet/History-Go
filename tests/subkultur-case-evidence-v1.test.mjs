@@ -44,7 +44,7 @@ test('komplett casekildeport sender bare videre til Quiz/Knowledge og forskutter
     navigation_status: 'planned',
     assessment_status: 'pending',
     editorial_status: 'not_started',
-    next_gate: 'quiz_knowledge_audit'
+    next_gate: 'runtime_materialization_and_final_gate'
   });
   assert.equal(report.next_gate, 'quiz_knowledge_audit');
 });

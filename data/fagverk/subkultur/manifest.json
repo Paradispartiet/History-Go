@@ -2,7 +2,7 @@
   "schema": "history_go_subkultur_chapter_manifest_v1",
   "version": "1.0.0",
   "subject_id": "subkultur",
-  "status": "chapters_ready_case_evidence_complete",
+  "status": "chapters_and_assessment_ready_case_evidence_complete",
   "chapters": [
     {
       "id": "subkulturteori_feltgrenser",
@@ -174,5 +174,13 @@
     "minimum_source_references": 160,
     "related_place_references": 48
   },
-  "next_gate": "quiz_knowledge_audit"
+  "next_gate": "runtime_materialization_and_final_gate",
+  "assessment": {
+    "package": "data/quiz/subkultur/subkultur_subject_pathways_v1.json",
+    "legacy_audit": "data/quiz/subkultur/subkultur_legacy_quiz_audit_v1.json",
+    "pathways": 8,
+    "questions": 40,
+    "knowledge_status": "canonical_linked",
+    "legacy_active_questions": 0
+  }
 }

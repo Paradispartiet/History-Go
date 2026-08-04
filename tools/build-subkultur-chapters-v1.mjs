@@ -316,10 +316,18 @@ function build() {
     schema: 'history_go_subkultur_chapter_manifest_v1',
     version: '1.0.0',
     subject_id: 'subkultur',
-    status: 'chapters_ready_case_evidence_complete',
+    status: 'chapters_and_assessment_ready_case_evidence_complete',
     chapters: chapterRows,
     totals: { chapters: 8, modules: 24, sections: 72, paragraphs: 216, minimum_claim_references: 288, minimum_source_references: 160, related_place_references: 48 },
-    next_gate: 'quiz_knowledge_audit'
+    next_gate: 'runtime_materialization_and_final_gate',
+    assessment: {
+      package: 'data/quiz/subkultur/subkultur_subject_pathways_v1.json',
+      legacy_audit: 'data/quiz/subkultur/subkultur_legacy_quiz_audit_v1.json',
+      pathways: 8,
+      questions: 40,
+      knowledge_status: 'canonical_linked',
+      legacy_active_questions: 0
+    }
   };
 
   const osloIds = [...new Set(Object.values(CHAPTER_META).flatMap((meta) => meta.places).map(([id]) => id).filter((id) => !id.startsWith('lisbon_') && !['tou_stavanger', 'bergen_kjott_kulturhus', 'club_7_vika', 'kafe_x_tromso', 'uffa_huset_trondheim', 'svartlamon_trondheim', 'trikkestallen_skatepark_trondheim', 'mo_senteret_gyldenpris', 'nygardsparken_bergen'].includes(id)))];

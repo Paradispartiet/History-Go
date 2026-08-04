@@ -285,7 +285,10 @@ export function auditChapters({ writeReport = false, checkReport = true } = {}) 
   assert(report.status_guard.navigation_status === 'planned', 'Navigasjon må forbli planned før runtime');
   assert(report.status_guard.assessment_status === 'pending', 'Assessment må forbli pending før quiz-audit');
   assert(report.status_guard.editorial_status === 'not_started', 'Planned fag må beholde not_started før runtime-materialisering');
-  assert(report.status_guard.next_gate === 'quiz_knowledge_audit', 'Neste port må være Quiz/Knowledge-audit');
+  assert(
+    ['quiz_knowledge_audit', 'runtime_materialization_and_final_gate'].includes(report.status_guard.next_gate),
+    'Global nextGate må være Quiz/Knowledge eller den etterfølgende runtime-porten'
+  );
   assert(report.next_gate === 'quiz_knowledge_audit', 'Kapittelporten må sende faget videre til Quiz/Knowledge');
   if (writeReport) {
     fs.mkdirSync(path.dirname(abs(REPORT)), { recursive: true });
