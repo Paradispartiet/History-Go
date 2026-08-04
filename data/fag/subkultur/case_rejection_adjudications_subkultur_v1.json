@@ -1,0 +1,129 @@
+{
+  "schema": "history_go_subkultur_case_rejection_adjudications_v1",
+  "version": "1.0.0",
+  "subject_id": "subkultur",
+  "audited_at": "2026-08-04",
+  "scope": "Redaksjonelle caseavgjørelser for seks profilkandidater som fortsatt beholdes som canonicale steder, men som ikke har tilstrekkelig stedsspesifikk evidens til validated_case.",
+  "decision_policy": {
+    "contract": "docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md",
+    "requirements": "data/fag/subkultur/case_requirements_subkultur_canonical_v1.json",
+    "classification_audit": "data/fag/subkultur/subkultur_places_people_audit_v1.json",
+    "preservation_rule": "En avvisning gjelder bare caseprofilen. Canonical place-post, kategori og emnekoblinger beholdes til en egen datarevisjon beslutter noe annet.",
+    "reconsideration_rule": "Avgjørelsen kan gjenåpnes når stedsspesifikke miljønære og uavhengige kilder dokumenterer aktører, gjentatt praksis, tidsstatus og etisk forsvarlig avgrensning."
+  },
+  "adjudications": [
+    {
+      "case_id": "case_sub_nybrua_pilarrom",
+      "place_id": "nybrua_pilarrom",
+      "profile_id": "profile_subkultur_oslo",
+      "decision": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "reviewed_source_paths": [
+        "data/places/subkultur/oslo/places_subkultur/nybrua_pilarrom.json",
+        "data/fag/subkultur/subkultur_places_people_audit_v1.json"
+      ],
+      "supported_scope": "Canonicalteksten beskriver pilarer, tags, crew-markeringer og skiftende vegguttrykk, men identifiserer ikke ett avgrenset miljø ved pilarrommet gjennom selvstendig kildedokumentasjon.",
+      "failed_case_requirements": [
+        "case_req_sub_environment_practice_position",
+        "case_req_sub_voice_balance",
+        "case_req_sub_place_change"
+      ],
+      "reason": "Brogeometri og generell Oslo-graffiti dokumenterer ikke et avgrenset, stedbundet miljø i pilarrommet med miljønær og uavhengig kildebalanse.",
+      "qualification_rule": "generic_citywide_scene_evidence_cannot_substitute_place_specific_case_evidence"
+    },
+    {
+      "case_id": "case_sub_gronland_underganger",
+      "place_id": "gronland_underganger",
+      "profile_id": "profile_subkultur_oslo",
+      "decision": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "reviewed_source_paths": [
+        "data/places/subkultur/oslo/places_subkultur/gronland_underganger.json",
+        "data/fag/subkultur/subkultur_places_people_audit_v1.json"
+      ],
+      "supported_scope": "Canonicalteksten dokumenterer underganger, pilarer og midlertidige tags og paste-ups som visuelle spor i transitrommet, men ikke ett organisert eller kontinuerlig stedbundet miljø.",
+      "failed_case_requirements": [
+        "case_req_sub_environment_practice_position",
+        "case_req_sub_voice_balance",
+        "case_req_sub_place_change"
+      ],
+      "reason": "Undergang som objekttype og visuelle spor dokumenterer ikke ett avgrenset miljø, gjentatt organisering eller stedsspesifikk kildebalanse.",
+      "qualification_rule": "urban_form_and_visual_traces_alone_are_not_a_validated_case"
+    },
+    {
+      "case_id": "case_sub_schweigaards_gate_lodalen",
+      "place_id": "schweigaards_gate_lodalen",
+      "profile_id": "profile_subkultur_oslo",
+      "decision": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "reviewed_source_paths": [
+        "data/places/subkultur/oslo/places_subkultur/schweigaards_gate_lodalen.json",
+        "data/fag/subkultur/subkultur_places_people_audit_v1.json"
+      ],
+      "supported_scope": "Canonicalteksten samler støttemurer, underganger og tekniske flater langs en lengre akse og beskriver skiftende gateuttrykk, men dokumenterer ikke felles aktører eller praksis for hele aggregatet.",
+      "failed_case_requirements": [
+        "case_req_sub_environment_practice_position",
+        "case_req_sub_voice_balance",
+        "case_req_sub_place_change"
+      ],
+      "reason": "Den lange veggaksen er et analytisk aggregat uten tilstrekkelig dokumentasjon av ett sammenhengende miljø eller felles praksis.",
+      "qualification_rule": "analytical_area_aggregate_requires_specific_environment_and_common_practice_evidence"
+    },
+    {
+      "case_id": "case_sub_kolstadgata_toyen_vegger",
+      "place_id": "kolstadgata_toyen_vegger",
+      "profile_id": "profile_subkultur_oslo",
+      "decision": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "reviewed_source_paths": [
+        "data/places/subkultur/oslo/places_subkultur/kolstadgata_toyen_vegger.json",
+        "data/fag/subkultur/subkultur_places_people_audit_v1.json"
+      ],
+      "supported_scope": "Canonicalteksten kobler Kolstadgata til muraler, tags, ungdomsmiljø og lokale initiativ på Tøyen, men mangler kilder som skiller akkurat dette veggankeret fra den bredere nabolagsscenen.",
+      "failed_case_requirements": [
+        "case_req_sub_environment_practice_position",
+        "case_req_sub_voice_balance",
+        "case_req_sub_place_change"
+      ],
+      "reason": "Tøyens dokumenterte gatekunstscene kan ikke alene bevise et eget miljø knyttet til akkurat Kolstadgata-veggene.",
+      "qualification_rule": "neighborhood_scene_evidence_cannot_be_projected_onto_an_unsourced_wall_anchor"
+    },
+    {
+      "case_id": "case_sub_kuba_akselpassasjer",
+      "place_id": "kuba_akselpassasjer",
+      "profile_id": "profile_subkultur_oslo",
+      "decision": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "reviewed_source_paths": [
+        "data/places/subkultur/oslo/places_subkultur/kuba_akselpassasjer.json",
+        "data/fag/subkultur/subkultur_places_people_audit_v1.json"
+      ],
+      "supported_scope": "Canonicalteksten beskriver passasjer, tagging, stensiler, nattlig gjennomfart og uformell visuell produksjon, men dokumenterer ikke aktører, kontinuitet eller stedsspesifikk organisering.",
+      "failed_case_requirements": [
+        "case_req_sub_environment_practice_position",
+        "case_req_sub_voice_balance",
+        "case_req_sub_place_change"
+      ],
+      "reason": "Passasjer og nattlige veggspor er ikke nok uten uavhengig dokumentasjon av aktører, praksis og kontinuitet ved dette ankeret.",
+      "qualification_rule": "night_use_and_visual_traces_alone_are_not_a_validated_environment"
+    },
+    {
+      "case_id": "case_sub_stovnertarnet",
+      "place_id": "stovnertarnet",
+      "profile_id": "profile_subkultur_oslo",
+      "decision": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "reviewed_source_paths": [
+        "data/places/subkultur/oslo/places_subkultur/stovnertarnet.json",
+        "data/fag/subkultur/subkultur_places_people_audit_v1.json"
+      ],
+      "supported_scope": "Canonicalteksten dokumenterer et offentlig utsiktspunkt, nærmiljøtilhørighet og et lokalt symbol brukt av beboere, skoleklasser og turgåere, men ikke et særskilt subkulturelt miljø.",
+      "failed_case_requirements": [
+        "case_req_sub_environment_practice_position",
+        "case_req_sub_voice_balance"
+      ],
+      "reason": "Ungdomsmedvirkning, inkluderende landskapsarkitektur og lokal stolthet dokumenterer sosial infrastruktur, men ikke alene et Subkultur-miljø.",
+      "qualification_rule": "inclusive_public_infrastructure_and_participation_alone_are_not_subculture"
+    }
+  ]
+}

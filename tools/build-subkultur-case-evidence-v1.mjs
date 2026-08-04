@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WRITE = process.argv.includes('--write');
 const CHECK = process.argv.includes('--check') || !WRITE;
 const AUDITED_CANDIDATE_COUNT = 50;
+const REJECTION_ADJUDICATIONS_PATH = 'data/fag/subkultur/case_rejection_adjudications_subkultur_v1.json';
 const ENVIRONMENT_NEAR_PERSPECTIVES = new Set(['participant', 'milieu', 'support_service']);
 const INDEPENDENT_CONTROL_PERSPECTIVES = new Set(['authority', 'research', 'secondary']);
 const REJECTED_CANDIDATES = Object.freeze([
@@ -35,7 +36,7 @@ const REJECTED_CANDIDATES = Object.freeze([
     profile_id: 'profile_subkultur_oslo',
     resulting_category: 'subkultur',
     reason: 'Brogeometri og generell Oslo-graffiti dokumenterer ikke et avgrenset, stedbundet miljø i pilarrommet med miljønær og uavhengig kildebalanse.',
-    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    decision_source: REJECTION_ADJUDICATIONS_PATH,
     qualification_rule: 'generic_citywide_scene_evidence_cannot_substitute_place_specific_case_evidence'
   },
   {
@@ -44,7 +45,7 @@ const REJECTED_CANDIDATES = Object.freeze([
     profile_id: 'profile_subkultur_oslo',
     resulting_category: 'subkultur',
     reason: 'Undergang som objekttype og visuelle spor dokumenterer ikke ett avgrenset miljø, gjentatt organisering eller stedsspesifikk kildebalanse.',
-    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    decision_source: REJECTION_ADJUDICATIONS_PATH,
     qualification_rule: 'urban_form_and_visual_traces_alone_are_not_a_validated_case'
   },
   {
@@ -53,7 +54,7 @@ const REJECTED_CANDIDATES = Object.freeze([
     profile_id: 'profile_subkultur_oslo',
     resulting_category: 'subkultur',
     reason: 'Den lange veggaksen er et analytisk aggregat uten tilstrekkelig dokumentasjon av ett sammenhengende miljø eller felles praksis.',
-    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    decision_source: REJECTION_ADJUDICATIONS_PATH,
     qualification_rule: 'analytical_area_aggregate_requires_specific_environment_and_common_practice_evidence'
   },
   {
@@ -62,7 +63,7 @@ const REJECTED_CANDIDATES = Object.freeze([
     profile_id: 'profile_subkultur_oslo',
     resulting_category: 'subkultur',
     reason: 'Tøyens dokumenterte gatekunstscene kan ikke alene bevise et eget miljø knyttet til akkurat Kolstadgata-veggene.',
-    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    decision_source: REJECTION_ADJUDICATIONS_PATH,
     qualification_rule: 'neighborhood_scene_evidence_cannot_be_projected_onto_an_unsourced_wall_anchor'
   },
   {
@@ -71,7 +72,7 @@ const REJECTED_CANDIDATES = Object.freeze([
     profile_id: 'profile_subkultur_oslo',
     resulting_category: 'subkultur',
     reason: 'Passasjer og nattlige veggspor er ikke nok uten uavhengig dokumentasjon av aktører, praksis og kontinuitet ved dette ankeret.',
-    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    decision_source: REJECTION_ADJUDICATIONS_PATH,
     qualification_rule: 'night_use_and_visual_traces_alone_are_not_a_validated_environment'
   },
   {
@@ -80,7 +81,7 @@ const REJECTED_CANDIDATES = Object.freeze([
     profile_id: 'profile_subkultur_oslo',
     resulting_category: 'subkultur',
     reason: 'Ungdomsmedvirkning, inkluderende landskapsarkitektur og lokal stolthet dokumenterer sosial infrastruktur, men ikke alene et Subkultur-miljø.',
-    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    decision_source: REJECTION_ADJUDICATIONS_PATH,
     qualification_rule: 'inclusive_public_infrastructure_and_participation_alone_are_not_subculture'
   }
 ]);
@@ -308,6 +309,19 @@ function requireValue(condition, message) {
 }
 
 function build() {
+  const rejectionAdjudications = readJson(REJECTION_ADJUDICATIONS_PATH);
+  const adjudicationByCase = new Map(list(rejectionAdjudications.adjudications).map((entry) => [entry.case_id, entry]));
+  for (const rejected of REJECTED_CANDIDATES.filter((entry) => entry.decision_source === REJECTION_ADJUDICATIONS_PATH)) {
+    const adjudication = adjudicationByCase.get(rejected.case_id);
+    requireValue(adjudication, `${rejected.case_id}: mangler avvisningsadjudikasjon`);
+    requireValue(adjudication.place_id === rejected.place_id, `${rejected.case_id}: adjudikasjonen peker til feil placeId`);
+    requireValue(adjudication.decision === 'rejected_nonqualifying', `${rejected.case_id}: adjudikasjonen har feil beslutning`);
+    requireValue(adjudication.reason === rejected.reason, `${rejected.case_id}: adjudikasjon og avvisningsgrunn er ute av synk`);
+    requireValue(adjudication.qualification_rule === rejected.qualification_rule, `${rejected.case_id}: adjudikasjon og kvalifikasjonsregel er ute av synk`);
+    requireValue(list(adjudication.reviewed_source_paths).length >= 2, `${rejected.case_id}: adjudikasjonen mangler vurderte kildestier`);
+    requireValue(list(adjudication.reviewed_source_paths).every((relative) => fs.existsSync(abs(relative))), `${rejected.case_id}: adjudikasjonen peker til en manglende kildesti`);
+    requireValue(list(adjudication.failed_case_requirements).length >= 1, `${rejected.case_id}: adjudikasjonen mangler eksplisitt evidensgap`);
+  }
   const sourceById = new Map();
   const evidenceCases = [];
 

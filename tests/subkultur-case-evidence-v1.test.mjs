@@ -38,6 +38,25 @@ test('alle fem casekrav og etikkporten er eksplisitt bestått', () => {
   assert.deepEqual(report.integrity.failures, []);
 });
 
+test('avviste grensecases har ikke-sirkulær og etterprøvbar beslutningsproveniens', () => {
+  const evidence = JSON.parse(fs.readFileSync(new URL('../data/fag/subkultur/case_evidence_subkultur_canonical_v1.json', import.meta.url), 'utf8'));
+  const adjudications = JSON.parse(fs.readFileSync(new URL('../data/fag/subkultur/case_rejection_adjudications_subkultur_v1.json', import.meta.url), 'utf8'));
+  const adjudicationByCase = new Map(adjudications.adjudications.map((entry) => [entry.case_id, entry]));
+  const newRejections = evidence.nonqualifying_cases.filter((entry) => entry.decision_source === 'data/fag/subkultur/case_rejection_adjudications_subkultur_v1.json');
+  assert.equal(newRejections.length, 6);
+  assert.ok(evidence.nonqualifying_cases.every((entry) => entry.decision_source !== 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json'));
+  assert.ok(newRejections.every((entry) => adjudicationByCase.get(entry.case_id)?.reason === entry.reason));
+  assert.ok(newRejections.every((entry) => adjudicationByCase.get(entry.case_id)?.failed_case_requirements.length >= 1));
+});
+
+test('Slottsparkens dokumenterte Nisseberg-konflikt materialiseres som dokumentert', () => {
+  const report = JSON.parse(fs.readFileSync(new URL('../data/places/subkultur-production/slottsparken.json', import.meta.url), 'utf8'));
+  const conflict = report.subcultureCases[0].spaceAndPower.conflictOrNegotiation;
+  assert.equal(conflict.status, 'documented');
+  assert.match(conflict.statement, /Nisseberget|politiinngrep/u);
+  assert.equal(conflict.rationale, undefined);
+});
+
 test('komplett casekildeport består etter ferdig runtime-materialisering', () => {
   const report = buildSubkulturCaseEvidenceReport();
   assert.deepEqual(report.status_guard, {
