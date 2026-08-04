@@ -59,9 +59,9 @@ test('Kandidatauditen dokumenterer både inkludering, holdback og logoavgjørels
   assert.match(audit.logo_policy, /Ingen logo er kopiert, generert eller rekonstruert/);
 });
 
-test('Fast rundingsruntime rendrer canonical mapping uten stedsspesifikk særkode', () => {
-  assert.match(roundsContract, /vanlig: people · objects · brands · civication/);
-  assert.match(runtime, /const GENERAL_ROUNDS = Object\.freeze\(\["people", "objects", "brands", "civication"\]\)/);
+test('Politikk-rundingsprofilen følger kategori-matrisen uten stedsspesifikk særkode', () => {
+  assert.match(roundsContract, /`politikk`[^\n]*\| People · Spots · Details · Objects \|/);
+  assert.match(runtime, /politikk:\s+\["people", "spots", "details", "objects"\]/);
   assert.doesNotMatch(runtime, /regjeringskvartalet/);
 });
 
