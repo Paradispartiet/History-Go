@@ -55,6 +55,22 @@ test('begrepsregisteret er sporbar til alle emner og skiller definisjonskvalitet
   assert.ok(concepts.every((concept) => concept.common_misuse.length && concept.source_requirements.length));
 });
 
+test('anvendelsesspor og kontekstforklaringer bruker hele fagtermer', () => {
+  const curriculum = readJson('data/fag/politikk/curriculum_architecture_politikk_v1.json');
+  const concepts = readJson('data/fag/politikk/concepts_politikk_canonical_v1.json').concepts;
+  const legalTrack = curriculum.applied_tracks.find((track) => track.id === 'rett_sikkerhet');
+  const concept = (label) => concepts.find((entry) => entry.label.toLocaleLowerCase('nb-NO') === label);
+
+  assert.ok(legalTrack.entry_emne_ids.includes('em_pol_politi_sikkerhet_makt'));
+  assert.ok(legalTrack.entry_emne_ids.includes('em_pol_domstoler_rettspraksis'));
+  assert.ok(!legalTrack.entry_emne_ids.includes('em_pol_kvantitativ_inferens_maling'));
+  assert.ok(legalTrack.entry_emne_ids.length < 40);
+  assert.match(concept('statistisk inferens').definition, /analytisk framgangsmåte/);
+  assert.doesNotMatch(concept('statistisk inferens').definition, /regelbundet ordning/);
+  assert.match(concept('rettferdighet').definition, /normativt prinsipp/);
+  assert.doesNotMatch(concept('rettferdighet').definition, /rettslig eller politisk regulert/);
+});
+
 test('den faktiske fagsiden rendrer 41 lesbare deler og et sokbart begrepsverk', async () => {
   const dom = new JSDOM(read('fagverk.html'), {
     url: 'https://history-go.test/fagverk.html?subject=politikk',
