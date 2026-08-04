@@ -1,6 +1,6 @@
 // @ts-nocheck
 // js/ui/place-rounds-fill-layout.js
-// Maksimerer de tre canonical rundingene i én horisontal rad ved siden av frontImage.
+// Maksimerer de fire canonical rundingene i et 2 × 2-felt ved siden av frontImage.
 (function installPlaceRoundsFillLayout(global) {
   "use strict";
 
@@ -19,12 +19,13 @@
     if (!grid) return;
 
     const count = Number(grid.dataset.roundCount || 0);
-    if (count !== 3) {
+    if (count !== 4) {
       grid.style.removeProperty("--hg-round-fill-size");
       return;
     }
 
-    const cols = 3;
+    const cols = 2;
+    const rows = 2;
     const gap = numericGap(grid);
     const rect = grid.getBoundingClientRect();
     const width = rect.width || grid.clientWidth || 0;
@@ -32,7 +33,8 @@
     if (width <= 0 || height <= 0) return;
 
     const byWidth = (width - gap * (cols - 1)) / cols;
-    const size = Math.max(1, Math.floor(Math.min(byWidth, height)));
+    const byHeight = (height - gap * (rows - 1)) / rows;
+    const size = Math.max(1, Math.floor(Math.min(byWidth, byHeight)));
     grid.style.setProperty("--hg-round-fill-size", `${size}px`);
   }
 

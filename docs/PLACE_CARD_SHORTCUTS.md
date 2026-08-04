@@ -5,22 +5,34 @@ Eier: `place_card_popup_shortcuts`
 Runtime: `js/ui/place-popup-shortcuts.js`  
 Stedspopup: `docs/PLACE_POPUP_SYSTEM.md`  
 Rundinger: `data/places/README_place_rounds.md`  
-Sist kontrollert: **2026-07-29**
+Sist kontrollert: **2026-08-04**
 
 ## Fast PlaceCard-geometri
 
-PlaceCard har **alltid nøyaktig fire canonical rundinger**. Det finnes ingen 6-, 9- eller 12-rundersvariant.
+PlaceCard viser:
 
-De fire rundingene står i et 2 × 2-felt ved siden av `frontImage`. De skal venstrestilles i mediefeltet slik at de ligger tett mot `frontImage` og etterlater et separat felt til høyre.
+- én fast Badges-runding øverst til høyre ved stedsnavnet;
+- nøyaktig fire canonical innholdsrundinger i et 2 × 2-felt ved siden av `frontImage`;
+- sju små, monokrome SVG-snarveier i et eget felt til høyre for de fire rundingene.
 
-## Snarveifeltet er ikke rundinger
+Det finnes ingen 3-, 6-, 9- eller 12-rundersvariant i mediefeltet.
 
-Feltet til høyre for rundingene består av åtte kompakte ikonknapper i **to kolonner × fire rader**.
+## Infotilgangen er tekst, ikke SVG
 
-Disse ikonene er snarveier til de canonical stedspopup-fanene og skal aldri telles som PlaceCard-rundinger:
+`Om` har ikke lenger et eget infoikon i snarveifeltet.
+
+Brukeren åpner `Om`-fanen i den eksisterende stedspopupen ved å trykke på:
+
+- stedsnavnet i PlaceCard;
+- infoteksten (`pcDesc`) i PlaceCard.
+
+Begge tekstflatene er tastaturtilgjengelige og åpnes med Enter eller mellomrom.
+
+## Sju popup-snarveier
+
+Feltet til høyre for rundingene består av sju kompakte SVG-knapper:
 
 ```text
-Om
 Historie
 Fortellinger
 Før/etter
@@ -30,29 +42,19 @@ Kilder
 Mer
 ```
 
-Ett trykk på et ikon åpner den eksisterende stedspopupen direkte på tilsvarende fane.
+Snarveiene er ikke rundinger. Ett trykk åpner den eksisterende stedspopupen direkte på tilsvarende fane.
 
 ## Én innholdsmodell
 
-Snarveiene lager ikke kopier av popupinnholdet. Innholdet eies fortsatt av `PLACE_POPUP_SYSTEM.md` og de subsystemene denne kontrakten peker til.
-
-Det betyr blant annet:
-
-- Om leser samme `popupDesc`/stedskunnskap som stedspopupen;
-- Historie leser samme chronology/history-lag;
-- Fortellinger bruker canonical Stories;
-- Før/etter bruker canonical `for_na`;
-- Nyheter bruker popupens nyhetsspor;
-- Lesespor bruker samme Lesespor-data;
-- Kilder bruker samme sikre source summaries / eksterne kilder;
-- Mer åpner samme Mer-fane som i stedspopupen.
+Snarveiene og de klikkbare tekstflatene lager ikke kopier av popupinnholdet. Innholdet eies fortsatt av `PLACE_POPUP_SYSTEM.md` og de subsystemene denne kontrakten peker til.
 
 ## Sluttregel
 
 PlaceCard-presentasjonen skal kunne beskrives slik:
 
 ```text
-frontImage | 4 rundinger | 8 popup-snarveier
+frontImage | 4 rundinger | 7 små SVG-snarveier
+                    badge ved tittelen
 ```
 
-Rundinger er visuelle samlinger. Snarveiikonene er kun direkte innganger til stedspopupens kunnskapsfaner.
+Rundinger er visuelle samlinger. SVG-ikonene og de klikkbare tekstflatene er direkte innganger til stedspopupens kunnskapsfaner.

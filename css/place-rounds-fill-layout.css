@@ -1,4 +1,4 @@
-/* PlaceCard-rundinger: tre sirkler på én horisontal rad til høyre for frontImage. */
+/* PlaceCard-rundinger: fire sirkler i et 2 × 2-felt til høyre for frontImage. */
 #placeCard .pc-side-stack{
   width:100%;
   max-width:100%;
@@ -17,18 +17,18 @@
   min-height:0;
   box-sizing:border-box;
   justify-content:space-between;
-  align-content:center;
+  align-content:space-between;
   justify-items:center;
   align-items:center;
   gap:var(--pc-round-gap);
 }
 
-#placeCard .pc-icons-quad[data-round-count="3"]{
-  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
-  grid-template-rows:minmax(0, 1fr) !important;
+#placeCard .pc-icons-quad[data-round-count="4"]{
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
 }
 
-#placeCard .pc-icons-quad[data-round-count="3"] .pc-round:not([hidden]){
+#placeCard .pc-icons-quad[data-round-count="4"] .pc-round:not([hidden]){
   width:var(--hg-round-fill-size, var(--place-card-orb-size));
   height:var(--hg-round-fill-size, var(--place-card-orb-size));
   min-width:var(--hg-round-fill-size, var(--place-card-orb-size));
