@@ -171,6 +171,36 @@
     return methods;
   }
 
+  function normalizeConcepts(rawConcepts) {
+    const source = Array.isArray(rawConcepts) ? rawConcepts : list(rawConcepts?.concepts);
+    const concepts = source.map((concept) => ({
+      id: firstText(concept?.concept_id, concept?.id),
+      label: firstText(concept?.label, concept?.term, concept?.title, concept?.concept_id, concept?.id),
+      definition: firstText(concept?.definition, concept?.description),
+      type: firstText(concept?.concept_type, concept?.type),
+      historicalScope: firstText(concept?.historical_scope, concept?.scope),
+      domainIds: unique(list(concept?.domain_ids)),
+      emneIds: unique([...
+        list(concept?.source_emne_ids),
+        ...list(concept?.emne_ids)
+      ]),
+      broaderIds: unique(list(concept?.broader_concepts)),
+      narrowerIds: unique(list(concept?.narrower_concepts)),
+      relatedIds: unique(list(concept?.related_concepts)),
+      distinguishFromIds: unique(list(concept?.distinguish_from)),
+      commonMisuse: unique(list(concept?.common_misuse)),
+      indicators: unique(list(concept?.indicators)),
+      sourceRequirements: unique(list(concept?.source_requirements)),
+      source: concept
+    })).filter((concept) => concept.id && concept.label && concept.definition);
+    const ids = new Set();
+    for (const concept of concepts) {
+      assert(!ids.has(concept.id), `Duplisert begreps-id: ${concept.id}`);
+      ids.add(concept.id);
+    }
+    return concepts;
+  }
+
   function normalizeDomains({ adapter, pensum, fagkart, emners, methods }) {
     const methodIds = new Set(methods.map((method) => method.id));
     const candidates = rawDomainCandidates(adapter, pensum, fagkart);
@@ -413,6 +443,7 @@
     const fagkart = source.fagkart || {};
     const rawEmners = Array.isArray(source.emners) ? source.emners : list(source.emners?.emners);
     const methods = normalizeMethods(source.methods || {});
+    const concepts = normalizeConcepts(source.concepts || []);
     const { domains, domainsById, assignments } = normalizeDomains({ adapter, pensum, fagkart, emners: rawEmners, methods });
     const emners = normalizeEmners({ subjectId, rawEmners, assignments, methods });
     const emnersById = new Map(emners.map((emne) => [emne.id, emne]));
@@ -493,6 +524,8 @@
       emnersById,
       methods,
       methodsById: new Map(methods.map((method) => [method.id, method])),
+      concepts,
+      conceptsById: new Map(concepts.map((concept) => [concept.id, concept])),
       mappings,
       chapters,
       chaptersById: new Map(chapters.map((chapter) => [chapter.id, chapter])),
@@ -503,6 +536,9 @@
         emners: rawEmners,
         fagkart,
         methods: source.methods || {},
+        concepts: source.concepts || [],
+        curriculum: source.curriculum || null,
+        periodGuides: source.periodGuides || null,
         manifestEntry: input?.manifestEntry || {},
         inventoryEntry: input?.inventoryEntry || {},
         statusEntry,
@@ -532,6 +568,7 @@
     resolveManifestPointer,
     adapterForFamily,
     conceptsForEmne,
+    normalizeConcepts,
     mergeChapterPayload,
     normalizeChapterPayload,
     hydrateChapter,

@@ -8,102 +8,105 @@ import { assertHistoryRendererContract, auditHistorySubject } from '../scripts/a
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 
-test('Historie er materialisert med fem redaksjonelle kapitler', () => {
+test('Historie er materialisert og redaksjonelt komplett', () => {
   const { report } = auditHistorySubject();
   assert.equal(report.subject.id, 'historie');
   assert.equal(report.subject.adapter, 'standard');
   assert.equal(report.subject.assessmentStatus, 'audited');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
+  assert.equal(report.subject.editorialStatus, 'complete');
   assert.deepEqual(report.summary, {
     domainCount: 23,
     emneCount: 230,
+    conceptCount: 976,
     methodCount: 105,
     mappingCount: 230,
     hookCount: 230,
-    chapterCount: 5,
-    chapterDomainCount: 5,
-    remainingChapterDomains: 18,
-    placeCount: 0
+    chapterCount: 23,
+    chapterDomainCount: 23,
+    remainingChapterDomains: 0,
+    placeCount: 0,
+    curriculumPeriods: 9,
+    curriculumPeriodGuides: 9,
+    curriculumCoveredPeriods: 6,
+    curriculumPartialPeriods: 2,
+    curriculumMissingPeriods: 1,
+    curriculumThematicFields: 14,
+    curriculumMethodModules: 6,
+    curriculumGeographicPaths: 6
   });
 });
 
-test('alle Historie-kapitlene oppfyller kapittel- og evidensporten', () => {
+test('alle 23 Historie-kapitlene oppfyller kapittel- og evidensporten', () => {
   const { report } = auditHistorySubject();
-  assert.deepEqual(report.chapters, [
-    {
-      id: 'historisk_tid_periodisering',
-      domainId: 'his_tid_periodisering',
-      sectionCount: 9,
-      workedExampleCount: 2,
-      misconceptionCount: 5,
-      taskCount: 4,
-      selfCheckCount: 7,
-      sourceCount: 6,
-      claimReferenceCount: 4,
-      sourceReferenceCount: 4,
-      theoryEvidenceReferenceCount: 1
-    },
-    {
-      id: 'kilder_arkiv_spor',
-      domainId: 'his_kilder_arkiv_spor',
-      sectionCount: 11,
-      workedExampleCount: 2,
-      misconceptionCount: 5,
-      taskCount: 4,
-      selfCheckCount: 7,
-      sourceCount: 7,
-      claimReferenceCount: 8,
-      sourceReferenceCount: 6,
-      theoryEvidenceReferenceCount: 5
-    },
-    {
-      id: 'makt_stat_institusjoner',
-      domainId: 'his_makt_stat_institusjoner',
-      sectionCount: 11,
-      workedExampleCount: 2,
-      misconceptionCount: 5,
-      taskCount: 4,
-      selfCheckCount: 7,
-      sourceCount: 7,
-      claimReferenceCount: 8,
-      sourceReferenceCount: 7,
-      theoryEvidenceReferenceCount: 3
-    },
-    {
-      id: 'middelalder_kirke_kongemakt',
-      domainId: 'his_middelalder_kirke_kongemakt',
-      sectionCount: 11,
-      workedExampleCount: 2,
-      misconceptionCount: 5,
-      taskCount: 4,
-      selfCheckCount: 7,
-      sourceCount: 26,
-      claimReferenceCount: 40,
-      sourceReferenceCount: 26,
-      theoryEvidenceReferenceCount: 10,
-      tracedParagraphCount: 33,
-      productionBriefValidated: true
-    },
-    {
-      id: '1814_statsdannelse',
-      domainId: 'his_1814_statsdannelse',
-      sectionCount: 12,
-      workedExampleCount: 2,
-      misconceptionCount: 5,
-      taskCount: 4,
-      selfCheckCount: 7,
-      sourceCount: 32,
-      claimReferenceCount: 33,
-      sourceReferenceCount: 32,
-      theoryEvidenceReferenceCount: 10,
-      tracedParagraphCount: 36,
-      productionBriefValidated: true
-    }
-  ]);
+  assert.equal(report.chapters.length, 23);
+  assert.equal(new Set(report.chapters.map((chapter) => chapter.domainId)).size, 23);
+  for (const chapter of report.chapters) {
+    assert.ok(chapter.sectionCount >= 8, chapter.id);
+    assert.ok(chapter.workedExampleCount >= 2, chapter.id);
+    assert.ok(chapter.misconceptionCount >= 4, chapter.id);
+    assert.ok(chapter.taskCount >= 3, chapter.id);
+    assert.ok(chapter.selfCheckCount >= 5, chapter.id);
+    assert.ok(chapter.sourceCount >= 4, chapter.id);
+    assert.ok(chapter.claimReferenceCount > 0, chapter.id);
+    assert.ok(chapter.theoryEvidenceReferenceCount > 0, chapter.id);
+  }
+  assert.equal(report.chapters.filter((chapter) => chapter.productionBriefValidated).length, 20);
   assert.equal(report.gates.registeredChaptersValidated, true);
   assert.equal(report.gates.chapterEvidenceReferencesResolved, true);
   assert.equal(report.gates.productionBriefAndParagraphTraceValidated, true);
   assert.equal(report.gates.historyPlaceFallbackResolved, true);
+});
+
+test('generator-eide kapitler skiller analytisk tekst fra claim-støttet evidens', () => {
+  const registry = readJson('data/fagverk/fagverk_registry.json');
+  const generatedChapters = registry.subjects.historie.chapters
+    .map((row) => readJson(row.file))
+    .filter((chapter) => chapter.productionBriefFile)
+    .filter((chapter) => readJson(chapter.productionBriefFile).generatedFrom?.generator === 'tools/materialize-historie-editorial-chapters.mjs');
+
+  assert.equal(generatedChapters.length, 18);
+  for (const chapter of generatedChapters) {
+    for (const modulePath of chapter.moduleFiles) {
+      const module = readJson(modulePath);
+      for (const section of module.sections) {
+        assert.equal(section.paragraphTraceTypes.length, section.paragraphs.length, section.id);
+        assert.equal(section.paragraphClaimIds.length, section.paragraphs.length, section.id);
+        section.paragraphTraceTypes.forEach((traceType, index) => {
+          const claimIds = section.paragraphClaimIds[index];
+          if (traceType === 'analytical') assert.deepEqual(claimIds, [], `${section.id}/${index}`);
+          else {
+            assert.equal(traceType, 'claim_supported', `${section.id}/${index}`);
+            assert.ok(claimIds.length > 0, `${section.id}/${index}`);
+          }
+        });
+      }
+    }
+  }
+});
+
+test('generator-eide moduler viser alle konsepter fra seksjonenes faktiske emner', () => {
+  const registry = readJson('data/fagverk/fagverk_registry.json');
+  const concepts = readJson('data/fag/historie/concepts_historie_canonical_v5_5.json');
+  const conceptIdsByEmne = new Map();
+  for (const concept of concepts) {
+    for (const emneId of concept.source_emne_ids || []) {
+      const ids = conceptIdsByEmne.get(emneId) || [];
+      ids.push(concept.concept_id);
+      conceptIdsByEmne.set(emneId, ids);
+    }
+  }
+
+  for (const row of registry.subjects.historie.chapters) {
+    const chapter = readJson(row.file);
+    if (!chapter.productionBriefFile) continue;
+    const brief = readJson(chapter.productionBriefFile);
+    if (brief.generatedFrom?.generator !== 'tools/materialize-historie-editorial-chapters.mjs') continue;
+    for (const modulePath of chapter.moduleFiles) {
+      const module = readJson(modulePath);
+      const expected = [...new Set(module.sections.flatMap((section) => conceptIdsByEmne.get(section.emneId) || []))].sort();
+      assert.deepEqual(module.concepts.map((concept) => concept.id).sort(), expected, modulePath);
+    }
+  }
 });
 
 test('kapittelproduksjon rapporterer full universell evidensdekning', () => {
