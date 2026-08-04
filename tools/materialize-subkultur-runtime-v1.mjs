@@ -172,7 +172,7 @@ Object.assign(statusEntry, {
   nextGate: 'maintenance_and_source_refresh',
   note: 'Åtte canonicale fagområder og kapitler, 80 emner og teoriobjekter, 42 validerte cases, 8 pathways og 40 kildebelagte vurderingsspørsmål.'
 });
-status.version = '2.17.0';
+status.version = '2.18.0';
 status.updatedAt = UPDATED_AT;
 expected(PATHS.status, status);
 

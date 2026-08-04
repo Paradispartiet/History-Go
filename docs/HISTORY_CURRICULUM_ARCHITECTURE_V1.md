@@ -82,7 +82,7 @@ Canonical fil:
 Permanent port:
 
 - `node tools/validate-historie-curriculum-architecture.mjs`
-- `npm run audit:historie-curriculum`
+- `node tools/validate-historie-curriculum-architecture.mjs`
 
 Porten kontrollerer blant annet:
 
