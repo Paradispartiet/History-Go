@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "subject_id": "subkultur",
   "audited_at": "2026-08-04",
-  "status": "CHAPTERS_READY_CASE_EVIDENCE_PENDING",
+  "status": "CHAPTERS_READY_CASE_EVIDENCE_PARTIAL",
   "totals": {
     "chapters": 8,
     "modules": 24,
@@ -17,8 +17,12 @@
     "application_tasks": 24,
     "self_checks": 64,
     "place_references": 48,
+    "validated_place_references": 11,
+    "rejected_place_references": 1,
     "profile_candidates": 50,
-    "validated_profile_cases": 0
+    "validated_profile_cases": 11,
+    "rejected_profile_cases": 2,
+    "pending_profile_cases": 37
   },
   "chapters": [
     {
@@ -34,6 +38,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 1,
+      "rejected_place_references": 1,
       "unique_places": 6
     },
     {
@@ -49,6 +55,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 3,
+      "rejected_place_references": 0,
       "unique_places": 6
     },
     {
@@ -64,6 +72,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 0,
+      "rejected_place_references": 0,
       "unique_places": 6
     },
     {
@@ -79,6 +89,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 0,
+      "rejected_place_references": 0,
       "unique_places": 6
     },
     {
@@ -94,6 +106,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 2,
+      "rejected_place_references": 0,
       "unique_places": 6
     },
     {
@@ -109,6 +123,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 2,
+      "rejected_place_references": 0,
       "unique_places": 6
     },
     {
@@ -124,6 +140,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 0,
+      "rejected_place_references": 0,
       "unique_places": 6
     },
     {
@@ -139,6 +157,8 @@
       "tasks": 3,
       "self_checks": 8,
       "place_references": 6,
+      "validated_place_references": 3,
+      "rejected_place_references": 0,
       "unique_places": 6
     }
   ],
@@ -146,17 +166,23 @@
     {
       "id": "profile_subkultur_oslo",
       "candidates": 28,
-      "validated": 0
+      "validated": 4,
+      "rejected": 1,
+      "pending": 23
     },
     {
       "id": "profile_subkultur_norge_norden",
       "candidates": 13,
-      "validated": 0
+      "validated": 3,
+      "rejected": 0,
+      "pending": 10
     },
     {
       "id": "profile_subkultur_lisboa",
       "candidates": 9,
-      "validated": 0
+      "validated": 4,
+      "rejected": 1,
+      "pending": 4
     }
   ],
   "integrity": {
@@ -169,7 +195,7 @@
     "navigation_status": "planned",
     "assessment_status": "pending",
     "editorial_status": "not_started",
-    "next_gate": "case_profiles_places_people_audit"
+    "next_gate": "remaining_case_source_validation"
   },
-  "next_gate": "case_profiles_places_people_audit"
+  "next_gate": "remaining_case_source_validation"
 }

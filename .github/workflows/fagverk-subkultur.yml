@@ -20,15 +20,21 @@ on:
       - 'scripts/audit-subkultur-evidence-*.mjs'
       - 'scripts/audit-subkultur-chapters-*.mjs'
       - 'scripts/audit-subkultur-data-*.mjs'
+      - 'scripts/audit-subkultur-case-evidence-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
       - 'tests/subkultur-chapters-*.test.mjs'
       - 'tests/subkultur-data-*.test.mjs'
+      - 'tests/subkultur-case-evidence-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
       - 'tools/build-subkultur-chapters-*.mjs'
       - 'tools/build-subkultur-data-*.mjs'
+      - 'tools/build-subkultur-case-evidence-*.mjs'
+      - 'tools/build-subkultur-place-reports-*.mjs'
+      - 'scripts/audit-subkultur-place-production.mjs'
+      - 'tests/subkultur-place-production.test.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -52,15 +58,21 @@ on:
       - 'scripts/audit-subkultur-evidence-*.mjs'
       - 'scripts/audit-subkultur-chapters-*.mjs'
       - 'scripts/audit-subkultur-data-*.mjs'
+      - 'scripts/audit-subkultur-case-evidence-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
       - 'tests/subkultur-chapters-*.test.mjs'
       - 'tests/subkultur-data-*.test.mjs'
+      - 'tests/subkultur-case-evidence-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
       - 'tools/build-subkultur-chapters-*.mjs'
       - 'tools/build-subkultur-data-*.mjs'
+      - 'tools/build-subkultur-case-evidence-*.mjs'
+      - 'tools/build-subkultur-place-reports-*.mjs'
+      - 'scripts/audit-subkultur-place-production.mjs'
+      - 'tests/subkultur-place-production.test.mjs'
       - 'reports/fagverk/subkultur-*.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/fagverk-subkultur.yml'
@@ -87,6 +99,10 @@ jobs:
           node --check scripts/audit-subkultur-chapters-v1.mjs
           node --check tools/build-subkultur-data-audit-v1.mjs
           node --check scripts/audit-subkultur-data-v1.mjs
+          node --check tools/build-subkultur-case-evidence-v1.mjs
+          node --check scripts/audit-subkultur-case-evidence-v1.mjs
+          node --check tools/build-subkultur-place-reports-batch-v1.mjs
+          node --check scripts/audit-subkultur-place-production.mjs
       - name: Reproducible canonical foundation
         run: node tools/build-subkultur-foundation-v1.mjs --check
       - name: Historical baseline audit
@@ -105,9 +121,19 @@ jobs:
         run: node tools/build-subkultur-data-audit-v1.mjs
       - name: Places and People audit
         run: node scripts/audit-subkultur-data-v1.mjs
-      - name: Contract, foundation, evidence, chapter and data tests
+      - name: Reproducible case evidence
+        run: node tools/build-subkultur-case-evidence-v1.mjs --check
+      - name: Reproducible Subkultur place reports
+        run: node tools/build-subkultur-place-reports-batch-v1.mjs
+      - name: Subkultur place report audit
+        run: node scripts/audit-subkultur-place-production.mjs --all
+      - name: Case evidence audit
+        run: node scripts/audit-subkultur-case-evidence-v1.mjs
+      - name: Contract, foundation, evidence, chapter, data and case tests
         run: node --test tests/subkultur-fagverk-baseline.test.mjs
           tests/subkultur-foundation-v1.test.mjs
           tests/subkultur-evidence-v1.test.mjs
           tests/subkultur-chapters-v1.test.mjs
           tests/subkultur-data-v1.test.mjs
+          tests/subkultur-case-evidence-v1.test.mjs
+          tests/subkultur-place-production.test.mjs

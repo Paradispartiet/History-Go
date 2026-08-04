@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "profile_id": "profile_subkultur_oslo",
   "subject_id": "subkultur",
-  "status": "candidate_profile_pending_evidence_audit",
+  "status": "profile_partial_case_validation",
   "geography": {
     "geography_id": "geo_no_oslo",
     "label": "Oslo"
@@ -11,7 +11,9 @@
     "case_requirements_file": "data/fag/subkultur/case_requirements_subkultur_canonical_v1.json",
     "claims_file": "data/fag/subkultur/claims_subkultur_canonical_v1.json",
     "sources_file": "data/fag/subkultur/sources_subkultur_canonical_v1.json",
-    "theory_evidence_file": "data/fag/subkultur/theory_evidence_subkultur_canonical_v1.json"
+    "theory_evidence_file": "data/fag/subkultur/theory_evidence_subkultur_canonical_v1.json",
+    "case_evidence_file": "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+    "case_sources_file": "data/fag/subkultur/case_sources_subkultur_canonical_v1.json"
   },
   "candidates": [
     {
@@ -74,7 +76,13 @@
     {
       "case_id": "case_sub_house_of_nerds",
       "place_id": "house_of_nerds",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_house_of_nerds",
+      "report_path": "data/places/subkultur-production/house_of_nerds.json",
+      "source_ids": [
+        "source_house_of_nerds_milieu",
+        "source_house_of_nerds_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -82,13 +90,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_slottsparken",
@@ -112,26 +116,23 @@
     {
       "case_id": "case_sub_hartvig_nissens_skole_skam",
       "place_id": "hartvig_nissens_skole_skam",
-      "status": "candidate_unvalidated",
-      "required_case_requirement_ids": [
-        "case_req_sub_environment_practice_position",
-        "case_req_sub_voice_balance",
-        "case_req_sub_place_change",
-        "case_req_sub_ethics",
-        "case_req_sub_negative_case"
-      ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "status": "rejected_nonqualifying",
+      "resulting_category": "film_tv",
+      "rejection_reason": "TV-lokasjon og fandom alene dokumenterer ikke et stedbundet subkulturmiljø.",
+      "decision_source": "data/fag/subkultur/subkultur_places_people_audit_v1.json",
+      "required_case_requirement_ids": [],
+      "missing_before_validation": []
     },
     {
       "case_id": "case_sub_blitzhuset",
       "place_id": "blitzhuset",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_blitzhuset",
+      "report_path": "data/places/subkultur-production/blitzhuset.json",
+      "source_ids": [
+        "source_blitzhuset_milieu",
+        "source_blitzhuset_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -139,18 +140,20 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_hausmania",
       "place_id": "hausmania",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_hausmania",
+      "report_path": "data/places/subkultur-production/hausmania.json",
+      "source_ids": [
+        "source_hausmania_milieu",
+        "source_hausmania_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -158,13 +161,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_helvete_neseblod_records",
@@ -473,7 +472,13 @@
     {
       "case_id": "case_sub_xray_ungdomskulturhus",
       "place_id": "xray_ungdomskulturhus",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_xray_ungdomskulturhus",
+      "report_path": "data/places/subkultur-production/xray_ungdomskulturhus.json",
+      "source_ids": [
+        "source_xray_ungdomskulturhus_milieu",
+        "source_xray_ungdomskulturhus_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -481,13 +486,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_huset_oslo",
@@ -548,8 +549,11 @@
     }
   ],
   "production_coverage": {
-    "candidate_cases": 28,
-    "validated_cases": 0,
-    "completion_status": "PENDING"
+    "audited_candidates": 28,
+    "eligible_candidates": 27,
+    "validated_cases": 4,
+    "rejected_candidates": 1,
+    "remaining_candidates": 23,
+    "completion_status": "PARTIAL"
   }
 }

@@ -92,6 +92,8 @@ Teorikjernen er geografisk nøytral. Oslo-/Norge-profiler materialiserer den gje
 
 Places og People skal auditeres som egne dataobjekter. Et kollektivt miljøanker kan beholdes når det er tydelig at posten representerer et miljø og ikke en oppdiktet person. Svake kategorikoblinger skal flyttes, fjernes eller settes i eksplisitt kvalitetsreview; de kan ikke skjules bak fagverkets teori.
 
+Casekilder lagres separat fra teorikildene. En profilkandidat kan bare få `validated_case` når en `ready` Subkultur A–H-rapport dokumenterer alle fem casekravene: miljø/praksis/posisjon, miljønær og uavhengig stemme, sted/kontroll/endring, personvern/stigma/romantisering og et eksplisitt negativt case eller en alternativ forklaring. Profilen skal peke til samme caseevidens og minst to inspectable kilder. Delvis validering skal oppgi både validert antall og gjenværende kandidater og kan ikke brukes til å hevde at profilen er komplett.
+
 ## Quiz og Knowledge
 
 Faget skal ha åtte subject pathways med fem vurderingstrinn hver: observere, forklare, vurdere evidens, diagnostisere feilslutning og begrunne valg. Alle 40 spørsmål skal ha canonical emne-, metode-, claim-, kilde- og Knowledge-kobling.

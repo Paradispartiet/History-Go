@@ -2,24 +2,26 @@
   "schema": "history_go_subkultur_profiles_manifest_v1",
   "version": "1.0.0",
   "subject_id": "subkultur",
-  "status": "candidate_profiles_pending_evidence_audit",
+  "status": "partial_case_validation",
   "profiles": [
     {
       "id": "profile_subkultur_oslo",
       "file": "data/fag/profiles/subkultur/oslo/profile.json",
-      "status": "candidate"
+      "status": "profile_partial_case_validation"
     },
     {
       "id": "profile_subkultur_norge_norden",
       "file": "data/fag/profiles/subkultur/norge_norden/profile.json",
-      "status": "candidate"
+      "status": "profile_partial_case_validation"
     },
     {
       "id": "profile_subkultur_lisboa",
       "file": "data/fag/profiles/subkultur/lisboa/profile.json",
-      "status": "candidate"
+      "status": "profile_partial_case_validation"
     }
   ],
-  "validated_cases": 0,
-  "next_gate": "place_people_source_and_ethics_audit"
+  "validated_cases": 11,
+  "rejected_candidates": 2,
+  "remaining_candidates": 37,
+  "next_gate": "remaining_case_source_validation"
 }

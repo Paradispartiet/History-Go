@@ -47,18 +47,22 @@ test('216 fagavsnitt er selvstendige og uten generatorfyll', () => {
   assert.ok(paragraphs.every((paragraph) => !/undefined|null|TODO|TBD|placeholder/i.test(paragraph)));
 });
 
-test('48 stedskoblinger løser til canonicale places uten å forskuttere casebevis', () => {
+test('48 stedskoblinger løser til canonicale places og materialiserer bare validerte casebevis', () => {
   const report = buildChaptersReport();
   assert.equal(report.totals.place_references, 48);
   assert.ok(report.chapters.every((chapter) => chapter.unique_places === 6));
-  assert.equal(report.status, 'CHAPTERS_READY_CASE_EVIDENCE_PENDING');
+  assert.ok(report.totals.validated_place_references >= 10);
+  assert.equal(report.totals.rejected_place_references, 1);
+  assert.equal(report.status, 'CHAPTERS_READY_CASE_EVIDENCE_PARTIAL');
 });
 
-test('tre geografiske profiler holder kandidat og validert case strengt adskilt', () => {
+test('tre geografiske profiler holder åpne kandidater og validerte cases strengt adskilt', () => {
   const report = buildChaptersReport();
   assert.equal(report.profiles.length, 3);
   assert.equal(report.totals.profile_candidates, 50);
-  assert.equal(report.totals.validated_profile_cases, 0);
+  assert.equal(report.totals.validated_profile_cases, 11);
+  assert.equal(report.totals.rejected_profile_cases, 2);
+  assert.equal(report.totals.pending_profile_cases, 37);
   assert.deepEqual(report.integrity.duplicate_profile_case_ids, []);
 });
 
@@ -68,7 +72,7 @@ test('kapittelproduksjon forskutterer ikke materialisert redaksjonell status', (
     navigation_status: 'planned',
     assessment_status: 'pending',
     editorial_status: 'not_started',
-    next_gate: 'case_profiles_places_people_audit'
+    next_gate: 'remaining_case_source_validation'
   });
-  assert.equal(report.next_gate, 'case_profiles_places_people_audit');
+  assert.equal(report.next_gate, 'remaining_case_source_validation');
 });

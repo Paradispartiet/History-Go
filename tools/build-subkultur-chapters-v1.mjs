@@ -170,6 +170,11 @@ function build() {
   const sources = readJson('data/fag/subkultur/sources_subkultur_canonical_v1.json').sources;
   const sourceById = new Map(sources.map((entry) => [entry.source_id, entry]));
   const evidenceById = new Map(readJson('data/fag/subkultur/theory_evidence_subkultur_canonical_v1.json').entries.map((entry) => [entry.theory_id, entry]));
+  const caseRegistry = readJson('data/fag/subkultur/case_evidence_subkultur_canonical_v1.json');
+  const caseEvidence = caseRegistry.cases;
+  const caseEvidenceByPlace = new Map(caseEvidence.map((entry) => [entry.place_id, entry]));
+  const rejectedCases = caseRegistry.nonqualifying_cases ?? [];
+  const rejectedCaseByPlace = new Map(rejectedCases.map((entry) => [entry.place_id, entry]));
   const methodsById = new Map(methods.map((entry) => [entry.method_id, entry]));
   const generated = {};
   const chapterRows = [];
@@ -231,7 +236,18 @@ function build() {
           question: `Hva må dokumenteres før ${topic.title.toLowerCase()} kan brukes i et konkret case?`,
           answer: `${topic.mechanism} Samtidig må denne avgrensningen beholdes: ${topic.limitation}`
         })),
-        relatedPlaces: modulePlaces.map(([id, name, role]) => ({ id, name, role, evidenceStatus: 'canonical_place_candidate_pending_profile_audit' }))
+        relatedPlaces: modulePlaces.map(([id, name, role]) => {
+          const validated = caseEvidenceByPlace.get(id);
+          const rejected = rejectedCaseByPlace.get(id);
+          return {
+            id,
+            name,
+            role,
+            evidenceStatus: validated ? 'validated_case' : rejected ? 'rejected_nonqualifying' : 'canonical_place_candidate_pending_profile_audit',
+            ...(validated ? { caseEvidenceId: validated.evidence_id } : {}),
+            ...(rejected ? { rejectionReason: rejected.reason, classificationDecisionSource: rejected.decision_source } : {})
+          };
+        })
       };
     }
 
@@ -283,7 +299,7 @@ function build() {
         'Aktivitet, ungdom, estetikk, sjanger, skatepark eller pumptrack kvalifiserer ikke alene som Subkultur.',
         'Levende, sårbare eller kriminaliserte personer krever kontekstuelt personvern, identifikasjonsminimering og stigma-/romantiseringskontroll.'
       ],
-      caseProfileStatus: 'candidate_links_pending_place_people_audit'
+      caseProfileStatus: 'case_links_partial_source_validation'
     };
     chapterRows.push({
       id: chapterId,
@@ -292,7 +308,7 @@ function build() {
       brief: briefFile,
       primary_domain_id: domain.domain_id,
       emne_ids: domain.emne_ids,
-      status: 'content_ready_case_evidence_pending'
+      status: 'content_ready_case_evidence_partial'
     });
   }
 
@@ -300,46 +316,85 @@ function build() {
     schema: 'history_go_subkultur_chapter_manifest_v1',
     version: '1.0.0',
     subject_id: 'subkultur',
-    status: 'chapters_ready_case_evidence_pending',
+    status: 'chapters_ready_case_evidence_partial',
     chapters: chapterRows,
     totals: { chapters: 8, modules: 24, sections: 72, paragraphs: 216, minimum_claim_references: 288, minimum_source_references: 160, related_place_references: 48 },
-    next_gate: 'case_profiles_places_people_audit'
+    next_gate: 'remaining_case_source_validation'
   };
 
   const osloIds = [...new Set(Object.values(CHAPTER_META).flatMap((meta) => meta.places).map(([id]) => id).filter((id) => !id.startsWith('lisbon_') && !['tou_stavanger', 'bergen_kjott_kulturhus', 'club_7_vika', 'kafe_x_tromso', 'uffa_huset_trondheim', 'svartlamon_trondheim', 'trikkestallen_skatepark_trondheim', 'mo_senteret_gyldenpris', 'nygardsparken_bergen'].includes(id)))];
   const norwayIds = ['arena_bekkestua', 'bergen_kjott_kulturhus', 'fysak_slettebakken', 'hulen_bergen', 'kafe_x_tromso', 'matfellesskap_st_petri_stavanger', 'mo_senteret_gyldenpris', 'nygardsparken_bergen', 'ressurssenter_kvinner_trondheim', 'svartlamon_trondheim', 'tou_stavanger', 'trikkestallen_skatepark_trondheim', 'uffa_huset_trondheim'];
   const lisboaIds = ['lisbon_anjos70', 'lisbon_bairro_alto', 'lisbon_crew_hassan', 'lisbon_desterro', 'lisbon_fabrica_braco_de_prata', 'lisbon_galeria_ze_dos_bois', 'lisbon_musicbox', 'lisbon_pink_street', 'lisbon_village_underground'];
-  generated['data/fag/profiles/subkultur/manifest.json'] = {
-    schema: 'history_go_subkultur_profiles_manifest_v1', version: '1.0.0', subject_id: 'subkultur', status: 'candidate_profiles_pending_evidence_audit',
-    profiles: [
-      { id: 'profile_subkultur_oslo', file: 'data/fag/profiles/subkultur/oslo/profile.json', status: 'candidate' },
-      { id: 'profile_subkultur_norge_norden', file: 'data/fag/profiles/subkultur/norge_norden/profile.json', status: 'candidate' },
-      { id: 'profile_subkultur_lisboa', file: 'data/fag/profiles/subkultur/lisboa/profile.json', status: 'candidate' }
-    ],
-    validated_cases: 0,
-    next_gate: 'place_people_source_and_ethics_audit'
-  };
-  const profile = (id, label, geography, ids) => ({
-    schema_version: '1.0.0', profile_id: id, subject_id: 'subkultur', status: 'candidate_profile_pending_evidence_audit',
+  const profile = (id, label, geography, ids) => {
+    const candidates = ids.map((placeId) => {
+      const validated = caseEvidenceByPlace.get(placeId);
+      const rejected = rejectedCaseByPlace.get(placeId);
+      if (!validated && !rejected) return {
+        case_id: `case_sub_${placeId}`,
+        place_id: placeId,
+        status: 'candidate_unvalidated',
+        required_case_requirement_ids: ['case_req_sub_environment_practice_position', 'case_req_sub_voice_balance', 'case_req_sub_place_change', 'case_req_sub_ethics', 'case_req_sub_negative_case'],
+        missing_before_validation: ['environment_near_source', 'independent_control_source', 'case_claims', 'claim_source_links', 'privacy_stigma_romanticization_review']
+      };
+      if (rejected) return {
+        case_id: rejected.case_id,
+        place_id: placeId,
+        status: 'rejected_nonqualifying',
+        resulting_category: rejected.resulting_category,
+        rejection_reason: rejected.reason,
+        decision_source: rejected.decision_source,
+        required_case_requirement_ids: [],
+        missing_before_validation: []
+      };
+      return {
+        case_id: validated.case_id,
+        place_id: placeId,
+        status: 'validated_case',
+        evidence_id: validated.evidence_id,
+        report_path: validated.report_path,
+        source_ids: validated.source_ids,
+        required_case_requirement_ids: validated.requirement_results.map((result) => result.requirement_id),
+        missing_before_validation: [],
+        independent_control_status: 'PASS',
+        ethics_review_status: validated.ethics_review.status
+      };
+    });
+    const validatedCases = candidates.filter((candidate) => candidate.status === 'validated_case').length;
+    const rejectedCount = candidates.filter((candidate) => candidate.status === 'rejected_nonqualifying').length;
+    const pendingCount = candidates.length - validatedCases - rejectedCount;
+    return {
+    schema_version: '1.0.0', profile_id: id, subject_id: 'subkultur', status: pendingCount === 0 ? 'profile_case_validation_complete' : validatedCases ? 'profile_partial_case_validation' : 'candidate_profile_pending_evidence_audit',
     geography: { geography_id: geography, label },
     contract: {
       case_requirements_file: 'data/fag/subkultur/case_requirements_subkultur_canonical_v1.json',
       claims_file: 'data/fag/subkultur/claims_subkultur_canonical_v1.json',
       sources_file: 'data/fag/subkultur/sources_subkultur_canonical_v1.json',
-      theory_evidence_file: 'data/fag/subkultur/theory_evidence_subkultur_canonical_v1.json'
+      theory_evidence_file: 'data/fag/subkultur/theory_evidence_subkultur_canonical_v1.json',
+      case_evidence_file: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+      case_sources_file: 'data/fag/subkultur/case_sources_subkultur_canonical_v1.json'
     },
-    candidates: ids.map((placeId) => ({
-      case_id: `case_sub_${placeId}`,
-      place_id: placeId,
-      status: 'candidate_unvalidated',
-      required_case_requirement_ids: ['case_req_sub_environment_practice_position', 'case_req_sub_voice_balance', 'case_req_sub_place_change', 'case_req_sub_ethics', 'case_req_sub_negative_case'],
-      missing_before_validation: ['environment_near_source', 'independent_control_source', 'case_claims', 'claim_source_links', 'privacy_stigma_romanticization_review']
-    })),
-    production_coverage: { candidate_cases: ids.length, validated_cases: 0, completion_status: 'PENDING' }
-  });
-  generated['data/fag/profiles/subkultur/oslo/profile.json'] = profile('profile_subkultur_oslo', 'Oslo', 'geo_no_oslo', osloIds);
-  generated['data/fag/profiles/subkultur/norge_norden/profile.json'] = profile('profile_subkultur_norge_norden', 'Norge/Norden utenfor Oslo', 'geo_no_nordic', norwayIds);
-  generated['data/fag/profiles/subkultur/lisboa/profile.json'] = profile('profile_subkultur_lisboa', 'Lisboa', 'geo_pt_lisboa', lisboaIds);
+    candidates,
+    production_coverage: { audited_candidates: ids.length, eligible_candidates: ids.length - rejectedCount, validated_cases: validatedCases, rejected_candidates: rejectedCount, remaining_candidates: pendingCount, completion_status: pendingCount === 0 ? 'COMPLETE' : validatedCases ? 'PARTIAL' : 'PENDING' }
+  };
+  };
+  const osloProfile = profile('profile_subkultur_oslo', 'Oslo', 'geo_no_oslo', osloIds);
+  const norwayProfile = profile('profile_subkultur_norge_norden', 'Norge/Norden utenfor Oslo', 'geo_no_nordic', norwayIds);
+  const lisboaProfile = profile('profile_subkultur_lisboa', 'Lisboa', 'geo_pt_lisboa', lisboaIds);
+  generated['data/fag/profiles/subkultur/oslo/profile.json'] = osloProfile;
+  generated['data/fag/profiles/subkultur/norge_norden/profile.json'] = norwayProfile;
+  generated['data/fag/profiles/subkultur/lisboa/profile.json'] = lisboaProfile;
+  generated['data/fag/profiles/subkultur/manifest.json'] = {
+    schema: 'history_go_subkultur_profiles_manifest_v1', version: '1.0.0', subject_id: 'subkultur', status: 'partial_case_validation',
+    profiles: [
+      { id: 'profile_subkultur_oslo', file: 'data/fag/profiles/subkultur/oslo/profile.json', status: osloProfile.status },
+      { id: 'profile_subkultur_norge_norden', file: 'data/fag/profiles/subkultur/norge_norden/profile.json', status: norwayProfile.status },
+      { id: 'profile_subkultur_lisboa', file: 'data/fag/profiles/subkultur/lisboa/profile.json', status: lisboaProfile.status }
+    ],
+    validated_cases: caseEvidence.length,
+    rejected_candidates: rejectedCases.length,
+    remaining_candidates: 50 - caseEvidence.length - rejectedCases.length,
+    next_gate: 'remaining_case_source_validation'
+  };
   return generated;
 }
 
