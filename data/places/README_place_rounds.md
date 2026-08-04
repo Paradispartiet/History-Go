@@ -126,7 +126,9 @@ En fysisk Civication-post kan leses som compatibility-kilde for Objects når den
 
 Canonical semantisk eier er `data/brands/brand_rules_v1_1.json`.
 
-Brands betyr selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling. Det er ikke en generell restkategori.
+Brands betyr selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling. Profesjonelle firmaer, arkitektur- og ingeniørfirmaer, historiske virksomheter, venue-identiteter og institusjonsbrands kan kvalifisere når Brand-reglene består; aktørtypen er heller ikke et avslag i seg selv.
+
+Brands er ikke en generell restkategori. Null treff i dagens Brand-register er ikke alene grunnlag for N/A. Kandidater skal vurderes etter identitets-, gjenkjennelses- og stedstilknytningskravene.
 
 ## 8. Productions
 
