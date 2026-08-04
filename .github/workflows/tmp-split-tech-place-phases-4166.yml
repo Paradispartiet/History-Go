@@ -1,0 +1,84 @@
+name: Split PR 4166 into canonical production phases
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-teknologisteder-batch-01-r2
+    paths:
+      - .github/workflows/tmp-split-tech-place-phases-4166.yml
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-teknologisteder-batch-01-r2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Keep phase 1 coordinate and place identity only
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='agent/vitenskap-teknologisteder-batch-01-r2'
+          git fetch origin main "$branch"
+
+          node <<'NODE'
+          const fs = require('node:fs');
+          const files = [
+            'data/places/vitenskap/oslo/places_vitenskap/bitraf.json',
+            'data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json',
+            'data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json',
+            'data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json',
+            'data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json'
+          ];
+          for (const file of files) {
+            const place = JSON.parse(fs.readFileSync(file, 'utf8'));
+            delete place.desc;
+            delete place.popupDesc;
+            fs.writeFileSync(file, `${JSON.stringify(place, null, 2)}\n`);
+          }
+          NODE
+
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+          node tests/coordinate-source-contract-anchor-trust.test.mjs
+          npm run places:coords:evidence:audit
+          npm run places:coords:intake
+          npm run places:coords:quality
+          npm run places:emner:check
+          npm run health:places
+          npm run audit:categories
+          npm run typecheck:tools
+          npm run typecheck:web
+
+          git rm .github/workflows/tmp-split-tech-place-phases-4166.yml
+          git add \
+            data/places/places_index.json \
+            data/places/vitenskap/oslo/places_vitenskap/bitraf.json \
+            data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json \
+            data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json \
+            data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json \
+            data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json \
+            reports/coordinate-evidence-audit.md \
+            reports/place-coordinate-intake-gate.md \
+            reports/place-coordinate-quality-gate.md \
+            reports/place-source-layout-audit.json
+
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Skill koordinat- og beskrivelsesfasen for teknologisteder'
+
+          base_sha="$(git rev-parse origin/main)"
+          node scripts/validate-place-description-production-v4_2_policy.mjs --changed --base "$base_sha" --head HEAD
+          git push origin "HEAD:$branch"
