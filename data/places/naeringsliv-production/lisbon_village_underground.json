@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "lisbon_village_underground",
+  "placeFile": "data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur/lisbon_village_underground.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Village Underground Lisboa er et aktivt, stedbundet coworking- og arrangementsanlegg for kreative virksomheter i Alcântara.",
+    "anchorType": "business_cluster",
+    "placeObjectDistinction": "Rapporten skiller den fysiske container- og bussarkitekturen, driftsorganisasjonen, leietakerne og kulturarrangementene fra hverandre.",
+    "temporalScope": {
+      "start": "2014",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Startåret følger den portugisiske arrangementsportalen, mens aktiv drift og adresse er kontrollert mot Lisboa kommunes innovasjonsplattform."
+    },
+    "sourceIds": [
+      "source_lisboa_innovation",
+      "source_meetings_portugal"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_byens_okonomiske_rom",
+      "siteSpecificRationale": "Kildene viser hvordan gjenbrukte containere og busser organiserer arbeidsplasser, verksteder, butikker, servering og arrangementer i ett avgrenset byrom.",
+      "caseIds": [
+        "case_creative_cowork_cluster"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_lisboa_innovation",
+      "url": "https://lisboainnovation.com/hubs/village-underground-lisboa/",
+      "sourceLocation": "Hubbens beskrivelse, tjenesteliste, kontaktfelt og adresse",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-04",
+      "temporalCoverage": "current",
+      "provenance": "Lisboa Innovation er Lisboa kommunes plattform for entreprenørskap, innovasjon og teknologimiljøer.",
+      "limitations": "Oppføringen beskriver tilbud og fasiliteter, men publiserer ikke regnskap, leievilkår eller sammenlignbare sysselsettingstall."
+    },
+    {
+      "id": "source_meetings_portugal",
+      "url": "https://www.meetingsinportugal.com/en/venues/village-underground-lisboa-cultura-e-criatividade-lda",
+      "sourceLocation": "General description, facilities, services, capacity, address and director",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-04",
+      "temporalCoverage": "mixed",
+      "provenance": "Portugisisk bransjeportal for møte- og arrangementssteder med stedsspesifikk virksomhets- og fasilitetsbeskrivelse.",
+      "limitations": "Oppføringen er markedsrettet og kan ikke alene dokumentere lønnsomhet, samfunnseffekt eller dagens nøyaktige antall leietakere."
+    },
+    {
+      "id": "source_village_primary",
+      "url": "https://vulisboa.com/",
+      "sourceLocation": "Virksomhetens forside, kontaktinformasjon og presentasjon av coworking- og arrangementsdriften",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-08-04",
+      "temporalCoverage": "current",
+      "provenance": "Village Underground Lisboas egen virksomhetsnettside.",
+      "limitations": "Egenpresentasjonen dokumenterer tilbud og kontakt, men er ikke en uavhengig vurdering av økonomisk effekt eller arbeidsvilkår."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_creative_cowork_cluster",
+      "claim": "Anlegget samler fleksible arbeidsrom og arrangementsfunksjoner i et fysisk miljø som gir små kreative virksomheter delt infrastruktur og møteflater.",
+      "unitOfAnalysis": {
+        "unit": "Coworking- og arrangementsanlegget Village Underground Lisboa",
+        "boundary": "Analysen omfatter virksomheten og funksjonene på anlegget i Alcântara, ikke hele LX Factory, Museu da Carris eller Londons søsterprosjekt.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "2014",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Perioden dekker etableringen i Lisboa og den ferskt kontrollerte aktive driften."
+        },
+        "sourceIds": [
+          "source_lisboa_innovation",
+          "source_meetings_portugal"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Village Underground Lisboa som operatør",
+          "roleOrInterest": "Tilbyr og organiserer arbeidsrom, fellesfasiliteter, servering og arrangementslokaler.",
+          "economicPosition": "Kontrollerer tilgang, romfordeling, tjenester og program på det stedbundne anlegget.",
+          "sourceIds": [
+            "source_lisboa_innovation",
+            "source_village_primary"
+          ]
+        },
+        {
+          "name": "Beboere, selskaper og selvstendige fagpersoner",
+          "roleOrInterest": "Bruker tilpassede containere som kontorer, verksteder, laboratorier eller butikker og deltar i faglige nettverk.",
+          "economicPosition": "Får tilgang til delt infrastruktur og synlighet uten å kontrollere hele anlegget.",
+          "sourceIds": [
+            "source_lisboa_innovation",
+            "source_meetings_portugal"
+          ]
+        },
+        {
+          "name": "Arrangører og publikum",
+          "roleOrInterest": "Bruker scene, møterom, uteareal, servering og kulturprogram.",
+          "economicPosition": "Skaper etterspørsel etter arrangements- og serveringstjenester, men deltar ikke nødvendigvis i coworking-driften.",
+          "sourceIds": [
+            "source_meetings_portugal"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Ombygde skipscontainere, dobbeldekkerbusser, teknisk infrastruktur og et avgrenset uteområde er stedets sentrale fysiske innsatsfaktorer.",
+            "sourceIds": [
+              "source_lisboa_innovation",
+              "source_meetings_portugal"
+            ]
+          },
+          {
+            "statement": "Operatørens romorganisering, nettverk, arrangementer og felles tjenester er organisatoriske innsatsfaktorer.",
+            "sourceIds": [
+              "source_lisboa_innovation",
+              "source_village_primary"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Innsatsfaktorene kombineres i coworking, verksteder, butikker, møter, servering og regelmessige kulturarrangementer.",
+          "sourceIds": [
+            "source_lisboa_innovation",
+            "source_meetings_portugal"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Virksomheten leverer fleksible arbeidsplasser og faglige møteflater til kreative aktører.",
+            "sourceIds": [
+              "source_lisboa_innovation"
+            ]
+          },
+          {
+            "statement": "Anlegget leverer arrangements-, møte- og serveringskapasitet til eksterne brukere og publikum.",
+            "sourceIds": [
+              "source_meetings_portugal"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Den dokumenterte verdiskapingen ligger i kombinasjonen av arbeidsrom, delte tjenester, nettverk og arrangementskapasitet; kildene gir ikke grunnlag for å tallfeste lønnsomhet eller lokal multiplikatoreffekt.",
+          "sourceIds": [
+            "source_lisboa_innovation",
+            "source_meetings_portugal"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_romlig_okonomisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Romtypene og funksjonene kartlegges som koblinger mellom arbeidsplasser, verksteder, butikker, servering, møter og arrangementer.",
+        "unit": "stedbundne økonomiske funksjoner",
+        "period": "2014–2026",
+        "comparability": "Kildene kan sammenlignes på funksjon og rombruk, men ikke som en tidsserie for inntekt, sysselsetting eller produktivitet.",
+        "dataLimitations": "Ingen av kildene gir reviderte regnskap, ensartede leietakertall, leiepriser eller dokumenterte arbeidsvilkår.",
+        "sourceIds": [
+          "source_lisboa_innovation",
+          "source_meetings_portugal"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Operatøren kontrollerer anleggets tilgang, romfordeling og tjenestetilbud; leietakere og arrangører bruker avgrensede deler av infrastrukturen.",
+        "laborPosition": "Kildene beskriver selskaper og fagpersoner som brukere, men dokumenterer ikke kontraktsformer, lønn, arbeidstid eller medbestemmelse.",
+        "beneficiaries": [
+          "Operatøren kan få inntekter fra arbeidsrom, arrangementer og tjenester.",
+          "Leietakere får tilgang til tilpassede arbeidsrom og nettverk.",
+          "Arrangører og publikum får tilgang til scene-, møte- og serveringsfunksjoner."
+        ],
+        "costRiskBearers": [
+          "Operatøren bærer drifts- og kapasitetsrisiko for anlegget.",
+          "Leietakere og arrangører kan bære kostnader ved tilgang og avhengighet av den delte infrastrukturen."
+        ],
+        "sourceIds": [
+          "source_lisboa_innovation",
+          "source_meetings_portugal",
+          "source_village_primary"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Den kombinerte arbeids- og arrangementsmodellen er avhengig av at operatøren kan vedlikeholde felles infrastruktur og fylle ulike romfunksjoner over tid.",
+          "sourceIds": [
+            "source_lisboa_innovation",
+            "source_meetings_portugal"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer ombruk og tilbud, men gir ikke sikkert grunnlag for en stedsspesifikk påstand om miljøgevinst, fortrengning eller andre eksterne virkninger."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Den kommunale hubboppføringen dokumenterer arbeidsrom og nettverk, mens arrangementsportalen dokumenterer fysisk utforming, kapasitet og tjenestetyper.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet viser hvordan stedet er organisert, men kan ikke isolere hvilken effekt containerarkitekturen eller samlokaliseringen har på virksomhetenes resultater.",
+        "alternativeExplanations": [
+          "Beliggenheten i Alcântara, operatørens program, virksomhetenes egne nettverk og generell etterspørsel etter coworking kan påvirke bruken samtidig."
+        ],
+        "uncertainty": "Kildene er beskrivende og markedsrettede og mangler sammenligningsgruppe, regnskapsdata og en konsistent tidsserie.",
+        "sourceIds": [
+          "source_lisboa_innovation",
+          "source_meetings_portugal"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "active",
+    "statement": "Village Underground Lisboa er oppført med aktiv coworking-, verksted-, butikk- og arrangementsvirksomhet på Avenida da Índia 52 i Alcântara.",
+    "originalEconomicRoleRelationship": "Dagens drift viderefører modellen fra etableringen i 2014: ombygde containere og busser brukes til kombinerte arbeids- og arrangementsfunksjoner.",
+    "checkedAt": "2026-08-04",
+    "sourceIds": [
+      "source_lisboa_innovation",
+      "source_village_primary"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Ingen stedquiz produseres eller revideres i denne klassifiseringsrapporten."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Omklassifiseringen krever ingen ny chronology-post eller selvstendig Story i denne pakken."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": ["economicIdentity"]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": ["businessTopics[0]"]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": ["case_creative_cowork_cluster.valueCreation"]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": ["case_creative_cowork_cluster.actors", "case_creative_cowork_cluster.distributionAndPower"]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": ["case_creative_cowork_cluster.measurement"]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": ["case_creative_cowork_cluster.riskAndExternalities", "case_creative_cowork_cluster.comparisonAndCausality", "presentOperation"]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ingen stedquiz produseres eller revideres i denne klassifiseringsrapporten."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen chronology eller Story produseres eller revideres i denne pakken."
+    }
+  },
+  "review": {
+    "reviewer": "History Go Næringsliv source audit",
+    "reviewedAt": "2026-08-04",
+    "notes": "Identitet, romlig verdiskapingskjede, aktører, funksjoner, målegrenser, fordeling, risiko og nåværende drift er kontrollert. Rapporten påstår ikke dokumentert lønnsomhet, sysselsettingseffekt eller miljøgevinst."
+  }
+}
