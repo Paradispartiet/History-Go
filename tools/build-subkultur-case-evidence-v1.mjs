@@ -8,6 +8,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WRITE = process.argv.includes('--write');
 const CHECK = process.argv.includes('--check') || !WRITE;
 const AUDITED_CANDIDATE_COUNT = 50;
+const ENVIRONMENT_NEAR_PERSPECTIVES = new Set(['participant', 'milieu', 'support_service']);
+const INDEPENDENT_CONTROL_PERSPECTIVES = new Set(['authority', 'research', 'secondary']);
 const REJECTED_CANDIDATES = Object.freeze([
   {
     case_id: 'case_sub_hartvig_nissens_skole_skam',
@@ -120,6 +122,46 @@ const CASES = Object.freeze([
     placeId: 'torggata_blad',
     profileId: 'profile_subkultur_oslo',
     reportPath: 'data/places/subkultur-production/torggata_blad.json'
+  },
+  {
+    placeId: 'arena_bekkestua',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/arena_bekkestua.json'
+  },
+  {
+    placeId: 'kafe_x_tromso',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/kafe_x_tromso.json'
+  },
+  {
+    placeId: 'lisbon_fabrica_braco_de_prata',
+    profileId: 'profile_subkultur_lisboa',
+    reportPath: 'data/places/subkultur-production/lisbon_fabrica_braco_de_prata.json'
+  },
+  {
+    placeId: 'lisbon_musicbox',
+    profileId: 'profile_subkultur_lisboa',
+    reportPath: 'data/places/subkultur-production/lisbon_musicbox.json'
+  },
+  {
+    placeId: 'huset_oslo',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/huset_oslo.json'
+  },
+  {
+    placeId: 'nadheim_oslo',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/nadheim_oslo.json'
+  },
+  {
+    placeId: 'ressurssenter_kvinner_trondheim',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/ressurssenter_kvinner_trondheim.json'
+  },
+  {
+    placeId: 'matfellesskap_st_petri_stavanger',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/matfellesskap_st_petri_stavanger.json'
   }
 ]);
 
@@ -149,8 +191,8 @@ function build() {
     requireValue(reportCase?.id && text(reportCase.claim), `${config.placeId}: mangler caseclaim`);
 
     const sourceIds = list(report.sources).map((source) => source.id);
-    const milieuSourceIds = list(report.sources).filter((source) => source.perspective === 'milieu').map((source) => source.id);
-    const independentSourceIds = list(report.sources).filter((source) => source.perspective === 'secondary').map((source) => source.id);
+    const milieuSourceIds = list(report.sources).filter((source) => ENVIRONMENT_NEAR_PERSPECTIVES.has(source.perspective)).map((source) => source.id);
+    const independentSourceIds = list(report.sources).filter((source) => INDEPENDENT_CONTROL_PERSPECTIVES.has(source.perspective)).map((source) => source.id);
     requireValue(sourceIds.length >= 2 && milieuSourceIds.length >= 1 && independentSourceIds.length >= 1, `${config.placeId}: mangler stemmebalanse`);
 
     for (const source of report.sources) {

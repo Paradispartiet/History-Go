@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "subkultur_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "huset_oslo",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur/huset_oslo.json",
+  "status": "ready",
+  "subculturalIdentity": {
+    "statement": "Huset Oslo er en brukerstyrt møteplass der mennesker med egenlevd rusmiddelerfaring eller pårørendeerfaring organiserer fellesskap, ansvar og skadereduksjon.",
+    "anchorType": "support_point",
+    "mainSocietyRelationship": "Bruker-til-bruker-styring gir deltakerne institusjonell innflytelse, samtidig som samarbeid med kommunen og rusfeltets organisasjoner knytter huset til tjenesteapparatet.",
+    "placeObjectDistinction": "Rapporten skiller det fysiske stedet, driftsorganisasjonen, arrangementene og miljøene som bruker tilbudet.",
+    "temporalScope": {
+      "start": "2023",
+      "end": "2026",
+      "precision": "year",
+      "rationale": "Startåret følger kildene; sluttpunktet følger kontroll av nåværende eller blandet funksjon."
+    },
+    "sourceIds": [
+      "source_huset_oslo_milieu",
+      "source_huset_oslo_outside"
+    ]
+  },
+  "subcultureTopics": [
+    {
+      "emneId": "em_sub_rett_til_byen",
+      "siteSpecificRationale": "Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved huset_oslo, ikke til arenaetiketten alene.",
+      "caseIds": [
+        "case_huset_oslo_environment"
+      ]
+    },
+    {
+      "emneId": "em_sub_tilhorighet_miljo",
+      "siteSpecificRationale": "Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved huset_oslo, ikke til arenaetiketten alene.",
+      "caseIds": [
+        "case_huset_oslo_environment"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_huset_oslo_milieu",
+      "url": "https://husetoslo.no/om-oss/",
+      "sourceLocation": "Huset Oslo, Om oss og prinsipprogram; brukerstyring, bruker-til-bruker-praksis, medborgerskap og skadereduksjon",
+      "sourceType": "community_primary",
+      "perspective": "milieu",
+      "verifiedAt": "2026-08-04",
+      "temporalCoverage": "current",
+      "provenance": "Miljøets eller driftsorganisasjonens egen publiserte beskrivelse og programinformasjon.",
+      "limitations": "Egenpresentasjonen dokumenterer praksis og selvforståelse, men kan framheve positive sider og kommersielle mål."
+    },
+    {
+      "id": "source_huset_oslo_outside",
+      "url": "https://www.oslo.kommune.no/helse-og-omsorg/rustjenester/fyll-dagene-arbeidstilbud-og-aktiviteter/alle-tilbud-i-oslo/huset-oslo/",
+      "sourceLocation": "Oslo kommune, Huset Oslo; målgruppe, samarbeidsorganisasjoner, brukerstyring, deltakelse og åpen adgang",
+      "sourceType": "municipality",
+      "perspective": "authority",
+      "verifiedAt": "2026-08-04",
+      "temporalCoverage": "current",
+      "provenance": "Kommunal tjenesteoversikt kontrollert mot Husets eget prinsipprogram.",
+      "limitations": "Kommunesiden bekrefter organisering og målgruppe, men kan ikke representere alle deltakernes erfaringer eller interne uenigheter."
+    }
+  ],
+  "subcultureCases": [
+    {
+      "id": "case_huset_oslo_environment",
+      "claim": "Bærende brukerstemme, deltakeransvar og skadereduksjonspraksis gjør Huset til sosial infrastruktur; målgruppeetikett og servering alene er ikke kvalifikasjonen.",
+      "actors": [
+        {
+          "name": "Deltakere, arrangører og skapere",
+          "roleOrInterest": "Bygger aktivitet, uttrykk og gjentatt sosial bruk.",
+          "positionOrPower": "Former miljøet i praksis, men kontrollerer ikke nødvendigvis lokalet eller alle adgangsvilkår.",
+          "sourceIds": [
+            "source_huset_oslo_milieu",
+            "source_huset_oslo_outside"
+          ]
+        },
+        {
+          "name": "Driftsorganisasjon, vertskap og eksterne rammesettere",
+          "roleOrInterest": "Styrer program, lokaler, økonomi og formelle vilkår.",
+          "positionOrPower": "Har større kontroll over kapasitet, booking, medlemskap eller arrangementssted.",
+          "sourceIds": [
+            "source_huset_oslo_milieu",
+            "source_huset_oslo_outside"
+          ]
+        }
+      ],
+      "practicesAndCommunity": {
+        "practices": [
+          "brukerstyrt møte- og aktivitetsfellesskap",
+          "bruker-til-bruker-støtte og tillitsverv",
+          "skadereduksjon, brobygging og kunnskapsdeling"
+        ],
+        "belongingAndParticipation": "Gjentatt deltakelse skaper gjenkjennelse og sosial læring, men adgang og tilhørighet er ikke lik for alle.",
+        "organizationOrGovernance": "Huset beskriver et prinsipprogram og ansatte med egenlevd erfaring; kommunen bekrefter samarbeidsorganisasjoner og deltakernes rolle i utforming og ansvar.",
+        "codesOrExpressions": {
+          "status": "documented",
+          "statement": "Medborgerskap og skadereduksning uttrykkes gjennom organisering og praksis, ikke gjennom en estetisk eller diagnostisk identitetsmarkør.",
+          "sourceIds": [
+            "source_huset_oslo_milieu",
+            "source_huset_oslo_outside"
+          ]
+        },
+        "sourceIds": [
+          "source_huset_oslo_milieu",
+          "source_huset_oslo_outside"
+        ]
+      },
+      "spaceAndPower": {
+        "accessAndTerritory": "Møteplassen er åpen i publiserte åpningstider og krever ikke rusfrihet, men bygger på vanlige hensyns- og trygghetsforventninger.",
+        "controlOrRegulation": {
+          "status": "documented",
+          "statement": "Prinsipprogram, samarbeidsavtaler, åpningstider og ansvar for trygg møteplass setter rammer rundt brukerstyringen.",
+          "sourceIds": [
+            "source_huset_oslo_milieu",
+            "source_huset_oslo_outside"
+          ]
+        },
+        "conflictOrNegotiation": {
+          "status": "not_documented",
+          "rationale": "Kildene dokumenterer brobygging mellom brukermiljø og tiltaksapparat, men ikke én bestemt pågående konflikt med kommunen eller behandlingssystemet.",
+          "sourceIds": [
+            "source_huset_oslo_milieu",
+            "source_huset_oslo_outside"
+          ]
+        },
+        "displacementOrInstitutionalization": {
+          "status": "documented",
+          "statement": "Et brukerorganisert initiativ er stabilisert som hus og samarbeidsprosjekt uten at brukerstyring er redusert til konsultasjon.",
+          "sourceIds": [
+            "source_huset_oslo_milieu",
+            "source_huset_oslo_outside"
+          ]
+        },
+        "sourceIds": [
+          "source_huset_oslo_milieu",
+          "source_huset_oslo_outside"
+        ]
+      },
+      "representationAndEthics": {
+        "selfDefinition": {
+          "status": "documented",
+          "statement": "Huset Oslo er en brukerstyrt møteplass der mennesker med egenlevd rusmiddelerfaring eller pårørendeerfaring organiserer fellesskap, ansvar og skadereduksjon.",
+          "sourceIds": [
+            "source_huset_oslo_milieu"
+          ]
+        },
+        "externalLabels": {
+          "status": "documented",
+          "statement": "Den uavhengige kilden beskriver aktiviteter og publikumsformat uten å være identisk med miljøets egenpresentasjon.",
+          "sourceIds": [
+            "source_huset_oslo_outside"
+          ]
+        },
+        "stigmaOrRomanticizationRisk": "Rusmiddelerfaring må ikke brukes til å definere alle deltakere, og skadereduksjon må ikke framstilles som personlig behandlingsutfall.",
+        "editorialSafeguard": "Teksten skiller observerbare praksiser fra tolkning og synliggjør både miljøets egenpresentasjon og en uavhengig kontrollkilde.",
+        "privacySafeguard": "Analysen bruker bare offentlig organisasjonsinformasjon på gruppenivå og identifiserer ikke gjester, helsestatus, behandlingsforløp eller deltakelsesmønster.",
+        "sourceIds": [
+          "source_huset_oslo_milieu",
+          "source_huset_oslo_outside"
+        ]
+      },
+      "methodAndInference": {
+        "methodId": "met_sub_omsorgslandskapsanalyse",
+        "observationOrEvidence": "Analysen kombinerer organisasjonsform, gjentatt program, deltakelsespraksis og adgang til stedet.",
+        "alternativeExplanations": [
+          "Popularitet kan skyldes beliggenhet, markedsføring eller lav pris uten at alle brukere inngår i ett miljø."
+        ],
+        "inferenceStatus": "associational",
+        "reflexivity": "Rapporten antar ikke at alle besøkende deler samme identitet, normer eller grad av tilhørighet.",
+        "uncertainty": "Kildene dokumenterer offentlig program og selvforståelse bedre enn uformelle relasjoner og interne uenigheter.",
+        "sourceIds": [
+          "source_huset_oslo_milieu",
+          "source_huset_oslo_outside"
+        ]
+      },
+      "changeOverTime": {
+        "scope": {
+          "start": "2023",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Perioden følger oppstart og siste kontrollerte publiserte aktivitet."
+        },
+        "startingPoint": "Miljø- eller driftsformen er dokumentert fra 2023.",
+        "changeOrTurningPoint": "Et brukerorganisert initiativ er stabilisert som hus og samarbeidsprosjekt uten at brukerstyring er redusert til konsultasjon.",
+        "currentOrEndPoint": "Huset Oslo og Oslo kommune beskriver fortsatt møteplassen som brukerstyrt, åpen og rettet mot deltakelse, medborgerskap og skadereduksjon.",
+        "continuities": [
+          "brukerstyrt møte- og aktivitetsfellesskap",
+          "bruker-til-bruker-støtte og tillitsverv"
+        ],
+        "sourceIds": [
+          "source_huset_oslo_milieu",
+          "source_huset_oslo_outside"
+        ]
+      }
+    }
+  ],
+  "presentFunction": {
+    "status": "active",
+    "statement": "Huset Oslo og Oslo kommune beskriver fortsatt møteplassen som brukerstyrt, åpen og rettet mot deltakelse, medborgerskap og skadereduksjon.",
+    "historicalRelationship": "Nåværende eller siste dokumenterte drift viderefører deler av miljøfunksjonen, men organisering og adgang kan ha endret seg.",
+    "checkedAt": "2026-08-04",
+    "sourceIds": [
+      "source_huset_oslo_milieu"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Materialet krever ingen ny chronology-post eller selvstendig Story i denne endringen."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "subculturalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "subcultureTopics",
+        "case_huset_oslo_environment"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_huset_oslo_environment.actors",
+        "case_huset_oslo_environment.practicesAndCommunity"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_huset_oslo_environment.spaceAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_huset_oslo_environment.representationAndEthics",
+        "sources"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_huset_oslo_environment.methodAndInference",
+        "case_huset_oslo_environment.changeOverTime",
+        "presentFunction"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen chronology eller Story produseres eller revideres."
+    }
+  },
+  "review": {
+    "reviewer": "Subkultur-fagverkredaksjon",
+    "reviewedAt": "2026-08-04",
+    "notes": "Definisjon, stemmebalanse, rommakt, representasjon, slutningsgrense og nåstatus er kontrollert."
+  }
+}

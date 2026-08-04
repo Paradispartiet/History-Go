@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REPORT = 'reports/fagverk/subkultur-case-evidence-audit.json';
+const ENVIRONMENT_NEAR_PERSPECTIVES = new Set(['participant', 'milieu', 'support_service']);
+const INDEPENDENT_CONTROL_PERSPECTIVES = new Set(['authority', 'research', 'secondary']);
 const PATHS = Object.freeze({
   evidence: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
   sources: 'data/fag/subkultur/case_sources_subkultur_canonical_v1.json',
@@ -48,8 +50,8 @@ export function buildSubkulturCaseEvidenceReport() {
     const reportCase = list(report.subcultureCases).find((candidate) => candidate.id === entry.report_case_id);
     const sourceRows = list(entry.source_ids).map((id) => sourceById.get(id));
     const resultIds = list(entry.requirement_results).map((result) => result.requirement_id);
-    const milieu = sourceRows.filter((source) => source?.perspective === 'milieu');
-    const independent = sourceRows.filter((source) => source?.perspective === 'secondary');
+    const milieu = sourceRows.filter((source) => ENVIRONMENT_NEAR_PERSPECTIVES.has(source?.perspective));
+    const independent = sourceRows.filter((source) => INDEPENDENT_CONTROL_PERSPECTIVES.has(source?.perspective));
 
     const check = (condition, message) => { if (!condition) failures.push(`${prefix}: ${message}`); };
     check(entry.validation_status === 'validated_case', 'validation_status må være validated_case');
@@ -110,8 +112,8 @@ export function buildSubkulturCaseEvidenceReport() {
       rejected_cases: rejectedCases.length,
       remaining_candidates: unvalidatedProfileCases.length,
       case_sources: list(sources.sources).length,
-      environment_near_sources: list(sources.sources).filter((source) => source.perspective === 'milieu').length,
-      independent_control_sources: list(sources.sources).filter((source) => source.perspective === 'secondary').length
+      environment_near_sources: list(sources.sources).filter((source) => ENVIRONMENT_NEAR_PERSPECTIVES.has(source.perspective)).length,
+      independent_control_sources: list(sources.sources).filter((source) => INDEPENDENT_CONTROL_PERSPECTIVES.has(source.perspective)).length
     },
     cases,
     integrity: {
@@ -138,9 +140,9 @@ export function auditSubkulturCaseEvidence({ writeReport = false, checkReport = 
   const report = buildSubkulturCaseEvidenceReport();
   assert(report.totals.profile_candidates === 50, 'caseprofilene må bevare 50 auditerte kandidater');
   assert(report.totals.eligible_cases === 48, 'to ikke-kvalifiserende kandidater skal holdes utenfor evidensrestansen');
-  assert(report.totals.validated_cases >= 19, 'andre casekildebatch krever minst nitten validerte cases');
+  assert(report.totals.validated_cases >= 27, 'tredje casekildebatch krever minst tjuesju validerte cases');
   assert(report.totals.rejected_cases === 2, 'to auditerte ikke-kvalifiserende profilcases må forbli eksplisitt avvist');
-  assert(report.totals.remaining_candidates === 29, 'caseevidensrestansen skal være 29');
+  assert(report.totals.remaining_candidates === 21, 'caseevidensrestansen skal være 21');
   assert(report.totals.validated_cases + report.totals.rejected_cases + report.totals.remaining_candidates === report.totals.profile_candidates, 'casefordelingen summerer ikke til profiltotalen');
   assert(report.totals.case_sources >= report.totals.validated_cases * 2, 'hver validert case krever minst to kilder');
   assert(report.totals.environment_near_sources >= report.totals.validated_cases, 'hver validert case krever miljønær kilde');

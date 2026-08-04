@@ -501,7 +501,13 @@
     {
       "case_id": "case_sub_huset_oslo",
       "place_id": "huset_oslo",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_huset_oslo",
+      "report_path": "data/places/subkultur-production/huset_oslo.json",
+      "source_ids": [
+        "source_huset_oslo_milieu",
+        "source_huset_oslo_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -509,18 +515,20 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_nadheim_oslo",
       "place_id": "nadheim_oslo",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_nadheim_oslo",
+      "report_path": "data/places/subkultur-production/nadheim_oslo.json",
+      "source_ids": [
+        "source_nadheim_oslo_milieu",
+        "source_nadheim_oslo_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -528,13 +536,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_stovnertarnet",
@@ -559,9 +563,9 @@
   "production_coverage": {
     "audited_candidates": 28,
     "eligible_candidates": 27,
-    "validated_cases": 8,
+    "validated_cases": 10,
     "rejected_candidates": 1,
-    "remaining_candidates": 19,
+    "remaining_candidates": 17,
     "completion_status": "PARTIAL"
   }
 }
