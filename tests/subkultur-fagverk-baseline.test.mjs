@@ -41,7 +41,7 @@ test('historisk baseline forblir låst etter at produksjonen starter', () => {
   assert.equal(report.current.missing_definition_count, 3);
 });
 
-test('live gaprapport lukker teori- og kapittelporten, men beholder runtime og pathways', () => {
+test('live gaprapport lukker teori-, kapittel- og pathwayporten, men beholder runtime', () => {
   const report = buildReport();
   assert.equal(report.current.fagverk_chapters, 8);
   assert.equal(report.current.theory_objects, 80);
@@ -50,10 +50,10 @@ test('live gaprapport lukker teori- og kapittelporten, men beholder runtime og p
   assert.equal(report.current.registry_subject_exists, false);
   assert.equal(report.gaps.theory_objects, 0);
   assert.equal(report.gaps.chapters, 0);
-  assert.equal(report.gaps.pathways, 8);
+  assert.equal(report.gaps.pathways, 0);
   assert.ok(report.current.absent_production_files.includes('data/fag/subkultur/subkultur_runtime_manifest.json'));
   assert.ok(!report.current.absent_production_files.includes('data/fag/profiles/subkultur/manifest.json'));
-  assert.ok(report.current.absent_production_files.includes('data/quiz/subkultur/subkultur_subject_pathways_v1.json'));
+  assert.ok(!report.current.absent_production_files.includes('data/quiz/subkultur/subkultur_subject_pathways_v1.json'));
 });
 
 test('Places og People følger dataauditen mens legacyquiz holdes utenfor fullstendighetsbeviset', () => {

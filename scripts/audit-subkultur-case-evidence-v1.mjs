@@ -158,7 +158,10 @@ export function auditSubkulturCaseEvidence({ writeReport = false, checkReport = 
   assert(report.status_guard.navigation_status === 'planned', 'Subkultur kan ikke materialiseres i case-delporten');
   assert(report.status_guard.assessment_status === 'pending', 'assessment må forbli pending før Quiz/Knowledge');
   assert(report.status_guard.editorial_status === 'not_started', 'global editorialStatus må vente på runtime');
-  assert(report.status_guard.next_gate === 'quiz_knowledge_audit', 'neste globale port må være Quiz/Knowledge-audit');
+  assert(
+    ['quiz_knowledge_audit', 'runtime_materialization_and_final_gate'].includes(report.status_guard.next_gate),
+    'global nextGate må være Quiz/Knowledge eller den etterfølgende runtime-porten'
+  );
   assert(report.next_gate === 'quiz_knowledge_audit', 'caseporten må sende faget videre til Quiz/Knowledge');
 
   const serialized = `${JSON.stringify(report, null, 2)}\n`;

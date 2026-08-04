@@ -230,7 +230,7 @@ export function buildReport() {
       mapped_emner: targets.emne_count - current.mapped_emner,
       theory_objects: targets.theory_object_count - current.evidence_ready_theory_objects,
       chapters: targets.chapter_count - current.fagverk_chapters,
-      pathways: targets.subject_pathway_count,
+      pathways: exists(PATHS.pathways) ? 0 : targets.subject_pathway_count,
       individually_rewritten_definitions: current.generic_definition_count + current.missing_definition_count,
       places_without_subkultur_emne: current.subkultur_places - current.places_with_subkultur_emne,
       people_without_subkultur_emne: current.subkultur_people - current.people_with_subkultur_emne

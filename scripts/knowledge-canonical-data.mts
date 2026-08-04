@@ -25,6 +25,7 @@ const ROOT = process.cwd();
 const QUIZ_MANIFEST = path.join(ROOT, 'data/quiz/manifest.json');
 const FAG_MANIFEST = path.join(ROOT, 'data/fag/fag_manifest.json');
 const KNOWLEDGE_ROOT = path.join(ROOT, 'data/knowledge');
+const KNOWLEDGE_MANIFEST_PATH = path.join(KNOWLEDGE_ROOT, 'knowledge_manifest.json');
 const UNIT_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'knowledge_units.generated.json');
 const CONCEPT_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'concepts.generated.json');
 const TERM_REGISTRY_PATH = path.join(KNOWLEDGE_ROOT, 'terms.generated.json');
@@ -162,6 +163,11 @@ function manifestFiles(manifest: JsonObject): string[] {
 }
 async function readJson<T = unknown>(filePath: string): Promise<T> {
   return JSON.parse(await fs.readFile(filePath, 'utf8')) as T;
+}
+async function subjectCanonicalRegistries(): Promise<Record<string, JsonObject>> {
+  const manifest = await readJson<JsonObject>(KNOWLEDGE_MANIFEST_PATH);
+  const configured = manifest.runtime?.subjectCanonicalRegistries;
+  return isObject(configured) ? configured : {};
 }
 function jsonText(value: unknown): string { return `${JSON.stringify(value, null, 2)}\n`; }
 async function writeOrCheck(filePath: string, value: unknown, changedFiles: string[]): Promise<void> {
@@ -454,10 +460,23 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
   const conceptList = [...concepts.values()].sort((a, b) => a.concept_id.localeCompare(b.concept_id, 'en'));
   const termList = [...terms.values()].sort((a, b) => a.term_id.localeCompare(b.term_id, 'en'));
   const storyList = [...stories.values()].sort((a, b) => a.story_id.localeCompare(b.story_id, 'en'));
-  await writeOrCheck(UNIT_REGISTRY_PATH, { schema: 'history_go_knowledge_unit_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', units: unitList }, changedFiles);
-  await writeOrCheck(CONCEPT_REGISTRY_PATH, { schema: 'history_go_concept_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList }, changedFiles);
-  await writeOrCheck(TERM_REGISTRY_PATH, { schema: 'history_go_term_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList }, changedFiles);
-  await writeOrCheck(STORY_REGISTRY_PATH, { schema: 'history_go_story_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList }, changedFiles);
+  const subjectRegistries = await subjectCanonicalRegistries();
+  const supplementalSubjects = new Set(Object.keys(subjectRegistries));
+  await writeOrCheck(UNIT_REGISTRY_PATH, { schema: 'history_go_knowledge_unit_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', units: unitList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
+  await writeOrCheck(CONCEPT_REGISTRY_PATH, { schema: 'history_go_concept_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
+  await writeOrCheck(TERM_REGISTRY_PATH, { schema: 'history_go_term_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
+  await writeOrCheck(STORY_REGISTRY_PATH, { schema: 'history_go_story_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
+  for (const [subject, config] of Object.entries(subjectRegistries)) {
+    const unitFile = clean(config.knowledge_units);
+    const conceptFile = clean(config.concepts);
+    const termFile = clean(config.terms);
+    const storyFile = clean(config.stories);
+    if (!unitFile || !conceptFile || !termFile || !storyFile) throw new Error(`${subject}: subjectCanonicalRegistries må angi alle fire registre`);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, unitFile), { schema: 'history_go_knowledge_unit_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', units: unitList.filter((item) => item.subject_id === subject) }, changedFiles);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, conceptFile), { schema: 'history_go_concept_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList.filter((item) => item.subject_id === subject) }, changedFiles);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, termFile), { schema: 'history_go_term_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList.filter((item) => item.subject_id === subject) }, changedFiles);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, storyFile), { schema: 'history_go_story_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList.filter((item) => item.subject_id === subject) }, changedFiles);
+  }
   await writeOrCheck(REVIEW_QUEUE_PATH, { schema: 'history_go_knowledge_emne_review_queue_v1', version: 1, policy: 'Do not infer ambiguous emne links automatically.', items: unresolved }, changedFiles);
   const report = {
     schema: 'history_go_knowledge_id_backfill_v1',
@@ -500,10 +519,21 @@ async function runContractAudit(): Promise<JsonObject> {
   const conceptRegistry = await readJson<JsonObject>(CONCEPT_REGISTRY_PATH).catch(() => ({ concepts: [] }));
   const termRegistry = await readJson<JsonObject>(TERM_REGISTRY_PATH).catch(() => ({ terms: [] }));
   const storyRegistry = await readJson<JsonObject>(STORY_REGISTRY_PATH).catch(() => ({ stories: [] }));
-  const unitIds = new Set((Array.isArray(unitRegistry.units) ? unitRegistry.units : []).map((row: JsonObject) => clean(row.knowledge_unit_id)));
-  const coIds = new Set((Array.isArray(conceptRegistry.concepts) ? conceptRegistry.concepts : []).map((row: JsonObject) => clean(row.concept_id)));
-  const tIds = new Set((Array.isArray(termRegistry.terms) ? termRegistry.terms : []).map((row: JsonObject) => clean(row.term_id)));
-  const sIds = new Set((Array.isArray(storyRegistry.stories) ? storyRegistry.stories : []).map((row: JsonObject) => clean(row.story_id)));
+  const supplemental = await subjectCanonicalRegistries();
+  const supplementalUnits: JsonObject[] = [];
+  const supplementalConcepts: JsonObject[] = [];
+  const supplementalTerms: JsonObject[] = [];
+  const supplementalStories: JsonObject[] = [];
+  for (const config of Object.values(supplemental)) {
+    supplementalUnits.push(...(await readJson<JsonObject>(path.join(KNOWLEDGE_ROOT, clean(config.knowledge_units)))).units || []);
+    supplementalConcepts.push(...(await readJson<JsonObject>(path.join(KNOWLEDGE_ROOT, clean(config.concepts)))).concepts || []);
+    supplementalTerms.push(...(await readJson<JsonObject>(path.join(KNOWLEDGE_ROOT, clean(config.terms)))).terms || []);
+    supplementalStories.push(...(await readJson<JsonObject>(path.join(KNOWLEDGE_ROOT, clean(config.stories)))).stories || []);
+  }
+  const unitIds = new Set([...(Array.isArray(unitRegistry.units) ? unitRegistry.units : []), ...supplementalUnits].map((row: JsonObject) => clean(row.knowledge_unit_id)));
+  const coIds = new Set([...(Array.isArray(conceptRegistry.concepts) ? conceptRegistry.concepts : []), ...supplementalConcepts].map((row: JsonObject) => clean(row.concept_id)));
+  const tIds = new Set([...(Array.isArray(termRegistry.terms) ? termRegistry.terms : []), ...supplementalTerms].map((row: JsonObject) => clean(row.term_id)));
+  const sIds = new Set([...(Array.isArray(storyRegistry.stories) ? storyRegistry.stories : []), ...supplementalStories].map((row: JsonObject) => clean(row.story_id)));
   const failures: JsonObject[] = [];
   const warnings: JsonObject[] = [];
   let knowledgeQuestions = 0;
