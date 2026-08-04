@@ -16,6 +16,7 @@ const PATHS = Object.freeze({
   claims: 'data/fag/subkultur/claims_subkultur_canonical_v1.json',
   sources: 'data/fag/subkultur/sources_subkultur_canonical_v1.json',
   evidence: 'data/fag/subkultur/theory_evidence_subkultur_canonical_v1.json',
+  caseEvidence: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
   placeManifest: 'data/places/manifest.json',
   status: 'data/fagverk/subject_status.json'
 });
@@ -69,7 +70,7 @@ function auditChapter(row, registries) {
   for (const id of brief.requiredMethodIds) assert(registries.methodIds.has(id), `${row.id} peker til ukjent metode ${id}`);
   for (const id of brief.requiredTheoryEvidenceIds) assert(registries.evidenceIds.has(id), `${row.id} peker til ukjent theory-evidence ${id}`);
   for (const id of brief.requiredClaimIds) assert(registries.claimIds.has(id), `${row.id} peker til ukjent claim ${id}`);
-  assert(brief.caseProfileStatus === 'candidate_links_pending_place_people_audit', `${row.id} forskutterer casevalidering`);
+  assert(brief.caseProfileStatus === 'case_links_partial_source_validation', `${row.id} har feil caseprofilstatus`);
 
   let sectionCount = 0;
   let paragraphCount = 0;
@@ -80,6 +81,8 @@ function auditChapter(row, registries) {
   let tasks = 0;
   let selfChecks = 0;
   let placeReferences = 0;
+  let validatedPlaceReferences = 0;
+  let rejectedPlaceReferences = 0;
   const usedClaims = new Set();
   const usedTheories = new Set();
   const usedPlaces = new Set();
@@ -121,7 +124,18 @@ function auditChapter(row, registries) {
     for (const item of list(module.selfCheck)) assert(text(item.question) && text(item.answer), `${relative} har ugyldig selvtest`);
     for (const place of list(module.relatedPlaces)) {
       assert(registries.placeIds.has(place.id), `${relative} peker til ukjent sted ${place.id}`);
-      assert(place.evidenceStatus === 'canonical_place_candidate_pending_profile_audit', `${relative} forskutterer stedsevidens`);
+      const validated = registries.caseEvidenceByPlace.get(place.id);
+      const rejected = registries.rejectedCaseByPlace.get(place.id);
+      if (validated) {
+        assert(place.evidenceStatus === 'validated_case' && place.caseEvidenceId === validated.evidence_id, `${relative} materialiserer ikke validert case ${place.id}`);
+        validatedPlaceReferences += 1;
+      } else if (rejected) {
+        assert(place.evidenceStatus === 'rejected_nonqualifying', `${relative} skjuler negativt case ${place.id}`);
+        assert(place.rejectionReason === rejected.reason && place.classificationDecisionSource === rejected.decision_source, `${relative} har usporbar avvisning for ${place.id}`);
+        rejectedPlaceReferences += 1;
+      } else {
+        assert(place.evidenceStatus === 'canonical_place_candidate_pending_profile_audit', `${relative} forskutterer stedsevidens for ${place.id}`);
+      }
       usedPlaces.add(place.id);
       placeReferences += 1;
     }
@@ -144,7 +158,7 @@ function auditChapter(row, registries) {
   assert(isDeepStrictEqual([...usedClaims].sort(), [...brief.requiredClaimIds].sort()), `${row.id} dekker ikke briefens claims eksakt`);
   assert(isDeepStrictEqual([...usedTheories].sort(), [...brief.requiredTheoryEvidenceIds].sort()), `${row.id} dekker ikke briefens teoriobjekter eksakt`);
   assert(usedPlaces.size === 6, `${row.id} må ha seks unike stedskoblinger`);
-  return { id: row.id, domain_id: row.primary_domain_id, sections: sectionCount, paragraphs: paragraphCount, claim_references: claimReferenceCount, unique_claims: usedClaims.size, source_references: sourceReferenceCount, worked_examples: workedExamples, misconceptions, tasks, self_checks: selfChecks, place_references: placeReferences, unique_places: usedPlaces.size };
+  return { id: row.id, domain_id: row.primary_domain_id, sections: sectionCount, paragraphs: paragraphCount, claim_references: claimReferenceCount, unique_claims: usedClaims.size, source_references: sourceReferenceCount, worked_examples: workedExamples, misconceptions, tasks, self_checks: selfChecks, place_references: placeReferences, validated_place_references: validatedPlaceReferences, rejected_place_references: rejectedPlaceReferences, unique_places: usedPlaces.size };
 }
 
 export function buildChaptersReport() {
@@ -152,13 +166,20 @@ export function buildChaptersReport() {
   const profileManifest = readJson(PATHS.profileManifest);
   const pensum = readJson(PATHS.pensum);
   const placeIds = activePlaceIds();
+  const caseRegistry = readJson(PATHS.caseEvidence);
+  const caseEvidence = list(caseRegistry.cases);
+  const rejectedCases = list(caseRegistry.nonqualifying_cases);
+  const caseEvidenceByPlace = new Map(caseEvidence.map((entry) => [entry.place_id, entry]));
+  const rejectedCaseByPlace = new Map(rejectedCases.map((entry) => [entry.place_id, entry]));
   const registries = {
     emneIds: new Set(list(readJson(PATHS.emner)).map((entry) => entry.emne_id)),
     methodIds: new Set(list(readJson(PATHS.methods).methods).map((entry) => entry.method_id)),
     claimIds: new Set(list(readJson(PATHS.claims).claims).map((entry) => entry.claim_id)),
     sourceIds: new Set(list(readJson(PATHS.sources).sources).map((entry) => entry.source_id)),
     evidenceIds: new Set(list(readJson(PATHS.evidence).entries).map((entry) => entry.theory_id)),
-    placeIds
+    placeIds,
+    caseEvidenceByPlace,
+    rejectedCaseByPlace
   };
   const rows = list(manifest.chapters);
   const chapters = rows.map((row) => auditChapter(row, registries));
@@ -166,19 +187,43 @@ export function buildChaptersReport() {
   const profiles = profileRows.map((row) => {
     assert(exists(row.file), `Profilfil mangler: ${row.file}`);
     const profile = readJson(row.file);
-    assert(profile.status === 'candidate_profile_pending_evidence_audit', `${row.id} forskutterer validert profil`);
-    assert(profile.production_coverage?.validated_cases === 0, `${row.id} forskutterer validerte cases`);
+    const profileValidated = list(profile.candidates).filter((candidate) => candidate.status === 'validated_case');
+    const profileRejected = list(profile.candidates).filter((candidate) => candidate.status === 'rejected_nonqualifying');
+    const expectedValidated = caseEvidence.filter((entry) => entry.profile_id === row.id);
+    const expectedRejected = rejectedCases.filter((entry) => entry.profile_id === row.id);
+    assert(profile.production_coverage?.validated_cases === expectedValidated.length, `${row.id} har feil antall validerte cases`);
+    assert(profile.production_coverage?.rejected_candidates === expectedRejected.length, `${row.id} har feil antall avviste cases`);
+    assert(profile.production_coverage?.remaining_candidates === list(profile.candidates).length - expectedValidated.length - expectedRejected.length, `${row.id} har feil antall gjenstående cases`);
+    assert(profile.status === (profile.production_coverage.remaining_candidates === 0 ? 'profile_case_validation_complete' : expectedValidated.length ? 'profile_partial_case_validation' : 'candidate_profile_pending_evidence_audit'), `${row.id} har feil profilstatus`);
     for (const candidate of list(profile.candidates)) {
       assert(placeIds.has(candidate.place_id), `${row.id} peker til ukjent sted ${candidate.place_id}`);
-      assert(candidate.status === 'candidate_unvalidated', `${candidate.case_id} forskutterer casevalidering`);
-      assert(list(candidate.required_case_requirement_ids).length === 5, `${candidate.case_id} mangler casekrav`);
-      assert(list(candidate.missing_before_validation).length === 5, `${candidate.case_id} skjuler produksjonsgap`);
+      const validated = caseEvidenceByPlace.get(candidate.place_id);
+      const rejected = rejectedCaseByPlace.get(candidate.place_id);
+      if (validated) {
+        assert(list(candidate.required_case_requirement_ids).length === 5, `${candidate.case_id} mangler casekrav`);
+        assert(candidate.status === 'validated_case', `${candidate.case_id} skjuler validert case`);
+        assert(candidate.evidence_id === validated.evidence_id, `${candidate.case_id} peker til feil evidens`);
+        assert(list(candidate.source_ids).length >= 2, `${candidate.case_id} mangler casekilder`);
+        assert(list(candidate.missing_before_validation).length === 0, `${candidate.case_id} har uløste gap etter validering`);
+        assert(candidate.ethics_review_status === 'PASS' && candidate.independent_control_status === 'PASS', `${candidate.case_id} mangler etikk eller kontrollkilde`);
+      } else if (rejected) {
+        assert(candidate.status === 'rejected_nonqualifying', `${candidate.case_id} skjuler negativt case`);
+        assert(candidate.resulting_category === rejected.resulting_category && candidate.rejection_reason === rejected.reason, `${candidate.case_id} har usynkron avvisning`);
+        assert(candidate.decision_source === rejected.decision_source, `${candidate.case_id} mangler beslutningskilde`);
+        assert(list(candidate.required_case_requirement_ids).length === 0 && list(candidate.missing_before_validation).length === 0, `${candidate.case_id} teller avvisning som evidensgap`);
+      } else {
+        assert(list(candidate.required_case_requirement_ids).length === 5, `${candidate.case_id} mangler casekrav`);
+        assert(candidate.status === 'candidate_unvalidated', `${candidate.case_id} forskutterer casevalidering`);
+        assert(list(candidate.missing_before_validation).length === 5, `${candidate.case_id} skjuler produksjonsgap`);
+      }
     }
-    return { id: row.id, candidates: list(profile.candidates).length, validated: profile.production_coverage.validated_cases, candidate_ids: list(profile.candidates).map((entry) => entry.case_id) };
+    assert(profileValidated.length === expectedValidated.length, `${row.id} er ute av synk med caseevidensregisteret`);
+    assert(profileRejected.length === expectedRejected.length, `${row.id} er ute av synk med negativt caseregister`);
+    return { id: row.id, candidates: list(profile.candidates).length, validated: profile.production_coverage.validated_cases, rejected: profile.production_coverage.rejected_candidates, pending: profile.production_coverage.remaining_candidates, candidate_ids: list(profile.candidates).map((entry) => entry.case_id) };
   });
   const status = list(readJson(PATHS.status).subjects).find((entry) => entry.id === 'subkultur');
   return {
-    schema: 'history_go_subkultur_chapters_audit_v1', version: '1.0.0', subject_id: 'subkultur', audited_at: '2026-08-04', status: 'CHAPTERS_READY_CASE_EVIDENCE_PENDING',
+    schema: 'history_go_subkultur_chapters_audit_v1', version: '1.0.0', subject_id: 'subkultur', audited_at: '2026-08-04', status: 'CHAPTERS_READY_CASE_EVIDENCE_PARTIAL',
     totals: {
       chapters: chapters.length,
       modules: chapters.length * 3,
@@ -192,8 +237,12 @@ export function buildChaptersReport() {
       application_tasks: chapters.reduce((sum, row) => sum + row.tasks, 0),
       self_checks: chapters.reduce((sum, row) => sum + row.self_checks, 0),
       place_references: chapters.reduce((sum, row) => sum + row.place_references, 0),
+      validated_place_references: chapters.reduce((sum, row) => sum + row.validated_place_references, 0),
+      rejected_place_references: chapters.reduce((sum, row) => sum + row.rejected_place_references, 0),
       profile_candidates: profiles.reduce((sum, row) => sum + row.candidates, 0),
-      validated_profile_cases: profiles.reduce((sum, row) => sum + row.validated, 0)
+      validated_profile_cases: profiles.reduce((sum, row) => sum + row.validated, 0),
+      rejected_profile_cases: profiles.reduce((sum, row) => sum + row.rejected, 0),
+      pending_profile_cases: profiles.reduce((sum, row) => sum + row.pending, 0)
     },
     chapters,
     profiles: profiles.map(({ candidate_ids, ...row }) => row),
@@ -209,7 +258,7 @@ export function buildChaptersReport() {
       editorial_status: status?.editorialStatus ?? null,
       next_gate: status?.nextGate ?? null
     },
-    next_gate: 'case_profiles_places_people_audit'
+    next_gate: 'remaining_case_source_validation'
   };
 }
 
@@ -225,7 +274,10 @@ export function auditChapters({ writeReport = false, checkReport = true } = {}) 
   assert(report.totals.self_checks >= 64, 'Kapittellaget mangler selvtest');
   assert(report.totals.place_references === 48, 'Kapittellaget må ha 48 stedskoblinger');
   assert(report.totals.profile_candidates >= 40, 'Profilene må ha et bredt kandidatgrunnlag');
-  assert(report.totals.validated_profile_cases === 0, 'Denne porten skal ikke forskuttere validerte cases');
+  assert(report.totals.validated_profile_cases >= 11, 'Kapittelporten må materialisere den utvidede validerte casebatchen');
+  assert(report.totals.rejected_profile_cases === 2, 'Kapittelporten må bevare to avviste grensecases');
+  assert(report.totals.pending_profile_cases === 37, 'Kapittelporten skal dokumentere 37 gjenstående kandidater');
+  assert(report.totals.validated_place_references >= 10, 'Validerte kapittelsteder mangler i modulene');
   assert(report.integrity.duplicate_chapter_ids.length === 0, 'Kapittel-ID-er må være unike');
   assert(report.integrity.duplicate_chapter_domains.length === 0, 'Hvert domene skal ha ett kapittel');
   assert(report.integrity.domain_order_matches_pensum, 'Kapittelrekkefølgen avviker fra pensum');
@@ -233,7 +285,7 @@ export function auditChapters({ writeReport = false, checkReport = true } = {}) 
   assert(report.status_guard.navigation_status === 'planned', 'Navigasjon må forbli planned før runtime');
   assert(report.status_guard.assessment_status === 'pending', 'Assessment må forbli pending før quiz-audit');
   assert(report.status_guard.editorial_status === 'not_started', 'Planned fag må beholde not_started før runtime-materialisering');
-  assert(report.status_guard.next_gate === 'case_profiles_places_people_audit', 'Neste port må være case-/dataaudit');
+  assert(report.status_guard.next_gate === 'remaining_case_source_validation', 'Neste port må være gjenstående casekildevalidering');
   if (writeReport) {
     fs.mkdirSync(path.dirname(abs(REPORT)), { recursive: true });
     fs.writeFileSync(abs(REPORT), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
@@ -249,7 +301,7 @@ function main() {
   const args = new Set(process.argv.slice(2));
   try {
     const report = auditChapters({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Subkultur chapters OK: ${report.totals.chapters} kapitler, ${report.totals.sections} seksjoner, ${report.totals.paragraphs} avsnitt; profiles pending.`);
+    console.log(`Subkultur chapters OK: ${report.totals.chapters} kapitler, ${report.totals.sections} seksjoner, ${report.totals.paragraphs} avsnitt; ${report.totals.validated_profile_cases} cases validert.`);
   } catch (error) {
     console.error(`Subkultur chapters FEIL: ${error.message}`);
     process.exitCode = 1;
