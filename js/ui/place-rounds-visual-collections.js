@@ -128,7 +128,7 @@
     let sources = [];
     if (id === "objects") {
       sources = [
-        ...arr(place.objects).map(item => [item, "objects"]),
+        ...arr(place?.objects).map(item => [item, "objects"]),
         ...arr(place.artifacts).map(item => [item, "artifacts"]),
         ...civicationItems(place).filter(physicalCivication).map(item => [item, "civication"])
       ];
@@ -244,7 +244,7 @@
       ? await natureItems(place, def.id)
       : collectionItems(place, def.id);
     list.innerHTML = renderRows(items, def);
-    const preview = items.find(item => item.image);
+    const preview=items.find(x=>x.image);
     icon.innerHTML = preview?.image
       ? `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`
       : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${items.length || ""}</span></div>`;
