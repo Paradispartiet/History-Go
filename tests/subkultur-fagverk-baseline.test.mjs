@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditRepository, buildReport, readLockedReport } from '../scripts/audit-subkultur-fagverk-baseline.mjs';
 
-test('Subkultur-kontrakten låser åtte domener og 80 teoriobjekter uten å forskuttere complete', () => {
+test('Subkultur-kontrakten låser åtte domener og 80 teoriobjekter gjennom sluttporten', () => {
   const report = auditRepository();
   assert.equal(report.targets.domain_count, 8);
   assert.equal(report.targets.emne_count, 80);
@@ -17,10 +17,10 @@ test('Subkultur-kontrakten låser åtte domener og 80 teoriobjekter uten å fors
   assert.equal(report.targets.subject_pathway_count, 8);
   assert.equal(report.targets.questions_per_pathway, 5);
   assert.deepEqual(report.status_guard, {
-    expected_navigation_status: 'planned',
-    expected_assessment_status: 'pending',
-    expected_editorial_status: 'not_started',
-    completion_status_change_allowed: false
+    expected_navigation_status: 'materialized',
+    expected_assessment_status: 'audited',
+    expected_editorial_status: 'complete',
+    completion_status_change_allowed: true
   });
 });
 
@@ -41,17 +41,17 @@ test('historisk baseline forblir låst etter at produksjonen starter', () => {
   assert.equal(report.current.missing_definition_count, 3);
 });
 
-test('live gaprapport lukker teori-, kapittel- og pathwayporten, men beholder runtime', () => {
+test('live gaprapport lukker teori-, kapittel-, pathway- og runtimeporten', () => {
   const report = buildReport();
   assert.equal(report.current.fagverk_chapters, 8);
   assert.equal(report.current.theory_objects, 80);
   assert.equal(report.current.evidence_ready_theory_objects, 80);
-  assert.equal(report.current.runtime_manifest_exists, false);
-  assert.equal(report.current.registry_subject_exists, false);
+  assert.equal(report.current.runtime_manifest_exists, true);
+  assert.equal(report.current.registry_subject_exists, true);
   assert.equal(report.gaps.theory_objects, 0);
   assert.equal(report.gaps.chapters, 0);
   assert.equal(report.gaps.pathways, 0);
-  assert.ok(report.current.absent_production_files.includes('data/fag/subkultur/subkultur_runtime_manifest.json'));
+  assert.ok(!report.current.absent_production_files.includes('data/fag/subkultur/subkultur_runtime_manifest.json'));
   assert.ok(!report.current.absent_production_files.includes('data/fag/profiles/subkultur/manifest.json'));
   assert.ok(!report.current.absent_production_files.includes('data/quiz/subkultur/subkultur_subject_pathways_v1.json'));
 });
@@ -70,7 +70,7 @@ test('Places og People følger dataauditen mens legacyquiz holdes utenfor fullst
   assert.equal(report.current.legacy_quiz.from_by_with_foreign_emne, 10);
 });
 
-test('live audit kan gå videre fra baseline uten å forskuttere materialisering', () => {
+test('live audit dokumenterer ferdig materialisering', () => {
   const report = auditRepository();
   assert.equal(report.current.domains, 8);
   assert.equal(report.current.hooks, 80);
@@ -79,7 +79,7 @@ test('live audit kan gå videre fra baseline uten å forskuttere materialisering
   assert.ok(report.current.methods >= 35 && report.current.methods <= 50);
   assert.equal(report.current.generic_definition_count, 0);
   assert.equal(report.current.missing_definition_count, 0);
-  assert.equal(report.current.navigation_status, 'planned');
-  assert.equal(report.current.assessment_status, 'pending');
-  assert.equal(report.current.editorial_status, 'not_started');
+  assert.equal(report.current.navigation_status, 'materialized');
+  assert.equal(report.current.assessment_status, 'audited');
+  assert.equal(report.current.editorial_status, 'complete');
 });

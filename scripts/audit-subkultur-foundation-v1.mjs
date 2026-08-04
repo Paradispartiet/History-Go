@@ -287,10 +287,11 @@ export function auditFoundation({ writeReport = false, checkReport = true } = {}
     if (typeof values === 'boolean') continue;
     assert(values.length === 0, `${name} må være tom, fikk: ${values.join(', ')}`);
   }
-  assert(report.status_guard.navigation_status === 'planned', 'navigationStatus må forbli planned');
-  assert(report.status_guard.assessment_status === 'pending', 'assessmentStatus må forbli pending');
-  assert(['not_started', 'chapters_in_progress'].includes(report.status_guard.editorial_status), 'editorialStatus må være not_started eller chapters_in_progress før sluttport');
-  assert(report.status_guard.registry_subject_exists === false, 'Subkultur må ikke materialiseres i registeret ennå');
+  assert(report.status_guard.navigation_status === 'materialized', 'navigationStatus skal være materialized etter sluttporten');
+  assert(report.status_guard.assessment_status === 'audited', 'assessmentStatus skal være audited etter sluttporten');
+  assert(report.status_guard.editorial_status === 'complete', 'editorialStatus skal være complete etter sluttporten');
+  assert(report.status_guard.portal_subject_status === 'materialized', 'portalstatus skal være materialized');
+  assert(report.status_guard.registry_subject_exists === true, 'Subkultur mangler i fagverkregisteret');
   assert(report.next_gate === 'theory_claim_source_evidence', 'Neste port skal være teori, claims, kilder og evidens');
 
   if (writeReport) {

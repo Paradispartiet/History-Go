@@ -66,13 +66,13 @@ test('tre geografiske profiler har null åpne kandidater og holder valideringer 
   assert.deepEqual(report.integrity.duplicate_profile_case_ids, []);
 });
 
-test('kapittelproduksjon forskutterer ikke materialisert redaksjonell status', () => {
+test('kapittelproduksjon er koblet til materialisert redaksjonell sluttstatus', () => {
   const report = buildChaptersReport();
   assert.deepEqual(report.status_guard, {
-    navigation_status: 'planned',
-    assessment_status: 'pending',
-    editorial_status: 'not_started',
-    next_gate: 'runtime_materialization_and_final_gate'
+    navigation_status: 'materialized',
+    assessment_status: 'audited',
+    editorial_status: 'complete',
+    next_gate: 'maintenance_and_source_refresh'
   });
   assert.equal(report.next_gate, 'quiz_knowledge_audit');
 });

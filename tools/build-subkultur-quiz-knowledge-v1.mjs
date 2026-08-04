@@ -395,12 +395,18 @@ expected(PATHS.knowledgeManifest, knowledgeManifest);
 const status = readJson(PATHS.status);
 const statusEntry = list(status.subjects).find((item) => item.id === 'subkultur');
 if (!statusEntry) throw new Error('subject_status mangler subkultur');
-statusEntry.nextGate = 'runtime_materialization_and_final_gate';
+Object.assign(statusEntry, {
+  navigationStatus: 'materialized',
+  assessmentStatus: 'audited',
+  editorialStatus: 'complete',
+  nextGate: 'maintenance_and_source_refresh',
+  note: 'Åtte canonicale fagområder og kapitler, 80 emner og teoriobjekter, 42 validerte cases, 8 pathways og 40 kildebelagte vurderingsspørsmål.'
+});
 expected(PATHS.status, status);
 
 const chapterManifest = readJson(PATHS.chapterManifest);
-chapterManifest.status = 'chapters_and_assessment_ready_case_evidence_complete';
-chapterManifest.next_gate = 'runtime_materialization_and_final_gate';
+chapterManifest.status = 'complete_runtime_materialized';
+chapterManifest.next_gate = 'maintenance_and_source_refresh';
 chapterManifest.assessment = {
   package: PATHS.pathway,
   legacy_audit: PATHS.legacyAudit,
@@ -408,6 +414,14 @@ chapterManifest.assessment = {
   questions: sets.reduce((sum, set) => sum + set.questions.length, 0),
   knowledge_status: 'canonical_linked',
   legacy_active_questions: 0
+};
+chapterManifest.runtime = {
+  manifest: 'data/fag/subkultur/subkultur_runtime_manifest.json',
+  registry: 'data/fagverk/fagverk_registry.json',
+  portal: 'data/fagverk/fagverk_portal.json',
+  navigation_status: 'materialized',
+  assessment_status: 'audited',
+  editorial_status: 'complete'
 };
 expected(PATHS.chapterManifest, chapterManifest);
 

@@ -316,10 +316,10 @@ function build() {
     schema: 'history_go_subkultur_chapter_manifest_v1',
     version: '1.0.0',
     subject_id: 'subkultur',
-    status: 'chapters_and_assessment_ready_case_evidence_complete',
+    status: 'complete_runtime_materialized',
     chapters: chapterRows,
     totals: { chapters: 8, modules: 24, sections: 72, paragraphs: 216, minimum_claim_references: 288, minimum_source_references: 160, related_place_references: 48 },
-    next_gate: 'runtime_materialization_and_final_gate',
+    next_gate: 'maintenance_and_source_refresh',
     assessment: {
       package: 'data/quiz/subkultur/subkultur_subject_pathways_v1.json',
       legacy_audit: 'data/quiz/subkultur/subkultur_legacy_quiz_audit_v1.json',
@@ -327,6 +327,14 @@ function build() {
       questions: 40,
       knowledge_status: 'canonical_linked',
       legacy_active_questions: 0
+    },
+    runtime: {
+      manifest: 'data/fag/subkultur/subkultur_runtime_manifest.json',
+      registry: 'data/fagverk/fagverk_registry.json',
+      portal: 'data/fagverk/fagverk_portal.json',
+      navigation_status: 'materialized',
+      assessment_status: 'audited',
+      editorial_status: 'complete'
     }
   };
 

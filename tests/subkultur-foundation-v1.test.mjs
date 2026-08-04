@@ -43,14 +43,14 @@ test('ID-migrasjonen bevarer 72 betydninger og legger bare til åtte godkjente I
   assert.deepEqual(report.integrity.referenced_retired_emne_ids, []);
 });
 
-test('grunnfilene kan ikke forskuttere runtime eller redaksjonell ferdigstatus', () => {
+test('grunnfilene består med materialisert runtime og redaksjonell ferdigstatus', () => {
   const report = buildFoundationReport();
   assert.deepEqual(report.status_guard, {
-    navigation_status: 'planned',
-    assessment_status: 'pending',
-    editorial_status: 'not_started',
-    portal_subject_status: 'planned',
-    registry_subject_exists: false
+    navigation_status: 'materialized',
+    assessment_status: 'audited',
+    editorial_status: 'complete',
+    portal_subject_status: 'materialized',
+    registry_subject_exists: true
   });
   assert.equal(report.next_gate, 'theory_claim_source_evidence');
 });

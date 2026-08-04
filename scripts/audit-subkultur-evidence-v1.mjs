@@ -204,11 +204,11 @@ export function auditEvidence({ writeReport = false, checkReport = true } = {}) 
   for (const [name, values] of Object.entries(report.integrity)) assert(values.length === 0, `${name} må være tom, fikk ${values.join(', ')}`);
   assert(report.policy.theory_object_requirement_count === 11, 'Alle elleve teoriobjektkrav må beholdes');
   assert(Object.values(report.policy).every(Boolean), 'Kilde- eller etikkpolicy er svekket');
-  assert(report.status_guard.navigation_status === 'planned', 'Subkultur kan ikke materialiseres før kapitler og cases');
-  assert(report.status_guard.assessment_status === 'pending', 'Assessment må forbli pending før quiz-audit');
-  assert(['not_started', 'chapters_in_progress'].includes(report.status_guard.editorial_status), 'Editorial status må være not_started eller chapters_in_progress før sluttport');
-  assert(report.status_guard.runtime_manifest_exists === false, 'Runtime-manifest skal ikke finnes ennå');
-  assert(report.status_guard.registry_subject_exists === false, 'Fagverkregisteret skal ikke materialisere Subkultur ennå');
+  assert(report.status_guard.navigation_status === 'materialized', 'Subkultur skal være materialized etter sluttporten');
+  assert(report.status_guard.assessment_status === 'audited', 'Assessment skal være audited etter sluttporten');
+  assert(report.status_guard.editorial_status === 'complete', 'Editorial status skal være complete etter sluttporten');
+  assert(report.status_guard.runtime_manifest_exists === true, 'Runtime-manifestet mangler');
+  assert(report.status_guard.registry_subject_exists === true, 'Registryoppføringen mangler');
 
   if (writeReport) {
     fs.mkdirSync(path.dirname(abs(REPORT)), { recursive: true });

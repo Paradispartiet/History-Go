@@ -4,7 +4,12 @@ on:
   pull_request:
     paths:
       - 'data/fag/subkultur/**'
+      - 'data/fag/fag_manifest.json'
       - 'data/fagverk/subkultur/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
       - 'data/fag/profiles/subkultur/**'
       - 'data/places/subkultur/**'
       - 'data/places/subkultur-production/**'
@@ -15,6 +20,8 @@ on:
       - 'data/people/musikk/oslo/people_musikk_oslo.json'
       - 'data/people/politikk/oslo/people_politikk_oslo.json'
       - 'data/quiz/subkultur/**'
+      - 'data/knowledge/knowledge_manifest.json'
+      - 'data/knowledge/subjects/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
@@ -22,17 +29,23 @@ on:
       - 'scripts/audit-subkultur-chapters-*.mjs'
       - 'scripts/audit-subkultur-data-*.mjs'
       - 'scripts/audit-subkultur-case-evidence-*.mjs'
+      - 'scripts/audit-subkultur-quiz-knowledge-*.mjs'
+      - 'scripts/audit-subkultur-runtime-final-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
       - 'tests/subkultur-chapters-*.test.mjs'
       - 'tests/subkultur-data-*.test.mjs'
       - 'tests/subkultur-case-evidence-*.test.mjs'
+      - 'tests/subkultur-quiz-knowledge-*.test.mjs'
+      - 'tests/subkultur-runtime-final-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
       - 'tools/build-subkultur-chapters-*.mjs'
       - 'tools/build-subkultur-data-*.mjs'
       - 'tools/build-subkultur-case-evidence-*.mjs'
+      - 'tools/build-subkultur-quiz-knowledge-*.mjs'
+      - 'tools/materialize-subkultur-runtime-*.mjs'
       - 'tools/build-subkultur-place-reports-*.mjs'
       - 'scripts/audit-subkultur-place-production.mjs'
       - 'tests/subkultur-place-production.test.mjs'
@@ -43,7 +56,12 @@ on:
     branches: [main]
     paths:
       - 'data/fag/subkultur/**'
+      - 'data/fag/fag_manifest.json'
       - 'data/fagverk/subkultur/**'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
       - 'data/fag/profiles/subkultur/**'
       - 'data/places/subkultur/**'
       - 'data/places/subkultur-production/**'
@@ -54,6 +72,8 @@ on:
       - 'data/people/musikk/oslo/people_musikk_oslo.json'
       - 'data/people/politikk/oslo/people_politikk_oslo.json'
       - 'data/quiz/subkultur/**'
+      - 'data/knowledge/knowledge_manifest.json'
+      - 'data/knowledge/subjects/subkultur/**'
       - 'docs/SUBKULTUR_FAGVERK_V1_CONTRACT.md'
       - 'scripts/audit-subkultur-fagverk-*.mjs'
       - 'scripts/audit-subkultur-foundation-*.mjs'
@@ -61,17 +81,23 @@ on:
       - 'scripts/audit-subkultur-chapters-*.mjs'
       - 'scripts/audit-subkultur-data-*.mjs'
       - 'scripts/audit-subkultur-case-evidence-*.mjs'
+      - 'scripts/audit-subkultur-quiz-knowledge-*.mjs'
+      - 'scripts/audit-subkultur-runtime-final-*.mjs'
       - 'tests/subkultur-fagverk-*.test.mjs'
       - 'tests/subkultur-foundation-*.test.mjs'
       - 'tests/subkultur-evidence-*.test.mjs'
       - 'tests/subkultur-chapters-*.test.mjs'
       - 'tests/subkultur-data-*.test.mjs'
       - 'tests/subkultur-case-evidence-*.test.mjs'
+      - 'tests/subkultur-quiz-knowledge-*.test.mjs'
+      - 'tests/subkultur-runtime-final-*.test.mjs'
       - 'tools/build-subkultur-foundation-*.mjs'
       - 'tools/build-subkultur-evidence-*.mjs'
       - 'tools/build-subkultur-chapters-*.mjs'
       - 'tools/build-subkultur-data-*.mjs'
       - 'tools/build-subkultur-case-evidence-*.mjs'
+      - 'tools/build-subkultur-quiz-knowledge-*.mjs'
+      - 'tools/materialize-subkultur-runtime-*.mjs'
       - 'tools/build-subkultur-place-reports-*.mjs'
       - 'scripts/audit-subkultur-place-production.mjs'
       - 'tests/subkultur-place-production.test.mjs'
@@ -103,6 +129,10 @@ jobs:
           node --check scripts/audit-subkultur-data-v1.mjs
           node --check tools/build-subkultur-case-evidence-v1.mjs
           node --check scripts/audit-subkultur-case-evidence-v1.mjs
+          node --check tools/build-subkultur-quiz-knowledge-v1.mjs
+          node --check scripts/audit-subkultur-quiz-knowledge-v1.mjs
+          node --check tools/materialize-subkultur-runtime-v1.mjs
+          node --check scripts/audit-subkultur-runtime-final-v1.mjs
           node --check tools/build-subkultur-place-reports-batch-v1.mjs
           node --check scripts/audit-subkultur-place-production.mjs
       - name: Reproducible canonical foundation
@@ -131,7 +161,15 @@ jobs:
         run: node scripts/audit-subkultur-place-production.mjs --all
       - name: Case evidence audit
         run: node scripts/audit-subkultur-case-evidence-v1.mjs
-      - name: Contract, foundation, evidence, chapter, data and case tests
+      - name: Reproducible Quiz and Knowledge
+        run: node tools/build-subkultur-quiz-knowledge-v1.mjs --check
+      - name: Quiz and Knowledge audit
+        run: node scripts/audit-subkultur-quiz-knowledge-v1.mjs
+      - name: Reproducible final runtime
+        run: node tools/materialize-subkultur-runtime-v1.mjs --check
+      - name: Final runtime audit
+        run: node scripts/audit-subkultur-runtime-final-v1.mjs
+      - name: Contract, foundation, evidence, chapter, data, case, assessment and runtime tests
         run: node --test tests/subkultur-fagverk-baseline.test.mjs
           tests/subkultur-foundation-v1.test.mjs
           tests/subkultur-evidence-v1.test.mjs
@@ -139,3 +177,5 @@ jobs:
           tests/subkultur-data-v1.test.mjs
           tests/subkultur-case-evidence-v1.test.mjs
           tests/subkultur-place-production.test.mjs
+          tests/subkultur-quiz-knowledge-v1.test.mjs
+          tests/subkultur-runtime-final-v1.test.mjs
