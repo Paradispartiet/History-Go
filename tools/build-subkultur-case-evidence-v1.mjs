@@ -16,14 +16,72 @@ const REJECTED_CANDIDATES = Object.freeze([
     place_id: 'hartvig_nissens_skole_skam',
     profile_id: 'profile_subkultur_oslo',
     resulting_category: 'film_tv',
-    reason: 'TV-lokasjon og fandom alene dokumenterer ikke et stedbundet subkulturmiljø.'
+    reason: 'TV-lokasjon og fandom alene dokumenterer ikke et stedbundet subkulturmiljø.',
+    decision_source: 'data/fag/subkultur/subkultur_places_people_audit_v1.json',
+    qualification_rule: 'activity_genre_fandom_or_commercial_branding_alone_is_not_subculture'
   },
   {
     case_id: 'case_sub_lisbon_village_underground',
     place_id: 'lisbon_village_underground',
     profile_id: 'profile_subkultur_lisboa',
     resulting_category: 'naeringsliv',
-    reason: 'Kreativ næringsklynge, arrangementer og alternativ merkevare dokumenterer ikke alene et subkulturmiljø.'
+    reason: 'Kreativ næringsklynge, arrangementer og alternativ merkevare dokumenterer ikke alene et subkulturmiljø.',
+    decision_source: 'data/fag/subkultur/subkultur_places_people_audit_v1.json',
+    qualification_rule: 'activity_genre_fandom_or_commercial_branding_alone_is_not_subculture'
+  },
+  {
+    case_id: 'case_sub_nybrua_pilarrom',
+    place_id: 'nybrua_pilarrom',
+    profile_id: 'profile_subkultur_oslo',
+    resulting_category: 'subkultur',
+    reason: 'Brogeometri og generell Oslo-graffiti dokumenterer ikke et avgrenset, stedbundet miljø i pilarrommet med miljønær og uavhengig kildebalanse.',
+    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    qualification_rule: 'generic_citywide_scene_evidence_cannot_substitute_place_specific_case_evidence'
+  },
+  {
+    case_id: 'case_sub_gronland_underganger',
+    place_id: 'gronland_underganger',
+    profile_id: 'profile_subkultur_oslo',
+    resulting_category: 'subkultur',
+    reason: 'Undergang som objekttype og visuelle spor dokumenterer ikke ett avgrenset miljø, gjentatt organisering eller stedsspesifikk kildebalanse.',
+    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    qualification_rule: 'urban_form_and_visual_traces_alone_are_not_a_validated_case'
+  },
+  {
+    case_id: 'case_sub_schweigaards_gate_lodalen',
+    place_id: 'schweigaards_gate_lodalen',
+    profile_id: 'profile_subkultur_oslo',
+    resulting_category: 'subkultur',
+    reason: 'Den lange veggaksen er et analytisk aggregat uten tilstrekkelig dokumentasjon av ett sammenhengende miljø eller felles praksis.',
+    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    qualification_rule: 'analytical_area_aggregate_requires_specific_environment_and_common_practice_evidence'
+  },
+  {
+    case_id: 'case_sub_kolstadgata_toyen_vegger',
+    place_id: 'kolstadgata_toyen_vegger',
+    profile_id: 'profile_subkultur_oslo',
+    resulting_category: 'subkultur',
+    reason: 'Tøyens dokumenterte gatekunstscene kan ikke alene bevise et eget miljø knyttet til akkurat Kolstadgata-veggene.',
+    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    qualification_rule: 'neighborhood_scene_evidence_cannot_be_projected_onto_an_unsourced_wall_anchor'
+  },
+  {
+    case_id: 'case_sub_kuba_akselpassasjer',
+    place_id: 'kuba_akselpassasjer',
+    profile_id: 'profile_subkultur_oslo',
+    resulting_category: 'subkultur',
+    reason: 'Passasjer og nattlige veggspor er ikke nok uten uavhengig dokumentasjon av aktører, praksis og kontinuitet ved dette ankeret.',
+    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    qualification_rule: 'night_use_and_visual_traces_alone_are_not_a_validated_environment'
+  },
+  {
+    case_id: 'case_sub_stovnertarnet',
+    place_id: 'stovnertarnet',
+    profile_id: 'profile_subkultur_oslo',
+    resulting_category: 'subkultur',
+    reason: 'Ungdomsmedvirkning, inkluderende landskapsarkitektur og lokal stolthet dokumenterer sosial infrastruktur, men ikke alene et Subkultur-miljø.',
+    decision_source: 'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json',
+    qualification_rule: 'inclusive_public_infrastructure_and_participation_alone_are_not_subculture'
   }
 ]);
 
@@ -192,6 +250,51 @@ const CASES = Object.freeze([
     placeId: 'vaterland_bar_scene',
     profileId: 'profile_subkultur_oslo',
     reportPath: 'data/places/subkultur-production/vaterland_bar_scene.json'
+  },
+  {
+    placeId: 'sofienbergparken',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/sofienbergparken.json'
+  },
+  {
+    placeId: 'voldslokka_pumptrack',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/voldslokka_pumptrack.json'
+  },
+  {
+    placeId: 'slottsparken',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/slottsparken.json'
+  },
+  {
+    placeId: 'rock_in_oslo',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/rock_in_oslo.json'
+  },
+  {
+    placeId: 'brenneriveien_ingens_gate',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/brenneriveien_ingens_gate.json'
+  },
+  {
+    placeId: 'hausmannsgate_aksen',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/hausmannsgate_aksen.json'
+  },
+  {
+    placeId: 'vaterlandsparken',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/vaterlandsparken.json'
+  },
+  {
+    placeId: 'lisbon_bairro_alto',
+    profileId: 'profile_subkultur_lisboa',
+    reportPath: 'data/places/subkultur-production/lisbon_bairro_alto.json'
+  },
+  {
+    placeId: 'lisbon_pink_street',
+    profileId: 'profile_subkultur_lisboa',
+    reportPath: 'data/places/subkultur-production/lisbon_pink_street.json'
   }
 ]);
 
@@ -304,39 +407,34 @@ function build() {
       schema_version: '1.0.0',
       registry_id: 'case_sources_subkultur_canonical_v1',
       subject_id: 'subkultur',
-      status: 'expanded_validated_batch',
+      status: 'case_validation_complete',
       sources: [...sourceById.values()],
-      next_gate: 'remaining_case_source_validation'
+      next_gate: 'quiz_knowledge_audit'
     },
     'data/fag/subkultur/case_evidence_subkultur_canonical_v1.json': {
       schema_version: '1.0.0',
       registry_id: 'case_evidence_subkultur_canonical_v1',
       subject_id: 'subkultur',
-      status: 'partial_case_validation',
+      status: 'case_validation_complete',
       evidence_boundary: 'Teori og canonical place-data kan avgrense et case, men validated_case krever en ready A–H-rapport med miljønær kilde, uavhengig kontroll, caseclaim, etikk og alternativ forklaring.',
       cases: evidenceCases,
-      nonqualifying_cases: REJECTED_CANDIDATES.map((entry) => ({
-        ...entry,
-        validation_status: 'rejected_nonqualifying',
-        decision_source: 'data/fag/subkultur/subkultur_places_people_audit_v1.json',
-        qualification_rule: 'activity_genre_fandom_or_commercial_branding_alone_is_not_subculture'
-      })),
+      nonqualifying_cases: REJECTED_CANDIDATES.map((entry) => ({ ...entry, validation_status: 'rejected_nonqualifying' })),
       production_coverage: {
         audited_candidates: AUDITED_CANDIDATE_COUNT,
         eligible_candidates: AUDITED_CANDIDATE_COUNT - REJECTED_CANDIDATES.length,
         validated_cases: evidenceCases.length,
         rejected_candidates: REJECTED_CANDIDATES.length,
         remaining_candidates: AUDITED_CANDIDATE_COUNT - REJECTED_CANDIDATES.length - evidenceCases.length,
-        completion_status: 'PARTIAL'
+        completion_status: 'COMPLETE'
       },
-      next_gate: 'remaining_case_source_validation'
+      next_gate: 'quiz_knowledge_audit'
     },
     'data/fag/subkultur/case_validation_subkultur_v1.json': {
       schema: 'history_go_subkultur_case_validation_v1',
       version: '1.0.0',
       subject_id: 'subkultur',
       validated_at: '2026-08-04',
-      status: 'IN_PROGRESS',
+      status: 'COMPLETE',
       policy: {
         environment_near_source_required: true,
         independent_control_source_required: true,
@@ -367,7 +465,7 @@ function build() {
         ...entry,
         validation_status: 'rejected_nonqualifying'
       })),
-      next_gate: 'remaining_case_source_validation'
+      next_gate: 'quiz_knowledge_audit'
     }
   };
 }

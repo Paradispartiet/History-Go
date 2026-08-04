@@ -3,21 +3,21 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { auditSubkulturCaseEvidence, buildSubkulturCaseEvidenceReport } from '../scripts/audit-subkultur-case-evidence-v1.mjs';
 
-test('fjerde casebatch materialiserer trettitre validerte og to avviste cases uten å lukke de øvrige', () => {
+test('caseprofilen lukker alle femti kandidater med førtito validerte og åtte eksplisitte avvisninger', () => {
   const report = auditSubkulturCaseEvidence();
   assert.equal(report.totals.profile_candidates, 50);
-  assert.equal(report.totals.eligible_cases, 48);
-  assert.equal(report.totals.validated_cases, 33);
-  assert.equal(report.totals.rejected_cases, 2);
-  assert.equal(report.totals.remaining_candidates, 15);
-  assert.equal(report.status, 'PARTIAL_CASE_VALIDATION_READY');
+  assert.equal(report.totals.eligible_cases, 42);
+  assert.equal(report.totals.validated_cases, 42);
+  assert.equal(report.totals.rejected_cases, 8);
+  assert.equal(report.totals.remaining_candidates, 0);
+  assert.equal(report.status, 'CASE_VALIDATION_COMPLETE');
 });
 
 test('hver validert case har miljønær og uavhengig inspectable kilde', () => {
   const report = buildSubkulturCaseEvidenceReport();
-  assert.equal(report.totals.case_sources, 66);
-  assert.equal(report.totals.environment_near_sources, 33);
-  assert.equal(report.totals.independent_control_sources, 33);
+  assert.equal(report.totals.case_sources, 84);
+  assert.equal(report.totals.environment_near_sources, 42);
+  assert.equal(report.totals.independent_control_sources, 42);
   assert.ok(report.cases.every((entry) => entry.sources >= 2));
   assert.ok(report.cases.every((entry) => entry.environment_near_sources >= 1));
   assert.ok(report.cases.every((entry) => entry.independent_control_sources >= 1));
@@ -38,13 +38,13 @@ test('alle fem casekrav og etikkporten er eksplisitt bestått', () => {
   assert.deepEqual(report.integrity.failures, []);
 });
 
-test('casekildeporten forskutterer ikke runtime, quiz eller komplett profil', () => {
+test('komplett casekildeport sender bare videre til Quiz/Knowledge og forskutterer ikke runtime', () => {
   const report = buildSubkulturCaseEvidenceReport();
   assert.deepEqual(report.status_guard, {
     navigation_status: 'planned',
     assessment_status: 'pending',
     editorial_status: 'not_started',
-    next_gate: 'remaining_case_source_validation'
+    next_gate: 'quiz_knowledge_audit'
   });
-  assert.equal(report.next_gate, 'remaining_case_source_validation');
+  assert.equal(report.next_gate, 'quiz_knowledge_audit');
 });

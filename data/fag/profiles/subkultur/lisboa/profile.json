@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "profile_id": "profile_subkultur_lisboa",
   "subject_id": "subkultur",
-  "status": "profile_partial_case_validation",
+  "status": "profile_case_validation_complete",
   "geography": {
     "geography_id": "geo_pt_lisboa",
     "label": "Lisboa"
@@ -40,7 +40,13 @@
     {
       "case_id": "case_sub_lisbon_bairro_alto",
       "place_id": "lisbon_bairro_alto",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_lisbon_bairro_alto",
+      "report_path": "data/places/subkultur-production/lisbon_bairro_alto.json",
+      "source_ids": [
+        "source_lisbon_bairro_alto_milieu",
+        "source_lisbon_bairro_alto_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -48,13 +54,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_lisbon_crew_hassan",
@@ -164,7 +166,13 @@
     {
       "case_id": "case_sub_lisbon_pink_street",
       "place_id": "lisbon_pink_street",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_lisbon_pink_street",
+      "report_path": "data/places/subkultur-production/lisbon_pink_street.json",
+      "source_ids": [
+        "source_lisbon_pink_street_milieu",
+        "source_lisbon_pink_street_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -172,13 +180,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_lisbon_village_underground",
@@ -194,9 +198,9 @@
   "production_coverage": {
     "audited_candidates": 9,
     "eligible_candidates": 8,
-    "validated_cases": 6,
+    "validated_cases": 8,
     "rejected_candidates": 1,
-    "remaining_candidates": 2,
-    "completion_status": "PARTIAL"
+    "remaining_candidates": 0,
+    "completion_status": "COMPLETE"
   }
 }
