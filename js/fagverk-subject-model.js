@@ -257,13 +257,22 @@
   }
 
   async function loadLegacySource(manifestEntry) {
-    const [pensum, emners, fagkart, methods] = await Promise.all([
+    const [pensum, emners, fagkart, methods, curriculum, concepts, periodGuides] = await Promise.all([
       fetchJson(CORE.resolveManifestPointer(manifestEntry.pensum)),
       fetchJson(CORE.resolveManifestPointer(manifestEntry.emner)),
       fetchJson(CORE.resolveManifestPointer(manifestEntry.fagkart)),
-      fetchJson(CORE.resolveManifestPointer(manifestEntry.methods))
+      fetchJson(CORE.resolveManifestPointer(manifestEntry.methods)),
+      CORE.text(manifestEntry.curriculumArchitecture)
+        ? fetchJson(CORE.resolveManifestPointer(manifestEntry.curriculumArchitecture))
+        : Promise.resolve(null),
+      CORE.text(manifestEntry.concepts)
+        ? fetchJson(CORE.resolveManifestPointer(manifestEntry.concepts))
+        : Promise.resolve([]),
+      CORE.text(manifestEntry.periodGuides)
+        ? fetchJson(CORE.resolveManifestPointer(manifestEntry.periodGuides))
+        : Promise.resolve(null)
     ]);
-    return { pensum, emners, fagkart, methods };
+    return { pensum, emners, fagkart, methods, curriculum, concepts, periodGuides };
   }
 
   function loadControls() {
@@ -328,7 +337,7 @@
           statusEntry: composed.statusEntry,
           registry: composed.registry,
           badge,
-          source: { pensum: composed.pensum, emners: composed.emners, fagkart: composed.fagkart, methods: composed.methods }
+          source: { pensum: composed.pensum, emners: composed.emners, fagkart: composed.fagkart, methods: composed.methods, curriculum: composed.curriculum, concepts: composed.concepts, periodGuides: composed.periodGuides }
         });
       })().catch((error) => {
         subjectPromises.delete(cacheKey);

@@ -97,6 +97,22 @@
     const host = document.getElementById('fagverkDomainNav');
     if (!host) return;
     const progressById = new Map(progress.domainProgress.map((row) => [row.domainId, row]));
+    const curriculum = model.source.curriculum;
+    if (model.subject.id === 'historie' && curriculum?.status === 'active_curriculum_navigation') {
+      const overviewUrl = `${model.subject.routes.subject}${placeId ? `&place=${encodeURIComponent(placeId)}` : ''}`;
+      host.innerHTML = `<p class="fagverk-kicker">Studieløp</p>
+        <a href="${escapeHtml(overviewUrl)}#historie-progresjon"><strong>Hva lærer jeg først?</strong><span>Fra grunnlag til fordypning</span></a>
+        <a href="${escapeHtml(overviewUrl)}#historie-kronologi"><strong>Kronologisk grunnstamme</strong><span>${curriculum.chronological_spine.length} perioder</span></a>
+        <a href="${escapeHtml(overviewUrl)}#historie-tema"><strong>Tematiske fagretninger</strong><span>${curriculum.thematic_fields.length} gjennomgående spor</span></a>
+        <a href="${escapeHtml(overviewUrl)}#historie-metode"><strong>Metode og historiografi</strong><span>${curriculum.method_foundation.length} grunnmoduler</span></a>
+        <a href="${escapeHtml(overviewUrl)}#historie-geografi"><strong>Geografiske læringsstier</strong><span>${curriculum.geographic_paths.length} skalaer</span></a>
+        <details class="fagverk-domain-registry"><summary>Canonicalt fagregister (${model.domains.length})</summary>${model.domains.map((domain) => {
+          const row = progressById.get(domain.id) || {};
+          const href = MODEL.domainUrl(model.subject.id, domain.id, { place: placeId });
+          return `<a class="${domain.id === selectedDomainId ? 'is-active' : ''}" href="${escapeHtml(href)}"><strong>${escapeHtml(domain.label)}</strong><span>${domain.emneIds.length} emner · ${Number(row.percent || 0)}% dekket</span></a>`;
+        }).join('')}</details>`;
+      return;
+    }
     host.innerHTML = `<p class="fagverk-kicker">Fagområder</p>` + model.domains.map((domain) => {
       const row = progressById.get(domain.id) || {};
       const href = MODEL.domainUrl(model.subject.id, domain.id, { place: placeId });
@@ -153,7 +169,150 @@
     </a>`;
   }
 
+  function historyConceptCard(concept, model, placeId, { open = false } = {}) {
+    const owner = concept.emneIds.map((id) => model.emnersById.get(id)).find(Boolean);
+    const domainLabels = concept.domainIds.map((id) => model.domainsById.get(id)?.label).filter(Boolean);
+    const relationIds = [...concept.broaderIds, ...concept.narrowerIds, ...concept.relatedIds].slice(0, 8);
+    const relations = relationIds.map((id) => model.conceptsById.get(id)).filter(Boolean);
+    return `<details class="fagverk-history-concept" data-concept-id="${escapeHtml(concept.id)}"${open ? ' open' : ''}>
+      <summary><strong>${escapeHtml(concept.label)}</strong>${concept.type ? `<span>${escapeHtml(concept.type.replaceAll('_', ' '))}</span>` : ''}</summary>
+      <p>${escapeHtml(concept.definition)}</p>
+      ${domainLabels.length ? `<small><strong>Fagfelt:</strong> ${escapeHtml(domainLabels.join(' · '))}</small>` : ''}
+      ${concept.commonMisuse.length ? `<div class="fagverk-concept-warning"><strong>Vanlig feilbruk</strong><p>${escapeHtml(concept.commonMisuse.join(' '))}</p></div>` : ''}
+      ${concept.indicators.length ? `<details><summary>Hva du ser etter i kildene</summary><ul>${concept.indicators.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></details>` : ''}
+      ${concept.sourceRequirements.length ? `<details><summary>Kildekrav</summary><ul>${concept.sourceRequirements.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></details>` : ''}
+      ${relations.length ? `<p class="fagverk-concept-relations"><strong>Se også:</strong> ${relations.map((item) => escapeHtml(item.label)).join(' · ')}</p>` : ''}
+      ${owner ? `<a class="fagverk-concept-owner" href="${escapeHtml(MODEL.emneUrl(model.subject.id, owner.domainId, owner.id, { place: placeId, concept: concept.id }))}">Les begrepet i emnet ${escapeHtml(owner.title)} →</a>` : ''}
+    </details>`;
+  }
+
+  function renderHistoryCurriculumOverview(model, progress, placeId) {
+    const curriculum = model.source.curriculum;
+    const periodGuides = model.source.periodGuides;
+    const periodGuideById = new Map(list(periodGuides?.guides).map((guide) => [guide.period_id, guide]));
+    const host = document.getElementById('fagverkSubjectOverview');
+    const statusLabel = { covered: 'Dekket', partial: 'Delvis dekket', missing: 'Mangler fagfelt' };
+    const emneLink = (emneId) => {
+      const emne = model.emnersById.get(emneId);
+      if (!emne) return '';
+      return `<a href="${escapeHtml(MODEL.emneUrl(model.subject.id, emne.domainId, emne.id, { place: placeId }))}">${escapeHtml(emne.title)}</a>`;
+    };
+    const domainLink = (domainId) => {
+      const domain = model.domainsById.get(domainId);
+      if (!domain) return '';
+      return `<a href="${escapeHtml(MODEL.domainUrl(model.subject.id, domain.id, { place: placeId }))}">${escapeHtml(domain.label)}</a>`;
+    };
+    const profileStatus = (path) => path.active_profile_ids?.length ? `${path.active_profile_ids.length} aktive profil${path.active_profile_ids.length === 1 ? '' : 'er'}` : 'Universell læringssti';
+    const learningText = (item, options = {}) => {
+      const outcomes = list(item.learning_outcomes);
+      const questions = list(item.key_questions);
+      const outcomeHeading = options.outcomeHeading || 'Etter denne delen skal du kunne';
+      return `${item.overview ? `<p class="fagverk-curriculum-overview">${escapeHtml(item.overview)}</p>` : ''}
+        ${outcomes.length ? `<div class="fagverk-curriculum-outcomes"><h4>${escapeHtml(outcomeHeading)}</h4><ul>${outcomes.map((outcome) => `<li>${escapeHtml(outcome)}</li>`).join('')}</ul></div>` : ''}
+        ${questions.length ? `<details class="fagverk-curriculum-questions"><summary>Nøkkelspørsmål å arbeide med</summary><ul>${questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul></details>` : ''}`;
+    };
+    const renderEntryEmners = (period) => period.entry_emne_ids.length ? `<details class="fagverk-curriculum-entries"><summary>${period.entry_emne_ids.length} kuraterte inngangsemner</summary><div class="fagverk-canonical-underbadges">${period.entry_emne_ids.map(emneLink).join('')}</div></details>` : '';
+    const renderPeriodGuide = (period) => {
+      const guide = periodGuideById.get(period.id);
+      if (!guide) return '';
+      return `<div class="fagverk-period-guide">
+        <p>${escapeHtml(guide.introduction)}</p>
+        <details><summary>Les den sammenhengende periodeoversikten</summary>
+          ${guide.sections.map((section) => `<section><h5>${escapeHtml(section.title)}</h5>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}</section>`).join('')}
+          <div class="fagverk-period-guide-meta"><strong>Sentrale begreper</strong><p>${escapeHtml(guide.core_concepts.join(' · '))}</p><strong>Forbindelser til andre spor</strong><p>${escapeHtml(guide.connections.join(' · '))}</p></div>
+        </details>
+      </div>`;
+    };
+
+    hideAllViews();
+    renderHero(
+      'Historiefaget',
+      model.subject.title,
+      `${curriculum.chronological_spine.length} perioder · ${curriculum.thematic_fields.length} fagretninger · ${curriculum.method_foundation.length} metodemoduler`,
+      'Begynn med tid og kilder, følg den kronologiske hovedlinjen, og bruk deretter tematiske og geografiske spor til fordypning.'
+    );
+    host.innerHTML = `
+      <section class="fagverk-curriculum-introduction" aria-labelledby="historie-intro-title">
+        <p class="fagverk-kicker">Slik er faget bygget</p>
+        <h3 id="historie-intro-title">${escapeHtml(curriculum.editorial_introduction.heading)}</h3>
+        ${curriculum.editorial_introduction.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}
+        <p class="fagverk-curriculum-reading-guide"><strong>Leseguide:</strong> ${escapeHtml(curriculum.editorial_introduction.reading_guide)}</p>
+      </section>
+      <div class="fagverk-general-summary" aria-label="Historiefagets oppbygning">
+        <div><strong>${curriculum.chronological_spine.length}</strong><span>perioder</span></div>
+        <div><strong>${curriculum.thematic_fields.length}</strong><span>tematiske spor</span></div>
+        <div><strong>${curriculum.method_foundation.length}</strong><span>metodemoduler</span></div>
+        <div><strong>${curriculum.geographic_paths.length}</strong><span>geografiske stier</span></div>
+      </div>
+      <section id="historie-progresjon">
+        <h3>Slik lærer du faget</h3>
+        <p class="fagverk-section-intro">Studieløpet skiller grunnkurs, metode, tematisk fordypning og geografisk anvendelse. Det canonicale 23 × 10-registeret bevares som innholdsbase, men styrer ikke lenger hovedoversikten.</p>
+        <div class="fagverk-curriculum-list">${curriculum.progression.map((stage) => `<article class="fagverk-curriculum-article"><span class="fagverk-kicker">Trinn ${stage.order} · ${escapeHtml(stage.level)}</span><h4>${escapeHtml(stage.label)}</h4><p class="fagverk-curriculum-lead">${escapeHtml(stage.description)}</p>${learningText(stage)}</article>`).join('')}</div>
+      </section>
+      <section id="historie-kronologi">
+        <h3>Kronologisk grunnstamme</h3>
+        <p class="fagverk-section-intro">Periodene gir et sammenhengende tidsforløp. Delvise og manglende felt vises åpent; de fylles ikke med løse tematiske treff.</p>
+        <div class="fagverk-curriculum-list fagverk-history-timeline">${curriculum.chronological_spine.map((period) => `<article class="fagverk-curriculum-article is-${escapeHtml(period.coverage_status)}"><span class="fagverk-kicker">${escapeHtml(period.date_label)} · ${escapeHtml(statusLabel[period.coverage_status])} · Periodeguide komplett</span><h4>${escapeHtml(period.label)}</h4><p class="fagverk-curriculum-lead">${escapeHtml(period.description)}</p>${learningText(period)}${renderPeriodGuide(period)}${renderEntryEmners(period)}${period.gap_action ? `<p class="fagverk-curriculum-gap"><strong>Gjenstår i quiz- og evidenslaget:</strong> ${escapeHtml(period.gap_action)}</p>` : ''}</article>`).join('')}</div>
+      </section>
+      <section id="historie-tema">
+        <h3>Tematiske fagretninger</h3>
+        <p class="fagverk-section-intro">Disse perspektivene kan følges gjennom flere perioder. De er ikke konkurrerende hovedperioder.</p>
+        <div class="fagverk-curriculum-grid">${curriculum.thematic_fields.map((field) => `<article class="fagverk-curriculum-article"><span class="fagverk-kicker">Fagretning ${field.order}</span><h4>${escapeHtml(field.label)}</h4><p class="fagverk-curriculum-lead">${escapeHtml(field.description)}</p>${learningText(field, { outcomeHeading: 'Dette perspektivet lærer deg å' })}<details class="fagverk-curriculum-entries"><summary>Canonicale fagområder</summary><div class="fagverk-canonical-underbadges">${field.domain_ids.map(domainLink).join('')}</div></details></article>`).join('')}</div>
+      </section>
+      <section id="historie-metode">
+        <h3>Metode og historiografi</h3>
+        <p class="fagverk-section-intro">Metode læres som en egen grunnkompetanse og brukes deretter i alle perioder og fagretninger.</p>
+        <div class="fagverk-curriculum-list">${curriculum.method_foundation.map((module) => `<article class="fagverk-curriculum-article"><span class="fagverk-kicker">Metodemodul ${module.order}</span><h4>${escapeHtml(module.label)}</h4><p class="fagverk-curriculum-lead">${escapeHtml(module.description)}</p>${learningText(module)}<details class="fagverk-curriculum-entries"><summary>${module.core_method_ids.length} kjernemetoder</summary><ul>${module.core_method_ids.map((methodId) => model.methodsById.get(methodId)).filter(Boolean).map((method) => `<li><strong>${escapeHtml(method.title)}</strong>${method.description ? ` – ${escapeHtml(method.description)}` : ''}</li>`).join('')}</ul></details></article>`).join('')}</div>
+      </section>
+      <section id="historie-geografi">
+        <h3>Geografiske læringsstier</h3>
+        <p class="fagverk-section-intro">Geografi er en skala og læringssti, ikke en konkurrent til tidsperioder eller metodefelt.</p>
+        <div class="fagverk-curriculum-grid">${curriculum.geographic_paths.map((path) => `<article class="fagverk-curriculum-article"><span class="fagverk-kicker">${escapeHtml(profileStatus(path))}</span><h4>${escapeHtml(path.label)}</h4><p class="fagverk-curriculum-lead">${escapeHtml(path.description)}</p>${learningText(path, { outcomeHeading: 'I denne skalaen skal du kunne' })}</article>`).join('')}</div>
+      </section>
+      <section id="historie-begreper" class="fagverk-concept-explorer">
+        <h3>Historisk begrepsverk</h3>
+        <p class="fagverk-section-intro">Alle ${model.concepts.length} canonicale begreper er søkbare. Hver forklaring viser faglig avgrensning, vanlig feilbruk, kildekrav og forbindelser til emner og andre begreper.</p>
+        <div class="fagverk-concept-controls">
+          <label><span>Søk i begreper og definisjoner</span><input id="historieConceptSearch" type="search" autocomplete="off" placeholder="Søk etter for eksempel periodisering, imperium eller kildekritikk"></label>
+          <label><span>Avgrens til fagområde</span><select id="historieConceptDomain"><option value="">Alle fagområder</option>${model.domains.map((domain) => `<option value="${escapeHtml(domain.id)}">${escapeHtml(domain.label)}</option>`).join('')}</select></label>
+        </div>
+        <p id="historieConceptCount" class="fagverk-concept-count"></p>
+        <div id="historieConceptResults" class="fagverk-concept-results"></div>
+      </section>
+      <section>
+        <details class="fagverk-method-registry"><summary>Åpne komplett canonicalt fagregister</summary><p class="fagverk-section-intro">Registeret inneholder alle ${model.summary.domainCount} tekniske fagområder, ${model.summary.emneCount} emner og ${model.summary.methodCount} metoder. Det bevares for koblinger, quizer og evidens, men er ikke pensumets hovedstruktur.</p><div class="fagverk-general-domain-grid">${model.domains.map((domain) => domainCard(model, domain, new Map(progress.domainProgress.map((row) => [row.domainId, row])), placeId)).join('')}</div></details>
+      </section>
+    `;
+    const conceptSearch = document.getElementById('historieConceptSearch');
+    const conceptDomain = document.getElementById('historieConceptDomain');
+    const conceptCount = document.getElementById('historieConceptCount');
+    const conceptResults = document.getElementById('historieConceptResults');
+    const updateConceptResults = () => {
+      const query = text(conceptSearch?.value).toLocaleLowerCase('nb-NO');
+      const domainId = text(conceptDomain?.value);
+      const matches = model.concepts.filter((concept) => {
+        if (domainId && !concept.domainIds.includes(domainId)) return false;
+        if (!query) return true;
+        const haystack = [concept.label, concept.definition, concept.type, ...concept.commonMisuse].join(' ').toLocaleLowerCase('nb-NO');
+        return haystack.includes(query);
+      });
+      const visible = matches.slice(0, query || domainId ? 120 : 36);
+      conceptCount.textContent = `${matches.length} begrep${matches.length === 1 ? '' : 'er'} funnet${visible.length < matches.length ? ` · viser de første ${visible.length}` : ''}`;
+      conceptResults.innerHTML = visible.length
+        ? visible.map((concept) => historyConceptCard(concept, model, placeId)).join('')
+        : '<p>Ingen begreper samsvarer med søket.</p>';
+    };
+    conceptSearch?.addEventListener('input', updateConceptResults);
+    conceptDomain?.addEventListener('change', updateConceptResults);
+    updateConceptResults();
+    host.hidden = false;
+  }
+
   function renderOverview(model, progress, placeId) {
+    if (model.subject.id === 'historie' && model.source.curriculum?.status === 'active_curriculum_navigation') {
+      renderHistoryCurriculumOverview(model, progress, placeId);
+      return;
+    }
     hideAllViews();
     renderHero('Fagoversikt', model.subject.title, `${model.summary.domainCount} fagområder · ${model.summary.emneCount} emner · ${model.summary.methodCount} metoder`, model.subject.description);
     const host = document.getElementById('fagverkSubjectOverview');
@@ -211,6 +370,7 @@
     const relevantPlaces = model.places.filter((place) => place.emneIds.includes(emne.id));
     const relevantChapters = model.chapters.filter((chapter) => chapter.emneIds.includes(emne.id) || chapter.primaryDomainId === emne.domainId);
     const selected = text(selectedConcept).toLocaleLowerCase('nb-NO');
+    const canonicalConcepts = model.concepts.filter((concept) => concept.emneIds.includes(emne.id));
     host.innerHTML = `
       ${emne.whyItMatters ? `<p><strong>Hvorfor det betyr noe:</strong> ${escapeHtml(emne.whyItMatters)}</p>` : ''}
       <div class="fagverk-canonical-emne-meta">
@@ -219,10 +379,11 @@
       </div>
       <div class="fagverk-canonical-emne-grid">
         <div class="fagverk-canonical-box"><h4>Kjernespørsmål</h4><ul>${emne.keyQuestions.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
-        <div class="fagverk-canonical-box"><h4>Begreper</h4><div class="fagverk-canonical-underbadges">${emne.concepts.map((item) => `<span${selected && item.toLocaleLowerCase('nb-NO') === selected ? ' class="is-highlighted"' : ''}>${escapeHtml(item)}</span>`).join('')}</div></div>
+        <div class="fagverk-canonical-box"><h4>Begreper</h4><div class="fagverk-canonical-underbadges">${canonicalConcepts.length ? canonicalConcepts.map((concept) => `<a href="#concept-${escapeHtml(concept.id)}"${selected && [concept.id, concept.label].some((value) => value.toLocaleLowerCase('nb-NO') === selected) ? ' class="is-highlighted"' : ''}>${escapeHtml(concept.label)}</a>`).join('') : emne.concepts.map((item) => `<span${selected && item.toLocaleLowerCase('nb-NO') === selected ? ' class="is-highlighted"' : ''}>${escapeHtml(item)}</span>`).join('')}</div></div>
         <div class="fagverk-canonical-box"><h4>Metoder</h4><ul>${methods.map((method) => `<li><details><summary><strong>${escapeHtml(method.title)}</strong></summary>${method.description ? `<p>${escapeHtml(method.description)}</p>` : ''}${method.procedure.length ? `<ol>${method.procedure.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>` : ''}${method.limitations.length ? `<p><strong>Begrensninger:</strong> ${escapeHtml(method.limitations.join(' · '))}</p>` : ''}</details></li>`).join('')}${emne.methodLabels.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
         <div class="fagverk-canonical-box"><h4>Analytiske skiller</h4><ul>${[...emne.conflicts, ...emne.analysisAxes].map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
       </div>
+      ${canonicalConcepts.length ? `<section class="fagverk-emne-concepts"><h4>Begrepene forklart</h4><div class="fagverk-concept-results">${canonicalConcepts.map((concept) => `<div id="concept-${escapeHtml(concept.id)}">${historyConceptCard(concept, model, placeId, { open: selected && [concept.id, concept.label].some((value) => value.toLocaleLowerCase('nb-NO') === selected) })}</div>`).join('')}</div></section>` : ''}
       ${relevantChapters.length ? `<section><h4>Relevante lærekapitler</h4><div class="fagverk-general-domain-grid">${relevantChapters.map((chapter) => `<a class="fagverk-general-domain-card" href="${escapeHtml(MODEL.chapterUrl(model.subject.id, chapter.id, { domain: emne.domainId, emne: emne.id, place: placeId }))}"><span class="fagverk-kicker">Redigert lærestoff</span><strong>${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.subtitle)}</span><small>Les kapittelet →</small></a>`).join('')}</div></section>` : ''}
       ${relevantPlaces.length ? `<section><h4>Relevante steder</h4><div class="fagverk-case-grid">${relevantPlaces.map((place) => `<a class="fagverk-case" href="${escapeHtml(place.route)}"><strong>${escapeHtml(place.title)}</strong><span>${escapeHtml(place.intro)}</span><small>Åpne stedets fagverkside →</small></a>`).join('')}</div></section>` : ''}
     `;
