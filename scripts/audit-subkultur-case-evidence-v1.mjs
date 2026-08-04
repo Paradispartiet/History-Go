@@ -13,6 +13,7 @@ const PATHS = Object.freeze({
   sources: 'data/fag/subkultur/case_sources_subkultur_canonical_v1.json',
   requirements: 'data/fag/subkultur/case_requirements_subkultur_canonical_v1.json',
   validation: 'data/fag/subkultur/case_validation_subkultur_v1.json',
+  rejectionAdjudications: 'data/fag/subkultur/case_rejection_adjudications_subkultur_v1.json',
   profiles: 'data/fag/profiles/subkultur/manifest.json',
   status: 'data/fagverk/subject_status.json'
 });
@@ -35,10 +36,12 @@ export function buildSubkulturCaseEvidenceReport() {
   const sources = readJson(PATHS.sources);
   const requirements = readJson(PATHS.requirements);
   const validation = readJson(PATHS.validation);
+  const rejectionAdjudications = readJson(PATHS.rejectionAdjudications);
   const profileManifest = readJson(PATHS.profiles);
   const requirementIds = new Set(list(requirements.requirements).map((entry) => entry.requirement_id));
   const sourceById = new Map(list(sources.sources).map((entry) => [entry.source_id, entry]));
   const profileById = new Map(list(profileManifest.profiles).map((row) => [row.id, readJson(row.file)]));
+  const adjudicationByCase = new Map(list(rejectionAdjudications.adjudications).map((entry) => [entry.case_id, entry]));
   const failures = [];
   const cases = [];
 
@@ -96,6 +99,15 @@ export function buildSubkulturCaseEvidenceReport() {
     if (!profileCase || profileCase.status !== 'rejected_nonqualifying') failures.push(`${rejected.case_id}: geografisk profil materialiserer ikke avvisningen`);
     if (profileCase?.resulting_category !== rejected.resulting_category || profileCase?.rejection_reason !== rejected.reason) failures.push(`${rejected.case_id}: profilens avvisningsgrunnlag er ute av synk`);
     if (list(profileCase?.missing_before_validation).length !== 0) failures.push(`${rejected.case_id}: avvist case teller feilaktig som evidensgap`);
+    if (rejected.decision_source === PATHS.evidence) failures.push(`${rejected.case_id}: beslutningskilden peker sirkulært til det genererte evidensregisteret`);
+    if (rejected.decision_source === PATHS.rejectionAdjudications) {
+      const adjudication = adjudicationByCase.get(rejected.case_id);
+      if (!adjudication) failures.push(`${rejected.case_id}: mangler avvisningsadjudikasjon`);
+      if (adjudication?.place_id !== rejected.place_id || adjudication?.decision !== 'rejected_nonqualifying') failures.push(`${rejected.case_id}: adjudikasjonen beskriver ikke samme beslutning`);
+      if (adjudication?.reason !== rejected.reason || adjudication?.qualification_rule !== rejected.qualification_rule) failures.push(`${rejected.case_id}: adjudikasjon og avvisningsregister er ute av synk`);
+      if (list(adjudication?.reviewed_source_paths).length < 2 || list(adjudication?.failed_case_requirements).length < 1) failures.push(`${rejected.case_id}: adjudikasjonen er ikke etterprøvbar`);
+      if (!list(adjudication?.reviewed_source_paths).every((relative) => fs.existsSync(abs(relative)))) failures.push(`${rejected.case_id}: adjudikasjonen peker til en manglende kildesti`);
+    }
   }
   const status = list(readJson(PATHS.status).subjects).find((entry) => entry.id === 'subkultur');
 

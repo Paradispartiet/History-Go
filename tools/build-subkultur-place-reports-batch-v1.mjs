@@ -1023,6 +1023,7 @@ const CASES = [
     access: 'Parken var offentlig, mens politi, omsetning, intern risiko og gruppetilhørighet skapte skiftende adgangsgrenser.',
     regulation: 'Politiets innbringelser, bortkjøring, aksjoner og senere rydding regulerte og til slutt oppløste det stedbundne miljøet.',
     negotiation: 'Slaget på Nisseberget i 1978 og kampene om politiinngrep dokumenterer eksplisitt konflikt om ungdommens plass i byen.',
+    conflictStatus: 'documented',
     institutionalization: 'Krav om selvstyrt ungdomshus og senere tildeling av Blitz viser hvordan deler av miljøets organisering flyttet fra park til institusjon.',
     stigmaRisk: 'Rus og opptøyer kan overskygge tilhørighet og politiske krav, mens heroisk motkulturhistorie kan skjule vold, utrygghet og intern ulikhet.',
     privacySafeguard: 'Rapporten bruker publiserte historiske miljøstemmer og omtaler ikke nålevende personers helse, nåværende oppholdssted eller ikke-offentlige forhold.',
@@ -1266,7 +1267,9 @@ function report(config) {
       spaceAndPower: {
         accessAndTerritory: config.access,
         controlOrRegulation: { status: 'documented', statement: config.regulation, sourceIds: [milieu, outside] },
-        conflictOrNegotiation: { status: 'not_documented', rationale: config.negotiation, sourceIds: [milieu, outside] },
+        conflictOrNegotiation: config.conflictStatus === 'documented'
+          ? { status: 'documented', statement: config.negotiation, sourceIds: [milieu, outside] }
+          : { status: 'not_documented', rationale: config.negotiation, sourceIds: [milieu, outside] },
         displacementOrInstitutionalization: { status: 'documented', statement: config.institutionalization, sourceIds: [milieu, outside] },
         sourceIds: [milieu, outside]
       },
