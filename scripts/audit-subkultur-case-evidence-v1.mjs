@@ -140,9 +140,9 @@ export function auditSubkulturCaseEvidence({ writeReport = false, checkReport = 
   const report = buildSubkulturCaseEvidenceReport();
   assert(report.totals.profile_candidates === 50, 'caseprofilene må bevare 50 auditerte kandidater');
   assert(report.totals.eligible_cases === 48, 'to ikke-kvalifiserende kandidater skal holdes utenfor evidensrestansen');
-  assert(report.totals.validated_cases >= 27, 'tredje casekildebatch krever minst tjuesju validerte cases');
+  assert(report.totals.validated_cases >= 33, 'fjerde casekildebatch krever minst trettitre validerte cases');
   assert(report.totals.rejected_cases === 2, 'to auditerte ikke-kvalifiserende profilcases må forbli eksplisitt avvist');
-  assert(report.totals.remaining_candidates === 21, 'caseevidensrestansen skal være 21');
+  assert(report.totals.remaining_candidates === 15, 'caseevidensrestansen skal være 15');
   assert(report.totals.validated_cases + report.totals.rejected_cases + report.totals.remaining_candidates === report.totals.profile_candidates, 'casefordelingen summerer ikke til profiltotalen');
   assert(report.totals.case_sources >= report.totals.validated_cases * 2, 'hver validert case krever minst to kilder');
   assert(report.totals.environment_near_sources >= report.totals.validated_cases, 'hver validert case krever miljønær kilde');

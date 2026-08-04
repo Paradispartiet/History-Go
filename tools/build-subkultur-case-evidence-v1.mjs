@@ -162,6 +162,36 @@ const CASES = Object.freeze([
     placeId: 'matfellesskap_st_petri_stavanger',
     profileId: 'profile_subkultur_norge_norden',
     reportPath: 'data/places/subkultur-production/matfellesskap_st_petri_stavanger.json'
+  },
+  {
+    placeId: 'mo_senteret_gyldenpris',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/mo_senteret_gyldenpris.json'
+  },
+  {
+    placeId: 'nygardsparken_bergen',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/nygardsparken_bergen.json'
+  },
+  {
+    placeId: 'gamlebyen_sport_og_fritid',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/gamlebyen_sport_og_fritid.json'
+  },
+  {
+    placeId: 'plata_oslo',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/plata_oslo.json'
+  },
+  {
+    placeId: 'brugata_storgata_rusmiljo',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/brugata_storgata_rusmiljo.json'
+  },
+  {
+    placeId: 'vaterland_bar_scene',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/vaterland_bar_scene.json'
   }
 ]);
 
