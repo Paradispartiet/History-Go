@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "profile_id": "profile_subkultur_oslo",
   "subject_id": "subkultur",
-  "status": "profile_partial_case_validation",
+  "status": "profile_case_validation_complete",
   "geography": {
     "geography_id": "geo_no_oslo",
     "label": "Oslo"
@@ -19,7 +19,13 @@
     {
       "case_id": "case_sub_sofienbergparken",
       "place_id": "sofienbergparken",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_sofienbergparken",
+      "report_path": "data/places/subkultur-production/sofienbergparken.json",
+      "source_ids": [
+        "source_sofienbergparken_milieu",
+        "source_sofienbergparken_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -27,13 +33,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_oslo_skatehall",
@@ -59,7 +61,13 @@
     {
       "case_id": "case_sub_voldslokka_pumptrack",
       "place_id": "voldslokka_pumptrack",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_voldslokka_pumptrack",
+      "report_path": "data/places/subkultur-production/voldslokka_pumptrack.json",
+      "source_ids": [
+        "source_voldslokka_pumptrack_milieu",
+        "source_voldslokka_pumptrack_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -67,13 +75,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_house_of_nerds",
@@ -99,7 +103,13 @@
     {
       "case_id": "case_sub_slottsparken",
       "place_id": "slottsparken",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_slottsparken",
+      "report_path": "data/places/subkultur-production/slottsparken.json",
+      "source_ids": [
+        "source_slottsparken_milieu",
+        "source_slottsparken_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -107,13 +117,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_hartvig_nissens_skole_skam",
@@ -191,7 +197,13 @@
     {
       "case_id": "case_sub_rock_in_oslo",
       "place_id": "rock_in_oslo",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_rock_in_oslo",
+      "report_path": "data/places/subkultur-production/rock_in_oslo.json",
+      "source_ids": [
+        "source_rock_in_oslo_milieu",
+        "source_rock_in_oslo_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -199,13 +211,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_vaterland_bar_scene",
@@ -231,40 +239,22 @@
     {
       "case_id": "case_sub_nybrua_pilarrom",
       "place_id": "nybrua_pilarrom",
-      "status": "candidate_unvalidated",
-      "required_case_requirement_ids": [
-        "case_req_sub_environment_practice_position",
-        "case_req_sub_voice_balance",
-        "case_req_sub_place_change",
-        "case_req_sub_ethics",
-        "case_req_sub_negative_case"
-      ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "status": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "rejection_reason": "Brogeometri og generell Oslo-graffiti dokumenterer ikke et avgrenset, stedbundet miljø i pilarrommet med miljønær og uavhengig kildebalanse.",
+      "decision_source": "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+      "required_case_requirement_ids": [],
+      "missing_before_validation": []
     },
     {
       "case_id": "case_sub_gronland_underganger",
       "place_id": "gronland_underganger",
-      "status": "candidate_unvalidated",
-      "required_case_requirement_ids": [
-        "case_req_sub_environment_practice_position",
-        "case_req_sub_voice_balance",
-        "case_req_sub_place_change",
-        "case_req_sub_ethics",
-        "case_req_sub_negative_case"
-      ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "status": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "rejection_reason": "Undergang som objekttype og visuelle spor dokumenterer ikke ett avgrenset miljø, gjentatt organisering eller stedsspesifikk kildebalanse.",
+      "decision_source": "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+      "required_case_requirement_ids": [],
+      "missing_before_validation": []
     },
     {
       "case_id": "case_sub_torggata_blad",
@@ -290,7 +280,13 @@
     {
       "case_id": "case_sub_brenneriveien_ingens_gate",
       "place_id": "brenneriveien_ingens_gate",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_brenneriveien_ingens_gate",
+      "report_path": "data/places/subkultur-production/brenneriveien_ingens_gate.json",
+      "source_ids": [
+        "source_brenneriveien_ingens_gate_milieu",
+        "source_brenneriveien_ingens_gate_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -298,18 +294,20 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_hausmannsgate_aksen",
       "place_id": "hausmannsgate_aksen",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_hausmannsgate_aksen",
+      "report_path": "data/places/subkultur-production/hausmannsgate_aksen.json",
+      "source_ids": [
+        "source_hausmannsgate_aksen_milieu",
+        "source_hausmannsgate_aksen_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -317,13 +315,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_gamlebyen_sport_og_fritid",
@@ -391,21 +385,12 @@
     {
       "case_id": "case_sub_schweigaards_gate_lodalen",
       "place_id": "schweigaards_gate_lodalen",
-      "status": "candidate_unvalidated",
-      "required_case_requirement_ids": [
-        "case_req_sub_environment_practice_position",
-        "case_req_sub_voice_balance",
-        "case_req_sub_place_change",
-        "case_req_sub_ethics",
-        "case_req_sub_negative_case"
-      ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "status": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "rejection_reason": "Den lange veggaksen er et analytisk aggregat uten tilstrekkelig dokumentasjon av ett sammenhengende miljø eller felles praksis.",
+      "decision_source": "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+      "required_case_requirement_ids": [],
+      "missing_before_validation": []
     },
     {
       "case_id": "case_sub_brugata_storgata_rusmiljo",
@@ -431,7 +416,13 @@
     {
       "case_id": "case_sub_vaterlandsparken",
       "place_id": "vaterlandsparken",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_vaterlandsparken",
+      "report_path": "data/places/subkultur-production/vaterlandsparken.json",
+      "source_ids": [
+        "source_vaterlandsparken_milieu",
+        "source_vaterlandsparken_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -439,51 +430,29 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_kolstadgata_toyen_vegger",
       "place_id": "kolstadgata_toyen_vegger",
-      "status": "candidate_unvalidated",
-      "required_case_requirement_ids": [
-        "case_req_sub_environment_practice_position",
-        "case_req_sub_voice_balance",
-        "case_req_sub_place_change",
-        "case_req_sub_ethics",
-        "case_req_sub_negative_case"
-      ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "status": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "rejection_reason": "Tøyens dokumenterte gatekunstscene kan ikke alene bevise et eget miljø knyttet til akkurat Kolstadgata-veggene.",
+      "decision_source": "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+      "required_case_requirement_ids": [],
+      "missing_before_validation": []
     },
     {
       "case_id": "case_sub_kuba_akselpassasjer",
       "place_id": "kuba_akselpassasjer",
-      "status": "candidate_unvalidated",
-      "required_case_requirement_ids": [
-        "case_req_sub_environment_practice_position",
-        "case_req_sub_voice_balance",
-        "case_req_sub_place_change",
-        "case_req_sub_ethics",
-        "case_req_sub_negative_case"
-      ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "status": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "rejection_reason": "Passasjer og nattlige veggspor er ikke nok uten uavhengig dokumentasjon av aktører, praksis og kontinuitet ved dette ankeret.",
+      "decision_source": "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+      "required_case_requirement_ids": [],
+      "missing_before_validation": []
     },
     {
       "case_id": "case_sub_xray_ungdomskulturhus",
@@ -551,29 +520,20 @@
     {
       "case_id": "case_sub_stovnertarnet",
       "place_id": "stovnertarnet",
-      "status": "candidate_unvalidated",
-      "required_case_requirement_ids": [
-        "case_req_sub_environment_practice_position",
-        "case_req_sub_voice_balance",
-        "case_req_sub_place_change",
-        "case_req_sub_ethics",
-        "case_req_sub_negative_case"
-      ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "status": "rejected_nonqualifying",
+      "resulting_category": "subkultur",
+      "rejection_reason": "Ungdomsmedvirkning, inkluderende landskapsarkitektur og lokal stolthet dokumenterer sosial infrastruktur, men ikke alene et Subkultur-miljø.",
+      "decision_source": "data/fag/subkultur/case_evidence_subkultur_canonical_v1.json",
+      "required_case_requirement_ids": [],
+      "missing_before_validation": []
     }
   ],
   "production_coverage": {
     "audited_candidates": 28,
-    "eligible_candidates": 27,
-    "validated_cases": 14,
-    "rejected_candidates": 1,
-    "remaining_candidates": 13,
-    "completion_status": "PARTIAL"
+    "eligible_candidates": 21,
+    "validated_cases": 21,
+    "rejected_candidates": 7,
+    "remaining_candidates": 0,
+    "completion_status": "COMPLETE"
   }
 }

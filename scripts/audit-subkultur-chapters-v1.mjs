@@ -70,7 +70,7 @@ function auditChapter(row, registries) {
   for (const id of brief.requiredMethodIds) assert(registries.methodIds.has(id), `${row.id} peker til ukjent metode ${id}`);
   for (const id of brief.requiredTheoryEvidenceIds) assert(registries.evidenceIds.has(id), `${row.id} peker til ukjent theory-evidence ${id}`);
   for (const id of brief.requiredClaimIds) assert(registries.claimIds.has(id), `${row.id} peker til ukjent claim ${id}`);
-  assert(brief.caseProfileStatus === 'case_links_partial_source_validation', `${row.id} har feil caseprofilstatus`);
+  assert(brief.caseProfileStatus === 'case_links_source_validation_complete', `${row.id} har feil caseprofilstatus`);
 
   let sectionCount = 0;
   let paragraphCount = 0;
@@ -223,7 +223,7 @@ export function buildChaptersReport() {
   });
   const status = list(readJson(PATHS.status).subjects).find((entry) => entry.id === 'subkultur');
   return {
-    schema: 'history_go_subkultur_chapters_audit_v1', version: '1.0.0', subject_id: 'subkultur', audited_at: '2026-08-04', status: 'CHAPTERS_READY_CASE_EVIDENCE_PARTIAL',
+    schema: 'history_go_subkultur_chapters_audit_v1', version: '1.0.0', subject_id: 'subkultur', audited_at: '2026-08-04', status: 'CHAPTERS_READY_CASE_EVIDENCE_COMPLETE',
     totals: {
       chapters: chapters.length,
       modules: chapters.length * 3,
@@ -258,7 +258,7 @@ export function buildChaptersReport() {
       editorial_status: status?.editorialStatus ?? null,
       next_gate: status?.nextGate ?? null
     },
-    next_gate: 'remaining_case_source_validation'
+    next_gate: 'quiz_knowledge_audit'
   };
 }
 
@@ -274,9 +274,9 @@ export function auditChapters({ writeReport = false, checkReport = true } = {}) 
   assert(report.totals.self_checks >= 64, 'Kapittellaget mangler selvtest');
   assert(report.totals.place_references === 48, 'Kapittellaget må ha 48 stedskoblinger');
   assert(report.totals.profile_candidates >= 40, 'Profilene må ha et bredt kandidatgrunnlag');
-  assert(report.totals.validated_profile_cases >= 33, 'Kapittelporten må materialisere den fjerde validerte casebatchen');
-  assert(report.totals.rejected_profile_cases === 2, 'Kapittelporten må bevare to avviste grensecases');
-  assert(report.totals.pending_profile_cases === 15, 'Kapittelporten skal dokumentere 15 gjenstående kandidater');
+  assert(report.totals.validated_profile_cases === 42, 'Kapittelporten må materialisere alle validerte cases');
+  assert(report.totals.rejected_profile_cases === 8, 'Kapittelporten må bevare åtte avviste grensecases');
+  assert(report.totals.pending_profile_cases === 0, 'Kapittelporten skal ikke ha gjenstående kandidater');
   assert(report.totals.validated_place_references >= 10, 'Validerte kapittelsteder mangler i modulene');
   assert(report.integrity.duplicate_chapter_ids.length === 0, 'Kapittel-ID-er må være unike');
   assert(report.integrity.duplicate_chapter_domains.length === 0, 'Hvert domene skal ha ett kapittel');
@@ -285,7 +285,8 @@ export function auditChapters({ writeReport = false, checkReport = true } = {}) 
   assert(report.status_guard.navigation_status === 'planned', 'Navigasjon må forbli planned før runtime');
   assert(report.status_guard.assessment_status === 'pending', 'Assessment må forbli pending før quiz-audit');
   assert(report.status_guard.editorial_status === 'not_started', 'Planned fag må beholde not_started før runtime-materialisering');
-  assert(report.status_guard.next_gate === 'remaining_case_source_validation', 'Neste port må være gjenstående casekildevalidering');
+  assert(report.status_guard.next_gate === 'quiz_knowledge_audit', 'Neste port må være Quiz/Knowledge-audit');
+  assert(report.next_gate === 'quiz_knowledge_audit', 'Kapittelporten må sende faget videre til Quiz/Knowledge');
   if (writeReport) {
     fs.mkdirSync(path.dirname(abs(REPORT)), { recursive: true });
     fs.writeFileSync(abs(REPORT), `${JSON.stringify(report, null, 2)}\n`, 'utf8');

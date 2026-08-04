@@ -104,7 +104,7 @@ export function buildSubkulturCaseEvidenceReport() {
     version: '1.0.0',
     subject_id: 'subkultur',
     audited_at: '2026-08-04',
-    status: failures.length ? 'FAIL' : 'PARTIAL_CASE_VALIDATION_READY',
+    status: failures.length ? 'FAIL' : 'CASE_VALIDATION_COMPLETE',
     totals: {
       profile_candidates: profileCandidates.length,
       eligible_cases: profileCandidates.length - rejectedCases.length,
@@ -132,17 +132,17 @@ export function buildSubkulturCaseEvidenceReport() {
       editorial_status: status?.editorialStatus ?? null,
       next_gate: status?.nextGate ?? null
     },
-    next_gate: 'remaining_case_source_validation'
+    next_gate: 'quiz_knowledge_audit'
   };
 }
 
 export function auditSubkulturCaseEvidence({ writeReport = false, checkReport = true } = {}) {
   const report = buildSubkulturCaseEvidenceReport();
   assert(report.totals.profile_candidates === 50, 'caseprofilene må bevare 50 auditerte kandidater');
-  assert(report.totals.eligible_cases === 48, 'to ikke-kvalifiserende kandidater skal holdes utenfor evidensrestansen');
-  assert(report.totals.validated_cases >= 33, 'fjerde casekildebatch krever minst trettitre validerte cases');
-  assert(report.totals.rejected_cases === 2, 'to auditerte ikke-kvalifiserende profilcases må forbli eksplisitt avvist');
-  assert(report.totals.remaining_candidates === 15, 'caseevidensrestansen skal være 15');
+  assert(report.totals.eligible_cases === 42, 'åtte ikke-kvalifiserende eller utilstrekkelig stedsspesifikke kandidater skal holdes utenfor evidensrestansen');
+  assert(report.totals.validated_cases === 42, 'alle kvalifiserende casekandidater skal være validerte');
+  assert(report.totals.rejected_cases === 8, 'åtte auditerte grensecases må være eksplisitt avvist');
+  assert(report.totals.remaining_candidates === 0, 'caseevidensrestansen skal være null');
   assert(report.totals.validated_cases + report.totals.rejected_cases + report.totals.remaining_candidates === report.totals.profile_candidates, 'casefordelingen summerer ikke til profiltotalen');
   assert(report.totals.case_sources >= report.totals.validated_cases * 2, 'hver validert case krever minst to kilder');
   assert(report.totals.environment_near_sources >= report.totals.validated_cases, 'hver validert case krever miljønær kilde');
@@ -158,7 +158,8 @@ export function auditSubkulturCaseEvidence({ writeReport = false, checkReport = 
   assert(report.status_guard.navigation_status === 'planned', 'Subkultur kan ikke materialiseres i case-delporten');
   assert(report.status_guard.assessment_status === 'pending', 'assessment må forbli pending før Quiz/Knowledge');
   assert(report.status_guard.editorial_status === 'not_started', 'global editorialStatus må vente på runtime');
-  assert(report.status_guard.next_gate === 'remaining_case_source_validation', 'neste globale port må være gjenstående casekildevalidering');
+  assert(report.status_guard.next_gate === 'quiz_knowledge_audit', 'neste globale port må være Quiz/Knowledge-audit');
+  assert(report.next_gate === 'quiz_knowledge_audit', 'caseporten må sende faget videre til Quiz/Knowledge');
 
   const serialized = `${JSON.stringify(report, null, 2)}\n`;
   if (writeReport) fs.writeFileSync(abs(REPORT), serialized, 'utf8');

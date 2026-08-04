@@ -299,7 +299,7 @@ function build() {
         'Aktivitet, ungdom, estetikk, sjanger, skatepark eller pumptrack kvalifiserer ikke alene som Subkultur.',
         'Levende, sårbare eller kriminaliserte personer krever kontekstuelt personvern, identifikasjonsminimering og stigma-/romantiseringskontroll.'
       ],
-      caseProfileStatus: 'case_links_partial_source_validation'
+      caseProfileStatus: 'case_links_source_validation_complete'
     };
     chapterRows.push({
       id: chapterId,
@@ -308,7 +308,7 @@ function build() {
       brief: briefFile,
       primary_domain_id: domain.domain_id,
       emne_ids: domain.emne_ids,
-      status: 'content_ready_case_evidence_partial'
+      status: 'content_ready_case_evidence_complete'
     });
   }
 
@@ -316,10 +316,10 @@ function build() {
     schema: 'history_go_subkultur_chapter_manifest_v1',
     version: '1.0.0',
     subject_id: 'subkultur',
-    status: 'chapters_ready_case_evidence_partial',
+    status: 'chapters_ready_case_evidence_complete',
     chapters: chapterRows,
     totals: { chapters: 8, modules: 24, sections: 72, paragraphs: 216, minimum_claim_references: 288, minimum_source_references: 160, related_place_references: 48 },
-    next_gate: 'remaining_case_source_validation'
+    next_gate: 'quiz_knowledge_audit'
   };
 
   const osloIds = [...new Set(Object.values(CHAPTER_META).flatMap((meta) => meta.places).map(([id]) => id).filter((id) => !id.startsWith('lisbon_') && !['tou_stavanger', 'bergen_kjott_kulturhus', 'club_7_vika', 'kafe_x_tromso', 'uffa_huset_trondheim', 'svartlamon_trondheim', 'trikkestallen_skatepark_trondheim', 'mo_senteret_gyldenpris', 'nygardsparken_bergen'].includes(id)))];
@@ -384,7 +384,7 @@ function build() {
   generated['data/fag/profiles/subkultur/norge_norden/profile.json'] = norwayProfile;
   generated['data/fag/profiles/subkultur/lisboa/profile.json'] = lisboaProfile;
   generated['data/fag/profiles/subkultur/manifest.json'] = {
-    schema: 'history_go_subkultur_profiles_manifest_v1', version: '1.0.0', subject_id: 'subkultur', status: 'partial_case_validation',
+    schema: 'history_go_subkultur_profiles_manifest_v1', version: '1.0.0', subject_id: 'subkultur', status: 'case_validation_complete',
     profiles: [
       { id: 'profile_subkultur_oslo', file: 'data/fag/profiles/subkultur/oslo/profile.json', status: osloProfile.status },
       { id: 'profile_subkultur_norge_norden', file: 'data/fag/profiles/subkultur/norge_norden/profile.json', status: norwayProfile.status },
@@ -393,7 +393,7 @@ function build() {
     validated_cases: caseEvidence.length,
     rejected_candidates: rejectedCases.length,
     remaining_candidates: 50 - caseEvidence.length - rejectedCases.length,
-    next_gate: 'remaining_case_source_validation'
+    next_gate: 'quiz_knowledge_audit'
   };
   return generated;
 }
