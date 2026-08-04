@@ -57,6 +57,58 @@ test('alle 23 Historie-kapitlene oppfyller kapittel- og evidensporten', () => {
   assert.equal(report.gates.historyPlaceFallbackResolved, true);
 });
 
+test('generator-eide kapitler skiller analytisk tekst fra claim-støttet evidens', () => {
+  const registry = readJson('data/fagverk/fagverk_registry.json');
+  const generatedChapters = registry.subjects.historie.chapters
+    .map((row) => readJson(row.file))
+    .filter((chapter) => chapter.productionBriefFile)
+    .filter((chapter) => readJson(chapter.productionBriefFile).generatedFrom?.generator === 'tools/materialize-historie-editorial-chapters.mjs');
+
+  assert.equal(generatedChapters.length, 18);
+  for (const chapter of generatedChapters) {
+    for (const modulePath of chapter.moduleFiles) {
+      const module = readJson(modulePath);
+      for (const section of module.sections) {
+        assert.equal(section.paragraphTraceTypes.length, section.paragraphs.length, section.id);
+        assert.equal(section.paragraphClaimIds.length, section.paragraphs.length, section.id);
+        section.paragraphTraceTypes.forEach((traceType, index) => {
+          const claimIds = section.paragraphClaimIds[index];
+          if (traceType === 'analytical') assert.deepEqual(claimIds, [], `${section.id}/${index}`);
+          else {
+            assert.equal(traceType, 'claim_supported', `${section.id}/${index}`);
+            assert.ok(claimIds.length > 0, `${section.id}/${index}`);
+          }
+        });
+      }
+    }
+  }
+});
+
+test('generator-eide moduler viser alle konsepter fra seksjonenes faktiske emner', () => {
+  const registry = readJson('data/fagverk/fagverk_registry.json');
+  const concepts = readJson('data/fag/historie/concepts_historie_canonical_v5_5.json');
+  const conceptIdsByEmne = new Map();
+  for (const concept of concepts) {
+    for (const emneId of concept.source_emne_ids || []) {
+      const ids = conceptIdsByEmne.get(emneId) || [];
+      ids.push(concept.concept_id);
+      conceptIdsByEmne.set(emneId, ids);
+    }
+  }
+
+  for (const row of registry.subjects.historie.chapters) {
+    const chapter = readJson(row.file);
+    if (!chapter.productionBriefFile) continue;
+    const brief = readJson(chapter.productionBriefFile);
+    if (brief.generatedFrom?.generator !== 'tools/materialize-historie-editorial-chapters.mjs') continue;
+    for (const modulePath of chapter.moduleFiles) {
+      const module = readJson(modulePath);
+      const expected = [...new Set(module.sections.flatMap((section) => conceptIdsByEmne.get(section.emneId) || []))].sort();
+      assert.deepEqual(module.concepts.map((concept) => concept.id).sort(), expected, modulePath);
+    }
+  }
+});
+
 test('kapittelproduksjon rapporterer full universell evidensdekning', () => {
   const { report } = auditHistorySubject();
   assert.equal(report.universalCoverage.status, 'COMPLETE');

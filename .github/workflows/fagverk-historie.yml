@@ -56,6 +56,7 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node tools/validate-historie-curriculum-architecture.mjs
+          node tools/materialize-historie-editorial-chapters.mjs --check
           node scripts/audit-fagverk-historie.mjs
           node tools/audit-historie-universal-coverage.mjs
       - name: Validate Fagverk and Historie contracts

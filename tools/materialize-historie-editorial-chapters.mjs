@@ -4,11 +4,19 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const CHECK = process.argv.includes('--check');
+const GENERATOR_ID = 'tools/materialize-historie-editorial-chapters.mjs';
+const mismatches = [];
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 const writeJson = (relativePath, value) => {
   const absolutePath = path.join(ROOT, relativePath);
+  const serialized = `${JSON.stringify(value, null, 2)}\n`;
+  if (CHECK) {
+    if (!fs.existsSync(absolutePath) || fs.readFileSync(absolutePath, 'utf8') !== serialized) mismatches.push(relativePath);
+    return;
+  }
   fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
-  fs.writeFileSync(absolutePath, `${JSON.stringify(value, null, 2)}\n`);
+  fs.writeFileSync(absolutePath, serialized);
 };
 const list = (value) => Array.isArray(value) ? value : [];
 const unique = (values) => [...new Set(values.filter(Boolean))];
@@ -48,8 +56,17 @@ for (const concept of concepts) {
 }
 
 const chapterRows = registry.subjects.historie.chapters;
-const existingDomainIds = new Set(chapterRows.map((item) => item.primary_domain_id));
+const chapterRowByDomainId = new Map(chapterRows.map((item) => [item.primary_domain_id, item]));
 const generatedRows = [];
+
+function isGeneratorOwnedChapter(chapterRow) {
+  if (!chapterRow?.file || !fs.existsSync(path.join(ROOT, chapterRow.file))) return false;
+  const chapter = readJson(chapterRow.file);
+  if (!chapter.productionBriefFile || !fs.existsSync(path.join(ROOT, chapter.productionBriefFile))) return false;
+  const brief = readJson(chapter.productionBriefFile);
+  return brief.generatedFrom?.generator === GENERATOR_ID
+    || brief.generatedFrom?.pensum === 'data/fag/historie/historiepensum_canonical_v4_5.json';
+}
 
 function theoryPackage(category, emneId) {
   const hook = list(category.topic_hooks).find((item) => list(item.emne_ids).includes(emneId));
@@ -60,7 +77,7 @@ function theoryPackage(category, emneId) {
   if (!theoryEvidence || theoryEvidence.status !== 'evidence_ready') throw new Error(`${theory.theory_id}: mangler ferdig evidens`);
   const claims = list(theoryEvidence.claim_ids).map((id) => claimById.get(id)).filter(Boolean);
   if (!claims.length) throw new Error(`${theory.theory_id}: mangler claims`);
-  return { hook, theory, theoryEvidence, claims };
+  return { emneId, hook, theory, theoryEvidence, claims };
 }
 
 function sectionFor(category, emne, index) {
@@ -76,6 +93,7 @@ function sectionFor(category, emne, index) {
   ]).slice(0, 4);
   return {
     id: slug(emne.emne_id.replace(/^em_his_/, '')),
+    emneId: emne.emne_id,
     title: `${index + 1}. ${emne.title}`,
     paragraphs: [
       emne.definition,
@@ -83,7 +101,8 @@ function sectionFor(category, emne, index) {
       `${pack.theory.definition} ${limitation ? `En viktig avgrensning er at ${limitation.charAt(0).toLocaleLowerCase('nb-NO')}${limitation.slice(1)}` : ''}`.trim(),
       `${evidenceSentences} Samlet brukes dette evidensgrunnlaget slik: ${pack.theoryEvidence.rationale}`
     ],
-    paragraphClaimIds: [claimIds, claimIds, claimIds, claimIds],
+    paragraphTraceTypes: ['analytical', 'analytical', 'analytical', 'claim_supported'],
+    paragraphClaimIds: [[], [], [], claimIds],
     keyPoints: unique([
       ...list(emne.key_questions).slice(0, 2),
       ...distinctions.map((item) => `Skill analytisk mellom ${item}.`)
@@ -136,8 +155,8 @@ function buildChapter(domain) {
     const outputSections = definition.rows.map(({ _pack, ...section }) => section);
     const module = {
       sections: outputSections,
-      concepts: unique(definition.rows.flatMap((section) => list(conceptsByEmneId.get(section._pack.hook.emne_ids[0])).map((item) => item.concept_id)))
-        .map((id) => concepts.find((item) => item.concept_id === id)).filter(Boolean).slice(0, 18)
+      concepts: unique(definition.rows.flatMap((section) => list(conceptsByEmneId.get(section._pack.emneId)).map((item) => item.concept_id)))
+        .map((id) => concepts.find((item) => item.concept_id === id)).filter(Boolean)
         .map((concept) => ({ id: concept.concept_id, term: concept.label, definition: concept.definition })),
       claimIds: moduleClaimIds,
       theoryEvidenceIds: modulePackages.map((pack) => pack.theory.theory_id),
@@ -230,6 +249,7 @@ function buildChapter(domain) {
       'Hver forklaring skal skille dokumentert påstand, analytisk tolkning, alternativ forklaring og kildebegrensning.'
     ],
     generatedFrom: {
+      generator: GENERATOR_ID,
       pensum: 'data/fag/historie/historiepensum_canonical_v4_5.json',
       emner: 'data/fag/historie/emner_historie_canonical_v4_5.json',
       concepts: 'data/fag/historie/concepts_historie_canonical_v5_5.json',
@@ -252,12 +272,14 @@ function buildChapter(domain) {
 }
 
 for (const domain of pensum.domains) {
-  if (existingDomainIds.has(domain.domain_id)) continue;
-  generatedRows.push(buildChapter(domain));
+  const existingRow = chapterRowByDomainId.get(domain.domain_id);
+  if (!existingRow || isGeneratorOwnedChapter(existingRow)) generatedRows.push(buildChapter(domain));
 }
 
-registry.subjects.historie.chapters = [...chapterRows, ...generatedRows]
-  .sort((a, b) => pensum.domains.findIndex((item) => item.domain_id === a.primary_domain_id) - pensum.domains.findIndex((item) => item.domain_id === b.primary_domain_id));
+const generatedRowByDomainId = new Map(generatedRows.map((item) => [item.primary_domain_id, item]));
+registry.subjects.historie.chapters = pensum.domains.map((domain) => (
+  generatedRowByDomainId.get(domain.domain_id) || chapterRowByDomainId.get(domain.domain_id)
+));
 registry.subjects.historie.description = 'Et sammenhengende, kildekritisk læreverk om historisk tid, perioder, samfunn, aktører, institusjoner, steder, begreper og fortolkninger fra forhistorie til samtid.';
 registry.subjects.historie.canonicalModel.note = 'Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier 23 redigerte lærekapitler og stedsspesifikk kuratering.';
 const statusEntry = status.subjects.find((item) => item.id === 'historie');
@@ -269,4 +291,7 @@ status.updatedAt = '2026-08-04';
 writeJson('data/fagverk/fagverk_registry.json', registry);
 writeJson('data/fagverk/subject_status.json', status);
 
-console.log(`Materialiserte ${generatedRows.length} nye Historie-kapitler. Totalt: ${registry.subjects.historie.chapters.length}.`);
+if (CHECK && mismatches.length) {
+  throw new Error(`Historie-kapitlene avviker fra deterministisk materialisering:\n- ${mismatches.join('\n- ')}`);
+}
+console.log(`${CHECK ? 'Kontrollerte' : 'Materialiserte'} ${generatedRows.length} generator-eide Historie-kapitler. Totalt: ${registry.subjects.historie.chapters.length}.`);

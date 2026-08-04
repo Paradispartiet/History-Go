@@ -112,8 +112,18 @@ function assertChapter(chapterRow, model, evidenceRegistries, canonicalDomainsBy
     for (const section of module.sections || []) {
       if (productionBrief?.editorialRequirements?.paragraphClaimTraceRequired) {
         assert(section.paragraphClaimIds?.length === section.paragraphs?.length, `Seksjonen ${section.id} i ${chapterRow.id} mangler komplett avsnittssporing`);
-        for (const paragraphClaimIds of section.paragraphClaimIds) {
-          assert(paragraphClaimIds?.length > 0, `Seksjonen ${section.id} i ${chapterRow.id} har et avsnitt uten claim-spor`);
+        const generatorOwned = productionBrief.generatedFrom?.generator === 'tools/materialize-historie-editorial-chapters.mjs';
+        if (generatorOwned) {
+          assert(section.paragraphTraceTypes?.length === section.paragraphs?.length, `Seksjonen ${section.id} i ${chapterRow.id} mangler sporingsklassifikasjon`);
+        }
+        for (const [paragraphIndex, paragraphClaimIds] of section.paragraphClaimIds.entries()) {
+          const traceType = section.paragraphTraceTypes?.[paragraphIndex];
+          if (generatorOwned && traceType === 'analytical') {
+            assert(paragraphClaimIds?.length === 0, `Seksjonen ${section.id} i ${chapterRow.id} gir analytisk tekst misvisende claim-spor`);
+            continue;
+          }
+          if (generatorOwned) assert(traceType === 'claim_supported', `Seksjonen ${section.id} i ${chapterRow.id} har ukjent sporingsklassifikasjon`);
+          assert(paragraphClaimIds?.length > 0, `Seksjonen ${section.id} i ${chapterRow.id} har claim-støttet tekst uten claim-spor`);
           tracedParagraphCount += 1;
           for (const claimId of paragraphClaimIds) {
             assert(evidenceRegistries.claimIds.has(claimId), `Seksjonen ${section.id} i ${chapterRow.id} peker til ukjent claim ${claimId}`);
