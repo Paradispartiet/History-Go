@@ -60,9 +60,9 @@ test('tre geografiske profiler holder åpne kandidater og validerte cases streng
   const report = buildChaptersReport();
   assert.equal(report.profiles.length, 3);
   assert.equal(report.totals.profile_candidates, 50);
-  assert.equal(report.totals.validated_profile_cases, 11);
+  assert.equal(report.totals.validated_profile_cases, 19);
   assert.equal(report.totals.rejected_profile_cases, 2);
-  assert.equal(report.totals.pending_profile_cases, 37);
+  assert.equal(report.totals.pending_profile_cases, 29);
   assert.deepEqual(report.integrity.duplicate_profile_case_ids, []);
 });
 
