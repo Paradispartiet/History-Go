@@ -38,6 +38,7 @@ const theories = readJson('data/fag/historie/theory_objects_historie_canonical_v
 const evidence = readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json');
 const claimRegistry = readJson('data/fag/historie/claims_historie_canonical_v1.json');
 const sourceRegistry = readJson('data/fag/historie/sources_historie_canonical_v1.json');
+const editorialProfilesDocument = readJson('data/fag/historie/editorial_profiles_historie_v1.json');
 const registry = readJson('data/fagverk/fagverk_registry.json');
 const status = readJson('data/fagverk/subject_status.json');
 
@@ -46,6 +47,7 @@ const theoryByHookId = new Map(theories.map((item) => [item.source_hook_id, item
 const evidenceByTheoryId = new Map(evidence.entries.map((item) => [item.theory_id, item]));
 const claimById = new Map(claimRegistry.claims.map((item) => [item.claim_id, item]));
 const sourceById = new Map(sourceRegistry.sources.map((item) => [item.source_id, item]));
+const editorialProfileByDomainId = new Map(editorialProfilesDocument.profiles.map((item) => [item.domain_id, item]));
 const conceptsByEmneId = new Map();
 for (const concept of concepts) {
   for (const emneId of list(concept.source_emne_ids)) {
@@ -80,7 +82,7 @@ function theoryPackage(category, emneId) {
   return { emneId, hook, theory, theoryEvidence, claims };
 }
 
-function sectionFor(category, emne, index) {
+function sectionFor(category, emne, index, editorialProfile) {
   const pack = theoryPackage(category, emne.emne_id);
   const claimIds = pack.claims.map((claim) => claim.claim_id);
   const evidenceSentences = pack.claims.slice(0, 3).map((claim) => claim.statement).join(' ');
@@ -91,18 +93,21 @@ function sectionFor(category, emne, index) {
     ...list(emne.analysis_axes),
     ...conceptsForEmne.flatMap((concept) => list(concept.distinguish_from).map((id) => concepts.find((item) => item.concept_id === id)?.label))
   ]).slice(0, 4);
+  const editorialLens = editorialProfile.section_lenses[emne.emne_id];
+  if (!editorialLens) throw new Error(`${category.id}/${emne.emne_id}: mangler redaksjonell emnelinse`);
   return {
     id: slug(emne.emne_id.replace(/^em_his_/, '')),
     emneId: emne.emne_id,
     title: `${index + 1}. ${emne.title}`,
     paragraphs: [
       emne.definition,
-      emne.why_it_matters,
+      `${emne.why_it_matters} ${editorialLens}`,
       `${pack.theory.definition} ${limitation ? `En viktig avgrensning er at ${limitation.charAt(0).toLocaleLowerCase('nb-NO')}${limitation.slice(1)}` : ''}`.trim(),
       `${evidenceSentences} Samlet brukes dette evidensgrunnlaget slik: ${pack.theoryEvidence.rationale}`
     ],
     paragraphTraceTypes: ['analytical', 'analytical', 'analytical', 'claim_supported'],
     paragraphClaimIds: [[], [], [], claimIds],
+    editorialLens,
     keyPoints: unique([
       ...list(emne.key_questions).slice(0, 2),
       ...distinctions.map((item) => `Skill analytisk mellom ${item}.`)
@@ -130,9 +135,11 @@ function sourceItem(source) {
 function buildChapter(domain) {
   const category = fagkart.categories.find((item) => item.id === domain.domain_id);
   if (!category) throw new Error(`${domain.domain_id}: mangler fagkartkategori`);
+  const editorialProfile = editorialProfileByDomainId.get(domain.domain_id);
+  if (!editorialProfile) throw new Error(`${domain.domain_id}: mangler redaksjonell fagprofil`);
   const domainEmner = domain.emne_ids.map((id) => emneById.get(id));
   if (domainEmner.some((item) => !item)) throw new Error(`${domain.domain_id}: mangler emne`);
-  const sections = domainEmner.map((emne, index) => sectionFor(category, emne, index));
+  const sections = domainEmner.map((emne, index) => sectionFor(category, emne, index, editorialProfile));
   const packages = sections.map((section) => section._pack);
   const theoryIds = packages.map((pack) => pack.theory.theory_id);
   const allClaimIds = unique(packages.flatMap((pack) => pack.theoryEvidence.claim_ids));
@@ -154,6 +161,7 @@ function buildChapter(domain) {
     const moduleSourceIds = unique(modulePackages.flatMap((pack) => pack.theoryEvidence.source_ids));
     const outputSections = definition.rows.map(({ _pack, ...section }) => section);
     const module = {
+      editorialIntroduction: editorialProfile.module_introductions[moduleIndex],
       sections: outputSections,
       concepts: unique(definition.rows.flatMap((section) => list(conceptsByEmneId.get(section._pack.emneId)).map((item) => item.concept_id)))
         .map((id) => concepts.find((item) => item.concept_id === id)).filter(Boolean)
@@ -164,6 +172,9 @@ function buildChapter(domain) {
       sourceLimitations: unique(moduleSourceIds.flatMap((id) => list(sourceById.get(id)?.limitations))).slice(0, 5)
     };
     if (moduleIndex === 2) {
+      module.causalFramework = editorialProfile.causal_chain;
+      module.historiographicalDebate = editorialProfile.debate;
+      module.caseAnchors = editorialProfile.case_anchors;
       const examples = packages.slice(0, 2);
       module.workedExamples = examples.map((pack) => ({
         title: `Fra dokumentert spor til forklaring: ${pack.hook.title}`,
@@ -208,7 +219,7 @@ function buildChapter(domain) {
     writeJson(`${directory}/${definition.file}`, module);
   }
 
-  const lead = `${category.definition} Kapittelet følger fagfeltet gjennom de ti canonicale emnene og knytter hvert analyseproblem til konkrete claims, kilder, metoder og begrensninger. Målet er å bygge sammenhengende historiske forklaringer uten å forveksle samtidighet med årsak, regel med praksis eller et synlig spor med hele fortiden.`;
+  const lead = editorialProfile.thesis;
   const chapter = {
     schema: 'history_go_fagverk_chapter_v1',
     version: '1.0.0',
@@ -223,6 +234,12 @@ function buildChapter(domain) {
       answer: emne.definition
     })),
     productionBriefFile: `${directory}/brief.json`,
+    editorialProfileId: editorialProfile.domain_id,
+    narrativeArchitecture: {
+      causalFramework: editorialProfile.causal_chain,
+      historiographicalQuestion: editorialProfile.debate.question,
+      caseAnchorIds: editorialProfile.case_anchors.map((item) => item.place_id)
+    },
     moduleFiles
   };
   const brief = {
@@ -241,7 +258,11 @@ function buildChapter(domain) {
       minimumSelfChecks: 7,
       paragraphClaimTraceRequired: true,
       canonicalConceptDefinitionsRequired: true,
-      sourceLimitationsRequired: true
+      sourceLimitationsRequired: true,
+      editorialProfileRequired: true,
+      historiographicalDebateRequired: true,
+      causalFrameworkRequired: true,
+      minimumCaseAnchors: 3
     },
     evidenceBoundary: [
       'Kapittelet bruker bare claims og kilder som allerede er registrert i Historie-fagets canonicale evidenslag.',
@@ -256,7 +277,8 @@ function buildChapter(domain) {
       theories: 'data/fag/historie/theory_objects_historie_canonical_v5_5.json',
       evidence: 'data/fag/historie/theory_evidence_historie_canonical_v1.json',
       claims: 'data/fag/historie/claims_historie_canonical_v1.json',
-      sources: 'data/fag/historie/sources_historie_canonical_v1.json'
+      sources: 'data/fag/historie/sources_historie_canonical_v1.json',
+      editorialProfiles: 'data/fag/historie/editorial_profiles_historie_v1.json'
     }
   };
   writeJson(`${directory}.json`, chapter);
@@ -281,12 +303,12 @@ registry.subjects.historie.chapters = pensum.domains.map((domain) => (
   generatedRowByDomainId.get(domain.domain_id) || chapterRowByDomainId.get(domain.domain_id)
 ));
 registry.subjects.historie.description = 'Et sammenhengende, kildekritisk læreverk om historisk tid, perioder, samfunn, aktører, institusjoner, steder, begreper og fortolkninger fra forhistorie til samtid.';
-registry.subjects.historie.canonicalModel.note = 'Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier 23 redigerte lærekapitler og stedsspesifikk kuratering.';
+registry.subjects.historie.canonicalModel.note = 'Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier fem håndbygde kapitler og atten deterministiske kapitler med håndredigerte fagprofiler, emnelinser, årsakskjeder, tolkningsuenighet og stedscaser.';
 const statusEntry = status.subjects.find((item) => item.id === 'historie');
-statusEntry.editorialStatus = 'complete';
-statusEntry.nextGate = 'maintenance_and_source_refresh';
-statusEntry.note = 'Historie er redaksjonelt komplett med 23 av 23 canonicale fagområder og 23 fullverdige kapitler. Alle 230 emner inngår i et kapittel med teori-evidens, claim- og kildesporing, begrepsforklaringer, eksempler, misoppfatninger, oppgaver og selvtest. Den universitetsnære pensumarkitekturen organiserer stoffet i kronologi, tematiske fagretninger, metode og geografiske læringsstier.';
-status.version = '2.18.0';
+statusEntry.editorialStatus = 'expanded_and_audited';
+statusEntry.nextGate = 'source_refresh_and_case_expansion';
+statusEntry.note = 'Historie har 23 av 23 canonicale fagområder og 23 fullverdige kapitler. De atten tidligere malpregede kapitlene har nå egne håndredigerte fagprofiler, 180 emnespesifikke redaksjonelle linser, årsakskjeder, tolkningsuenighet og 54 dokumenterte stedscaser. Alle 230 emner beholder teori-evidens, claim- og kildesporing, begrepsforklaringer, oppgaver og selvtest.';
+status.version = '2.19.0';
 status.updatedAt = '2026-08-04';
 writeJson('data/fagverk/fagverk_registry.json', registry);
 writeJson('data/fagverk/subject_status.json', status);

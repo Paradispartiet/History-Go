@@ -133,8 +133,8 @@ export function auditPolitikkKonfliktMaktSivilsamfunnChapter({ writeReport = fal
   assert(runtime.chapterByDomain?.[domain.domain_id] === chapter.id, 'Runtime mangler domain→chapter-kobling');
   for (const emneId of chapter.emne_ids || []) assert(runtime.chapterByEmne?.[emneId] === chapter.id, `Runtime mangler emne→chapter for ${emneId}`);
   const politicsStatus = (status.subjects || []).find((row) => row.id === 'politikk');
-  assert(politicsStatus?.editorialStatus === 'complete', 'Politikkstatus skal være complete');
-  assert(politicsStatus?.nextGate === 'maintenance_and_source_refresh', 'Politikkstatus peker ikke til vedlikehold');
+  assert(politicsStatus?.editorialStatus === 'expanded_and_audited', 'Politikkstatus skal være expanded_and_audited');
+  assert(politicsStatus?.nextGate === 'source_refresh_and_case_expansion', 'Politikkstatus peker ikke til neste kvalitetsport');
 
   const report = {
     schema: 'history_go_politikk_chapter_konflikt_makt_sivilsamfunn_audit_v1',

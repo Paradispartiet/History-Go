@@ -148,6 +148,9 @@ test('kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder'
     ['module-b.json', {
       workedExamples: [{ title: 'Canonical form', situation: 'Annen situasjon', analysis: ['Analyse'] }],
       commonMisconceptions: [{ claim: 'Annen feil', correction: 'Annen rett' }],
+      causalFramework: ['Forutsetning', 'Mekanisme', 'Utfall'],
+      historiographicalDebate: { question: 'Hva forklarer endringen?', positions: ['Tolkning A', 'Tolkning B'], editorial_note: 'Prøv begge mot samme kilder.' },
+      caseAnchors: [{ place_id: 'sporstedet', use: 'Les stedet som et dokumentert spor etter mekanismen.' }],
       sources: [{ id: 'stale', label: 'Stale', url: 'https://example.test/stale' }]
     }],
     ['claims.json', {
@@ -172,6 +175,12 @@ test('kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder'
   assert.deepEqual([...chapter.applicationTasks[0].prompts], ['Eldre instruksjon']);
   assert.equal(chapter.relatedPlaces[0].name, 'Eldre sted');
   assert.equal(chapter.relatedPlaces[0].role, 'Stedscase i kapittelet.');
+  assert.deepEqual([...chapter.causalFramework], ['Forutsetning', 'Mekanisme', 'Utfall']);
+  assert.equal(chapter.historiographicalDebate.question, 'Hva forklarer endringen?');
+  assert.deepEqual([...chapter.historiographicalDebate.positions], ['Tolkning A', 'Tolkning B']);
+  assert.equal(chapter.historiographicalDebate.editorialNote, 'Prøv begge mot samme kilder.');
+  assert.equal(chapter.caseAnchors[0].id, 'sporstedet');
+  assert.equal(chapter.caseAnchors[0].name, 'Sporstedet');
   assert.equal(chapter.concepts[0].id, 'arbeidsdeling');
   assert.equal(chapter.concepts[0].term, 'arbeidsdeling');
   assert.equal(chapter.concepts[0].definition, 'Begrepet brukes som analysebegrep i dette kapittelet.');

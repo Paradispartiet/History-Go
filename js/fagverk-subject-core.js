@@ -178,6 +178,7 @@
       label: firstText(concept?.label, concept?.term, concept?.title, concept?.concept_id, concept?.id),
       definition: firstText(concept?.definition, concept?.description),
       definitionStatus: firstText(concept?.definition_status),
+      contextualUse: firstText(concept?.contextual_use),
       type: firstText(concept?.concept_type, concept?.type),
       historicalScope: firstText(concept?.historical_scope, concept?.scope),
       scopeNote: firstText(concept?.scope_note, concept?.historical_scope, concept?.scope),
@@ -374,6 +375,20 @@
           ? [text(item.prompt)]
           : []
     }));
+    normalized.causalFramework = unique(list(normalized.causalFramework).map(text));
+    normalized.historiographicalDebate = normalized.historiographicalDebate && typeof normalized.historiographicalDebate === 'object'
+      ? {
+          question: firstText(normalized.historiographicalDebate.question),
+          positions: unique(list(normalized.historiographicalDebate.positions).map(text)),
+          editorialNote: firstText(normalized.historiographicalDebate.editorial_note, normalized.historiographicalDebate.editorialNote)
+        }
+      : null;
+    normalized.caseAnchors = list(normalized.caseAnchors).map((place) => ({
+      ...place,
+      id: firstText(place?.place_id, place?.id),
+      name: firstText(place?.name, place?.title, humanize(place?.place_id || place?.id)),
+      use: firstText(place?.use, place?.role, place?.description)
+    })).filter((place) => place.id && place.use);
     normalized.relatedPlaces = list(normalized.relatedPlaces).map((place) => ({
       ...place,
       name: firstText(place?.name, place?.title, humanize(place?.id)),

@@ -1,4 +1,4 @@
-# Politikk: pensumarkitektur og redaksjonell kompletthet v1
+# Politikk: pensumarkitektur og redaksjonell kvalitetsutvidelse v1
 
 Status: operativ arkitektur for den materialiserte Politikk-fagsiden. Dokumentet beskriver presentasjons- og læringslaget; canonicale id-er, quizkontrakter og eksisterende lærekapitler beholder sitt eierskap i de etablerte filene.
 
@@ -38,24 +38,26 @@ Alle canonicale fagområder, emner og metoder er plassert i den nye arkitekturen
 
 `data/fag/politikk/concepts_politikk_canonical_v1.json` materialiserer de 962 unike begrepene som finnes i canonicale emnefelt. Hvert oppslag har definisjon, avgrensning, betydning, eieremne, fagområde, forbindelser, vanlige feilbruk, indikatorer, kildekrav, relevante metoder og nøkkelspørsmål.
 
-Begrepsverket skiller to kvalitetsnivåer eksplisitt:
+Begrepsverket skiller definisjonskilden eksplisitt:
 
 - 143 oppslag har en direkte redigert eller canonical definisjon.
-- 819 oppslag har en kontekstforklaring utledet fra det canonicale eieremnets definisjon, mekanismer og avgrensninger.
+- 819 oppslag har nå en selvstendig statsvitenskapelig definisjon. 273 av disse er egne redaksjonelle definisjonsfrø for termer som krever særskilt presisjon, mens 546 følger fagspesifikke semantiske regler for blant annet institusjoner, makt, rett, metode, prosess, fordeling og utfall.
 
-Kontekstforklaringer er komplette som navigasjons- og læringsstøtte, men skal ikke fremstilles som autoritative ordbokdefinisjoner. Statusen vises i grensesnittet og bevares i dataene, slik at senere fagredigering kan erstatte oppslag gradvis uten å miste sporbarhet.
+Definisjon og emnebruk er ikke lenger samme tekst. Feltet `definition` forklarer selve begrepet uten å lene seg på en emnetittel. Feltet `contextual_use` viser deretter hvordan begrepet inngår i ett av de 123 emnene. Avgrensning, feilbruk, indikatorer, kildekrav og forbindelser ligger fortsatt i egne felt. Den tidligere statusen `contextual_from_canonical_emne` er fjernet; ingen av de 962 oppslagene bruker en generell domenefallback.
 
-## Redaksjonell ferdigport
+## Redaksjonell kvalitetsport
 
 `tools/validate-politikk-curriculum-architecture.mjs` stopper regressjoner dersom:
 
 - en av de 41 studieløpsdelene mangler dybde, læringsmål eller nøkkelspørsmål
 - et canonicalt fagområde, emne eller en metode faller ut av arkitekturen
 - et av de 962 begrepene mangler forklaring, avgrensning eller eierkobling
+- en definisjon inneholder den gamle emnemalen, dupliserer en annen definisjon eller bruker generell domenefallback
+- definisjon og kontekstuell emnebruk ikke er skilt i egne felt
 - begrepsverket ikke dekker alle 123 emner og alle 13 fagområder
 - et emne mangler lærekapittel
 - lærekapitlene ikke lenger utgjør et reelt fulltekstverk
-- statusregisteret ikke lenger er redaksjonelt komplett
+- statusregisteret ikke viser den faktiske, utvidede og auditerte redaksjonelle tilstanden
 
 Materialiseringsskriptet `tools/materialize-politikk-curriculum.mjs` bygger de to nye datafilene deterministisk fra canonicale Politikk-kilder og det redigerte arkitekturgrunnlaget. Validatoren er den bindende porten; generering alene er ikke dokumentasjon på faglig kvalitet.
 

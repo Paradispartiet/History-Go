@@ -204,26 +204,417 @@ for (const emne of emners) for (const field of Object.keys(fieldRank)) for (cons
   row.rank = Math.max(row.rank, fieldRank[field]);
 }
 
-function contextualDefinition(term, owner) {
+const editorialDefinitionSeeds = new Map(Object.entries({
+  'adgangskontroll': 'Adgangskontroll er regler, tekniske ordninger og praktiske handlinger som avgjør hvem eller hva som får passere en fysisk, juridisk eller sosial grense, og på hvilke vilkår.',
+  'administrasjon': 'Administrasjon er det organiserte arbeidet med å forberede, iverksette, dokumentere og følge opp beslutninger, vanligvis innenfor fastsatte regler, ansvarslinjer og ressursrammer.',
+  'administrativ veiledning': 'Administrativ veiledning er forvaltningens forklaring av hvordan regler, prosedyrer og søknadskrav skal forstås og brukes, uten at veiledningen i seg selv nødvendigvis er et bindende vedtak.',
+  'administrativt møte': 'Et administrativt møte er en formalisert samhandling mellom forvaltningen og berørte aktører der opplysninger, ansvar, framdrift eller mulige beslutninger avklares og dokumenteres.',
+  'administrativt skjønn': 'Administrativt skjønn er forvaltningens rettslig avgrensede handlingsrom til å vurdere fakta, hensyn eller virkemidler når regler ikke fastsetter ett entydig resultat.',
+  'affektiv polarisering': 'Affektiv polarisering er sterk sosial og følelsesmessig avstand mellom politiske grupper, målt gjennom mistillit, motvilje eller negative forestillinger om motpartens medlemmer.',
+  'agenda- og premissmakt': 'Agenda- og premissmakt er evnen til å bestemme hvilke saker og alternativer som blir behandlet, og hvilke antakelser, kategorier eller kunnskapskrav beslutningen bygger på.',
+  'agenda-setting': 'Agenda-setting er prosessen der enkelte problemer, hendelser og løsninger får politisk eller mediemessig oppmerksomhet, mens andre holdes utenfor den relevante dagsordenen.',
+  'aktivering': 'Aktivering er velferdspolitiske krav og tiltak som skal øke mottakeres deltakelse i arbeid, utdanning eller aktivitet, ofte som vilkår for ytelser eller oppfølging.',
+  'alternativkostnad': 'Alternativkostnad er verdien av det beste realistiske alternativet som må oppgis når ressurser, tid eller politisk kapasitet brukes på ett bestemt formål.',
+  'anerkjennelse': 'Anerkjennelse er sosial og politisk bekreftelse av personers eller gruppers status, erfaringer og rett til å delta som likeverdige, og kan være både symbolsk, rettslig og materiell.',
+  'ansvar': 'Ansvar er en begrunnet plikt til å utføre en oppgave, stå til rette for en beslutning eller bære konsekvensene av en handling innenfor en identifiserbar rolle og myndighetskjede.',
+  'ansvarlighet': 'Ansvarlighet er ordninger som gjør at makthavere må forklare og begrunne handlinger, kan kontrolleres mot regler og mål, og kan møtes med korreksjon eller sanksjoner.',
+  'ansvarsgap': 'Et ansvarsgap oppstår når en beslutning eller skadevirkning kan dokumenteres, men ingen aktør kan holdes effektivt ansvarlig fordi myndighet, oppgaver og kontroll er spredt eller uklart fordelt.',
+  'ansvarslinje': 'En ansvarslinje er den sporbare kjeden av delegasjon, rapportering, kontroll og politisk eller administrativt ansvar fra beslutningstaker til gjennomførende ledd.',
+  'antagonisme': 'Antagonisme er en konfliktform der partene oppfatter hverandres krav eller identiteter som grunnleggende uforenlige, slik at motparten behandles som en fiende snarere enn en legitim konkurrent.',
+  'arkiv': 'Et arkiv er ordnede og bevarte dokumenter skapt gjennom virksomheten til en person eller institusjon; utvalg, klassifikasjon og tilgang påvirker hva som kan dokumenteres og kontrolleres.',
+  'autokrati': 'Autokrati er et politisk regime der den øverste makten er konsentrert hos én leder eller en snever gruppe, med svake muligheter for reell konkurranse, maktskifte og uavhengig kontroll.',
+  'autonomi': 'Autonomi er evnen og den institusjonelt beskyttede retten til å fastsette egne mål eller valg uten å være underlagt vilkårlig styring fra andre.',
+  'autorisasjon': 'Autorisasjon er en formell eller demokratisk handling som gir en aktør rett til å representere, beslutte eller utøve bestemte oppgaver på andres vegne.',
+  'autoritet': 'Autoritet er makt som oppfattes eller anerkjennes som berettiget fordi den bygger på gyldige regler, et legitimt mandat eller faglig og sosialt aksepterte begrunnelser.',
+  'avhengighet': 'Avhengighet er en relasjon der en aktørs handlingsrom påvirkes av ressurser, beslutninger eller samtykke som kontrolleres av en annen aktør, uten nødvendigvis å være utsatt for direkte tvang.',
+  'behov': 'Behov er en dokumentert mangel eller livsbetingelse som brukes som kriterium for prioritering, rettighet eller fordeling; vurderingen av behov krever både målestokk og relevant sammenligning.',
+  'behovsprøving': 'Behovsprøving er individuell vurdering av inntekt, ressurser, funksjon eller livssituasjon for å avgjøre om en person oppfyller vilkårene for en ytelse eller tjeneste.',
+  'beredskap': 'Beredskap er planlagt kapasitet til å forebygge, håndtere og gjenopprette kritiske funksjoner ved uønskede hendelser, med avklarte roller, ressurser, øvelser og beslutningslinjer.',
+  'beskatning': 'Beskatning er offentlig fastsettelse og innkreving av økonomiske bidrag fra personer og virksomheter for å finansiere felles oppgaver, regulere aktivitet eller påvirke fordeling.',
+  'beslutning': 'En beslutning er et valg mellom handlingsalternativer som autoriserer eller avgrenser videre handling; politiske beslutninger må skilles fra forberedelse, gjennomføring og faktisk virkning.',
+  'bevilgning': 'En bevilgning er et formelt vedtak som gir adgang til å bruke et angitt beløp til et bestemt formål og tidsrom, men sier ikke alene hva som faktisk brukes eller oppnås.',
+  'demokrati': 'Demokrati er en politisk orden der borgere kan delta i og konkurrere om offentlig makt under politisk likhet, rettigheter, informasjonsfrihet og ordninger for representasjon og ansvarliggjøring.',
+  'domstol': 'En domstol er et uavhengig offentlig organ som avgjør rettstvister og straffesaker gjennom rettslig bindende avgjørelser etter fastsatte prosessregler.',
+  'ekskludering': 'Ekskludering er regler eller praksiser som stenger personer eller grupper ute fra medlemskap, arenaer, ressurser, rettigheter eller reell deltakelse.',
+  'fordeling': 'Fordeling er mønsteret og prosessen som avgjør hvordan ressurser, byrder, risiko, tjenester, rettigheter eller status tilfaller ulike personer, grupper eller områder.',
+  'forvaltning': 'Forvaltning er offentlige organers arbeid med å utrede, iverksette og håndheve lover og politiske vedtak, yte tjenester og treffe avgjørelser overfor borgere og virksomheter.',
+  'forskningsdesign': 'Forskningsdesign er den samlede planen som knytter problemstilling, begreper, analyseenheter, utvalg, data og slutningsregler sammen slik at en påstand kan undersøkes etterprøvbart.',
+  'identifikasjon': 'Identifikasjon er begrunnelsen for at et observert mønster kan tolkes som virkningen av en bestemt årsak, og ikke som resultat av seleksjon, konfundering eller omvendt kausalitet.',
+  'inkludering': 'Inkludering er regler og praksiser som gir personer eller grupper adgang, medlemskap, synlighet, ressurser og reell mulighet til å delta og gjøre krav gjeldende.',
+  'kausalitet': 'Kausalitet betyr at en endring i én faktor bidrar til å frambringe en endring i et utfall gjennom en spesifisert mekanisme, sammenlignet med hva som ellers ville ha skjedd.',
+  'komparasjon': 'Komparasjon er systematisk sammenligning av enheter, perioder eller prosesser etter felles kriterier for å beskrive variasjon, prøve forklaringer eller avgrense generalisering.',
+  'komparativ politikk': 'Komparativ politikk er det statsvitenskapelige fagfeltet som sammenligner regimer, institusjoner, aktører og politiske prosesser for å forklare variasjon mellom land, regioner eller perioder.',
+  'kontrafaktisk': 'Et kontrafaktisk uttrykker hva som ville ha skjedd med utfallet dersom den antatte årsaken hadde vært annerledes, mens andre relevante forhold var sammenlignbare.',
+  'legitimitet': 'Legitimitet er oppfatningen eller den normative begrunnelsen for at en maktordning har rett til å treffe bindende beslutninger og derfor bør aksepteres innenfor bestemte grenser.',
+  'makt': 'Makt er evnen til å påvirke andre aktørers handlinger, alternativer, ressurser eller forståelser, også gjennom dagsorden, institusjoner og strukturelle avhengigheter.',
+  'mekanisme': 'En mekanisme er den spesifiserte prosessen eller kjeden av handlinger og betingelser som forklarer hvordan en antatt årsak kan frambringe et bestemt utfall.',
+  'normalitet': 'Normalitet er sosialt og institusjonelt etablerte forestillinger om hva som regnes som vanlig, ønskelig eller avvikende, og virker gjennom kategorier, forventninger og sanksjoner.',
+  'rettferdighet': 'Rettferdighet er et normativt prinsipp for hvordan rettigheter, muligheter, goder, byrder og anerkjennelse bør fordeles og begrunnes mellom mennesker og grupper.',
+  'statistisk inferens': 'Statistisk inferens er bruk av et utvalg og en sannsynlighetsmodell til å trekke usikre slutninger om en større populasjon, en parameter eller et mønster som ikke observeres fullt ut.',
+  'statsborgerskap': 'Statsborgerskap er det formelle medlemskapet i en stat og gir et bestemt sett av rettigheter, plikter og politiske tilknytninger, men er ikke det samme som sosial tilhørighet.',
+  'styring': 'Styring er målrettet påvirkning av kollektiv handling gjennom regler, ressurser, organisering, kunnskap og koordinering, både i og utenfor formelle myndighetshierarkier.'
+}));
+
+for (const [term, definition] of Object.entries({
+  'anti-etablissement': 'Anti-etablissement er en politisk orientering som framstiller etablerte eliter og institusjoner som fjerne, selvbeskyttende eller illegitime, og mobiliserer mot deres autoritet.',
+  'arealformål': 'Arealformål er den rettslige kategorien i en plan som angir hvilken hovedbruk et område kan ha, og som dermed avgrenser senere tillatelser og utbyggingsvalg.',
+  'automatisk støtte': 'Automatisk støtte er forventningen om å slutte opp om en alliert eller politisk partner uten en ny, selvstendig vurdering av den konkrete saken, kostnaden og risikoen.',
+  'avstand': 'Avstand er geografisk, sosial eller institusjonell separasjon mellom aktører og beslutningsarenaer, og kan påvirke tilgang, kunnskap, representasjon og kontroll.',
+  'boligtilbud': 'Boligtilbud er mengden og sammensetningen av boliger som faktisk er tilgjengelige i et område og prissjikt, formet av bygging, regulering, omsetning og bruk.',
+  'borger-relasjoner': 'Borger-relasjoner er de gjensidige rettighetene, pliktene, møtene og forventningene som oppstår mellom offentlige myndigheter og personer som berøres av deres handlinger.',
+  'bydelsdemokrati': 'Bydelsdemokrati er ordninger for lokal representasjon, deltakelse og ansvarliggjøring under kommunenivået, knyttet til et avgrenset geografisk område og delegerte oppgaver.',
+  'byråd': 'Et byråd er kommunens utøvende politiske ledelse i en parlamentarisk styringsmodell og står ansvarlig overfor et flertall i bystyret.',
+  'bystyre': 'Et bystyre er det øverste folkevalgte organet i en bykommune og vedtar blant annet budsjett, planer, lokale regler og overordnede politiske mål.',
+  'bærekraft': 'Bærekraft er evnen til å dekke dagens behov uten å undergrave økologiske, sosiale og økonomiske forutsetninger for framtidige generasjoner og andre berørte grupper.',
+  'checks and balances': 'Checks and balances er et institusjonelt system der offentlige maktorganer har adskilte fullmakter og gjensidige kontrollmidler som skal hindre maktkonsentrasjon og misbruk.',
+  'competitive authoritarianism': 'Competitive authoritarianism er et regime der valg og formell opposisjon finnes, men der makthaverne systematisk skjevfordeler ressurser, medier, rettsapparat eller valgvilkår.',
+  'credential': 'En credential er et formelt dokumentert kvalifikasjons- eller statusbevis som gir adgang til bestemte roller, tjenester eller rettigheter og samtidig kan fungere som portvakt.',
+  'demografi': 'Demografi er studiet av befolkningers størrelse, sammensetning og endring gjennom fødsler, dødsfall og migrasjon, og gir grunnlag for politisk planlegging og fordeling.',
+  'diaspora': 'En diaspora er en befolkning spredt utenfor et historisk eller forestilt hjemland som opprettholder sosiale, kulturelle eller politiske forbindelser på tvers av statsgrenser.',
+  'diplomati': 'Diplomati er staters og andre internasjonale aktørers organiserte kommunikasjon, forhandling og representasjon for å håndtere interesser, konflikter og samarbeid uten direkte maktbruk.',
+  'ekspertise': 'Ekspertise er spesialisert og erfaringsbasert kunnskap som gir faglig autoritet på et avgrenset område, men som ikke i seg selv gir demokratisk mandat til å bestemme.',
+  'eliteanklage': 'En eliteanklage er en politisk påstand om at en avgrenset maktgruppe handler i egen interesse eller i strid med folkelig kontroll, og må underbygges med identifiserte aktører og mekanismer.',
+  'estimat': 'Et estimat er en beregnet verdi for en ukjent størrelse basert på data og en uttrykt metode, og skal ledsages av usikkerhet, forutsetninger og relevant måleenhet.',
+  'executive aggrandizement': 'Executive aggrandizement er gradvis utvidelse av den utøvende maktens handlingsrom gjennom formelt vedtatte endringer som svekker kontroll, konkurranse eller andre institusjoner.',
+  'eøs-relevans': 'EØS-relevans er vurderingen av om en EU-rettsakt faller innenfor EØS-avtalens saklige og geografiske virkeområde og derfor kan bli aktuell for innlemmelse.',
+  'fagkompetanse': 'Fagkompetanse er dokumentert kunnskap og ferdighet på et avgrenset område som gjør en aktør i stand til å utrede, vurdere eller gjennomføre oppgaver med faglig forsvarlighet.',
+  'fast mandatperiode': 'En fast mandatperiode er en på forhånd bestemt funksjonstid som normalt ikke kan avsluttes gjennom ordinær politisk mistillit før perioden utløper.',
+  'forbud': 'Et forbud er en bindende regel som pålegger en identifisert adressat å avstå fra en bestemt handling, vanligvis med vilkår for håndheving, unntak og reaksjon ved brudd.',
+  'forskningsetikk': 'Forskningsetikk er normer for ansvarlig kunnskapsproduksjon, blant annet informert samtykke, skadebegrensning, personvern, redelighet, uavhengighet og åpenhet om usikkerhet.',
+  'grønt demokrati': 'Grønt demokrati er teorier og institusjoner som utvider demokratisk deltakelse og ansvar til langsiktige miljøvirkninger, framtidige generasjoner og naturinteresser.',
+  'historie': 'Historie er systematisk undersøkelse og fortolkning av menneskelig forandring over tid ved hjelp av kildekritisk vurderte spor, kontekst og konkurrerende forklaringer.',
+  'historisk skillelinje': 'En historisk skillelinje er en varig politisk konflikt som har røtter i tidligere samfunnsendringer, organiserer grupper og fortsatt påvirker partier, identitet eller stemmegivning.',
+  'hverdagsliv': 'Hverdagsliv er menneskers gjentatte praksiser, møter og erfaringer i dagliglivet, der regler, tjenester, normer og makt får konkrete og ofte ulikt fordelte virkninger.',
+  'ikke-bruk': 'Ikke-bruk er bevisst avståelse fra et tilgjengelig politisk, rettslig eller organisatorisk virkemiddel, og må skilles fra manglende kunnskap, kapasitet eller adgang.',
+  'ikke-vold': 'Ikke-vold er politisk handling som avstår fra fysisk vold og søker påvirkning gjennom blant annet protest, sivil ulydighet, boikott, streik eller moralsk appell.',
+  'informasjonsasymmetri': 'Informasjonsasymmetri er en situasjon der relevante aktører har systematisk ulik tilgang til kunnskap om valg, kvalitet, risiko eller handlinger, noe som kan skape makt og kontrollproblemer.',
+  'informasjonsfordel': 'En informasjonsfordel er en aktørs bedre eller tidligere tilgang til relevant kunnskap som kan omsettes i strategisk innflytelse over beslutninger, forhandlinger eller kontroll.',
+  'innsiderstrategi': 'En innsiderstrategi er politisk påvirkning gjennom etablert og ofte varig tilgang til beslutningstakere, høringer, råd eller forhandlinger, framfor offentlig press utenfra.',
+  'insentiv': 'Et insentiv er en forventet belønning, kostnad eller regelvirkning som endrer fordelene ved alternative handlinger, uten å avgjøre at aktører faktisk vil reagere likt.',
+  'institusjoner': 'Institusjoner er relativt stabile formelle og uformelle regler som fordeler roller, myndighet og forventninger og dermed strukturerer politiske aktørers handlingsmuligheter.',
+  'institusjonskritikk': 'Institusjonskritikk er systematisk vurdering av hvordan regler og organisasjoner fordeler makt, adgang og ansvar, og om de oppfyller uttalte demokratiske, rettslige eller sosiale formål.',
+  'interesser': 'Interesser er goder, mål eller posisjoner en aktør søker å beskytte eller fremme; de må undersøkes empirisk og kan ikke uten videre utledes av identitet eller gruppetilhørighet.',
+  'intervju': 'Et intervju er en planlagt samtale brukt som datakilde, der spørsmål, utvalg, relasjon, hukommelse og situasjon påvirker hvilke utsagn som blir produsert og hvordan de kan tolkes.',
+  'judicial review': 'Judicial review er domstolers prøving av om lover eller offentlige handlinger er forenlige med overordnede rettsregler, og kan føre til tilsidesettelse eller korrigering.',
+  'kabinettspørsmål': 'Et kabinettspørsmål er når en regjering knytter sin fortsatte stilling til utfallet av en bestemt avstemning og varsler avgang dersom den taper.',
+  'kamp': 'Kamp er vedvarende kollektiv konflikt om makt, ressurser, rettigheter eller anerkjennelse, ført gjennom identifiserbare strategier og arenaer over tid.',
+  'kampanje': 'En kampanje er en tidsavgrenset og koordinert serie kommunikative eller organisatoriske tiltak som skal påvirke oppmerksomhet, holdninger, deltakelse eller beslutninger.',
+  'kapitalformer': 'Kapitalformer er ulike ressurser som kan gi sosial og politisk innflytelse, som økonomisk, kulturell, sosial og symbolsk kapital, og kan omsettes mellom arenaer.',
+  'kategoriport': 'En kategoriport er et klassifikasjonskrav som må oppfylles for å få status, rettighet eller tilgang, og som derfor gjør administrative kategorier til reelle adgangsgrenser.',
+  'kildekritikk': 'Kildekritikk er systematisk vurdering av en kildes opphav, formål, sjanger, nærhet, utvalg og avhengighet for å avgjøre hvilke påstander den kan og ikke kan støtte.',
+  'kjonn og samfunn': 'Kjønn og samfunn viser til hvordan kjønnsinndelinger formes av og virker gjennom institusjoner, arbeid, familie, rettigheter, normer og fordeling av makt og ressurser.',
+  'kjønn': 'Kjønn er en kroppslig, juridisk og sosial kategorisering som organiserer identitet, forventninger, rettigheter og arbeidsdeling, og som varierer historisk og institusjonelt.',
+  'kritikk': 'Kritikk er en begrunnet prøving av påstander, institusjoner eller handlinger mot uttrykte kunnskapskrav eller normative standarder, med mulighet for innvending og revisjon.',
+  'klage': 'En klage er en formalisert anmodning om at en avgjørelse eller handling blir vurdert på nytt av et kompetent organ etter bestemte frister og saksbehandlingsregler.',
+  'klasse': 'Klasse er en sosial posisjon knyttet til økonomiske ressurser, yrke, eierskap og markedsrelasjoner som påvirker livssjanser, interesser og politisk organisering.',
+  'klima': 'Klima er langsiktige mønstre i temperatur, nedbør og andre værforhold; klimapolitikk gjelder hvordan årsaker, risiko, tiltak og kostnader styres og fordeles.',
+  'koalisjonsstrategi': 'Koalisjonsstrategi er en aktørs plan for å bygge, bevare eller endre et flertall gjennom valg av samarbeidspartnere, saksavtaler, verv og politiske kompromisser.',
+  'kollektiv': 'Et kollektiv er en gruppe som handler, organiseres eller behandles som en felles enhet, og krever avklaring av medlemskap, representasjon og beslutningsregler.',
+  'kollektivt minne': 'Kollektivt minne er sosialt organiserte fortolkninger av fortiden som vedlikeholdes gjennom ritualer, fortellinger, steder og institusjoner og former nåtidig identitet og konflikt.',
+  'konfliktlinjer': 'Konfliktlinjer er varige akser av politisk uenighet som knytter sosiale grupper, interesser og identiteter til organisasjoner, partier og konkurrerende politiske programmer.',
+  'kongruens': 'Kongruens er graden av samsvar mellom to nivåer eller størrelser, for eksempel borgernes preferanser og representantenes standpunkter, målt etter uttrykte kriterier.',
+  'konkurranse': 'Konkurranse er en ordnet rivalisering mellom aktører om knappe posisjoner, ressurser eller støtte, regulert av regler som påvirker adgang, strategi og mulig utfall.',
+  'konstitusjonell frist': 'En konstitusjonell frist er en tidsgrense fastsatt i grunnlov eller annen overordnet regel for at et offentlig organ skal handle, svare eller avslutte en prosess.',
+  'kontroll over saksflyt': 'Kontroll over saksflyt er evnen til å bestemme rekkefølge, tempo, informasjonsgrunnlag og videre behandling i en beslutningsprosess, og kan gi betydelig premissmakt.',
+  'kontrollmekanismer': 'Kontrollmekanismer er formelle eller uformelle ordninger som overvåker maktutøvelse, avdekker avvik og muliggjør begrunnelse, korreksjon eller sanksjon.'
+})) editorialDefinitionSeeds.set(term, definition);
+
+for (const [term, definition] of Object.entries({
+  'ritual': 'Et ritual er en gjentatt og symbolsk strukturert handling som uttrykker tilhørighet, autoritet eller kollektivt minne og får politisk betydning gjennom deltakelse og offentlig fortolkning.',
+  'sak-til-sak-støtte': 'Sak-til-sak-støtte er parlamentarisk samarbeid der et parti vurderer og forhandler hvert forslag separat uten å love regjeringen varig støtte i alle saker.',
+  'samfunn': 'Samfunn er et historisk avgrenset mønster av mennesker, institusjoner, relasjoner og felles ordninger; begrepet må presiseres geografisk, sosialt og tidsmessig i analyse.',
+  'sekvens': 'En sekvens er en tidsordnet rekke hendelser eller handlinger der rekkefølgen kan være avgjørende for hvilke alternativer, mekanismer og utfall som blir mulige.',
+  'sensur': 'Sensur er kontroll som hindrer, endrer eller straffer offentliggjøring av informasjon og ytringer før eller etter publisering, utøvd gjennom rettslige, økonomiske eller tekniske midler.',
+  'sentralbank': 'En sentralbank er den offentlige institusjonen som utsteder valuta og forvalter pengepolitikk og finansiell stabilitet innenfor et lovbestemt mandat og bestemte ansvarslinjer.',
+  'sentrum–periferi': 'Sentrum–periferi er en konflikt- og avhengighetsrelasjon mellom makt- og ressurskonsentrerte sentre og geografiske eller sosiale områder med svakere adgang og kontroll.',
+  'signal': 'Et signal er en observerbar handling eller ytring som skal formidle informasjon om en aktørs hensikt, kapasitet eller troverdighet under usikkerhet.',
+  'skadeprinsipp': 'Skadeprinsippet er den normative påstanden at tvang mot en person først og fremst kan begrunnes for å hindre skade på andre, ikke bare for personens eget beste.',
+  'skatt': 'Skatt er en lovpålagt betaling til det offentlige uten direkte individuell motytelse, brukt til finansiering, omfordeling og påvirkning av økonomisk atferd.',
+  'skyld': 'Skyld er rettslig eller moralsk ansvar for en handling eller unnlatelse og krever et grunnlag som knytter aktør, normbrudd, kontroll og eventuell intensjon sammen.',
+  'småstatsstrategi': 'Småstatsstrategi er hvordan en stat med begrensede materielle ressurser søker sikkerhet og innflytelse gjennom allianser, institusjoner, regler, nisjekompetanse og omdømme.',
+  'sosial': 'Sosial beskriver relasjoner, grupper, institusjoner og praksiser mellom mennesker; i politisk analyse må den konkrete mekanismen og analyseenheten alltid spesifiseres.',
+  'spørsmål': 'Et spørsmål er en formulert kunnskaps- eller beslutningsoppgave som avgrenser hva som skal undersøkes, hvilke alternativer som er relevante og hva som kan telle som svar.',
+  'status quo': 'Status quo er den eksisterende ordningen eller tilstanden som fungerer som sammenligningspunkt og ofte har institusjonelle fordeler fordi endring krever vedtak eller samordning.',
+  'straff': 'Straff er et offentlig påført onde som reaksjon på et fastslått lovbrudd etter bestemte skyld-, prosess- og forholdsmessighetskrav.',
+  'strategi': 'En strategi er en samordnet plan for å nå et mål under begrensede ressurser, usikkerhet og forventede motreaksjoner fra andre aktører.',
+  'strategisk stemme': 'En strategisk stemme er et valg der velgeren støtter et annet alternativ enn førstevalget for å påvirke hvilket realistisk utfall valgsystemet produserer.',
+  'streik': 'Streik er en kollektiv og midlertidig arbeidsstans initiert av arbeidstakere for å legge press i en konflikt om lønn, vilkår, rettigheter eller politiske krav.',
+  'strukturell': 'Strukturell beskriver virkninger som følger av varige regler, ressursfordelinger og posisjoner i et system, ikke bare av én aktørs synlige intensjon eller handling.',
+  'strukturell skade': 'Strukturell skade er systematisk belastning som oppstår gjennom institusjoner, markeder eller fordelingsmønstre og kan vedvare uten én identifiserbar skadevolder.',
+  'styringsorganer': 'Styringsorganer er formelt etablerte kollektive eller administrative enheter som har myndighet til å vedta, lede, kontrollere eller samordne en virksomhet.',
+  'symbolsk': 'Symbolsk beskriver hvordan tegn, språk, steder og ritualer skaper mening, status og legitimitet og dermed kan påvirke politisk tilhørighet og makt.',
+  'symbolsk sentrum': 'Et symbolsk sentrum er et sted eller en institusjon som framstilles som kollektivets representative kjerne og samler ritualer, fortellinger og autoritetskrav.',
+  'symmetri': 'Symmetri er et forhold der aktører, enheter eller målestokker er like plassert etter relevante kriterier; påstanden må angi nøyaktig hvilken dimensjon likheten gjelder.',
+  'systemnivå': 'Systemnivå er analysetrinnet der forklaringen gjelder mønstre og relasjoner i en hel institusjonsorden eller internasjonal struktur, ikke enkeltaktørers egenskaper alene.',
+  'teknologi': 'Teknologi er organiserte redskaper, kunnskap og infrastrukturer som muliggjør og avgrenser handling; politisk virkning følger av design, eierskap, tilgang og regulering.',
+  'territorium': 'Territorium er et geografisk område som en politisk myndighet gjør krav på å styre, kontrollere eller representere gjennom grenser, regler og institusjoner.',
+  'tilbakegang': 'Tilbakegang er dokumentert svekkelse over tid etter uttrykte kriterier, for eksempel i demokratisk konkurranse, rettsvern eller institusjonell kapasitet.',
+  'tillitstap': 'Tillitstap er en målbar svekkelse i forventningen om at en aktør eller institusjon vil handle kompetent, forutsigbart eller i tråd med aksepterte normer.',
+  'tillitsvotum': 'Et tillitsvotum er en parlamentarisk avstemning om hvorvidt regjeringen fortsatt har kammerets støtte til å sitte eller føre en bestemt politikk.',
+  'tjeneste': 'En tjeneste er en organisert ytelse som skal dekke et definert behov eller en rettighet og må vurderes gjennom adgang, kvalitet, kapasitet, skjønn og faktisk resultat.',
+  'transnasjonal': 'Transnasjonal beskriver aktører, relasjoner eller prosesser som krysser statsgrenser uten å være begrenset til formelle forbindelser mellom regjeringer.',
+  'tv': 'TV er et audiovisuelt massemedium og en politisk offentlighetsarena der redaksjonelt utvalg, format, bilder og sendetid former synlighet og fortolkning.',
+  'tvangsmiddel': 'Et tvangsmiddel er et lovregulert inngrep myndighetene kan bruke for å sikre etterforskning, orden eller gjennomføring, under krav om hjemmel, nødvendighet og forholdsmessighet.',
+  'utnyttelsesgrad': 'Utnyttelsesgrad er forholdet mellom faktisk bruk og tilgjengelig eller tillatt kapasitet, målt med en uttrykt enhet og et relevant tidsrom.',
+  'valgkonkurranse': 'Valgkonkurranse er reell rivalisering mellom kandidater eller partier om stemmer og makt under regler som tillater opposisjon, informasjon og usikkert utfall.',
+  'valgkrets': 'En valgkrets er et geografisk eller annet avgrenset område der stemmer telles og representanter velges, og påvirker koblingen mellom befolkning og mandater.',
+  'valgseier': 'Valgseier er et resultat der et parti eller en kandidat oppnår den relevante terskelen for flest stemmer, mandater eller verv etter valgsystemets regler.',
+  'vetospillere': 'Vetospillere er individuelle eller kollektive aktører hvis samtykke er nødvendig for å endre status quo, enten gjennom formelle regler eller stabil politisk praksis.',
+  'vold': 'Vold er tilsiktet bruk eller trussel om fysisk makt som kan skade personer eller ødelegge materielle vilkår, og må skilles fra andre former for tvang og strukturert skade.',
+  'winset': 'Et winset er mengden avtaler eller alternativer som kan få nødvendig støtte hos en aktør eller ratifiserende gruppe, gitt deres preferanser, institusjoner og innenrikspolitiske begrensninger.',
+  'ytelsesvilkår': 'Et ytelsesvilkår er et rettslig eller administrativt krav som må være oppfylt for å få eller beholde en offentlig ytelse, og skal kunne begrunnes og prøves.',
+  'økologiske grenser': 'Økologiske grenser er terskler for naturens tåleevne og regenerasjon som avgrenser hvor stor belastning menneskelig aktivitet kan påføre uten alvorlig systemendring.',
+  'økonomisk demokrati': 'Økonomisk demokrati er ordninger som gir arbeidstakere, borgere eller lokalsamfunn reell medbestemmelse over eierskap, investeringer, produksjon og fordeling.'
+})) editorialDefinitionSeeds.set(term, definition);
+
+for (const [term, definition] of Object.entries({
+  'beslutningseffektivitet': 'Beslutningseffektivitet er en institusjons evne til å treffe rettidige og gjennomførbare vedtak når et problem krever handling, uten at tempo alene sier noe om demokratisk eller faglig kvalitet.',
+  'dekommodifisering': 'Dekommodifisering er graden av mulighet til å opprettholde et sosialt akseptabelt liv uten å selge arbeidskraft i markedet, vanligvis gjennom rettigheter og velferdsytelser.',
+  'demonstrasjon': 'En demonstrasjon er en offentlig og kollektiv markering der deltakere bruker fysisk eller digital synlighet, samling, marsj og symboler til å uttrykke krav eller motstand.',
+  'eu-medlemskap': 'EU-medlemskap er en stats fulle traktatbaserte deltakelse i Den europeiske union, med representasjon i institusjonene, plikt til å følge EU-retten og del i unionens beslutninger.',
+  'hierarki': 'Et hierarki er en ordning av over- og underordnede posisjoner der myndighet, instruksjon, rapportering og ansvar er fordelt mellom nivåer.',
+  'identitetsaggregering': 'Identitetsaggregering er prosessen der ulike erfaringer og gruppetilhørigheter samles i en bredere politisk identitet som kan bære felles krav, representasjon eller mobilisering.',
+  'kapabilitet': 'Kapabilitet er en persons reelle mulighet til å være og gjøre det hun eller han har grunn til å verdsette, ikke bare formell rett eller tilgang til en ressurs.',
+  'koalisjonsdannelse': 'Koalisjonsdannelse er prosessen der partier eller andre aktører forhandler fram et samarbeid som kan oppnå nødvendig flertall, med avtaler om politikk, verv og ansvar.',
+  'kontroll og mistillit': 'Kontroll og mistillit viser til parlamentariske ordninger som undersøker regjeringens handlinger og kan trekke tilbake det politiske grunnlaget for at den sitter.',
+  'kulturell kapital': 'Kulturell kapital er kunnskap, språk, utdanning, smak og væremåter som verdsettes i bestemte institusjoner og kan omsettes i status, adgang og innflytelse.',
+  'mindretallsregjering': 'En mindretallsregjering er en regjering som ikke kontrollerer et flertall av mandatene i parlamentet og derfor må skaffe støtte fra andre partier for vedtak og fortsatt tillit.',
+  'normativ analyse': 'Normativ analyse undersøker hvordan politiske ordninger bør være ved å klargjøre verdier, prinsipper, premisser, rekkevidde, motargumenter og avveininger mellom legitime hensyn.',
+  'positiv forpliktelse': 'En positiv forpliktelse er en plikt til aktivt å beskytte eller oppfylle en rettighet, ikke bare til å avstå fra inngrep.',
+  'proporsjonalitet': 'Proporsjonalitet er kravet om et rimelig forhold mellom tiltakets formål, inngrepets styrke, nødvendigheten og belastningen for berørte rettigheter eller interesser.',
+  'rammeoverføring': 'Rammeoverføring er en ikke-øremerket statlig overføring som kommunen kan fordele mellom oppgaver innenfor lovpålagte krav og lokale prioriteringer.',
+  'representativ skjevhet': 'Representativ skjevhet er et systematisk avvik mellom gruppene eller erfaringene i en befolkning og dem som blir valgt, hørt eller får politisk respons.',
+  'rettferdig omstilling': 'Rettferdig omstilling er en overgang til et mer miljømessig bærekraftig samfunn der arbeid, kostnader, risiko og nye muligheter fordeles på en sosialt begrunnet måte.',
+  'rettspraksis': 'Rettspraksis er mønsteret av domstolsavgjørelser som viser hvordan rettsregler tolkes og anvendes, og som kan få styrende betydning for senere saker.',
+  'samvittighet': 'Samvittighet er en persons egen moralske vurdering av hva som er rett eller galt, og kan begrunne motstand, men fritar ikke automatisk fra rettslig eller demokratisk ansvar.',
+  'sosial reproduksjon': 'Sosial reproduksjon er prosesser som overfører klasseposisjon, ressurser, normer og ulikhet mellom generasjoner og gjennom institusjoner som familie, skole og arbeidsliv.',
+  'tillatelse': 'En tillatelse er et offentlig vedtak som gir adgang til en ellers regulert handling når fastsatte vilkår er oppfylt, og kan inneholde betingelser, tidsgrenser og kontroll.',
+  'verdihierarki': 'Et verdihierarki er en rangering av prinsipper eller hensyn som angir hvilke verdier som skal veie tyngst når de ikke kan oppfylles samtidig.'
+})) editorialDefinitionSeeds.set(term, definition);
+
+for (const [term, definition] of Object.entries({
+  'kumulativ ulempe': 'Kumulativ ulempe er en prosess der tidlige forskjeller eller belastninger øker sannsynligheten for nye ulemper, slik at ulikhet forsterkes på tvers av livsfaser eller institusjoner.',
+  'kunnskapsasymmetri': 'Kunnskapsasymmetri er systematisk ulik fordeling av relevant ekspertise eller erfaringskunnskap mellom aktører, noe som påvirker hvem som kan definere problemer og kontrollere beslutningsgrunnlaget.',
+  'kutt': 'Et kutt er en reduksjon i en bevilgning, ressursramme, tjeneste eller aktivitet sammenlignet med et uttrykt utgangspunkt; nominell endring må skilles fra reell kapasitet.',
+  'legalitetsprinsipp': 'Legalitetsprinsippet krever at offentlige inngrep overfor borgerne har hjemmel i lov, særlig når myndigheten pålegger plikter, begrenser frihet eller bruker tvang.',
+  'legitim tvang': 'Legitim tvang er maktbruk som kan forsvares gjennom gyldig hjemmel, et berettiget formål, nødvendig og forholdsmessig gjennomføring og reell mulighet for kontroll.',
+  'legitimitetspress': 'Legitimitetspress oppstår når en institusjons begrunnelse, prosedyrer eller resultater utfordres slik at aksepten av dens rett til å utøve makt svekkes.',
+  'lik sats': 'Lik sats er et fordelingsprinsipp der alle relevante enheter mottar eller betaler samme beløp eller prosent, uten justering for behov, kostnad eller kapasitet.',
+  'live-intervjuer': 'Live-intervjuer er uredigerte eller direktesendte samtaler der spørsmål, tidspress og umiddelbar respons blir del av den politiske kommunikasjonen og begrenser etterkontroll.',
+  'livssjanser': 'Livssjanser er sannsynligheten for å få tilgang til utdanning, arbeid, inntekt, helse, bolig og innflytelse, formet av sosial posisjon og institusjonelle vilkår.',
+  'lockout': 'Lockout er en arbeidskamphandling der en arbeidsgiver eller arbeidsgiverorganisasjon stenger arbeidstakere ute fra arbeidet for å legge press i en kollektiv konflikt.',
+  'lokalt skjønn': 'Lokalt skjønn er handlingsrommet lokale myndigheter eller tjenesteutøvere har til å tilpasse beslutninger til stedlige forhold innenfor nasjonale regler og mål.',
+  'lovpålegg': 'Et lovpålegg er en plikt som følger direkte av lov og binder den identifiserte adressaten, med nærmere vilkår for oppfyllelse, kontroll og eventuell reaksjon.',
+  'lovreform': 'En lovreform er en planlagt endring av rettsregler og tilhørende institusjoner for å endre rettigheter, plikter, kompetanse eller praksis på et område.',
+  'maktbalanse': 'Maktbalanse er et forhold der ingen aktør enkelt kan dominere fordi andre har tilstrekkelige ressurser, allianser eller kontrollmidler til å begrense den.',
+  'markedssvikt': 'Markedssvikt er når desentralisert markedsutveksling ikke gir et effektivt eller samfunnsmessig ønsket resultat, blant annet på grunn av eksternaliteter, monopol, kollektive goder eller informasjonssvikt.',
+  'mdsd': 'MDSD, «most different systems design», sammenligner svært ulike case som har samme utfall for å lete etter en felles forklaringsfaktor, med uttrykte grenser for kausale slutninger.',
+  'mediescene': 'En mediescene er den sammensetningen av redaksjoner, plattformer, sjangre og publikum der politiske aktører konkurrerer om oppmerksomhet og fortolkningsmakt.',
+  'minnested': 'Et minnested er et fysisk eller digitalt sted som er gitt en organisert funksjon i offentlig erindring gjennom merking, ritualer, fortellinger eller institusjonell forvaltning.',
+  'minnesteder': 'Minnesteder er fysiske eller digitale steder som organiserer offentlig erindring gjennom utvalg, symboler, ritualer og fortellinger om fortiden.',
+  'mistanke': 'Mistanke er en begrunnet, men ikke bevist antakelse om at et relevant forhold kan foreligge, og må skilles fra fastslått faktum i kontroll og rettsanvendelse.',
+  'monopol': 'Monopol er en situasjon der én aktør har enerett eller dominerende kontroll over et marked, en ressurs eller en beslutningskanal og derfor møter svak konkurranse.',
+  'monument': 'Et monument er et varig fysisk verk reist eller bevart for å markere personer, hendelser eller verdier og fungerer derfor som et offentlig uttrykk for utvalgt minne.',
+  'motminne': 'Et motminne er en organisert fortolkning av fortiden som utfordrer en dominerende offentlig fortelling ved å synliggjøre andre erfaringer, aktører eller ansvar.',
+  'mssd': 'MSSD, «most similar systems design», sammenligner mest mulig like case med ulikt utfall for å identifisere forskjeller som kan bidra til å forklare variasjonen.',
+  'mulighetsvindu': 'Et mulighetsvindu er en tidsavgrenset situasjon der problemer, politiske løsninger og beslutningsvilje kobles slik at endring som ellers var blokkert blir mulig.',
+  'nasjonalt handlingsrom': 'Nasjonalt handlingsrom er de reelle valgmulighetene nasjonale myndigheter har innenfor rettslige forpliktelser, økonomiske avhengigheter, institusjonell kapasitet og politiske kostnader.',
+  'naturverdi': 'Naturverdi er en begrunnet verdi knyttet til arter, økosystemer, landskap eller naturgoder og kan uttrykkes økologisk, kulturelt, sosialt eller økonomisk.',
+  'normbrudd': 'Et normbrudd er en handling som avviker fra en identifiserbar sosial, profesjonell eller rettslig forventning og kan utløse uformell eller formell reaksjon.',
+  'normer': 'Normer er delte forventninger om passende eller påkrevd atferd som opprettholdes gjennom sosial anerkjennelse, sanksjoner, vane eller institusjonalisering.',
+  'nyhetshendelser': 'Nyhetshendelser er avgrensede begivenheter som redaksjoner eller plattformer gjør offentlig synlige gjennom utvalg, vinkling og tidsmessig prioritering.',
+  'nyhetslogikk': 'Nyhetslogikk er redaksjonelle og plattformstyrte kriterier som favoriserer bestemte hendelser, aktører, konflikter, bilder og tidsformer i den offentlige oppmerksomheten.',
+  'offentlig appell': 'En offentlig appell er en åpent rettet oppfordring som søker støtte, legitimitet eller handling fra et bredere publikum ved hjelp av argumenter, identitet eller moralsk press.',
+  'omdømme': 'Omdømme er den relativt stabile vurderingen andre har av en aktørs troverdighet, kompetanse eller karakter, formet av tidligere handlinger og offentlig kommunikasjon.',
+  'områdeforskjell': 'En områdeforskjell er en målt variasjon mellom geografiske enheter i ressurser, tjenester, befolkning eller utfall, og må vurderes mot ulik sammensetning og datakvalitet.',
+  'omsorgsarbeid': 'Omsorgsarbeid er lønnet eller ulønnet arbeid som dekker andre menneskers fysiske, emosjonelle og praktiske behov, og er politisk formet av familie-, arbeids- og velferdsordninger.',
+  'opposisjonsstøtte': 'Opposisjonsstøtte er støtte fra partier utenfor regjeringen som gjør et forslag eller en regjering levedyktig uten at støttepartiene nødvendigvis inngår i en fast koalisjon.',
+  'opptak': 'Opptak er registrering av lyd eller bilde som bevarer en kommunikasjonssituasjon, men som fortsatt må vurderes etter utsnitt, kontekst, redigering og tilgang.',
+  'organisasjoner': 'Organisasjoner er samordnede kollektiver med medlemskap, mål, roller, ressurser og beslutningsrutiner som gjør varig handling mulig utover enkeltpersoners bidrag.',
+  'organisasjonsressurs': 'En organisasjonsressurs er medlemsmasse, penger, ekspertise, informasjon, nettverk eller legitimitet som en organisasjon kan omsette i koordinering og politisk påvirkning.',
+  'partidisiplin': 'Partidisiplin er graden av samordnet atferd blant et partis folkevalgte, opprettholdt gjennom felles program, grupperegler, karriereinsentiver og mulige sanksjoner.',
+  'partier': 'Partier er varige politiske organisasjoner som stiller kandidater til valg, samler interesser og ideer, konkurrerer om offentlig makt og organiserer representasjon.',
+  'partikonkurranse': 'Partikonkurranse er rivalisering mellom partier om stemmer, saker, regjeringsmakt og politiske resultater innenfor et bestemt valg- og partisystem.',
+  'pliktbærer': 'En pliktbærer er personen eller institusjonen som etter en rettsregel eller norm har ansvar for å oppfylle et bestemt krav overfor en rettighetshaver.',
+  'policy-practice gap': 'Et policy-practice gap er et dokumentert avvik mellom vedtatte politiske mål eller regler og det som faktisk gjennomføres eller oppleves av berørte grupper.',
+  'politi': 'Politiet er den offentlige etaten som skal forebygge og etterforske lovbrudd, opprettholde orden og bruke lovlig tvang under rettslig og demokratisk kontroll.',
+  'politisk': 'Politisk beskriver forhold som gjelder kollektivt bindende beslutninger, makt, styring, fordeling, rettigheter, representasjon eller organisert konflikt om disse.',
+  'politisk myte': 'En politisk myte er en forenklet og normativt ladet fortelling om et kollektivs opprinnelse, identitet eller konflikt som gir mening og legitimerer handling.',
+  'politisk teori': 'Politisk teori er systematisk analyse av politiske begreper, verdier og begrunnelser, som makt, frihet, likhet, rettferdighet, demokrati og politisk forpliktelse.',
+  'portefølje': 'En portefølje er samlingen av ansvarsområder, verv eller politiske saksfelt som er lagt til én aktør, og som gir både ressurser og avhengigheter.',
+  'porteføljebytte': 'Porteføljebytte er omfordeling av ansvarsområder mellom partier eller personer som del av en koalisjonsforhandling eller regjeringsendring.',
+  'preferanseavstand': 'Preferanseavstand er den målte forskjellen mellom aktørers standpunkter langs en uttrykt politisk dimensjon og brukes til å analysere konflikt, koalisjoner eller representasjon.',
+  'presedens': 'Presedens er en tidligere avgjørelse eller praksis som får styrende eller overbevisende betydning for hvordan senere, sammenlignbare saker behandles.',
+  'pressebilder': 'Pressebilder er redaksjonelt valgte fotografier eller videorammer som dokumenterer og fortolker hendelser gjennom utsnitt, timing, teksting og distribusjon.',
+  'prioritering av grunnverdi': 'Prioritering av grunnverdi er en uttrykt rangering av hvilket overordnet prinsipp som skal veie tyngst når legitime politiske hensyn kolliderer.',
+  'ramme': 'En ramme er en bindende eller veiledende ytre grense for penger, tid, kompetanse eller innhold som avgrenser mulige valg innenfor en beslutningsprosess.',
+  'realvekst': 'Realvekst er økning etter at prisendringer er trukket fra; for tjenester må også befolknings- og oppgaveendringer vurderes før økt kapasitet kan konkluderes.',
+  'reformer': 'Reformer er planlagte endringer av regler, organisasjoner eller virkemidler som skal forbedre bestemte forhold, men hvis faktiske innhold formes gjennom gjennomføring og motstand.',
+  'regelverk': 'Et regelverk er et sammenhengende sett av lover, forskrifter og utfyllende bestemmelser som styrer et område og fordeler rettigheter, plikter og kompetanse.',
+  'regimeskifte': 'Et regimeskifte er en grunnleggende endring i reglene for hvem som kan utøve politisk makt, hvordan ledere velges og hvordan makten begrenses eller kontrolleres.',
+  'regjeringspress': 'Regjeringspress er strategisk bruk av avgangstrussel, kabinettspørsmål, forhandling eller offentlig ansvar for å få et parlamentarisk flertall til å støtte regjeringens linje.',
+  'representasjonsfilter': 'Et representasjonsfilter er en regel eller praksis som avgjør hvilke interesser, kandidater eller erfaringer som slipper gjennom til en representativ arena.',
+  'representasjonskrise': 'En representasjonskrise oppstår når mange borgere eller grupper ikke lenger oppfatter representanter og institusjoner som responsive, legitime eller i stand til å formidle deres krav.',
+  'ressursasymmetri': 'Ressursasymmetri er systematisk ulik tilgang til penger, tid, kunnskap, personell eller nettverk som gir aktører forskjellig kapasitet til å delta og påvirke.',
+  'rettighetshaver': 'En rettighetshaver er personen eller gruppen som etter en rettsregel har et bestemt krav på vern, ytelse, deltakelse eller handling fra en identifisert pliktbærer.',
+  'rettsakt': 'En rettsakt er et formelt rettslig instrument vedtatt av et kompetent organ, som lov, forskrift, forordning eller direktiv, med et bestemt virkeområde og rettsvirkninger.',
+  'rettsmiddel': 'Et rettsmiddel er en lovbestemt framgangsmåte for å få en avgjørelse prøvd, endret eller opphevet, for eksempel klage, anke eller domstolsprøving.'
+})) editorialDefinitionSeeds.set(term, definition);
+
+for (const [term, definition] of Object.entries({
+  'arbeidsdeling': 'Arbeidsdeling er fordelingen av oppgaver, myndighet og ansvar mellom personer, organer eller styringsnivåer. Analysen må vise både den formelle fordelingen og hvordan avhengighet, koordinering og faktisk kontroll virker i praksis.',
+  'brukererfaring': 'Brukererfaring er borgeres dokumenterte møte med en offentlig tjeneste eller ordning, fra informasjon og søknad til vedtak, levering og klage. Den kan ikke utledes av regelverket alene, men krever data fra dem som faktisk bruker ordningen.',
+  'eøs-tilknytning': 'EØS-tilknytning er Norges traktatbaserte deltakelse i EUs indre marked gjennom EØS-avtalen, med innlemmelse av relevant EU-rett, adgang til markedet og institusjonelle ordninger for overvåking og tvisteløsning.',
+  'flernivåstyring': 'Flernivåstyring er styring der myndighet, finansiering, gjennomføring og kontroll er fordelt og forhandlet mellom flere territorielle nivåer og mellom offentlige og ikke-offentlige aktører.',
+  'forutberegnelighet': 'Forutberegnelighet er muligheten til å forstå hvilke regler som gjelder og med rimelig sikkerhet forutse hvordan myndighetene vil behandle sammenlignbare tilfeller. Klare hjemler, stabil praksis og begrunnede avgjørelser er sentrale vilkår.',
+  'generaliserbarhet': 'Generaliserbarhet er i hvilken grad et funn fra et bestemt utvalg, case, sted eller tidsrom kan forventes å gjelde for en tydelig definert større populasjon eller andre situasjoner. Rekkevidden bestemmes av utvalg, design og kausale forutsetninger.',
+  'generasjonsrettferdighet': 'Generasjonsrettferdighet vurderer hvordan ressurser, gjeld, miljøbelastning, risiko og politiske muligheter fordeles mellom nålevende og framtidige generasjoner, og hvilke plikter dagens beslutningstakere har over tid.',
+  'inflasjon': 'Inflasjon er en vedvarende økning i det generelle prisnivået som reduserer pengenes kjøpekraft. Den måles over en definert varekurv og periode og må skilles fra prisøkning på én enkelt vare.',
+  'jurisdiksjon': 'Jurisdiksjon er den rettslige kompetansen et organ eller en stat har til å lage, anvende eller håndheve regler over bestemte personer, saker eller territorier.',
+  'kammeruenighet': 'Kammeruenighet oppstår når to kamre i en lovgivende forsamling vedtar ulike standpunkter eller lovtekster. Utfallet bestemmes av reglene for ny behandling, mekling, overstyring eller bortfall.',
+  'klimarettferdighet': 'Klimarettferdighet vurderer hvordan ansvar for utslipp, sårbarhet for klimaendringer og kostnader og gevinster ved klimatiltak fordeles mellom land, grupper, steder og generasjoner.',
+  'lobbyvirksomhet': 'Lobbyvirksomhet er organisert påvirkning rettet mot politiske beslutningstakere eller forvaltningen utenfor den formelle valgkanalen, gjennom møter, informasjon, ekspertise, kampanjer eller nettverk.',
+  'lovlighet': 'Lovlighet er at en handling, avgjørelse eller praksis har tilstrekkelig rettslig grunnlag og holder seg innenfor gjeldende kompetanse-, saksbehandlings- og innholdskrav.',
+  'maktdeling': 'Maktdeling er fordeling av offentlig myndighet mellom organer eller nivåer slik at ingen enkelt aktør kontrollerer hele beslutningskjeden. Ordningen vurderes gjennom kompetansegrenser, gjensidig kontroll og reell uavhengighet.',
+  'maktseparasjon': 'Maktseparasjon er et institusjonelt prinsipp om å skille lovgivende, utøvende og dømmende funksjoner for å begrense maktkonsentrasjon og gjøre kontroll mulig.',
+  'medbestemmelse': 'Medbestemmelse er en institusjonalisert rett for ansatte, brukere eller andre berørte til å delta i beslutninger som angår dem. Den må skilles fra ren informasjon og må vurderes etter tidspunkt, representasjon og faktisk påvirkningsmulighet.',
+  'nasjon': 'En nasjon er et forestilt politisk fellesskap knyttet sammen av opplevd historie, kultur, språk, territorium eller institusjoner. Nasjonalt fellesskap og statsborgerskap kan overlappe, men er ikke det samme.',
+  'nærhet': 'Nærhet er et styringsprinsipp om at beslutninger bør tas så nær de berørte som mulig, med mindre hensyn til kapasitet, likebehandling eller grenseoverskridende virkninger begrunner et høyere nivå.',
+  'prosedyrerettferdighet': 'Prosedyrerettferdighet er vurderingen av om en beslutningsprosess behandler berørte parter upartisk og respektfullt, gir dem reell stemme og bygger på åpne, konsistente og begrunnede regler.',
+  'prosessuell rettferdighet': 'Prosessuell rettferdighet er rettferdighet i måten beslutninger treffes og håndheves på, blant annet gjennom habilitet, kontradiksjon, lik behandling, begrunnelse og mulighet for prøving.',
+  'proposisjon': 'En proposisjon er et formelt forslag fra regjeringen til Stortinget, vanligvis om lovvedtak, budsjett eller annet plenarvedtak, med begrunnelse og beslutningsgrunnlag for parlamentarisk behandling.',
+  'regelbundethet': 'Regelbundethet er at myndighetsutøvelse følger kjente og generelle regler framfor skiftende personlige preferanser. Begrepet forutsetter samtidig kontroll av hvordan reglene tolkes, praktiseres og eventuelt fravikes.',
+  'relativ deprivasjon': 'Relativ deprivasjon er opplevelsen av å være dårligere stilt enn en relevant sammenligningsgruppe eller enn egne legitime forventninger, selv om den absolutte situasjonen ikke nødvendigvis er blitt verre.',
+  'selvfølgelighet': 'Selvfølgelighet er en oppfatning eller praksis som framstår så naturlig og uomstridt at dens historiske og politiske forutsetninger blir usynlige. Analyse gjør de underliggende kategoriene, interessene og alternativene eksplisitte.',
+  'sporbarhet': 'Sporbarhet er muligheten til å følge en påstand, beslutning eller ressursbruk tilbake gjennom dokumenterte kilder, ansvarlige aktører og beslutningsledd. Den krever identifikatorer, versjonshistorikk og bevarte begrunnelser.',
+  'statsdannelse': 'Statsdannelse er den historiske prosessen der varige institusjoner etablerer kontroll over territorium, skattlegging, administrasjon og legitim tvang, samtidig som forholdet til befolkningen og konkurrerende maktsentre omformes.',
+  'storting': 'Stortinget er Norges folkevalgte nasjonalforsamling og utøver lovgivende, bevilgende og kontrollerende myndighet innenfor Grunnlovens parlamentariske orden.',
+  'sysselsetting': 'Sysselsetting er omfanget av personer som utfører inntektsgivende arbeid i en definert befolkning og periode. Analysen skiller nivå, andel, arbeidstid og jobbkvalitet fra arbeidsledighet og deltakelse i arbeidsstyrken.',
+  'tjenesteproduksjon': 'Tjenesteproduksjon er organiseringen og leveringen av offentlige eller offentlig finansierte tjenester gjennom personell, teknologi, regler og ressurser. Kvaliteten må vurderes i faktisk tilgjengelighet og resultat, ikke bare aktivitet eller budsjett.',
+  'tradisjon': 'Tradisjon er en praksis, fortelling eller norm som overføres og gjenskapes over tid. Den er ikke uforanderlig, men velges, fortolkes og brukes av aktører i samtidige konflikter om identitet og legitimitet.',
+  'troverdighet': 'Troverdighet er graden av tillit til at en aktørs påstand, løfte eller informasjon er sannferdig og vil bli fulgt opp. Den vurderes gjennom kompetanse, interesser, tidligere praksis, kontrollmuligheter og samsvarende belegg.',
+  'upersonlighet': 'Upersonlighet er et ideal om at offentlige avgjørelser skal følge rolle, regel og relevante saklige kriterier framfor personlige bånd eller vilkårlige preferanser.',
+  'vetoposisjon': 'En vetoposisjon er en institusjonell eller strategisk plassering som gjør en aktør i stand til å stanse eller kreve endring i et forslag før vedtak eller gjennomføring.',
+  'vilkårlighet': 'Vilkårlighet er maktutøvelse uten tilstrekkelig saklig grunn, forutsigbar regel, relevant belegg eller reell kontroll. Den kan forekomme selv når beslutningstakeren formelt har kompetanse.',
+  'ytelse': 'En ytelse er penger, tjenester eller naturalytelser som en rettighetshaver mottar etter bestemte vilkår. Analysen må skille lovfestet rett fra skjønn, nominelt nivå fra faktisk dekning og vedtak fra levering.',
+  'åpenhet': 'Åpenhet er at informasjon om regler, beslutningsgrunnlag, aktører og prosesser er tilgjengelig og forståelig for dem som skal delta eller kontrollere. Publisering alene er ikke tilstrekkelig dersom materialet er ufullstendig eller utilgjengelig.'
+})) editorialDefinitionSeeds.set(term, definition);
+
+function capitalized(value) {
+  const string = words(value);
+  return string ? string.charAt(0).toLocaleUpperCase('nb-NO') + string.slice(1) : string;
+}
+
+function conceptScope(term, owner) {
   const lower = normalize(term);
-  const tokens = new Set(lower.match(/[\p{L}\p{N}]+/gu) || []);
-  const hasAnyToken = (...values) => values.some((value) => tokens.has(value));
-  const hasTokenWhere = (predicate) => [...tokens].some(predicate);
-  const context = words(owner.why_it_matters || owner.definition).replace(/[.!?]+$/, '');
-  const contextSentence = `Koblingen til emnet er denne: ${context}.`;
-  if (/\bvs\.?\b| versus | kontra /.test(lower)) return `${term} er et analytisk skille mellom forklaringer, institusjonsformer eller vurderingskriterier som må holdes fra hverandre i emnet «${owner.title}». Skillet gjør premisser og sammenligninger tydeligere. ${contextSentence}`;
-  if (hasAnyToken('analyse', 'analysen', 'analyser', 'metode', 'metoden', 'metoder', 'måling', 'målinger', 'maling', 'indikator', 'indikatorer', 'indeks', 'modell', 'modeller', 'design', 'regresjon', 'survey', 'data', 'datasett', 'kilde', 'kilder', 'case', 'inferens') || hasTokenWhere((token) => token.endsWith('analyse'))) return `${term} betegner en analytisk framgangsmåte, måleenhet eller beleggstype som brukes i emnet «${owner.title}». Bruken må angi analyseenhet, datagrunnlag, slutningsregel og begrensninger. ${contextSentence}`;
-  if (hasTokenWhere((token) => token.startsWith('makt') || token.endsWith('makt')) || hasAnyToken('myndighet', 'autoritet', 'dominans', 'innflytelse', 'kontroll')) return `${term} viser til en kapasitet, posisjon eller relasjon som påvirker andre aktørers handlinger, alternativer eller forståelser innen «${owner.title}». Begrepet krever en eksplisitt maktmekanisme og må ikke reduseres til synlig tvang. ${contextSentence}`;
-  if (hasAnyToken('rettferdighet', 'rettferdigheten', 'frihet', 'friheten', 'likhet', 'likheten', 'legitimitet', 'legitimiteten', 'prinsipp', 'prinsipper')) return `${term} betegner et normativt prinsipp eller vurderingskriterium innen «${owner.title}». Analysen må gjøre prinsippets innhold, begrunnelse, rekkevidde og avveining mot konkurrerende hensyn eksplisitt. ${contextSentence}`;
-  if (hasAnyToken('rett', 'retten', 'retter', 'rettighet', 'rettigheter', 'rettighetsvern', 'rettslig', 'rettslige', 'rettsstat', 'rettsstaten', 'rettssikkerhet', 'plikt', 'plikter', 'lov', 'loven', 'lover', 'hjemmel', 'hjemmelen', 'jurisdiksjon')) return `${term} viser til et rettslig eller politisk regulert krav, vern, ansvar eller kompetanse innen «${owner.title}». Det analyseres gjennom hjemmel, rekkevidde, prosedyre, kontroll og faktisk virkning. ${contextSentence}`;
-  if (hasAnyToken('institusjon', 'institusjoner', 'organisasjon', 'organisasjoner', 'forvaltning', 'byråkrati', 'styring', 'stat', 'staten', 'stater', 'statlig', 'statlige', 'statsmakt', 'statsapparat', 'statsbygging', 'statskapasitet', 'statsforvaltning', 'regjering', 'storting', 'domstol', 'kommune', 'kommuner', 'organ', 'organer')) return `${term} betegner en regelbundet ordning, offentlig aktør, organisert praksis eller styringsmekanisme innen «${owner.title}». Analysen følger roller, kompetanse, ressurser, skjønn og ansvar. ${contextSentence}`;
-  if (hasTokenWhere((token) => token.startsWith('demokrati') || token.startsWith('representasjon') || token.startsWith('deltakelse') || token.startsWith('offentlighet')) || hasAnyToken('valg', 'valget', 'parti', 'partier')) return `${term} betegner en ordning eller prosess for politisk deltakelse, konkurranse, representasjon eller ansvarliggjøring innen «${owner.title}». Begrepet avgrenses gjennom hvilke aktører, arenaer og kriterier som omfattes. ${contextSentence}`;
-  if (hasTokenWhere((token) => token.startsWith('ulikhet') || token.startsWith('fordeling') || token.startsWith('velferd')) || hasAnyToken('ressurs', 'ressurser', 'klasse', 'mobilitet', 'skatt', 'budsjett')) return `${term} betegner en fordelingsrelasjon eller mekanisme som påvirker ressurser, risiko, tjenester, status eller livssjanser innen «${owner.title}». Begrepet krever en eksplisitt fordelings- og sammenligningsenhet. ${contextSentence}`;
-  if (hasTokenWhere((token) => token.startsWith('norm') || token.startsWith('identitet') || token.startsWith('inkludering') || token.startsWith('ekskludering') || token.startsWith('minoritet') || token.startsWith('tilhørighet')) || hasAnyToken('kjønn', 'kjonn')) return `${term} betegner en sosial eller politisk kategori, forventning eller grensedragning innen «${owner.title}». Analysen undersøker hvem som gis tilhørighet, anerkjennelse, rettigheter og handlingsrom. ${contextSentence}`;
-  if (hasTokenWhere((token) => token.startsWith('konflikt') || token.startsWith('forhandling') || token.startsWith('mobilisering') || token.startsWith('protest') || token.startsWith('motstand') || token.startsWith('polarisering'))) return `${term} betegner en politisk relasjon eller prosess der interesser, identiteter, ressurser eller regler bestrides innen «${owner.title}». Analysen må identifisere aktører, krav, maktressurser, arena og utfall. ${contextSentence}`;
-  if (hasTokenWhere((token) => token.startsWith('effekt') || token.startsWith('utfall') || token.startsWith('resultat') || token.startsWith('konsekvens') || token.startsWith('virkning') || token.startsWith('tilbakekobling'))) return `${term} betegner et observert eller forventet resultat av en politisk ordning eller prosess innen «${owner.title}». Begrepet må skilles fra mål og innsats, og krever et tydelig sammenligningsgrunnlag. ${contextSentence}`;
-  if (hasTokenWhere((token) => token.startsWith('politikk') || token.startsWith('regulering') || token.startsWith('virkemiddel') || token.startsWith('implementering')) || hasAnyToken('policy', 'tiltak', 'reform')) return `${term} betegner et politisk problemfelt, mål, virkemiddel eller beslutningsforløp innen «${owner.title}». Analysen følger problemdefinisjon, institusjon, mekanisme, gjennomføring og dokumentert utfall. ${contextSentence}`;
-  return `${term} er et kontekstuelt analysebegrep i emnet «${owner.title}». Oppslaget avgrenser begrepets faglige bruk gjennom emnets aktører, relasjoner, mekanismer eller konsekvenser; det er ikke ment som en løs ordbokdefinisjon. ${contextSentence}`;
+  const scopes = [
+    [/(?:agenda|dagsorden)/, 'politisk prioritering av problemer, krav og løsningsalternativer'],
+    [/(?:arbeidsliv|arbeidsmarked|tariff|fagorgan|sysselsetting|arbeidsdeling)/, 'arbeid, lønn, organisering og forholdet mellom arbeidsgivere, arbeidstakere og myndigheter'],
+    [/(?:areal|sonering|utbygging|byutvikling)/, 'bruk, vern, regulering og utvikling av arealer og bygde omgivelser'],
+    [/(?:bolig|bo trygg|botrygg)/, 'tilgang til bolig, bokostnader, eierskap, leieforhold og geografisk bosetting'],
+    [/(?:budsjett|bevilg|finansiering|ressursbruk|øremerking|rammebudsjett)/, 'inntekter, utgifter og bindingen av offentlige ressurser til bestemte formål'],
+    [/(?:byråd|kommune|kommunal|lokal|fylke)/, 'lokale myndigheters oppgaver, ressurser, beslutninger og ansvar overfor innbyggerne'],
+    [/(?:demokrati|deltak|medvirk|stemmerett|stemmelikhet)/, 'borgernes adgang til å delta, konkurrere om makt og holde beslutningstakere ansvarlige'],
+    [/(?:domstol|rett|lov|legalitet|jurisdiksjon|konstitusjon|grunnlov)/, 'rettigheter, plikter, offentlig kompetanse og muligheten til å få maktbruk prøvd'],
+    [/(?:eøs|eu|europeisk|flernivå)/, 'fordelingen av myndighet og ansvar mellom norske og europeiske institusjoner'],
+    [/(?:familie|omsorg|barn)/, 'omsorgsansvar, hushold, tjenester og statens regulering av familieliv'],
+    [/(?:finans|fiskal|skatt|penge|inflasjon)/, 'skatt, offentlige finanser, kreditt, priser og økonomisk stabilisering'],
+    [/(?:helse|folkehelse)/, 'befolkningens helse, helsetjenester, forebygging og fordeling av behandlingsressurser'],
+    [/(?:institusjon|forvaltning|administrativ|byråkrati|organisatorisk)/, 'offentlige organisasjoners regler, kapasitet, skjønn, samordning og ansvar'],
+    [/(?:klima|miljø|natur)/, 'utslipp, naturinngrep, økologisk risiko, vern og fordeling av miljøkostnader'],
+    [/(?:kunnskap|bevis|dokument|arkiv|utredning|ekspert|indikator|måling|modell|survey|data)/, 'produksjon, utvalg og bruk av kunnskap som grunnlag for politiske slutninger og beslutninger'],
+    [/(?:marked|økonomi|økonomisk|kapital|formue|inntekt|investering|handel)/, 'eierskap, produksjon, utveksling, inntekt og fordeling av økonomiske ressurser'],
+    [/(?:medie|nyhet|offentlighet|ytring|fortelling)/, 'produksjon og sirkulasjon av informasjon, argumenter og synlighet i offentligheten'],
+    [/(?:minoritet|majoritet|migrasjon|medborgerskap|statsborger)/, 'medlemskap, tilhørighet, rettslig status og likeverdig adgang til samfunnets arenaer'],
+    [/(?:norm|identitet|anerkjenn|diskrimin|kjønn|likhet|likeverd)/, 'sosiale kategorier, forventninger, status og fordelingen av anerkjennelse og handlingsrom'],
+    [/(?:organisasjon|forening|bevegelse|mobilisering|protest)/, 'kollektiv organisering, ressurser, krav og påvirkning av politiske arenaer'],
+    [/(?:parti|valg|koalisjon|regjering|storting|parlament|mandat|flertall)/, 'valg, representasjon, flertallsdannelse og utøvelse av politisk ledelse'],
+    [/^norsk politikk$/, 'fordelingen og utøvelsen av politisk makt i Norge'],
+    [/^politisk(?:\s|$)/, 'kollektivt bindende beslutninger, offentlig ledelse og demokratisk ansvar'],
+    [/(?:^politi(?:$|\s|-|myndighet|makt|vesen)|straff|kriminal|sikkerhet|beredskap|forsvar|overvåking)/, 'forebygging, kontroll, beredskap, lovlig tvang og beskyttelse mot identifiserte trusler'],
+    [/(?:representasjon|responsivitet|tilstedeværelse)/, 'hvem som får tale og handle på vegne av andre, og hvordan representanter kan kontrolleres'],
+    [/(?:språk)/, 'språks rettslige status, institusjonelle bruk, ressurser og adgang til offentlige arenaer'],
+    [/(?:stat|nasjon|suverenitet|statsmakt)/, 'statens myndighet, territorium, kapasitet og forhold til borgere og andre stater'],
+    [/(?:velferd|sosial|utdanning|ytelse|mobilitet)/, 'rettigheter, tjenester, sosial risiko og fordelingen av livssjanser'],
+    [/(?:utenriks|internasjonal|global|allianse|diplomati)/, 'staters og internasjonale aktørers sikkerhet, samarbeid, avhengighet og grenseoverskridende handlinger']
+  ];
+  return scopes.find(([matcher]) => matcher.test(lower))?.[1]
+    || `problemfeltet «${words(owner.title).toLocaleLowerCase('nb-NO')}»`;
+}
+
+function contrastDefinition(term) {
+  const parts = term.split(/\s+(?:vs\.?|versus|kontra)\s+/iu).map(words).filter(Boolean);
+  if (parts.length !== 2) return '';
+  const [left, right] = parts;
+  return `${capitalized(term)} er et analytisk skille: «${left}» viser til den første ordningen, mekanismen eller målestokken, mens «${right}» viser til den alternative. Skillet skal brukes til å presisere hvilken side en påstand faktisk gjelder, ikke som om alternativene alltid utelukker hverandre.`;
+}
+
+function compoundEditorialDefinition(term, owner) {
+  const label = words(term);
+  const lower = normalize(label);
+  const start = capitalized(label);
+  const scope = conceptScope(label, owner);
+  if (/\b(?:vs\.?|versus|kontra)\b/iu.test(lower)) return contrastDefinition(label);
+  if (lower.includes('/')) return `${start} er en sammensatt oppføring som kobler de navngitte ordningene eller nivåene fordi de virker i samme politiske ansvarskjede. Hver del må likevel identifiseres separat når myndighet, finansiering, gjennomføring eller virkning undersøkes.`;
+  if (/politi(?:kk|kken)$/.test(lower)) return `${start} er offentlige mål, beslutninger, konflikter og virkemidler som styrer ${scope}. Begrepet omfatter både problemdefinisjon, institusjonelt ansvar, ressursbruk, gjennomføring og fordelte virkninger.`;
+  if (/(?:makt|myndighet|autoritet|dominans|innflytelse)$/.test(lower)) return `${start} er en kapasitet eller relasjon som gjør en aktør i stand til å forme andres alternativer, handlinger eller forståelser gjennom kontroll over ${scope}. Analysen må identifisere aktør, maktressurs, mekanisme, motpart og observerbar virkning.`;
+  if (/(?:rett|rettighet|rettigheter|rettsvern|rettssikkerhet)$/.test(lower)) return `${start} er et rettslig eller politisk anerkjent krav eller vern knyttet til ${scope}. Rekkevidden avgjøres av hvem som er rettighetshaver, hvem som har plikten, hvilke vilkår som gjelder, og hvordan kravet kan prøves eller håndheves.`;
+  if (/(?:plikt|plikter|krav)$/.test(lower)) return `${start} er en bindende eller normativ forventning om at en identifisert aktør skal handle, dokumentere eller avstå innen ${scope}. Kravet må vurderes gjennom grunnlag, adressat, vilkår, kontroll og mulige følger ved brudd.`;
+  if (/(?:kontroll|tilsyn|prøving|proving)$/.test(lower)) return `${start} er ordninger som undersøker, begrenser eller korrigerer den virksomheten navnet viser til. Kontrollen må vurderes etter mandat, uavhengighet, informasjonsadgang, reaksjonsmuligheter og om funn faktisk følges opp.`;
+  if (/(?:ansvar|ansvarlighet|ansvarslinje|ansvarsgap)$/.test(lower)) return `${start} betegner hvordan plikten til å handle, forklare eller stå til rette er fordelt i beslutninger om ${scope}. Begrepet krever en sporbar kjede fra mandat og beslutning til gjennomføring, kontroll og eventuell reaksjon.`;
+  if (/(?:kapasitet|evne|beredskap)$/.test(lower)) return `${start} er den faktiske evnen til å løse oppgaver knyttet til ${scope} ved hjelp av tilstrekkelig informasjon, kompetanse, personell, penger, koordinering og legitime fullmakter. Formelt ansvar er derfor ikke i seg selv bevis på kapasitet.`;
+  if (/(?:finansiering|bevilgning|budsjett|ressursbruk|ressurser)$/.test(lower)) return `${start} betegner hvordan penger eller andre knappe ressurser skaffes, fordeles og bindes til ${scope}. Analysen skiller vedtak fra faktisk bruk og vurderer tidsrom, alternativkostnad og fordelingsvirkning.`;
+  if (/(?:fordeling|ulikhet|omfordeling|prioritering|vekting)$/.test(lower)) return `${start} betegner et mønster eller kriterium for hvordan goder, byrder, risiko, tjenester eller status fordeles. Begrepet må presiseres med fordelingsenhet, mottakere, sammenligningsgrunnlag og tidsrom.`;
+  if (/(?:representasjon|deltakelse|medvirkning|inkludering|ekskludering)$/.test(lower)) return `${start} betegner hvordan personer eller grupper får adgang til, blir til stede i eller påvirker en politisk prosess. Analysen må skille formell adgang fra faktisk innflytelse og vise hvem som autoriserer, deltar og kan holde representanter ansvarlige.`;
+  if (/(?:valg|avstemning|flertall|mandat|koalisjon)$/.test(lower)) return `${start} er en ordning eller et resultat i konkurransen om politisk representasjon og beslutningsmakt. Betydningen avhenger av reglene for deltakelse, opptelling, mandatfordeling, flertallsdannelse og ansvarliggjøring.`;
+  if (/(?:institusjon|organisasjon|forvaltning|byråkrati|departement|direktorat|kommune|domstol|parlament|regjering)$/.test(lower)) return `${start} er en regelbundet politisk eller administrativ ordning med bestemte roller, fullmakter, ressurser og ansvar. Den må analyseres som faktisk praksis i tillegg til formell organisering.`;
+  if (/(?:lov|regel|regler|regulering|vedtak|hjemmel|prosedyre|ordning)$/.test(lower)) return `${start} er en formalisert norm eller beslutningsordning som avgrenser hvem som kan gjøre hva, etter hvilke vilkår og med hvilke rettsvirkninger. Analysen følger grunnlag, prosedyre, håndheving, unntak og faktisk praksis.`;
+  if (/(?:avtale|samarbeid|allianse|forhandling|forlik|kompromiss)$/.test(lower)) return `${start} er en koordinert relasjon der to eller flere aktører binder, tilpasser eller avveier handlinger om ${scope}. Innhold, gjensidighet, maktasymmetri, håndheving og mulighet for uttreden må undersøkes.`;
+  if (/(?:konflikt|motstand|mobilisering|protest|polarisering|antagonisme)$/.test(lower)) return `${start} er en politisk prosess der aktører bestrider interesser, identiteter, ressurser eller regler knyttet til ${scope}. Begrepet krever identifiserte parter, krav, maktressurser, arena, tidsforløp og utfall.`;
+  if (/(?:identitet|tilhørighet|minoritet|majoritet|norm|normalitet|anerkjennelse|diskriminering)$/.test(lower)) return `${start} er en sosial og politisk kategori eller relasjon som former medlemskap, forventninger, status og handlingsrom. Analysen undersøker hvem som definerer kategorien, hvordan den håndheves, og hvilke rettslige, materielle og symbolske følger den får.`;
+  if (/(?:analyse|metode|design|måling|maling|indikator|indeks|modell|regresjon|inferens|survey|data|datasett|kilde|case|komparasjon)$/.test(lower)) return `${start} er en analytisk framgangsmåte, måleenhet eller beleggstype for å undersøke ${scope}. Bruken må gjøre analyseenhet, utvalg, data, operasjonalisering, slutningsregel og usikkerhet eksplisitt.`;
+  if (/(?:effekt|utfall|resultat|konsekvens|virkning|tilbakekobling|endring)$/.test(lower)) return `${start} er et observert eller forventet resultat av beslutninger eller prosesser som berører ${scope}. Resultatet må skilles fra mål, innsats og samtidige hendelser og vurderes mot et uttrykt sammenligningsgrunnlag.`;
+  if (/(?:prosess|gjennomføring|implementering|iverksetting|håndheving|praksis)$/.test(lower)) return `${start} er handlingskjeden som omsetter regler eller beslutninger om ${scope} til faktisk praksis. Analysen følger ansvar, ressurser, fortolkning, skjønn, koordinering og observerbare avvik mellom mål og resultat.`;
+  if (/(?:system|modell|struktur|regime|nettverk|arena|offentlighet)$/.test(lower)) return `${start} er et stabilisert mønster av aktører, regler og relasjoner som organiserer ${scope}. Begrepet brukes til å undersøke hvordan posisjoner, adgang, ressurser og beslutningsmuligheter henger sammen over tid.`;
+  if (/(?:adgang|tilgang|medlemskap|status|grense|grensedragning)$/.test(lower)) return `${start} betegner vilkårene for å bli regnet med, passere en grense eller få bruke en rettighet, arena eller ressurs. Analysen identifiserer kriteriene, portvakten, dokumentasjonskravene og muligheten for begrunnelse, klage eller statusendring.`;
+  if (/(?:frihet|autonomi|suverenitet|selvbestemmelse)$/.test(lower)) return `${start} betegner et beskyttet handlingsrom eller en kompetanse til å fastsette egne valg om ${scope}. Begrepet må presiseres gjennom hvem som er selvstendig, overfor hvilken makt, innenfor hvilke grenser og med hvilke materielle forutsetninger.`;
+  if (/(?:likhet|paritet|likeverd)$/.test(lower)) return `${start} betegner et krav eller et observert forhold der personer eller grupper behandles som like når ${scope} fordeles eller organiseres. Analysen må spesifisere om likheten gjelder rettigheter, muligheter, ressurser, status, deltakelse eller utfall.`;
+  if (/(?:tillit|mistillit)$/.test(lower)) return `${start} er en forventning om at en aktør eller institusjon vil handle kompetent, forutsigbart og i tråd med aksepterte normer, eller fraværet av en slik forventning. Begrepet må skilles fra tilfredshet med ett enkelt vedtak og fra legitimitet.`;
+  if (/(?:veto|blokkering|innsigelse)$/.test(lower)) return `${start} er en formell eller faktisk mulighet til å stanse, utsette eller tvinge fram endring i et forslag før beslutning eller gjennomføring. Analysen må vise hvem som har blokkeringsmuligheten, på hvilket trinn og om den kan overstyres.`;
+  if (/(?:binding|forpliktelse|avhengighet)$/.test(lower)) return `${start} er en relasjon som begrenser framtidige valg fordi en aktør er bundet av regler, ressurser, avtaler eller andre aktørers handlinger. Styrken vurderes gjennom varighet, exitmulighet, håndheving og fordeling av kostnader.`;
+  if (/(?:etterlevelse|samsvar)$/.test(lower)) return `${start} er graden av samsvar mellom en regel, beslutning eller standard og aktørenes faktiske handlinger. Begrepet må måles gjennom observerbar praksis og skiller frivillig tilpasning fra kontroll, sanksjon og bare formell rapportering.`;
+  if (/(?:risiko|sikkerhet|trygghet|vern|forsvar)$/.test(lower)) return `${start} betegner hvordan mulige skader mot ${scope} forebygges, fordeles eller håndteres. Analysen identifiserer trussel, sannsynlighet, sårbarhet, beskyttelsesverdi, ansvar og hvilke grupper som bærer kostnadene.`;
+  if (/(?:informasjon|kunnskap|bevis|dokumentasjon|begrunnelse|innsyn|journalføring|arkiv|register)$/.test(lower)) return `${start} betegner et kunnskaps- eller dokumentspor som brukes til å forberede, begrunne eller kontrollere politiske handlinger. Opphav, formål, klassifikasjon, tilgang, utvalg og hva materialet ikke kan vise, må vurderes eksplisitt.`;
+  if (/(?:marked|økonomi|okonomi|kapital|formue|inntekt|handel|investering)$/.test(lower)) return `${start} betegner en økonomisk ressurs, relasjon eller aktivitet innen ${scope}. Politisk analyse undersøker eierskap, regler, pris- og maktforhold, risiko og hvordan gevinster og kostnader fordeles.`;
+  if (/(?:medier|nyheter|news|debatt|dagsorden|flater|fortelling)$/.test(lower)) return `${start} er en kommunikasjonsform eller arena som påvirker hvilke politiske saker, aktører og fortolkninger som blir synlige. Analysen undersøker utvalg, redigering, rekkevidde, oppmerksomhet, kildeposisjon og mulighet for motargument.`;
+  if (/(?:velferd|helse|omsorg|familie|bolig|utdanning|arbeidsliv|arbeidsmarked)$/.test(lower)) return `${start} betegner en institusjon, ressurs eller livsbetingelse som inngår i ${scope}. Begrepet analyseres gjennom rettigheter, tilgang, finansiering, profesjonelt skjønn, kvalitet og fordelte virkninger.`;
+  if (/(?:standard|kriterium|nøkkel|terskel|grenseverdi)$/.test(lower)) return `${start} er en uttrykt målestokk eller avgrensning for å klassifisere, prioritere eller vurdere ${scope}. Den må undersøkes etter hvem som har fastsatt den, hvilket datagrunnlag den bygger på, og hvilke tilfeller den inkluderer eller utelukker.`;
+  if (/(?:samtykke|gjensidighet|solidaritet)$/.test(lower)) return `${start} betegner en relasjon der aktører godtar, besvarer eller deler forpliktelser knyttet til ${scope}. Analysen må vise om deltakelsen er informert og reell, hvordan byrder fordeles, og hvilke muligheter partene har til å trekke seg.`;
+  if (/(?:elite|folk|folket|gruppe|bevegelse|bevegelser|forening|parti|aktør)$/.test(lower)) return `${start} betegner en politisk aktør eller kollektiv kategori som samler personer gjennom posisjon, medlemskap, interesser eller organisering. Begrepet krever tydelige kriterier for hvem som regnes med, hvordan gruppen handler, og hvem som kan representere den.`;
+  if (/(?:dyd|vilje|interesse|preferanse|holdning|ideologi|hegemoni|doxa)$/.test(lower)) return `${start} betegner en orientering, oppfatning eller normativ forestilling som kan påvirke politisk handling. Analysen må skille uttrykte standpunkter fra underliggende interesser, institusjonelle incentiver og atferd, og vise hvordan begrepet kan observeres.`;
+  if (/(?:stilling|rolle|embete|frontlinje|hierarki)$/.test(lower)) return `${start} er en posisjon i en politisk eller administrativ arbeidsdeling med bestemte oppgaver, fullmakter, ressurser og forventninger. Analysen følger hva rollen formelt tillater, hva innehaveren faktisk gjør, og hvem som kan kontrollere handlingene.`;
+  if (/(?:forslag|innspill|initiativ|sak|møte|behandling|foreleggelse|henvisning)$/.test(lower)) return `${start} er et avgrenset ledd i en beslutningsprosess om ${scope}, der informasjon, alternativer eller krav bringes inn til vurdering. Betydningen avhenger av hvem som kan starte leddet, hvilke frister og regler som gjelder, og om det påvirker utfallet.`;
+  if (/(?:drift|bevaring|kontinuitet|rutine|vane|mønster)$/.test(lower)) return `${start} betegner en vedvarende praksis eller stabilitet i organiseringen av ${scope}. Begrepet undersøkes gjennom hvilke regler, ressurser og gjentatte handlinger som opprettholder mønsteret, og hva som kan bryte eller endre det.`;
+  if (/(?:-?isme|federalisme|globalisering)$/.test(lower)) return `${start} betegner en politisk idéretning, institusjonsform eller samfunnsprosess som organiserer ${scope}. Bruken må presisere om begrepet beskriver et normativt ideal, en formell ordning eller en observerbar utvikling.`;
+  if (/(?:itet|isme|skap)$/.test(lower)) return `${start} betegner en egenskap, relasjon eller institusjonell tilstand som gjelder ${scope}. Begrepet må operasjonaliseres gjennom observerbare kriterier og avgrenses fra nærliggende normer, organisasjoner og utfall.`;
+  if (/(?:ering|isering|setting|utvikling|omstilling|reduksjon|økning|okning)$/.test(lower)) return `${start} er en endringsprosess som omformer aktører, regler, ressurser eller praksiser innen ${scope}. Analysen må fastsette utgangspunkt, drivkrefter, beslutningsledd, berørte grupper, tidsforløp og dokumentert resultat.`;
+  if (/(?:ing|else|sjon|asjon)$/.test(lower)) return `${start} er en politisk, sosial eller administrativ handling eller prosess innen ${scope}. For å forklare den må analysen identifisere aktører, regelgrunnlag, ressurser, mekanisme, tidsforløp og forskjellen mellom tilsiktet og faktisk utfall.`;
+  if (/(?:het)$/.test(lower)) return `${start} betegner en egenskap eller tilstand som må presiseres gjennom observerbare kriterier før den kan sammenlignes eller forklares. Analysen må angi hvem eller hva egenskapen gjelder, hvilken målestokk som brukes, og hvilke alternative fortolkninger som finnes.`;
+  const domain = words(owner.area_label || owner.domain).toLocaleLowerCase('nb-NO');
+  return `${start} betegner et avgrenset fenomen i ${domain}: en aktør, regel, ressurs, relasjon, praksis eller følge som må identifiseres konkret før den kan brukes i en forklaring. Definisjonen må leses sammen med oppslagets avgrensning, mekanismer og kritiske skiller.`;
+}
+
+function editorialDefinition(term, owner) {
+  return editorialDefinitionSeeds.get(normalize(term)) || compoundEditorialDefinition(term, owner);
+}
+
+function contextualUse(term, owner) {
+  const definition = words(owner.definition).replace(/[.!?]+$/, '');
+  const lower = definition.replace(/^./u, (letter) => letter.toLocaleLowerCase('nb-NO'));
+  if (/^(analyserer|undersøker|sammenligner|sporer|vurderer)\b/iu.test(lower)) return `I emnet «${owner.title}» brukes ${term} når leseren ${lower}.`;
+  if (/^studiet av\b/iu.test(lower)) return `I emnet «${owner.title}» brukes ${term} som del av ${lower}.`;
+  if (/^hvordan\b/iu.test(lower)) return `I emnet «${owner.title}» brukes ${term} for å undersøke ${lower}.`;
+  return `I emnet «${owner.title}» brukes ${term} i analysen av ${lower}.`;
 }
 
 const sortedConceptRows = [...conceptMentions.entries()].sort((a, b) => a[1].label.localeCompare(b[1].label, 'nb'));
@@ -257,7 +648,7 @@ const concepts = sortedConceptRows.map(([key, row]) => {
     owner.requires_institution_law_conflict_or_social_process_anchor ? 'Bruken må forankres i en konkret institusjon, regel, konflikt, beslutning eller sosial prosess.' : '',
     owner.requires_politics_anchor ? 'Begrepet må belyse et faktisk politisk makt-, styrings-, fordelings- eller representasjonsforhold.' : ''
   ]);
-  const baseDefinition = exact?.definition || contextualDefinition(row.label, owner);
+  const baseDefinition = exact?.definition || editorialDefinition(row.label, owner);
   const definition = baseDefinition.length >= 85
     ? baseDefinition
     : `${baseDefinition} I dette fagverket brukes begrepet i emnet «${owner.title}» og avgrenses mot emnets øvrige mekanismer og analytiske skiller.`;
@@ -266,8 +657,10 @@ const concepts = sortedConceptRows.map(([key, row]) => {
     label: row.label,
     concept_type: row.rank === 4 ? 'core_concept' : row.rank === 3 ? 'key_concept' : row.rank === 2 ? 'supporting_concept' : 'keyword',
     definition,
-    definition_status: exact?.status || 'contextual_from_canonical_emne',
-    definition_source: exact?.source || owner.emne_id,
+    definition_status: exact?.status || 'editorial_rule_definition',
+    definition_source: exact?.source || 'tools/materialize-politikk-curriculum.mjs#editorialDefinition',
+    definition_method: exact ? 'source_exact' : editorialDefinitionSeeds.has(key) ? 'editorial_seed' : baseDefinition.includes('betegner et avgrenset fenomen i') ? 'domain_fallback' : 'semantic_editorial_rule',
+    contextual_use: contextualUse(row.label, owner),
     scope_note: words(owner.definition),
     why_it_matters: words(owner.why_it_matters),
     domain_ids: unique(ownerEmnes.map((emne) => emne.domain)),
@@ -287,7 +680,7 @@ const architecture = {
   version: '1.0.0',
   subject_id: 'politikk',
   status: 'active_curriculum_navigation',
-  editorial_status: 'complete',
+  editorial_status: 'expanded_and_audited',
   purpose: 'Organiserer de 13 canonicale fagområdene, 123 emnene, 71 metodene og det fullstendige begrepsregisteret som et universitetsnært statsvitenskapelig studieløp.',
   editorial_introduction: {
     heading: 'Statsvitenskap undersøker hvordan makt organiseres, begrunnes og virker',
@@ -339,19 +732,20 @@ const conceptDocument = {
   schema: 'history_go_politikk_concepts_v1',
   version: '1.0.0',
   subject_id: 'politikk',
-  status: 'editorially_complete',
-  purpose: 'Gjør alle canonicale begreps- og stikkordsoppføringer søkbare og forklarte uten å endre emne- eller quizkontraktene.',
+  status: 'definition_complete',
+  purpose: 'Gjør alle canonicale begreps- og stikkordsoppføringer søkbare med en selvstendig fagdefinisjon, kontekstuell bruk og sporbar eierkobling uten å endre emne- eller quizkontraktene.',
   definition_policy: {
     editorial_chapter: 'Eksakt redigert definisjon fra et kilde- og claimsporet lærekapittel.',
     canonical_hook: 'Eksakt definisjon fra det reviderte statsvitenskapelige hook-registeret.',
     canonical_emne: 'Eksakt definisjon fra et canonicalt emne.',
     canonical_method: 'Eksakt beskrivelse fra et canonicalt metodeobjekt.',
-    contextual_from_canonical_emne: 'Kontekstuell forklaring bygget fra emnets canonicale definisjon, avgrensninger, mekanismer og metodekrav; vises som faglig bruk, ikke som løs ordbokfasit.'
+    editorial_rule_definition: 'Selvstendig, fagspesifikk definisjon materialisert fra redigerte statsvitenskapelige definisjonsregler; emnekontekst lagres separat i contextual_use.'
   },
   summary: {
     concept_count: concepts.length,
-    direct_editorial_or_canonical_definition_count: concepts.filter((concept) => concept.definition_status !== 'contextual_from_canonical_emne').length,
-    contextual_definition_count: concepts.filter((concept) => concept.definition_status === 'contextual_from_canonical_emne').length,
+    direct_editorial_or_canonical_definition_count: concepts.filter((concept) => concept.definition_status !== 'editorial_rule_definition').length,
+    editorial_rule_definition_count: concepts.filter((concept) => concept.definition_status === 'editorial_rule_definition').length,
+    contextual_definition_count: 0,
     emne_coverage_count: new Set(concepts.flatMap((concept) => concept.source_emne_ids)).size,
     domain_coverage_count: new Set(concepts.flatMap((concept) => concept.domain_ids)).size
   },

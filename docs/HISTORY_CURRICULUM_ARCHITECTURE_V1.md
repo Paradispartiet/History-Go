@@ -42,6 +42,23 @@ Redaksjonell fullføring og vurderingsdekning er fortsatt to forskjellige status
 
 Periodeguidene ligger i `data/fag/historie/period_guides_historie_v1.json`. De 23 lærekapitlene registreres i `data/fagverk/fagverk_registry.json`, og det fullstendige begrepsregisteret lastes fra `data/fag/historie/concepts_historie_canonical_v5_5.json`.
 
+## Redaksjonell kvalitetsutvidelse V1.3
+
+Den tidligere statusen «redaksjonelt komplett» var for grov. Den målte at alle fagområder og emner hadde tekst, men skilte ikke godt nok mellom fem håndbygde kapitler og atten deterministisk materialiserte kapitler. Statusregisteret bruker derfor nå `expanded_and_audited`.
+
+De atten generator-eide kapitlene har fått et eget håndredigert fagprofil-lag i `data/fag/historie/editorial_profiles_historie_v1.json`:
+
+- 18 selvstendige hovedfortellinger i stedet for én felles kapittelledetekst
+- 54 dokumenterte stedscaser som allerede finnes i domenenes teori-evidens
+- 72 redigerte ledd i årsakskjeder
+- 18 reelle tolkningsspørsmål med to konkurrerende posisjoner og en redaksjonell behandling
+- 54 ulike modulintroduksjoner
+- 180 emnespesifikke redaksjonelle linser, én for hvert emne i de atten kapitlene
+
+Fagprofilene endrer ikke canonicale emne-, teori-, claim- eller kilde-id-er. Materialisereren kombinerer den håndredigerte fortellingen med det eksisterende evidenslaget. Hvert emne beholder presis avsnittssporing: analytisk tekst står som analytisk, mens dokumenterte avsnitt peker til de aktuelle claimene.
+
+`tools/validate-historie-editorial-quality.mjs` kontrollerer at alle atten profiler er komplette, at stedscasene finnes i fagområdets teori-evidens, at hver emne-id har sin egen linse, og at profilteksten faktisk er materialisert i kapittel, moduler og produksjonsbrief. Den gamle felles ledeteksten er eksplisitt forbudt i disse kapitlene.
+
 ## Fire adskilte dimensjoner
 
 ### Kronologisk grunnstamme
@@ -82,7 +99,8 @@ Canonical fil:
 Permanent port:
 
 - `node tools/validate-historie-curriculum-architecture.mjs`
-- `node tools/validate-historie-curriculum-architecture.mjs`
+- `node tools/validate-historie-editorial-quality.mjs`
+- `node tools/materialize-historie-editorial-chapters.mjs --check`
 
 Porten kontrollerer blant annet:
 
@@ -98,10 +116,13 @@ Porten kontrollerer blant annet:
 - at fagintroduksjonen og leseguiden ikke kan erstattes av korte registeretiketter
 - at alle ni perioder har tre sammenhengende hoveddeler, reelle fagavsnitt, sentrale begreper og tverrgående forbindelser
 - at redaksjonell periodedekning ikke overskriver en svakere quiz- eller evidensstatus
+- at de atten utvidede kapitlene beholder 18 fagprofiler, 180 emnelinser, 54 stedscaser, 72 årsaksledd og 18 tolkningsdebatter
+- at alle kuraterte stedscaser allerede er dokumentert i domenets canonicale teori-evidens
+- at materialiserte kapitler er deterministisk identiske med fagprofilene og det canonicale evidenslaget
 
 ## Videre vedlikehold
 
-Det redaksjonelle fagverket er komplett. Videre arbeid er vedlikehold og kvalitetsforbedring:
+Fagverket er strukturelt dekkende og redaksjonelt utvidet og auditert. Videre arbeid er kildevedlikehold og nye dokumenterte caseutvidelser:
 
 1. utvide quiz-, case- og stedsevidens for Antikken, tidlig moderne tid og samtid etter 1991
 2. auditere de 230 emnene for reelle dubletter og feiljusterte id/tittel-par
