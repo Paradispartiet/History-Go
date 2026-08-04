@@ -160,7 +160,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("bootCritical", window.bootCritical || window.boot);
     // Brand-rundingen rendres synkront når et sted åpnes. Gjør derfor de tre
     // canonicale Brand-kildene klare før appReady/kartet kan åpne første PlaceCard.
-    await safeRun("initBrandsBeforeAppReady", () => window.HGBrands?.init?.());
+    await safeRun("initBrandsBeforeAppReady", async () => {
+      try {
+        return await window.HGBrands?.init?.();
+      } catch (error) {
+        console.warn("[initBrandsBeforeAppReady] optional Brands data failed", error);
+        return undefined;
+      }
+    });
     await safeRun("loadAhaMusicData", () => window.HGAhaMusic?.load?.());
     await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
 

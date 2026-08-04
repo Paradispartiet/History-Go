@@ -64,6 +64,7 @@ assert.ok(brandsLoaderIndex < placeCardLoaderIndex, 'Brands må finnes før Plac
 assert.ok(brandsInitIndex > brandsLoaderIndex, 'Brands må initialiseres etter at loaderen finnes');
 assert.ok(brandsInitIndex < appReadyIndex, 'Brands må være klare før appReady åpner brukerinteraksjon');
 assert.ok(brandsInitIndex < routerStartIndex, 'Brands må være klare før routeren kan åpne første PlaceCard');
+assert.match(appRuntime, /initBrandsBeforeAppReady[\s\S]*optional Brands data failed/);
 
 const curated = registry.placeLinks.regjeringskvartalet;
 assert.ok(curated.lenses.length >= 4);
@@ -195,7 +196,10 @@ const fixture = `<!doctype html>
   <script src="/js/brands/brands_loader.js"></script>
   <script src="/js/ui/place-popup-tabs.js"></script>
   <script>
-    Promise.all([window.HGStories.init(), window.HGBrands.init()]).then(() => {
+    const storyInitA = window.HGStories.init();
+    const storyInitB = window.HGStories.init();
+    window.__storyInitSingleFlight = storyInitA === storyInitB;
+    Promise.all([storyInitA, storyInitB, window.HGBrands.init()]).then(() => {
       window.__runtimeContentCounts = {
         stories: window.HGStories.getByPlace('regjeringskvartalet').length,
         brands: ${JSON.stringify(brandsByPlace.regjeringskvartalet)}
@@ -266,6 +270,7 @@ try {
     stories: 3,
     brands: 14
   });
+  assert.equal(await page.evaluate(() => window.__storyInitSingleFlight), true);
 
   const tabLabels = await page.locator('[role="tab"]').allTextContents();
   assert.deepEqual(tabLabels, [

@@ -155,6 +155,7 @@
 
   window.HGStories = {
     ready: false,
+    initPromise: null,
     manifest: null,
     all: [],
     byId: {},
@@ -163,8 +164,11 @@
     byType: {},
     byTag: {},
 
-    async init() {
-      if (this.ready) return this;
+    init() {
+      if (this.ready) return Promise.resolve(this);
+      if (this.initPromise) return this.initPromise;
+
+      const inFlight = (async () => {
 
       const manifests = [];
       const mainManifest = await loadManifest(MANIFEST_PATH);
@@ -231,6 +235,13 @@
 
       this.ready = true;
       return this;
+      })();
+
+      this.initPromise = inFlight;
+      inFlight.catch(() => {
+        if (this.initPromise === inFlight) this.initPromise = null;
+      });
+      return inFlight;
     },
 
     async openPlace(placeId) {
