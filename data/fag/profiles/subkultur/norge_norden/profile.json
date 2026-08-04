@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "profile_id": "profile_subkultur_norge_norden",
   "subject_id": "subkultur",
-  "status": "profile_partial_case_validation",
+  "status": "profile_case_validation_complete",
   "geography": {
     "geography_id": "geo_no_nordic",
     "label": "Norge/Norden utenfor Oslo"
@@ -145,7 +145,13 @@
     {
       "case_id": "case_sub_mo_senteret_gyldenpris",
       "place_id": "mo_senteret_gyldenpris",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_mo_senteret_gyldenpris",
+      "report_path": "data/places/subkultur-production/mo_senteret_gyldenpris.json",
+      "source_ids": [
+        "source_mo_senteret_gyldenpris_milieu",
+        "source_mo_senteret_gyldenpris_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -153,18 +159,20 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_nygardsparken_bergen",
       "place_id": "nygardsparken_bergen",
-      "status": "candidate_unvalidated",
+      "status": "validated_case",
+      "evidence_id": "case_evidence_sub_nygardsparken_bergen",
+      "report_path": "data/places/subkultur-production/nygardsparken_bergen.json",
+      "source_ids": [
+        "source_nygardsparken_bergen_milieu",
+        "source_nygardsparken_bergen_outside"
+      ],
       "required_case_requirement_ids": [
         "case_req_sub_environment_practice_position",
         "case_req_sub_voice_balance",
@@ -172,13 +180,9 @@
         "case_req_sub_ethics",
         "case_req_sub_negative_case"
       ],
-      "missing_before_validation": [
-        "environment_near_source",
-        "independent_control_source",
-        "case_claims",
-        "claim_source_links",
-        "privacy_stigma_romanticization_review"
-      ]
+      "missing_before_validation": [],
+      "independent_control_status": "PASS",
+      "ethics_review_status": "PASS"
     },
     {
       "case_id": "case_sub_ressurssenter_kvinner_trondheim",
@@ -289,9 +293,9 @@
   "production_coverage": {
     "audited_candidates": 13,
     "eligible_candidates": 13,
-    "validated_cases": 11,
+    "validated_cases": 13,
     "rejected_candidates": 0,
-    "remaining_candidates": 2,
-    "completion_status": "PARTIAL"
+    "remaining_candidates": 0,
+    "completion_status": "COMPLETE"
   }
 }

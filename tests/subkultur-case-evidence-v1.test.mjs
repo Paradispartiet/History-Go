@@ -3,21 +3,21 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { auditSubkulturCaseEvidence, buildSubkulturCaseEvidenceReport } from '../scripts/audit-subkultur-case-evidence-v1.mjs';
 
-test('tredje casebatch materialiserer tjuesju validerte og to avviste cases uten å lukke de øvrige', () => {
+test('fjerde casebatch materialiserer trettitre validerte og to avviste cases uten å lukke de øvrige', () => {
   const report = auditSubkulturCaseEvidence();
   assert.equal(report.totals.profile_candidates, 50);
   assert.equal(report.totals.eligible_cases, 48);
-  assert.equal(report.totals.validated_cases, 27);
+  assert.equal(report.totals.validated_cases, 33);
   assert.equal(report.totals.rejected_cases, 2);
-  assert.equal(report.totals.remaining_candidates, 21);
+  assert.equal(report.totals.remaining_candidates, 15);
   assert.equal(report.status, 'PARTIAL_CASE_VALIDATION_READY');
 });
 
 test('hver validert case har miljønær og uavhengig inspectable kilde', () => {
   const report = buildSubkulturCaseEvidenceReport();
-  assert.equal(report.totals.case_sources, 54);
-  assert.equal(report.totals.environment_near_sources, 27);
-  assert.equal(report.totals.independent_control_sources, 27);
+  assert.equal(report.totals.case_sources, 66);
+  assert.equal(report.totals.environment_near_sources, 33);
+  assert.equal(report.totals.independent_control_sources, 33);
   assert.ok(report.cases.every((entry) => entry.sources >= 2));
   assert.ok(report.cases.every((entry) => entry.environment_near_sources >= 1));
   assert.ok(report.cases.every((entry) => entry.independent_control_sources >= 1));
@@ -26,7 +26,7 @@ test('hver validert case har miljønær og uavhengig inspectable kilde', () => {
 test('tjenestenære kilder teller som miljønære uten å feilmerkes som deltakerstemmer', () => {
   const sources = JSON.parse(fs.readFileSync(new URL('../data/fag/subkultur/case_sources_subkultur_canonical_v1.json', import.meta.url), 'utf8')).sources;
   const supportSources = sources.filter((source) => source.perspective === 'support_service');
-  assert.equal(supportSources.length, 3);
+  assert.equal(supportSources.length, 4);
   assert.ok(supportSources.every((source) => source.source_type === 'service_provider'));
   assert.ok(supportSources.every((source) => !['participant', 'milieu'].includes(source.perspective)));
 });
