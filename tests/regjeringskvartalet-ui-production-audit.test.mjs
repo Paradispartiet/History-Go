@@ -162,6 +162,7 @@ const fixture = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="/">
   <link rel="stylesheet" href="/css/place-popup-tabs.css">
   <style>
     *{box-sizing:border-box}
