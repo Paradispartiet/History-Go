@@ -21,6 +21,7 @@ const regjeringskvartaletPeople = people.filter(person => (
   person.placeId === 'regjeringskvartalet' || person.places?.includes('regjeringskvartalet')
 ));
 const report = read('reports/place-production/regjeringskvartalet-politikk-v1.md');
+const appRuntime = read('js/app.js');
 const popupRuntime = read('js/ui/place-popup-tabs.js');
 const roundsRuntime = read('js/ui/place-rounds-visual-collections.js');
 const popupCss = read('css/place-popup-tabs.css');
@@ -49,6 +50,20 @@ assert.equal(brandsByPlace.regjeringskvartalet.length, 14);
 assert.equal(new Set(brandsByPlace.regjeringskvartalet).size, 14);
 assert.equal(regjeringskvartaletPeople.length, 22);
 assert.equal(new Set(regjeringskvartaletPeople.map(person => person.id)).size, 22);
+
+const storiesLoaderIndex = appRuntime.indexOf('loadScriptOnce("js/stories/stories_loader.js")');
+const brandsLoaderIndex = appRuntime.indexOf('loadScriptOnce("js/brands/brands_loader.js")');
+const placeCardLoaderIndex = appRuntime.indexOf('loadScriptOnce("js/ui/place-card.js")');
+const brandsInitIndex = appRuntime.indexOf('safeRun("initBrandsBeforeAppReady"');
+const appReadyIndex = appRuntime.indexOf('markAppReady();');
+const routerStartIndex = appRuntime.indexOf('safeRun("HGAppRouter.start"');
+assert.ok(storiesLoaderIndex >= 0, 'ekte appstart må laste Stories-loaderen');
+assert.ok(brandsLoaderIndex >= 0, 'ekte appstart må laste Brands-loaderen');
+assert.ok(storiesLoaderIndex < placeCardLoaderIndex, 'Stories må finnes før PlaceCard lastes');
+assert.ok(brandsLoaderIndex < placeCardLoaderIndex, 'Brands må finnes før PlaceCard lastes');
+assert.ok(brandsInitIndex > brandsLoaderIndex, 'Brands må initialiseres etter at loaderen finnes');
+assert.ok(brandsInitIndex < appReadyIndex, 'Brands må være klare før appReady åpner brukerinteraksjon');
+assert.ok(brandsInitIndex < routerStartIndex, 'Brands må være klare før routeren kan åpne første PlaceCard');
 
 const curated = registry.placeLinks.regjeringskvartalet;
 assert.ok(curated.lenses.length >= 4);
@@ -171,16 +186,25 @@ const fixture = `<!doctype html>
     window.showPlacePopup.__hgPlacePopupV2 = true;
     window.PLACES = ${JSON.stringify([place])};
     window.LEKSIKON_BY_PLACE = { regjeringskvartalet: [] };
-    window.__stories = [];
     window.LESESPOR = [];
     window.HGLeksikon = { init: async () => {} };
-    window.HGStories = { init: async () => {}, getByPlace: () => window.__stories };
     window.DataHub = { loadLesespor: async () => window.LESESPOR };
   </script>
+  <script src="/js/stories/stories_loader.js"></script>
+  <script src="/js/brands/brands_loader.js"></script>
   <script src="/js/ui/place-popup-tabs.js"></script>
   <script>
-    window.HGPlacePopupTabs.decoratePopup(window.PLACES[0]);
-    window.__auditReady = true;
+    Promise.all([window.HGStories.init(), window.HGBrands.init()]).then(() => {
+      window.__runtimeContentCounts = {
+        stories: window.HGStories.getByPlace('regjeringskvartalet').length,
+        brands: ${JSON.stringify(brandsByPlace.regjeringskvartalet)}
+          .filter(id => window.HGBrands.getById(id)).length
+      };
+      window.HGPlacePopupTabs.decoratePopup(window.PLACES[0]);
+      window.__auditReady = true;
+    }).catch(error => {
+      window.__auditError = String(error && error.stack || error);
+    });
   </script>
 </body>
 </html>`;
@@ -237,6 +261,11 @@ try {
   await page.waitForFunction(() => window.__auditReady === true);
   await page.waitForSelector('[role="tab"]');
 
+  assert.deepEqual(await page.evaluate(() => window.__runtimeContentCounts), {
+    stories: 3,
+    brands: 14
+  });
+
   const tabLabels = await page.locator('[role="tab"]').allTextContents();
   assert.deepEqual(tabLabels, [
     'Om',
@@ -255,6 +284,10 @@ try {
     assert.equal(await page.locator(`[data-place-tab="${id}"]`).getAttribute('aria-selected'), 'true');
     assert.equal(await page.locator(`#hg-place-panel-${id}`).evaluate(panel => panel.hidden), false);
   }
+
+  await page.locator('[data-place-tab="stories"]').click();
+  await page.waitForSelector('#hg-place-panel-stories .hg-place-story-card');
+  assert.equal(await page.locator('#hg-place-panel-stories .hg-place-story-card').count(), 3);
 
   await page.locator('[data-place-tab="about"]').focus();
   await page.keyboard.press('End');

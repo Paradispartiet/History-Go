@@ -90,6 +90,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // finnes når MapView.openPlace()/AppRouter forsøker å åpne et sted.
     await safeRun("loadLayerManager", () => loadScriptOnce("js/core/layerManager.js"));
     await safeRun("loadBottomSheetController", () => loadScriptOnce("js/core/bottomSheetController.js"));
+
+    // PlaceCard og Mer info leser disse API-ene direkte. Loaderne må derfor være
+    // opprettet før UI-runtime lastes; bootBackground initialiserer selve dataene.
+    // Brands initialiseres i tillegg før router-start nedenfor fordi Brand-rundingen
+    // rendres synkront når et sted åpnes, mens Fortellinger har egen async init.
+    await safeRun("loadStories", () => loadScriptOnce("js/stories/stories_loader.js"));
+    await safeRun("loadBrands", () => loadScriptOnce("js/brands/brands_loader.js"));
     await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
     // Leksikon-hubben rendrer Wonderkammer-rader med data-wonderkammer-entry;
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
@@ -151,6 +158,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Critical boot gjør bare index brukbar: kart + places_index + markører.
     // Fallback til gammel boot() beholdes hvis boot-fast.js ikke er lastet.
     await safeRun("bootCritical", window.bootCritical || window.boot);
+    // Brand-rundingen rendres synkront når et sted åpnes. Gjør derfor de tre
+    // canonicale Brand-kildene klare før appReady/kartet kan åpne første PlaceCard.
+    await safeRun("initBrandsBeforeAppReady", () => window.HGBrands?.init?.());
     await safeRun("loadAhaMusicData", () => window.HGAhaMusic?.load?.());
     await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
 
