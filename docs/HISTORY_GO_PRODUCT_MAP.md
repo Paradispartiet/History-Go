@@ -2,7 +2,7 @@
 
 Status: **canonical produktkart**  
 Eier: `history_go_product_map`  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-04**
 
 Dette dokumentet beskriver hvilke hovedflater History GO består av og hvordan de henger sammen. Det er et produktkart, ikke en detaljoppskrift for hvert subsystem.
 
@@ -29,13 +29,24 @@ Et History GO-sted har tre tydelig forskjellige brukerroller:
 2. **Stedspopup** — kunnskap om stedet.
 3. **På stedet** — hva som skjer eller kan gjøres der.
 
-Canonical rundingpalett:
+Canonical rundingsmodell:
 
 ```text
-Badges · People · Works · Objects · Details · Spots · Nature · Brands
+Badge ved tittelen
+Vanlig sted: People · Objects · Brands · kategoriens fjerde
+Natursted:   Map · Flora · Fauna · kategoriens fjerde
 ```
 
-PlaceCard-rundinger følger `data/places/README_place_rounds.md`; denne filen gjentar ikke rundingsreglene.
+Tillatte fjerde-rundinger:
+
+```text
+Kategoriens produksjoner · Bygg og anlegg · Kamper og konkurranser
+Relaterte steder · Turmål · Bilder
+```
+
+Generisk `Works`, `Details` og `Spots` er ikke lenger rundingsalternativer. `Bilder` er eneste generelle reserve når kategoriens normale samling mangler faktisk innhold.
+
+PlaceCard-rundinger følger `data/places/README_place_rounds.md`; denne filen gjentar ikke detaljreglene.
 
 Canonical popupfaner:
 
@@ -172,11 +183,11 @@ Wonderkammer er **ikke** lenger en canonical PlaceCard-runding eller en ny produ
 Eksisterende Wonderkammer-data behandles som migreringsgrunnlag og klassifiseres etter faktisk innhold:
 
 - fysisk gjenstand → `Objects`;
-- liten detalj/spor → `Details`;
-- fysisk delsted → `Spots`;
 - person → `People`;
-- verk → `Works`;
-- natur → `Nature`;
+- produksjon → kategoriens konkrete produksjonssamling når den kvalifiserer;
+- bygning/anlegg → `structures` når det er en identifiserbar konstruksjon;
+- annet delpunkt eller liten detalj → steddata/popup, ikke automatisk runding;
+- naturmål → `destinations` når det er et navngitt turmål;
 - handling → På stedet;
 - navigasjon → relations/NextUp;
 - chronology/hendelse → Historie;
