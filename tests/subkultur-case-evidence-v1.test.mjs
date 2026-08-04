@@ -38,13 +38,13 @@ test('alle fem casekrav og etikkporten er eksplisitt bestått', () => {
   assert.deepEqual(report.integrity.failures, []);
 });
 
-test('komplett casekildeport sender bare videre til Quiz/Knowledge og forskutterer ikke runtime', () => {
+test('komplett casekildeport består etter ferdig runtime-materialisering', () => {
   const report = buildSubkulturCaseEvidenceReport();
   assert.deepEqual(report.status_guard, {
-    navigation_status: 'planned',
-    assessment_status: 'pending',
-    editorial_status: 'not_started',
-    next_gate: 'runtime_materialization_and_final_gate'
+    navigation_status: 'materialized',
+    assessment_status: 'audited',
+    editorial_status: 'complete',
+    next_gate: 'maintenance_and_source_refresh'
   });
   assert.equal(report.next_gate, 'quiz_knowledge_audit');
 });

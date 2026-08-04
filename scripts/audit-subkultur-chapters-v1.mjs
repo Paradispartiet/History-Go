@@ -282,13 +282,10 @@ export function auditChapters({ writeReport = false, checkReport = true } = {}) 
   assert(report.integrity.duplicate_chapter_domains.length === 0, 'Hvert domene skal ha ett kapittel');
   assert(report.integrity.domain_order_matches_pensum, 'Kapittelrekkefølgen avviker fra pensum');
   assert(report.integrity.duplicate_profile_case_ids.length === 0, 'Samme case-ID finnes i flere profiler');
-  assert(report.status_guard.navigation_status === 'planned', 'Navigasjon må forbli planned før runtime');
-  assert(report.status_guard.assessment_status === 'pending', 'Assessment må forbli pending før quiz-audit');
-  assert(report.status_guard.editorial_status === 'not_started', 'Planned fag må beholde not_started før runtime-materialisering');
-  assert(
-    ['quiz_knowledge_audit', 'runtime_materialization_and_final_gate'].includes(report.status_guard.next_gate),
-    'Global nextGate må være Quiz/Knowledge eller den etterfølgende runtime-porten'
-  );
+  assert(report.status_guard.navigation_status === 'materialized', 'Navigasjon skal være materialized etter sluttporten');
+  assert(report.status_guard.assessment_status === 'audited', 'Assessment skal være audited etter sluttporten');
+  assert(report.status_guard.editorial_status === 'complete', 'Editorial status skal være complete etter sluttporten');
+  assert(report.status_guard.next_gate === 'maintenance_and_source_refresh', 'Global nextGate skal peke til vedlikehold');
   assert(report.next_gate === 'quiz_knowledge_audit', 'Kapittelporten må sende faget videre til Quiz/Knowledge');
   if (writeReport) {
     fs.mkdirSync(path.dirname(abs(REPORT)), { recursive: true });

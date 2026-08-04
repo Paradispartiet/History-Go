@@ -68,7 +68,6 @@ if (!musikkInventory) throw new Error('subject_inventory mangler musikk');
 for (const field of ['quizPackageSchema', 'subjectPathwaySchema', 'subjectPathwayPackage']) {
   if (!list(musikkInventory.optionalManifestFields).includes(field)) musikkInventory.optionalManifestFields.push(field);
 }
-inventory.version = '1.4.0';
 expected(PATHS.inventory, inventory);
 
 const status = readJson(PATHS.status);

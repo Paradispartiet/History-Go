@@ -155,13 +155,10 @@ export function auditSubkulturCaseEvidence({ writeReport = false, checkReport = 
   assert(report.integrity.rejection_registry_mismatch.length === 0, 'profil og avvisningsregister er ute av synk');
   assert(report.integrity.validation_registry_mismatch.length === 0, 'valideringssammendrag og evidensregister er ute av synk');
   assert(report.integrity.failures.length === 0, report.integrity.failures.join('\n'));
-  assert(report.status_guard.navigation_status === 'planned', 'Subkultur kan ikke materialiseres i case-delporten');
-  assert(report.status_guard.assessment_status === 'pending', 'assessment må forbli pending før Quiz/Knowledge');
-  assert(report.status_guard.editorial_status === 'not_started', 'global editorialStatus må vente på runtime');
-  assert(
-    ['quiz_knowledge_audit', 'runtime_materialization_and_final_gate'].includes(report.status_guard.next_gate),
-    'global nextGate må være Quiz/Knowledge eller den etterfølgende runtime-porten'
-  );
+  assert(report.status_guard.navigation_status === 'materialized', 'Subkultur skal være materialized etter sluttporten');
+  assert(report.status_guard.assessment_status === 'audited', 'assessment skal være audited etter sluttporten');
+  assert(report.status_guard.editorial_status === 'complete', 'global editorialStatus skal være complete etter sluttporten');
+  assert(report.status_guard.next_gate === 'maintenance_and_source_refresh', 'global nextGate skal peke til vedlikehold');
   assert(report.next_gate === 'quiz_knowledge_audit', 'caseporten må sende faget videre til Quiz/Knowledge');
 
   const serialized = `${JSON.stringify(report, null, 2)}\n`;

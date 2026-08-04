@@ -103,10 +103,10 @@ export function auditSubkulturQuizKnowledge() {
 
   assert(list(knowledgeAudit.failures).filter((item) => item.subject_id === 'subkultur').length === 0, 'Knowledge-auditen har Subkultur-feil');
   assert(list(knowledgeAudit.warnings).filter((item) => item.subject_id === 'subkultur').length === 0, 'Knowledge-auditen har Subkultur-advarsler');
-  assert(status?.navigationStatus === 'planned' && status?.assessmentStatus === 'pending' && status?.editorialStatus === 'not_started', 'Global status er forskuttert før runtime');
-  assert(status?.nextGate === 'runtime_materialization_and_final_gate', 'Neste port skal være runtime-materialisering');
+  assert(status?.navigationStatus === 'materialized' && status?.assessmentStatus === 'audited' && status?.editorialStatus === 'complete', 'Global sluttstatus er ikke materialized/audited/complete');
+  assert(status?.nextGate === 'maintenance_and_source_refresh', 'Neste port skal være vedlikehold');
   assert(chapterManifest.assessment?.pathways === 8 && chapterManifest.assessment?.questions === 40, 'Kapittelmanifestet mangler assessment-oppsummering');
-  assert(chapterManifest.next_gate === 'runtime_materialization_and_final_gate', 'Kapittelmanifestet har feil neste port');
+  assert(chapterManifest.next_gate === 'maintenance_and_source_refresh', 'Kapittelmanifestet har feil neste port');
 
   return {
     pathways: pkg.sets.length,

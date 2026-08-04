@@ -44,15 +44,15 @@ test('randsonedomenet krever etikk og caseporten krever stemmebalanse', () => {
   assert.equal(report.policy.vulnerable_people_minimize_identification, true);
 });
 
-test('teorievidens materialiserer ikke fagverket før kapitler og cases', () => {
+test('teorievidens forblir gyldig etter ferdig materialisering', () => {
   const report = buildEvidenceReport();
   assert.equal(report.status, 'THEORY_EVIDENCE_READY_CASES_REQUIRED');
   assert.deepEqual(report.status_guard, {
-    navigation_status: 'planned',
-    assessment_status: 'pending',
-    editorial_status: 'not_started',
-    runtime_manifest_exists: false,
-    registry_subject_exists: false
+    navigation_status: 'materialized',
+    assessment_status: 'audited',
+    editorial_status: 'complete',
+    runtime_manifest_exists: true,
+    registry_subject_exists: true
   });
   assert.equal(report.next_gate, 'chapter_and_case_profiles');
 });

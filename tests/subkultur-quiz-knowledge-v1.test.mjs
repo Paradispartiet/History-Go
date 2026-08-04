@@ -22,7 +22,7 @@ test('legacyquiz har radbeslutning og er koblet ut av runtime', () => {
   assert.equal(report.active_legacy, 0);
 });
 
-test('assessment flytter bare neste port og forskutterer ikke runtime', () => {
+test('assessment er auditert og peker videre til vedlikehold', () => {
   const report = auditSubkulturQuizKnowledge();
-  assert.equal(report.next_gate, 'runtime_materialization_and_final_gate');
+  assert.equal(report.next_gate, 'maintenance_and_source_refresh');
 });

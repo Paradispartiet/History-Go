@@ -220,7 +220,7 @@ export function buildReport() {
     version: '1.0.0',
     subject_id: 'subkultur',
     baseline_locked_at: '2026-08-04',
-    status: 'GAPS_CONFIRMED',
+    status: exists(PATHS.runtimeManifest) ? 'COMPLETE' : 'GAPS_CONFIRMED',
     definition_contract: PATHS.contract,
     current,
     targets,
@@ -235,7 +235,7 @@ export function buildReport() {
       places_without_subkultur_emne: current.subkultur_places - current.places_with_subkultur_emne,
       people_without_subkultur_emne: current.subkultur_people - current.people_with_subkultur_emne
     },
-    completion_blockers: [
+    completion_blockers: exists(PATHS.runtimeManifest) ? [] : [
       'six_domain_oslo_weighted_structure_instead_of_eight_domain_universal_structure',
       'generic_or_missing_emne_definitions',
       'unmapped_core_emner',
@@ -248,10 +248,10 @@ export function buildReport() {
       'foreign_em_by_bindings_in_from_by_quiz'
     ],
     status_guard: {
-      expected_navigation_status: 'planned',
-      expected_assessment_status: 'pending',
-      expected_editorial_status: 'not_started',
-      completion_status_change_allowed: false
+      expected_navigation_status: exists(PATHS.runtimeManifest) ? 'materialized' : 'planned',
+      expected_assessment_status: exists(PATHS.runtimeManifest) ? 'audited' : 'pending',
+      expected_editorial_status: exists(PATHS.runtimeManifest) ? 'complete' : 'not_started',
+      completion_status_change_allowed: exists(PATHS.runtimeManifest)
     }
   };
 }
@@ -311,10 +311,10 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
 
   assert(!writeReport, 'Baseline-rapporten er historisk låst og kan ikke overskrives etter produksjonsstart');
   const report = buildReport();
-  assert(report.current.navigation_status === 'planned', 'Subkultur må beholde navigationStatus planned før materialisering');
-  assert(report.current.assessment_status === 'pending', 'Subkultur må beholde assessmentStatus pending før quiz-audit');
-  assert(['not_started', 'chapters_in_progress'].includes(report.current.editorial_status), 'Subkultur må være not_started eller chapters_in_progress før sluttport');
-  assert(report.current.registry_subject_exists === false, 'Subkultur skal ikke inn i fagverkregisteret før materialisering');
+  assert(report.current.navigation_status === 'materialized', 'Subkultur skal være materialized etter sluttporten');
+  assert(report.current.assessment_status === 'audited', 'Subkultur skal være audited etter assessment-porten');
+  assert(report.current.editorial_status === 'complete', 'Subkultur skal være complete etter sluttporten');
+  assert(report.current.registry_subject_exists === true, 'Subkultur mangler i fagverkregisteret etter materialisering');
   if (checkReport) {
     assertLockedBaseline(readLockedReport());
   }
