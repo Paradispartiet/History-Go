@@ -96,7 +96,9 @@ assert.match(popupCss, /@media \(max-width: 720px\)/);
 assert.match(popupCss, /\.hg-place-before-after-media\{[\s\S]*grid-template-columns:\s*1fr/);
 assert.match(popupCss, /:focus-visible/);
 
-assert.match(roundsRuntime, /const GENERAL_ROUNDS = Object\.freeze\(\["people", "objects", "brands", "civication"\]\)/);
+assert.match(roundsRuntime, /const GENERAL_BASE = Object\.freeze\(\["people", "objects", "brands"\]\)/);
+assert.match(roundsRuntime, /politikk:\s*\["spots", "details", "works"\]/);
+assert.doesNotMatch(roundsRuntime, /id:\s*["']civication["']/);
 assert.match(roundsRuntime, /titleRow\.appendChild\(badge\)/);
 assert.match(roundsRuntime, /fagverk-sted\.html\?place=/);
 assert.match(roundsRuntime, /item\.imageCard \|\| item\.cardImage \|\| item\.image/);

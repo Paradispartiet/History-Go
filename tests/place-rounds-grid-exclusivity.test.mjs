@@ -10,17 +10,19 @@ const roundsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds
 const shortcutsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-popup-shortcuts.js"), "utf8");
 const shortcutsCss = fs.readFileSync(path.join(__dirname, "../css/place-popup-shortcuts.css"), "utf8");
 
-test("legacy nodes cannot leak more than four rounds and badge stays at the title", async () => {
-  const dom = new JSDOM(`<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-body"><div class="pc-title-row"><h2 id="pcTitle"></h2></div><div class="pc-icons-quad">${["People", "Nature", "Badges", "Works", "CivicationStore", "Brands", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"].map(x => `<div id="pc${x}Icon" class="pc-round"></div>`).join("")}</div><div id="pcPeopleList"></div><div id="pcBadgesList"></div><div id="pcBrandsList"></div><div id="pcCivicationStoreList"></div></div></div></body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
+test("legacy nodes cannot leak more than four rounds and the fourth follows category", async () => {
+  const dom = new JSDOM(`<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-body"><div class="pc-title-row"><h2 id="pcTitle"></h2></div><div class="pc-icons-quad">${["People", "Nature", "Badges", "Works", "CivicationStore", "Brands", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"].map(x => `<div id="pc${x}Icon" class="pc-round"></div>`).join("")}</div><div id="pcPeopleList"></div><div id="pcBadgesList"></div><div id="pcBrandsList"></div><div id="pcWorksList"></div><div id="pcCivicationStoreList"></div></div></div></body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
   const w = dom.window;
-  w.PLACES = [{ id: "p", category: "historie" }];
+  w.PLACES = [{ id: "p", category: "historie", spots: [{ id: "port", title: "Port", image: "port.jpg" }] }];
   w.eval(roundsSource);
   w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));
   await w.HGVisualPlaceRounds.apply(w.PLACES[0]);
   const visible = [...w.document.querySelectorAll(".pc-icons-quad .pc-round")].filter(el => !el.hidden);
   assert.equal(visible.length, 4);
   assert.equal(w.document.querySelector(".pc-icons-quad").dataset.roundCount, "4");
-  assert.deepEqual(visible.slice().sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id), ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCivicationStoreIcon"]);
+  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.roundFourth, "spots");
+  assert.deepEqual(visible.slice().sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id), ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcSpotsIcon"]);
+  assert.equal(w.document.getElementById("pcCivicationStoreIcon").hidden, true);
   assert.equal(w.document.getElementById("pcBadgesIcon").parentElement.className, "pc-title-row");
   dom.window.close();
 });
