@@ -163,17 +163,6 @@
     }
   }
 
-  function renderFact(label, value) {
-    const safeValue = text(value);
-    if (!safeValue) return "";
-    return `
-      <div class="hg-place-fact">
-        <span class="hg-place-fact-label">${escapeHtml(label)}</span>
-        <strong class="hg-place-fact-value">${escapeHtml(safeValue)}</strong>
-      </div>
-    `;
-  }
-
   function renderFeatureSection(title, items, extraClass = "") {
     const values = list(items).map(text).filter(Boolean);
     if (!values.length) return "";
@@ -266,7 +255,7 @@
     if (!Object.keys(profile).length) return "";
 
     const highestPoint = objectValue(profile.highest_point || profile.highestPoint);
-    const linearExtent = numberValue(profile.linear_extent_m || profile.linearExtentM || routeLength);
+    const linearExtent = numberValue(profile.linear_extent_m || profile.linearExtentM);
     const boundary = firstText(profile.boundary_description, profile.boundaryDescription);
     const terrain = firstText(profile.terrain_type, profile.terrainType, profile.landform);
     const metrics = [
@@ -623,23 +612,6 @@
     } catch {}
 
     const headerMeta = uniqueStrings([category, year, placeType]).join(" · ");
-    const spatial = spatialProfile(place);
-    const temporal = temporalProfile(place);
-    const highestPoint = objectValue(spatial.highest_point || spatial.highestPoint);
-    const displayExtent = numberValue(spatial.linear_extent_m || spatial.linearExtentM) || routeLength;
-    const factsHtml = [
-      renderFact("År", year),
-      renderFact("Stedstype", placeType),
-      renderFact("Areal", formatArea(spatial.area_m2 || spatial.areaM2)),
-      renderFact("Høyeste punkt", firstText(highestPoint.name, highestPoint.title)),
-      renderFact("Høyde", formatElevation(highestPoint.elevation_masl || highestPoint.elevationMasl || spatial.elevation_masl || spatial.elevationMasl)),
-      renderFact("Byggehøyde", formatHeight(spatial.height_m || spatial.heightM)),
-      renderFact("Utstrekning", formatDistance(displayExtent)),
-      renderFact("Ferdigstilt", firstText(temporal.completed_year, temporal.completedYear)),
-      renderFact("Personer", people.length ? String(people.length) : ""),
-      renderFact("Fortellinger", stories.length ? String(stories.length) : "")
-    ].filter(Boolean).join("");
-
     const renderEvents = helper("renderEventsSection");
     const renderStories = helper("renderStoriesSection");
 
@@ -672,7 +644,6 @@
                   <p>${escapeHtml(shortDesc)}</p>
                 </div>
               ` : ""}
-              ${factsHtml ? `<div class="hg-place-facts">${factsHtml}</div>` : ""}
               <button class="hg-quiz-btn hg-place-quiz-btn" data-quiz="${escapeAttr(place?.id)}">Ta quiz</button>
             </div>
           </section>
