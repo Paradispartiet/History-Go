@@ -120,7 +120,7 @@ Civication-rundingen skal bruke eksisterende Civication-data og eksisterende åp
 
 Canonical semantisk eier er `data/brands/brand_rules_v1_1.json`.
 
-Brands betyr selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling. Kommersielle og historiske selskaper, profesjonelle firmaer, serveringssteder, gallerier, venue-identiteter, institusjoner, legacy-navn og skiltidentiteter kan kvalifisere når Brand-reglene består. Det betyr at aktørtypen heller ikke er et avslag i seg selv.
+Brands betyr selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling. Kommersielle og historiske selskaper, profesjonelle firmaer, serveringssteder, gallerier, venue-identiteter, institusjoner, legacy-navn og skiltidentiteter kan kvalifisere når Brand-reglene består; aktørtypen er heller ikke et avslag i seg selv.
 
 Null treff i dagens Brand-register er ikke alene grunnlag for N/A. Kandidater skal vurderes etter identitets-, gjenkjennelses- og stedstilknytningskravene.
 
