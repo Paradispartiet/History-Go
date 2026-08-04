@@ -1,14 +1,14 @@
 // @ts-nocheck
 // js/ui/place-popup-shortcuts.js
-// Åtte faste ikon-snarveier fra PlaceCard til de canonical stedspopup-fanene.
+// Sju faste SVG-snarveier fra PlaceCard til stedspopupen. Om åpnes via stedsnavn eller infotekst.
 (function installPlacePopupShortcuts(global) {
   "use strict";
 
   const WRAP_ATTR = "data-hg-place-popup-shortcuts";
   const BOUND_FLAG = "__HG_PLACE_POPUP_SHORTCUTS_BOUND__";
+  const INFO_TARGET_SELECTOR = "#pcTitle, #pcDesc";
   const icon = paths => `<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
   const SHORTCUTS = Object.freeze([
-    { id: "about", label: "Om", icon: icon('<circle cx="12" cy="12" r="9"/><path d="M12 10.8v5.4"/><path d="M12 7.5h.01"/>') },
     { id: "history", label: "Historie", icon: icon('<circle cx="12" cy="12" r="9"/><path d="M12 7.3v5.2l3.5 2"/><path d="M7.1 4.9 5.4 3.2"/>') },
     { id: "stories", label: "Fortellinger", icon: icon('<path d="M4.5 5.2c2.6-.8 5-.35 7.5 1.25v12c-2.5-1.6-4.9-2.05-7.5-1.25z"/><path d="M19.5 5.2c-2.6-.8-5-.35-7.5 1.25v12c2.5-1.6 4.9-2.05 7.5-1.25z"/>') },
     { id: "before-after", label: "Før/etter", icon: icon('<path d="M4 7h11"/><path d="m12 4 3 3-3 3"/><path d="M20 17H9"/><path d="m12 14-3 3 3 3"/>') },
@@ -29,6 +29,17 @@
     return `<button type="button" class="pc-place-popup-shortcut" data-place-popup-tab="${def.id}" aria-label="${def.label}" title="${def.label}"><span class="pc-place-popup-shortcut-icon" aria-hidden="true">${def.icon}</span></button>`;
   }
 
+  function prepareInfoTargets(card = document.getElementById("placeCard")) {
+    if (!card) return;
+    card.querySelectorAll(INFO_TARGET_SELECTOR).forEach(target => {
+      target.classList.add("pc-place-popup-info-trigger");
+      target.setAttribute("role", "button");
+      target.setAttribute("tabindex", "0");
+      target.setAttribute("aria-label", "Åpne mer om stedet");
+      target.setAttribute("title", "Åpne mer om stedet");
+    });
+  }
+
   function ensureDom() {
     const card = document.getElementById("placeCard");
     const side = card?.querySelector(".pc-side-stack");
@@ -43,6 +54,7 @@
       wrap.innerHTML = SHORTCUTS.map(button).join("");
       side.appendChild(wrap);
     }
+    prepareInfoTargets(card);
     return wrap;
   }
 
@@ -72,11 +84,28 @@
     if (global[BOUND_FLAG]) return;
     global[BOUND_FLAG] = true;
     document.addEventListener("click", event => {
-      const target = event.target instanceof Element ? event.target.closest("[data-place-popup-tab]") : null;
-      if (!(target instanceof HTMLElement) || !target.closest(`[${WRAP_ATTR}]`)) return;
+      const shortcut = event.target instanceof Element ? event.target.closest("[data-place-popup-tab]") : null;
+      if (shortcut instanceof HTMLElement && shortcut.closest(`[${WRAP_ATTR}]`)) {
+        event.preventDefault();
+        event.stopPropagation();
+        openShortcut(text(shortcut.dataset.placePopupTab));
+        return;
+      }
+
+      const infoTarget = event.target instanceof Element ? event.target.closest(INFO_TARGET_SELECTOR) : null;
+      if (!(infoTarget instanceof HTMLElement) || !infoTarget.closest("#placeCard")) return;
       event.preventDefault();
       event.stopPropagation();
-      openShortcut(text(target.dataset.placePopupTab));
+      openShortcut("about");
+    }, true);
+
+    document.addEventListener("keydown", event => {
+      if (!["Enter", " "].includes(event.key)) return;
+      const infoTarget = event.target instanceof Element ? event.target.closest(INFO_TARGET_SELECTOR) : null;
+      if (!(infoTarget instanceof HTMLElement) || !infoTarget.closest("#placeCard")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      openShortcut("about");
     }, true);
   }
 
@@ -85,7 +114,12 @@
     bind();
   }
 
-  global.HGPlacePopupShortcuts = { ensureDom, open: openShortcut, shortcuts: SHORTCUTS.map(item => ({ ...item })) };
+  global.HGPlacePopupShortcuts = {
+    ensureDom,
+    open: openShortcut,
+    openAbout: () => openShortcut("about"),
+    shortcuts: SHORTCUTS.map(item => ({ ...item }))
+  };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
   ["hg:appReady", "hg:place-selected", "hg:placesUpdated"].forEach(name => global.addEventListener?.(name, ensureDom));

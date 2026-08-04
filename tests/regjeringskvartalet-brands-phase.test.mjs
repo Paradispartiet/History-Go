@@ -60,8 +60,8 @@ test('Kandidatauditen dokumenterer både inkludering, holdback og logoavgjørels
 });
 
 test('Fast rundingsruntime rendrer canonical mapping uten stedsspesifikk særkode', () => {
-  assert.match(roundsContract, /vanlig: people · objects · brands/);
-  assert.match(runtime, /const GENERAL_ROUNDS = Object\.freeze\(\["people", "objects", "brands"\]\)/);
+  assert.match(roundsContract, /vanlig: people · objects · brands · civication/);
+  assert.match(runtime, /const GENERAL_ROUNDS = Object\.freeze\(\["people", "objects", "brands", "civication"\]\)/);
   assert.doesNotMatch(runtime, /regjeringskvartalet/);
 });
 
