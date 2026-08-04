@@ -1,0 +1,1833 @@
+{
+  "schema": "history_go_history_canonical_emne_identity_audit_v1",
+  "version": "1.0.0",
+  "status": "passed_with_legacy_ids_documented",
+  "policy": {
+    "emne_ids_are_stable_opaque_compatibility_keys": true,
+    "semantic_key_is_primary_theory_hook": true,
+    "full_title_is_user_facing_identity": true,
+    "fixed_emne_quota_is_not_editorial_target": true,
+    "renaming_stable_ids_without_reference_migration_forbidden": true
+  },
+  "summary": {
+    "emne_count": 230,
+    "unique_emne_ids": 230,
+    "unique_titles": 230,
+    "unique_definitions": 230,
+    "unique_semantic_keys": 230,
+    "legacy_id_title_drift_count": 26,
+    "duplicate_short_label_groups": 1,
+    "unresolved_blockers": 0,
+    "active_period_module_unit_counts": [
+      8,
+      7,
+      6
+    ]
+  },
+  "accepted_short_label_collisions": [
+    {
+      "value": "rettsoppgjor",
+      "emne_ids": [
+        "em_his_rettsoppgjor",
+        "em_his_rettsoppgjor_etterkrig"
+      ],
+      "resolution": "Fulltitlene er unike og brukes som brukeridentitet; kortetiketten er bare sekundær visning."
+    }
+  ],
+  "legacy_id_title_drift": [
+    {
+      "emne_id": "em_his_middelalder_kirke_kristning_og_religios_omforming",
+      "title": "Lov, ting og jurisdiksjon",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+      "title": "Jord, eiendom og patronasje",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_jord_eiendom_og_patronasje",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+      "title": "Handel, håndverk og bydannelse",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_handel_handverk_og_bydannelse",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+      "title": "Bondehushold, demografi og dagligliv",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+      "title": "Svartedauden og senmiddelalderens omforming",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+      "title": "Skriftkultur, diplom og muntlig rett",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
+      "title": "Embetsstat og kommunalt selvstyre",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_kiel_1814_og_geopolitisk_brudd",
+      "title": "Stemmerett, partier og parlamentarisme",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_suverenitet_grunnlov_og_representasjon",
+      "title": "Nasjon, språk, skole og institusjoner",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+      "title": "Eksklusjon, fornorskning og statsborgerskap",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_eksklusjon_fornorskning_og_statsborgerskap",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+      "title": "Kommunalt selvstyre, lokal forvaltning og politisk deltakelse",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_kommunalt_selvstyre_lokal_forvaltning_og_politisk_deltakelse",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
+      "title": "Propaganda, sensur og informasjonskontroll",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+      "title": "Fangenskap, vold og forfølgelse",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+      "title": "Folkerett, rettsoppgjør og overgangsrettferdighet",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+      "title": "Motstand, samarbeid, tilpasning og gråsoner",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi",
+      "title": "Eiendom, boligregimer og tomtemarkeder",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_sanering_riving_fortrengning",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse",
+      "title": "Klasse, segregasjon og offentlige rom",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_byfornyelse_bolig_standard",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_infrastruktur_mobilitet_og_tekniske_systemer",
+      "title": "Sanering, byfornyelse og modernisme",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_naring_funksjonsskifte",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
+      "title": "Gentrifisering, ombruk og bevaring",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_industrihavn_transformasjon",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
+      "title": "Kommunal styring og urban politisk økonomi",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_gentrifisering_verdi_befolkning",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme",
+      "title": "Gatenett, tomtestruktur og tekniske infrastrukturer",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_bevaring_ombruk_kulturmiljo",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring",
+      "title": "Offentlig rom, tilgang og konflikt",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_offentlig_rom_tilgang_konflikt",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_katastrofe_som_sosial_prosess",
+      "title": "Teknologi, systemulykker og normalulykker",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
+      "title": "Beredskap, kriseledelse og institusjonell læring",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_brann_epidemi_og_naturfare",
+      "title": "Skyld, ansvar, gransking og rett",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+      "title": "Gjenoppbygging, resiliens og minne",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    }
+  ],
+  "semantic_identity": [
+    {
+      "emne_id": "em_his_tid_periodisering_epoker",
+      "title": "Tid, periodisering og epoker",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_periodisering_epoker",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_brudd_kontinuitet",
+      "title": "Brudd og kontinuitet",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_brudd_kontinuitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "title": "Historiske lag i byrom",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_tidslag_samtidighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_lang_varighet_strukturer",
+      "title": "Lang varighet og historiske strukturer",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_lang_varighet_strukturer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_hendelse_prosess_tidsforlop",
+      "title": "Hendelse, prosess og tidsforløp",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_hendelse_prosess",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_modernisering_1800",
+      "title": "1800-tallets modernisering og ulike endringstempo",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_rytmer_tempo",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samtidshistorie_brudd",
+      "title": "Samtidshistorie, erfaring og åpne framtider",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_erfaringsrom_forventningshorisont",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kronologi_datering_usikkerhet",
+      "title": "Kronologi, datering og tidsmessig usikkerhet",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_kronologi_datering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_anakronisme_historiske_begreper",
+      "title": "Anakronisme og historiske begreper",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_anakronisme_begrepsbruk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samtid_ettertid_fortelling",
+      "title": "Samtid, ettertid og historisk fortelling",
+      "area_id": "his_tid_periodisering",
+      "semantic_key": "his_samtid_ettertid_fortelling",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "title": "Kildekritikk, arkiv og spor",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_kildekritikk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_spor_materialitet",
+      "title": "Spor og materialitet",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_spor_materialitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_ruiner_rester_ombruk",
+      "title": "Ruiner, rester og ombruk",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_arkiv_makt_orden",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arkiv_og_dokumentasjon",
+      "title": "Arkiv og dokumentasjon",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_taushet_fravaer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kilder_taushet_blindsoner",
+      "title": "Kilder, taushet og blindsoner",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_dokument_autentisitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_taushet_og_manglende_kilder",
+      "title": "Taushet og manglende kilder",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_skrift_lesning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_dokument_autentisitet",
+      "title": "Dokumentform og autentisitet",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_serielle_kilder",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_skrift_hand_lesning",
+      "title": "Historisk skrift og håndlesning",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_visuelle_kilder",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_serielle_kilder_kvantifisering",
+      "title": "Serielle kilder og kvantifisering",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_muntlige_kilder",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_visuelle_kilder_fotografi",
+      "title": "Visuelle kilder og fotografi",
+      "area_id": "his_kilder_arkiv_spor",
+      "semantic_key": "his_digitale_kilder",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_stat_institusjoner",
+      "title": "Stat og institusjoner",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_institusjonsbygging_funksjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_embetsstat_forvaltning",
+      "title": "Embetsstat og forvaltning",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_embetsverk_byrakrati",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_styring_krise_kontinuitet",
+      "title": "Styring, krise og kontinuitet",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_beslutningskjede_kompetanse",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_rett_politi_fengsel",
+      "title": "Rett, domstol og rettsstat",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_statlig_kapasitet_ressurser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kontroll_overvakning",
+      "title": "Kontroll og overvåkning",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_rettigheter_borgerskap_forvaltning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_rettsoppgjor",
+      "title": "Rettsoppgjør",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_lov_domstol_rettsstat",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_beslutningskjeder_kompetanse_ansvar",
+      "title": "Beslutningskjeder, kompetanse og ansvar",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_politi_fengsel_straff",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_statlig_kapasitet_skatt_infrastruktur",
+      "title": "Statlig kapasitet, skatt og infrastruktur",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_register_overvakning_disiplin",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_rettigheter_borgerskap_forvaltning",
+      "title": "Rettigheter, medborgerskap og forvaltning",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_krise_unntak_kontinuitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_politi_straff_institusjonshverdag",
+      "title": "Politi, straff og institusjonshverdag",
+      "area_id": "his_makt_stat_institusjoner",
+      "semantic_key": "his_rettsoppgjor_legitimitet_minne",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kirke_kloster_middelalder",
+      "title": "Kirke, kloster og middelaldermakt",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_by_kirke",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kongemakt_kirke_konflikt",
+      "title": "Kongemakt, kirke og konflikt",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_middelalder_oslo",
+      "title": "Middelalderens Oslo",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_middelalderens_oslo",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_kristning_og_religios_omforming",
+      "title": "Lov, ting og jurisdiksjon",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+      "title": "Jord, eiendom og patronasje",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_jord_eiendom_og_patronasje",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+      "title": "Handel, håndverk og bydannelse",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_handel_handverk_og_bydannelse",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+      "title": "Bondehushold, demografi og dagligliv",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+      "title": "Svartedauden og senmiddelalderens omforming",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+      "title": "Skriftkultur, diplom og muntlig rett",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+      "title": "Samiske kontaktsoner, handel og statsgrenser i middelalderen",
+      "area_id": "his_middelalder_kirke_kongemakt",
+      "semantic_key": "his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_1814_grunnlov_statsdannelse",
+      "title": "1814, Grunnloven og statsdannelse",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_grunnlov_rom_tekst",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_embetsstat_demokratisering",
+      "title": "Embetsstat og demokratisering",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_embetsstat_og_demokratisering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_nasjonal_identitet_fortellinger",
+      "title": "Nasjonal identitet og historiske fortellinger",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
+      "title": "Embetsstat og kommunalt selvstyre",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_kiel_1814_og_geopolitisk_brudd",
+      "title": "Stemmerett, partier og parlamentarisme",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_suverenitet_grunnlov_og_representasjon",
+      "title": "Nasjon, språk, skole og institusjoner",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+      "title": "Union, selvstendighet og 1905",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_union_selvstendighet_og_1905",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+      "title": "Eksklusjon, fornorskning og statsborgerskap",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_eksklusjon_fornorskning_og_statsborgerskap",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+      "title": "Kommunalt selvstyre, lokal forvaltning og politisk deltakelse",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_kommunalt_selvstyre_lokal_forvaltning_og_politisk_deltakelse",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_1814_statsdannelse_union_selvstendighet_og_1905",
+      "title": "1905, unionsoppløsning og ny utenrikspolitisk orientering",
+      "area_id": "his_1814_statsdannelse",
+      "semantic_key": "his_1814_statsdannelse_1905_unionsopplosning_og_ny_utenrikspolitisk_orientering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_industriby_1900",
+      "title": "Industriby og arbeid rundt 1900",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_industriby_arbeiderliv",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arbeiderbevegelse_folkedannelse",
+      "title": "Arbeiderbevegelse og folkedannelse",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_fabrikk_arbeidsorganisering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_sosialhistorie_hverdagsliv",
+      "title": "Sosialhistorie og hverdagsliv",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_arbeidstid_lonn_ferdighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_industri_produksjon_energi",
+      "title": "Industriell produksjon, energi og infrastruktur",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_arbeidsmiljo_risiko_helse",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_fabrikk_arbeidsorganisering",
+      "title": "Fabrikk og arbeidsorganisering",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_arbeiderbolig_hushold_livsvilkar",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arbeidstid_lonn_ferdighet",
+      "title": "Arbeidstid, lønn og ferdighet",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_kjonn_arbeidsdeling_lonn",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+      "title": "Arbeidsmiljø, risiko og helse",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_arbeidsvandring_rekruttering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_arbeidsdeling_lonn",
+      "title": "Kjønn, arbeidsdeling og lønn",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_organisering_streik_forhandling",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arbeidsvandring_rekruttering",
+      "title": "Arbeidsvandring og rekruttering",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_folkedannelse_arbeideroffentlighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
+      "title": "Avindustrialisering, ombruk og industriarv",
+      "area_id": "his_industri_arbeid_sosialhistorie",
+      "semantic_key": "his_avindustrialisering_ombruk_industriarv",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_fangenskap_kontroll",
+      "title": "Fangenskap, kontroll og overvåkning",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_okkupasjon_byrom_kontroll",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okkupasjon_motstand",
+      "title": "Okkupasjon og motstand",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_okkupasjon_og_motstand",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_rettsoppgjor_etterkrig",
+      "title": "Rettsoppgjør og etterkrig",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
+      "title": "Okkupasjon, samarbeid, tilpasning og motstand",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
+      "title": "Propaganda, sensur og informasjonskontroll",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+      "title": "Fangenskap, vold og forfølgelse",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+      "title": "Folkerett, rettsoppgjør og overgangsrettferdighet",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+      "title": "Krigsminne, veteraner og ettervirkninger",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_krigsminne_veteraner_og_ettervirkninger",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+      "title": "Motstand, samarbeid, tilpasning og gråsoner",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+      "title": "Kald krig, beredskap og sikkerhetsstat",
+      "area_id": "his_krig_okkupasjon_motstand",
+      "semantic_key": "his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_helse_omsorg_institusjoner",
+      "title": "Helse, epidemi og profesjonalisering",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_fattigvesen_veldedighet_sosial_kontroll",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_skole_folkedannelse",
+      "title": "Skole, folkedannelse og medborgerskap",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_helse_epidemi_profesjonalisering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_velferd_hverdagsliv",
+      "title": "Velferdsrett, vilkår og tilgang",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_skole_folkedannelse_medborgerskap",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_fattigvesen_veldedighet_sosial_kontroll",
+      "title": "Fattigvesen, veldedighet og sosial kontroll",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_barndom_familie_livslop",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_barndom_familie_livslop",
+      "title": "Barndom, familie og livsløp",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_sosialforsikring_pensjon_universalisme",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_sosialforsikring_pensjon_universalisme",
+      "title": "Sosialforsikring, pensjon og universalisme",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_boligpolitikk_materiell_velferd",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_boligpolitikk_materiell_velferd",
+      "title": "Boligpolitikk og materiell velferd",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+      "title": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_institusjonalisering_avinstitusjonalisering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_institusjonalisering_avinstitusjonalisering",
+      "title": "Institusjonalisering og avinstitusjonalisering",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_rettighet_vilkar_tilgang",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_bruker_tjeneste_forvaltning",
+      "title": "Bruker, tjeneste og forvaltning",
+      "area_id": "his_velferd_rett_hverdagsliv",
+      "semantic_key": "his_bruker_tjeneste_forvaltning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_migrasjon_mangfold",
+      "title": "Migrasjon, mobilitet og mangfold",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_migrasjonsdrivere_flyttestrommer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_minoritetshistorie",
+      "title": "Minoritetspolitikk og minoritetshistorie",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_ankomst_bosetting_bolig",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_tilhorighet_ekskludering",
+      "title": "Tilhørighet, identitet og ekskludering",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_arbeid_nettverk_naring",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_ankomst_bosetting_bolig",
+      "title": "Ankomst, bosetting og bolig",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_statsborgerskap_status_rettigheter",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arbeid_nettverk_naring",
+      "title": "Arbeid, nettverk og migrasjon",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_minoritetspolitikk_kategorisering_registrering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_statsborgerskap_status_rettigheter",
+      "title": "Statsborgerskap, status og rettigheter",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_sprak_religion_institusjoner",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_sprak_religion_institusjoner",
+      "title": "Språk, religion og minoritetsinstitusjoner",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_familie_transnasjonale_band",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_familie_transnasjonale_band",
+      "title": "Familie og transnasjonale bånd",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_diskriminering_rasisme_ekskludering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_diskriminering_rasisme_ekskludering",
+      "title": "Diskriminering, rasisme og ekskludering",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_organisering_motstand_offentlighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_organisering_motstand_offentlighet",
+      "title": "Organisering, motstand og offentlighet",
+      "area_id": "his_migrasjon_minoritet_tilhorighet",
+      "semantic_key": "his_tilhorighet_identitet_minne",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kulturminner_bevaring",
+      "title": "Kulturminner, utvelgelse og bevaring",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_kulturminneutvelgelse_verdi",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_restaurering_autentisitet",
+      "title": "Restaurering, rekonstruksjon og autentisitet",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_bevaring_restaurering_autentisitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_museum_samling_kanon",
+      "title": "Museum, samling og historisk kanon",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_museum_samling_kanon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "title": "Minnesteder, ritual og offentlig historiebruk",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_minnested_ritual_offentlig_sorg",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_monumenter_kontrovers",
+      "title": "Monumenter, symbolsk makt og kontrovers",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_monument_symbol_makt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kontrovers_fjerning_omtolking",
+      "title": "Kulturarvskonflikt, fjerning og omtolking",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_kontrovers_fjerning_omtolking",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_jubileum_seremoni_historiebruk",
+      "title": "Jubileer, seremonier og historiske fortellinger",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_jubileum_seremoni_historiebruk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_stedsnavn_navnepolitikk",
+      "title": "Stedsnavn, navnepolitikk og offentlig minne",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_stedsnavn_navnepolitikk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_fravaer_taushet_motminne",
+      "title": "Fravær, taushet og motminne",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_fravaer_taushet_motminne",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_digital_kulturarv_formidling",
+      "title": "Digital kulturarv, arkiv og formidling",
+      "area_id": "his_minne_kulturarv_historiebruk",
+      "semantic_key": "his_digital_kulturarv_formidling",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_byutvidelse_gentrifisering",
+      "title": "Byutvidelse, grenser og innlemmelse",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_byutvidelse_grense_innlemmelse",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_riving_ombruk_bevaring",
+      "title": "Riving, ombruk og bevaring",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_gatenett_tomtestruktur_infrastruktur",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_sanering_byfornyelse",
+      "title": "Sanering, byfornyelse og fortrengning",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_regulering_plan_ekspropriasjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi",
+      "title": "Eiendom, boligregimer og tomtemarkeder",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_sanering_riving_fortrengning",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse",
+      "title": "Klasse, segregasjon og offentlige rom",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_byfornyelse_bolig_standard",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_infrastruktur_mobilitet_og_tekniske_systemer",
+      "title": "Sanering, byfornyelse og modernisme",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_naring_funksjonsskifte",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
+      "title": "Gentrifisering, ombruk og bevaring",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_industrihavn_transformasjon",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
+      "title": "Kommunal styring og urban politisk økonomi",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_gentrifisering_verdi_befolkning",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme",
+      "title": "Gatenett, tomtestruktur og tekniske infrastrukturer",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_bevaring_ombruk_kulturmiljo",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring",
+      "title": "Offentlig rom, tilgang og konflikt",
+      "area_id": "his_byhistorie_stedsendring",
+      "semantic_key": "his_offentlig_rom_tilgang_konflikt",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_branner_ulykker_brudd",
+      "title": "Branner, ulykker og historiske brudd",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_krise_gjenoppbygging",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_gjenoppbygging_minne",
+      "title": "Gjenoppbygging og minne etter krise",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_gjenoppbygging_og_minne_etter_krise",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_terror_samtidshistorie",
+      "title": "Terror og samtidshistorie",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_terror_og_samtidshistorie",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_katastrofe_som_sosial_prosess",
+      "title": "Teknologi, systemulykker og normalulykker",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
+      "title": "Beredskap, kriseledelse og institusjonell læring",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_brann_epidemi_og_naturfare",
+      "title": "Skyld, ansvar, gransking og rett",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+      "title": "Gjenoppbygging, resiliens og minne",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
+      "identity_resolution": "stable_opaque_id_locked_to_title_by_semantic_key"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+      "title": "Langsomme katastrofer og miljøskade",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_langsomme_katastrofer_og_miljoskade",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+      "title": "Langsomme katastrofer, miljøskade og ulik eksponering",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_langsomme_katastrofer_miljoskade_og_ulik_eksponering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
+      "title": "Katastrofer, branner, ulykker og historiske brudd – fordypning 10",
+      "area_id": "his_katastrofer_brudd_ulykker",
+      "semantic_key": "his_katastrofer_brudd_katastrofer_branner_ulykker_og_historiske_brudd_fordypning_10",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_kjonn_som_historisk_kategori",
+      "title": "Kjønn som historisk kategori",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_kjonn_som_historisk_kategori",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_familie_hushold_og_slektskap",
+      "title": "Familie, hushold og slektskap",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_familie_hushold_og_slektskap",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_ekteskap_arv_og_eiendom",
+      "title": "Ekteskap, arv og eiendom",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_ekteskap_arv_og_eiendom",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_seksualitet_regulering_og_identitet",
+      "title": "Seksualitet, regulering og identitet",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_seksualitet_regulering_og_identitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+      "title": "Kropp, reproduksjon og medisinsk makt",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
+      "title": "Maskuliniteter, femininiteter og arbeid",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+      "title": "Barndom, ungdom, alderdom og livsløp",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
+      "title": "Kvinnebevegelse, likestilling og skeiv historie",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
+      "title": "Omsorg, sosial reproduksjon og ulønnet arbeid",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10",
+      "title": "Kjønn, rett og statsborgerskap",
+      "area_id": "his_kjonn_familie_livslop",
+      "semantic_key": "his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_fordypning_10",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
+      "title": "Markeder og markedsintegrasjon",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_markeder_og_markedsintegrasjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+      "title": "Handel, sjøfart og kommersielle nettverk",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
+      "title": "Penger, kreditt, bank og finans",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_penger_kreditt_bank_og_finans",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_eiendom_kapital_og_akkumulering",
+      "title": "Eiendom, kapital og akkumulering",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_eiendom_kapital_og_akkumulering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+      "title": "Jordbruk, fiske og ressursøkonomi",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+      "title": "Skatt, offentlig økonomi og infrastruktur",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_forbruk_priser_og_levestandard",
+      "title": "Forbruk, priser og levestandard",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_forbruk_priser_og_levestandard",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+      "title": "Kriser, konjunkturer og global arbeidsdeling",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+      "title": "Teknologi, produktivitet og materielle standarder",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
+      "title": "Global arbeidsdeling, råvarer og avhengighet",
+      "area_id": "his_okonomi_handel_materielle_systemer",
+      "semantic_key": "his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_forkristne_religioner_og_kristning",
+      "title": "Førkristne religioner og kristning",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_forkristne_religioner_og_kristning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_reformasjon_og_konfesjonalisering",
+      "title": "Reformasjon og konfesjonalisering",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_reformasjon_og_konfesjonalisering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_statskirke_disiplin_og_religios_orden",
+      "title": "Statskirke, disiplin og religiøs orden",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_statskirke_disiplin_og_religios_orden",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse",
+      "title": "Pietisme, vekkelse og lekmannsbevegelse",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter",
+      "title": "Dissentere, trosfrihet og minoriteter",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_sekularisering_og_livssynspluralisme",
+      "title": "Sekularisering og livssynspluralisme",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_sekularisering_og_livssynspluralisme",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
+      "title": "Religion, kjønn og hverdagsliv",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
+      "title": "Religion, politikk og offentlighet",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_religion_politikk_og_offentlighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+      "title": "Religion, migrasjon og transnasjonale nettverk",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet",
+      "title": "Livssyn, sekularitet og offentlighet",
+      "area_id": "his_religion_reformasjon_livssyn",
+      "semantic_key": "his_religion_reformasjon_livssyn_sekularitet_og_offentlighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+      "title": "Samiske samfunn, siida og næringsformer",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+      "title": "Kontaktsoner, handel og statsgrenser",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+      "title": "Misjon, kristning og kunnskapsmakt",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+      "title": "Jord, ressursrett og kolonisering",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+      "title": "Fornorskning, skole og språk",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+      "title": "Raseforskning og vitenskapelig klassifikasjon",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+      "title": "Organisering, Alta og rettighetskamp",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
+      "title": "Revitalisering, sannhet og forsoning",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
+      "title": "Sannhet, forsoning og arkivenes ansvar",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis",
+      "title": "Kunst, kulturarv og revitalisering som historisk praksis",
+      "area_id": "his_samisk_urfolkshistorie",
+      "semantic_key": "his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_klima_og_historisk_endring",
+      "title": "Klima og historisk endring",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_klima_og_historisk_endring",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_landskap_som_historisk_prosess",
+      "title": "Landskap som historisk prosess",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_landskap_som_historisk_prosess",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_energi_og_energiregimer",
+      "title": "Energi og energiregimer",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_energi_og_energiregimer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_skog_vann_og_naturressurser",
+      "title": "Skog, vann og naturressurser",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_skog_vann_og_naturressurser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_forurensning_og_urban_miljohistorie",
+      "title": "Forurensning og urban miljøhistorie",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_forurensning_og_urban_miljohistorie",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
+      "title": "Dyr og menneske–natur-relasjoner",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_dyr_og_menneske_natur_relasjoner",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_naturforvaltning_og_miljobevegelse",
+      "title": "Naturforvaltning og miljøbevegelse",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_naturforvaltning_og_miljobevegelse",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
+      "title": "Antropocen, langsom vold og miljørettferdighet",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
+      "title": "Urban natur, helse og miljøulikhet",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_urban_natur_helse_og_miljoulikhet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar",
+      "title": "Miljørettferdighet, langsom vold og framtidsansvar",
+      "area_id": "his_miljo_klima_landskap",
+      "semantic_key": "his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+      "title": "Kunnskapsinstitusjoner og ekspertise",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+      "title": "Profesjoner, standardisering og autoritet",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+      "title": "Måling, statistikk, kart og klassifikasjon",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+      "title": "Teknologi, infrastruktur og samfunn",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+      "title": "Medisin, helsevitenskap og befolkning",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
+      "title": "Kommunikasjon, medier og informasjonsregimer",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
+      "title": "Digitalisering og datamakt",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_digitalisering_og_datamakt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+      "title": "Vitenskap, stat, industri og ekskludering",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
+      "title": "Kunnskap, makt, kjønn og ekskludering",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
+      "title": "Vitenskap, stat, industri og militære forbindelser",
+      "area_id": "his_vitenskap_teknologi_kunnskap",
+      "semantic_key": "his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+      "title": "Imperier, kolonialisme og makt",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_imperier_kolonialisme_og_makt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+      "title": "Slaveri, råvarer og globale verdikjeder",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+      "title": "Misjon, kunnskap og kulturelle møter",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+      "title": "Migrasjon, diaspora og transnasjonale nettverk",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+      "title": "Globale kriger og internasjonale organisasjoner",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+      "title": "Avkolonisering og utviklingspolitikk",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+      "title": "Norge i imperiale og koloniale forbindelser",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+      "title": "Globalisering, avhengighet og sammenvevd historie",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
+      "title": "Internasjonale organisasjoner, bistand og utviklingspolitikk",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk",
+      "title": "Transnasjonale bevegelser, medier og solidaritetsnettverk",
+      "area_id": "his_global_kolonial_transnasjonal",
+      "semantic_key": "his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
+      "title": "Presse, offentlighet og politisk kommunikasjon",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+      "title": "Foreninger, partier og organisasjonssamfunn",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+      "title": "Protest, kollektiv handling og repertoarer",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+      "title": "Arbeider-, kvinne- og avholdsbevegelser",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
+      "title": "Lekmanns-, språk- og motkulturelle bevegelser",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
+      "title": "Borgerrettigheter, solidaritet og internasjonalisme",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
+      "title": "Miljøbevegelse og nye sosiale bevegelser",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt",
+      "title": "Digital mobilisering, overvåkning og motmakt",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_borgerrettighetskamp_antirasisme_og_solidaritetsbevegelser",
+      "title": "Borgerrettighetskamp, antirasisme og solidaritetsbevegelser",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_borgerrettighetskamp_antirasisme_og_solidaritetsbevegelser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer",
+      "title": "Digitale offentligheter, nettverk og nye mobiliseringsformer",
+      "area_id": "his_offentlighet_mobilisering_bevegelser",
+      "semantic_key": "his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arkeologisk_kontekst_formation",
+      "title": "Arkeologiske kilder, kontekst og formasjonsprosesser",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_arkeologisk_kontekst_formation",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arkeologisk_datering_kronologi",
+      "title": "Arkeologisk datering, stratigrafi og kronologi",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_arkeologisk_datering_kronologi",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_menneskelig_utvikling_mobilitet",
+      "title": "Menneskelig utvikling, mobilitet og jeger-sanker-samfunn",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_menneskelig_utvikling_mobilitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_steinalder_teknologi_bosetning",
+      "title": "Steinalderens teknologi, bosetning og livsgrunnlag",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_steinalder_teknologi_bosetning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_neolitisering_jordbruk_sedentisme",
+      "title": "Neolitisering, jordbruk og bofasthet",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_neolitisering_jordbruk_sedentisme",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_bronsealder_utveksling_ritual",
+      "title": "Bronsealderens metall, utveksling og ritualer",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_bronsealder_utveksling_ritual",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_jernalder_gard_handverk_makt",
+      "title": "Jernalderens gårder, håndverk og maktlandskap",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_jernalder_gard_handverk_makt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_vikingtid_mobilitet_handel_makt",
+      "title": "Vikingtidens mobilitet, handel, vold og statsdannelse",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_vikingtid_mobilitet_handel_makt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_arkeologisk_landskap_miljo",
+      "title": "Arkeologiske landskap, miljø og ressursbruk",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_arkeologisk_landskap_miljo",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_bioarkeologi_helse_demografi",
+      "title": "Bioarkeologi, helse, kosthold og demografi",
+      "area_id": "his_forhistorie_arkeologi",
+      "semantic_key": "his_bioarkeologi_helse_demografi",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_imperialisme_allianser_krigsutbrudd",
+      "title": "Imperialisme, alliansesystemer og krigsutbruddet i 1914",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_imperialisme_allianser_krigsutbrudd",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_fronter_total_krig_teknologi",
+      "title": "Fronter, skyttergravskrig og total krig 1914–1918",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_fronter_total_krig_teknologi",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_sivilsamfunn_krigsokonomi_hverdagsliv",
+      "title": "Sivilsamfunn, krigsøkonomi og hverdagsliv under første verdenskrig",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_sivilsamfunn_krigsokonomi_hverdagsliv",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_global_kolonial_verdenskrig",
+      "title": "Global og kolonial verdenskrig i Afrika, Asia og Midtøsten",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_global_kolonial_verdenskrig",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_norge_norden_noytralitet_sjofart",
+      "title": "Norge og Norden: nøytralitet, sjøfart og forsyningskrise 1914–1918",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_norge_norden_noytralitet_sjofart",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_revolusjon_imperieopplosning_fredsoppgjor",
+      "title": "Revolusjoner, imperieoppløsning og fredsoppgjør 1917–1923",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_revolusjon_imperieopplosning_fredsoppgjor",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_demokrati_massepolitikk_sosial_konflikt",
+      "title": "Demokrati, massepolitikk og sosial konflikt i Europa og Norden",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_demokrati_massepolitikk_sosial_konflikt",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_idehistorie_fascisme_nazisme_kommunisme",
+      "title": "Idéhistorie, fascisme, nazisme, kommunisme og autoritære bevegelser i Europa",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_idehistorie_fascisme_nazisme_kommunisme",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_store_depresjonen_arbeidsloshet_politikk",
+      "title": "Den store depresjonen i USA, Europa og verden: arbeidsløshet og økonomisk politikk",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_store_depresjonen_arbeidsloshet_politikk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kultur_modernisme_kunst_visuell_politikk",
+      "title": "Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden",
+      "area_id": "his_forste_verdenskrig_mellomkrig",
+      "semantic_key": "his_kultur_modernisme_kunst_visuell_politikk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_kald_krig_supermakter_allianser",
+      "title": "Den kalde krigen 1945–1991: supermakter, blokker og alliansesystemer",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_kald_krig_supermakter_allianser",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_atomvapen_avskrekking_opprustning",
+      "title": "Atomvåpen, avskrekking og rustningskappløp under den kalde krigen",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_atomvapen_avskrekking_opprustning",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_stedfortrederkriger_globale_konflikter",
+      "title": "Stedfortrederkriger og globale konflikter i den kalde krigen",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_stedfortrederkriger_globale_konflikter",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_avkolonisering_alliansefrihet_utvikling",
+      "title": "Avkolonisering, alliansefrihet og utviklingsprosjekter 1945–1991",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_avkolonisering_alliansefrihet_utvikling",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_delt_europa_ostblokk_1989",
+      "title": "Et delt Europa: østblokk, vestlig integrasjon og revolusjonene i 1989",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_delt_europa_ostblokk_1989",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_norge_norden_nato_noytralitet",
+      "title": "Norge og Norden i den kalde krigen: NATO, nøytralitet og sikkerhetsstat",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_norge_norden_nato_noytralitet",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_velferdsstat_planlegging_forbruk",
+      "title": "Velferdsstat, planlegging og forbrukersamfunn etter 1945",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_velferdsstat_planlegging_forbruk",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_bonder_fiskere_bygdesamfunn_modernisering",
+      "title": "Bønder, fiskere og bygdesamfunn i den kalde krigens modernisering",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_bonder_fiskere_bygdesamfunn_modernisering",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_religiose_fellesskap_fred_antikommunisme",
+      "title": "Religiøse fellesskap, menigheter og fredsmobilisering under den kalde krigen",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_religiose_fellesskap_fred_antikommunisme",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    },
+    {
+      "emne_id": "em_his_fattige_marginaliserte_velferdseksklusjon",
+      "title": "Fattige, hjemløse og sosialt marginaliserte i etterkrigstidens velferdssamfunn",
+      "area_id": "his_kald_krig_etterkrig",
+      "semantic_key": "his_fattige_marginaliserte_velferdseksklusjon",
+      "identity_resolution": "id_and_title_lexically_aligned"
+    }
+  ]
+}

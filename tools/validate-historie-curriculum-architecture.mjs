@@ -12,7 +12,8 @@ const PATHS = Object.freeze({
   methods: 'data/fag/historie/methods_historie_canonical_v4_5.json',
   coverageContract: 'data/fag/historie/historie_universal_coverage_contract_v1.json',
   profilesManifest: 'data/fag/profiles/manifest.json',
-  periodGuides: 'data/fag/historie/period_guides_historie_v1.json'
+  periodGuides: 'data/fag/historie/period_guides_historie_v1.json',
+  periodModules: 'data/fag/historie/period_modules_historie_v1.json'
 });
 
 const readJson = (root, relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
@@ -58,9 +59,10 @@ export function validateHistoryCurriculumArchitecture({ root = DEFAULT_ROOT } = 
   const coverageContract = readJson(root, PATHS.coverageContract);
   const profilesManifest = readJson(root, PATHS.profilesManifest);
   const periodGuides = readJson(root, PATHS.periodGuides);
+  const periodModules = readJson(root, PATHS.periodModules);
 
   assert(architecture.schema === 'history_go_history_curriculum_architecture_v1', 'Arkitekturen har feil schema');
-  assert(architecture.version === '1.1.0', 'Arkitekturen mangler det utvidede redaksjonelle tekstlaget');
+  assert(architecture.version === '1.2.0', 'Arkitekturen mangler de kilde- og casebundne periodemodulene');
   assert(architecture.subject_id === 'historie', 'Arkitekturen gjelder ikke Historie');
   assert(architecture.status === 'active_curriculum_navigation', 'Arkitekturen er ikke aktiv navigasjon');
   assert(architecture.navigation_policy?.canonical_domain_registry_role === 'secondary_registry', '23×10-registeret må være sekundært');
@@ -111,6 +113,8 @@ export function validateHistoryCurriculumArchitecture({ root = DEFAULT_ROOT } = 
     assert(list(guide.connections).length >= 5, `${period.id}: mangler tverrfaglige forbindelser`);
   }
   assert(list(periodGuides.orientation_sources).length >= 4, 'Periodeguidene mangler orienteringskilder');
+  assert(periodModules.schema === 'history_go_history_period_modules_v1' && periodModules.status === 'evidence_ready', 'De tre tidligere periodgapene mangler evidensklare moduler');
+  const periodModuleById = new Map(list(periodModules.modules).map((module) => [module.module_id, module]));
 
   const domainsById = new Map(list(pensum.domains).map((domain) => [domain.domain_id, domain]));
   const emnersById = new Map(list(emner).map((emne) => [emne.emne_id, emne]));
@@ -123,7 +127,10 @@ export function validateHistoryCurriculumArchitecture({ root = DEFAULT_ROOT } = 
     assert(coverageStatuses.has(period.coverage_status), `${period.id}: ugyldig coverage_status`);
     for (const domainId of list(period.domain_ids)) assert(domainsById.has(domainId), `${period.id}: ukjent domene ${domainId}`);
     for (const emneId of list(period.entry_emne_ids)) assert(emnersById.has(emneId), `${period.id}: ukjent emne ${emneId}`);
-    if (period.coverage_status === 'covered') assert(list(period.entry_emne_ids).length >= 5, `${period.id}: dekket periode trenger minst fem kuraterte inngangsemner`);
+    if (period.coverage_status === 'covered') {
+      const module = periodModuleById.get(period.period_module_id);
+      assert(list(period.entry_emne_ids).length >= 5 || module?.period_id === period.id, `${period.id}: dekket periode trenger kuraterte inngangsemner eller en dedikert periodemodul`);
+    }
     if (period.coverage_status === 'partial') {
       assert(list(period.entry_emne_ids).length >= 2, `${period.id}: delvis periode trenger reelle inngangsemner`);
       assert(period.gap_action, `${period.id}: delvis periode må forklare neste faglige handling`);
@@ -134,10 +141,12 @@ export function validateHistoryCurriculumArchitecture({ root = DEFAULT_ROOT } = 
     }
   }
 
-  const antiquity = periods.find((period) => period.id === 'antikken_eldre_sivilisasjoner');
-  assert(antiquity?.coverage_status === 'missing', 'Antikkgapet må være synlig til et dedikert fagfelt faktisk finnes');
-  assert(periods.find((period) => period.id === 'tidlig_moderne_1500_1814')?.coverage_status === 'partial', 'Tidlig moderne tid må ikke fremstilles som ferdig oversiktsløp');
-  assert(periods.find((period) => period.id === 'samtid_etter_1991')?.coverage_status === 'partial', 'Samtid etter 1991 må ikke fremstilles som ferdig oversiktsløp');
+  for (const periodId of ['antikken_eldre_sivilisasjoner', 'tidlig_moderne_1500_1814', 'samtid_etter_1991']) {
+    const period = periods.find((row) => row.id === periodId);
+    const module = periodModuleById.get(period?.period_module_id);
+    assert(period?.coverage_status === 'covered', `${periodId}: det tidligere gapet er ikke lukket`);
+    assert(module?.period_id === periodId && list(module.units).length >= 6, `${periodId}: mangler dedikert periodemodul`);
+  }
 
   for (const theme of themes) {
     assert(list(theme.domain_ids).length > 0, `${theme.id}: tematisk fagretning mangler canonicale innganger`);
@@ -173,6 +182,7 @@ export function validateHistoryCurriculumArchitecture({ root = DEFAULT_ROOT } = 
   for (const period of periods.filter((row) => row.coverage_status !== 'covered')) {
     assert(knownGapPeriods.has(period.id), `${period.id}: synlig gap mangler i known_curriculum_gaps`);
   }
+  assert(knownGapPeriods.size === 0, 'Lukkede periodgap står igjen i arkitekturen');
   const forbiddenQuotaKeys = findForbiddenQuotaKeys(architecture);
   assert(forbiddenQuotaKeys.length === 0, `Arkitekturen gjeninnfører faste innholdskvoter: ${forbiddenQuotaKeys.join(', ')}`);
 

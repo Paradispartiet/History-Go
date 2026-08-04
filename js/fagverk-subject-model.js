@@ -257,7 +257,7 @@
   }
 
   async function loadLegacySource(manifestEntry) {
-    const [pensum, emners, fagkart, methods, curriculum, concepts, periodGuides] = await Promise.all([
+    const [pensum, emners, fagkart, methods, curriculum, concepts, periodGuides, periodModules] = await Promise.all([
       fetchJson(CORE.resolveManifestPointer(manifestEntry.pensum)),
       fetchJson(CORE.resolveManifestPointer(manifestEntry.emner)),
       fetchJson(CORE.resolveManifestPointer(manifestEntry.fagkart)),
@@ -270,9 +270,12 @@
         : Promise.resolve([]),
       CORE.text(manifestEntry.periodGuides)
         ? fetchJson(CORE.resolveManifestPointer(manifestEntry.periodGuides))
+        : Promise.resolve(null),
+      CORE.text(manifestEntry.periodModules)
+        ? fetchJson(CORE.resolveManifestPointer(manifestEntry.periodModules))
         : Promise.resolve(null)
     ]);
-    return { pensum, emners, fagkart, methods, curriculum, concepts, periodGuides };
+    return { pensum, emners, fagkart, methods, curriculum, concepts, periodGuides, periodModules };
   }
 
   function loadControls() {
@@ -337,7 +340,7 @@
           statusEntry: composed.statusEntry,
           registry: composed.registry,
           badge,
-          source: { pensum: composed.pensum, emners: composed.emners, fagkart: composed.fagkart, methods: composed.methods, curriculum: composed.curriculum, concepts: composed.concepts, periodGuides: composed.periodGuides }
+          source: { pensum: composed.pensum, emners: composed.emners, fagkart: composed.fagkart, methods: composed.methods, curriculum: composed.curriculum, concepts: composed.concepts, periodGuides: composed.periodGuides, periodModules: composed.periodModules }
         });
       })().catch((error) => {
         subjectPromises.delete(cacheKey);

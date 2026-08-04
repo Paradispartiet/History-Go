@@ -179,6 +179,22 @@
       definition: firstText(concept?.definition, concept?.description),
       definitionStatus: firstText(concept?.definition_status),
       contextualUse: firstText(concept?.contextual_use),
+      editorialReview: concept?.editorial_review ? {
+        status: firstText(concept.editorial_review.review_status),
+        method: firstText(concept.editorial_review.review_method),
+        chapterId: firstText(concept.editorial_review.chapter_id),
+        claimsFile: firstText(concept.editorial_review.claims_file),
+        traceQuality: firstText(concept.editorial_review.trace_quality),
+        claimIds: unique(list(concept.editorial_review.claim_ids)),
+        note: firstText(concept.editorial_review.review_note),
+        sourceReferences: list(concept.editorial_review.source_references).map((source) => ({
+          id: firstText(source?.source_id),
+          label: firstText(source?.label, source?.source_id),
+          url: firstText(source?.url),
+          publisher: firstText(source?.publisher),
+          location: firstText(source?.source_location)
+        })).filter((source) => source.id && source.label && source.url && source.location)
+      } : null,
       type: firstText(concept?.concept_type, concept?.type),
       historicalScope: firstText(concept?.historical_scope, concept?.scope),
       scopeNote: firstText(concept?.scope_note, concept?.historical_scope, concept?.scope),
@@ -557,6 +573,7 @@
         concepts: source.concepts || [],
         curriculum: source.curriculum || null,
         periodGuides: source.periodGuides || null,
+        periodModules: source.periodModules || null,
         manifestEntry: input?.manifestEntry || {},
         inventoryEntry: input?.inventoryEntry || {},
         statusEntry,

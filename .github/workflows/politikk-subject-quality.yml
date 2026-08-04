@@ -6,6 +6,7 @@ on:
       - 'fagverk.html'
       - 'data/fag/politikk/**'
       - 'tools/materialize-politikk-curriculum.mjs'
+      - 'tools/build-politikk-concept-editorial-reviews.mjs'
       - 'tools/validate-politikk-curriculum-architecture.mjs'
       - 'tests/politikk-curriculum-architecture.test.mjs'
       - 'tests/politikk-fag-integration.test.mjs'
@@ -68,6 +69,7 @@ on:
       - 'fagverk.html'
       - 'data/fag/politikk/**'
       - 'tools/materialize-politikk-curriculum.mjs'
+      - 'tools/build-politikk-concept-editorial-reviews.mjs'
       - 'tools/validate-politikk-curriculum-architecture.mjs'
       - 'tests/politikk-curriculum-architecture.test.mjs'
       - 'tests/politikk-fag-integration.test.mjs'
@@ -139,6 +141,7 @@ jobs:
         run: |
           node --check scripts/audit-politikk-subject-quality.mjs
           node --check tools/materialize-politikk-curriculum.mjs
+          node --check tools/build-politikk-concept-editorial-reviews.mjs
           node --check tools/validate-politikk-curriculum-architecture.mjs
           node --check scripts/audit-politikk-thinker-integrity.mjs
           node --check scripts/audit-politikk-chapter-regimer-institusjoner.mjs
@@ -171,6 +174,7 @@ jobs:
           node scripts/audit-politikk-chapter-forvaltning.mjs
           node scripts/audit-politikk-chapter-parlamentarisme.mjs
           node tools/materialize-politikk-curriculum.mjs --check
+          node tools/build-politikk-concept-editorial-reviews.mjs --check
           node tools/validate-politikk-curriculum-architecture.mjs
           node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs tests/politikk-chapter-fordeling-velferd-ulikhet.test.mjs tests/politikk-chapter-konflikt-makt-sivilsamfunn.test.mjs tests/politikk-chapter-normer-identitet-hverdagsliv.test.mjs tests/politikk-chapter-forvaltning.test.mjs tests/politikk-chapter-parlamentarisme.test.mjs
           node --test tests/politikk-curriculum-architecture.test.mjs tests/politikk-fag-integration.test.mjs
