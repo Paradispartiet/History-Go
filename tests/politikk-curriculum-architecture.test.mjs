@@ -1,0 +1,129 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { JSDOM } from 'jsdom';
+import { validatePolitikkCurriculumArchitecture } from '../tools/validate-politikk-curriculum-architecture.mjs';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const readJson = (relativePath) => JSON.parse(read(relativePath));
+
+test('Politikk har et komplett studielop over det canonicale registeret', () => {
+  const result = validatePolitikkCurriculumArchitecture({ root });
+
+  assert.equal(result.status, 'passed');
+  assert.equal(result.curriculumParts, 41);
+  assert.equal(result.domains, 13);
+  assert.equal(result.emners, 123);
+  assert.equal(result.methods, 71);
+  assert.equal(result.concepts, 962);
+  assert.equal(result.chapters, 13);
+  assert.ok(result.textbookWords >= 25000);
+  assert.equal(result.directDefinitions + result.contextualDefinitions, result.concepts);
+});
+
+test('fagsiden og Politikk-portalen viser studielop og forklarte begreper', () => {
+  const subjectPage = read('js/fagverk.js');
+  const portalPage = read('js/politikk-fagportal.js');
+  const subjectHtml = read('fagverk.html');
+  const portalHtml = read('data/fag/politikk/merke_politikk.html');
+
+  assert.match(subjectHtml, /css\/politikk-curriculum\.css/);
+  assert.match(portalHtml, /css\/politikk-curriculum\.css/);
+  assert.match(subjectPage, /renderPolitikkCurriculumOverview/);
+  assert.match(subjectPage, /politikkConceptSearch/);
+  assert.match(subjectPage, /Canonicalt fagregister/);
+  assert.match(portalPage, /politikkPortalConceptSearch/);
+  assert.match(portalPage, /politikkPortalConceptDomain/);
+  assert.match(portalPage, /definition_status/);
+  assert.match(portalPage, /Start her/);
+});
+
+test('begrepsregisteret er sporbar til alle emner og skiller definisjonskvalitet', () => {
+  const document = readJson('data/fag/politikk/concepts_politikk_canonical_v1.json');
+  const concepts = document.concepts;
+  const statuses = new Set(concepts.map((concept) => concept.definition_status));
+
+  assert.equal(concepts.length, 962);
+  assert.ok(['editorial_chapter', 'canonical_hook', 'canonical_emne'].some((status) => statuses.has(status)));
+  assert.ok(statuses.has('contextual_from_canonical_emne'));
+  assert.equal(new Set(concepts.flatMap((concept) => concept.source_emne_ids)).size, 123);
+  assert.equal(new Set(concepts.flatMap((concept) => concept.domain_ids)).size, 13);
+  assert.ok(concepts.every((concept) => concept.scope_note && concept.why_it_matters));
+  assert.ok(concepts.every((concept) => concept.common_misuse.length && concept.source_requirements.length));
+});
+
+test('anvendelsesspor og kontekstforklaringer bruker hele fagtermer', () => {
+  const curriculum = readJson('data/fag/politikk/curriculum_architecture_politikk_v1.json');
+  const concepts = readJson('data/fag/politikk/concepts_politikk_canonical_v1.json').concepts;
+  const legalTrack = curriculum.applied_tracks.find((track) => track.id === 'rett_sikkerhet');
+  const concept = (label) => concepts.find((entry) => entry.label.toLocaleLowerCase('nb-NO') === label);
+
+  assert.ok(legalTrack.entry_emne_ids.includes('em_pol_politi_sikkerhet_makt'));
+  assert.ok(legalTrack.entry_emne_ids.includes('em_pol_domstoler_rettspraksis'));
+  assert.ok(!legalTrack.entry_emne_ids.includes('em_pol_kvantitativ_inferens_maling'));
+  assert.ok(legalTrack.entry_emne_ids.length < 40);
+  assert.match(concept('statistisk inferens').definition, /analytisk framgangsmåte/);
+  assert.doesNotMatch(concept('statistisk inferens').definition, /regelbundet ordning/);
+  assert.match(concept('rettferdighet').definition, /normativt prinsipp/);
+  assert.doesNotMatch(concept('rettferdighet').definition, /rettslig eller politisk regulert/);
+});
+
+test('den faktiske fagsiden rendrer 41 lesbare deler og et sokbart begrepsverk', async () => {
+  const dom = new JSDOM(read('fagverk.html'), {
+    url: 'https://history-go.test/fagverk.html?subject=politikk',
+    runScripts: 'outside-only',
+    pretendToBeVisual: true
+  });
+  const { window } = dom;
+  window.console = console;
+  window.eval(read('js/fagverk-subject-core.js'));
+
+  const registry = readJson('data/fagverk/fagverk_registry.json');
+  const status = readJson('data/fagverk/subject_status.json').subjects.find((entry) => entry.id === 'politikk');
+  const curriculum = readJson('data/fag/politikk/curriculum_architecture_politikk_v1.json');
+  const model = window.HGFagverkSubjectCore.normalizeSubject({
+    subjectId: 'politikk',
+    schemaFamily: 'standard_canonical',
+    categoryLabel: 'Politikk',
+    portalEntry: { badgePage: 'data/fag/politikk/merke_politikk.html', subjectStatus: 'materialized' },
+    statusEntry: status,
+    registry,
+    source: {
+      pensum: readJson('data/fag/politikk/politikkpensum_canonical_v4_5.json'),
+      emners: readJson('data/fag/politikk/emner_politikk_canonical_v4_5.json'),
+      fagkart: readJson('data/fag/politikk/fagkart_politikk_canonical_v4_5.json'),
+      methods: readJson('data/fag/politikk/methods_politikk_canonical_v4_5.json'),
+      concepts: readJson('data/fag/politikk/concepts_politikk_canonical_v1.json'),
+      curriculum
+    }
+  });
+  const coverage = model.emners.map((emne) => ({ emneId: emne.id, percent: 0 }));
+  const domainProgress = model.domains.map((domain) => ({ domainId: domain.id, percent: 0 }));
+  window.HGFagverkSubjectModel = {
+    load: async () => model,
+    readProgress: () => ({ points: 0, tier: { label: 'Nybegynner' }, coverage, domainProgress, quizHistory: [] }),
+    domainUrl: (_subjectId, domainId) => `fagverk.html?subject=politikk&domain=${domainId}`,
+    chapterUrl: (_subjectId, chapterId) => `fagverk.html?subject=politikk&chapter=${chapterId}`,
+    emneUrl: (_subjectId, emneId) => `fagverk.html?subject=politikk&emne=${emneId}`,
+    placePageUrl: (placeId) => `fagverk-sted.html?place=${placeId}`
+  };
+
+  window.eval(read('js/fagverk.js'));
+  await new Promise((resolve) => window.setTimeout(resolve, 40));
+
+  assert.equal(window.document.querySelectorAll('.fagverk-curriculum-article').length, 41);
+  assert.equal(window.document.querySelectorAll('#politikkConceptResults .fagverk-canonical-concept').length, 36);
+  assert.match(window.document.getElementById('politikkConceptCount').textContent, /962 begreper funnet/);
+  assert.match(window.document.getElementById('fagverkSubjectOverview').textContent, /skille politiske standpunkter fra statsvitenskapelige beskrivelser/);
+  assert.equal(window.document.getElementById('fagverkError').hidden, true);
+
+  const search = window.document.getElementById('politikkConceptSearch');
+  search.value = 'representasjon';
+  search.dispatchEvent(new window.Event('input', { bubbles: true }));
+  assert.doesNotMatch(window.document.getElementById('politikkConceptCount').textContent, /^0 begreper/);
+  assert.match(window.document.getElementById('politikkConceptResults').textContent.toLocaleLowerCase('nb-NO'), /representasjon/);
+  dom.window.close();
+});

@@ -20,7 +20,7 @@ const methods = {
   ]
 };
 
-function normalize({ subjectId, schemaFamily, pensum, fagkart, emners }) {
+function normalize({ subjectId, schemaFamily, pensum, fagkart, emners, concepts = [] }) {
   return CORE.normalizeSubject({
     subjectId,
     schemaFamily,
@@ -28,9 +28,37 @@ function normalize({ subjectId, schemaFamily, pensum, fagkart, emners }) {
     portalEntry: { badgePage: `merke.html?badge=${subjectId}`, subjectStatus: 'materialized' },
     statusEntry: { assessmentStatus: 'audited', editorialStatus: 'structure_ready' },
     registry: { subjects: {}, placeLinks: {} },
-    source: { pensum, fagkart, emners, methods }
+    source: { pensum, fagkart, emners, methods, concepts }
   });
 }
+
+test('generell motor normaliserer forklarte begreper uten Politikk-avhengighet', () => {
+  const model = normalize({
+    subjectId: 'natur',
+    schemaFamily: 'standard_canonical',
+    pensum: { subject_id: 'natur', domains: [{ domain_id: 'natur_a', label: 'Natur A', emne_ids: ['em_natur_a'] }] },
+    fagkart: {},
+    emners: [{ emne_id: 'em_natur_a', subject_id: 'natur', domain: 'natur_a', title: 'Emne A' }],
+    concepts: {
+      concepts: [{
+        concept_id: 'begrep_a',
+        label: 'Begrep A',
+        definition: 'En full forklaring.',
+        definition_status: 'direct_editorial_or_canonical',
+        domain_ids: ['natur_a'],
+        source_emne_ids: ['em_natur_a'],
+        related_concepts: ['begrep_b'],
+        common_misuse: ['For vid bruk.']
+      }]
+    }
+  });
+
+  assert.equal(model.concepts.length, 1);
+  assert.equal(model.conceptsById.get('begrep_a').label, 'Begrep A');
+  assert.equal(model.concepts[0].definitionStatus, 'direct_editorial_or_canonical');
+  assert.deepEqual([...model.concepts[0].emneIds], ['em_natur_a']);
+  assert.deepEqual([...model.concepts[0].relatedIds], ['begrep_b']);
+});
 
 test('canonical subject-resolver er streng og bruker aldri alias eller fallback', () => {
   const categories = { fagSubjects: ['natur', 'politikk'], aliases: { nature: 'natur' } };

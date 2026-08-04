@@ -177,20 +177,23 @@
       id: firstText(concept?.concept_id, concept?.id),
       label: firstText(concept?.label, concept?.term, concept?.title, concept?.concept_id, concept?.id),
       definition: firstText(concept?.definition, concept?.description),
+      definitionStatus: firstText(concept?.definition_status),
       type: firstText(concept?.concept_type, concept?.type),
       historicalScope: firstText(concept?.historical_scope, concept?.scope),
+      scopeNote: firstText(concept?.scope_note, concept?.historical_scope, concept?.scope),
+      whyItMatters: firstText(concept?.why_it_matters),
       domainIds: unique(list(concept?.domain_ids)),
-      emneIds: unique([...
-        list(concept?.source_emne_ids),
-        ...list(concept?.emne_ids)
-      ]),
+      emneIds: unique([...list(concept?.source_emne_ids), ...list(concept?.emne_ids)]),
       broaderIds: unique(list(concept?.broader_concepts)),
       narrowerIds: unique(list(concept?.narrower_concepts)),
-      relatedIds: unique(list(concept?.related_concepts)),
+      relatedIds: unique([...list(concept?.related_concepts), ...list(concept?.related_ids)]),
       distinguishFromIds: unique(list(concept?.distinguish_from)),
+      distinguishFrom: unique(list(concept?.distinguish_from)),
       commonMisuse: unique(list(concept?.common_misuse)),
       indicators: unique(list(concept?.indicators)),
       sourceRequirements: unique(list(concept?.source_requirements)),
+      methodIds: unique(list(concept?.method_ids)),
+      keyQuestions: unique(list(concept?.key_questions)),
       source: concept
     })).filter((concept) => concept.id && concept.label && concept.definition);
     const ids = new Set();

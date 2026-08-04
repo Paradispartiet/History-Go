@@ -96,6 +96,8 @@
     "audit:categories": "node scripts/audit-category-governance.mjs",
     "audit:politikk-place-production": "node scripts/audit-politikk-place-production.mjs --all",
     "test:politikk-place-production": "node --test tests/politikk-place-production.test.mjs",
+    "audit:politikk-curriculum": "node tools/validate-politikk-curriculum-architecture.mjs",
+    "test:politikk-curriculum": "node --test tests/politikk-curriculum-architecture.test.mjs tests/politikk-fag-integration.test.mjs",
     "audit:quiz-manifest:v2": "node scripts/audit-quiz-manifest-v2.mjs",
     "audit:quiz-content": "node scripts/audit-quiz-content-quality.mjs",
     "audit:quiz-content:report": "node scripts/audit-quiz-content-quality.mjs --json reports/quiz-content-quality.json",

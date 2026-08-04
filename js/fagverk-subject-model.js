@@ -262,8 +262,8 @@
       fetchJson(CORE.resolveManifestPointer(manifestEntry.emner)),
       fetchJson(CORE.resolveManifestPointer(manifestEntry.fagkart)),
       fetchJson(CORE.resolveManifestPointer(manifestEntry.methods)),
-      CORE.text(manifestEntry.curriculumArchitecture)
-        ? fetchJson(CORE.resolveManifestPointer(manifestEntry.curriculumArchitecture))
+      CORE.text(manifestEntry.curriculumArchitecture || manifestEntry.curriculum)
+        ? fetchJson(CORE.resolveManifestPointer(manifestEntry.curriculumArchitecture || manifestEntry.curriculum))
         : Promise.resolve(null),
       CORE.text(manifestEntry.concepts)
         ? fetchJson(CORE.resolveManifestPointer(manifestEntry.concepts))

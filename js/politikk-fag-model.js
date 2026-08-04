@@ -141,7 +141,7 @@
     return lastCore;
   }
 
-  function buildCore(manifest, badge, pensum, emners, registry) {
+  function buildCore(manifest, badge, pensum, emners, registry, curriculum, conceptDocument) {
     const domains = list(pensum?.domains);
     const domainOrder = list(pensum?.domain_order);
     const domainsById = new Map(domains.map((domain) => [text(domain?.domain_id), domain]));
@@ -150,6 +150,8 @@
     const emnersById = new Map(list(emners).map((emne) => [text(emne?.emne_id), emne]));
     const chapters = list(registry?.subjects?.politikk?.chapters);
     const chaptersById = new Map(chapters.map((chapter) => [text(chapter?.id), chapter]));
+    const concepts = list(conceptDocument?.concepts);
+    const conceptsById = new Map(concepts.map((concept) => [text(concept?.concept_id), concept]));
     const underbadges = list(badge?.sub).map((id) => ({
       id: text(id),
       label: text(manifest?.underbadgeLabels?.[id]) || text(id).replaceAll('_', ' '),
@@ -166,6 +168,10 @@
       emnersById,
       chapters,
       chaptersById,
+      curriculum,
+      conceptDocument,
+      concepts,
+      conceptsById,
       underbadges
     };
     lastCore = core;
@@ -177,13 +183,15 @@
       corePromise = (async () => {
         const manifest = await fetchJson(MANIFEST_URL);
         const sources = manifest?.sourceOfTruth || {};
-        const [badge, pensum, emners, registry] = await Promise.all([
+        const [badge, pensum, emners, registry, curriculum, conceptDocument] = await Promise.all([
           fetchJson(sources.badge),
           fetchJson(sources.pensum),
           fetchJson(sources.emner),
-          fetchJson(sources.fagverkRegistry)
+          fetchJson(sources.fagverkRegistry),
+          fetchJson(sources.curriculum),
+          fetchJson(sources.concepts)
         ]);
-        return buildCore(manifest, badge, pensum, emners, registry);
+        return buildCore(manifest, badge, pensum, emners, registry, curriculum, conceptDocument);
       })().catch((error) => {
         corePromise = null;
         throw error;
