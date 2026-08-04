@@ -2,21 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditSubkulturCaseEvidence, buildSubkulturCaseEvidenceReport } from '../scripts/audit-subkultur-case-evidence-v1.mjs';
 
-test('utvidet casebatch materialiserer elleve validerte og to avviste cases uten å lukke de øvrige', () => {
+test('andre casebatch materialiserer nitten validerte og to avviste cases uten å lukke de øvrige', () => {
   const report = auditSubkulturCaseEvidence();
   assert.equal(report.totals.profile_candidates, 50);
   assert.equal(report.totals.eligible_cases, 48);
-  assert.equal(report.totals.validated_cases, 11);
+  assert.equal(report.totals.validated_cases, 19);
   assert.equal(report.totals.rejected_cases, 2);
-  assert.equal(report.totals.remaining_candidates, 37);
+  assert.equal(report.totals.remaining_candidates, 29);
   assert.equal(report.status, 'PARTIAL_CASE_VALIDATION_READY');
 });
 
 test('hver validert case har miljønær og uavhengig inspectable kilde', () => {
   const report = buildSubkulturCaseEvidenceReport();
-  assert.equal(report.totals.case_sources, 22);
-  assert.equal(report.totals.environment_near_sources, 11);
-  assert.equal(report.totals.independent_control_sources, 11);
+  assert.equal(report.totals.case_sources, 38);
+  assert.equal(report.totals.environment_near_sources, 19);
+  assert.equal(report.totals.independent_control_sources, 19);
   assert.ok(report.cases.every((entry) => entry.sources >= 2));
   assert.ok(report.cases.every((entry) => entry.environment_near_sources >= 1));
   assert.ok(report.cases.every((entry) => entry.independent_control_sources >= 1));

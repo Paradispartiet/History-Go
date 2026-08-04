@@ -274,9 +274,9 @@ export function auditChapters({ writeReport = false, checkReport = true } = {}) 
   assert(report.totals.self_checks >= 64, 'Kapittellaget mangler selvtest');
   assert(report.totals.place_references === 48, 'Kapittellaget må ha 48 stedskoblinger');
   assert(report.totals.profile_candidates >= 40, 'Profilene må ha et bredt kandidatgrunnlag');
-  assert(report.totals.validated_profile_cases >= 11, 'Kapittelporten må materialisere den utvidede validerte casebatchen');
+  assert(report.totals.validated_profile_cases >= 19, 'Kapittelporten må materialisere den andre validerte casebatchen');
   assert(report.totals.rejected_profile_cases === 2, 'Kapittelporten må bevare to avviste grensecases');
-  assert(report.totals.pending_profile_cases === 37, 'Kapittelporten skal dokumentere 37 gjenstående kandidater');
+  assert(report.totals.pending_profile_cases === 29, 'Kapittelporten skal dokumentere 29 gjenstående kandidater');
   assert(report.totals.validated_place_references >= 10, 'Validerte kapittelsteder mangler i modulene');
   assert(report.integrity.duplicate_chapter_ids.length === 0, 'Kapittel-ID-er må være unike');
   assert(report.integrity.duplicate_chapter_domains.length === 0, 'Hvert domene skal ha ett kapittel');

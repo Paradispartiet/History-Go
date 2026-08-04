@@ -80,6 +80,46 @@ const CASES = Object.freeze([
     placeId: 'lisbon_galeria_ze_dos_bois',
     profileId: 'profile_subkultur_lisboa',
     reportPath: 'data/places/subkultur-production/lisbon_galeria_ze_dos_bois.json'
+  },
+  {
+    placeId: 'uffa_huset_trondheim',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/uffa_huset_trondheim.json'
+  },
+  {
+    placeId: 'tou_stavanger',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/tou_stavanger.json'
+  },
+  {
+    placeId: 'trikkestallen_skatepark_trondheim',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/trikkestallen_skatepark_trondheim.json'
+  },
+  {
+    placeId: 'fysak_slettebakken',
+    profileId: 'profile_subkultur_norge_norden',
+    reportPath: 'data/places/subkultur-production/fysak_slettebakken.json'
+  },
+  {
+    placeId: 'oslo_skatehall',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/oslo_skatehall.json'
+  },
+  {
+    placeId: 'skur13',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/skur13.json'
+  },
+  {
+    placeId: 'helvete_neseblod_records',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/helvete_neseblod_records.json'
+  },
+  {
+    placeId: 'torggata_blad',
+    profileId: 'profile_subkultur_oslo',
+    reportPath: 'data/places/subkultur-production/torggata_blad.json'
   }
 ]);
 
