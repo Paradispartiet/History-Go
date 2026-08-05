@@ -1,0 +1,28 @@
+name: BY editorial integrity
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/by/**"
+      - "scripts/validate-by-editorial-integrity.mjs"
+      - ".github/workflows/by-editorial-integrity.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/by/**"
+      - "scripts/validate-by-editorial-integrity.mjs"
+      - ".github/workflows/by-editorial-integrity.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate BY editorial integrity
+        run: node scripts/validate-by-editorial-integrity.mjs
