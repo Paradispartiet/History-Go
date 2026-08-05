@@ -1,0 +1,995 @@
+{
+  "subject_id": "teknologi",
+  "label": "Teknologi – pensum",
+  "version": "3.0",
+  "status": "canonical",
+  "source_package": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+  "editorial_contract": "data/fag/teknologi/editorial_contract_teknologi_v3.json",
+  "architecture": {
+    "foundation": [
+      "kur_teknologi_01_teknologivitenskap_design",
+      "kur_teknologi_02_systemer_arkitektur_palitelighet",
+      "kur_teknologi_03_mekanikk_energi_maskiner",
+      "kur_teknologi_04_materialer_produksjon"
+    ],
+    "applied_analysis": [
+      "kur_teknologi_05_elektronikk_signaler_regulering",
+      "kur_teknologi_06_robotikk_automatisering",
+      "kur_teknologi_07_datamaskiner_operativsystemer",
+      "kur_teknologi_08_programvareteknikk",
+      "kur_teknologi_09_algoritmer_data_ai"
+    ],
+    "integration_and_governance": [
+      "kur_teknologi_10_nettverk_cybersikkerhet_infrastruktur",
+      "kur_teknologi_11_menneske_teknologi_hci",
+      "kur_teknologi_12_teknologihistorie_sts_risiko_baerekraft"
+    ],
+    "capstone_required": true,
+    "rule": "Progresjon skal gå fra funksjon og mekanisme via måling og analyse til feil, systemintegrasjon, ansvar og begrunnet valg."
+  },
+  "progression_model": {
+    "level_1": "Identifisere systemgrense, funksjon, komponenter, mekanismer og grunnleggende måledata.",
+    "level_2": "Anvende fagmetoder, prøve hypoteser, analysere feil og sammenligne løsninger på felles grunnlag.",
+    "level_3": "Integrere teknisk og sosioteknisk evidens, vurdere usikkerhet og begrunne design- eller styringsvalg."
+  },
+  "modules": [
+    {
+      "module_id": "kur_teknologi_01_teknologivitenskap_design",
+      "title": "Teknologivitenskap, design og eksperimentering",
+      "level": 1,
+      "estimated_minutes": 60,
+      "mål": [
+        "skille behov, funksjon, krav og begrensning",
+        "formulere en designhypotese",
+        "planlegge en avgrenset prototypetest",
+        "skille verifikasjon fra validering"
+      ],
+      "emner": [
+        "em_tek_teknologisk_kunnskap_og_artefakter",
+        "em_tek_ingeniorprosess_krav_og_design",
+        "em_tek_prototyper_forsok_og_validering",
+        "em_tek_design_under_begrensninger"
+      ],
+      "metoder": [
+        "met_tek_krav_og_interessentanalyse",
+        "met_tek_morfologisk_designanalyse",
+        "met_tek_prototypeeksperiment"
+      ],
+      "prerequisite_module_ids": [],
+      "core_question": "Hvordan omformes et dokumentert behov til en testbar og begrunnet teknisk løsning?",
+      "required_evidence": [
+        "krav- eller behovsdokument",
+        "prototype eller designrepresentasjon",
+        "testresultat med kriterier"
+      ],
+      "assessment_task": "Rekonstruer designbegrunnelsen for et konkret artefakt og foreslå én test som kan endre designvalget.",
+      "mastery_criteria": [
+        "sporbarhet fra behov til test",
+        "minst ett alternativ",
+        "eksplisitt usikkerhet"
+      ],
+      "status": "active",
+      "order": 1,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "fundament",
+      "learning_outcomes": [
+        "skille behov, funksjon, krav og begrensning",
+        "formulere en designhypotese",
+        "planlegge en avgrenset prototypetest",
+        "skille verifikasjon fra validering"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_teknologisk_kunnskap_og_artefakter",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_ingeniorprosess_krav_og_design",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_prototyper_forsok_og_validering",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_teknologisk_kunnskap_og_artefakter",
+            "em_tek_ingeniorprosess_krav_og_design"
+          ]
+        },
+        {
+          "emne_id": "em_tek_design_under_begrensninger",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_teknologisk_kunnskap_og_artefakter",
+            "em_tek_ingeniorprosess_krav_og_design"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_02_systemer_arkitektur_palitelighet",
+      "title": "Systemer, arkitektur, pålitelighet og sikkerhet",
+      "level": 1,
+      "estimated_minutes": 60,
+      "mål": [
+        "definere systemgrense",
+        "tegne funksjons- og flytarkitektur",
+        "identifisere feilpropagering",
+        "skille pålitelighet, tilgjengelighet og sikkerhet"
+      ],
+      "emner": [
+        "em_tek_systemtenkning_og_grenser",
+        "em_tek_arkitektur_komponenter_grensesnitt",
+        "em_tek_palitelighet_redundans_vedlikehold",
+        "em_tek_sikkerhet_ulykker_og_barrierer"
+      ],
+      "metoder": [
+        "met_tek_systemgrense_og_flytanalyse",
+        "met_tek_fmea",
+        "met_tek_feiltre_og_barriereanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_01_teknologivitenskap_design"
+      ],
+      "core_question": "Hvordan skaper komponenter, grensesnitt og barrierer samlet systematferd og systemrisiko?",
+      "required_evidence": [
+        "arkitektur eller flytdiagram",
+        "hendelses- eller vedlikeholdsdata",
+        "barriere- eller feilanalyse"
+      ],
+      "assessment_task": "Analyser én topphendelse med minst to feilbaner og vurder om barrierene er uavhengige.",
+      "mastery_criteria": [
+        "minst to konkurrerende feilbaner",
+        "fellesfeil vurdert",
+        "gjenværende risiko angitt"
+      ],
+      "status": "active",
+      "order": 2,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "fundament",
+      "learning_outcomes": [
+        "definere systemgrense",
+        "tegne funksjons- og flytarkitektur",
+        "identifisere feilpropagering",
+        "skille pålitelighet, tilgjengelighet og sikkerhet"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_systemtenkning_og_grenser",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_arkitektur_komponenter_grensesnitt",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_palitelighet_redundans_vedlikehold",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_systemtenkning_og_grenser",
+            "em_tek_arkitektur_komponenter_grensesnitt"
+          ]
+        },
+        {
+          "emne_id": "em_tek_sikkerhet_ulykker_og_barrierer",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_systemtenkning_og_grenser",
+            "em_tek_arkitektur_komponenter_grensesnitt",
+            "em_tek_palitelighet_redundans_vedlikehold"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_03_mekanikk_energi_maskiner",
+      "title": "Mekanikk, energi og maskiner",
+      "level": 1,
+      "estimated_minutes": 60,
+      "mål": [
+        "følge kraft- og energiflyt",
+        "beregne arbeid, effekt og virkningsgrad",
+        "identifisere termiske og mekaniske tap",
+        "vurdere relevant lastprofil"
+      ],
+      "emner": [
+        "em_tek_mekanikk_kraft_bevegelse",
+        "em_tek_termodynamikk_varme_arbeid",
+        "em_tek_motorer_turbiner_og_pumper",
+        "em_tek_virkningsgrad_tap_og_eksergi"
+      ],
+      "metoder": [
+        "met_tek_mekanisme_og_lastanalyse",
+        "met_tek_energi_og_eksergibalanse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_01_teknologivitenskap_design"
+      ],
+      "core_question": "Hvordan omformes kraft og energi til nyttig arbeid under faktiske laster og tap?",
+      "required_evidence": [
+        "tegning eller mekanismeskisse",
+        "måle- eller driftskurve",
+        "energi- eller lastbalanse"
+      ],
+      "assessment_task": "Sammenlign to maskinløsninger for samme funksjon over en dokumentert lastprofil.",
+      "mastery_criteria": [
+        "samme systemgrense",
+        "tap og usikkerhet inkludert",
+        "toppeffekt ikke brukt som eneste mål"
+      ],
+      "status": "active",
+      "order": 3,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "fundament",
+      "learning_outcomes": [
+        "følge kraft- og energiflyt",
+        "beregne arbeid, effekt og virkningsgrad",
+        "identifisere termiske og mekaniske tap",
+        "vurdere relevant lastprofil"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_mekanikk_kraft_bevegelse",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_termodynamikk_varme_arbeid",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_mekanikk_kraft_bevegelse"
+          ]
+        },
+        {
+          "emne_id": "em_tek_motorer_turbiner_og_pumper",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_mekanikk_kraft_bevegelse"
+          ]
+        },
+        {
+          "emne_id": "em_tek_virkningsgrad_tap_og_eksergi",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_mekanikk_kraft_bevegelse",
+            "em_tek_termodynamikk_varme_arbeid",
+            "em_tek_motorer_turbiner_og_pumper"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_04_materialer_produksjon",
+      "title": "Materialteknologi, produksjon og livsløp",
+      "level": 1,
+      "estimated_minutes": 60,
+      "mål": [
+        "skille styrke, stivhet, seighet og utmatting",
+        "koble mikrostruktur til prosess",
+        "tolke toleranse og prosessvariasjon",
+        "avgrense et livsløp"
+      ],
+      "emner": [
+        "em_tek_materialstruktur_og_egenskaper",
+        "em_tek_utmattelse_brudd_korrosjon",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_livslop_reparasjon_sirkularitet"
+      ],
+      "metoder": [
+        "met_tek_materialvalg_etter_egenskaper",
+        "met_tek_brudd_og_levetidsanalyse",
+        "met_tek_livslopsanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_01_teknologivitenskap_design"
+      ],
+      "core_question": "Hvordan kobles materialstruktur og produksjonsprosess til egenskap, kvalitet og levetid?",
+      "required_evidence": [
+        "materialdata eller standard",
+        "prøve- eller kvalitetsdata",
+        "produksjons- eller livsløpsbeskrivelse"
+      ],
+      "assessment_task": "Begrunn material- og prosessvalg for en komponent og analyser én realistisk degraderingsmekanisme.",
+      "mastery_criteria": [
+        "funksjonskrav eksplisitt",
+        "materialtilstand angitt",
+        "alternativ vurdert"
+      ],
+      "status": "active",
+      "order": 4,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "fundament",
+      "learning_outcomes": [
+        "skille styrke, stivhet, seighet og utmatting",
+        "koble mikrostruktur til prosess",
+        "tolke toleranse og prosessvariasjon",
+        "avgrense et livsløp"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_materialstruktur_og_egenskaper",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_utmattelse_brudd_korrosjon",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_materialstruktur_og_egenskaper"
+          ]
+        },
+        {
+          "emne_id": "em_tek_produksjonsprosesser_toleranser_kvalitet",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_materialstruktur_og_egenskaper"
+          ]
+        },
+        {
+          "emne_id": "em_tek_livslop_reparasjon_sirkularitet",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_materialstruktur_og_egenskaper",
+            "em_tek_utmattelse_brudd_korrosjon",
+            "em_tek_produksjonsprosesser_toleranser_kvalitet"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_05_elektronikk_signaler_regulering",
+      "title": "Elektronikk, signaler og regulering",
+      "level": 2,
+      "estimated_minutes": 60,
+      "mål": [
+        "følge en komplett målekjede",
+        "vurdere sampling, støy og båndbredde",
+        "analysere en reguleringssløyfe",
+        "skille presisjon fra stabilitet"
+      ],
+      "emner": [
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_signaler_sensorer_og_stoy",
+        "em_tek_regulering_tilbakemelding_stabilitet",
+        "em_tek_innebygde_systemer_sanntid"
+      ],
+      "metoder": [
+        "met_tek_krets_og_effektanalyse",
+        "met_tek_signal_og_malekjedeanalyse",
+        "met_tek_reguleringssloyfeanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_02_systemer_arkitektur_palitelighet",
+        "kur_teknologi_03_mekanikk_energi_maskiner"
+      ],
+      "core_question": "Hvordan omformes et fysisk fenomen til et signal og en stabil styringshandling?",
+      "required_evidence": [
+        "krets- eller signaldiagram",
+        "målelogg eller responskurve",
+        "kalibrering eller komponentdata"
+      ],
+      "assessment_task": "Forklar et reguleringsavvik med minst to hypoteser og angi en test som skiller dem.",
+      "mastery_criteria": [
+        "signal og fenomen holdes adskilt",
+        "forsinkelse og metning vurdert",
+        "stabilitetsmål brukt"
+      ],
+      "status": "active",
+      "order": 5,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "anvendelse_og_analyse",
+      "learning_outcomes": [
+        "følge en komplett målekjede",
+        "vurdere sampling, støy og båndbredde",
+        "analysere en reguleringssløyfe",
+        "skille presisjon fra stabilitet"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_kretser_komponenter_og_maling",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_signaler_sensorer_og_stoy",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_kretser_komponenter_og_maling"
+          ]
+        },
+        {
+          "emne_id": "em_tek_regulering_tilbakemelding_stabilitet",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_kretser_komponenter_og_maling"
+          ]
+        },
+        {
+          "emne_id": "em_tek_innebygde_systemer_sanntid",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_kretser_komponenter_og_maling",
+            "em_tek_signaler_sensorer_og_stoy",
+            "em_tek_regulering_tilbakemelding_stabilitet"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_06_robotikk_automatisering",
+      "title": "Robotikk og automatisering",
+      "level": 2,
+      "estimated_minutes": 60,
+      "mål": [
+        "beskrive kinematikk og kontrollkjede",
+        "vurdere sensorfusjon og lokalisering",
+        "definere autonominivå per funksjon",
+        "analysere menneskelig overstyring og sikkerhet"
+      ],
+      "emner": [
+        "em_tek_aktuatorer_kinematikk_bevegelse",
+        "em_tek_robotpersepsjon_lokalisering",
+        "em_tek_automasjon_planlegging_og_kontroll",
+        "em_tek_menneske_robot_sikkerhet"
+      ],
+      "metoder": [
+        "met_tek_kinematisk_og_dynamisk_analyse",
+        "met_tek_robotytelse_og_benchmarking",
+        "met_tek_menneske_robot_risikoanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_02_systemer_arkitektur_palitelighet",
+        "kur_teknologi_05_elektronikk_signaler_regulering"
+      ],
+      "core_question": "Hvordan kobles sansning, tilstandsestimering, planlegging og fysisk handling under usikkerhet?",
+      "required_evidence": [
+        "sensor- og aktuatorlogg",
+        "felt- eller benchmarktest",
+        "sikkerhets- eller intervensjonsdata"
+      ],
+      "assessment_task": "Vurder et robotoppdrag i to miljøer og begrunn hvilket autonominivå som er forsvarlig.",
+      "mastery_criteria": [
+        "operasjonelt domene definert",
+        "intervensjon og feil inkludert",
+        "simulering ikke generalisert ukritisk"
+      ],
+      "status": "active",
+      "order": 6,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "anvendelse_og_analyse",
+      "learning_outcomes": [
+        "beskrive kinematikk og kontrollkjede",
+        "vurdere sensorfusjon og lokalisering",
+        "definere autonominivå per funksjon",
+        "analysere menneskelig overstyring og sikkerhet"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_aktuatorer_kinematikk_bevegelse",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_robotpersepsjon_lokalisering",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_aktuatorer_kinematikk_bevegelse"
+          ]
+        },
+        {
+          "emne_id": "em_tek_automasjon_planlegging_og_kontroll",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_aktuatorer_kinematikk_bevegelse"
+          ]
+        },
+        {
+          "emne_id": "em_tek_menneske_robot_sikkerhet",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_aktuatorer_kinematikk_bevegelse",
+            "em_tek_robotpersepsjon_lokalisering",
+            "em_tek_automasjon_planlegging_og_kontroll"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_07_datamaskiner_operativsystemer",
+      "title": "Datamaskiner, arkitektur og operativsystemer",
+      "level": 2,
+      "estimated_minutes": 60,
+      "mål": [
+        "følge instruksjon og data gjennom minnehierarkiet",
+        "forklare prosess og ressursisolasjon",
+        "analysere samtidighet",
+        "måle flaskehalser på riktig lag"
+      ],
+      "emner": [
+        "em_tek_digital_logikk_og_representasjon",
+        "em_tek_prosessor_minne_arkitektur",
+        "em_tek_operativsystemer_prosesser_ressurser",
+        "em_tek_samtidighet_lagring_og_i_o"
+      ],
+      "metoder": [
+        "met_tek_arkitektur_og_instruksjonssporing",
+        "met_tek_ytelsesprofilering",
+        "met_tek_samtidighetsanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_02_systemer_arkitektur_palitelighet"
+      ],
+      "core_question": "Hvordan realiseres beregning og ressursdeling gjennom maskinvare- og operativsystemlag?",
+      "required_evidence": [
+        "arkitektur- eller OS-dokumentasjon",
+        "profil eller systemlogg",
+        "arbeidslast og versjonsdata"
+      ],
+      "assessment_task": "Forklar en ytelsesflaskehals ved å knytte applikasjon, OS og maskinvare sammen.",
+      "mastery_criteria": [
+        "arbeidslast definert",
+        "minst to lag analysert",
+        "måledata støtter forklaringen"
+      ],
+      "status": "active",
+      "order": 7,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "anvendelse_og_analyse",
+      "learning_outcomes": [
+        "følge instruksjon og data gjennom minnehierarkiet",
+        "forklare prosess og ressursisolasjon",
+        "analysere samtidighet",
+        "måle flaskehalser på riktig lag"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_digital_logikk_og_representasjon",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_prosessor_minne_arkitektur",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_digital_logikk_og_representasjon"
+          ]
+        },
+        {
+          "emne_id": "em_tek_operativsystemer_prosesser_ressurser",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_digital_logikk_og_representasjon"
+          ]
+        },
+        {
+          "emne_id": "em_tek_samtidighet_lagring_og_i_o",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_digital_logikk_og_representasjon",
+            "em_tek_prosessor_minne_arkitektur",
+            "em_tek_operativsystemer_prosesser_ressurser"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_08_programvareteknikk",
+      "title": "Programvareteknikk",
+      "level": 2,
+      "estimated_minutes": 60,
+      "mål": [
+        "analysere modul- og API-grenser",
+        "koble risiko til teststrategi",
+        "rekonstruere hendelse fra logger og versjoner",
+        "vurdere teknisk gjeld som framtidig kostnad"
+      ],
+      "emner": [
+        "em_tek_programmeringsparadigmer_abstraksjon",
+        "em_tek_modularitet_arkitektur_api",
+        "em_tek_testing_verifikasjon_korrekthet",
+        "em_tek_drift_observerbarhet_vedlikehold"
+      ],
+      "metoder": [
+        "met_tek_kode_og_arkitekturanalyse",
+        "met_tek_teststrategi_og_verifikasjon",
+        "met_tek_observerbarhets_og_hendelsesanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_01_teknologivitenskap_design",
+        "kur_teknologi_07_datamaskiner_operativsystemer"
+      ],
+      "core_question": "Hvordan dokumenteres programvarens korrekthet, endringsevne og driftsegenskaper over tid?",
+      "required_evidence": [
+        "kildekode eller arkitekturbeslutning",
+        "test- og versjonshistorikk",
+        "drifts- eller hendelsesdata"
+      ],
+      "assessment_task": "Reproduser eller rekonstruer en programvarefeil og begrunn en rettelse med regresjonstest.",
+      "mastery_criteria": [
+        "årsaks- og rettelseshypotese adskilt",
+        "avhengigheter sporbare",
+        "driftsvirkning vurdert"
+      ],
+      "status": "active",
+      "order": 8,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "anvendelse_og_analyse",
+      "learning_outcomes": [
+        "analysere modul- og API-grenser",
+        "koble risiko til teststrategi",
+        "rekonstruere hendelse fra logger og versjoner",
+        "vurdere teknisk gjeld som framtidig kostnad"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_programmeringsparadigmer_abstraksjon",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_modularitet_arkitektur_api",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_programmeringsparadigmer_abstraksjon"
+          ]
+        },
+        {
+          "emne_id": "em_tek_testing_verifikasjon_korrekthet",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_programmeringsparadigmer_abstraksjon"
+          ]
+        },
+        {
+          "emne_id": "em_tek_drift_observerbarhet_vedlikehold",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_programmeringsparadigmer_abstraksjon",
+            "em_tek_modularitet_arkitektur_api",
+            "em_tek_testing_verifikasjon_korrekthet"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_09_algoritmer_data_ai",
+      "title": "Algoritmer, data og kunstig intelligens",
+      "level": 2,
+      "estimated_minutes": 60,
+      "mål": [
+        "skille algoritme, program og modell",
+        "analysere kompleksitet",
+        "revidere datasett og representasjon",
+        "evaluere kalibrering, undergrupper og distribusjonsskift"
+      ],
+      "emner": [
+        "em_tek_algoritmer_datastrukturer_kompleksitet",
+        "em_tek_data_kvalitet_representasjon",
+        "em_tek_maskinlaering_trening_generalisering",
+        "em_tek_ai_evaluering_styring_ansvar"
+      ],
+      "metoder": [
+        "met_tek_algoritmekorrekthet_og_kompleksitet",
+        "met_tek_datasett_og_representasjonsanalyse",
+        "met_tek_modell_og_feilanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_07_datamaskiner_operativsystemer",
+        "kur_teknologi_08_programvareteknikk"
+      ],
+      "core_question": "Hvordan begrunnes korrekthet, datagrunnlag, generalisering og bruksgrenser for algoritmer og lærende modeller?",
+      "required_evidence": [
+        "kode eller algoritmespesifikasjon",
+        "datasettdokumentasjon",
+        "baseline, evalueringsprotokoll og feilanalyse"
+      ],
+      "assessment_task": "Gjennomfør en modellkritikk som viser datagrunnlag, baseline, feilfordeling og én bruksgrense.",
+      "mastery_criteria": [
+        "testdata uavhengige",
+        "metrikk knyttet til faktisk feilkostnad",
+        "normativ konklusjon skilt fra ytelsesdata"
+      ],
+      "status": "active",
+      "order": 9,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "anvendelse_og_analyse",
+      "learning_outcomes": [
+        "skille algoritme, program og modell",
+        "analysere kompleksitet",
+        "revidere datasett og representasjon",
+        "evaluere kalibrering, undergrupper og distribusjonsskift"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_algoritmer_datastrukturer_kompleksitet",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_data_kvalitet_representasjon",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_algoritmer_datastrukturer_kompleksitet"
+          ]
+        },
+        {
+          "emne_id": "em_tek_maskinlaering_trening_generalisering",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_algoritmer_datastrukturer_kompleksitet"
+          ]
+        },
+        {
+          "emne_id": "em_tek_ai_evaluering_styring_ansvar",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_algoritmer_datastrukturer_kompleksitet",
+            "em_tek_data_kvalitet_representasjon",
+            "em_tek_maskinlaering_trening_generalisering"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_10_nettverk_cybersikkerhet_infrastruktur",
+      "title": "Nettverk, cybersikkerhet og digital infrastruktur",
+      "level": 3,
+      "estimated_minutes": 60,
+      "mål": [
+        "spore pakke og protokolltilstand",
+        "utforme trusselmodell",
+        "analysere delvise feil og avhengigheter",
+        "vurdere gjenoppretting og gjenværende risiko"
+      ],
+      "emner": [
+        "em_tek_nettverkslag_protokoller_ruting",
+        "em_tek_distribuerte_systemer_sky",
+        "em_tek_kryptografi_identitet_tilgang",
+        "em_tek_infrastruktur_robusthet_hendelser"
+      ],
+      "metoder": [
+        "met_tek_protokoll_og_pakkesporing",
+        "met_tek_trusselmodellering",
+        "met_tek_robusthets_og_hendelsesanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_02_systemer_arkitektur_palitelighet",
+        "kur_teknologi_07_datamaskiner_operativsystemer"
+      ],
+      "core_question": "Hvordan opprettholdes kommunikasjon, tillit og tilgjengelighet gjennom protokoller og fysisk infrastruktur?",
+      "required_evidence": [
+        "protokoll eller konfigurasjon",
+        "trafikk- eller hendelseslogg",
+        "trusselmodell eller gransking"
+      ],
+      "assessment_task": "Rekonstruer en digital hendelse fra avhengighet til konsekvens og foreslå kontroller med ulike feilmodi.",
+      "mastery_criteria": [
+        "verdier og tillitsgrenser definert",
+        "konfidensialitet, integritet og tilgjengelighet skilt",
+        "gjenoppretting inkludert"
+      ],
+      "status": "active",
+      "order": 10,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "integrasjon_og_ansvar",
+      "learning_outcomes": [
+        "spore pakke og protokolltilstand",
+        "utforme trusselmodell",
+        "analysere delvise feil og avhengigheter",
+        "vurdere gjenoppretting og gjenværende risiko"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_nettverkslag_protokoller_ruting",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_distribuerte_systemer_sky",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_nettverkslag_protokoller_ruting"
+          ]
+        },
+        {
+          "emne_id": "em_tek_kryptografi_identitet_tilgang",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_nettverkslag_protokoller_ruting"
+          ]
+        },
+        {
+          "emne_id": "em_tek_infrastruktur_robusthet_hendelser",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_nettverkslag_protokoller_ruting",
+            "em_tek_distribuerte_systemer_sky",
+            "em_tek_kryptografi_identitet_tilgang"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_11_menneske_teknologi_hci",
+      "title": "Menneske–teknologi, HCI og universell utforming",
+      "level": 3,
+      "estimated_minutes": 60,
+      "mål": [
+        "analysere oppgave og faktisk arbeidsflyt",
+        "måle brukbarhet",
+        "revidere tilgjengelighet",
+        "forklare menneskelig feil systemisk"
+      ],
+      "emner": [
+        "em_tek_menneskelige_faktorer_og_arbeid",
+        "em_tek_interaksjonsdesign_og_brukbarhet",
+        "em_tek_tilgjengelighet_universell_utforming",
+        "em_tek_sosiotekniske_systemer_automatisering"
+      ],
+      "metoder": [
+        "met_tek_oppgave_og_arbeidsflytanalyse",
+        "met_tek_brukbarhetstesting",
+        "met_tek_tilgjengelighetsrevisjon"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_01_teknologivitenskap_design",
+        "kur_teknologi_02_systemer_arkitektur_palitelighet"
+      ],
+      "core_question": "Hvordan fordeles kognitivt arbeid, kontroll og feil mellom mennesker, grensesnitt og organisasjon?",
+      "required_evidence": [
+        "brukerobservasjon eller test",
+        "tilgjengelighetsmåling",
+        "felt-, support- eller hendelsesdata"
+      ],
+      "assessment_task": "Sammenlign to grensesnitt for en definert brukergruppe og oppgave, inkludert feilkonsekvens og tilgjengelighet.",
+      "mastery_criteria": [
+        "representativ oppgave",
+        "resultater fordelt på relevante grupper",
+        "personlig smak ikke brukt som hovedbevis"
+      ],
+      "status": "active",
+      "order": 11,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "integrasjon_og_ansvar",
+      "learning_outcomes": [
+        "analysere oppgave og faktisk arbeidsflyt",
+        "måle brukbarhet",
+        "revidere tilgjengelighet",
+        "forklare menneskelig feil systemisk"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_menneskelige_faktorer_og_arbeid",
+          "level": 1,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_interaksjonsdesign_og_brukbarhet",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_menneskelige_faktorer_og_arbeid"
+          ]
+        },
+        {
+          "emne_id": "em_tek_tilgjengelighet_universell_utforming",
+          "level": 2,
+          "prerequisite_emne_ids": [
+            "em_tek_menneskelige_faktorer_og_arbeid"
+          ]
+        },
+        {
+          "emne_id": "em_tek_sosiotekniske_systemer_automatisering",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_menneskelige_faktorer_og_arbeid",
+            "em_tek_interaksjonsdesign_og_brukbarhet",
+            "em_tek_tilgjengelighet_universell_utforming"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "kur_teknologi_12_teknologihistorie_sts_risiko_baerekraft",
+      "title": "Teknologihistorie, STS, risiko og bærekraft",
+      "level": 3,
+      "estimated_minutes": 60,
+      "mål": [
+        "rekonstruere et teknologisk forløp uten determinisme",
+        "analysere standard og innelåsing",
+        "vurdere risiko under usikkerhet",
+        "skille faktapåstand fra normativ vekting"
+      ],
+      "emner": [
+        "em_tek_teknologihistorie_sti_og_innelasing",
+        "em_tek_standarder_infrastruktur_interoperabilitet",
+        "em_tek_teknologi_makt_etikk_ansvar",
+        "em_tek_risiko_baerekraft_omstilling"
+      ],
+      "metoder": [
+        "met_tek_teknologihistorisk_sporanalyse",
+        "met_tek_sosioteknisk_maktanalyse",
+        "met_tek_risiko_og_baerekraftsanalyse"
+      ],
+      "prerequisite_module_ids": [
+        "kur_teknologi_02_systemer_arkitektur_palitelighet",
+        "kur_teknologi_04_materialer_produksjon",
+        "kur_teknologi_11_menneske_teknologi_hci"
+      ],
+      "core_question": "Hvordan utvikles og styres tekniske systemer når historie, makt, risiko, livsløp og framtidige alternativer virker sammen?",
+      "required_evidence": [
+        "arkiv- eller beslutningskilde",
+        "standard, tilsyn eller risikodata",
+        "livsløps- eller scenarioanalyse"
+      ],
+      "assessment_task": "Sammenlign to realistiske teknologiske utviklingsbaner med historiske alternativer, risiko, reversibilitet og fordelingsvirkning.",
+      "mastery_criteria": [
+        "alternativer var faktisk tilgjengelige",
+        "systemgrense og vekting eksplisitt",
+        "usikkerhet kan endre konklusjonen"
+      ],
+      "status": "active",
+      "order": 12,
+      "editorial_status": "reviewed_v3",
+      "progression_stage": "integrasjon_og_ansvar",
+      "learning_outcomes": [
+        "rekonstruere et teknologisk forløp uten determinisme",
+        "analysere standard og innelåsing",
+        "vurdere risiko under usikkerhet",
+        "skille faktapåstand fra normativ vekting"
+      ],
+      "emne_progression": [
+        {
+          "emne_id": "em_tek_teknologihistorie_sti_og_innelasing",
+          "level": 2,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_standarder_infrastruktur_interoperabilitet",
+          "level": 2,
+          "prerequisite_emne_ids": []
+        },
+        {
+          "emne_id": "em_tek_teknologi_makt_etikk_ansvar",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_teknologihistorie_sti_og_innelasing",
+            "em_tek_standarder_infrastruktur_interoperabilitet"
+          ]
+        },
+        {
+          "emne_id": "em_tek_risiko_baerekraft_omstilling",
+          "level": 3,
+          "prerequisite_emne_ids": [
+            "em_tek_teknologihistorie_sti_og_innelasing",
+            "em_tek_standarder_infrastruktur_interoperabilitet"
+          ]
+        }
+      ]
+    }
+  ],
+  "capstone": {
+    "title": "Etterprøvbar teknologianalyse",
+    "task": "Velg ett dokumentert teknisk system og lever en analyse som integrerer minst tre fagområder, én mekanismeforklaring, én testbar feil- eller årsakshypotese, én sammenligning og én sosioteknisk vurdering.",
+    "required_components": [
+      "teknisk anker og versjon",
+      "systemgrense",
+      "påstandsklasser",
+      "minimum tre kildetyper",
+      "måling eller test",
+      "usikkerhetsregister",
+      "alternativ løsning",
+      "konklusjon med gyldighetsområde"
+    ],
+    "rubric_weights": {
+      "begrepspresisjon": 15,
+      "mekanisme": 20,
+      "metode_og_evidens": 25,
+      "feil_og_usikkerhet": 15,
+      "sammenligning": 15,
+      "sosioteknisk_begrunnelse": 10
+    }
+  }
+}

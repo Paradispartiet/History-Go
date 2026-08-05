@@ -320,10 +320,10 @@
         "schemaFamily": "technology_scientific_v2_4",
         "routeStatus": "planned",
         "route": "",
-        "pensum": "teknologi/teknologipensum_canonical_v2_4.json",
-        "emner": "teknologi/emner_teknologi_canonical_v2_4.json",
-        "fagkart": "teknologi/fagkart_teknologi_canonical_v2_4.json",
-        "methods": "teknologi/methods_teknologi_canonical_v2_4.json",
+        "pensum": "teknologi/teknologipensum_canonical_v3.json",
+        "emner": "teknologi/emner_teknologi_canonical_v3.json",
+        "fagkart": "teknologi/fagkart_teknologi_canonical_v3.json",
+        "methods": "teknologi/methods_teknologi_canonical_v3.json",
         "supersetQuizMal": "teknologi/supersetQUIZMAL_teknologi.json",
         "status": "canonical_scientific_specialization",
         "quizStandard": "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -332,7 +332,7 @@
         "quizPackageSchema": "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
         "subjectPathwaySchema": "../quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
         "subjectPathwayPackage": "../quiz/teknologi/teknologi_subject_pathways_v1.json",
-        "canonicalModelVersion": "2.4",
+        "canonicalModelVersion": "3.0",
         "universalCoverage": {
           "status": "complete",
           "areas": 12,
@@ -343,6 +343,19 @@
         "geographicProduction": {
           "status": "separate",
           "rule": "Lokale steder, personer, claims, kilder og stedsquizer produseres i geografiske lag."
+        },
+        "editorialContract": "teknologi/editorial_contract_teknologi_v3.json",
+        "legacyStatus": "teknologi/canonical_legacy_status_v3.json",
+        "editorialStatus": "reviewed_and_operationalized",
+        "sourceIntegrity": {
+          "status": "blocking",
+          "required": [
+            "external_source",
+            "locator",
+            "claim_basis",
+            "technology_anchor",
+            "validity_scope"
+          ]
         }
       }
     }

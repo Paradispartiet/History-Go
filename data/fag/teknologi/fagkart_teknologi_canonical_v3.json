@@ -1,0 +1,2612 @@
+{
+  "subject_id": "teknologi",
+  "subject_title": "Teknologi",
+  "type": "fagkart",
+  "version": "3.0-canonical",
+  "status": "canonical",
+  "purpose": "Universitetsmessig og redaksjonelt håndhevet fagmodell for teknologi som ingeniør-, design-, informasjons- og sosioteknisk fag.",
+  "source_package": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+  "editorial_contract": "data/fag/teknologi/editorial_contract_teknologi_v3.json",
+  "principles": {
+    "source_first": true,
+    "external_claim_basis_required": true,
+    "concrete_system_before_theory": true,
+    "uncertainty_must_be_explicit": true,
+    "comparison_requires_common_basis": true,
+    "descriptive_and_normative_claims_must_be_separated": true,
+    "method_must_be_operationalized": true,
+    "emne_prefix_required": "em_tek_"
+  },
+  "categories": [
+    {
+      "id": "teknologivitenskap_design",
+      "title": "Teknologivitenskap, design og eksperimentering",
+      "definition": "Studiet av hvordan tekniske artefakter og systemer blir formulert, konstruert, prøvd og forbedret under eksplisitte krav og begrensninger.",
+      "research_questions": [
+        "Hvilket problem skal løsningen faktisk løse?",
+        "Hvordan kan funksjon og ytelse testes?",
+        "Hvilke krav, verdier og begrensninger former designet?"
+      ],
+      "focus": [
+        "em_tek_teknologisk_kunnskap_og_artefakter",
+        "em_tek_ingeniorprosess_krav_og_design",
+        "em_tek_prototyper_forsok_og_validering",
+        "em_tek_design_under_begrensninger"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_teknologivitenskap_design_mekanisme",
+          "title": "Hvordan virker teknologivitenskap, design og eksperimentering i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvilket problem skal løsningen faktisk løse?",
+          "emne_ids": [
+            "em_tek_teknologisk_kunnskap_og_artefakter",
+            "em_tek_ingeniorprosess_krav_og_design",
+            "em_tek_prototyper_forsok_og_validering"
+          ],
+          "concept_ids": [
+            "artefakt",
+            "funksjon",
+            "krav"
+          ],
+          "recommended_method_ids": [
+            "met_tek_krav_og_interessentanalyse",
+            "met_tek_morfologisk_designanalyse"
+          ],
+          "thinker_ids": [
+            "herbert_simon",
+            "walter_vincenti",
+            "henry_petroski",
+            "donald_schon"
+          ],
+          "theory_ids": [
+            "teori_tek_designvitenskap",
+            "teori_tek_funksjon_atferd_struktur"
+          ]
+        },
+        {
+          "id": "hook_tek_teknologivitenskap_design_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan kan funksjon og ytelse testes?",
+          "emne_ids": [
+            "em_tek_ingeniorprosess_krav_og_design",
+            "em_tek_prototyper_forsok_og_validering",
+            "em_tek_design_under_begrensninger"
+          ],
+          "concept_ids": [
+            "krav",
+            "begrensning",
+            "prototype"
+          ],
+          "recommended_method_ids": [
+            "met_tek_morfologisk_designanalyse",
+            "met_tek_prototypeeksperiment"
+          ],
+          "thinker_ids": [
+            "walter_vincenti",
+            "henry_petroski",
+            "donald_schon",
+            "w_brian_arthur"
+          ],
+          "theory_ids": [
+            "teori_tek_designvitenskap",
+            "teori_tek_funksjon_atferd_struktur"
+          ]
+        },
+        {
+          "id": "hook_tek_teknologivitenskap_design_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvilke krav, verdier og begrensninger former designet?",
+          "emne_ids": [
+            "em_tek_prototyper_forsok_og_validering",
+            "em_tek_design_under_begrensninger",
+            "em_tek_teknologisk_kunnskap_og_artefakter"
+          ],
+          "concept_ids": [
+            "prototype",
+            "validering",
+            "artefakt"
+          ],
+          "recommended_method_ids": [
+            "met_tek_prototypeeksperiment",
+            "met_tek_krav_og_interessentanalyse"
+          ],
+          "thinker_ids": [
+            "henry_petroski",
+            "donald_schon",
+            "w_brian_arthur",
+            "herbert_simon"
+          ],
+          "theory_ids": [
+            "teori_tek_designvitenskap",
+            "teori_tek_funksjon_atferd_struktur"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "herbert_simon",
+          "name": "Herbert A. Simon",
+          "role": "designvitenskap og problemløsning",
+          "work": "The Sciences of the Artificial"
+        },
+        {
+          "id": "walter_vincenti",
+          "name": "Walter G. Vincenti",
+          "role": "ingeniørkunnskap og designpraksis",
+          "work": "What Engineers Know and How They Know It"
+        },
+        {
+          "id": "henry_petroski",
+          "name": "Henry Petroski",
+          "role": "feil, designhistorie og ingeniørpraksis",
+          "work": "To Engineer Is Human"
+        },
+        {
+          "id": "donald_schon",
+          "name": "Donald Schön",
+          "role": "reflekterende praksis i design og profesjoner",
+          "work": "The Reflective Practitioner"
+        },
+        {
+          "id": "w_brian_arthur",
+          "name": "W. Brian Arthur",
+          "role": "teknologiers struktur, kombinasjon og evolusjon",
+          "work": "The Nature of Technology"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_designvitenskap",
+          "label": "Designvitenskap",
+          "definition": "Teknologi kan studeres som systematisk utvikling av artefakter under krav, begrensninger og evalueringskriterier.",
+          "concept_ids": [
+            "artefakt",
+            "funksjon",
+            "krav",
+            "begrensning"
+          ],
+          "method_ids": [
+            "met_tek_krav_og_interessentanalyse",
+            "met_tek_morfologisk_designanalyse"
+          ]
+        },
+        {
+          "id": "teori_tek_funksjon_atferd_struktur",
+          "label": "Funksjon–atferd–struktur",
+          "definition": "Et design kan analyseres gjennom hva det skal gjøre, hvordan det oppfører seg og hvordan det er fysisk eller logisk bygget.",
+          "concept_ids": [
+            "krav",
+            "begrensning",
+            "prototype",
+            "validering"
+          ],
+          "method_ids": [
+            "met_tek_morfologisk_designanalyse",
+            "met_tek_prototypeeksperiment"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 2,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra naturvitenskap ved at målet ikke bare er å forklare et fenomen, men å begrunne og prøve en konstruert løsning.",
+      "canonical_mechanisms": [
+        "funksjon–atferd–struktur",
+        "kravnedbrytning",
+        "iterativ prototyping",
+        "verifikasjon mot spesifikasjon",
+        "validering mot faktisk behov"
+      ],
+      "preferred_evidence": [
+        "kravspesifikasjon og endringshistorikk",
+        "prototype- og testprotokoll",
+        "bruker- og interessentdata"
+      ],
+      "mandatory_failure_modes": [
+        "feil problemformulering",
+        "kravkonflikt",
+        "prototype som ikke representerer drift"
+      ],
+      "comparison_basis": [
+        "funksjon",
+        "brukskontekst",
+        "modenhetsnivå",
+        "kostnads- og tidsramme"
+      ],
+      "misconceptions": [
+        "Design er ikke fri formgivning; det er begrunnet valg under krav og begrensninger.",
+        "En prototype dokumenterer læring, ikke automatisk ferdig ytelse."
+      ],
+      "anchor_types": [
+        "prototype",
+        "teknisk tegning eller arkitektur",
+        "krav- og testdokument"
+      ],
+      "quantitative_dimensions": [
+        "kravoppfyllelse",
+        "ytelse mot baseline",
+        "testdekning",
+        "usikkerhet i brukerbehov"
+      ]
+    },
+    {
+      "id": "systemer_arkitektur_palitelighet",
+      "title": "Systemer, arkitektur, pålitelighet og sikkerhet",
+      "definition": "Analyse av komplekse tekniske systemer gjennom grenser, komponenter, grensesnitt, avhengigheter, feilmekanismer og sikkerhetsbarrierer.",
+      "research_questions": [
+        "Hvor går systemgrensen?",
+        "Hvilke avhengigheter og grensesnitt bestemmer helheten?",
+        "Hvordan oppstår og håndteres feil?"
+      ],
+      "focus": [
+        "em_tek_systemtenkning_og_grenser",
+        "em_tek_arkitektur_komponenter_grensesnitt",
+        "em_tek_palitelighet_redundans_vedlikehold",
+        "em_tek_sikkerhet_ulykker_og_barrierer"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_systemer_arkitektur_palitelighet_mekanisme",
+          "title": "Hvordan virker systemer, arkitektur, pålitelighet og sikkerhet i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvor går systemgrensen?",
+          "emne_ids": [
+            "em_tek_systemtenkning_og_grenser",
+            "em_tek_arkitektur_komponenter_grensesnitt",
+            "em_tek_palitelighet_redundans_vedlikehold"
+          ],
+          "concept_ids": [
+            "systemgrense",
+            "grensesnitt",
+            "arkitektur"
+          ],
+          "recommended_method_ids": [
+            "met_tek_systemgrense_og_flytanalyse",
+            "met_tek_fmea"
+          ],
+          "thinker_ids": [
+            "ludwig_von_bertalanffy",
+            "norbert_wiener",
+            "nancy_leveson",
+            "donella_meadows"
+          ],
+          "theory_ids": [
+            "teori_tek_systemteknisk_v_modell",
+            "teori_tek_stamp_sikkerhetsmodell"
+          ]
+        },
+        {
+          "id": "hook_tek_systemer_arkitektur_palitelighet_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvilke avhengigheter og grensesnitt bestemmer helheten?",
+          "emne_ids": [
+            "em_tek_arkitektur_komponenter_grensesnitt",
+            "em_tek_palitelighet_redundans_vedlikehold",
+            "em_tek_sikkerhet_ulykker_og_barrierer"
+          ],
+          "concept_ids": [
+            "arkitektur",
+            "palitelighet",
+            "redundans"
+          ],
+          "recommended_method_ids": [
+            "met_tek_fmea",
+            "met_tek_feiltre_og_barriereanalyse"
+          ],
+          "thinker_ids": [
+            "norbert_wiener",
+            "nancy_leveson",
+            "donella_meadows",
+            "john_gall"
+          ],
+          "theory_ids": [
+            "teori_tek_systemteknisk_v_modell",
+            "teori_tek_stamp_sikkerhetsmodell"
+          ]
+        },
+        {
+          "id": "hook_tek_systemer_arkitektur_palitelighet_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvordan oppstår og håndteres feil?",
+          "emne_ids": [
+            "em_tek_palitelighet_redundans_vedlikehold",
+            "em_tek_sikkerhet_ulykker_og_barrierer",
+            "em_tek_systemtenkning_og_grenser"
+          ],
+          "concept_ids": [
+            "redundans",
+            "sikkerhetsbarriere",
+            "systemgrense"
+          ],
+          "recommended_method_ids": [
+            "met_tek_feiltre_og_barriereanalyse",
+            "met_tek_systemgrense_og_flytanalyse"
+          ],
+          "thinker_ids": [
+            "nancy_leveson",
+            "donella_meadows",
+            "john_gall",
+            "ludwig_von_bertalanffy"
+          ],
+          "theory_ids": [
+            "teori_tek_systemteknisk_v_modell",
+            "teori_tek_stamp_sikkerhetsmodell"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "ludwig_von_bertalanffy",
+          "name": "Ludwig von Bertalanffy",
+          "role": "generell systemteori",
+          "work": "General System Theory"
+        },
+        {
+          "id": "norbert_wiener",
+          "name": "Norbert Wiener",
+          "role": "kybernetikk, kontroll og kommunikasjon",
+          "work": "Cybernetics"
+        },
+        {
+          "id": "nancy_leveson",
+          "name": "Nancy Leveson",
+          "role": "systemisk sikkerhet og ulykkesmodeller",
+          "work": "Engineering a Safer World"
+        },
+        {
+          "id": "donella_meadows",
+          "name": "Donella Meadows",
+          "role": "systemdynamikk og inngrepspunkter",
+          "work": "Thinking in Systems"
+        },
+        {
+          "id": "john_gall",
+          "name": "John Gall",
+          "role": "komplekse systemers oppførsel og designgrenser",
+          "work": "Systemantics"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_systemteknisk_v_modell",
+          "label": "Systemteknisk V-modell",
+          "definition": "Krav brytes ned mot design og implementasjon, mens integrasjon, verifikasjon og validering kobles tilbake til hvert nivå.",
+          "concept_ids": [
+            "systemgrense",
+            "grensesnitt",
+            "arkitektur",
+            "palitelighet"
+          ],
+          "method_ids": [
+            "met_tek_systemgrense_og_flytanalyse",
+            "met_tek_fmea"
+          ]
+        },
+        {
+          "id": "teori_tek_stamp_sikkerhetsmodell",
+          "label": "STAMP",
+          "definition": "Ulykker analyseres som utilstrekkelig kontroll i et sosioteknisk system, ikke bare som kjeder av komponentfeil.",
+          "concept_ids": [
+            "arkitektur",
+            "palitelighet",
+            "redundans",
+            "sikkerhetsbarriere"
+          ],
+          "method_ids": [
+            "met_tek_fmea",
+            "met_tek_feiltre_og_barriereanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra ren prosjektledelse ved at analysen må forklare arkitektur, feilmekanismer og målbar systematferd.",
+      "canonical_mechanisms": [
+        "systemgrense og grensesnitt",
+        "funksjonell dekomponering",
+        "feilpropagering",
+        "redundans og diversitet",
+        "sikkerhetsbarrierer"
+      ],
+      "preferred_evidence": [
+        "arkitektur- og grensesnittdokumentasjon",
+        "hendelses-, feil- og vedlikeholdsdata",
+        "FMEA, FTA eller barrieredokumentasjon"
+      ],
+      "mandatory_failure_modes": [
+        "fellesfeil",
+        "skjult kobling mellom komponenter",
+        "sikkerhetskrav som ikke dekker drift"
+      ],
+      "comparison_basis": [
+        "oppdrag og driftsmiljø",
+        "systemgrense",
+        "kritikalitet",
+        "akseptkriterier"
+      ],
+      "misconceptions": [
+        "Høy komponentpålitelighet garanterer ikke høy systempålitelighet.",
+        "Redundans kan skape nye fellesfeil og vedlikeholdsproblemer."
+      ],
+      "anchor_types": [
+        "infrastruktur eller anlegg",
+        "sikkerhetskritisk maskin",
+        "distribuert teknisk system"
+      ],
+      "quantitative_dimensions": [
+        "MTBF eller feilrate",
+        "tilgjengelighet",
+        "sannsynlighet og konsekvens",
+        "gjenopprettingstid"
+      ]
+    },
+    {
+      "id": "mekanikk_energi_maskiner",
+      "title": "Mekanikk, energi og maskiner",
+      "definition": "Studiet av tekniske systemer som overfører og omformer kraft, bevegelse, varme og energi til kontrollert arbeid.",
+      "research_questions": [
+        "Hvordan beveger krefter og energi seg gjennom systemet?",
+        "Hvor oppstår tap og begrensninger?",
+        "Hvordan påvirker last, temperatur og driftstid ytelsen?"
+      ],
+      "focus": [
+        "em_tek_mekanikk_kraft_bevegelse",
+        "em_tek_termodynamikk_varme_arbeid",
+        "em_tek_motorer_turbiner_og_pumper",
+        "em_tek_virkningsgrad_tap_og_eksergi"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_mekanikk_energi_maskiner_mekanisme",
+          "title": "Hvordan virker mekanikk, energi og maskiner i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvordan beveger krefter og energi seg gjennom systemet?",
+          "emne_ids": [
+            "em_tek_mekanikk_kraft_bevegelse",
+            "em_tek_termodynamikk_varme_arbeid",
+            "em_tek_motorer_turbiner_og_pumper"
+          ],
+          "concept_ids": [
+            "kraft",
+            "moment",
+            "arbeid"
+          ],
+          "recommended_method_ids": [
+            "met_tek_mekanisme_og_lastanalyse",
+            "met_tek_energi_og_eksergibalanse"
+          ],
+          "thinker_ids": [
+            "james_watt",
+            "sadi_carnot",
+            "james_prescott_joule",
+            "rudolf_clausius"
+          ],
+          "theory_ids": [
+            "teori_tek_termodynamisk_kretsprosess",
+            "teori_tek_energiomformingskjede"
+          ]
+        },
+        {
+          "id": "hook_tek_mekanikk_energi_maskiner_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvor oppstår tap og begrensninger?",
+          "emne_ids": [
+            "em_tek_termodynamikk_varme_arbeid",
+            "em_tek_motorer_turbiner_og_pumper",
+            "em_tek_virkningsgrad_tap_og_eksergi"
+          ],
+          "concept_ids": [
+            "arbeid",
+            "effekt",
+            "virkningsgrad"
+          ],
+          "recommended_method_ids": [
+            "met_tek_energi_og_eksergibalanse",
+            "met_tek_mekanisme_og_lastanalyse"
+          ],
+          "thinker_ids": [
+            "sadi_carnot",
+            "james_prescott_joule",
+            "rudolf_clausius",
+            "charles_parsons"
+          ],
+          "theory_ids": [
+            "teori_tek_termodynamisk_kretsprosess",
+            "teori_tek_energiomformingskjede"
+          ]
+        },
+        {
+          "id": "hook_tek_mekanikk_energi_maskiner_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvordan påvirker last, temperatur og driftstid ytelsen?",
+          "emne_ids": [
+            "em_tek_motorer_turbiner_og_pumper",
+            "em_tek_virkningsgrad_tap_og_eksergi",
+            "em_tek_mekanikk_kraft_bevegelse"
+          ],
+          "concept_ids": [
+            "virkningsgrad",
+            "eksergi",
+            "kraft"
+          ],
+          "recommended_method_ids": [
+            "met_tek_mekanisme_og_lastanalyse",
+            "met_tek_energi_og_eksergibalanse"
+          ],
+          "thinker_ids": [
+            "james_prescott_joule",
+            "rudolf_clausius",
+            "charles_parsons",
+            "james_watt"
+          ],
+          "theory_ids": [
+            "teori_tek_termodynamisk_kretsprosess",
+            "teori_tek_energiomformingskjede"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "james_watt",
+          "name": "James Watt",
+          "role": "dampmaskiner, regulering og virkningsgrad",
+          "work": "Separate condenser patent"
+        },
+        {
+          "id": "sadi_carnot",
+          "name": "Sadi Carnot",
+          "role": "varmekraftmaskiners teoretiske grenser",
+          "work": "Reflections on the Motive Power of Fire"
+        },
+        {
+          "id": "james_prescott_joule",
+          "name": "James Prescott Joule",
+          "role": "sammenhengen mellom arbeid og varme",
+          "work": "On the Mechanical Equivalent of Heat"
+        },
+        {
+          "id": "rudolf_clausius",
+          "name": "Rudolf Clausius",
+          "role": "termodynamikk og entropi",
+          "work": "The Mechanical Theory of Heat"
+        },
+        {
+          "id": "charles_parsons",
+          "name": "Charles Algernon Parsons",
+          "role": "dampturbinen og kraftproduksjon",
+          "work": "Compound steam turbine"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_termodynamisk_kretsprosess",
+          "label": "Termodynamisk kretsprosess",
+          "definition": "En idealisert eller virkelig serie tilstandsendringer som omformer varme til arbeid eller flytter varme.",
+          "concept_ids": [
+            "kraft",
+            "moment",
+            "arbeid",
+            "effekt"
+          ],
+          "method_ids": [
+            "met_tek_mekanisme_og_lastanalyse",
+            "met_tek_energi_og_eksergibalanse"
+          ]
+        },
+        {
+          "id": "teori_tek_energiomformingskjede",
+          "label": "Energiomformingskjede",
+          "definition": "Analyse av energiens vei fra kilde gjennom omformere, lagring og overføring til nyttig sluttfunksjon.",
+          "concept_ids": [
+            "arbeid",
+            "effekt",
+            "virkningsgrad",
+            "eksergi"
+          ],
+          "method_ids": [
+            "met_tek_energi_og_eksergibalanse",
+            "met_tek_mekanisme_og_lastanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra fysikk ved at analysen kobler fysiske lover til konstruksjon, toleranser, drift og vedlikehold.",
+      "canonical_mechanisms": [
+        "kraft- og momentbalanse",
+        "energiomforming",
+        "friksjon og tap",
+        "virkningsgrad",
+        "dynamisk respons"
+      ],
+      "preferred_evidence": [
+        "målinger av kraft, effekt, temperatur og bevegelse",
+        "tegninger og materialdata",
+        "driftskurver og testbenkdata"
+      ],
+      "mandatory_failure_modes": [
+        "utmattingsbrudd",
+        "overoppheting eller smøresvikt",
+        "resonans eller ustabil last"
+      ],
+      "comparison_basis": [
+        "nyttig funksjon",
+        "lastprofil",
+        "driftspunkt",
+        "systemgrense"
+      ],
+      "misconceptions": [
+        "Energi forsvinner ikke, men nyttig energi degraderes gjennom tap.",
+        "Maksimal toppeffekt er ikke det samme som best virkningsgrad i faktisk drift."
+      ],
+      "anchor_types": [
+        "motor eller turbin",
+        "transmisjon eller mekanisme",
+        "transport- eller energianlegg"
+      ],
+      "quantitative_dimensions": [
+        "virkningsgrad",
+        "effekt og dreiemoment",
+        "temperaturmargin",
+        "levetid og lastsykluser"
+      ]
+    },
+    {
+      "id": "materialer_produksjon",
+      "title": "Materialteknologi, produksjon og livsløp",
+      "definition": "Studiet av sammenhengen mellom materialstruktur, egenskaper, bearbeiding, toleranser, kvalitet, levetid og ressursbruk.",
+      "research_questions": [
+        "Hvorfor passer et materiale til en bestemt funksjon?",
+        "Hvordan påvirker produksjonsprosessen egenskapene?",
+        "Hvordan oppstår slitasje, brudd og kvalitetsvariasjon?"
+      ],
+      "focus": [
+        "em_tek_materialstruktur_og_egenskaper",
+        "em_tek_utmattelse_brudd_korrosjon",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_livslop_reparasjon_sirkularitet"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_materialer_produksjon_mekanisme",
+          "title": "Hvordan virker materialteknologi, produksjon og livsløp i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvorfor passer et materiale til en bestemt funksjon?",
+          "emne_ids": [
+            "em_tek_materialstruktur_og_egenskaper",
+            "em_tek_utmattelse_brudd_korrosjon",
+            "em_tek_produksjonsprosesser_toleranser_kvalitet"
+          ],
+          "concept_ids": [
+            "mikrostruktur",
+            "fasthet",
+            "utmattelse"
+          ],
+          "recommended_method_ids": [
+            "met_tek_materialvalg_etter_egenskaper",
+            "met_tek_brudd_og_levetidsanalyse"
+          ],
+          "thinker_ids": [
+            "henry_bessemer",
+            "cyril_stanley_smith",
+            "alan_arnold_griffith",
+            "w_edwards_deming"
+          ],
+          "theory_ids": [
+            "teori_tek_ashby_materialvalg",
+            "teori_tek_statistisk_prosesskontroll"
+          ]
+        },
+        {
+          "id": "hook_tek_materialer_produksjon_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan påvirker produksjonsprosessen egenskapene?",
+          "emne_ids": [
+            "em_tek_utmattelse_brudd_korrosjon",
+            "em_tek_produksjonsprosesser_toleranser_kvalitet",
+            "em_tek_livslop_reparasjon_sirkularitet"
+          ],
+          "concept_ids": [
+            "utmattelse",
+            "korrosjon",
+            "toleranse"
+          ],
+          "recommended_method_ids": [
+            "met_tek_brudd_og_levetidsanalyse",
+            "met_tek_livslopsanalyse"
+          ],
+          "thinker_ids": [
+            "cyril_stanley_smith",
+            "alan_arnold_griffith",
+            "w_edwards_deming",
+            "michael_f_ashby"
+          ],
+          "theory_ids": [
+            "teori_tek_ashby_materialvalg",
+            "teori_tek_statistisk_prosesskontroll"
+          ]
+        },
+        {
+          "id": "hook_tek_materialer_produksjon_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvordan oppstår slitasje, brudd og kvalitetsvariasjon?",
+          "emne_ids": [
+            "em_tek_produksjonsprosesser_toleranser_kvalitet",
+            "em_tek_livslop_reparasjon_sirkularitet",
+            "em_tek_materialstruktur_og_egenskaper"
+          ],
+          "concept_ids": [
+            "toleranse",
+            "prosesskapabilitet",
+            "mikrostruktur"
+          ],
+          "recommended_method_ids": [
+            "met_tek_livslopsanalyse",
+            "met_tek_materialvalg_etter_egenskaper"
+          ],
+          "thinker_ids": [
+            "alan_arnold_griffith",
+            "w_edwards_deming",
+            "michael_f_ashby",
+            "henry_bessemer"
+          ],
+          "theory_ids": [
+            "teori_tek_ashby_materialvalg",
+            "teori_tek_statistisk_prosesskontroll"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "henry_bessemer",
+          "name": "Henry Bessemer",
+          "role": "industriell stålproduksjon",
+          "work": "Bessemer process"
+        },
+        {
+          "id": "cyril_stanley_smith",
+          "name": "Cyril Stanley Smith",
+          "role": "metallurgi, struktur og teknologihistorie",
+          "work": "A History of Metallography"
+        },
+        {
+          "id": "alan_arnold_griffith",
+          "name": "Alan Arnold Griffith",
+          "role": "sprøbrudd og sprekkmekanikk",
+          "work": "The Phenomena of Rupture and Flow in Solids"
+        },
+        {
+          "id": "w_edwards_deming",
+          "name": "W. Edwards Deming",
+          "role": "statistisk kvalitetsstyring",
+          "work": "Out of the Crisis"
+        },
+        {
+          "id": "michael_f_ashby",
+          "name": "Michael F. Ashby",
+          "role": "systematisk materialvalg",
+          "work": "Materials Selection in Mechanical Design"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_ashby_materialvalg",
+          "label": "Ashbys materialvalg",
+          "definition": "Materialer sammenlignes gjennom egenskapskart og ytelsesindekser knyttet til funksjon, geometri og begrensninger.",
+          "concept_ids": [
+            "mikrostruktur",
+            "fasthet",
+            "utmattelse",
+            "korrosjon"
+          ],
+          "method_ids": [
+            "met_tek_materialvalg_etter_egenskaper",
+            "met_tek_brudd_og_levetidsanalyse"
+          ]
+        },
+        {
+          "id": "teori_tek_statistisk_prosesskontroll",
+          "label": "Statistisk prosesskontroll",
+          "definition": "Prosessdata brukes til å skille naturlig variasjon fra spesielle årsaker og styre kvalitet over tid.",
+          "concept_ids": [
+            "utmattelse",
+            "korrosjon",
+            "toleranse",
+            "prosesskapabilitet"
+          ],
+          "method_ids": [
+            "met_tek_brudd_og_levetidsanalyse",
+            "met_tek_livslopsanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra kjemi og fysikk ved at materialegenskaper knyttes til produksjonsprosess, komponentfunksjon og levetid.",
+      "canonical_mechanisms": [
+        "struktur–prosess–egenskap",
+        "fase og mikrostruktur",
+        "toleranser og variasjon",
+        "prosesskapabilitet",
+        "livsløp og degradering"
+      ],
+      "preferred_evidence": [
+        "materialsertifikat og standard",
+        "mikroskopi, mekanisk prøve eller kjemisk analyse",
+        "produksjons- og kvalitetsdata"
+      ],
+      "mandatory_failure_modes": [
+        "sprøbrudd eller utmatting",
+        "korrosjon og aldring",
+        "prosessvariasjon utenfor toleranse"
+      ],
+      "comparison_basis": [
+        "funksjon og last",
+        "materialtilstand",
+        "produksjonsvolum",
+        "livsløpsgrense"
+      ],
+      "misconceptions": [
+        "Sterkere materiale er ikke alltid bedre når masse, bearbeiding, korrosjon og kostnad inngår.",
+        "Resirkulerbart betyr ikke automatisk lavest samlet miljøbelastning."
+      ],
+      "anchor_types": [
+        "komponent med dokumentert materiale",
+        "produksjonslinje",
+        "reparasjons- eller gjenvinningsforløp"
+      ],
+      "quantitative_dimensions": [
+        "styrke og seighet",
+        "toleranse og kapabilitetsindeks",
+        "utbytte og feilrate",
+        "livsløpspåvirkning"
+      ]
+    },
+    {
+      "id": "elektronikk_signaler_regulering",
+      "title": "Elektronikk, signaler og regulering",
+      "definition": "Studiet av elektriske kretser, sensorer, signalbehandling, tilbakemelding og innebygde styringssystemer.",
+      "research_questions": [
+        "Hvordan omformes et fysisk fenomen til et signal?",
+        "Hvordan påvirker støy og båndbredde målingen?",
+        "Hvordan holdes et dynamisk system stabilt rundt et mål?"
+      ],
+      "focus": [
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_signaler_sensorer_og_stoy",
+        "em_tek_regulering_tilbakemelding_stabilitet",
+        "em_tek_innebygde_systemer_sanntid"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_elektronikk_signaler_regulering_mekanisme",
+          "title": "Hvordan virker elektronikk, signaler og regulering i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvordan omformes et fysisk fenomen til et signal?",
+          "emne_ids": [
+            "em_tek_kretser_komponenter_og_maling",
+            "em_tek_signaler_sensorer_og_stoy",
+            "em_tek_regulering_tilbakemelding_stabilitet"
+          ],
+          "concept_ids": [
+            "spenning",
+            "strom",
+            "impedans"
+          ],
+          "recommended_method_ids": [
+            "met_tek_krets_og_effektanalyse",
+            "met_tek_signal_og_malekjedeanalyse"
+          ],
+          "thinker_ids": [
+            "georg_ohm",
+            "james_clerk_maxwell",
+            "claude_shannon",
+            "hendrik_bode"
+          ],
+          "theory_ids": [
+            "teori_tek_lukket_reguleringssloyfe",
+            "teori_tek_signal_og_informasjonskjede"
+          ]
+        },
+        {
+          "id": "hook_tek_elektronikk_signaler_regulering_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan påvirker støy og båndbredde målingen?",
+          "emne_ids": [
+            "em_tek_signaler_sensorer_og_stoy",
+            "em_tek_regulering_tilbakemelding_stabilitet",
+            "em_tek_innebygde_systemer_sanntid"
+          ],
+          "concept_ids": [
+            "impedans",
+            "signal",
+            "tilbakemelding"
+          ],
+          "recommended_method_ids": [
+            "met_tek_signal_og_malekjedeanalyse",
+            "met_tek_reguleringssloyfeanalyse"
+          ],
+          "thinker_ids": [
+            "james_clerk_maxwell",
+            "claude_shannon",
+            "hendrik_bode",
+            "rudolf_kalman"
+          ],
+          "theory_ids": [
+            "teori_tek_lukket_reguleringssloyfe",
+            "teori_tek_signal_og_informasjonskjede"
+          ]
+        },
+        {
+          "id": "hook_tek_elektronikk_signaler_regulering_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvordan holdes et dynamisk system stabilt rundt et mål?",
+          "emne_ids": [
+            "em_tek_regulering_tilbakemelding_stabilitet",
+            "em_tek_innebygde_systemer_sanntid",
+            "em_tek_kretser_komponenter_og_maling"
+          ],
+          "concept_ids": [
+            "tilbakemelding",
+            "stabilitet",
+            "spenning"
+          ],
+          "recommended_method_ids": [
+            "met_tek_reguleringssloyfeanalyse",
+            "met_tek_krets_og_effektanalyse"
+          ],
+          "thinker_ids": [
+            "claude_shannon",
+            "hendrik_bode",
+            "rudolf_kalman",
+            "georg_ohm"
+          ],
+          "theory_ids": [
+            "teori_tek_lukket_reguleringssloyfe",
+            "teori_tek_signal_og_informasjonskjede"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "georg_ohm",
+          "name": "Georg Ohm",
+          "role": "elektriske kretser og sammenheng mellom spenning, strøm og motstand",
+          "work": "Die galvanische Kette, mathematisch bearbeitet"
+        },
+        {
+          "id": "james_clerk_maxwell",
+          "name": "James Clerk Maxwell",
+          "role": "elektromagnetisk feltteori",
+          "work": "A Treatise on Electricity and Magnetism"
+        },
+        {
+          "id": "claude_shannon",
+          "name": "Claude Shannon",
+          "role": "informasjonsteori og digitale kretser",
+          "work": "A Mathematical Theory of Communication"
+        },
+        {
+          "id": "hendrik_bode",
+          "name": "Hendrik Wade Bode",
+          "role": "frekvensrespons og regulering",
+          "work": "Network Analysis and Feedback Amplifier Design"
+        },
+        {
+          "id": "rudolf_kalman",
+          "name": "Rudolf E. Kálmán",
+          "role": "tilstandsestimering og regulering",
+          "work": "A New Approach to Linear Filtering and Prediction Problems"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_lukket_reguleringssloyfe",
+          "label": "Lukket reguleringssløyfe",
+          "definition": "Systemets utgang måles og sammenlignes med et mål slik at styringen korrigeres kontinuerlig.",
+          "concept_ids": [
+            "spenning",
+            "strom",
+            "impedans",
+            "signal"
+          ],
+          "method_ids": [
+            "met_tek_krets_og_effektanalyse",
+            "met_tek_signal_og_malekjedeanalyse"
+          ]
+        },
+        {
+          "id": "teori_tek_signal_og_informasjonskjede",
+          "label": "Signal- og informasjonskjede",
+          "definition": "Et fenomen omformes trinnvis til elektrisk og digital representasjon, med støy, filtrering og usikkerhet i hvert ledd.",
+          "concept_ids": [
+            "impedans",
+            "signal",
+            "tilbakemelding",
+            "stabilitet"
+          ],
+          "method_ids": [
+            "met_tek_signal_og_malekjedeanalyse",
+            "met_tek_reguleringssloyfeanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra elektrofysikk ved at signaler og kretser analyseres som designede måle-, beslutnings- og styringskjeder.",
+      "canonical_mechanisms": [
+        "signalvei og overføringsfunksjon",
+        "sampling og filtrering",
+        "tilbakemelding",
+        "stabilitet og transientrespons",
+        "støy og elektromagnetisk påvirkning"
+      ],
+      "preferred_evidence": [
+        "kretsdiagram og komponentdata",
+        "oscilloskop-, sensor- eller loggdata",
+        "frekvens- og trinnrespons"
+      ],
+      "mandatory_failure_modes": [
+        "aliasing eller metning",
+        "ustabil reguleringssløyfe",
+        "sensorfeil eller jordingsproblem"
+      ],
+      "comparison_basis": [
+        "signalområde",
+        "båndbredde",
+        "samplingfrekvens",
+        "drifts- og støymiljø"
+      ],
+      "misconceptions": [
+        "Et digitalt tall er ikke selve fenomenet; det er resultatet av en målekjede.",
+        "Raskere respons kan redusere stabilitetsmargin og robusthet."
+      ],
+      "anchor_types": [
+        "sensor- og målesystem",
+        "regulator eller motorstyring",
+        "kommunikasjons- eller effektkrets"
+      ],
+      "quantitative_dimensions": [
+        "signal–støy-forhold",
+        "båndbredde",
+        "stabilitetsmargin",
+        "måleusikkerhet"
+      ]
+    },
+    {
+      "id": "robotikk_automatisering",
+      "title": "Robotikk og automatisering",
+      "definition": "Studiet av mekaniske, elektroniske og digitale systemer som sanser, planlegger og utfører handlinger i fysiske omgivelser.",
+      "research_questions": [
+        "Hvordan beskrives robotens bevegelse?",
+        "Hvordan kombineres sansing, lokalisering og handling?",
+        "Hvilket ansvar skal ligge hos mennesket og hvilket kan automatiseres?"
+      ],
+      "focus": [
+        "em_tek_aktuatorer_kinematikk_bevegelse",
+        "em_tek_robotpersepsjon_lokalisering",
+        "em_tek_automasjon_planlegging_og_kontroll",
+        "em_tek_menneske_robot_sikkerhet"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_robotikk_automatisering_mekanisme",
+          "title": "Hvordan virker robotikk og automatisering i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvordan beskrives robotens bevegelse?",
+          "emne_ids": [
+            "em_tek_aktuatorer_kinematikk_bevegelse",
+            "em_tek_robotpersepsjon_lokalisering",
+            "em_tek_automasjon_planlegging_og_kontroll"
+          ],
+          "concept_ids": [
+            "aktuator",
+            "frihetsgrad",
+            "lokalisering"
+          ],
+          "recommended_method_ids": [
+            "met_tek_kinematisk_og_dynamisk_analyse",
+            "met_tek_robotytelse_og_benchmarking"
+          ],
+          "thinker_ids": [
+            "george_devol",
+            "joseph_engelberger",
+            "rodney_brooks",
+            "ruzena_bajcsy"
+          ],
+          "theory_ids": [
+            "teori_tek_sense_plan_act_og_subsumpsjon",
+            "teori_tek_grader_av_automatisering"
+          ]
+        },
+        {
+          "id": "hook_tek_robotikk_automatisering_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan kombineres sansing, lokalisering og handling?",
+          "emne_ids": [
+            "em_tek_robotpersepsjon_lokalisering",
+            "em_tek_automasjon_planlegging_og_kontroll",
+            "em_tek_menneske_robot_sikkerhet"
+          ],
+          "concept_ids": [
+            "lokalisering",
+            "sensorfusjon",
+            "autonominiva"
+          ],
+          "recommended_method_ids": [
+            "met_tek_robotytelse_og_benchmarking",
+            "met_tek_menneske_robot_risikoanalyse"
+          ],
+          "thinker_ids": [
+            "joseph_engelberger",
+            "rodney_brooks",
+            "ruzena_bajcsy",
+            "cynthia_breazeal"
+          ],
+          "theory_ids": [
+            "teori_tek_sense_plan_act_og_subsumpsjon",
+            "teori_tek_grader_av_automatisering"
+          ]
+        },
+        {
+          "id": "hook_tek_robotikk_automatisering_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvilket ansvar skal ligge hos mennesket og hvilket kan automatiseres?",
+          "emne_ids": [
+            "em_tek_automasjon_planlegging_og_kontroll",
+            "em_tek_menneske_robot_sikkerhet",
+            "em_tek_aktuatorer_kinematikk_bevegelse"
+          ],
+          "concept_ids": [
+            "autonominiva",
+            "feilsikker",
+            "aktuator"
+          ],
+          "recommended_method_ids": [
+            "met_tek_menneske_robot_risikoanalyse",
+            "met_tek_kinematisk_og_dynamisk_analyse"
+          ],
+          "thinker_ids": [
+            "rodney_brooks",
+            "ruzena_bajcsy",
+            "cynthia_breazeal",
+            "george_devol"
+          ],
+          "theory_ids": [
+            "teori_tek_sense_plan_act_og_subsumpsjon",
+            "teori_tek_grader_av_automatisering"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "george_devol",
+          "name": "George Devol",
+          "role": "programmerbar industrirobot",
+          "work": "Programmed Article Transfer patent"
+        },
+        {
+          "id": "joseph_engelberger",
+          "name": "Joseph Engelberger",
+          "role": "industriell robotikk og innføring i produksjon",
+          "work": "Robotics in Practice"
+        },
+        {
+          "id": "rodney_brooks",
+          "name": "Rodney Brooks",
+          "role": "subsumpsjonsarkitektur og situert robotikk",
+          "work": "A Robust Layered Control System for a Mobile Robot"
+        },
+        {
+          "id": "ruzena_bajcsy",
+          "name": "Ruzena Bajcsy",
+          "role": "aktiv persepsjon og robotikk",
+          "work": "Active Perception"
+        },
+        {
+          "id": "cynthia_breazeal",
+          "name": "Cynthia Breazeal",
+          "role": "sosial robotikk og menneske–robot-samspill",
+          "work": "Designing Sociable Robots"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_sense_plan_act_og_subsumpsjon",
+          "label": "Sense–plan–act og subsumpsjon",
+          "definition": "To kontrollprinsipper som henholdsvis vektlegger eksplisitt verdensmodell og lagdelte, direkte koblinger mellom sansing og handling.",
+          "concept_ids": [
+            "aktuator",
+            "frihetsgrad",
+            "lokalisering",
+            "sensorfusjon"
+          ],
+          "method_ids": [
+            "met_tek_kinematisk_og_dynamisk_analyse",
+            "met_tek_robotytelse_og_benchmarking"
+          ]
+        },
+        {
+          "id": "teori_tek_grader_av_automatisering",
+          "label": "Grader av automatisering",
+          "definition": "Automatisering analyseres som fordeling av informasjonsinnhenting, beslutning, handling og overvåking mellom menneske og maskin.",
+          "concept_ids": [
+            "lokalisering",
+            "sensorfusjon",
+            "autonominiva",
+            "feilsikker"
+          ],
+          "method_ids": [
+            "met_tek_robotytelse_og_benchmarking",
+            "met_tek_menneske_robot_risikoanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra AI ved at hele den fysiske sansnings-, styrings- og handlingskjeden må analyseres.",
+      "canonical_mechanisms": [
+        "sansning–estimering–planlegging–handling",
+        "kinematikk og dynamikk",
+        "lokalisering og kartlegging",
+        "kontrollsløyfer",
+        "menneskelig overstyring"
+      ],
+      "preferred_evidence": [
+        "sensor- og aktuatorlogger",
+        "simulering og feltforsøk",
+        "sikkerhets- og hendelsesdata"
+      ],
+      "mandatory_failure_modes": [
+        "persepsjonsfeil",
+        "tap av lokalisering",
+        "uventet menneske–maskin-interaksjon"
+      ],
+      "comparison_basis": [
+        "oppgave og miljø",
+        "autonominivå",
+        "sikkerhetssone",
+        "menneskelig kontroll"
+      ],
+      "misconceptions": [
+        "Autonomi er gradert og oppgaveavhengig, ikke en enkelt egenskap.",
+        "God ytelse i simulering dokumenterer ikke robusthet i ukontrollert miljø."
+      ],
+      "anchor_types": [
+        "industrirobot",
+        "mobil robot eller drone",
+        "automatisert prosessanlegg"
+      ],
+      "quantitative_dimensions": [
+        "posisjonsfeil",
+        "syklustid",
+        "intervensjonsrate",
+        "sikkerhetsmargin"
+      ]
+    },
+    {
+      "id": "datamaskiner_operativsystemer",
+      "title": "Datamaskiner, arkitektur og operativsystemer",
+      "definition": "Studiet av hvordan digital logikk, prosessorer, minne, lagring, inn- og utdata og operativsystemer danner beregningssystemer.",
+      "research_questions": [
+        "Hvordan representeres og behandles informasjon fysisk?",
+        "Hvordan fordeles ressurser mellom programmer?",
+        "Hvor oppstår flaskehalser, samtidighetsfeil og maskinvareavhengigheter?"
+      ],
+      "focus": [
+        "em_tek_digital_logikk_og_representasjon",
+        "em_tek_prosessor_minne_arkitektur",
+        "em_tek_operativsystemer_prosesser_ressurser",
+        "em_tek_samtidighet_lagring_og_i_o"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_datamaskiner_operativsystemer_mekanisme",
+          "title": "Hvordan virker datamaskiner, arkitektur og operativsystemer i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvordan representeres og behandles informasjon fysisk?",
+          "emne_ids": [
+            "em_tek_digital_logikk_og_representasjon",
+            "em_tek_prosessor_minne_arkitektur",
+            "em_tek_operativsystemer_prosesser_ressurser"
+          ],
+          "concept_ids": [
+            "bit",
+            "instruksjon",
+            "prosessor"
+          ],
+          "recommended_method_ids": [
+            "met_tek_arkitektur_og_instruksjonssporing",
+            "met_tek_ytelsesprofilering"
+          ],
+          "thinker_ids": [
+            "charles_babbage",
+            "ada_lovelace",
+            "john_von_neumann",
+            "grace_hopper"
+          ],
+          "theory_ids": [
+            "teori_tek_lagret_program_arkitektur",
+            "teori_tek_abstraksjonsstakk_datamaskin"
+          ]
+        },
+        {
+          "id": "hook_tek_datamaskiner_operativsystemer_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan fordeles ressurser mellom programmer?",
+          "emne_ids": [
+            "em_tek_prosessor_minne_arkitektur",
+            "em_tek_operativsystemer_prosesser_ressurser",
+            "em_tek_samtidighet_lagring_og_i_o"
+          ],
+          "concept_ids": [
+            "prosessor",
+            "minnehierarki",
+            "prosess"
+          ],
+          "recommended_method_ids": [
+            "met_tek_ytelsesprofilering",
+            "met_tek_samtidighetsanalyse"
+          ],
+          "thinker_ids": [
+            "ada_lovelace",
+            "john_von_neumann",
+            "grace_hopper",
+            "maurice_wilkes"
+          ],
+          "theory_ids": [
+            "teori_tek_lagret_program_arkitektur",
+            "teori_tek_abstraksjonsstakk_datamaskin"
+          ]
+        },
+        {
+          "id": "hook_tek_datamaskiner_operativsystemer_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvor oppstår flaskehalser, samtidighetsfeil og maskinvareavhengigheter?",
+          "emne_ids": [
+            "em_tek_operativsystemer_prosesser_ressurser",
+            "em_tek_samtidighet_lagring_og_i_o",
+            "em_tek_digital_logikk_og_representasjon"
+          ],
+          "concept_ids": [
+            "prosess",
+            "samtidighet",
+            "bit"
+          ],
+          "recommended_method_ids": [
+            "met_tek_samtidighetsanalyse",
+            "met_tek_arkitektur_og_instruksjonssporing"
+          ],
+          "thinker_ids": [
+            "john_von_neumann",
+            "grace_hopper",
+            "maurice_wilkes",
+            "charles_babbage"
+          ],
+          "theory_ids": [
+            "teori_tek_lagret_program_arkitektur",
+            "teori_tek_abstraksjonsstakk_datamaskin"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "charles_babbage",
+          "name": "Charles Babbage",
+          "role": "programmerbar mekanisk beregning",
+          "work": "On the Economy of Machinery and Manufactures"
+        },
+        {
+          "id": "ada_lovelace",
+          "name": "Ada Lovelace",
+          "role": "programmering og analyse av den analytiske maskinen",
+          "work": "Notes on the Analytical Engine"
+        },
+        {
+          "id": "john_von_neumann",
+          "name": "John von Neumann",
+          "role": "lagret-program-arkitektur",
+          "work": "First Draft of a Report on the EDVAC"
+        },
+        {
+          "id": "grace_hopper",
+          "name": "Grace Hopper",
+          "role": "kompilatorer og programmeringsspråk",
+          "work": "The Education of a Computer"
+        },
+        {
+          "id": "maurice_wilkes",
+          "name": "Maurice Wilkes",
+          "role": "lagret-program-datamaskiner og mikroprogrammering",
+          "work": "Automatic Digital Computers"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_lagret_program_arkitektur",
+          "label": "Lagret-program-arkitektur",
+          "definition": "Instruksjoner og data lagres i adresserbart minne og behandles av en generell prosessor.",
+          "concept_ids": [
+            "bit",
+            "instruksjon",
+            "prosessor",
+            "minnehierarki"
+          ],
+          "method_ids": [
+            "met_tek_arkitektur_og_instruksjonssporing",
+            "met_tek_ytelsesprofilering"
+          ]
+        },
+        {
+          "id": "teori_tek_abstraksjonsstakk_datamaskin",
+          "label": "Datamaskinens abstraksjonsstakk",
+          "definition": "Digital logikk, mikroarkitektur, instruksjonssett, operativsystem og programmer danner lag med tydelige grensesnitt.",
+          "concept_ids": [
+            "prosessor",
+            "minnehierarki",
+            "prosess",
+            "samtidighet"
+          ],
+          "method_ids": [
+            "met_tek_ytelsesprofilering",
+            "met_tek_samtidighetsanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra programvareteknikk ved at fokus er maskinressurser, instruksjoner, kjøring og operativsystemmekanismer.",
+      "canonical_mechanisms": [
+        "instruksjonsutførelse",
+        "minnehierarki",
+        "prosess- og trådhåndtering",
+        "virtualisering",
+        "ressursisolasjon"
+      ],
+      "preferred_evidence": [
+        "arkitekturdokumentasjon og instruksjonssett",
+        "ytelsesprofiler og systemlogger",
+        "operativsystem- eller hypervisorkode"
+      ],
+      "mandatory_failure_modes": [
+        "kappløp og deadlock",
+        "minne- eller ressurslekkasje",
+        "sidekanal eller isolasjonssvikt"
+      ],
+      "comparison_basis": [
+        "arbeidslast",
+        "maskin- og OS-versjon",
+        "ressursgrenser",
+        "ytelsesmetrikk"
+      ],
+      "misconceptions": [
+        "Høy klokkehastighet alene bestemmer ikke systemytelse.",
+        "Virtualisering fjerner ikke avhengighet av fysisk maskinvare og delte ressurser."
+      ],
+      "anchor_types": [
+        "prosessor eller innebygd system",
+        "server eller mobil enhet",
+        "operativsystemfunksjon"
+      ],
+      "quantitative_dimensions": [
+        "latenstid og gjennomstrømning",
+        "cache-miss og minnebåndbredde",
+        "energi per oppgave",
+        "ressursutnyttelse"
+      ]
+    },
+    {
+      "id": "programvareteknikk",
+      "title": "Programvareteknikk",
+      "definition": "Vitenskapelig og ingeniørmessig utvikling, verifikasjon, drift og vedlikehold av programvaresystemer.",
+      "research_questions": [
+        "Hvordan begrunnes programvarens arkitektur?",
+        "Hvordan kan korrekthet og kvalitet undersøkes?",
+        "Hvordan påvirker endring, avhengigheter og drift systemet over tid?"
+      ],
+      "focus": [
+        "em_tek_programmeringsparadigmer_abstraksjon",
+        "em_tek_modularitet_arkitektur_api",
+        "em_tek_testing_verifikasjon_korrekthet",
+        "em_tek_drift_observerbarhet_vedlikehold"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_programvareteknikk_mekanisme",
+          "title": "Hvordan virker programvareteknikk i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvordan begrunnes programvarens arkitektur?",
+          "emne_ids": [
+            "em_tek_programmeringsparadigmer_abstraksjon",
+            "em_tek_modularitet_arkitektur_api",
+            "em_tek_testing_verifikasjon_korrekthet"
+          ],
+          "concept_ids": [
+            "abstraksjon",
+            "modul",
+            "api"
+          ],
+          "recommended_method_ids": [
+            "met_tek_kode_og_arkitekturanalyse",
+            "met_tek_teststrategi_og_verifikasjon"
+          ],
+          "thinker_ids": [
+            "edsger_dijkstra",
+            "david_parnas",
+            "barbara_liskov",
+            "fred_brooks"
+          ],
+          "theory_ids": [
+            "teori_tek_informasjonsskjuling",
+            "teori_tek_kontinuerlig_programvarelivslop"
+          ]
+        },
+        {
+          "id": "hook_tek_programvareteknikk_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan kan korrekthet og kvalitet undersøkes?",
+          "emne_ids": [
+            "em_tek_modularitet_arkitektur_api",
+            "em_tek_testing_verifikasjon_korrekthet",
+            "em_tek_drift_observerbarhet_vedlikehold"
+          ],
+          "concept_ids": [
+            "api",
+            "invariant",
+            "testorakel"
+          ],
+          "recommended_method_ids": [
+            "met_tek_teststrategi_og_verifikasjon",
+            "met_tek_observerbarhets_og_hendelsesanalyse"
+          ],
+          "thinker_ids": [
+            "david_parnas",
+            "barbara_liskov",
+            "fred_brooks",
+            "margaret_hamilton"
+          ],
+          "theory_ids": [
+            "teori_tek_informasjonsskjuling",
+            "teori_tek_kontinuerlig_programvarelivslop"
+          ]
+        },
+        {
+          "id": "hook_tek_programvareteknikk_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvordan påvirker endring, avhengigheter og drift systemet over tid?",
+          "emne_ids": [
+            "em_tek_testing_verifikasjon_korrekthet",
+            "em_tek_drift_observerbarhet_vedlikehold",
+            "em_tek_programmeringsparadigmer_abstraksjon"
+          ],
+          "concept_ids": [
+            "testorakel",
+            "teknisk_gjeld",
+            "abstraksjon"
+          ],
+          "recommended_method_ids": [
+            "met_tek_observerbarhets_og_hendelsesanalyse",
+            "met_tek_kode_og_arkitekturanalyse"
+          ],
+          "thinker_ids": [
+            "barbara_liskov",
+            "fred_brooks",
+            "margaret_hamilton",
+            "edsger_dijkstra"
+          ],
+          "theory_ids": [
+            "teori_tek_informasjonsskjuling",
+            "teori_tek_kontinuerlig_programvarelivslop"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "edsger_dijkstra",
+          "name": "Edsger W. Dijkstra",
+          "role": "strukturert programmering og programkorrekthet",
+          "work": "A Discipline of Programming"
+        },
+        {
+          "id": "david_parnas",
+          "name": "David Parnas",
+          "role": "informasjonsskjuling og modularitet",
+          "work": "On the Criteria To Be Used in Decomposing Systems into Modules"
+        },
+        {
+          "id": "barbara_liskov",
+          "name": "Barbara Liskov",
+          "role": "dataabstraksjon og substitusjon",
+          "work": "Data Abstraction and Hierarchy"
+        },
+        {
+          "id": "fred_brooks",
+          "name": "Frederick P. Brooks Jr.",
+          "role": "programvareprosjekter og kompleksitet",
+          "work": "The Mythical Man-Month"
+        },
+        {
+          "id": "margaret_hamilton",
+          "name": "Margaret Hamilton",
+          "role": "programvareteknikk og høyintegritetssystemer",
+          "work": "Apollo Guidance Software"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_informasjonsskjuling",
+          "label": "Informasjonsskjuling",
+          "definition": "Moduler bør skjule designbeslutninger som sannsynligvis vil endres og eksponere stabile kontrakter.",
+          "concept_ids": [
+            "abstraksjon",
+            "modul",
+            "api",
+            "invariant"
+          ],
+          "method_ids": [
+            "met_tek_kode_og_arkitekturanalyse",
+            "met_tek_teststrategi_og_verifikasjon"
+          ]
+        },
+        {
+          "id": "teori_tek_kontinuerlig_programvarelivslop",
+          "label": "Kontinuerlig programvarelivsløp",
+          "definition": "Programvare utvikles, testes, utrulles, observeres og forbedres i en tilbakekoblet driftsprosess.",
+          "concept_ids": [
+            "api",
+            "invariant",
+            "testorakel",
+            "teknisk_gjeld"
+          ],
+          "method_ids": [
+            "met_tek_teststrategi_og_verifikasjon",
+            "met_tek_observerbarhets_og_hendelsesanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra informatikkens formelle områder ved at utvikling, vedlikehold, organisasjon og drift inngår i analyseobjektet.",
+      "canonical_mechanisms": [
+        "krav–arkitektur–implementasjon–drift",
+        "modularitet og avhengigheter",
+        "versjonering og endringskontroll",
+        "testing og observabilitet",
+        "sosioteknisk utviklingsprosess"
+      ],
+      "preferred_evidence": [
+        "kildekode og versjonshistorikk",
+        "testresultater, logger og hendelsesrapporter",
+        "arkitektur- og beslutningsdokumenter"
+      ],
+      "mandatory_failure_modes": [
+        "regresjon",
+        "skjult avhengighet eller versjonskonflikt",
+        "observabilitets- eller gjenopprettingssvikt"
+      ],
+      "comparison_basis": [
+        "versjon og konfigurasjon",
+        "arbeidslast",
+        "driftsmiljø",
+        "tjenestenivå"
+      ],
+      "misconceptions": [
+        "Flere tester betyr ikke automatisk bedre risikodekning.",
+        "Kodekvalitet kan ikke vurderes løsrevet fra endringstakt, drift og teampraksis."
+      ],
+      "anchor_types": [
+        "åpent kodeprosjekt",
+        "produksjonstjeneste",
+        "programvarehendelse eller migrering"
+      ],
+      "quantitative_dimensions": [
+        "feilrate og alvorlighet",
+        "test- og kravdekning",
+        "endringsledetid",
+        "MTTR og tilgjengelighet"
+      ]
+    },
+    {
+      "id": "algoritmer_data_ai",
+      "title": "Algoritmer, data og kunstig intelligens",
+      "definition": "Studiet av beregningsmetoder, datastrukturer, datagrunnlag, lærende modeller og evaluering av automatiserte beslutningssystemer.",
+      "research_questions": [
+        "Er algoritmen korrekt og skalerbar?",
+        "Hvordan er data samlet, representert og avgrenset?",
+        "Hvilke feil og gyldighetsgrenser har modellen i faktisk bruk?"
+      ],
+      "focus": [
+        "em_tek_algoritmer_datastrukturer_kompleksitet",
+        "em_tek_data_kvalitet_representasjon",
+        "em_tek_maskinlaering_trening_generalisering",
+        "em_tek_ai_evaluering_styring_ansvar"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_algoritmer_data_ai_mekanisme",
+          "title": "Hvordan virker algoritmer, data og kunstig intelligens i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder er algoritmen korrekt og skalerbar?",
+          "emne_ids": [
+            "em_tek_algoritmer_datastrukturer_kompleksitet",
+            "em_tek_data_kvalitet_representasjon",
+            "em_tek_maskinlaering_trening_generalisering"
+          ],
+          "concept_ids": [
+            "algoritme",
+            "kompleksitet",
+            "datastruktur"
+          ],
+          "recommended_method_ids": [
+            "met_tek_algoritmekorrekthet_og_kompleksitet",
+            "met_tek_datasett_og_representasjonsanalyse"
+          ],
+          "thinker_ids": [
+            "muhammad_al_khwarizmi",
+            "alan_turing",
+            "donald_knuth",
+            "judea_pearl"
+          ],
+          "theory_ids": [
+            "teori_tek_beregningskompleksitet",
+            "teori_tek_statistisk_laering"
+          ]
+        },
+        {
+          "id": "hook_tek_algoritmer_data_ai_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan er data samlet, representert og avgrenset?",
+          "emne_ids": [
+            "em_tek_data_kvalitet_representasjon",
+            "em_tek_maskinlaering_trening_generalisering",
+            "em_tek_ai_evaluering_styring_ansvar"
+          ],
+          "concept_ids": [
+            "datastruktur",
+            "treningsdata",
+            "generalisering"
+          ],
+          "recommended_method_ids": [
+            "met_tek_datasett_og_representasjonsanalyse",
+            "met_tek_modell_og_feilanalyse"
+          ],
+          "thinker_ids": [
+            "alan_turing",
+            "donald_knuth",
+            "judea_pearl",
+            "fei_fei_li"
+          ],
+          "theory_ids": [
+            "teori_tek_beregningskompleksitet",
+            "teori_tek_statistisk_laering"
+          ]
+        },
+        {
+          "id": "hook_tek_algoritmer_data_ai_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvilke feil og gyldighetsgrenser har modellen i faktisk bruk?",
+          "emne_ids": [
+            "em_tek_maskinlaering_trening_generalisering",
+            "em_tek_ai_evaluering_styring_ansvar",
+            "em_tek_algoritmer_datastrukturer_kompleksitet"
+          ],
+          "concept_ids": [
+            "generalisering",
+            "modellskjevhet",
+            "algoritme"
+          ],
+          "recommended_method_ids": [
+            "met_tek_modell_og_feilanalyse",
+            "met_tek_algoritmekorrekthet_og_kompleksitet"
+          ],
+          "thinker_ids": [
+            "donald_knuth",
+            "judea_pearl",
+            "fei_fei_li",
+            "muhammad_al_khwarizmi"
+          ],
+          "theory_ids": [
+            "teori_tek_beregningskompleksitet",
+            "teori_tek_statistisk_laering"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "muhammad_al_khwarizmi",
+          "name": "Muḥammad al-Khwārizmī",
+          "role": "systematiske beregningsmetoder og algebra",
+          "work": "The Compendious Book on Calculation by Completion and Balancing"
+        },
+        {
+          "id": "alan_turing",
+          "name": "Alan Turing",
+          "role": "beregnbarhet og maskinintelligens",
+          "work": "On Computable Numbers"
+        },
+        {
+          "id": "donald_knuth",
+          "name": "Donald Knuth",
+          "role": "analyse av algoritmer og programmeringskunst",
+          "work": "The Art of Computer Programming"
+        },
+        {
+          "id": "judea_pearl",
+          "name": "Judea Pearl",
+          "role": "kausal modellering og probabilistisk AI",
+          "work": "Causality"
+        },
+        {
+          "id": "fei_fei_li",
+          "name": "Fei-Fei Li",
+          "role": "datasett, visuell læring og menneskesentrert AI",
+          "work": "ImageNet"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_beregningskompleksitet",
+          "label": "Beregningskompleksitet",
+          "definition": "Problemer og algoritmer klassifiseres etter hvordan ressursbehov vokser og hvilke beregningsgrenser som finnes.",
+          "concept_ids": [
+            "algoritme",
+            "kompleksitet",
+            "datastruktur",
+            "treningsdata"
+          ],
+          "method_ids": [
+            "met_tek_algoritmekorrekthet_og_kompleksitet",
+            "met_tek_datasett_og_representasjonsanalyse"
+          ]
+        },
+        {
+          "id": "teori_tek_statistisk_laering",
+          "label": "Statistisk læring",
+          "definition": "Lærende modeller analyseres gjennom hypoteserom, datagenerering, tap, regularisering og generaliseringsfeil.",
+          "concept_ids": [
+            "datastruktur",
+            "treningsdata",
+            "generalisering",
+            "modellskjevhet"
+          ],
+          "method_ids": [
+            "met_tek_datasett_og_representasjonsanalyse",
+            "met_tek_modell_og_feilanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra generell programvare ved at datagrunnlag, læringsprosess, statistisk evaluering og generalisering er sentrale.",
+      "canonical_mechanisms": [
+        "algoritmisk korrekthet",
+        "beregningskompleksitet",
+        "datagenererende prosess",
+        "modelltrening og generalisering",
+        "evaluering og menneskelig kontroll"
+      ],
+      "preferred_evidence": [
+        "algoritmespesifikasjon eller kode",
+        "datasettdokumentasjon og datakort",
+        "evalueringsprotokoll, baseline og feilanalyse"
+      ],
+      "mandatory_failure_modes": [
+        "datalekkasje",
+        "distribusjonsskift",
+        "metrikk som ikke representerer faktisk kostnad"
+      ],
+      "comparison_basis": [
+        "oppgave og målvariabel",
+        "datasplitt og tidsperiode",
+        "baseline",
+        "brukskontekst og feilkostnad"
+      ],
+      "misconceptions": [
+        "Høy gjennomsnittsscore betyr ikke robust eller rettferdig ytelse i alle grupper.",
+        "En språkmodell lagrer og genererer statistiske mønstre; den er ikke en database eller sannhetskilde."
+      ],
+      "anchor_types": [
+        "algoritmeimplementasjon",
+        "dokumentert datasett",
+        "modellkort eller evalueringsrapport"
+      ],
+      "quantitative_dimensions": [
+        "kompleksitet",
+        "kalibrering og diskriminering",
+        "undergruppefeil",
+        "robusthet ved distribusjonsskift"
+      ]
+    },
+    {
+      "id": "nettverk_cybersikkerhet_infrastruktur",
+      "title": "Nettverk, cybersikkerhet og digital infrastruktur",
+      "definition": "Studiet av protokoller, distribuerte systemer, kryptografi, trusselmodeller, drift og fysisk infrastruktur som muliggjør digitale tjenester.",
+      "research_questions": [
+        "Hvordan flyttes data mellom endepunkter?",
+        "Hvilke tillitsgrenser og angrepsflater finnes?",
+        "Hvordan opprettholdes tjenesten ved feil, angrep og kapasitetsendringer?"
+      ],
+      "focus": [
+        "em_tek_nettverkslag_protokoller_ruting",
+        "em_tek_distribuerte_systemer_sky",
+        "em_tek_kryptografi_identitet_tilgang",
+        "em_tek_infrastruktur_robusthet_hendelser"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_nettverk_cybersikkerhet_infrastruktur_mekanisme",
+          "title": "Hvordan virker nettverk, cybersikkerhet og digital infrastruktur i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvordan flyttes data mellom endepunkter?",
+          "emne_ids": [
+            "em_tek_nettverkslag_protokoller_ruting",
+            "em_tek_distribuerte_systemer_sky",
+            "em_tek_kryptografi_identitet_tilgang"
+          ],
+          "concept_ids": [
+            "protokoll",
+            "ruting",
+            "latens"
+          ],
+          "recommended_method_ids": [
+            "met_tek_protokoll_og_pakkesporing",
+            "met_tek_trusselmodellering"
+          ],
+          "thinker_ids": [
+            "vint_cerf",
+            "robert_kahn",
+            "radia_perlman",
+            "whitfield_diffie"
+          ],
+          "theory_ids": [
+            "teori_tek_ende_til_ende_prinsippet",
+            "teori_tek_forsvar_i_dybden"
+          ]
+        },
+        {
+          "id": "hook_tek_nettverk_cybersikkerhet_infrastruktur_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvilke tillitsgrenser og angrepsflater finnes?",
+          "emne_ids": [
+            "em_tek_distribuerte_systemer_sky",
+            "em_tek_kryptografi_identitet_tilgang",
+            "em_tek_infrastruktur_robusthet_hendelser"
+          ],
+          "concept_ids": [
+            "latens",
+            "kryptering",
+            "angrepsflate"
+          ],
+          "recommended_method_ids": [
+            "met_tek_trusselmodellering",
+            "met_tek_robusthets_og_hendelsesanalyse"
+          ],
+          "thinker_ids": [
+            "robert_kahn",
+            "radia_perlman",
+            "whitfield_diffie",
+            "leslie_lamport"
+          ],
+          "theory_ids": [
+            "teori_tek_ende_til_ende_prinsippet",
+            "teori_tek_forsvar_i_dybden"
+          ]
+        },
+        {
+          "id": "hook_tek_nettverk_cybersikkerhet_infrastruktur_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvordan opprettholdes tjenesten ved feil, angrep og kapasitetsendringer?",
+          "emne_ids": [
+            "em_tek_kryptografi_identitet_tilgang",
+            "em_tek_infrastruktur_robusthet_hendelser",
+            "em_tek_nettverkslag_protokoller_ruting"
+          ],
+          "concept_ids": [
+            "angrepsflate",
+            "tilgjengelighet",
+            "protokoll"
+          ],
+          "recommended_method_ids": [
+            "met_tek_robusthets_og_hendelsesanalyse",
+            "met_tek_protokoll_og_pakkesporing"
+          ],
+          "thinker_ids": [
+            "radia_perlman",
+            "whitfield_diffie",
+            "leslie_lamport",
+            "vint_cerf"
+          ],
+          "theory_ids": [
+            "teori_tek_ende_til_ende_prinsippet",
+            "teori_tek_forsvar_i_dybden"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "vint_cerf",
+          "name": "Vint Cerf",
+          "role": "internettprotokoller",
+          "work": "A Protocol for Packet Network Intercommunication"
+        },
+        {
+          "id": "robert_kahn",
+          "name": "Robert E. Kahn",
+          "role": "pakkeformidling og internettarkitektur",
+          "work": "A Protocol for Packet Network Intercommunication"
+        },
+        {
+          "id": "radia_perlman",
+          "name": "Radia Perlman",
+          "role": "nettverksbroer og robust ruting",
+          "work": "Interconnections"
+        },
+        {
+          "id": "whitfield_diffie",
+          "name": "Whitfield Diffie",
+          "role": "offentlig-nøkkel-kryptografi",
+          "work": "New Directions in Cryptography"
+        },
+        {
+          "id": "leslie_lamport",
+          "name": "Leslie Lamport",
+          "role": "distribuerte systemer, klokker og konsensus",
+          "work": "Time, Clocks, and the Ordering of Events in a Distributed System"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_ende_til_ende_prinsippet",
+          "label": "Ende-til-ende-prinsippet",
+          "definition": "Funksjoner som krever kunnskap om applikasjonens mål bør normalt ligge i endesystemene fremfor i nettverkets kjerne.",
+          "concept_ids": [
+            "protokoll",
+            "ruting",
+            "latens",
+            "kryptering"
+          ],
+          "method_ids": [
+            "met_tek_protokoll_og_pakkesporing",
+            "met_tek_trusselmodellering"
+          ]
+        },
+        {
+          "id": "teori_tek_forsvar_i_dybden",
+          "label": "Forsvar i dybden",
+          "definition": "Flere uavhengige sikkerhetskontroller kombineres slik at én svikt ikke alene gir full kompromittering.",
+          "concept_ids": [
+            "latens",
+            "kryptering",
+            "angrepsflate",
+            "tilgjengelighet"
+          ],
+          "method_ids": [
+            "met_tek_trusselmodellering",
+            "met_tek_robusthets_og_hendelsesanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 4,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra mediefag ved at transport, protokoller, tillit, maskinvare og drift er analyseobjektet – ikke innholdet.",
+      "canonical_mechanisms": [
+        "protokollag og ruting",
+        "kø, kapasitet og overbelastning",
+        "identitet og tilgang",
+        "kryptografiske sikkerhetsegenskaper",
+        "redundans og hendelseshåndtering"
+      ],
+      "preferred_evidence": [
+        "protokollspesifikasjon og konfigurasjon",
+        "trafikk-, hendelses- og tilgjengelighetslogger",
+        "trusselmodell, sårbarhets- eller granskningsrapport"
+      ],
+      "mandatory_failure_modes": [
+        "konfigurasjonsfeil",
+        "avhengighet eller forsyningskjedesvikt",
+        "DDoS, kompromittert identitet eller gjenopprettingssvikt"
+      ],
+      "comparison_basis": [
+        "tjeneste og trusselmodell",
+        "topologi og skala",
+        "latenstid og tilgjengelighetskrav",
+        "sikkerhetsforutsetninger"
+      ],
+      "misconceptions": [
+        "Kryptering beskytter ikke automatisk endepunkter, metadata eller tilgjengelighet.",
+        "Sky er andres fysiske infrastruktur med delte ansvar og avhengigheter."
+      ],
+      "anchor_types": [
+        "nettverk eller radiosystem",
+        "datasenter eller skyarkitektur",
+        "dokumentert sikkerhetshendelse"
+      ],
+      "quantitative_dimensions": [
+        "latenstid, tap og gjennomstrømning",
+        "oppetid og gjenoppretting",
+        "angrepsflate",
+        "energi- og kapasitetsbruk"
+      ]
+    },
+    {
+      "id": "menneske_teknologi_hci",
+      "title": "Menneske–teknologi, HCI og universell utforming",
+      "definition": "Studiet av hvordan mennesker oppfatter, forstår, bruker og samarbeider med tekniske systemer i konkrete oppgaver og institusjoner.",
+      "research_questions": [
+        "Hvilke handlinger og tilstander gjør grensesnittet forståelige?",
+        "Hvordan påvirker teknologi arbeidsdeling og menneskelige feil?",
+        "Kan løsningen brukes av mennesker med ulike forutsetninger?"
+      ],
+      "focus": [
+        "em_tek_menneskelige_faktorer_og_arbeid",
+        "em_tek_interaksjonsdesign_og_brukbarhet",
+        "em_tek_tilgjengelighet_universell_utforming",
+        "em_tek_sosiotekniske_systemer_automatisering"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_menneske_teknologi_hci_mekanisme",
+          "title": "Hvordan virker menneske–teknologi, hci og universell utforming i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvilke handlinger og tilstander gjør grensesnittet forståelige?",
+          "emne_ids": [
+            "em_tek_menneskelige_faktorer_og_arbeid",
+            "em_tek_interaksjonsdesign_og_brukbarhet",
+            "em_tek_tilgjengelighet_universell_utforming"
+          ],
+          "concept_ids": [
+            "brukbarhet",
+            "affordans",
+            "kognitiv_belastning"
+          ],
+          "recommended_method_ids": [
+            "met_tek_oppgave_og_arbeidsflytanalyse",
+            "met_tek_brukbarhetstesting"
+          ],
+          "thinker_ids": [
+            "donald_norman",
+            "lucy_suchman",
+            "ben_shneiderman",
+            "jakob_nielsen"
+          ],
+          "theory_ids": [
+            "teori_tek_menneskesentrert_design",
+            "teori_tek_distribuert_kognisjon"
+          ]
+        },
+        {
+          "id": "hook_tek_menneske_teknologi_hci_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvordan påvirker teknologi arbeidsdeling og menneskelige feil?",
+          "emne_ids": [
+            "em_tek_interaksjonsdesign_og_brukbarhet",
+            "em_tek_tilgjengelighet_universell_utforming",
+            "em_tek_sosiotekniske_systemer_automatisering"
+          ],
+          "concept_ids": [
+            "kognitiv_belastning",
+            "tilgjengelighet_hci",
+            "menneskelig_feil"
+          ],
+          "recommended_method_ids": [
+            "met_tek_brukbarhetstesting",
+            "met_tek_tilgjengelighetsrevisjon"
+          ],
+          "thinker_ids": [
+            "lucy_suchman",
+            "ben_shneiderman",
+            "jakob_nielsen",
+            "john_m_carroll"
+          ],
+          "theory_ids": [
+            "teori_tek_menneskesentrert_design",
+            "teori_tek_distribuert_kognisjon"
+          ]
+        },
+        {
+          "id": "hook_tek_menneske_teknologi_hci_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder kan løsningen brukes av mennesker med ulike forutsetninger?",
+          "emne_ids": [
+            "em_tek_tilgjengelighet_universell_utforming",
+            "em_tek_sosiotekniske_systemer_automatisering",
+            "em_tek_menneskelige_faktorer_og_arbeid"
+          ],
+          "concept_ids": [
+            "menneskelig_feil",
+            "automasjonsskjevhet",
+            "brukbarhet"
+          ],
+          "recommended_method_ids": [
+            "met_tek_tilgjengelighetsrevisjon",
+            "met_tek_oppgave_og_arbeidsflytanalyse"
+          ],
+          "thinker_ids": [
+            "ben_shneiderman",
+            "jakob_nielsen",
+            "john_m_carroll",
+            "donald_norman"
+          ],
+          "theory_ids": [
+            "teori_tek_menneskesentrert_design",
+            "teori_tek_distribuert_kognisjon"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "donald_norman",
+          "name": "Donald Norman",
+          "role": "menneskesentrert design og handlingsforståelse",
+          "work": "The Design of Everyday Things"
+        },
+        {
+          "id": "lucy_suchman",
+          "name": "Lucy Suchman",
+          "role": "situert handling og menneske–maskin-samspill",
+          "work": "Plans and Situated Actions"
+        },
+        {
+          "id": "ben_shneiderman",
+          "name": "Ben Shneiderman",
+          "role": "direkte manipulasjon og interaksjonsdesign",
+          "work": "Designing the User Interface"
+        },
+        {
+          "id": "jakob_nielsen",
+          "name": "Jakob Nielsen",
+          "role": "brukbarhetsmetoder og heuristikker",
+          "work": "Usability Engineering"
+        },
+        {
+          "id": "john_m_carroll",
+          "name": "John M. Carroll",
+          "role": "scenario-basert design og HCI",
+          "work": "Making Use"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_menneskesentrert_design",
+          "label": "Menneskesentrert design",
+          "definition": "Utvikling organiseres rundt eksplisitt forståelse av brukere, oppgaver, kontekst, iterasjon og empirisk evaluering.",
+          "concept_ids": [
+            "brukbarhet",
+            "affordans",
+            "kognitiv_belastning",
+            "tilgjengelighet_hci"
+          ],
+          "method_ids": [
+            "met_tek_oppgave_og_arbeidsflytanalyse",
+            "met_tek_brukbarhetstesting"
+          ]
+        },
+        {
+          "id": "teori_tek_distribuert_kognisjon",
+          "label": "Distribuert kognisjon",
+          "definition": "Kognitivt arbeid analyseres som fordelt mellom mennesker, representasjoner, verktøy og omgivelser.",
+          "concept_ids": [
+            "kognitiv_belastning",
+            "tilgjengelighet_hci",
+            "menneskelig_feil",
+            "automasjonsskjevhet"
+          ],
+          "method_ids": [
+            "met_tek_brukbarhetstesting",
+            "met_tek_tilgjengelighetsrevisjon"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 3,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra psykologi ved at menneskelig atferd analyseres i samspill med et konkret grensesnitt og teknisk system.",
+      "canonical_mechanisms": [
+        "persepsjon og kognitiv belastning",
+        "handling–tilbakemelding",
+        "mental modell",
+        "feiltoleranse",
+        "tilgjengelighet og inkluderende design"
+      ],
+      "preferred_evidence": [
+        "brukbarhetstest og observasjon",
+        "tilgjengelighetsmåling",
+        "hendelses-, support- eller feltdata"
+      ],
+      "mandatory_failure_modes": [
+        "modusforvirring",
+        "utilstrekkelig tilbakemelding",
+        "ekskluderende interaksjon eller utilgjengelig informasjon"
+      ],
+      "comparison_basis": [
+        "brukergruppe og oppgave",
+        "kontekst og hjelpemidler",
+        "erfaringsnivå",
+        "feilkonsekvens"
+      ],
+      "misconceptions": [
+        "Brukervennlighet er ikke personlig smak; den kan undersøkes mot oppgaver og brukergrupper.",
+        "Et gjennomsnittlig testresultat kan skjule alvorlige tilgjengelighetsbarrierer."
+      ],
+      "anchor_types": [
+        "digitalt grensesnitt",
+        "kontrollrom eller førermiljø",
+        "hjelpemiddel eller offentlig tjeneste"
+      ],
+      "quantitative_dimensions": [
+        "oppgavetid og feilrate",
+        "lærbarhet",
+        "tilgjengelighetsbrudd",
+        "situasjonsforståelse"
+      ]
+    },
+    {
+      "id": "teknologihistorie_sts_risiko_baerekraft",
+      "title": "Teknologihistorie, STS, risiko og bærekraft",
+      "definition": "Studiet av teknologiers historiske utvikling, standardisering, makt, institusjoner, risiko, miljøvirkning og samfunnsmessige styring.",
+      "research_questions": [
+        "Hvorfor ble nettopp denne teknologien dominerende?",
+        "Hvem får kontroll, nytte og belastning?",
+        "Hvordan kan risiko og bærekraft vurderes før og etter innføring?"
+      ],
+      "focus": [
+        "em_tek_teknologihistorie_sti_og_innelasing",
+        "em_tek_standarder_infrastruktur_interoperabilitet",
+        "em_tek_teknologi_makt_etikk_ansvar",
+        "em_tek_risiko_baerekraft_omstilling"
+      ],
+      "topic_hooks": [
+        {
+          "id": "hook_tek_teknologihistorie_sts_risiko_baerekraft_mekanisme",
+          "title": "Hvordan virker teknologihistorie, sts, risiko og bærekraft i et konkret system?",
+          "problem": "Ta utgangspunkt i et dokumentert artefakt, anlegg, programvaresystem eller teknisk forløp. Spor mekanismen og vurder hvorfor ble nettopp denne teknologien dominerende?",
+          "emne_ids": [
+            "em_tek_teknologihistorie_sti_og_innelasing",
+            "em_tek_standarder_infrastruktur_interoperabilitet",
+            "em_tek_teknologi_makt_etikk_ansvar"
+          ],
+          "concept_ids": [
+            "standard",
+            "interoperabilitet",
+            "stiavhengighet"
+          ],
+          "recommended_method_ids": [
+            "met_tek_teknologihistorisk_sporanalyse",
+            "met_tek_sosioteknisk_maktanalyse"
+          ],
+          "thinker_ids": [
+            "thomas_p_hughes",
+            "langdon_winner",
+            "ruth_schwartz_cowan",
+            "sheila_jasanoff"
+          ],
+          "theory_ids": [
+            "teori_tek_store_tekniske_systemer",
+            "teori_tek_sosiotekniske_forestillinger"
+          ]
+        },
+        {
+          "id": "hook_tek_teknologihistorie_sts_risiko_baerekraft_feil",
+          "title": "Hvor kan systemet svikte eller misforstås?",
+          "problem": "Identifiser feilmodi, målegrenser og alternative forklaringer. Undersøk hvem får kontroll, nytte og belastning?",
+          "emne_ids": [
+            "em_tek_standarder_infrastruktur_interoperabilitet",
+            "em_tek_teknologi_makt_etikk_ansvar",
+            "em_tek_risiko_baerekraft_omstilling"
+          ],
+          "concept_ids": [
+            "stiavhengighet",
+            "risiko",
+            "ansvar"
+          ],
+          "recommended_method_ids": [
+            "met_tek_sosioteknisk_maktanalyse",
+            "met_tek_risiko_og_baerekraftsanalyse"
+          ],
+          "thinker_ids": [
+            "langdon_winner",
+            "ruth_schwartz_cowan",
+            "sheila_jasanoff",
+            "carl_mitcham"
+          ],
+          "theory_ids": [
+            "teori_tek_store_tekniske_systemer",
+            "teori_tek_sosiotekniske_forestillinger"
+          ]
+        },
+        {
+          "id": "hook_tek_teknologihistorie_sts_risiko_baerekraft_virkning",
+          "title": "Hvilke avveininger og samfunnsvirkninger følger av designet?",
+          "problem": "Sammenlign minst to tekniske valg med samme funksjon og vurder hvordan kan risiko og bærekraft vurderes før og etter innføring?",
+          "emne_ids": [
+            "em_tek_teknologi_makt_etikk_ansvar",
+            "em_tek_risiko_baerekraft_omstilling",
+            "em_tek_teknologihistorie_sti_og_innelasing"
+          ],
+          "concept_ids": [
+            "ansvar",
+            "baerekraft",
+            "standard"
+          ],
+          "recommended_method_ids": [
+            "met_tek_risiko_og_baerekraftsanalyse",
+            "met_tek_teknologihistorisk_sporanalyse"
+          ],
+          "thinker_ids": [
+            "ruth_schwartz_cowan",
+            "sheila_jasanoff",
+            "carl_mitcham",
+            "thomas_p_hughes"
+          ],
+          "theory_ids": [
+            "teori_tek_store_tekniske_systemer",
+            "teori_tek_sosiotekniske_forestillinger"
+          ]
+        }
+      ],
+      "thinkers": [
+        {
+          "id": "thomas_p_hughes",
+          "name": "Thomas P. Hughes",
+          "role": "store tekniske systemer og systembyggere",
+          "work": "Networks of Power"
+        },
+        {
+          "id": "langdon_winner",
+          "name": "Langdon Winner",
+          "role": "teknologi, politikk og makt",
+          "work": "The Whale and the Reactor"
+        },
+        {
+          "id": "ruth_schwartz_cowan",
+          "name": "Ruth Schwartz Cowan",
+          "role": "husholdningsteknologi og arbeidsdeling",
+          "work": "More Work for Mother"
+        },
+        {
+          "id": "sheila_jasanoff",
+          "name": "Sheila Jasanoff",
+          "role": "vitenskap, teknologi, styring og sosiotekniske forestillinger",
+          "work": "The Ethics of Invention"
+        },
+        {
+          "id": "carl_mitcham",
+          "name": "Carl Mitcham",
+          "role": "teknologifilosofi, etikk og ingeniøransvar",
+          "work": "Thinking through Technology"
+        }
+      ],
+      "theory_objects": [
+        {
+          "id": "teori_tek_store_tekniske_systemer",
+          "label": "Store tekniske systemer",
+          "definition": "Teknologier forstås som nettverk av artefakter, organisasjoner, kunnskap, regulering og infrastruktur som utvikles sammen.",
+          "concept_ids": [
+            "standard",
+            "interoperabilitet",
+            "stiavhengighet",
+            "risiko"
+          ],
+          "method_ids": [
+            "met_tek_teknologihistorisk_sporanalyse",
+            "met_tek_sosioteknisk_maktanalyse"
+          ]
+        },
+        {
+          "id": "teori_tek_sosiotekniske_forestillinger",
+          "label": "Sosiotekniske forestillinger",
+          "definition": "Kollektivt forestilte framtider knytter ønskede samfunnsordener til bestemte vitenskapelige og teknologiske utviklingsbaner.",
+          "concept_ids": [
+            "stiavhengighet",
+            "risiko",
+            "ansvar",
+            "baerekraft"
+          ],
+          "method_ids": [
+            "met_tek_sosioteknisk_maktanalyse",
+            "met_tek_risiko_og_baerekraftsanalyse"
+          ]
+        }
+      ],
+      "editorial_status": "reviewed_v3",
+      "coverage_status": "strong",
+      "coverage_evidence": {
+        "source_count": 4,
+        "anchor_count": 2,
+        "assessment_task_count": 2
+      },
+      "boundary_note": "Avgrenses fra historie og politikk ved at tekniske egenskaper, infrastrukturer og vedlikeholdsregimer analyseres sammen med institusjoner og makt.",
+      "canonical_mechanisms": [
+        "stiavhengighet og innelåsing",
+        "store tekniske systemer",
+        "standardisering og interoperabilitet",
+        "risiko og ansvar",
+        "livsløp og sosioteknisk omstilling"
+      ],
+      "preferred_evidence": [
+        "arkiv, standard og beslutningsdokument",
+        "ulykkes-, tilsyns- og risikodata",
+        "livsløpsdata og scenarioanalyse"
+      ],
+      "mandatory_failure_modes": [
+        "historisk determinisme",
+        "risiko forskjøvet til andre grupper eller livsløpsledd",
+        "systemgrense som skjuler belastning"
+      ],
+      "comparison_basis": [
+        "funksjon og tidsperiode",
+        "geografisk og institusjonell systemgrense",
+        "alternativer som faktisk var tilgjengelige",
+        "livsløp og fordelingsvirkning"
+      ],
+      "misconceptions": [
+        "Teknologisk dominans beviser ikke teknisk overlegenhet; standarder, investeringer og makt kan låse inn løsninger.",
+        "Bærekraft er en fler-dimensional vurdering, ikke en etikett eller ett enkelt utslippstall."
+      ],
+      "anchor_types": [
+        "historisk teknisk system",
+        "standardiseringsforløp",
+        "ulykke, omstilling eller infrastrukturkonflikt"
+      ],
+      "quantitative_dimensions": [
+        "risiko og usikkerhet",
+        "livsløpsutslipp og ressursbruk",
+        "fordelingsvirkning",
+        "omstillingstid og reversibilitet"
+      ]
+    }
+  ],
+  "meta": {
+    "area_count": 12,
+    "topic_count": 48,
+    "method_count": 35,
+    "hook_count": 36,
+    "alignment_overrides_applied": 15,
+    "coverage_status_counts": {
+      "strong": 12
+    }
+  }
+}

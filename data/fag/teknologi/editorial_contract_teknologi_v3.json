@@ -1,0 +1,70 @@
+{
+  "schema": "teknologi_editorial_contract_v3",
+  "version": "3.0",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "canonical_files": {
+    "pensum": "data/fag/teknologi/teknologipensum_canonical_v3.json",
+    "emner": "data/fag/teknologi/emner_teknologi_canonical_v3.json",
+    "fagkart": "data/fag/teknologi/fagkart_teknologi_canonical_v3.json",
+    "methods": "data/fag/teknologi/methods_teknologi_canonical_v3.json"
+  },
+  "source_layers": {
+    "scientific_index": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+    "quality_profiles": "data/fag/teknologi/teknologi_scientific_v2/area_quality_profiles_v2_1.json",
+    "alignment_overrides": "data/fag/teknologi/teknologi_scientific_v2/topic_alignment_overrides_v2_1.json",
+    "sources": "data/fag/teknologi/teknologi_scientific_v2/source_registry_v2_3.json",
+    "anchors": "data/fag/teknologi/teknologi_scientific_v2/technology_anchor_registry_v2_3.json",
+    "assessment_tasks": "data/fag/teknologi/teknologi_scientific_v2/assessment_tasks_v2_3.json"
+  },
+  "required_counts": {
+    "modules": 12,
+    "areas": 12,
+    "emner": 48,
+    "methods": 35,
+    "hooks": 36
+  },
+  "required_topic_fields": [
+    "emne_id",
+    "area_id",
+    "level",
+    "progression_stage",
+    "definition",
+    "why_it_matters",
+    "learning_outcomes",
+    "concept_ids",
+    "method_ids",
+    "theory_ids",
+    "claim_classes",
+    "evidence_requirements",
+    "mandatory_failure_modes",
+    "comparison_basis",
+    "boundary_note",
+    "assessment_prompt",
+    "source_gate"
+  ],
+  "required_method_fields": [
+    "method_id",
+    "area_id",
+    "purpose",
+    "procedure",
+    "required_inputs",
+    "required_observations",
+    "limitations",
+    "ethics",
+    "deliverables",
+    "quality_gates",
+    "blocked_when"
+  ],
+  "editorial_gates": {
+    "no_generic_why_it_matters_template": true,
+    "all_alignment_overrides_applied": true,
+    "real_three_stage_progression": true,
+    "methods_operationalized": true,
+    "source_locator_and_claim_basis_required": true,
+    "uncertainty_and_validity_scope_required": true,
+    "domain_coverage_must_be_evidence_based": true,
+    "legacy_files_must_not_be_manifest_targets": true
+  },
+  "production_blocking_rule": "Quiz- og Knowledge-produksjon blokkeres når et faktakrav mangler ekstern kilde, lokator, claim_basis, teknologisk anker eller eksplisitt gyldighetsområde."
+}

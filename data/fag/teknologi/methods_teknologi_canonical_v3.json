@@ -1,0 +1,2423 @@
+{
+  "subject_id": "teknologi",
+  "version": "3.0",
+  "status": "canonical",
+  "source_package": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+  "editorial_rule": "En metode er bare produksjonsklar når prosedyre, datakrav, begrensninger, etikk, leveranse og kvalitetsporter er eksplisitte.",
+  "methods": [
+    {
+      "method_id": "met_tek_krav_og_interessentanalyse",
+      "subject_id": "teknologi",
+      "area_id": "teknologivitenskap_design",
+      "label": "Krav- og interessentanalyse",
+      "purpose": "Kartlegg behov, brukere, interessenter, funksjonskrav, kvalitetskrav, begrensninger og konflikter.",
+      "status": "active",
+      "area_label": "Teknologivitenskap, design og eksperimentering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_teknologisk_kunnskap_og_artefakter",
+        "em_tek_prototyper_forsok_og_validering",
+        "em_tek_design_under_begrensninger"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som krav- og interessentanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kravspesifikasjon og endringshistorikk og prototype- og testprotokoll.",
+        "Kartlegg behov, brukere, interessenter, funksjonskrav, kvalitetskrav, begrensninger og konflikter.",
+        "Prøv resultatet mot funksjon, brukskontekst, modenhetsnivå og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kravspesifikasjon og endringshistorikk",
+        "prototype- og testprotokoll",
+        "bruker- og interessentdata",
+        "prototype",
+        "teknisk tegning eller arkitektur",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "kravoppfyllelse",
+        "ytelse mot baseline",
+        "testdekning",
+        "usikkerhet i brukerbehov",
+        "funksjon–atferd–struktur",
+        "kravnedbrytning",
+        "iterativ prototyping"
+      ],
+      "limitations": [
+        "Avgrenses fra naturvitenskap ved at målet ikke bare er å forklare et fenomen, men å begrunne og prøve en konstruert løsning.",
+        "Design er ikke fri formgivning; det er begrunnet valg under krav og begrensninger.",
+        "En prototype dokumenterer læring, ikke automatisk ferdig ytelse.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Dokumenter hvem som definerer behovet og hvem som bærer konsekvensene av kravkonflikter.",
+        "Ikke test på mennesker eller driftssystemer uten avklart risiko og samtykke."
+      ],
+      "deliverables": [
+        "sporbar krav–design–test-matrise",
+        "begrunnet sammenligning av minst to løsningsalternativer"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_morfologisk_designanalyse",
+      "subject_id": "teknologi",
+      "area_id": "teknologivitenskap_design",
+      "label": "Morfologisk designanalyse",
+      "purpose": "Del funksjonen i delproblemer, generer alternative løsningsprinsipper og sammenlign kombinasjoner systematisk.",
+      "status": "active",
+      "area_label": "Teknologivitenskap, design og eksperimentering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_teknologisk_kunnskap_og_artefakter",
+        "em_tek_ingeniorprosess_krav_og_design",
+        "em_tek_design_under_begrensninger"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som morfologisk designanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kravspesifikasjon og endringshistorikk og prototype- og testprotokoll.",
+        "Del funksjonen i delproblemer, generer alternative løsningsprinsipper og sammenlign kombinasjoner systematisk.",
+        "Prøv resultatet mot funksjon, brukskontekst, modenhetsnivå og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kravspesifikasjon og endringshistorikk",
+        "prototype- og testprotokoll",
+        "bruker- og interessentdata",
+        "prototype",
+        "teknisk tegning eller arkitektur",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "kravoppfyllelse",
+        "ytelse mot baseline",
+        "testdekning",
+        "usikkerhet i brukerbehov",
+        "funksjon–atferd–struktur",
+        "kravnedbrytning",
+        "iterativ prototyping"
+      ],
+      "limitations": [
+        "Avgrenses fra naturvitenskap ved at målet ikke bare er å forklare et fenomen, men å begrunne og prøve en konstruert løsning.",
+        "Design er ikke fri formgivning; det er begrunnet valg under krav og begrensninger.",
+        "En prototype dokumenterer læring, ikke automatisk ferdig ytelse.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Dokumenter hvem som definerer behovet og hvem som bærer konsekvensene av kravkonflikter.",
+        "Ikke test på mennesker eller driftssystemer uten avklart risiko og samtykke."
+      ],
+      "deliverables": [
+        "sporbar krav–design–test-matrise",
+        "begrunnet sammenligning av minst to løsningsalternativer"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_prototypeeksperiment",
+      "subject_id": "teknologi",
+      "area_id": "teknologivitenskap_design",
+      "label": "Prototypeeksperiment",
+      "purpose": "Formuler en testbar designantakelse, bygg en avgrenset prototype, definer målevariabler og vurder resultatet mot kriterier.",
+      "status": "active",
+      "area_label": "Teknologivitenskap, design og eksperimentering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_ingeniorprosess_krav_og_design",
+        "em_tek_prototyper_forsok_og_validering"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som prototypeeksperiment skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kravspesifikasjon og endringshistorikk og prototype- og testprotokoll.",
+        "Formuler en testbar designantakelse, bygg en avgrenset prototype, definer målevariabler og vurder resultatet mot kriterier.",
+        "Prøv resultatet mot funksjon, brukskontekst, modenhetsnivå og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kravspesifikasjon og endringshistorikk",
+        "prototype- og testprotokoll",
+        "bruker- og interessentdata",
+        "prototype",
+        "teknisk tegning eller arkitektur",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "kravoppfyllelse",
+        "ytelse mot baseline",
+        "testdekning",
+        "usikkerhet i brukerbehov",
+        "funksjon–atferd–struktur",
+        "kravnedbrytning",
+        "iterativ prototyping"
+      ],
+      "limitations": [
+        "Avgrenses fra naturvitenskap ved at målet ikke bare er å forklare et fenomen, men å begrunne og prøve en konstruert løsning.",
+        "Design er ikke fri formgivning; det er begrunnet valg under krav og begrensninger.",
+        "En prototype dokumenterer læring, ikke automatisk ferdig ytelse.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Dokumenter hvem som definerer behovet og hvem som bærer konsekvensene av kravkonflikter.",
+        "Ikke test på mennesker eller driftssystemer uten avklart risiko og samtykke."
+      ],
+      "deliverables": [
+        "sporbar krav–design–test-matrise",
+        "begrunnet sammenligning av minst to løsningsalternativer"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_systemgrense_og_flytanalyse",
+      "subject_id": "teknologi",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Systemgrense- og flytanalyse",
+      "purpose": "Definer systemgrense, funksjoner, komponenter, aktører og strømmer av energi, materiale, informasjon og kontroll.",
+      "status": "active",
+      "area_label": "Systemer, arkitektur, pålitelighet og sikkerhet",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_systemtenkning_og_grenser",
+        "em_tek_palitelighet_redundans_vedlikehold",
+        "em_tek_sikkerhet_ulykker_og_barrierer"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som systemgrense- og flytanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkitektur- og grensesnittdokumentasjon og hendelses-, feil- og vedlikeholdsdata.",
+        "Definer systemgrense, funksjoner, komponenter, aktører og strømmer av energi, materiale, informasjon og kontroll.",
+        "Prøv resultatet mot oppdrag og driftsmiljø, systemgrense, kritikalitet og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkitektur- og grensesnittdokumentasjon",
+        "hendelses-, feil- og vedlikeholdsdata",
+        "FMEA, FTA eller barrieredokumentasjon",
+        "infrastruktur eller anlegg",
+        "sikkerhetskritisk maskin",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "MTBF eller feilrate",
+        "tilgjengelighet",
+        "sannsynlighet og konsekvens",
+        "gjenopprettingstid",
+        "systemgrense og grensesnitt",
+        "funksjonell dekomponering",
+        "feilpropagering"
+      ],
+      "limitations": [
+        "Avgrenses fra ren prosjektledelse ved at analysen må forklare arkitektur, feilmekanismer og målbar systematferd.",
+        "Høy komponentpålitelighet garanterer ikke høy systempålitelighet.",
+        "Redundans kan skape nye fellesfeil og vedlikeholdsproblemer.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ikke skjul gjenværende risiko bak en samlet risikoscore.",
+        "Skill sikkerhetskritiske antakelser fra dokumenterte barrierer."
+      ],
+      "deliverables": [
+        "systemgrense- og grensesnittdiagram",
+        "feil-, barriere- eller pålitelighetsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_fmea",
+      "subject_id": "teknologi",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Feilmodus- og konsekvensanalyse",
+      "purpose": "Identifiser mulige feilmodi, årsaker, virkninger, deteksjon og prioriterte risikoreduserende tiltak.",
+      "status": "active",
+      "area_label": "Systemer, arkitektur, pålitelighet og sikkerhet",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_systemtenkning_og_grenser",
+        "em_tek_arkitektur_komponenter_grensesnitt",
+        "em_tek_sikkerhet_ulykker_og_barrierer"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som feilmodus- og konsekvensanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkitektur- og grensesnittdokumentasjon og hendelses-, feil- og vedlikeholdsdata.",
+        "Identifiser mulige feilmodi, årsaker, virkninger, deteksjon og prioriterte risikoreduserende tiltak.",
+        "Prøv resultatet mot oppdrag og driftsmiljø, systemgrense, kritikalitet og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkitektur- og grensesnittdokumentasjon",
+        "hendelses-, feil- og vedlikeholdsdata",
+        "FMEA, FTA eller barrieredokumentasjon",
+        "infrastruktur eller anlegg",
+        "sikkerhetskritisk maskin",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "MTBF eller feilrate",
+        "tilgjengelighet",
+        "sannsynlighet og konsekvens",
+        "gjenopprettingstid",
+        "systemgrense og grensesnitt",
+        "funksjonell dekomponering",
+        "feilpropagering"
+      ],
+      "limitations": [
+        "Avgrenses fra ren prosjektledelse ved at analysen må forklare arkitektur, feilmekanismer og målbar systematferd.",
+        "Høy komponentpålitelighet garanterer ikke høy systempålitelighet.",
+        "Redundans kan skape nye fellesfeil og vedlikeholdsproblemer.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ikke skjul gjenværende risiko bak en samlet risikoscore.",
+        "Skill sikkerhetskritiske antakelser fra dokumenterte barrierer."
+      ],
+      "deliverables": [
+        "systemgrense- og grensesnittdiagram",
+        "feil-, barriere- eller pålitelighetsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_feiltre_og_barriereanalyse",
+      "subject_id": "teknologi",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Feiltre- og barriereanalyse",
+      "purpose": "Bryt en uønsket topphendelse ned i kombinasjoner av årsaker og vurder forebyggende og begrensende barrierer.",
+      "status": "active",
+      "area_label": "Systemer, arkitektur, pålitelighet og sikkerhet",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_arkitektur_komponenter_grensesnitt",
+        "em_tek_palitelighet_redundans_vedlikehold"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som feiltre- og barriereanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkitektur- og grensesnittdokumentasjon og hendelses-, feil- og vedlikeholdsdata.",
+        "Bryt en uønsket topphendelse ned i kombinasjoner av årsaker og vurder forebyggende og begrensende barrierer.",
+        "Prøv resultatet mot oppdrag og driftsmiljø, systemgrense, kritikalitet og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkitektur- og grensesnittdokumentasjon",
+        "hendelses-, feil- og vedlikeholdsdata",
+        "FMEA, FTA eller barrieredokumentasjon",
+        "infrastruktur eller anlegg",
+        "sikkerhetskritisk maskin",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "MTBF eller feilrate",
+        "tilgjengelighet",
+        "sannsynlighet og konsekvens",
+        "gjenopprettingstid",
+        "systemgrense og grensesnitt",
+        "funksjonell dekomponering",
+        "feilpropagering"
+      ],
+      "limitations": [
+        "Avgrenses fra ren prosjektledelse ved at analysen må forklare arkitektur, feilmekanismer og målbar systematferd.",
+        "Høy komponentpålitelighet garanterer ikke høy systempålitelighet.",
+        "Redundans kan skape nye fellesfeil og vedlikeholdsproblemer.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ikke skjul gjenværende risiko bak en samlet risikoscore.",
+        "Skill sikkerhetskritiske antakelser fra dokumenterte barrierer."
+      ],
+      "deliverables": [
+        "systemgrense- og grensesnittdiagram",
+        "feil-, barriere- eller pålitelighetsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_mekanisme_og_lastanalyse",
+      "subject_id": "teknologi",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Mekanisme- og lastanalyse",
+      "purpose": "Kartlegg ledd, krefter, moment, bevegelsesbaner, belastningstilfeller og sikkerhetsmarginer.",
+      "status": "active",
+      "area_label": "Mekanikk, energi og maskiner",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_mekanikk_kraft_bevegelse",
+        "em_tek_termodynamikk_varme_arbeid",
+        "em_tek_motorer_turbiner_og_pumper",
+        "em_tek_virkningsgrad_tap_og_eksergi"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som mekanisme- og lastanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig målinger av kraft, effekt, temperatur og bevegelse og tegninger og materialdata.",
+        "Kartlegg ledd, krefter, moment, bevegelsesbaner, belastningstilfeller og sikkerhetsmarginer.",
+        "Prøv resultatet mot nyttig funksjon, lastprofil, driftspunkt og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "målinger av kraft, effekt, temperatur og bevegelse",
+        "tegninger og materialdata",
+        "driftskurver og testbenkdata",
+        "motor eller turbin",
+        "transmisjon eller mekanisme",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "virkningsgrad",
+        "effekt og dreiemoment",
+        "temperaturmargin",
+        "levetid og lastsykluser",
+        "kraft- og momentbalanse",
+        "energiomforming",
+        "friksjon og tap"
+      ],
+      "limitations": [
+        "Avgrenses fra fysikk ved at analysen kobler fysiske lover til konstruksjon, toleranser, drift og vedlikehold.",
+        "Energi forsvinner ikke, men nyttig energi degraderes gjennom tap.",
+        "Maksimal toppeffekt er ikke det samme som best virkningsgrad i faktisk drift.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Oppgi sikkerhetsmarginer og driftsgrenser før ytelsesoptimalisering.",
+        "Ikke generaliser testbenkdata til faktisk drift uten lastprofil."
+      ],
+      "deliverables": [
+        "kraft-, last- eller energibalanse",
+        "ytelsesvurdering mot dokumentert lastprofil"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_energi_og_eksergibalanse",
+      "subject_id": "teknologi",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Energi- og eksergibalanse",
+      "purpose": "Følg energi og energikvalitet gjennom tilførsel, omforming, lagring, tap og nyttig arbeid.",
+      "status": "active",
+      "area_label": "Mekanikk, energi og maskiner",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_mekanikk_kraft_bevegelse",
+        "em_tek_termodynamikk_varme_arbeid",
+        "em_tek_motorer_turbiner_og_pumper",
+        "em_tek_virkningsgrad_tap_og_eksergi"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som energi- og eksergibalanse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig målinger av kraft, effekt, temperatur og bevegelse og tegninger og materialdata.",
+        "Følg energi og energikvalitet gjennom tilførsel, omforming, lagring, tap og nyttig arbeid.",
+        "Prøv resultatet mot nyttig funksjon, lastprofil, driftspunkt og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "målinger av kraft, effekt, temperatur og bevegelse",
+        "tegninger og materialdata",
+        "driftskurver og testbenkdata",
+        "motor eller turbin",
+        "transmisjon eller mekanisme",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "virkningsgrad",
+        "effekt og dreiemoment",
+        "temperaturmargin",
+        "levetid og lastsykluser",
+        "kraft- og momentbalanse",
+        "energiomforming",
+        "friksjon og tap"
+      ],
+      "limitations": [
+        "Avgrenses fra fysikk ved at analysen kobler fysiske lover til konstruksjon, toleranser, drift og vedlikehold.",
+        "Energi forsvinner ikke, men nyttig energi degraderes gjennom tap.",
+        "Maksimal toppeffekt er ikke det samme som best virkningsgrad i faktisk drift.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Oppgi sikkerhetsmarginer og driftsgrenser før ytelsesoptimalisering.",
+        "Ikke generaliser testbenkdata til faktisk drift uten lastprofil."
+      ],
+      "deliverables": [
+        "kraft-, last- eller energibalanse",
+        "ytelsesvurdering mot dokumentert lastprofil"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_materialvalg_etter_egenskaper",
+      "subject_id": "teknologi",
+      "area_id": "materialer_produksjon",
+      "label": "Materialvalg etter egenskaper",
+      "purpose": "Sammenlign funksjonskrav, materialegenskaper, prosesserbarhet, kostnad, risiko og miljøbelastning.",
+      "status": "active",
+      "area_label": "Materialteknologi, produksjon og livsløp",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_materialstruktur_og_egenskaper",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_livslop_reparasjon_sirkularitet"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som materialvalg etter egenskaper skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig materialsertifikat og standard og mikroskopi, mekanisk prøve eller kjemisk analyse.",
+        "Sammenlign funksjonskrav, materialegenskaper, prosesserbarhet, kostnad, risiko og miljøbelastning.",
+        "Prøv resultatet mot funksjon og last, materialtilstand, produksjonsvolum og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "materialsertifikat og standard",
+        "mikroskopi, mekanisk prøve eller kjemisk analyse",
+        "produksjons- og kvalitetsdata",
+        "komponent med dokumentert materiale",
+        "produksjonslinje",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "styrke og seighet",
+        "toleranse og kapabilitetsindeks",
+        "utbytte og feilrate",
+        "livsløpspåvirkning",
+        "struktur–prosess–egenskap",
+        "fase og mikrostruktur",
+        "toleranser og variasjon"
+      ],
+      "limitations": [
+        "Avgrenses fra kjemi og fysikk ved at materialegenskaper knyttes til produksjonsprosess, komponentfunksjon og levetid.",
+        "Sterkere materiale er ikke alltid bedre når masse, bearbeiding, korrosjon og kostnad inngår.",
+        "Resirkulerbart betyr ikke automatisk lavest samlet miljøbelastning.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ta med arbeidsmiljø, ressursuttak og avfallsstrømmer i material- og prosessvalg.",
+        "Oppgi når prøver eller leverandørdata ikke representerer faktisk komponenttilstand."
+      ],
+      "deliverables": [
+        "material-/prosessvalg med egenskapsdata",
+        "levetids- eller kvalitetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_brudd_og_levetidsanalyse",
+      "subject_id": "teknologi",
+      "area_id": "materialer_produksjon",
+      "label": "Brudd- og levetidsanalyse",
+      "purpose": "Undersøk lastkollektiver, sprekkinitiering, sprekkvekst, korrosjon, slitasje og inspeksjonsintervaller.",
+      "status": "active",
+      "area_label": "Materialteknologi, produksjon og livsløp",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_materialstruktur_og_egenskaper",
+        "em_tek_utmattelse_brudd_korrosjon",
+        "em_tek_livslop_reparasjon_sirkularitet"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som brudd- og levetidsanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig materialsertifikat og standard og mikroskopi, mekanisk prøve eller kjemisk analyse.",
+        "Undersøk lastkollektiver, sprekkinitiering, sprekkvekst, korrosjon, slitasje og inspeksjonsintervaller.",
+        "Prøv resultatet mot funksjon og last, materialtilstand, produksjonsvolum og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "materialsertifikat og standard",
+        "mikroskopi, mekanisk prøve eller kjemisk analyse",
+        "produksjons- og kvalitetsdata",
+        "komponent med dokumentert materiale",
+        "produksjonslinje",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "styrke og seighet",
+        "toleranse og kapabilitetsindeks",
+        "utbytte og feilrate",
+        "livsløpspåvirkning",
+        "struktur–prosess–egenskap",
+        "fase og mikrostruktur",
+        "toleranser og variasjon"
+      ],
+      "limitations": [
+        "Avgrenses fra kjemi og fysikk ved at materialegenskaper knyttes til produksjonsprosess, komponentfunksjon og levetid.",
+        "Sterkere materiale er ikke alltid bedre når masse, bearbeiding, korrosjon og kostnad inngår.",
+        "Resirkulerbart betyr ikke automatisk lavest samlet miljøbelastning.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ta med arbeidsmiljø, ressursuttak og avfallsstrømmer i material- og prosessvalg.",
+        "Oppgi når prøver eller leverandørdata ikke representerer faktisk komponenttilstand."
+      ],
+      "deliverables": [
+        "material-/prosessvalg med egenskapsdata",
+        "levetids- eller kvalitetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_livslopsanalyse",
+      "subject_id": "teknologi",
+      "area_id": "materialer_produksjon",
+      "label": "Livsløpsanalyse",
+      "purpose": "Definer funksjonell enhet og systemgrense, og beregn ressurs- og miljøbelastning gjennom hele livsløpet.",
+      "status": "active",
+      "area_label": "Materialteknologi, produksjon og livsløp",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_utmattelse_brudd_korrosjon",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som livsløpsanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig materialsertifikat og standard og mikroskopi, mekanisk prøve eller kjemisk analyse.",
+        "Definer funksjonell enhet og systemgrense, og beregn ressurs- og miljøbelastning gjennom hele livsløpet.",
+        "Prøv resultatet mot funksjon og last, materialtilstand, produksjonsvolum og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "materialsertifikat og standard",
+        "mikroskopi, mekanisk prøve eller kjemisk analyse",
+        "produksjons- og kvalitetsdata",
+        "komponent med dokumentert materiale",
+        "produksjonslinje",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "styrke og seighet",
+        "toleranse og kapabilitetsindeks",
+        "utbytte og feilrate",
+        "livsløpspåvirkning",
+        "struktur–prosess–egenskap",
+        "fase og mikrostruktur",
+        "toleranser og variasjon"
+      ],
+      "limitations": [
+        "Avgrenses fra kjemi og fysikk ved at materialegenskaper knyttes til produksjonsprosess, komponentfunksjon og levetid.",
+        "Sterkere materiale er ikke alltid bedre når masse, bearbeiding, korrosjon og kostnad inngår.",
+        "Resirkulerbart betyr ikke automatisk lavest samlet miljøbelastning.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ta med arbeidsmiljø, ressursuttak og avfallsstrømmer i material- og prosessvalg.",
+        "Oppgi når prøver eller leverandørdata ikke representerer faktisk komponenttilstand."
+      ],
+      "deliverables": [
+        "material-/prosessvalg med egenskapsdata",
+        "levetids- eller kvalitetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_krets_og_effektanalyse",
+      "subject_id": "teknologi",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Krets- og effektanalyse",
+      "purpose": "Bruk kretsskjema og målinger til å beregne strøm, spenning, impedans, effekt og komponentbelastning.",
+      "status": "active",
+      "area_label": "Elektronikk, signaler og regulering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_regulering_tilbakemelding_stabilitet",
+        "em_tek_innebygde_systemer_sanntid"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som krets- og effektanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kretsdiagram og komponentdata og oscilloskop-, sensor- eller loggdata.",
+        "Bruk kretsskjema og målinger til å beregne strøm, spenning, impedans, effekt og komponentbelastning.",
+        "Prøv resultatet mot signalområde, båndbredde, samplingfrekvens og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kretsdiagram og komponentdata",
+        "oscilloskop-, sensor- eller loggdata",
+        "frekvens- og trinnrespons",
+        "sensor- og målesystem",
+        "regulator eller motorstyring",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "signal–støy-forhold",
+        "båndbredde",
+        "stabilitetsmargin",
+        "måleusikkerhet",
+        "signalvei og overføringsfunksjon",
+        "sampling og filtrering",
+        "tilbakemelding"
+      ],
+      "limitations": [
+        "Avgrenses fra elektrofysikk ved at signaler og kretser analyseres som designede måle-, beslutnings- og styringskjeder.",
+        "Et digitalt tall er ikke selve fenomenet; det er resultatet av en målekjede.",
+        "Raskere respons kan redusere stabilitetsmargin og robusthet.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Skill målt signal fra det fysiske fenomenet og oppgi målekjedens usikkerhet.",
+        "Unngå styring som kan gi farlig respons ved sensorfeil eller metning."
+      ],
+      "deliverables": [
+        "sporbar signal- eller reguleringskjede",
+        "måle- og stabilitetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_signal_og_malekjedeanalyse",
+      "subject_id": "teknologi",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Signal- og målekjedeanalyse",
+      "purpose": "Følg fenomenet gjennom sensor, kondisjonering, filtrering, sampling, konvertering og programvarefortolkning.",
+      "status": "active",
+      "area_label": "Elektronikk, signaler og regulering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_signaler_sensorer_og_stoy",
+        "em_tek_innebygde_systemer_sanntid"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som signal- og målekjedeanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kretsdiagram og komponentdata og oscilloskop-, sensor- eller loggdata.",
+        "Følg fenomenet gjennom sensor, kondisjonering, filtrering, sampling, konvertering og programvarefortolkning.",
+        "Prøv resultatet mot signalområde, båndbredde, samplingfrekvens og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kretsdiagram og komponentdata",
+        "oscilloskop-, sensor- eller loggdata",
+        "frekvens- og trinnrespons",
+        "sensor- og målesystem",
+        "regulator eller motorstyring",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "signal–støy-forhold",
+        "båndbredde",
+        "stabilitetsmargin",
+        "måleusikkerhet",
+        "signalvei og overføringsfunksjon",
+        "sampling og filtrering",
+        "tilbakemelding"
+      ],
+      "limitations": [
+        "Avgrenses fra elektrofysikk ved at signaler og kretser analyseres som designede måle-, beslutnings- og styringskjeder.",
+        "Et digitalt tall er ikke selve fenomenet; det er resultatet av en målekjede.",
+        "Raskere respons kan redusere stabilitetsmargin og robusthet.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Skill målt signal fra det fysiske fenomenet og oppgi målekjedens usikkerhet.",
+        "Unngå styring som kan gi farlig respons ved sensorfeil eller metning."
+      ],
+      "deliverables": [
+        "sporbar signal- eller reguleringskjede",
+        "måle- og stabilitetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_reguleringssloyfeanalyse",
+      "subject_id": "teknologi",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Reguleringssløyfeanalyse",
+      "purpose": "Kartlegg prosess, målverdi, måling, regulator, aktuator, forstyrrelser, tidsforsinkelser og stabilitet.",
+      "status": "active",
+      "area_label": "Elektronikk, signaler og regulering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_signaler_sensorer_og_stoy",
+        "em_tek_regulering_tilbakemelding_stabilitet"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som reguleringssløyfeanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kretsdiagram og komponentdata og oscilloskop-, sensor- eller loggdata.",
+        "Kartlegg prosess, målverdi, måling, regulator, aktuator, forstyrrelser, tidsforsinkelser og stabilitet.",
+        "Prøv resultatet mot signalområde, båndbredde, samplingfrekvens og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kretsdiagram og komponentdata",
+        "oscilloskop-, sensor- eller loggdata",
+        "frekvens- og trinnrespons",
+        "sensor- og målesystem",
+        "regulator eller motorstyring",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "signal–støy-forhold",
+        "båndbredde",
+        "stabilitetsmargin",
+        "måleusikkerhet",
+        "signalvei og overføringsfunksjon",
+        "sampling og filtrering",
+        "tilbakemelding"
+      ],
+      "limitations": [
+        "Avgrenses fra elektrofysikk ved at signaler og kretser analyseres som designede måle-, beslutnings- og styringskjeder.",
+        "Et digitalt tall er ikke selve fenomenet; det er resultatet av en målekjede.",
+        "Raskere respons kan redusere stabilitetsmargin og robusthet.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Skill målt signal fra det fysiske fenomenet og oppgi målekjedens usikkerhet.",
+        "Unngå styring som kan gi farlig respons ved sensorfeil eller metning."
+      ],
+      "deliverables": [
+        "sporbar signal- eller reguleringskjede",
+        "måle- og stabilitetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_kinematisk_og_dynamisk_analyse",
+      "subject_id": "teknologi",
+      "area_id": "robotikk_automatisering",
+      "label": "Kinematisk og dynamisk analyse",
+      "purpose": "Beskriv ledd, koordinater, bevegelsesbaner, hastigheter, akselerasjoner, krefter og begrensninger.",
+      "status": "active",
+      "area_label": "Robotikk og automatisering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_aktuatorer_kinematikk_bevegelse",
+        "em_tek_automasjon_planlegging_og_kontroll",
+        "em_tek_menneske_robot_sikkerhet"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som kinematisk og dynamisk analyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig sensor- og aktuatorlogger og simulering og feltforsøk.",
+        "Beskriv ledd, koordinater, bevegelsesbaner, hastigheter, akselerasjoner, krefter og begrensninger.",
+        "Prøv resultatet mot oppgave og miljø, autonominivå, sikkerhetssone og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "sensor- og aktuatorlogger",
+        "simulering og feltforsøk",
+        "sikkerhets- og hendelsesdata",
+        "industrirobot",
+        "mobil robot eller drone",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "posisjonsfeil",
+        "syklustid",
+        "intervensjonsrate",
+        "sikkerhetsmargin",
+        "sansning–estimering–planlegging–handling",
+        "kinematikk og dynamikk",
+        "lokalisering og kartlegging"
+      ],
+      "limitations": [
+        "Avgrenses fra AI ved at hele den fysiske sansnings-, styrings- og handlingskjeden må analyseres.",
+        "Autonomi er gradert og oppgaveavhengig, ikke en enkelt egenskap.",
+        "God ytelse i simulering dokumenterer ikke robusthet i ukontrollert miljø.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Definer menneskelig overstyring, ansvar og sikkerhetssone.",
+        "Ikke bruk simuleringsytelse som eneste grunnlag for autonom drift."
+      ],
+      "deliverables": [
+        "oppgave- og miljøspesifisert ytelsestest",
+        "sikkerhets- og intervensjonsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_robotytelse_og_benchmarking",
+      "subject_id": "teknologi",
+      "area_id": "robotikk_automatisering",
+      "label": "Robotytelse og benchmarking",
+      "purpose": "Definer oppgave, datasett eller testbane, mål presisjon, hastighet, robusthet og feil under sammenlignbare betingelser.",
+      "status": "active",
+      "area_label": "Robotikk og automatisering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_aktuatorer_kinematikk_bevegelse",
+        "em_tek_robotpersepsjon_lokalisering",
+        "em_tek_menneske_robot_sikkerhet"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som robotytelse og benchmarking skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig sensor- og aktuatorlogger og simulering og feltforsøk.",
+        "Definer oppgave, datasett eller testbane, mål presisjon, hastighet, robusthet og feil under sammenlignbare betingelser.",
+        "Prøv resultatet mot oppgave og miljø, autonominivå, sikkerhetssone og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "sensor- og aktuatorlogger",
+        "simulering og feltforsøk",
+        "sikkerhets- og hendelsesdata",
+        "industrirobot",
+        "mobil robot eller drone",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "posisjonsfeil",
+        "syklustid",
+        "intervensjonsrate",
+        "sikkerhetsmargin",
+        "sansning–estimering–planlegging–handling",
+        "kinematikk og dynamikk",
+        "lokalisering og kartlegging"
+      ],
+      "limitations": [
+        "Avgrenses fra AI ved at hele den fysiske sansnings-, styrings- og handlingskjeden må analyseres.",
+        "Autonomi er gradert og oppgaveavhengig, ikke en enkelt egenskap.",
+        "God ytelse i simulering dokumenterer ikke robusthet i ukontrollert miljø.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Definer menneskelig overstyring, ansvar og sikkerhetssone.",
+        "Ikke bruk simuleringsytelse som eneste grunnlag for autonom drift."
+      ],
+      "deliverables": [
+        "oppgave- og miljøspesifisert ytelsestest",
+        "sikkerhets- og intervensjonsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_menneske_robot_risikoanalyse",
+      "subject_id": "teknologi",
+      "area_id": "robotikk_automatisering",
+      "label": "Menneske–robot-risikoanalyse",
+      "purpose": "Kartlegg arbeidsdeling, kontaktsoner, farer, sikkerhetsfunksjoner, overstyring og konsekvenser ved feil.",
+      "status": "active",
+      "area_label": "Robotikk og automatisering",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_robotpersepsjon_lokalisering",
+        "em_tek_automasjon_planlegging_og_kontroll"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som menneske–robot-risikoanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig sensor- og aktuatorlogger og simulering og feltforsøk.",
+        "Kartlegg arbeidsdeling, kontaktsoner, farer, sikkerhetsfunksjoner, overstyring og konsekvenser ved feil.",
+        "Prøv resultatet mot oppgave og miljø, autonominivå, sikkerhetssone og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "sensor- og aktuatorlogger",
+        "simulering og feltforsøk",
+        "sikkerhets- og hendelsesdata",
+        "industrirobot",
+        "mobil robot eller drone",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "posisjonsfeil",
+        "syklustid",
+        "intervensjonsrate",
+        "sikkerhetsmargin",
+        "sansning–estimering–planlegging–handling",
+        "kinematikk og dynamikk",
+        "lokalisering og kartlegging"
+      ],
+      "limitations": [
+        "Avgrenses fra AI ved at hele den fysiske sansnings-, styrings- og handlingskjeden må analyseres.",
+        "Autonomi er gradert og oppgaveavhengig, ikke en enkelt egenskap.",
+        "God ytelse i simulering dokumenterer ikke robusthet i ukontrollert miljø.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Definer menneskelig overstyring, ansvar og sikkerhetssone.",
+        "Ikke bruk simuleringsytelse som eneste grunnlag for autonom drift."
+      ],
+      "deliverables": [
+        "oppgave- og miljøspesifisert ytelsestest",
+        "sikkerhets- og intervensjonsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_arkitektur_og_instruksjonssporing",
+      "subject_id": "teknologi",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Arkitektur- og instruksjonssporing",
+      "purpose": "Følg data og kontroll gjennom instruksjoner, registre, cache, minne og inn-/utdata.",
+      "status": "active",
+      "area_label": "Datamaskiner, arkitektur og operativsystemer",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_digital_logikk_og_representasjon",
+        "em_tek_operativsystemer_prosesser_ressurser",
+        "em_tek_samtidighet_lagring_og_i_o"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som arkitektur- og instruksjonssporing skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkitekturdokumentasjon og instruksjonssett og ytelsesprofiler og systemlogger.",
+        "Følg data og kontroll gjennom instruksjoner, registre, cache, minne og inn-/utdata.",
+        "Prøv resultatet mot arbeidslast, maskin- og OS-versjon, ressursgrenser og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkitekturdokumentasjon og instruksjonssett",
+        "ytelsesprofiler og systemlogger",
+        "operativsystem- eller hypervisorkode",
+        "prosessor eller innebygd system",
+        "server eller mobil enhet",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "latenstid og gjennomstrømning",
+        "cache-miss og minnebåndbredde",
+        "energi per oppgave",
+        "ressursutnyttelse",
+        "instruksjonsutførelse",
+        "minnehierarki",
+        "prosess- og trådhåndtering"
+      ],
+      "limitations": [
+        "Avgrenses fra programvareteknikk ved at fokus er maskinressurser, instruksjoner, kjøring og operativsystemmekanismer.",
+        "Høy klokkehastighet alene bestemmer ikke systemytelse.",
+        "Virtualisering fjerner ikke avhengighet av fysisk maskinvare og delte ressurser.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Oppgi delte ressurser, privilegier og isolasjonsgrenser.",
+        "Ikke optimaliser ytelse på bekostning av sikkerhet eller etterprøvbarhet uten eksplisitt begrunnelse."
+      ],
+      "deliverables": [
+        "lagdelt ressurs- eller instruksjonsspor",
+        "reproduserbar ytelses- eller samtidighetsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_ytelsesprofilering",
+      "subject_id": "teknologi",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Ytelsesprofilering",
+      "purpose": "Mål kjøretid, ressursbruk, venting, cacheatferd og flaskehalser med representative arbeidslaster.",
+      "status": "active",
+      "area_label": "Datamaskiner, arkitektur og operativsystemer",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_digital_logikk_og_representasjon",
+        "em_tek_prosessor_minne_arkitektur",
+        "em_tek_samtidighet_lagring_og_i_o"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som ytelsesprofilering skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkitekturdokumentasjon og instruksjonssett og ytelsesprofiler og systemlogger.",
+        "Mål kjøretid, ressursbruk, venting, cacheatferd og flaskehalser med representative arbeidslaster.",
+        "Prøv resultatet mot arbeidslast, maskin- og OS-versjon, ressursgrenser og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkitekturdokumentasjon og instruksjonssett",
+        "ytelsesprofiler og systemlogger",
+        "operativsystem- eller hypervisorkode",
+        "prosessor eller innebygd system",
+        "server eller mobil enhet",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "latenstid og gjennomstrømning",
+        "cache-miss og minnebåndbredde",
+        "energi per oppgave",
+        "ressursutnyttelse",
+        "instruksjonsutførelse",
+        "minnehierarki",
+        "prosess- og trådhåndtering"
+      ],
+      "limitations": [
+        "Avgrenses fra programvareteknikk ved at fokus er maskinressurser, instruksjoner, kjøring og operativsystemmekanismer.",
+        "Høy klokkehastighet alene bestemmer ikke systemytelse.",
+        "Virtualisering fjerner ikke avhengighet av fysisk maskinvare og delte ressurser.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Oppgi delte ressurser, privilegier og isolasjonsgrenser.",
+        "Ikke optimaliser ytelse på bekostning av sikkerhet eller etterprøvbarhet uten eksplisitt begrunnelse."
+      ],
+      "deliverables": [
+        "lagdelt ressurs- eller instruksjonsspor",
+        "reproduserbar ytelses- eller samtidighetsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_samtidighetsanalyse",
+      "subject_id": "teknologi",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Samtidighetsanalyse",
+      "purpose": "Kartlegg delte ressurser, rekkefølger, låser, atomiske operasjoner, kappløp og deadlock-risiko.",
+      "status": "active",
+      "area_label": "Datamaskiner, arkitektur og operativsystemer",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_prosessor_minne_arkitektur",
+        "em_tek_operativsystemer_prosesser_ressurser"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som samtidighetsanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkitekturdokumentasjon og instruksjonssett og ytelsesprofiler og systemlogger.",
+        "Kartlegg delte ressurser, rekkefølger, låser, atomiske operasjoner, kappløp og deadlock-risiko.",
+        "Prøv resultatet mot arbeidslast, maskin- og OS-versjon, ressursgrenser og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkitekturdokumentasjon og instruksjonssett",
+        "ytelsesprofiler og systemlogger",
+        "operativsystem- eller hypervisorkode",
+        "prosessor eller innebygd system",
+        "server eller mobil enhet",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "latenstid og gjennomstrømning",
+        "cache-miss og minnebåndbredde",
+        "energi per oppgave",
+        "ressursutnyttelse",
+        "instruksjonsutførelse",
+        "minnehierarki",
+        "prosess- og trådhåndtering"
+      ],
+      "limitations": [
+        "Avgrenses fra programvareteknikk ved at fokus er maskinressurser, instruksjoner, kjøring og operativsystemmekanismer.",
+        "Høy klokkehastighet alene bestemmer ikke systemytelse.",
+        "Virtualisering fjerner ikke avhengighet av fysisk maskinvare og delte ressurser.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Oppgi delte ressurser, privilegier og isolasjonsgrenser.",
+        "Ikke optimaliser ytelse på bekostning av sikkerhet eller etterprøvbarhet uten eksplisitt begrunnelse."
+      ],
+      "deliverables": [
+        "lagdelt ressurs- eller instruksjonsspor",
+        "reproduserbar ytelses- eller samtidighetsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_kode_og_arkitekturanalyse",
+      "subject_id": "teknologi",
+      "area_id": "programvareteknikk",
+      "label": "Kode- og arkitekturanalyse",
+      "purpose": "Undersøk modulansvar, avhengigheter, grensesnitt, dataflyt, invariants og endringskonsekvenser.",
+      "status": "active",
+      "area_label": "Programvareteknikk",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_programmeringsparadigmer_abstraksjon",
+        "em_tek_modularitet_arkitektur_api",
+        "em_tek_testing_verifikasjon_korrekthet",
+        "em_tek_drift_observerbarhet_vedlikehold"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som kode- og arkitekturanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kildekode og versjonshistorikk og testresultater, logger og hendelsesrapporter.",
+        "Undersøk modulansvar, avhengigheter, grensesnitt, dataflyt, invariants og endringskonsekvenser.",
+        "Prøv resultatet mot versjon og konfigurasjon, arbeidslast, driftsmiljø og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kildekode og versjonshistorikk",
+        "testresultater, logger og hendelsesrapporter",
+        "arkitektur- og beslutningsdokumenter",
+        "åpent kodeprosjekt",
+        "produksjonstjeneste",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "feilrate og alvorlighet",
+        "test- og kravdekning",
+        "endringsledetid",
+        "MTTR og tilgjengelighet",
+        "krav–arkitektur–implementasjon–drift",
+        "modularitet og avhengigheter",
+        "versjonering og endringskontroll"
+      ],
+      "limitations": [
+        "Avgrenses fra informatikkens formelle områder ved at utvikling, vedlikehold, organisasjon og drift inngår i analyseobjektet.",
+        "Flere tester betyr ikke automatisk bedre risikodekning.",
+        "Kodekvalitet kan ikke vurderes løsrevet fra endringstakt, drift og teampraksis.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Knytt test- og driftsdata til konkrete versjoner og konfigurasjoner.",
+        "Ikke presentér fravær av observerte feil som bevis for korrekthet."
+      ],
+      "deliverables": [
+        "versjonsforankret arkitektur- eller hendelsesanalyse",
+        "risikobasert test- og forbedringsplan"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_teststrategi_og_verifikasjon",
+      "subject_id": "teknologi",
+      "area_id": "programvareteknikk",
+      "label": "Teststrategi og verifikasjon",
+      "purpose": "Koble risiko og spesifikasjon til en kombinasjon av enhets-, integrasjons-, system-, egenskaps- og formelle tester.",
+      "status": "active",
+      "area_label": "Programvareteknikk",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_programmeringsparadigmer_abstraksjon",
+        "em_tek_modularitet_arkitektur_api",
+        "em_tek_drift_observerbarhet_vedlikehold"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som teststrategi og verifikasjon skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kildekode og versjonshistorikk og testresultater, logger og hendelsesrapporter.",
+        "Koble risiko og spesifikasjon til en kombinasjon av enhets-, integrasjons-, system-, egenskaps- og formelle tester.",
+        "Prøv resultatet mot versjon og konfigurasjon, arbeidslast, driftsmiljø og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kildekode og versjonshistorikk",
+        "testresultater, logger og hendelsesrapporter",
+        "arkitektur- og beslutningsdokumenter",
+        "åpent kodeprosjekt",
+        "produksjonstjeneste",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "feilrate og alvorlighet",
+        "test- og kravdekning",
+        "endringsledetid",
+        "MTTR og tilgjengelighet",
+        "krav–arkitektur–implementasjon–drift",
+        "modularitet og avhengigheter",
+        "versjonering og endringskontroll"
+      ],
+      "limitations": [
+        "Avgrenses fra informatikkens formelle områder ved at utvikling, vedlikehold, organisasjon og drift inngår i analyseobjektet.",
+        "Flere tester betyr ikke automatisk bedre risikodekning.",
+        "Kodekvalitet kan ikke vurderes løsrevet fra endringstakt, drift og teampraksis.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Knytt test- og driftsdata til konkrete versjoner og konfigurasjoner.",
+        "Ikke presentér fravær av observerte feil som bevis for korrekthet."
+      ],
+      "deliverables": [
+        "versjonsforankret arkitektur- eller hendelsesanalyse",
+        "risikobasert test- og forbedringsplan"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_observerbarhets_og_hendelsesanalyse",
+      "subject_id": "teknologi",
+      "area_id": "programvareteknikk",
+      "label": "Observerbarhets- og hendelsesanalyse",
+      "purpose": "Bruk logger, metrikker, spor og tidslinjer til å rekonstruere systemtilstand, årsaker og forbedringstiltak.",
+      "status": "active",
+      "area_label": "Programvareteknikk",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_modularitet_arkitektur_api",
+        "em_tek_testing_verifikasjon_korrekthet"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som observerbarhets- og hendelsesanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig kildekode og versjonshistorikk og testresultater, logger og hendelsesrapporter.",
+        "Bruk logger, metrikker, spor og tidslinjer til å rekonstruere systemtilstand, årsaker og forbedringstiltak.",
+        "Prøv resultatet mot versjon og konfigurasjon, arbeidslast, driftsmiljø og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "kildekode og versjonshistorikk",
+        "testresultater, logger og hendelsesrapporter",
+        "arkitektur- og beslutningsdokumenter",
+        "åpent kodeprosjekt",
+        "produksjonstjeneste",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "feilrate og alvorlighet",
+        "test- og kravdekning",
+        "endringsledetid",
+        "MTTR og tilgjengelighet",
+        "krav–arkitektur–implementasjon–drift",
+        "modularitet og avhengigheter",
+        "versjonering og endringskontroll"
+      ],
+      "limitations": [
+        "Avgrenses fra informatikkens formelle områder ved at utvikling, vedlikehold, organisasjon og drift inngår i analyseobjektet.",
+        "Flere tester betyr ikke automatisk bedre risikodekning.",
+        "Kodekvalitet kan ikke vurderes løsrevet fra endringstakt, drift og teampraksis.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Knytt test- og driftsdata til konkrete versjoner og konfigurasjoner.",
+        "Ikke presentér fravær av observerte feil som bevis for korrekthet."
+      ],
+      "deliverables": [
+        "versjonsforankret arkitektur- eller hendelsesanalyse",
+        "risikobasert test- og forbedringsplan"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_algoritmekorrekthet_og_kompleksitet",
+      "subject_id": "teknologi",
+      "area_id": "algoritmer_data_ai",
+      "label": "Algoritmekorrekthet og kompleksitetsanalyse",
+      "purpose": "Formuler pre- og postbetingelser, bevis eller test korrekthet og analyser ressursvekst for relevante inputklasser.",
+      "status": "active",
+      "area_label": "Algoritmer, data og kunstig intelligens",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_algoritmer_datastrukturer_kompleksitet",
+        "em_tek_maskinlaering_trening_generalisering",
+        "em_tek_ai_evaluering_styring_ansvar"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som algoritmekorrekthet og kompleksitetsanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig algoritmespesifikasjon eller kode og datasettdokumentasjon og datakort.",
+        "Formuler pre- og postbetingelser, bevis eller test korrekthet og analyser ressursvekst for relevante inputklasser.",
+        "Prøv resultatet mot oppgave og målvariabel, datasplitt og tidsperiode, baseline og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "algoritmespesifikasjon eller kode",
+        "datasettdokumentasjon og datakort",
+        "evalueringsprotokoll, baseline og feilanalyse",
+        "algoritmeimplementasjon",
+        "dokumentert datasett",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "kompleksitet",
+        "kalibrering og diskriminering",
+        "undergruppefeil",
+        "robusthet ved distribusjonsskift",
+        "algoritmisk korrekthet",
+        "beregningskompleksitet",
+        "datagenererende prosess"
+      ],
+      "limitations": [
+        "Avgrenses fra generell programvare ved at datagrunnlag, læringsprosess, statistisk evaluering og generalisering er sentrale.",
+        "Høy gjennomsnittsscore betyr ikke robust eller rettferdig ytelse i alle grupper.",
+        "En språkmodell lagrer og genererer statistiske mønstre; den er ikke en database eller sannhetskilde.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Dokumenter datagrunnlag, berørte grupper, feilkostnader og menneskelig kontroll.",
+        "Skill prediksjon fra forklaring og normativ beslutning."
+      ],
+      "deliverables": [
+        "datasett-/modellkort med gyldighetsgrenser",
+        "baseline- og feilanalyse per relevant undergruppe"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_datasett_og_representasjonsanalyse",
+      "subject_id": "teknologi",
+      "area_id": "algoritmer_data_ai",
+      "label": "Datasett- og representasjonsanalyse",
+      "purpose": "Undersøk datakilde, utvalg, måling, etiketter, mangler, skjevheter, lekkasje og representativitet.",
+      "status": "active",
+      "area_label": "Algoritmer, data og kunstig intelligens",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_algoritmer_datastrukturer_kompleksitet",
+        "em_tek_data_kvalitet_representasjon",
+        "em_tek_maskinlaering_trening_generalisering",
+        "em_tek_ai_evaluering_styring_ansvar"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som datasett- og representasjonsanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig algoritmespesifikasjon eller kode og datasettdokumentasjon og datakort.",
+        "Undersøk datakilde, utvalg, måling, etiketter, mangler, skjevheter, lekkasje og representativitet.",
+        "Prøv resultatet mot oppgave og målvariabel, datasplitt og tidsperiode, baseline og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "algoritmespesifikasjon eller kode",
+        "datasettdokumentasjon og datakort",
+        "evalueringsprotokoll, baseline og feilanalyse",
+        "algoritmeimplementasjon",
+        "dokumentert datasett",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "kompleksitet",
+        "kalibrering og diskriminering",
+        "undergruppefeil",
+        "robusthet ved distribusjonsskift",
+        "algoritmisk korrekthet",
+        "beregningskompleksitet",
+        "datagenererende prosess"
+      ],
+      "limitations": [
+        "Avgrenses fra generell programvare ved at datagrunnlag, læringsprosess, statistisk evaluering og generalisering er sentrale.",
+        "Høy gjennomsnittsscore betyr ikke robust eller rettferdig ytelse i alle grupper.",
+        "En språkmodell lagrer og genererer statistiske mønstre; den er ikke en database eller sannhetskilde.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Dokumenter datagrunnlag, berørte grupper, feilkostnader og menneskelig kontroll.",
+        "Skill prediksjon fra forklaring og normativ beslutning."
+      ],
+      "deliverables": [
+        "datasett-/modellkort med gyldighetsgrenser",
+        "baseline- og feilanalyse per relevant undergruppe"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_modell_og_feilanalyse",
+      "subject_id": "teknologi",
+      "area_id": "algoritmer_data_ai",
+      "label": "Modell- og feilanalyse",
+      "purpose": "Evaluer baseline, treningsoppsett, metrikker, kalibrering, feiltyper, undergrupper, robusthet og bruksgrenser.",
+      "status": "active",
+      "area_label": "Algoritmer, data og kunstig intelligens",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_data_kvalitet_representasjon",
+        "em_tek_maskinlaering_trening_generalisering",
+        "em_tek_ai_evaluering_styring_ansvar"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som modell- og feilanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig algoritmespesifikasjon eller kode og datasettdokumentasjon og datakort.",
+        "Evaluer baseline, treningsoppsett, metrikker, kalibrering, feiltyper, undergrupper, robusthet og bruksgrenser.",
+        "Prøv resultatet mot oppgave og målvariabel, datasplitt og tidsperiode, baseline og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "algoritmespesifikasjon eller kode",
+        "datasettdokumentasjon og datakort",
+        "evalueringsprotokoll, baseline og feilanalyse",
+        "algoritmeimplementasjon",
+        "dokumentert datasett",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "kompleksitet",
+        "kalibrering og diskriminering",
+        "undergruppefeil",
+        "robusthet ved distribusjonsskift",
+        "algoritmisk korrekthet",
+        "beregningskompleksitet",
+        "datagenererende prosess"
+      ],
+      "limitations": [
+        "Avgrenses fra generell programvare ved at datagrunnlag, læringsprosess, statistisk evaluering og generalisering er sentrale.",
+        "Høy gjennomsnittsscore betyr ikke robust eller rettferdig ytelse i alle grupper.",
+        "En språkmodell lagrer og genererer statistiske mønstre; den er ikke en database eller sannhetskilde.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Dokumenter datagrunnlag, berørte grupper, feilkostnader og menneskelig kontroll.",
+        "Skill prediksjon fra forklaring og normativ beslutning."
+      ],
+      "deliverables": [
+        "datasett-/modellkort med gyldighetsgrenser",
+        "baseline- og feilanalyse per relevant undergruppe"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_protokoll_og_pakkesporing",
+      "subject_id": "teknologi",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Protokoll- og pakkesporing",
+      "purpose": "Følg adresser, håndtrykk, meldinger, tilstander, tidsavbrudd og feil gjennom protokollstakken.",
+      "status": "active",
+      "area_label": "Nettverk, cybersikkerhet og digital infrastruktur",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_nettverkslag_protokoller_ruting",
+        "em_tek_distribuerte_systemer_sky",
+        "em_tek_kryptografi_identitet_tilgang",
+        "em_tek_infrastruktur_robusthet_hendelser"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som protokoll- og pakkesporing skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig protokollspesifikasjon og konfigurasjon og trafikk-, hendelses- og tilgjengelighetslogger.",
+        "Følg adresser, håndtrykk, meldinger, tilstander, tidsavbrudd og feil gjennom protokollstakken.",
+        "Prøv resultatet mot tjeneste og trusselmodell, topologi og skala, latenstid og tilgjengelighetskrav og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "protokollspesifikasjon og konfigurasjon",
+        "trafikk-, hendelses- og tilgjengelighetslogger",
+        "trusselmodell, sårbarhets- eller granskningsrapport",
+        "nettverk eller radiosystem",
+        "datasenter eller skyarkitektur",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "latenstid, tap og gjennomstrømning",
+        "oppetid og gjenoppretting",
+        "angrepsflate",
+        "energi- og kapasitetsbruk",
+        "protokollag og ruting",
+        "kø, kapasitet og overbelastning",
+        "identitet og tilgang"
+      ],
+      "limitations": [
+        "Avgrenses fra mediefag ved at transport, protokoller, tillit, maskinvare og drift er analyseobjektet – ikke innholdet.",
+        "Kryptering beskytter ikke automatisk endepunkter, metadata eller tilgjengelighet.",
+        "Sky er andres fysiske infrastruktur med delte ansvar og avhengigheter.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ikke publiser operative sårbarhetsdetaljer uten ansvarlig håndtering.",
+        "Skill konfidensialitet, integritet og tilgjengelighet i risikovurderingen."
+      ],
+      "deliverables": [
+        "protokoll-, topologi- eller trusselmodell",
+        "hendelses- og robusthetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_trusselmodellering",
+      "subject_id": "teknologi",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Trusselmodellering",
+      "purpose": "Definer verdier, aktører, tillitsgrenser, angrepsflater, trusler, kontroller og gjenværende risiko.",
+      "status": "active",
+      "area_label": "Nettverk, cybersikkerhet og digital infrastruktur",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_nettverkslag_protokoller_ruting",
+        "em_tek_distribuerte_systemer_sky",
+        "em_tek_kryptografi_identitet_tilgang",
+        "em_tek_infrastruktur_robusthet_hendelser"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som trusselmodellering skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig protokollspesifikasjon og konfigurasjon og trafikk-, hendelses- og tilgjengelighetslogger.",
+        "Definer verdier, aktører, tillitsgrenser, angrepsflater, trusler, kontroller og gjenværende risiko.",
+        "Prøv resultatet mot tjeneste og trusselmodell, topologi og skala, latenstid og tilgjengelighetskrav og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "protokollspesifikasjon og konfigurasjon",
+        "trafikk-, hendelses- og tilgjengelighetslogger",
+        "trusselmodell, sårbarhets- eller granskningsrapport",
+        "nettverk eller radiosystem",
+        "datasenter eller skyarkitektur",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "latenstid, tap og gjennomstrømning",
+        "oppetid og gjenoppretting",
+        "angrepsflate",
+        "energi- og kapasitetsbruk",
+        "protokollag og ruting",
+        "kø, kapasitet og overbelastning",
+        "identitet og tilgang"
+      ],
+      "limitations": [
+        "Avgrenses fra mediefag ved at transport, protokoller, tillit, maskinvare og drift er analyseobjektet – ikke innholdet.",
+        "Kryptering beskytter ikke automatisk endepunkter, metadata eller tilgjengelighet.",
+        "Sky er andres fysiske infrastruktur med delte ansvar og avhengigheter.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ikke publiser operative sårbarhetsdetaljer uten ansvarlig håndtering.",
+        "Skill konfidensialitet, integritet og tilgjengelighet i risikovurderingen."
+      ],
+      "deliverables": [
+        "protokoll-, topologi- eller trusselmodell",
+        "hendelses- og robusthetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_robusthets_og_hendelsesanalyse",
+      "subject_id": "teknologi",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Robusthets- og hendelsesanalyse",
+      "purpose": "Kartlegg avhengigheter, redundans, kapasitet, observabilitet, feilforløp, gjenoppretting og læring etter hendelser.",
+      "status": "active",
+      "area_label": "Nettverk, cybersikkerhet og digital infrastruktur",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_distribuerte_systemer_sky",
+        "em_tek_kryptografi_identitet_tilgang"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som robusthets- og hendelsesanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig protokollspesifikasjon og konfigurasjon og trafikk-, hendelses- og tilgjengelighetslogger.",
+        "Kartlegg avhengigheter, redundans, kapasitet, observabilitet, feilforløp, gjenoppretting og læring etter hendelser.",
+        "Prøv resultatet mot tjeneste og trusselmodell, topologi og skala, latenstid og tilgjengelighetskrav og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "protokollspesifikasjon og konfigurasjon",
+        "trafikk-, hendelses- og tilgjengelighetslogger",
+        "trusselmodell, sårbarhets- eller granskningsrapport",
+        "nettverk eller radiosystem",
+        "datasenter eller skyarkitektur",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "latenstid, tap og gjennomstrømning",
+        "oppetid og gjenoppretting",
+        "angrepsflate",
+        "energi- og kapasitetsbruk",
+        "protokollag og ruting",
+        "kø, kapasitet og overbelastning",
+        "identitet og tilgang"
+      ],
+      "limitations": [
+        "Avgrenses fra mediefag ved at transport, protokoller, tillit, maskinvare og drift er analyseobjektet – ikke innholdet.",
+        "Kryptering beskytter ikke automatisk endepunkter, metadata eller tilgjengelighet.",
+        "Sky er andres fysiske infrastruktur med delte ansvar og avhengigheter.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Ikke publiser operative sårbarhetsdetaljer uten ansvarlig håndtering.",
+        "Skill konfidensialitet, integritet og tilgjengelighet i risikovurderingen."
+      ],
+      "deliverables": [
+        "protokoll-, topologi- eller trusselmodell",
+        "hendelses- og robusthetsvurdering"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_oppgave_og_arbeidsflytanalyse",
+      "subject_id": "teknologi",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Oppgave- og arbeidsflytanalyse",
+      "purpose": "Observer mål, deloppgaver, informasjonsbehov, koordinering, avbrudd, verktøy og faktisk praksis.",
+      "status": "active",
+      "area_label": "Menneske–teknologi, HCI og universell utforming",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_menneskelige_faktorer_og_arbeid",
+        "em_tek_tilgjengelighet_universell_utforming",
+        "em_tek_sosiotekniske_systemer_automatisering"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som oppgave- og arbeidsflytanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig brukbarhetstest og observasjon og tilgjengelighetsmåling.",
+        "Observer mål, deloppgaver, informasjonsbehov, koordinering, avbrudd, verktøy og faktisk praksis.",
+        "Prøv resultatet mot brukergruppe og oppgave, kontekst og hjelpemidler, erfaringsnivå og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "brukbarhetstest og observasjon",
+        "tilgjengelighetsmåling",
+        "hendelses-, support- eller feltdata",
+        "digitalt grensesnitt",
+        "kontrollrom eller førermiljø",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "oppgavetid og feilrate",
+        "lærbarhet",
+        "tilgjengelighetsbrudd",
+        "situasjonsforståelse",
+        "persepsjon og kognitiv belastning",
+        "handling–tilbakemelding",
+        "mental modell"
+      ],
+      "limitations": [
+        "Avgrenses fra psykologi ved at menneskelig atferd analyseres i samspill med et konkret grensesnitt og teknisk system.",
+        "Brukervennlighet er ikke personlig smak; den kan undersøkes mot oppgaver og brukergrupper.",
+        "Et gjennomsnittlig testresultat kan skjule alvorlige tilgjengelighetsbarrierer.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Inkluder relevante brukergrupper og hjelpemidler i testgrunnlaget.",
+        "Ikke behandle gjennomsnittsbrukeren som norm når alvorlige barrierer rammer minoriteter."
+      ],
+      "deliverables": [
+        "oppgavebasert bruker- eller tilgjengelighetsrapport",
+        "prioritert designendring med evidens"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_brukbarhetstesting",
+      "subject_id": "teknologi",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Brukbarhetstesting",
+      "purpose": "La representative brukere utføre definerte oppgaver og mål effektivitet, feil, forståelse og opplevelse.",
+      "status": "active",
+      "area_label": "Menneske–teknologi, HCI og universell utforming",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_menneskelige_faktorer_og_arbeid",
+        "em_tek_interaksjonsdesign_og_brukbarhet",
+        "em_tek_sosiotekniske_systemer_automatisering"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som brukbarhetstesting skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig brukbarhetstest og observasjon og tilgjengelighetsmåling.",
+        "La representative brukere utføre definerte oppgaver og mål effektivitet, feil, forståelse og opplevelse.",
+        "Prøv resultatet mot brukergruppe og oppgave, kontekst og hjelpemidler, erfaringsnivå og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "brukbarhetstest og observasjon",
+        "tilgjengelighetsmåling",
+        "hendelses-, support- eller feltdata",
+        "digitalt grensesnitt",
+        "kontrollrom eller førermiljø",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "oppgavetid og feilrate",
+        "lærbarhet",
+        "tilgjengelighetsbrudd",
+        "situasjonsforståelse",
+        "persepsjon og kognitiv belastning",
+        "handling–tilbakemelding",
+        "mental modell"
+      ],
+      "limitations": [
+        "Avgrenses fra psykologi ved at menneskelig atferd analyseres i samspill med et konkret grensesnitt og teknisk system.",
+        "Brukervennlighet er ikke personlig smak; den kan undersøkes mot oppgaver og brukergrupper.",
+        "Et gjennomsnittlig testresultat kan skjule alvorlige tilgjengelighetsbarrierer.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Inkluder relevante brukergrupper og hjelpemidler i testgrunnlaget.",
+        "Ikke behandle gjennomsnittsbrukeren som norm når alvorlige barrierer rammer minoriteter."
+      ],
+      "deliverables": [
+        "oppgavebasert bruker- eller tilgjengelighetsrapport",
+        "prioritert designendring med evidens"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_tilgjengelighetsrevisjon",
+      "subject_id": "teknologi",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Tilgjengelighetsrevisjon",
+      "purpose": "Kombiner standardkontroll, teknisk test og brukertest for ulike funksjonsforutsetninger og hjelpemidler.",
+      "status": "active",
+      "area_label": "Menneske–teknologi, HCI og universell utforming",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_interaksjonsdesign_og_brukbarhet",
+        "em_tek_tilgjengelighet_universell_utforming"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som tilgjengelighetsrevisjon skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig brukbarhetstest og observasjon og tilgjengelighetsmåling.",
+        "Kombiner standardkontroll, teknisk test og brukertest for ulike funksjonsforutsetninger og hjelpemidler.",
+        "Prøv resultatet mot brukergruppe og oppgave, kontekst og hjelpemidler, erfaringsnivå og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "brukbarhetstest og observasjon",
+        "tilgjengelighetsmåling",
+        "hendelses-, support- eller feltdata",
+        "digitalt grensesnitt",
+        "kontrollrom eller førermiljø",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "oppgavetid og feilrate",
+        "lærbarhet",
+        "tilgjengelighetsbrudd",
+        "situasjonsforståelse",
+        "persepsjon og kognitiv belastning",
+        "handling–tilbakemelding",
+        "mental modell"
+      ],
+      "limitations": [
+        "Avgrenses fra psykologi ved at menneskelig atferd analyseres i samspill med et konkret grensesnitt og teknisk system.",
+        "Brukervennlighet er ikke personlig smak; den kan undersøkes mot oppgaver og brukergrupper.",
+        "Et gjennomsnittlig testresultat kan skjule alvorlige tilgjengelighetsbarrierer.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Inkluder relevante brukergrupper og hjelpemidler i testgrunnlaget.",
+        "Ikke behandle gjennomsnittsbrukeren som norm når alvorlige barrierer rammer minoriteter."
+      ],
+      "deliverables": [
+        "oppgavebasert bruker- eller tilgjengelighetsrapport",
+        "prioritert designendring med evidens"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_teknologihistorisk_sporanalyse",
+      "subject_id": "teknologi",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Teknologihistorisk sporanalyse",
+      "purpose": "Følg artefakt, standard, infrastruktur, aktører, vedlikehold og alternativer gjennom tid.",
+      "status": "active",
+      "area_label": "Teknologihistorie, STS, risiko og bærekraft",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_teknologihistorie_sti_og_innelasing",
+        "em_tek_standarder_infrastruktur_interoperabilitet",
+        "em_tek_teknologi_makt_etikk_ansvar",
+        "em_tek_risiko_baerekraft_omstilling"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som teknologihistorisk sporanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkiv, standard og beslutningsdokument og ulykkes-, tilsyns- og risikodata.",
+        "Følg artefakt, standard, infrastruktur, aktører, vedlikehold og alternativer gjennom tid.",
+        "Prøv resultatet mot funksjon og tidsperiode, geografisk og institusjonell systemgrense, alternativer som faktisk var tilgjengelige og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkiv, standard og beslutningsdokument",
+        "ulykkes-, tilsyns- og risikodata",
+        "livsløpsdata og scenarioanalyse",
+        "historisk teknisk system",
+        "standardiseringsforløp",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "risiko og usikkerhet",
+        "livsløpsutslipp og ressursbruk",
+        "fordelingsvirkning",
+        "omstillingstid og reversibilitet",
+        "stiavhengighet og innelåsing",
+        "store tekniske systemer",
+        "standardisering og interoperabilitet"
+      ],
+      "limitations": [
+        "Avgrenses fra historie og politikk ved at tekniske egenskaper, infrastrukturer og vedlikeholdsregimer analyseres sammen med institusjoner og makt.",
+        "Teknologisk dominans beviser ikke teknisk overlegenhet; standarder, investeringer og makt kan låse inn løsninger.",
+        "Bærekraft er en fler-dimensional vurdering, ikke en etikett eller ett enkelt utslippstall.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Skill empiriske beskrivelser fra normative vurderinger.",
+        "Synliggjør fordelingsvirkninger, usikkerhet og hvem som bærer risikoen."
+      ],
+      "deliverables": [
+        "dokumentert teknologisk forløp eller aktørkart",
+        "risiko-, livsløps- eller fordelingsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_sosioteknisk_maktanalyse",
+      "subject_id": "teknologi",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Sosioteknisk maktanalyse",
+      "purpose": "Kartlegg hvem som definerer krav, kontrollerer systemet, får nytte, bærer kostnad og kan klage eller endre løsningen.",
+      "status": "active",
+      "area_label": "Teknologihistorie, STS, risiko og bærekraft",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_teknologihistorie_sti_og_innelasing",
+        "em_tek_standarder_infrastruktur_interoperabilitet",
+        "em_tek_teknologi_makt_etikk_ansvar",
+        "em_tek_risiko_baerekraft_omstilling"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som sosioteknisk maktanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkiv, standard og beslutningsdokument og ulykkes-, tilsyns- og risikodata.",
+        "Kartlegg hvem som definerer krav, kontrollerer systemet, får nytte, bærer kostnad og kan klage eller endre løsningen.",
+        "Prøv resultatet mot funksjon og tidsperiode, geografisk og institusjonell systemgrense, alternativer som faktisk var tilgjengelige og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkiv, standard og beslutningsdokument",
+        "ulykkes-, tilsyns- og risikodata",
+        "livsløpsdata og scenarioanalyse",
+        "historisk teknisk system",
+        "standardiseringsforløp",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "risiko og usikkerhet",
+        "livsløpsutslipp og ressursbruk",
+        "fordelingsvirkning",
+        "omstillingstid og reversibilitet",
+        "stiavhengighet og innelåsing",
+        "store tekniske systemer",
+        "standardisering og interoperabilitet"
+      ],
+      "limitations": [
+        "Avgrenses fra historie og politikk ved at tekniske egenskaper, infrastrukturer og vedlikeholdsregimer analyseres sammen med institusjoner og makt.",
+        "Teknologisk dominans beviser ikke teknisk overlegenhet; standarder, investeringer og makt kan låse inn løsninger.",
+        "Bærekraft er en fler-dimensional vurdering, ikke en etikett eller ett enkelt utslippstall.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Skill empiriske beskrivelser fra normative vurderinger.",
+        "Synliggjør fordelingsvirkninger, usikkerhet og hvem som bærer risikoen."
+      ],
+      "deliverables": [
+        "dokumentert teknologisk forløp eller aktørkart",
+        "risiko-, livsløps- eller fordelingsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    },
+    {
+      "method_id": "met_tek_risiko_og_baerekraftsanalyse",
+      "subject_id": "teknologi",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Risiko- og bærekraftsanalyse",
+      "purpose": "Kombiner scenarioer, usikkerhet, konsekvens, livsløp, fordelingsvirkninger og mulige risikoreduserende tiltak.",
+      "status": "active",
+      "area_label": "Teknologihistorie, STS, risiko og bærekraft",
+      "editorial_status": "operationalized_v3",
+      "applicable_emne_ids": [
+        "em_tek_standarder_infrastruktur_interoperabilitet",
+        "em_tek_teknologi_makt_etikk_ansvar",
+        "em_tek_risiko_baerekraft_omstilling"
+      ],
+      "procedure": [
+        "Avgrens analyseobjekt, systemgrense, driftskontekst og beslutningen som risiko- og bærekraftsanalyse skal informere.",
+        "Samle og versjoner nødvendig grunnlag, særlig arkiv, standard og beslutningsdokument og ulykkes-, tilsyns- og risikodata.",
+        "Kombiner scenarioer, usikkerhet, konsekvens, livsløp, fordelingsvirkninger og mulige risikoreduserende tiltak.",
+        "Prøv resultatet mot funksjon og tidsperiode, geografisk og institusjonell systemgrense, alternativer som faktisk var tilgjengelige og minst én alternativ forklaring eller løsning.",
+        "Dokumenter beregninger, observasjoner, antakelser, usikkerhet, gyldighetsområde, avvik og kildelokatorer.",
+        "Konkluder bare innenfor det datagrunnlaget og den systemgrensen analysen faktisk dekker."
+      ],
+      "required_inputs": [
+        "arkiv, standard og beslutningsdokument",
+        "ulykkes-, tilsyns- og risikodata",
+        "livsløpsdata og scenarioanalyse",
+        "historisk teknisk system",
+        "standardiseringsforløp",
+        "versjon, konfigurasjon og driftskontekst",
+        "ekstern kilde med lokator"
+      ],
+      "required_observations": [
+        "risiko og usikkerhet",
+        "livsløpsutslipp og ressursbruk",
+        "fordelingsvirkning",
+        "omstillingstid og reversibilitet",
+        "stiavhengighet og innelåsing",
+        "store tekniske systemer",
+        "standardisering og interoperabilitet"
+      ],
+      "limitations": [
+        "Avgrenses fra historie og politikk ved at tekniske egenskaper, infrastrukturer og vedlikeholdsregimer analyseres sammen med institusjoner og makt.",
+        "Teknologisk dominans beviser ikke teknisk overlegenhet; standarder, investeringer og makt kan låse inn løsninger.",
+        "Bærekraft er en fler-dimensional vurdering, ikke en etikett eller ett enkelt utslippstall.",
+        "Metoden kan ikke alene dokumentere årsak, sikkerhet eller generaliserbarhet uten egnet design og datagrunnlag."
+      ],
+      "ethics": [
+        "Skill empiriske beskrivelser fra normative vurderinger.",
+        "Synliggjør fordelingsvirkninger, usikkerhet og hvem som bærer risikoen."
+      ],
+      "deliverables": [
+        "dokumentert teknologisk forløp eller aktørkart",
+        "risiko-, livsløps- eller fordelingsanalyse"
+      ],
+      "quality_gates": [
+        "systemgrense, versjon og driftskontekst er eksplisitte",
+        "alle vurderte påstander har source_id, lokator og claim_basis",
+        "usikkerhet, feilkilder og gyldighetsområde er dokumentert",
+        "sammenligninger bruker samme funksjon og sammenligningsgrunnlag",
+        "minst én alternativ forklaring, løsning eller feilmodus er vurdert",
+        "leveransen kan etterprøves av en annen fagperson"
+      ],
+      "blocked_when": [
+        "mangler konkret teknologisk anker",
+        "mangler relevant datagrunnlag",
+        "mangler kilde eller lokator",
+        "systemgrensen er uavklart"
+      ]
+    }
+  ]
+}
