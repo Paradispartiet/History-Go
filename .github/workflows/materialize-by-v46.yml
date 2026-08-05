@@ -1,0 +1,41 @@
+name: Materialize BY editorial v4.6
+
+on:
+  push:
+    branches:
+      - fix/by-editorial-v4-6-20260805
+    paths:
+      - "data/fag/by/.editorial_patch_by_v4_6.part*"
+      - "scripts/materialize-by-editorial-v4-6.mjs"
+      - ".github/workflows/materialize-by-v46.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/by-editorial-v4-6-20260805
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Materialize production files
+        run: node scripts/materialize-by-editorial-v4-6.mjs
+      - name: Validate materialized files
+        run: node scripts/validate-by-editorial-integrity.mjs
+      - name: Remove bootstrap files
+        run: |
+          rm data/fag/by/.editorial_patch_by_v4_6.part*
+          rm scripts/materialize-by-editorial-v4-6.mjs
+          rm .github/workflows/materialize-by-v46.yml
+      - name: Commit materialized result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Materialize BY editorial v4.6"
+          git push origin HEAD:fix/by-editorial-v4-6-20260805
