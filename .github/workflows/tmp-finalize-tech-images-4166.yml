@@ -1,0 +1,71 @@
+name: Finalize technology-place images for PR 4166
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-teknologisteder-batch-01-r2
+    paths:
+      - .github/workflows/tmp-finalize-tech-images-4166.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-teknologisteder-batch-01-r2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Add inspectable images, rebuild index and clean up
+        shell: bash
+        env:
+          GITHUB_BASE_REF: main
+        run: |
+          set -euo pipefail
+
+          node <<'NODE'
+          const fs = require('node:fs');
+          const images = new Map([
+            ['data/places/vitenskap/oslo/places_vitenskap/bitraf.json', 'https://bitraf.no/wp-content/uploads/2021/06/b_3d-printers-500x500.jpg'],
+            ['data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json', 'https://lokalhistoriewiki.no/thumb.php?f=Radionette_bl%C3%A5_plakett_Bygd%C3%B8y_all%C3%A9_67.jpg&width=400'],
+            ['data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json', 'https://www.sintef.no/contentassets/97a7ac379a9a48abb585cdc754ff3ca1/_41z6568-edit.jpg?height=720&mode=crop&quality=80&scale=both&width=1080'],
+            ['data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json', 'https://commons.wikimedia.org/wiki/Special:FilePath/2020-08%20T%C3%A5rnet%20fra%20Kabelgata.jpg'],
+            ['data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json', 'https://lokalhistoriewiki.no/thumb.php?f=Oslo_Brekkeveien_oversikt-2_241110.jpg&width=400']
+          ]);
+          for (const [file, image] of images) {
+            const place = JSON.parse(fs.readFileSync(file, 'utf8'));
+            place.image = image;
+            place.cardImage = image;
+            fs.writeFileSync(file, `${JSON.stringify(place, null, 2)}\n`);
+          }
+          NODE
+
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          node scripts/audit-place-images.mjs --mode=changed
+          npm run places:index:check
+          npm run health:places
+          npm run audit:categories
+          npm run typecheck:tools
+          npm run typecheck:web
+
+          git rm .github/workflows/tmp-finalize-tech-images-4166.yml
+          git add \
+            data/places/places_index.json \
+            data/places/vitenskap/oslo/places_vitenskap/bitraf.json \
+            data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json \
+            data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json \
+            data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json \
+            data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Gi teknologisteder inspectable bilder'
+          git push origin HEAD:agent/vitenskap-teknologisteder-batch-01-r2
