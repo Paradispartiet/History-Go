@@ -72,12 +72,36 @@ function collectActiveEmneFiles(): string[] {
 
   const relativeFiles = new Set<string>();
 
+  function collectSupplementCompanions(entry: JsonObject): void {
+    if (!isJsonObject(entry.supplements)) return;
+    if (typeof entry.emner !== 'string' || !entry.emner.trim()) return;
+
+    const hasActiveSupplement = Object.values(entry.supplements).some((supplement) => {
+      if (!isJsonObject(supplement)) return false;
+      const status = typeof supplement.status === 'string' ? supplement.status : '';
+      return !['inactive', 'historical', 'retired', 'archived'].includes(status);
+    });
+    if (!hasActiveSupplement) return;
+
+    const primaryRel = entry.emner.trim();
+    const subjectDirRel = path.posix.dirname(primaryRel);
+    const subjectDir = path.join(fagRoot, subjectDirRel);
+    if (!fs.existsSync(subjectDir)) return;
+
+    for (const name of fs.readdirSync(subjectDir)) {
+      if (!/^emner_.+_canonical_v\d+(?:_\d+)*\.json$/i.test(name)) continue;
+      relativeFiles.add(path.posix.join(subjectDirRel, name));
+    }
+  }
+
   function collectFromEntry(entry: unknown): void {
     if (!isJsonObject(entry)) return;
 
     if (typeof entry.emner === 'string' && entry.emner.trim()) {
       relativeFiles.add(entry.emner.trim());
     }
+
+    collectSupplementCompanions(entry);
 
     if (isJsonObject(entry.specializations)) {
       for (const specialization of Object.values(entry.specializations)) {
