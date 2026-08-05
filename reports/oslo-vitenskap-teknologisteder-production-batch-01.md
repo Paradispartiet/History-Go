@@ -15,3 +15,5 @@ Norsk Teknisk Museum var allerede canonical. Ordinær trafikk og byinfrastruktur
 Batchen er delt etter canonical produksjonsfaser. Denne PR-en eier stedidentitet, koordinater, evidence, fagkoblinger, manifest og synkronisert runtime-indeks. `desc` og `popupDesc` produseres etter merge i en separat 4.2-beskrivelses-PR med én claim- og reviewpakke per sted. Den påfølgende indeksfasen materialiserer de godkjente tekstene uten å blande beskrivelses- og koordinatscope.
 
 Sluttkontrollen på fersk `main` bestod split-manifest, place-index-paritet, coordinate source contract, evidence-audit med 0 problemer, strict coordinate intake med 0 blokkeringer, coordinate quality, emnevalidering, place health, kategori-audit, `typecheck:tools`, `typecheck:web`, canonical 4.2 PR-isolasjon og `git diff --check`.
+
+Bildeporten er sluttført for de fem nye stedene og det berikede Norsk Teknisk Museum. Alle seks har inspectable `image`- og `cardImage`-pekere, runtime-indeksen er bygget på nytt, og `audit-place-images.mjs --mode=changed` består.
