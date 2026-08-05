@@ -1,0 +1,60 @@
+name: Repair BY context for Technology V3
+
+on:
+  push:
+    branches:
+      - editorial/teknologi-v3-20260805
+    paths:
+      - .github/workflows/repair-by-context-for-teknologi-v3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: editorial/teknologi-v3-20260805
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Rebuild Deichman Bjørvika production context
+        run: |
+          npm run quiz:context -- \
+            --category by \
+            --target deichman_bjorvika \
+            --output data/quiz/production_context/by/deichman_bjorvika.json
+          npm run quiz:context -- \
+            --category by \
+            --target deichman_bjorvika \
+            --output data/quiz/production_context/by/deichman_bjorvika.json
+      - name: Audit production context
+        run: npm run audit:quiz-production-context
+      - name: Validate BY and Technology editorial integrity
+        run: |
+          node scripts/validate-by-editorial-integrity.mjs
+          node tools/build-teknologi-editorial-v3.mjs --check
+          node scripts/validate-teknologi-editorial-v3.mjs
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
+      - name: Remove obsolete and temporary workflows
+        run: |
+          rm -f .github/workflows/rebuild-by-context-v46.yml
+          rm -f .github/workflows/repair-by-context-for-teknologi-v3.yml
+      - name: Commit clean generated context
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git status --short
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Repair BY production context and remove stale workflow"
+          git push origin HEAD:editorial/teknologi-v3-20260805
