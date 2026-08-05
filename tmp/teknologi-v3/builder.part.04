@@ -25,18 +25,27 @@ subjectPackage.production_context.resolved_files = {
 subjectPackage.production_context.standard_version = 'QUIZ_PRODUCTION_CANONICAL_3.2+SUBJECT_PATHWAY_V1+TEKNOLOGI_EDITORIAL_V3';
 subjectPackage.production_context.required_inputs_loaded = unique([subjectPackage.production_context.required_inputs_loaded, 'editorialContract']);
 
-const updatedTest = testText
-  .replace("assert.equal(s.canonicalModelVersion,'2.4')", "assert.equal(s.canonicalModelVersion,'3.0')")
-  .replace("assert.deepEqual(s.universalCoverage,{status:'complete',areas:12,topics:48,methods:35,modules:12})", "assert.deepEqual(s.universalCoverage,{status:'complete',areas:12,topics:48,methods:35,modules:12});assert.equal(s.editorialStatus,'reviewed_and_operationalized');assert.equal(s.editorialContract,'teknologi/editorial_contract_teknologi_v3.json')");
+let updatedTest = testText
+  .replace("assert.equal(s.canonicalModelVersion,'2.4')", "assert.equal(s.canonicalModelVersion,'3.0')");
+if (!updatedTest.includes("assert.equal(s.editorialStatus,'reviewed_and_operationalized')")) {
+  updatedTest = updatedTest.replace(
+    "assert.deepEqual(s.universalCoverage,{status:'complete',areas:12,topics:48,methods:35,modules:12})",
+    "assert.deepEqual(s.universalCoverage,{status:'complete',areas:12,topics:48,methods:35,modules:12});assert.equal(s.editorialStatus,'reviewed_and_operationalized');assert.equal(s.editorialContract,'teknologi/editorial_contract_teknologi_v3.json')"
+  );
+}
 
 function updateWorkflow(text, jobName) {
   let next = text
-    .replaceAll("tools/build-teknologi-canonical-v2_4.mjs", "tools/build-teknologi-editorial-v3.mjs")
     .replaceAll("tools/validate-teknologi-canonical-v2_4.mjs", "scripts/validate-teknologi-editorial-v3.mjs")
     .replaceAll("V2.1–V2.4 canonical integration", "V2 source layers and V3 editorial canonical integration")
     .replaceAll("Check canonical Technology model V2.4", "Check editorial Technology model V3")
-    .replaceAll("Validate canonical integration V2.4", "Validate editorial integration V3")
-    .replaceAll("node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs", "node tools/build-teknologi-canonical-v2_4.mjs --check\n          node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs");
+    .replaceAll("Validate canonical integration V2.4", "Validate editorial integration V3");
+  if (!next.includes("tools/build-teknologi-editorial-v3.mjs")) {
+    next = next.replaceAll("tools/build-teknologi-canonical-v2_4.mjs", "tools/build-teknologi-editorial-v3.mjs");
+  }
+  const v3Foundation = "node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs";
+  const sourceAndV3Foundation = "node tools/build-teknologi-canonical-v2_4.mjs --check\n          node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs";
+  if (!next.includes(sourceAndV3Foundation)) next = next.replace(v3Foundation, sourceAndV3Foundation);
   if (!next.includes('scripts/validate-teknologi-editorial-v3.mjs')) throw new Error(`Klarte ikke oppdatere ${jobName}`);
   return next;
 }
