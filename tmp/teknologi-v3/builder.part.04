@@ -1,0 +1,61 @@
+ specialization = manifest.vitenskap?.specializations?.teknologi;
+if (!specialization) throw new Error('Fant ikke manifest.vitenskap.specializations.teknologi');
+Object.assign(specialization, {
+  pensum: 'teknologi/teknologipensum_canonical_v3.json',
+  emner: 'teknologi/emner_teknologi_canonical_v3.json',
+  fagkart: 'teknologi/fagkart_teknologi_canonical_v3.json',
+  methods: 'teknologi/methods_teknologi_canonical_v3.json',
+  editorialContract: 'teknologi/editorial_contract_teknologi_v3.json',
+  legacyStatus: 'teknologi/canonical_legacy_status_v3.json',
+  canonicalModelVersion: '3.0',
+  editorialStatus: 'reviewed_and_operationalized',
+  sourceIntegrity: { status: 'blocking', required: ['external_source', 'locator', 'claim_basis', 'technology_anchor', 'validity_scope'] }
+});
+
+subjectPackage.editorial_version = '3.0';
+subjectPackage.production_context = subjectPackage.production_context || {};
+subjectPackage.production_context.resolved_files = {
+  ...(subjectPackage.production_context.resolved_files || {}),
+  pensum: PATHS.pensum,
+  emner: PATHS.emner,
+  fagkart: PATHS.fagkart,
+  methods: PATHS.methods,
+  editorial_contract: PATHS.contract
+};
+subjectPackage.production_context.standard_version = 'QUIZ_PRODUCTION_CANONICAL_3.2+SUBJECT_PATHWAY_V1+TEKNOLOGI_EDITORIAL_V3';
+subjectPackage.production_context.required_inputs_loaded = unique([subjectPackage.production_context.required_inputs_loaded, 'editorialContract']);
+
+const updatedTest = testText
+  .replace("assert.equal(s.canonicalModelVersion,'2.4')", "assert.equal(s.canonicalModelVersion,'3.0')")
+  .replace("assert.deepEqual(s.universalCoverage,{status:'complete',areas:12,topics:48,methods:35,modules:12})", "assert.deepEqual(s.universalCoverage,{status:'complete',areas:12,topics:48,methods:35,modules:12});assert.equal(s.editorialStatus,'reviewed_and_operationalized');assert.equal(s.editorialContract,'teknologi/editorial_contract_teknologi_v3.json')");
+
+function updateWorkflow(text, jobName) {
+  let next = text
+    .replaceAll("tools/build-teknologi-canonical-v2_4.mjs", "tools/build-teknologi-editorial-v3.mjs")
+    .replaceAll("tools/validate-teknologi-canonical-v2_4.mjs", "scripts/validate-teknologi-editorial-v3.mjs")
+    .replaceAll("V2.1–V2.4 canonical integration", "V2 source layers and V3 editorial canonical integration")
+    .replaceAll("Check canonical Technology model V2.4", "Check editorial Technology model V3")
+    .replaceAll("Validate canonical integration V2.4", "Validate editorial integration V3")
+    .replaceAll("node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs", "node tools/build-teknologi-canonical-v2_4.mjs --check\n          node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs");
+  if (!next.includes('scripts/validate-teknologi-editorial-v3.mjs')) throw new Error(`Klarte ikke oppdatere ${jobName}`);
+  return next;
+}
+
+await writeExpected(PATHS.emner, emner);
+await writeExpected(PATHS.methods, methods);
+await writeExpected(PATHS.fagkart, fagkart);
+await writeExpected(PATHS.pensum, pensum);
+await writeExpected(PATHS.contract, contract);
+await writeExpected(PATHS.legacy, legacy);
+await writeExpected(PATHS.readme, readme);
+await writeExpected(PATHS.subjectPackage, subjectPackage);
+await writeExpected(PATHS.manifest, manifest);
+await writeExpected(PATHS.test, updatedTest);
+await writeExpected(PATHS.workflowQuality, updateWorkflow(qualityWorkflow, PATHS.workflowQuality));
+await writeExpected(PATHS.workflowCategory, updateWorkflow(categoryWorkflow, PATHS.workflowCategory));
+
+if (CHECK && changed.length) {
+  console.error(`Technology editorial V3 is stale: ${changed.join(', ')}`);
+  process.exit(1);
+}
+console.log(`Technology editorial V3 ${WRITE ? 'materialized' : 'verified'}: ${changed.length ? changed.join(', ') : 'no changes'}`);
