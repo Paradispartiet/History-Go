@@ -13,8 +13,10 @@ on:
       - 'data/knowledge/knowledge_manifest.json'
       - 'data/knowledge/*.generated.json'
       - 'scripts/knowledge-canonical-data.mts'
+      - 'scripts/validate-teknologi-editorial-v3.mjs'
       - 'tools/build-teknologi-evidence-v2_3.mjs'
       - 'tools/build-teknologi-canonical-v2_4.mjs'
+      - 'tools/build-teknologi-editorial-v3.mjs'
       - 'tools/validate-teknologi-quality-v2_1.mjs'
       - 'tools/validate-teknologi-ontology-v2_2.mjs'
       - 'tools/validate-teknologi-evidence-v2_3.mjs'
@@ -29,7 +31,7 @@ permissions:
 
 jobs:
   scientific-quality:
-    name: Technology V2.1–V2.4 canonical integration
+    name: Technology V2 source layers and V3 editorial canonical integration
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -49,8 +51,10 @@ jobs:
       - name: Build script runtime
         run: npm run build:scripts
 
-      - name: Check canonical Technology model V2.4
-        run: node tools/build-teknologi-canonical-v2_4.mjs --check
+      - name: Check V2 source materialization and V3 canonical model
+        run: |
+          node tools/build-teknologi-canonical-v2_4.mjs --check
+          node tools/build-teknologi-editorial-v3.mjs --check
 
       - name: Check canonical Knowledge sync
         run: node dist/scripts/knowledge-canonical-data.mjs --check
@@ -64,8 +68,8 @@ jobs:
       - name: Validate evidence and production V2.3
         run: node tools/validate-teknologi-evidence-v2_3.mjs
 
-      - name: Validate canonical integration V2.4
-        run: node tools/validate-teknologi-canonical-v2_4.mjs
+      - name: Validate editorial canonical integration V3
+        run: node scripts/validate-teknologi-editorial-v3.mjs
 
       - name: Upload scientific quality reports
         if: always()
@@ -76,5 +80,5 @@ jobs:
             reports/teknologi-scientific-quality-validation.json
             reports/teknologi-ontology-depth-validation.json
             reports/teknologi-evidence-production-validation.json
-            reports/teknologi-canonical-integration-validation.json
+            reports/teknologi-editorial-v3-validation.json
           if-no-files-found: error
