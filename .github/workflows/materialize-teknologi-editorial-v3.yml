@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   materialize:
-    if: ${{ !contains(github.event.head_commit.message, '[tech-v3-log]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[tech-v3-output]') && !contains(github.event.head_commit.message, '[tech-v3-log]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,43 +36,22 @@ jobs:
         run: node tools/build-teknologi-canonical-v2_4.mjs --check
 
       - name: Materialize Technology editorial V3
-        id: materialize
-        continue-on-error: true
         run: |
-          set -o pipefail
-          node tools/build-teknologi-editorial-v3.mjs --write 2>&1 | tee /tmp/teknologi-v3-materialize.log
-          node tools/build-teknologi-editorial-v3.mjs --check 2>&1 | tee -a /tmp/teknologi-v3-materialize.log
-
-      - name: Persist exact materialization failure
-        if: steps.materialize.outcome == 'failure'
-        run: |
-          cp /tmp/teknologi-v3-materialize.log tmp/teknologi-v3/materialization-failure.log
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tmp/teknologi-v3/materialization-failure.log
-          git commit -m "[tech-v3-log] Capture materialization failure"
-          git push origin HEAD:editorial/teknologi-v3-20260805
-
-      - name: Stop after captured failure
-        if: steps.materialize.outcome == 'failure'
-        run: exit 1
+          node tools/build-teknologi-editorial-v3.mjs --write
+          node tools/build-teknologi-editorial-v3.mjs --check
 
       - name: Install dependencies
-        if: steps.materialize.outcome == 'success'
         run: npm ci
 
       - name: Build script runtime
-        if: steps.materialize.outcome == 'success'
         run: npm run build:scripts
 
       - name: Synchronize canonical Knowledge
-        if: steps.materialize.outcome == 'success'
         run: |
           node dist/scripts/knowledge-canonical-data.mjs --write
           node dist/scripts/knowledge-canonical-data.mjs --check
 
       - name: Validate source layers and editorial V3
-        if: steps.materialize.outcome == 'success'
         run: |
           node tools/validate-teknologi-quality-v2_1.mjs
           node tools/validate-teknologi-ontology-v2_2.mjs
@@ -80,17 +59,12 @@ jobs:
           node scripts/validate-teknologi-editorial-v3.mjs
           node --test tests/vitenskap-teknologi-category-contract.test.mjs
 
-      - name: Remove bootstrap files
-        if: steps.materialize.outcome == 'success'
-        run: |
-          rm -rf tmp/teknologi-v3
-          rm -f .github/workflows/materialize-teknologi-editorial-v3.yml
-
-      - name: Commit and push clean production diff
-        if: steps.materialize.outcome == 'success'
+      - name: Commit and push validated production diff
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Build Technology editorial canonical V3"
+          git reset -- .github/workflows tmp/teknologi-v3
+          git commit -m "[tech-v3-output] Build Technology editorial canonical V3"
+          git pull --rebase origin editorial/teknologi-v3-20260805
           git push origin HEAD:editorial/teknologi-v3-20260805
