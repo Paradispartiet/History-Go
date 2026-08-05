@@ -35,9 +35,10 @@ jobs:
           tr -d '\n' < .bootstrap/vitenskap-v5/test.b64 | base64 --decode | gzip --decompress > tests/vitenskap-editorial-v5.test.mjs
           tr -d '\n' < .bootstrap/vitenskap-v5/workflow.b64 | base64 --decode | gzip --decompress > .github/workflows/vitenskap-editorial-v5.yml
           chmod +x tools/build-vitenskap-editorial-v5.mjs scripts/validate-vitenskap-editorial-v5.mjs
-      - name: Guarantee all operational method families
+      - name: Apply permanent contract patches
         run: |
           python .bootstrap/vitenskap-v5/patch-method-families.py
+          python .bootstrap/vitenskap-v5/patch-category-contract.py
           node --check tools/build-vitenskap-editorial-v5.mjs
       - name: Extend shared Science and Technology gate
         run: |
