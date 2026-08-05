@@ -3,8 +3,8 @@
   "subject_title": "By & arkitektur",
   "scope": "oslo",
   "type": "fagkart",
-  "version": "v4+perfection_v4_4",
-  "updated_at": "2026-03-15",
+  "version": "v4.6-editorial",
+  "updated_at": "2026-08-05",
   "principles": {
     "locked_categories": true,
     "dev_happens_through": [
@@ -1175,7 +1175,11 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_03"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "arkitektur",
@@ -2465,7 +2469,11 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_02"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "bolig_og_nabolag",
@@ -3680,7 +3688,11 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_04"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "administrasjon_og_plan",
@@ -4901,7 +4913,11 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_06"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "urbanisme",
@@ -6082,7 +6098,12 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_01",
+        "mod_by_05"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "arbeid_og_naering",
@@ -7322,7 +7343,9 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "historiske_lag",
@@ -8592,7 +8615,11 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_01"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "makt_og_konflikt",
@@ -9838,7 +9865,11 @@
         "hvilken teoretiker passer best",
         "fagplan i synlig spørsmålsform",
         "teori løsrevet fra dokumenterbare stedsforhold"
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_06"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "klima_og_helse",
@@ -10225,7 +10256,11 @@
             "rotate_theorists": true
           }
         }
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_07"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "data_og_styring",
@@ -10741,7 +10776,11 @@
             "rotate_theorists": true
           }
         }
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_08"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "regional_og_global",
@@ -11007,7 +11046,12 @@
             "rotate_theorists": true
           }
         }
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_05",
+        "mod_by_08"
+      ],
+      "editorial_status": "integrated_v4_6"
     },
     {
       "id": "boligpolitikk_og_velferd",
@@ -11168,7 +11212,11 @@
             "rotate_theorists": true
           }
         }
-      ]
+      ],
+      "editorial_module_ids": [
+        "mod_by_04"
+      ],
+      "editorial_status": "integrated_v4_6"
     }
   ],
   "meta": {
@@ -11234,5 +11282,87 @@
     "unique_hook_thinkers_count": 63,
     "perfection_round": "v4.4",
     "hook_count": 81
+  },
+  "editorial_architecture": {
+    "status": "canonical_v1",
+    "purpose": "Human-facing university-style structure. Detailed categories and hooks remain the machine layer.",
+    "modules": [
+      {
+        "module_id": "mod_by_01",
+        "title": "Byhistorie, plantradisjoner og transformasjon",
+        "category_ids": [
+          "historiske_lag",
+          "urbanisme"
+        ]
+      },
+      {
+        "module_id": "mod_by_02",
+        "title": "Arkitektur, typologi og urban form",
+        "category_ids": [
+          "arkitektur"
+        ]
+      },
+      {
+        "module_id": "mod_by_03",
+        "title": "Byliv, offentlighet og hverdagspraksis",
+        "category_ids": [
+          "byliv"
+        ]
+      },
+      {
+        "module_id": "mod_by_04",
+        "title": "Bolig, nabolag, ulikhet og politisk økonomi",
+        "category_ids": [
+          "bolig_og_nabolag",
+          "boligpolitikk_og_velferd"
+        ]
+      },
+      {
+        "module_id": "mod_by_05",
+        "title": "Mobilitet, infrastruktur og byregion",
+        "category_ids": [
+          "urbanisme",
+          "regional_og_global"
+        ]
+      },
+      {
+        "module_id": "mod_by_06",
+        "title": "Planlegging, styring, juss og medvirkning",
+        "category_ids": [
+          "administrasjon_og_plan",
+          "makt_og_konflikt"
+        ]
+      },
+      {
+        "module_id": "mod_by_07",
+        "title": "Klima, helse, tilgjengelighet og urbane kretsløp",
+        "category_ids": [
+          "klima_og_helse"
+        ]
+      },
+      {
+        "module_id": "mod_by_08",
+        "title": "Data, teknologi, global urbanisering og komparativ byforskning",
+        "category_ids": [
+          "data_og_styring",
+          "regional_og_global"
+        ]
+      }
+    ],
+    "method_layer": "Methods run across all modules and are not a separate subject category.",
+    "progression": [
+      "grunnnivå: observere og gjenkjenne",
+      "mellomnivå: forklare og sammenligne",
+      "avansert: analysere, vurdere og kritisere"
+    ]
+  },
+  "editorial_rotation_policy": {
+    "max_share_same_thinker_across_new_batch": 0.15,
+    "max_share_same_case_across_new_batch": 0.12,
+    "minimum_distinct_thinkers_per_10_late_questions": 5,
+    "minimum_distinct_cases_per_10_late_questions": 5,
+    "prefer_underused_when_fit_is_equal": true,
+    "named_work_required_when_named_thinker_is_visible": true,
+    "exception_requires_log": true
   }
 }
