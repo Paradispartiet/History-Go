@@ -66,5 +66,5 @@ jobs:
           git add -A
           git reset -- .github/workflows tmp/teknologi-v3
           git commit -m "[tech-v3-output] Build Technology editorial canonical V3"
-          git pull --rebase origin editorial/teknologi-v3-20260805
+          git restore .github/workflows tmp/teknologi-v3
           git push origin HEAD:editorial/teknologi-v3-20260805
