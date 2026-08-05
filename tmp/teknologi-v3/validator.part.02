@@ -1,0 +1,21 @@
+emner && resolved.fagkart === P.fagkart && resolved.methods === P.methods, 'subject pathway peker ikke til v3 canonical-filer');
+check(resolved.editorial_contract === P.contract, 'subject pathway mangler redaksjonskontrakt');
+check(arr(subjectPackage.production_context?.required_inputs_loaded).includes('editorialContract'), 'subject pathway laster ikke redaksjonskontrakten');
+
+const report = {
+  status: failures.length ? 'failed' : 'passed',
+  version: '3.0',
+  subject_id: 'teknologi',
+  passes,
+  failures_count: failures.length,
+  counts: { modules: modules.length, areas: categories.length, emner: topics.length, methods: methods.length, hooks: hooks.length, alignment_overrides: arr(overridesDoc.overrides).length },
+  failures
+};
+await mkdir(path.dirname(path.resolve(ROOT, P.report)), { recursive: true });
+await writeFile(path.resolve(ROOT, P.report), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+if (failures.length) {
+  console.error(`Technology editorial V3: ${passes} PASS / ${failures.length} FAIL`);
+  for (const failure of failures.slice(0, 50)) console.error(`- ${failure.reason}: ${JSON.stringify(failure)}`);
+  process.exit(1);
+}
+console.log(`Technology editorial V3: ${passes} PASS / 0 FAIL`);
