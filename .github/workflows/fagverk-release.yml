@@ -26,13 +26,13 @@ jobs:
     name: Build deterministic whole-architecture Fagverk release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '24'
       - name: Verify builder
         run: |
           node --check scripts/build-fagverk-release-manifest.mjs
@@ -46,16 +46,31 @@ jobs:
           const release = JSON.parse(fs.readFileSync('data/fagverk/fagverk_release.json', 'utf8'));
           if (release.schema !== 'history_go_fagverk_release_v2') throw new Error('Unexpected release schema.');
           if (!release.release_sha256 || release.release_sha256.length !== 64) throw new Error('Missing release digest.');
-          if (release.summary?.missing_file_count !== 0) throw new Error('Release contains missing files or manifest fields.');
+          if (release.summary?.missing_file_count !== 0) throw new Error('Release contains blocking missing files or manifest fields.');
           if (release.summary?.subject_count !== Object.keys(release.subjects || {}).length) throw new Error('Package count mismatch.');
           if (release.summary?.root_subject_count + release.summary?.specialization_count !== release.summary?.subject_count) throw new Error('Subject/specialization count mismatch.');
+          const optionalGapCount = Object.values(release.subjects || {}).reduce(
+            (sum, subject) => sum + subject.missing_optional_files.length,
+            0
+          );
+          if (release.summary?.optional_gap_count !== optionalGapCount) throw new Error('Optional gap count mismatch.');
           for (const [subjectId, subject] of Object.entries(release.subjects || {})) {
-            if (!['complete'].includes(subject.package_status)) throw new Error(`${subjectId}: incomplete package.`);
+            if (!['complete', 'complete_with_optional_gaps'].includes(subject.package_status)) {
+              throw new Error(`${subjectId}: incomplete package.`);
+            }
             if (subject.chapter_count !== subject.chapters.length) throw new Error(`${subjectId}: chapter count mismatch.`);
             if (!subject.structure_sha256 || !subject.content_sha256 || !subject.package_content_sha256) throw new Error(`${subjectId}: missing digest.`);
-            if (subject.missing_manifest_fields.length || subject.missing_files.length) throw new Error(`${subjectId}: unresolved references.`);
+            if (subject.missing_manifest_fields.length || subject.missing_required_files.length || subject.missing_chapter_files.length) {
+              throw new Error(`${subjectId}: unresolved blocking references.`);
+            }
+            if (subject.package_status === 'complete' && subject.missing_optional_files.length) {
+              throw new Error(`${subjectId}: optional gaps are not reflected in package status.`);
+            }
+            if (subject.package_status === 'complete_with_optional_gaps' && !subject.missing_optional_files.length) {
+              throw new Error(`${subjectId}: optional-gap status has no optional gaps.`);
+            }
           }
-          console.log(`Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters, ${release.summary.module_file_count} modules.`);
+          console.log(`Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters, ${release.summary.module_file_count} modules, ${release.summary.optional_gap_count} optional gaps.`);
           NODE
       - name: Materialize release manifest on PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
