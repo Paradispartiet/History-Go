@@ -1,0 +1,74 @@
+ainty_statement === true, 'emne mangler usikkerhetskrav', { emne_id: topic.emne_id });
+  check(arr(topic.prerequisite_emne_ids).every((id) => topicIds.has(id)), 'emne har ugyldig forkunnskap', { emne_id: topic.emne_id });
+  check(arr(topic.advances_to_emne_ids).every((id) => topicIds.has(id)), 'emne har ugyldig videreføring', { emne_id: topic.emne_id });
+}
+
+for (const override of arr(overridesDoc.overrides)) {
+  const topic = topics.find((item) => item.emne_id === override.topic_id);
+  check(Boolean(topic), 'alignment override mangler emne', { topic_id: override.topic_id });
+  if (!topic) continue;
+  check(topic.alignment_override_applied === true, 'alignment override er ikke markert anvendt', { topic_id: override.topic_id });
+  check(arr(override.preferred_method_ids).every((id) => arr(topic.method_ids).includes(id)), 'foretrukket metode mangler etter override', { topic_id: override.topic_id });
+  check(arr(override.preferred_theory_ids).every((id) => arr(topic.theory_ids).includes(id)), 'foretrukket teori mangler etter override', { topic_id: override.topic_id });
+  check(arr(override.claim_classes).every((id) => arr(topic.claim_classes).includes(id)), 'påstandsklasse mangler etter override', { topic_id: override.topic_id });
+  check(clean(topic.alignment_reason) === clean(override.reason), 'override-begrunnelse mangler', { topic_id: override.topic_id });
+}
+
+for (const method of methods) {
+  check(method.method_id.startsWith('met_tek_'), 'ugyldig metode-ID', { method_id: method.method_id });
+  check(categoryIds.has(method.area_id), 'metode peker til ukjent område', { method_id: method.method_id, area_id: method.area_id });
+  check(method.editorial_status === 'operationalized_v3', 'metode er ikke operasjonalisert', { method_id: method.method_id });
+  check(clean(method.purpose).length >= 50, 'metode mangler formål', { method_id: method.method_id });
+  check(arr(method.procedure).length >= 6, 'metode mangler full prosedyre', { method_id: method.method_id });
+  check(arr(method.required_inputs).length >= 4, 'metode mangler datakrav', { method_id: method.method_id });
+  check(arr(method.required_observations).length >= 3, 'metode mangler observabler', { method_id: method.method_id });
+  check(arr(method.limitations).length >= 3, 'metode mangler begrensninger', { method_id: method.method_id });
+  check(arr(method.ethics).length >= 2, 'metode mangler etikk', { method_id: method.method_id });
+  check(arr(method.deliverables).length >= 2, 'metode mangler leveranser', { method_id: method.method_id });
+  check(arr(method.quality_gates).length >= 6, 'metode mangler kvalitetsporter', { method_id: method.method_id });
+  check(arr(method.blocked_when).length >= 4, 'metode mangler blokkering', { method_id: method.method_id });
+  check(arr(method.applicable_emne_ids).length >= 1 && arr(method.applicable_emne_ids).every((id) => topicIds.has(id)), 'metode mangler gyldige emnekoblinger', { method_id: method.method_id });
+}
+
+for (const category of categories) {
+  check(['strong', 'developing', 'blocked'].includes(category.coverage_status), 'område mangler evidensbasert dekningsstatus', { area_id: category.id });
+  check(category.editorial_status === 'reviewed_v3', 'område er ikke redaksjonelt gjennomgått', { area_id: category.id });
+  check(arr(category.canonical_mechanisms).length >= 5, 'område mangler mekanismer', { area_id: category.id });
+  check(arr(category.preferred_evidence).length >= 3, 'område mangler evidensprofil', { area_id: category.id });
+  check(arr(category.mandatory_failure_modes).length >= 3, 'område mangler feilprofil', { area_id: category.id });
+  check(arr(category.comparison_basis).length >= 4, 'område mangler sammenligningsgrunnlag', { area_id: category.id });
+  check(clean(category.boundary_note).length >= 60, 'område mangler faggrense', { area_id: category.id });
+  check(arr(category.focus).length === 4 && arr(category.focus).every((id) => topicIds.has(id)), 'område har feil emnedekning', { area_id: category.id });
+}
+
+for (const module of modules) {
+  check(module.editorial_status === 'reviewed_v3', 'modul er ikke redaksjonelt gjennomgått', { module_id: module.module_id });
+  check(arr(module.emner).length === 4 && arr(module.emner).every((id) => topicIds.has(id)), 'modul har feil emner', { module_id: module.module_id });
+  check(arr(module.learning_outcomes).length >= 3, 'modul mangler læringsutbytte', { module_id: module.module_id });
+  check(arr(module.required_evidence).length >= 3, 'modul mangler evidenskrav', { module_id: module.module_id });
+  check(arr(module.mastery_criteria).length >= 3, 'modul mangler mestringskriterier', { module_id: module.module_id });
+  check(arr(module.emne_progression).length === 4, 'modul mangler emneprogresjon', { module_id: module.module_id });
+}
+
+check(contract.version === '3.0' && contract.status === 'canonical', 'redaksjonskontrakten er ikke canonical v3');
+check(contract.required_counts?.emner === 48 && contract.required_counts?.methods === 35, 'redaksjonskontrakten har feil tellinger');
+check(contract.editorial_gates?.all_alignment_overrides_applied === true, 'kontrakten håndhever ikke alignment overrides');
+check(contract.editorial_gates?.methods_operationalized === true, 'kontrakten håndhever ikke operasjonaliserte metoder');
+check(clean(contract.production_blocking_rule).length >= 100, 'kontrakten mangler produksjonsblokkering');
+
+const superseded = new Set(arr(legacy.superseded_read_only));
+for (const expected of [
+  'data/fag/teknologi/teknologipensum_canonical_v1.json',
+  'data/fag/teknologi/emner_teknologi_canonical_v1.json',
+  'data/fag/teknologi/fagkart_teknologi_canonical_v1.json',
+  'data/fag/teknologi/methods_teknologi_canonical_v1.json',
+  'data/fag/teknologi/teknologipensum_canonical_v2_4.json',
+  'data/fag/teknologi/emner_teknologi_canonical_v2_4.json',
+  'data/fag/teknologi/fagkart_teknologi_canonical_v2_4.json',
+  'data/fag/teknologi/methods_teknologi_canonical_v2_4.json'
+]) check(superseded.has(expected), 'legacy-registeret mangler fil', { expected });
+check(!Object.values(specialization).some((value) => typeof value === 'string' && (value.includes('canonical_v1.json') || value.includes('canonical_v2_4.json'))), 'manifestet peker fortsatt til legacy canonical-fil');
+
+const resolved = subjectPackage.production_context?.resolved_files || {};
+check(subjectPackage.editorial_version === '3.0', 'subject pathway mangler v3-redaksjonsversjon');
+check(resolved.pensum === P.pensum && resolved.emner === P.
