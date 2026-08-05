@@ -1,0 +1,93 @@
+name: Fagverk release feed
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/**'
+      - 'scripts/build-fagverk-release-manifest.mjs'
+      - 'tests/fagverk-release-manifest.test.mjs'
+      - '.github/workflows/fagverk-release.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fagverk/**'
+      - 'scripts/build-fagverk-release-manifest.mjs'
+      - 'tests/fagverk-release-manifest.test.mjs'
+      - '.github/workflows/fagverk-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build deterministic Fagverk release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify builder
+        run: |
+          node --check scripts/build-fagverk-release-manifest.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+      - name: Build release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify release contract
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const release = JSON.parse(fs.readFileSync('data/fagverk/fagverk_release.json', 'utf8'));
+          if (release.schema !== 'history_go_fagverk_release_v1') throw new Error('Unexpected release schema.');
+          if (!release.release_sha256 || release.release_sha256.length !== 64) throw new Error('Missing release digest.');
+          if (release.summary?.missing_file_count !== 0) throw new Error('Release contains missing files.');
+          if (release.summary?.subject_count !== Object.keys(release.subjects || {}).length) throw new Error('Subject count mismatch.');
+          for (const [subjectId, subject] of Object.entries(release.subjects || {})) {
+            if (subject.chapter_count !== subject.chapters.length) throw new Error(`${subjectId}: chapter count mismatch.`);
+            if (!subject.structure_sha256 || !subject.content_sha256) throw new Error(`${subjectId}: missing subject digest.`);
+          }
+          console.log(`Fagverk release ${release.release_sha256}: ${release.summary.subject_count} subjects, ${release.summary.chapter_count} chapters, ${release.summary.module_file_count} modules.`);
+          NODE
+      - name: Materialize release manifest on PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            echo 'Release manifest already matches.'
+            exit 0
+          fi
+          git commit -m 'Materialize Fagverk release manifest'
+          git push origin "HEAD:${HEAD_BRANCH}"
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-go-fagverk-release
+          path: data/fagverk/fagverk_release.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Notify AHA-EchoNet after main update
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          AHA_DISPATCH_TOKEN: ${{ secrets.AHA_ECHONET_DISPATCH_TOKEN }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          if [ -z "$AHA_DISPATCH_TOKEN" ]; then
+            echo 'AHA_ECHONET_DISPATCH_TOKEN is not configured; the AHA scheduled poll remains the fallback.'
+            exit 0
+          fi
+          RELEASE_SHA=$(node -p "require('./data/fagverk/fagverk_release.json').release_sha256")
+          curl --fail-with-body \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $AHA_DISPATCH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/Paradispartiet/AHA-EchoNet/dispatches \
+            -d "{\"event_type\":\"history-go-fagverk-release\",\"client_payload\":{\"source_sha\":\"${SOURCE_SHA}\",\"release_sha256\":\"${RELEASE_SHA}\"}}"
