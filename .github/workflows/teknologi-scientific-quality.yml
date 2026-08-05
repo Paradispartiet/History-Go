@@ -15,12 +15,10 @@ on:
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/validate-teknologi-editorial-v3.mjs'
       - 'tools/build-teknologi-evidence-v2_3.mjs'
-      - 'tools/build-teknologi-canonical-v2_4.mjs'
       - 'tools/build-teknologi-editorial-v3.mjs'
       - 'tools/validate-teknologi-quality-v2_1.mjs'
       - 'tools/validate-teknologi-ontology-v2_2.mjs'
       - 'tools/validate-teknologi-evidence-v2_3.mjs'
-      - 'tools/validate-teknologi-canonical-v2_4.mjs'
       - 'reports/teknologi-*'
       - 'package.json'
       - '.github/workflows/teknologi-scientific-quality.yml'
@@ -51,21 +49,19 @@ jobs:
       - name: Build script runtime
         run: npm run build:scripts
 
-      - name: Check V2 source materialization and V3 canonical model
-        run: |
-          node tools/build-teknologi-canonical-v2_4.mjs --check
-          node tools/build-teknologi-editorial-v3.mjs --check
+      - name: Check active Technology editorial model V3
+        run: node tools/build-teknologi-editorial-v3.mjs --check
 
       - name: Check canonical Knowledge sync
         run: node dist/scripts/knowledge-canonical-data.mjs --check
 
-      - name: Validate scientific quality V2.1
+      - name: Validate scientific quality V2.1 source layer
         run: node tools/validate-teknologi-quality-v2_1.mjs
 
-      - name: Validate ontology depth V2.2
+      - name: Validate ontology depth V2.2 source layer
         run: node tools/validate-teknologi-ontology-v2_2.mjs
 
-      - name: Validate evidence and production V2.3
+      - name: Validate evidence and production V2.3 source layer
         run: node tools/validate-teknologi-evidence-v2_3.mjs
 
       - name: Validate editorial canonical integration V3
