@@ -3,6 +3,7 @@ name: Fagverk release feed
 on:
   pull_request:
     paths:
+      - 'data/fag/**'
       - 'data/fagverk/**'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
@@ -10,6 +11,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'data/fag/**'
       - 'data/fagverk/**'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
@@ -17,15 +19,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   release:
-    name: Verify deterministic Fagverk release
+    name: Build deterministic whole-architecture Fagverk release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -34,29 +37,40 @@ jobs:
         run: |
           node --check scripts/build-fagverk-release-manifest.mjs
           node --test tests/fagverk-release-manifest.test.mjs
-      - name: Preserve checked-in release
-        run: cp data/fagverk/fagverk_release.json /tmp/fagverk-release.checked.json
-      - name: Rebuild release manifest
+      - name: Build release manifest
         run: node scripts/build-fagverk-release-manifest.mjs
-      - name: Verify release contract and parity
+      - name: Verify release v2 contract
         run: |
           node - <<'NODE'
           const fs = require('fs');
-          const releasePath = 'data/fagverk/fagverk_release.json';
-          const release = JSON.parse(fs.readFileSync(releasePath, 'utf8'));
-          if (release.schema !== 'history_go_fagverk_release_v1') throw new Error('Unexpected release schema.');
+          const release = JSON.parse(fs.readFileSync('data/fagverk/fagverk_release.json', 'utf8'));
+          if (release.schema !== 'history_go_fagverk_release_v2') throw new Error('Unexpected release schema.');
           if (!release.release_sha256 || release.release_sha256.length !== 64) throw new Error('Missing release digest.');
-          if (release.summary?.missing_file_count !== 0) throw new Error('Release contains missing files.');
-          if (release.summary?.subject_count !== Object.keys(release.subjects || {}).length) throw new Error('Subject count mismatch.');
+          if (release.summary?.missing_file_count !== 0) throw new Error('Release contains missing files or manifest fields.');
+          if (release.summary?.subject_count !== Object.keys(release.subjects || {}).length) throw new Error('Package count mismatch.');
+          if (release.summary?.root_subject_count + release.summary?.specialization_count !== release.summary?.subject_count) throw new Error('Subject/specialization count mismatch.');
           for (const [subjectId, subject] of Object.entries(release.subjects || {})) {
+            if (!['complete'].includes(subject.package_status)) throw new Error(`${subjectId}: incomplete package.`);
             if (subject.chapter_count !== subject.chapters.length) throw new Error(`${subjectId}: chapter count mismatch.`);
-            if (!subject.structure_sha256 || !subject.content_sha256) throw new Error(`${subjectId}: missing subject digest.`);
+            if (!subject.structure_sha256 || !subject.content_sha256 || !subject.package_content_sha256) throw new Error(`${subjectId}: missing digest.`);
+            if (subject.missing_manifest_fields.length || subject.missing_files.length) throw new Error(`${subjectId}: unresolved references.`);
           }
-          if (!fs.readFileSync(releasePath).equals(fs.readFileSync('/tmp/fagverk-release.checked.json'))) {
-            throw new Error('data/fagverk/fagverk_release.json is stale. Run node scripts/build-fagverk-release-manifest.mjs and commit the result.');
-          }
-          console.log(`Fagverk release ${release.release_sha256}: ${release.summary.subject_count} subjects, ${release.summary.chapter_count} chapters, ${release.summary.module_file_count} modules.`);
+          console.log(`Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters, ${release.summary.module_file_count} modules.`);
           NODE
+      - name: Materialize release manifest on PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            echo 'Release manifest already matches.'
+            exit 0
+          fi
+          git commit -m 'Materialize whole-architecture Fagverk release v2'
+          git push origin "HEAD:${HEAD_BRANCH}"
       - name: Upload release artifact
         uses: actions/upload-artifact@v4
         with:
