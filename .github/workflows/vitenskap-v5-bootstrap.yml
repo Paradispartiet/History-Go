@@ -1,0 +1,82 @@
+name: Vitenskap V5 bootstrap
+
+on:
+  push:
+    branches:
+      - editorial/vitenskap-v5-20260805
+    paths:
+      - '.github/workflows/vitenskap-v5-bootstrap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vitenskap-v5-bootstrap-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    name: Materialize Vitenskap V5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: editorial/vitenskap-v5-20260805
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Reconstruct permanent production files
+        run: |
+          cat .bootstrap/vitenskap-v5/builder.part.* | tr -d '\n' | base64 --decode | gzip --decompress > tools/build-vitenskap-editorial-v5.mjs
+          tr -d '\n' < .bootstrap/vitenskap-v5/validator.b64 | base64 --decode | gzip --decompress > scripts/validate-vitenskap-editorial-v5.mjs
+          tr -d '\n' < .bootstrap/vitenskap-v5/test.b64 | base64 --decode | gzip --decompress > tests/vitenskap-editorial-v5.test.mjs
+          tr -d '\n' < .bootstrap/vitenskap-v5/workflow.b64 | base64 --decode | gzip --decompress > .github/workflows/vitenskap-editorial-v5.yml
+          chmod +x tools/build-vitenskap-editorial-v5.mjs scripts/validate-vitenskap-editorial-v5.mjs
+      - name: Extend shared Science and Technology gate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/vitenskap-teknologi-category.yml')
+          text = path.read_text()
+          anchor = "      - 'data/fag/teknologi/**'\n"
+          additions = "      - 'data/fag/vitenskap/**'\n      - 'tools/build-vitenskap-editorial-v5.mjs'\n      - 'scripts/validate-vitenskap-editorial-v5.mjs'\n      - 'tests/vitenskap-editorial-v5.test.mjs'\n      - '.github/workflows/vitenskap-editorial-v5.yml'\n"
+          if "data/fag/vitenskap/**" not in text:
+              text = text.replace(anchor, additions + anchor)
+          step_anchor = "      - name: Validate active Technology specialization\n"
+          step = "      - name: Validate active Vitenskap V5\n        run: |\n          node tools/build-vitenskap-editorial-v5.mjs --check\n          node scripts/validate-vitenskap-editorial-v5.mjs\n          node --test tests/vitenskap-editorial-v5.test.mjs\n"
+          if "Validate active Vitenskap V5" not in text:
+              text = text.replace(step_anchor, step + step_anchor)
+          path.write_text(text)
+          PY
+      - name: Install dependencies
+        run: npm ci
+      - name: Materialize canonical Vitenskap V5
+        run: node tools/build-vitenskap-editorial-v5.mjs --write
+      - name: Validate Vitenskap V5 locally
+        run: |
+          node tools/build-vitenskap-editorial-v5.mjs --check
+          node scripts/validate-vitenskap-editorial-v5.mjs
+          node --test tests/vitenskap-editorial-v5.test.mjs
+      - name: Regenerate global governance artifacts
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify active place emne references
+        run: npm run places:emners:check
+      - name: Remove bootstrap material
+        run: |
+          rm -rf .bootstrap/vitenskap-v5
+          rm .github/workflows/vitenskap-v5-bootstrap.yml
+      - name: Commit permanent Vitenskap V5 diff
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --stat
+          git commit -m 'Materialize Vitenskap editorial V5'
+          git push origin HEAD:editorial/vitenskap-v5-20260805
