@@ -1,0 +1,88 @@
+#!/usr/bin/env node
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import process from 'node:process';
+
+const ROOT = process.cwd();
+const WRITE = process.argv.includes('--write');
+const CHECK = process.argv.includes('--check');
+if (!WRITE && !CHECK) throw new Error('Bruk --write eller --check');
+
+const BASE = 'data/fag/teknologi';
+const SCI = `${BASE}/teknologi_scientific_v2`;
+const PATHS = {
+  index: `${SCI}/index.json`,
+  areaProfiles: `${SCI}/area_quality_profiles_v2_1.json`,
+  overrides: `${SCI}/topic_alignment_overrides_v2_1.json`,
+  curriculum: `${SCI}/curriculum_quality_v2_1.json`,
+  concepts: `${SCI}/concept_ontology_v2_2.json`,
+  anchors: `${SCI}/technology_anchor_registry_v2_3.json`,
+  sources: `${SCI}/source_registry_v2_3.json`,
+  assessments: `${SCI}/assessment_tasks_v2_3.json`,
+  v2Pensum: `${BASE}/teknologipensum_canonical_v2_4.json`,
+  v2Emner: `${BASE}/emner_teknologi_canonical_v2_4.json`,
+  v2Fagkart: `${BASE}/fagkart_teknologi_canonical_v2_4.json`,
+  v2Methods: `${BASE}/methods_teknologi_canonical_v2_4.json`,
+  pensum: `${BASE}/teknologipensum_canonical_v3.json`,
+  emner: `${BASE}/emner_teknologi_canonical_v3.json`,
+  fagkart: `${BASE}/fagkart_teknologi_canonical_v3.json`,
+  methods: `${BASE}/methods_teknologi_canonical_v3.json`,
+  contract: `${BASE}/editorial_contract_teknologi_v3.json`,
+  legacy: `${BASE}/canonical_legacy_status_v3.json`,
+  readme: `${BASE}/TECHNOLOGY_EDITORIAL_V3.md`,
+  subjectPackage: 'data/quiz/teknologi/teknologi_subject_pathways_v1.json',
+  manifest: 'data/fag/fag_manifest.json',
+  test: 'tests/vitenskap-teknologi-category-contract.test.mjs',
+  workflowQuality: '.github/workflows/teknologi-scientific-quality.yml',
+  workflowCategory: '.github/workflows/vitenskap-teknologi-category.yml'
+};
+
+const arr = (v) => Array.isArray(v) ? v : [];
+const clean = (v) => String(v ?? '').trim();
+const unique = (values) => [...new Set(values.flatMap((v) => Array.isArray(v) ? v : [v]).map(clean).filter(Boolean))];
+const jsonText = (value) => `${JSON.stringify(value, null, 2)}\n`;
+const readJson = async (relative) => JSON.parse(await readFile(path.resolve(ROOT, relative), 'utf8'));
+const readText = async (relative) => readFile(path.resolve(ROOT, relative), 'utf8');
+const existsJson = async (relative, fallback) => { try { return await readJson(relative); } catch { return fallback; } };
+const changed = [];
+
+async function writeExpected(relative, content) {
+  const next = typeof content === 'string' ? content : jsonText(content);
+  let previous = '';
+  try { previous = await readFile(path.resolve(ROOT, relative), 'utf8'); } catch {}
+  if (previous === next) return;
+  changed.push(relative);
+  if (WRITE) {
+    await mkdir(path.dirname(path.resolve(ROOT, relative)), { recursive: true });
+    await writeFile(path.resolve(ROOT, relative), next, 'utf8');
+  }
+}
+
+const ethicsByArea = {
+  teknologivitenskap_design: ['Dokumenter hvem som definerer behovet og hvem som bærer konsekvensene av kravkonflikter.', 'Ikke test på mennesker eller driftssystemer uten avklart risiko og samtykke.'],
+  systemer_arkitektur_palitelighet: ['Ikke skjul gjenværende risiko bak en samlet risikoscore.', 'Skill sikkerhetskritiske antakelser fra dokumenterte barrierer.'],
+  mekanikk_energi_maskiner: ['Oppgi sikkerhetsmarginer og driftsgrenser før ytelsesoptimalisering.', 'Ikke generaliser testbenkdata til faktisk drift uten lastprofil.'],
+  materialer_produksjon: ['Ta med arbeidsmiljø, ressursuttak og avfallsstrømmer i material- og prosessvalg.', 'Oppgi når prøver eller leverandørdata ikke representerer faktisk komponenttilstand.'],
+  elektronikk_signaler_regulering: ['Skill målt signal fra det fysiske fenomenet og oppgi målekjedens usikkerhet.', 'Unngå styring som kan gi farlig respons ved sensorfeil eller metning.'],
+  robotikk_automatisering: ['Definer menneskelig overstyring, ansvar og sikkerhetssone.', 'Ikke bruk simuleringsytelse som eneste grunnlag for autonom drift.'],
+  datamaskiner_operativsystemer: ['Oppgi delte ressurser, privilegier og isolasjonsgrenser.', 'Ikke optimaliser ytelse på bekostning av sikkerhet eller etterprøvbarhet uten eksplisitt begrunnelse.'],
+  programvareteknikk: ['Knytt test- og driftsdata til konkrete versjoner og konfigurasjoner.', 'Ikke presentér fravær av observerte feil som bevis for korrekthet.'],
+  algoritmer_data_ai: ['Dokumenter datagrunnlag, berørte grupper, feilkostnader og menneskelig kontroll.', 'Skill prediksjon fra forklaring og normativ beslutning.'],
+  nettverk_cybersikkerhet_infrastruktur: ['Ikke publiser operative sårbarhetsdetaljer uten ansvarlig håndtering.', 'Skill konfidensialitet, integritet og tilgjengelighet i risikovurderingen.'],
+  menneske_teknologi_hci: ['Inkluder relevante brukergrupper og hjelpemidler i testgrunnlaget.', 'Ikke behandle gjennomsnittsbrukeren som norm når alvorlige barrierer rammer minoriteter.'],
+  teknologihistorie_sts_risiko_baerekraft: ['Skill empiriske beskrivelser fra normative vurderinger.', 'Synliggjør fordelingsvirkninger, usikkerhet og hvem som bærer risikoen.']
+};
+
+const deliverableByArea = {
+  teknologivitenskap_design: ['sporbar krav–design–test-matrise', 'begrunnet sammenligning av minst to løsningsalternativer'],
+  systemer_arkitektur_palitelighet: ['systemgrense- og grensesnittdiagram', 'feil-, barriere- eller pålitelighetsanalyse'],
+  mekanikk_energi_maskiner: ['kraft-, last- eller energibalanse', 'ytelsesvurdering mot dokumentert lastprofil'],
+  materialer_produksjon: ['material-/prosessvalg med egenskapsdata', 'levetids- eller kvalitetsvurdering'],
+  elektronikk_signaler_regulering: ['sporbar signal- eller reguleringskjede', 'måle- og stabilitetsvurdering'],
+  robotikk_automatisering: ['oppgave- og miljøspesifisert ytelsestest', 'sikkerhets- og intervensjonsanalyse'],
+  datamaskiner_operativsystemer: ['lagdelt ressurs- eller instruksjonsspor', 'reproduserbar ytelses- eller samtidighetsanalyse'],
+  programvareteknikk: ['versjonsforankret arkitektur- eller hendelsesanalyse', 'risikobasert test- og forbedringsplan'],
+  algoritmer_data_ai: ['datasett-/modellkort med gyldighetsgrenser', 'baseline- og feilanalyse per relevant undergruppe'],
+  nettverk_cybersikkerhet_infrastruktur: ['protokoll-, topologi- eller trusselmodell', 'hendelses- og robusthetsvurdering'],
+  menneske_teknologi_hci: ['oppgavebasert bruker- eller tilgjengelighetsrapport', 'prioritert designendring med evidens'],
+  teknologihistorie_sts_risiko_baerekraft: 
