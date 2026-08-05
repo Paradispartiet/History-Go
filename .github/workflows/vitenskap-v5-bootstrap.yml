@@ -32,17 +32,13 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+
           path = Path('tools/build-vitenskap-editorial-v5.mjs')
           text = path.read_text()
-          old = """const methodAssignments = oldMethods.map((method) => ({ method, family: classifyMethod(method) }));
-          const familyCoreId = new Map();
-          for (const family of METHOD_FAMILIES) {
-            const candidates = methodAssignments.filter((entry) => entry.family.id === family.id).map((entry) => entry.method);
-            const exact = candidates.find((method) => clean(method.method_id).includes(family.keywords[0]));
-            familyCoreId.set(family.id, clean((exact || candidates[0] || {}).method_id));
-          }
-          """
-          new = """const FAMILY_ANCHOR_PATTERNS = new Map(METHOD_FAMILIES.map((family) => [family.id, family.keywords]));
+
+          start = text.index('const methodAssignments = oldMethods.map')
+          end = text.index('\n\nconst modules =', start)
+          assignment_block = r'''const FAMILY_ANCHOR_PATTERNS = new Map(METHOD_FAMILIES.map((family) => [family.id, family.keywords]));
           const forcedFamilyByMethodId = new Map();
           const claimedAnchorIds = new Set();
           for (const family of METHOD_FAMILIES) {
@@ -50,8 +46,16 @@ jobs:
             const ranked = oldMethods
               .filter((method) => !claimedAnchorIds.has(method.method_id))
               .map((method) => {
-                const text = [method.method_id, method.title, method.short_label, method.description, ...arr(method.best_for_emne_kinds), ...arr(method.coverage_domains), ...arr(method.hook_affinities)].join(' ').toLowerCase();
-                const score = patterns.reduce((sum, pattern) => sum + (text.includes(pattern) ? 1 : 0), 0);
+                const searchable = [
+                  method.method_id,
+                  method.title,
+                  method.short_label,
+                  method.description,
+                  ...arr(method.best_for_emne_kinds),
+                  ...arr(method.coverage_domains),
+                  ...arr(method.hook_affinities)
+                ].join(' ').toLowerCase();
+                const score = patterns.reduce((sum, pattern) => sum + (searchable.includes(pattern) ? 1 : 0), 0);
                 return { method, score };
               })
               .sort((a, b) => b.score - a.score || clean(a.method.method_id).localeCompare(clean(b.method.method_id), 'nb'));
@@ -70,22 +74,19 @@ jobs:
             const candidates = methodAssignments.filter((entry) => entry.family.id === family.id).map((entry) => entry.method);
             const forced = candidates.find((method) => forcedFamilyByMethodId.get(method.method_id) === family.id);
             familyCoreId.set(family.id, clean((forced || candidates[0] || {}).method_id));
-          }
-          """
-          if old not in text:
-              raise SystemExit('Fant ikke methodAssignments-blokken')
-          text = text.replace(old, new, 1)
-          old2 = """const methods = oldMethods.map((method) => {
-            const family = classifyMethod(method);
-          """
-          new2 = """const methods = oldMethods.map((method) => {
-            const family = familyByMethodId.get(method.method_id) || classifyMethod(method);
-          """
-          if old2 not in text:
+          }'''
+          text = text[:start] + assignment_block + text[end:]
+
+          old_family_line = 'const methods = oldMethods.map((method) => {\n  const family = classifyMethod(method);'
+          new_family_line = 'const methods = oldMethods.map((method) => {\n  const family = familyByMethodId.get(method.method_id) || classifyMethod(method);'
+          if old_family_line not in text:
               raise SystemExit('Fant ikke methods-map-blokken')
-          text = text.replace(old2, new2, 1)
-          old3 = "const methodsById = new Map(methods.map((m) => [m.method_id, m]));\n"
-          new3 = """const methodsById = new Map(methods.map((m) => [m.method_id, m]));
+          text = text.replace(old_family_line, new_family_line, 1)
+
+          marker = 'const methodsById = new Map(methods.map((m) => [m.method_id, m]));\n'
+          if marker not in text:
+              raise SystemExit('Fant ikke methodsById-markøren')
+          topic_family_block = r'''const methodsById = new Map(methods.map((m) => [m.method_id, m]));
           const MODULE_FAMILY_FALLBACK = {
             vitenskapelig_kunnskap_begrunnelse: 'evidens_replikasjon_syntese',
             forskningssporsmal_design_kausalitet: 'eksperiment_kausal_design',
@@ -101,12 +102,12 @@ jobs:
           for (const topic of emner) {
             const referencedMethodIds = unique([topic.method_ids, topic.recommended_method_ids]).filter((id) => methodsById.has(id));
             topic.method_family_ids = unique(referencedMethodIds.map((id) => methodsById.get(id)?.method_family_id));
-            if (!topic.method_family_ids.length) topic.method_family_ids = [MODULE_FAMILY_FALLBACK[topic.module_id] || 'evidens_replikasjon_syntese'];
+            if (!topic.method_family_ids.length) {
+              topic.method_family_ids = [MODULE_FAMILY_FALLBACK[topic.module_id] || 'evidens_replikasjon_syntese'];
+            }
           }
-          """
-          if old3 not in text:
-              raise SystemExit('Fant ikke methodsById-blokken')
-          text = text.replace(old3, new3, 1)
+          '''
+          text = text.replace(marker, topic_family_block, 1)
           path.write_text(text)
           PY
           python .bootstrap/vitenskap-v5/patch-category-contract.py
