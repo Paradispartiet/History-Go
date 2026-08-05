@@ -1,0 +1,72 @@
+name: Materialize Technology editorial V3
+
+on:
+  push:
+    branches:
+      - editorial/teknologi-v3-20260805
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: editorial/teknologi-v3-20260805
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Reconstruct permanent V3 tools
+        run: |
+          cat tmp/teknologi-v3/builder.part.* > tools/build-teknologi-editorial-v3.mjs
+          cat tmp/teknologi-v3/validator.part.* > scripts/validate-teknologi-editorial-v3.mjs
+          chmod +x tools/build-teknologi-editorial-v3.mjs scripts/validate-teknologi-editorial-v3.mjs
+          node --check tools/build-teknologi-editorial-v3.mjs
+          node --check scripts/validate-teknologi-editorial-v3.mjs
+
+      - name: Verify V2 source materialization
+        run: node tools/build-teknologi-canonical-v2_4.mjs --check
+
+      - name: Materialize Technology editorial V3
+        run: |
+          node tools/build-teknologi-editorial-v3.mjs --write
+          node tools/build-teknologi-editorial-v3.mjs --check
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build script runtime
+        run: npm run build:scripts
+
+      - name: Synchronize canonical Knowledge
+        run: |
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          node dist/scripts/knowledge-canonical-data.mjs --check
+
+      - name: Validate source layers and editorial V3
+        run: |
+          node tools/validate-teknologi-quality-v2_1.mjs
+          node tools/validate-teknologi-ontology-v2_2.mjs
+          node tools/validate-teknologi-evidence-v2_3.mjs
+          node scripts/validate-teknologi-editorial-v3.mjs
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
+
+      - name: Remove bootstrap files
+        run: |
+          rm -rf tmp/teknologi-v3
+          rm -f .github/workflows/materialize-teknologi-editorial-v3.yml
+
+      - name: Commit and push clean production diff
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Build Technology editorial canonical V3"
+          git push origin HEAD:editorial/teknologi-v3-20260805
