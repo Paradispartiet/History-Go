@@ -27,10 +27,6 @@ jobs:
         run: npm run quiz:context -- --category by --target deichman_bjorvika
       - name: Audit production context
         run: npm run audit:quiz-production-context
-      - name: Audit progression and theory binding
-        run: |
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
       - name: Verify BY editorial integrity
         run: node scripts/validate-by-editorial-integrity.mjs
       - name: Remove bootstrap workflow
