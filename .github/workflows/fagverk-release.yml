@@ -21,6 +21,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: fagverk-release-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
 jobs:
   release:
     name: Build deterministic whole-architecture Fagverk release
