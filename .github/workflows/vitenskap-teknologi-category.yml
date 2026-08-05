@@ -19,7 +19,6 @@ on:
       - 'dist/web/categories.js'
       - 'js/merke-fallback.js'
       - 'tools/placeSchemaPolicy.mts'
-      - 'tools/build-teknologi-canonical-v2_4.mjs'
       - 'tools/build-teknologi-editorial-v3.mjs'
       - 'tools/validate-teknologi-*.mjs'
       - 'scripts/validate-teknologi-editorial-v3.mjs'
@@ -62,9 +61,8 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/vitenskap-teknologi-category-contract.test.mjs
-      - name: Validate preserved Technology specialization
+      - name: Validate active Technology specialization
         run: |
-          node tools/build-teknologi-canonical-v2_4.mjs --check
           node tools/build-teknologi-editorial-v3.mjs --check
           node tools/validate-teknologi-foundation.mjs
           node tools/validate-teknologi-quality-v2_1.mjs
