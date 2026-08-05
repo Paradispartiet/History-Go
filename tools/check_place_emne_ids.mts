@@ -53,26 +53,83 @@ function toArray(data: unknown): JsonObject[] {
   if (Array.isArray(data)) return data.filter(isJsonObject);
   if (isJsonObject(data) && Array.isArray(data.places)) return data.places.filter(isJsonObject);
   if (isJsonObject(data) && Array.isArray(data.items)) return data.items.filter(isJsonObject);
-  if (isJsonObject(data) && typeof data.id === "string" && data.id.trim()) return [data];
+  if (isJsonObject(data) && typeof data.id === 'string' && data.id.trim()) return [data];
   return [];
 }
 
-function walkFiles(dir: string, out: string[] = []): string[] {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) walkFiles(fullPath, out);
-    else out.push(fullPath);
+function formatRel(filePath: string): string {
+  return path.relative(root, filePath).replace(/\\/g, '/');
+}
+
+function collectActiveEmneFiles(): string[] {
+  const fagRoot = path.join(root, 'data', 'fag');
+  const manifestPath = path.join(fagRoot, 'fag_manifest.json');
+  const manifest = readJson(manifestPath);
+
+  if (!isJsonObject(manifest)) {
+    throw new Error(`${formatRel(manifestPath)} must contain a subject object`);
   }
-  return out;
+
+  const relativeFiles = new Set<string>();
+
+  function collectSupplementCompanions(entry: JsonObject): void {
+    if (!isJsonObject(entry.supplements)) return;
+    if (typeof entry.emner !== 'string' || !entry.emner.trim()) return;
+
+    const hasActiveSupplement = Object.values(entry.supplements).some((supplement) => {
+      if (!isJsonObject(supplement)) return false;
+      const status = typeof supplement.status === 'string' ? supplement.status : '';
+      return !['inactive', 'historical', 'retired', 'archived'].includes(status);
+    });
+    if (!hasActiveSupplement) return;
+
+    const primaryRel = entry.emner.trim();
+    const subjectDirRel = path.posix.dirname(primaryRel);
+    const subjectDir = path.join(fagRoot, subjectDirRel);
+    if (!fs.existsSync(subjectDir)) return;
+
+    for (const name of fs.readdirSync(subjectDir)) {
+      if (!/^emner_.+_canonical_v\d+(?:_\d+)*\.json$/i.test(name)) continue;
+      relativeFiles.add(path.posix.join(subjectDirRel, name));
+    }
+  }
+
+  function collectFromEntry(entry: unknown): void {
+    if (!isJsonObject(entry)) return;
+
+    if (typeof entry.emner === 'string' && entry.emner.trim()) {
+      relativeFiles.add(entry.emner.trim());
+    }
+
+    collectSupplementCompanions(entry);
+
+    if (isJsonObject(entry.specializations)) {
+      for (const specialization of Object.values(entry.specializations)) {
+        collectFromEntry(specialization);
+      }
+    }
+  }
+
+  for (const subject of Object.values(manifest)) {
+    collectFromEntry(subject);
+  }
+
+  const files = [...relativeFiles]
+    .map((relativeFile) => path.join(fagRoot, relativeFile))
+    .sort((a, b) => a.localeCompare(b));
+
+  const missingFiles = files.filter((file) => !fs.existsSync(file));
+  if (missingFiles.length) {
+    throw new Error(
+      `Active emne file(s) missing from fag manifest: ${missingFiles.map(formatRel).join(', ')}`
+    );
+  }
+
+  return files;
 }
 
 function collectCanonicalEmneIds(): CollectCanonicalEmneIdsResult {
-  const fagRoot = path.join(root, 'data', 'fag');
-  const files = walkFiles(fagRoot).filter((file) =>
-    /emner.*_canonical.*\.json$/i.test(path.basename(file))
-  );
-
+  const files = collectActiveEmneFiles();
   const ids = new Set<string>();
   const idFiles = new Map<string, Set<string>>();
 
@@ -80,7 +137,9 @@ function collectCanonicalEmneIds(): CollectCanonicalEmneIdsResult {
     const data = readJson(file);
     const entries: EmneRow[] = toArray(data);
     for (const item of entries) {
-      const rawId = typeof item.id === 'string' ? item.id : (typeof item.emne_id === 'string' ? item.emne_id : '');
+      const rawId = typeof item.id === 'string'
+        ? item.id
+        : (typeof item.emne_id === 'string' ? item.emne_id : '');
       const id = rawId.trim();
       if (!id) continue;
       ids.add(id);
@@ -95,10 +154,6 @@ function collectCanonicalEmneIds(): CollectCanonicalEmneIdsResult {
     .sort((a, b) => a.emne_id.localeCompare(b.emne_id));
 
   return { ids, files, duplicateCanonicalEmneIds };
-}
-
-function formatRel(filePath: string): string {
-  return path.relative(root, filePath).replace(/\\/g, '/');
 }
 
 function main(): void {
@@ -175,7 +230,7 @@ function main(): void {
 
   console.log('=== Place emne_id validation ===');
   console.log(`Active place files: ${activeFiles.length}`);
-  console.log(`Canonical emne files scanned: ${canonicalFiles.length}`);
+  console.log(`Active manifest emne files scanned: ${canonicalFiles.length}`);
   console.log(`Canonical emne ids loaded: ${canonicalEmneIds.size}`);
   console.log('');
 
@@ -195,10 +250,16 @@ function main(): void {
   if (duplicatePlaceIdsWithinFile.length) console.log(JSON.stringify(duplicatePlaceIdsWithinFile, null, 2));
   console.log('');
 
-  console.log(`Duplicate canonical emne_ids across canonical files: ${duplicateCanonicalEmneIds.length}`);
+  console.log(`Duplicate canonical emne_ids across active manifest files: ${duplicateCanonicalEmneIds.length}`);
   if (duplicateCanonicalEmneIds.length) console.log(JSON.stringify(duplicateCanonicalEmneIds, null, 2));
 
-  if (missingEmneIds.length || duplicateEmneIdsPerPlace.length || duplicatePlaceIds.length || duplicatePlaceIdsWithinFile.length || duplicateCanonicalEmneIds.length) {
+  if (
+    missingEmneIds.length ||
+    duplicateEmneIdsPerPlace.length ||
+    duplicatePlaceIds.length ||
+    duplicatePlaceIdsWithinFile.length ||
+    duplicateCanonicalEmneIds.length
+  ) {
     process.exit(1);
   }
 }
