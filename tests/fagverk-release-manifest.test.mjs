@@ -139,3 +139,47 @@ test("builds deterministic whole-architecture Fagverk releases", () => {
   assert.equal(structural.subjects.natur.chapter_count, 2);
   assert.notEqual(structural.subjects.natur.structure_sha256, first.subjects.natur.structure_sha256);
 });
+
+test("reports optional gaps without invalidating the required package contract", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "history-go-fagverk-release-optional-gap-"));
+  writeJson(root, "data/fagverk/subject_inventory.json", {
+    schema: "history_go_fagverk_subject_inventory_v1",
+    version: "1.0.0",
+    subjects: [
+      {
+        id: "natur",
+        schemaFamily: "standard_canonical",
+        requiredManifestFields: ["pensum", "emner", "fagkart", "methods"],
+        optionalManifestFields: ["quizStandard"]
+      }
+    ]
+  });
+  writeJson(root, "data/fag/fag_manifest.json", {
+    natur: {
+      pensum: "natur/pensum.json",
+      emner: "natur/emner.json",
+      fagkart: "natur/fagkart.json",
+      methods: "natur/methods.json",
+      quizStandard: "../quiz/missing-standard.md"
+    }
+  });
+  writeJson(root, "data/fagverk/fagverk_registry.json", {
+    schema: "history_go_fagverk_registry_v1",
+    version: "1.0.0",
+    subjects: {}
+  });
+  for (const file of [
+    "data/fag/natur/pensum.json",
+    "data/fag/natur/emner.json",
+    "data/fag/natur/fagkart.json",
+    "data/fag/natur/methods.json"
+  ]) writeJson(root, file, { id: file });
+
+  const release = buildReleaseManifest({ root });
+  assert.equal(release.summary.missing_file_count, 0);
+  assert.equal(release.summary.optional_gap_count, 1);
+  assert.equal(release.subjects.natur.package_status, "complete_with_optional_gaps");
+  assert.deepEqual(release.subjects.natur.missing_required_files, []);
+  assert.deepEqual(release.subjects.natur.missing_optional_files, ["data/quiz/missing-standard.md"]);
+  assert.deepEqual(release.subjects.natur.missing_files, ["data/quiz/missing-standard.md"]);
+});
