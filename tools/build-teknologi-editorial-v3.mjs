@@ -460,9 +460,7 @@ function updateWorkflow(text, jobName) {
   if (!next.includes("tools/build-teknologi-editorial-v3.mjs")) {
     next = next.replaceAll("tools/build-teknologi-canonical-v2_4.mjs", "tools/build-teknologi-editorial-v3.mjs");
   }
-  const v3Foundation = "node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs";
-  const sourceAndV3Foundation = "node tools/build-teknologi-canonical-v2_4.mjs --check\n          node tools/build-teknologi-editorial-v3.mjs --check\n          node tools/validate-teknologi-foundation.mjs";
-  if (!next.includes(sourceAndV3Foundation)) next = next.replace(v3Foundation, sourceAndV3Foundation);
+  next = next.replaceAll("          node tools/build-teknologi-canonical-v2_4.mjs --check\n", "");
   if (!next.includes('scripts/validate-teknologi-editorial-v3.mjs')) throw new Error(`Klarte ikke oppdatere ${jobName}`);
   return next;
 }
