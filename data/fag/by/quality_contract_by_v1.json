@@ -1,0 +1,107 @@
+{
+  "subject_id": "by",
+  "version": "v1.0",
+  "status": "canonical",
+  "updated_at": "2026-08-05",
+  "editorial_principles": [
+    "concrete place or event before abstraction",
+    "documented claim before theory",
+    "conflict and uncertainty must remain visible",
+    "human-readable curriculum above machine metadata"
+  ],
+  "emne_integrity": {
+    "forbid_cross_emne_template_copy": [
+      "why_it_matters",
+      "keywords",
+      "dimensions",
+      "sub_concepts",
+      "conflicts",
+      "ideological_dimensions",
+      "analysis_axes",
+      "related_emner",
+      "blindspots"
+    ],
+    "required_distinction": [
+      "definition",
+      "scope against adjacent emner",
+      "specific evidence types",
+      "specific blindspots"
+    ],
+    "corruption_targets_repaired": [
+      "em_by_boligpolitikk_affordability",
+      "em_by_gis_romlig_analyse_data",
+      "em_by_global_urbanisering_migrasjon_komparativ",
+      "em_by_klima_blagronn_klimatilpasning",
+      "em_by_medvirkning_samskaping_community",
+      "em_by_planjuss_styringsverktoy",
+      "em_by_regional_skala_pendling_omland",
+      "em_by_smart_city_plattform_overvakning",
+      "em_by_tilgjengelighet_universell_utforming",
+      "em_by_urban_helse_miljo",
+      "em_by_urban_metabolisme_vann_energi_avfall_mat"
+    ]
+  },
+  "source_contract": {
+    "required_chain": [
+      "external_or_observed_source",
+      "claim",
+      "story_unit",
+      "question"
+    ],
+    "required_question_fields": [
+      "source_origin",
+      "source_refs",
+      "claim_basis",
+      "guidance_basis"
+    ],
+    "allowed_source_origin": [
+      "external",
+      "observed",
+      "mixed",
+      "internal_only"
+    ],
+    "publication_rule": "internal_only questions are blocked unless they are pure on-site observation with an explicit observation protocol",
+    "no_empty_source_array_for_publishable_question": true,
+    "canonical_files_are_guides_not_sources": true
+  },
+  "place_text_contract": {
+    "structure": [
+      "concrete scene or visible trace",
+      "documented history",
+      "conflict or change",
+      "disciplinary interpretation"
+    ],
+    "forbid_as_primary_content": [
+      "generic claim that the place shows how cities work",
+      "unattributed causal claim",
+      "theory label replacing local evidence"
+    ],
+    "length_policy": "Length follows evidence; do not pad to match another place."
+  },
+  "people_place_contract": {
+    "allowed_link_types": [
+      "direct_documented_presence",
+      "documented_institutional_role",
+      "documented_event_participation",
+      "memorial_or_named_after",
+      "curatorial_association"
+    ],
+    "strict_people_of_place_gate": [
+      "direct_documented_presence",
+      "documented_institutional_role",
+      "documented_event_participation"
+    ],
+    "rule": "Curatorial association may support interpretation but may never be presented as physical presence or strict people-of-place evidence."
+  },
+  "theory_case_rotation": {
+    "max_share_same_thinker_across_new_batch": 0.15,
+    "max_share_same_case_across_new_batch": 0.12,
+    "minimum_distinct_thinkers_per_10_late_questions": 5,
+    "minimum_distinct_cases_per_10_late_questions": 5,
+    "prefer_underused_when_fit_is_equal": true,
+    "named_work_required_when_named_thinker_is_visible": true,
+    "exception_requires_log": true
+  },
+  "method_contract_ref": "methods_by.json",
+  "curriculum_ref": "curriculum_architecture_by_v1.json"
+}
