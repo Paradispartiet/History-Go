@@ -1,12 +1,12 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-27T10:28:55.413Z
+Generert: 2026-08-04T22:15:12.805Z
 
-Aktive steder: 1494
+Aktive steder: 1499
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
-| grini_fangeleir | data/coordinate-evidence/akershus/baerum/grini_fangeleir.json | needs_research | needs_geometry | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
+| grini_fangeleir | data/coordinate-evidence/akershus/baerum/grini_fangeleir.json | needs_research | needs_geometry | OK |
 | tjernsmyr_salamanderlokalitet | data/coordinate-evidence/akershus/baerum/tjernsmyr_salamanderlokalitet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ingierstrand_bad | data/coordinate-evidence/akershus/historie/ingierstrand_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | steilene | data/coordinate-evidence/akershus/historie/steilene.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -14,16 +14,16 @@ Aktive steder: 1494
 | fornebu_teknologipark | data/coordinate-evidence/akershus/naeringsliv/fornebu_teknologipark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alf_proysen_statue_nittedal | data/coordinate-evidence/akershus/nittedal/alf_proysen_statue_nittedal.json | needs_research | needs_geometry | OK |
-| criciuma_apa_bosque_do_repouso | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_bosque_do_repouso.json | candidate_sources_collected | needs_geometry | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
-| criciuma_apa_morro_albino_estevao | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_morro_albino_estevao.json | candidate_sources_collected | needs_geometry | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
+| criciuma_apa_bosque_do_repouso | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_bosque_do_repouso.json | candidate_sources_collected | needs_geometry | OK |
+| criciuma_apa_morro_albino_estevao | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_morro_albino_estevao.json | candidate_sources_collected | needs_geometry | OK |
 | criciuma_arquivo_historico_pedro_milanez | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_arquivo_historico_pedro_milanez.json | candidate_sources_collected | needs_geometry | OK |
 | criciuma_cedoc_unesc | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_cedoc_unesc.json | candidate_sources_collected | needs_geometry_source | OK |
 | criciuma_galeria_octavia_gaidzinski | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_galeria_octavia_gaidzinski.json | candidate_sources_collected | needs_geometry_source | OK |
 | criciuma_locomovel_praca_da_chamine | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_locomovel_praca_da_chamine.json | candidate_sources_collected | needs_poi_source | OK |
 | criciuma_memorial_agente_ferroviario_mario_ghisi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_memorial_agente_ferroviario_mario_ghisi.json | candidate_sources_collected | needs_geometry | OK |
-| criciuma_morro_casagrande_morro_do_ceu | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_morro_casagrande_morro_do_ceu.json | candidate_sources_collected | needs_geometry | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
-| criciuma_parque_ecologico_jose_milanese | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_ecologico_jose_milanese.json | applied_to_place | do_not_change_coordinates_yet | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
-| criciuma_rio_criciuma | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_rio_criciuma.json | applied_to_place | do_not_change_coordinates_yet | currentCoordinate matcher ikke eksisterende place lat/lon/r/status/source/type/note |
+| criciuma_morro_casagrande_morro_do_ceu | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_morro_casagrande_morro_do_ceu.json | candidate_sources_collected | needs_geometry | OK |
+| criciuma_parque_ecologico_jose_milanese | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_ecologico_jose_milanese.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| criciuma_rio_criciuma | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_rio_criciuma.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | aker_brygge | data/coordinate-evidence/oslo/by/aker_brygge.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva | data/coordinate-evidence/oslo/by/akerselva.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -350,7 +350,12 @@ Aktive steder: 1494
 | revolver_oslo | data/coordinate-evidence/oslo/subkultur/revolver_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skur13 | data/coordinate-evidence/oslo/subkultur/skur13.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stovnertarnet | data/coordinate-evidence/oslo/subkultur/stovnertarnet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| bitraf | data/coordinate-evidence/oslo/vitenskap/bitraf.json | applied_to_place | candidate_ready_for_production | OK |
 | klimahuset | data/coordinate-evidence/oslo/vitenskap/klimahuset.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_reptilpark | data/coordinate-evidence/oslo/vitenskap/oslo_reptilpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| radionette_fodested_bygdoy_alle_67 | data/coordinate-evidence/oslo/vitenskap/radionette_fodested_bygdoy_alle_67.json | applied_to_place | candidate_ready_for_production | OK |
+| sintef_minalab | data/coordinate-evidence/oslo/vitenskap/sintef_minalab.json | applied_to_place | candidate_ready_for_production | OK |
+| stk_pex_kabeltarnet | data/coordinate-evidence/oslo/vitenskap/stk_pex_kabeltarnet.json | applied_to_place | candidate_ready_for_production | OK |
+| tandbergs_radiofabrikk_kjelsas | data/coordinate-evidence/oslo/vitenskap/tandbergs_radiofabrikk_kjelsas.json | applied_to_place | candidate_ready_for_production | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |

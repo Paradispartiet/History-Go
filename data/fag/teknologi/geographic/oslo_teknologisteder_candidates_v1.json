@@ -1,0 +1,229 @@
+{
+  "schema": "technology_place_candidate_registry_v1",
+  "version": "1.0",
+  "subject_id": "teknologi",
+  "geography": {
+    "country": "NO",
+    "municipality": "Oslo",
+    "municipality_number": "0301"
+  },
+  "category_policy": {
+    "primary_runtime_category": "vitenskap",
+    "technology_subject_id": "teknologi",
+    "technology_secondary_badge_id": "teknologi",
+    "rule": "Teknologisteder produseres som steder i hovedkategorien Vitenskap. Teknologi brukes som faglig emne- og sekundærlag, ikke som begrunnelse for å klassifisere ordinær byinfrastruktur som teknologi.",
+    "infrastructure_boundary": "Transportknutepunkter, trafikkårer, kraftdistribusjon, vann, avløp og annen urban infrastruktur hører primært under By. Et produksjons-, forsknings- eller museumssted kan likevel kvalifisere når utvikling, bygging, prøving eller dokumentasjon av konkrete tekniske artefakter er stedets hovedidentitet."
+  },
+  "acceptance_contract": {
+    "required": [
+      "Teknologi er stedets dokumenterbare hovedobjekt, ikke bare en støttefunksjon.",
+      "Stedet har et fysisk og identifiserbart anker.",
+      "Kunnskapen er stedsspesifikk og kan ikke flyttes uendret til et tilfeldig bygg.",
+      "Det finnes autoritative kilder til identitet, teknologisk virksomhet og lokasjon.",
+      "Stedet kan kobles direkte til minst ett canonical Teknologi-emne."
+    ],
+    "automatic_rejection": [
+      "Ordinære stasjoner, veier, tunneler, broer eller transportknutepunkter.",
+      "Kontorbygg som bare huser en teknologibedrift.",
+      "Bygg som bare bruker smarte eller digitale systemer.",
+      "Generelle forsknings- eller utdanningsbygg uten et konkret teknologisk anker."
+    ]
+  },
+  "candidates": [
+    {
+      "id": "teknisk_museum",
+      "name": "Norsk Teknisk Museum",
+      "status": "canonical_existing",
+      "production_action": "enrich_existing_place",
+      "technology_anchor_type": "public_technology_museum",
+      "access": "public",
+      "lat": 59.96642806414705,
+      "lon": 10.78270731715194,
+      "address": {
+        "street": "Kjelsåsveien",
+        "number": "143",
+        "postcode": "0491",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "why_qualified": "Museet forvalter og formidler teknologi, industri og teknologihistoriske artefakter som hovedoppgave, med permanente utstillinger om blant annet energi, industri, kjøretøy og informasjonsteknologi.",
+      "technology_emne_ids": [
+        "em_tek_teknologisk_kunnskap_og_artefakter",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_teknologihistorie_sti_og_innelasing"
+      ],
+      "source_urls": [
+        "https://www.tekniskmuseum.no/om-museet",
+        "https://www.tekniskmuseum.no/museet/finnveien"
+      ]
+    },
+    {
+      "id": "bitraf",
+      "name": "Bitraf",
+      "status": "canonical_produced",
+      "production_action": "none",
+      "technology_anchor_type": "active_makerspace_and_prototyping_workshop",
+      "access": "visitor_access_limited_but_documented",
+      "lat": 59.92035190289846,
+      "lon": 10.752792129992647,
+      "address": {
+        "street": "Brenneriveien",
+        "number": "9",
+        "postcode": "0182",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "why_qualified": "Bitraf er et aktivt skaperverksted der elektronikk, digital fabrikasjon, maskinering, 3D-printing og prototyping faktisk utføres på stedet.",
+      "technology_emne_ids": [
+        "em_tek_ingeniorprosess_krav_og_design",
+        "em_tek_prototyper_forsok_og_validering",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_kretser_komponenter_og_maling"
+      ],
+      "source_urls": [
+        "https://bitraf.no/",
+        "https://bitraf.no/hvor-er-bitraf/"
+      ],
+      "coordinate_note": "Adressepunkt beregnet fra offentlig UTM33-adressedata for Brenneriveien 9; det skal produseres separat Coordinate Evidence v1 før kartpublisering.",
+      "place_file": "data/places/vitenskap/oslo/places_vitenskap/bitraf.json",
+      "coordinate_evidence_file": "data/coordinate-evidence/oslo/vitenskap/bitraf.json"
+    },
+    {
+      "id": "tandbergs_radiofabrikk_kjelsas",
+      "name": "Tandbergs Radiofabrikk på Kjelsås",
+      "status": "canonical_produced",
+      "production_action": "none",
+      "technology_anchor_type": "historic_electronics_factory_and_research_facility",
+      "access": "exterior_and_blue_plaque",
+      "lat": 59.96851908911736,
+      "lon": 10.772328336306844,
+      "address": {
+        "street": "Kjelsåsveien",
+        "number": "161",
+        "postcode": "0884",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "why_qualified": "Anlegget var et konkret produksjons-, laboratorie- og forskningssted for radio, båndopptakere, fjernsyn, profesjonell elektronikk og datateknologi.",
+      "technology_emne_ids": [
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_teknologihistorie_sti_og_innelasing",
+        "em_tek_standarder_infrastruktur_interoperabilitet"
+      ],
+      "source_urls": [
+        "https://snl.no/Tandbergs_Radiofabrikk",
+        "https://oslobyleksikon.no/side/Tandbergs_Radiofabrikk"
+      ],
+      "coordinate_note": "Adressepunkt beregnet fra offentlig UTM33-adressedata for Kjelsåsveien 161; blått kulturhistorisk skilt er dokumentert.",
+      "place_file": "data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json",
+      "coordinate_evidence_file": "data/coordinate-evidence/oslo/vitenskap/tandbergs_radiofabrikk_kjelsas.json"
+    },
+    {
+      "id": "radionette_fodested_bygdoy_alle_67",
+      "name": "Radionettes fødested",
+      "status": "canonical_produced",
+      "production_action": "none",
+      "technology_anchor_type": "documented_invention_and_startup_site",
+      "access": "public_exterior_blue_plaque",
+      "lat": 59.918959,
+      "lon": 10.702483,
+      "address": {
+        "street": "Bygdøy allé",
+        "number": "67",
+        "postcode": "0265",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "why_qualified": "Jan Wessel startet Radionette-produksjonen i bygningen i 1927 og introduserte en tidlig europeisk radiomottaker for direkte tilkobling til lysnettet; stedet er markert med blått skilt.",
+      "technology_emne_ids": [
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_ingeniorprosess_krav_og_design",
+        "em_tek_teknologihistorie_sti_og_innelasing"
+      ],
+      "source_urls": [
+        "https://oslobyleksikon.no/side/Radionette",
+        "https://snl.no/Radionette",
+        "https://www.oslobyesvel.no/blaaskilt"
+      ],
+      "place_file": "data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json",
+      "coordinate_evidence_file": "data/coordinate-evidence/oslo/vitenskap/radionette_fodested_bygdoy_alle_67.json"
+    },
+    {
+      "id": "stk_pex_kabeltarnet",
+      "name": "STK Kabeltårnet",
+      "status": "canonical_produced",
+      "production_action": "none",
+      "technology_anchor_type": "historic_high_voltage_cable_production_tower",
+      "access": "public_exterior",
+      "lat": 59.927639,
+      "lon": 10.816681,
+      "address": {
+        "street": "Kabelgata",
+        "number": "1–39",
+        "postcode": "0580",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "why_qualified": "Tårnet ble reist som en del av Standard Telefon og Kabelfabrikk og brukt til framstilling av avanserte høyspentkabler; omkringliggende fabrikkmiljø produserte telekabler, telefonsentraler og elektronikk.",
+      "technology_emne_ids": [
+        "em_tek_materialstruktur_og_egenskaper",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_teknologihistorie_sti_og_innelasing"
+      ],
+      "source_urls": [
+        "https://magasin.oslo.kommune.no/byplan/kabelfabrikk-blir-kulturfabrikk",
+        "https://snl.no/Standard_Telefon_og_Kabelfabrik"
+      ],
+      "coordinate_note": "Foreløpig synlig tårnanker basert på georeferert foto. Eksakt bygningsgeometri og adresse skal låses i Coordinate Evidence v1.",
+      "place_file": "data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json",
+      "coordinate_evidence_file": "data/coordinate-evidence/oslo/vitenskap/stk_pex_kabeltarnet.json"
+    },
+    {
+      "id": "sintef_minalab",
+      "name": "SINTEF MiNaLab",
+      "status": "canonical_produced",
+      "production_action": "none",
+      "technology_anchor_type": "active_microchip_research_and_fabrication_lab",
+      "access": "restricted_laboratory_public_exterior",
+      "lat": 59.943728,
+      "lon": 10.718136,
+      "address": {
+        "street": "Gaustadalléen",
+        "number": "23C",
+        "postcode": "0373",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "why_qualified": "MiNaLab har Norges eneste uavhengige komplette linje for utvikling og fabrikasjon av mikrobrikker, med renrom, prosessutvikling, sensorer og småskalaproduksjon.",
+      "technology_emne_ids": [
+        "em_tek_materialstruktur_og_egenskaper",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_signaler_sensorer_og_stoy"
+      ],
+      "source_urls": [
+        "https://www.sintef.no/laboratorier/minalab/",
+        "https://www.sintef.no/globalassets/upload/konsern/kjoreanvisninger/how-to-get-to-minalab.pdf"
+      ],
+      "access_note": "Stedet er faglig entydig, men selve laboratoriet har adgangsbegrensning. Kartproduksjonen må derfor bruke offentlig inngang/bygning og ikke love innsyn i renrommet.",
+      "place_file": "data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json",
+      "coordinate_evidence_file": "data/coordinate-evidence/oslo/vitenskap/sintef_minalab.json"
+    }
+  ],
+  "production_status": {
+    "status": "complete",
+    "produced_at": "2026-07-27",
+    "existing_places_enriched": [
+      "teknisk_museum"
+    ],
+    "new_places_created": [
+      "bitraf",
+      "tandbergs_radiofabrikk_kjelsas",
+      "radionette_fodested_bygdoy_alle_67",
+      "stk_pex_kabeltarnet",
+      "sintef_minalab"
+    ]
+  }
+}

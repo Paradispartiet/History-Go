@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "stk_pex_kabeltarnet",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.927639,
+    "lon": 10.816681,
+    "r": 75,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Kartverket/Geonorge-adressepunktet for Kabelgata 51 brukes som byggpunkt for PEX-tårnet. Tårnet Kulturarena, Oxer og Oslo kommune dokumenterer adressen og kabelproduksjonen. Radius 75 meter dekker tårnbygningen, ikke hele STK-området."
+  },
+  "identity": {
+    "currentName": "STK PEX-kabeltårnet",
+    "resolvedIdentity": "STK PEX-kabeltårnet, Kabelgata 51, 0581 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell adresse",
+    "dokumentert teknologisk identitet",
+    "avgrenset kartanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Kabelgata 51",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Kabelgata&nummer=51&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-address-v1:0301:stk_pex_kabeltarnet:59.92763900,10.81668100",
+      "sourceQuality": "official_address",
+      "finding": "Offisielt adressepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical byggpunkt under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Tårnet Kulturarena – tårnets historie",
+      "sourceUrl": "https://www.taarnetkulturarena.no/om-tarnet",
+      "sourceObjectId": "source:stk_pex_kabeltarnet:t-rnet-kulturarena-t-rnets-historie",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oxer Eiendom – kabeltårnet",
+      "sourceUrl": "https://www.oxer.no/naeringseiendom/tarnet/",
+      "sourceObjectId": "source:stk_pex_kabeltarnet:oxer-eiendom-kabelt-rnet",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – kabelfabrikk blir kulturfabrikk",
+      "sourceUrl": "https://magasin.oslo.kommune.no/byplan/kabelfabrikk-blir-kulturfabrikk",
+      "sourceObjectId": "source:stk_pex_kabeltarnet:oslo-kommune-kabelfabrikk-blir-kulturfabrikk",
+      "sourceQuality": "documented_place_identity",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Standard Telefon og Kabelfabrik",
+      "sourceUrl": "https://snl.no/Standard_Telefon_og_Kabelfabrik",
+      "sourceObjectId": "source:stk_pex_kabeltarnet:store-norske-leksikon-standard-telefon-og-kabelfabrik",
+      "sourceQuality": "documented_place_identity",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kabelgata 51, 0581 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:stk_pex_kabeltarnet:59.92763900,10.81668100",
+      "lat": 59.927639,
+      "lon": 10.816681,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:stk_pex_kabeltarnet:59.92763900,10.81668100",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:stk_pex_kabeltarnet:59.92763900,10.81668100",
+      "lat": 59.927639,
+      "lon": 10.816681,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinaten er anvendt i canonical place-fil."
+  },
+  "notes": [
+    "Kartverket/Geonorge-adressepunktet for Kabelgata 51 brukes som byggpunkt for PEX-tårnet. Tårnet Kulturarena, Oxer og Oslo kommune dokumenterer adressen og kabelproduksjonen. Radius 75 meter dekker tårnbygningen, ikke hele STK-området."
+  ]
+}

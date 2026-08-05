@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "sintef_minalab",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "candidate_ready_for_production",
+  "currentCoordinate": {
+    "lat": 59.943728,
+    "lon": 10.718136,
+    "r": 75,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Kartverket/Geonorge-adressepunktet for Gaustadalléen 23C brukes som byggpunkt. SINTEF dokumenterer samme besøksadresse, renrommet og mikrobrikkeproduksjonen. Radius 75 meter dekker laboratoriebygningen uten å gjøre hele Forskningsparken til samme sted."
+  },
+  "identity": {
+    "currentName": "SINTEF MiNaLab",
+    "resolvedIdentity": "SINTEF MiNaLab, Gaustadalléen 23C, 0373 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell adresse",
+    "dokumentert teknologisk identitet",
+    "avgrenset kartanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Gaustadalléen 23C",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Gaustadall%C3%A9en&nummer=23&bokstav=C&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-address-v1:0301:sintef_minalab:59.94372800,10.71813600",
+      "sourceQuality": "official_address",
+      "finding": "Offisielt adressepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical byggpunkt under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "SINTEF – MiNaLab",
+      "sourceUrl": "https://www.sintef.no/laboratorier/minalab/",
+      "sourceObjectId": "source:sintef_minalab:sintef-minalab",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "SINTEF – MiNaLab fyller 10 år",
+      "sourceUrl": "https://www.sintef.no/siste-nytt/2014/minalab-fyller-10-ar/",
+      "sourceObjectId": "source:sintef_minalab:sintef-minalab-fyller-10-r",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "NorFab – SINTEF MiNaLab",
+      "sourceUrl": "https://norfab.no/labs/sintef-minalab/",
+      "sourceObjectId": "source:sintef_minalab:norfab-sintef-minalab",
+      "sourceQuality": "official_current_site",
+      "finding": "Dokumenterer stedets identitet og teknologiske funksjon.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og funksjonskryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Gaustadalléen 23C, 0373 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:sintef_minalab:59.94372800,10.71813600",
+      "lat": 59.943728,
+      "lon": 10.718136,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:sintef_minalab:59.94372800,10.71813600",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-address-v1:0301:sintef_minalab:59.94372800,10.71813600",
+      "lat": 59.943728,
+      "lon": 10.718136,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Koordinaten er anvendt i canonical place-fil."
+  },
+  "notes": [
+    "Kartverket/Geonorge-adressepunktet for Gaustadalléen 23C brukes som byggpunkt. SINTEF dokumenterer samme besøksadresse, renrommet og mikrobrikkeproduksjonen. Radius 75 meter dekker laboratoriebygningen uten å gjøre hele Forskningsparken til samme sted."
+  ]
+}
