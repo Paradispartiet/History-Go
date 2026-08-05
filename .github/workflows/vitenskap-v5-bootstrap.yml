@@ -16,26 +16,125 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  expose-sources:
-    name: Reconstruct Vitenskap V5 sources
+  materialize:
+    name: Materialize Vitenskap V5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: editorial/vitenskap-v5-20260805
           fetch-depth: 0
-      - name: Reconstruct permanent production sources
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Lock deterministic method families into builder
         run: |
-          cat .bootstrap/vitenskap-v5/builder.part.* | tr -d '\n' | base64 --decode | gzip --decompress > tools/build-vitenskap-editorial-v5.mjs
-          tr -d '\n' < .bootstrap/vitenskap-v5/validator.b64 | base64 --decode | gzip --decompress > scripts/validate-vitenskap-editorial-v5.mjs
-          tr -d '\n' < .bootstrap/vitenskap-v5/test.b64 | base64 --decode | gzip --decompress > tests/vitenskap-editorial-v5.test.mjs
-          chmod +x tools/build-vitenskap-editorial-v5.mjs scripts/validate-vitenskap-editorial-v5.mjs
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/build-vitenskap-editorial-v5.mjs')
+          text = path.read_text()
+          old = """const methodAssignments = oldMethods.map((method) => ({ method, family: classifyMethod(method) }));
+          const familyCoreId = new Map();
+          for (const family of METHOD_FAMILIES) {
+            const candidates = methodAssignments.filter((entry) => entry.family.id === family.id).map((entry) => entry.method);
+            const exact = candidates.find((method) => clean(method.method_id).includes(family.keywords[0]));
+            familyCoreId.set(family.id, clean((exact || candidates[0] || {}).method_id));
+          }
+          """
+          new = """const FAMILY_ANCHOR_PATTERNS = new Map(METHOD_FAMILIES.map((family) => [family.id, family.keywords]));
+          const forcedFamilyByMethodId = new Map();
+          const claimedAnchorIds = new Set();
+          for (const family of METHOD_FAMILIES) {
+            const patterns = FAMILY_ANCHOR_PATTERNS.get(family.id) || [];
+            const ranked = oldMethods
+              .filter((method) => !claimedAnchorIds.has(method.method_id))
+              .map((method) => {
+                const text = [method.method_id, method.title, method.short_label, method.description, ...arr(method.best_for_emne_kinds), ...arr(method.coverage_domains), ...arr(method.hook_affinities)].join(' ').toLowerCase();
+                const score = patterns.reduce((sum, pattern) => sum + (text.includes(pattern) ? 1 : 0), 0);
+                return { method, score };
+              })
+              .sort((a, b) => b.score - a.score || clean(a.method.method_id).localeCompare(clean(b.method.method_id), 'nb'));
+            const anchor = ranked.find((entry) => entry.score > 0)?.method || ranked[0]?.method;
+            if (!anchor) throw new Error(`Mangler anker-metode for ${family.id}`);
+            claimedAnchorIds.add(anchor.method_id);
+            forcedFamilyByMethodId.set(anchor.method_id, family.id);
+          }
+          const methodAssignments = oldMethods.map((method) => ({
+            method,
+            family: METHOD_FAMILIES.find((family) => family.id === forcedFamilyByMethodId.get(method.method_id)) || classifyMethod(method)
+          }));
+          const familyByMethodId = new Map(methodAssignments.map((entry) => [entry.method.method_id, entry.family]));
+          const familyCoreId = new Map();
+          for (const family of METHOD_FAMILIES) {
+            const candidates = methodAssignments.filter((entry) => entry.family.id === family.id).map((entry) => entry.method);
+            const forced = candidates.find((method) => forcedFamilyByMethodId.get(method.method_id) === family.id);
+            familyCoreId.set(family.id, clean((forced || candidates[0] || {}).method_id));
+          }
+          """
+          if old not in text:
+              raise SystemExit('Fant ikke methodAssignments-blokken')
+          text = text.replace(old, new, 1)
+          old2 = """const methods = oldMethods.map((method) => {
+            const family = classifyMethod(method);
+          """
+          new2 = """const methods = oldMethods.map((method) => {
+            const family = familyByMethodId.get(method.method_id) || classifyMethod(method);
+          """
+          if old2 not in text:
+              raise SystemExit('Fant ikke methods-map-blokken')
+          text = text.replace(old2, new2, 1)
+          old3 = "const methodsById = new Map(methods.map((m) => [m.method_id, m]));\n"
+          new3 = """const methodsById = new Map(methods.map((m) => [m.method_id, m]));
+          const MODULE_FAMILY_FALLBACK = {
+            vitenskapelig_kunnskap_begrunnelse: 'evidens_replikasjon_syntese',
+            forskningssporsmal_design_kausalitet: 'eksperiment_kausal_design',
+            observasjon_maling_eksperiment: 'maling_kalibrering_standard',
+            statistikk_modeller_usikkerhet: 'statistikk_usikkerhet',
+            klassifikasjon_data_beregning: 'data_beregning_visualisering',
+            laboratorier_institusjoner_infrastruktur: 'institusjon_infrastruktur',
+            vitenskapshistorie_paradigmer_fagendring: 'kilde_arkiv_historie',
+            natur_liv_helse_miljovitenskap: 'natur_medisin_miljo',
+            vitenskap_samfunn_makt_offentlighet: 'sts_makt_risiko_etikk',
+            etikk_integritet_risiko_ansvar: 'sts_makt_risiko_etikk'
+          };
+          for (const topic of emner) {
+            const referencedMethodIds = unique([topic.method_ids, topic.recommended_method_ids]).filter((id) => methodsById.has(id));
+            topic.method_family_ids = unique(referencedMethodIds.map((id) => methodsById.get(id)?.method_family_id));
+            if (!topic.method_family_ids.length) topic.method_family_ids = [MODULE_FAMILY_FALLBACK[topic.module_id] || 'evidens_replikasjon_syntese'];
+          }
+          """
+          if old3 not in text:
+              raise SystemExit('Fant ikke methodsById-blokken')
+          text = text.replace(old3, new3, 1)
+          path.write_text(text)
+          PY
+          python .bootstrap/vitenskap-v5/patch-category-contract.py
           node --check tools/build-vitenskap-editorial-v5.mjs
-      - name: Commit reconstructed sources
+      - name: Install dependencies
+        run: npm ci
+      - name: Materialize canonical Vitenskap V5
+        run: node tools/build-vitenskap-editorial-v5.mjs --write
+      - name: Validate Vitenskap V5 locally
+        run: |
+          node tools/build-vitenskap-editorial-v5.mjs --check
+          node scripts/validate-vitenskap-editorial-v5.mjs
+          node --test tests/vitenskap-editorial-v5.test.mjs
+      - name: Regenerate global governance artifacts
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify active place emne references
+        run: npm run places:emners:check
+      - name: Remove temporary bootstrap payload
+        run: rm -rf .bootstrap/vitenskap-v5
+      - name: Commit permanent Vitenskap V5 package
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/build-vitenskap-editorial-v5.mjs scripts/validate-vitenskap-editorial-v5.mjs tests/vitenskap-editorial-v5.test.mjs
+          git add -A
           git diff --cached --stat
-          git commit -m 'Expose Vitenskap V5 production sources'
+          git commit -m 'Materialize Vitenskap editorial V5'
           git push origin HEAD:editorial/vitenskap-v5-20260805
