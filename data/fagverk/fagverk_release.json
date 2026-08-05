@@ -1,6 +1,6 @@
 {
-  "schema": "history_go_fagverk_release_v1",
-  "version": "1.0.0",
+  "schema": "history_go_fagverk_release_v2",
+  "version": "2.0.0",
   "source": {
     "repository": "Paradispartiet/History-Go",
     "branch": "main",
@@ -13,24 +13,924 @@
     "updated_at": "2026-08-04",
     "content_sha256": "41c909c6f412eb24f2b818d398538eff9427056c4468ec76a31768f8c0a1bc0b"
   },
+  "subject_inventory": {
+    "path": "data/fagverk/subject_inventory.json",
+    "schema": "history_go_fagverk_subject_inventory_v1",
+    "version": "1.5.0",
+    "updated_at": "2026-08-04",
+    "content_sha256": "a32cce158183b3e5405d83ba8b3d22fe8179fef0ec297721a6c7bca224d0531f",
+    "root_subject_count": 17,
+    "specialization_count": 1
+  },
+  "fag_manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "schema": null,
+    "version": null,
+    "updated_at": null,
+    "content_sha256": "8861197980959212f572fc4e442cbf32aa87c5f8edd10895e8988bce29f4a3e4"
+  },
   "summary": {
-    "subject_count": 5,
+    "subject_count": 18,
+    "root_subject_count": 17,
+    "specialization_count": 1,
+    "chapter_subject_count": 5,
     "chapter_count": 67,
     "module_file_count": 168,
-    "referenced_file_count": 285,
-    "missing_file_count": 0
+    "package_file_count": 191,
+    "chapter_referenced_file_count": 285,
+    "referenced_file_count": 436,
+    "missing_file_count": 0,
+    "optional_gap_count": 1
   },
   "subjects": {
+    "by": {
+      "title": "by",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "by_compatibility",
+      "pilot": true,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "quizPackageSchema",
+        "quizProduction"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizPackageSchema",
+        "quizProduction",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 12,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 8,
+      "package_files": [
+        {
+          "path": "data/fag/by/emner_by.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "d53d02de4658059a411dc393d30b3765b8ea7ece7af33173811a3641f7e5efac"
+        },
+        {
+          "path": "data/fag/by/fagkart_by.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "67c8d76f44b312b64f0f809f2cd35417dbcc1564417f598c4fc095642f350f74"
+        },
+        {
+          "path": "data/fag/by/methods_by.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "5391bf55e0a764158e15eac31e5f7b8b34cf02f4acc40dea56a97977ff6ebd0b"
+        },
+        {
+          "path": "data/fag/by/pensum_by.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "98271a067dc29328537b3f16151e5a925d45df088cce912682c6d45a734471b6"
+        },
+        {
+          "path": "data/fag/by/supersetQUIZMAL_by.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "289f1004b8cd8fd3a551b7e884908ee2653ea9d4315a58dce417ffb064007956"
+        },
+        {
+          "path": "data/quiz/by/deichman_bjorvika_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.deichman_bjorvika.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "0bbf806341a777cac2cddaaa839716623bf9202dca3ba604ed956b1b7501617d"
+        },
+        {
+          "path": "data/quiz/production_briefs/by/deichman_bjorvika.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.deichman_bjorvika.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "39c221abfd5d9cd96d3d2850152521e7a05a1aac463c6995863dd72a23009672"
+        },
+        {
+          "path": "data/quiz/production_context/by/deichman_bjorvika.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.deichman_bjorvika.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "a63aaa584189c5a8f2a24dc0eba37249340ec129d1630d886255cc1f35d77ab7"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "quizPackageSchema"
+          ],
+          "key_paths": [
+            "quizPackageSchema"
+          ],
+          "exists": true,
+          "content_sha256": "3a01fb4177c9cf81df823d3bacdb24b1a37b2bdbfd45dade8aa18f4d0e5ec8d6"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "scripts/build-quiz-production-context.mjs",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.context_builder"
+          ],
+          "exists": true,
+          "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
+        }
+      ],
+      "package_content_sha256": "e28f80e3cf54d5908b8af0ee6061ca45d72dbbe81443d592ce7bf87603a022e0",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 12,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "3ea96832ef3fb3444a829b0c302bde487fd5e6b672f5e29bbbacb7e7f9a01d95",
+      "content_sha256": "e28f80e3cf54d5908b8af0ee6061ca45d72dbbe81443d592ce7bf87603a022e0",
+      "chapters": []
+    },
+    "film_tv": {
+      "title": "film_tv",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "dd610e3f52140186e148e5ca6a05524e2b8099c8941eaf7e9dc81e65aeeb11df"
+        },
+        {
+          "path": "data/fag/TV_og_Film/fagkart_film_tv_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "b6f92fbc2dada89df34aa2baa724207176f436e8b21d6601a11fd1e69776af19"
+        },
+        {
+          "path": "data/fag/TV_og_Film/film_tvpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "8037338c74fa0af2a56830875301994a3d9dda16e675f3e8cab38ba246d9405b"
+        },
+        {
+          "path": "data/fag/TV_og_Film/methods_film_tv_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "7cb9cf4e247cbeff43fc90bb0539fec66ea5de84520e49245629447ff302293f"
+        },
+        {
+          "path": "data/fag/TV_og_Film/supersetQUIZMAL_film_tv.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "bcbff212c8af801395cca58f0dc00331f1c6e1c2f34a54c317dd5522a4f89665"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "728ca3a003bd91f50ed17aaf77f6c1cd5fdcbab5981cdb5b5c576b07f53d1cb2",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "955d2d44f08c2fc2a1a10d9fcf2081f9133320835de23e2782bcb1f755a9bc32",
+      "content_sha256": "728ca3a003bd91f50ed17aaf77f6c1cd5fdcbab5981cdb5b5c576b07f53d1cb2",
+      "chapters": []
+    },
+    "filosofi": {
+      "title": "filosofi",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "foundation_v1",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "status",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "status",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/filosofi/emner_filosofi_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "d9e809bb19012cfa329de8d42a35bd83d00ce864a75a50cd891d97533a527ad3"
+        },
+        {
+          "path": "data/fag/filosofi/fagkart_filosofi_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "1ba222cad79649c604c51fc62145c2fad2a43743d36f1841947aecf891c60c19"
+        },
+        {
+          "path": "data/fag/filosofi/filosofipensum_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "2a3ea2d69143eb67df589052bf309aeba98eb541218136261dd5fe60940678a7"
+        },
+        {
+          "path": "data/fag/filosofi/methods_filosofi_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "86a9afbf8b08b6e01440eb9ffbc2aa733699feac4e027fb416b8c7461e02e539"
+        },
+        {
+          "path": "data/fag/filosofi/supersetQUIZMAL_filosofi.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "9d0fb17a200e812f6b0478c9715709c4dd4473c2f985f7489b2fa8b93437b420"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "e5993af3efc3844d67f93f35765a464d27971e03bf2a88c95f9b0e2694712354",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "240a36638376e9c937aaf7a6e40808e4bd236a81df3e2a0b9b924f0c6dea60ce",
+      "content_sha256": "e5993af3efc3844d67f93f35765a464d27971e03bf2a88c95f9b0e2694712354",
+      "chapters": []
+    },
     "historie": {
       "title": "Historie",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "quizPackageSchema",
+        "quizProduction",
+        "version",
+        "scope",
+        "curriculumArchitecture",
+        "coverageContract",
+        "qualityContract",
+        "caseRequirements",
+        "claims",
+        "sources",
+        "placeEvidence",
+        "profilesManifest"
+      ],
+      "present_manifest_fields": [
+        "caseRequirements",
+        "claims",
+        "coverageContract",
+        "curriculumArchitecture",
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "placeEvidence",
+        "profilesManifest",
+        "qualityContract",
+        "quizPackageSchema",
+        "quizProduction",
+        "quizQuestionSchema",
+        "quizStandard",
+        "scope",
+        "sources",
+        "supersetQuizMal",
+        "version"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 29,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 25,
+      "package_files": [
+        {
+          "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
+          "required": false,
+          "fields": [
+            "caseRequirements"
+          ],
+          "key_paths": [
+            "caseRequirements"
+          ],
+          "exists": true,
+          "content_sha256": "30b566129c3bdae484114b3f98dd9dea3f0f6908397bf80ff867dfa14d9aa3e4"
+        },
+        {
+          "path": "data/fag/historie/claims_historie_canonical_v1.json",
+          "required": false,
+          "fields": [
+            "claims"
+          ],
+          "key_paths": [
+            "claims"
+          ],
+          "exists": true,
+          "content_sha256": "1469d4f10b36adacacf2b3aad95f232bb040d4004aad659b02dd07dc2aa6a322"
+        },
+        {
+          "path": "data/fag/historie/curriculum_architecture_historie_v1.json",
+          "required": false,
+          "fields": [
+            "curriculumArchitecture"
+          ],
+          "key_paths": [
+            "curriculumArchitecture"
+          ],
+          "exists": true,
+          "content_sha256": "a9c8071a90a89876cd264010d12b82afa5e8d14594525cdab780a487bbe1a2ba"
+        },
+        {
+          "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "496d5cf504562d5bfcaeb53fdc060ab75bd80b3999d9e6542298ac74f3d06cd0"
+        },
+        {
+          "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "5832c9ab0c5feb8e194bc09013ee2f7e769b23fdeadcb11a4d839de40640e215"
+        },
+        {
+          "path": "data/fag/historie/historie_universal_coverage_contract_v1.json",
+          "required": false,
+          "fields": [
+            "coverageContract"
+          ],
+          "key_paths": [
+            "coverageContract"
+          ],
+          "exists": true,
+          "content_sha256": "8d12d3a38c288faa64a41ef76f11a5808170d91f5f1e9dc35abbd9ca40e93ab9"
+        },
+        {
+          "path": "data/fag/historie/historie_v5_contract.json",
+          "required": false,
+          "fields": [
+            "qualityContract"
+          ],
+          "key_paths": [
+            "qualityContract"
+          ],
+          "exists": true,
+          "content_sha256": "441bf8fc742ab7306620eb4c6a6df05989a07be5d5b4b76e7398e09005a90632"
+        },
+        {
+          "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "d03bce76609fbc12a6b936e906f9ecfd7e45bc09f182567869a319e9eafbe88c"
+        },
+        {
+          "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "e9bf3b7d8b30eaad9059d94d46cae41affa05aa6cd38aa7d262d9abf1a4c2f9b"
+        },
+        {
+          "path": "data/fag/historie/place_evidence_historie_v1.json",
+          "required": false,
+          "fields": [
+            "placeEvidence"
+          ],
+          "key_paths": [
+            "placeEvidence"
+          ],
+          "exists": true,
+          "content_sha256": "958095bdc13a3907cd18e69b1c02647c473f01b71ec679f265b4f3ed3b5a8e4f"
+        },
+        {
+          "path": "data/fag/historie/sources_historie_canonical_v1.json",
+          "required": false,
+          "fields": [
+            "sources"
+          ],
+          "key_paths": [
+            "sources"
+          ],
+          "exists": true,
+          "content_sha256": "d368e1aa0a6a1d4a9c3c770c4664e6be760426689c2ada36e687efebff998934"
+        },
+        {
+          "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "bdb2ba22388c47479b31057025a70febf7ef3d42ae0c0f33c3be38812162c698"
+        },
+        {
+          "path": "data/fag/profiles/manifest.json",
+          "required": false,
+          "fields": [
+            "profilesManifest"
+          ],
+          "key_paths": [
+            "profilesManifest"
+          ],
+          "exists": true,
+          "content_sha256": "cd0ecf17487c6c31811ea2d857a3f60c0b757a3e71652af438cdadb597442606"
+        },
+        {
+          "path": "data/quiz/historie/grindheim_runestein_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheim_runestein.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "2a93e444d427dea449b3e9a10cc1a298d5eefab057cc00516b3ba13471a6c701"
+        },
+        {
+          "path": "data/quiz/historie/grindheim_steinkross_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheim_steinkross.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "d52a70bb3eecd3d8b663e5bf0e96307b81d92d8c6a633a0963a196acd58b14e2"
+        },
+        {
+          "path": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheimsveien_nord_gravfelt.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "ecafa7d78696df493599dc7383c24e73677a4722e74e2eb32f11c0c2d237e598"
+        },
+        {
+          "path": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hoyland_gravhaug_etne.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "03b329a3d5754efcf3f9248ea677e9ca269cbc8f76b0e850e626aff47e1e2f59"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/grindheim_runestein.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheim_runestein.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "9f7081b0c952decc56fe985782f7e63e6f0b9e82770dfdca7e164b69ec573681"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/grindheim_steinkross.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheim_steinkross.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "9c24e5d9837e7fb4fc2996db1432908e93b9a9c2641218018478d7818bb1ec81"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/grindheimsveien_nord_gravfelt.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheimsveien_nord_gravfelt.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e05f1cd11aeaa5ebe0e3bef1f6775e0fde93b47b44194002901815a54cc25b75"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/hoyland_gravhaug_etne.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hoyland_gravhaug_etne.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "309ed881d26d29421f1b6442e2c892e021cbf55789ed1a3eb1b41723bc6127a5"
+        },
+        {
+          "path": "data/quiz/production_context/historie/grindheim_runestein.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheim_runestein.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "9539e9c12449796304e6e2c1c49356de749bb831d3ccc6db902ee698f331efb2"
+        },
+        {
+          "path": "data/quiz/production_context/historie/grindheim_steinkross.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheim_steinkross.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "42cdf9e84e28ba35bc9cd1ccdc999edd36bd8a692f4a71b26f7b8d329214744e"
+        },
+        {
+          "path": "data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.grindheimsveien_nord_gravfelt.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "6c92004bf7aafd7bfa573788e18309fd692852267400e2a334df44e056a4f8c2"
+        },
+        {
+          "path": "data/quiz/production_context/historie/hoyland_gravhaug_etne.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.hoyland_gravhaug_etne.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "4b5adc965f5b3d481b65d124914493f87415ce649ff0852e149988088bd0966b"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "quizPackageSchema"
+          ],
+          "key_paths": [
+            "quizPackageSchema"
+          ],
+          "exists": true,
+          "content_sha256": "3a01fb4177c9cf81df823d3bacdb24b1a37b2bdbfd45dade8aa18f4d0e5ec8d6"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "scripts/build-quiz-production-context.mjs",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.context_builder"
+          ],
+          "exists": true,
+          "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
+        }
+      ],
+      "package_content_sha256": "288a742516189e56d99d9696a6470b8ec56e7d367d8f2f6ecc60cf7bbe22524f",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
-      "referenced_file_count": 92,
+      "chapter_referenced_file_count": 92,
+      "chapter_content_sha256": "cdcad073d9b4da0f003ad3f4a52384eb8f1f33fd10c967a72044c88207d781f4",
+      "referenced_file_count": 121,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "8307728cde3adf57c08de55c9af46c6b4b1bb14aa500edd7ae3bddad6dbfe85e",
-      "content_sha256": "ae09b4a944a3c0e02dfcb5f9b749abda8d027295bafcb467fc706aeb95d9cc57",
+      "structure_sha256": "5cca90e7191b198c49a6c4fabf958e2e77ca635b8083b44c0315c5bb05af6370",
+      "content_sha256": "fe9f74f0ad244729151c7c6ce5789d19359d39a805a5f899712a5d4605a2e988",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -38,7 +938,7 @@
           "file": "data/fagverk/historie/historisk_tid_periodisering.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "ac45139fc0dac158737bba24fbb537b84e292ef77e954c2fdd52a6de99a33138"
+          "content_sha256": "5a5e97feaa2b96a82d03227bd19f4febf9894fa37226fb7681de495ed1c165e2"
         },
         {
           "chapter_id": "kilder_arkiv_spor",
@@ -46,7 +946,7 @@
           "file": "data/fagverk/historie/kilder_arkiv_spor.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "5effead2a455f75989700f4bb1179e85c943235d506095cd89d99c49814c1437"
+          "content_sha256": "0055c164fd325c718893e1e8fe2b145f3eea0840d9d365922a2ac82aa1937f2c"
         },
         {
           "chapter_id": "makt_stat_institusjoner",
@@ -54,7 +954,7 @@
           "file": "data/fagverk/historie/makt_stat_institusjoner.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "90e82ab476b0ed403c16afe08441185e2fc3b0fdc3016ef9e49609e48bde0f3b"
+          "content_sha256": "bab316d0cba71f79a72d64195c656325c1f6b1248c37dbdaeb83fdb1a3e04d4d"
         },
         {
           "chapter_id": "middelalder_kirke_kongemakt",
@@ -62,7 +962,7 @@
           "file": "data/fagverk/historie/middelalder_kirke_kongemakt.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "21fb480c2d45e90d94ab343eebc159ce1b4bebc130301bc9cb91136adff24da1"
+          "content_sha256": "3f672980b1c629797d83495652fb6cf526a5d843a130d2abe8bd68857e44c045"
         },
         {
           "chapter_id": "1814_statsdannelse",
@@ -70,7 +970,7 @@
           "file": "data/fagverk/historie/1814_statsdannelse.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "7d15acab76e4e59b807373921e0ed423cfd1765f6696cb6babdc3c164a3a8881"
+          "content_sha256": "eef4a94d7b87d3b58ab6df81d97576fe7d27a5f17ebd1799a5fdfc71e608496b"
         },
         {
           "chapter_id": "industri_arbeid_sosialhistorie",
@@ -78,7 +978,7 @@
           "file": "data/fagverk/historie/industri_arbeid_sosialhistorie.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "76fa9e2dda635a6c8fbfd49dd3072b4d11cf6cd35479ff0dddf44da6f9970df5"
+          "content_sha256": "8a7790312a512e817d4e6ddd00fb597d8a5a220bfa2af266cf7656ef84d3812d"
         },
         {
           "chapter_id": "krig_okkupasjon_motstand",
@@ -86,7 +986,7 @@
           "file": "data/fagverk/historie/krig_okkupasjon_motstand.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "426385fa4b3c58da8594b2f91dd9efa8234c9b6d65d6691ccd2b6f68f32aa617"
+          "content_sha256": "13ed7d3264024fa152f334025284684238347c1942d0fb84e6c0344ed9e18e8c"
         },
         {
           "chapter_id": "velferd_rett_hverdagsliv",
@@ -94,7 +994,7 @@
           "file": "data/fagverk/historie/velferd_rett_hverdagsliv.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "7f2e6ea372a34df12c387472259144543c3427edd7d58d035e3f37faee1bc99e"
+          "content_sha256": "c98130a048bfd3f488844835ecfcd17f476512e72c4417ee194e79c155bbdec0"
         },
         {
           "chapter_id": "migrasjon_minoritet_tilhorighet",
@@ -102,7 +1002,7 @@
           "file": "data/fagverk/historie/migrasjon_minoritet_tilhorighet.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "e5165bb9e20b6ce0ce4f55f5e75d7b80c06516502570201c7ebe71bf903b7bce"
+          "content_sha256": "f98a4820f5932661e521e650aacb541d7da8d1ed7547c78dac174219037ac5b5"
         },
         {
           "chapter_id": "minne_kulturarv_historiebruk",
@@ -110,7 +1010,7 @@
           "file": "data/fagverk/historie/minne_kulturarv_historiebruk.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "3f97be6ccc75cde2cb873da15d483e693fb6c58eb855422cdf5519e18347b383"
+          "content_sha256": "9d4c8fa2ac90d1f250c6c09952827a13b56eb95ada17cec6f2e73208e5b20567"
         },
         {
           "chapter_id": "byhistorie_stedsendring",
@@ -118,7 +1018,7 @@
           "file": "data/fagverk/historie/byhistorie_stedsendring.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "fa12784f4a1f3e14b670263d4e345eca611c54b3a21ed4c7defd27ef1a04d1bf"
+          "content_sha256": "d587dd2cb2b858224dd2f488d870685c05838afe66fb533432180613ecd1daec"
         },
         {
           "chapter_id": "katastrofer_brudd_ulykker",
@@ -126,7 +1026,7 @@
           "file": "data/fagverk/historie/katastrofer_brudd_ulykker.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "e7d03c67c2837b85c5f4f6e4b8322412b0b984927580e2c615f69f869613d765"
+          "content_sha256": "171474b1fe8c4942464943f8d94c11e9e8abdc6e05751650742a1cf5a26ccd4a"
         },
         {
           "chapter_id": "kjonn_familie_livslop",
@@ -134,7 +1034,7 @@
           "file": "data/fagverk/historie/kjonn_familie_livslop.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "55dc23a12292d2c19cb135da5e23e455dbb0f401f5b737c48a9bf4aa20c8568e"
+          "content_sha256": "02cd4008a2246fb700816def51a024bfac65d06fad8151b932efa610b747556c"
         },
         {
           "chapter_id": "okonomi_handel_materielle_systemer",
@@ -142,7 +1042,7 @@
           "file": "data/fagverk/historie/okonomi_handel_materielle_systemer.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "f15b7d88ed292c6080edf2f9faa4ecaadd6a7ff67fa6291d433fab3332a35888"
+          "content_sha256": "a527667dab2ae2e2accb941b9a2d765b5da13ff06e4fc71b92ad0ae963d5e46b"
         },
         {
           "chapter_id": "religion_reformasjon_livssyn",
@@ -150,7 +1050,7 @@
           "file": "data/fagverk/historie/religion_reformasjon_livssyn.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "25a7d292478f1dca7e15875984a341af2339f3519259bdcd5dba531bdde8a1ad"
+          "content_sha256": "3bf7c2ca6d201ed835ce07b14da2ecd5f874ff76543cffa4c70d65774575d1d7"
         },
         {
           "chapter_id": "samisk_urfolkshistorie",
@@ -158,7 +1058,7 @@
           "file": "data/fagverk/historie/samisk_urfolkshistorie.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "845657e4866da4cae2b3412ee002038868f52500cf74b1cfcdfc5b8edbf28ad4"
+          "content_sha256": "a318d9ebd48513259dd9f291e4a3a2906d8ef2d52c7eed17a8d8038148948fc1"
         },
         {
           "chapter_id": "miljo_klima_landskap",
@@ -166,7 +1066,7 @@
           "file": "data/fagverk/historie/miljo_klima_landskap.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "947537cae094f65f6fa259400d02e11fd61910fca7fcf924092577c29bb17493"
+          "content_sha256": "394671e5a1f4d9afc56833787aa4173d1988005538e192d4b540fa6371f911b2"
         },
         {
           "chapter_id": "vitenskap_teknologi_kunnskap",
@@ -174,7 +1074,7 @@
           "file": "data/fagverk/historie/vitenskap_teknologi_kunnskap.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "5defb2d69756d57b405b8339fc790238cf1ee826b69ea473b6574e199a243eb1"
+          "content_sha256": "4696be03af7eadf3631e84fb2fb2311c15d52bebd801c9ab7b7bdc3a0863a768"
         },
         {
           "chapter_id": "global_kolonial_transnasjonal",
@@ -182,7 +1082,7 @@
           "file": "data/fagverk/historie/global_kolonial_transnasjonal.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "3a696822876ec5dd507eece9037c012da4d28da5a11669b627fad354afdcc3a6"
+          "content_sha256": "dadd38bd84f417cb30864efafe6bb097bde0856d44ab6f9683d0808aefe29d94"
         },
         {
           "chapter_id": "offentlighet_mobilisering_bevegelser",
@@ -190,7 +1090,7 @@
           "file": "data/fagverk/historie/offentlighet_mobilisering_bevegelser.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "29cdf641f876b86a2a9b9da12248f0d9d11ee8f2e22e48b2120b1ef7e064a3fc"
+          "content_sha256": "95975fafb50e5bf4b8429cf2f8a0d5cd163622f53963dd67e7c45612392d9d99"
         },
         {
           "chapter_id": "forhistorie_arkeologi",
@@ -198,7 +1098,7 @@
           "file": "data/fagverk/historie/forhistorie_arkeologi.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "dfc1adb27eace042f1465da8d395aa63f026d16ee26b628f8140c7a43c1ebdfb"
+          "content_sha256": "cd4691999714c61022667955a5339559c70280152c01ac20bf417f6a5e5e88df"
         },
         {
           "chapter_id": "forste_verdenskrig_mellomkrig",
@@ -206,7 +1106,7 @@
           "file": "data/fagverk/historie/forste_verdenskrig_mellomkrig.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "8c29e406f8e3a5fa30e5df6de5396578e14b042a4477d8784a4177775c2a97bf"
+          "content_sha256": "f34f54873b38060eaedba2322dfa974181308070c347170de7e9abb6be9376e1"
         },
         {
           "chapter_id": "kald_krig_etterkrig",
@@ -214,20 +1114,996 @@
           "file": "data/fagverk/historie/kald_krig_etterkrig.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "12f0e3d16c869a43ac8666f92b00a91211700353946398601c38f2f04239febb"
+          "content_sha256": "59807059446838de8561e155d4b150509c7ec9f824008afa8c9561331b4c09d5"
         }
       ]
     },
+    "kunst": {
+      "title": "kunst",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "714648b5e9dd59d7b37e9388b175bacb476ea08ceeaa5a3ba01fbb745d860c15"
+        },
+        {
+          "path": "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "7426a1bf7642d8a55cbc214c4bd64693bcde0a263b2b42927205247970f502c1"
+        },
+        {
+          "path": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "a715f90e1c9306c4c0c5813075e7ffb9d2e4f2400191c98ac7557234ea0473fc"
+        },
+        {
+          "path": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "a49f5dcca38d0e2feaf377218d27c581b4c0c8841db92dbf48e8758e34aeb3a9"
+        },
+        {
+          "path": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "49f0f715f99b5db7278b590feb81dfe7a4df3d60569970d05d60225b1b92ae98"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "cba8fdb754df3a927791a765a0cca57db1f1918e040f75846dd4838c209d99c9",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "eb91dd117ebbd3c41bfd7afa727884ef0b9a02e2cec14782624366d48e2ec665",
+      "content_sha256": "cba8fdb754df3a927791a765a0cca57db1f1918e040f75846dd4838c209d99c9",
+      "chapters": []
+    },
+    "litteratur": {
+      "title": "litteratur",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/litteratur/emner_litteratur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "d108509e92db95d25690fc7dbfa0e8d6d74bf193d6cd45d1179f2374de7c3f85"
+        },
+        {
+          "path": "data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "b5e547049912c38e34b1ed91209de29b385f0bc9265cbe4aa830b517363679e3"
+        },
+        {
+          "path": "data/fag/litteratur/litteraturpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "9089ab6530e88e67b122843528209fbf4f8d712dda97d80f8534f1a130a85d6f"
+        },
+        {
+          "path": "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "e9f57ff2c9e4a03fdb084b1132806565af483348b22a0aaa95affb4e98cac300"
+        },
+        {
+          "path": "data/fag/litteratur/supersetQUIZMAL_litteratur.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "6f02fcd363bbacd3b16ff26ac23229798ad07a574f173ba112e13b532085c6b0"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "c54e6519861f41c645c18a2288805afba2b6689a7cd53acb815e3f9616e64fe1",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "8f866476dbe201b9612e1f7919be60a8f4bbe5f648dadfa1f673aa89ef6c0d18",
+      "content_sha256": "c54e6519861f41c645c18a2288805afba2b6689a7cd53acb815e3f9616e64fe1",
+      "chapters": []
+    },
+    "media": {
+      "title": "media",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "supplements"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal",
+        "supplements"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/media/emner_media_populaerkultur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "85a5d5d21b75d4a98a3689aa21f0b777571526e812ac7d6752629b316168026e"
+        },
+        {
+          "path": "data/fag/media/fagkart_media_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "0a9c343c1a89b82febabdba8377c62a2250e62236b759d60d94a1857e095b125"
+        },
+        {
+          "path": "data/fag/media/mediapensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "d43717e7905f4322b790662f154a4d976d5524af7dbde4cd4ab64b7de846fa8e"
+        },
+        {
+          "path": "data/fag/media/methods_media_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "cdf6aac3339a552a1f2a2663ef909b6b0fbcabb073a2443741a246cfa79001b8"
+        },
+        {
+          "path": "data/fag/media/supersetQUIZMAL_media.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "858910051370d1e57f4a7eaf34172fd398fcb41c12295b87efe8c06f6f872413"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "db7d0241f65f2dcc10cbc36bd8da2ad7ccccd5ccb895c25615d3a229908bd8ac",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "98290b62e9baa11594ef75cc324e6fe1d211d52417d075d6ab58c88bdaebd9cb",
+      "content_sha256": "db7d0241f65f2dcc10cbc36bd8da2ad7ccccd5ccb895c25615d3a229908bd8ac",
+      "chapters": []
+    },
+    "musikk": {
+      "title": "musikk",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "scientificPackage",
+        "quizPackageSchema",
+        "subjectPathwaySchema",
+        "subjectPathwayPackage"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizPackageSchema",
+        "quizQuestionSchema",
+        "quizStandard",
+        "scientificPackage",
+        "subjectPathwayPackage",
+        "subjectPathwaySchema",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 11,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 7,
+      "package_files": [
+        {
+          "path": "data/fag/musikk/emner_musikk_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "ef6fe710c6b2838c77ffbd93a2cb7582dc37a6f800954807854ae5c0ccfdc8a2"
+        },
+        {
+          "path": "data/fag/musikk/fagkart_musikk_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "c236a1c2006a195ab028419bad5c81ff607eaf25f02370737f0694834e08b861"
+        },
+        {
+          "path": "data/fag/musikk/methods_musikk_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "9deac558cc3c16f81573e63a72c2f82db2ea13c4ad074ab68cd52da7294ab4b0"
+        },
+        {
+          "path": "data/fag/musikk/musikkpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "12722b075062e1a82105bf7d128d3170b646688d106da3a2330e9694ca32414f"
+        },
+        {
+          "path": "data/fag/musikk/scientific_package.json",
+          "required": false,
+          "fields": [
+            "scientificPackage"
+          ],
+          "key_paths": [
+            "scientificPackage"
+          ],
+          "exists": true,
+          "content_sha256": "e47702c7501f14d11c5a32e3b00eae65202dc9215f187d366b299b1abb7aa305"
+        },
+        {
+          "path": "data/fag/musikk/supersetQUIZMAL_musikk.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "cdef0969b4c9e2ed5050fb1f96b81a6afc5defe61806e8dbc8bb3ed9f810f215"
+        },
+        {
+          "path": "data/quiz/musikk/musikk_subject_pathways_v1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwayPackage"
+          ],
+          "key_paths": [
+            "subjectPathwayPackage"
+          ],
+          "exists": true,
+          "content_sha256": "ddb373763cf640732d856e1150510ecdeae2c1b6b16abf1c613e5839a33e3028"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "quizPackageSchema"
+          ],
+          "key_paths": [
+            "quizPackageSchema"
+          ],
+          "exists": true,
+          "content_sha256": "3a01fb4177c9cf81df823d3bacdb24b1a37b2bdbfd45dade8aa18f4d0e5ec8d6"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwaySchema"
+          ],
+          "key_paths": [
+            "subjectPathwaySchema"
+          ],
+          "exists": true,
+          "content_sha256": "f19ed931d5a47c3969551cf58d9895049a399aff71dc397a3ea63ac76e31d2c5"
+        }
+      ],
+      "package_content_sha256": "b652a62580e8d878ae08efd552b5f50e14bdd5378f0745cb5044cbebb3af78c9",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 11,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "5b267da800c8ab3777c64226ad0c0f096096edc91c8af07d64f7e208639b1403",
+      "content_sha256": "b652a62580e8d878ae08efd552b5f50e14bdd5378f0745cb5044cbebb3af78c9",
+      "chapters": []
+    },
     "naeringsliv": {
       "title": "Økonomi og næringsliv",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "quizPackageSchema",
+        "quizProduction",
+        "universityFramework",
+        "businessSchoolExtension"
+      ],
+      "present_manifest_fields": [
+        "businessSchoolExtension",
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizPackageSchema",
+        "quizProduction",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal",
+        "universityFramework"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 28,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 24,
+      "package_files": [
+        {
+          "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "17440d653fd04ded66cbd0260678fd38f87986cfbd14df1e9bbbfc6c97a9d495"
+        },
+        {
+          "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "def977c8549a0f1cf3c39f6b9ec70d79f0719e274b7de5a7f68e427ddaf2b67f"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskolekilder_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.datasets"
+          ],
+          "exists": true,
+          "content_sha256": "abc082f989fe318ad90006e09bc4a9698d839ef25337ff4958dddc2f854607d4"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskolemal_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.measures"
+          ],
+          "exists": true,
+          "content_sha256": "d84c371ed4687814500db99542f3299bffb43d83cd8c7a7cd17c2b39b2c5c2d4"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskolemetoder_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.methods"
+          ],
+          "exists": true,
+          "content_sha256": "4b66a6a55f9627194db82f3a6aaa5e38d4ece569ebd66fdce8b851118524559c"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskolemodeller_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.models"
+          ],
+          "exists": true,
+          "content_sha256": "d165e198ad0064ded47e0b52c2bdbd217fe53f3df7c9dc62581c8e65fdf98401"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskolemoduler_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.modules"
+          ],
+          "exists": true,
+          "content_sha256": "af42d61971ed4bb1f12c95772a872cd0fa01317f8bde5d385c4d21d84df528ee"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskoleramme_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.framework"
+          ],
+          "exists": true,
+          "content_sha256": "2194479c3cddf3060d0f171416c10ea55f928526f0ee8c86583254938ea96022"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskolespor_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.tracks"
+          ],
+          "exists": true,
+          "content_sha256": "5ea9d46cb54181137ebb499df134239ccc45140f91c9a66323315875c89a2034"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskoleteori_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.theories"
+          ],
+          "exists": true,
+          "content_sha256": "0298462a400aa7e08975b2570a70f8f925fa5044417fdc524a5a089053f492a8"
+        },
+        {
+          "path": "data/fag/naeringsliv/handelshogskolevurdering_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "businessSchoolExtension"
+          ],
+          "key_paths": [
+            "businessSchoolExtension.assessment"
+          ],
+          "exists": true,
+          "content_sha256": "cf30e38fca4762c87c1f616d9dca9a16ab66a4aa10af6d538d363d8415f869e9"
+        },
+        {
+          "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "cd656a49f622fb66091946845bb71ab2a8048794942178e408323eb19b496bf1"
+        },
+        {
+          "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "de604172a0dff067e733d924b2341150cea67b22714a2c93471e1243d1b83437"
+        },
+        {
+          "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "352ea2d5f9ab2f0ee052c06058325bf8842babbfdf260259346cd91169719e84"
+        },
+        {
+          "path": "data/fag/naeringsliv/universitetsramme_okonomi_og_naeringsliv_v1.json",
+          "required": false,
+          "fields": [
+            "universityFramework"
+          ],
+          "key_paths": [
+            "universityFramework"
+          ],
+          "exists": true,
+          "content_sha256": "07f7d4df74275325d75a683886beda0d21c3f43a4703d58661a05d767f563b47"
+        },
+        {
+          "path": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.havnelageret.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "15508c98b148ed60838bd2624a843900aaa1288676d6d81787652694c99845c7"
+        },
+        {
+          "path": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.oslo_posthus.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "76917e1ee563e2c64768199041473fab1830432077e54916c4d56c0a4c628ce6"
+        },
+        {
+          "path": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.telegrafbygningen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "39f8fb6985fe8ee9891959dadb582fc0bf9963b2669319a7ab5b29a34ac526dd"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/havnelageret.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.havnelageret.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e905ac7285377827dc06624dd0d1dc578b1d003329c9430a7ffd220db7b338c7"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.oslo_posthus.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "c303a57ed0e975cbb1b82b03ec5424b0fa09c7ed893f222f33bcb033124577a6"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/telegrafbygningen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.telegrafbygningen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "2bfd115a43be6af78830e6e7634154b84c038b2193b4e71a4858578fdc902e4a"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/havnelageret.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.havnelageret.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "cf65d9819b08f767bf862f7a7447f4b8f0546c6382c0d3b8a162bd33b5255ae0"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.oslo_posthus.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "5a188dec0578c9599220202373f05a155aaf969962abc8680def4a6cc8c35f1a"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.telegrafbygningen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "9abfa322ef9104651b47e8353b02e86d68944fa19bd669935b190bc9ffb330ed"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "quizPackageSchema"
+          ],
+          "key_paths": [
+            "quizPackageSchema"
+          ],
+          "exists": true,
+          "content_sha256": "3a01fb4177c9cf81df823d3bacdb24b1a37b2bdbfd45dade8aa18f4d0e5ec8d6"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "scripts/build-quiz-production-context.mjs",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.context_builder"
+          ],
+          "exists": true,
+          "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
+        }
+      ],
+      "package_content_sha256": "e317d09709e9a5e06be272cf1c9bed10199c86517e07f4c2e642acb5a8778d4f",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
-      "referenced_file_count": 72,
+      "chapter_referenced_file_count": 72,
+      "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
+      "referenced_file_count": 100,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c896989eec22ec7622c5852710e3a115b75cf82625e337d758817b0a52e694c1",
-      "content_sha256": "43b0728db81c085f5569ca87c8021c8af65d59a4af64a302e9846a92e1b31bd9",
+      "structure_sha256": "226987d65ef23ec22dddb60dd34256f9be96bda55607c14c84825b337378905f",
+      "content_sha256": "41e35ea18bf69a24149cd42fae09cd0e6d12e9016715b93aa47349548b6a3941",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -235,7 +2111,7 @@
           "file": "data/fagverk/naeringsliv/arbeid-produksjon-verdiskaping.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "608c032b6c3af85098366a15c8e928df254da4469deffe5d892b624ab80e9800"
+          "content_sha256": "2b3748d8f8bc3afe9ce47de8a5350ba577b586bde1cda9a92a63e4986bf6d2fb"
         },
         {
           "chapter_id": "kapital-eierskap-finans",
@@ -243,7 +2119,7 @@
           "file": "data/fagverk/naeringsliv/kapital-eierskap-finans.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "ad834097f71bf88296c2ee51b01ad8cebf0353867cfbea31fb3216a36f28359b"
+          "content_sha256": "0ce96379953a43b69a967572dfbd4969e76ff53c421c106d5932b46e844fe66d"
         },
         {
           "chapter_id": "handel-forbruk-marked",
@@ -251,7 +2127,7 @@
           "file": "data/fagverk/naeringsliv/handel-forbruk-marked.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "3b3cb21049488a7ad5623e22edeff0f5e4621b3d63b0e8a8dacee02557214f17"
+          "content_sha256": "e73dd5aae287fda33226beb59737443fcb4cb26e0bf0d63734304ec56ab037e9"
         },
         {
           "chapter_id": "teknologi-innovasjon-plattformer",
@@ -259,7 +2135,7 @@
           "file": "data/fagverk/naeringsliv/teknologi-innovasjon-plattformer.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "cf8f78be18a32e159115963256ffc37c47c5829d99053d8813f5a32f2ef2c1a6"
+          "content_sha256": "dc306321e6603580f4b288e6b6178ef4e6f59e0df43e065f3fbcbbfa913ca041"
         },
         {
           "chapter_id": "logistikk-infrastruktur-okonomisk-rom",
@@ -267,7 +2143,7 @@
           "file": "data/fagverk/naeringsliv/logistikk-infrastruktur-okonomisk-rom.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "fe154c17cd0e82edca53e8252b04ad18b14a171cc4c5c3ceaaacd65f6e1ae698"
+          "content_sha256": "a3457523b4a8f75b42108a29a6fb9bd8bb48bd513c8b3fd6c15d7bb9fe38bca9"
         },
         {
           "chapter_id": "makt-regulering-baerekraft",
@@ -275,7 +2151,7 @@
           "file": "data/fagverk/naeringsliv/makt-regulering-baerekraft.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "adc2dab41dd7e71f539150221573bf6a08ec278524f98d84758d682bde2b1bee"
+          "content_sha256": "f4ae1a107ff837c62d99de6ba280a28e7712a33571e26f319b16931da10f025f"
         },
         {
           "chapter_id": "makrookonomi-konjunkturer-okonomisk-politikk",
@@ -283,7 +2159,7 @@
           "file": "data/fagverk/naeringsliv/makrookonomi-konjunkturer-okonomisk-politikk.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "b835e1e76f474c2ca95522fe69461850f3ffd5a6b42ff9aa52964e0c2e473cf6"
+          "content_sha256": "52d0ddb48b6b3230a0d315dd812bcd1dee3c9bc7b45f29510f333b48f272e672"
         },
         {
           "chapter_id": "regnskap-revisjon-okonomistyring",
@@ -291,7 +2167,7 @@
           "file": "data/fagverk/naeringsliv/regnskap-revisjon-okonomistyring.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "99cbb89381f35b63c97a76254b4a99f279805ad1068b3087bfa640895d25acea"
+          "content_sha256": "d771629e474da60c9ed44490734212d035c42692bf5e649d64a35e658b684690"
         },
         {
           "chapter_id": "markedsforing-strategi-kunder",
@@ -299,7 +2175,7 @@
           "file": "data/fagverk/naeringsliv/markedsforing-strategi-kunder.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "28d76036ba014f0c7856d5cf35dbd5ca0717df8b13f2cc5a311bafbe6b4d1436"
+          "content_sha256": "edff879ba6d3f65e349b2da2cc2115f981732164ba48baefe82c796a62dbdca9"
         },
         {
           "chapter_id": "kvantitative-metoder-business-analytics",
@@ -307,7 +2183,7 @@
           "file": "data/fagverk/naeringsliv/kvantitative-metoder-business-analytics.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "53201e22899ffa6d7681347b90843017833f781caa610ec253b074ff8afd8859"
+          "content_sha256": "760fc538b3bd830e59070e526e998a5be98f585f74fb9dbbaf533301d8666f23"
         },
         {
           "chapter_id": "forretningsjus-skatt-compliance",
@@ -315,7 +2191,7 @@
           "file": "data/fagverk/naeringsliv/forretningsjus-skatt-compliance.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "91ee8cc8cb68a7d4a6977a827178c18da883aa34f27767e02b881e8d685c274d"
+          "content_sha256": "4441d71ef9bd3a29723996fb2d18ea829470c06341ecbb9e1824117fc1a8b4ab"
         },
         {
           "chapter_id": "internasjonal-okonomi-operations-prosjekt",
@@ -323,20 +2199,142 @@
           "file": "data/fagverk/naeringsliv/internasjonal-okonomi-operations-prosjekt.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "c2e03ca90f4119b4ab853c059c7c4242899ff3bf793b7cf9ca967f2484eeff6b"
+          "content_sha256": "0317bada63747877ee4aa8f322ad43bc38ffd0295bcfe0678bd242d9413251b3"
         }
       ]
     },
     "natur": {
       "title": "Natur & miljø",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": true,
+      "package_status": "complete",
+      "chapter_status": "materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/natur/emner_natur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "2a0e420b239e6431107b76515dc45619b211169032224a0aeb59608aba107662"
+        },
+        {
+          "path": "data/fag/natur/fagkart_natur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "f281692ed943ef432da6e63886775686147e27492b9ca9d65340faa6df1dafde"
+        },
+        {
+          "path": "data/fag/natur/methods_natur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "e23c8e793131527b29f569a74b0d042dccaea3083b9bd01e7a28ee229dc653c4"
+        },
+        {
+          "path": "data/fag/natur/naturpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "489a400f985c42570dc1ac7d0acef5ca4df32de981454af09da7b0ff724cba85"
+        },
+        {
+          "path": "data/fag/natur/supersetQUIZMAL_natur.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "3fab8c2f939fdd2927b81d11c34c380ae092f8902eb85e0c9ba1145c3eaa6615"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "908075a97fa20d8595ed95a987eb1e00607b94a98750a416ca3f97aef8765714",
       "chapter_count": 11,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
-      "referenced_file_count": 11,
+      "chapter_referenced_file_count": 11,
+      "chapter_content_sha256": "aa8e349c5be65cfe6e2011368f278ed2b5692d2d32a3cb1904298e0aee87d83c",
+      "referenced_file_count": 18,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "d7a12ac65659dbd2485b02f53104358586ef218736f64798e4044f3b5c425162",
-      "content_sha256": "bb96a9c4867c050915f8f60e81262f0be5c86b61443d59b5ba2e4296444a9240",
+      "structure_sha256": "97e5b295293cc9f64911408cba970b2629c842ddccf4a5197c926ca086e47840",
+      "content_sha256": "349c6d081d51588654ef5e1575861118b0792bde64f8383d1061bdbe1472c6ff",
       "chapters": [
         {
           "chapter_id": "okosystem_mangfold_habitat",
@@ -344,7 +2342,7 @@
           "file": "data/fagverk/natur/okosystem_mangfold_habitat.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "d038d68c721d7419452b373c8ae823a4174e44c076c02bc88fc8e5f4626f4bab"
+          "content_sha256": "1b183d6171af315b87793c506c33bcd6e9d7e197a53354fc2c75481f4114f1db"
         },
         {
           "chapter_id": "artskunnskap_systematikk",
@@ -352,7 +2350,7 @@
           "file": "data/fagverk/natur/artskunnskap_systematikk.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "657b8eb5d1a3b05473b5635c093a3b8d2383e33ee3719f428e7fe548c00863dd"
+          "content_sha256": "40f1a431a0f9265a0ac1e5ac35f22196bf9bf3f1b2f608401ce9ba77f0f52c04"
         },
         {
           "chapter_id": "evolusjon_biologisk_mangfold",
@@ -360,7 +2358,7 @@
           "file": "data/fagverk/natur/evolusjon_biologisk_mangfold.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "0e233598da6ff6e41e8a5666eff3afb70df320b105439052a03c1a721bafd19d"
+          "content_sha256": "c7630ca07c00a48f57de9ec9e82394b7b72c088e0359605fda3491429b35f424"
         },
         {
           "chapter_id": "botanikk_vegetasjon",
@@ -368,7 +2366,7 @@
           "file": "data/fagverk/natur/botanikk_vegetasjon.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "90f0886834ca8aa6b7012866f3bcded5536bcd304606b7e6239dd48b907a30d5"
+          "content_sha256": "447b5c2f46ae05aa7f3b93a59ff925c288652c50fe3adddaeab98a220d0a7aa8"
         },
         {
           "chapter_id": "zoologi_dyreliv",
@@ -376,7 +2374,7 @@
           "file": "data/fagverk/natur/zoologi_dyreliv.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "8ae3e00ebba78b77e365e672357ab306eed5ce7981c08de9f0246296c9851104"
+          "content_sha256": "5d23409b129e1782853790b8a0e20f97b009633af7de16873801cb50626e5671"
         },
         {
           "chapter_id": "organismebiologi_fysiologi",
@@ -384,7 +2382,7 @@
           "file": "data/fagverk/natur/organismebiologi_fysiologi.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "b1eaa92282a8e5e40fc411c10fb40c6ecd79e30cb444657a8565d157cef35f2f"
+          "content_sha256": "ae243c2faec64f47e78f3d53d2015336a16f6ebedd3297d17176709f549dec39"
         },
         {
           "chapter_id": "vann_hydrologi_kretslop",
@@ -392,7 +2390,7 @@
           "file": "data/fagverk/natur/vann_hydrologi_kretslop.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "ecd7a331b42d5582b06a4d0543b018e1c6300864dd137e7eb0c30425557219c1"
+          "content_sha256": "43b8a1b1d5dd5ffec269f6f59ee18b414519bf135f4710ba3b09759d22fc7fec"
         },
         {
           "chapter_id": "klima_energi_resiliens",
@@ -400,7 +2398,7 @@
           "file": "data/fagverk/natur/klima_energi_resiliens.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "dd38f3ae2d33a06932f3a1fec88ffec969c31b177eb00486bced58d59cccfd15"
+          "content_sha256": "0256e874db16785c6ea53fa89c9c25680aaeabb6556001499a5849e729d9056f"
         },
         {
           "chapter_id": "geologi_landskap_tid",
@@ -408,7 +2406,7 @@
           "file": "data/fagverk/natur/geologi_landskap_tid.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "c6563008a8f9c22a3eb012b906d936bbfa77259807b083da9519f6c507455d0a"
+          "content_sha256": "d3a43b462d2586d4ddfd5d48d8225d39bcf54e57e131b2b7c8746cf1a3b61760"
         },
         {
           "chapter_id": "urban_okologi_gronnstruktur",
@@ -416,7 +2414,7 @@
           "file": "data/fagverk/natur/urban_okologi_gronnstruktur.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "ce1efa6b62cf84f5bbdc2da4a5ec4a24b40dc0401eb1564e069c225388bed1e6"
+          "content_sha256": "3c212debef29a5d105f1875ecc3fd63d6054ce329e2a8456a6d763efbf53f176"
         },
         {
           "chapter_id": "miljopavirkning_forvaltning_regenerasjon",
@@ -424,20 +2422,170 @@
           "file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json",
           "module_file_count": 0,
           "referenced_file_count": 1,
-          "content_sha256": "b0591027228f68d3c6a7bc6c7145f492fcc416b4472c23516c682694318c8ecd"
+          "content_sha256": "9918dfae959d6d0e7914ae39f39236d0bc7281f2b0ec2dc236780b4e2241d233"
         }
       ]
     },
     "politikk": {
       "title": "Politikk og samfunn",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "curriculum",
+        "concepts",
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "concepts",
+        "curriculum",
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 9,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 5,
+      "package_files": [
+        {
+          "path": "data/fag/politikk/concepts_politikk_canonical_v1.json",
+          "required": false,
+          "fields": [
+            "concepts"
+          ],
+          "key_paths": [
+            "concepts"
+          ],
+          "exists": true,
+          "content_sha256": "1375f68cd38a246d72323003af6b9825a43e1e6f85916888c9e01f3efd29b9d4"
+        },
+        {
+          "path": "data/fag/politikk/curriculum_architecture_politikk_v1.json",
+          "required": false,
+          "fields": [
+            "curriculum"
+          ],
+          "key_paths": [
+            "curriculum"
+          ],
+          "exists": true,
+          "content_sha256": "d86245390b182a41e8c736ad8cce389655f40ae6c1fdf9b28bbfba368d221c42"
+        },
+        {
+          "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "7c04ece1287b9af7d431850ba0fb72e27963f8caddd1c16ccd679f52bcff7a91"
+        },
+        {
+          "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "7c5d8c8083781054cec485f670ef058f0d7dbcbdc3f2e149332e4bbc31162504"
+        },
+        {
+          "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "2ff2f66cd86dcee12924fcb778d435955dea5638714d1b45595cc5a6e9ad8e13"
+        },
+        {
+          "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "8e8411c676ec7c4ef79296c193779204d1094866d88b7016467535c613cec3a9"
+        },
+        {
+          "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "0c460fa94bff71ef1dc2bc2f814e63b1a487680355a140a78c89867ab6059525"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "6887232b792bef70c20dc9f32760486fdfeea0e4d86e0f7abebc21a788792fba",
       "chapter_count": 13,
       "module_file_count": 39,
       "brief_file_count": 13,
       "claims_file_count": 13,
-      "referenced_file_count": 78,
+      "chapter_referenced_file_count": 78,
+      "chapter_content_sha256": "49a9ecd379041fe7827b0fd0386c66cf5f91e4fa547b8fbef04a07ae12ad582d",
+      "referenced_file_count": 87,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "bdcda8790adf27f8df76b8bbde9280f3965b822f472c5c9fb7bdf80f39cd7c92",
-      "content_sha256": "c007d0364d73d54d7e3439862d0dd9ca54adec85e5cc8f740302d0bc5b11046c",
+      "structure_sha256": "55e818cf86a82450dfe365ef47a56bd3ce2ecd2159c8325a09cb7c6b669833ad",
+      "content_sha256": "7798747650cf84cf0f0ee6e4441b95c26b853a700713da5117555fe7b19bf3c0",
       "chapters": [
         {
           "chapter_id": "forvaltning",
@@ -445,7 +2593,7 @@
           "file": "data/fagverk/politikk/forvaltning.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "b663577ede7475ebdb5ec1189f78fb25f461118f2a1531cda04be3cf588f9856"
+          "content_sha256": "8ad7473d46cf18e12f5f4416bc94d55e9ae9319df839c560d935b16a81701a9c"
         },
         {
           "chapter_id": "parlamentarisme",
@@ -453,7 +2601,7 @@
           "file": "data/fagverk/politikk/parlamentarisme.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "1c0162dd21bed3e107515997612405aebe41649a71f618292f149d4fade007af"
+          "content_sha256": "d0b2ea9712afb8ab4aaccec7b8f5877cc3e617c4c9be263cd362adb7d3cd64b4"
         },
         {
           "chapter_id": "regimer-og-institusjoner",
@@ -461,7 +2609,7 @@
           "file": "data/fagverk/politikk/regimer-og-institusjoner.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "f4e8be1eae6e81582a9854faa6e1fa1a89e30cb3f137571fcae5ec0e21b18df8"
+          "content_sha256": "050e622037780f58f87322689b5a6075b536efa71aa9545df18a9d195d8f65d3"
         },
         {
           "chapter_id": "valg-partier-velgeratferd",
@@ -469,7 +2617,7 @@
           "file": "data/fagverk/politikk/valg-partier-velgeratferd.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "43112779b5a710dc8b339d97295dd3353ee26a649f996c72f9328fd9f0f3877b"
+          "content_sha256": "0c9d7b73007de752819a7273d63c97806ca188e76c99db1647368597a9b3476f"
         },
         {
           "chapter_id": "offentlig-politikk-beslutning-implementering",
@@ -477,7 +2625,7 @@
           "file": "data/fagverk/politikk/offentlig-politikk-beslutning-implementering.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "fb278fe4a532cbd08897262a2e916a2dce7c893494f00b67433ea8f5f183c1a9"
+          "content_sha256": "a9a1822762c89dce074d7391cb7f424a222b8b6840e267e491f7953b143b0ec6"
         },
         {
           "chapter_id": "internasjonal-politikk-sikkerhet-samarbeid",
@@ -485,7 +2633,7 @@
           "file": "data/fagverk/politikk/internasjonal-politikk-sikkerhet-samarbeid.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "0b8f23b0dd5bd7a84f569aad262d7c32faf499b77c4552e8619d02c5ccac8eab"
+          "content_sha256": "8ab13c23fdfb383dd3397446830e70f94a28561d27e939d02940f577d75939df"
         },
         {
           "chapter_id": "politisk-okonomi-stat-marked",
@@ -493,7 +2641,7 @@
           "file": "data/fagverk/politikk/politisk-okonomi-stat-marked.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "413fe3c3bf42b77812c79179cd90d4470a24a8dde9643319656852ddf48e2c1b"
+          "content_sha256": "eabcb4c5b504bc55650ecc898797a2afaf86e0dd0b7e601db856de04cf4aabb1"
         },
         {
           "chapter_id": "statsvitenskapelig-metode-og-sammenligning",
@@ -501,7 +2649,7 @@
           "file": "data/fagverk/politikk/statsvitenskapelig-metode-og-sammenligning.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "f17b823bfb63445e93506e09742355065c00e38dd3017dd62974c56b357b2df1"
+          "content_sha256": "523d25ac7a390580635916d4fd32ef7736312e8b744e86215325eb388600a3b5"
         },
         {
           "chapter_id": "norsk-politikk-eos-eu-flernivastyring",
@@ -509,7 +2657,7 @@
           "file": "data/fagverk/politikk/norsk-politikk-eos-eu-flernivastyring.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "2ccb4902fdfef19ceee52c4aae21dc0862f27bd7c26013735a89fba95fb6c973"
+          "content_sha256": "3dc7a673c81497fd894ad7392e7b700890317b6438cfac5001d5867cb76c5f56"
         },
         {
           "chapter_id": "rett-lov-rettssikkerhet",
@@ -517,7 +2665,7 @@
           "file": "data/fagverk/politikk/rett-lov-rettssikkerhet.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "2340f720a39f3991cad21db4d5ca95defb6426b0ecc256947edcc0457cbd16f1"
+          "content_sha256": "dcb93c828a6896576e3ea883fd4a1da99ee2a07ea1b8b2280b0cc889b3f4a5d3"
         },
         {
           "chapter_id": "fordeling-velferd-ulikhet",
@@ -525,7 +2673,7 @@
           "file": "data/fagverk/politikk/fordeling-velferd-ulikhet.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "1bc2025de5fb3e5069cc8abedf02f978aae71744630abbeec1bb23e8227167a5"
+          "content_sha256": "64a110e5344b0cd05168f41d779c1ceb8ad6dc72459492a84037d91e4b6301fb"
         },
         {
           "chapter_id": "konflikt-makt-sivilsamfunn",
@@ -533,7 +2681,7 @@
           "file": "data/fagverk/politikk/konflikt-makt-sivilsamfunn.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "b13985748d0b2226cfa3411d12b1a5dc3a58a27961969deb570c6d09ca3798d1"
+          "content_sha256": "aeeaf795bea692a4a2b611657d8a13b2ab929e26551acfdfe8b170b968cb7db3"
         },
         {
           "chapter_id": "normer-identitet-hverdagsliv",
@@ -541,20 +2689,784 @@
           "file": "data/fagverk/politikk/normer-identitet-hverdagsliv.json",
           "module_file_count": 3,
           "referenced_file_count": 6,
-          "content_sha256": "376621ad7fff8c033913a7ac76b30de010ab56a2e918cf7c12d52242f48719fe"
+          "content_sha256": "c262ed6e258dcfef34001734bfd1b1a6e9366319ed0397dcc55110d0a919af30"
         }
       ]
     },
+    "psykologi": {
+      "title": "psykologi",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/psykologi/emner_psykologi_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "3b5cc741ee0c65b27d68a42f5fc4926dbec31a9e48a5afebb5cf222c6b3b391b"
+        },
+        {
+          "path": "data/fag/psykologi/fagkart_psykologi_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "009a2be8c48196cd445b2b6f65592bc24aec2a86864b0cd9dd91185b7f9bff0c"
+        },
+        {
+          "path": "data/fag/psykologi/methods_psykologi_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "6578e8f46de12cb17d6009474f9d1597c219887a8c066cabef14fe5d98856570"
+        },
+        {
+          "path": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "a0c9f74e7f28e0a5070011fbe516d3564f53ef658e7ffe00c83dc5f5e59acc64"
+        },
+        {
+          "path": "data/fag/psykologi/supersetQUIZMAL_psykologi.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "5069ef81afdcffcbdd1c6160aa4d89c0b29927cbf200c85de084337cd0985816"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "e0efdc0d258fa2fa5cfe3784849c3e175640b48a0c2fbf3f5c2e0d2dad414ba3",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "090af8f6add45be6d7baf341f4248ea62f7a1305c9e52983ccbf458527f30432",
+      "content_sha256": "e0efdc0d258fa2fa5cfe3784849c3e175640b48a0c2fbf3f5c2e0d2dad414ba3",
+      "chapters": []
+    },
+    "religion": {
+      "title": "religion",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "foundation_v1",
+      "pilot": true,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "status",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "status",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/religion/emner_religion_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "0bf3810adb028c48c422ba23f7a11d98235e4f64a35937b5c85752ef0a10799a"
+        },
+        {
+          "path": "data/fag/religion/fagkart_religion_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "37a7a124f29ee195205bdd7b9977c2bca9a26363b35ba287d5d83344a8e53c68"
+        },
+        {
+          "path": "data/fag/religion/methods_religion_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "5d6b8ae2639b816e9a75ad05f8333aba2a3d928834142c4b4b22e6350663bada"
+        },
+        {
+          "path": "data/fag/religion/religionpensum_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "c19e798d8fd0405ff5ca5a85c60ba25ed6bd40cc2a8e00e608e9982322d7a676"
+        },
+        {
+          "path": "data/fag/religion/supersetQUIZMAL_religion.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "5467ba8b9d389c4e3b2a89bc192dede28ec70e12ac838a688e8ea5c5d21ecdf0"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "1c0d0af736e46db7402d0bb514d2aca03553eb46d1580a57a83ef709700e3acf",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "b0d15d6d852934f96b8703a62499287f09e96eb83b20fc32cad3e0f52e5b899b",
+      "content_sha256": "1c0d0af736e46db7402d0bb514d2aca03553eb46d1580a57a83ef709700e3acf",
+      "chapters": []
+    },
+    "scenekunst": {
+      "title": "scenekunst",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "foundation_v1",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "status",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "status",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/scenekunst/emner_scenekunst_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "fc6255cb8ddf7c3356d01c5e79cf266f5941ec4aa82cf4281810ac52e3ae7d97"
+        },
+        {
+          "path": "data/fag/scenekunst/fagkart_scenekunst_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "6a61cf89c8fdb0f96f39865da790dd5edafe2473b86b154848ad64e8289dec29"
+        },
+        {
+          "path": "data/fag/scenekunst/methods_scenekunst_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "03dd7708131fbaa5654c876d01900b06316cc56b1310a26bd19211360cf51079"
+        },
+        {
+          "path": "data/fag/scenekunst/scenekunstpensum_canonical_v1.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "31df473fcfac320822fb930b21cb64466086cc9f57e7487953cf66f715d4cf0a"
+        },
+        {
+          "path": "data/fag/scenekunst/supersetQUIZMAL_scenekunst.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "ba284e2ec33a84619ceabccd21531bd3481ab9892a9521087dd2f3acc9e11dff"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "9c8e2077da13b18d6c667460d877ea6e4b9554b10d0d93772f2af82f44f3ab42",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "60c7b8d70a78e60bd673849625da6b66b967b114a56be1fbf9acb59599cf40ec",
+      "content_sha256": "9c8e2077da13b18d6c667460d877ea6e4b9554b10d0d93772f2af82f44f3ab42",
+      "chapters": []
+    },
+    "sport": {
+      "title": "sport",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete_with_optional_gaps",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "knowledgePolicy",
+        "knowledgeUnitSchema",
+        "knowledgeArchitecture",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "knowledgeArchitecture",
+        "knowledgePolicy",
+        "knowledgeUnitSchema",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 10,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 6,
+      "package_files": [
+        {
+          "path": "data/fag/sport/emner_sport_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "4959e388c01a94b6c9d8c5f635821b921d0df0dea7a384b46728716756a1c084"
+        },
+        {
+          "path": "data/fag/sport/fagkart_sport_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "b6e4a34dbfdf770d874584da01a2ce5c285b985a9d1eac408857785b83678f9a"
+        },
+        {
+          "path": "data/fag/sport/methods_sport_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "d1fe089f6570a3662868fe39f9480ffa23061a2653e08e9c5a367fce037f9b8c"
+        },
+        {
+          "path": "data/fag/sport/sportpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "d8926e9b1e3dc90f628a1ddda65050a2f029e5e0dfcf8bb949e4cc4db1dc6294"
+        },
+        {
+          "path": "data/fag/sport/supersetQUIZMAL_sport.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "77c44aa9bef16d13964673b153261cade827b0fbd10f83545449a663354c249a"
+        },
+        {
+          "path": "data/knowledge/knowledge_system_policy_v1.json",
+          "required": false,
+          "fields": [
+            "knowledgePolicy"
+          ],
+          "key_paths": [
+            "knowledgePolicy"
+          ],
+          "exists": true,
+          "content_sha256": "a8cb01b1effc762142d019cd78230702e53c8d1e5fcad9ff507950242520c172"
+        },
+        {
+          "path": "data/knowledge/knowledge_unit_schema_v1.json",
+          "required": false,
+          "fields": [
+            "knowledgeUnitSchema"
+          ],
+          "key_paths": [
+            "knowledgeUnitSchema"
+          ],
+          "exists": true,
+          "content_sha256": "9f8ac9eedc81afa96e72f57c8a1d2af3f8b023273f3595b5661030da4a39d5b5"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "README/KNOWLEDGE_MEMORY_CHAMBER.md",
+          "required": false,
+          "fields": [
+            "knowledgeArchitecture"
+          ],
+          "key_paths": [
+            "knowledgeArchitecture"
+          ],
+          "exists": false,
+          "content_sha256": null
+        }
+      ],
+      "package_content_sha256": "005c7f738725a8e4ed148aacb3d85728402c66c61fd48a9d5c125ce527ea5adf",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 10,
+      "missing_required_files": [],
+      "missing_optional_files": [
+        "README/KNOWLEDGE_MEMORY_CHAMBER.md"
+      ],
+      "missing_chapter_files": [],
+      "missing_files": [
+        "README/KNOWLEDGE_MEMORY_CHAMBER.md"
+      ],
+      "structure_sha256": "77c00355a4eca39aba31d4572659daf25cc97bebc47aed7d5a0e3877efa516f4",
+      "content_sha256": "005c7f738725a8e4ed148aacb3d85728402c66c61fd48a9d5c125ce527ea5adf",
+      "chapters": []
+    },
     "subkultur": {
       "title": "Subkultur",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": false,
+      "package_status": "complete",
+      "chapter_status": "materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "quizPackageSchema",
+        "subjectPathwaySchema",
+        "subjectPathwayPackage",
+        "runtimeManifest"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizPackageSchema",
+        "quizQuestionSchema",
+        "quizStandard",
+        "runtimeManifest",
+        "subjectPathwayPackage",
+        "subjectPathwaySchema",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 11,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 7,
+      "package_files": [
+        {
+          "path": "data/fag/subkultur/emner_subkultur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "986ea3a51bc30d56c027d1310c3dcec14d6817dd1257066e3b3af281ca1a0d98"
+        },
+        {
+          "path": "data/fag/subkultur/fagkart_subkultur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "68301b2dd845efc99ebb105921f6dbb0ed6055198ef7fca80dd43a8dbd160d35"
+        },
+        {
+          "path": "data/fag/subkultur/methods_subkultur_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "dcf94b0dbd2fd7b0c6baf8b54a7122f472377c41bba02697bc5c28ffacd9989c"
+        },
+        {
+          "path": "data/fag/subkultur/subkultur_runtime_manifest.json",
+          "required": false,
+          "fields": [
+            "runtimeManifest"
+          ],
+          "key_paths": [
+            "runtimeManifest"
+          ],
+          "exists": true,
+          "content_sha256": "cd47bfd1245e2792685f5a5b842faa732a61bf224891f11abed6264432196e7a"
+        },
+        {
+          "path": "data/fag/subkultur/subkulturpensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "c3388487821fe3a843f59b457777ae65576bb6b631b2421ed53a118f23ebf0f2"
+        },
+        {
+          "path": "data/fag/subkultur/supersetQUIZMAL_subkultur.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "167c7e9cdffa972ed9a7eca906f38e671c9409db0077ac058846a42263c7ffe1"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "quizPackageSchema"
+          ],
+          "key_paths": [
+            "quizPackageSchema"
+          ],
+          "exists": true,
+          "content_sha256": "3a01fb4177c9cf81df823d3bacdb24b1a37b2bdbfd45dade8aa18f4d0e5ec8d6"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwaySchema"
+          ],
+          "key_paths": [
+            "subjectPathwaySchema"
+          ],
+          "exists": true,
+          "content_sha256": "f19ed931d5a47c3969551cf58d9895049a399aff71dc397a3ea63ac76e31d2c5"
+        },
+        {
+          "path": "data/quiz/subkultur/subkultur_subject_pathways_v1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwayPackage"
+          ],
+          "key_paths": [
+            "subjectPathwayPackage"
+          ],
+          "exists": true,
+          "content_sha256": "433545b9735dd873d7fd8842d9c8053bbf5830a72c48114a2d0e93d753b95093"
+        }
+      ],
+      "package_content_sha256": "24b3aaa920ac0a9e37d14f4c983bc877990617fb7eb76aa8a869223e1e36e4cb",
       "chapter_count": 8,
       "module_file_count": 24,
       "brief_file_count": 0,
       "claims_file_count": 0,
-      "referenced_file_count": 32,
+      "chapter_referenced_file_count": 32,
+      "chapter_content_sha256": "925a02abdc902dcfb15de23298518faea5036ccb450f07e18528d4aeef372bc4",
+      "referenced_file_count": 43,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "472d98ae1d864b57d30b2da5e9a0e737d6c0751f4aa3513f0dea2788f0bc215f",
-      "content_sha256": "92435469195c0dafd6802c2d2ac044cc4c255498a20de0cc3068aa4f9d92f118",
+      "structure_sha256": "2ff5c4da930a4c39886d57a63cc6430e291978e5679f7f97811f5231f426e564",
+      "content_sha256": "fe7495e7b655533271f698987a8b075f23ccf0723dbf24c73bbd9f323baa90a0",
       "chapters": [
         {
           "chapter_id": "subkulturteori_feltgrenser",
@@ -562,7 +3474,7 @@
           "file": "data/fagverk/subkultur/subkulturteori_feltgrenser.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "1437a479936d3ffa2eccca9bec0c69a7889553ef98b026037feb78df8a4ffac6"
+          "content_sha256": "539bf6360b6afa82effa9cc148a87549780fdaef8d6c5cbd95874c9eff1ea7a5"
         },
         {
           "chapter_id": "fellesskap_scener_egenorganisering",
@@ -570,7 +3482,7 @@
           "file": "data/fagverk/subkultur/fellesskap_scener_egenorganisering.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "d45522a101017db73b72213a79f8ad32ffadc2e316273631f0bfaf9bcdd49e59"
+          "content_sha256": "06af87eb12434c9811dea2186887383fa6a9cc08d24750f63876fda74eace0df"
         },
         {
           "chapter_id": "stil_symboler_koder_kropp",
@@ -578,7 +3490,7 @@
           "file": "data/fagverk/subkultur/stil_symboler_koder_kropp.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "3936dde34bf94bef5a5d74234a06587ef13967748488e94e058d0cbe4c6594cb"
+          "content_sha256": "8f70c844d23208cc29541d7d6136407032637fa4e895161907fc726131606182"
         },
         {
           "chapter_id": "steder_territorier_okkupering",
@@ -586,7 +3498,7 @@
           "file": "data/fagverk/subkultur/steder_territorier_okkupering.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "b454ef5e55266c3dc8af958bebcc8819aef7142202f28ad56fab75c575f0888b"
+          "content_sha256": "b0bb061f4de4409a6f64d7cea46886219908ad975802c195b9b73d18787b4222"
         },
         {
           "chapter_id": "motstand_avvik_kontroll",
@@ -594,7 +3506,7 @@
           "file": "data/fagverk/subkultur/motstand_avvik_kontroll.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "9ef41818a143ef23a68dd13878fb9be9b43831e13f9db9b688c2a4a2c66b867f"
+          "content_sha256": "bea88f9acb51eda718cdad4402f5cd3784a327d0729aea589c882d125865c579"
         },
         {
           "chapter_id": "medier_objekter_praksiser",
@@ -602,7 +3514,7 @@
           "file": "data/fagverk/subkultur/medier_objekter_praksiser.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "b7c430b1c851a6dd89481aefbb65aa1324cc9c9fe38c9fd09925f7a11d9881dd"
+          "content_sha256": "f4a6b4ed5172ba4de44d189bf187331a915b0391f44c7db785f8e8c4347b4a07"
         },
         {
           "chapter_id": "sosiale_randsoner_omsorg_skadereduksjon",
@@ -610,7 +3522,7 @@
           "file": "data/fagverk/subkultur/sosiale_randsoner_omsorg_skadereduksjon.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "5eb015e60d23e5e1581723348977e89ec0ce39fe8b2abe5e84a099dbff8c4115"
+          "content_sha256": "c262922ca16187b62b85bd00178cf5dd9448cd66f94861a67c39273b1359a8ff"
         },
         {
           "chapter_id": "kommersialisering_institusjonalisering_minne",
@@ -618,10 +3530,342 @@
           "file": "data/fagverk/subkultur/kommersialisering_institusjonalisering_minne.json",
           "module_file_count": 3,
           "referenced_file_count": 4,
-          "content_sha256": "13595d029be09d101749fac1ad80b5c9de5432b80ea35765c5c06fdd4daec421"
+          "content_sha256": "d5f2a8a3962713e5173a542fffc61ed52ec26fd0b1f65150758af546c1754cb0"
         }
       ]
+    },
+    "teknologi": {
+      "title": "Teknologi",
+      "kind": "specialization",
+      "parent_subject_id": "vitenskap",
+      "schema_family": "technology_scientific_v2_4",
+      "pilot": true,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "scientificPackage",
+        "quizPackageSchema",
+        "subjectPathwaySchema",
+        "subjectPathwayPackage",
+        "canonicalModelVersion",
+        "universalCoverage",
+        "geographicProduction"
+      ],
+      "present_manifest_fields": [
+        "canonicalModelVersion",
+        "emner",
+        "fagkart",
+        "geographicProduction",
+        "methods",
+        "pensum",
+        "quizPackageSchema",
+        "quizQuestionSchema",
+        "quizStandard",
+        "scientificPackage",
+        "subjectPathwayPackage",
+        "subjectPathwaySchema",
+        "supersetQuizMal",
+        "universalCoverage"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 11,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 7,
+      "package_files": [
+        {
+          "path": "data/fag/teknologi/emner_teknologi_canonical_v2_4.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "f7ce69abaeaf37d0e185eced4586eedd3d537245d105d89cb933f5b7a4dcb117"
+        },
+        {
+          "path": "data/fag/teknologi/fagkart_teknologi_canonical_v2_4.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "2e700d85cb6595214197460df7154ef098e71a8d78f98d815aeba22b16b155db"
+        },
+        {
+          "path": "data/fag/teknologi/methods_teknologi_canonical_v2_4.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "e2f888c8959453716b7e6a5b4fad3f17ec2c4ad74d1415a3cd933f3b48dcb562"
+        },
+        {
+          "path": "data/fag/teknologi/supersetQUIZMAL_teknologi.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "47762ce5ef542660042107b37a39c8179b60e6507f87d10b74341440c147320c"
+        },
+        {
+          "path": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+          "required": false,
+          "fields": [
+            "scientificPackage"
+          ],
+          "key_paths": [
+            "scientificPackage"
+          ],
+          "exists": true,
+          "content_sha256": "9f16241ef5cbafc270e29c1e8809d80710cee8b07e17abc12461a146cd240650"
+        },
+        {
+          "path": "data/fag/teknologi/teknologipensum_canonical_v2_4.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "05e7aa4eff09b0b755375be08bd04b9cb32f34ccab01aef3a096d271d44615f1"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "quizPackageSchema"
+          ],
+          "key_paths": [
+            "quizPackageSchema"
+          ],
+          "exists": true,
+          "content_sha256": "3a01fb4177c9cf81df823d3bacdb24b1a37b2bdbfd45dade8aa18f4d0e5ec8d6"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwaySchema"
+          ],
+          "key_paths": [
+            "subjectPathwaySchema"
+          ],
+          "exists": true,
+          "content_sha256": "f19ed931d5a47c3969551cf58d9895049a399aff71dc397a3ea63ac76e31d2c5"
+        },
+        {
+          "path": "data/quiz/teknologi/teknologi_subject_pathways_v1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwayPackage"
+          ],
+          "key_paths": [
+            "subjectPathwayPackage"
+          ],
+          "exists": true,
+          "content_sha256": "553e8d34ff7c20975b24d7999cee871e81b21c8d1bcc839f630b8797d5ade6a7"
+        }
+      ],
+      "package_content_sha256": "dab54cdd92b96b659f103d03db727d6b826b003ad49c6bd97cbcb190a708aa60",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 11,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "03816d9c7cadcb0d215b83d964d0c62b79886676aafdc0e3b822d20c53be14b4",
+      "content_sha256": "dab54cdd92b96b659f103d03db727d6b826b003ad49c6bd97cbcb190a708aa60",
+      "chapters": []
+    },
+    "vitenskap": {
+      "title": "vitenskap",
+      "kind": "subject",
+      "parent_subject_id": null,
+      "schema_family": "standard_canonical",
+      "pilot": true,
+      "package_status": "complete",
+      "chapter_status": "not_materialized",
+      "required_manifest_fields": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods"
+      ],
+      "optional_manifest_fields": [
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema",
+        "specializations"
+      ],
+      "present_manifest_fields": [
+        "emner",
+        "fagkart",
+        "methods",
+        "pensum",
+        "quizQuestionSchema",
+        "quizStandard",
+        "specializations",
+        "supersetQuizMal"
+      ],
+      "missing_manifest_fields": [],
+      "package_file_count": 7,
+      "required_package_file_count": 4,
+      "optional_package_file_count": 3,
+      "package_files": [
+        {
+          "path": "data/fag/vitenskap/emner_vitenskap_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "emner"
+          ],
+          "key_paths": [
+            "emner"
+          ],
+          "exists": true,
+          "content_sha256": "f637c35c87b44a4bce0358f5373b83f6790bccd72dde5f9050332a1335538638"
+        },
+        {
+          "path": "data/fag/vitenskap/fagkart_vitenskap_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "fagkart"
+          ],
+          "key_paths": [
+            "fagkart"
+          ],
+          "exists": true,
+          "content_sha256": "b0badf4c6aceede2cd559aa9f517565a9a5212099b3d142dca7f3650393298c2"
+        },
+        {
+          "path": "data/fag/vitenskap/methods_vitenskap_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "methods"
+          ],
+          "key_paths": [
+            "methods"
+          ],
+          "exists": true,
+          "content_sha256": "c13af853541caf560e46aee6db974397f9bc328510992a553acf8af53be0c000"
+        },
+        {
+          "path": "data/fag/vitenskap/supersetQUIZMAL_vitenskap.json",
+          "required": false,
+          "fields": [
+            "supersetQuizMal"
+          ],
+          "key_paths": [
+            "supersetQuizMal"
+          ],
+          "exists": true,
+          "content_sha256": "7e5fab7694749f7b84f172297788e01a901b8e85f8cfa429cf1f9d659417b7fc"
+        },
+        {
+          "path": "data/fag/vitenskap/vitenskappensum_canonical_v4_5.json",
+          "required": true,
+          "fields": [
+            "pensum"
+          ],
+          "key_paths": [
+            "pensum"
+          ],
+          "exists": true,
+          "content_sha256": "7c8e64a3568a44f7df69040d1f0a29d83c48b7b17ee2299c13427d76be4f72a9"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+          "required": false,
+          "fields": [
+            "quizStandard"
+          ],
+          "key_paths": [
+            "quizStandard"
+          ],
+          "exists": true,
+          "content_sha256": "98b23395fb461f7a7cf4920774551902060facc20d9013e5fe4d3e8327aceb33"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+          "required": false,
+          "fields": [
+            "quizQuestionSchema"
+          ],
+          "key_paths": [
+            "quizQuestionSchema"
+          ],
+          "exists": true,
+          "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        }
+      ],
+      "package_content_sha256": "a7557c6a3ef61cb4808af3b802cde6704cb58a7c60b40f903c117cd0ce6eb8c9",
+      "chapter_count": 0,
+      "module_file_count": 0,
+      "brief_file_count": 0,
+      "claims_file_count": 0,
+      "chapter_referenced_file_count": 0,
+      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "referenced_file_count": 7,
+      "missing_required_files": [],
+      "missing_optional_files": [],
+      "missing_chapter_files": [],
+      "missing_files": [],
+      "structure_sha256": "a8862d834e23e8c3c1f0d8759acb0d3f3886c8cc40a08e90b4801b18f58eb651",
+      "content_sha256": "a7557c6a3ef61cb4808af3b802cde6704cb58a7c60b40f903c117cd0ce6eb8c9",
+      "chapters": []
     }
   },
-  "release_sha256": "8de14a018fb96ba5ad74737039e0745179f1abee4df47052587f4cab49bed508"
+  "release_sha256": "21cec482d0bde5423cef0bd836dc2b6b8fa4445226bd2ab8df1b44eaefccd627"
 }
