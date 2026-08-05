@@ -1,0 +1,234 @@
+name: Rebuild Vitenskap technology places PR 4166
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-teknologisteder-batch-01-r2
+    paths:
+      - .github/workflows/tmp-rebuild-vitenskap-tech-4166.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-teknologisteder-batch-01-r2
+          fetch-depth: 0
+
+      - name: Reconstruct clean production diff on current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='agent/vitenskap-teknologisteder-batch-01-r2'
+          source_head='70364630bda935cb37211421457cb9379297cb24'
+
+          git fetch origin main "$branch"
+          git reset --hard origin/main
+
+          copy_from_source() {
+            local path="$1"
+            mkdir -p "$(dirname "$path")"
+            git show "$source_head:$path" > "$path"
+          }
+
+          source_files=(
+            data/fag/teknologi/TECHNOLOGY_PLACE_CONTRACT_V1.md
+            data/fag/teknologi/geographic/oslo_teknologisteder_candidates_v1.json
+            data/places/vitenskap/oslo/places_vitenskap/bitraf.json
+            data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json
+            data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json
+            data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json
+            data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json
+            data/coordinate-evidence/oslo/vitenskap/bitraf.json
+            data/coordinate-evidence/oslo/vitenskap/radionette_fodested_bygdoy_alle_67.json
+            data/coordinate-evidence/oslo/vitenskap/sintef_minalab.json
+            data/coordinate-evidence/oslo/vitenskap/stk_pex_kabeltarnet.json
+            data/coordinate-evidence/oslo/vitenskap/tandbergs_radiofabrikk_kjelsas.json
+            data/coordinate-evidence/akershus/baerum/grini_fangeleir.json
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_bosque_do_repouso.json
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_morro_albino_estevao.json
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_morro_casagrande_morro_do_ceu.json
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_ecologico_jose_milanese.json
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_rio_criciuma.json
+            reports/oslo-vitenskap-teknologisteder-batch-01.md
+            reports/oslo-vitenskap-teknologisteder-production-batch-01.md
+          )
+          for path in "${source_files[@]}"; do
+            copy_from_source "$path"
+          done
+
+          node <<'NODE'
+          const fs = require('node:fs');
+          const readJson = path => JSON.parse(fs.readFileSync(path, 'utf8'));
+          const writeJson = (path, value) => fs.writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
+          const unique = values => [...new Set((values || []).filter(Boolean))];
+
+          const placeManifestPath = 'data/places/manifest.json';
+          const placeManifest = readJson(placeManifestPath);
+          placeManifest.files = unique([
+            ...placeManifest.files,
+            'places/vitenskap/oslo/places_vitenskap/bitraf.json',
+            'places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json',
+            'places/vitenskap/oslo/places_vitenskap/sintef_minalab.json',
+            'places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json',
+            'places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json'
+          ]);
+          writeJson(placeManifestPath, placeManifest);
+
+          const coordinateManifestPath = 'data/coordinate-evidence/manifest.json';
+          const coordinateManifest = readJson(coordinateManifestPath);
+          coordinateManifest.files = unique([
+            ...coordinateManifest.files,
+            'oslo/vitenskap/bitraf.json',
+            'oslo/vitenskap/radionette_fodested_bygdoy_alle_67.json',
+            'oslo/vitenskap/sintef_minalab.json',
+            'oslo/vitenskap/stk_pex_kabeltarnet.json',
+            'oslo/vitenskap/tandbergs_radiofabrikk_kjelsas.json'
+          ]);
+          writeJson(coordinateManifestPath, coordinateManifest);
+
+          const museumPath = 'data/places/vitenskap/oslo/places_vitenskap/teknisk_museum.json';
+          const museum = readJson(museumPath);
+          museum.secondaryBadgeIds = unique([...(museum.secondaryBadgeIds || []), 'teknologi']);
+          museum.emne_ids = unique([
+            ...(museum.emne_ids || []),
+            'em_tek_teknologisk_kunnskap_og_artefakter',
+            'em_tek_produksjonsprosesser_toleranser_kvalitet',
+            'em_tek_teknologihistorie_sti_og_innelasing'
+          ]);
+          museum.underbadge_ids = unique([
+            ...(museum.underbadge_ids || []),
+            'vitenskapshistorie',
+            'teknologi_og_ingeniorfag',
+            'materialer_og_produksjon',
+            'teknologihistorie'
+          ]);
+          museum.quiz_profile = museum.quiz_profile || {};
+          museum.quiz_profile.must_include = unique([
+            ...(museum.quiz_profile.must_include || []),
+            'konkrete tekniske artefakter og produksjonsprosesser'
+          ]);
+
+          const replacements = [
+            {
+              type: 'official',
+              label: 'Norsk Teknisk Museum – om museet',
+              url: 'https://www.tekniskmuseum.no/om-museet',
+              lang: 'nb',
+              verifiedAt: '2026-07-26'
+            },
+            {
+              type: 'official',
+              label: 'Norsk Teknisk Museum – finn veien',
+              url: 'https://www.tekniskmuseum.no/museet/finnveien',
+              lang: 'nb',
+              verifiedAt: '2026-07-26'
+            }
+          ];
+          const byLabel = new Map((museum.externalLinks || []).map(link => [link.label, link]));
+          for (const link of replacements) byLabel.set(link.label, link);
+          museum.externalLinks = [...byLabel.values()];
+          writeJson(museumPath, museum);
+          NODE
+
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+          npm run places:coords:evidence:audit
+          npm run places:coords:intake
+          npm run places:coords:quality
+          npm run places:emner:check
+          npm run health:places
+          npm run audit:categories
+          npm run typecheck:tools
+          npm run typecheck:web
+          git diff --check
+
+          python <<'PY'
+          import subprocess
+
+          allowed = {
+              'data/fag/teknologi/TECHNOLOGY_PLACE_CONTRACT_V1.md',
+              'data/fag/teknologi/geographic/oslo_teknologisteder_candidates_v1.json',
+              'data/places/manifest.json',
+              'data/places/places_index.json',
+              'data/places/vitenskap/oslo/places_vitenskap/bitraf.json',
+              'data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json',
+              'data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json',
+              'data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json',
+              'data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json',
+              'data/places/vitenskap/oslo/places_vitenskap/teknisk_museum.json',
+              'data/coordinate-evidence/manifest.json',
+              'data/coordinate-evidence/oslo/vitenskap/bitraf.json',
+              'data/coordinate-evidence/oslo/vitenskap/radionette_fodested_bygdoy_alle_67.json',
+              'data/coordinate-evidence/oslo/vitenskap/sintef_minalab.json',
+              'data/coordinate-evidence/oslo/vitenskap/stk_pex_kabeltarnet.json',
+              'data/coordinate-evidence/oslo/vitenskap/tandbergs_radiofabrikk_kjelsas.json',
+              'data/coordinate-evidence/akershus/baerum/grini_fangeleir.json',
+              'data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_bosque_do_repouso.json',
+              'data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_morro_albino_estevao.json',
+              'data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_morro_casagrande_morro_do_ceu.json',
+              'data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_ecologico_jose_milanese.json',
+              'data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_rio_criciuma.json',
+              'reports/coordinate-evidence-audit.md',
+              'reports/place-coordinate-intake-gate.md',
+              'reports/place-coordinate-quality-gate.md',
+              'reports/place-source-layout-audit.json',
+              'reports/oslo-vitenskap-teknologisteder-batch-01.md',
+              'reports/oslo-vitenskap-teknologisteder-production-batch-01.md',
+          }
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          unexpected = sorted(changed - allowed)
+          required = {
+              'data/places/vitenskap/oslo/places_vitenskap/bitraf.json',
+              'data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json',
+              'data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json',
+              'data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json',
+              'data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json',
+          }
+          missing = sorted(required - changed)
+          if unexpected:
+              raise SystemExit(f'Uventede filer i sluttdiffen: {unexpected}')
+          if missing:
+              raise SystemExit(f'Manglende teknologisteder i sluttdiffen: {missing}')
+          print(f'Clean technology-place diff: {len(changed)} files')
+          PY
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/fag/teknologi/TECHNOLOGY_PLACE_CONTRACT_V1.md \
+            data/fag/teknologi/geographic/oslo_teknologisteder_candidates_v1.json \
+            data/places/manifest.json \
+            data/places/places_index.json \
+            data/places/vitenskap/oslo/places_vitenskap/bitraf.json \
+            data/places/vitenskap/oslo/places_vitenskap/radionette_fodested_bygdoy_alle_67.json \
+            data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json \
+            data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json \
+            data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json \
+            data/places/vitenskap/oslo/places_vitenskap/teknisk_museum.json \
+            data/coordinate-evidence/manifest.json \
+            data/coordinate-evidence/oslo/vitenskap/bitraf.json \
+            data/coordinate-evidence/oslo/vitenskap/radionette_fodested_bygdoy_alle_67.json \
+            data/coordinate-evidence/oslo/vitenskap/sintef_minalab.json \
+            data/coordinate-evidence/oslo/vitenskap/stk_pex_kabeltarnet.json \
+            data/coordinate-evidence/oslo/vitenskap/tandbergs_radiofabrikk_kjelsas.json \
+            data/coordinate-evidence/akershus/baerum/grini_fangeleir.json \
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_bosque_do_repouso.json \
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_apa_morro_albino_estevao.json \
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_morro_casagrande_morro_do_ceu.json \
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_ecologico_jose_milanese.json \
+            data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_rio_criciuma.json \
+            reports/coordinate-evidence-audit.md \
+            reports/place-coordinate-intake-gate.md \
+            reports/place-coordinate-quality-gate.md \
+            reports/place-source-layout-audit.json \
+            reports/oslo-vitenskap-teknologisteder-batch-01.md \
+            reports/oslo-vitenskap-teknologisteder-production-batch-01.md
+          git commit -m 'Produser ekte teknologisteder under Vitenskap i Oslo'
+          git push --force-with-lease origin "HEAD:$branch"
