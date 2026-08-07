@@ -1,0 +1,41 @@
+{
+  "schema": "history_go_literature_scientific_package_v1",
+  "version": "1.0.0",
+  "subject_id": "litteratur",
+  "subject_title": "Litteraturvitenskap",
+  "status": "canonical_scientific_package_in_progress",
+  "updated_at": "2026-08-07",
+  "scope": "universell fagarkitektur med norsk, nordisk, samisk, komparativ og global dekning",
+  "authority": {
+    "scientific_package": "this_package",
+    "legacy_compatibility_inputs": [
+      "../litteraturpensum_canonical_v4_5.json",
+      "../emner_litteratur_canonical_v4_5.json",
+      "../fagkart_litteratur_canonical_v4_5.json",
+      "../methods_litteratur_canonical_v4_5.json",
+      "../emnemapping_litteratur_canonical_v4_5.json"
+    ],
+    "rule": "Legacyfilene opprettholder eksisterende runtime. Nye fagtekster og ferdigstatus skal styres av den vitenskapelige pakken og dekningskontrakten."
+  },
+  "files": {
+    "coverage_contract": "coverage_contract_v1.json",
+    "concept_registry": "concepts_faggrunnlag_v1.json",
+    "topic_foundations": "topic_foundations_v1.json",
+    "foundation_chapters": [
+      "foundation_texts/faggrunnlag_metode_forskningspraksis.json"
+    ]
+  },
+  "summary": {
+    "coverage_area_count": 24,
+    "required_topic_count": 144,
+    "area_synthesis_count": 24,
+    "topic_foundation_text_count": 144,
+    "materialized_foundation_chapter_count": 1,
+    "materialized_module_count": 3,
+    "defined_concept_count": 24,
+    "verified_source_count": 10,
+    "verified_claim_count": 18,
+    "completion_status": "overview_complete_source_and_chapter_expansion_in_progress"
+  },
+  "release_rule": "Pakken kan ikke merkes complete før alle 24 dekningsområder har fagtekst, begreper, navngitte verk eller objekter, påstandsspor og syntesekapittel."
+}
