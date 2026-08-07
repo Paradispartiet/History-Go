@@ -4,13 +4,13 @@ import { auditLitteraturScientificPackage } from '../scripts/audit-litteratur-sc
 
 test('Litteratur har synkronisert oversiktslag og kildeførte full-dybde-kapitler', () => {
   assert.deepEqual(auditLitteraturScientificPackage(), {
-    areaCount: 27,
-    topicCount: 162,
-    completeAreaCount: 5,
-    fullDepthChapterCount: 4,
-    conceptCount: 120,
-    moduleCount: 15,
-    sourceCount: 58,
-    claimCount: 117
+    areaCount: 28,
+    topicCount: 168,
+    completeAreaCount: 6,
+    fullDepthChapterCount: 5,
+    conceptCount: 144,
+    moduleCount: 18,
+    sourceCount: 70,
+    claimCount: 150
   });
 });
