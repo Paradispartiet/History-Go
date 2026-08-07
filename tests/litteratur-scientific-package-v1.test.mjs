@@ -20,7 +20,7 @@ test('Litteratur har synkronisert oversiktslag og kildeførte full-dybde-kapitle
     conceptCount: 804,
     moduleCount: 84,
     sourceCount: 384,
-    claimCount: 1080
+    claimCount: 1128
   });
 });
 
