@@ -4,9 +4,9 @@ import { auditLitteraturArticleEditorialQuality } from '../scripts/audit-littera
 
 test('bare faktisk omskrevne litteraturområder passerer redaksjonell artikkelport', () => {
   assert.deepEqual(auditLitteraturArticleEditorialQuality(), {
-    areaCount: 15,
-    articleCount: 90,
-    paragraphCount: 666,
-    pendingAreaCount: 13
+    areaCount: 19,
+    articleCount: 114,
+    paragraphCount: 858,
+    pendingAreaCount: 9
   });
 });
