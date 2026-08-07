@@ -139,7 +139,11 @@ function loadScientificSource(CORE, manifestEntry) {
 }
 
 function loadSubjectSource(CORE, manifestEntry) {
-  if (CORE.text(manifestEntry?.scientificPackage)) return loadScientificSource(CORE, manifestEntry);
+  if (CORE.text(manifestEntry?.scientificPackage)) {
+    const packagePath = CORE.resolveManifestPointer(manifestEntry.scientificPackage);
+    const scientificPackage = readJson(packagePath);
+    if (CORE.text(scientificPackage?.active_scientific_package)) return loadScientificSource(CORE, manifestEntry);
+  }
   const source = {};
   for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {
     const relativePath = CORE.resolveManifestPointer(manifestEntry[field]);

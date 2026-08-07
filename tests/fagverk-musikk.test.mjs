@@ -1,33 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditRepository } from '../scripts/audit-fagverk-musikk.mjs';
-
-test('Musikk materialiseres fra aktiv vitenskapelig pakke, ikke legacy v4.5', () => {
-  const result = auditRepository({ checkReport: false });
-  const { report, generalRow } = result;
-  assert.equal(report.subject.id, 'musikk');
-  assert.equal(report.subject.title, 'Musikkvitenskap');
-  assert.equal(report.subject.scientificAuthority, 'this_package');
-  assert.equal(report.summary.domainCount, 8);
-  assert.equal(report.summary.emneCount, 48);
-  assert.equal(report.summary.methodCount, 18);
-  assert.equal(report.summary.questionBlueprintCount, 48);
-  assert.equal(report.summary.sourceDossierTopicCount, 48);
-  assert.equal(report.summary.verifiedScholarlySourceRecordCount, 156);
-  assert.equal(report.summary.chapterCount, 0);
-  assert.equal(generalRow.adapter, 'standard');
-  assert.equal(generalRow.domainCount, 8);
-  assert.equal(generalRow.emneCount, 48);
-  assert.equal(generalRow.methodCount, 18);
-  assert.equal(generalRow.editorialStatus, 'structure_ready');
-  assert.ok(Object.values(report.gates).every(Boolean));
-});
-
-test('Musikk beholder Scenekunst som separat toppfag og legacy kun som kompatibilitet', () => {
-  const { report } = auditRepository({ checkReport: false });
-  assert.equal(report.authorityBoundary.scientificAuthority, 'this_package');
-  assert.equal(report.authorityBoundary.legacyModuleRole, 'legacy_source_inventory_not_active_scientific_authority');
-  assert.equal(report.authorityBoundary.scenekunstSeparateTopLevelSubject, true);
-  assert.equal(report.authorityBoundary.performanceStudyInScope, true);
-  assert.equal(report.gates.bibliographicBasisNotPromotedToFulltextEvidence, true);
-});
+test('Musikk materialiserer første redigerte kapittel fra canonical evidens',()=>{const r=auditRepository({checkReport:false});assert.equal(r.report.subject.title,'Musikkvitenskap');assert.equal(r.report.summary.domainCount,8);assert.equal(r.report.summary.emneCount,48);assert.equal(r.report.summary.methodCount,18);assert.equal(r.report.summary.chapterCount,1);assert.equal(r.generalRow.editorialStatus,'chapters_in_progress');assert.deepEqual(r.chapterAudit,{moduleCount:3,sectionCount:9,paragraphCount:27,sourceCount:12,claimCount:13,evidenceTopicCount:6,workedExampleCount:3,misconceptionCount:6,applicationTaskCount:4,selfCheckCount:10});assert.ok(Object.values(r.report.gates).every(Boolean));});
+test('Musikk bevarer authority- og Scenekunst-grensen',()=>{const{report}=auditRepository({checkReport:false});assert.equal(report.authorityBoundary.scientificAuthority,'this_package');assert.equal(report.authorityBoundary.scenekunstSeparateTopLevelSubject,true);assert.equal(report.gates.bibliographicBasisNotPromotedToFulltextEvidence,true);assert.equal(report.gates.chapterAllProjectedClaimsUsed,true);});

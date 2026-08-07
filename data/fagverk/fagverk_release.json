@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.19.0",
-    "updated_at": "2026-08-04",
-    "content_sha256": "41c909c6f412eb24f2b818d398538eff9427056c4468ec76a31768f8c0a1bc0b"
+    "version": "2.20.0",
+    "updated_at": "2026-08-08",
+    "content_sha256": "07dfc49f56d1d6cb0e56765c801d00db8f9b88b7db74c714afdb03f719fe0f47"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 5,
-    "chapter_count": 67,
-    "module_file_count": 168,
+    "chapter_subject_count": 6,
+    "chapter_count": 68,
+    "module_file_count": 171,
     "package_file_count": 197,
-    "chapter_referenced_file_count": 285,
-    "referenced_file_count": 441,
+    "chapter_referenced_file_count": 291,
+    "referenced_file_count": 447,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1611,13 +1611,13 @@
       "chapters": []
     },
     "musikk": {
-      "title": "musikk",
+      "title": "Musikkvitenskap",
       "kind": "subject",
       "parent_subject_id": null,
       "schema_family": "standard_canonical",
       "pilot": false,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -1785,20 +1785,29 @@
         }
       ],
       "package_content_sha256": "b652a62580e8d878ae08efd552b5f50e14bdd5378f0745cb5044cbebb3af78c9",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 11,
+      "chapter_count": 1,
+      "module_file_count": 3,
+      "brief_file_count": 1,
+      "claims_file_count": 1,
+      "chapter_referenced_file_count": 6,
+      "chapter_content_sha256": "01bdcf6c4bc12f1997f7226025ba5cf356253006e1cedc2861eeee058d2c703d",
+      "referenced_file_count": 17,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "5b267da800c8ab3777c64226ad0c0f096096edc91c8af07d64f7e208639b1403",
-      "content_sha256": "b652a62580e8d878ae08efd552b5f50e14bdd5378f0745cb5044cbebb3af78c9",
-      "chapters": []
+      "structure_sha256": "b8a6f0ddadbb9eb89d174f93a5bbaa0a60a8d0a379235a8658351a36d833192d",
+      "content_sha256": "6085e9a9e9f4af52aaed4934b600d092cbdbbdc0dfbc3c9f9694267e7e707e47",
+      "chapters": [
+        {
+          "chapter_id": "musikalsk-analyse-lyd-struktur",
+          "title": "Musikalsk analyse, lyd og struktur",
+          "file": "data/fagverk/musikk/musikalsk-analyse-lyd-struktur.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "01bdcf6c4bc12f1997f7226025ba5cf356253006e1cedc2861eeee058d2c703d"
+        }
+      ]
     },
     "naeringsliv": {
       "title": "Økonomi og næringsliv",
@@ -3955,5 +3964,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "610984bfbfef291a95a1aa0915ea41b562395ac2c5701defd620085eb03874f6"
+  "release_sha256": "08390dd6f8fcd6b116453706ed0c09c1179e8abd1ce156172d7d3ba0b3e9af9a"
 }

@@ -73,8 +73,12 @@ expected(PATHS.inventory, inventory);
 const status = readJson(PATHS.status);
 const musikkStatus = list(status.subjects).find((item) => item?.id === 'musikk');
 if (!musikkStatus) throw new Error('subject_status mangler musikk');
-musikkStatus.nextGate = 'phase_4_expand_fulltext_evidence_and_chapters';
-musikkStatus.note = `Musikk er strukturelt materialisert fra den aktive musikkvitenskapelige pakken med 8 domener, 48 canonicale temaer og 18 metodeprotokoller. Kildegrunnlaget har 48 dossierer og 156 canonicale forskningskilder. Fulltekstlaget har frigitt ${releasedEmner.length} emner til subject pathways. Aktiv pathway inneholder ${sets.length} sett / ${sets.length * 5} spørsmål, ${releasedClaims.length} question-ready claims og ${directObjects.length} verifiserte direct objects. De øvrige ${blockedTopics} temaene er fortsatt blokkert for fagområdespørsmål til deres egne evidensporter er løst; redigerte hovedkapitler gjenstår.`;
+if (musikkStatus.editorialStatus === 'structure_ready') {
+  musikkStatus.nextGate = 'phase_4_expand_fulltext_evidence_and_chapters';
+  musikkStatus.note = `Musikk er strukturelt materialisert fra den aktive musikkvitenskapelige pakken med 8 domener, 48 canonicale temaer og 18 metodeprotokoller. Kildegrunnlaget har 48 dossierer og 156 canonicale forskningskilder. Fulltekstlaget har frigitt ${releasedEmner.length} emner til subject pathways. Aktiv pathway inneholder ${sets.length} sett / ${sets.length * 5} spørsmål, ${releasedClaims.length} question-ready claims og ${directObjects.length} verifiserte direct objects. De øvrige ${blockedTopics} temaene er fortsatt blokkert for fagområdespørsmål til deres egne evidensporter er løst; redigerte hovedkapitler gjenstår.`;
+} else if (musikkStatus.editorialStatus !== 'chapters_in_progress') {
+  throw new Error(`Musikk har ukjent editorialStatus: ${text(musikkStatus.editorialStatus)}`);
+}
 expected(PATHS.status, status);
 
 const quizManifest = readJson(PATHS.quizManifest);

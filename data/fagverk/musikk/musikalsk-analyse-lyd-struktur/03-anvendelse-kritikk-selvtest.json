@@ -1,0 +1,225 @@
+{
+  "schema": "history_go_fagverk_chapter_module_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "chapter_id": "musikalsk-analyse-lyd-struktur",
+  "module_id": "03-anvendelse-kritikk-selvtest",
+  "title": "Anvendelse, kritikk og selvtest",
+  "role": "anvendelse",
+  "sections": [
+    {
+      "id": "fra_spor_til_slutning",
+      "title": "Fra spor til avgrenset slutning",
+      "paragraphs": [
+        "En robust analyse kan skrives som en kjede: objekt, lokator, observasjon, metode, fortolkning og grense. Rebonds-eksemplet viser kjeden fordi objekt-ID, tidskoder og artikkelens beskrivelser er koblet sammen.",
+        "Rytmestudiene viser hvorfor utvalget må følge påstanden. Profesjonelle trommeslagere eller syntetiserte pianomelodier kan belyse bestemte mekanismer, men representerer ikke all timing eller groove.",
+        "Boss, Caplin og Huguet gjør taktene kontrollerbare, men analytikeren må fortsatt oppgi hvilken segmenterings- eller formmodell som skaper kategoriene."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_analytical_listening_rebonds_drag_solutions_timecoded_2023"
+        ],
+        [
+          "claim_musikk_rhythm_camara_timing_is_multidimensional",
+          "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure"
+        ],
+        [
+          "claim_musikk_melody_boss_alpha_salience_development",
+          "claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63",
+          "claim_musikk_form_huguet_op10_3_a4_close_84_106"
+        ]
+      ],
+      "concepts": [
+        "slutningskjede",
+        "utvalg",
+        "gyldighetsgrense",
+        "representativitet",
+        "analysemodell"
+      ]
+    },
+    {
+      "id": "sammenligning_og_alternativer",
+      "title": "Sammenligning trenger felles kriterier",
+      "paragraphs": [
+        "Framføringer kan bare sammenlignes når passasje, tempo, instrument, opptakskontekst og andre relevante dimensjoner er gjort sammenlignbare. Ett opptak viser ikke hvor vanlig en løsning er.",
+        "Rytmemønstre med lik synkopemengde kan organiseres ulikt mellom lag og metriske posisjoner. Det konkurrerende målet må analyseres med samme regler før forskjellen tolkes.",
+        "Formfortolkninger kan være uenige fordi de bruker ulike kriterier for lukning, prolongasjon og seksjonsfunksjon. Drøftingen må lokalisere hvor kriteriene skiller lag."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_analytical_listening_rebonds_drag_solutions_timecoded_2023"
+        ],
+        [
+          "claim_musikk_rhythm_sioros_pattern_matters_beyond_syncopation_amount",
+          "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient"
+        ],
+        [
+          "claim_musikk_harmony_caplin_tonic_prolongation_cadence_75_87",
+          "claim_musikk_form_huguet_op10_3_after_the_end_after_92"
+        ]
+      ],
+      "concepts": [
+        "komparasjon",
+        "felles kriterium",
+        "alternativ forklaring",
+        "lukning",
+        "prolongasjon"
+      ]
+    },
+    {
+      "id": "etterprovbar_praksis",
+      "title": "Analyse som etterprøvbar praksis",
+      "paragraphs": [
+        "Analytisk lytting blir etterprøvbar når en annen bruker kan åpne samme objekt, finne samme passasje og forstå hvilket språk som beskriver den. Funksjon og mening diskuteres etterpå.",
+        "Beregningsanalyse blir etterprøvbar når datasett, trekk, parametre, modell og evaluering er oppgitt. TinySOL-resultatet er et dokumentert case, ikke bevis for universelle dynamikkategorier.",
+        "Takt, tidskode og måling gjør påstanden skarp; modellkritikk, rettighetsgrenser og usikkerhet hindrer at den blir større enn evidensen."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_analytical_listening_rebonds_drag_solutions_timecoded_2023"
+        ],
+        [
+          "claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"
+        ],
+        [
+          "claim_musikk_melody_boss_motive_status_requires_process",
+          "claim_musikk_rhythm_camara_context_changes_timing_profiles",
+          "claim_musikk_form_huguet_op10_3_after_the_end_after_92"
+        ]
+      ],
+      "concepts": [
+        "reproduserbarhet",
+        "kritisk lytting",
+        "beregningsanalyse",
+        "rettigheter",
+        "usikkerhet"
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "observasjonslogg",
+      "title": "Bygg en observasjonslogg",
+      "prompt": "Velg tre tidskoder og skill observasjon, fortolkning og alternativ forklaring.",
+      "requiredMethodIds": [
+        "kritisk_lytteanalyse"
+      ],
+      "claimIds": [
+        "claim_musikk_analytical_listening_rebonds_drag_solutions_timecoded_2023"
+      ]
+    },
+    {
+      "id": "rytmeparameter",
+      "title": "Test et rytmemål",
+      "prompt": "Definer metrisk hypotese og måleparameter og oppgi hva målet ikke kan si.",
+      "requiredMethodIds": [
+        "rytme_mikrotiminganalyse"
+      ],
+      "claimIds": [
+        "claim_musikk_rhythm_camara_timing_is_multidimensional",
+        "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient"
+      ]
+    },
+    {
+      "id": "modellkonflikt",
+      "title": "Sammenlign to segmenteringer",
+      "prompt": "Lag to segmenteringer og vis hvilke funksjonskonklusjoner som endres.",
+      "requiredMethodIds": [
+        "notasjons_kildeanalyse",
+        "harmonisk_stemmeforingsanalyse"
+      ],
+      "claimIds": [
+        "claim_musikk_melody_boss_motive_status_requires_process",
+        "claim_musikk_harmony_caplin_tonic_prolongation_cadence_75_87"
+      ]
+    },
+    {
+      "id": "klangmodell",
+      "title": "Avgrens en klassifikasjon",
+      "prompt": "Oppgi datasett, klasser, trekk og modell før én tillatt og én forbudt slutning.",
+      "requiredMethodIds": [
+        "klang_spektralanalyse"
+      ],
+      "claimIds": [
+        "claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"
+      ]
+    }
+  ],
+  "selfCheck": [
+    {
+      "question": "Hva identifiseres før teori?",
+      "answer": "Objekt, versjon, lokator og tilgang.",
+      "claimIds": [
+        "claim_musikk_analytical_listening_rebonds_drag_solutions_timecoded_2023"
+      ]
+    },
+    {
+      "question": "Hvorfor beviser ikke mikrotiming intensjon?",
+      "answer": "Flere mekanismer kan gi samme mønster.",
+      "claimIds": [
+        "claim_musikk_rhythm_camara_timing_is_multidimensional",
+        "claim_musikk_rhythm_camara_context_changes_timing_profiles"
+      ]
+    },
+    {
+      "question": "Hvorfor er én synkopemengde utilstrekkelig?",
+      "answer": "Den skjuler fordeling og samspill.",
+      "claimIds": [
+        "claim_musikk_rhythm_sioros_scalar_syncopation_is_insufficient"
+      ]
+    },
+    {
+      "question": "Hva gjør alpha motivisk?",
+      "answer": "Repetisjon, variasjon og saliens gjennom forløpet.",
+      "claimIds": [
+        "claim_musikk_melody_boss_alpha_salience_development",
+        "claim_musikk_melody_boss_motive_status_requires_process"
+      ]
+    },
+    {
+      "question": "Hvorfor er kadenslesningen modellavhengig?",
+      "answer": "Funksjons- og stemmeføringskriteriene avgjør progresjonen.",
+      "claimIds": [
+        "claim_musikk_harmony_caplin_tonic_prolongation_cadence_75_87"
+      ]
+    },
+    {
+      "question": "Hva begrenser TinySOL-resultatet?",
+      "answer": "Datasett, klasser, trekk, modell og manglende rerun.",
+      "claimIds": [
+        "claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"
+      ]
+    },
+    {
+      "question": "Hvorfor er A-materiale ikke automatisk refreng?",
+      "answer": "Lukning og helhetsfunksjon må vurderes.",
+      "claimIds": [
+        "claim_musikk_form_huguet_op10_3_a4_close_84_106",
+        "claim_musikk_form_huguet_op10_3_after_the_end_after_92"
+      ]
+    },
+    {
+      "question": "Hva skiller observasjon fra fortolkning?",
+      "answer": "Observasjon lokaliserer et trekk; fortolkning tilskriver funksjon.",
+      "claimIds": [
+        "claim_musikk_analytical_listening_rebonds_drag_solutions_timecoded_2023"
+      ]
+    },
+    {
+      "question": "Hva krever sammenligning?",
+      "answer": "Identifiserte objekter og felles parametre.",
+      "claimIds": [
+        "claim_musikk_analytical_listening_rebonds_drag_solutions_timecoded_2023",
+        "claim_musikk_rhythm_camara_timing_is_multidimensional"
+      ]
+    },
+    {
+      "question": "Hvor langt kan analysen konkludere?",
+      "answer": "Bare innenfor objekt, utvalg, metode og kilder.",
+      "claimIds": [
+        "claim_musikk_rhythm_sioros2014_moderate_syncopation_and_structure",
+        "claim_musikk_timbre_gonzalez_prati_tinysol_dynamics_classification_2023"
+      ]
+    }
+  ]
+}

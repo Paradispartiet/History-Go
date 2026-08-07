@@ -256,6 +256,15 @@
     return buildScientificSource({ index, domainCatalog, modules, methodProtocols });
   }
 
+  async function loadSubjectSource(manifestEntry) {
+    if (CORE.text(manifestEntry?.scientificPackage)) {
+      const packagePath = CORE.resolveManifestPointer(manifestEntry.scientificPackage);
+      const scientificPackage = await fetchJson(packagePath);
+      if (CORE.text(scientificPackage?.active_scientific_package)) return loadScientificSource(manifestEntry);
+    }
+    return loadLegacySource(manifestEntry);
+  }
+
   async function loadLegacySource(manifestEntry) {
     const [pensum, emners, fagkart, methods, curriculum, concepts, periodGuides, periodModules] = await Promise.all([
       fetchJson(CORE.resolveManifestPointer(manifestEntry.pensum)),
@@ -321,7 +330,7 @@
         }
 
         const [source, badge, finalOverlay] = await Promise.all([
-          CORE.text(manifestEntry?.scientificPackage) ? loadScientificSource(manifestEntry) : loadLegacySource(manifestEntry),
+          loadSubjectSource(manifestEntry),
           fetchJson(`data/badges/${encodeURIComponent(id)}.json`, { optional: true }),
           id === 'natur' ? fetchJson(NATUR_FINAL_PATH, { optional: true }) : Promise.resolve(null)
         ]);
