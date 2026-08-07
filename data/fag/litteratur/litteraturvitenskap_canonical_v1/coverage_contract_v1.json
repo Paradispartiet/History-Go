@@ -19,14 +19,18 @@
       "alle seks temaer oppfyller temakravene",
       "ett redigert syntesekapittel med progresjon og anvendelse",
       "ingen uavklarte canonicale identitets- eller mappingfeil",
-      "permanent audit er grønn"
+      "permanent audit er grønn",
+      "områder med full_field_contract må ha en validert fulfillment-fil før komplettstatus",
+      "utvidede kontrakter skal dokumentere underdekning, teorier, metoder, navngitte objekter, historisk og geografisk spenn samt canonicale grenseflater"
     ],
     "forbidden_shortcuts": [
       "akse-, emne- eller filantall alene",
       "generiske definisjoner som bare gjentar tittelen",
       "spørsmål uten identifisert forskningsobjekt",
       "kildelister uten kobling til konkrete påstander",
-      "vestlig periodehistorie presentert som hele verdens litteraturhistorie"
+      "vestlig periodehistorie presentert som hele verdens litteraturhistorie",
+      "seks brede temaoverskrifter brukt som erstatning for bindende underdekning",
+      "teorier, metoder, tradisjoner eller analyseobjekter som bare listes uten anvendelses- og kildespor"
     ]
   },
   "coverage_areas": [
@@ -98,7 +102,7 @@
     {
       "id": "drama_teatertekst_framforing",
       "title": "Drama, teatertekst og framføring",
-      "status": "chapter_and_overview_text_materialized",
+      "status": "expanded_contract_scope_locked_materialization_pending",
       "topics": [
         "dialog_monolog_didascalier",
         "handling_konflikt_dramaturgi",
@@ -106,12 +110,13 @@
         "tekst_framforing_iscenesettelse",
         "dramatisk_rom_tid",
         "lesedrama_postdramatisk_tekst"
-      ]
+      ],
+      "full_field_contract": "contracts/drama_teatertekst_framforing_full_field_v1.json"
     },
     {
       "id": "sjanger_modus_form",
       "title": "Sjanger, modus og form",
-      "status": "chapter_and_overview_text_materialized",
+      "status": "expanded_contract_scope_locked_materialization_pending",
       "topics": [
         "sjangerkontrakt_forventning",
         "epikk_lyrikk_dramatikk",
@@ -119,7 +124,8 @@
         "fantastikk_science_fiction_dystopi",
         "krim_romanse_popularlitteratur",
         "hybridformer_essay_litterar_sakprosa"
-      ]
+      ],
+      "full_field_contract": "contracts/sjanger_modus_form_full_field_v1.json"
     },
     {
       "id": "formalisme_nykritikk_strukturalisme_semiotikk",
@@ -398,10 +404,10 @@
   "progress": {
     "areas_total": 28,
     "areas_with_foundation_text": 28,
-    "areas_complete": 12,
+    "areas_complete": 10,
     "topics_total": 168,
     "topics_with_foundation_text": 168,
-    "topics_complete": 72,
-    "honest_status": "Alle 28 områder og 168 temaer har særskrevet oversiktstekst. Tolv områder og 72 temaer har full kapitteldybde, definerte begreper, navngitte analyseobjekter og påstandsspor; 16 områder og 96 temaer trenger fortsatt tilsvarende full-dybde-materialisering."
+    "topics_complete": 60,
+    "honest_status": "Alle 28 områder og 168 temaer har særskrevet oversiktstekst. Tolv områder og 72 temaer har materialiserte kapitler, men drama/teater og sjanger/modus er senket til utvidet kontrakt-pending etter at bindende underdekning, globale tradisjoner, metodekrav og grenseflater ble innført. Ti områder og 60 temaer er nå fullført etter gjeldende kontrakt; 18 områder og 108 temaer krever mer full-dybdearbeid."
   }
 }

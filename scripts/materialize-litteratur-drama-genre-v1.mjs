@@ -12,8 +12,8 @@ const C = (id, term, definition, distinguish_from) => ({ id, term, definition, d
 const S = (id, title, coverageTopic, paragraphs, paragraphClaimIds, keyPoints) => ({ id, title, coverageTopic, paragraphs, paragraphClaimIds, keyPoints });
 
 const areas = [
-  { id: 'drama_teatertekst_framforing', title: 'Drama, teatertekst og framføring', status: 'chapter_and_overview_text_materialized', topics: ['dialog_monolog_didascalier', 'handling_konflikt_dramaturgi', 'tragedie_komedie_mellomformer', 'tekst_framforing_iscenesettelse', 'dramatisk_rom_tid', 'lesedrama_postdramatisk_tekst'] },
-  { id: 'sjanger_modus_form', title: 'Sjanger, modus og form', status: 'chapter_and_overview_text_materialized', topics: ['sjangerkontrakt_forventning', 'epikk_lyrikk_dramatikk', 'realisme_romantikk_modernisme_som_modus', 'fantastikk_science_fiction_dystopi', 'krim_romanse_popularlitteratur', 'hybridformer_essay_litterar_sakprosa'] }
+  { id: 'drama_teatertekst_framforing', title: 'Drama, teatertekst og framføring', status: 'expanded_contract_scope_locked_materialization_pending', topics: ['dialog_monolog_didascalier', 'handling_konflikt_dramaturgi', 'tragedie_komedie_mellomformer', 'tekst_framforing_iscenesettelse', 'dramatisk_rom_tid', 'lesedrama_postdramatisk_tekst'] },
+  { id: 'sjanger_modus_form', title: 'Sjanger, modus og form', status: 'expanded_contract_scope_locked_materialization_pending', topics: ['sjangerkontrakt_forventning', 'epikk_lyrikk_dramatikk', 'realisme_romantikk_modernisme_som_modus', 'fantastikk_science_fiction_dystopi', 'krim_romanse_popularlitteratur', 'hybridformer_essay_litterar_sakprosa'] }
 ];
 const topicLayer = read(`${PACKAGE}/topic_foundations_v1.json`);
 const foundations = areas.map((area) => topicLayer.areas.find((row) => row.id === area.id));
@@ -257,15 +257,18 @@ const wrappers = [
 ];
 
 const coverageFile = `${PACKAGE}/coverage_contract_v1.json`, coverage = read(coverageFile);
-coverage.coverage_areas = coverage.coverage_areas.map((row) => areas.find((area) => area.id === row.id) || row);
-const complete = coverage.coverage_areas.filter((row) => row.status === 'chapter_and_overview_text_materialized');
-coverage.progress = { areas_total: coverage.coverage_areas.length, areas_with_foundation_text: coverage.coverage_areas.length, areas_complete: complete.length, topics_total: coverage.completion_definition.required_topic_count, topics_with_foundation_text: coverage.completion_definition.required_topic_count, topics_complete: complete.flatMap((row) => row.topics).length, honest_status: 'Alle 28 områder og 168 temaer har særskrevet oversiktstekst. Tolv områder og 72 temaer har full kapitteldybde, definerte begreper, navngitte analyseobjekter og påstandsspor; 16 områder og 96 temaer trenger fortsatt tilsvarende full-dybde-materialisering.' };
+coverage.coverage_areas = coverage.coverage_areas.map((row) => {
+  const update = areas.find((area) => area.id === row.id);
+  return update ? { ...row, ...update } : row;
+});
+const complete = coverage.coverage_areas.filter((row) => ['chapter_and_overview_text_materialized', 'expanded_contract_fulfilled'].includes(row.status));
+coverage.progress = { areas_total: coverage.coverage_areas.length, areas_with_foundation_text: coverage.coverage_areas.length, areas_complete: complete.length, topics_total: coverage.completion_definition.required_topic_count, topics_with_foundation_text: coverage.completion_definition.required_topic_count, topics_complete: complete.flatMap((row) => row.topics).length, honest_status: 'Alle 28 områder og 168 temaer har særskrevet oversiktstekst. Tolv områder og 72 temaer har materialiserte kapitler, men drama/teater og sjanger/modus er utvidet kontrakt-pending. Ti områder og 60 temaer er fullført etter gjeldende kontrakt; 18 områder og 108 temaer krever mer full-dybdearbeid.' };
 write(coverageFile, coverage);
 
 const indexFile = `${PACKAGE}/index.json`, index = read(indexFile);
 index.files.foundation_chapters = [...new Set([...index.files.foundation_chapters, ...wrappers.map((file) => file.replace(`${PACKAGE}/`, ''))])];
 let moduleCount = 0, conceptCount = 0, sourceCount = 0, claimCount = 0;
 for (const file of index.files.foundation_chapters) { const chapter = read(`${PACKAGE}/${file}`), registry = read(chapter.conceptRegistry), claimFile = read(chapter.claimsFile); moduleCount += chapter.moduleFiles.length; conceptCount += registry.concepts.length; sourceCount += claimFile.sources.length; claimCount += claimFile.claims.length; }
-index.summary = { coverage_area_count: coverage.coverage_areas.length, required_topic_count: coverage.completion_definition.required_topic_count, area_synthesis_count: topicLayer.areas.length, topic_foundation_text_count: topicLayer.areas.flatMap((row) => row.topics).length, materialized_foundation_chapter_count: index.files.foundation_chapters.length, materialized_module_count: moduleCount, defined_concept_count: conceptCount, verified_source_count: sourceCount, verified_claim_count: claimCount, completion_status: 'drama_genre_core_expanded_16_areas_pending_full_depth' };
+index.summary = { ...index.summary, coverage_area_count: coverage.coverage_areas.length, required_topic_count: coverage.completion_definition.required_topic_count, area_synthesis_count: topicLayer.areas.length, topic_foundation_text_count: topicLayer.areas.flatMap((row) => row.topics).length, materialized_foundation_chapter_count: index.files.foundation_chapters.length, materialized_module_count: moduleCount, defined_concept_count: conceptCount, verified_source_count: sourceCount, verified_claim_count: claimCount, completion_status: 'two_expanded_contracts_locked_18_areas_pending_full_depth' };
 write(indexFile, index);
 console.log('Materialiserte drama/teater og sjanger/modus/form.');
