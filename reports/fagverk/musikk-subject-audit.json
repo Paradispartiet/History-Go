@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_musikk_subject_audit_v1",
   "version": "1.0.0",
-  "status": "phase_3_musikk_structure_ready",
+  "status": "phase_4_musikk_chapters_in_progress",
   "generatedFrom": {
     "manifest": "data/fag/fag_manifest.json",
     "portal": "data/fagverk/fagverk_portal.json",
@@ -22,7 +22,23 @@
       "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/norsk_nordisk_samisk_sted_arkiv.json",
       "data/fag/musikk/musikkvitenskap_canonical_v1/modules_v2/persepsjon_kognisjon_akustikk.json"
     ],
-    "report": "reports/fagverk/musikk-subject-audit.json"
+    "report": "reports/fagverk/musikk-subject-audit.json",
+    "chapter": "data/fagverk/musikk/musikalsk-analyse-lyd-struktur.json",
+    "chapterBrief": "data/fagverk/musikk/musikalsk-analyse-lyd-struktur/brief.json",
+    "chapterClaims": "data/fagverk/musikk/musikalsk-analyse-lyd-struktur/claims.json",
+    "chapterModules": [
+      "data/fagverk/musikk/musikalsk-analyse-lyd-struktur/01-objekt-observasjon-evidens.json",
+      "data/fagverk/musikk/musikalsk-analyse-lyd-struktur/02-rytme-tone-klang-form.json",
+      "data/fagverk/musikk/musikalsk-analyse-lyd-struktur/03-anvendelse-kritikk-selvtest.json"
+    ],
+    "chapterEvidence": [
+      "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/analytisk_lytting_beskrivelse.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_meter_groove_timing.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/melodi_motiv_frasering.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/harmoni_tonalitet_modalitet.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/klang_tekstur_instrumentasjon.json",
+      "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/form_prosess_improvisasjon.json"
+    ]
   },
   "subject": {
     "id": "musikk",
@@ -31,7 +47,7 @@
     "adapter": "standard",
     "subjectPage": "fagverk.html?subject=musikk",
     "assessmentStatus": "audited",
-    "editorialStatus": "structure_ready",
+    "editorialStatus": "chapters_in_progress",
     "scientificAuthority": "this_package",
     "sourceRevision": "musikkvitenskap-kildegrunnlag-atte-domener-v9-2026-07-30"
   },
@@ -42,8 +58,18 @@
     "questionBlueprintCount": 48,
     "sourceDossierTopicCount": 48,
     "verifiedScholarlySourceRecordCount": 156,
-    "chapterCount": 0,
-    "placeCount": 0
+    "chapterCount": 1,
+    "placeCount": 0,
+    "chapterModuleCount": 3,
+    "chapterSectionCount": 9,
+    "chapterParagraphCount": 27,
+    "chapterSourceCount": 12,
+    "chapterClaimCount": 13,
+    "chapterEvidenceTopicCount": 6,
+    "chapterWorkedExampleCount": 3,
+    "chapterMisconceptionCount": 6,
+    "chapterApplicationTaskCount": 4,
+    "chapterSelfCheckCount": 10
   },
   "canonicalDomainOrder": [
     "etnomusikologi_kultur_samfunn",
@@ -73,7 +99,11 @@
     "allTopicMethodRefsResolved": true,
     "legacyNotScientificAuthority": true,
     "scenekunstBoundaryPreserved": true,
-    "noGeneratedChapters": true,
-    "bibliographicBasisNotPromotedToFulltextEvidence": true
+    "bibliographicBasisNotPromotedToFulltextEvidence": true,
+    "chapterMaterializedFromReleasedEvidence": true,
+    "chapterCanonicalDomainCoverage": true,
+    "chapterParagraphClaimTrace": true,
+    "chapterAllProjectedClaimsUsed": true,
+    "chapterPackageReady": true
   }
 }
