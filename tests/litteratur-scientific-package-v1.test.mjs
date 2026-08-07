@@ -14,13 +14,13 @@ test('Litteratur har synkronisert oversiktslag og kildeførte full-dybde-kapitle
     areaCount: 28,
     topicCount: 168,
     completeAreaCount: 28,
-    fullDepthChapterCount: 27,
+    fullDepthChapterCount: 28,
     expandedContractCount: 18,
     expandedContractFulfilledCount: 18,
     conceptCount: 804,
     moduleCount: 84,
-    sourceCount: 374,
-    claimCount: 1056
+    sourceCount: 384,
+    claimCount: 1080
   });
 });
 
