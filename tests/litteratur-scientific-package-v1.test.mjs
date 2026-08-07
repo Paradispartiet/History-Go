@@ -13,14 +13,14 @@ test('Litteratur har synkronisert oversiktslag og kildeførte full-dybde-kapitle
   assert.deepEqual(auditLitteraturScientificPackage(), {
     areaCount: 28,
     topicCount: 168,
-    completeAreaCount: 25,
-    fullDepthChapterCount: 24,
-    expandedContractCount: 15,
-    expandedContractFulfilledCount: 15,
-    conceptCount: 720,
-    moduleCount: 75,
-    sourceCount: 332,
-    claimCount: 930
+    completeAreaCount: 28,
+    fullDepthChapterCount: 27,
+    expandedContractCount: 18,
+    expandedContractFulfilledCount: 18,
+    conceptCount: 804,
+    moduleCount: 84,
+    sourceCount: 374,
+    claimCount: 1056
   });
 });
 
