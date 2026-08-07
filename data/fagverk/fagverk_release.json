@@ -18,7 +18,7 @@
     "schema": "history_go_fagverk_subject_inventory_v1",
     "version": "1.5.0",
     "updated_at": "2026-08-04",
-    "content_sha256": "48af2b2ca78fdc76897d63c4db39193dc5fcc6e322096fe8c636f7d4a0a3d6b4",
+    "content_sha256": "beb00566c5753e1005a70d5a309b63982edb36711eb4ad60b1d2c0a1cd28ea09",
     "root_subject_count": 17,
     "specialization_count": 1
   },
@@ -36,9 +36,9 @@
     "chapter_subject_count": 5,
     "chapter_count": 67,
     "module_file_count": 168,
-    "package_file_count": 191,
+    "package_file_count": 195,
     "chapter_referenced_file_count": 285,
-    "referenced_file_count": 436,
+    "referenced_file_count": 440,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1273,22 +1273,42 @@
       "optional_manifest_fields": [
         "supersetQuizMal",
         "quizStandard",
-        "quizQuestionSchema"
+        "quizQuestionSchema",
+        "emneMappings",
+        "scientificPackage",
+        "coverageContract",
+        "topicFoundations"
       ],
       "present_manifest_fields": [
+        "coverageContract",
+        "emneMappings",
         "emner",
         "fagkart",
         "methods",
         "pensum",
         "quizQuestionSchema",
         "quizStandard",
-        "supersetQuizMal"
+        "scientificPackage",
+        "supersetQuizMal",
+        "topicFoundations"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 7,
+      "package_file_count": 11,
       "required_package_file_count": 4,
-      "optional_package_file_count": 3,
+      "optional_package_file_count": 7,
       "package_files": [
+        {
+          "path": "data/fag/litteratur/emnemapping_litteratur_canonical_v4_5.json",
+          "required": false,
+          "fields": [
+            "emneMappings"
+          ],
+          "key_paths": [
+            "emneMappings"
+          ],
+          "exists": true,
+          "content_sha256": "488c0abb5028f49d9f0dd234a4d4e0ced5cb6ec17eca23fa9f04b4d8e458448b"
+        },
         {
           "path": "data/fag/litteratur/emner_litteratur_canonical_v4_5.json",
           "required": true,
@@ -1324,6 +1344,42 @@
           ],
           "exists": true,
           "content_sha256": "9089ab6530e88e67b122843528209fbf4f8d712dda97d80f8534f1a130a85d6f"
+        },
+        {
+          "path": "data/fag/litteratur/litteraturvitenskap_canonical_v1/coverage_contract_v1.json",
+          "required": false,
+          "fields": [
+            "coverageContract"
+          ],
+          "key_paths": [
+            "coverageContract"
+          ],
+          "exists": true,
+          "content_sha256": "973b8f71896b212201795133c0138b2e092d9ab2ce32e6783554fb8dd887ae04"
+        },
+        {
+          "path": "data/fag/litteratur/litteraturvitenskap_canonical_v1/index.json",
+          "required": false,
+          "fields": [
+            "scientificPackage"
+          ],
+          "key_paths": [
+            "scientificPackage"
+          ],
+          "exists": true,
+          "content_sha256": "68f7bc72a2011a97a8a4ae5df41de98dd06dd294debadcbe3926740e90da04a3"
+        },
+        {
+          "path": "data/fag/litteratur/litteraturvitenskap_canonical_v1/topic_foundations_v1.json",
+          "required": false,
+          "fields": [
+            "topicFoundations"
+          ],
+          "key_paths": [
+            "topicFoundations"
+          ],
+          "exists": true,
+          "content_sha256": "ec83bb2fd89c4d394945f1a9a13b079e9d136bd547857282b45f3977cb72b678"
         },
         {
           "path": "data/fag/litteratur/methods_litteratur_canonical_v4_5.json",
@@ -1374,20 +1430,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "c54e6519861f41c645c18a2288805afba2b6689a7cd53acb815e3f9616e64fe1",
+      "package_content_sha256": "a2ad657bfcce4225e6caf39222b0dce5018a50b39139cca1d1f0662eb5bc278c",
       "chapter_count": 0,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 0,
       "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 7,
+      "referenced_file_count": 11,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "8f866476dbe201b9612e1f7919be60a8f4bbe5f648dadfa1f673aa89ef6c0d18",
-      "content_sha256": "c54e6519861f41c645c18a2288805afba2b6689a7cd53acb815e3f9616e64fe1",
+      "structure_sha256": "ac3d62cb205690245a00a862fd621de82c2128dbc200773256dc0a4214c07f99",
+      "content_sha256": "a2ad657bfcce4225e6caf39222b0dce5018a50b39139cca1d1f0662eb5bc278c",
       "chapters": []
     },
     "media": {
@@ -3871,5 +3927,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "e56db16b42c8d826fa474c74f978264be7f4f8b6decc3a8e2c5c0a8381423839"
+  "release_sha256": "3a3d1f06202f05a682a0d73486186f8f0c746378e90e595ef9fccab39ab31f20"
 }
