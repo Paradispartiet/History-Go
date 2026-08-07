@@ -194,8 +194,8 @@ registry.subjects.subkultur = {
   },
   chapters
 };
-registry.version = '2.19.0';
-registry.updatedAt = UPDATED_AT;
+registry.version ||= '2.19.0';
+registry.updatedAt ||= UPDATED_AT;
 expected(PATHS.registry, registry);
 
 chapterManifest.status = 'complete_runtime_materialized';
