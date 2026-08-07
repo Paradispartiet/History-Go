@@ -14,6 +14,72 @@ const P = {
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const check = (condition, message) => { if (!condition) throw new Error(message); };
 const words = (value) => String(value || '').trim().split(/\s+/u).filter(Boolean).length;
+const completedAreaStatuses = new Set(['chapter_and_overview_text_materialized', 'expanded_contract_fulfilled']);
+const requiredFulfillmentFields = ['topicId', 'sectionIds', 'conceptIds', 'claimIds', 'sourceIds', 'appliedTheoryTraditions', 'appliedMethods', 'namedAnalysisObjects', 'historicalCoverage', 'geographicalCoverage', 'boundaryAreaIds'];
+const uniqueStrings = (value, minimum, message) => {
+  check(Array.isArray(value) && value.length >= minimum, message);
+  check(value.every((item) => typeof item === 'string' && words(item) >= 1), `${message}: krever ikke-tomme strenger`);
+  check(new Set(value).size === value.length, `${message}: duplikater er ikke tillatt`);
+};
+
+export function validateFullFieldContract(area, contract, allAreaIds) {
+  check(contract.schema === 'history_go_literature_full_field_contract_v1', `${area.id}: feil fullfeltkontraktschema`);
+  check(contract.version === '1.0.0' && contract.subjectId === 'litteratur' && contract.areaId === area.id, `${area.id}: fullfeltkontrakten peker feil`);
+  check(['scope_locked_materialization_pending', 'fulfilled'].includes(contract.status), `${area.id}: ugyldig fullfeltstatus`);
+  check(words(contract.purpose) >= 18, `${area.id}: fullfeltkontrakten mangler presist formål`);
+  const dimensions = contract.requiredDimensions || {};
+  uniqueStrings(dimensions.theoryTraditions, 8, `${area.id}: mangler teoribredde`);
+  uniqueStrings(dimensions.methods, 8, `${area.id}: mangler metodebredde`);
+  uniqueStrings(dimensions.historicalPeriods, 7, `${area.id}: mangler historisk spenn`);
+  uniqueStrings(dimensions.geographicalTraditions, 7, `${area.id}: mangler geografisk og tradisjonelt spenn`);
+  uniqueStrings(dimensions.mediaAndInstitutions, 8, `${area.id}: mangler medie- og institusjonsbredde`);
+  uniqueStrings(dimensions.boundaryAreaIds, 6, `${area.id}: mangler bindende grenseflater`);
+  check(dimensions.boundaryAreaIds.every((id) => allAreaIds.has(id) && id !== area.id), `${area.id}: fullfeltkontrakten peker til ukjent grenseområde`);
+  uniqueStrings(contract.completionRules, 10, `${area.id}: mangler bindende ferdigregler`);
+  check(contract.fulfillmentSchema?.requiredFile && contract.fulfillmentSchema?.statusWhenComplete === 'expanded_contract_fulfilled', `${area.id}: mangler fulfillment-port`);
+  check(JSON.stringify(contract.fulfillmentSchema.requiredTopicEvidenceFields) === JSON.stringify(requiredFulfillmentFields), `${area.id}: fulfillment-skjemaet mangler bindende evidensfelt`);
+  check(contract.topicRequirements?.length === 6, `${area.id}: fullfeltkontrakten skal ha seks temakrav`);
+  check(JSON.stringify(contract.topicRequirements.map((topic) => topic.id)) === JSON.stringify(area.topics), `${area.id}: fullfeltkravene må følge temaene i kontraktrekkefølge`);
+  for (const topic of contract.topicRequirements) {
+    uniqueStrings(topic.requiredSubcoverage, 7, `${area.id}/${topic.id}: mangler bindende underdekning`);
+    uniqueStrings(topic.requiredConcepts, 8, `${area.id}/${topic.id}: mangler komplett begrepskrav`);
+    uniqueStrings(topic.theoryTraditions, 4, `${area.id}/${topic.id}: mangler teorikrav`);
+    uniqueStrings(topic.methods, 4, `${area.id}/${topic.id}: mangler metodekrav`);
+    uniqueStrings(topic.namedAnalysisObjects, 4, `${area.id}/${topic.id}: mangler navngitte analyseobjekter`);
+    uniqueStrings(topic.historicalCoverage, 4, `${area.id}/${topic.id}: mangler historisk dekning`);
+    uniqueStrings(topic.geographicalCoverage, 4, `${area.id}/${topic.id}: mangler geografisk dekning`);
+    uniqueStrings(topic.boundaryAreaIds, 3, `${area.id}/${topic.id}: mangler grenseflater`);
+    check(topic.boundaryAreaIds.every((id) => allAreaIds.has(id) && id !== area.id), `${area.id}/${topic.id}: ukjent grenseområde`);
+    uniqueStrings(topic.completionEvidence, 6, `${area.id}/${topic.id}: mangler evidenskrav`);
+  }
+}
+
+function validateFullFieldFulfillment(area, contract, chapter, sections, registry, claims) {
+  const file = contract.fulfillmentSchema.requiredFile;
+  const fulfillment = read(`data/fag/litteratur/litteraturvitenskap_canonical_v1/${file}`);
+  check(fulfillment.schema === 'history_go_literature_full_field_fulfillment_v1' && fulfillment.areaId === area.id, `${area.id}: ugyldig fullfelt-fulfillment`);
+  check(fulfillment.status === 'verified' && fulfillment.topicEvidence?.length === 6, `${area.id}: fullfelt-fulfillment er ikke verifisert`);
+  check(JSON.stringify(fulfillment.topicEvidence.map((row) => row.topicId)) === JSON.stringify(area.topics), `${area.id}: fulfillment følger ikke kontraktrekkefølgen`);
+  const conceptIds = new Set(registry.concepts.map((row) => row.id));
+  const claimIds = new Set(claims.claims.map((row) => row.id));
+  const sourceIds = new Set(claims.sources.map((row) => row.id));
+  const sectionIds = new Set(sections.map((row) => row.id));
+  for (const requirement of contract.topicRequirements) {
+    const evidence = fulfillment.topicEvidence.find((row) => row.topicId === requirement.id);
+    for (const field of requiredFulfillmentFields) check(Array.isArray(evidence?.[field]) || field === 'topicId', `${area.id}/${requirement.id}: fulfillment mangler ${field}`);
+    check(evidence.sectionIds.length >= 1 && evidence.sectionIds.every((id) => sectionIds.has(id)), `${area.id}/${requirement.id}: ugyldig artikkelbevis`);
+    check(requirement.requiredConcepts.every((id) => evidence.conceptIds.includes(id) && conceptIds.has(id)), `${area.id}/${requirement.id}: begrepskravet er ikke oppfylt`);
+    check(evidence.claimIds.length >= 4 && evidence.claimIds.every((id) => claimIds.has(id)), `${area.id}/${requirement.id}: mangler påstandsspor`);
+    check(evidence.sourceIds.length >= 3 && evidence.sourceIds.every((id) => sourceIds.has(id)), `${area.id}/${requirement.id}: mangler kildespor`);
+    check(evidence.appliedTheoryTraditions.length >= 2 && evidence.appliedTheoryTraditions.every((item) => requirement.theoryTraditions.includes(item)), `${area.id}/${requirement.id}: teoriene er ikke anvendt`);
+    check(evidence.appliedMethods.length >= 2 && evidence.appliedMethods.every((item) => requirement.methods.includes(item)), `${area.id}/${requirement.id}: metodene er ikke anvendt`);
+    check(evidence.namedAnalysisObjects.length >= 3 && evidence.namedAnalysisObjects.every((item) => requirement.namedAnalysisObjects.includes(item)), `${area.id}/${requirement.id}: analyseobjektene er ikke dokumentert`);
+    check(evidence.historicalCoverage.length >= 3 && evidence.historicalCoverage.every((item) => requirement.historicalCoverage.includes(item)), `${area.id}/${requirement.id}: historisk spenn er ikke dokumentert`);
+    check(evidence.geographicalCoverage.length >= 3 && evidence.geographicalCoverage.every((item) => requirement.geographicalCoverage.includes(item)), `${area.id}/${requirement.id}: geografisk spenn er ikke dokumentert`);
+    check(requirement.boundaryAreaIds.every((id) => evidence.boundaryAreaIds.includes(id)), `${area.id}/${requirement.id}: grenseflatene er ikke dokumentert`);
+  }
+  check(chapter.expandedContractFulfillment === file, `${area.id}: kapittelet peker ikke til validert fulfillment`);
+}
 
 export function auditLitteraturScientificPackage() {
   const manifest = read(P.manifest);
@@ -27,11 +93,14 @@ export function auditLitteraturScientificPackage() {
   check(manifest.litteratur.topicFoundations === 'litteratur/litteraturvitenskap_canonical_v1/topic_foundations_v1.json', 'Manifestet mangler topicFoundations');
   const requiredAreaCount = coverage.completion_definition.required_area_count;
   const requiredTopicCount = coverage.completion_definition.required_topic_count;
+  check(coverage.completion_definition.requirements_per_area.includes('områder med full_field_contract må ha en validert fulfillment-fil før komplettstatus'), 'Global ferdigdefinisjon mangler fullfelt-port');
+  check(coverage.completion_definition.forbidden_shortcuts.includes('seks brede temaoverskrifter brukt som erstatning for bindende underdekning'), 'Global ferdigdefinisjon tillater fortsatt bredde-juks');
   check(index.summary.coverage_area_count === requiredAreaCount && index.summary.required_topic_count === requiredTopicCount, 'Index har feil dekningsmål');
   check(coverage.coverage_areas.length === requiredAreaCount, `Dekningskontrakten skal ha ${requiredAreaCount} områder`);
   check(foundations.areas.length === requiredAreaCount, `Tekstlaget skal ha ${requiredAreaCount} områdesynteser`);
 
   const requiredAreaIds = coverage.coverage_areas.map((area) => area.id);
+  const requiredAreaIdSet = new Set(requiredAreaIds);
   const actualAreaIds = foundations.areas.map((area) => area.id);
   check(new Set(actualAreaIds).size === requiredAreaCount, 'Område-ID-er må være unike');
   check(JSON.stringify(requiredAreaIds) === JSON.stringify(actualAreaIds), 'Tekstlaget må følge dekningskontraktens rekkefølge nøyaktig');
@@ -56,6 +125,20 @@ export function auditLitteraturScientificPackage() {
     check(words(concept.definition) >= 10, `${concept.id}: definisjonen er for kort`);
     check(words(concept.distinguish_from) >= 4, `${concept.id}: mangler grense mot nabobegrep`);
   }
+
+  const fullFieldContractFiles = coverage.coverage_areas.map((area) => area.full_field_contract).filter(Boolean);
+  check(fullFieldContractFiles.length === 2 && new Set(fullFieldContractFiles).size === 2, 'Litteratur skal ha to låste utvidede fullfeltkontrakter i denne fasen');
+  check(JSON.stringify(index.files.full_field_contracts) === JSON.stringify(fullFieldContractFiles), 'Index og utvidede fullfeltkontrakter er usynkronisert');
+  const fullFieldContracts = new Map();
+  for (const area of coverage.coverage_areas.filter((row) => row.full_field_contract)) {
+    const contract = read(`data/fag/litteratur/litteraturvitenskap_canonical_v1/${area.full_field_contract}`);
+    validateFullFieldContract(area, contract, requiredAreaIdSet);
+    fullFieldContracts.set(area.id, contract);
+    if (contract.status === 'scope_locked_materialization_pending') check(area.status === 'expanded_contract_scope_locked_materialization_pending', `${area.id}: pending fullfeltkontrakt kan ikke stå som komplett`);
+    if (contract.status === 'fulfilled') check(area.status === 'expanded_contract_fulfilled', `${area.id}: fullført fullfeltkontrakt har feil områdestatus`);
+  }
+  check(index.summary.expanded_contract_count === fullFieldContracts.size, 'Index har feil antall utvidede kontrakter');
+  check(index.summary.expanded_contract_fulfilled_count === [...fullFieldContracts.values()].filter((contract) => contract.status === 'fulfilled').length, 'Index har feil antall oppfylte utvidede kontrakter');
 
   const chapterFiles = index.files.foundation_chapters || [];
   check(chapterFiles.length === index.summary.materialized_foundation_chapter_count, 'Index og kapittelliste har ulikt kapittelantall');
@@ -121,7 +204,9 @@ export function auditLitteraturScientificPackage() {
     check(new Set(usedClaimIds).size / claims.claims.length >= 0.7, `${chapter.id}: mindre enn 70 prosent av påstandene er koblet til avsnitt`);
     sourceCount += claims.sources.length;
     claimCount += claims.claims.length;
-    completeAreaIds.add(chapter.id);
+    const fullFieldContract = fullFieldContracts.get(chapter.id);
+    if (fullFieldContract?.status === 'fulfilled') validateFullFieldFulfillment(contractArea, fullFieldContract, chapter, sections, registry, claims);
+    if (completedAreaStatuses.has(contractArea.status)) completeAreaIds.add(chapter.id);
   }
 
   check(index.summary.materialized_module_count === moduleCount, 'Index har feil modulantall');
@@ -131,13 +216,13 @@ export function auditLitteraturScientificPackage() {
   check(coverage.progress.areas_complete === completeAreaIds.size, 'Dekningskontrakten har feil antall ferdige områder');
   check(coverage.progress.topics_complete === [...completeAreaIds].reduce((sum, id) => sum + coverage.coverage_areas.find((area) => area.id === id).topics.length, 0), 'Dekningskontrakten har feil antall ferdige temaer');
 
-  return { areaCount: requiredAreaCount, topicCount: requiredTopicCount, completeAreaCount: completeAreaIds.size, fullDepthChapterCount, conceptCount, moduleCount, sourceCount, claimCount };
+  return { areaCount: requiredAreaCount, topicCount: requiredTopicCount, completeAreaCount: completeAreaIds.size, fullDepthChapterCount, expandedContractCount: fullFieldContracts.size, expandedContractFulfilledCount: [...fullFieldContracts.values()].filter((contract) => contract.status === 'fulfilled').length, conceptCount, moduleCount, sourceCount, claimCount };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const result = auditLitteraturScientificPackage();
-    console.log(`Litteraturpakke OK: ${result.areaCount} områder, ${result.topicCount} emnetekster, ${result.completeAreaCount} komplette områder, ${result.conceptCount} definerte begreper, ${result.moduleCount} moduler, ${result.sourceCount} kilder og ${result.claimCount} claims.`);
+    console.log(`Litteraturpakke OK: ${result.areaCount} områder, ${result.topicCount} emnetekster, ${result.completeAreaCount} komplette områder, ${result.expandedContractCount} utvidede kontrakter (${result.expandedContractFulfilledCount} oppfylt), ${result.conceptCount} definerte begreper, ${result.moduleCount} moduler, ${result.sourceCount} kilder og ${result.claimCount} claims.`);
   } catch (error) {
     console.error(`Litteraturpakke FEIL: ${error.message}`);
     process.exitCode = 1;
