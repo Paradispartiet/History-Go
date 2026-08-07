@@ -143,7 +143,7 @@ export function auditLitteraturScientificPackage() {
   }
 
   const fullFieldContractFiles = coverage.coverage_areas.map((area) => area.full_field_contract).filter(Boolean);
-  check(fullFieldContractFiles.length === 2 && new Set(fullFieldContractFiles).size === 2, 'Litteratur skal ha to låste utvidede fullfeltkontrakter i denne fasen');
+  check(fullFieldContractFiles.length >= 2 && new Set(fullFieldContractFiles).size === fullFieldContractFiles.length, 'Litteratur skal ha unike låste utvidede fullfeltkontrakter');
   check(JSON.stringify(index.files.full_field_contracts) === JSON.stringify(fullFieldContractFiles), 'Index og utvidede fullfeltkontrakter er usynkronisert');
   const fullFieldContracts = new Map();
   for (const area of coverage.coverage_areas.filter((row) => row.full_field_contract)) {
