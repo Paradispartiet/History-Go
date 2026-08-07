@@ -63,7 +63,7 @@ const dramaContract = {
   completionRules: sharedCompletionRules,
   fulfillmentSchema: {
     requiredFile: 'foundation_texts/drama_teatertekst_framforing/full_field_fulfillment_v1.json',
-    requiredTopicEvidenceFields: ['topicId', 'sectionIds', 'conceptIds', 'claimIds', 'sourceIds', 'appliedTheoryTraditions', 'appliedMethods', 'namedAnalysisObjects', 'historicalCoverage', 'geographicalCoverage', 'boundaryAreaIds'],
+    requiredTopicEvidenceFields: ['topicId', 'sectionIds', 'conceptIds', 'claimIds', 'sourceIds', 'appliedTheoryTraditions', 'appliedMethods', 'namedAnalysisObjects', 'historicalCoverage', 'geographicalCoverage', 'boundaryAreaIds', 'subcoverageEvidence', 'theoryEvidence', 'methodEvidence', 'namedObjectEvidence'],
     statusWhenComplete: 'expanded_contract_fulfilled'
   },
   topicRequirements: [
@@ -143,7 +143,7 @@ const genreContract = {
   completionRules: sharedCompletionRules,
   fulfillmentSchema: {
     requiredFile: 'foundation_texts/sjanger_modus_form/full_field_fulfillment_v1.json',
-    requiredTopicEvidenceFields: ['topicId', 'sectionIds', 'conceptIds', 'claimIds', 'sourceIds', 'appliedTheoryTraditions', 'appliedMethods', 'namedAnalysisObjects', 'historicalCoverage', 'geographicalCoverage', 'boundaryAreaIds'],
+    requiredTopicEvidenceFields: ['topicId', 'sectionIds', 'conceptIds', 'claimIds', 'sourceIds', 'appliedTheoryTraditions', 'appliedMethods', 'namedAnalysisObjects', 'historicalCoverage', 'geographicalCoverage', 'boundaryAreaIds', 'subcoverageEvidence', 'theoryEvidence', 'methodEvidence', 'namedObjectEvidence'],
     statusWhenComplete: 'expanded_contract_fulfilled'
   },
   topicRequirements: [
@@ -208,8 +208,14 @@ const contractFiles = {
   drama_teatertekst_framforing: `${PACKAGE}/contracts/drama_teatertekst_framforing_full_field_v1.json`,
   sjanger_modus_form: `${PACKAGE}/contracts/sjanger_modus_form_full_field_v1.json`
 };
-write(contractFiles.drama_teatertekst_framforing, dramaContract);
-write(contractFiles.sjanger_modus_form, genreContract);
+for (const contract of [dramaContract, genreContract]) {
+  const file = contractFiles[contract.areaId];
+  if (fs.existsSync(path.join(ROOT, file))) {
+    const existing = read(file);
+    if (existing.status === 'fulfilled') contract.status = 'fulfilled';
+  }
+  write(file, contract);
+}
 
 const coverageFile = `${PACKAGE}/coverage_contract_v1.json`;
 const coverage = read(coverageFile);
@@ -225,7 +231,7 @@ coverage.completion_definition.forbidden_shortcuts = [...new Set([
 ])];
 coverage.coverage_areas = coverage.coverage_areas.map((area) => contractFiles[area.id] ? {
   ...area,
-  status: 'expanded_contract_scope_locked_materialization_pending',
+  status: read(contractFiles[area.id]).status === 'fulfilled' ? 'expanded_contract_fulfilled' : 'expanded_contract_scope_locked_materialization_pending',
   full_field_contract: contractFiles[area.id].replace(`${PACKAGE}/`, '')
 } : area);
 const completed = coverage.coverage_areas.filter((area) => ['chapter_and_overview_text_materialized', 'expanded_contract_fulfilled'].includes(area.status));
@@ -236,7 +242,7 @@ coverage.progress = {
   topics_total: 168,
   topics_with_foundation_text: 168,
   topics_complete: completed.flatMap((area) => area.topics).length,
-  honest_status: 'Alle 28 områder og 168 temaer har særskrevet oversiktstekst. Tolv områder og 72 temaer har materialiserte kapitler, men drama/teater og sjanger/modus er senket til utvidet kontrakt-pending etter at bindende underdekning, globale tradisjoner, metodekrav og grenseflater ble innført. Ti områder og 60 temaer er nå fullført etter gjeldende kontrakt; 18 områder og 108 temaer krever mer full-dybdearbeid.'
+  honest_status: `Alle 28 områder og 168 temaer har særskrevet oversiktstekst. Tolv områder og 72 temaer har materialiserte kapitler. ${completed.length} områder og ${completed.flatMap((area) => area.topics).length} temaer er fullført etter gjeldende kontrakt; ${28 - completed.length} områder og ${168 - completed.flatMap((area) => area.topics).length} temaer krever mer full-dybdearbeid.`
 };
 write(coverageFile, coverage);
 
@@ -244,14 +250,15 @@ const indexFile = `${PACKAGE}/index.json`;
 const index = read(indexFile);
 index.files.full_field_contracts = Object.values(contractFiles).map((file) => file.replace(`${PACKAGE}/`, ''));
 index.summary.expanded_contract_count = 2;
-index.summary.expanded_contract_fulfilled_count = 0;
-index.summary.completion_status = 'two_expanded_contracts_locked_18_areas_pending_full_depth';
+const fulfilledContractCount = Object.values(contractFiles).map(read).filter((contract) => contract.status === 'fulfilled').length;
+index.summary.expanded_contract_fulfilled_count = fulfilledContractCount;
+index.summary.completion_status = `${fulfilledContractCount}_of_2_expanded_contracts_fulfilled_${18 - fulfilledContractCount}_areas_pending_full_depth`;
 write(indexFile, index);
 
 const statusFile = 'data/fagverk/subject_status.json';
 const status = read(statusFile);
 const literature = status.subjects.find((subject) => subject.id === 'litteratur');
-literature.nextGate = 'fulfill_two_expanded_contracts_and_remaining_16_areas_then_runtime';
-literature.note = 'Litteratur har 28 fagområdesynteser og 168 særskrevne emnetekster. Tolv områder og 72 temaer har materialiserte kapitler, men drama/teater og sjanger/modus er ærlig senket til expanded-contract-pending etter at bindende underdekning, globale tradisjoner, metoder og grenseflater ble innført. Dermed er 10 områder og 60 temaer komplette etter gjeldende kontrakt, mens 18 områder og 108 temaer krever mer full-dybdearbeid. Pakken har fortsatt 291 definerte begreper, 142 kilder og 294 påstandsspor.';
+literature.nextGate = fulfilledContractCount === 2 ? 'remaining_16_areas_full_depth_then_runtime' : `fulfill_${2 - fulfilledContractCount}_expanded_contracts_and_remaining_16_areas_then_runtime`;
+literature.note = `Litteratur har 28 fagområdesynteser og 168 særskrevne emnetekster. Tolv områder og 72 temaer har materialiserte kapitler. ${completed.length} områder og ${completed.flatMap((area) => area.topics).length} temaer er komplette etter gjeldende kontrakt; ${28 - completed.length} områder og ${168 - completed.flatMap((area) => area.topics).length} temaer krever mer full-dybdearbeid. ${fulfilledContractCount} av 2 utvidede fullfeltkontrakter er oppfylt.`;
 write(statusFile, status);
 console.log('Låste utvidede fullfeltkontrakter for drama/teater og sjanger/modus/form.');
