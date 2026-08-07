@@ -15,7 +15,7 @@ const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const check = (condition, message) => { if (!condition) throw new Error(message); };
 const words = (value) => String(value || '').trim().split(/\s+/u).filter(Boolean).length;
 const completedAreaStatuses = new Set(['chapter_and_overview_text_materialized', 'expanded_contract_fulfilled']);
-const requiredFulfillmentFields = ['topicId', 'sectionIds', 'conceptIds', 'claimIds', 'sourceIds', 'appliedTheoryTraditions', 'appliedMethods', 'namedAnalysisObjects', 'historicalCoverage', 'geographicalCoverage', 'boundaryAreaIds'];
+const requiredFulfillmentFields = ['topicId', 'sectionIds', 'conceptIds', 'claimIds', 'sourceIds', 'appliedTheoryTraditions', 'appliedMethods', 'namedAnalysisObjects', 'historicalCoverage', 'geographicalCoverage', 'boundaryAreaIds', 'subcoverageEvidence', 'theoryEvidence', 'methodEvidence', 'namedObjectEvidence'];
 const uniqueStrings = (value, minimum, message) => {
   check(Array.isArray(value) && value.length >= minimum, message);
   check(value.every((item) => typeof item === 'string' && words(item) >= 1), `${message}: krever ikke-tomme strenger`);
@@ -64,9 +64,16 @@ function validateFullFieldFulfillment(area, contract, chapter, sections, registr
   const claimIds = new Set(claims.claims.map((row) => row.id));
   const sourceIds = new Set(claims.sources.map((row) => row.id));
   const sectionIds = new Set(sections.map((row) => row.id));
+  const evidencePointer = (pointer, label) => {
+    check(pointer && sectionIds.has(pointer.sectionId) && Number.isInteger(pointer.paragraphIndex), `${area.id}: ugyldig avsnittspeker for ${label}`);
+    const section = sections.find((row) => row.id === pointer.sectionId);
+    check(pointer.paragraphIndex >= 0 && pointer.paragraphIndex < section.paragraphs.length, `${area.id}: avsnittsindeks utenfor artikkelen for ${label}`);
+    check(Array.isArray(pointer.claimIds) && pointer.claimIds.length > 0 && pointer.claimIds.every((id) => claimIds.has(id) && section.paragraphClaimIds[pointer.paragraphIndex].includes(id)), `${area.id}: avsnittspeker mangler gyldig claim-spor for ${label}`);
+    return section.paragraphs[pointer.paragraphIndex];
+  };
   for (const requirement of contract.topicRequirements) {
     const evidence = fulfillment.topicEvidence.find((row) => row.topicId === requirement.id);
-    for (const field of requiredFulfillmentFields) check(Array.isArray(evidence?.[field]) || field === 'topicId', `${area.id}/${requirement.id}: fulfillment mangler ${field}`);
+    for (const field of requiredFulfillmentFields) check(field === 'topicId' ? evidence?.topicId : ['subcoverageEvidence', 'theoryEvidence', 'methodEvidence', 'namedObjectEvidence'].includes(field) ? evidence?.[field] && typeof evidence[field] === 'object' && !Array.isArray(evidence[field]) : Array.isArray(evidence?.[field]), `${area.id}/${requirement.id}: fulfillment mangler ${field}`);
     check(evidence.sectionIds.length >= 1 && evidence.sectionIds.every((id) => sectionIds.has(id)), `${area.id}/${requirement.id}: ugyldig artikkelbevis`);
     check(requirement.requiredConcepts.every((id) => evidence.conceptIds.includes(id) && conceptIds.has(id)), `${area.id}/${requirement.id}: begrepskravet er ikke oppfylt`);
     check(evidence.claimIds.length >= 4 && evidence.claimIds.every((id) => claimIds.has(id)), `${area.id}/${requirement.id}: mangler påstandsspor`);
@@ -77,6 +84,15 @@ function validateFullFieldFulfillment(area, contract, chapter, sections, registr
     check(evidence.historicalCoverage.length >= 3 && evidence.historicalCoverage.every((item) => requirement.historicalCoverage.includes(item)), `${area.id}/${requirement.id}: historisk spenn er ikke dokumentert`);
     check(evidence.geographicalCoverage.length >= 3 && evidence.geographicalCoverage.every((item) => requirement.geographicalCoverage.includes(item)), `${area.id}/${requirement.id}: geografisk spenn er ikke dokumentert`);
     check(requirement.boundaryAreaIds.every((id) => evidence.boundaryAreaIds.includes(id)), `${area.id}/${requirement.id}: grenseflatene er ikke dokumentert`);
+    check(JSON.stringify(Object.keys(evidence.subcoverageEvidence)) === JSON.stringify(requirement.requiredSubcoverage), `${area.id}/${requirement.id}: ikke alle underkrav har avsnittsevidens`);
+    for (const item of requirement.requiredSubcoverage) evidencePointer(evidence.subcoverageEvidence[item], `${requirement.id}/${item}`);
+    for (const theory of evidence.appliedTheoryTraditions) evidencePointer(evidence.theoryEvidence[theory], `${requirement.id}/${theory}`);
+    for (const method of evidence.appliedMethods) evidencePointer(evidence.methodEvidence[method], `${requirement.id}/${method}`);
+    for (const object of evidence.namedAnalysisObjects) {
+      const paragraph = evidencePointer(evidence.namedObjectEvidence[object], `${requirement.id}/${object}`);
+      const title = object.includes(':') ? object.split(':').slice(1).join(':').trim() : object;
+      check(paragraph.includes(title), `${area.id}/${requirement.id}: analyseobjektet ${object} finnes ikke i evidensavsnittet`);
+    }
   }
   check(chapter.expandedContractFulfillment === file, `${area.id}: kapittelet peker ikke til validert fulfillment`);
 }
